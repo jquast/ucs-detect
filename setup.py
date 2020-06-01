@@ -19,7 +19,7 @@ def _get_here(fname):
 def main():
     """Setup.py entry point."""
     setuptools.setup(
-        name='ucs-detect',
+        name='ucs_detect',
         version='0.0.1',
         description=(
             "Detects the Unicode Version of an interactive terminal for export"),
@@ -32,13 +32,13 @@ def main():
         packages=['ucs_detect'],
         url='https://github.com/jquast/ucs-detect',
         package_data={
-            '': ['LICENSE.txt', '*.rst'],
+            '': ['LICENSE', '*.rst'],
         },
         zip_safe=True,
         classifiers=[
             'Intended Audience :: Developers',
             'Natural Language :: English',
-            'Development Status :: 5 - Production/Stable'
+            'Development Status :: 5 - Production/Stable',
             'Environment :: Console',
             'License :: OSI Approved :: MIT License',
             'Operating System :: POSIX',
