@@ -1,8 +1,8 @@
 ucs-detect
 ==========
 
-This Python 3 CLI utility determines the Unicode Version of a terminal, and
-prints an sh_-compatible variable for export::
+This CLI utility determines the Unicode Version of a terminal, and prints an
+sh_-compatible variable for export::
 
     $ ucs-detect
     UNICODE_VERSION=12.0.0; export UNICODE_VERSION
