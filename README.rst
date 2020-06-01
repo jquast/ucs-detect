@@ -64,10 +64,10 @@ How it works
 The unicode version is determined using the `Query Cursor Position`_ terminal
 sequence, which asks the terminal emulator "where is the cursor?".
 
-By displaying a series of Wide Unicode characters that were introduced
-for each Unicode version that are expected to advance the *x* position
-2 cells, the last version that successfully advances 2 cells is determined to be
-the version of Unicode supported by the Terminal Emulator.
+By displaying a series of Wide Unicode characters for each Unicode version
+expected to advance the cursor by 2 cells, the last version that successfully
+advances 2 cells is determined to be the version of Unicode supported by the
+Terminal Emulator.
 
 This solution of using `Query Cursor Position`_ and exporting an sh_ variable is
 precisely the same solution used by the `resize(1)`_ program distributed with
