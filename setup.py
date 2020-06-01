@@ -16,34 +16,6 @@ def _get_here(fname):
     return os.path.join(os.path.dirname(__file__), fname)
 
 
-def _get_version(fname, key='package'):
-    import json
-    return json.load(open(fname, 'r'))[key]
-
-
-class _SetupUpdate(setuptools.Command):
-    # This is a compatibility, some downstream distributions might
-    # still call "setup.py update".
-    #
-    # New entry point is tox, 'tox -eupdate'.
-    description = "Fetch and update unicode code tables"
-    user_options = []
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        import sys
-        import subprocess
-        retcode = subprocess.Popen([
-            sys.executable,
-            _get_here(os.path.join('bin', 'update-tables.py'))]).wait()
-        assert retcode == 0, ('non-zero exit code', retcode)
-
-
 def main():
     """Setup.py entry point."""
     setuptools.setup(
