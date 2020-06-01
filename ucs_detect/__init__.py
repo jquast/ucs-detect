@@ -16,7 +16,6 @@ import blessed
 
 def main():
     term = blessed.Terminal()
-    assert term.is_a_tty
     previous_version = '4.1.0'
     wide_by_version = [
         ('5.0.0', '龼'),

@@ -68,7 +68,6 @@ def main():
             'wcwidth',
             'xterm',
         ],
-        cmdclass={'update': _SetupUpdate},
     )
 
 
