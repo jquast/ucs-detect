@@ -49,7 +49,7 @@ Solution
 --------
 
 The most important factor is to determine: **What version of unicode is the
-Terminal Emulator using?**.
+Terminal Emulator using?**
 
 This program, ``ucs-detect``, is able to **automatically detect** the version of
 unicode that the connecting Terminal supports. The python wcwidth_ library
