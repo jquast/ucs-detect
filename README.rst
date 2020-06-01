@@ -87,4 +87,4 @@ tool would not be required.
 .. _wcwidth.c: https://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c
 .. _wcwidth: https://github.com/jquast/wcwidth
 .. _`Query Cursor Position`: https://blessed.readthedocs.io/en/latest/location.html#finding-the-cursor
-.. _`resize(1)`_: https://github.com/joejulian/xterm/blob/master/resize.c
+.. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
