@@ -7,7 +7,7 @@ sh_-compatible variable for export::
     $ ucs-detect
     UNICODE_VERSION=12.0.0; export UNICODE_VERSION
 
-This Environment Variable is then used by the python wcwidth_ library, to
+This environment variable is then used by the python wcwidth_ library, to
 determine how dependent python programs, such as IPython_ and others using
 `python-prompt-toolkit`_ render zero-width and wide unicode characters.
 
@@ -38,9 +38,9 @@ example, from `vercel/hyper`_ terminal:
 .. figure:: hyper-example.png
    :alt: An example of misaligned wide characters by the Hyper Terminal
 
-This is because the Unicode Consortium releases new versions of the Unicode
-Standard periodically, but the source code of libraries and applications are not
-updated at the same time, or at all!
+This problem happens often, because the Unicode Consortium releases new versions
+of the Unicode Standard periodically, but the source code of libraries and
+applications are not updated at the same time, or at all!
 
 Many languages and libraries continue to conform only to Unicode 5.0, which is
 the last version of `wcwidth.c`_ released by Markus Kuhn in 2007.
@@ -54,9 +54,8 @@ Terminal Emulator using?**.
 This program, ``ucs-detect``, is able to **automatically detect** the version of
 unicode that the connecting Terminal supports. The python wcwidth_ library
 supports **all** Unicode versions, 4.1.0 through 12.1.0 at time of this writing,
-and so it is able to select and match the correct return value for unicode
-version that is detected for the terminal emulator, by using the exported
-``UNICODE_VERSION`` value.
+and so it is able to select and match the correct return value for by using the
+given value of the ``UNICODE_VERSION`` environment variable.
 
 How it works
 ------------
