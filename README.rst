@@ -82,7 +82,7 @@ automatically export the environment variable, ``UNICODE_VERSION`` and that this
 tool would not be required.
 
 .. _IPython: https://ipython.org/
-.. _python-prompt-toolkit: https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/PROJECTS.rst
+.. _python-prompt-toolkit: https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/PROJECTS.rst#projects-using-prompt_toolkit
 .. _sh: https://en.wikipedia.org/wiki/Bourne_shell
 .. _vercel/hyper: https://github.com/vercel/hyper
 .. _wcwidth.c: https://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c
