@@ -29,7 +29,7 @@ Problem
 -------
 
 Chinese, Japanese, Korean, and Emoticon characters are "double-wide", occupying
-two cells instead of 1, and some other special characters are "zero-width".
+2 cells, instead of 1, and some other special characters are "zero-width".
 
 Any terminal application that formats and displays these characters may have
 trouble determining how it will be displayed to the end-user.  Here is one such
