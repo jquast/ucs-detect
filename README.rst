@@ -7,8 +7,8 @@ sh_-compatible variable for export::
     $ ucs-detect
     UNICODE_VERSION=12.0.0; export UNICODE_VERSION
 
-This variable is then used by the python wcwidth_ library, to determine how
-dependent python programs, such as IPython_ and others using
+This Environment Variable is then used by the python wcwidth_ library, to
+determine how dependent python programs, such as IPython_ and others using
 `python-prompt-toolkit`_ render zero-width and wide unicode characters.
 
 If this variable is not exported, the python wcwidth_ library assumes the latest.
