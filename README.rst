@@ -37,6 +37,7 @@ example, from `vercel/hyper`_ terminal:
 
 .. figure:: hyper-example.png
    :alt: An example of misaligned wide characters by the Hyper Terminal
+   :figwidth: image
 
 This problem happens often, because the Unicode Consortium releases new versions
 of the Unicode Standard periodically, but the source code of libraries and
@@ -56,6 +57,14 @@ unicode that the connecting Terminal supports. The python wcwidth_ library
 supports **all** Unicode versions, 4.1.0 through 12.1.0 at time of this writing,
 and so it is able to select and match the correct return value for by using the
 given value of the ``UNICODE_VERSION`` environment variable.
+
+With this solution, we can correctly determine the ``UNICODE_VERSION`` of
+`vercel/hyper`_ terminal as ``5.1.0``, and the cells that were previously
+mis-aligned are now aligned correctly:
+
+.. figure:: hyper-example-fixed.png
+   :alt: An example of corrected alignment by Hyper Terminal
+   :figwidth: image
 
 How it works
 ------------
