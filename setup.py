@@ -20,7 +20,7 @@ def main():
     """Setup.py entry point."""
     setuptools.setup(
         name='ucs_detect',
-        version='0.0.1',
+        version='0.0.2',
         description=(
             "Detects the Unicode Version of an interactive terminal for export"),
         long_description=codecs.open(
