@@ -11,7 +11,8 @@ This environment variable is then used by the python wcwidth_ library, to
 determine how dependent python programs, such as IPython_ and others using
 `python-prompt-toolkit`_ render zero-width and wide unicode characters.
 
-If this variable is not exported, the python wcwidth_ library assumes the latest.
+If this variable is not exported, the python wcwidth_ library assumes the
+latest.
 
 Installation & Usage
 --------------------
@@ -21,9 +22,13 @@ From an sh_-compatible shell:
 ::
 
    pip install -U ucs-detect
-   eval $(ucs-detect)
+   eval "$(ucs-detect)"
 
-To make this automatic, add the ``eval`` statement to your shell login profile.
+To make this automatic, add this statement to your shell (bash) profile::
+
+  if [ -z "$UNICODE_VERSION" ] && command -v ucs-detect >/dev/null; then
+      eval "$(ucs-detect)"
+  fi
 
 Problem
 -------
@@ -88,6 +93,10 @@ Further
 I hope that this CLI tool is provisional. I'd like to see all Terminal Emulators
 automatically export the environment variable, ``UNICODE_VERSION`` and that this
 tool would not be required.
+
+If you would like to read more about this tool and related problems I hope to
+address with this environment variable, have a look at his companion article,
+https://jeffquast.com/post/terminal_wcwidth_solution/
 
 .. _IPython: https://ipython.org/
 .. _python-prompt-toolkit: https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/PROJECTS.rst#projects-using-prompt_toolkit

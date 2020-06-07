@@ -17,7 +17,6 @@ import blessed
 def main():
     """Program entry point."""
     term = blessed.Terminal(stream=sys.__stderr__)
-    assert term.is_a_tty
     # This table was generated with the aide of bin/new-wide-by-version.py in
     # the wcwidth repository, note that 4.1.0 and 5.0.0 have identical wide
     # characters.
