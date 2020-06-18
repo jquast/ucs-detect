@@ -60,7 +60,7 @@ Terminal Emulator using?**
 This program, ``ucs-detect``, is able to **automatically detect** the version of
 unicode that the connecting Terminal supports. The python wcwidth_ library
 supports **all** Unicode versions, 4.1.0 through 12.1.0 at time of this writing,
-and so it is able to select and match the correct return value for by using the
+and so it is able to select and match the correct width, by selecting for the
 given value of the ``UNICODE_VERSION`` environment variable.
 
 With this solution, we can correctly determine the ``UNICODE_VERSION`` of
