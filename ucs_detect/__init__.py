@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 ucs-detect: Detects the Unicode Version of an interactive terminal for export
 
