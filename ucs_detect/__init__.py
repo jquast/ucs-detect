@@ -35,7 +35,13 @@ def main():
         ('13.0.0', '🫕'),
     ]
 
-    echo = functools.partial(print, end='', flush=True, file=sys.stderr)
+    try:
+        echo = functools.partial(print, end='', flush=True, file=sys.stderr)
+        echo()
+    except TypeError:
+        def echo(string):
+            print(string, end='', file=sys.stderr)
+            sys.stderr.flush()
 
     def get_xpos():
         ypos, xpos = term.get_location(timeout=3.0)
@@ -46,7 +52,6 @@ def main():
         return xpos
 
     with term.hidden_cursor():
-        echo(term.black)
         for version, wchar in wide_by_version:
             start_x = get_xpos()
             echo(wchar)
