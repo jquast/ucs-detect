@@ -20,7 +20,7 @@ def main():
     """Setup.py entry point."""
     setuptools.setup(
         name='ucs_detect',
-        version='0.0.3',
+        version='0.0.4',
         description=(
             "Detects the Unicode Version of an interactive terminal for export"),
         long_description=codecs.open(
@@ -42,6 +42,7 @@ def main():
             'Environment :: Console',
             'License :: OSI Approved :: MIT License',
             'Operating System :: POSIX',
+            'Programming Language :: Python :: 2.7'
             'Programming Language :: Python :: 3.5',
             'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
@@ -49,7 +50,8 @@ def main():
             'Topic :: Software Development :: Libraries',
             'Topic :: Software Development :: Localization',
             'Topic :: Software Development :: Internationalization',
-            'Topic :: Terminals'
+            'Topic :: Terminals',
+            'Topic :: Text Processing :: General',
         ],
         entry_points={
             'console_scripts': ['ucs-detect=ucs_detect:main'],
