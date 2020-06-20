@@ -55,7 +55,7 @@ Solution
 --------
 
 The most important factor is to determine: **What version of unicode is the
-Terminal Emulator using?**
+Terminal using?**
 
 This program, ``ucs-detect``, is able to **automatically detect** the version of
 unicode that the connecting Terminal supports. The python wcwidth_ library
@@ -75,12 +75,13 @@ How it works
 ------------
 
 The unicode version is determined using the `Query Cursor Position`_ terminal
-sequence, which asks the terminal emulator "where is the cursor?".
+sequence, which asks, *"where is the cursor?"* using a special sequence, and
+conforming terminals reply.
 
 By displaying a series of Wide Unicode characters for each Unicode version
-expected to advance the cursor by 2 cells, the last version that successfully
-advances 2 cells is determined to be the version of Unicode supported by the
-Terminal Emulator.
+expected to advance the cursor by 2 cells, the very last version that
+successfully advances 2 cells determines the version of Unicode supported by the
+Terminal.
 
 This solution of using `Query Cursor Position`_ and exporting an sh_ variable is
 precisely the same solution used by the `resize(1)`_ program distributed with
@@ -90,13 +91,13 @@ communicating or forwarding it (such as over a serial line).
 Further
 -------
 
-I hope that this CLI tool is provisional. I'd like to see all Terminal Emulators
+I hope that this CLI tool is provisional!  I'd like to see all Terminals
 automatically export the environment variable, ``UNICODE_VERSION`` and that this
 tool would not be required.
 
-If you would like to read more about this tool and related problems I hope to
-address with this environment variable, have a look at his companion article,
-https://jeffquast.com/post/terminal_wcwidth_solution/
+If you would like to read more about this tool and the related problems I hope to
+address with the ``UNICODE_VERSION`` environment variable, have a look at this
+companion article, https://jeffquast.com/post/terminal_wcwidth_solution/
 
 .. _IPython: https://ipython.org/
 .. _python-prompt-toolkit: https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/PROJECTS.rst#projects-using-prompt_toolkit
