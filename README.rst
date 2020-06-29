@@ -106,7 +106,6 @@ Using this tool, I have collected a list of wide unicode support version levels
 in various terminal emulators on Mac and Linux. This list is not kept
 up-to-date, but only to serve as an empirical demonstration of the need for
 version level selection (and detection).
-.
 
 .. list-table:: Wide Unicode Versions in Terminals
    :header-rows: 1
