@@ -20,14 +20,14 @@ def main():
     """Setup.py entry point."""
     setuptools.setup(
         name='ucs_detect',
-        version='0.0.4',
+        version='1.0.0',
         description=(
-            "Detects the Unicode Version of an interactive terminal for export"),
+            "Detects Unicode support of an interactive terminal"),
         long_description=codecs.open(
             _get_here('README.rst'), 'rb', 'utf8').read(),
         author='Jeff Quast',
         author_email='contact@jeffquast.com',
-        install_requires=('blessed>=1.17.6<2'),
+        install_requires=('blessed>=1.17.6,<2', 'wcwidth'),
         license='MIT',
         packages=['ucs_detect'],
         url='https://github.com/jquast/ucs-detect',
@@ -69,6 +69,7 @@ def main():
             'wcswidth',
             'wcwidth',
             'xterm',
+            'zwj',
         ],
     )
 
