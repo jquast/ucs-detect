@@ -7,10 +7,10 @@ def fetch_wide_data():
     versions = wcwidth.list_versions()
     results = collections.defaultdict(list)
 
-    # begin table with all characters of the oldest version
-    for value_pair in table[versions[0]]:
-        for value in range(value_pair[0], value_pair[1]):
-            results[versions[0]].append(value)
+#    # begin table with all characters of the oldest version
+#    for value_pair in table[versions[0]]:
+#        for value in range(value_pair[0], value_pair[1]):
+#            results[versions[0]].append(value)
 
     # calculate incremental differences for each codepoint of each subsequent version
     for version in versions[1:]:

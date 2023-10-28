@@ -8,21 +8,33 @@ See also,
 - https://github.com/jquast/wcwidth
 - https://github.com/jquast/blessed
 
-A lot of this code comes from experimentation while developing 'wcwidth' library.
+This code comes from experimentation while developing the python 'wcwidth'
+library, and its primary purpose is to verify correctness in that library and
+evaluating support level of a terminal emulator.
+
+This is achieved by testing the terminal's ability to render a variety of
+Unicode characters, and measuring the distance of the cursor after each
+character is written to the terminal, using the `Cursor Position Report
+<https://vt100.net/docs/vt510-rm/CPR.html>`_ terminal escape sequence.
 """
 # std imports
+import os
+import re
 import sys
 import time
+import codecs
 import locale
 import argparse
 import functools
-import random
+import platform
+import datetime
 import collections
 from typing import Optional
 
 # 3rd party
 import blessed
 import wcwidth
+import yaml
 
 # local
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
@@ -30,10 +42,151 @@ from ucs_detect.table_wide import WIDE_CHARACTERS
 
 def get_yxpos(term, timeout):
     ypos, xpos = term.get_location(timeout=timeout)
-    if -1 in (ypos, xpos):
-        raise RuntimeError("Terminal is not interactive")
     return (ypos, xpos)
 
+def unicode_escape_string(input_str):
+    encoded_str = codecs.encode(input_str, 'unicode-escape').decode('utf-8')
+    return encoded_str
+
+def parse_udhr():
+    with open(os.path.join(os.path.dirname(__file__), 'udhr_full_subset.txt'), 'r') as fin:
+        # read only up to first '-----' marker
+        language = None
+        while True:
+            line = fin.readline()
+            if not line:
+                break
+            if line.startswith('-----'):
+                language = fin.readline().strip()
+                assert language == 'Arabic, Standard', language
+                line = fin.readline()
+                break
+        text_parts = []
+        while True:
+            line = fin.readline()
+            if not line:
+                break
+            if line.startswith('----'):
+                yield (language, ' '.join(text_parts))
+                line_parts = line.split(None, 1)
+                if len(line_parts) < 2:
+                    # EOF
+                    break 
+                language = line_parts[1].strip()
+                text_parts = []
+            else:
+                text_parts += line.strip().split() if line.strip() else ''
+
+def partitioner(line, sep=r'[\s，、,\u200b]'):
+    """
+    A version of re.split that also includes the delimiters in the result
+    """
+    result = []
+    last_end = 0
+    for match in re.finditer(sep, line):
+        start, end = match.start(), match.end()
+        if start > last_end:
+            result.append(line[last_end:start])
+        result.append(line[start:end])
+        last_end = end
+    if last_end < len(line):
+        result.append(line[last_end:])
+    return result
+
+
+def test_language_support(term, writer, timeout, orig_xpos, top, bottom, unicode_version, largest_xpos):
+    # This is more of a "Test zero-width support" exercise,
+    # many languages include zero-width characters, at least:
+    # Tamil, Tibetan, Syriac, Gujarati, Grantha, Tamil, Myanmar, Adlam,
+    # Mongolian, Gurmukhi, Telugu, Tai, Thaana, Tagalog, Arabic, Kannada,
+    # Tibetan, Lao, Sinhala, Javanese, Thai, Chakma, Devanagari, Malayalam,
+    # Khmer, Bengali ..
+    #
+    # begin test, group-by language
+    success_report = collections.defaultdict(int)
+    failure_report = collections.defaultdict(list)
+    start_time = time.monotonic()
+    for lang, multiline_text in parse_udhr():
+        writer(term.csr(0, term.height) + term.move_yx(top - 1, orig_xpos))
+        writer(f'{lang}' + term.clear_eos)
+        writer(term.csr(top, bottom) + term.move_yx(top, 0))
+        last_ypos = top
+        for line in [_line.strip() for _line in multiline_text.splitlines() if _line.strip()]:
+            estimated_xpos = 0
+            words = partitioner(line)
+            for wchars in words:
+                wchars_len = wcwidth.wcswidth(wchars, unicode_version=unicode_version)
+                assert wchars_len != -1, (wchars, unicode_version)
+
+                # next word is near our saftey margin, word-wrap
+                if wchars_len + estimated_xpos > (term.width - largest_xpos):
+                    writer('\n')
+                    estimated_xpos = 0
+                    last_ypos = min(last_ypos + 1, bottom)
+
+                writer(wchars)
+                estimated_xpos += wchars_len
+
+                if wchars in (' ', '，', '、' ',', '\u200b'):
+                    # small optimization, do not measure length of word-split delimiters
+                    continue
+                # fetch cursor position
+                end_ypos, end_xpos = get_yxpos(term, timeout=timeout)
+                if (-1, -1) == (end_ypos, end_xpos):
+                    # timeout
+                    show_timeout_error(term, writer, timeout, orig_xpos, top, bottom, lang)
+                    continue
+
+                # measure distance
+                delta_xpos = end_xpos - estimated_xpos
+                delta_ypos = end_ypos - last_ypos
+                if delta_ypos != 0 or delta_xpos != 0:
+                    # add failure_report record, conditionally add delta_ypos and
+                    # delta_xpos when unexepcted values,
+                    failure_report[lang].append(({"wchars": unicode_escape_string(wchars)}))
+                    if delta_ypos != 0:
+                        failure_report[lang][-1]["delta_ypos"] = delta_ypos
+                    if delta_xpos != 0:
+                        failure_report[lang][-1]["measured_by_wcwidth"] = wchars_len
+                        failure_report[lang][-1]["measured_by_terminal"] = wchars_len + delta_xpos
+                else:
+                    success_report[lang] += 1
+                # reset estimates to actual
+                estimated_xpos = end_xpos
+                last_ypos = end_ypos
+
+    # reset scrolling region to default
+    # and move cursor to bottom right
+    writer(term.set_scrolling_region(0, term.height))
+    writer(term.move_yx(term.height, term.width - 1) + '\n')
+
+    report_languages = [
+        language
+        for language in set(list(failure_report.keys()) + list(success_report.keys()))
+        if len(failure_report[language]) or success_report[language]]
+    test_total_sum = sum(success_report.values()) + sum([len(v) for v in failure_report.values()])
+    writer(f"ucs-detect Languages testing completed {test_total_sum:n} wchars in total, ")
+    writer(f"{time.monotonic() - start_time:.2f}s elapsed.")
+
+    return {
+            lang: {
+                "n_errors": len(failure_report[lang]),
+                "n_total": len(failure_report[lang]) + success_report[lang],
+                "pct_success": make_success_pct(n_errors=len(failure_report[lang]),
+                                                n_total=len(failure_report[lang]) + success_report[lang]),
+                "failed": failure_report[lang],
+            }
+            for lang in report_languages
+    }
+
+def show_timeout_error(term, writer, timeout, orig_xpos, top, bottom, lang):
+    writer(term.csr(0, term.height) + term.move_yx(top - 1, orig_xpos) + term.clear_eos)
+    writer(term.reverse_red(f'Timeout Exceeded ({timeout:.2f}s)'))
+    term.inkey(timeout=1)
+    writer(term.move_yx(top - 1, orig_xpos) + term.clear_eos)
+    writer(f' ({lang})' + term.clear_eos)
+    writer(term.csr(top, bottom) + term.move_yx(top, 0) + term.clear_eos())
+   
 
 def determine_simple_rtt_ms(term, timeout) -> float:
     """
@@ -45,7 +198,6 @@ def determine_simple_rtt_ms(term, timeout) -> float:
     start_time_ns = time.monotonic_ns()
     get_yxpos(term, timeout)
     return (time.monotonic_ns() - start_time_ns) * 1e-6
-
 
 
 def display_results_by_version(term, writer, results, best_match):
@@ -63,10 +215,30 @@ def display_results_by_version(term, writer, results, best_match):
             term.green2)
         pct_s_colored = term_style(term.rjust(f"{pct_val:0.1f}", 6))
         writer(f'\n{label_s}: {total_s}, {pct_s_colored} %')
-    if best_match:
-        writer(f'\n{"* Best Match":>16s}')
-    else:
-        writer(f'\n{"* No Match !":>16s}')
+    maybe_match = "* Best Match" if best_match else "* No Match !"
+    writer(f'\n{maybe_match:>16s}')
+
+def display_results_by_language(term, writer, results):
+    success_langs = [_lang for _lang in results.keys()
+                     if results[_lang]['pct_success'] == 100.0]
+    failed_langs = [_lang for _lang in results.keys()
+                    if results[_lang]['pct_success'] < 100.0]
+    writer(f'\nLanguage Support: {len(success_langs):d} of {len(failed_langs) + len(success_langs):d}')
+    writer(f'\n{"Failed Language":>32s}: {"Total":>6s}, Pct %')
+    for lang in failed_langs:
+        label_s = f"{lang:>32s}"
+        total_s = f"{results[lang]['n_total']:>6n}"
+        pct_val = results[lang]['pct_success']
+        term_style = (
+            term.firebrick1 if pct_val < 33 else
+            term.darkorange1 if pct_val < 50 else
+            term.yellow if pct_val < 66 else
+            term.greenyellow if pct_val < 99 else
+            term.green2)
+        pct_s_colored = term_style(term.rjust(f"{pct_val:0.1f}", 6))
+        writer(f'\n{label_s}: {total_s}, {pct_s_colored} %')
+   
+
 
 def test_support(table, term, writer, timeout, quick, limit_codepoints,
                  limit_errors, expected_width, largest_xpos, report_lbound=2):
@@ -86,8 +258,8 @@ def test_support(table, term, writer, timeout, quick, limit_codepoints,
         end_ypos, end_xpos = 0, 0
         for wchar in wchars[:limit_codepoints if limit_codepoints else None]:
             # write test character or sequence
-            writer(chr(wchar) if isinstance(wchar, int)
-                   else ''.join(chr(_wc) for _wc in wchar))
+            wchars_str = chr(wchar) if isinstance(wchar, int) else ''.join(chr(_wc) for _wc in wchar)
+            writer(wchars_str)
             
             # measure cursor distance,
             end_ypos, end_xpos = get_yxpos(term, timeout=timeout)
@@ -102,20 +274,19 @@ def test_support(table, term, writer, timeout, quick, limit_codepoints,
             if delta_ypos != 0 or delta_xpos != expected_width:
                 # add failure_report record, conditionally add delta_ypos and
                 # delta_xpos only when unexepcted values,
-                if isinstance(wchar, tuple):
-                    failure_report[ver].append(({"wchars": wchar}))
-                else:
-                    failure_report[ver].append(({"wchar": wchar}))
+                failure_report[ver].append(({"wchar": unicode_escape_string(wchars_str)}))
                 if delta_ypos != 0:
                     failure_report[ver][-1]["delta_ypos"] = delta_ypos
                 if delta_xpos != expected_width:
-                    failure_report[ver][-1]["delta_xpos"] = delta_xpos
+                    failure_report[ver][-1]["measured_by_wcwidth"] = expected_width
+                    failure_report[ver][-1]["measured_by_terminal"] = expected_width + delta_xpos
                 # and break version test early on --limit-errors.
                 if limit_errors and len(failure_report[ver]) >= limit_errors:
                     break
             else:
                 success_report[ver] += 1
             if end_xpos > (term.width - largest_xpos) or delta_ypos != 0:
+                # out-of-bounds, reset (y, x) to home cursor
                 start_ypos, start_xpos = orig_start_ypos, orig_start_xpos
                 maybe_clear_eol = term.clear_eol
             else:
@@ -157,10 +328,10 @@ def test_support(table, term, writer, timeout, quick, limit_codepoints,
                 "failed_codepoints": failure_report[ver],
             }
             for ver in report_versions
-            if success_report[ver] or len(failure_report[ver])
     }
 
 def make_success_pct(n_errors, n_total):
+    # protect from divide-by-zero and convert decimal to whole percentage points
     return ((n_total - n_errors) / n_total if n_total else 0) * 100
 
 def determine_best_match(wide_results: dict, lbound_pct) -> Optional[float]:
@@ -189,11 +360,15 @@ def determine_best_match(wide_results: dict, lbound_pct) -> Optional[float]:
     return best_match[2] if best_match[0] > 0 else None
 
 
-def main(stream, quick, limit_codepoints, limit_errors, shuffle):
+
+def main(stream, quick, limit_codepoints, limit_errors, save_yaml):
     """Program entry point."""
     # set locale support for '{:n}' formatter, https://stackoverflow.com/a/3909907
     locale.setlocale(locale.LC_ALL, '')
     term = blessed.Terminal(stream=sys.__stderr__ if stream == "stderr" else None)
+    if not quick:
+        assert term.width > 79, ('Terminal must be at least 80 columns wide', term.width)
+        assert term.height > 23, ('Terminal must be at least 80 columns wide', term.width)
     writer = functools.partial(
         print, end="", flush=True, file=sys.stderr if stream == "stderr" else None
     )
@@ -201,7 +376,11 @@ def main(stream, quick, limit_codepoints, limit_errors, shuffle):
         f"ucs-detect: stream={stream} quick={quick}, "
         f"limit_codepoints={limit_codepoints}, limit_errors={limit_errors}"
     )
+    if save_yaml:
+        terminal_software = input('Enter "Terminal Software": ')
+        terminal_version = input('Enter "Software Version": ')
 
+    stime = time.monotonic()
     try:
         # measure real-time trip (RTT) of distant end
         rtt_ms = determine_simple_rtt_ms(term, timeout=3.2)
@@ -212,31 +391,84 @@ def main(stream, quick, limit_codepoints, limit_errors, shuffle):
         # determine timeout as seconds, but multiply by 100 (!), this is because
         # some terminals have a bit of a barf with many wide characters, try to
         # dynamically generate a reasonable timeout period with 0.25 and 3.2 floor/ceil
-        timeout = max(min(0.25, (rtt_ms / 1000) * 100), 3.2)
+        timeout = min(max(0.25, (rtt_ms / 1000) * 100), 3.2)
         writer(
-            f"\nucs-detect: Interactive terminal detected ! (rtt_ms={rtt_ms:.1f}ms, timeout={timeout:0.2f}s)"
+            f"\nucs-detect: Interactive terminal detected ! (rtt={rtt_ms:.2f}ms, timeout={int(timeout*1000):d}ms)"
         )
 
     # test full-wide unicode table
     writer(f"\nucs-detect: " + term.reverse("Testing, DO NOT TOUCH OR RESIZE!"))
+    writer(f"\nucs-detect: WIDE testing")
     wide_results = test_support(table=WIDE_CHARACTERS,
                                      term=term, writer=writer, timeout=timeout,
                                      quick=quick, limit_codepoints=limit_codepoints, limit_errors=limit_errors,
                                      expected_width=2, largest_xpos=4)
     unicode_version = determine_best_match(wide_results, lbound_pct=95)
 
-    writer(f"\nucs-detect: " + term.reverse("Testing, DO NOT TOUCH OR RESIZE!"))
+    writer(f"\nucs-detect: ZWJ testing")
     emoji_zwj_results = test_support(table=EMOJI_ZWJ_SEQUENCES,
                                      term=term, writer=writer, timeout=timeout,
-                                     quick=quick, limit_codepoints=limit_codepoints, limit_errors=limit_errors,
+                                     quick=quick, limit_codepoints=limit_codepoints,
+                                     limit_errors=limit_errors,
                                      expected_width=2, largest_xpos=20)
     emoji_zwj_version = determine_best_match(emoji_zwj_results, lbound_pct=95)
+
+    language_results = None
+    if not quick:
+        writer(f"\nucs-detect: testing language support: ")
+        orig_ypos, orig_xpos = get_yxpos(term, timeout=timeout)
+        writer('\n' * 20)
+        if orig_ypos != term.height - 1:
+            next_ypos, _ = get_yxpos(term, timeout=timeout)
+            top = next_ypos - 19
+        else:
+            top = max(0, term.height - 20)
+        bottom = min(top + 20, term.height - 1)
+        try:
+            writer(term.csr(top, bottom) + term.move_yx(top, 0) + term.clear_eos)
+            language_results = test_language_support(term=term, writer=writer, timeout=timeout,
+                                                    orig_xpos=orig_xpos,
+                                                    top=top, bottom=bottom,
+                                                    unicode_version=unicode_version,
+                                                    largest_xpos=15)
+        finally:
+            writer(term.csr(0, term.height))
+            writer(term.move_yx(top, 0) + term.clear_eos)
 
     writer(f'\nDisplaying success results of {term.bold("Unicode Version")} as Total characters and their success rate')
     display_results_by_version(term=term, writer=writer, results=wide_results, best_match=unicode_version)
 
     writer(f'\nDisplaying success results of {term.bold("Emoji Unicode Version")} as Total characters and their success rate')
     display_results_by_version(term=term, writer=writer, results=emoji_zwj_results, best_match=emoji_zwj_version)
+
+    if language_results:
+        writer(f'\nDisplaying success results of wide and zero-width characters by language')
+        display_results_by_language(term=term, writer=writer, results=language_results)
+
+    if save_yaml:
+        do_save_yaml(save_yaml, term, terminal_software, terminal_version, stime, wide_results, unicode_version, emoji_zwj_results, emoji_zwj_version, language_results)
+
+
+def do_save_yaml(save_yaml, term, terminal_software, terminal_version, stime, wide_results, unicode_version, emoji_zwj_results, emoji_zwj_version, language_results):
+    results = dict(software=terminal_software,
+            version=terminal_version,
+            seconds_elapsed=time.monotonic() - stime,
+            width=term.width,
+            height=term.height,
+            python_version=platform.python_version(),
+            system=platform.system(),
+            datetime=datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC"),
+            test_results=dict(
+                unicode_wide_version=unicode_version,
+                unicode_wide_results=wide_results,
+                emoji_zwj_version=emoji_zwj_version,
+                emoji_zwj_results=emoji_zwj_results,
+                language_results=language_results
+            )
+        )
+    yaml.safe_dump(results, open(save_yaml, 'w'))
+
+
 
 def parse_args():
     args = argparse.ArgumentParser()
@@ -246,12 +478,6 @@ def parse_args():
         default="stderr",
         choices=("stderr", "stdout"),
         help="output file descriptor to interactve with in testing",
-    )
-    args.add_argument(
-        "--shuffle",
-        action="store_true",
-        default=False,
-        help="randomize order of codepoints tested",
     )
     args.add_argument(
         "--limit-codepoints",
@@ -273,10 +499,18 @@ def parse_args():
             "Stop test early at the first version that matches 100%%"
         ),
     )
+    args.add_argument(
+        "--save-yaml",
+        help="Save results as yaml to given filepath, prompts user for software name & version",
+        default=None,
+    )
     results = vars(args.parse_args())
     if results["quick"]:
         results["limit_codepoints"] = results["limit_codepoints"] or 50
         results["limit_errors"] = results["limit_errors"] or 5
+
+    if results['save_yaml']:
+        results['save_yaml'] = os.path.expanduser(results['save_yaml'])
     return results
 
 
@@ -299,3 +533,6 @@ if __name__ == "__main__":
 #
 # Findings, we can use as little as --limit-codepoints=1 and get moderately
 # accurate results with as few as --limit-codepoints=10 ..
+# 
+# TODO: I selfishly need 'with term.scrolling_region(n, n):' ..
+# TODO: and I also need flush input, just for ^C during this process

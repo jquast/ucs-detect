@@ -27,7 +27,7 @@ def main():
             _get_here('README.rst'), 'rb', 'utf8').read(),
         author='Jeff Quast',
         author_email='contact@jeffquast.com',
-        install_requires=('blessed>=1.17.6,<2', 'wcwidth'),
+        install_requires=('blessed<2', 'wcwidth<1', 'PyYaml<7'),
         license='MIT',
         packages=['ucs_detect'],
         url='https://github.com/jquast/ucs-detect',
