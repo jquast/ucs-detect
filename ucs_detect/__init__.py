@@ -629,6 +629,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
             emoji_zwj_version,
             language_results,
         )
+    writer('\n')
 
 
 def do_languages_test(
