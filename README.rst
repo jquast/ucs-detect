@@ -114,7 +114,7 @@ companion article, https://jeffquast.com/post/terminal_wcwidth_solution/
 History
 =======
 
-``1.0.0``, *2023-10-28*: More advanced testing, **drop python 2 support**, and,
+``1.0.2``, *2023-10-28*: More advanced testing, **drop python 2 support**, and,
     change default behavior when called without arguments. Use ``--quick
     --shell`` to use the new release with matching behavior.
 
