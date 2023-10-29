@@ -1,0 +1,1228 @@
+datetime: 2023-10-29 15:13:13 UTC
+height: 78
+python_version: 3.12.0
+seconds_elapsed: 455.5795245000627
+session_arguments:
+  limit_codepoints: 1000
+  limit_errors: 10
+  limit_words: 1000
+  quick: false
+  stream: stderr
+software: Hyper
+system: Darwin
+test_results:
+  emoji_zwj_results:
+    '11.0':
+      failed_codepoints:
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\u200d\u2640\ufe0f
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\u200d\u2642\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\U0001f3fb\u200d\u2640\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\U0001f3fb\u200d\u2642\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\U0001f3fc\u200d\u2640\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\U0001f3fc\u200d\u2642\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\U0001f3fd\u200d\u2640\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\U0001f3fd\u200d\u2642\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\U0001f3fe\u200d\u2640\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b8\U0001f3fe\u200d\u2642\ufe0f
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '12.0':
+      failed_codepoints:
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\U0001f91d\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fd\u200d\U0001f91d\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fd\u200d\U0001f91d\u200d\U0001f468\U0001f3fc
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fe\u200d\U0001f91d\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fe\u200d\U0001f91d\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\U0001f91d\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\U0001f91d\u200d\U0001f468\U0001f3fc
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\U0001f91d\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\U0001f91d\u200d\U0001f468\U0001f3fe
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\U0001f91d\u200d\U0001f468\U0001f3fd
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '12.1':
+      failed_codepoints:
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\U0001f91d\u200d\U0001f468\U0001f3fc
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\U0001f91d\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\U0001f91d\u200d\U0001f468\U0001f3fe
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\U0001f91d\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fd\u200d\U0001f91d\u200d\U0001f468\U0001f3fe
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fd\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fe\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\U0001f91d\u200d\U0001f469\U0001f3fc
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '13.0':
+      failed_codepoints:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f37c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\U0001f37c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\U0001f37c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fd\u200d\U0001f37c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fe\u200d\U0001f37c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\U0001f37c
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\u200d\U0001f37c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\U0001f37c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fc\u200d\U0001f37c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fd\u200d\U0001f37c
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '13.1':
+      failed_codepoints:
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fe
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\u2764\ufe0f\u200d\U0001f468\U0001f3fc
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fc
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '14.0':
+      failed_codepoints:
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fb\u200d\U0001faf2\U0001f3fc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fb\u200d\U0001faf2\U0001f3fd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fb\u200d\U0001faf2\U0001f3fe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fb\u200d\U0001faf2\U0001f3ff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fc\u200d\U0001faf2\U0001f3fb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fc\u200d\U0001faf2\U0001f3fd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fc\u200d\U0001faf2\U0001f3fe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fc\u200d\U0001faf2\U0001f3ff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fd\u200d\U0001faf2\U0001f3fb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1\U0001f3fd\u200d\U0001faf2\U0001f3fc
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '15.0':
+      failed_codepoints:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f426\u200d\u2b1b
+      n_errors: 1
+      n_total: 1
+      pct_success: 0.0
+    '15.1':
+      failed_codepoints:
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d1\u200d\U0001f9d1\u200d\U0001f9d2
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d1\u200d\U0001f9d1\u200d\U0001f9d2\u200d\U0001f9d2
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d1\u200d\U0001f9d2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d1\u200d\U0001f9d2\u200d\U0001f9d2
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchar: \U0001f3c3\u200d\u27a1\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f3c3\U0001f3fb\u200d\u27a1\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f3c3\U0001f3fc\u200d\u27a1\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f3c3\U0001f3fd\u200d\u27a1\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f3c3\U0001f3fe\u200d\u27a1\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f3c3\U0001f3ff\u200d\u27a1\ufe0f
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '2.0':
+      failed_codepoints:
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\u2764\ufe0f\u200d\U0001f468
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f468\u200d\U0001f466
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f468\u200d\U0001f466\u200d\U0001f466
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f468\u200d\U0001f467
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f468\u200d\U0001f467\u200d\U0001f466
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f468\u200d\U0001f467\u200d\U0001f467
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f469\u200d\U0001f466
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f469\u200d\U0001f466\u200d\U0001f466
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f469\u200d\U0001f467
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '4.0':
+      failed_codepoints:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f466
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f466\u200d\U0001f466
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f467
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f467\u200d\U0001f466
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\u200d\U0001f467\u200d\U0001f467
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\u200d\U0001f466
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\u200d\U0001f466\u200d\U0001f466
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\u200d\U0001f467
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\u200d\U0001f467\u200d\U0001f466
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\u200d\U0001f467\u200d\U0001f467
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    '5.0':
+      failed_codepoints:
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\u200d\u2640\ufe0f
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\u200d\u2642\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\U0001f3fb\u200d\u2640\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\U0001f3fb\u200d\u2642\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\U0001f3fc\u200d\u2640\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\U0001f3fc\u200d\u2642\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\U0001f3fd\u200d\u2640\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\U0001f3fd\u200d\u2642\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\U0001f3fe\u200d\u2640\ufe0f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6\U0001f3fe\u200d\u2642\ufe0f
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+  emoji_zwj_version: null
+  language_results:
+    Arabic, Standard:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Armenian:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Assyrian Neo-Aramaic:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Bengali:
+      failed:
+      - measured_by_terminal: 12
+        measured_by_wcwidth: 7
+        wchars: \u09ae\u09be\u09a8\u09ac\u09be\u09a7\u09bf\u0995\u09be\u09b0\u09c7\u09b0
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 6
+        wchars: \u09b8\u09be\u09b0\u09cd\u09ac\u099c\u09a8\u09c0\u09a8
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 6
+        wchars: \u0998\u09c7\u09be\u09b7\u09a3\u09be\u09aa\u09a4\u09cd\u09b0
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 3
+        wchars: \u09af\u09c7\u09b9\u09c7\u09a4\u09c1
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u09ae\u09be\u09a8\u09ac
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 5
+        wchars: \u09aa\u09b0\u09bf\u09ac\u09be\u09b0\u09c7\u09b0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u09b8\u09a6\u09b8\u09cd\u09af\u09c7\u09b0
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u09b8\u09ae\u09be\u09a8
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 6
+        wchars: \u0985\u09ac\u09bf\u099a\u09cd\u099b\u09c7\u09a6\u09cd\u09af
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 7
+        wchars: \u0985\u09a7\u09bf\u0995\u09be\u09b0\u09b8\u09ae\u09c2\u09b9
+      n_errors: 10
+      n_total: 13
+      pct_success: 23.076923076923077
+    Burmese:
+      failed:
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 8
+        wchars: \u1021\u1015\u103c\u100a\u103a\u1015\u103c\u100a\u103a\u1006\u102d\u102f\u1004\u103a\u101b\u102c
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 6
+        wchars: \u101c\u1030\u1037\u1021\u1001\u103d\u1004\u1037\u103a\u1021\u101b\u1031\u1038
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 5
+        wchars: \u1000\u103c\u1031\u100a\u102c\u1005\u102c\u1010\u1019\u103a\u1038
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u1012\u102e\u1007\u1004\u103a\u1018\u102c\u101c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u101b\u1000\u103a\u1014\u1031\u1037\u1010\u103d\u1004\u103a
+      - measured_by_terminal: 12
+        measured_by_wcwidth: 11
+        wchars: \u1000\u1019\u1039\u1018\u102c\u1037\u1000\u102f\u101c\u101e\u1019\u1002\u1039\u1002\u1021\u1016\u103d\u1032\u1037
+      - measured_by_terminal: 16
+        measured_by_wcwidth: 10
+        wchars: \u100a\u102e\u101c\u102c\u1001\u1036\u1021\u1005\u100a\u103a\u1038\u1021\u101d\u1031\u1038\u1000\u103c\u102e\u1038\u1000
+      - measured_by_terminal: 22
+        measured_by_wcwidth: 13
+        wchars: \u101c\u1030\u1037\u1021\u1001\u103d\u1004\u1037\u103a\u1021\u101b\u1031\u1038\u1000\u103c\u1031\u100a\u102c\u1005\u102c\u1010\u1019\u103a\u1038\u1000\u103c\u102e\u1038\u1000\u102d\u102f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u1021\u1010\u100a\u103a\u1015\u103c\u102f\u104d
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 5
+        wchars: \u1000\u103c\u1031\u100a\u102c\u101c\u102d\u102f\u1000\u103a\u101b\u102c
+      n_errors: 10
+      n_total: 13
+      pct_success: 23.076923076923077
+    Chakma:
+      failed:
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 7
+        wchars: \U0001111f\U0001111a\U0001112c\U0001112d\U00011103\U00011107\U00011134\U00011107\U00011125\U00011127\U00011101\U00011122\U00011134
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \U0001111d\U0001112c\U00011107\U00011134\U00011105\U0001111a\U0001112e\U00011122\U00011134
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \U00011121\U00011128\U00011120\U0001111a\U00011127\U00011116\U00011133\U00011120\U0001112c
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U0001111f\U0001111a\U0001112c\U0001112d
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \U0001111d\U0001112c\U00011107\U00011134\U00011105\U0001111a\U00011127\U00011116\U00011133\U00011120\U00011134
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \U00011126\U00011127\U00011123\U00011127\U00011118\U00011133\U00011120\U0001112c
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \U0001111d\U00011128\U0001110f\U0001112c\U00011122\U00011127\U00011122\U00011134
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \U00011103\U00011128\U0001111d\U0001112c;
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \U00011121\U00011128\U00011120\U0001111a\U00011127\U00011116\U00011133\U00011120\U0001112c
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U0001111f\U0001111a\U0001112c\U0001112d
+      n_errors: 10
+      n_total: 29
+      pct_success: 65.51724137931035
+    Cherokee (cased):
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Chinese, Mandarin (Simplified):
+      failed: []
+      n_errors: 0
+      n_total: 257
+      pct_success: 100.0
+    Chinese, Mandarin (Traditional):
+      failed: []
+      n_errors: 0
+      n_total: 242
+      pct_success: 100.0
+    Cree, Swampy:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    English:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Georgian:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Greek (polytonic):
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Gujarati:
+      failed:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0aae\u0abe\u0aa8\u0ab5
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 5
+        wchars: \u0a85\u0aa7\u0abf\u0a95\u0abe\u0ab0\u0acb\u0aa8\u0ac0
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 6
+        wchars: \u0ab5\u0abf\u0ab6\u0acd\u0ab5\u0ab5\u0acd\u0aaf\u0abe\u0aaa\u0ac0
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 3
+        wchars: \u0a98\u0acb\u0ab7\u0aa3\u0abe
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 6
+        wchars: \u0aaa\u0acd\u0ab0\u0abe\u0ab0\u0ac1\u0aa4\u0abe\u0ab5\u0abf\u0a95
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 7
+        wchars: \u0aae\u0abe\u0aa8\u0ab5\u0a95\u0ac1\u0a9f\u0ac1\u0a82\u0aac\u0aa8\u0abe
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \u0ab8\u0aad\u0acd\u0aaf\u0aa8\u0ac0
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 9
+        wchars: \u0aaa\u0ab0\u0a82\u0aaa\u0ab0\u0abe-\u0aaa\u0acd\u0ab0\u0abe\u0aaa\u0acd\u0aa4
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 6
+        wchars: \u0aaa\u0acd\u0ab0\u0aa4\u0abf\u0ab7\u0acd\u0aa0\u0abe\u0aa8\u0ac7
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0ab8\u0aae\u0abe\u0aa8
+      n_errors: 10
+      n_total: 14
+      pct_success: 28.57142857142857
+    Hebrew:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Hindi:
+      failed:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u092e\u093e\u0928\u0935
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 4
+        wchars: \u0905\u0927\u093f\u0915\u093e\u0930\u094b\u0902
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0915\u0940
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 5
+        wchars: \u0938\u093e\u0930\u094d\u0935\u092d\u094c\u092e
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 3
+        wchars: \u0918\u094b\u0937\u0923\u093e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u0926\u093f\u0938\u092e\u094d\u092c\u0930
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0915\u094b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u092f\u0942\u0928\u093e\u0907\u091f\u0947\u0921
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0915\u0940
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u0905\u0938\u0947\u092e\u094d\u092c\u0932\u0940
+      n_errors: 10
+      n_total: 14
+      pct_success: 28.57142857142857
+    Japanese:
+      failed: []
+      n_errors: 0
+      n_total: 331
+      pct_success: 100.0
+    Javanese (Javanese):
+      failed:
+      - measured_by_terminal: 73
+        measured_by_wcwidth: 54
+        wchars: \ua9cb\ua9b1\ua9a7\ua9bc\ua9a4\ua9c0\ua9b2\ua9b8\ua9a9\ua9a0\ua9c0\ua9a9\ua9a4\ua9b8\ua981\ua9b1\ua9ad\ua9b2\ua9b6\ua982\ua98f\ua9a4\ua9c0\ua99b\ua9b6\ua9b2\ua98f\ua9c0\ua9b2\ua98f\ua9c0\ua98f\ua981\ua9a5\ua9ba\ua9b4\ua99d\ua9ba\ua9b4\ua9ad\ua9a4\ua9c0\ua9a5\ua9b6\ua9a4\ua9b1\ua9c0\ua99b\ua9b6\ua9ad\ua9a4\ua9c0\ua98f\ua9a4\ua9c0\ua99b\ua9b6\ua98f\ua9a7\ua9ba\ua9a7\ua9b1\ua9c0\ua9b1\ua9a4\ua9c0\ua98f\ua9a7\ua9ba\ua9a7\ua9b1\ua9c0\ua9b1\ua9a4\ua9c0\ua9b2\ua9b6\ua981\ua9a7\ua98f\ua9b8\ua9a4\ua9b6\ua981\ua9b2\ua981\ua992\ua9bc\ua982\ua9b2\ua981\ua992\ua9bc\ua982\ua9c9
+      - measured_by_terminal: 37
+        measured_by_wcwidth: 26
+        wchars: \ua9a5\ua9b1\ua9ab\ua9ba\ua98f\ua9a0\ua9c0\ua9a0\ua9a4\ua9c0\ua9a7\ua981\ua9b1\ua9a7\ua981\ua9b1\ua9a2\ua982\ua9a7\ua9ba\ua98f\ua9ba\ua9b4\ua9a9\ua9b6\ua9a0\ua9c0\ua9a9\ua9bc\ua9a4\ua9c0\ua98f\ua981\ua992\ua9ba\ua9b4\ua997\ua9b8\ua99a\ua9c0\ua997\ua9b8\ua981\ua9ad\ua9b8\ua9b2\ua9b8\ua982\ua9c8
+      - measured_by_terminal: 47
+        measured_by_wcwidth: 34
+        wchars: \ua994\ua9c0\ua992\ua9bf\ua9bc\ua981\ua9b1\ua9bc\ua981\ua994\ua98f\ua9ba\ua9ad\ua9a4\ua9c0\ua994\ua9aa\ua9ba\ua9b4\ua9a9\ua9c0\ua9a9\ua9b6\ua9b2\ua98f\ua9c0\ua9b2\ua98f\ua9c0\ua9b2\ua9b1\ua9b1\ua9c0\ua9b1\ua9b6\ua9b2\ua9b8\ua9a9\ua9a0\ua9c0\ua9a9\ua9a4\ua9b8\ua981\ua9b1\ua9a9\ua9ab\ua981\ua9b1\ua9a7\ua9bc\ua9a4\ua9c0\ua9a5\ua9bf\ua9b6\ua9a7\ua9a2\ua9b6\ua9c9
+      - measured_by_terminal: 29
+        measured_by_wcwidth: 21
+        wchars: \ua98f\ua9ba\ua9b4\ua9a9\ua9b6\ua9a0\ua9c0\ua9a9\ua9bc\ua9a4\ua9c0\ua98f\ua9b1\ua9bc\ua9a7\ua9b8\ua9a0\ua9c0\ua9b2\ua9b6\ua981\ua994\ua9aa\ua9a0\ua9c0\ua9a0\ua9a4\ua9c0\ua9b1\ua98f\ua9a5\ua9b6\ua9aa\ua992\ua9a9\ua9c0
+      - measured_by_terminal: 108
+        measured_by_wcwidth: 84
+        wchars: \ua9a5\ua9b1\ua9ab\ua9ba\ua98f\ua9a0\ua9c0\ua9a0\ua9a4\ua9c0\ua9a7\ua981\ua9b1\ua9a7\ua981\ua9b1\ua98f\ua981\ua9a4\ua9b8\ua98f\ua9b8\ua9ad\ua9c0\ua9ad\ua98f\ua9ba\ua98f\ua9a9\ua9a4\ua9c0\ua9a0\ua9bc\ua9a5\ua9c0\ua9a5\ua9a4\ua9c0\ua9a4\ua9b6\ua981\ua98f\ua9aa\ua98f\ua9b6\ua9a4\ua9c0\ua9a4\ua9a4\ua9c0\ua9a5\ua9ab\ua9a7\ua981\ua9b1\ua9b1\ua9a2\ua9ba\ua9b4\ua99a\ua9a0\ua9b8\ua9a9\ua9bf\ua9a5\ua9c0\ua9b2\ua98f\ua9c0\ua9b2\ua98f\ua9c0\ua9b2\ua9b1\ua9b1\ua9c0\ua9b1\ua9b6\ua9b2\ua9b8\ua9a9\ua9a0\ua9c0\ua9a9\ua9a4\ua9b8\ua981\ua9b1\ua9b2\ua9b6\ua981\ua9a7\ua98f\ua9b8\ua9a4\ua9b6\ua981\ua9a5\ua9b2\ua9b8\ua992\ua9bc\ua982\ua9ab\ua9a4\ua9c0\ua9b1\ua982\ua9a0\ua9a0\ua9b8\ua9a9\ua9bf\ua9a5\ua9c0\ua9a9\ua982\ua9a0\ua9a7\ua9a0\ua9c0\ua9ad\ua9a4\ua9c0\ua9b2\ua997\ua9b6\ua9a4\ua9b6\ua981\ua98f\ua9a9\ua9a4\ua9b8\ua981\ua9b1\ua9a4\ua9c0\ua9c8
+      - measured_by_terminal: 28
+        measured_by_wcwidth: 22
+        wchars: \ua9b2\ua9b6\ua981\ua9a5\ua9bf\ua99a\ua9a0\ua9a4\ua9c0\ua9b2\ua9b8\ua9a9\ua9b8\ua9a9\ua9c0\ua994\ua9bc\ua9a4\ua9a4\ua9b6\ua9b2\ua98f\ua9c0\ua9b2\ua98f\ua9c0\ua9b2\ua9b8\ua9a9\ua9a0\ua9c0\ua9a9\ua9a4\ua9b8\ua981\ua9b1\ua9c8
+      - measured_by_terminal: 44
+        measured_by_wcwidth: 29
+        wchars: \ua9a5\ua9b1\ua9ab\ua9ba\ua98f\ua9a0\ua9c0\ua9a0\ua9a4\ua9c0\ua9a7\ua981\ua9b1\ua9a7\ua981\ua9b1\ua9a4\ua9a4\ua9c0\ua99d\ua9bc\ua9b1\ua9c0\ua9b1\ua98f\ua9ba\ua98f\ua9a4\ua9c0\ua99b\ua9b6\ua9a0\ua9bc\ua982\ua9ae\ua9ba\ua9b4\ua995\ua9ba\ua9b4\ua9ad\ua9a4\ua9c0\ua9a5\ua9bf\ua9b1\ua9ba\ua9b4\ua997\ua9c8
+      - measured_by_terminal: 31
+        measured_by_wcwidth: 22
+        wchars: \ua9b2\ua98f\ua9c0\ua9b2\ua98f\ua9c0\ua98f\ua981\ua9a2\ua9a2\ua9b6\ua9a2\ua982\ua9a7\ua9ba\ua98f\ua9ba\ua9b1\ua9a7\ua9bc\ua9a4\ua9c0\ua9b2\ua9b8\ua9ae\ua9ba\ua9b4\ua981\ua98f\ua9a4\ua9c0\ua99b\ua9b6\ua9b2\ua9a2\ua9b6\ua9ad\ua9c0\ua9c8
+      - measured_by_terminal: 12
+        measured_by_wcwidth: 9
+        wchars: \ua9b2\ua98f\ua9c0\ua9b2\ua98f\ua9c0\ua98f\ua9b1\ua9bc\ua9a7\ua9b8\ua9a0\ua9c0\ua9c8
+      - measured_by_terminal: 15
+        measured_by_wcwidth: 11
+        wchars: \ua99a\ua9a0\ua9a2\ua9a2\ua9b6\ua9a2\ua982\ua9a7\ua9ba\ua98f\ua9c0\ua9a9\ua9b8\ua98f\ua9a7\ua9ba\ua983\ua9c9
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    Kannada:
+      failed:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0cae\u0cbe\u0ca8\u0cb5
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \u0cac\u0cbe\u0ca7\u0ccd\u0caf\u0ca4\u0cc6\u0c97\u0cb3
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \u0cb8\u0cbe\u0cb0\u0ccd\u0cb5\u0ca4\u0ccd\u0cb0\u0cbf\u0c95
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \u0caa\u0ccd\u0cb0\u0cb8\u0ccd\u0ca4\u0cbe\u0cb5\u0ca8\u0cc6
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0cae\u0cbe\u0ca8\u0cb5
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 4
+        wchars: \u0c95\u0cc1\u0c9f\u0cc1\u0c82\u0cac\u0ca6
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \u0c97\u0ccc\u0cb0\u0cb5\u0cb5\u0ca8\u0ccd\u0ca8\u0cc2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 4
+        wchars: \u0cb8\u0cae\u0cbe\u0ca8\u0cb5\u0cc2
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 8
+        wchars: \u0c85\u0ca8\u0ca8\u0ccd\u0caf\u0cb9\u0cbe\u0cb0\u0ccd\u0caf\u0cb5\u0cc2
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 7
+        wchars: \u0cb9\u0c95\u0ccd\u0c95\u0cc1\u0c97\u0cb3\u0ca8\u0ccd\u0ca8\u0cc1
+      n_errors: 10
+      n_total: 15
+      pct_success: 33.33333333333333
+    Khmer, Central:
+      failed:
+      - measured_by_terminal: 25
+        measured_by_wcwidth: 22
+        wchars: \u179f\u17c1\u1785\u1780\u17d2\u178a\u17b8\u1794\u17d2\u179a\u1780\u17b6\u179f\u1787\u17b6\u179f\u1780\u179b\u179f\u17d2\u178a\u17b8\u1796\u17b8\u179f\u17b7\u1791\u17d2\u1792\u17b7\u1798\u1793\u17bb\u179f\u17d2\u179f
+      - measured_by_terminal: 41
+        measured_by_wcwidth: 33
+        wchars: \u17a2\u1793\u17bb\u1798\u17d0\u178f\u1793\u17b7\u1784\u1794\u17d2\u179a\u1780\u17b6\u179f\u178a\u17c4\u1799\u179f\u17c1\u1785\u1780\u17d2\u178a\u17b8\u179f\u1798\u17d2\u179a\u17c1\u1785\u1785\u17b7\u178f\u17d2\u178a\u1793\u17c3\u1798\u17a0\u17b6\u179f\u1793\u17d2\u1793\u17b7\u1794\u17b6\u178f\u179b\u17c1\u1781
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 4
+        wchars: \u1793\u17c5\u1790\u17d2\u1784\u17c3\u1791\u17b8
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u1781\u17c2\u1792\u17d2\u1793\u17bc
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \u1786\u17d2\u1793\u17b6\u17c6\u17e1\u17e9\u17e4\u17e8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u1794\u17bb\u1796\u17d2\u179c\u1780\u1790\u17b6
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 7
+        wchars: \u178a\u17c4\u1799\u1799\u179b\u17cb\u1783\u17be\u1789\u1790\u17b6
+      - measured_by_terminal: 29
+        measured_by_wcwidth: 23
+        wchars: \u1780\u17b6\u179a\u1791\u1791\u17bd\u179b\u179f\u17d2\u1782\u17b6\u179b\u17cb\u179f\u17c1\u1785\u1780\u17d2\u178a\u17b8\u1790\u17d2\u179b\u17c3\u1790\u17d2\u1793\u17bc\u179a\u1787\u17b6\u1794\u17cb\u1796\u17b8\u1780\u17c6\u178e\u17be\u178f
+      - measured_by_terminal: 14
+        measured_by_wcwidth: 11
+        wchars: \u1793\u17b7\u1784\u179f\u17b7\u1791\u17d2\u1792\u17b7\u179f\u17d2\u1798\u17be\u1797\u17b6\u1796\u1782\u17d2\u1793\u17b6
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 9
+        wchars: \u1793\u17b7\u1784\u179f\u17b7\u1791\u17d2\u1792\u17b7\u1798\u17b7\u1793\u17a2\u17b6\u1785
+      n_errors: 10
+      n_total: 14
+      pct_success: 28.57142857142857
+    "Kh\xFCn":
+      failed:
+      - measured_by_terminal: 15
+        measured_by_wcwidth: 12
+        wchars: \u1a20\u1a32\u1a65\u1a20\u1a63\u1a45\u1a64\u1a75\u1a2f\u1a60\u1a45\u1a60\u1a3f\u1a62\u1a3e\u1a36\u1a69\u1a54\u1a29\u1a63\u1a60\u1a32
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 4
+        wchars: \u1a23\u1a74\u1a63\u1a37\u1a55\u1a63\u1a41\u1a60\u1a3e\u1a6b
+      - measured_by_terminal: 20
+        measured_by_wcwidth: 19
+        wchars: \u1a49\u1a68\u1a76\u1a3e\u1a66\u1a20\u1a63\u1a60\u1a41\u1a3f\u1a60\u1a4b\u1a3e\u1a41\u1a62\u1a60\u1a37\u1a36\u1a62\u1a60\u1a37\u1a33\u1a68\u1a2a\u1a60\u1a26\u1a68\u1a75\u1a20\u1a60\u1a36\u1a62\u1a53\u1a62\u1a20\u1a60\u1a36\u1a62
+      - measured_by_terminal: 20
+        measured_by_wcwidth: 17
+        wchars: \u1a2f\u1a70\u1a60\u1a3f\u1a49\u1a68\u1a76\u1a49\u1a60\u1a3e\u1a6a\u1a75\u1a3b\u1a66\u1a75\u1a36\u1a60\u1a4b\u1a62\u1a26\u1a36\u1a71\u1a49\u1a73\u1a41\u1a6e\u1a60\u1a36\u1a68\u1a2f\u1a74\u1a60\u1a3f\u1a20\u1a60\u1a36\u1a62
+      - measured_by_terminal: 22
+        measured_by_wcwidth: 15
+        wchars: \u1a38\u1a6e\u1a60\u1a36\u1a49\u1a56\u1a62\u1a20\u1a23\u1a6e\u1a62\u1a62\u1a63\u1a49\u1a6e\u1a60\u1a26\u1a62\u1a62\u1a63\u1a49\u1a6f\u1a60\u1a26\u1a75\u1a3b\u1a60\u1a26\u1a48\u1a41\u1a3d\u1a63\u1a60\u1a37
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 8
+        wchars: \u1a23\u1a60\u1a45\u1a63\u1a60\u1a3e\u1a3f\u1a69\u1a32\u1a65\u1a35\u1a3e\u1a60\u1a3e\u1a7c
+      - measured_by_terminal: 16
+        measured_by_wcwidth: 13
+        wchars: \u1a53\u1a62\u1a23\u1a60\u1a45\u1a63\u1a60\u1a3e\u1a20\u1a60\u1a2f\u1a62\u1a3f\u1a6e\u1a60\u1a36\u1a21\u1a60\u1a4b\u1a26\u1a43\u1a70\u1a60\u1a20
+      - measured_by_terminal: 17
+        measured_by_wcwidth: 14
+        wchars: \u1a2f\u1a70\u1a60\u1a3f\u1a37\u1a62\u1a2f\u1a71\u1a62\u1a2f\u1a6a\u1a23\u1a6f\u1a60\u1a45\u1a41\u1a32\u1a73\u1a75\u1a20\u1a60\u1a36\u1a62\u1a53\u1a62\u1a20\u1a60\u1a36\u1a62
+      - measured_by_terminal: 28
+        measured_by_wcwidth: 22
+        wchars: \u1a4b\u1a60\u1a36\u1a62\u1a27\u1a62\u1a49\u1a6e\u1a60\u1a2f\u1a49\u1a68\u1a76\u1a37\u1a60\u1a26\u1a62\u1a20\u1a6e\u1a60\u1a2f\u1a68\u1a20\u1a63\u1a60\u1a41\u1a49\u1a6e\u1a60\u1a2f\u1a4b\u1a60\u1a36\u1a62\u1a38\u1a75\u1a63\u1a33\u1a6e\u1a60\u1a36\u1a68\u1a75\u1a32\u1a73\u1a75\u1a20\u1a60\u1a36\u1a62
+      - measured_by_terminal: 29
+        measured_by_wcwidth: 23
+        wchars: \u1a53\u1a62\u1a43\u1a60\u1a45\u1a75\u1a26\u1a43\u1a62\u1a74\u1a63\u1a3e\u1a36\u1a6e\u1a63\u1a35\u1a3e\u1a60\u1a3e\u1a7c\u1a21\u1a60\u1a4b\u1a26\u1a3e\u1a36\u1a69\u1a54\u1a29\u1a63\u1a60\u1a32\u1a34\u1a66\u1a75\u1a41\u1a62\u1a63\u1a60\u1a3f\u1a41\u1a6f\u1a60\u1a26
+      n_errors: 10
+      n_total: 11
+      pct_success: 9.090909090909092
+    Korean:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Lao:
+      failed: []
+      n_errors: 0
+      n_total: 487
+      pct_success: 100.0
+    Malayalam:
+      failed:
+      - measured_by_terminal: 21
+        measured_by_wcwidth: 17
+        wchars: \u0d2e\u0d28\u0d41\u0d37\u0d4d\u0d2f\u0d3e\u0d35\u0d15\u0d3e\u0d36\u0d19\u0d4d\u0d19\u0d33\u0d46\u0d15\u0d4d\u0d15\u0d41\u0d31\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 8
+        wchars: \u0d2a\u0d4a\u0d24\u0d41\u0d2a\u0d4d\u0d30\u0d16\u0d4d\u0d2f\u0d3e\u0d2a\u0d28\u0d02
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 3
+        wchars: \u0d2a\u0d40\u0d20\u0d3f\u0d15
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 8
+        wchars: \u0d38\u0d2e\u0d41\u0d26\u0d3e\u0d2f\u0d24\u0d4d\u0d24\u0d3f\u0d28\u0d4d\u0d31\u0d46
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 8
+        wchars: \u0d1c\u0d28\u0d4d\u0d2e\u0d38\u0d3f\u0d26\u0d4d\u0d27\u0d2e\u0d3e\u0d2f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u0d05\u0d28\u0d4d\u0d24\u0d38\u0d4d\u0d38\u0d41\u0d02
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 6
+        wchars: \u0d38\u0d2e\u0d3e\u0d35\u0d15\u0d3e\u0d36\u0d35\u0d41\u0d02
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 5
+        wchars: \u0d32\u0d4b\u0d15\u0d24\u0d4d\u0d24\u0d3f\u0d32\u0d4d\u200d
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 7
+        wchars: \u0d38\u0d4d\u0d35\u0d3e\u0d24\u0d28\u0d4d\u0d24\u0d4d\u0d30\u0d4d\u0d2f\u0d02
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u0d28\u0d40\u0d24\u0d3f
+      n_errors: 10
+      n_total: 11
+      pct_success: 9.090909090909092
+    Maldivian:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Mongolian, Halh (Mongolian):
+      failed: []
+      n_errors: 0
+      n_total: 33
+      pct_success: 100.0
+    Nuosu:
+      failed: []
+      n_errors: 0
+      n_total: 262
+      pct_success: 100.0
+    Panjabi, Eastern:
+      failed:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0a2e\u0a28\u0a41\u0a71\u0a16\u0a40
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 4
+        wchars: \u0a05\u0a27\u0a3f\u0a15\u0a3e\u0a30\u0a3e\u0a02
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0a2c\u0a3e\u0a30\u0a47
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 6
+        wchars: \u0a35\u0a3f\u0a36\u0a35\u0a35\u0a3f\u0a06\u0a2a\u0a40
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 5
+        wchars: \u0a10\u0a32\u0a3e\u0a28\u0a28\u0a3e\u0a2e\u0a3e
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \u0a07\u0a1c\u0a32\u0a3e\u0a38
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0a2e\u0a24\u0a3e
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u0a30\u0a3e\u0a39\u0a40\u0a02
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \u0a2a\u0a4d\u0a30\u0a35\u0a3e\u0a23
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u0a15\u0a40\u0a24\u0a3e
+      n_errors: 10
+      n_total: 18
+      pct_success: 44.44444444444444
+    Pular (Adlam):
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Russian:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Sanskrit (Grantha):
+      failed:
+      - measured_by_terminal: 14
+        measured_by_wcwidth: 7
+        wchars: \U0001132e\U0001133e\U00011328\U00011335\U0001133e\U00011327\U0001133f\U00011315\U0001133e\U00011330\U0001133e\U00011323\U0001133e\U00011302
+      - measured_by_terminal: 16
+        measured_by_wcwidth: 10
+        wchars: \U0001131c\U0001133e\U00011317\U00011324-\U00011305\U0001132d\U0001133f\U00011318\U0001134b\U00011337\U00011323\U0001133e\U0001132f\U0001133e\U00011303
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 6
+        wchars: \U0001132a\U00011302\U0001131a\U0001133e\U00011336\U00011324\U0001134d\U00011324\U0001132e\U0001133e
+      - measured_by_terminal: 12
+        measured_by_wcwidth: 7
+        wchars: \U00011335\U00011330\U0001134d\U00011337\U0001132a\U00011342\U00011330\U0001134d\U00011324\U0001133f\U00011303\u0964
+      - measured_by_terminal: 14
+        measured_by_wcwidth: 7
+        wchars: \U0001132e\U0001133e\U00011328\U00011335\U0001133e\U00011327\U0001133f\U00011315\U0001133e\U00011330\U0001133e\U00011323\U0001133e\U00011302
+      - measured_by_terminal: 13
+        measured_by_wcwidth: 9
+        wchars: \U0001131c\U0001133e\U00011317\U00011324-\U00011305\U0001132d\U0001133f\U00011318\U0001134b\U00011337\U00011323\U0001133e
+      - measured_by_terminal: 22
+        measured_by_wcwidth: 14
+        wchars: '{\U00011305\U00011328\U0001134d\U0001132f-\U0001132d\U0001133e\U00011337\U0001133e-\U00011330\U00011342\U0001132a\U0001133e\U00011328\U0001134d\U00011324\U00011330\U0001133e\U00011323\U0001133f'
+      - measured_by_terminal: 12
+        measured_by_wcwidth: 8
+        wchars: \U00011338\U0001133e\U0001132e\U00011317\U0001134d\U00011330\U0001134d\U0001132f\U00011336\U0001134d\U0001131a}
+      - measured_by_terminal: 13
+        measured_by_wcwidth: 9
+        wchars: \U0001130f\U00011324\U0001131a\U0001134d\U0001131b\U00011324\U0001133e\U0001132c\U0001134d\U00011326\U00011338\U0001134d\U0001132f
+      - measured_by_terminal: 18
+        measured_by_wcwidth: 11
+        wchars: \U00011305\U00011337\U0001134d\U0001131f\U0001131a\U00011324\U0001134d\U00011335\U0001133e\U00011330\U0001133f\U00011302\U00011336\U00011324\U0001134d\U00011324\U0001132e\U00011347
+      n_errors: 10
+      n_total: 11
+      pct_success: 9.090909090909092
+    Sinhala:
+      failed:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0db8\u0dcf\u0db1\u0dc0
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 7
+        wchars: \u0d85\u0dba\u0dd2\u0dad\u0dd2\u0dc0\u0dcf\u0dc3\u0dd2\u0d9a\u0db8\u0dca
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 5
+        wchars: \u0db4\u0dca\u200d\u0dbb\u0d9a\u0dcf\u0dc1\u0db1\u0dba
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 5
+        wchars: \u0daf\u0dd9\u0dc3\u0dd0\u0db8\u0dca\u0db6\u0dbb\u0dca
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0dc0\u0dd9\u0db1\u0dd2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 4
+        wchars: \u0da2\u0dcf\u0dad\u0dd3\u0db1\u0dca\u0d9c\u0dda
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0db8\u0dc4\u0dcf
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \u0db8\u0dab\u0dca\u0da9\u0dbd\u0dba\u0dd9\u0db1\u0dca
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 5
+        wchars: \u0db4\u0dca\u200d\u0dbb\u0d9a\u0dcf\u0dc1\u0dba\u0da7
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0db8\u0dcf\u0db1\u0dc0
+      n_errors: 10
+      n_total: 22
+      pct_success: 54.54545454545454
+    Tagalog (Tagalog):
+      failed: []
+      n_errors: 0
+      n_total: 31
+      pct_success: 100.0
+    Tai Dam:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Tamazight, Standard Morocan:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Tamil:
+      failed:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0bae\u0ba9\u0bbf\u0ba4
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 5
+        wchars: \u0b89\u0bb0\u0bbf\u0bae\u0bc8\u0b95\u0bb3\u0bcd
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \u0baa\u0bb1\u0bcd\u0bb1\u0bbf\u0baf
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \u0baa\u0bbf\u0bb0\u0b95\u0b9f\u0ba9\u0bae\u0bcd
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 5
+        wchars: \u0ba4\u0bbf\u0b9a\u0bc6\u0bae\u0bcd\u0baa\u0bb0\u0bcd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \u0bae\u0bbe\u0ba4\u0bae\u0bcd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u0ba4\u0bc7\u0ba4\u0bbf
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \u0b90\u0b95\u0bcd\u0b95\u0bbf\u0baf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 4
+        wchars: \u0ba8\u0bbe\u0b9f\u0bc1\u0b95\u0bb3\u0bcd
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 5
+        wchars: \u0baa\u0bca\u0ba4\u0bc1\u0b9a\u0bcd\u0b9a\u0baa\u0bc8
+      n_errors: 10
+      n_total: 13
+      pct_success: 23.076923076923077
+    Telugu:
+      failed:
+      - measured_by_terminal: 10
+        measured_by_wcwidth: 9
+        wchars: \u0c2e\u0c3e\u0c28\u0c35\u0c38\u0c4d\u0c35\u0c24\u0c4d\u0c35\u0c2e\u0c41\u0c32
+      - measured_by_terminal: 14
+        measured_by_wcwidth: 10
+        wchars: \u0c2e\u0c3e\u0c28\u0c35\u0c15\u0c41\u0c1f\u0c02\u0c2c\u0c2e\u0c41\u0c28\u0c02\u0c26\u0c32\u0c3f
+      - measured_by_terminal: 11
+        measured_by_wcwidth: 9
+        wchars: \u0c35\u0c4d\u0c2f\u0c15\u0c4d\u0c24\u0c41\u0c32\u0c02\u0c26\u0c30\u0c3f\u0c15\u0c3f\u0c28\u0c3f
+      - measured_by_terminal: 13
+        measured_by_wcwidth: 10
+        wchars: \u0c05\u0c28\u0c28\u0c4d\u0c2f\u0c3e\u0c15\u0c4d\u0c30\u0c3e\u0c02\u0c24\u0c2e\u0c41\u0c32\u0c17\u0c41
+      - measured_by_terminal: 12
+        measured_by_wcwidth: 10
+        wchars: \u0c38\u0c2e\u0c3e\u0c28\u0c38\u0c4d\u0c35\u0c24\u0c4d\u0c35\u0c2e\u0c41\u0c32\u0c28\u0c41
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 6
+        wchars: \u0c05\u0c02\u0c17\u0c40\u0c15\u0c30\u0c3f\u0c02\u0c1a\u0c41\u0c1f
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 6
+        wchars: \u0c2a\u0c4d\u0c30\u0c2a\u0c02\u0c1a\u0c2e\u0c41\u0c28
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \u0c38\u0c4d\u0c35\u0c3e\u0c24\u0c02\u0c24\u0c4d\u0c30\u0c4d\u0c2f
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 3
+        wchars: \u0c36\u0c3e\u0c02\u0c24\u0c41\u0c32
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \u0c38\u0c4d\u0c25\u0c3e\u0c2a\u0c28\u0c15\u0c41
+      n_errors: 10
+      n_total: 17
+      pct_success: 41.17647058823529
+    Thai:
+      failed: []
+      n_errors: 0
+      n_total: 373
+      pct_success: 100.0
+    Tibetan, Central:
+      failed: []
+      n_errors: 0
+      n_total: 312
+      pct_success: 100.0
+    Tigrigna:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+    Vai:
+      failed: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+  unicode_wide_results:
+    10.0.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 735
+      pct_success: 100.0
+    11.0.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 62
+      pct_success: 100.0
+    12.0.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 62
+      pct_success: 100.0
+    12.1.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 1
+      pct_success: 100.0
+    13.0.0:
+      failed_codepoints:
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31bb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31bc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31bd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31be
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31bf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U00016ff0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U00018af3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U00018af4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U00018af5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U00018af6
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    14.0.0:
+      failed_codepoints:
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001affa
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001affd
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    15.0.0:
+      failed_codepoints:
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6dc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa75
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa76
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa77
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa87
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faad
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faae
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faaf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fabb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fabc
+      n_errors: 10
+      n_total: 10
+      pct_success: 0.0
+    15.1.0:
+      failed_codepoints:
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2ffc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2ffd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2ffe
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2fff
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31ef
+      n_errors: 5
+      n_total: 5
+      pct_success: 0.0
+    5.1.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 26
+      pct_success: 100.0
+    5.2.0:
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11a3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11a4
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11a5
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11a6
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11fa
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11fb
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11fc
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11fd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \u11fe
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \ud7b0
+      n_errors: 10
+      n_total: 115
+      pct_success: 91.30434782608695
+    6.0.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 13
+      pct_success: 100.0
+    9.0.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 1000
+      pct_success: 100.0
+  unicode_wide_version: 12.0.0
+version: 4.0.0 Canary 5
+width: 268
