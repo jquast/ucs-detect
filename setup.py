@@ -32,7 +32,7 @@ def main():
         packages=['ucs_detect'],
         url='https://github.com/jquast/ucs-detect',
         package_data={
-            '': ['LICENSE', '*.rst'],
+            '': ['LICENSE', '*.rst', '*.txt'],
         },
         zip_safe=True,
         classifiers=[
