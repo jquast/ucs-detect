@@ -117,6 +117,7 @@ History
 ``1.0.0``, *2023-10-28*: More advanced testing, **drop python 3 support**, and,
     change default behavior when called without arguments. Use ``--quick
     --shell`` to use the new release with matching behavior.
+
 ``0.0.4``, *2020-06-20*: Initial releases and bugfixes
 
 .. _IPython: https://ipython.org/
