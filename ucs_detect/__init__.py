@@ -283,7 +283,7 @@ def display_results_by_language(term, writer, results):
         f"\nLanguage Support: {len(success_langs):n} of {len(failed_langs) + len(success_langs):n}"
     )
     writer(f'\n{"Failed Language":>32s}: {"Total":>6s}, Success Pct')
-    for lang in failed_langs:
+    for lang in sorted(failed_langs):
         label_s = f"{lang:>32s}"
         total_s = f"{results[lang]['n_total']:>6n}"
         pct_val = results[lang]["pct_success"]
@@ -491,7 +491,7 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version):
     """Program entry point."""
     term, writer = init_term(stream, quick)
 
@@ -552,7 +552,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
     )
-    unicode_version = determine_best_match(wide_results, lbound_pct=95, report_lbound=2)
+    unicode_version = unicode_version or determine_best_match(wide_results, lbound_pct=95, report_lbound=2)
     if shell:
         # when using --shell, this program's only purpose is to make a best
         # estimate of exporting UNICODE_VERSION for use with wcwidth library and
@@ -635,7 +635,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
                 emoji_zwj_results=emoji_zwj_results,
                 language_results=language_results,
             ),
-        )           
+        )
     writer('\n')
 
 
@@ -677,8 +677,7 @@ def do_languages_test(
 
 
 def do_save_yaml( save_yaml, **kwargs):
-
-    yaml.safe_dump(kwargs, open(save_yaml, "w"))
+    yaml.safe_dump(kwargs, open(save_yaml, "w"), sort_keys=False)
 
 
 def parse_args():
@@ -731,6 +730,11 @@ def parse_args():
         help="Save test results to given filepath as yaml, will prompt for software name & version",
         default=None,
     )
+    args.add_argument(
+        "--unicode-version",
+        help=("Override unicode version for language testing, otherwise best match by wide character "
+              "testing is used")
+    )
     results = vars(args.parse_args())
     if results["quick"]:
         results["limit_codepoints"] = results["limit_codepoints"] or 50
@@ -738,6 +742,7 @@ def parse_args():
     if results["shell"]:
         assert not results["save_yaml"], "Cannot use --shell with --save-yaml"
         assert results["stream"] == "stderr", "Cannot use --shell with --stream=stdout"
+        assert not results["unicode_version"], "Do not use with --shell"
     if results["save_yaml"]:
         results["save_yaml"] = os.path.expanduser(results["save_yaml"])
     return results
