@@ -3,6 +3,8 @@ ucs-detect
 
 Without any arguments,
 
+::
+
     $ ucs-detect
 
 The tool, ``ucs-detect``, tests the Unicode support level of the terminal
@@ -16,6 +18,8 @@ report.
 Versions prior to 1.0 served only a single purpose, to export an
 sh_-compatible line for export of ``UNICODE_VERSION``, to continue
 this purpose, use ``--shell --quick``, for example:
+
+::
 
     $ ucs-detect --shell --quick
     UNICODE_VERSION=15.0.0; export UNICODE_VERSION
@@ -114,12 +118,12 @@ companion article, https://jeffquast.com/post/terminal_wcwidth_solution/
 History
 =======
 
-``1.0.3``, *2023-10-28*: More advanced tests, **drop python 2 support**, change
-    default behavior when called without arguments. Use CLI arguments,
-    ``ucs-detect --quick --shell`` to use the new release with matching previous
-    release behavior.
+- 1.0.3, *2023-10-28*: More advanced tests, **drop python 2 support**, change
+    default behavior when called without arguments. Use CLI arguments, ``ucs-detect
+    quick --shell`` to use the new release with matching previous release
+    behavior.
 
-``0.0.4``, *2020-06-20*: Initial releases and bugfixes
+- 0.0.4, *2020-06-20*: Initial releases and bugfixes
 
 .. _IPython: https://ipython.org/
 .. _python-prompt-toolkit: https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/PROJECTS.rst#projects-using-prompt_toolkit
