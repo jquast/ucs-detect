@@ -618,17 +618,24 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     if save_yaml:
         do_save_yaml(
             save_yaml,
-            session_arguments,
-            term,
-            terminal_software,
-            terminal_version,
-            stime,
-            wide_results,
-            unicode_version,
-            emoji_zwj_results,
-            emoji_zwj_version,
-            language_results,
-        )
+            session_arguments=session_arguments,
+            software=terminal_software,
+            version=terminal_version,
+            seconds_elapsed=time.monotonic() - stime,
+            width=term.width,
+            height=term.height,
+            python_version=platform.python_version(),
+            system=platform.system(),
+            datetime=datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC"),
+            wcwidth_version=wcwidth.__version__,
+            test_results=dict(
+                unicode_wide_version=unicode_version,
+                unicode_wide_results=wide_results,
+                emoji_zwj_version=emoji_zwj_version,
+                emoji_zwj_results=emoji_zwj_results,
+                language_results=language_results,
+            ),
+        )           
     writer('\n')
 
 
@@ -640,7 +647,7 @@ def do_languages_test(
     writer("\n" * 20)
     if orig_ypos != term.height - 1:
         next_ypos, _ = term.get_location(timeout=timeout)
-        top = next_ypos - 19
+        top = max(0, next_ypos - 19)
     else:
         top = max(0, term.height - 20)
     bottom = min(top + 20, term.height - 1)
@@ -663,44 +670,15 @@ def do_languages_test(
         # reset scrolling region
         writer(term.csr(0, term.height))
     writer(term.move_yx(top, 0) + term.clear_eos)
-    writer(term.move_yx(orig_ypos, orig_xpos))
+    writer(term.move_yx(top - 1, orig_xpos))
     writer(f"{len(language_results):n} total, ")
     writer(f"{time.monotonic() - start_time:.2f}s elapsed.")
     return language_results
 
 
-def do_save_yaml(
-    save_yaml,
-    session_arguments,
-    term,
-    terminal_software,
-    terminal_version,
-    stime,
-    wide_results,
-    unicode_version,
-    emoji_zwj_results,
-    emoji_zwj_version,
-    language_results,
-):
-    results = dict(
-        session_arguments=session_arguments,
-        software=terminal_software,
-        version=terminal_version,
-        seconds_elapsed=time.monotonic() - stime,
-        width=term.width,
-        height=term.height,
-        python_version=platform.python_version(),
-        system=platform.system(),
-        datetime=datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC"),
-        test_results=dict(
-            unicode_wide_version=unicode_version,
-            unicode_wide_results=wide_results,
-            emoji_zwj_version=emoji_zwj_version,
-            emoji_zwj_results=emoji_zwj_results,
-            language_results=language_results,
-        ),
-    )
-    yaml.safe_dump(results, open(save_yaml, "w"))
+def do_save_yaml( save_yaml, **kwargs):
+
+    yaml.safe_dump(kwargs, open(save_yaml, "w"))
 
 
 def parse_args():
