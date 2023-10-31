@@ -60,20 +60,11 @@ Chinese, Japanese, Korean, and Emoticon characters are "double-wide", occupying
 do not occopy any cells at all, or modify the previous cell as a "combining"
 character.
 
-Any terminal application that formats and displays these characters may have
-trouble determining how it will be displayed to the end-user.  Here is one such
-example, from `vercel/hyper`_ terminal:
-
-.. figure:: hyper-example.png
-   :alt: An example of misaligned wide characters by the Hyper Terminal
-   :figwidth: image
-
-This problem happens often, because the Unicode Consortium releases new versions
-of the Unicode Standard periodically, but the source code of libraries and
-applications are not updated at the same time, or at all!
-
-Many languages and libraries continue to conform only to Unicode 5.0, which is
-the last version of `wcwidth.c`_ released by Markus Kuhn in 2007.
+A terminal application that displays these characters may have trouble
+determining how it will be displayed to the end-user.  This problem
+happens often, because the Unicode Consortium releases new versions
+of the Unicode Standard periodically, but the source code of libraries
+and applications are not updated at the same time, or at all!
 
 Solution
 --------
