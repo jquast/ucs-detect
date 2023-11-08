@@ -51,7 +51,7 @@ def make_score_table():
             terminal_software_name=data['software'],
             terminal_software_version=data['version'],
             score_emoji_vs16=score_emoji_vs16,
-            score_final=sum((score_language, score_emoji_vs16, score_zwj_version, score_wide_version)),
+            score_final=sum((score_language, score_emoji_vs16, score_zwj_version, score_wide_version)) / 4,
             score_language=score_language,
             score_wide_version=score_wide_version,
             score_zwj_version=score_zwj_version,
@@ -85,11 +85,11 @@ def summarize(score_table):
             "Software Version": result["terminal_software_version"],
             "FINAL score": make_grade(result["score_final_scaled"]) + f' ({result["score_final"]*100:.2f}%)',
             "WIDE score": make_grade(result["score_wide_version_scaled"]) + f' ({result["score_wide_version"]*100:.2f}%)',
-            "Wide Unicode version": result["version_best_wide"],
+            "Wide Unicode version": result["version_best_wide"] or '',
             "LANG score": make_grade(result["score_language_scaled"]) + f' ({result["score_language"]*100:.2f}%)',
             "ZWJ score": make_grade(result["score_zwj_version_scaled"]) + f' ({result["score_zwj_version"]*100:.2f}%)',
+            "ZWJ Unicode version": result["version_best_zwj"] or '',
             "VS16 score": make_grade(result["score_emoji_vs16_scaled"]) + f' ({result["score_emoji_vs16"]*100:.2f}%)',
-            "ZWJ Unicode version": result["version_best_zwj"],
             })
     return results
 
