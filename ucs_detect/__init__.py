@@ -661,6 +661,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
                 unicode_wide_version=unicode_version,
                 unicode_wide_results=wide_results,
                 emoji_zwj_version=emoji_zwj_version,
+                emoji_zwj_results=emoji_zwj_results,
                 emoji_vs16_results=emoji_vs16_results,
                 language_results=language_results,
             ),
