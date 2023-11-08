@@ -85,10 +85,10 @@ def summarize(score_table):
             "Software Version": result["terminal_software_version"],
             "FINAL score": make_grade(result["score_final_scaled"]) + f' ({result["score_final"]*100:.2f}%)',
             "WIDE score": make_grade(result["score_wide_version_scaled"]) + f' ({result["score_wide_version"]*100:.2f}%)',
-            "Wide Unicode version": result["version_best_wide"] or '',
+            "Wide Unicode version": result["version_best_wide"] or 'na',
             "LANG score": make_grade(result["score_language_scaled"]) + f' ({result["score_language"]*100:.2f}%)',
             "ZWJ score": make_grade(result["score_zwj_version_scaled"]) + f' ({result["score_zwj_version"]*100:.2f}%)',
-            "ZWJ Unicode version": result["version_best_zwj"] or '',
+            "ZWJ Unicode version": result["version_best_zwj"] or 'na',
             "VS16 score": make_grade(result["score_emoji_vs16_scaled"]) + f' ({result["score_emoji_vs16"]*100:.2f}%)',
             })
     return results
