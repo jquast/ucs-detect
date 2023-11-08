@@ -3,13 +3,15 @@
 import os
 import yaml
 
+# 3rd party
 import wcwidth
+import tabulate
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
 
 def main():
     graded_score_table = grade_with_scale(make_score_table())
-    generate_reStructuredText_score_table(graded_score_table)
+    generate_reStructuredText_score_table(summarize(graded_score_table))
 
 def make_score_table():
     score_table = []
@@ -60,7 +62,7 @@ def make_score_table():
         ))
     return score_table
 
-GRADES = ['F-', 'F', 'F+', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
+GRADES = ['F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
 
 def make_grade(score):
     """
@@ -72,36 +74,24 @@ def generate_reStructuredText_score_table(score_table):
     """
     Generate reStructuredText table from score_table
     """
-    print(".. list-table:: Terminal Emulator Unicode Support")
-    print("   :widths: 10 10 10 10 10 10 10 10 10 10 10")
-    print("   :header-rows: 1")
-    print("")
-    print("   * - Terminal Software")
-    print("     - SW Version")
-    print("     - Score")
-    print("     - Emoji VS-16")
-    print("     - Emoji ZWJ")
-    print("     - Emoji ZWJ Version")
-    print("     - Unicode Wide")
-    print("     - Unicode Wide Version")
-    print("     - Language Support")
-    print("     - Languages Successful")
-    print("     - Languages Failed by Pct")
-    for entry in score_table:
-        print(entry)
-        print(f"   * - {entry['terminal_software_name']}".format(**entry))
-        print(f"     - {entry['terminal_software_version']}".format(**entry))
-        print(f"     - {make_grade(entry['score_final_scaled'])}".format(**entry))
-        print(f"     - {entry['score_emoji_vs16']:.2f}".format(**entry))
-        print(f"     - {entry['score_zwj_version']:.2f}".format(**entry))
-        print(f"     - {entry['version_best_zwj']}".format(**entry))
-        print(f"     - {entry['score_wide_version']:.2f}".format(**entry))
-        print(f"     - {entry['version_best_wide']}".format(**entry))
-        print(f"     - {entry['score_language']:.2f}".format(**entry))
-        print(f"     - {entry['languages_successful']}".format(**entry))
-        print(f"     - {entry['languages_failed_by_pct']}".format(**entry))
-        print("")
-    print("")
+    print(tabulate.tabulate(score_table, headers="keys", tablefmt="rst"))
+
+
+def summarize(score_table):
+    results = []
+    for result in score_table:
+        results.append({
+            "Terminal Software": result["terminal_software_name"],
+            "Software Version": result["terminal_software_version"],
+            "FINAL score": make_grade(result["score_final_scaled"]) + f' ({result["score_final"]*100:.2f}%)',
+            "WIDE score": make_grade(result["score_wide_version_scaled"]) + f' ({result["score_wide_version"]*100:.2f}%)',
+            "Wide Unicode version": result["version_best_wide"],
+            "LANG score": make_grade(result["score_language_scaled"]) + f' ({result["score_language"]*100:.2f}%)',
+            "ZWJ score": make_grade(result["score_zwj_version_scaled"]) + f' ({result["score_zwj_version"]*100:.2f}%)',
+            "VS16 score": make_grade(result["score_emoji_vs16_scaled"]) + f' ({result["score_emoji_vs16"]*100:.2f}%)',
+            "ZWJ Unicode version": result["version_best_zwj"],
+            })
+    return results
 
 def grade_with_scale(score_table):
     """
