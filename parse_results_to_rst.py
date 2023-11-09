@@ -9,25 +9,25 @@ import wcwidth
 import tabulate
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
+RST_DEPTH = [None, '=', '-', '+', '^']
 
 
 def main():
-    score_table = make_score_table()
+    score_table, all_successful_languages = make_score_table()
     do_tabulate_score(score_table)
     display_table_definitions()
-    do_details(score_table)
+    do_details(score_table, all_successful_languages)
     display_hyperlinks()
 
 def show_wchar(wchar):
     wchar_raw = bytes(wchar, 'utf8').decode('unicode-escape')
     names = []
-    for f in wchar_raw:
+    for wc in wchar_raw:
         try:
-            names.append(unicodedata.name(f).title())
+            names.append(unicodedata.name(wc).title())
         except:
             names.append('na')
-    wchar_repr = repr(wchar)
-    return (f'of python string ``{wchar_repr}`` ({", ".join(names)})')
+    return (f'of python string ``"{wchar}"`` ({", ".join(names)})')
 
 def display_hyperlinks():
     print('.. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html')
@@ -62,34 +62,19 @@ def make_score_table():
 
         # Language Support,
         score_language = score_lang(data)
-        languages_successful = [
-            lang
-            for lang in data["test_results"]["language_results"]
-            if data["test_results"]["language_results"][lang]["n_errors"] == 0
-        ]
-        languages_failed_by_pct = [
-            (lang, data["test_results"]["language_results"][lang]["pct_success"])
-            for lang in data["test_results"]["language_results"]
-            if data["test_results"]["language_results"][lang]["n_errors"] > 0
-        ]
-
+        scores = (score_language, score_emoji_vs16, _score_zwj, _score_wide)
         score_table.append(
             dict(
                 terminal_software_name=data["software"],
                 terminal_software_version=data["version"],
                 os_system=data["system"],
                 score_emoji_vs16=score_emoji_vs16,
-                score_final=sum(
-                    (score_language, score_emoji_vs16, _score_zwj, _score_wide)
-                )
-                / 4,
+                score_final=sum(scores) / len(scores),
                 score_language=score_language,
                 score_wide=_score_wide,
                 score_zwj=_score_zwj,
                 version_best_wide=version_best_wide,
                 version_best_zwj=version_best_zwj,
-                languages_failed_by_pct=languages_failed_by_pct,
-                languages_successful=languages_successful,
                 data=data,
             )
         )
@@ -101,7 +86,22 @@ def make_score_table():
             entry[key + "_scaled"] = scale_scores(score_table, entry, key)
         result.append(entry)
     result.sort(key=lambda x: x["score_final"], reverse=True)
-    return result
+
+    # create unique set of all languages tested, then find languages that are
+    # successful for all terminals (english, etc.) and remove them from the
+    # result.
+    all_languages = set()
+    for entry in result:
+        all_languages.update([lang for lang in entry['data']["test_results"]["language_results"]
+            if entry['data']["test_results"]["language_results"][lang]['n_errors'] == 0])
+
+    all_successful_languages = set()
+    for lang in all_languages:
+        if all(entry['data']["test_results"]["language_results"][lang]['n_errors'] == 0 for entry in result):
+            all_successful_languages.add(lang)
+            for entry in result:
+                del entry["data"]['test_results']['language_results'][lang]
+    return result, all_successful_languages
 
 
 GRADES = ["F", "D-", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"]
@@ -226,25 +226,36 @@ def score_lang(data):
     return _total_langs_supported / _total_langs_available
 
 
-def do_details(score_table):
-    h1_text = "Software details"
+def show_common_languages(all_successful_languages):
+    h1_text = 'Common Language support'
     print(h1_text)
     print("=" * len(h1_text))
+    print("All of the following languages were successfull with all terminals emulators tested,")
+    print("and will be not be reported:")
     print()
-    for entry in score_table:
+    for lang in sorted(all_successful_languages):
+        print(f"- {lang}")
+    print()
+
+def do_details(score_table, all_successful_languages):
+   show_common_languages(all_successful_languages)
+   for entry in score_table:
         sw_name = entry["terminal_software_name"]
-        print(".. _{}:".format(entry["terminal_software_name"].replace(" ", "_")))
-        print()
-        h2_text = sw_name
-        print(h2_text)
-        print("-" * len(h2_text))
-        print()
-        print(f'Tested Software version {entry["terminal_software_version"]} on {entry["os_system"]}')
-        print()
+        show_software_header(entry, sw_name)
         show_wide_character_support(sw_name, entry)
         show_emoji_zwj_results(sw_name, entry)
         show_vs16_results(sw_name, entry)
-        #show_language_results(sw_name, entry)
+        show_language_results(sw_name, entry)
+
+def show_software_header(entry, sw_name):
+    print(".. _{}:".format(entry["terminal_software_name"].replace(" ", "_")))
+    print()
+    h1_text = sw_name
+    print(h1_text)
+    print("=" * len(h1_text))
+    print()
+    print(f'Tested Software version {entry["terminal_software_version"]} on {entry["os_system"]}')
+    print()
 
 
 def show_wide_character_support(sw_name, entry):
@@ -310,22 +321,11 @@ def show_wide_character_support(sw_name, entry):
         first_failure = entry["data"]["test_results"]["unicode_wide_results"][
             show_failed_version
         ]["failed_codepoints"][0]
-        as_printf_hex = make_printf_hex(first_failure)
-        print("Example shell test using `printf(1)`_ of a WIDE character ")
-        print(f"from Unicode Version {show_failed_version}, {show_wchar(first_failure['wchar'])}")
-        print("as a utf-8 bytestring. Trailing ``'|'`` should align in output::")
-        print()
-        print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
-        print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
-        print(f"    12|")
-        print()
-        print(f"python `wcwidth`_ measures width {first_failure['measured_by_wcwidth']},")
-        print(f"while *{sw_name}* measures width {first_failure['measured_by_terminal']}")
-        print()
+        show_record_failure(sw_name, f'of a WIDE character from Unicode Version {show_failed_version}', first_failure)
 
-def make_printf_hex(first_failure):
+def make_printf_hex(wchar):
     # pykhon's b'\x12..' representation is compatible enough with printf(1)
-    return repr(bytes(first_failure['wchar'], 'utf8').decode('unicode-escape').encode('utf8'))[2:-1]
+    return repr(bytes(wchar, 'utf8').decode('unicode-escape').encode('utf8'))[2:-1]
 
 
 def show_emoji_zwj_results(sw_name, entry):
@@ -373,34 +373,17 @@ def show_emoji_zwj_results(sw_name, entry):
         ):
             show_failed_version = version
             break
-    if (
-        entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version][
-            "n_errors"
-        ]
-        > 0
-    ):
+    if (entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version]["n_errors"] > 0):
         first_failure = entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version]["failed_codepoints"][0]
-        as_printf_hex = make_printf_hex(first_failure)
-        print("Example shell test using `printf(1)`_ of an Emoji ZWJ sequence ")
-        print(f"from Emoji Version {show_failed_version}, {show_wchar(first_failure['wchar'])}")
-        print(f"as a utf-8 bytestring. Trailing ``'|'`` should align in output::")
-        print()
-        print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
-        print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
-        print(f"    12|")
-        print()
-        print(f"python `wcwidth`_ measures width {first_failure['measured_by_wcwidth']},")
-        print(f"while *{sw_name}* measures width {first_failure['measured_by_terminal']}")
-        print()
+        show_record_failure(sw_name, f'of an Emoji ZWJ Sequence from Emoji Version {show_failed_version}', first_failure)
 
 
 def show_vs16_results(sw_name, entry):
-    h3_text = "Variation Selector-16 support"
-    print(h3_text)
-    print("+" * len(h3_text))
+    title = "Variation Selector-16 support"
+    print(title)
+    print(RST_DEPTH[2] * len(title))
     print()
-    # static table, '9.0.0' in beta PR of wcwidth,
-    show_failed_version = "9.0.0"
+    show_failed_version = "9.0.0"  # static table, '9.0.0' in beta PR of wcwidth,
     n_errors = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["n_errors"]
     n_total = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["n_total"]
     pct_success = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["pct_success"]
@@ -410,20 +393,69 @@ def show_vs16_results(sw_name, entry):
     except IndexError:
         print('All codepoint combinations with Variation Selector-16 tested were successful.')
         return
-    as_printf_hex = make_printf_hex(first_failure)
-    print("Example shell test using `printf(1)`_ of Emoji sequence containing *Variation Selector-16*")
-    print(f"{show_wchar(first_failure['wchar'])}")
-    print(f"as a utf-8 bytestring, trailing ``'|'`` should align in output::")
+    show_record_failure(sw_name, 'of a NARROW Emoji made WIDE by *Variation Selector-16*', first_failure)
+
+
+def show_language_results(sw_name, entry):
+    h2_text = "Language Support"
+    print(h2_text)
+    print(RST_DEPTH[2] * len(h2_text))
     print()
-    print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
-    print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
-    print(f"    12|")
+    languages_successful = [
+        lang
+        for lang in entry['data']["test_results"]["language_results"]
+        if entry['data']["test_results"]["language_results"][lang]["n_errors"] == 0
+    ]
+    tabulated_successful_language_results = [{
+            "lang": lang,
+            "n_total": entry["data"]["test_results"]["language_results"][lang]["n_total"],
+        } for lang in languages_successful]
+    print(f'The following {len(languages_successful)} languages were tested with 100% success:')
     print()
-    print(f"python `wcwidth`_ measures width {first_failure['measured_by_wcwidth']},")
-    print(f"while *{sw_name}* measures width {first_failure['measured_by_terminal']}")
+    print(tabulate.tabulate(tabulated_successful_language_results, headers="keys", tablefmt="rst"))
     print()
 
-   
+    languages_failed = [
+        lang
+        for lang in entry['data']["test_results"]["language_results"]
+        if entry['data']["test_results"]["language_results"][lang]["n_errors"] > 0
+    ]
+    languages_failed.sort(key=lambda lang: entry['data']["test_results"]["language_results"][lang]["pct_success"])
+    tabulated_failed_language_results = [{
+            "lang": lang,
+            "n_total": entry["data"]["test_results"]["language_results"][lang]["n_total"],
+        } for lang in languages_failed]
+
+    print(f'The following {len(languages_failed)} languages are not supported or only partially supported:')
+    print()
+    print(tabulate.tabulate(tabulated_failed_language_results, headers="keys", tablefmt="rst"))
+    print()
+    for failed_lang in languages_failed:
+        fail_record = entry['data']['test_results']['language_results'][failed_lang]['failed'][0]
+        print(failed_lang)
+        print(RST_DEPTH[2] * len(failed_lang))
+        print()
+        show_record_failure(sw_name, f'of language, {failed_lang}', fail_record)
+
+
+def show_record_failure(sw_name, whatis, fail_record):
+    num_bars = '1234567890' * ((fail_record['measured_by_wcwidth'] // 10) + 1)
+    ruler = num_bars[:fail_record['measured_by_wcwidth']]
+    wchars = fail_record.get('wchar', fail_record.get('wchars'))
+    assert wchars
+    as_printf_hex = make_printf_hex(wchars)
+    print(f"Example shell test using `printf(1)`_ {whatis} {show_wchar(wchars)}")
+    print(f"as a utf-8 bytestring, trailing ``'|'`` should align in output::")
+    print()
+    print(rf'    $ printf "{as_printf_hex}|\\n{ruler}|\\n"')
+    print(f'    {bytes(wchars, 'utf8').decode('unicode-escape')}|')
+    print(f"    {ruler}|")
+    print()
+    print(f"python `wcwidth`_ measures width {fail_record['measured_by_wcwidth']}, ", end='')
+    print(f"while *{sw_name}* measures width {fail_record['measured_by_terminal']}")
+    print()
+
+  
   
 
 if __name__ == "__main__":

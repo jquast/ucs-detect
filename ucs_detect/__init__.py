@@ -185,9 +185,8 @@ def test_language_support(
                     )
                     if delta_ypos != 0:
                         failure_report[lang][-1]["delta_ypos"] = delta_ypos
-                    if delta_xpos != 0:
-                        failure_report[lang][-1]["measured_by_wcwidth"] = expected_width
-                        failure_report[lang][-1]["measured_by_terminal"] = delta_xpos
+                    failure_report[lang][-1]["measured_by_wcwidth"] = expected_width
+                    failure_report[lang][-1]["measured_by_terminal"] = delta_xpos
                 # reset estimates to actual
                 estimated_xpos = end_xpos
                 last_ypos = end_ypos
