@@ -16,7 +16,11 @@ def main():
     do_tabulate_score(score_table)
     display_table_definitions()
     do_details(score_table)
+    display_hyperlinks()
 
+def display_hyperlinks():
+    print('.. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html')
+    print('.. _`wcwidth`: https://www.github.com/jquast/wcwidth/')
 
 def make_score_table():
     score_table = []
@@ -224,7 +228,12 @@ def do_details(score_table):
         print(h2_text)
         print("-" * len(h2_text))
         print()
+        print(f'Tested Software version {entry["terminal_software_version"]} on {entry["os_system"]}')
+        print()
         show_wide_character_support(sw_name, entry)
+        show_emoji_zwj_results(sw_name, entry)
+        show_vs16_results(sw_name, entry)
+        #show_language_results(sw_name, entry)
 
 
 def show_wide_character_support(sw_name, entry):
@@ -234,14 +243,14 @@ def show_wide_character_support(sw_name, entry):
     print()
     print(
         f"The best wide unicode table version for {sw_name} appears to be \n"
-        f'is {entry["version_best_wide"]}, this is from a summary of the following\n'
+        f'**{entry["version_best_wide"]}**, this is from a summary of the following\n'
         f"results:"
     )
     print()
     print("")
     tabulated_wide_results = [
         {
-            "version": version,
+            "version": repr(version),
             "n_errors": result["n_errors"],
             "n_total": result["n_total"],
             "pct_success": result["pct_success"],
@@ -290,24 +299,125 @@ def show_wide_character_support(sw_name, entry):
         first_failure = entry["data"]["test_results"]["unicode_wide_results"][
             show_failed_version
         ]["failed_codepoints"][0]
-        as_printf_hex = "".join(
-            rf"\{hb[1:]}"
-            for hb in map(hex, binascii.b2a_hex(first_failure["wchar"].encode("utf-8")))
-        )
-        print("Example shell test using printf(1) of a WIDE character ")
-        print(f"from Unicode Version {show_failed_version}, python string ")
-        print(f"``{repr(first_failure['wchar'])}`` as a utf-8 bytestring, ")
-        print("``|`` should align in output::")
+        as_printf_hex = make_printf_hex(first_failure)
+        print("Example shell test using `printf(1)`_ of a WIDE character ")
+        print(f"from Unicode Version {show_failed_version}, of python string ")
+        print(f"``{first_failure['wchar']}`` as a utf-8 bytestring, ")
+        print("trailing ``'|'`` should align in output::")
         print()
-        print(rf'    $ printf "{as_printf_hex}|\\n12|')
-        print(f'    {chr(int(first_failure["wchar"][2:], 16))}|')
+        print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
+        print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
         print(f"    12|")
         print()
-        print(f"wcwidth measures width {first_failure['measured_by_wcwidth']},")
-        print(f"while {sw_name} measures width {first_failure['measured_by_terminal']}")
+        print(f"python `wcwidth`_ measures width {first_failure['measured_by_wcwidth']},")
+        print(f"while *{sw_name}* measures width {first_failure['measured_by_terminal']}")
+        print()
+
+def make_printf_hex(first_failure):
+    # pykhon's b'\x12..' representation is compatible enough with printf(1)
+    return repr(bytes(first_failure['wchar'], 'utf8').decode('unicode-escape').encode('utf8'))[2:-1]
+
+
+def show_emoji_zwj_results(sw_name, entry):
+    h3_text = "Emoji ZWJ support"
+    print(h3_text)
+    print("+" * len(h3_text))
+    print()
+    print(
+        f"The best Emoji ZWJ table version for *{sw_name}* appears to be \n"
+        f'**{entry["version_best_zwj"]}**, this is from a summary of the following\n'
+        f"results:"
+    )
+    print()
+    print("")
+    tabulated_emoji_zwj_results = [
+        {
+            "version": repr(version),
+            "n_errors": result["n_errors"],
+            "n_total": result["n_total"],
+            "pct_success": result["pct_success"],
+        }
+        for version, result in entry["data"]["test_results"]["emoji_zwj_results" ].items()
+    ]
+    print(
+        tabulate.tabulate(tabulated_emoji_zwj_results, headers="keys", tablefmt="rst")
+    )
+    print()
+
+    emoji_zwj_versions = list(
+        entry["data"]["test_results"]["emoji_zwj_results"].keys()
+    )
+    version_best_zwj = entry["version_best_zwj"]
+    show_failed_version = version_best_zwj
+    if not show_failed_version:
+        show_failed_version = emoji_zwj_versions[0]
+    elif (entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version][ "n_errors"] == 0):
+        # find another version with errors, to show
+        for _, version in sorted(
+            [
+                (wcwidth._wcversion_value(v), v)
+                for v in emoji_zwj_versions
+                if wcwidth._wcversion_value(v) > wcwidth._wcversion_value(show_failed_version)
+                and entry["data"]["test_results"]["emoji_zwj_results"][version]["n_errors"] > 0
+            ]
+        ):
+            show_failed_version = version
+            break
+    if (
+        entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version][
+            "n_errors"
+        ]
+        > 0
+    ):
+        first_failure = entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version]["failed_codepoints"][0]
+        as_printf_hex = make_printf_hex(first_failure)
+        print("Example shell test using `printf(1)`_ of an Emoji ZWJ sequence ")
+        print(f"from Emoji Version {show_failed_version}, of python string ")
+        print(f"``{first_failure['wchar']}`` as a utf-8 bytestring, ")
+        print("trailing ``'|'`` should align in output::")
+        print()
+        print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
+        print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
+        print(f"    12|")
+        print()
+        print(f"python `wcwidth`_ measures width {first_failure['measured_by_wcwidth']},")
+        print(f"while *{sw_name}* measures width {first_failure['measured_by_terminal']}")
         print()
 
 
+def show_vs16_results(sw_name, entry):
+    h3_text = "Variation Selector-16 support"
+    print(h3_text)
+    print("+" * len(h3_text))
+    print()
+    # static table, '9.0.0' in beta PR of wcwidth,
+    show_failed_version = "9.0.0"
+    n_errors = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["n_errors"]
+    n_total = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["n_total"]
+    pct_success = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["pct_success"]
+    print(f'Emoji VS-16 results for *{sw_name}* is {n_errors} errors out of {n_total} total codepoints tested, {pct_success}% success.')
+    try:
+        first_failure = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["failed_codepoints"][0]
+    except IndexError:
+        print('All codepoint combinations with Variation Selector-16 tested were successful.')
+        return
+    as_printf_hex = make_printf_hex(first_failure)
+    print("Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*")
+    print(f"of python string")
+    print(f"``{first_failure['wchar']}`` as a utf-8 bytestring, ")
+    print("trailing ``'|'`` should align in output::")
+    print()
+    print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
+    print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
+    print(f"    12|")
+    print()
+    print(f"python `wcwidth`_ measures width {first_failure['measured_by_wcwidth']},")
+    print(f"while *{sw_name}* measures width {first_failure['measured_by_terminal']}")
+    print()
+
+   
+  
+
 if __name__ == "__main__":
-    # python parse_results_to_rst.py > RESULTS.rst&& rst2html RESULTS.rst > results.html&& open results.html
+    # python parse_results_to_rst.py > RESULTS.rst&& restructuredtext-lint results.rst&& rst2html RESULTS.rst > results.html&& open results.html
     main()
