@@ -110,7 +110,7 @@ def do_tabulate(score_table):
     display_table_definitions()
 
 def display_table_definitions():
-    print('Definitions:')
+    print('Definitions:\n')
     print('- *WIDE score*: Determined by version release level of wide character\n'
           '  support, multiplied by the pct of wide codepoints supported at that\n'
           '  version, scaled.')

@@ -26,6 +26,7 @@ Terminal Software                      Software Version    OS System    FINAL sc
 =====================================  ==================  ===========  =============  ============  ======================  ============  ===========  =====================  ============
 
 Definitions:
+
 - *WIDE score*: Determined by version release level of wide character
   support, multiplied by the pct of wide codepoints supported at that
   version, scaled.
