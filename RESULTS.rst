@@ -76,9 +76,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 13.0.0, of python string 
-``\u31bb`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 13.0.0, of python string ``'\\u31bb'`` (Bopomofo Final Letter G)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe3\x86\xbb|\\n12|\\n"
     ㆻ|
@@ -112,9 +111,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -128,9 +126,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *Tabby* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -172,9 +169,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 9.0.0, of python string 
-``\u231a`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 9.0.0, of python string ``'\\u231a'`` (Watch)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe2\x8c\x9a|\\n12|\\n"
     ⌚|
@@ -208,9 +204,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 11.0, of python string 
-``\U0001f3f4\u200d\u2620\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 11.0, of python string ``'\\U0001f3f4\\u200d\\u2620\\ufe0f'`` (Waving Black Flag, Zero Width Joiner, Skull And Crossbones, Variation Selector-16)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x8f\xb4\xe2\x80\x8d\xe2\x98\xa0\xef\xb8\x8f|\\n12|\\n"
     🏴‍☠️|
@@ -224,9 +219,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *cool-retro-term* is 12 errors out of 100 total codepoints tested, 88.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``\u2694\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'\\u2694\\ufe0f'`` (Crossed Swords, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "\xe2\x9a\x94\xef\xb8\x8f|\\n12|\\n"
     ⚔️|
@@ -268,9 +262,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 13.0.0, of python string 
-``\u31bb`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 13.0.0, of python string ``'\\u31bb'`` (Bopomofo Final Letter G)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe3\x86\xbb|\\n12|\\n"
     ㆻ|
@@ -304,9 +297,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -320,9 +312,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *VSCode Terminal* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -364,9 +355,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 10.0.0, of python string 
-``\U0001b00b`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 10.0.0, of python string ``'\\U0001b00b'`` (Hentaigana Letter U-2)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x80\x8b|\\n12|\\n"
     𛀋|
@@ -400,9 +390,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -416,9 +405,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *Terminal* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -460,9 +448,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 10.0.0, of python string 
-``\U0001b00b`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 10.0.0, of python string ``'\\U0001b00b'`` (Hentaigana Letter U-2)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x80\x8b|\\n12|\\n"
     𛀋|
@@ -496,9 +483,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -512,9 +498,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *XTerm* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -556,9 +541,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 15.1.0, of python string 
-``\u2ffc`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 15.1.0, of python string ``'\\u2ffc'`` (na)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe2\xbf\xbc|\\n12|\\n"
     ⿼|
@@ -592,9 +576,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 15.1, of python string 
-``\u26d3\ufe0f\u200d\U0001f4a5`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 15.1, of python string ``'\\u26d3\\ufe0f\\u200d\\U0001f4a5'`` (Chains, Variation Selector-16, Zero Width Joiner, Collision Symbol)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe2\x9b\x93\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x92\xa5|\\n12|\\n"
     ⛓️‍💥|
@@ -608,9 +591,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *Konsole* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -652,9 +634,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 10.0.0, of python string 
-``\U0001b00b`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 10.0.0, of python string ``'\\U0001b00b'`` (Hentaigana Letter U-2)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x80\x8b|\\n12|\\n"
     𛀋|
@@ -688,9 +669,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -704,9 +684,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *GNOME Terminal* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -748,9 +727,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 10.0.0, of python string 
-``\U0001b00b`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 10.0.0, of python string ``'\\U0001b00b'`` (Hentaigana Letter U-2)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x80\x8b|\\n12|\\n"
     𛀋|
@@ -784,9 +762,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -800,9 +777,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *xfce4-terminal* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -844,9 +820,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 10.0.0, of python string 
-``\U0001b00b`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 10.0.0, of python string ``'\\U0001b00b'`` (Hentaigana Letter U-2)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x80\x8b|\\n12|\\n"
     𛀋|
@@ -880,9 +855,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -896,9 +870,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *st* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -940,9 +913,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 13.0.0, of python string 
-``\u31bb`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 13.0.0, of python string ``'\\u31bb'`` (Bopomofo Final Letter G)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe3\x86\xbb|\\n12|\\n"
     ㆻ|
@@ -976,9 +948,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -992,9 +963,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *Hyper* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -1036,9 +1006,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 15.1.0, of python string 
-``\u2ffc`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 15.1.0, of python string ``'\\u2ffc'`` (na)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe2\xbf\xbc|\\n12|\\n"
     ⿼|
@@ -1072,9 +1041,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -1088,9 +1056,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *Alacritty* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -1132,9 +1099,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 12.0.0, of python string 
-``\U0001b165`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 12.0.0, of python string ``'\\U0001b165'`` (Katakana Letter Small We)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x85\xa5|\\n12|\\n"
     𛅥|
@@ -1172,9 +1138,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *iTerm2* is 9 errors out of 100 total codepoints tested, 91.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -1216,9 +1181,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 15.1.0, of python string 
-``\u2ffc`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 15.1.0, of python string ``'\\u2ffc'`` (na)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe2\xbf\xbc|\\n12|\\n"
     ⿼|
@@ -1252,9 +1216,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -1268,9 +1231,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *QTerminal* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -1312,9 +1274,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 10.0.0, of python string 
-``\U0001b00b`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 10.0.0, of python string ``'\\U0001b00b'`` (Hentaigana Letter U-2)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x80\x8b|\\n12|\\n"
     𛀋|
@@ -1348,9 +1309,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -1364,9 +1324,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *LXTerminal* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -1408,9 +1367,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 14.0.0, of python string 
-``\U0001f6dd`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 14.0.0, of python string ``'\\U0001f6dd'`` (Playground Slide)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x9b\x9d|\\n12|\\n"
     🛝|
@@ -1444,9 +1402,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -1493,9 +1450,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 15.1.0, of python string 
-``\u2ffc`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 15.1.0, of python string ``'\\u2ffc'`` (na)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xe2\xbf\xbc|\\n12|\\n"
     ⿼|
@@ -1529,9 +1485,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -1578,9 +1533,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 15.0.0, of python string 
-``\U0001fabc`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 15.0.0, of python string ``'\\U0001fabc'`` (Jellyfish)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\xaa\xbc|\\n12|\\n"
     🪼|
@@ -1618,9 +1572,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *WezTerm* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -1662,9 +1615,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 10.0.0, of python string 
-``\U0001b00b`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 10.0.0, of python string ``'\\U0001b00b'`` (Hentaigana Letter U-2)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x80\x8b|\\n12|\\n"
     𛀋|
@@ -1698,9 +1650,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -1714,9 +1665,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *zutty* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|
@@ -1758,9 +1708,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 15.0.0, of python string 
-``\U0001f6dc`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 15.0.0, of python string ``'\\U0001f6dc'`` (Wireless)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x9b\x9c|\\n12|\\n"
     🛜|
@@ -1794,9 +1743,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -1843,9 +1791,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of a WIDE character 
-from Unicode Version 10.0.0, of python string 
-``\U0001b00b`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Unicode Version 10.0.0, of python string ``'\\U0001b00b'`` (Hentaigana Letter U-2)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9b\x80\x8b|\\n12|\\n"
     𛀋|
@@ -1879,9 +1826,8 @@ version      n_errors    n_total    pct_success
 =========  ==========  =========  =============
 
 Example shell test using `printf(1)`_ of an Emoji ZWJ sequence 
-from Emoji Version 2.0, of python string 
-``\U0001f468\u200d\u2764\ufe0f\u200d\U0001f468`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+from Emoji Version 2.0, of python string ``'\\U0001f468\\u200d\\u2764\\ufe0f\\u200d\\U0001f468'`` (Man, Zero Width Joiner, Heavy Black Heart, Variation Selector-16, Zero Width Joiner, Man)
+as a utf-8 bytestring. Trailing ``'|'`` should align in output::
 
     $ printf "\xf0\x9f\x91\xa8\xe2\x80\x8d\xe2\x9d\xa4\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x91\xa8|\\n12|\\n"
     👨‍❤️‍👨|
@@ -1895,9 +1841,8 @@ Variation Selector-16 support
 
 Emoji VS-16 results for *mlterm* is 100 errors out of 100 total codepoints tested, 0.0% success.
 Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*
-of python string
-``0\ufe0f`` as a utf-8 bytestring, 
-trailing ``'|'`` should align in output::
+of python string ``'0\\ufe0f'`` (Digit Zero, Variation Selector-16)
+as a utf-8 bytestring, trailing ``'|'`` should align in output::
 
     $ printf "0\xef\xb8\x8f|\\n12|\\n"
     0️|

@@ -2,7 +2,7 @@
 
 import os
 import yaml
-import binascii
+import unicodedata
 
 # 3rd party
 import wcwidth
@@ -17,6 +17,17 @@ def main():
     display_table_definitions()
     do_details(score_table)
     display_hyperlinks()
+
+def show_wchar(wchar):
+    wchar_raw = bytes(wchar, 'utf8').decode('unicode-escape')
+    names = []
+    for f in wchar_raw:
+        try:
+            names.append(unicodedata.name(f).title())
+        except:
+            names.append('na')
+    wchar_repr = repr(wchar)
+    return (f'of python string ``{wchar_repr}`` ({", ".join(names)})')
 
 def display_hyperlinks():
     print('.. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html')
@@ -301,9 +312,8 @@ def show_wide_character_support(sw_name, entry):
         ]["failed_codepoints"][0]
         as_printf_hex = make_printf_hex(first_failure)
         print("Example shell test using `printf(1)`_ of a WIDE character ")
-        print(f"from Unicode Version {show_failed_version}, of python string ")
-        print(f"``{first_failure['wchar']}`` as a utf-8 bytestring, ")
-        print("trailing ``'|'`` should align in output::")
+        print(f"from Unicode Version {show_failed_version}, {show_wchar(first_failure['wchar'])}")
+        print("as a utf-8 bytestring. Trailing ``'|'`` should align in output::")
         print()
         print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
         print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
@@ -372,9 +382,8 @@ def show_emoji_zwj_results(sw_name, entry):
         first_failure = entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version]["failed_codepoints"][0]
         as_printf_hex = make_printf_hex(first_failure)
         print("Example shell test using `printf(1)`_ of an Emoji ZWJ sequence ")
-        print(f"from Emoji Version {show_failed_version}, of python string ")
-        print(f"``{first_failure['wchar']}`` as a utf-8 bytestring, ")
-        print("trailing ``'|'`` should align in output::")
+        print(f"from Emoji Version {show_failed_version}, {show_wchar(first_failure['wchar'])}")
+        print(f"as a utf-8 bytestring. Trailing ``'|'`` should align in output::")
         print()
         print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
         print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
@@ -403,9 +412,8 @@ def show_vs16_results(sw_name, entry):
         return
     as_printf_hex = make_printf_hex(first_failure)
     print("Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*")
-    print(f"of python string")
-    print(f"``{first_failure['wchar']}`` as a utf-8 bytestring, ")
-    print("trailing ``'|'`` should align in output::")
+    print(f"{show_wchar(first_failure['wchar'])}")
+    print(f"as a utf-8 bytestring, trailing ``'|'`` should align in output::")
     print()
     print(rf'    $ printf "{as_printf_hex}|\\n12|\\n"')
     print(f'    {bytes(first_failure["wchar"], 'utf8').decode('unicode-escape')}|')
