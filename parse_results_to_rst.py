@@ -10,8 +10,8 @@ import tabulate
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
 
 def main():
-    graded_score_table = grade_with_scale(make_score_table())
-    generate_reStructuredText_score_table(summarize(graded_score_table))
+    score_table = make_score_table()
+    do_tabulate(score_table)
 
 def make_score_table():
     score_table = []
@@ -29,11 +29,11 @@ def make_score_table():
         
         # determine score for 'WIDE',
         version_best_wide = data["test_results"]["unicode_wide_version"]
-        score_wide_version = score_wide(data)
+        _score_wide = score_wide(data)
 
         # 'EMOJI ZWJ',
         version_best_zwj = data["test_results"]["emoji_zwj_version"]
-        score_zwj_version = score_zwj(data)
+        _score_zwj = score_zwj(data)
 
         # 'EMOJI VS-16',
         score_emoji_vs16 = data["test_results"]["emoji_vs16_results"]["9.0.0"]["pct_success"] / 100
@@ -50,17 +50,25 @@ def make_score_table():
         score_table.append(dict(
             terminal_software_name=data['software'],
             terminal_software_version=data['version'],
+            os_system=data['system'],
             score_emoji_vs16=score_emoji_vs16,
-            score_final=sum((score_language, score_emoji_vs16, score_zwj_version, score_wide_version)) / 4,
+            score_final=sum((score_language, score_emoji_vs16, _score_zwj, _score_wide)) / 4,
             score_language=score_language,
-            score_wide_version=score_wide_version,
-            score_zwj_version=score_zwj_version,
+            score_wide=_score_wide,
+            score_zwj=_score_zwj,
             version_best_wide=version_best_wide,
             version_best_zwj=version_best_zwj,
             languages_failed_by_pct=languages_failed_by_pct,
             languages_successful=languages_successful,
         ))
-    return score_table
+    # after accumulating all entries, create graded scale
+    result = []
+    _score_keys = [key for key in score_table[0].keys() if key.startswith('score_')]
+    for entry in score_table:
+        for key in _score_keys:
+            entry[key + '_scaled'] = scale_scores(score_table, entry, key)
+        result.append(entry)
+    return result
 
 GRADES = ['F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+']
 
@@ -70,40 +78,53 @@ def make_grade(score):
     """
     return GRADES[int(score * (len(GRADES) - 1))]
 
-def generate_reStructuredText_score_table(score_table):
-    """
-    Generate reStructuredText table from score_table
-    """
-    print(tabulate.tabulate(score_table, headers="keys", tablefmt="rst"))
 
+def make_hyperlink(text):
+    if ' ' in text:
+        return f'`{text} <{text.replace(" ", "_")}_>`_'
+    else:
+        return f'`{text}`_'
 
-def summarize(score_table):
-    results = []
+def do_tabulate(score_table):
+    tabulated_scores = []
     for result in score_table:
-        results.append({
-            "Terminal Software": result["terminal_software_name"],
+        tabulated_scores.append({
+            "Terminal Software": make_hyperlink(result["terminal_software_name"]),
             "Software Version": result["terminal_software_version"],
+            "OS System": result['os_system'],
             "FINAL score": make_grade(result["score_final_scaled"]) + f', {result["score_final"]*100:.0f}%',
-            "WIDE score": make_grade(result["score_wide_version_scaled"]) + f', {result["score_wide_version"]*100:.0f}%',
+            "WIDE score": make_grade(result["score_wide_scaled"]) + f', {result["score_wide"]*100:.0f}%',
             "Wide Unicode version": result["version_best_wide"] or 'na',
             "LANG score": make_grade(result["score_language_scaled"]) + f', {result["score_language"]*100:.0f}%',
-            "ZWJ score": make_grade(result["score_zwj_version_scaled"]) + f', {result["score_zwj_version"]*100:.0f}%',
+            "ZWJ score": make_grade(result["score_zwj_scaled"]) + f', {result["score_zwj"]*100:.0f}%',
             "ZWJ Unicode version": result["version_best_zwj"] or 'na',
             "VS16 score": make_grade(result["score_emoji_vs16_scaled"]) + f', {result["score_emoji_vs16"]*100:.0f}%',
             })
-    return results
+    tabulated_scores.sort(key=lambda x: x["FINAL score"], reverse=False)
+    h1_text = 'Table Summary'
 
-def grade_with_scale(score_table):
-    """
-    Return modified score_table with additional attributes returned by '_scale'
-    """
-    result = []
-    _score_keys = [key for key in score_table[0].keys() if key.startswith('score_')]
-    for entry in score_table:
-        for key in _score_keys:
-            entry[key + '_scaled'] = scale_scores(score_table, entry, key)
-        result.append(entry)
-    return result
+    print(h1_text)
+    print('='*len(h1_text))
+    print(tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst"))
+    print()
+    display_table_definitions()
+
+def display_table_definitions():
+    print('Definitions:')
+    print('- *WIDE score*: Determined by version release level of wide character\n'
+          '  support, multiplied by the pct of wide codepoints supported at that\n'
+          '  version, scaled.')
+    print('- *Wide Unicode version*: The Unicode version specification most\n'
+          '  closely matching in compatibility with this emulator, scaled.')
+    print('- *LANG score*: The percentage of international languages tested\n'
+          '  as having support, scaled.')
+    print('- *ZWJ score*: Determined by version release level of emoji sequences\n'
+          '  with Zero-Width Joiner support, multiplied by the pct of emoji\n'
+          '  sequences supported at that version, scaled.')
+    print('- *VS16 score*: Determined by the number of Emoji using Variation\n'
+          '  Selector-16 supported as wide characters, scaled.')
+
+
 
 def scale_scores(score_table, entry, key):
     my_score = entry[key]
@@ -118,7 +139,10 @@ def score_zwj(data):
         score = (
                 list(data["test_results"]["emoji_zwj_results"].keys()).index(best_zwj_version) + 1
             ) / len(data["test_results"]["emoji_zwj_results"])
-    return score
+    score2 = 0.01
+    if best_zwj_version:
+        score2 = data["test_results"]["emoji_zwj_results"][best_zwj_version]["pct_success"] / 100
+    return score * score2
 
 def score_wide(data):
     score = 0.0
@@ -126,7 +150,10 @@ def score_wide(data):
     unicode_versions = list(data["test_results"]["unicode_wide_results"].keys())
     if best_wide_version and best_wide_version in unicode_versions:
         score = (unicode_versions.index(best_wide_version) + 1) / len(unicode_versions)
-    return score
+    score2 = 0.01
+    if best_wide_version:
+        score2 = data["test_results"]["unicode_wide_results"][best_wide_version]["pct_success"] / 100
+    return score * score2
 
 def score_lang(data):
     _total_langs_supported = sum(1 for lang in data["test_results"]["language_results"]

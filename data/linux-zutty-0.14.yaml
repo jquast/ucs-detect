@@ -10,7 +10,7 @@ seconds_elapsed: 73.72462441609241
 width: 80
 height: 24
 python_version: 3.12.0
-system: Darwin
+system: Linux
 datetime: 2023-11-08 19:47:13 UTC
 wcwidth_version: 0.2.10
 test_results:

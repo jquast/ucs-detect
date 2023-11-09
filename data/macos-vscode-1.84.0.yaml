@@ -4,7 +4,7 @@ session_arguments:
   limit_codepoints: 1000
   limit_errors: 100
   limit_words: 1000
-software: Visual Studio Code Terminal
+software: VSCode Terminal
 version: 1.84.0
 seconds_elapsed: 198.68664070800878
 width: 260

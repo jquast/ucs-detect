@@ -555,7 +555,12 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
     )
-    unicode_version = unicode_version or determine_best_match(wide_results, lbound_pct=95, report_lbound=2)
+    if unicode_version:
+        # match by CLI argument, '--unicode-version'
+        unicode_version = _wcmatch_version(unicode_version)
+    else:
+        # match version by results of wide character test
+        unicode_version = determine_best_match(wide_results, lbound_pct=95, report_lbound=2)
     if shell:
         # when using --shell, this program's only purpose is to make a best
         # estimate of exporting UNICODE_VERSION for use with wcwidth library and
