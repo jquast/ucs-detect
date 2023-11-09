@@ -100,6 +100,7 @@ def make_score_table():
         for key in _score_keys:
             entry[key + "_scaled"] = scale_scores(score_table, entry, key)
         result.append(entry)
+    result.sort(key=lambda x: x["score_final"], reverse=True)
     return result
 
 
@@ -137,7 +138,6 @@ def do_tabulate_score(score_table):
                 "VS16 score": make_grade(result["score_emoji_vs16_scaled"]),
             }
         )
-    tabulated_scores.sort(key=lambda x: x["FINAL score"], reverse=False)
 
     h1_text = "Tabulated Summary"
     print(h1_text)
