@@ -14,7 +14,7 @@ system: Darwin
 datetime: 2023-11-08 19:42:57 UTC
 wcwidth_version: 0.2.10
 test_results:
-  unicode_wide_version: 9.0.0
+  unicode_wide_version: 15.0.0
   unicode_wide_results:
     5.1.0:
       n_errors: 0
