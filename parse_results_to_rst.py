@@ -411,7 +411,7 @@ def show_vs16_results(sw_name, entry):
         print('All codepoint combinations with Variation Selector-16 tested were successful.')
         return
     as_printf_hex = make_printf_hex(first_failure)
-    print("Example shell test using printf(1) of Emoji sequence containing *Variation Selector-16*")
+    print("Example shell test using `printf(1)`_ of Emoji sequence containing *Variation Selector-16*")
     print(f"{show_wchar(first_failure['wchar'])}")
     print(f"as a utf-8 bytestring, trailing ``'|'`` should align in output::")
     print()
