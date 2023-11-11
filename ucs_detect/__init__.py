@@ -546,7 +546,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         unicode_version = _wcmatch_version(unicode_version)
     else:
         # match version by results of wide character test
-        unicode_version = determine_best_match(wide_results, lbound_pct=95, report_lbound=2)
+        unicode_version = determine_best_match(wide_results, lbound_pct=90, report_lbound=2)
     if shell:
         # when using --shell, this program's only purpose is to make a best
         # estimate of exporting UNICODE_VERSION for use with wcwidth library and
@@ -575,7 +575,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         shell=shell,
     )
     emoji_zwj_version = determine_best_match(
-        emoji_zwj_results, lbound_pct=95, report_lbound=2
+        emoji_zwj_results, lbound_pct=90, report_lbound=2
     )
 
     # Test "recommended" Variation-16 emoji sequences
