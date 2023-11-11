@@ -27,7 +27,7 @@ def show_wchar(wchar):
             names.append(unicodedata.name(wc).title())
         except:
             names.append('na')
-    return (f'of python string ``"{wchar}"`` ({", ".join(names)})')
+    return (f'of python string, ``"{wchar}"`` ({", ".join(names)})')
 
 def display_hyperlinks():
     print('.. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html')
@@ -423,7 +423,9 @@ def show_language_results(sw_name, entry):
     languages_failed.sort(key=lambda lang: entry['data']["test_results"]["language_results"][lang]["pct_success"])
     tabulated_failed_language_results = [{
             "lang": lang,
+            "n_errors": entry["data"]["test_results"]["language_results"][lang]["n_errors"],
             "n_total": entry["data"]["test_results"]["language_results"][lang]["n_total"],
+            "pct_success": entry["data"]["test_results"]["language_results"][lang]["pct_success"],
         } for lang in languages_failed]
 
     print(f'The following {len(languages_failed)} languages are not supported or only partially supported:')
@@ -435,7 +437,7 @@ def show_language_results(sw_name, entry):
         print(failed_lang)
         print(RST_DEPTH[2] * len(failed_lang))
         print()
-        show_record_failure(sw_name, f'of language, {failed_lang}', fail_record)
+        show_record_failure(sw_name, f'of language, {failed_lang},', fail_record)
 
 
 def show_record_failure(sw_name, whatis, fail_record):
@@ -444,14 +446,15 @@ def show_record_failure(sw_name, whatis, fail_record):
     wchars = fail_record.get('wchar', fail_record.get('wchars'))
     assert wchars
     as_printf_hex = make_printf_hex(wchars)
-    print(f"Example shell test using `printf(1)`_ {whatis} {show_wchar(wchars)}")
-    print(f"as a utf-8 bytestring, trailing ``'|'`` should align in output::")
+    print(f"Example shell test using `printf(1)`_ {whatis} {show_wchar(wchars)}.")
+    print()
+    print(f"Trailing ``'|'`` should align in output::")
     print()
     print(rf'    $ printf "{as_printf_hex}|\\n{ruler}|\\n"')
     print(f'    {bytes(wchars, 'utf8').decode('unicode-escape')}|')
     print(f"    {ruler}|")
     print()
-    print(f"python `wcwidth`_ measures width {fail_record['measured_by_wcwidth']}, ", end='')
+    print(f"- python `wcwidth`_ measures width {fail_record['measured_by_wcwidth']}, ", end='')
     print(f"while *{sw_name}* measures width {fail_record['measured_by_terminal']}")
     print()
 
