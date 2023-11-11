@@ -53,35 +53,22 @@ def unicode_escape_string(input_str):
 
 
 def parse_udhr():
-    with open(
-        os.path.join(os.path.dirname(__file__), "udhr_full_subset.txt"), "r"
-    ) as fin:
-        # read only up to first '-----' marker
-        language = None
-        while True:
-            line = fin.readline()
-            if not line:
-                break
-            if line.startswith("-----"):
-                language = fin.readline().strip()
-                assert language == "Arabic, Standard", language
+    path_udhr = os.path.join(os.path.dirname(__file__), 'udhr')
+    for fname in os.listdir(path_udhr):
+        with open(os.path.join(path_udhr, fname)) as fin:
+            # read only up to first '-----' marker
+            language = fin.readline().split('-', 1)[1].strip()
+            while True:
                 line = fin.readline()
-                break
-        text_parts = []
-        while True:
-            line = fin.readline()
-            if not line:
-                break
-            if line.startswith("----"):
-                yield (language, " ".join(text_parts))
-                line_parts = line.split(None, 1)
-                if len(line_parts) < 2:
-                    # EOF
+                if line == '---\n':
                     break
-                language = line_parts[1].strip()
-                text_parts = []
-            else:
+            text_parts = []
+            while True:
+                line = fin.readline()
+                if not line:
+                    break
                 text_parts += line.strip().split() if line.strip() else ""
+            yield language, ' '.join(text_parts)
 
 
 def word_splitter(line):
