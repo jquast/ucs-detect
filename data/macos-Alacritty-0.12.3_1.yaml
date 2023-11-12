@@ -328,7 +328,7 @@ test_results:
       - wchar: \u31ef
         measured_by_wcwidth: 2
         measured_by_terminal: 1
-  emoji_zwj_version: '2.0'
+  emoji_zwj_version: null
   emoji_zwj_results:
     '2.0':
       n_errors: 21

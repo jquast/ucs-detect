@@ -10,7 +10,7 @@ seconds_elapsed: 26469.876477665966
 width: 80
 height: 24
 python_version: 3.12.0
-system: Darwin
+system: Linux
 datetime: 2023-11-11 09:43:34 UTC
 wcwidth_version: 0.2.10
 test_results:
@@ -760,7 +760,7 @@ test_results:
       - wchar: \u31ef
         measured_by_wcwidth: 2
         measured_by_terminal: 1
-  emoji_zwj_version: '2.0'
+  emoji_zwj_version: null
   emoji_zwj_results:
     '2.0':
       n_errors: 21

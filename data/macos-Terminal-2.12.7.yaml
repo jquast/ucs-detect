@@ -4,7 +4,7 @@ session_arguments:
   limit_codepoints: 5000
   limit_errors: 500
   limit_words: 5000
-software: Terminal
+software: Terminal.app
 version: 2.12.7
 seconds_elapsed: 1328.998095709132
 width: 110

@@ -4,7 +4,7 @@ session_arguments:
   limit_codepoints: 5000
   limit_errors: 500
   limit_words: 5000
-software: Kovid Goyle's kitty
+software: Kovid Goyles kitty
 version: 0.30.1
 seconds_elapsed: 5051.570231124992
 width: 182

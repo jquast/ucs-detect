@@ -104,7 +104,7 @@ tool would not be required.
 
 If you would like to read more about this tool and the related problems I hope to
 address with the ``UNICODE_VERSION`` environment variable, have a look at this
-companion article, https://jeffquast.com/post/terminal_wcwidth_solution/
+companion article, https://www.jeffquast.com/post/terminal_wcwidth_solution/
 
 History
 =======
