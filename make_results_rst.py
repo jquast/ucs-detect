@@ -11,7 +11,7 @@ import tabulate
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
-RST_DEPTH = ["=", "-", "+", "^"]
+RST_DEPTH = [None, "=", "-", "+", "^"]
 GRADES = ["F", "D-", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
 
@@ -195,7 +195,7 @@ def display_tabulated_scores(score_table):
             }
         )
 
-    display_title("Tabulated Summary of Results", 1)
+    display_title("Testing Results", 1)
     print(tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst"))
     print()
 
@@ -452,7 +452,7 @@ def show_language_results(sw_name, entry):
     for failed_lang in languages_failed:
         fail_record = entry["data"]["test_results"]["language_results"][failed_lang]["failed"][0]
         display_title(failed_lang, 4)
-        show_record_failure(sw_name, f"of language, {failed_lang},", fail_record)
+        show_record_failure(sw_name, f"of language *{failed_lang}*", fail_record)
 
 
 def show_record_failure(sw_name, whatis, fail_record):
@@ -476,9 +476,9 @@ def show_record_failure(sw_name, whatis, fail_record):
               " where no movement is expected.")
     elif fail_record["measured_by_wcwidth"] != fail_record["measured_by_terminal"]:
         print(f"- python `wcwidth.wcswidth()`_ measures width"
-              " {fail_record['measured_by_wcwidth']}, ")
+              f" {fail_record['measured_by_wcwidth']}, ")
         print(f"  while *{sw_name}* measures width"
-              " {fail_record['measured_by_terminal']}.")
+              f" {fail_record['measured_by_terminal']}.")
     print()
 
 

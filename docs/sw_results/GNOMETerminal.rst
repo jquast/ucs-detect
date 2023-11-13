@@ -51,8 +51,8 @@ None
         🪼|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *GNOME Terminal* measures width 1.
 
 .. _GNOMETerminalzwj:
 
@@ -102,8 +102,8 @@ None
         👨‍👩‍👧‍👦|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *GNOME Terminal* measures width 8.
 
 .. _GNOMETerminalvs16:
 
@@ -129,8 +129,8 @@ None
         🌥️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *GNOME Terminal* measures width 1.
 
 
 .. _GNOMETerminallang:
@@ -177,7 +177,7 @@ Chakma                      493       1444       65.8587
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
-Sequence of language, Javanese (Javanese), from midpoint of alignment failure records:
+Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -287,13 +287,13 @@ None
         ꧋ꦱꦧꦼꦤ꧀ꦲꦸꦩꦠ꧀ꦩꦤꦸꦁꦱꦭꦲꦶꦂꦏꦤ꧀ꦛꦶꦲꦏ꧀ꦲꦏ꧀ꦏꦁꦥꦺꦴꦝꦺꦴꦭꦤ꧀ꦥꦶꦤꦱ꧀ꦛꦶꦭꦤ꧀ꦏꦤ꧀ꦛꦶꦏꦧꦺꦧꦱ꧀ꦱꦤ꧀ꦏꦧꦺꦧꦱ꧀ꦱꦤ꧀ꦲꦶꦁꦧꦏꦸꦤꦶꦁꦲꦁꦒꦼꦂꦲꦁꦒꦼꦂ꧉|
         123456789012345678901234567890123456789012345678901234|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 54, 
+  while *GNOME Terminal* measures width 73.
 
 Shan
 ^^^^
 
-Sequence of language, Shan, from midpoint of alignment failure records:
+Sequence of language *Shan* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -323,13 +323,13 @@ None
         လိၵ်ႈပိုၼ်ၽၢဝ်ႇ|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 6, 
+  while *GNOME Terminal* measures width 9.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
-Sequence of language, Tamil (Sri Lanka), from midpoint of alignment failure records:
+Sequence of language *Tamil (Sri Lanka)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -348,13 +348,13 @@ None
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Tamil
 ^^^^^
 
-Sequence of language, Tamil, from midpoint of alignment failure records:
+Sequence of language *Tamil* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -373,13 +373,13 @@ None
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
 
-Sequence of language, Sanskrit (Grantha), from midpoint of alignment failure records:
+Sequence of language *Sanskrit (Grantha)* from midpoint of alignment failure records:
 
 =================================================  =============  ==========  =========  =====================
 Codepoint                                          Python         Category      wcwidth  Name
@@ -408,13 +408,13 @@ None
         𑌮𑌾𑌨𑌵𑌾𑌧𑌿𑌕𑌾𑌰𑌾𑌣𑌾𑌂|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *GNOME Terminal* measures width 14.
 
 Malayalam
 ^^^^^^^^^
 
-Sequence of language, Malayalam, from midpoint of alignment failure records:
+Sequence of language *Malayalam* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -458,13 +458,13 @@ None
         മനുഷ്യാവകാശങ്ങളെക്കുറിക്കുന്ന|
         12345678901234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 17, 
+  while *GNOME Terminal* measures width 21.
 
 Bengali
 ^^^^^^^
 
-Sequence of language, Bengali, from midpoint of alignment failure records:
+Sequence of language *Bengali* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -491,13 +491,13 @@ None
         মানবাধিকারের|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *GNOME Terminal* measures width 12.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
 
-Sequence of language, Khmer, Central, from midpoint of alignment failure records:
+Sequence of language *Khmer, Central* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ===================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -548,13 +548,13 @@ None
         សេចក្ដីប្រកាសជាសកលស្ដីពីសិទ្ធិមនុស្ស|
         1234567890123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 22, 
+  while *GNOME Terminal* measures width 25.
 
 Kannada
 ^^^^^^^
 
-Sequence of language, Kannada, from midpoint of alignment failure records:
+Sequence of language *Kannada* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -573,13 +573,13 @@ None
         ಮಾನವ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Burmese
 ^^^^^^^
 
-Sequence of language, Burmese, from midpoint of alignment failure records:
+Sequence of language *Burmese* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -610,13 +610,13 @@ None
         အပြည်ပြည်ဆိုင်ရာ|
         12345678|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 8, 
+  while *GNOME Terminal* measures width 11.
 
 Khün
 ^^^^
 
-Sequence of language, Khün, from midpoint of alignment failure records:
+Sequence of language *Khün* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ===========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -653,13 +653,13 @@ None
         ᨠᨲᩥᨠᩣᩅᩤ᩵ᨯ᩠ᩅ᩠ᨿᩢᨾᨶᩩᩔᨩᩣ᩠ᨲ|
         123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 12, 
+  while *GNOME Terminal* measures width 15.
 
 Sanskrit
 ^^^^^^^^
 
-Sequence of language, Sanskrit, from midpoint of alignment failure records:
+Sequence of language *Sanskrit* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -688,13 +688,13 @@ None
         मानवाधिकाराणां|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *GNOME Terminal* measures width 13.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
-Sequence of language, Tamang, Eastern, from midpoint of alignment failure records:
+Sequence of language *Tamang, Eastern* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -715,13 +715,13 @@ None
         म्हीसे|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Nepali
 ^^^^^^
 
-Sequence of language, Nepali, from midpoint of alignment failure records:
+Sequence of language *Nepali* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -740,13 +740,13 @@ None
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Marathi
 ^^^^^^^
 
-Sequence of language, Marathi, from midpoint of alignment failure records:
+Sequence of language *Marathi* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -766,13 +766,13 @@ None
         मानवी|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 5.
 
 Mon
 ^^^
 
-Sequence of language, Mon, from midpoint of alignment failure records:
+Sequence of language *Mon* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -797,13 +797,13 @@ None
         လိက်လလောၚ်|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *GNOME Terminal* measures width 7.
 
 Gujarati
 ^^^^^^^^
 
-Sequence of language, Gujarati, from midpoint of alignment failure records:
+Sequence of language *Gujarati* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -822,13 +822,13 @@ None
         માનવ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Hindi
 ^^^^^
 
-Sequence of language, Hindi, from midpoint of alignment failure records:
+Sequence of language *Hindi* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -847,13 +847,13 @@ None
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Telugu
 ^^^^^^
 
-Sequence of language, Telugu, from midpoint of alignment failure records:
+Sequence of language *Telugu* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -881,13 +881,13 @@ None
         మానవస్వత్వముల|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 9, 
+  while *GNOME Terminal* measures width 10.
 
 Maithili
 ^^^^^^^^
 
-Sequence of language, Maithili, from midpoint of alignment failure records:
+Sequence of language *Maithili* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -910,13 +910,13 @@ None
         सार्वभौम|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *GNOME Terminal* measures width 7.
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
 
-Sequence of language, Panjabi, Eastern, from midpoint of alignment failure records:
+Sequence of language *Panjabi, Eastern* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -937,13 +937,13 @@ None
         ਮਨੁੱਖੀ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Sinhala
 ^^^^^^^
 
-Sequence of language, Sinhala, from midpoint of alignment failure records:
+Sequence of language *Sinhala* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==============================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -962,13 +962,13 @@ None
         මානව|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *GNOME Terminal* measures width 4.
 
 Bhojpuri
 ^^^^^^^^
 
-Sequence of language, Bhojpuri, from midpoint of alignment failure records:
+Sequence of language *Bhojpuri* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -993,13 +993,13 @@ None
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 6, 
+  while *GNOME Terminal* measures width 10.
 
 Magahi
 ^^^^^^
 
-Sequence of language, Magahi, from midpoint of alignment failure records:
+Sequence of language *Magahi* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1024,13 +1024,13 @@ None
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 6, 
+  while *GNOME Terminal* measures width 10.
 
 Chakma
 ^^^^^^
 
-Sequence of language, Chakma, from midpoint of alignment failure records:
+Sequence of language *Chakma* from midpoint of alignment failure records:
 
 =================================================  =============  ==========  =========  ====================
 Codepoint                                          Python         Category      wcwidth  Name
@@ -1058,8 +1058,8 @@ None
         𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *GNOME Terminal* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *GNOME Terminal* measures width 8.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/

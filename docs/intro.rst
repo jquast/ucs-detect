@@ -15,9 +15,9 @@ report.
 .. figure:: https://dxtz6bzwq9sxx.cloudfront.net/ucs-detect.gif
    :alt: video demonstration of executing ucs-detect
 
-Versions prior to 1.0 served only a single purpose, to export an
-sh_-compatible line for export of ``UNICODE_VERSION``, to continue
-this purpose, use ``--shell --quick``, for example:
+Versions of *ucs-detect* prior to 1.0 served only a single purpose, to export an
+sh_-compatible line for export of ``UNICODE_VERSION``. To continue this purpose,
+use ``--shell --quick``, for example:
 
 ::
 
@@ -28,8 +28,8 @@ this purpose, use ``--shell --quick``, for example:
 Test Results
 ------------
 
-Popular terminals were tested for their unicode support level, and their results
-are available at https://ucs-detect.readthedocs.org/ XXX TODO direct
+Popular terminals were tested for their unicode support level, their results
+are available at https://ucs-detect.readthedocs.io/results.html
 
 Installation & Usage
 --------------------

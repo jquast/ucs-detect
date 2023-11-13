@@ -1,7 +1,7 @@
 .. _KovidGoyleskitty:
 
-Kovid Goyles kitty
-------------------
+Kovid Goyle's kitty
+-------------------
 
 
 Tested Software version 0.30.1 on Darwin
@@ -13,7 +13,7 @@ Full results available at ucs-detect_ repository path
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for Kovid Goyles kitty appears to be 
+The best wide unicode table version for Kovid Goyle's kitty appears to be 
 **15.0.0**, this is from a summary of the following
 results:
 
@@ -51,15 +51,15 @@ None
         ⿾|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *Kovid Goyles kitty* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *Kovid Goyle's kitty* measures width 1.
 
 .. _KovidGoyleskittyzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *Kovid Goyles kitty* appears to be 
+The best Emoji ZWJ table version for *Kovid Goyle's kitty* appears to be 
 **None**, this is from a summary of the following
 results:
 
@@ -101,15 +101,15 @@ None
         🧑‍🦼‍➡️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *Kovid Goyles kitty* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *Kovid Goyle's kitty* measures width 6.
 
 .. _KovidGoyleskittyvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *Kovid Goyles kitty* is 0 errors
+Emoji VS-16 results for *Kovid Goyle's kitty* is 0 errors
 out of 100 total codepoints tested, 100.0% success.
 All codepoint combinations with Variation Selector-16 tested were successful.
 
@@ -137,7 +137,7 @@ Bengali             3       1413        99.7877
 Malayalam
 ^^^^^^^^^
 
-Sequence of language, Malayalam, from midpoint of alignment failure records:
+Sequence of language *Malayalam* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -169,13 +169,13 @@ None
         സര്‍വ്വതോന്മുഖമായ|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *Kovid Goyles kitty* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 9, 
+  while *Kovid Goyle's kitty* measures width 10.
 
 Sinhala
 ^^^^^^^
 
-Sequence of language, Sinhala, from midpoint of alignment failure records:
+Sequence of language *Sinhala* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -199,13 +199,13 @@ None
         ප්‍රකාශනය|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *Kovid Goyles kitty* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *Kovid Goyle's kitty* measures width 6.
 
 Marathi
 ^^^^^^^
 
-Sequence of language, Marathi, from midpoint of alignment failure records:
+Sequence of language *Marathi* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -231,13 +231,13 @@ None
         करण्यार्‍या|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *Kovid Goyles kitty* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *Kovid Goyle's kitty* measures width 6.
 
 Nepali
 ^^^^^^
 
-Sequence of language, Nepali, from midpoint of alignment failure records:
+Sequence of language *Nepali* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -263,13 +263,13 @@ None
         पुर्‍याइएको|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *Kovid Goyles kitty* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *Kovid Goyle's kitty* measures width 6.
 
 Bengali
 ^^^^^^^
 
-Sequence of language, Bengali, from midpoint of alignment failure records:
+Sequence of language *Bengali* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -295,8 +295,8 @@ None
         উত্‍পীড়নের|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *Kovid Goyles kitty* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *Kovid Goyle's kitty* measures width 6.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/

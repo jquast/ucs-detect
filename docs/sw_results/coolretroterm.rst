@@ -51,8 +51,8 @@ None
         ♏|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *cool retro term* measures width 1.
 
 .. _coolretrotermzwj:
 
@@ -99,8 +99,8 @@ None
         🏴‍☠️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *cool retro term* measures width 4.
 
 .. _coolretrotermvs16:
 
@@ -126,8 +126,8 @@ None
         ⛷️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *cool retro term* measures width 1.
 
 
 .. _coolretrotermlang:
@@ -204,7 +204,7 @@ Seraiki                                       2       2242      99.9108
 Vai
 ^^^
 
-Sequence of language, Vai, from midpoint of alignment failure records:
+Sequence of language *Vai* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -221,13 +221,13 @@ None
         ꕺꖃ|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *cool retro term* measures width 0.
 
 Tamazight, Central Atlas (Tifinagh)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sequence of language, Tamazight, Central Atlas (Tifinagh), from midpoint of alignment failure records:
+Sequence of language *Tamazight, Central Atlas (Tifinagh)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ===================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -249,13 +249,13 @@ None
         ⵉⵎⴷⴰⵏⴻⵏ|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *cool retro term* measures width 0.
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
-Sequence of language, Javanese (Javanese), from midpoint of alignment failure records:
+Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -365,13 +365,13 @@ None
         ꧋ꦱꦧꦼꦤ꧀ꦲꦸꦩꦠ꧀ꦩꦤꦸꦁꦱꦭꦲꦶꦂꦏꦤ꧀ꦛꦶꦲꦏ꧀ꦲꦏ꧀ꦏꦁꦥꦺꦴꦝꦺꦴꦭꦤ꧀ꦥꦶꦤꦱ꧀ꦛꦶꦭꦤ꧀ꦏꦤ꧀ꦛꦶꦏꦧꦺꦧꦱ꧀ꦱꦤ꧀ꦏꦧꦺꦧꦱ꧀ꦱꦤ꧀ꦲꦶꦁꦧꦏꦸꦤꦶꦁꦲꦁꦒꦼꦂꦲꦁꦒꦼꦂ꧉|
         123456789012345678901234567890123456789012345678901234|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 54, 
+  while *cool retro term* measures width 0.
 
 Cherokee (cased)
 ^^^^^^^^^^^^^^^^
 
-Sequence of language, Cherokee (cased), from midpoint of alignment failure records:
+Sequence of language *Cherokee (cased)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -390,13 +390,13 @@ None
         Ꮒꭼꮎꮫ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 4, 
+  while *cool retro term* measures width 1.
 
 Tai Dam
 ^^^^^^^
 
-Sequence of language, Tai Dam, from midpoint of alignment failure records:
+Sequence of language *Tai Dam* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -415,13 +415,13 @@ None
         ꪁꪫꪱꪣ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 4, 
+  while *cool retro term* measures width 0.
 
 Maldivian
 ^^^^^^^^^
 
-Sequence of language, Maldivian, from midpoint of alignment failure records:
+Sequence of language *Maldivian* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -445,13 +445,13 @@ None
         ޑިސެމްބަރ|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 9.
 
 Dzongkha
 ^^^^^^^^
 
-Sequence of language, Dzongkha, from midpoint of alignment failure records:
+Sequence of language *Dzongkha* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -507,13 +507,13 @@ None
         འགྲོ་བ་མིའི་དབང་ཆ་གི་འཛམ་གླིང་གསལ་བསྒྲགས།|
         12345678901234567890123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 32, 
+  while *cool retro term* measures width 41.
 
 Tamazight, Standard Morocan
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sequence of language, Tamazight, Standard Morocan, from midpoint of alignment failure records:
+Sequence of language *Tamazight, Standard Morocan* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -532,13 +532,13 @@ None
         ⴰⵍⵖⵓ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 4, 
+  while *cool retro term* measures width 0.
 
 Gujarati
 ^^^^^^^^
 
-Sequence of language, Gujarati, from midpoint of alignment failure records:
+Sequence of language *Gujarati* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -557,13 +557,13 @@ None
         માનવ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
 
-Sequence of language, Tibetan, Central, from midpoint of alignment failure records:
+Sequence of language *Tibetan, Central* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -618,13 +618,13 @@ None
         ཡོངས་ཁྱབ་གསལ་བསྒྲགས་འགྲོ་བ་མིའི་ཐོབ་ཐང༌།|
         1234567890123456789012345678901|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 31, 
+  while *cool retro term* measures width 40.
 
 Burmese
 ^^^^^^^
 
-Sequence of language, Burmese, from midpoint of alignment failure records:
+Sequence of language *Burmese* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -655,13 +655,13 @@ None
         အပြည်ပြည်ဆိုင်ရာ|
         12345678|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 8, 
+  while *cool retro term* measures width 11.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
-Sequence of language, Tamang, Eastern, from midpoint of alignment failure records:
+Sequence of language *Tamang, Eastern* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -682,13 +682,13 @@ None
         म्हीसे|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 6.
 
 Kannada
 ^^^^^^^
 
-Sequence of language, Kannada, from midpoint of alignment failure records:
+Sequence of language *Kannada* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -707,13 +707,13 @@ None
         ಮಾನವ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Malayalam
 ^^^^^^^^^
 
-Sequence of language, Malayalam, from midpoint of alignment failure records:
+Sequence of language *Malayalam* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -757,13 +757,13 @@ None
         മനുഷ്യാവകാശങ്ങളെക്കുറിക്കുന്ന|
         12345678901234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 17, 
+  while *cool retro term* measures width 29.
 
 Khün
 ^^^^
 
-Sequence of language, Khün, from midpoint of alignment failure records:
+Sequence of language *Khün* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ===========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -800,13 +800,13 @@ None
         ᨠᨲᩥᨠᩣᩅᩤ᩵ᨯ᩠ᩅ᩠ᨿᩢᨾᨶᩩᩔᨩᩣ᩠ᨲ|
         123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 12, 
+  while *cool retro term* measures width 0.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
 
-Sequence of language, Khmer, Central, from midpoint of alignment failure records:
+Sequence of language *Khmer, Central* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ===================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -857,13 +857,13 @@ None
         សេចក្ដីប្រកាសជាសកលស្ដីពីសិទ្ធិមនុស្ស|
         1234567890123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 22, 
+  while *cool retro term* measures width 36.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
-Sequence of language, Tamil (Sri Lanka), from midpoint of alignment failure records:
+Sequence of language *Tamil (Sri Lanka)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -882,13 +882,13 @@ None
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Tamil
 ^^^^^
 
-Sequence of language, Tamil, from midpoint of alignment failure records:
+Sequence of language *Tamil* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -907,13 +907,13 @@ None
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Bengali
 ^^^^^^^
 
-Sequence of language, Bengali, from midpoint of alignment failure records:
+Sequence of language *Bengali* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -940,13 +940,13 @@ None
         মানবাধিকারের|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *cool retro term* measures width 12.
 
 Mon
 ^^^
 
-Sequence of language, Mon, from midpoint of alignment failure records:
+Sequence of language *Mon* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -971,13 +971,13 @@ None
         လိက်လလောၚ်|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 7.
 
 Telugu
 ^^^^^^
 
-Sequence of language, Telugu, from midpoint of alignment failure records:
+Sequence of language *Telugu* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1005,13 +1005,13 @@ None
         మానవస్వత్వముల|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 9, 
+  while *cool retro term* measures width 13.
 
 Nepali
 ^^^^^^
 
-Sequence of language, Nepali, from midpoint of alignment failure records:
+Sequence of language *Nepali* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1030,13 +1030,13 @@ None
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Sanskrit
 ^^^^^^^^
 
-Sequence of language, Sanskrit, from midpoint of alignment failure records:
+Sequence of language *Sanskrit* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1065,13 +1065,13 @@ None
         मानवाधिकाराणां|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *cool retro term* measures width 14.
 
 Marathi
 ^^^^^^^
 
-Sequence of language, Marathi, from midpoint of alignment failure records:
+Sequence of language *Marathi* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1091,13 +1091,13 @@ None
         मानवी|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 5.
 
 Hindi
 ^^^^^
 
-Sequence of language, Hindi, from midpoint of alignment failure records:
+Sequence of language *Hindi* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1116,13 +1116,13 @@ None
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
 
-Sequence of language, Sanskrit (Grantha), from midpoint of alignment failure records:
+Sequence of language *Sanskrit (Grantha)* from midpoint of alignment failure records:
 
 =================================================  =============  ==========  =========  =====================
 Codepoint                                          Python         Category      wcwidth  Name
@@ -1151,13 +1151,13 @@ None
         𑌮𑌾𑌨𑌵𑌾𑌧𑌿𑌕𑌾𑌰𑌾𑌣𑌾𑌂|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *cool retro term* measures width 14.
 
 Sinhala
 ^^^^^^^
 
-Sequence of language, Sinhala, from midpoint of alignment failure records:
+Sequence of language *Sinhala* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==============================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1176,13 +1176,13 @@ None
         මානව|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
 
-Sequence of language, Panjabi, Eastern, from midpoint of alignment failure records:
+Sequence of language *Panjabi, Eastern* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1203,13 +1203,13 @@ None
         ਮਨੁੱਖੀ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 6.
 
 Bhojpuri
 ^^^^^^^^
 
-Sequence of language, Bhojpuri, from midpoint of alignment failure records:
+Sequence of language *Bhojpuri* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1234,13 +1234,13 @@ None
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 6, 
+  while *cool retro term* measures width 10.
 
 Maithili
 ^^^^^^^^
 
-Sequence of language, Maithili, from midpoint of alignment failure records:
+Sequence of language *Maithili* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1263,13 +1263,13 @@ None
         सार्वभौम|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 8.
 
 Chakma
 ^^^^^^
 
-Sequence of language, Chakma, from midpoint of alignment failure records:
+Sequence of language *Chakma* from midpoint of alignment failure records:
 
 =================================================  =============  ==========  =========  ====================
 Codepoint                                          Python         Category      wcwidth  Name
@@ -1297,13 +1297,13 @@ None
         𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *cool retro term* measures width 10.
 
 Magahi
 ^^^^^^
 
-Sequence of language, Magahi, from midpoint of alignment failure records:
+Sequence of language *Magahi* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1328,13 +1328,13 @@ None
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 6, 
+  while *cool retro term* measures width 10.
 
 Shan
 ^^^^
 
-Sequence of language, Shan, from midpoint of alignment failure records:
+Sequence of language *Shan* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1366,13 +1366,13 @@ None
         ဢၼ်ၵဵဝ်ႇတင်းလုမ်ႈ|
         12345678|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 8, 
+  while *cool retro term* measures width 7.
 
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
 
-Sequence of language, Tagalog (Tagalog), from midpoint of alignment failure records:
+Sequence of language *Tagalog (Tagalog)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ===================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1391,13 +1391,13 @@ None
         ᜎᜑᜆ᜔|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Lao
 ^^^
 
-Sequence of language, Lao, from midpoint of alignment failure records:
+Sequence of language *Lao* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1422,13 +1422,13 @@ None
         ປະກາດສາກົນ|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 9, 
+  while *cool retro term* measures width 10.
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
 
-Sequence of language, Yiddish, Eastern, from midpoint of alignment failure records:
+Sequence of language *Yiddish, Eastern* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1454,13 +1454,13 @@ None
         אַלװעלטלעכע|
         1234567890|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 10, 
+  while *cool retro term* measures width 11.
 
 Gumuz
 ^^^^^
 
-Sequence of language, Gumuz, from midpoint of alignment failure records:
+Sequence of language *Gumuz* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ===========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1484,13 +1484,13 @@ None
         Masikꞌoma|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 9, 
+  while *cool retro term* measures width 8.
 
 Idoma
 ^^^^^
 
-Sequence of language, Idoma, from midpoint of alignment failure records:
+Sequence of language *Idoma* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1512,13 +1512,13 @@ None
         Higbęgͻ|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *cool retro term* measures width 6.
 
 Gilyak
 ^^^^^^
 
-Sequence of language, Gilyak, from midpoint of alignment failure records:
+Sequence of language *Gilyak* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ====================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1539,13 +1539,13 @@ None
         дуфтоӿ|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 6, 
+  while *cool retro term* measures width 5.
 
 Yukaghir, Northern
 ^^^^^^^^^^^^^^^^^^
 
-Sequence of language, Yukaghir, Northern, from midpoint of alignment failure records:
+Sequence of language *Yukaghir, Northern* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ===============================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1573,13 +1573,13 @@ None
         параԝааньэрэҥ|
         1234567890123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 13, 
+  while *cool retro term* measures width 12.
 
 Adyghe
 ^^^^^^
 
-Sequence of language, Adyghe, from midpoint of alignment failure records:
+Sequence of language *Adyghe* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==============================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1599,13 +1599,13 @@ None
         Цӏыху|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 4.
 
 Kabardian
 ^^^^^^^^^
 
-Sequence of language, Kabardian, from midpoint of alignment failure records:
+Sequence of language *Kabardian* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==============================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1625,13 +1625,13 @@ None
         Цӏыху|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 4.
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
-Sequence of language, Mazahua Central, from midpoint of alignment failure records:
+Sequence of language *Mazahua Central* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1651,13 +1651,13 @@ None
         PJOSꞸ|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 4.
 
 Fur
 ^^^
 
-Sequence of language, Fur, from midpoint of alignment failure records:
+Sequence of language *Fur* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1683,13 +1683,13 @@ None
         Dá̱ldɨ́ŋáꞌŋ|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 9, 
+  while *cool retro term* measures width 8.
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
-Sequence of language, Assyrian Neo-Aramaic, from midpoint of alignment failure records:
+Sequence of language *Assyrian Neo-Aramaic* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ====================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1711,13 +1711,13 @@ None
         ܬܝܒ݂ܠܝܐ|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 6, 
+  while *cool retro term* measures width 7.
 
 Farsi, Western
 ^^^^^^^^^^^^^^
 
-Sequence of language, Farsi, Western, from midpoint of alignment failure records:
+Sequence of language *Farsi, Western* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1737,13 +1737,13 @@ None
         کلیهٔ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 4, 
+  while *cool retro term* measures width 5.
 
 Urdu (2)
 ^^^^^^^^
 
-Sequence of language, Urdu (2), from midpoint of alignment failure records:
+Sequence of language *Urdu (2)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1764,13 +1764,13 @@ None
         اقوامِ|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 6.
 
 Urdu
 ^^^^
 
-Sequence of language, Urdu, from midpoint of alignment failure records:
+Sequence of language *Urdu* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1791,13 +1791,13 @@ None
         اقوامِ|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 6.
 
 Dari
 ^^^^
 
-Sequence of language, Dari, from midpoint of alignment failure records:
+Sequence of language *Dari* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1817,13 +1817,13 @@ None
         کلیهٔ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 4, 
+  while *cool retro term* measures width 5.
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
 
-Sequence of language, Arabic, Standard, from midpoint of alignment failure records:
+Sequence of language *Arabic, Standard* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1844,13 +1844,13 @@ None
         اعتُمد|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *cool retro term* measures width 6.
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
 
-Sequence of language, Panjabi, Western, from midpoint of alignment failure records:
+Sequence of language *Panjabi, Western* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =======================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1869,13 +1869,13 @@ None
         اُنی|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 Orok
 ^^^^
 
-Sequence of language, Orok, from midpoint of alignment failure records:
+Sequence of language *Orok* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =======================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1903,13 +1903,13 @@ None
         Обедиԩо̄ннэја|
         123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 12, 
+  while *cool retro term* measures width 11.
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
 
-Sequence of language, Pular (Adlam), from midpoint of alignment failure records:
+Sequence of language *Pular (Adlam)* from midpoint of alignment failure records:
 
 =================================================  =============  ==========  =========  ===========================
 Codepoint                                          Python         Category      wcwidth  Name
@@ -1930,13 +1930,13 @@ None
         𞤲’𞤣𞤵𞤲⹁|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 6, 
+  while *cool retro term* measures width 5.
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
-Sequence of language, Pashto, Northern, from midpoint of alignment failure records:
+Sequence of language *Pashto, Northern* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  =================================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1961,13 +1961,13 @@ None
         (۱۹؍۹؍۱۳۲۷|
         1234567890|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 10, 
+  while *cool retro term* measures width 8.
 
 Seraiki
 ^^^^^^^
 
-Sequence of language, Seraiki, from midpoint of alignment failure records:
+Sequence of language *Seraiki* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1986,8 +1986,8 @@ None
         اُتے|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, 
-  while *cool retro term* measures width {fail_record['measured_by_terminal']}.
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *cool retro term* measures width 4.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/
