@@ -1,48 +1,81 @@
 #!/usr/bin/env python
-
+import re
 import os
 import yaml
+import contextlib
 import unicodedata
 
 # 3rd party
 import wcwidth
 import tabulate
 
+GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
-RST_DEPTH = [None, '=', '-', '+', '^']
+RST_DEPTH = ["=", "-", "+", "^"]
+GRADES = ["F", "D-", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"]
+LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
+
+
+def make_grade(score):
+    """
+    Return grade string for score
+    """
+    return GRADES[int(score * (len(GRADES) - 1))]
 
 
 def main():
     score_table, all_successful_languages = make_score_table()
-    do_tabulate_score(score_table)
-    display_table_definitions()
-    do_details(score_table, all_successful_languages)
-    display_hyperlinks()
-
-def show_wchar(wchar):
-    wchar_raw = bytes(wchar, 'utf8').decode('unicode-escape')
-    wchar_records = [
-        {
-            'Codepoint': make_unicode_codepoint(_wchar),
-            'Python': repr(_wchar.encode('unicode-escape').decode()),
-            'Category': unicodedata.category(_wchar),
-            'wcwidth': wcwidth.wcwidth(_wchar),
-            'Name': unicodedata.name(_wchar, 'na'),
-        } for _wchar in wchar_raw ]
-    print(tabulate.tabulate(wchar_records, headers="keys", tablefmt="rst"))
-    print()
+    with open('docs/results.rst', 'w') as fout, contextlib.redirect_stdout(fout):
+        display_tabulated_scores(score_table)
+        display_table_definitions()
+        display_common_languages(all_successful_languages)
+        display_common_hyperlinks()
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        with open(f'docs/sw_results/{make_link(sw_name)}.rst', 'w') as fout, contextlib.redirect_stdout(fout):
+            show_software_header(entry, sw_name)
+            show_wide_character_support(sw_name, entry)
+            show_emoji_zwj_results(sw_name, entry)
+            show_vs16_results(sw_name, entry)
+            show_language_results(sw_name, entry)
+            display_common_hyperlinks()
 
 
 def make_unicode_codepoint(wchar):
-    if ord(wchar) > 0xffff:
-        u_str = f'U+{ord(wchar):08X}'
+    if ord(wchar) > 0xFFFF:
+        u_str = f"U+{ord(wchar):08X}"
     else:
-        u_str = f'U+{ord(wchar):04X}'
-    return f'`{u_str} <https://codepoints.net/{u_str}>`_'
+        u_str = f"U+{ord(wchar):04X}"
+    return f"`{u_str} <https://codepoints.net/{u_str}>`_"
 
-def display_hyperlinks():
-    print('.. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html')
-    print('.. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/api.html#wcwidth.wcswidth')
+
+def display_common_hyperlinks():
+    print(".. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html")
+    print(".. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/")
+    print(".. _`ucs-detect`: https://github.com/jquast/ucs-detect")
+
+def make_link(text):
+    return re.sub(LINK_REGEX, '', text)
+
+def make_outbound_hyperlink(text, link_text=None):
+    if link_text is None:
+        link_text = text
+    return f":ref:`{text} <{make_link(link_text)}>`"
+
+def display_inbound_hyperlink(link_text):
+    print(f".. _{make_link(link_text)}:")
+    print()
+
+
+def find_best_failure(records):
+    sorted_records = sorted(records, key=lambda record: record["measured_by_wcwidth"])
+    return sorted_records[len(sorted_records) // 2]
+
+
+def make_printf_hex(wchar):
+    # pykhon's b'\x12..' representation is compatible enough with printf(1)
+    return repr(bytes(wchar, "utf8").decode("unicode-escape").encode("utf8"))[2:-1]
+
 
 def make_score_table():
     score_table = []
@@ -67,9 +100,7 @@ def make_score_table():
         _score_zwj = score_zwj(data)
 
         # 'EMOJI VS-16',
-        score_emoji_vs16 = (
-            data["test_results"]["emoji_vs16_results"]["9.0.0"]["pct_success"] / 100
-        )
+        score_emoji_vs16 = data["test_results"]["emoji_vs16_results"]["9.0.0"]["pct_success"] / 100
 
         # Language Support,
         score_language = score_lang(data)
@@ -87,6 +118,7 @@ def make_score_table():
                 version_best_wide=version_best_wide,
                 version_best_zwj=version_best_zwj,
                 data=data,
+                fname=os.path.basename(yaml_path),
             )
         )
     # after accumulating all entries, create graded scale
@@ -103,55 +135,67 @@ def make_score_table():
     # result.
     all_languages = set()
     for entry in result:
-        all_languages.update([lang for lang in entry['data']["test_results"]["language_results"]
-            if entry['data']["test_results"]["language_results"][lang]['n_errors'] == 0])
+        all_languages.update(
+            [
+                lang
+                for lang in entry["data"]["test_results"]["language_results"]
+                if entry["data"]["test_results"]["language_results"][lang]["n_errors"] == 0
+            ]
+        )
 
     all_successful_languages = set()
     for lang in all_languages:
-        if all(entry['data']["test_results"]["language_results"][lang]['n_errors'] == 0 for entry in result):
+        if all(
+            entry["data"]["test_results"]["language_results"][lang]["n_errors"] == 0
+            for entry in result
+        ):
             all_successful_languages.add(lang)
             for entry in result:
-                del entry["data"]['test_results']['language_results'][lang]
+                del entry["data"]["test_results"]["language_results"][lang]
     return result, all_successful_languages
 
 
-GRADES = ["F", "D-", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"]
-
-
-def make_grade(score):
+def find_failed_version(entry, version_keys, results_key, best_match_version):
     """
-    Return grade string for score
+    Find best version candidate among failure records for display
     """
-    return GRADES[int(score * (len(GRADES) - 1))]
+    if (
+        best_match_version is None
+        or not entry["data"]["test_results"][results_key][best_match_version]["n_errors"]
+    ):
+        # find another version with errors, to show
+        sorted_by_version_errors = sorted(
+            [
+                (wcwidth._wcversion_value(v), v)
+                for v in version_keys
+                if entry["data"]["test_results"][results_key][v]["n_errors"] > 0
+            ],
+            reverse=True,
+        )
+        if sorted_by_version_errors:
+            return sorted_by_version_errors[0][1]
+    return best_match_version
 
 
-def make_hyperlink(text):
-    if " " in text:
-        return f'`{text} <{text.replace(" ", "_")}_>`_'
-    else:
-        return f"`{text}`_"
-
-
-def do_tabulate_score(score_table):
+def display_tabulated_scores(score_table):
     tabulated_scores = []
     for result in score_table:
         tabulated_scores.append(
             {
-                "Terminal Software": make_hyperlink(result["terminal_software_name"]),
+                "Terminal Software": make_outbound_hyperlink(result["terminal_software_name"]),
                 "Software Version": result["terminal_software_version"],
                 "OS System": result["os_system"],
                 "Wide Unicode version": result["version_best_wide"] or "na",
+
                 "FINAL score": make_grade(result["score_final_scaled"]),
-                "WIDE score": make_grade(result["score_wide_scaled"]),
-                "LANG score": make_grade(result["score_language_scaled"]),
-                "ZWJ score": make_grade(result["score_zwj_scaled"]),
-                "VS16 score": make_grade(result["score_emoji_vs16_scaled"]),
+                "WIDE score": make_outbound_hyperlink(make_grade(result["score_wide_scaled"]), result["terminal_software_name"] + "_wide"),
+                "LANG score": make_outbound_hyperlink(make_grade(result["score_language_scaled"]), result["terminal_software_name"] + "_lang"),
+                "ZWJ score": make_outbound_hyperlink(make_grade(result["score_zwj_scaled"]), result["terminal_software_name"] + "_zwj"),
+                "VS16 score": make_outbound_hyperlink(make_grade(result["score_emoji_vs16_scaled"]), result["terminal_software_name"] + "_vs16"),
             }
         )
 
-    h1_text = "Tabulated Summary"
-    print(h1_text)
-    print("=" * len(h1_text))
+    display_title("Tabulated Summary of Results", 1)
     print(tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst"))
     print()
 
@@ -196,17 +240,11 @@ def score_zwj(data):
     best_zwj_version = data["test_results"]["emoji_zwj_version"]
     if best_zwj_version:
         score = (
-            list(data["test_results"]["emoji_zwj_results"].keys()).index(
-                best_zwj_version
-            )
-            + 1
+            list(data["test_results"]["emoji_zwj_results"].keys()).index(best_zwj_version) + 1
         ) / len(data["test_results"]["emoji_zwj_results"])
     score2 = 0.01
     if best_zwj_version:
-        score2 = (
-            data["test_results"]["emoji_zwj_results"][best_zwj_version]["pct_success"]
-            / 100
-        )
+        score2 = data["test_results"]["emoji_zwj_results"][best_zwj_version]["pct_success"] / 100
     return score * score2
 
 
@@ -219,10 +257,7 @@ def score_wide(data):
     score2 = 0.01
     if best_wide_version:
         score2 = (
-            data["test_results"]["unicode_wide_results"][best_wide_version][
-                "pct_success"
-            ]
-            / 100
+            data["test_results"]["unicode_wide_results"][best_wide_version]["pct_success"] / 100
         )
     return score * score2
 
@@ -237,42 +272,46 @@ def score_lang(data):
     return _total_langs_supported / _total_langs_available
 
 
-def show_common_languages(all_successful_languages):
-    h1_text = 'Common Language support'
-    print(h1_text)
-    print("=" * len(h1_text))
-    print("All of the following languages were successfull with all terminals emulators tested,")
+
+def show_wchar(wchar):
+    wchar_raw = bytes(wchar, "utf8").decode("unicode-escape")
+    wchar_records = [
+        {
+            "Codepoint": make_unicode_codepoint(_wchar),
+            "Python": repr(_wchar.encode("unicode-escape").decode()),
+            "Category": unicodedata.category(_wchar),
+            "wcwidth": wcwidth.wcwidth(_wchar),
+            "Name": unicodedata.name(_wchar, "na"),
+        }
+        for _wchar in wchar_raw
+    ]
+    print(tabulate.tabulate(wchar_records, headers="keys", tablefmt="rst"))
+    print()
+
+
+def display_common_languages(all_successful_languages):
+    display_title("Common Language support", 2)
+    print("The following languages were successfull")
+    print("with all terminals emulators tested,")
     print("and will not be reported:")
     print()
-    print(', '.join(sorted(all_successful_languages)) + '.')
+    print(", ".join(sorted(all_successful_languages)) + ".")
     print()
 
-def do_details(score_table, all_successful_languages):
-   show_common_languages(all_successful_languages)
-   for entry in score_table:
-        sw_name = entry["terminal_software_name"]
-        show_software_header(entry, sw_name)
-        show_wide_character_support(sw_name, entry)
-        show_emoji_zwj_results(sw_name, entry)
-        show_vs16_results(sw_name, entry)
-        show_language_results(sw_name, entry)
 
 def show_software_header(entry, sw_name):
-    print(".. _{}:".format(entry["terminal_software_name"].replace(" ", "_")))
-    print()
-    h1_text = sw_name
-    print(h1_text)
-    print("=" * len(h1_text))
+    display_inbound_hyperlink(entry["terminal_software_name"])
+    display_title(sw_name, 2)
     print()
     print(f'Tested Software version {entry["terminal_software_version"]} on {entry["os_system"]}')
+    print('Full results available at ucs-detect_ repository path')
+    print(f"`data/{entry['fname']} <{GITHUB_DATA_LINK.format(fname=entry['fname'])}>`_")
     print()
 
 
 def show_wide_character_support(sw_name, entry):
-    h3_text = "Wide character support"
-    print(h3_text)
-    print("+" * len(h3_text))
-    print()
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_wide")
+    display_title("Wide character support", 3)
     print(
         f"The best wide unicode table version for {sw_name} appears to be \n"
         f'**{entry["version_best_wide"]}**, this is from a summary of the following\n'
@@ -285,7 +324,7 @@ def show_wide_character_support(sw_name, entry):
             "version": repr(version),
             "n_errors": result["n_errors"],
             "n_total": result["n_total"],
-            "pct_success": result["pct_success"],
+            "pct_success": f'{result["pct_success"]:0.1f}%',
         }
         for version, result in entry["data"]["test_results"]["unicode_wide_results"].items()
     ]
@@ -293,47 +332,28 @@ def show_wide_character_support(sw_name, entry):
     print()
 
     unicode_versions = list(entry["data"]["test_results"]["unicode_wide_results"].keys())
-    show_failed_version = find_failed_version(entry, version_keys=unicode_versions, results_key="unicode_wide_results",
-                                              best_match_version=entry['version_best_wide'])
+    show_failed_version = find_failed_version(
+        entry,
+        version_keys=unicode_versions,
+        results_key="unicode_wide_results",
+        best_match_version=entry["version_best_wide"],
+    )
 
     # conditionally show one example record failure
-    if (entry["data"]["test_results"]["unicode_wide_results"][show_failed_version]["n_errors"] > 0):
-        fail_record = find_best_failure(entry['data']['test_results']['unicode_wide_results'][show_failed_version]['failed_codepoints'])
-        show_record_failure(sw_name, f'of a WIDE character from Unicode Version {show_failed_version},', fail_record)
-
-def find_failed_version(entry, version_keys, results_key, best_match_version):
-    """
-    Find best version candidate among failure records
-    """
-    if (best_match_version is None or
-            not entry["data"]["test_results"][results_key][best_match_version]["n_errors"]):
-        # find another version with errors, to show
-        sorted_by_version_errors = sorted(
-            [
-                (wcwidth._wcversion_value(v), v)
-                for v in version_keys
-                if entry["data"]["test_results"][results_key][v]["n_errors"] > 0
-            ], reverse=True
+    if entry["data"]["test_results"]["unicode_wide_results"][show_failed_version]["n_errors"] > 0:
+        fail_record = find_best_failure(
+            entry["data"]["test_results"]["unicode_wide_results"][show_failed_version][
+                "failed_codepoints"
+            ]
         )
-        if sorted_by_version_errors:
-            return sorted_by_version_errors[0][1]
-    return best_match_version
-
-
-def find_best_failure(records):
-        sorted_records = sorted(records, key=lambda record: record['measured_by_wcwidth'])
-        return sorted_records[len(sorted_records) // 2]
-
-def make_printf_hex(wchar):
-    # pykhon's b'\x12..' representation is compatible enough with printf(1)
-    return repr(bytes(wchar, 'utf8').decode('unicode-escape').encode('utf8'))[2:-1]
+        show_record_failure(
+            sw_name, f"of a WIDE character from Unicode Version {show_failed_version},", fail_record
+        )
 
 
 def show_emoji_zwj_results(sw_name, entry):
-    h3_text = "Emoji ZWJ support"
-    print(h3_text)
-    print("+" * len(h3_text))
-    print()
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_zwj")
+    display_title("Emoji ZWJ support", 3)
     print(
         f"The best Emoji ZWJ table version for *{sw_name}* appears to be \n"
         f'**{entry["version_best_zwj"]}**, this is from a summary of the following\n'
@@ -346,86 +366,99 @@ def show_emoji_zwj_results(sw_name, entry):
             "version": repr(version),
             "n_errors": result["n_errors"],
             "n_total": result["n_total"],
-            "pct_success": result["pct_success"],
+            "pct_success": f'{result["pct_success"]:0.1f}%',
         }
-        for version, result in entry["data"]["test_results"]["emoji_zwj_results" ].items()
+        for version, result in entry["data"]["test_results"]["emoji_zwj_results"].items()
     ]
     print(tabulate.tabulate(tabulated_emoji_zwj_results, headers="keys", tablefmt="rst"))
     print()
 
     emoji_zwj_versions = list(entry["data"]["test_results"]["emoji_zwj_results"].keys())
-    show_failed_version = find_failed_version(entry, version_keys=emoji_zwj_versions, results_key="emoji_zwj_results",
-                                              best_match_version=entry['version_best_zwj'])
+    show_failed_version = find_failed_version(
+        entry,
+        version_keys=emoji_zwj_versions,
+        results_key="emoji_zwj_results",
+        best_match_version=entry["version_best_zwj"],
+    )
 
     # conditionally show one example record failure
-    if (entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version]["n_errors"] > 0):
-        fail_record = find_best_failure(entry['data']['test_results']['emoji_zwj_results'][show_failed_version]['failed_codepoints'])
-        show_record_failure(sw_name, f'of an Emoji ZWJ Sequence from Emoji Version {show_failed_version},', fail_record)
+    records = entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version]
+    if records["n_errors"] > 0:
+        fail_record = find_best_failure(records["failed_codepoints"])
+        whatis = f"of an Emoji ZWJ Sequence from Emoji Version {show_failed_version},"
+        show_record_failure(sw_name, whatis, fail_record)
 
 
 def show_vs16_results(sw_name, entry):
-    title = "Variation Selector-16 support"
-    print(title)
-    print(RST_DEPTH[2] * len(title))
-    print()
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_vs16")
+    display_title("Variation Selector-16 support", 3)
     show_failed_version = "9.0.0"  # static table, '9.0.0' in beta PR of wcwidth,
-    n_errors = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["n_errors"]
-    n_total = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["n_total"]
-    pct_success = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["pct_success"]
-    print(f'Emoji VS-16 results for *{sw_name}* is {n_errors} errors out of {n_total} total codepoints tested, {pct_success}% success.')
-    try:
-        first_failure = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]["failed_codepoints"][0]
-    except IndexError:
-        print('All codepoint combinations with Variation Selector-16 tested were successful.')
+    records = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]
+    n_errors = records["n_errors"]
+    n_total = records["n_total"]
+    pct_success = records["pct_success"]
+    print(f"Emoji VS-16 results for *{sw_name}* is {n_errors} errors")
+    print(f"out of {n_total} total codepoints tested, {pct_success:0.1f}% success.")
+    failed_codepoints = records["failed_codepoints"]
+    if not failed_codepoints:
+        print("All codepoint combinations with Variation Selector-16 tested were successful.")
     else:
-        show_record_failure(sw_name, 'of a NARROW Emoji made WIDE by *Variation Selector-16*,', first_failure)
+        failure_record = failed_codepoints[len(failed_codepoints) // 2]
+        whatis = "of a NARROW Emoji made WIDE by *Variation Selector-16*,"
+        show_record_failure(sw_name, whatis, failure_record)
     print()
 
+
+def display_title(text, depth):
+    print(text)
+    print(RST_DEPTH[depth] * len(text))
+    print()
 
 def show_language_results(sw_name, entry):
-    h2_text = "Language Support"
-    print(h2_text)
-    print(RST_DEPTH[2] * len(h2_text))
-    print()
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_lang")
+    display_title("Language Support", 3)
     languages_successful = [
         lang
-        for lang in entry['data']["test_results"]["language_results"]
-        if entry['data']["test_results"]["language_results"][lang]["n_errors"] == 0
+        for lang in entry["data"]["test_results"]["language_results"]
+        if entry["data"]["test_results"]["language_results"][lang]["n_errors"] == 0
     ]
-    print(f'The following {len(languages_successful)} languages were tested with 100% success:')
+    print(f"The following {len(languages_successful)} languages were tested with 100% success:")
     print()
-    print(', '.join(sorted(languages_successful)) + '.')
+    print(", ".join(sorted(languages_successful)) + ".")
     print()
 
     languages_failed = [
         lang
-        for lang in entry['data']["test_results"]["language_results"]
-        if entry['data']["test_results"]["language_results"][lang]["n_errors"] > 0
+        for lang in entry["data"]["test_results"]["language_results"]
+        if entry["data"]["test_results"]["language_results"][lang]["n_errors"] > 0
     ]
-    languages_failed.sort(key=lambda lang: entry['data']["test_results"]["language_results"][lang]["pct_success"])
-    tabulated_failed_language_results = [{
+    languages_failed.sort(
+        key=lambda lang: entry["data"]["test_results"]["language_results"][lang]["pct_success"]
+    )
+    tabulated_failed_language_results = [
+        {
             "lang": lang,
             "n_errors": entry["data"]["test_results"]["language_results"][lang]["n_errors"],
             "n_total": entry["data"]["test_results"]["language_results"][lang]["n_total"],
             "pct_success": entry["data"]["test_results"]["language_results"][lang]["pct_success"],
-        } for lang in languages_failed]
+        }
+        for lang in languages_failed
+    ]
 
-    print(f'The following {len(languages_failed)} languages are not supported or only partially supported:')
+    print(f"The following {len(languages_failed)} languages are not fully supported:")
     print()
     print(tabulate.tabulate(tabulated_failed_language_results, headers="keys", tablefmt="rst"))
     print()
     for failed_lang in languages_failed:
-        fail_record = entry['data']['test_results']['language_results'][failed_lang]['failed'][0]
-        print(failed_lang)
-        print(RST_DEPTH[2] * len(failed_lang))
-        print()
-        show_record_failure(sw_name, f'of language, {failed_lang},', fail_record)
+        fail_record = entry["data"]["test_results"]["language_results"][failed_lang]["failed"][0]
+        display_title(failed_lang, 4)
+        show_record_failure(sw_name, f"of language, {failed_lang},", fail_record)
 
 
 def show_record_failure(sw_name, whatis, fail_record):
-    num_bars = '1234567890' * ((fail_record['measured_by_wcwidth'] // 10) + 1)
-    ruler = num_bars[:fail_record['measured_by_wcwidth']]
-    wchars = fail_record.get('wchar', fail_record.get('wchars'))
+    num_bars = "1234567890" * ((fail_record["measured_by_wcwidth"] // 10) + 1)
+    ruler = num_bars[: fail_record["measured_by_wcwidth"]]
+    wchars = fail_record.get("wchar", fail_record.get("wchars"))
     assert wchars
     as_printf_hex = make_printf_hex(wchars)
     print(f"Sequence {whatis} from midpoint of alignment failure records:")
@@ -435,21 +468,19 @@ def show_record_failure(sw_name, whatis, fail_record):
     print(f"- Shell test using `printf(1)`_, ``'|'`` should align in output::")
     print()
     print(rf'        $ printf "{as_printf_hex}|\\n{ruler}|\\n"')
-    print(f'        {bytes(wchars, 'utf8').decode('unicode-escape')}|')
+    print(f'        {bytes(wchars, "utf8").decode("unicode-escape")}|')
     print(f"        {ruler}|")
     print()
-    # on change, show only y-position and do not show our (cruedly) calculated width, with y-position
-    # changes of -19 it doesn't make a lot of sense anyway!
-    if fail_record.get('delta_ypos', 0) != 0:
-        print(f"- Cursor Y-Position moved {fail_record['delta_ypos']} rows where no movement is expected.")
-    elif fail_record['measured_by_wcwidth'] != fail_record['measured_by_terminal']:
-        print(f"- python `wcwidth.wcswidth()`_ measures width {fail_record['measured_by_wcwidth']}, ", end='')
-        print(f"while *{sw_name}* measures width {fail_record['measured_by_terminal']}.")
+    if fail_record.get("delta_ypos", 0) != 0:
+        print(f"- Cursor Y-Position moved {fail_record['delta_ypos']} rows"
+              " where no movement is expected.")
+    elif fail_record["measured_by_wcwidth"] != fail_record["measured_by_terminal"]:
+        print(f"- python `wcwidth.wcswidth()`_ measures width"
+              " {fail_record['measured_by_wcwidth']}, ")
+        print(f"  while *{sw_name}* measures width"
+              " {fail_record['measured_by_terminal']}.")
     print()
 
-  
-  
 
 if __name__ == "__main__":
-    # python parse_results_to_rst.py > RESULTS.rst&& restructuredtext-lint results.rst&& rst2html RESULTS.rst > results.html&& open results.html
     main()
