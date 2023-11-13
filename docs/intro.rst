@@ -28,8 +28,8 @@ use ``--shell --quick``, for example:
 Test Results
 ------------
 
-Popular terminals were tested for their unicode support level, their results
-are available at https://ucs-detect.readthedocs.io/results.html
+Popular terminals were tested using this program and their results were collated
+at https://ucs-detect.readthedocs.io/results.html
 
 Installation & Usage
 --------------------
@@ -39,6 +39,16 @@ To install:
 ::
 
    $ pip install -U ucs-detect
+
+
+To use::
+
+   $ ucs-detect
+
+
+To create a yaml data file result::
+
+   $ ucs-detect --save-yaml my-terminal.yaml --limit-code points=5000 --limit-words=5000 --limit-errors=500
 
 
 UNICODE_VERSION
@@ -79,10 +89,10 @@ The most important factor is to determine: **What version of unicode is the
 Terminal using?**
 
 This program, ``ucs-detect``, is able to **automatically detect** the version of
-unicode that the connecting Terminal supports. The python wcwidth_ library
-supports **all** Unicode versions, 4.1.0 through 12.1.0 at time of this writing,
-and so it is able to select and match the correct width, by selecting for the
-given value of the ``UNICODE_VERSION`` environment variable.
+unicode that the connecting Terminal supports for WIDE characters. The python
+wcwidth_ library supports **all** Unicode versions, 4.1.0 through 12.1.0 at time
+of this writing, and so it is able to select and match the correct width, by
+selecting for the given value of the ``UNICODE_VERSION`` environment variable.
 
 How it works
 ------------
