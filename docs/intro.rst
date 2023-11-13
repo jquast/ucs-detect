@@ -25,6 +25,12 @@ this purpose, use ``--shell --quick``, for example:
     UNICODE_VERSION=15.0.0; export UNICODE_VERSION
 
 
+Test Results
+------------
+
+Popular terminals were tested for their unicode support level, and their results
+are available at https://ucs-detect.readthedocs.org/ XXX TODO direct
+
 Installation & Usage
 --------------------
 
