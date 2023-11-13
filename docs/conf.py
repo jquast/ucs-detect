@@ -9,7 +9,7 @@
 project = "ucs-detect"
 copyright = "2023, Jeff Quast"
 author = "Jeff Quast"
-release = "1.0.4"
+release = "1.0.5"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
