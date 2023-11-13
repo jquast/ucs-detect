@@ -1,0 +1,219 @@
+Universal Declaration of Human Rights - Uduk
+© 1996 – 2009 The Office of the High Commissioner for Human Rights
+This plain text version prepared by the “UDHR in Unicode”
+project, https://www.unicode.org/udhr.
+---
+
+’Kwani gi mony’cesh ṯor gi gwo mo gom to jin cila wathimpa en’thi/ mo.
+      Gwo gi monṯel ’pen mo
+      Yansan a’di ita monṯel sho’ka ’cesh mo gom wathimpa en’thi mo mmota gi tom piti jin cila a’di mo dhali mmomii to ka p̱ara p̱o/ mo. E bwamani kuŋ gu’b piti mo e moŋḵa’b jin ’konu ki ’kus mo dhali gom moŋ’ko ki ’dantar mo dhali ’ko ki moŋḵu’th is mo e bwamani ’kwani gi mony’cesh mo.
+      Hili, haali yansan a’di ita monṯo'c ’kus mo gom wathimpa en’thi/ mo e bwamani kuŋ gu’b piti mo mmo’ko ki mondeḵ is mo dhali mmo’koki jiŋ c̱o’k mo a’di jin ḵalki mii gi buye gi wathimpa en’thi/ mo isa dhana/ mo dhali mii jin ṯoru mii eya tente/ mo e bwamani ’kwani gi mony’cesh mo, a’di jin enkina wathimpa en’thi/ mo mmo/o gwo mo gi darki moŋḵo/ is mo dhali moŋgam gwo is mo dhali mmodi ki ’kus mo ’peni moŋḵo/ is mo dhali ki a’di miin ma du ŋap̱ki nyanye/ mo mmo’theḵ ’bam piti imis mo gom ’kwani mo.
+      Ma gom a’di ta isi miim ’borga/ mo, waḵki/ wathim pa en’thi/ yansan diki tagi to kun butha a’di kun tana a’di mo tani, a’di midi ṯu’ka p̱o/ mo mmomii mii ma gwar’de/ mo dhali mii gunn kun siri'ckunu a’di ap̱o/ ki sho’k mo. Gom isi kan mo tani, wathim pa en’thi/ yansan ŋap̱a’d ki a’di minu cesh ka p̱o/ ki gwoŋḵan kun ta gwoŋḵan gom wathimpa en’thi/ mo.
+      Wakan a’di yansan a’di ita miim ’boro’d jin midi uḵ moŋ’ko jin ’kokunu ka mugu mo e bwamani bampa/ gi kal gi ’kwaniny’cesh mo.
+      A’di imina ’kwani gi mony’ceshi mish gwo ’ban ki miiŋḵar/e gi moŋgam gwo is gom miiŋḵar/e di’d mo e bwamani ’kwanim pa en’thi/ mo e mii kun nyaḵka’d kan mo kun mina uni ta gi she/ yol mo gom miim buye wathim pa en’thi/ mo dhali mii kun miinu to mo ka para p̱o/ mo gom ’kwaniŋ gwaṯẖ mo dhali gom up̱ mo mmoṯor mii kun nyaḵku ’ko mo e moŋ’koki/e gi mony’cesh mo dhali e mo jin moŋ’konu ki ’kus e bwamani ’kwani mo.
+      Yansan a’di misha uni gunn kun dhunu mo ki she/ mo ’peni bampam buni mo kun mina uni imish gwo ’ban mmobu’th toŋ’kup̱ buni mo mmonyaḵ to mii ki ’kwani gi mony’cesh kun woṯẖana woṯẖ mo gom mmo’deḵ gi mii gi ’kwani kun woṯẖkina woṯẖ mo isi mis mo gom montaḵ mo dhali gom mii kun hilu mo mo ka ’thime mo dhali mmoc̱i mo jin ’konu ki ’kus mo.
+      Haali/ moŋ’ko ki ’kus yansan a’di ita dhan gumpa miim ’borgaŋ gana/ mo mmothim mii mo gom mo jin minu ka mii e mo gom gwoŋḵan yansan mo.
+      Shwane/, wakan ki mii yansan mo tani,
+      Adhan montul isa caaga/ jin miinu ka ŋul’kup̱ mo
+      A’di thosonki’da ris mii gwansan is mo kun miinu kal ’kup̱a ŋwa/ pa mo. Gom ’kwani i’baar mo dhali gom kal gi ’kwaniny'ceeshi ’baar mo dhali goma daŋkara/ gi ’kwani ka ’dete/ ’dete/ mo. Dhali goma ris ushi mii gunn kun nyaḵkunu to mii mo e bwamani ’kwani mo mmokar mii yansan eya tente/ mo e bwamani ’kwani mo. A’di minu ṯor ’kwani gwo mo e mo ma warka/ mo mmokar montaḵ mo gom miim buye ki wathim pa en’thi/ mo dhali mo jin ’konu ki ’kus mo dhali mombar jin minu bar mo, kal gi ’kwaniny’cesh mo dhali gwo ma aris ’peŋkuman bampa/ gi kal gi ’kwaniny’cesh mo, jin minu cesha aris bampa/ gi mony’cesh ka ap̱o/ ki ’bore/ mo dhali mmopi gwo mo dhali mmohila hil mo, e bwamani ’kwanin su/ kun tana ’kaŋ ’kup̱ gi bampam buni mo dhali e bwamani ’peŋkuman bampam buni mo e bwaŋ’kwarany gi ’bame’d gi kun tiya kun ta gi moshirr kun jikina ji mo.
+   
+      ’Ban 1
+      Aris ’kwaniny’ceshi ’baar mo dho’thkunu ’baḵany mo dhali mmomiiya ṯu’c imonṯal ’de/ mo dhali mii ma ḵar/e mo. Uni mini ta gi gwo mo dhali mii mo dhali uni mini mii ka karambuye/ ’kup̱ ki cin tiya mo e shi/in mo dhali mii kun tanu ikam mo.
+   
+      ’Ban 2
+      Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ yuḵunu mo e mii ma isiŋ gana/ mo dhali gwo jin ṯorkunu mo gom moŋ’ko jin ’konu ki ’kus mo, ki dar gi mo jin ’konu ka ḵwa/um bwa ki she/ ki she/ mo, hili ka Awaḵ mo, jamas, wathiŋ gwaṯẖ dhali a’bom mo, ’twa/ mo, mmoluŋa luŋ mo, imanmii gwo a’cesh mo walla gwon tiya mo wathi/ jin cila bampa/ mo walla amannyaḵ to mii mo, dhali mal mo, dhali mondho’th mo.
+      Hili, aḵwa/um bwa minu ’koki mii mo e ’kwani kun mii gwo a’cesh mo, dhali mmomii to ka p̱ara p̱o/ mo me’d jin dhala gwoŋḵan a’di bway mo walla eya ris kal gi ’kwaniny’cesh mo e bampa/ mo walla e ’peŋkuman bampa/ mo a’di jin ta ji gi wathi/ mo, walla a’di di’d ki ’pen piti mo, mii ma ḵar/e mo, diki ji is piti a’di ’de/ mo walla e ’bame’di kun tiya kun ta gi moshirr kun jikina ji mo.
+  
+      ’Ban 3
+      Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ mini ’ko ’baḵany e moŋ’koki/e mo, mmokwanya kwany mo dhali wathi/ midi c̱a’bki ’dantar mo.
+   
+      ’Ban 4
+      Wathin ṯal ’deŋ kamu/ minu ’koki mii ki miiny c̱iŋkina/ mo walla ka jinthus mo, miiny c̱iŋkina/ mo dhali mii jin yolkunu c̱iŋkina/ minu non ’twa/ mo eya aris jamas gi miim buni ki she/ ki she/ mo.
+   
+      ’Ban 5
+      Wathin ṯal ’deŋ kamu/ minu ’koki ’kosh mo walla miinu ’koki jee mo, wathi/ minu ’koki mii ka jinthus mo walla minu ’koki sirija ap̱o/ gi sho’k mo walla minu ’koki dor mo.
+   
+      ’Ban 6
+      Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ minu dhu ki montaḵ ki ’twaŋḵal kuku/ mo me’d wathi/ jin diki’d e buŋ’kus gi gwoŋḵan mo.
+   
+      ’Ban 7
+      Aris uni ’baar mo inyaḵkan imonṯal ’de/ mbwambor gi gwoŋḵan mo dhali uni yuḵunu mo ki dargi mii ma gwar’de/ mo e mo jin miinu cesh uni ka p̱o/ imonṯal ’de/ gi gwoŋḵan mo. Aris uni ’baar mo yuḵunu imonṯal ’de/ mo e mo jin ceshuwa cesh ka p̱o/ mo ’peni mii kun miinu mii ma gwar’de/ mo mmo’ce’d gwoŋḵan yansan jin ṯorkunu mo dhali ap̱o/ mii kun yuḵunu mo e mii kun ’koshuwa mee mo hili e mii ma gwar’de/ mo.
+   
+      ’Ban 8
+      Aris uni ’baar mo ka ’deṯe/ ’deṯe/ mo tani, tan gi tom buni mo kun wanuwa wan ’ba/ mo eya awaḵ gi kal gi ’kwaniny’cesh mo gom mii jin ’ce’du gwoŋḵan mo gom mii ma isiŋ gana/ mo jin gamkina a’di mo e gwoŋḵan jin ye’thkunu a’di sho’k mo walla gi gwoŋḵan mo.
+   
+      ’Ban 9
+      Wathin ṯal ’deŋ kamu/ minu ’koki bu’th mo mmota habus mo, walla a’di minu diki ur mo bway bampaŋ kamu/ mo.
+   
+      ’Ban 10
+      Aris uni ’baar mo ka ’deṯe/ ’deṯe/ yuḵunu mo e mii ma p̱ara p̱o/ mo dhali ’kwani kun ciḵki gwo mo gom mo jin ’konu ki ’pen buni mo, dhali e bwaman ma Awaḵ mo, e mo jin ṯoru mii ma ḵar/em piti mo dhali mo miiya ṯu’c mo dhali iman’kosha mee kun miiki mii ap̱o/i a’di mo.
+   
+      ’Ban 11
+      
+         
+            Aris uni ’baar mo ka ’deṯe/ ’deṯe/ miikina ṯu’c gom mondor ki mii kun ’thenu is mo a’di ta’d gi gwo mmo/o mo a’di jin dargi mii m’ba/ ntagi miinthus piti thimki’d mo isi ki gwoŋḵan ma wambuhany ’kwani gi mompal mo e a’di jin tana a’di i’baar mo dhali aris gwo jin ona a’di is mo gom mo jin jeṯṯa a’di sho’ka ’cesh mo.
+         
+         
+            Wathin ṯal ’deŋ kamu/ minu diki kar miinthusa kamu/ jin midi ’kosh a’di is ka nyor mo gom tonthus mo, e bwaŋ’kwariny gi kal gi ’kwaniny’cesh mo walla gwoŋḵan gi kal gi ’kwaniny’cesh mo, ka tee c̱aan mo ki a’di miiki tonthus mo. Walla a’di karkunu ton diṯi’d e ’bam piti jin burjurkunu a’di ki mondor mo mmobol a’din ’de/ e mo jin miiki to mo ka tee jin dorkunu a’di mo gom tonthus jin miikina a’di mo.
+         
+      
+   
+      ’Ban 12
+      Wathin ṯal ’de/ kamu/ minu ’koki mii ki miiny c̱iŋkina/ mo ki mii jin minu thul tom piti me’da p̱o/ mo ki tom piti jin tana a’di mo, Awaḵ piti mo, e kuŋ gu’b piti mo walla ton tiya gunn kun cila a’di mo, walla mmo’kosh montaḵ piti mo, dhali yer gway mo. Aris ’kwani ’baar mo uni tan gi gwoŋḵan mo mmocesh tom buni kun tana uni ka p̱o/ mo walla jin ’koshkunu mo.
+   
+      ’Ban 13
+      
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ uni dhala gwonḵan bway mo mmo/ii ki ’kus mo dhali mmo/ii bampa/ gi moŋ’ko’d gwar gi gwayu/ gi bampa/ i’baar mo.
+         
+         
+            Aris ’kwani ’baar ka ’deṯe/ ’deṯe/ uni mini dhal bampaŋ kamu/ ’pen mo me’d bwam buni mo dhali nyaḵki bampam buni mo dhali ki a’di midi doḵ ka nyaŋ’ko’d bway bampam piti mo.
+         
+      
+   
+      ’Ban 14
+      
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ uni mini ŋap̱ bway mo dhali ’kuny bwa mo mmodi mo e bampan tiya kun ’kona ’kwani kun urkunu mo ’peni bampam buni mo ’peni monṯo’c bwa mo.
+         
+         
+            A’di ta gwoŋ gana/ a’dan jin minu ’koki yuḵ um mo e mii jin ṯojuwa ṯo’c ’kus ’peni gwo ma isiŋ gana/ mo jin cuki mis mo ’peni ’kwani kun ’koki ta imanmii gwo a’cesh mo kun ’koki ta imanmii tonthus mo walla ’peni mii jin uru gwo mo gom mii mo dhali gwoŋḵan gi ’kwaniny’cesh kun nyaḵki to mii mo.
+         
+      
+   
+      ’Ban 15
+      
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ dhala gwoŋḵan gi bampam piti a’di bway mo mmota com bampa/ mo.
+         
+         
+            Wathin ṯal ’deŋ kamu/ minu ’koki non ’twa/ mo ’peni miim buyem bampam piti mo walla minu ’koki non ’twa/ mo mmo/aḵ miim buyem bampam piti e mo.
+         
+      
+   
+      ’Ban 16
+      
+         
+            ’Kwaniŋ gwaṯẖ dhali aris up̱ kun cakin ki yil mo, uni minu ’koki cesh mo mo gom awaḵ buni mo walla gom miim buyem bampam buni mo walla gom mo luŋ buni mo. Uni dhala gwoŋḵan bway mo mmomash mo ki uni mini gam uci mo. Uni yuḵunu mo imonṯal ’de/ mo isi ki mii ma ḵar/e mo gom mii mash mo, ki embul gi mii mash mo dhali ki mom piti jin karkunu ’kup̱ mo.
+         
+         
+            Miimash minu thim ki gwoŋ ’kwanin su/ mo dhali gam gwo me’d ki ’bore/ mo jin thosonkina uni is mo mmoṯal ’de/ mo.
+         
+         
+            Awaḵ a’di ta’da ’kaŋ ’kup̱ mo dhali moŋḵa’b jin deḵu imonṯal ’de/ mo e kuŋ ’kup̱ piti mo dhali a’di yuḵunu mo ki a’di mina ’kwani cesh ka p̱o/ mo dhali ki bampam piti mo.
+         
+      
+   
+      ’Ban 17
+      
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ uni tan gi embul mo mmota ki to gom is piti mo ki ’bore/ mo, me’d isi ciki/ mo mmonyaḵ to mii inyaḵki ’kwanin tiya mo.
+         
+         
+            Wathin ṯal ’deŋ kamu/ minu ’koki non ’twa/ ’peni tom piti jin tana a’di jin ishi’d ka enthus mo.
+         
+      
+   
+      ’Ban 18
+      Aris ’kwani ’baar mo mini ’ko ki ’kom ’pempaŋ gana/ ’baḵany e bwaŋ kulum buni mo, eya dum buni mo dhali e moŋluŋ buni mo, a’di ta mo jin ’konu ki ’kus mo mmo/aḵ mo jin luŋuwa luŋ e mo walla moŋgam gwo is mo, dhali di ki ’kus mo, walla a’di midi di a’di ’de/ mo, walla di mo e bwaman ma Awaḵa tiya mo dhali di e bwamani ’kwani mo walla di a’di ’de/ mo, dhali ṯor moŋluŋ piti mo walla ṯor moŋgam gwo is piti mo, dhali a’di midi miiya ṯu’c mo, mmoluŋa luŋ mo dhali mmohila hil ka ’thime mo.
+   
+      ’Ban 19
+      Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ mo uni tan gi embul mo mmo/o gwo jin di’d e bwam buni mo dhali mmoṯor mii eya tente/ mo, a’di ta mo jin ’konu ki ’kus jin midi bu’th mo mo gom gwoŋ kulum mo ki dargi mo jin ceshu mo mo dhali simm a’di e mo, mmobu’th mo dhali da/ar gwo jin ṯoru mo dhali gwo kun c̱inu mo e to jin ṯorkunuwa ṯor nycine/ mo dhali dargi mo jin aḵu gwayu/ e mo.
+   
+      ’Ban 20
+      
+          
+            Aris uni ’baar mo ka ’deṯe/ ’deṯe/ dhalu bway mo mmo’ko ki ’kus mo e moŋḵu’th is mo gi montul is mo dhali e mo jin tula ’kwani ’kup̱ mo.
+         
+         
+            Wathin ṯal ’deŋ kamu/ minu ’koki non ’twa/ mo ’peni montul is jin tulu ka ŋul’kup mo.
+         
+     
+   
+      ’Ban 21
+      
+         
+            Aris uni ’baar mo ka ’deṯe/ ’deṯe/ mo dhala gwoŋḵan bway mo mmonyaḵa ṯu’c mii eya hakuma gi bampam piti mo, ka ji sho’k mo walla gom wathi/ jin kwanykunu ’baḵany mo e bwambori uni mo.
+         
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ mo dhala gwoŋḵan bway mo mmonyaḵ ṯu’c mii mo inyaḵki ’kwani gi bampam piti mo.
+         
+         
+            Dhali ’kwani mini mii mo me’d bwa gi ’kwani kun ta gi moshirr kun miikina ṯu’c ma hakuma mo, a’di ta mii jin minu mii ki ari momo dhali aris ’kwani gi mony’cesh mini kwany to jin mina uni taḵ toŋ ḵar/e mo dhali uni mini taḵ to imonṯal ’de/ mo dhali mini bu’th to kun tagu ka ḵwal is mo walla to jin tagu ka p̱ara p̱o/ mo e mo jin taḵunu uni mo.
+         
+      
+   
+      ’Ban 22
+      Aris uni ’baar mo ka ’deṯe/ ’deṯe/ mo, isi me’d jin tana uni imannyaḵa ṯu’c mii mo, uni tan gi moshirr mo mmo’ko ’baḵany ki ’dantar mo dhali uni yuḵunu mo e mo jin minu ka uni e mo, e mii gi bampam buni mo dhali mii gi ’peŋkuman bampan tiya mo dhali inyaḵki isi mii gi ’kwani kun miikina ṯu’c kun woṯẖkina woṯẖ mo dhali goma aris tom buni kun ish ḵumma/ mo, to kun miinu me’d ka woho/ mo, mo kun nyaḵku to mii mo dhali gom mii kun miinu mo kun cilkina a’di mo dhali mii jin nyaŋkina buŋgwar is gi wathimpa en’thi/ mo.
+   
+      ’Ban 23
+      
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ uni dhala gwoŋḵan bway mo mmomiiya ṯu’c ’baḵany mo, dhali jin minu kwany uni mo mmomiiya ṯu’c mo, dhali isi ki mo mii mii ma isiŋ gana/ mo dhali mmogama ’the eya ṯu’c jin miikina uni mo, dhali cesh uni gwansan ka p̱o/ uni kun ’kokin mo ki darga ṯu’c mo.
+         
+         
+            Aris uni ’baar mo ka ’deṯe/ ’deṯe/, kun dargi mii ma gwar’de/ mo, uni ’kon ki ’kus mo mmoc̱i to imonṯal ’de/ mo goma ṯu’c jin miikunu ka p̱ara p̱o/ mo.
+         
+         
+            Aris uni ’baar mo ka ’deṯe/ ’deṯe/ kun miikina ṯu’c mo uni ’kon ki ’kus mo mmomii mii ma isiŋ gana/ mo dhali gam to jin minu c̱i ki ’bore/ gom is buni mo ki ’dantar mo dhali goma Awaḵ buni kun ’kokin kun taḵa ’kwaniny’cesh goma ṯu’c mo, dhali mar tom buni is mo, waḵki/ a’di mishu mii mo ki ’kwanin tiya kun ceshki mo ka p̱o/ kun ’kokin ka ŋul’kup̱ mo.
+         
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ uni tan gi embul mo mmo/uḵ to mo dhali ki a’di minu c̱i’th ka warka/ mo gom to jin mina a’di yol mo gom bwam piti jin o a’di ki ḵal to iyol mo.
+         
+      
+   
+      ’Ban 24
+      Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ uni tan gi moshirr mo mmosi/is mo dhali mmomalasa malas mo, inyaḵka usha ṯu’ca gwa’dga/ jin miikina a’di mo dhali ka tee jin sinu is mo jin c̱ikunu to mo.
+   
+      ’Ban 25
+      
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ mini ta gi embul mo mmo’koki/e mo gom is piti ki ’bore/ mo dhali mmokar buŋgwar is piti ki dhelel dhelel mo dhali Awaḵ piti mo, inyaḵki tonṯe/ mo dhali burrinye/ jin hi’thu i is mo dhali gu’b mo dhali thosona guruush goma dhawa/ mo dhali miiya ṯu’c ka ŋul’kup̱ mo, dhali c̱a’bki ’dantar e to kun p̱̱u’dkin mo e uni kun darga ṯu’c mo, uni kun ’ba’than mo dhali ’kwani kun aṯẖa is mo dhali a’bom jin wun ma kaṯẖim piti mo dhali kun cakin ki yil mo walla a’di jin gamki monyc̱a’b piti mo e mii kun tuḵ ’ban mo kun jiki a’di mo.
+         
+         
+            Ata’da mo dhali ushi uc̱i mo uni yuḵunu mo mmodhip̱ ki ’bore/ mo dhali woṯẖa woṯẖ mo. Aris ushi uc̱i i’baar mo kun dho’thkunu mo e bwaman gi miimash mo walla ka pije/ gi miimash mo, uni mina bwa ’kuny inyaḵki ’kwani kun ceshkunu ka p̱o/ mo.
+         
+      
+   
+      ’Ban 26
+      
+         
+            Aris uni ’baar mo ka ’deṯe/ ’deṯe/ uni dhala gwoŋḵan bway mo mmomiiya awarka/ mo. Mo ma warka/ miinu mii ki me’d mo, isi ciki/ ki monṯel ’pen gi Mo ma warka/ jin minu mii mo. Mmo/uḵ to mo dhali mo ma warka/ minu nyaŋ ki ’bore/ mo dhali Mo ma warka/ jin miinu e gu’ba caaga/ imonṯal ’de/ mo e moŋḵa’b jin minu mii miim ’boro’d mo.
+         
+         
+            Mo ma warka/ minu mii ṯor gi ’kwaniny’cesh mo mmothim mo dhali ’bi’th ’kwani is mo mmodhu is ki gwa’d mo mmotaḵ ’kwani kun miikina ṯu’c mo mmoc̱i ’kwani bway mo e gwoŋ ḵar/e mo dhali mmoc̱i mo jin ’konu ki ’kus mo. A’di midi hal ’kwani mo jin mishu gwo ’ban mo, mmoḵu’c bwa ki ’kari’th mo dhali mmota mugu gi kal gi ’kwani gi mony’cesh mo, walla aŋul’kup̱ mo walla ’kwani kun luŋkina luŋ mo, dhali mii ki nyanye/ mo e ’kwani gi mony’cesh mo uni kun miiki moŋḵu’th is mo.
+         
+         
+            Ibaba dhali ita’da uni tan gi embul mo mmokwany Mo ma warka/ jin ’boro’d mo jin mina uni dhu uc̱im buni nycine/ mo.
+         
+      
+   
+      ’Ban 27
+      
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ uni ’kokin ki ’kus mo mmomii miim buni mo e bwaman ma Awaḵ mo, dhali lo’b mo mmo’kuny bwa mo dhali mii mondhelele’d bway ṯwa/a mo dhali mii miim ’boron buni mo.
+         
+         
+            Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ mini tiḵ miim buni e jin midi wu mo dhali aris ton tiya kun ena uni kun dhelelin mo, awarka/ mo walla to kun uḵu mo e a’di jin ta’da aman’kwar to mo.
+         
+      
+   
+      ’Ban 28
+      Aris ’kwani ’baar mo ka ’deṯe/ ’deṯe/ uni yuḵunu mo dhali aris ’kwaniny’cesh kun thoson ki to mo e mii ma isiŋ gana/ mo dhali ’ko ki ’kus mo e mo jin ṯorkunu gwo mo jin ṯoru gwo eya tente/ mo.
+   
+      ’Ban 29
+      
+         
+            Aris ’kwani i’baar mo ka ’deṯe/ ’deṯe/ uni tan ga ṯu’c e ’kwani mo e mo jin mina a’di di a’di ’de/ ki ’kus mo dhali jin mina a’di misha aṯu’c piti mii mo mmomar a’di is mo.
+         
+         
+            E mii ma isiŋ ganam piti mo dhali di ki ’kus mo, aris uni ’baar mo ka ’deṯe/ ka ’deṯe/ minu ’koki mii ki miiny c̱iŋkina/ mo jin minu jiya ji jasi ’te/ mo me’d jin ṯorkunu gwo ki gwoŋḵan gom wathin ṯal ’deŋ kamu/ mo gom mii kun ’konu ki ’dantar mo ki mii jin minu pi gwo mo dhali dhu is ki gwa’d mo gom mii ma isiŋ gana/ mo dhali ’ko ki ’kus inyaḵki kun tiya mo dhali montul is jin doṯu gwo gom miim ’boro’d mo, mmothoson ’kwani mo dhali mmoḵal ’kup̱ ŋwa/ pa mo mmomii ka p̱ara p̱o/ mo.
+         
+         
+            Mii ma isiŋ gana/ yansan mo minu ’koki mii mo gom jasi a’di mo, dhali gom ’kup̱ gwo gi ’kwani gi mony’cesh mo.
+         
+      
+   
+      ’Ban 30
+      Toŋkamu/ yisa di’da jin minu ’koki ṯor mo mmo’koki ṯor ’pemen eya tente/ goma ris bampan tiya mo, ’kwani kun ’kon ka non she/ mo walla wathin ’deŋ kamu/ jin ona bwa ki miiya ṯu’ca tiya mo walla a’di jin ona bwa ki uḵ ton tiya mo mmo’ce’da ’ce’d sho’k mo e ton tiya jin ona bwa a’di mo dhali c̱a’b ’baḵany e mondim piti mo.
+   

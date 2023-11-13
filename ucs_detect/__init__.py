@@ -39,6 +39,7 @@ import yaml
 # local
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_wide import WIDE_CHARACTERS
+from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 
 # to accomodate varying screen sizes, we measure by each word,
 # but some languages do not use ascii space, so we some effort
@@ -52,35 +53,22 @@ def unicode_escape_string(input_str):
 
 
 def parse_udhr():
-    with open(
-        os.path.join(os.path.dirname(__file__), "udhr_full_subset.txt"), "r"
-    ) as fin:
-        # read only up to first '-----' marker
-        language = None
-        while True:
-            line = fin.readline()
-            if not line:
-                break
-            if line.startswith("-----"):
-                language = fin.readline().strip()
-                assert language == "Arabic, Standard", language
+    path_udhr = os.path.join(os.path.dirname(__file__), 'udhr')
+    for fname in os.listdir(path_udhr):
+        with open(os.path.join(path_udhr, fname)) as fin:
+            # read only up to first '-----' marker
+            language = fin.readline().split('-', 1)[1].strip()
+            while True:
                 line = fin.readline()
-                break
-        text_parts = []
-        while True:
-            line = fin.readline()
-            if not line:
-                break
-            if line.startswith("----"):
-                yield (language, " ".join(text_parts))
-                line_parts = line.split(None, 1)
-                if len(line_parts) < 2:
-                    # EOF
+                if line == '---\n':
                     break
-                language = line_parts[1].strip()
-                text_parts = []
-            else:
+            text_parts = []
+            while True:
+                line = fin.readline()
+                if not line:
+                    break
                 text_parts += line.strip().split() if line.strip() else ""
+            yield language, ' '.join(text_parts)
 
 
 def word_splitter(line):
@@ -184,9 +172,8 @@ def test_language_support(
                     )
                     if delta_ypos != 0:
                         failure_report[lang][-1]["delta_ypos"] = delta_ypos
-                    if delta_xpos != 0:
-                        failure_report[lang][-1]["measured_by_wcwidth"] = expected_width
-                        failure_report[lang][-1]["measured_by_terminal"] = delta_xpos
+                    failure_report[lang][-1]["measured_by_wcwidth"] = expected_width
+                    failure_report[lang][-1]["measured_by_terminal"] = delta_xpos
                 # reset estimates to actual
                 estimated_xpos = end_xpos
                 last_ypos = end_ypos
@@ -268,7 +255,9 @@ def display_results_by_version(term, writer, results, best_match):
         )
         pct_s_colored = term_style(term.rjust(f"{pct_val:0.1f}", 6))
         writer(f"\n{label_s}: {total_s}, {pct_s_colored} %")
-    maybe_match = "* Best Match" if best_match else "* No Match !"
+    maybe_match = ''
+    if len(results) > 1:
+        maybe_match = "* Best Match" if best_match else "* No Match !"
     writer(f"\n{maybe_match:>16s}")
 
 
@@ -482,7 +471,7 @@ def init_term(stream, quick):
             term.width,
         )
         assert term.height > 23, (
-            "Terminal must be at least 80 columns wide",
+            "Terminal height must be at least 23 lines",
             term.width,
         )
     writer = functools.partial(
@@ -552,7 +541,12 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
     )
-    unicode_version = unicode_version or determine_best_match(wide_results, lbound_pct=95, report_lbound=2)
+    if unicode_version:
+        # match by CLI argument, '--unicode-version'
+        unicode_version = _wcmatch_version(unicode_version)
+    else:
+        # match version by results of wide character test
+        unicode_version = determine_best_match(wide_results, lbound_pct=90, report_lbound=2)
     if shell:
         # when using --shell, this program's only purpose is to make a best
         # estimate of exporting UNICODE_VERSION for use with wcwidth library and
@@ -581,7 +575,23 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         shell=shell,
     )
     emoji_zwj_version = determine_best_match(
-        emoji_zwj_results, lbound_pct=95, report_lbound=2
+        emoji_zwj_results, lbound_pct=90, report_lbound=2
+    )
+
+    # Test "recommended" Variation-16 emoji sequences
+    writer(f"\nucs-detect: VS16 testing")
+    emoji_vs16_results = test_support(
+        table=VS16_NARROW_TO_WIDE,
+        term=term,
+        writer=writer,
+        timeout=timeout,
+        quick=quick,
+        limit_codepoints=limit_codepoints,
+        limit_errors=limit_errors,
+        expected_width=2,
+        largest_xpos=5,
+        report_lbound=2,
+        shell=shell,
     )
 
     # test language support
@@ -593,14 +603,14 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
 
     # display results
     writer(
-        f'\nDisplaying success results of {term.bold("Unicode Version")} as Total characters and their success rate'
+        f'\nDisplaying results of {term.bold("WIDE")} character support as success rate'
     )
     display_results_by_version(
         term=term, writer=writer, results=wide_results, best_match=unicode_version
     )
 
     writer(
-        f'\nDisplaying success results of {term.bold("Emoji Unicode Version")} as Total characters and their success rate'
+        f'\nDisplaying results {term.bold("ZWJ")} sequence support as success rate'
     )
     display_results_by_version(
         term=term,
@@ -609,9 +619,19 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         best_match=emoji_zwj_version,
     )
 
+    writer(
+        f'\nDisplaying results of {term.bold("Variation Selector-16")} sequence support and their success rate'
+    )
+    display_results_by_version(
+        term=term,
+        writer=writer,
+        results=emoji_vs16_results,
+        best_match=list(emoji_vs16_results.keys())[0],
+    )
+
     if language_results:
         writer(
-            f"\nDisplaying success results of wide and zero-width characters by language"
+            f"\nDisplaying results of WIDE and ZERO-WIDTH sequence support by {term.bold("language")}"
         )
         display_results_by_language(term=term, writer=writer, results=language_results)
 
@@ -633,6 +653,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
                 unicode_wide_results=wide_results,
                 emoji_zwj_version=emoji_zwj_version,
                 emoji_zwj_results=emoji_zwj_results,
+                emoji_vs16_results=emoji_vs16_results,
                 language_results=language_results,
             ),
         )

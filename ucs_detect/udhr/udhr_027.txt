@@ -1,0 +1,216 @@
+Universal Declaration of Human Rights - Gumuz
+© 1996 – 2009 The Office of the High Commissioner for Human Rights
+This plain text version prepared by the “UDHR in Unicode”
+project, https://www.unicode.org/udhr.
+---
+
+Masikꞌoma
+      Maahokꞌw Maaŋatokꞌw Haaga Aladubꞌaga
+      Maaŋgamil maafucꞌakꞌwa kamaanzaakꞌw haaga alashook bꞌaga kowoma nndowa etigadꞌabaga maafucꞌakꞌwa, maacꞌagaasa kadaaŋgaŋa na-ebanneya nala tso. Makokꞌw magaç labaala káhaaga aladubꞌaga maŋaarekꞌw mashaŋa babokꞌoma kashook bꞌaga bafalagasha tso. Dubꞌaga kamaŋgishats gasaanza alamá kamahulash magamila etapaŋaga haaga bacꞌaga tso.
+      Bꞌaga metaam emada bibasꞌaga matagaçama kámadꞌab damacꞌa alama haaga aladubꞌaga kamaaŋatakꞌwa baanzegaaça makala tso.
+      Nilaaŋgw da-eba mafagokꞌw maanda mazha kamashaambꞌatsama baapaŋgaatsa tso. Bꞌaga dabawotaga na-Amerika nilamaaŋatakꞌwa ala-ebamaam biyaakolagaç madꞌab daaŋgaŋa alamaam nilahaaga aladubꞌaga kamaafucꞌakꞌwa etiiga na-ebamaama, namaatabꞌatsa alamaam eyaatsen kwa maanzaakꞌw haaga alagunza kaŋgafa kamashaambꞌats maꞌiiya batabꞌagatsa tso.
+      Tꞌiisa ala-eba metaam metaam kasꞌe ilakꞌomaam biyaaŋgasagilas kamadꞌab maadꞌaakꞌosha kamaahoç eba ala-Amerika eyaatsen kwa kamaandarash maahokꞌw maashiiçꞌatsa kamaanzaakꞌw maayira kahaaga aladubꞌaga tso.
+      Maafuncꞌats maaŋgasil haaga kamaafucꞌakꞌwa aladubꞌaga baane babokꞌw gasaanza etaapaŋgaats kamaaŋgamil haaga aladubꞌaga tso.
+      Maahokꞌw Maahonsꞌakꞌwa
+      Maahokꞌw maaŋatokꞌw haaga aladubꞌaga baane etiyaaŋgasagilasan da-eba kowoma kamaambaalats haaga alada-eba kada-ebanneya kowoma, haaga alabꞌaga metaam metaam, kamaabꞌushil dakꞌo-eba, kamatꞌots maaŋatakꞌwa baane maddugok nilagasaanza, matigatsama wola magamaça kwa kamaandarash maaŋatakꞌwa kamaafucꞌakꞌwa aladubꞌaga baane, kamazeç maahokꞌw maaŋatakꞌwa kamashaambꞌats maayira nilaaŋgw bꞌaga dabawotaga na-eba, nilagafaaleya kasꞌe ilakꞌoma eyaatsen kwa nilaaŋgw bꞌaga dabawotaga nakꞌo-eba nilamaanzeça tso.
+   
+      Mbꞌal Çamakꞌota 1
+      Dubꞌaga bꞌaga metaam metaam alamaam kamaanzaakꞌoma kasꞌe bipokꞌoga kamadꞌab maafucꞌakꞌwa haaga bacꞌaga tso. Kábꞌaga jajanda kwa jala etigafalagash maꞌiiya nago metaagwa eyaal yida-eba bicꞌaga tso.
+   
+      Mbꞌal Çamakꞌota 2
+      Bꞌaga kowoma kamadꞌab maafucꞌakꞌwa etiŋkꞌotaga nilamaahokꞌw maaŋatokꞌwa aladubꞌaga nala haaga bacꞌaga tso. Bala mawotaan maahaaca metaam kanndo shooka, dagoosha, gwaatsa, sa, magamila, polotika, eba wola kꞌo-eba, moota, mpokꞌwa wola maꞌiiya madꞌab haaga kamaafucꞌakꞌwa etiŋkꞌotaga nilamaahokꞌw maaŋatokꞌw aladubꞌaga nala bagaapaŋgaatsa tso.
+      Kababaçama kwa, nabꞌabꞌaga metaam matꞌo maahaaca kanndo polotika, kalafaaŋ maçꞌarokꞌw ŋgisha ala-ebama kakꞌo-eba nago baꞌiigasha, kamakaalash ilakꞌwa, kamagamila, kamakaalash mazhigokꞌw ilakꞌwa wola kanndowa janda kwa apaŋgaatsaŋgo tso.
+  
+      Mbꞌal Çamakꞌota 3
+      Bꞌaga kowoma madꞌab haaga alamaꞌiiya kakaasha, maafucꞌakꞌwa kamaanzeça nada manasama bagaapaŋgaatsa tso.
+   
+      Mbꞌal Çamakꞌota 4
+      Bꞌaga metaam matꞌoma kawodaŋa wola makúŋkꞌoma kasiwodaŋa apaŋgaatsaŋgo tso. Mbꞌaandokꞌw makodokꞌw wodaŋa kamakodama nago kowoma baapaŋgaatsa tso.
+   
+      Mbꞌal Çamakꞌota 5
+      Bꞌaga kowoma kamadꞌab maanzeça nada etakamashaŋats bꞌagama bacꞌaga haaga tso.
+   
+      Mbꞌal Çamakꞌota 6
+      Bꞌaga kowoma eyaal bꞌaga metaam haaga alamadꞌa kaats kágo bapaŋaga bacꞌaga tso.
+   
+      Mbꞌal Çamakꞌota 7
+      Bꞌaga kowoma bala mawotaan maahaaca metaam nago yilaç maaŋatakꞌwa maanzaakꞌoma tso. Bꞌaga kowoma kanndowa maanzaakꞌoma madꞌab maanzeça namaabꞌusha kamaahaaca baapaŋgaatsa tso.
+   
+      Mbꞌal Çamakꞌota 8
+      Bꞌaga kowoma kamadꞌab maacꞌagasa magaahaama eyaal makaalashama etiiga nakꞌo- ebama kamazeç bꞌagama nada etabꞌaandagokꞌw maaŋatakꞌwa etiyaaŋgasagilasan nabꞌagama haaga bacꞌaga tso.
+   
+      Mbꞌal Çamakꞌota 9
+      Bꞌaga metaam haaga etambasꞌuga madꞌaakꞌoshama, mashakima kamafuncꞌama bacꞌaga tso.
+   
+      Mbꞌal Çamakꞌota 10
+      Bꞌaga kowoma kamaanzaakꞌoma haaga etigafalagash maŋgishats gasaanza alamaam kábꞌaga kowoma kamanzarilama na-añjaaha biishakiiga eyaatsen kwa mashiiçꞌats haaga kamaatagaça alamaam baanzegaaç nabꞌagama tso.
+   
+      Mbꞌal Çamakꞌota 11
+      
+         
+            Bꞌaga etishakiiga metaam madꞌab haaga alamaanzeyaaça bacꞌaga tso. Bala maŋgiishatsan waada mashaŋatsama alama kamayizhilama makala etamashaŋatsama kamafalushaŋgo tso.
+         
+         
+            Kábꞌaga metaam makala etamashaŋatsama namaaŋatakꞌwa aladaara metaam wola ala- ebanneya kowama afalagaashaŋgo tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 12
+      Nabꞌagabꞌaga nametaam matꞌo mashaŋa kasꞌe badaga taaŋgale, kasꞌe masꞌa kadamasꞌa alama, kasꞌe maadꞌaba etacꞌaga kabꞌaga jaajanda mbutokꞌw mashiiçꞌa alama kágaca apaŋgaatsaŋgo tso. Bꞌaga metaam kamadꞌab maanzeça kamaaŋatakꞌwa haaga bacꞌaga tso.
+   
+      Mbꞌal Çamakꞌota 13
+      
+         
+            Bꞌaga kowoma matsa ká-eba etapaŋga kamaꞌiisha nagwaaŋ haaga bacꞌaga tso. Kamashaagwa na-eba metaam kágo eba janda kamadꞌab maanzeça nagaatꞌowa kwa haaga bicꞌaga tso.
+         
+         
+            Bꞌaga metaam metaam alamaam mpatsa na-eba nametaam matsa maꞌiisha na-eba najanda eyaatsen kwa kamakoleya ka-eba alamá haaga bacꞌaga tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 14
+      
+         
+            Bꞌaga kowoma kamatsa kamashaagwa na-eba etapaŋga haaga bicꞌaga tso.
+         
+         
+            Haaga baane kanndo polotika mashaŋatsama makaalushaŋgo tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 15
+      
+         
+            Bꞌaga metaam kamada kada-eba etapaŋga haaga bacꞌaga tso.
+         
+         
+            Bꞌaga kowoma kamada kada-eba etiipaŋga haaga biicꞌaga tso. Kamaanzhil mada alama kada-eba janda kwa haaga bacꞌaga tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 16
+      
+         
+            Bꞌaga gunza wola ŋgafa etadagaash giizha alama kamaaŋaarakꞌwa metaam bala mawotaan maahaaca kanndo shooka, daara wola kamagamila haaga alamaaŋaarakꞌwa kamapokꞌw duwa bicꞌaga tso. Gunza kaŋgafa na-añjaaha biyaaŋaaragokꞌwa, na-añjaaha bidaga ŋgafa kagunza eyaatsen kwa na-añjaaha maacꞌaga kwa haaga maanzaakꞌoma bicꞌaga tso.
+         
+         
+            Maaŋaarakꞌwa kaats kamaaheesha alagunza kaŋgafa taaŋgale mada baapaŋgaatsa tso.
+         
+         
+            Damasꞌa naats nagazaza maatꞌosh maahonsꞌakꞌwa aladakꞌo-eba kasꞌe badaga dakꞌo-eba kagafaaleya magatꞌo maanzeça kádamasꞌa baapaŋgaatsa tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 17
+      
+         
+            Bꞌaga kowoma kasꞌe ilakꞌoma wola kámaatabꞌatsa kabꞌaga jaajanda kamadꞌab damacꞌa ala- ilakꞌoma haaga bacꞌaga tso.
+         
+         
+            Bꞌaga kowoma kamazegaç damacꞌa alamá wola kꞌacꞌakꞌacꞌa alamá haaga bacꞌaga tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 18
+      Bꞌaga kowoma haaga alamaŋgisha kamahulash magamila etapaŋga bacꞌaga tso. Haaga baane kwa haaga etigafalagash maanzhil magamila wola gadeera kamada kasꞌe ilakꞌoma wola kabꞌaga jaajanda eyaatsen kwa maŋgishats magamila alama kamatigatsama, kagadeera wola kamadada janda badꞌaakꞌogash nilama tso.
+   
+      Mbꞌal Çamakꞌota 19
+      Bꞌaga kowoma haaga etagafalagash maŋgishats gasaanza alama kamayizhilama bacꞌaga tso. Haaga baane kwa haaga etigafalagash maŋgishats gasaanza etipaŋga bala mawotaan maasꞌajilasa metaam gatiga etipaŋa matigama, madꞌabama kamaŋkꞌotama namiidiya kowoma badꞌaakꞌogasha tso.
+   
+      Mbꞌal Çamakꞌota 20
+      
+         
+            Bꞌaga kowoma kamaahonsꞌakꞌwa wola kamatꞌo maahonsꞌakꞌwa kanndowa etadaga daŋgaŋa haaga bacꞌaga tso.
+         
+         
+            Bꞌaga metaam kamaatagaça makúŋkꞌoma kilamaahonsꞌakꞌw kamaafalaashaŋgo tso.
+         
+     
+   
+      Mbꞌal Çamakꞌota 21
+      
+         
+            Bꞌaga kowoma kamafalash mandatsa nilamadada alagafaaleya ala-ebama kanndowa mazhooshama wola kamashilats bꞌaga damandats nilagafaaleya ala-ebama haaga bacꞌaga tso.
+         
+         
+            Bꞌaga kowoma kamadꞌab da etaapaŋgaats kawuraamba etiiga nakꞌo-ebama kowoma haaga bacꞌaga tso.
+         
+         
+            Bꞌaga kowoma kamashilats gafaaleya wola damazhigokꞌw ebama wola kamaashilaatsa wola kamada kamazhigokꞌw ebama haaga bacꞌaga tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 22
+      Bꞌaga metaam eyaal maabꞌushil dakꞌo-eba metaam kamazegaç daaŋgaŋa etiiga nakꞌo-ebama, nadaara alamá wola na-ebanneya kowoma kamaadꞌaakꞌosha kamasꞌa-madada janda kamandatsa kakꞌaꞌakꞌacꞌa alamasꞌa-madada alan, kadamacꞌa wola kadakꞌo-eba alan wola kagadeesa aladakꞌo-eba alan kamafagokꞌoma haaga bacꞌaga tso.
+   
+      Mbꞌal Çamakꞌota 23
+      
+         
+            Bꞌaga kowoma kamadada alamá, kamashilats jinas madada etapaŋga eyaatsen kwa kamadꞌab maanzeça etaapaŋgaats kámadada alama haaga bacꞌaga tso.
+         
+         
+            Bꞌaga kowoma kamadꞌab gaçiita wola lamaana maanzaakꞌoma kamadada etabadaga haaga bacꞌaga tso.
+         
+         
+            Bꞌaga etadaga madada metaam madꞌab gaçiita etadaga maanzaakꞌoma kamadada alama etaapaŋgaats kasꞌe ilakꞌoma wola kadamasꞌa alama haaga bacꞌaga tso.
+         
+         
+            Bꞌaga kowoma kꞌacꞌakꞌacꞌa etapaŋga kamakodama wola kamakodagokꞌw eyaatsen kwa kamaadꞌaba kadazabaaha janda kamayicꞌokꞌw gasaanza etapaŋga yilama haaga bacꞌaga tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 24
+      Bꞌaga kowoma namadada etadaga kowoma kamadꞌabaga maafucꞌakꞌwa kamashaagwa haaga bacꞌaga tso. Haaga baane kwa añjaaha madada etiçꞌaragokꞌwa, madꞌab gaçiita namadada etidaga na-añjaaha maafucꞌakꞌwa wola na-okaMusá wola na-okaziifa badꞌaakꞌogash nilama tso.
+   
+      Mbꞌal Çamakꞌota 25
+      
+         
+            Bꞌaga kowoma kamadꞌabaga da etaapaŋgaats kamaꞌiiya alamá wola kamaꞌiya aladamasꞌa alamá dabawotagaats eyaal damasa, ahowa, masꞌa, dowa alamaam kamaatabꞌatsa etaapaŋgaats kadakꞌo-eba alamá kowoma haaga bicꞌaga tso. Kanndowa janda kwa kamadꞌabaga maanzeça namadada alamá, dowa kamadꞌuutsa alamá, na-añjaaha batidꞌagash madada, na-añjaaha maaŋgaaza kwa haaga bacꞌaga tso.
+         
+         
+            Gaafa dampokꞌw kayida woraçꞌaaçꞌa kamadꞌab maakakasha kamaanzeça haaga bicꞌaga tso. Yida woraçꞌaaçꞌa kowoma etipokꞌoga kaal biyaaŋaaragokꞌw wola bala maaŋaarukꞌon kwa kamaanzaakꞌoma madꞌab maanzeça bagaapaŋgaatsa tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 26
+      
+         
+            Bꞌaga metaam metaam alamaam kasꞌe ilakꞌoma kamadꞌab magamaça haaga bacꞌaga tso. Magamaça alamaatꞌokꞌw masꞌa-magamashama biil-́1 wola alamaatꞌokꞌw masꞌa- magamashama etaapaŋgaats janda bala maçiitaan bara wola gaahaat madꞌabama baapaŋgaatsa tso. Magamaça alamaatꞌokꞌw masꞌa-magamashama biil-́1 maatagaça mada, magamaça alagaaha kwa etaapaŋgaats zanzen mada eyaatsen kwa magamaça alababokꞌw maatꞌokꞌw masꞌa-magamashama kwa etaapaŋgaats kabꞌaga kowoma mada baapaŋgaatsa tso.
+         
+         
+            Magamaça da etaadꞌaakꞌogash kamafagaakꞌwa aladubꞌaga, etabanzhiigagats mashiiçꞌagats haaga alaladubꞌaga kada etaapaŋgaats kádubꞌaga kámadꞌab maafucꞌakꞌwa tso. Magamaça da etabatabꞌagats bꞌaga kamaaŋgamil da, kamaafalasha, kamaanda mazha kada-eba janda, kamahonsꞌakꞌw shooka wola kamaaŋgamila eyaatsen kwa kamaŋaarekꞌw daaŋgaŋa marra baapaŋgaatsa tso.
+         
+         
+            Dakꞌo-eba namasiikꞌoma kamashiilats jiinas magamaça etaapaŋgaats kadiida alamaama haaga biicꞌaga tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 27
+      
+         
+            Bꞌaga kowoma kamandatsa niilagadeesa alama, kamaheesh gadeesa alama eyaatsen kwa kamafagokꞌoma gadeesa aamá haaga bacꞌaga tso.
+         
+         
+            Bꞌaga kowoma kamazeç gasaanza alamá kakꞌacꞌakꞌacꞌa etadagokꞌw kamandatsa kasaayinasa, kaçamakꞌota wola kamagamaꞌela haaga bacꞌaga tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 28
+      Haaga etiŋkꞌotaga niilamaaŋatakꞌwa nala eyaal kꞌo-eba wola eyaal ebanneya kowoma baagyiraga kábꞌaga kowoma tso.
+   
+      Mbꞌal Çamakꞌota 29
+      
+         
+            Bꞌaga kowoma kamafagokꞌw ilakꞌoma wola kamafagokꞌw dakꞌo-ebama bacꞌaga maatagaça tso.
+         
+         
+            Bꞌaga metaam na-añjaaha bagandagats kahaaga alama kwa, bꞌaga metaam metaam alamaam eyaal bagaçꞌaragokꞌw maaŋatakꞌwa mazeç haaga alabꞌaga janda na-añjaaha maahonsꞌakꞌwa kamaꞌiiya alawuraamba kadiimikaraasiya alakꞌo-eba kagashalama baapaŋgaatsa tso.
+         
+         
+            Haaga baane kasꞌe maatagaça alabꞌaga ala-Amerika bala madaan kasꞌe badaga kahaaga aladubꞌaga mazeçama baanzegaaç nabꞌagabꞌaga nakowoma tso.
+         
+      
+   
+      Mbꞌal Çamakꞌota 30
+      Gasaanza etiiŋkꞌotaga niilamaaŋatakꞌwa nabaane macꞌagasama kamaanzhaçama eyaal etaapaŋgaats ka-eba metaam, kámaahonsꞌakꞌwa wola kábꞌaga metaam metaam alamaam, kamafalugashan mabꞌaandokꞌw maayira etabasꞌaga maakoga kahaaga aladubꞌaga kamaaŋgamilama zanzen kamatabꞌats akwa tso.
+   

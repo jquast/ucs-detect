@@ -1,0 +1,226 @@
+Universal Declaration of Human Rights - South Azerbaijani
+© 1996 – 2009 The Office of the High Commissioner for Human Rights
+This plain text version prepared by the “UDHR in Unicode”
+project, https://www.unicode.org/udhr.
+---
+
+İNSAN HAKLARI EVRENSEL BEYANNAMESİ
+      Tüm insanlar eşit vazgeçilemez haklar ve temel özgürlüklerle doğarlar.
+      Birleşmiş Milletler her bireyin insan haklarını desteklemek,tanıtmak ve korumak için taahhüt etmiştir, Bu taahhüt Birleşmiş Milletlerin dünya halklarının temel insan haklarına ve insan onuruna ve değerine olan inancını yeniden teyit eden Şarltlarndan kaynaklıdır
+      Birleşmiş Milletler, İnsan Hakları Evrensel Beyannamesinde herkesin hakkı diğeriyle eşit olduğunu açık ve net olarak belitmiştir
+      Bu hakların sahibi sizsiniz,
+      Bu sizin haklarınızdır.
+      Haklarınızı bilin ve onları kendiniz ve kardeşleriniz için savunmaya yardimci olun.
+   
+      Önsöz
+      Adaletin ve özgürlüğun ve barışın temeli, tüm İnsanlık ailesinin üyelerinde ve eşit haklarıyla bulunan onurun tanınmasiken,
+      Insan haklarını unutup tanınmaması ve hor görülmesi insan vicdanına zarar vererek isyana sevkeden vahşiliklere sebep olmuştur, genel insanların özlem duyduğu amaç bireyin ifade ve inanç özgürlüğüne sahip olduğu ve kendini korkudan ve yoksulluktan kurtardığı bir dünyanın ortaya çıkmasıdır.
+      Yasanın insan haklarını koruması icin ve baskıya karşı son çare olarak ayaklanmaya mecbur kalmaması için esaslı bir zaruret oluriken,
+      Uluslararası dostane ilişkilerin geliştirilmesini teşvik etmek gerekliyken,
+      Birleşmiş Milletler halkları, temel insan haklarına, bireyin haysiyetine ve değerine, kadın ve erkeğin eşit haklarının inancına yeniden teyit etmişiken,daha geniş bir hürriyet içerisinde daha iyi hayat şartları kurmaya karar verdiklerini beyan ederken,
+      Üye Devletler Birleşmiş Milletler Teşkilatı ile insan haklarını ve temel özgürlüklere sürekli uyulmasını sağlamak ve saygı duyulması için işbirliği yapmaya sözü vermişiken,
+      Bu hakların ve özgürlüklerin genel bilincli olmanın önemi bu taahhüdün tam olarak anlamıyla gerçekleştirilmes iken,
+      Birleşmiş Milletler Genel Kurulu :
+      Bütün halklar ve uluslar için bir ortak başarı ölçüsü olarak bu insan Hakları Evrensel Bildirgesini ilan eder;
+      Her birey ve toplumun her organı bu Bildirgeyi daima gözönünde bulundurarak, bu hak ve özgürlüklere saygının yerleşmesini amaçlayan eğitim ve öğretim yoluyla; ve hem üye Devletlerin halklarında hem de egemenlikleri altındaki halklarda bu hak ve özgürlüklerin evrensel ve etkin olarak tanınmasını ve gözetilmesini amaçlayan ulusal ve uluslararası tedrici önlemler alarak çaba göstersinler.
+   
+      Madde 1
+      Tüm insanlar hür döğarlar, hak ve onur bakımından eşit döğarlar, onlar akıl ve vicdana sahiptirler ve birbirlerine karşı kardeşlik ruhu içinde davranmalılar.
+   
+      Madde 2
+      Herkes, bu beyannamede yer alan tüm hak ve özgürlüklerden yararlanmaya ayrımcılıksiz sahiptir. Irk, renk, cinsiyet, dil, din, siyasi görüş veya diğer herhangi bir ak'de, milli veya sosyal menşe, servet, doğuş veya herhangi diğer bir statüye dayalı ayrımcılık gibi olmayacaktır, erkek ve kadın arasında herhangi bir ayrımcılık olmayacaktır.
+      Yukarıdakilere ek olarak, bağımsız memleket uyruğu olsun, vesayet altında bulunan, gayri muhtar veya sair bir egemenlik kayıtlamasına tabi ülke uyruğu olsun, bir şahıs hakkında, uyruğu bulunduğu memleket veya ülkenin siyasi, hukuki veya milletlerarası statüsü bakımından hiçbir ayrılık gözetilmeyecektir.
+  
+      Madde 3
+      Herkesin yaşama, özgürlüğe ve kişi güvenliğine hakkı vardır.
+   
+      Madde 4
+      Hiç kimse kölelik veya esaret altında tutulamaz. Kölelik ve köle ticareti her şeklinde yasaktır.
+   
+      Madde 5
+      Hiç kimse işkenceye, gayriinsani, zor işlemlere veya aşağılayıcı muameleye veya gaddarlığa veya onur kırıcı cezalara tabi tutulamaz.
+   
+      Madde 6
+      Her insan, nerede olursa olsun, hukuk kişiliğin tanınması hakkına sahiptir.
+   
+      Madde 7
+      Tüm insanlar yasa önünde eşittir ve hiçbir ayrım gözetmeksizin tüm korumadan yararlanma hakkına sahiptir,Buna ek olarak, hepsi bu beyanı ve bu tür ayrımcılığa yönelik her türlü kışkırtmaya karşı ihlal eden herhangi bir ayrımcılığa karşı eşit korunma hakkına sahiptir.
+   
+      Madde 8
+      Her kişi, kendisine kanunl ile tanınan temel hakları ihlal eden fiillerin telafi edilmesi için milli mahkemelere müracaat hakkına sahiptir.
+   
+      Madde 9
+      Hiç kimse keyfi olarak tutuklanamaz, alıkonulanamaz veya sürülemez.
+   
+      Madde 10
+      Her insanın, hakları ve yükümlülükleri ve kendisine yöneltilen herhangi bir suç isnadına ilişkin alenen adil görüş açısından, diğerleriyle eşit bir şekilde davasının bağımsız ve tarafsız bir mahkemede görülmesini sağlama hakkı vardır.
+   
+      Madde 11
+      
+         
+            Bir suçla itham edilen her kişi, savunması için gerekli tüm garantilere sahip olduğu açık bir yargılamada kanuna göre suçlu olduğu kanıtlanıncaya kadar masum sayılır.
+         
+         
+            Hiç kimse işlendikleri sırada milli veya milletlerarası hukuka göre suç teşkil etmeyen fiillerden veya ihmallerden ötürü mahkum edilemez. Bunun gibi, suçun işlendiği sırada uygulanabilecek olan cezadan daha şiddetli bir ceza verilemez.
+         
+      
+   
+      Madde 12
+      Hiç kimsenin özel hayatına, ailesine, konutuna veya yazışmalarına keyfi olarak karışılamaz, şeref ve itibarına saldırılamaz. Ve her insanın bu tür müdahalelerden veya kampanyalardan yasa tarafından korunma hakkı vardır.
+   
+      Madde 13
+      
+         
+            Herkes, her bir devletin sınırları içinde serbestçe dolalşma ve yerleşme özgürlüğüne sahiptir.
+         
+         
+            Herkes, kendi ülkesi de dahil, herhangi bir ülkeyi terk etme ve o ülkeye dönme hakkına sahiptir.
+         
+      
+   
+      Madde 14
+      
+         
+            Herkesin başka ülkelere mülteci olma veya zulümden kaçmak için mülteci talepi etme hakkı vardır.
+         
+         
+            Bu haktan, politik olmayan suçlardan yargılanan veya Birleşmiş Milletler'in amaç ve ilkelerine aykırı eylemlerden dolayı faydalanamaz.
+         
+      
+   
+      Madde 15
+      
+         
+            Herkesin bir uyrukluğa hakkı vardır.
+         
+         
+            Hiç kimse keyfi olarak uyrukluğundan ve uyrukluğunu değiştirmek hakkından mahrum edilemez.
+         
+      
+   
+      Madde 16
+      
+         
+            Erkek ve kadın evlilik çağına geldiğinde, cinsiyet ve din nedeniyle herhangi bir kısıtlama olmadan aile kurma ve evlenme hakkına sahip olurlar ve evlilikte, evlilik süresince ve evliliğin sona ermesinde eşit haklara sahiptirler.
+         
+         
+            Evlenmek isteyen iki tarafın tam rızası olmadan evlilik sözleşmesi akdedilmez.
+         
+         
+            Aile, toplumun doğal ve temel unsurudur, toplum ve devlet tarafından korunma hakkına sahiptir.
+         
+      
+   
+      Madde 17
+      
+         
+            Herkesin tek başına veya başkalarıyla birlikte mülkiyete sahip olma hakkı vardır.
+         
+         
+            Hiç kimse mal ve mülkünden keyfi olarak mahrum edilemez.
+         
+      
+   
+      Madde 18
+      Herkes düşünce, vicdan ve din özgürlük hakkına sahiptir ve bu hak, dinini veya inancını değiştirme özgürlüğünü ve bunları eğitimle, uygulamayla ve ritüeller kurulmasıyla ve bunları gizlice veya açıkça, tek başına ya da topluca ifade etme özgürlüğünü içerir.
+   
+      Madde 19
+      Herkesin görüş ve ifade özgürlüğü hakkı vardır ve bu hak, memleket coğrafi sınırlarla kısıtlanmaksızın ve müdahale olmaksızın kanaat sahibi olma, haber ve fikirleri alma ve bunları bir ortamda herhangi bir mecrada yayınlama özgürlüğünü içerir.
+   
+      Madde 20
+      
+         
+            Herkesin barışçıl derneklere ve gruplara katılma özgürlük hakkı vardır.
+         
+         
+            Hiç kimse bir derneğe mensup olmaya zorlanamaz.
+         
+     
+   
+      Madde 21
+      
+         
+            Herkes, doğrudan veya serbestçe seçilmiş temsilciler aracılığıyla, ülkesinin kamu işlerinin yönetimine katılma hakkına sahiptir.
+         
+         
+            Herkesin,ülkede bir kamu görevine sahip olma hakkı aynıdır.
+         
+         
+            Halkın iradesi, hükümet otoritesinin kaynağıdır ve bu irade, gizli oylama temelinde ve herkes için eşit olarak yapılan periyodik adil seçimlerle veya oylama özgürlüğünü garanti benzer herhangi prosedüre göre ifade edilebilir.
+         
+      
+   
+      Madde 22
+      Toplumun bir üyesi olarak herkesin sosyal güvenlik hakkı olmalı ve Ekonomik, sosyal ve eğitimsel hakları olmalı (onuru ve kişiliğinin özgür büyümesi için vazgeçilmezdir) ve bu haklar her devletin sistemlerine ve kaynaklarına uygun olarak ulusal çabalar ve uluslararası işbirliği ile elde edilir.
+   
+      Madde 23
+      
+         
+            Herkes, çalışma hakkına, adil ve elverişli koşullarda seçme özgürlüğüne ve işsizlikten korunma hakkına sahiptir.
+         
+         
+            Herkesin, hiçbir ayrım gözetilmeksizin, eşit iş karşılığında eşit ücrete hakkı vardır.
+         
+         
+            Çalışan her kimsenin kendisine ve ailesine insanlık haysiyetine uygun bir yaşayış sağlayan ve gerekirse her türlü sosyal koruma vasıtalarıyla da tamamlanan adil ve elverişli bir ücrete hakkı vardır.
+         
+         
+            Herkesin menfaatlerinin korunmasi için sendikalar kurmaya ve bunlara katılmaya hakkı vardır.
+         
+      
+   
+      Madde 24
+      Herkesin dinlenmeye ve eğlenmeye hakkı vardır, bilhassa çalışma müddetinin makul surette sınırlandırılmasına ve muayyen devrelerde ücretli tatillere hakkı vardır.
+   
+      Madde 25
+      
+         
+            Herkesin kendisinin ve ailesinin sağlık ve refahı için beslenme, giyim, konut ve tıbbi bakım hakkı vardır. Herkes, işsizlik, hastalık, dulluk, yaşlılık ve kendi iradesi dışındaki koşullardan doğan geçim sıkıntısı durumunda güvenlik hakkına sahiptir.
+         
+         
+            Anaların ve çocukların özel bakım ve yardım görme hakları vardır. Bütün çocuklar, evlilik içi veya evlilik dışı doğmuş olsunlar, aynı sosyal güvenceden yararlanırlar.
+         
+      
+   
+      Madde 26
+      
+         
+            Her şahsın öğrenim hakkı vardır. Öğrenim hiç olmazsa ilk ve temel safhalarında parasızdır. İlk öğretim mecburidir. Teknik ve mesleki öğretimden herkes istifade edebilmelidir. Yüksek öğretim, liyakatlerine göre herkese tam eşitlikle açık olmalıdır.
+         
+         
+            Öğretim insan şahsiyetinin tam gelişmesini ve insan haklarıyla ana hürriyetlerine saygının kuvvetlenmesini hedef almalıdır. Öğretim bütün milletler, ırk ve din grupları arasında anlayış, hoşgörü ve dostluğu teşvik etmeli ve Birleşmiş Milletlerin barışın idamesi yolundaki çalışmalarını geliştirmelidir.
+         
+         
+            Ana baba, çocuklarına verilecek eğitim türünü seçmek hakkını öncelikle sahiptirler.
+         
+      
+   
+      Madde 27
+      
+         
+            Herkes, kültür topluluğu yaşamına özgürce katılma, güzel sanatlardan yararlanma, bilimsel gelişmeye katkıda bulunma ve sonuçlarından yararlanma hakkına sahiptir.
+         
+         
+            Herkesin yarattığı, her türlü bilim, edebiyat veya sanat eserlerinden mütevellit manevi ve maddi menfaatlerin korunmasına hakkı vardır.
+         
+      
+   
+      Madde 28
+      Herkes, bu bildirgede derpiş edilen hak ve özgürlüklerin tam olarak gerçekleştirildiği uluslararası bir sosyal düzenden yararlanma hakkına sahiptir.
+   
+      Madde 29
+      
+         
+            Demokratik bir toplumda kişi, hak ve özgürlüklerini kullanırken, başkalarının hak ve özgürlüklerinin tanınmasını ve bunlara saygı duyulmasını sağlamak ve kamu düzeninin, kamu yararı ve ahlakının haklı gereklerini yerine getirmek için yalnızca kanunla belirlenen kısıtlamalara tabidir.
+         
+         
+            Her şahsın, şahsiyetinin serbest ve tam gelişmesi ancak bir topluluk içinde mümkündür ve şahsın bu topluluğa karşı gör.
+         
+         
+            Bu haklar hiçbir şekilde Birleşmiş Milletlerin amaç ve ilkelerine aykırı bir uygulamada kullanılamaz.
+         
+      
+   
+      Madde 30
+      Bu beyannamede, bir devlete, gruba veya bireye, burada yer alan hak ve özgürlükleri baltalamaya yönelik bir faaliyette bulunma veya çalışma yapma hakkı verdiği şeklinde yorumlanabilecek bir metin yoktur.
+   
