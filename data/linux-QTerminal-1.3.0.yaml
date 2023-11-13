@@ -1,7 +1,7 @@
-datetime: 2023-11-12 14:19:25 UTC
+datetime: 2023-11-13 16:46:51 UTC
 height: 30
 python_version: 3.12.0
-seconds_elapsed: 1307.496793499915
+seconds_elapsed: 313.8197973337956
 session_arguments:
   limit_codepoints: 5000
   limit_errors: 500
@@ -4317,64 +4317,10 @@ test_results:
       n_total: 2128
       pct_success: 100.0
     Hmong Njua:
-      failed:
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: zhid
-      - delta_ypos: -19
-        measured_by_terminal: -23
-        measured_by_wcwidth: 6
-        wchars: nyaob.
-      - measured_by_terminal: 6
-        measured_by_wcwidth: 5
-        wchars: (Aob)
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: Cuat
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: cut
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 4
-        wchars: muax
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 5
-        wchars: njeuf
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: renf
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: hox
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: ib
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 3
-        wchars: lob
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 4
-        wchars: juab
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: mol
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 4
-        wchars: baob
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: guax
-      - delta_ypos: -1
-        measured_by_terminal: 92
-        measured_by_wcwidth: 3
-        wchars: nil
-      - delta_ypos: 1
-        measured_by_terminal: 3
-        measured_by_wcwidth: 3
-        wchars: lob
-      n_errors: 17
-      n_total: 2800
-      pct_success: 99.39285714285714
+      failed: []
+      n_errors: 0
+      n_total: 2801
+      pct_success: 100.0
     Hmong, Northern Qiandong:
       failed: []
       n_errors: 0
@@ -5889,5 +5835,5 @@ test_results:
       pct_success: 100.0
   unicode_wide_version: 15.1.0
 version: 1.3.0
-wcwidth_version: 0.2.10
+wcwidth_version: 0.2.9
 width: 103
