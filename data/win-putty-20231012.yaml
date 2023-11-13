@@ -4075,7 +4075,7 @@ test_results:
       n_errors: 100
       n_total: 100
       pct_success: 0.0
-  emoji_zwj_version: '2.0'
+  emoji_zwj_version: null
   language_results:
     (Bizisa):
       failed: []
