@@ -153,11 +153,11 @@ def test_language_support(
                 # fetch cursor position
                 end_ypos, end_xpos = term.get_location(timeout=timeout)
                 if (-1, -1) == (end_ypos, end_xpos):
-                    # timeout
+                    # exit on timeout
                     display_timeout_error(
                         term, writer, timeout, orig_xpos, top, bottom, lang
                     )
-                    continue
+                    sys.exit(1)
 
                 # measure distance
                 delta_xpos = end_xpos - start_xpos
@@ -225,10 +225,10 @@ def determine_simple_rtt_ms(term, timeout) -> float:
 def display_timeout_error(term, writer, timeout, orig_xpos, top, bottom, lang):
     writer(term.csr(0, term.height) + term.move_yx(top - 1, orig_xpos) + term.clear_eos)
     writer(term.reverse_red(f"Timeout Exceeded ({timeout:.2f}s)"))
-    term.inkey(timeout=1)
-    writer(term.move_yx(top - 1, orig_xpos) + term.clear_eos)
-    writer(f" ({lang})" + term.clear_eos)
-    writer(term.csr(top, bottom) + term.move_yx(top, 0) + term.clear_eos())
+#    term.inkey(timeout=10)
+#    writer(term.move_yx(top - 1, orig_xpos) + term.clear_eos)
+#    writer(f" ({lang})" + term.clear_eos)
+#    writer(term.csr(top, bottom) + term.move_yx(top, 0) + term.clear_eos())
 
 
 def display_args(arguments):
@@ -456,7 +456,7 @@ def determine_best_match(
     for pct_success, value_version, str_version in results:
         if pct_success >= lbound_pct and value_version > best_match[1]:
             best_match = (pct_success, value_version, str_version)
-    return best_match[2] if best_match[0] > 0 else None
+    return best_match[2] if best_match[0] > lbound_pct else None
 
 
 def init_term(stream, quick):
@@ -511,15 +511,11 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         print("ucs-detect: Unicode Version could not be determined!", file=sys.stderr)
         sys.exit(1)
     else:
-        # determine timeout as seconds, but multiply by 100 (!), this is because
-        # some terminals have a bit of a barf with many wide characters, try to
-        # dynamically generate a reasonable timeout period clamped between
-        # 0.50s and 3.0s
-        timeout = min(max(0.50, (rtt_ms / 1000) * 100), 3.0)
+        # once calibrated, use a very long timeout, some terminals have slowdown
+        # difficulties with combining characters during language testing
+        timeout = 10
         if not shell:
-            writer(
-                f"\nucs-detect: Interactive terminal detected ! (rtt={rtt_ms:.2f}ms, timeout={int(timeout * 1000):n}ms)"
-            )
+            writer(f"\nucs-detect: Interactive terminal detected ! (rtt={rtt_ms:.2f}ms, timeout={int(timeout):n}s)")
 
     # test full-wide unicode table
     if not shell:
