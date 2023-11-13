@@ -43,7 +43,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  Cn                  2  na
 =========================================  =========  ==========  =========  ======
 
-None
+Total codepoints: 1
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -93,7 +94,8 @@ Codepoint                                          Python         Category      
 `U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
 =================================================  =============  ==========  =========  ======================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -118,9 +120,9 @@ All codepoint combinations with Variation Selector-16 tested were successful.
 Language Support
 ++++++++++++++++
 
-The following 110 languages were tested with 100% success:
+The following 94 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Bulgarian, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Cree, Swampy, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Garifuna, Gen, Gilyak, Greek (polytonic), Gujarati, Gumuz, Hindi, Hmong Njua, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pijin, Pular, Pular (Adlam), Purepecha, Quechua, Cusco, Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Seselwa Creole French, Shan, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular, Pular (Adlam), Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Shan, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 5 languages are not fully supported:
 
@@ -161,7 +163,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0D2F <https://codepoints.net/U+0D2F>`_  '\\u0d2f'  Lo                  1  MALAYALAM LETTER YA
 =========================================  =========  ==========  =========  =======================
 
-None
+Total codepoints: 17
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -191,7 +194,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0DBA <https://codepoints.net/U+0DBA>`_  '\\u0dba'  Lo                  1  SINHALA LETTER YAYANNA
 =========================================  =========  ==========  =========  =================================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -223,7 +227,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 11
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -255,7 +260,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+094B <https://codepoints.net/U+094B>`_  '\\u094b'  Mc                  0  DEVANAGARI VOWEL SIGN O
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 11
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -287,7 +293,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
 =========================================  =========  ==========  =========  =====================
 
-None
+Total codepoints: 11
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -299,5 +306,5 @@ None
   while *Kovid Goyle's kitty* measures width 6.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
-.. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/
+.. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html
 .. _`ucs-detect`: https://github.com/jquast/ucs-detect

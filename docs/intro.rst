@@ -125,6 +125,9 @@ companion article, https://www.jeffquast.com/post/terminal_wcwidth_solution/
 History
 =======
 
+- 1.0.4 (2023-11-13): Add support for Emoji with VS-16 and more complete testing.
+  Published test results.
+
 - 1.0.3 (2023-10-28): Drop python 2 support. Add more advanced testing. Changes
   default behavior when called without arguments, use ``ucs-detect --quick
   --shell`` to use the new release with matching previous release behavior.

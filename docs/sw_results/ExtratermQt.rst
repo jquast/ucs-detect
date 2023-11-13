@@ -43,7 +43,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  Cn                  2  na
 =========================================  =========  ==========  =========  ======
 
-None
+Total codepoints: 1
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -93,7 +94,8 @@ Codepoint                                          Python         Category      
 `U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
 =================================================  =============  ==========  =========  ======================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -118,9 +120,9 @@ All codepoint combinations with Variation Selector-16 tested were successful.
 Language Support
 ++++++++++++++++
 
-The following 26 languages were tested with 100% success:
+The following 10 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Bulgarian, Cherokee (cased), Cree, Swampy, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hmong Njua, Idoma, Kabardian, Nuosu, Pijin, Pular, Purepecha, Quechua, Cusco, Seselwa Creole French, Sorbian, Upper, Sukuma, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Walloon, Yukaghir, Northern.
+Adyghe, Cherokee (cased), Idoma, Kabardian, Nuosu, Pular, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Yukaghir, Northern.
 
 The following 89 languages are not fully supported:
 
@@ -323,7 +325,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+A9C9 <https://codepoints.net/U+A9C9>`_  '\\ua9c9'  Po                  1  JAVANESE PADA LUNGSI
 =========================================  =========  ==========  =========  ==========================
 
-None
+Total codepoints: 95
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -353,7 +356,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0783 <https://codepoints.net/U+0783>`_  '\\u0783'  Lo                  1  THAANA LETTER RAA
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -378,7 +382,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0BA4 <https://codepoints.net/U+0BA4>`_  '\\u0ba4'  Lo                  1  TAMIL LETTER TA
 =========================================  =========  ==========  =========  ==================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -403,7 +408,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0BA4 <https://codepoints.net/U+0BA4>`_  '\\u0ba4'  Lo                  1  TAMIL LETTER TA
 =========================================  =========  ==========  =========  ==================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -440,7 +446,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+102C <https://codepoints.net/U+102C>`_  '\\u102c'  Mc                  0  MYANMAR VOWEL SIGN AA
 =========================================  =========  ==========  =========  ================================
 
-None
+Total codepoints: 16
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -471,7 +478,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+103A <https://codepoints.net/U+103A>`_  '\\u103a'  Mn                  0  MYANMAR SIGN ASAT
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 10
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -507,7 +515,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+1087 <https://codepoints.net/U+1087>`_  '\\u1087'  Mc                  0  MYANMAR SIGN SHAN TONE-2
 =========================================  =========  ==========  =========  ================================
 
-None
+Total codepoints: 15
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -569,7 +578,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0F0D <https://codepoints.net/U+0F0D>`_  '\\u0f0d'  Po                  1  TIBETAN MARK SHAD
 =========================================  =========  ==========  =========  ================================
 
-None
+Total codepoints: 41
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -594,7 +604,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0AB5 <https://codepoints.net/U+0AB5>`_  '\\u0ab5'  Lo                  1  GUJARATI LETTER VA
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -655,7 +666,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0F0D <https://codepoints.net/U+0F0D>`_  '\\u0f0d'  Po                  1  TIBETAN MARK SHAD
 =========================================  =========  ==========  =========  ==================================
 
-None
+Total codepoints: 40
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -705,7 +717,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0D28 <https://codepoints.net/U+0D28>`_  '\\u0d28'  Lo                  1  MALAYALAM LETTER NA
 =========================================  =========  ==========  =========  =======================
 
-None
+Total codepoints: 29
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -732,7 +745,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0947 <https://codepoints.net/U+0947>`_  '\\u0947'  Mn                  0  DEVANAGARI VOWEL SIGN E
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -757,7 +771,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0CB5 <https://codepoints.net/U+0CB5>`_  '\\u0cb5'  Lo                  1  KANNADA LETTER VA
 =========================================  =========  ==========  =========  =====================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -800,7 +815,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+1A32 <https://codepoints.net/U+1A32>`_  '\\u1a32'  Lo                  1  TAI THAM LETTER HIGH TA
 =========================================  =========  ==========  =========  ===========================
 
-None
+Total codepoints: 22
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -857,7 +873,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+179F <https://codepoints.net/U+179F>`_  '\\u179f'  Lo                  1  KHMER LETTER SA
 =========================================  =========  ==========  =========  ===================
 
-None
+Total codepoints: 36
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -890,7 +907,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
 =========================================  =========  ==========  =========  =====================
 
-None
+Total codepoints: 12
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -924,7 +942,8 @@ Codepoint                                          Python         Category      
 `U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
 =================================================  =============  ==========  =========  ====================
 
-None
+Total codepoints: 13
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -958,7 +977,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0C32 <https://codepoints.net/U+0C32>`_  '\\u0c32'  Lo                  1  TELUGU LETTER LA
 =========================================  =========  ==========  =========  ====================
 
-None
+Total codepoints: 13
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -983,7 +1003,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1018,7 +1039,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0902 <https://codepoints.net/U+0902>`_  '\\u0902'  Mn                  0  DEVANAGARI SIGN ANUSVARA
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 14
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1053,7 +1075,8 @@ Codepoint                                          Python         Category      
 `U+00011302 <https://codepoints.net/U+00011302>`_  '\\U00011302'  Mc                  0  GRANTHA SIGN ANUSVARA
 =================================================  =============  ==========  =========  =====================
 
-None
+Total codepoints: 14
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1079,7 +1102,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0940 <https://codepoints.net/U+0940>`_  '\\u0940'  Mc                  0  DEVANAGARI VOWEL SIGN II
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1104,7 +1128,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1129,7 +1154,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0DC0 <https://codepoints.net/U+0DC0>`_  '\\u0dc0'  Lo                  1  SINHALA LETTER VAYANNA
 =========================================  =========  ==========  =========  ==============================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1156,7 +1182,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0A40 <https://codepoints.net/U+0A40>`_  '\\u0a40'  Mc                  0  GURMUKHI VOWEL SIGN II
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1187,7 +1214,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0930 <https://codepoints.net/U+0930>`_  '\\u0930'  Lo                  1  DEVANAGARI LETTER RA
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 10
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1237,7 +1265,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0E19 <https://codepoints.net/U+0E19>`_  '\\u0e19'  Lo                  1  THAI CHARACTER NO NU
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 29
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1266,7 +1295,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 8
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1316,7 +1346,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0E19 <https://codepoints.net/U+0E19>`_  '\\u0e19'  Lo                  1  THAI CHARACTER NO NU
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 29
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1347,7 +1378,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0930 <https://codepoints.net/U+0930>`_  '\\u0930'  Lo                  1  DEVANAGARI LETTER RA
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 10
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1373,7 +1405,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1398,7 +1431,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+1714 <https://codepoints.net/U+1714>`_  '\\u1714'  Mn                  0  TAGALOG SIGN VIRAMA
 =========================================  =========  ==========  =========  ===================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1430,7 +1464,8 @@ Codepoint                                          Python         Category      
 `U+0038 <https://codepoints.net/U+0038>`_          '8'            Nd                  1  DIGIT EIGHT
 =================================================  =============  ==========  =========  ===========================
 
-None
+Total codepoints: 11
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1461,7 +1496,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0E99 <https://codepoints.net/U+0E99>`_  '\\u0e99'  Lo                  1  LAO LETTER NO
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 10
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1491,7 +1527,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
 =========================================  =========  ==========  =========  ===========================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1525,7 +1562,8 @@ Codepoint                                          Python         Category      
 `U+0001E909 <https://codepoints.net/U+0001E909>`_  '\\U0001e909'  Lu                  1  ADLAM CAPITAL LETTER E
 =================================================  =============  ==========  =========  =========================
 
-None
+Total codepoints: 13
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1557,7 +1595,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+05E2 <https://codepoints.net/U+05E2>`_  '\\u05e2'  Lo                  1  HEBREW LETTER AYIN
 =========================================  =========  ==========  =========  ==================================
 
-None
+Total codepoints: 11
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1582,7 +1621,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1617,7 +1657,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+043B <https://codepoints.net/U+043B>`_  '\\u043b'  Ll                  1  CYRILLIC SMALL LETTER EL
 =========================================  =========  ==========  =========  ===========================
 
-None
+Total codepoints: 14
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1647,7 +1688,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+025B <https://codepoints.net/U+025B>`_  '\\u025b'  Ll                  1  LATIN SMALL LETTER OPEN E
 =========================================  =========  ==========  =========  ==========================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1672,7 +1714,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+AA89 <https://codepoints.net/U+AA89>`_  '\\uaa89'  Lo                  1  TAI VIET LETTER HIGH NGO
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1697,7 +1740,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0306 <https://codepoints.net/U+0306>`_  '\\u0306'  Mn                  0  COMBINING BREVE
 =========================================  =========  ==========  =========  ==========================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1725,7 +1769,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0443 <https://codepoints.net/U+0443>`_  '\\u0443'  Ll                  1  CYRILLIC SMALL LETTER U
 =========================================  =========  ==========  =========  ==========================
 
-None
+Total codepoints: 7
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1755,7 +1800,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
 =========================================  =========  ==========  =========  ====================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1781,7 +1827,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
 =========================================  =========  ==========  =========  ===================================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1812,7 +1859,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 10
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1839,7 +1887,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+004E <https://codepoints.net/U+004E>`_  'N'        Lu                  1  LATIN CAPITAL LETTER N
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1865,7 +1914,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
 =========================================  =========  ==========  =========  =====================================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1891,7 +1941,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
 =========================================  =========  ==========  =========  ===============================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1918,7 +1969,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
 =========================================  =========  ==========  =========  ===================================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1950,7 +2002,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+014B <https://codepoints.net/U+014B>`_  '\\u014b'  Ll                  1  LATIN SMALL LETTER ENG
 =========================================  =========  ==========  =========  ================================
 
-None
+Total codepoints: 11
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -1979,7 +2032,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0331 <https://codepoints.net/U+0331>`_  '\\u0331'  Mn                  0  COMBINING MACRON BELOW
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 8
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2006,7 +2060,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0327 <https://codepoints.net/U+0327>`_  '\\u0327'  Mn                  0  COMBINING CEDILLA
 =========================================  =========  ==========  =========  ====================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2036,7 +2091,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
 =========================================  =========  ==========  =========  ================================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2061,7 +2117,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
 =========================================  =========  ==========  =========  ====================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2087,7 +2144,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+1821 <https://codepoints.net/U+1821>`_  '\\u1821'  Lo                  1  MONGOLIAN LETTER E
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2114,7 +2172,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2144,7 +2203,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0105 <https://codepoints.net/U+0105>`_  '\\u0105'  Ll                  1  LATIN SMALL LETTER A WITH OGONEK
 =========================================  =========  ==========  =========  ================================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2176,7 +2236,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0054 <https://codepoints.net/U+0054>`_  'T'        Lu                  1  LATIN CAPITAL LETTER T
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 11
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2210,7 +2271,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+030C <https://codepoints.net/U+030C>`_  '\\u030c'  Mn                  0  COMBINING CARON
 =========================================  =========  ==========  =========  =====================================
 
-None
+Total codepoints: 13
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2240,7 +2302,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0075 <https://codepoints.net/U+0075>`_  'u'        Ll                  1  LATIN SMALL LETTER U
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2268,7 +2331,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0710 <https://codepoints.net/U+0710>`_  '\\u0710'  Lo                  1  SYRIAC LETTER ALAPH
 =========================================  =========  ==========  =========  ====================
 
-None
+Total codepoints: 7
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2294,7 +2358,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0654 <https://codepoints.net/U+0654>`_  '\\u0654'  Mn                  0  ARABIC HAMZA ABOVE
 =========================================  =========  ==========  =========  =======================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2324,7 +2389,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0049 <https://codepoints.net/U+0049>`_  'I'        Lu                  1  LATIN CAPITAL LETTER I
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2353,7 +2419,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
 =========================================  =========  ==========  =========  ====================
 
-None
+Total codepoints: 8
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2376,7 +2443,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 2
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2401,7 +2469,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2427,7 +2496,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0654 <https://codepoints.net/U+0654>`_  '\\u0654'  Mn                  0  ARABIC HAMZA ABOVE
 =========================================  =========  ==========  =========  =======================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2458,7 +2528,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0254 <https://codepoints.net/U+0254>`_  '\\u0254'  Ll                  1  LATIN SMALL LETTER OPEN O
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 10
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2482,7 +2553,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 3
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2509,7 +2581,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0650 <https://codepoints.net/U+0650>`_  '\\u0650'  Mn                  0  ARABIC KASRA
 =========================================  =========  ==========  =========  ==================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2536,7 +2609,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0650 <https://codepoints.net/U+0650>`_  '\\u0650'  Mn                  0  ARABIC KASRA
 =========================================  =========  ==========  =========  ==================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2562,7 +2636,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2589,7 +2664,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0331 <https://codepoints.net/U+0331>`_  '\\u0331'  Mn                  0  COMBINING MACRON BELOW
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2618,7 +2694,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0331 <https://codepoints.net/U+0331>`_  '\\u0331'  Mn                  0  COMBINING MACRON BELOW
 =========================================  =========  ==========  =========  ===================================
 
-None
+Total codepoints: 8
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2645,7 +2722,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2675,7 +2753,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
 =========================================  =========  ==========  =========  ====================
 
-None
+Total codepoints: 9
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2702,7 +2781,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0331 <https://codepoints.net/U+0331>`_  '\\u0331'  Mn                  0  COMBINING MACRON BELOW
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2729,7 +2809,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+062F <https://codepoints.net/U+062F>`_  '\\u062f'  Lo                  1  ARABIC LETTER DAL
 =========================================  =========  ==========  =========  ==================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2755,7 +2836,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2780,7 +2862,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+06CC <https://codepoints.net/U+06CC>`_  '\\u06cc'  Lo                  1  ARABIC LETTER FARSI YEH
 =========================================  =========  ==========  =========  =======================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2804,7 +2887,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 3
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2830,7 +2914,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
 =========================================  =========  ==========  =========  ====================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2857,7 +2942,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+006C <https://codepoints.net/U+006C>`_  'l'        Ll                  1  LATIN SMALL LETTER L
 =========================================  =========  ==========  =========  ======================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2883,7 +2969,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 5
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2912,7 +2999,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
 =========================================  =========  ==========  =========  ===============================
 
-None
+Total codepoints: 8
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2939,7 +3027,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+064B <https://codepoints.net/U+064B>`_  '\\u064b'  Mn                  0  ARABIC FATHATAN
 =========================================  =========  ==========  =========  ==================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2966,7 +3055,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+002E <https://codepoints.net/U+002E>`_  '.'        Po                  1  FULL STOP
 =========================================  =========  ==========  =========  =========================
 
-None
+Total codepoints: 6
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -2991,7 +3081,8 @@ Codepoint                                  Python     Category      wcwidth  Nam
 `U+06D2 <https://codepoints.net/U+06D2>`_  '\\u06d2'  Lo                  1  ARABIC LETTER YEH BARREE
 =========================================  =========  ==========  =========  ========================
 
-None
+Total codepoints: 4
+
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
@@ -3003,5 +3094,5 @@ None
   while *ExtratermQt* measures width 4.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
-.. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/
+.. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html
 .. _`ucs-detect`: https://github.com/jquast/ucs-detect

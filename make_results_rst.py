@@ -51,7 +51,7 @@ def make_unicode_codepoint(wchar):
 
 def display_common_hyperlinks():
     print(".. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html")
-    print(".. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/")
+    print(".. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html")
     print(".. _`ucs-detect`: https://github.com/jquast/ucs-detect")
 
 def make_link(text):
@@ -287,6 +287,8 @@ def show_wchar(wchar):
     ]
     print(tabulate.tabulate(wchar_records, headers="keys", tablefmt="rst"))
     print()
+    print("Total codepoints:", len(wchar_raw))
+    print()
 
 
 def display_common_languages(all_successful_languages):
@@ -464,7 +466,7 @@ def show_record_failure(sw_name, whatis, fail_record):
     as_printf_hex = make_printf_hex(wchars)
     print(f"Sequence {whatis} from midpoint of alignment failure records:")
     print()
-    print(show_wchar(wchars))
+    show_wchar(wchars)
     print()
     print(f"- Shell test using `printf(1)`_, ``'|'`` should align in output::")
     print()
