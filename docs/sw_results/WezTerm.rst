@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'             1         26  96.2%
-'5.2.0'            88        269  67.3%
-'6.0.0'             0         13  100.0%
-'9.0.0'           250       5000  95.0%
 '10.0.0'            0        735  100.0%
 '11.0.0'            0         62  100.0%
 '12.0.0'            0         62  100.0%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'            0         41  100.0%
 '15.0.0'            0         15  100.0%
 '15.1.0'            5          5  0.0%
+'5.1.0'             1         26  96.2%
+'5.2.0'            88        269  67.3%
+'6.0.0'             0         13  100.0%
+'9.0.0'           250       5000  95.0%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'               0         22  100.0%
-'4.0'               0        579  100.0%
-'5.0'               0        100  100.0%
 '11.0'              0         73  100.0%
 '12.0'              0        112  100.0%
 '12.1'              0        165  100.0%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'              0         20  100.0%
 '15.0'              0          1  100.0%
 '15.1'              0        109  100.0%
+'2.0'               0         22  100.0%
+'4.0'               0        579  100.0%
+'5.0'               0        100  100.0%
 =========  ==========  =========  =============
 
 .. _WezTermvs16:
@@ -113,9 +113,9 @@ None
 Language Support
 ++++++++++++++++
 
-The following 111 languages were tested with 100% success:
+The following 94 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Azerbaijani, North (Latin), Baatonum, Bamun, Belarusan, Bhojpuri, Bora, Burmese, Cashinahua, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Chinese, Yue, Crimean Tatar, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Garifuna, Gilyak, Gujarati, Gumuz, Hausa, Hindi, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Ladino, Lamnso', Lao, Latin (1), Lingala (tones), Magahi, Maithili, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Montenegrin, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Secoya, Seraiki, Serer-Sine, Shan, Siona, Sorbian, Upper, South Azerbaijani, Swati, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Uzbek, Northern (Cyrillic), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Garifuna, Gilyak, Gujarati, Gumuz, Hindi, Hmong Njua, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular, Quechua, Cusco, Secoya, Seraiki, Serer-Sine, Shan, Siona, Sorbian, Upper, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 21 languages are not fully supported:
 

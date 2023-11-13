@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'             0         26  100.0%
-'5.2.0'            79        269  70.6%
-'6.0.0'             0         13  100.0%
-'9.0.0'             0       5000  100.0%
 '10.0.0'           36        735  95.1%
 '11.0.0'            3         62  95.2%
 '12.0.0'            3         62  95.2%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'            2         41  95.1%
 '15.0.0'            0         15  100.0%
 '15.1.0'            5          5  0.0%
+'5.1.0'             0         26  100.0%
+'5.2.0'            79        269  70.6%
+'6.0.0'             0         13  100.0%
+'9.0.0'             0       5000  100.0%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'              22         22  0.0%
-'4.0'             500        500  0.0%
-'5.0'             100        100  0.0%
 '11.0'             73         73  0.0%
 '12.0'            112        112  0.0%
 '12.1'            165        165  0.0%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              1          1  0.0%
 '15.1'            109        109  0.0%
+'2.0'              22         22  0.0%
+'4.0'             500        500  0.0%
+'5.0'             100        100  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 15.1, from midpoint of alignment failure records:
@@ -118,9 +118,9 @@ All codepoint combinations with Variation Selector-16 tested were successful.
 Language Support
 ++++++++++++++++
 
-The following 44 languages were tested with 100% success:
+The following 27 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Azerbaijani, North (Latin), Belarusan, Bulgarian, Cashinahua, Cherokee (cased), Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Latin (1), Montenegrin, Nuosu, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Seselwa Creole French, Sorbian, Upper, Sukuma, Swati, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Uzbek, Northern (Cyrillic), Vai, Vietnamese (Han nom), Walloon, Yukaghir, Northern.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Bulgarian, Cherokee (cased), Cree, Swampy, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hmong Njua, Idoma, Kabardian, Nuosu, Pijin, Pular, Purepecha, Quechua, Cusco, Seselwa Creole French, Sorbian, Upper, Sukuma, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Vietnamese (Han nom), Walloon, Yukaghir, Northern.
 
 The following 88 languages are not fully supported:
 

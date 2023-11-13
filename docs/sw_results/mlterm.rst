@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'             0         26  100.0%
-'5.2.0'            78        269  71.0%
-'6.0.0'             0         13  100.0%
-'9.0.0'             0       5000  100.0%
 '10.0.0'           73        735  90.1%
 '11.0.0'            6         62  90.3%
 '12.0.0'            6         62  90.3%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'            4         41  90.2%
 '15.0.0'            1         15  93.3%
 '15.1.0'            5          5  0.0%
+'5.1.0'             0         26  100.0%
+'5.2.0'            78        269  71.0%
+'6.0.0'             0         13  100.0%
+'9.0.0'             0       5000  100.0%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 15.0.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'              22         22  0.0%
-'4.0'             500        500  0.0%
-'5.0'             100        100  0.0%
 '11.0'             73         73  0.0%
 '12.0'            112        112  0.0%
 '12.1'            165        165  0.0%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              1          1  0.0%
 '15.1'            109        109  0.0%
+'2.0'              22         22  0.0%
+'4.0'             500        500  0.0%
+'5.0'             100        100  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 15.1, from midpoint of alignment failure records:
@@ -137,9 +137,9 @@ None
 Language Support
 ++++++++++++++++
 
-The following 115 languages were tested with 100% success:
+The following 98 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Azerbaijani, North (Latin), Baatonum, Bamun, Belarusan, Bhojpuri, Bora, Bulgarian, Burmese, Cashinahua, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Fon, Fur, Ga, Gen, Gilyak, Greek (polytonic), Gujarati, Gumuz, Hausa, Hindi, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Khmer, Central, Khün, Ladino, Lamnso', Lao, Latin (1), Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Montenegrin, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Pashto, Northern, Picard, Pijin, Pular, Pular (Adlam), Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Seselwa Creole French, Shan, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Swati, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Ticuna, Uduk, Uzbek, Northern (Cyrillic), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yoruba, Yukaghir, Northern, Éwé.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Bulgarian, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Cree, Swampy, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Fon, Fur, Ga, Gen, Gilyak, Greek (polytonic), Gujarati, Gumuz, Hindi, Hmong Njua, Idoma, Kabardian, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Pashto, Northern, Picard, Pijin, Pular, Pular (Adlam), Purepecha, Quechua, Cusco, Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Seselwa Creole French, Shan, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Ticuna, Uduk, Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 17 languages are not fully supported:
 

@@ -290,13 +290,14 @@ def show_wchar(wchar):
 
 
 def display_common_languages(all_successful_languages):
-    display_title("Common Language support", 2)
-    print("The following languages were successfull")
-    print("with all terminals emulators tested,")
-    print("and will not be reported:")
-    print()
-    print(", ".join(sorted(all_successful_languages)) + ".")
-    print()
+    if all_successful_languages:
+        display_title("Common Language support", 2)
+        print("The following languages were successfull")
+        print("with all terminals emulators tested,")
+        print("and will not be reported:")
+        print()
+        print("\n".join(sorted(all_successful_languages)) + ".")
+        print()
 
 
 def show_software_header(entry, sw_name):

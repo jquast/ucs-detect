@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'             0         26  100.0%
-'5.2.0'            80        269  70.3%
-'6.0.0'             0         13  100.0%
-'9.0.0'            28       5000  99.4%
 '10.0.0'            0        735  100.0%
 '11.0.0'            0         62  100.0%
 '12.0.0'            0         62  100.0%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'            0         41  100.0%
 '15.0.0'            0         15  100.0%
 '15.1.0'            0          5  100.0%
+'5.1.0'             0         26  100.0%
+'5.2.0'            80        269  70.3%
+'6.0.0'             0         13  100.0%
+'9.0.0'            28       5000  99.4%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 9.0.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'              22         22  0.0%
-'4.0'             500        500  0.0%
-'5.0'             100        100  0.0%
 '11.0'             73         73  0.0%
 '12.0'            112        112  0.0%
 '12.1'            165        165  0.0%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              1          1  0.0%
 '15.1'            109        109  0.0%
+'2.0'              22         22  0.0%
+'4.0'             500        500  0.0%
+'5.0'             100        100  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 15.1, from midpoint of alignment failure records:
@@ -136,9 +136,9 @@ None
 Language Support
 ++++++++++++++++
 
-The following 44 languages were tested with 100% success:
+The following 27 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Azerbaijani, North (Latin), Belarusan, Bulgarian, Cashinahua, Cherokee (cased), Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Latin (1), Montenegrin, Nuosu, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Seselwa Creole French, Sorbian, Upper, Sukuma, Swati, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Uzbek, Northern (Cyrillic), Vai, Vietnamese (Han nom), Walloon, Yukaghir, Northern.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Bulgarian, Cherokee (cased), Cree, Swampy, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hmong Njua, Idoma, Kabardian, Nuosu, Pijin, Pular, Purepecha, Quechua, Cusco, Seselwa Creole French, Sorbian, Upper, Sukuma, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Vietnamese (Han nom), Walloon, Yukaghir, Northern.
 
 The following 88 languages are not fully supported:
 
@@ -146,11 +146,11 @@ The following 88 languages are not fully supported:
 lang                           n_errors    n_total    pct_success
 ===========================  ==========  =========  =============
 Chakma                              500        500        0
-Pular (Adlam)                       500        500        0
 Javanese (Javanese)                 255        255        0
+Pular (Adlam)                       500        500        0
 Maldivian                           500        515        2.91262
-Tamil (Sri Lanka)                   500        516        3.10078
 Tamil                               500        516        3.10078
+Tamil (Sri Lanka)                   500        516        3.10078
 Burmese                             500        519        3.66089
 Sanskrit (Grantha)                  500        520        3.84615
 Mon                                 500        522        4.21456
@@ -269,37 +269,6 @@ None
 - python `wcwidth.wcswidth()`_ measures width 7, 
   while *ConsoleZ* measures width 26.
 
-Pular (Adlam)
-^^^^^^^^^^^^^
-
-Sequence of language *Pular (Adlam)* from midpoint of alignment failure records:
-
-=================================================  =============  ==========  =========  ==========================
-Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ==========================
-`U+0001E907 <https://codepoints.net/U+0001E907>`_  '\\U0001e907'  Lu                  1  ADLAM CAPITAL LETTER BHE
-`U+0001E900 <https://codepoints.net/U+0001E900>`_  '\\U0001e900'  Lu                  1  ADLAM CAPITAL LETTER ALIF
-`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
-`U+0001E918 <https://codepoints.net/U+0001E918>`_  '\\U0001e918'  Lu                  1  ADLAM CAPITAL LETTER GA
-`U+0001E90B <https://codepoints.net/U+0001E90B>`_  '\\U0001e90b'  Lu                  1  ADLAM CAPITAL LETTER I
-`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
-`U+0001E900 <https://codepoints.net/U+0001E900>`_  '\\U0001e900'  Lu                  1  ADLAM CAPITAL LETTER ALIF
-`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
-`U+0001E901 <https://codepoints.net/U+0001E901>`_  '\\U0001e901'  Lu                  1  ADLAM CAPITAL LETTER DAALI
-`U+0001E909 <https://codepoints.net/U+0001E909>`_  '\\U0001e909'  Lu                  1  ADLAM CAPITAL LETTER E
-=================================================  =============  ==========  =========  ==========================
-
-None
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x9e\xa4\x87\xf0\x9e\xa4\x80\xf0\x9e\xa4\x90\xf0\x9e\xa4\x98\xf0\x9e\xa4\x8b\xf0\x9e\xa4\x90\xf0\x9e\xa4\x80\xf0\x9e\xa4\x90\xf0\x9e\xa4\x81\xf0\x9e\xa4\x89|\\n1234567890|\\n"
-        𞤇𞤀𞤐𞤘𞤋𞤐𞤀𞤐𞤁𞤉|
-        1234567890|
-
-- python `wcwidth.wcswidth()`_ measures width 10, 
-  while *ConsoleZ* measures width 20.
-
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -416,6 +385,37 @@ None
 - python `wcwidth.wcswidth()`_ measures width 54, 
   while *ConsoleZ* measures width 95.
 
+Pular (Adlam)
+^^^^^^^^^^^^^
+
+Sequence of language *Pular (Adlam)* from midpoint of alignment failure records:
+
+=================================================  =============  ==========  =========  ==========================
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  ==========================
+`U+0001E907 <https://codepoints.net/U+0001E907>`_  '\\U0001e907'  Lu                  1  ADLAM CAPITAL LETTER BHE
+`U+0001E900 <https://codepoints.net/U+0001E900>`_  '\\U0001e900'  Lu                  1  ADLAM CAPITAL LETTER ALIF
+`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
+`U+0001E918 <https://codepoints.net/U+0001E918>`_  '\\U0001e918'  Lu                  1  ADLAM CAPITAL LETTER GA
+`U+0001E90B <https://codepoints.net/U+0001E90B>`_  '\\U0001e90b'  Lu                  1  ADLAM CAPITAL LETTER I
+`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
+`U+0001E900 <https://codepoints.net/U+0001E900>`_  '\\U0001e900'  Lu                  1  ADLAM CAPITAL LETTER ALIF
+`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
+`U+0001E901 <https://codepoints.net/U+0001E901>`_  '\\U0001e901'  Lu                  1  ADLAM CAPITAL LETTER DAALI
+`U+0001E909 <https://codepoints.net/U+0001E909>`_  '\\U0001e909'  Lu                  1  ADLAM CAPITAL LETTER E
+=================================================  =============  ==========  =========  ==========================
+
+None
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x9e\xa4\x87\xf0\x9e\xa4\x80\xf0\x9e\xa4\x90\xf0\x9e\xa4\x98\xf0\x9e\xa4\x8b\xf0\x9e\xa4\x90\xf0\x9e\xa4\x80\xf0\x9e\xa4\x90\xf0\x9e\xa4\x81\xf0\x9e\xa4\x89|\\n1234567890|\\n"
+        𞤇𞤀𞤐𞤘𞤋𞤐𞤀𞤐𞤁𞤉|
+        1234567890|
+
+- python `wcwidth.wcswidth()`_ measures width 10, 
+  while *ConsoleZ* measures width 20.
+
 Maldivian
 ^^^^^^^^^
 
@@ -446,10 +446,10 @@ None
 - python `wcwidth.wcswidth()`_ measures width 5, 
   while *ConsoleZ* measures width 9.
 
-Tamil (Sri Lanka)
-^^^^^^^^^^^^^^^^^
+Tamil
+^^^^^
 
-Sequence of language *Tamil (Sri Lanka)* from midpoint of alignment failure records:
+Sequence of language *Tamil* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -471,10 +471,10 @@ None
 - python `wcwidth.wcswidth()`_ measures width 3, 
   while *ConsoleZ* measures width 4.
 
-Tamil
-^^^^^
+Tamil (Sri Lanka)
+^^^^^^^^^^^^^^^^^
 
-Sequence of language *Tamil* from midpoint of alignment failure records:
+Sequence of language *Tamil (Sri Lanka)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name

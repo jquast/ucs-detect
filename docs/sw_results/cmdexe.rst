@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'             0         26  100.0%
-'5.2.0'            79        269  70.6%
-'6.0.0'             0         13  100.0%
-'9.0.0'            27       5000  99.5%
 '10.0.0'           36        735  95.1%
 '11.0.0'            3         62  95.2%
 '12.0.0'            3         62  95.2%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'            2         41  95.1%
 '15.0.0'            0         15  100.0%
 '15.1.0'            0          5  100.0%
+'5.1.0'             0         26  100.0%
+'5.2.0'            79        269  70.6%
+'6.0.0'             0         13  100.0%
+'9.0.0'            27       5000  99.5%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 14.0.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'              22         22  0.0%
-'4.0'             500        500  0.0%
-'5.0'             100        100  0.0%
 '11.0'             73         73  0.0%
 '12.0'            112        112  0.0%
 '12.1'            165        165  0.0%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              1          1  0.0%
 '15.1'            109        109  0.0%
+'2.0'              22         22  0.0%
+'4.0'             500        500  0.0%
+'5.0'             100        100  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 15.1, from midpoint of alignment failure records:
@@ -137,21 +137,21 @@ None
 Language Support
 ++++++++++++++++
 
-The following 44 languages were tested with 100% success:
+The following 27 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Azerbaijani, North (Latin), Belarusan, Bulgarian, Cashinahua, Cherokee (cased), Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Latin (1), Montenegrin, Nuosu, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Seselwa Creole French, Sorbian, Upper, Sukuma, Swati, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Uzbek, Northern (Cyrillic), Vai, Vietnamese (Han nom), Walloon, Yukaghir, Northern.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Bulgarian, Cherokee (cased), Cree, Swampy, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hmong Njua, Idoma, Kabardian, Nuosu, Pijin, Pular, Purepecha, Quechua, Cusco, Seselwa Creole French, Sorbian, Upper, Sukuma, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Vietnamese (Han nom), Walloon, Yukaghir, Northern.
 
 The following 88 languages are not fully supported:
 
 ===========================  ==========  =========  =============
 lang                           n_errors    n_total    pct_success
 ===========================  ==========  =========  =============
+Chakma                              500        500        0
 Javanese (Javanese)                 255        255        0
 Pular (Adlam)                       500        500        0
-Chakma                              500        500        0
 Maldivian                           500        515        2.91262
-Tamil (Sri Lanka)                   500        516        3.10078
 Tamil                               500        516        3.10078
+Tamil (Sri Lanka)                   500        516        3.10078
 Burmese                             500        519        3.66089
 Sanskrit (Grantha)                  500        520        3.84615
 Mon                                 500        522        4.21456
@@ -235,6 +235,40 @@ Pashto, Northern                      4       2242       99.8216
 Dendi                                 2       1569       99.8725
 Seraiki                               2       2242       99.9108
 ===========================  ==========  =========  =============
+
+Chakma
+^^^^^^
+
+Sequence of language *Chakma* from midpoint of alignment failure records:
+
+=================================================  =============  ==========  =========  ====================
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  ====================
+`U+0001111F <https://codepoints.net/U+0001111F>`_  '\\U0001111f'  Lo                  1  CHAKMA LETTER MAA
+`U+0001111A <https://codepoints.net/U+0001111A>`_  '\\U0001111a'  Lo                  1  CHAKMA LETTER NAA
+`U+0001112C <https://codepoints.net/U+0001112C>`_  '\\U0001112c'  Mc                  0  CHAKMA VOWEL SIGN E
+`U+0001112D <https://codepoints.net/U+0001112D>`_  '\\U0001112d'  Mn                  0  CHAKMA VOWEL SIGN AI
+`U+00011103 <https://codepoints.net/U+00011103>`_  '\\U00011103'  Lo                  1  CHAKMA LETTER AA
+`U+00011107 <https://codepoints.net/U+00011107>`_  '\\U00011107'  Lo                  1  CHAKMA LETTER KAA
+`U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
+`U+00011107 <https://codepoints.net/U+00011107>`_  '\\U00011107'  Lo                  1  CHAKMA LETTER KAA
+`U+00011125 <https://codepoints.net/U+00011125>`_  '\\U00011125'  Lo                  1  CHAKMA LETTER SAA
+`U+00011127 <https://codepoints.net/U+00011127>`_  '\\U00011127'  Mn                  0  CHAKMA VOWEL SIGN A
+`U+00011101 <https://codepoints.net/U+00011101>`_  '\\U00011101'  Mn                  0  CHAKMA SIGN ANUSVARA
+`U+00011122 <https://codepoints.net/U+00011122>`_  '\\U00011122'  Lo                  1  CHAKMA LETTER RAA
+`U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
+=================================================  =============  ==========  =========  ====================
+
+None
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x91\x84\x9f\xf0\x91\x84\x9a\xf0\x91\x84\xac\xf0\x91\x84\xad\xf0\x91\x84\x83\xf0\x91\x84\x87\xf0\x91\x84\xb4\xf0\x91\x84\x87\xf0\x91\x84\xa5\xf0\x91\x84\xa7\xf0\x91\x84\x81\xf0\x91\x84\xa2\xf0\x91\x84\xb4|\\n1234567|\\n"
+        𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
+        1234567|
+
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *cmd.exe* measures width 26.
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -383,40 +417,6 @@ None
 - python `wcwidth.wcswidth()`_ measures width 10, 
   while *cmd.exe* measures width 20.
 
-Chakma
-^^^^^^
-
-Sequence of language *Chakma* from midpoint of alignment failure records:
-
-=================================================  =============  ==========  =========  ====================
-Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ====================
-`U+0001111F <https://codepoints.net/U+0001111F>`_  '\\U0001111f'  Lo                  1  CHAKMA LETTER MAA
-`U+0001111A <https://codepoints.net/U+0001111A>`_  '\\U0001111a'  Lo                  1  CHAKMA LETTER NAA
-`U+0001112C <https://codepoints.net/U+0001112C>`_  '\\U0001112c'  Mc                  0  CHAKMA VOWEL SIGN E
-`U+0001112D <https://codepoints.net/U+0001112D>`_  '\\U0001112d'  Mn                  0  CHAKMA VOWEL SIGN AI
-`U+00011103 <https://codepoints.net/U+00011103>`_  '\\U00011103'  Lo                  1  CHAKMA LETTER AA
-`U+00011107 <https://codepoints.net/U+00011107>`_  '\\U00011107'  Lo                  1  CHAKMA LETTER KAA
-`U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
-`U+00011107 <https://codepoints.net/U+00011107>`_  '\\U00011107'  Lo                  1  CHAKMA LETTER KAA
-`U+00011125 <https://codepoints.net/U+00011125>`_  '\\U00011125'  Lo                  1  CHAKMA LETTER SAA
-`U+00011127 <https://codepoints.net/U+00011127>`_  '\\U00011127'  Mn                  0  CHAKMA VOWEL SIGN A
-`U+00011101 <https://codepoints.net/U+00011101>`_  '\\U00011101'  Mn                  0  CHAKMA SIGN ANUSVARA
-`U+00011122 <https://codepoints.net/U+00011122>`_  '\\U00011122'  Lo                  1  CHAKMA LETTER RAA
-`U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
-=================================================  =============  ==========  =========  ====================
-
-None
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x91\x84\x9f\xf0\x91\x84\x9a\xf0\x91\x84\xac\xf0\x91\x84\xad\xf0\x91\x84\x83\xf0\x91\x84\x87\xf0\x91\x84\xb4\xf0\x91\x84\x87\xf0\x91\x84\xa5\xf0\x91\x84\xa7\xf0\x91\x84\x81\xf0\x91\x84\xa2\xf0\x91\x84\xb4|\\n1234567|\\n"
-        𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *cmd.exe* measures width 26.
-
 Maldivian
 ^^^^^^^^^
 
@@ -447,10 +447,10 @@ None
 - python `wcwidth.wcswidth()`_ measures width 5, 
   while *cmd.exe* measures width 9.
 
-Tamil (Sri Lanka)
-^^^^^^^^^^^^^^^^^
+Tamil
+^^^^^
 
-Sequence of language *Tamil (Sri Lanka)* from midpoint of alignment failure records:
+Sequence of language *Tamil* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -472,10 +472,10 @@ None
 - python `wcwidth.wcswidth()`_ measures width 3, 
   while *cmd.exe* measures width 4.
 
-Tamil
-^^^^^
+Tamil (Sri Lanka)
+^^^^^^^^^^^^^^^^^
 
-Sequence of language *Tamil* from midpoint of alignment failure records:
+Sequence of language *Tamil (Sri Lanka)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name

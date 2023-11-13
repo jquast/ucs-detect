@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'            19         26  26.9%
-'5.2.0'           219        269  18.6%
-'6.0.0'             2         13  84.6%
-'9.0.0'            27       5000  99.5%
 '10.0.0'          500        500  0.0%
 '11.0.0'           62         62  0.0%
 '12.0.0'           62         62  0.0%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'           41         41  0.0%
 '15.0.0'           15         15  0.0%
 '15.1.0'            5          5  0.0%
+'5.1.0'            19         26  26.9%
+'5.2.0'           219        269  18.6%
+'6.0.0'             2         13  84.6%
+'9.0.0'            27       5000  99.5%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 9.0.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'              22         22  0.0%
-'4.0'             500        510  2.0%
-'5.0'               0        100  100.0%
 '11.0'              1         73  98.6%
 '12.0'             24        112  78.6%
 '12.1'             72        165  56.4%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              0          1  100.0%
 '15.1'             87        109  20.2%
+'2.0'              22         22  0.0%
+'4.0'             500        510  2.0%
+'5.0'               0        100  100.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 11.0, from midpoint of alignment failure records:
@@ -135,17 +135,17 @@ None
 Language Support
 ++++++++++++++++
 
-The following 77 languages were tested with 100% success:
+The following 60 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Aja, Amarakaeri, Azerbaijani, North (Latin), Baatonum, Bamun, Belarusan, Bora, Bulgarian, Cashinahua, Chickasaw, Chinantec, Chiltepec, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, Ga, Garifuna, Gen, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Ladino, Lamnso', Latin (1), Lingala (tones), Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Montenegrin, Mòoré, Nanai, Navajo, Nuosu, Otomi, Mezquital, Picard, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Secoya, Serer-Sine, Seselwa Creole French, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Swati, Tamazight, Central Atlas, Tem, Thai, Thai (2), Ticuna, Uduk, Uzbek, Northern (Cyrillic), Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yaneshaʼ, Yoruba, Éwé.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Aja, Amarakaeri, Baatonum, Bamun, Bora, Bulgarian, Chickasaw, Chinantec, Chiltepec, Cree, Swampy, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, Ga, Garifuna, Gen, Greek (polytonic), Hmong Njua, Lamnso', Lingala (tones), Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Otomi, Mezquital, Picard, Pijin, Pular, Purepecha, Quechua, Cusco, Secoya, Serer-Sine, Seselwa Creole French, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Tamazight, Central Atlas, Tem, Thai, Thai (2), Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yaneshaʼ, Yoruba, Éwé.
 
 The following 55 languages are not fully supported:
 
 ===================================  ==========  =========  =============
 lang                                   n_errors    n_total    pct_success
 ===================================  ==========  =========  =============
-Vai                                         500        500       0
 Tamazight, Central Atlas (Tifinagh)          22         22       0
+Vai                                         500        500       0
 Javanese (Javanese)                         254        255       0.392157
 Cherokee (cased)                            500        507       1.38067
 Tai Dam                                     500        511       2.15264
@@ -201,29 +201,6 @@ Pashto, Northern                              5       2242      99.777
 Seraiki                                       2       2242      99.9108
 ===================================  ==========  =========  =============
 
-Vai
-^^^
-
-Sequence of language *Vai* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  =================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =================
-`U+A57A <https://codepoints.net/U+A57A>`_  '\\ua57a'  Lo                  1  VAI SYLLABLE KPOO
-`U+A583 <https://codepoints.net/U+A583>`_  '\\ua583'  Lo                  1  VAI SYLLABLE LOO
-=========================================  =========  ==========  =========  =================
-
-None
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xea\x95\xba\xea\x96\x83|\\n12|\\n"
-        ꕺꖃ|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *cool retro term* measures width 0.
-
 Tamazight, Central Atlas (Tifinagh)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -250,6 +227,29 @@ None
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7, 
+  while *cool retro term* measures width 0.
+
+Vai
+^^^
+
+Sequence of language *Vai* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  =================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =================
+`U+A57A <https://codepoints.net/U+A57A>`_  '\\ua57a'  Lo                  1  VAI SYLLABLE KPOO
+`U+A583 <https://codepoints.net/U+A583>`_  '\\ua583'  Lo                  1  VAI SYLLABLE LOO
+=========================================  =========  ==========  =========  =================
+
+None
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xea\x95\xba\xea\x96\x83|\\n12|\\n"
+        ꕺꖃ|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2, 
   while *cool retro term* measures width 0.
 
 Javanese (Javanese)

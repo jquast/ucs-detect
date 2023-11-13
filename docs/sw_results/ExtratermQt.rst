@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'             0         26  100.0%
-'5.2.0'            79        269  70.6%
-'6.0.0'             0         13  100.0%
-'9.0.0'             0       5000  100.0%
 '10.0.0'            0        735  100.0%
 '11.0.0'            0         62  100.0%
 '12.0.0'            0         62  100.0%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'            0         41  100.0%
 '15.0.0'           15         15  0.0%
 '15.1.0'            5          5  0.0%
+'5.1.0'             0         26  100.0%
+'5.2.0'            79        269  70.6%
+'6.0.0'             0         13  100.0%
+'9.0.0'             0       5000  100.0%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'              22         22  0.0%
-'4.0'             500        500  0.0%
-'5.0'             100        100  0.0%
 '11.0'             73         73  0.0%
 '12.0'            112        112  0.0%
 '12.1'            165        165  0.0%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              1          1  0.0%
 '15.1'            109        109  0.0%
+'2.0'              22         22  0.0%
+'4.0'             500        500  0.0%
+'5.0'             100        100  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 15.1, from midpoint of alignment failure records:
@@ -118,9 +118,9 @@ All codepoint combinations with Variation Selector-16 tested were successful.
 Language Support
 ++++++++++++++++
 
-The following 43 languages were tested with 100% success:
+The following 26 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Azerbaijani, North (Latin), Belarusan, Bulgarian, Cashinahua, Cherokee (cased), Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Latin (1), Montenegrin, Nuosu, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Seselwa Creole French, Sorbian, Upper, Sukuma, Swati, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Uzbek, Northern (Cyrillic), Vai, Walloon, Yukaghir, Northern.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Bulgarian, Cherokee (cased), Cree, Swampy, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hmong Njua, Idoma, Kabardian, Nuosu, Pijin, Pular, Purepecha, Quechua, Cusco, Seselwa Creole French, Sorbian, Upper, Sukuma, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Walloon, Yukaghir, Northern.
 
 The following 89 languages are not fully supported:
 
@@ -142,8 +142,8 @@ Tamang, Eastern                      42         45        6.66667
 Kannada                             500        536        6.71642
 Khün                                412        442        6.78733
 Khmer, Central                      492        528        6.81818
-Chakma                              500        540        7.40741
 Bengali                             500        540        7.40741
+Chakma                              500        540        7.40741
 Telugu                              500        550        9.09091
 Nepali                              500        554        9.74729
 Sanskrit                            500        563       11.1901
@@ -868,6 +868,39 @@ None
 - python `wcwidth.wcswidth()`_ measures width 22, 
   while *ExtratermQt* measures width 36.
 
+Bengali
+^^^^^^^
+
+Sequence of language *Bengali* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  =====================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =====================
+`U+09AE <https://codepoints.net/U+09AE>`_  '\\u09ae'  Lo                  1  BENGALI LETTER MA
+`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
+`U+09A8 <https://codepoints.net/U+09A8>`_  '\\u09a8'  Lo                  1  BENGALI LETTER NA
+`U+09AC <https://codepoints.net/U+09AC>`_  '\\u09ac'  Lo                  1  BENGALI LETTER BA
+`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
+`U+09A7 <https://codepoints.net/U+09A7>`_  '\\u09a7'  Lo                  1  BENGALI LETTER DHA
+`U+09BF <https://codepoints.net/U+09BF>`_  '\\u09bf'  Mc                  0  BENGALI VOWEL SIGN I
+`U+0995 <https://codepoints.net/U+0995>`_  '\\u0995'  Lo                  1  BENGALI LETTER KA
+`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
+`U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
+`U+09C7 <https://codepoints.net/U+09C7>`_  '\\u09c7'  Mc                  0  BENGALI VOWEL SIGN E
+`U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
+=========================================  =========  ==========  =========  =====================
+
+None
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa6\xae\xe0\xa6\xbe\xe0\xa6\xa8\xe0\xa6\xac\xe0\xa6\xbe\xe0\xa6\xa7\xe0\xa6\xbf\xe0\xa6\x95\xe0\xa6\xbe\xe0\xa6\xb0\xe0\xa7\x87\xe0\xa6\xb0|\\n1234567|\\n"
+        মানবাধিকারের|
+        1234567|
+
+- python `wcwidth.wcswidth()`_ measures width 7, 
+  while *ExtratermQt* measures width 12.
+
 Chakma
 ^^^^^^
 
@@ -901,39 +934,6 @@ None
 
 - python `wcwidth.wcswidth()`_ measures width 7, 
   while *ExtratermQt* measures width 13.
-
-Bengali
-^^^^^^^
-
-Sequence of language *Bengali* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  =====================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =====================
-`U+09AE <https://codepoints.net/U+09AE>`_  '\\u09ae'  Lo                  1  BENGALI LETTER MA
-`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
-`U+09A8 <https://codepoints.net/U+09A8>`_  '\\u09a8'  Lo                  1  BENGALI LETTER NA
-`U+09AC <https://codepoints.net/U+09AC>`_  '\\u09ac'  Lo                  1  BENGALI LETTER BA
-`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
-`U+09A7 <https://codepoints.net/U+09A7>`_  '\\u09a7'  Lo                  1  BENGALI LETTER DHA
-`U+09BF <https://codepoints.net/U+09BF>`_  '\\u09bf'  Mc                  0  BENGALI VOWEL SIGN I
-`U+0995 <https://codepoints.net/U+0995>`_  '\\u0995'  Lo                  1  BENGALI LETTER KA
-`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
-`U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
-`U+09C7 <https://codepoints.net/U+09C7>`_  '\\u09c7'  Mc                  0  BENGALI VOWEL SIGN E
-`U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
-=========================================  =========  ==========  =========  =====================
-
-None
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xa6\xae\xe0\xa6\xbe\xe0\xa6\xa8\xe0\xa6\xac\xe0\xa6\xbe\xe0\xa6\xa7\xe0\xa6\xbf\xe0\xa6\x95\xe0\xa6\xbe\xe0\xa6\xb0\xe0\xa7\x87\xe0\xa6\xb0|\\n1234567|\\n"
-        মানবাধিকারের|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *ExtratermQt* measures width 12.
 
 Telugu
 ^^^^^^

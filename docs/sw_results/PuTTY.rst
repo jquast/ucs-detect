@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'             0         26  100.0%
-'5.2.0'            79        269  70.6%
-'6.0.0'             0         13  100.0%
-'9.0.0'             0       5000  100.0%
 '10.0.0'           73        735  90.1%
 '11.0.0'            6         62  90.3%
 '12.0.0'            6         62  90.3%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'            4         41  90.2%
 '15.0.0'           15         15  0.0%
 '15.1.0'            5          5  0.0%
+'5.1.0'             0         26  100.0%
+'5.2.0'            79        269  70.6%
+'6.0.0'             0         13  100.0%
+'9.0.0'             0       5000  100.0%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 14.0.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'              21         22  4.5%
-'4.0'             500        508  1.6%
-'5.0'             100        100  0.0%
 '11.0'             73         73  0.0%
 '12.0'            112        112  0.0%
 '12.1'            165        165  0.0%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              1          1  0.0%
 '15.1'            109        109  0.0%
+'2.0'              21         22  4.5%
+'4.0'             500        508  1.6%
+'5.0'             100        100  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 15.1, from midpoint of alignment failure records:
@@ -137,9 +137,9 @@ None
 Language Support
 ++++++++++++++++
 
-The following 103 languages were tested with 100% success:
+The following 86 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Azerbaijani, North (Latin), Baatonum, Bamun, Belarusan, Bora, Bulgarian, Cashinahua, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Garifuna, Gen, Gilyak, Greek (polytonic), Gumuz, Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Lamnso', Lao, Latin (1), Lingala (tones), Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Montenegrin, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pijin, Pular, Pular (Adlam), Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Romansch (Surmiran), Rundi, Secoya, Seraiki, Serer-Sine, Seselwa Creole French, Siona, South Azerbaijani, Sukuma, Swati, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Uzbek, Northern (Cyrillic), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Bulgarian, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Cree, Swampy, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Garifuna, Gen, Gilyak, Greek (polytonic), Gumuz, Hmong Njua, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pijin, Pular, Pular (Adlam), Purepecha, Secoya, Seraiki, Serer-Sine, Seselwa Creole French, Siona, South Azerbaijani, Sukuma, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 29 languages are not fully supported:
 
@@ -150,8 +150,8 @@ Javanese (Javanese)         244        252        3.1746
 Shan                        500        523        4.39771
 Khün                        413        441        6.34921
 Tamil (Sri Lanka)           500        539        7.23562
-Tamil                       500        540        7.40741
 Sorbian, Upper              500        540        7.40741
+Tamil                       500        540        7.40741
 Sanskrit (Grantha)          500        565       11.5044
 Malayalam                   500        579       13.6442
 Bengali                     500        588       14.966
@@ -397,31 +397,6 @@ None
 - python `wcwidth.wcswidth()`_ measures width 3, 
   while *PuTTY* measures width 4.
 
-Tamil
-^^^^^
-
-Sequence of language *Tamil* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==================
-`U+0BAE <https://codepoints.net/U+0BAE>`_  '\\u0bae'  Lo                  1  TAMIL LETTER MA
-`U+0BA9 <https://codepoints.net/U+0BA9>`_  '\\u0ba9'  Lo                  1  TAMIL LETTER NNNA
-`U+0BBF <https://codepoints.net/U+0BBF>`_  '\\u0bbf'  Mc                  0  TAMIL VOWEL SIGN I
-`U+0BA4 <https://codepoints.net/U+0BA4>`_  '\\u0ba4'  Lo                  1  TAMIL LETTER TA
-=========================================  =========  ==========  =========  ==================
-
-None
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xae\xae\xe0\xae\xa9\xe0\xae\xbf\xe0\xae\xa4|\\n123|\\n"
-        மனித|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *PuTTY* measures width 4.
-
 Sorbian, Upper
 ^^^^^^^^^^^^^^
 
@@ -452,6 +427,31 @@ None
         12345678901|
 
 - Cursor Y-Position moved 19 rows where no movement is expected.
+
+Tamil
+^^^^^
+
+Sequence of language *Tamil* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==================
+`U+0BAE <https://codepoints.net/U+0BAE>`_  '\\u0bae'  Lo                  1  TAMIL LETTER MA
+`U+0BA9 <https://codepoints.net/U+0BA9>`_  '\\u0ba9'  Lo                  1  TAMIL LETTER NNNA
+`U+0BBF <https://codepoints.net/U+0BBF>`_  '\\u0bbf'  Mc                  0  TAMIL VOWEL SIGN I
+`U+0BA4 <https://codepoints.net/U+0BA4>`_  '\\u0ba4'  Lo                  1  TAMIL LETTER TA
+=========================================  =========  ==========  =========  ==================
+
+None
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xae\xae\xe0\xae\xa9\xe0\xae\xbf\xe0\xae\xa4|\\n123|\\n"
+        மனித|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3, 
+  while *PuTTY* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^

@@ -698,7 +698,7 @@ def do_languages_test(
 
 
 def do_save_yaml( save_yaml, **kwargs):
-    yaml.safe_dump(kwargs, open(save_yaml, "w"), sort_keys=False)
+    yaml.safe_dump(kwargs, open(save_yaml, "w"), sort_keys=True)
 
 
 def parse_args():

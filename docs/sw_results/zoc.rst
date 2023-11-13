@@ -21,10 +21,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'5.1.0'             0         26  100.0%
-'5.2.0'            55        269  79.6%
-'6.0.0'            10         13  23.1%
-'9.0.0'            27       5000  99.5%
 '10.0.0'            6        735  99.2%
 '11.0.0'            0         62  100.0%
 '12.0.0'           12         62  80.6%
@@ -33,6 +29,10 @@ version      n_errors    n_total  pct_success
 '14.0.0'            2         41  95.1%
 '15.0.0'            1         15  93.3%
 '15.1.0'            4          5  20.0%
+'5.1.0'             0         26  100.0%
+'5.2.0'            55        269  79.6%
+'6.0.0'            10         13  23.1%
+'9.0.0'            27       5000  99.5%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 15.0.0, from midpoint of alignment failure records:
@@ -67,9 +67,6 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'              22         22  0.0%
-'4.0'             500        500  0.0%
-'5.0'             100        100  0.0%
 '11.0'             73         73  0.0%
 '12.0'            112        112  0.0%
 '12.1'            165        165  0.0%
@@ -78,6 +75,9 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              1          1  0.0%
 '15.1'            109        109  0.0%
+'2.0'              22         22  0.0%
+'4.0'             500        500  0.0%
+'5.0'             100        100  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 15.1, from midpoint of alignment failure records:
@@ -118,9 +118,9 @@ All codepoint combinations with Variation Selector-16 tested were successful.
 Language Support
 ++++++++++++++++
 
-The following 41 languages were tested with 100% success:
+The following 24 languages were tested with 100% success:
 
-(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Azerbaijani, North (Latin), Belarusan, Bulgarian, Cashinahua, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Latin (1), Montenegrin, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Seselwa Creole French, Sorbian, Upper, Sukuma, Swati, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Uzbek, Northern (Cyrillic), Vai, Walloon, Yukaghir, Northern.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Bulgarian, Cree, Swampy, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hmong Njua, Idoma, Kabardian, Pijin, Pular, Purepecha, Quechua, Cusco, Seselwa Creole French, Sorbian, Upper, Sukuma, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Walloon, Yukaghir, Northern.
 
 The following 91 languages are not fully supported:
 
@@ -132,8 +132,8 @@ Javanese (Javanese)                 255        256       0.390625
 Cherokee (cased)                    500        507       1.38067
 Tai Dam                             500        511       2.15264
 Maldivian                           500        515       2.91262
-Tamil (Sri Lanka)                   500        516       3.10078
 Tamil                               500        516       3.10078
+Tamil (Sri Lanka)                   500        516       3.10078
 Burmese                             500        519       3.66089
 Mon                                 500        522       4.21456
 Shan                                500        523       4.39771
@@ -447,10 +447,10 @@ None
 - python `wcwidth.wcswidth()`_ measures width 5, 
   while *zoc* measures width 9.
 
-Tamil (Sri Lanka)
-^^^^^^^^^^^^^^^^^
+Tamil
+^^^^^
 
-Sequence of language *Tamil (Sri Lanka)* from midpoint of alignment failure records:
+Sequence of language *Tamil* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -472,10 +472,10 @@ None
 - python `wcwidth.wcswidth()`_ measures width 3, 
   while *zoc* measures width 4.
 
-Tamil
-^^^^^
+Tamil (Sri Lanka)
+^^^^^^^^^^^^^^^^^
 
-Sequence of language *Tamil* from midpoint of alignment failure records:
+Sequence of language *Tamil (Sri Lanka)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==================
 Codepoint                                  Python     Category      wcwidth  Name
