@@ -485,8 +485,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     term, writer = init_term(stream, quick)
 
     # record and display program arguments
+    local_vars = locals().copy()
     session_arguments = {
-        k: locals()[k]
+        k: local_vars[k]
         for k in ("stream", "quick", "limit_codepoints", "limit_errors", "limit_words")
     }
     if not shell:
