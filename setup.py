@@ -34,6 +34,7 @@ def main():
         package_data={
             '': ['LICENSE', '*.rst', '*.txt'],
         },
+        include_package_data=True,
         zip_safe=True,
         classifiers=[
             'Intended Audience :: Developers',
