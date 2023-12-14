@@ -1,1 +1,1 @@
-include ucs_detect/udhr_full_subset.txt
+graft ucs_detect/udhr
