@@ -628,7 +628,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
 
     if language_results:
         writer(
-            f"\nDisplaying results of WIDE and ZERO-WIDTH sequence support by {term.bold("language")}"
+            f'\nDisplaying results of WIDE and ZERO-WIDTH sequence support by {term.bold("language")}'
         )
         display_results_by_language(term=term, writer=writer, results=language_results)
 
