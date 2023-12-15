@@ -8,6 +8,5 @@ Welcome to ucs-detect's documentation!
 
    intro
    results
-   sw_results/*
 
 * :ref:`search`
