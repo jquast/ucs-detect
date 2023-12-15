@@ -68,6 +68,9 @@ results:
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
+'2.0'              21         22  4.5%
+'4.0'             500        508  1.6%
+'5.0'             100        100  0.0%
 '11.0'             73         73  0.0%
 '12.0'            112        112  0.0%
 '12.1'            165        165  0.0%
@@ -76,9 +79,6 @@ version      n_errors    n_total  pct_success
 '14.0'             20         20  0.0%
 '15.0'              1          1  0.0%
 '15.1'            109        109  0.0%
-'2.0'              21         22  4.5%
-'4.0'             500        508  1.6%
-'5.0'             100        100  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 15.1, from midpoint of alignment failure records:

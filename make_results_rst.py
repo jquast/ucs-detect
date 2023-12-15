@@ -34,6 +34,7 @@ def main():
         display_tabulated_scores(score_table)
         display_table_definitions()
         display_common_languages(all_successful_languages)
+        display_results_toc()
         display_common_hyperlinks()
     print('ok', file=sys.stderr)
     for entry in score_table:
@@ -56,6 +57,15 @@ def make_unicode_codepoint(wchar):
     else:
         u_str = f"U+{ord(wchar):04X}"
     return f"`{u_str} <https://codepoints.net/{u_str}>`_"
+
+
+def display_results_toc():
+    display_title("Detailed Reports", 2)
+    print(".. toctree::")
+    print("   :glob:")
+    print()
+    print("   sw_results/*")
+    print()
 
 
 def display_common_hyperlinks():
@@ -259,7 +269,8 @@ def score_zwj(data):
 def score_wide(data):
     score = 0.0
     best_wide_version = data["test_results"]["unicode_wide_version"]
-    unicode_versions = list(data["test_results"]["unicode_wide_results"].keys())
+    unicode_versions = sorted(data["test_results"]["unicode_wide_results"].keys(),
+                              key=lambda x: wcwidth._wcversion_value(x))
     if best_wide_version and best_wide_version in unicode_versions:
         score = (unicode_versions.index(best_wide_version) + 1) / len(unicode_versions)
     score2 = 0.01
