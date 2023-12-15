@@ -9,12 +9,16 @@
 project = "ucs-detect"
 copyright = "2023, Jeff Quast"
 author = "Jeff Quast"
-release = "1.0.5"
+release = "1.0.6"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx_rtd_dark_mode"]
+
+# export DARK=1 for old, tired eyes!
+import os
+if os.environ.get('DARK'):
+    extensions = ["sphinx_rtd_dark_mode"]
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
