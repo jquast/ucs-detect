@@ -41,11 +41,10 @@ from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_wide import WIDE_CHARACTERS
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 
-# to accomodate varying screen sizes, we measure by each word,
-# but some languages do not use ascii space, so we some effort
-# to use any of their word boundaries.
-WORD_SPLIT_DELIMITERS = (" ", "，", "、", ",", "\u200b", "。")
-
+# to accommodate varying screen sizes, we measure by each word,
+# but some languages do not use ASCII space, we make some
+# effort to use any their word boundaries.
+WORD_SPLIT_DELIMITERS = (" ", "，", "、", ",", "\u200b", "。", "\uA9C0")
 
 def unicode_escape_string(input_str):
     encoded_str = codecs.encode(input_str, "unicode-escape").decode("utf-8")
@@ -716,7 +715,7 @@ def parse_args():
         "--limit-words",
         type=int,
         default=200,
-        help="limit the total number of 'words' testted for each language",
+        help="limit the total number of 'words' tested for each language",
     )
     args.add_argument(
         "--limit-errors",
