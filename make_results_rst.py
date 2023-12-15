@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import re
 import os
+import sys
 import yaml
 import contextlib
 import unicodedata
@@ -24,21 +25,29 @@ def make_grade(score):
 
 
 def main():
+    print(f'Generating score table... ', file=sys.stderr, end='', flush=True)
     score_table, all_successful_languages = make_score_table()
+    print('ok', file=sys.stderr)
+
+    print(f'Writing docs/results.rst ... ', file=sys.stderr, end='', flush=True)
     with open('docs/results.rst', 'w') as fout, contextlib.redirect_stdout(fout):
         display_tabulated_scores(score_table)
         display_table_definitions()
         display_common_languages(all_successful_languages)
         display_common_hyperlinks()
+    print('ok', file=sys.stderr)
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
-        with open(f'docs/sw_results/{make_link(sw_name)}.rst', 'w') as fout, contextlib.redirect_stdout(fout):
+        fname = f'docs/sw_results/{make_link(sw_name)}.rst'
+        print(f'Writing {fname} ... ', file=sys.stderr, end='', flush=True)
+        with open(fname, 'w') as fout, contextlib.redirect_stdout(fout):
             show_software_header(entry, sw_name)
             show_wide_character_support(sw_name, entry)
             show_emoji_zwj_results(sw_name, entry)
             show_vs16_results(sw_name, entry)
             show_language_results(sw_name, entry)
             display_common_hyperlinks()
+        print('ok', file=sys.stderr)
 
 
 def make_unicode_codepoint(wchar):
@@ -73,7 +82,7 @@ def find_best_failure(records):
 
 
 def make_printf_hex(wchar):
-    # pykhon's b'\x12..' representation is compatible enough with printf(1)
+    # python's b'\x12..' representation is compatible enough with printf(1)
     return repr(bytes(wchar, "utf8").decode("unicode-escape").encode("utf8"))[2:-1]
 
 
@@ -83,7 +92,6 @@ def make_score_table():
     # Suggest generating YAML files with something like:
     #     python ucs_detect/__init__.py --save-yaml data/output.yaml --limit-codepoints=1000 --limit-words=1000 --limit-errors=100
     #
-    # this depends on in-order version key order of yaml version data, like py3.6+ or so?
     for yaml_path in [
         os.path.join(DATA_PATH, fname)
         for fname in os.listdir(DATA_PATH)
@@ -329,7 +337,8 @@ def show_wide_character_support(sw_name, entry):
             "n_total": result["n_total"],
             "pct_success": f'{result["pct_success"]:0.1f}%',
         }
-        for version, result in entry["data"]["test_results"]["unicode_wide_results"].items()
+        for version, result in sorted(entry["data"]["test_results"]["unicode_wide_results"].items(),
+                                      key=lambda x: wcwidth._wcversion_value(x[0]))
     ]
     print(tabulate.tabulate(tabulated_wide_results, headers="keys", tablefmt="rst"))
     print()
@@ -371,7 +380,8 @@ def show_emoji_zwj_results(sw_name, entry):
             "n_total": result["n_total"],
             "pct_success": f'{result["pct_success"]:0.1f}%',
         }
-        for version, result in entry["data"]["test_results"]["emoji_zwj_results"].items()
+        for version, result in sorted(entry["data"]["test_results"]["emoji_zwj_results"].items(),
+                                      key=lambda x: wcwidth._wcversion_value(x[0]))
     ]
     print(tabulate.tabulate(tabulated_emoji_zwj_results, headers="keys", tablefmt="rst"))
     print()
