@@ -1,6 +1,6 @@
-.. _KovidGoyleskitty:
+.. _KovidGoyalskitty:
 
-Kovid Goyle's kitty
+Kovid Goyal's kitty
 -------------------
 
 
@@ -8,12 +8,12 @@ Tested Software version 0.30.1 on Darwin
 Full results available at ucs-detect_ repository path
 `data/macos-kitty-0.30.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-kitty-0.30.1.yaml>`_
 
-.. _KovidGoyleskittywide:
+.. _KovidGoyalskittywide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for Kovid Goyle's kitty appears to be 
+The best wide unicode table version for Kovid Goyal's kitty appears to be 
 **15.0.0**, this is from a summary of the following
 results:
 
@@ -53,14 +53,14 @@ Total codepoints: 1
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2, 
-  while *Kovid Goyle's kitty* measures width 1.
+  while *Kovid Goyal's kitty* measures width 1.
 
-.. _KovidGoyleskittyzwj:
+.. _KovidGoyalskittyzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *Kovid Goyle's kitty* appears to be 
+The best Emoji ZWJ table version for *Kovid Goyal's kitty* appears to be 
 **None**, this is from a summary of the following
 results:
 
@@ -104,18 +104,18 @@ Total codepoints: 6
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2, 
-  while *Kovid Goyle's kitty* measures width 6.
+  while *Kovid Goyal's kitty* measures width 6.
 
-.. _KovidGoyleskittyvs16:
+.. _KovidGoyalskittyvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *Kovid Goyle's kitty* is 0 errors
+Emoji VS-16 results for *Kovid Goyal's kitty* is 0 errors
 out of 100 total codepoints tested, 100.0% success.
 All codepoint combinations with Variation Selector-16 tested were successful.
 
-.. _KovidGoyleskittylang:
+.. _KovidGoyalskittylang:
 
 Language Support
 ++++++++++++++++
@@ -173,7 +173,7 @@ Total codepoints: 17
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9, 
-  while *Kovid Goyle's kitty* measures width 10.
+  while *Kovid Goyal's kitty* measures width 10.
 
 Sinhala
 ^^^^^^^
@@ -204,7 +204,7 @@ Total codepoints: 9
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5, 
-  while *Kovid Goyle's kitty* measures width 6.
+  while *Kovid Goyal's kitty* measures width 6.
 
 Marathi
 ^^^^^^^
@@ -237,7 +237,7 @@ Total codepoints: 11
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5, 
-  while *Kovid Goyle's kitty* measures width 6.
+  while *Kovid Goyal's kitty* measures width 6.
 
 Nepali
 ^^^^^^
@@ -270,7 +270,7 @@ Total codepoints: 11
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5, 
-  while *Kovid Goyle's kitty* measures width 6.
+  while *Kovid Goyal's kitty* measures width 6.
 
 Bengali
 ^^^^^^^
@@ -303,7 +303,7 @@ Total codepoints: 11
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5, 
-  while *Kovid Goyle's kitty* measures width 6.
+  while *Kovid Goyal's kitty* measures width 6.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html
