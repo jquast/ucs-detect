@@ -8,7 +8,7 @@ session_arguments:
   limit_words: 5000
   quick: false
   stream: stderr
-software: Kovid Goyle's kitty
+software: Kovid Goyal's kitty
 system: Darwin
 test_results:
   emoji_vs16_results:
