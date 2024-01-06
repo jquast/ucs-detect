@@ -4,9 +4,9 @@ Kovid Goyal's kitty
 -------------------
 
 
-Tested Software version 0.30.1 on Darwin
+Tested Software version 0.31.0 on Darwin
 Full results available at ucs-detect_ repository path
-`data/macos-kitty-0.30.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-kitty-0.30.1.yaml>`_
+`data/macos-kitty-0.31.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-kitty-0.31.0.yaml>`_
 
 .. _KovidGoyalskittywide:
 
@@ -22,7 +22,7 @@ results:
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
 '5.1.0'             0         26  100.0%
-'5.2.0'            79        269  70.6%
+'5.2.0'            80        269  70.3%
 '6.0.0'             1         13  92.3%
 '9.0.0'             0       5000  100.0%
 '10.0.0'            0        735  100.0%
@@ -52,7 +52,7 @@ Total codepoints: 1
         ⿾|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
+- python `wcwidth.wcswidth()`_ measures width 2,
   while *Kovid Goyal's kitty* measures width 1.
 
 .. _KovidGoyalskittyzwj:
@@ -103,7 +103,7 @@ Total codepoints: 6
         🧑‍🦼‍➡️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
+- python `wcwidth.wcswidth()`_ measures width 2,
   while *Kovid Goyal's kitty* measures width 6.
 
 .. _KovidGoyalskittyvs16:
@@ -120,20 +120,20 @@ All codepoint combinations with Variation Selector-16 tested were successful.
 Language Support
 ++++++++++++++++
 
-The following 94 languages were tested with 100% success:
+The following 93 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular, Pular (Adlam), Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Shan, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Shan, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 5 languages are not fully supported:
 
 =========  ==========  =========  =============
-lang         n_errors    n_total    pct_success
+lang         n_errors    n_total  pct_success
 =========  ==========  =========  =============
-Malayalam         109       1630        93.3129
-Sinhala           107       1655        93.5347
-Marathi             5       1614        99.6902
-Nepali              3       1385        99.7834
-Bengali             3       1413        99.7877
+Malayalam         109       1630  93.3%
+Sinhala           107       1655  93.5%
+Marathi             5       1614  99.7%
+Nepali              3       1385  99.8%
+Bengali             3       1413  99.8%
 =========  ==========  =========  =============
 
 Malayalam
@@ -172,7 +172,7 @@ Total codepoints: 17
         സര്‍വ്വതോന്മുഖമായ|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9, 
+- python `wcwidth.wcswidth()`_ measures width 9,
   while *Kovid Goyal's kitty* measures width 10.
 
 Sinhala
@@ -203,7 +203,7 @@ Total codepoints: 9
         ප්‍රකාශනය|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *Kovid Goyal's kitty* measures width 6.
 
 Marathi
@@ -236,7 +236,7 @@ Total codepoints: 11
         करण्यार्‍या|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *Kovid Goyal's kitty* measures width 6.
 
 Nepali
@@ -269,7 +269,7 @@ Total codepoints: 11
         पुर्‍याइएको|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *Kovid Goyal's kitty* measures width 6.
 
 Bengali
@@ -302,7 +302,7 @@ Total codepoints: 11
         উত্‍পীড়নের|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *Kovid Goyal's kitty* measures width 6.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html

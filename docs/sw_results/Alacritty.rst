@@ -4,9 +4,9 @@ Alacritty
 ---------
 
 
-Tested Software version 0.12.3_1 on Darwin
+Tested Software version 0.13.0_1 on Darwin
 Full results available at ucs-detect_ repository path
-`data/macos-Alacritty-0.12.3_1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-Alacritty-0.12.3_1.yaml>`_
+`data/macos-Alacritty-0.13.0_1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-Alacritty-0.13.0_1.yaml>`_
 
 .. _Alacrittywide:
 
@@ -14,7 +14,7 @@ Wide character support
 ++++++++++++++++++++++
 
 The best wide unicode table version for Alacritty appears to be 
-**15.0.0**, this is from a summary of the following
+**15.1.0**, this is from a summary of the following
 results:
 
 
@@ -25,34 +25,34 @@ version      n_errors    n_total  pct_success
 '5.2.0'            79        269  70.6%
 '6.0.0'             0         13  100.0%
 '9.0.0'             0       5000  100.0%
-'10.0.0'            0        735  100.0%
-'11.0.0'            0         62  100.0%
-'12.0.0'            0         62  100.0%
+'10.0.0'           73        735  90.1%
+'11.0.0'            6         62  90.3%
+'12.0.0'            6         62  90.3%
 '12.1.0'            0          1  100.0%
-'13.0.0'            0        541  100.0%
-'14.0.0'            0         41  100.0%
-'15.0.0'            0         15  100.0%
-'15.1.0'            5          5  0.0%
+'13.0.0'           54        541  90.0%
+'14.0.0'            4         41  90.2%
+'15.0.0'            1         15  93.3%
+'15.1.0'            0          5  100.0%
 =========  ==========  =========  =============
 
-Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
+Sequence of a WIDE character from Unicode Version 15.0.0, from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ======
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======
-`U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  Cn                  2  na
-=========================================  =========  ==========  =========  ======
+=================================================  =============  ==========  =========  =========
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  =========
+`U+0001FABC <https://codepoints.net/U+0001FABC>`_  '\\U0001fabc'  So                  2  JELLYFISH
+=================================================  =============  ==========  =========  =========
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe2\xbf\xbe|\\n12|\\n"
-        ⿾|
+        $ printf "\xf0\x9f\xaa\xbc|\\n12|\\n"
+        🪼|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
+- python `wcwidth.wcswidth()`_ measures width 2,
   while *Alacritty* measures width 1.
 
 .. _Alacrittyzwj:
@@ -103,7 +103,7 @@ Total codepoints: 6
         🧑‍🦼‍➡️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
+- python `wcwidth.wcswidth()`_ measures width 2,
   while *Alacritty* measures width 5.
 
 .. _Alacrittyvs16:
@@ -131,7 +131,7 @@ Total codepoints: 2
         🌥️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
+- python `wcwidth.wcswidth()`_ measures width 2,
   while *Alacritty* measures width 1.
 
 
@@ -140,40 +140,40 @@ Total codepoints: 2
 Language Support
 ++++++++++++++++
 
-The following 74 languages were tested with 100% success:
+The following 73 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gumuz, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular, Pular (Adlam), Secoya, Seraiki, Serer-Sine, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gumuz, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Secoya, Seraiki, Serer-Sine, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 25 languages are not fully supported:
 
 ===================  ==========  =========  =============
-lang                   n_errors    n_total    pct_success
+lang                   n_errors    n_total  pct_success
 ===================  ==========  =========  =============
-Shan                        500        533        6.19137
-Tamil (Sri Lanka)           500        539        7.23562
-Tamil                       500        540        7.40741
-Sanskrit (Grantha)          500        565       11.5044
-Javanese (Javanese)         500        568       11.9718
-Malayalam                   500        579       13.6442
-Bengali                     500        588       14.966
-Khmer, Central              448        528       15.1515
-Kannada                     500        598       16.388
-Burmese                     500        608       17.7632
-Khün                        361        442       18.3258
-Sanskrit                    500        677       26.1448
-Tamang, Eastern              33         45       26.6667
-Nepali                      500        701       28.6733
-Marathi                     500        703       28.8762
-Mon                         500        711       29.6765
-Gujarati                    500        756       33.8624
-Hindi                       500        774       35.4005
-Telugu                      500        779       35.8151
-Maithili                    500        794       37.0277
-Panjabi, Eastern            500        860       41.8605
-Sinhala                     500        947       47.2017
-Bhojpuri                    500       1009       50.446
-Magahi                      500       1074       53.4451
-Chakma                      493       1444       65.8587
+Shan                        500        533  6.2%
+Tamil (Sri Lanka)           500        539  7.2%
+Tamil                       500        540  7.4%
+Sanskrit (Grantha)          500        565  11.5%
+Javanese (Javanese)         500        573  12.7%
+Malayalam                   500        579  13.6%
+Bengali                     500        588  15.0%
+Khmer, Central              448        528  15.2%
+Kannada                     500        598  16.4%
+Burmese                     500        608  17.8%
+Khün                        361        442  18.3%
+Sanskrit                    500        677  26.1%
+Tamang, Eastern              33         45  26.7%
+Nepali                      500        701  28.7%
+Marathi                     500        703  28.9%
+Mon                         500        711  29.7%
+Gujarati                    500        756  33.9%
+Hindi                       500        774  35.4%
+Telugu                      500        779  35.8%
+Maithili                    500        794  37.0%
+Panjabi, Eastern            500        860  41.9%
+Sinhala                     500        947  47.2%
+Bhojpuri                    500       1009  50.4%
+Magahi                      500       1074  53.4%
+Chakma                      493       1444  65.9%
 ===================  ==========  =========  =============
 
 Shan
@@ -210,7 +210,7 @@ Total codepoints: 15
         လိၵ်ႈပိုၼ်ၽၢဝ်ႇ|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
+- python `wcwidth.wcswidth()`_ measures width 6,
   while *Alacritty* measures width 9.
 
 Tamil (Sri Lanka)
@@ -236,7 +236,7 @@ Total codepoints: 4
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Tamil
@@ -262,7 +262,7 @@ Total codepoints: 4
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Sanskrit (Grantha)
@@ -298,7 +298,7 @@ Total codepoints: 14
         𑌮𑌾𑌨𑌵𑌾𑌧𑌿𑌕𑌾𑌰𑌾𑌣𑌾𑌂|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
+- python `wcwidth.wcswidth()`_ measures width 7,
   while *Alacritty* measures width 14.
 
 Javanese (Javanese)
@@ -324,7 +324,7 @@ Total codepoints: 4
         ꦲꦸꦩꦠ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Malayalam
@@ -375,7 +375,7 @@ Total codepoints: 29
         മനുഷ്യാവകാശങ്ങളെക്കുറിക്കുന്ന|
         12345678901234567|
 
-- python `wcwidth.wcswidth()`_ measures width 17, 
+- python `wcwidth.wcswidth()`_ measures width 17,
   while *Alacritty* measures width 21.
 
 Bengali
@@ -409,7 +409,7 @@ Total codepoints: 12
         মানবাধিকারের|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
+- python `wcwidth.wcswidth()`_ measures width 7,
   while *Alacritty* measures width 12.
 
 Khmer, Central
@@ -467,7 +467,7 @@ Total codepoints: 36
         សេចក្ដីប្រកាសជាសកលស្ដីពីសិទ្ធិមនុស្ស|
         1234567890123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 22, 
+- python `wcwidth.wcswidth()`_ measures width 22,
   while *Alacritty* measures width 25.
 
 Kannada
@@ -493,7 +493,7 @@ Total codepoints: 4
         ಮಾನವ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Burmese
@@ -531,7 +531,7 @@ Total codepoints: 16
         အပြည်ပြည်ဆိုင်ရာ|
         12345678|
 
-- python `wcwidth.wcswidth()`_ measures width 8, 
+- python `wcwidth.wcswidth()`_ measures width 8,
   while *Alacritty* measures width 11.
 
 Khün
@@ -575,7 +575,7 @@ Total codepoints: 22
         ᨠᨲᩥᨠᩣᩅᩤ᩵ᨯ᩠ᩅ᩠ᨿᩢᨾᨶᩩᩔᨩᩣ᩠ᨲ|
         123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 12, 
+- python `wcwidth.wcswidth()`_ measures width 12,
   while *Alacritty* measures width 15.
 
 Sanskrit
@@ -611,7 +611,7 @@ Total codepoints: 14
         मानवाधिकाराणां|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
+- python `wcwidth.wcswidth()`_ measures width 7,
   while *Alacritty* measures width 13.
 
 Tamang, Eastern
@@ -639,7 +639,7 @@ Total codepoints: 6
         म्हीसे|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Nepali
@@ -665,7 +665,7 @@ Total codepoints: 4
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Marathi
@@ -692,7 +692,7 @@ Total codepoints: 5
         मानवी|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 5.
 
 Mon
@@ -724,7 +724,7 @@ Total codepoints: 10
         လိက်လလောၚ်|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *Alacritty* measures width 7.
 
 Gujarati
@@ -750,7 +750,7 @@ Total codepoints: 4
         માનવ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Hindi
@@ -776,7 +776,7 @@ Total codepoints: 4
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Telugu
@@ -811,7 +811,7 @@ Total codepoints: 13
         మానవస్వత్వముల|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9, 
+- python `wcwidth.wcswidth()`_ measures width 9,
   while *Alacritty* measures width 10.
 
 Maithili
@@ -841,7 +841,7 @@ Total codepoints: 8
         सार्वभौम|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *Alacritty* measures width 7.
 
 Panjabi, Eastern
@@ -869,7 +869,7 @@ Total codepoints: 6
         ਮਨੁੱਖੀ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Sinhala
@@ -895,7 +895,7 @@ Total codepoints: 4
         මානව|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
+- python `wcwidth.wcswidth()`_ measures width 3,
   while *Alacritty* measures width 4.
 
 Bhojpuri
@@ -927,7 +927,7 @@ Total codepoints: 10
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
+- python `wcwidth.wcswidth()`_ measures width 6,
   while *Alacritty* measures width 10.
 
 Magahi
@@ -959,7 +959,7 @@ Total codepoints: 10
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
+- python `wcwidth.wcswidth()`_ measures width 6,
   while *Alacritty* measures width 10.
 
 Chakma
@@ -994,7 +994,7 @@ Total codepoints: 13
         𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
+- python `wcwidth.wcswidth()`_ measures width 7,
   while *Alacritty* measures width 8.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html

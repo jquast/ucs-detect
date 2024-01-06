@@ -464,7 +464,7 @@ def show_language_results(sw_name, entry):
             "lang": lang,
             "n_errors": entry["data"]["test_results"]["language_results"][lang]["n_errors"],
             "n_total": entry["data"]["test_results"]["language_results"][lang]["n_total"],
-            "pct_success": entry["data"]["test_results"]["language_results"][lang]["pct_success"],
+            "pct_success": f'{entry["data"]["test_results"]["language_results"][lang]["pct_success"]:0.1f}%',
         }
         for lang in languages_failed
     ]
