@@ -500,7 +500,7 @@ def show_record_failure(sw_name, whatis, fail_record):
               " where no movement is expected.")
     elif fail_record["measured_by_wcwidth"] != fail_record["measured_by_terminal"]:
         print(f"- python `wcwidth.wcswidth()`_ measures width"
-              f" {fail_record['measured_by_wcwidth']}, ")
+              f" {fail_record['measured_by_wcwidth']},")
         print(f"  while *{sw_name}* measures width"
               f" {fail_record['measured_by_terminal']}.")
     print()
