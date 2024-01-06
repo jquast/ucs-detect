@@ -46,6 +46,11 @@ from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 # effort to use any their word boundaries.
 WORD_SPLIT_DELIMITERS = (" ", "，", "、", ",", "\u200b", "。", "\uA9C0")
 
+if (sys.version_info.major, sys.version_info.minor) > (3, 10):
+    DATE_NOW = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
+else:
+    DATE_NOW = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+
 def unicode_escape_string(input_str):
     encoded_str = codecs.encode(input_str, "unicode-escape").decode("utf-8")
     return encoded_str
@@ -642,7 +647,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
             height=term.height,
             python_version=platform.python_version(),
             system=platform.system(),
-            datetime=datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC"),
+            datetime=DATE_NOW,
             wcwidth_version=wcwidth.__version__,
             test_results=dict(
                 unicode_wide_version=unicode_version,
