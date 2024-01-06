@@ -1,6 +1,6 @@
-.. _XTerm:
+.. _xterm:
 
-XTerm
+xterm
 -----
 
 
@@ -8,12 +8,12 @@ Tested Software version 388 on Linux
 Full results available at ucs-detect_ repository path
 `data/linux-xterm-388.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-xterm-388.yaml>`_
 
-.. _XTermwide:
+.. _xtermwide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for XTerm appears to be 
+The best wide unicode table version for xterm appears to be 
 **15.0.0**, this is from a summary of the following
 results:
 
@@ -25,42 +25,42 @@ version      n_errors    n_total  pct_success
 '5.2.0'           118        269  56.1%
 '6.0.0'             0         13  100.0%
 '9.0.0'             0       5000  100.0%
-'10.0.0'           49        735  93.3%
-'11.0.0'            4         62  93.5%
-'12.0.0'            4         62  93.5%
+'10.0.0'           73        735  90.1%
+'11.0.0'            6         62  90.3%
+'12.0.0'            6         62  90.3%
 '12.1.0'            0          1  100.0%
-'13.0.0'           36        541  93.3%
-'14.0.0'            2         41  95.1%
+'13.0.0'           54        541  90.0%
+'14.0.0'            4         41  90.2%
 '15.0.0'            1         15  93.3%
 '15.1.0'            5          5  0.0%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 15.0.0, from midpoint of alignment failure records:
 
-=================================================  =============  ==========  =========  ======================
+=================================================  =============  ==========  =========  =========
 Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ======================
-`U+0001FAF7 <https://codepoints.net/U+0001FAF7>`_  '\\U0001faf7'  So                  2  LEFTWARDS PUSHING HAND
-=================================================  =============  ==========  =========  ======================
+=================================================  =============  ==========  =========  =========
+`U+0001FABC <https://codepoints.net/U+0001FABC>`_  '\\U0001fabc'  So                  2  JELLYFISH
+=================================================  =============  ==========  =========  =========
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\xab\xb7|\\n12|\\n"
-        🫷|
+        $ printf "\xf0\x9f\xaa\xbc|\\n12|\\n"
+        🪼|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *XTerm* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *xterm* measures width 1.
 
-.. _XTermzwj:
+.. _xtermzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *XTerm* appears to be 
+The best Emoji ZWJ table version for *xterm* appears to be 
 **None**, this is from a summary of the following
 results:
 
@@ -103,15 +103,15 @@ Total codepoints: 6
         🧑‍🦼‍➡️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *XTerm* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *xterm* measures width 5.
 
-.. _XTermvs16:
+.. _xtermvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *XTerm* is 100 errors
+Emoji VS-16 results for *xterm* is 100 errors
 out of 100 total codepoints tested, 0.0% success.
 Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
@@ -131,171 +131,54 @@ Total codepoints: 2
         🌥️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *XTerm* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *xterm* measures width 1.
 
 
-.. _XTermlang:
+.. _xtermlang:
 
 Language Support
 ++++++++++++++++
 
-The following 70 languages were tested with 100% success:
+The following 69 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gumuz, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular, Pular (Adlam), Secoya, Seraiki, Serer-Sine, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Ticuna, Uduk, Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gumuz, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Secoya, Seraiki, Serer-Sine, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Ticuna, Uduk, Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 29 languages are not fully supported:
 
 ===================  ==========  =========  =============
-lang                   n_errors    n_total    pct_success
+lang                   n_errors    n_total  pct_success
 ===================  ==========  =========  =============
-Javanese (Javanese)         247        255        3.13725
-Shan                        500        533        6.19137
-Tamil (Sri Lanka)           500        539        7.23562
-Tamil                       500        540        7.40741
-Sanskrit (Grantha)          500        565       11.5044
-Malayalam                   500        579       13.6442
-Bengali                     500        588       14.966
-Khmer, Central              448        528       15.1515
-Kannada                     500        598       16.388
-Burmese                     500        608       17.7632
-Khün                        361        442       18.3258
-Sanskrit                    500        677       26.1448
-Tamang, Eastern              33         45       26.6667
-Nepali                      500        701       28.6733
-Marathi                     500        703       28.8762
-Mon                         500        711       29.6765
-Gujarati                    500        756       33.8624
-Hindi                       500        774       35.4005
-Telugu                      500        779       35.8151
-Maithili                    500        794       37.0277
-Panjabi, Eastern            500        860       41.8605
-Sinhala                     500        947       47.2017
-Bhojpuri                    500       1009       50.446
-Magahi                      500       1074       53.4451
-Chakma                      493       1444       65.8587
-Tibetan, Central              1        275       99.6364
-Yaneshaʼ                      2       2536       99.9211
-Urdu                          1       2237       99.9553
-Urdu (2)                      1       2251       99.9556
+Shan                        500        533  6.2%
+Tamil (Sri Lanka)           500        539  7.2%
+Tamil                       500        540  7.4%
+Sanskrit (Grantha)          500        565  11.5%
+Javanese (Javanese)         500        573  12.7%
+Malayalam                   500        579  13.6%
+Bengali                     500        588  15.0%
+Khmer, Central              448        528  15.2%
+Kannada                     500        598  16.4%
+Burmese                     500        608  17.8%
+Khün                        361        442  18.3%
+Sanskrit                    500        677  26.1%
+Tamang, Eastern              33         45  26.7%
+Nepali                      500        701  28.7%
+Marathi                     500        703  28.9%
+Mon                         500        711  29.7%
+Gujarati                    500        756  33.9%
+Hindi                       500        774  35.4%
+Telugu                      500        779  35.8%
+Maithili                    500        794  37.0%
+Panjabi, Eastern            500        860  41.9%
+Sinhala                     500        947  47.2%
+Bhojpuri                    500       1009  50.4%
+Magahi                      500       1074  53.4%
+Chakma                      493       1444  65.9%
+Tibetan, Central              2        260  99.2%
+Yaneshaʼ                      5       2536  99.8%
+Urdu                          1       2237  100.0%
+Urdu (2)                      1       2251  100.0%
 ===================  ==========  =========  =============
-
-Javanese (Javanese)
-^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==========================
-`U+A9CB <https://codepoints.net/U+A9CB>`_  '\\ua9cb'  Po                  1  JAVANESE PADA ADEG ADEG
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9BC <https://codepoints.net/U+A9BC>`_  '\\ua9bc'  Mn                  0  JAVANESE VOWEL SIGN PEPET
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
-`U+A9A9 <https://codepoints.net/U+A9A9>`_  '\\ua9a9'  Lo                  1  JAVANESE LETTER MA
-`U+A9A0 <https://codepoints.net/U+A9A0>`_  '\\ua9a0'  Lo                  1  JAVANESE LETTER TA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9A9 <https://codepoints.net/U+A9A9>`_  '\\ua9a9'  Lo                  1  JAVANESE LETTER MA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9AD <https://codepoints.net/U+A9AD>`_  '\\ua9ad'  Lo                  1  JAVANESE LETTER LA
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A982 <https://codepoints.net/U+A982>`_  '\\ua982'  Mn                  0  JAVANESE SIGN LAYAR
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A99B <https://codepoints.net/U+A99B>`_  '\\ua99b'  Lo                  1  JAVANESE LETTER TTA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A9A5 <https://codepoints.net/U+A9A5>`_  '\\ua9a5'  Lo                  1  JAVANESE LETTER PA
-`U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
-`U+A9B4 <https://codepoints.net/U+A9B4>`_  '\\ua9b4'  Mc                  0  JAVANESE VOWEL SIGN TARUNG
-`U+A99D <https://codepoints.net/U+A99D>`_  '\\ua99d'  Lo                  1  JAVANESE LETTER DDA
-`U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
-`U+A9B4 <https://codepoints.net/U+A9B4>`_  '\\ua9b4'  Mc                  0  JAVANESE VOWEL SIGN TARUNG
-`U+A9AD <https://codepoints.net/U+A9AD>`_  '\\ua9ad'  Lo                  1  JAVANESE LETTER LA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9A5 <https://codepoints.net/U+A9A5>`_  '\\ua9a5'  Lo                  1  JAVANESE LETTER PA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A99B <https://codepoints.net/U+A99B>`_  '\\ua99b'  Lo                  1  JAVANESE LETTER TTA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A9AD <https://codepoints.net/U+A9AD>`_  '\\ua9ad'  Lo                  1  JAVANESE LETTER LA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A99B <https://codepoints.net/U+A99B>`_  '\\ua99b'  Lo                  1  JAVANESE LETTER TTA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A992 <https://codepoints.net/U+A992>`_  '\\ua992'  Lo                  1  JAVANESE LETTER GA
-`U+A9BC <https://codepoints.net/U+A9BC>`_  '\\ua9bc'  Mn                  0  JAVANESE VOWEL SIGN PEPET
-`U+A982 <https://codepoints.net/U+A982>`_  '\\ua982'  Mn                  0  JAVANESE SIGN LAYAR
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A992 <https://codepoints.net/U+A992>`_  '\\ua992'  Lo                  1  JAVANESE LETTER GA
-`U+A9BC <https://codepoints.net/U+A9BC>`_  '\\ua9bc'  Mn                  0  JAVANESE VOWEL SIGN PEPET
-`U+A982 <https://codepoints.net/U+A982>`_  '\\ua982'  Mn                  0  JAVANESE SIGN LAYAR
-`U+A9C9 <https://codepoints.net/U+A9C9>`_  '\\ua9c9'  Po                  1  JAVANESE PADA LUNGSI
-=========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 95
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xea\xa7\x8b\xea\xa6\xb1\xea\xa6\xa7\xea\xa6\xbc\xea\xa6\xa4\xea\xa7\x80\xea\xa6\xb2\xea\xa6\xb8\xea\xa6\xa9\xea\xa6\xa0\xea\xa7\x80\xea\xa6\xa9\xea\xa6\xa4\xea\xa6\xb8\xea\xa6\x81\xea\xa6\xb1\xea\xa6\xad\xea\xa6\xb2\xea\xa6\xb6\xea\xa6\x82\xea\xa6\x8f\xea\xa6\xa4\xea\xa7\x80\xea\xa6\x9b\xea\xa6\xb6\xea\xa6\xb2\xea\xa6\x8f\xea\xa7\x80\xea\xa6\xb2\xea\xa6\x8f\xea\xa7\x80\xea\xa6\x8f\xea\xa6\x81\xea\xa6\xa5\xea\xa6\xba\xea\xa6\xb4\xea\xa6\x9d\xea\xa6\xba\xea\xa6\xb4\xea\xa6\xad\xea\xa6\xa4\xea\xa7\x80\xea\xa6\xa5\xea\xa6\xb6\xea\xa6\xa4\xea\xa6\xb1\xea\xa7\x80\xea\xa6\x9b\xea\xa6\xb6\xea\xa6\xad\xea\xa6\xa4\xea\xa7\x80\xea\xa6\x8f\xea\xa6\xa4\xea\xa7\x80\xea\xa6\x9b\xea\xa6\xb6\xea\xa6\x8f\xea\xa6\xa7\xea\xa6\xba\xea\xa6\xa7\xea\xa6\xb1\xea\xa7\x80\xea\xa6\xb1\xea\xa6\xa4\xea\xa7\x80\xea\xa6\x8f\xea\xa6\xa7\xea\xa6\xba\xea\xa6\xa7\xea\xa6\xb1\xea\xa7\x80\xea\xa6\xb1\xea\xa6\xa4\xea\xa7\x80\xea\xa6\xb2\xea\xa6\xb6\xea\xa6\x81\xea\xa6\xa7\xea\xa6\x8f\xea\xa6\xb8\xea\xa6\xa4\xea\xa6\xb6\xea\xa6\x81\xea\xa6\xb2\xea\xa6\x81\xea\xa6\x92\xea\xa6\xbc\xea\xa6\x82\xea\xa6\xb2\xea\xa6\x81\xea\xa6\x92\xea\xa6\xbc\xea\xa6\x82\xea\xa7\x89|\\n123456789012345678901234567890123456789012345678901234|\\n"
-        ꧋ꦱꦧꦼꦤ꧀ꦲꦸꦩꦠ꧀ꦩꦤꦸꦁꦱꦭꦲꦶꦂꦏꦤ꧀ꦛꦶꦲꦏ꧀ꦲꦏ꧀ꦏꦁꦥꦺꦴꦝꦺꦴꦭꦤ꧀ꦥꦶꦤꦱ꧀ꦛꦶꦭꦤ꧀ꦏꦤ꧀ꦛꦶꦏꦧꦺꦧꦱ꧀ꦱꦤ꧀ꦏꦧꦺꦧꦱ꧀ꦱꦤ꧀ꦲꦶꦁꦧꦏꦸꦤꦶꦁꦲꦁꦒꦼꦂꦲꦁꦒꦼꦂ꧉|
-        123456789012345678901234567890123456789012345678901234|
-
-- python `wcwidth.wcswidth()`_ measures width 54, 
-  while *XTerm* measures width 73.
 
 Shan
 ^^^^
@@ -331,8 +214,8 @@ Total codepoints: 15
         လိၵ်ႈပိုၼ်ၽၢဝ်ႇ|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
-  while *XTerm* measures width 9.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *xterm* measures width 9.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -357,8 +240,8 @@ Total codepoints: 4
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Tamil
 ^^^^^
@@ -383,8 +266,8 @@ Total codepoints: 4
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -419,8 +302,34 @@ Total codepoints: 14
         𑌮𑌾𑌨𑌵𑌾𑌧𑌿𑌕𑌾𑌰𑌾𑌣𑌾𑌂|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *XTerm* measures width 14.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *xterm* measures width 14.
+
+Javanese (Javanese)
+^^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ========================
+`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
+`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
+`U+A9A9 <https://codepoints.net/U+A9A9>`_  '\\ua9a9'  Lo                  1  JAVANESE LETTER MA
+`U+A9A0 <https://codepoints.net/U+A9A0>`_  '\\ua9a0'  Lo                  1  JAVANESE LETTER TA
+=========================================  =========  ==========  =========  ========================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xea\xa6\xb2\xea\xa6\xb8\xea\xa6\xa9\xea\xa6\xa0|\\n123|\\n"
+        ꦲꦸꦩꦠ|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Malayalam
 ^^^^^^^^^
@@ -470,8 +379,8 @@ Total codepoints: 29
         മനുഷ്യാവകാശങ്ങളെക്കുറിക്കുന്ന|
         12345678901234567|
 
-- python `wcwidth.wcswidth()`_ measures width 17, 
-  while *XTerm* measures width 21.
+- python `wcwidth.wcswidth()`_ measures width 17,
+  while *xterm* measures width 21.
 
 Bengali
 ^^^^^^^
@@ -504,8 +413,8 @@ Total codepoints: 12
         মানবাধিকারের|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *XTerm* measures width 12.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *xterm* measures width 12.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -562,8 +471,8 @@ Total codepoints: 36
         សេចក្ដីប្រកាសជាសកលស្ដីពីសិទ្ធិមនុស្ស|
         1234567890123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 22, 
-  while *XTerm* measures width 25.
+- python `wcwidth.wcswidth()`_ measures width 22,
+  while *xterm* measures width 25.
 
 Kannada
 ^^^^^^^
@@ -588,8 +497,8 @@ Total codepoints: 4
         ಮಾನವ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Burmese
 ^^^^^^^
@@ -626,8 +535,8 @@ Total codepoints: 16
         အပြည်ပြည်ဆိုင်ရာ|
         12345678|
 
-- python `wcwidth.wcswidth()`_ measures width 8, 
-  while *XTerm* measures width 11.
+- python `wcwidth.wcswidth()`_ measures width 8,
+  while *xterm* measures width 11.
 
 Khün
 ^^^^
@@ -670,8 +579,8 @@ Total codepoints: 22
         ᨠᨲᩥᨠᩣᩅᩤ᩵ᨯ᩠ᩅ᩠ᨿᩢᨾᨶᩩᩔᨩᩣ᩠ᨲ|
         123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 12, 
-  while *XTerm* measures width 15.
+- python `wcwidth.wcswidth()`_ measures width 12,
+  while *xterm* measures width 15.
 
 Sanskrit
 ^^^^^^^^
@@ -706,8 +615,8 @@ Total codepoints: 14
         मानवाधिकाराणां|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *XTerm* measures width 13.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *xterm* measures width 13.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -734,8 +643,8 @@ Total codepoints: 6
         म्हीसे|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Nepali
 ^^^^^^
@@ -760,8 +669,8 @@ Total codepoints: 4
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Marathi
 ^^^^^^^
@@ -787,8 +696,8 @@ Total codepoints: 5
         मानवी|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 5.
 
 Mon
 ^^^
@@ -819,8 +728,8 @@ Total codepoints: 10
         လိက်လလောၚ်|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *XTerm* measures width 7.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *xterm* measures width 7.
 
 Gujarati
 ^^^^^^^^
@@ -845,8 +754,8 @@ Total codepoints: 4
         માનવ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Hindi
 ^^^^^
@@ -871,8 +780,8 @@ Total codepoints: 4
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Telugu
 ^^^^^^
@@ -906,8 +815,8 @@ Total codepoints: 13
         మానవస్వత్వముల|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9, 
-  while *XTerm* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 9,
+  while *xterm* measures width 10.
 
 Maithili
 ^^^^^^^^
@@ -936,8 +845,8 @@ Total codepoints: 8
         सार्वभौम|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *XTerm* measures width 7.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *xterm* measures width 7.
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -964,8 +873,8 @@ Total codepoints: 6
         ਮਨੁੱਖੀ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Sinhala
 ^^^^^^^
@@ -990,8 +899,8 @@ Total codepoints: 4
         මානව|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *XTerm* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *xterm* measures width 4.
 
 Bhojpuri
 ^^^^^^^^
@@ -1022,8 +931,8 @@ Total codepoints: 10
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
-  while *XTerm* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *xterm* measures width 10.
 
 Magahi
 ^^^^^^
@@ -1054,8 +963,8 @@ Total codepoints: 10
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
-  while *XTerm* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *xterm* measures width 10.
 
 Chakma
 ^^^^^^
@@ -1089,8 +998,8 @@ Total codepoints: 13
         𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *XTerm* measures width 8.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *xterm* measures width 8.
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -1101,101 +1010,37 @@ Sequence of language *Tibetan, Central* from midpoint of alignment failure recor
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ================================
 `U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
-`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
 `U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
 `U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
 `U+0F54 <https://codepoints.net/U+0F54>`_  '\\u0f54'  Lo                  1  TIBETAN LETTER PA
 `U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
 `U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
 `U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F41 <https://codepoints.net/U+0F41>`_  '\\u0f41'  Lo                  1  TIBETAN LETTER KHA
-`U+0FB2 <https://codepoints.net/U+0FB2>`_  '\\u0fb2'  Mn                  0  TIBETAN SUBJOINED LETTER RA
-`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
-`U+0F58 <https://codepoints.net/U+0F58>`_  '\\u0f58'  Lo                  1  TIBETAN LETTER MA
-`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
-`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
-`U+0F63 <https://codepoints.net/U+0F63>`_  '\\u0f63'  Lo                  1  TIBETAN LETTER LA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
-`U+0FB1 <https://codepoints.net/U+0FB1>`_  '\\u0fb1'  Mn                  0  TIBETAN SUBJOINED LETTER YA
-`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
-`U+0F53 <https://codepoints.net/U+0F53>`_  '\\u0f53'  Lo                  1  TIBETAN LETTER NA
-`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F5A <https://codepoints.net/U+0F5A>`_  '\\u0f5a'  Lo                  1  TIBETAN LETTER TSHA
-`U+0F74 <https://codepoints.net/U+0F74>`_  '\\u0f74'  Mn                  0  TIBETAN VOWEL SIGN U
-`U+0F63 <https://codepoints.net/U+0F63>`_  '\\u0f63'  Lo                  1  TIBETAN LETTER LA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F45 <https://codepoints.net/U+0F45>`_  '\\u0f45'  Lo                  1  TIBETAN LETTER CA
-`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
-`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
-`U+0FB2 <https://codepoints.net/U+0FB2>`_  '\\u0fb2'  Mn                  0  TIBETAN SUBJOINED LETTER RA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F5E <https://codepoints.net/U+0F5E>`_  '\\u0f5e'  Lo                  1  TIBETAN LETTER ZHA
-`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
-`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
-`U+0FB1 <https://codepoints.net/U+0FB1>`_  '\\u0fb1'  Mn                  0  TIBETAN SUBJOINED LETTER YA
-`U+0F74 <https://codepoints.net/U+0F74>`_  '\\u0f74'  Mn                  0  TIBETAN VOWEL SIGN U
-`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F62 <https://codepoints.net/U+0F62>`_  '\\u0f62'  Lo                  1  TIBETAN LETTER RA
-`U+0F74 <https://codepoints.net/U+0F74>`_  '\\u0f74'  Mn                  0  TIBETAN VOWEL SIGN U
-`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F49 <https://codepoints.net/U+0F49>`_  '\\u0f49'  Lo                  1  TIBETAN LETTER NYA
-`U+0F7A <https://codepoints.net/U+0F7A>`_  '\\u0f7a'  Mn                  0  TIBETAN VOWEL SIGN E
-`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F45 <https://codepoints.net/U+0F45>`_  '\\u0f45'  Lo                  1  TIBETAN LETTER CA
-`U+0F53 <https://codepoints.net/U+0F53>`_  '\\u0f53'  Lo                  1  TIBETAN LETTER NA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
-`U+0F74 <https://codepoints.net/U+0F74>`_  '\\u0f74'  Mn                  0  TIBETAN VOWEL SIGN U
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
+`U+0F50 <https://codepoints.net/U+0F50>`_  '\\u0f50'  Lo                  1  TIBETAN LETTER THA
 `U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
-`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
-`U+0F5B <https://codepoints.net/U+0F5B>`_  '\\u0f5b'  Lo                  1  TIBETAN LETTER DZA
-`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
-`U+0F53 <https://codepoints.net/U+0F53>`_  '\\u0f53'  Lo                  1  TIBETAN LETTER NA
-`U+0F58 <https://codepoints.net/U+0F58>`_  '\\u0f58'  Lo                  1  TIBETAN LETTER MA
-`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
 `U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
-`U+0FB1 <https://codepoints.net/U+0FB1>`_  '\\u0fb1'  Mn                  0  TIBETAN SUBJOINED LETTER YA
-`U+0F7A <https://codepoints.net/U+0F7A>`_  '\\u0f7a'  Mn                  0  TIBETAN VOWEL SIGN E
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
 `U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
+`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
 `U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F54 <https://codepoints.net/U+0F54>`_  '\\u0f54'  Lo                  1  TIBETAN LETTER PA
-`U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
-`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
-`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
-`U+0F41 <https://codepoints.net/U+0F41>`_  '\\u0f41'  Lo                  1  TIBETAN LETTER KHA
-`U+0F62 <https://codepoints.net/U+0F62>`_  '\\u0f62'  Lo                  1  TIBETAN LETTER RA
+`U+0F61 <https://codepoints.net/U+0F61>`_  '\\u0f61'  Lo                  1  TIBETAN LETTER YA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
 `U+0F0D <https://codepoints.net/U+0F0D>`_  '\\u0f0d'  Po                  1  TIBETAN MARK SHAD
 =========================================  =========  ==========  =========  ================================
 
-Total codepoints: 83
+Total codepoints: 19
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe0\xbd\xbc\xe0\xbd\x82\xe0\xbd\xa6\xe0\xbc\x8b\xe0\xbd\x94\xe0\xbd\xa0\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x81\xe0\xbe\xb2\xe0\xbd\xb2\xe0\xbd\x98\xe0\xbd\xa6\xe0\xbc\x8b\xe0\xbd\xa0\xe0\xbd\x82\xe0\xbd\xa3\xe0\xbc\x8b\xe0\xbd\x82\xe0\xbe\xb1\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x82\xe0\xbd\x93\xe0\xbd\xa6\xe0\xbc\x8b\xe0\xbd\x9a\xe0\xbd\xb4\xe0\xbd\xa3\xe0\xbc\x8b\xe0\xbd\x85\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\xa0\xe0\xbd\x91\xe0\xbe\xb2\xe0\xbc\x8b\xe0\xbd\x9e\xe0\xbd\xb2\xe0\xbd\x82\xe0\xbc\x8b\xe0\xbd\x96\xe0\xbe\xb1\xe0\xbd\xb4\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\xa2\xe0\xbd\xb4\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\x89\xe0\xbd\xba\xe0\xbd\xa6\xe0\xbc\x8b\xe0\xbd\x85\xe0\xbd\x93\xe0\xbc\x8b\xe0\xbd\x91\xe0\xbd\xb4\xe0\xbc\x8b\xe0\xbd\x84\xe0\xbd\xbc\xe0\xbd\xa6\xe0\xbc\x8b\xe0\xbd\xa0\xe0\xbd\x9b\xe0\xbd\xb2\xe0\xbd\x93\xe0\xbd\x98\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x96\xe0\xbe\xb1\xe0\xbd\xba\xe0\xbd\x91\xe0\xbc\x8b\xe0\xbd\x94\xe0\xbd\xa0\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x81\xe0\xbd\xa2\xe0\xbc\x8d|\\n12345678901234567890123456789012345678901234567890123456789012|\\n"
-        ོགས་པའི་ཁྲིམས་འགལ་གྱི་གནས་ཚུལ་ཅི་འདྲ་ཞིག་བྱུང་རུང་ཉེས་ཅན་དུ་ངོས་འཛིནམི་བྱེད་པའི་ཁར།|
-        12345678901234567890123456789012345678901234567890123456789012|
+        $ printf "\xe0\xbd\xbc\xe0\xbd\xa6\xe0\xbc\x8b\xe0\xbd\x94\xe0\xbd\xa0\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x90\xe0\xbd\xbc\xe0\xbd\x96\xe0\xbc\x8b\xe0\xbd\x91\xe0\xbd\x96\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\xa1\xe0\xbd\xbc\xe0\xbd\x91\xe0\xbc\x8d|\\n123456789012345|\\n"
+        ོས་པའི་ཐོབ་དབང་ཡོད།|
+        123456789012345|
 
-- python `wcwidth.wcswidth()`_ measures width 62, 
-  while *XTerm* measures width 63.
+- python `wcwidth.wcswidth()`_ measures width 15,
+  while *xterm* measures width 16.
 
 Yaneshaʼ
 ^^^^^^^^
@@ -1206,31 +1051,38 @@ Sequence of language *Yaneshaʼ* from midpoint of alignment failure records:
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ====================
 `U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
-`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
 `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
-`U+0063 <https://codepoints.net/U+0063>`_  'c'        Ll                  1  LATIN SMALL LETTER C
-`U+0308 <https://codepoints.net/U+0308>`_  '\\u0308'  Mn                  0  COMBINING DIAERESIS
-`U+0068 <https://codepoints.net/U+0068>`_  'h'        Ll                  1  LATIN SMALL LETTER H
+`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+`U+0070 <https://codepoints.net/U+0070>`_  'p'        Ll                  1  LATIN SMALL LETTER P
+`U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+`U+0027 <https://codepoints.net/U+0027>`_  "'"        Po                  1  APOSTROPHE
+`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
+`U+0073 <https://codepoints.net/U+0073>`_  's'        Ll                  1  LATIN SMALL LETTER S
 `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
 `U+0027 <https://codepoints.net/U+0027>`_  "'"        Po                  1  APOSTROPHE
 `U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
 `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
 `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
 =========================================  =========  ==========  =========  ====================
 
-Total codepoints: 13
+Total codepoints: 20
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xcc\x83yeyc\xcc\x88ha'yena|\\n12345678901|\\n"
-        ̃yeyc̈ha'yena|
-        12345678901|
+        $ printf "\xcc\x83errap\xcc\x83aro'tsa'yenet|\\n123456789012345678|\\n"
+        ̃errap̃aro'tsa'yenet|
+        123456789012345678|
 
-- python `wcwidth.wcswidth()`_ measures width 11, 
-  while *XTerm* measures width 12.
+- python `wcwidth.wcswidth()`_ measures width 18,
+  while *xterm* measures width 19.
 
 Urdu
 ^^^^
@@ -1257,8 +1109,8 @@ Total codepoints: 6
         ؁۱۹۴۸ء|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *XTerm* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *xterm* measures width 6.
 
 Urdu (2)
 ^^^^^^^^
@@ -1285,8 +1137,8 @@ Total codepoints: 6
         ؁۱۹۴۸ء|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *XTerm* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *xterm* measures width 6.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

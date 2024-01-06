@@ -1,20 +1,20 @@
-.. _VisualStudioCode:
+.. _rio:
 
-Visual Studio Code
-------------------
+rio
+---
 
 
-Tested Software version 1.85.0 on Darwin
+Tested Software version 0.0.33 on Darwin
 Full results available at ucs-detect_ repository path
-`data/macos-vscode-1.85.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-vscode-1.85.0.yaml>`_
+`data/macos-rio-0.0.33.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-rio-0.0.33.yaml>`_
 
-.. _VisualStudioCodewide:
+.. _riowide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for Visual Studio Code appears to be 
-**12.0.0**, this is from a summary of the following
+The best wide unicode table version for rio appears to be 
+**15.1.0**, this is from a summary of the following
 results:
 
 
@@ -29,38 +29,38 @@ version      n_errors    n_total  pct_success
 '11.0.0'            0         62  100.0%
 '12.0.0'            0         62  100.0%
 '12.1.0'            0          1  100.0%
-'13.0.0'          500        500  0.0%
-'14.0.0'           41         41  0.0%
-'15.0.0'           15         15  0.0%
-'15.1.0'            5          5  0.0%
+'13.0.0'            0        541  100.0%
+'14.0.0'            0         41  100.0%
+'15.0.0'            0         15  100.0%
+'15.1.0'            0          5  100.0%
 =========  ==========  =========  =============
 
-Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
+Sequence of a WIDE character from Unicode Version 5.2.0, from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ======
+=========================================  =========  ==========  =========  ===============================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======
-`U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  Cn                  2  na
-=========================================  =========  ==========  =========  ======
+=========================================  =========  ==========  =========  ===============================
+`U+D7D3 <https://codepoints.net/U+D7D3>`_  '\\ud7d3'  Lo                  0  HANGUL JONGSEONG TIKEUT-CHIEUCH
+=========================================  =========  ==========  =========  ===============================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe2\xbf\xbe|\\n12|\\n"
-        ⿾|
+        $ printf "\xed\x9f\x93|\\n12|\\n"
+        ퟓ|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Visual Studio Code* measures width 1.
+  while *rio* measures width 1.
 
-.. _VisualStudioCodezwj:
+.. _riozwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *Visual Studio Code* appears to be 
+The best Emoji ZWJ table version for *rio* appears to be 
 **None**, this is from a summary of the following
 results:
 
@@ -104,14 +104,14 @@ Total codepoints: 6
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Visual Studio Code* measures width 5.
+  while *rio* measures width 5.
 
-.. _VisualStudioCodevs16:
+.. _riovs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *Visual Studio Code* is 100 errors
+Emoji VS-16 results for *rio* is 100 errors
 out of 100 total codepoints tested, 0.0% success.
 Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
@@ -132,27 +132,27 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Visual Studio Code* measures width 1.
+  while *rio* measures width 1.
 
 
-.. _VisualStudioCodelang:
+.. _riolang:
 
 Language Support
 ++++++++++++++++
 
-The following 72 languages were tested with 100% success:
+The following 73 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gumuz, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Secoya, Seraiki, Serer-Sine, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gumuz, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Secoya, Seraiki, Serer-Sine, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
-The following 26 languages are not fully supported:
+The following 25 languages are not fully supported:
 
 ===================  ==========  =========  =============
 lang                   n_errors    n_total  pct_success
 ===================  ==========  =========  =============
-Javanese (Javanese)         500        517  3.3%
 Shan                        500        533  6.2%
 Tamil (Sri Lanka)           500        539  7.2%
 Tamil                       500        540  7.4%
+Javanese (Javanese)         500        564  11.3%
 Sanskrit (Grantha)          500        565  11.5%
 Malayalam                   500        579  13.6%
 Bengali                     500        588  15.0%
@@ -174,34 +174,7 @@ Sinhala                     500        947  47.2%
 Bhojpuri                    500       1009  50.4%
 Magahi                      500       1074  53.4%
 Chakma                      493       1444  65.9%
-Yaneshaʼ                      8       2536  99.7%
 ===================  ==========  =========  =============
-
-Javanese (Javanese)
-^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ========================
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
-`U+A9A9 <https://codepoints.net/U+A9A9>`_  '\\ua9a9'  Lo                  1  JAVANESE LETTER MA
-`U+A9A0 <https://codepoints.net/U+A9A0>`_  '\\ua9a0'  Lo                  1  JAVANESE LETTER TA
-=========================================  =========  ==========  =========  ========================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xea\xa6\xb2\xea\xa6\xb8\xea\xa6\xa9\xea\xa6\xa0|\\n123|\\n"
-        ꦲꦸꦩꦠ|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
 
 Shan
 ^^^^
@@ -238,7 +211,7 @@ Total codepoints: 15
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *Visual Studio Code* measures width 9.
+  while *rio* measures width 9.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -264,7 +237,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
 
 Tamil
 ^^^^^
@@ -290,7 +263,33 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
+
+Javanese (Javanese)
+^^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ========================
+`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
+`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
+`U+A9A9 <https://codepoints.net/U+A9A9>`_  '\\ua9a9'  Lo                  1  JAVANESE LETTER MA
+`U+A9A0 <https://codepoints.net/U+A9A0>`_  '\\ua9a0'  Lo                  1  JAVANESE LETTER TA
+=========================================  =========  ==========  =========  ========================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xea\xa6\xb2\xea\xa6\xb8\xea\xa6\xa9\xea\xa6\xa0|\\n123|\\n"
+        ꦲꦸꦩꦠ|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *rio* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -326,7 +325,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *Visual Studio Code* measures width 14.
+  while *rio* measures width 14.
 
 Malayalam
 ^^^^^^^^^
@@ -377,7 +376,7 @@ Total codepoints: 29
         12345678901234567|
 
 - python `wcwidth.wcswidth()`_ measures width 17,
-  while *Visual Studio Code* measures width 21.
+  while *rio* measures width 21.
 
 Bengali
 ^^^^^^^
@@ -411,7 +410,7 @@ Total codepoints: 12
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *Visual Studio Code* measures width 12.
+  while *rio* measures width 12.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -469,7 +468,7 @@ Total codepoints: 36
         1234567890123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 22,
-  while *Visual Studio Code* measures width 25.
+  while *rio* measures width 25.
 
 Kannada
 ^^^^^^^
@@ -495,7 +494,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
 
 Burmese
 ^^^^^^^
@@ -533,7 +532,7 @@ Total codepoints: 16
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *Visual Studio Code* measures width 11.
+  while *rio* measures width 11.
 
 Khün
 ^^^^
@@ -577,7 +576,7 @@ Total codepoints: 22
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *Visual Studio Code* measures width 15.
+  while *rio* measures width 15.
 
 Sanskrit
 ^^^^^^^^
@@ -613,7 +612,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *Visual Studio Code* measures width 13.
+  while *rio* measures width 13.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -641,7 +640,7 @@ Total codepoints: 6
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
 
 Nepali
 ^^^^^^
@@ -667,7 +666,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
 
 Marathi
 ^^^^^^^
@@ -694,7 +693,7 @@ Total codepoints: 5
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 5.
+  while *rio* measures width 5.
 
 Mon
 ^^^
@@ -726,7 +725,7 @@ Total codepoints: 10
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *Visual Studio Code* measures width 7.
+  while *rio* measures width 7.
 
 Gujarati
 ^^^^^^^^
@@ -752,7 +751,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
 
 Hindi
 ^^^^^
@@ -778,7 +777,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
 
 Telugu
 ^^^^^^
@@ -813,7 +812,7 @@ Total codepoints: 13
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *Visual Studio Code* measures width 10.
+  while *rio* measures width 10.
 
 Maithili
 ^^^^^^^^
@@ -843,7 +842,7 @@ Total codepoints: 8
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *Visual Studio Code* measures width 7.
+  while *rio* measures width 7.
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -871,7 +870,7 @@ Total codepoints: 6
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
 
 Sinhala
 ^^^^^^^
@@ -897,7 +896,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Visual Studio Code* measures width 4.
+  while *rio* measures width 4.
 
 Bhojpuri
 ^^^^^^^^
@@ -929,7 +928,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *Visual Studio Code* measures width 10.
+  while *rio* measures width 10.
 
 Magahi
 ^^^^^^
@@ -961,7 +960,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *Visual Studio Code* measures width 10.
+  while *rio* measures width 10.
 
 Chakma
 ^^^^^^
@@ -996,42 +995,7 @@ Total codepoints: 13
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *Visual Studio Code* measures width 8.
-
-Yaneshaʼ
-^^^^^^^^
-
-Sequence of language *Yaneshaʼ* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ====================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ====================
-`U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
-`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
-`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-`U+0063 <https://codepoints.net/U+0063>`_  'c'        Ll                  1  LATIN SMALL LETTER C
-`U+0308 <https://codepoints.net/U+0308>`_  '\\u0308'  Mn                  0  COMBINING DIAERESIS
-`U+0068 <https://codepoints.net/U+0068>`_  'h'        Ll                  1  LATIN SMALL LETTER H
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+0027 <https://codepoints.net/U+0027>`_  "'"        Po                  1  APOSTROPHE
-`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
-`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-`U+0073 <https://codepoints.net/U+0073>`_  's'        Ll                  1  LATIN SMALL LETTER S
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-=========================================  =========  ==========  =========  ====================
-
-Total codepoints: 13
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xcc\x83yec\xcc\x88ha'yetsa|\\n12345678901|\\n"
-        ̃yec̈ha'yetsa|
-        12345678901|
-
-- python `wcwidth.wcswidth()`_ measures width 11,
-  while *Visual Studio Code* measures width 12.
+  while *rio* measures width 8.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

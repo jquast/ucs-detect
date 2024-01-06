@@ -1,20 +1,20 @@
-.. _ExtratermQt:
+.. _Contour:
 
-ExtratermQt
------------
+Contour
+-------
 
 
-Tested Software version 0.75.0 on Darwin
+Tested Software version 0.4.1.6292 on Windows
 Full results available at ucs-detect_ repository path
-`data/macos-ExtratermQt-0.75.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-ExtratermQt-0.75.0.yaml>`_
+`data/win-contour-0.4.1.6292.yaml <https://github.com/jquast/ucs-detect/blob/master/data/win-contour-0.4.1.6292.yaml>`_
 
-.. _ExtratermQtwide:
+.. _Contourwide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for ExtratermQt appears to be 
-**14.0.0**, this is from a summary of the following
+The best wide unicode table version for Contour appears to be 
+**15.1.0**, this is from a summary of the following
 results:
 
 
@@ -24,43 +24,43 @@ version      n_errors    n_total  pct_success
 '5.1.0'             0         26  100.0%
 '5.2.0'            79        269  70.6%
 '6.0.0'             0         13  100.0%
-'9.0.0'             0       5000  100.0%
+'9.0.0'           275       5000  94.5%
 '10.0.0'            0        735  100.0%
 '11.0.0'            0         62  100.0%
 '12.0.0'            0         62  100.0%
 '12.1.0'            0          1  100.0%
 '13.0.0'            0        541  100.0%
 '14.0.0'            0         41  100.0%
-'15.0.0'           15         15  0.0%
-'15.1.0'            5          5  0.0%
+'15.0.0'            0         15  100.0%
+'15.1.0'            0          5  100.0%
 =========  ==========  =========  =============
 
-Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
+Sequence of a WIDE character from Unicode Version 9.0.0, from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ======
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======
-`U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  Cn                  2  na
-=========================================  =========  ==========  =========  ======
+=================================================  =============  ==========  =========  ======
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  ======
+`U+000178B1 <https://codepoints.net/U+000178B1>`_  '\\U000178b1'  Lo                  2  na
+=================================================  =============  ==========  =========  ======
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe2\xbf\xbe|\\n12|\\n"
-        ⿾|
+        $ printf "\xf0\x97\xa2\xb1|\\n12|\\n"
+        𗢱|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *ExtratermQt* measures width 1.
+  while *Contour* measures width 1.
 
-.. _ExtratermQtzwj:
+.. _Contourzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *ExtratermQt* appears to be 
+The best Emoji ZWJ table version for *Contour* appears to be 
 **None**, this is from a summary of the following
 results:
 
@@ -104,52 +104,73 @@ Total codepoints: 6
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *ExtratermQt* measures width 8.
+  while *Contour* measures width 8.
 
-.. _ExtratermQtvs16:
+.. _Contourvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *ExtratermQt* is 0 errors
-out of 100 total codepoints tested, 100.0% success.
-All codepoint combinations with Variation Selector-16 tested were successful.
+Emoji VS-16 results for *Contour* is 52 errors
+out of 100 total codepoints tested, 48.0% success.
+Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
-.. _ExtratermQtlang:
+=================================================  =============  ==========  =========  =====================
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  =====================
+`U+0001F3DE <https://codepoints.net/U+0001F3DE>`_  '\\U0001f3de'  So                  1  NATIONAL PARK
+`U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
+=================================================  =============  ==========  =========  =====================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x9f\x8f\x9e\xef\xb8\x8f|\\n12|\\n"
+        🏞️|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *Contour* measures width 3.
+
+
+.. _Contourlang:
 
 Language Support
 ++++++++++++++++
 
-The following 9 languages were tested with 100% success:
+The following 10 languages were tested with 100% success:
 
-Adyghe, Cherokee (cased), Idoma, Kabardian, Nuosu, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Yukaghir, Northern.
+Adyghe, Cherokee (cased), Idoma, Kabardian, Nuosu, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Vietnamese (Han nom), Yukaghir, Northern.
 
-The following 89 languages are not fully supported:
+The following 88 languages are not fully supported:
 
 ===========================  ==========  =========  =============
 lang                           n_errors    n_total  pct_success
 ===========================  ==========  =========  =============
-Javanese (Javanese)                 500        503  0.6%
+Chakma                              500        500  0.0%
+Pular (Adlam)                       500        500  0.0%
+Javanese (Javanese)                 500        507  1.4%
 Maldivian                           500        515  2.9%
 Tamil                               500        516  3.1%
 Tamil (Sri Lanka)                   500        516  3.1%
 Burmese                             500        519  3.7%
+Sanskrit (Grantha)                  500        520  3.8%
 Mon                                 500        522  4.2%
 Shan                                500        523  4.4%
-Dzongkha                            342        359  4.7%
+Dzongkha                            341        358  4.7%
 Gujarati                            500        530  5.7%
-Tibetan, Central                    263        279  5.7%
+Tibetan, Central                    260        276  5.8%
 Malayalam                           500        533  6.2%
 Tamang, Eastern                      42         45  6.7%
 Kannada                             500        536  6.7%
 Khün                                412        442  6.8%
 Khmer, Central                      492        528  6.8%
 Bengali                             500        540  7.4%
-Chakma                              500        540  7.4%
 Telugu                              500        550  9.1%
 Nepali                              500        554  9.7%
 Sanskrit                            500        563  11.2%
-Sanskrit (Grantha)                  500        565  11.5%
 Marathi                             500        571  12.4%
 Hindi                               500        576  13.2%
 Sinhala                             500        577  13.3%
@@ -157,14 +178,12 @@ Panjabi, Eastern                    500        578  13.5%
 Bhojpuri                            500        584  14.4%
 Thai (2)                            267        313  14.7%
 Maithili                            500        613  18.4%
-Thai                                273        341  19.9%
+Thai                                272        340  20.0%
 Magahi                              500        643  22.2%
 Vietnamese                          500        660  24.2%
 Tagalog (Tagalog)                    21         31  32.3%
-Vietnamese (Han nom)                134        199  32.7%
-Lao                                 270        426  36.6%
+Lao                                 266        422  37.0%
 Lingala (tones)                     500        844  40.8%
-Pular (Adlam)                       500       1044  52.1%
 Yiddish, Eastern                    500       1062  52.9%
 Bamun                               500       1138  56.1%
 Orok                                490       1245  60.6%
@@ -220,6 +239,73 @@ Dendi                                 2       1569  99.9%
 Seraiki                               2       2242  99.9%
 ===========================  ==========  =========  =============
 
+Chakma
+^^^^^^
+
+Sequence of language *Chakma* from midpoint of alignment failure records:
+
+=================================================  =============  ==========  =========  ====================
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  ====================
+`U+0001111F <https://codepoints.net/U+0001111F>`_  '\\U0001111f'  Lo                  1  CHAKMA LETTER MAA
+`U+0001111A <https://codepoints.net/U+0001111A>`_  '\\U0001111a'  Lo                  1  CHAKMA LETTER NAA
+`U+0001112C <https://codepoints.net/U+0001112C>`_  '\\U0001112c'  Mc                  0  CHAKMA VOWEL SIGN E
+`U+0001112D <https://codepoints.net/U+0001112D>`_  '\\U0001112d'  Mn                  0  CHAKMA VOWEL SIGN AI
+`U+00011103 <https://codepoints.net/U+00011103>`_  '\\U00011103'  Lo                  1  CHAKMA LETTER AA
+`U+00011107 <https://codepoints.net/U+00011107>`_  '\\U00011107'  Lo                  1  CHAKMA LETTER KAA
+`U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
+`U+00011107 <https://codepoints.net/U+00011107>`_  '\\U00011107'  Lo                  1  CHAKMA LETTER KAA
+`U+00011125 <https://codepoints.net/U+00011125>`_  '\\U00011125'  Lo                  1  CHAKMA LETTER SAA
+`U+00011127 <https://codepoints.net/U+00011127>`_  '\\U00011127'  Mn                  0  CHAKMA VOWEL SIGN A
+`U+00011101 <https://codepoints.net/U+00011101>`_  '\\U00011101'  Mn                  0  CHAKMA SIGN ANUSVARA
+`U+00011122 <https://codepoints.net/U+00011122>`_  '\\U00011122'  Lo                  1  CHAKMA LETTER RAA
+`U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
+=================================================  =============  ==========  =========  ====================
+
+Total codepoints: 13
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x91\x84\x9f\xf0\x91\x84\x9a\xf0\x91\x84\xac\xf0\x91\x84\xad\xf0\x91\x84\x83\xf0\x91\x84\x87\xf0\x91\x84\xb4\xf0\x91\x84\x87\xf0\x91\x84\xa5\xf0\x91\x84\xa7\xf0\x91\x84\x81\xf0\x91\x84\xa2\xf0\x91\x84\xb4|\\n1234567|\\n"
+        𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
+        1234567|
+
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *Contour* measures width 26.
+
+Pular (Adlam)
+^^^^^^^^^^^^^
+
+Sequence of language *Pular (Adlam)* from midpoint of alignment failure records:
+
+=================================================  =============  ==========  =========  ==========================
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  ==========================
+`U+0001E907 <https://codepoints.net/U+0001E907>`_  '\\U0001e907'  Lu                  1  ADLAM CAPITAL LETTER BHE
+`U+0001E900 <https://codepoints.net/U+0001E900>`_  '\\U0001e900'  Lu                  1  ADLAM CAPITAL LETTER ALIF
+`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
+`U+0001E918 <https://codepoints.net/U+0001E918>`_  '\\U0001e918'  Lu                  1  ADLAM CAPITAL LETTER GA
+`U+0001E90B <https://codepoints.net/U+0001E90B>`_  '\\U0001e90b'  Lu                  1  ADLAM CAPITAL LETTER I
+`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
+`U+0001E900 <https://codepoints.net/U+0001E900>`_  '\\U0001e900'  Lu                  1  ADLAM CAPITAL LETTER ALIF
+`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
+`U+0001E901 <https://codepoints.net/U+0001E901>`_  '\\U0001e901'  Lu                  1  ADLAM CAPITAL LETTER DAALI
+`U+0001E909 <https://codepoints.net/U+0001E909>`_  '\\U0001e909'  Lu                  1  ADLAM CAPITAL LETTER E
+=================================================  =============  ==========  =========  ==========================
+
+Total codepoints: 10
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x9e\xa4\x87\xf0\x9e\xa4\x80\xf0\x9e\xa4\x90\xf0\x9e\xa4\x98\xf0\x9e\xa4\x8b\xf0\x9e\xa4\x90\xf0\x9e\xa4\x80\xf0\x9e\xa4\x90\xf0\x9e\xa4\x81\xf0\x9e\xa4\x89|\\n1234567890|\\n"
+        𞤇𞤀𞤐𞤘𞤋𞤐𞤀𞤐𞤁𞤉|
+        1234567890|
+
+- python `wcwidth.wcswidth()`_ measures width 10,
+  while *Contour* measures width 20.
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -245,7 +331,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Maldivian
 ^^^^^^^^^
@@ -276,7 +362,7 @@ Total codepoints: 9
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 9.
+  while *Contour* measures width 9.
 
 Tamil
 ^^^^^
@@ -302,7 +388,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -328,7 +414,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Burmese
 ^^^^^^^
@@ -366,7 +452,43 @@ Total codepoints: 16
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *ExtratermQt* measures width 16.
+  while *Contour* measures width 16.
+
+Sanskrit (Grantha)
+^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Sanskrit (Grantha)* from midpoint of alignment failure records:
+
+=================================================  =============  ==========  =========  =====================
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  =====================
+`U+0001132E <https://codepoints.net/U+0001132E>`_  '\\U0001132e'  Lo                  1  GRANTHA LETTER MA
+`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
+`U+00011328 <https://codepoints.net/U+00011328>`_  '\\U00011328'  Lo                  1  GRANTHA LETTER NA
+`U+00011335 <https://codepoints.net/U+00011335>`_  '\\U00011335'  Lo                  1  GRANTHA LETTER VA
+`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
+`U+00011327 <https://codepoints.net/U+00011327>`_  '\\U00011327'  Lo                  1  GRANTHA LETTER DHA
+`U+0001133F <https://codepoints.net/U+0001133F>`_  '\\U0001133f'  Mc                  0  GRANTHA VOWEL SIGN I
+`U+00011315 <https://codepoints.net/U+00011315>`_  '\\U00011315'  Lo                  1  GRANTHA LETTER KA
+`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
+`U+00011330 <https://codepoints.net/U+00011330>`_  '\\U00011330'  Lo                  1  GRANTHA LETTER RA
+`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
+`U+00011323 <https://codepoints.net/U+00011323>`_  '\\U00011323'  Lo                  1  GRANTHA LETTER NNA
+`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
+`U+00011302 <https://codepoints.net/U+00011302>`_  '\\U00011302'  Mc                  0  GRANTHA SIGN ANUSVARA
+=================================================  =============  ==========  =========  =====================
+
+Total codepoints: 14
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x91\x8c\xae\xf0\x91\x8c\xbe\xf0\x91\x8c\xa8\xf0\x91\x8c\xb5\xf0\x91\x8c\xbe\xf0\x91\x8c\xa7\xf0\x91\x8c\xbf\xf0\x91\x8c\x95\xf0\x91\x8c\xbe\xf0\x91\x8c\xb0\xf0\x91\x8c\xbe\xf0\x91\x8c\xa3\xf0\x91\x8c\xbe\xf0\x91\x8c\x82|\\n1234567|\\n"
+        𑌮𑌾𑌨𑌵𑌾𑌧𑌿𑌕𑌾𑌰𑌾𑌣𑌾𑌂|
+        1234567|
+
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *Contour* measures width 28.
 
 Mon
 ^^^
@@ -398,7 +520,7 @@ Total codepoints: 10
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 10.
+  while *Contour* measures width 10.
 
 Shan
 ^^^^
@@ -435,7 +557,7 @@ Total codepoints: 15
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *ExtratermQt* measures width 15.
+  while *Contour* measures width 15.
 
 Dzongkha
 ^^^^^^^^
@@ -498,7 +620,7 @@ Total codepoints: 41
         12345678901234567890123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 32,
-  while *ExtratermQt* measures width 41.
+  while *Contour* measures width 41.
 
 Gujarati
 ^^^^^^^^
@@ -524,7 +646,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -586,7 +708,7 @@ Total codepoints: 40
         1234567890123456789012345678901|
 
 - python `wcwidth.wcswidth()`_ measures width 31,
-  while *ExtratermQt* measures width 40.
+  while *Contour* measures width 40.
 
 Malayalam
 ^^^^^^^^^
@@ -637,7 +759,7 @@ Total codepoints: 29
         12345678901234567|
 
 - python `wcwidth.wcswidth()`_ measures width 17,
-  while *ExtratermQt* measures width 29.
+  while *Contour* measures width 29.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -665,7 +787,7 @@ Total codepoints: 6
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Kannada
 ^^^^^^^
@@ -691,7 +813,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Khün
 ^^^^
@@ -735,7 +857,7 @@ Total codepoints: 22
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *ExtratermQt* measures width 22.
+  while *Contour* measures width 22.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -793,7 +915,7 @@ Total codepoints: 36
         1234567890123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 22,
-  while *ExtratermQt* measures width 36.
+  while *Contour* measures width 36.
 
 Bengali
 ^^^^^^^
@@ -827,42 +949,7 @@ Total codepoints: 12
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 12.
-
-Chakma
-^^^^^^
-
-Sequence of language *Chakma* from midpoint of alignment failure records:
-
-=================================================  =============  ==========  =========  ====================
-Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ====================
-`U+0001111F <https://codepoints.net/U+0001111F>`_  '\\U0001111f'  Lo                  1  CHAKMA LETTER MAA
-`U+0001111A <https://codepoints.net/U+0001111A>`_  '\\U0001111a'  Lo                  1  CHAKMA LETTER NAA
-`U+0001112C <https://codepoints.net/U+0001112C>`_  '\\U0001112c'  Mc                  0  CHAKMA VOWEL SIGN E
-`U+0001112D <https://codepoints.net/U+0001112D>`_  '\\U0001112d'  Mn                  0  CHAKMA VOWEL SIGN AI
-`U+00011103 <https://codepoints.net/U+00011103>`_  '\\U00011103'  Lo                  1  CHAKMA LETTER AA
-`U+00011107 <https://codepoints.net/U+00011107>`_  '\\U00011107'  Lo                  1  CHAKMA LETTER KAA
-`U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
-`U+00011107 <https://codepoints.net/U+00011107>`_  '\\U00011107'  Lo                  1  CHAKMA LETTER KAA
-`U+00011125 <https://codepoints.net/U+00011125>`_  '\\U00011125'  Lo                  1  CHAKMA LETTER SAA
-`U+00011127 <https://codepoints.net/U+00011127>`_  '\\U00011127'  Mn                  0  CHAKMA VOWEL SIGN A
-`U+00011101 <https://codepoints.net/U+00011101>`_  '\\U00011101'  Mn                  0  CHAKMA SIGN ANUSVARA
-`U+00011122 <https://codepoints.net/U+00011122>`_  '\\U00011122'  Lo                  1  CHAKMA LETTER RAA
-`U+00011134 <https://codepoints.net/U+00011134>`_  '\\U00011134'  Mn                  0  CHAKMA MAAYYAA
-=================================================  =============  ==========  =========  ====================
-
-Total codepoints: 13
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x91\x84\x9f\xf0\x91\x84\x9a\xf0\x91\x84\xac\xf0\x91\x84\xad\xf0\x91\x84\x83\xf0\x91\x84\x87\xf0\x91\x84\xb4\xf0\x91\x84\x87\xf0\x91\x84\xa5\xf0\x91\x84\xa7\xf0\x91\x84\x81\xf0\x91\x84\xa2\xf0\x91\x84\xb4|\\n1234567|\\n"
-        𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 13.
+  while *Contour* measures width 12.
 
 Telugu
 ^^^^^^
@@ -897,7 +984,7 @@ Total codepoints: 13
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *ExtratermQt* measures width 13.
+  while *Contour* measures width 13.
 
 Nepali
 ^^^^^^
@@ -923,7 +1010,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Sanskrit
 ^^^^^^^^
@@ -959,43 +1046,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 14.
-
-Sanskrit (Grantha)
-^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Sanskrit (Grantha)* from midpoint of alignment failure records:
-
-=================================================  =============  ==========  =========  =====================
-Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  =====================
-`U+0001132E <https://codepoints.net/U+0001132E>`_  '\\U0001132e'  Lo                  1  GRANTHA LETTER MA
-`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
-`U+00011328 <https://codepoints.net/U+00011328>`_  '\\U00011328'  Lo                  1  GRANTHA LETTER NA
-`U+00011335 <https://codepoints.net/U+00011335>`_  '\\U00011335'  Lo                  1  GRANTHA LETTER VA
-`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
-`U+00011327 <https://codepoints.net/U+00011327>`_  '\\U00011327'  Lo                  1  GRANTHA LETTER DHA
-`U+0001133F <https://codepoints.net/U+0001133F>`_  '\\U0001133f'  Mc                  0  GRANTHA VOWEL SIGN I
-`U+00011315 <https://codepoints.net/U+00011315>`_  '\\U00011315'  Lo                  1  GRANTHA LETTER KA
-`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
-`U+00011330 <https://codepoints.net/U+00011330>`_  '\\U00011330'  Lo                  1  GRANTHA LETTER RA
-`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
-`U+00011323 <https://codepoints.net/U+00011323>`_  '\\U00011323'  Lo                  1  GRANTHA LETTER NNA
-`U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
-`U+00011302 <https://codepoints.net/U+00011302>`_  '\\U00011302'  Mc                  0  GRANTHA SIGN ANUSVARA
-=================================================  =============  ==========  =========  =====================
-
-Total codepoints: 14
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x91\x8c\xae\xf0\x91\x8c\xbe\xf0\x91\x8c\xa8\xf0\x91\x8c\xb5\xf0\x91\x8c\xbe\xf0\x91\x8c\xa7\xf0\x91\x8c\xbf\xf0\x91\x8c\x95\xf0\x91\x8c\xbe\xf0\x91\x8c\xb0\xf0\x91\x8c\xbe\xf0\x91\x8c\xa3\xf0\x91\x8c\xbe\xf0\x91\x8c\x82|\\n1234567|\\n"
-        𑌮𑌾𑌨𑌵𑌾𑌧𑌿𑌕𑌾𑌰𑌾𑌣𑌾𑌂|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 14.
+  while *Contour* measures width 14.
 
 Marathi
 ^^^^^^^
@@ -1022,7 +1073,7 @@ Total codepoints: 5
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Hindi
 ^^^^^
@@ -1048,7 +1099,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Sinhala
 ^^^^^^^
@@ -1074,7 +1125,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1102,7 +1153,7 @@ Total codepoints: 6
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Bhojpuri
 ^^^^^^^^
@@ -1134,7 +1185,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *ExtratermQt* measures width 10.
+  while *Contour* measures width 10.
 
 Thai (2)
 ^^^^^^^^
@@ -1185,7 +1236,7 @@ Total codepoints: 29
         12345678901234567890123|
 
 - python `wcwidth.wcswidth()`_ measures width 23,
-  while *ExtratermQt* measures width 29.
+  while *Contour* measures width 29.
 
 Maithili
 ^^^^^^^^
@@ -1215,7 +1266,7 @@ Total codepoints: 8
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 8.
+  while *Contour* measures width 8.
 
 Thai
 ^^^^
@@ -1266,7 +1317,7 @@ Total codepoints: 29
         12345678901234567890123|
 
 - python `wcwidth.wcswidth()`_ measures width 23,
-  while *ExtratermQt* measures width 29.
+  while *Contour* measures width 29.
 
 Magahi
 ^^^^^^
@@ -1298,7 +1349,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *ExtratermQt* measures width 10.
+  while *Contour* measures width 10.
 
 Vietnamese
 ^^^^^^^^^^
@@ -1325,7 +1376,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
@@ -1351,40 +1402,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
-
-Vietnamese (Han nom)
-^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Vietnamese (Han nom)* from midpoint of alignment failure records:
-
-=================================================  =============  ==========  =========  ===========================
-Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ===========================
-`U+0002321C <https://codepoints.net/U+0002321C>`_  '\\U0002321c'  Lo                  2  CJK UNIFIED IDEOGRAPH-2321C
-`U+0031 <https://codepoints.net/U+0031>`_          '1'            Nd                  1  DIGIT ONE
-`U+0030 <https://codepoints.net/U+0030>`_          '0'            Nd                  1  DIGIT ZERO
-`U+00023383 <https://codepoints.net/U+00023383>`_  '\\U00023383'  Lo                  2  CJK UNIFIED IDEOGRAPH-23383
-`U+0031 <https://codepoints.net/U+0031>`_          '1'            Nd                  1  DIGIT ONE
-`U+0032 <https://codepoints.net/U+0032>`_          '2'            Nd                  1  DIGIT TWO
-`U+000221A5 <https://codepoints.net/U+000221A5>`_  '\\U000221a5'  Lo                  2  CJK UNIFIED IDEOGRAPH-221A5
-`U+0031 <https://codepoints.net/U+0031>`_          '1'            Nd                  1  DIGIT ONE
-`U+0039 <https://codepoints.net/U+0039>`_          '9'            Nd                  1  DIGIT NINE
-`U+0034 <https://codepoints.net/U+0034>`_          '4'            Nd                  1  DIGIT FOUR
-`U+0038 <https://codepoints.net/U+0038>`_          '8'            Nd                  1  DIGIT EIGHT
-=================================================  =============  ==========  =========  ===========================
-
-Total codepoints: 11
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\xa3\x88\x9c10\xf0\xa3\x8e\x8312\xf0\xa2\x86\xa51948|\\n12345678901234|\\n"
-        𣈜10𣎃12𢆥1948|
-        12345678901234|
-
-- python `wcwidth.wcswidth()`_ measures width 14,
-  while *ExtratermQt* measures width 11.
+  while *Contour* measures width 4.
 
 Lao
 ^^^
@@ -1416,7 +1434,7 @@ Total codepoints: 10
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *ExtratermQt* measures width 10.
+  while *Contour* measures width 10.
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -1447,42 +1465,7 @@ Total codepoints: 9
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 9.
-
-Pular (Adlam)
-^^^^^^^^^^^^^
-
-Sequence of language *Pular (Adlam)* from midpoint of alignment failure records:
-
-=================================================  =============  ==========  =========  =========================
-Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  =========================
-`U+0001E916 <https://codepoints.net/U+0001E916>`_  '\\U0001e916'  Lu                  1  ADLAM CAPITAL LETTER HA
-`U+0001E90B <https://codepoints.net/U+0001E90B>`_  '\\U0001e90b'  Lu                  1  ADLAM CAPITAL LETTER I
-`U+0001E902 <https://codepoints.net/U+0001E902>`_  '\\U0001e902'  Lu                  1  ADLAM CAPITAL LETTER LAAM
-`U+0001E946 <https://codepoints.net/U+0001E946>`_  '\\U0001e946'  Mn                  0  ADLAM GEMINATION MARK
-`U+0001E900 <https://codepoints.net/U+0001E900>`_  '\\U0001e900'  Lu                  1  ADLAM CAPITAL LETTER ALIF
-`U+0001E912 <https://codepoints.net/U+0001E912>`_  '\\U0001e912'  Lu                  1  ADLAM CAPITAL LETTER YA
-`U+0001E900 <https://codepoints.net/U+0001E900>`_  '\\U0001e900'  Lu                  1  ADLAM CAPITAL LETTER ALIF
-`U+0001E910 <https://codepoints.net/U+0001E910>`_  '\\U0001e910'  Lu                  1  ADLAM CAPITAL LETTER NUN
-`U+0001E911 <https://codepoints.net/U+0001E911>`_  '\\U0001e911'  Lu                  1  ADLAM CAPITAL LETTER KAF
-`U+0001E90C <https://codepoints.net/U+0001E90C>`_  '\\U0001e90c'  Lu                  1  ADLAM CAPITAL LETTER O
-`U+0001E945 <https://codepoints.net/U+0001E945>`_  '\\U0001e945'  Mn                  0  ADLAM VOWEL LENGTHENER
-`U+0001E908 <https://codepoints.net/U+0001E908>`_  '\\U0001e908'  Lu                  1  ADLAM CAPITAL LETTER RA
-`U+0001E909 <https://codepoints.net/U+0001E909>`_  '\\U0001e909'  Lu                  1  ADLAM CAPITAL LETTER E
-=================================================  =============  ==========  =========  =========================
-
-Total codepoints: 13
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x9e\xa4\x96\xf0\x9e\xa4\x8b\xf0\x9e\xa4\x82\xf0\x9e\xa5\x86\xf0\x9e\xa4\x80\xf0\x9e\xa4\x92\xf0\x9e\xa4\x80\xf0\x9e\xa4\x90\xf0\x9e\xa4\x91\xf0\x9e\xa4\x8c\xf0\x9e\xa5\x85\xf0\x9e\xa4\x88\xf0\x9e\xa4\x89|\\n12345678901|\\n"
-        𞤖𞤋𞤂𞥆𞤀𞤒𞤀𞤐𞤑𞤌𞥅𞤈𞤉|
-        12345678901|
-
-- python `wcwidth.wcswidth()`_ measures width 11,
-  while *ExtratermQt* measures width 13.
+  while *Contour* measures width 9.
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1515,7 +1498,7 @@ Total codepoints: 11
         1234567890|
 
 - python `wcwidth.wcswidth()`_ measures width 10,
-  while *ExtratermQt* measures width 11.
+  while *Contour* measures width 11.
 
 Bamun
 ^^^^^
@@ -1541,7 +1524,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Orok
 ^^^^
@@ -1577,7 +1560,7 @@ Total codepoints: 14
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *ExtratermQt* measures width 14.
+  while *Contour* measures width 14.
 
 Tem
 ^^^
@@ -1608,7 +1591,7 @@ Total codepoints: 9
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 9.
+  while *Contour* measures width 9.
 
 Tai Dam
 ^^^^^^^
@@ -1634,7 +1617,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Nanai
 ^^^^^
@@ -1660,7 +1643,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Evenki
 ^^^^^^
@@ -1689,7 +1672,7 @@ Total codepoints: 7
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *ExtratermQt* measures width 7.
+  while *Contour* measures width 7.
 
 Yaneshaʼ
 ^^^^^^^^
@@ -1720,7 +1703,7 @@ Total codepoints: 9
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *ExtratermQt* measures width 9.
+  while *Contour* measures width 9.
 
 Ticuna
 ^^^^^^
@@ -1747,7 +1730,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Amarakaeri
 ^^^^^^^^^^
@@ -1779,7 +1762,7 @@ Total codepoints: 10
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *ExtratermQt* measures width 10.
+  while *Contour* measures width 10.
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
@@ -1807,7 +1790,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Yoruba
 ^^^^^^
@@ -1834,7 +1817,7 @@ Total codepoints: 5
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Chickasaw
 ^^^^^^^^^
@@ -1861,7 +1844,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Siona
 ^^^^^
@@ -1889,7 +1872,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Fur
 ^^^
@@ -1922,7 +1905,7 @@ Total codepoints: 11
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *ExtratermQt* measures width 11.
+  while *Contour* measures width 11.
 
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
@@ -1952,7 +1935,7 @@ Total codepoints: 8
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 8.
+  while *Contour* measures width 8.
 
 Gumuz
 ^^^^^
@@ -1980,7 +1963,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Bora
 ^^^^
@@ -2011,7 +1994,7 @@ Total codepoints: 9
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *ExtratermQt* measures width 9.
+  while *Contour* measures width 9.
 
 Mòoré
 ^^^^^
@@ -2037,7 +2020,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Mongolian, Halh (Mongolian)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2064,7 +2047,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Lamnso'
 ^^^^^^^
@@ -2092,7 +2075,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Navajo
 ^^^^^^
@@ -2123,7 +2106,7 @@ Total codepoints: 9
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *ExtratermQt* measures width 9.
+  while *Contour* measures width 9.
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2156,7 +2139,7 @@ Total codepoints: 11
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *ExtratermQt* measures width 11.
+  while *Contour* measures width 11.
 
 Gilyak
 ^^^^^^
@@ -2191,7 +2174,7 @@ Total codepoints: 13
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *ExtratermQt* measures width 13.
+  while *Contour* measures width 13.
 
 Ditammari
 ^^^^^^^^^
@@ -2222,7 +2205,7 @@ Total codepoints: 9
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *ExtratermQt* measures width 9.
+  while *Contour* measures width 9.
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
@@ -2251,7 +2234,7 @@ Total codepoints: 7
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *ExtratermQt* measures width 7.
+  while *Contour* measures width 7.
 
 Farsi, Western
 ^^^^^^^^^^^^^^
@@ -2278,7 +2261,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
@@ -2309,7 +2292,7 @@ Total codepoints: 9
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *ExtratermQt* measures width 9.
+  while *Contour* measures width 9.
 
 Veps
 ^^^^
@@ -2339,7 +2322,7 @@ Total codepoints: 8
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 8.
+  while *Contour* measures width 8.
 
 Waama
 ^^^^^
@@ -2363,7 +2346,7 @@ Total codepoints: 2
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *ExtratermQt* measures width 2.
+  while *Contour* measures width 2.
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
@@ -2389,7 +2372,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Dari
 ^^^^
@@ -2416,7 +2399,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Éwé
 ^^^
@@ -2448,7 +2431,7 @@ Total codepoints: 10
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *ExtratermQt* measures width 10.
+  while *Contour* measures width 10.
 
 Baatonum
 ^^^^^^^^
@@ -2473,7 +2456,7 @@ Total codepoints: 3
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *ExtratermQt* measures width 3.
+  while *Contour* measures width 3.
 
 Urdu (2)
 ^^^^^^^^
@@ -2501,7 +2484,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Urdu
 ^^^^
@@ -2529,7 +2512,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Uduk
 ^^^^
@@ -2556,7 +2539,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -2584,7 +2567,7 @@ Total codepoints: 6
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Secoya
 ^^^^^^
@@ -2614,7 +2597,7 @@ Total codepoints: 8
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *ExtratermQt* measures width 8.
+  while *Contour* measures width 8.
 
 Gen
 ^^^
@@ -2642,7 +2625,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Picard
 ^^^^^^
@@ -2673,7 +2656,7 @@ Total codepoints: 9
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *ExtratermQt* measures width 9.
+  while *Contour* measures width 9.
 
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
@@ -2701,7 +2684,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2729,7 +2712,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Ga
 ^^
@@ -2756,7 +2739,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -2782,7 +2765,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 Dangme
 ^^^^^^
@@ -2807,7 +2790,7 @@ Total codepoints: 3
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *ExtratermQt* measures width 3.
+  while *Contour* measures width 3.
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
@@ -2834,7 +2817,7 @@ Total codepoints: 5
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Serer-Sine
 ^^^^^^^^^^
@@ -2862,7 +2845,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Fon
 ^^^
@@ -2889,7 +2872,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *ExtratermQt* measures width 5.
+  while *Contour* measures width 5.
 
 Aja
 ^^^
@@ -2919,7 +2902,7 @@ Total codepoints: 8
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *ExtratermQt* measures width 8.
+  while *Contour* measures width 8.
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -2947,7 +2930,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Dendi
 ^^^^^
@@ -2975,7 +2958,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *ExtratermQt* measures width 6.
+  while *Contour* measures width 6.
 
 Seraiki
 ^^^^^^^
@@ -3001,7 +2984,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *ExtratermQt* measures width 4.
+  while *Contour* measures width 4.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

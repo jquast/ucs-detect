@@ -1,14 +1,14 @@
-datetime: 2024-01-06 04:35:21 UTC
+datetime: 2024-01-06 04:37:08 UTC
 height: 24
 python_version: 3.12.0
-seconds_elapsed: 4097.040042500012
+seconds_elapsed: 4125.237009624951
 session_arguments:
   limit_codepoints: 5000
   limit_errors: 500
   limit_words: 5000
   quick: false
   stream: stderr
-software: xterm
+software: Zutty
 system: Linux
 test_results:
   emoji_vs16_results:
@@ -40158,16 +40158,10 @@ test_results:
       n_total: 309
       pct_success: 100.0
     Tibetan, Central:
-      failed:
-      - measured_by_terminal: 16
-        measured_by_wcwidth: 15
-        wchars: \u0f7c\u0f66\u0f0b\u0f54\u0f60\u0f72\u0f0b\u0f50\u0f7c\u0f56\u0f0b\u0f51\u0f56\u0f44\u0f0b\u0f61\u0f7c\u0f51\u0f0d
-      - measured_by_terminal: 63
-        measured_by_wcwidth: 62
-        wchars: \u0f7c\u0f42\u0f66\u0f0b\u0f54\u0f60\u0f72\u0f0b\u0f41\u0fb2\u0f72\u0f58\u0f66\u0f0b\u0f60\u0f42\u0f63\u0f0b\u0f42\u0fb1\u0f72\u0f0b\u0f42\u0f53\u0f66\u0f0b\u0f5a\u0f74\u0f63\u0f0b\u0f45\u0f72\u0f0b\u0f60\u0f51\u0fb2\u0f0b\u0f5e\u0f72\u0f42\u0f0b\u0f56\u0fb1\u0f74\u0f44\u0f0b\u0f62\u0f74\u0f44\u0f0b\u0f49\u0f7a\u0f66\u0f0b\u0f45\u0f53\u0f0b\u0f51\u0f74\u0f0b\u0f44\u0f7c\u0f66\u0f0b\u0f60\u0f5b\u0f72\u0f53\u0f58\u0f72\u0f0b\u0f56\u0fb1\u0f7a\u0f51\u0f0b\u0f54\u0f60\u0f72\u0f0b\u0f41\u0f62\u0f0d
-      n_errors: 2
+      failed: []
+      n_errors: 0
       n_total: 260
-      pct_success: 99.23076923076923
+      pct_success: 100.0
     Ticuna:
       failed: []
       n_errors: 0
@@ -40230,25 +40224,10 @@ test_results:
       n_total: 1974
       pct_success: 100.0
     "Yanesha\u02BC":
-      failed:
-      - measured_by_terminal: 19
-        measured_by_wcwidth: 18
-        wchars: \u0303errap\u0303aro'tsa'yenet
-      - measured_by_terminal: 15
-        measured_by_wcwidth: 14
-        wchars: \u0303cota\u0303pe'chyenet
-      - measured_by_terminal: 9
-        measured_by_wcwidth: 8
-        wchars: \u0303muenenet
-      - measured_by_terminal: 8
-        measured_by_wcwidth: 7
-        wchars: \u0303\xf1ocpuet
-      - measured_by_terminal: 6
-        measured_by_wcwidth: 5
-        wchars: \u0303parro
-      n_errors: 5
+      failed: []
+      n_errors: 0
       n_total: 2536
-      pct_success: 99.80283911671924
+      pct_success: 100.0
     Yiddish, Eastern:
       failed: []
       n_errors: 0
@@ -41132,6 +41111,6 @@ test_results:
       n_total: 5000
       pct_success: 100.0
   unicode_wide_version: 15.0.0
-version: '388'
+version: 0.14.8.20231210
 wcwidth_version: 0.2.13
 width: 80

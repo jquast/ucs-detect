@@ -1,7 +1,7 @@
-datetime: 2023-11-13 17:34:06 UTC
-height: 45
+datetime: 2024-01-06 04:54:25 UTC
+height: 24
 python_version: 3.12.0
-seconds_elapsed: 1687.5158449169248
+seconds_elapsed: 1175.8483510417864
 session_arguments:
   limit_codepoints: 5000
   limit_errors: 500
@@ -497,7 +497,7 @@ test_results:
     Chinese, Yue:
       failed: []
       n_errors: 0
-      n_total: 210
+      n_total: 209
       pct_success: 100.0
     Cree, Swampy:
       failed: []
@@ -547,7 +547,7 @@ test_results:
     Dzongkha:
       failed: []
       n_errors: 0
-      n_total: 359
+      n_total: 355
       pct_success: 100.0
     Evenki:
       failed: []
@@ -637,7 +637,7 @@ test_results:
     Javanese (Javanese):
       failed: []
       n_errors: 0
-      n_total: 256
+      n_total: 1453
       pct_success: 100.0
     Kabardian:
       failed: []
@@ -672,7 +672,7 @@ test_results:
     Lao:
       failed: []
       n_errors: 0
-      n_total: 426
+      n_total: 411
       pct_success: 100.0
     Latin (1):
       failed: []
@@ -1108,7 +1108,7 @@ test_results:
     Nuosu:
       failed: []
       n_errors: 0
-      n_total: 230
+      n_total: 229
       pct_success: 100.0
     Orok:
       failed: []
@@ -1624,17 +1624,17 @@ test_results:
     Thai:
       failed: []
       n_errors: 0
-      n_total: 341
+      n_total: 338
       pct_success: 100.0
     Thai (2):
       failed: []
       n_errors: 0
-      n_total: 313
+      n_total: 309
       pct_success: 100.0
     Tibetan, Central:
       failed: []
       n_errors: 0
-      n_total: 280
+      n_total: 260
       pct_success: 100.0
     Ticuna:
       failed: []
@@ -1679,7 +1679,7 @@ test_results:
     Vietnamese (Han nom):
       failed: []
       n_errors: 0
-      n_total: 199
+      n_total: 194
       pct_success: 100.0
     Waama:
       failed: []
@@ -1718,20 +1718,275 @@ test_results:
       pct_success: 100.0
   unicode_wide_results:
     10.0.0:
-      failed_codepoints: []
-      n_errors: 0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b00b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b015
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b01f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b029
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b033
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b03d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b047
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b051
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b05b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b065
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b06f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b079
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b083
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b08d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b097
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0a1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0ab
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0b5
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0bf
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0c9
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0d3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0dd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0e7
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0f1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b0fb
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b105
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b10f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b119
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b175
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b17f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b189
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b193
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b19d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1a7
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1b1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1bb
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1c5
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1cf
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1d9
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1e3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1ed
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b1f7
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b201
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b20b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b215
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b21f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b229
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b233
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b23d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b247
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b251
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b25b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b265
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b26f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b279
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b283
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b28d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b297
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2a1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2ab
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2b5
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2bf
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2c9
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2d3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2dd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2e7
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b2f1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f260
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f92b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f962
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f993
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d6
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9e0
+      n_errors: 73
       n_total: 735
-      pct_success: 100.0
+      pct_success: 90.06802721088435
     11.0.0:
-      failed_codepoints: []
-      n_errors: 0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f96e
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f999
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9b1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9e8
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9f2
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9fc
+      n_errors: 6
       n_total: 62
-      pct_success: 100.0
+      pct_success: 90.32258064516128
     12.0.0:
-      failed_codepoints: []
-      n_errors: 0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001b165
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f7e8
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9a7
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9bf
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f9cf
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001fa92
+      n_errors: 6
       n_total: 62
-      pct_success: 100.0
+      pct_success: 90.32258064516128
     12.1.0:
       failed_codepoints: []
       n_errors: 0
@@ -1742,19 +1997,196 @@ test_results:
       - measured_by_terminal: 0
         measured_by_wcwidth: 2
         wchar: \U00016ff0
-      n_errors: 1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018af7
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b01
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b0b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b15
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b1f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b29
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b33
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b3d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b47
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b51
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b5b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b65
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b6f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b79
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b83
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b8d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018b97
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018ba1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018bab
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018bb5
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018bbf
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018bc9
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018bd3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018bdd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018be7
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018bf1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018bfb
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c05
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c0f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c19
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c23
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c2d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c37
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c41
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c4b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c55
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c5f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c69
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c73
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c7d
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c87
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c91
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018c9b
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018ca5
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018caf
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018cb9
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018cc3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018ccd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U00018d02
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f977
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001fa97
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001faa1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001fab3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001fad5
+      n_errors: 55
       n_total: 541
-      pct_success: 99.81515711645102
+      pct_success: 89.83364140480592
     14.0.0:
-      failed_codepoints: []
-      n_errors: 0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001affd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001faaa
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001fae1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001faf4
+      n_errors: 4
       n_total: 41
-      pct_success: 100.0
+      pct_success: 90.2439024390244
     15.0.0:
-      failed_codepoints: []
-      n_errors: 0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001fabc
+      n_errors: 1
       n_total: 15
-      pct_success: 100.0
+      pct_success: 93.33333333333333
     15.1.0:
       failed_codepoints:
       - measured_by_terminal: 1
@@ -2034,5 +2466,5 @@ test_results:
       pct_success: 100.0
   unicode_wide_version: 15.0.0
 version: '20230712'
-wcwidth_version: 0.2.9
-width: 142
+wcwidth_version: 0.2.13
+width: 80

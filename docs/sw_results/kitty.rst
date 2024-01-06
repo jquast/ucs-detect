@@ -1,19 +1,19 @@
-.. _KovidGoyalskitty:
+.. _kitty:
 
-Kovid Goyal's kitty
--------------------
+kitty
+-----
 
 
 Tested Software version 0.31.0 on Darwin
 Full results available at ucs-detect_ repository path
 `data/macos-kitty-0.31.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-kitty-0.31.0.yaml>`_
 
-.. _KovidGoyalskittywide:
+.. _kittywide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for Kovid Goyal's kitty appears to be 
+The best wide unicode table version for kitty appears to be 
 **15.0.0**, this is from a summary of the following
 results:
 
@@ -52,15 +52,15 @@ Total codepoints: 1
         ⿾|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *Kovid Goyal's kitty* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *kitty* measures width 1.
 
-.. _KovidGoyalskittyzwj:
+.. _kittyzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *Kovid Goyal's kitty* appears to be 
+The best Emoji ZWJ table version for *kitty* appears to be 
 **None**, this is from a summary of the following
 results:
 
@@ -103,19 +103,19 @@ Total codepoints: 6
         🧑‍🦼‍➡️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *Kovid Goyal's kitty* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 2, 
+  while *kitty* measures width 6.
 
-.. _KovidGoyalskittyvs16:
+.. _kittyvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *Kovid Goyal's kitty* is 0 errors
+Emoji VS-16 results for *kitty* is 0 errors
 out of 100 total codepoints tested, 100.0% success.
 All codepoint combinations with Variation Selector-16 tested were successful.
 
-.. _KovidGoyalskittylang:
+.. _kittylang:
 
 Language Support
 ++++++++++++++++
@@ -127,13 +127,13 @@ Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun
 The following 5 languages are not fully supported:
 
 =========  ==========  =========  =============
-lang         n_errors    n_total  pct_success
+lang         n_errors    n_total    pct_success
 =========  ==========  =========  =============
-Malayalam         109       1630  93.3%
-Sinhala           107       1655  93.5%
-Marathi             5       1614  99.7%
-Nepali              3       1385  99.8%
-Bengali             3       1413  99.8%
+Malayalam         109       1630        93.3129
+Sinhala           107       1655        93.5347
+Marathi             5       1614        99.6902
+Nepali              3       1385        99.7834
+Bengali             3       1413        99.7877
 =========  ==========  =========  =============
 
 Malayalam
@@ -172,8 +172,8 @@ Total codepoints: 17
         സര്‍വ്വതോന്മുഖമായ|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9,
-  while *Kovid Goyal's kitty* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 9, 
+  while *kitty* measures width 10.
 
 Sinhala
 ^^^^^^^
@@ -203,8 +203,8 @@ Total codepoints: 9
         ප්‍රකාශනය|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *Kovid Goyal's kitty* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *kitty* measures width 6.
 
 Marathi
 ^^^^^^^
@@ -236,8 +236,8 @@ Total codepoints: 11
         करण्यार्‍या|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *Kovid Goyal's kitty* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *kitty* measures width 6.
 
 Nepali
 ^^^^^^
@@ -269,8 +269,8 @@ Total codepoints: 11
         पुर्‍याइएको|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *Kovid Goyal's kitty* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *kitty* measures width 6.
 
 Bengali
 ^^^^^^^
@@ -302,8 +302,8 @@ Total codepoints: 11
         উত্‍পীড়নের|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *Kovid Goyal's kitty* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5, 
+  while *kitty* measures width 6.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

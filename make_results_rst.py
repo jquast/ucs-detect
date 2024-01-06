@@ -464,7 +464,7 @@ def show_language_results(sw_name, entry):
             "lang": lang,
             "n_errors": entry["data"]["test_results"]["language_results"][lang]["n_errors"],
             "n_total": entry["data"]["test_results"]["language_results"][lang]["n_total"],
-            "pct_success": entry["data"]["test_results"]["language_results"][lang]["pct_success"],
+            "pct_success": f'{entry["data"]["test_results"]["language_results"][lang]["pct_success"]:0.1f}%',
         }
         for lang in languages_failed
     ]
@@ -500,7 +500,7 @@ def show_record_failure(sw_name, whatis, fail_record):
               " where no movement is expected.")
     elif fail_record["measured_by_wcwidth"] != fail_record["measured_by_terminal"]:
         print(f"- python `wcwidth.wcswidth()`_ measures width"
-              f" {fail_record['measured_by_wcwidth']}, ")
+              f" {fail_record['measured_by_wcwidth']},")
         print(f"  while *{sw_name}* measures width"
               f" {fail_record['measured_by_terminal']}.")
     print()

@@ -1,6 +1,6 @@
 .. _coolretroterm:
 
-cool retro term
+cool-retro-term
 ---------------
 
 
@@ -13,7 +13,7 @@ Full results available at ucs-detect_ repository path
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for cool retro term appears to be 
+The best wide unicode table version for cool-retro-term appears to be 
 **9.0.0**, this is from a summary of the following
 results:
 
@@ -52,15 +52,15 @@ Total codepoints: 1
         ♏|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *cool retro term* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 1.
 
 .. _coolretrotermzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *cool retro term* appears to be 
+The best Emoji ZWJ table version for *cool-retro-term* appears to be 
 **11.0**, this is from a summary of the following
 results:
 
@@ -101,15 +101,15 @@ Total codepoints: 4
         🏴‍☠️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 4.
 
 .. _coolretrotermvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *cool retro term* is 12 errors
+Emoji VS-16 results for *cool-retro-term* is 12 errors
 out of 100 total codepoints tested, 88.0% success.
 Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
@@ -129,8 +129,8 @@ Total codepoints: 2
         ⛷️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *cool retro term* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 1.
 
 
 .. _coolretrotermlang:
@@ -138,70 +138,70 @@ Total codepoints: 2
 Language Support
 ++++++++++++++++
 
-The following 44 languages were tested with 100% success:
+The following 43 languages were tested with 100% success:
 
-Aja, Amarakaeri, Baatonum, Bamun, Bora, Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, Ga, Gen, Lamnso', Lingala (tones), Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Otomi, Mezquital, Picard, Pular, Secoya, Serer-Sine, Siona, South Azerbaijani, Tamazight, Central Atlas, Tem, Thai, Thai (2), Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yoruba, Éwé.
+Aja, Amarakaeri, Baatonum, Bamun, Bora, Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, Ga, Gen, Lamnso', Lingala (tones), Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Otomi, Mezquital, Picard, Secoya, Serer-Sine, Siona, South Azerbaijani, Tamazight, Central Atlas, Tem, Thai, Thai (2), Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yoruba, Éwé.
 
 The following 55 languages are not fully supported:
 
 ===================================  ==========  =========  =============
-lang                                   n_errors    n_total    pct_success
+lang                                   n_errors    n_total  pct_success
 ===================================  ==========  =========  =============
-Tamazight, Central Atlas (Tifinagh)          22         22       0
-Vai                                         500        500       0
-Javanese (Javanese)                         254        255       0.392157
-Cherokee (cased)                            500        507       1.38067
-Tai Dam                                     500        511       2.15264
-Maldivian                                   500        515       2.91262
-Dzongkha                                    341        358       4.7486
-Tamazight, Standard Morocan                 500        525       4.7619
-Gujarati                                    500        530       5.66038
-Tibetan, Central                            258        274       5.83942
-Burmese                                     500        534       6.36704
-Tamang, Eastern                              42         45       6.66667
-Kannada                                     500        536       6.71642
-Malayalam                                   500        536       6.71642
-Khün                                        412        442       6.78733
-Khmer, Central                              492        528       6.81818
-Tamil (Sri Lanka)                           500        537       6.89013
-Tamil                                       500        538       7.0632
-Bengali                                     500        544       8.08824
-Mon                                         500        544       8.08824
-Telugu                                      500        550       9.09091
-Nepali                                      500        554       9.74729
-Sanskrit                                    500        563      11.1901
-Marathi                                     500        571      12.4343
-Hindi                                       500        576      13.1944
-Sanskrit (Grantha)                          500        577      13.3449
-Sinhala                                     500        577      13.3449
-Panjabi, Eastern                            500        578      13.4948
-Bhojpuri                                    500        584      14.3836
-Maithili                                    500        613      18.4339
-Chakma                                      500        618      19.0939
-Magahi                                      500        643      22.2395
-Shan                                        500        672      25.5952
-Tagalog (Tagalog)                            21         31      32.2581
-Lao                                         260        416      37.5
-Yiddish, Eastern                            500       1063      52.9633
-Gumuz                                       444       1283      65.3936
-Idoma                                       500       1672      70.0957
-Gilyak                                      398       1504      73.5372
-Yukaghir, Northern                          172        776      77.8351
-Adyghe                                      226       1198      81.1352
-Kabardian                                   223       1272      82.4686
-Mazahua Central                             229       1574      85.4511
-Fur                                         218       1838      88.1393
-Assyrian Neo-Aramaic                         51       1160      95.6034
-Farsi, Western                               63       1822      96.5423
-Urdu (2)                                     52       2251      97.6899
-Urdu                                         50       2237      97.7649
-Dari                                         30       1872      98.3974
-Arabic, Standard                             20       1348      98.5163
-Panjabi, Western                             19       2419      99.2146
-Orok                                          4       1245      99.6787
-Pular (Adlam)                                 5       1613      99.69
-Pashto, Northern                              5       2242      99.777
-Seraiki                                       2       2242      99.9108
+Tamazight, Central Atlas (Tifinagh)          22         22  0.0%
+Vai                                         500        500  0.0%
+Javanese (Javanese)                         500        501  0.2%
+Cherokee (cased)                            500        507  1.4%
+Tai Dam                                     500        511  2.2%
+Maldivian                                   500        515  2.9%
+Dzongkha                                    341        358  4.7%
+Tamazight, Standard Morocan                 500        525  4.8%
+Gujarati                                    500        530  5.7%
+Tibetan, Central                            258        274  5.8%
+Burmese                                     500        534  6.4%
+Tamang, Eastern                              42         45  6.7%
+Kannada                                     500        536  6.7%
+Malayalam                                   500        536  6.7%
+Khün                                        412        442  6.8%
+Khmer, Central                              492        528  6.8%
+Tamil (Sri Lanka)                           500        537  6.9%
+Tamil                                       500        538  7.1%
+Bengali                                     500        544  8.1%
+Mon                                         500        544  8.1%
+Telugu                                      500        550  9.1%
+Nepali                                      500        554  9.7%
+Sanskrit                                    500        563  11.2%
+Marathi                                     500        571  12.4%
+Hindi                                       500        576  13.2%
+Sanskrit (Grantha)                          500        577  13.3%
+Sinhala                                     500        577  13.3%
+Panjabi, Eastern                            500        578  13.5%
+Bhojpuri                                    500        584  14.4%
+Maithili                                    500        613  18.4%
+Chakma                                      500        618  19.1%
+Magahi                                      500        643  22.2%
+Shan                                        500        672  25.6%
+Tagalog (Tagalog)                            21         31  32.3%
+Lao                                         260        416  37.5%
+Yiddish, Eastern                            500       1063  53.0%
+Gumuz                                       444       1283  65.4%
+Idoma                                       500       1672  70.1%
+Gilyak                                      398       1504  73.5%
+Yukaghir, Northern                          172        776  77.8%
+Adyghe                                      226       1198  81.1%
+Kabardian                                   223       1272  82.5%
+Mazahua Central                             229       1574  85.5%
+Fur                                         218       1838  88.1%
+Assyrian Neo-Aramaic                         51       1160  95.6%
+Farsi, Western                               63       1822  96.5%
+Urdu (2)                                     52       2251  97.7%
+Urdu                                         50       2237  97.8%
+Dari                                         30       1872  98.4%
+Arabic, Standard                             20       1348  98.5%
+Panjabi, Western                             19       2419  99.2%
+Orok                                          4       1245  99.7%
+Pular (Adlam)                                 5       1613  99.7%
+Pashto, Northern                              5       2242  99.8%
+Seraiki                                       2       2242  99.9%
 ===================================  ==========  =========  =============
 
 Tamazight, Central Atlas (Tifinagh)
@@ -230,8 +230,8 @@ Total codepoints: 7
         ⵉⵎⴷⴰⵏⴻⵏ|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *cool retro term* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *cool-retro-term* measures width 0.
 
 Vai
 ^^^
@@ -254,125 +254,35 @@ Total codepoints: 2
         ꕺꖃ|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *cool retro term* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 0.
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
 Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ==========================
+=========================================  =========  ==========  =========  =========================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==========================
+=========================================  =========  ==========  =========  =========================
 `U+A9CB <https://codepoints.net/U+A9CB>`_  '\\ua9cb'  Po                  1  JAVANESE PADA ADEG ADEG
 `U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
 `U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
 `U+A9BC <https://codepoints.net/U+A9BC>`_  '\\ua9bc'  Mn                  0  JAVANESE VOWEL SIGN PEPET
 `U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
-`U+A9A9 <https://codepoints.net/U+A9A9>`_  '\\ua9a9'  Lo                  1  JAVANESE LETTER MA
-`U+A9A0 <https://codepoints.net/U+A9A0>`_  '\\ua9a0'  Lo                  1  JAVANESE LETTER TA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9A9 <https://codepoints.net/U+A9A9>`_  '\\ua9a9'  Lo                  1  JAVANESE LETTER MA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9AD <https://codepoints.net/U+A9AD>`_  '\\ua9ad'  Lo                  1  JAVANESE LETTER LA
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A982 <https://codepoints.net/U+A982>`_  '\\ua982'  Mn                  0  JAVANESE SIGN LAYAR
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A99B <https://codepoints.net/U+A99B>`_  '\\ua99b'  Lo                  1  JAVANESE LETTER TTA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A9A5 <https://codepoints.net/U+A9A5>`_  '\\ua9a5'  Lo                  1  JAVANESE LETTER PA
-`U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
-`U+A9B4 <https://codepoints.net/U+A9B4>`_  '\\ua9b4'  Mc                  0  JAVANESE VOWEL SIGN TARUNG
-`U+A99D <https://codepoints.net/U+A99D>`_  '\\ua99d'  Lo                  1  JAVANESE LETTER DDA
-`U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
-`U+A9B4 <https://codepoints.net/U+A9B4>`_  '\\ua9b4'  Mc                  0  JAVANESE VOWEL SIGN TARUNG
-`U+A9AD <https://codepoints.net/U+A9AD>`_  '\\ua9ad'  Lo                  1  JAVANESE LETTER LA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9A5 <https://codepoints.net/U+A9A5>`_  '\\ua9a5'  Lo                  1  JAVANESE LETTER PA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A99B <https://codepoints.net/U+A99B>`_  '\\ua99b'  Lo                  1  JAVANESE LETTER TTA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A9AD <https://codepoints.net/U+A9AD>`_  '\\ua9ad'  Lo                  1  JAVANESE LETTER LA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A99B <https://codepoints.net/U+A99B>`_  '\\ua99b'  Lo                  1  JAVANESE LETTER TTA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-`U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
-`U+A9B8 <https://codepoints.net/U+A9B8>`_  '\\ua9b8'  Mn                  0  JAVANESE VOWEL SIGN SUKU
-`U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-`U+A9B6 <https://codepoints.net/U+A9B6>`_  '\\ua9b6'  Mn                  0  JAVANESE VOWEL SIGN WULU
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A992 <https://codepoints.net/U+A992>`_  '\\ua992'  Lo                  1  JAVANESE LETTER GA
-`U+A9BC <https://codepoints.net/U+A9BC>`_  '\\ua9bc'  Mn                  0  JAVANESE VOWEL SIGN PEPET
-`U+A982 <https://codepoints.net/U+A982>`_  '\\ua982'  Mn                  0  JAVANESE SIGN LAYAR
-`U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
-`U+A981 <https://codepoints.net/U+A981>`_  '\\ua981'  Mn                  0  JAVANESE SIGN CECAK
-`U+A992 <https://codepoints.net/U+A992>`_  '\\ua992'  Lo                  1  JAVANESE LETTER GA
-`U+A9BC <https://codepoints.net/U+A9BC>`_  '\\ua9bc'  Mn                  0  JAVANESE VOWEL SIGN PEPET
-`U+A982 <https://codepoints.net/U+A982>`_  '\\ua982'  Mn                  0  JAVANESE SIGN LAYAR
-`U+A9C9 <https://codepoints.net/U+A9C9>`_  '\\ua9c9'  Po                  1  JAVANESE PADA LUNGSI
-=========================================  =========  ==========  =========  ==========================
+=========================================  =========  ==========  =========  =========================
 
-Total codepoints: 95
+Total codepoints: 5
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xea\xa7\x8b\xea\xa6\xb1\xea\xa6\xa7\xea\xa6\xbc\xea\xa6\xa4\xea\xa7\x80\xea\xa6\xb2\xea\xa6\xb8\xea\xa6\xa9\xea\xa6\xa0\xea\xa7\x80\xea\xa6\xa9\xea\xa6\xa4\xea\xa6\xb8\xea\xa6\x81\xea\xa6\xb1\xea\xa6\xad\xea\xa6\xb2\xea\xa6\xb6\xea\xa6\x82\xea\xa6\x8f\xea\xa6\xa4\xea\xa7\x80\xea\xa6\x9b\xea\xa6\xb6\xea\xa6\xb2\xea\xa6\x8f\xea\xa7\x80\xea\xa6\xb2\xea\xa6\x8f\xea\xa7\x80\xea\xa6\x8f\xea\xa6\x81\xea\xa6\xa5\xea\xa6\xba\xea\xa6\xb4\xea\xa6\x9d\xea\xa6\xba\xea\xa6\xb4\xea\xa6\xad\xea\xa6\xa4\xea\xa7\x80\xea\xa6\xa5\xea\xa6\xb6\xea\xa6\xa4\xea\xa6\xb1\xea\xa7\x80\xea\xa6\x9b\xea\xa6\xb6\xea\xa6\xad\xea\xa6\xa4\xea\xa7\x80\xea\xa6\x8f\xea\xa6\xa4\xea\xa7\x80\xea\xa6\x9b\xea\xa6\xb6\xea\xa6\x8f\xea\xa6\xa7\xea\xa6\xba\xea\xa6\xa7\xea\xa6\xb1\xea\xa7\x80\xea\xa6\xb1\xea\xa6\xa4\xea\xa7\x80\xea\xa6\x8f\xea\xa6\xa7\xea\xa6\xba\xea\xa6\xa7\xea\xa6\xb1\xea\xa7\x80\xea\xa6\xb1\xea\xa6\xa4\xea\xa7\x80\xea\xa6\xb2\xea\xa6\xb6\xea\xa6\x81\xea\xa6\xa7\xea\xa6\x8f\xea\xa6\xb8\xea\xa6\xa4\xea\xa6\xb6\xea\xa6\x81\xea\xa6\xb2\xea\xa6\x81\xea\xa6\x92\xea\xa6\xbc\xea\xa6\x82\xea\xa6\xb2\xea\xa6\x81\xea\xa6\x92\xea\xa6\xbc\xea\xa6\x82\xea\xa7\x89|\\n123456789012345678901234567890123456789012345678901234|\\n"
-        ꧋ꦱꦧꦼꦤ꧀ꦲꦸꦩꦠ꧀ꦩꦤꦸꦁꦱꦭꦲꦶꦂꦏꦤ꧀ꦛꦶꦲꦏ꧀ꦲꦏ꧀ꦏꦁꦥꦺꦴꦝꦺꦴꦭꦤ꧀ꦥꦶꦤꦱ꧀ꦛꦶꦭꦤ꧀ꦏꦤ꧀ꦛꦶꦏꦧꦺꦧꦱ꧀ꦱꦤ꧀ꦏꦧꦺꦧꦱ꧀ꦱꦤ꧀ꦲꦶꦁꦧꦏꦸꦤꦶꦁꦲꦁꦒꦼꦂꦲꦁꦒꦼꦂ꧉|
-        123456789012345678901234567890123456789012345678901234|
+        $ printf "\xea\xa7\x8b\xea\xa6\xb1\xea\xa6\xa7\xea\xa6\xbc\xea\xa6\xa4|\\n1234|\\n"
+        ꧋ꦱꦧꦼꦤ|
+        1234|
 
-- python `wcwidth.wcswidth()`_ measures width 54, 
-  while *cool retro term* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *cool-retro-term* measures width 0.
 
 Cherokee (cased)
 ^^^^^^^^^^^^^^^^
@@ -397,8 +307,8 @@ Total codepoints: 4
         Ꮒꭼꮎꮫ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width 4, 
-  while *cool retro term* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *cool-retro-term* measures width 1.
 
 Tai Dam
 ^^^^^^^
@@ -423,8 +333,8 @@ Total codepoints: 4
         ꪁꪫꪱꪣ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width 4, 
-  while *cool retro term* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *cool-retro-term* measures width 0.
 
 Maldivian
 ^^^^^^^^^
@@ -454,8 +364,8 @@ Total codepoints: 9
         ޑިސެމްބަރ|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 9.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 9.
 
 Dzongkha
 ^^^^^^^^
@@ -517,8 +427,8 @@ Total codepoints: 41
         འགྲོ་བ་མིའི་དབང་ཆ་གི་འཛམ་གླིང་གསལ་བསྒྲགས།|
         12345678901234567890123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 32, 
-  while *cool retro term* measures width 41.
+- python `wcwidth.wcswidth()`_ measures width 32,
+  while *cool-retro-term* measures width 41.
 
 Tamazight, Standard Morocan
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -543,8 +453,8 @@ Total codepoints: 4
         ⴰⵍⵖⵓ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width 4, 
-  while *cool retro term* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *cool-retro-term* measures width 0.
 
 Gujarati
 ^^^^^^^^
@@ -569,8 +479,8 @@ Total codepoints: 4
         માનવ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -631,8 +541,8 @@ Total codepoints: 40
         ཡོངས་ཁྱབ་གསལ་བསྒྲགས་འགྲོ་བ་མིའི་ཐོབ་ཐང༌།|
         1234567890123456789012345678901|
 
-- python `wcwidth.wcswidth()`_ measures width 31, 
-  while *cool retro term* measures width 40.
+- python `wcwidth.wcswidth()`_ measures width 31,
+  while *cool-retro-term* measures width 40.
 
 Burmese
 ^^^^^^^
@@ -669,8 +579,8 @@ Total codepoints: 16
         အပြည်ပြည်ဆိုင်ရာ|
         12345678|
 
-- python `wcwidth.wcswidth()`_ measures width 8, 
-  while *cool retro term* measures width 11.
+- python `wcwidth.wcswidth()`_ measures width 8,
+  while *cool-retro-term* measures width 11.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -697,8 +607,8 @@ Total codepoints: 6
         म्हीसे|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 6.
 
 Kannada
 ^^^^^^^
@@ -723,8 +633,8 @@ Total codepoints: 4
         ಮಾನವ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Malayalam
 ^^^^^^^^^
@@ -774,8 +684,8 @@ Total codepoints: 29
         മനുഷ്യാവകാശങ്ങളെക്കുറിക്കുന്ന|
         12345678901234567|
 
-- python `wcwidth.wcswidth()`_ measures width 17, 
-  while *cool retro term* measures width 29.
+- python `wcwidth.wcswidth()`_ measures width 17,
+  while *cool-retro-term* measures width 29.
 
 Khün
 ^^^^
@@ -818,8 +728,8 @@ Total codepoints: 22
         ᨠᨲᩥᨠᩣᩅᩤ᩵ᨯ᩠ᩅ᩠ᨿᩢᨾᨶᩩᩔᨩᩣ᩠ᨲ|
         123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 12, 
-  while *cool retro term* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 12,
+  while *cool-retro-term* measures width 0.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -876,8 +786,8 @@ Total codepoints: 36
         សេចក្ដីប្រកាសជាសកលស្ដីពីសិទ្ធិមនុស្ស|
         1234567890123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 22, 
-  while *cool retro term* measures width 36.
+- python `wcwidth.wcswidth()`_ measures width 22,
+  while *cool-retro-term* measures width 36.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -902,8 +812,8 @@ Total codepoints: 4
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Tamil
 ^^^^^
@@ -928,8 +838,8 @@ Total codepoints: 4
         மனித|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Bengali
 ^^^^^^^
@@ -962,8 +872,8 @@ Total codepoints: 12
         মানবাধিকারের|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *cool retro term* measures width 12.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *cool-retro-term* measures width 12.
 
 Mon
 ^^^
@@ -994,8 +904,8 @@ Total codepoints: 10
         လိက်လလောၚ်|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 7.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 7.
 
 Telugu
 ^^^^^^
@@ -1029,8 +939,8 @@ Total codepoints: 13
         మానవస్వత్వముల|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9, 
-  while *cool retro term* measures width 13.
+- python `wcwidth.wcswidth()`_ measures width 9,
+  while *cool-retro-term* measures width 13.
 
 Nepali
 ^^^^^^
@@ -1055,8 +965,8 @@ Total codepoints: 4
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Sanskrit
 ^^^^^^^^
@@ -1091,8 +1001,8 @@ Total codepoints: 14
         मानवाधिकाराणां|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *cool retro term* measures width 14.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *cool-retro-term* measures width 14.
 
 Marathi
 ^^^^^^^
@@ -1118,8 +1028,8 @@ Total codepoints: 5
         मानवी|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 5.
 
 Hindi
 ^^^^^
@@ -1144,8 +1054,8 @@ Total codepoints: 4
         मानव|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -1180,8 +1090,8 @@ Total codepoints: 14
         𑌮𑌾𑌨𑌵𑌾𑌧𑌿𑌕𑌾𑌰𑌾𑌣𑌾𑌂|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *cool retro term* measures width 14.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *cool-retro-term* measures width 14.
 
 Sinhala
 ^^^^^^^
@@ -1206,8 +1116,8 @@ Total codepoints: 4
         මානව|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1234,8 +1144,8 @@ Total codepoints: 6
         ਮਨੁੱਖੀ|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 6.
 
 Bhojpuri
 ^^^^^^^^
@@ -1266,8 +1176,8 @@ Total codepoints: 10
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
-  while *cool retro term* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *cool-retro-term* measures width 10.
 
 Maithili
 ^^^^^^^^
@@ -1296,8 +1206,8 @@ Total codepoints: 8
         सार्वभौम|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 8.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 8.
 
 Chakma
 ^^^^^^
@@ -1331,8 +1241,8 @@ Total codepoints: 13
         𑄟𑄚𑄬𑄭𑄃𑄇𑄴𑄇𑄥𑄧𑄁𑄢𑄴|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *cool retro term* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *cool-retro-term* measures width 10.
 
 Magahi
 ^^^^^^
@@ -1363,8 +1273,8 @@ Total codepoints: 10
         मानवाधिकार|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
-  while *cool retro term* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *cool-retro-term* measures width 10.
 
 Shan
 ^^^^
@@ -1402,8 +1312,8 @@ Total codepoints: 17
         ဢၼ်ၵဵဝ်ႇတင်းလုမ်ႈ|
         12345678|
 
-- python `wcwidth.wcswidth()`_ measures width 8, 
-  while *cool retro term* measures width 7.
+- python `wcwidth.wcswidth()`_ measures width 8,
+  while *cool-retro-term* measures width 7.
 
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
@@ -1428,8 +1338,8 @@ Total codepoints: 4
         ᜎᜑᜆ᜔|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Lao
 ^^^
@@ -1460,8 +1370,8 @@ Total codepoints: 10
         ປະກາດສາກົນ|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9, 
-  while *cool retro term* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 9,
+  while *cool-retro-term* measures width 10.
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1493,8 +1403,8 @@ Total codepoints: 11
         אַלװעלטלעכע|
         1234567890|
 
-- python `wcwidth.wcswidth()`_ measures width 10, 
-  while *cool retro term* measures width 11.
+- python `wcwidth.wcswidth()`_ measures width 10,
+  while *cool-retro-term* measures width 11.
 
 Gumuz
 ^^^^^
@@ -1524,8 +1434,8 @@ Total codepoints: 9
         Masikꞌoma|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9, 
-  while *cool retro term* measures width 8.
+- python `wcwidth.wcswidth()`_ measures width 9,
+  while *cool-retro-term* measures width 8.
 
 Idoma
 ^^^^^
@@ -1553,8 +1463,8 @@ Total codepoints: 7
         Higbęgͻ|
         1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 7, 
-  while *cool retro term* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *cool-retro-term* measures width 6.
 
 Gilyak
 ^^^^^^
@@ -1581,8 +1491,8 @@ Total codepoints: 6
         дуфтоӿ|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
-  while *cool retro term* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *cool-retro-term* measures width 5.
 
 Yukaghir, Northern
 ^^^^^^^^^^^^^^^^^^
@@ -1616,8 +1526,8 @@ Total codepoints: 13
         параԝааньэрэҥ|
         1234567890123|
 
-- python `wcwidth.wcswidth()`_ measures width 13, 
-  while *cool retro term* measures width 12.
+- python `wcwidth.wcswidth()`_ measures width 13,
+  while *cool-retro-term* measures width 12.
 
 Adyghe
 ^^^^^^
@@ -1643,8 +1553,8 @@ Total codepoints: 5
         Цӏыху|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 4.
 
 Kabardian
 ^^^^^^^^^
@@ -1670,8 +1580,8 @@ Total codepoints: 5
         Цӏыху|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 4.
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -1697,8 +1607,8 @@ Total codepoints: 5
         PJOSꞸ|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 4.
 
 Fur
 ^^^
@@ -1730,8 +1640,8 @@ Total codepoints: 11
         Dá̱ldɨ́ŋáꞌŋ|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9, 
-  while *cool retro term* measures width 8.
+- python `wcwidth.wcswidth()`_ measures width 9,
+  while *cool-retro-term* measures width 8.
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
@@ -1759,8 +1669,8 @@ Total codepoints: 7
         ܬܝܒ݂ܠܝܐ|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
-  while *cool retro term* measures width 7.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *cool-retro-term* measures width 7.
 
 Farsi, Western
 ^^^^^^^^^^^^^^
@@ -1786,8 +1696,8 @@ Total codepoints: 5
         کلیهٔ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width 4, 
-  while *cool retro term* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *cool-retro-term* measures width 5.
 
 Urdu (2)
 ^^^^^^^^
@@ -1814,8 +1724,8 @@ Total codepoints: 6
         اقوامِ|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 6.
 
 Urdu
 ^^^^
@@ -1842,8 +1752,8 @@ Total codepoints: 6
         اقوامِ|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 6.
 
 Dari
 ^^^^
@@ -1869,8 +1779,8 @@ Total codepoints: 5
         کلیهٔ|
         1234|
 
-- python `wcwidth.wcswidth()`_ measures width 4, 
-  while *cool retro term* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *cool-retro-term* measures width 5.
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -1897,8 +1807,8 @@ Total codepoints: 6
         اعتُمد|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
-  while *cool retro term* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *cool-retro-term* measures width 6.
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -1923,8 +1833,8 @@ Total codepoints: 4
         اُنی|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 Orok
 ^^^^
@@ -1958,8 +1868,8 @@ Total codepoints: 13
         Обедиԩо̄ннэја|
         123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 12, 
-  while *cool retro term* measures width 11.
+- python `wcwidth.wcswidth()`_ measures width 12,
+  while *cool-retro-term* measures width 11.
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -1986,8 +1896,8 @@ Total codepoints: 6
         𞤲’𞤣𞤵𞤲⹁|
         123456|
 
-- python `wcwidth.wcswidth()`_ measures width 6, 
-  while *cool retro term* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *cool-retro-term* measures width 5.
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -2018,8 +1928,8 @@ Total codepoints: 10
         (۱۹؍۹؍۱۳۲۷|
         1234567890|
 
-- python `wcwidth.wcswidth()`_ measures width 10, 
-  while *cool retro term* measures width 8.
+- python `wcwidth.wcswidth()`_ measures width 10,
+  while *cool-retro-term* measures width 8.
 
 Seraiki
 ^^^^^^^
@@ -2044,8 +1954,8 @@ Total codepoints: 4
         اُتے|
         123|
 
-- python `wcwidth.wcswidth()`_ measures width 3, 
-  while *cool retro term* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

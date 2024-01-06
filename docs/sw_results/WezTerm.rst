@@ -25,35 +25,35 @@ version      n_errors    n_total  pct_success
 '5.2.0'            79        269  70.6%
 '6.0.0'             0         13  100.0%
 '9.0.0'             0       5000  100.0%
-'10.0.0'            0        735  100.0%
-'11.0.0'            0         62  100.0%
-'12.0.0'            0         62  100.0%
+'10.0.0'           73        735  90.1%
+'11.0.0'            6         62  90.3%
+'12.0.0'            6         62  90.3%
 '12.1.0'            0          1  100.0%
-'13.0.0'            1        541  99.8%
-'14.0.0'            0         41  100.0%
-'15.0.0'            0         15  100.0%
+'13.0.0'           55        541  89.8%
+'14.0.0'            4         41  90.2%
+'15.0.0'            1         15  93.3%
 '15.1.0'            5          5  0.0%
 =========  ==========  =========  =============
 
-Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
+Sequence of a WIDE character from Unicode Version 15.0.0, from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ======
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======
-`U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  Cn                  2  na
-=========================================  =========  ==========  =========  ======
+=================================================  =============  ==========  =========  =========
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  =========
+`U+0001FABC <https://codepoints.net/U+0001FABC>`_  '\\U0001fabc'  So                  2  JELLYFISH
+=================================================  =============  ==========  =========  =========
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe2\xbf\xbe|\\n12|\\n"
-        ⿾|
+        $ printf "\xf0\x9f\xaa\xbc|\\n12|\\n"
+        🪼|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
-  while *WezTerm* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *WezTerm* measures width 0.
 
 .. _WezTermzwj:
 
@@ -106,7 +106,7 @@ Total codepoints: 2
         🌥️|
         12|
 
-- python `wcwidth.wcswidth()`_ measures width 2, 
+- python `wcwidth.wcswidth()`_ measures width 2,
   while *WezTerm* measures width 1.
 
 
@@ -115,20 +115,20 @@ Total codepoints: 2
 Language Support
 ++++++++++++++++
 
-The following 94 languages were tested with 100% success:
+The following 93 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular, Pular (Adlam), Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Shan, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Shan, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 5 languages are not fully supported:
 
 =========  ==========  =========  =============
-lang         n_errors    n_total    pct_success
+lang         n_errors    n_total  pct_success
 =========  ==========  =========  =============
-Malayalam         109       1630        93.3129
-Sinhala           107       1655        93.5347
-Marathi             5       1614        99.6902
-Nepali              3       1385        99.7834
-Bengali             3       1413        99.7877
+Malayalam         109       1630  93.3%
+Sinhala           107       1655  93.5%
+Marathi             5       1614  99.7%
+Nepali              3       1385  99.8%
+Bengali             3       1413  99.8%
 =========  ==========  =========  =============
 
 Malayalam
@@ -167,7 +167,7 @@ Total codepoints: 17
         സര്‍വ്വതോന്മുഖമായ|
         123456789|
 
-- python `wcwidth.wcswidth()`_ measures width 9, 
+- python `wcwidth.wcswidth()`_ measures width 9,
   while *WezTerm* measures width 10.
 
 Sinhala
@@ -198,7 +198,7 @@ Total codepoints: 9
         ප්‍රකාශනය|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *WezTerm* measures width 6.
 
 Marathi
@@ -231,7 +231,7 @@ Total codepoints: 11
         करण्यार्‍या|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *WezTerm* measures width 6.
 
 Nepali
@@ -264,7 +264,7 @@ Total codepoints: 11
         पुर्‍याइएको|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *WezTerm* measures width 6.
 
 Bengali
@@ -297,7 +297,7 @@ Total codepoints: 11
         উত্‍পীড়নের|
         12345|
 
-- python `wcwidth.wcswidth()`_ measures width 5, 
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *WezTerm* measures width 6.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
