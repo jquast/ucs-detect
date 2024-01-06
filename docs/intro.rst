@@ -72,7 +72,7 @@ of the Unicode Standard periodically, but the source code of libraries
 and applications are not updated at the same time, or at all!
 
 Finally, a terminal emulator may have varying levels of support. For example, at
-time of this writing, Microsoft's Terminal.exe supports up to Unicode 15.0 for
+time of this writing, Microsoft's `Terminal.exe`_ supports up to Unicode 15.0 for
 Wide characters, is missing support for 27 characters of Unicode 13.0, has no
 support for Emoji ZWJ, fully supports all VS-16 sequences, but fails to
 correctly categorize many Zero-Width for 88 or more of the world's languages. 
@@ -152,3 +152,4 @@ History
 .. _`Query Cursor Position`: https://blessed.readthedocs.io/en/latest/location.html#finding-the-cursor
 .. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
 .. _Specification: https://wcwidth.readthedocs.io/en/latest/specs.html
+.. _`Terminal.exe`: https://ucs-detect.readthedocs.io/sw_results/Terminalexe.html#terminalexe
