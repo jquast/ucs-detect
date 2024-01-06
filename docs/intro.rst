@@ -130,6 +130,9 @@ characters.
 History
 =======
 
+- 1.0.7 (2024-01-06): Add python 3.10 compatibility for yaml file save and
+  update wcwidth requirement to 0.2.13.
+
 - 1.0.6 (2023-12-15): Distribution fix for UDHR data and bugfix for python 3.8
   through 3.11. *ucs-detect* Welcomes `@GalaxySnail
   <https://github.com/GalaxySnail/>`_ as a new project contributor.
