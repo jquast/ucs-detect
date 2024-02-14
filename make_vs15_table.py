@@ -2,9 +2,9 @@ import wcwidth
 import collections
 
 
-def fetch_vs16_data():
-    "List VS16 sequences."
-    table = wcwidth.VS16_NARROW_TO_WIDE
+def fetch_vs15_data():
+    "List VS15 sequences."
+    table = wcwidth.VS15_WIDE_TO_NARROW
     versions = list(table.keys())
     assert (
         len(versions) == 1
@@ -14,15 +14,15 @@ def fetch_vs16_data():
     results = []
     for value_pair in table[version]:
         for value in range(value_pair[0], value_pair[1]):
-            results.append((value, ord("\uFE0F")))  # append VS16
+            results.append((value, ord("\uFE0E")))  # append VS15
 
     return [(version, results)]
 
 
 def main():
     # create basic python code, skipping all that jinja stuff
-    print("VS16_NARROW_TO_WIDE = (")
-    for key, sequences in fetch_vs16_data():
+    print("VS15_WIDE_TO_NARROW = (")
+    for key, sequences in fetch_vs15_data():
         print(f"  ('{key}', (")
         for seq in sequences:
             print(f"    {seq},")
@@ -32,6 +32,6 @@ def main():
 
 
 if __name__ == "__main__":
-    # minimal vs16 table parser, for use:
-    # $ python make_vs16_table.py > ucs_detect/table_vs16.py
+    # minimal vs15 table parser, for use:
+    # $ python make_vs15_table.py > ucs_detect/table_vs15.py
     main()
