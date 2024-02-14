@@ -40,6 +40,7 @@ import yaml
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_wide import WIDE_CHARACTERS
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
+from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
 
 # to accommodate varying screen sizes, we measure by each word,
 # but some languages do not use ASCII space, we make some
@@ -595,6 +596,22 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         shell=shell,
     )
 
+    # Variation-15 emoji sequences
+    writer(f"\nucs-detect: VS15 testing")
+    emoji_vs15_results = test_support(
+        table=VS15_WIDE_TO_NARROW,
+        term=term,
+        writer=writer,
+        timeout=timeout,
+        quick=quick,
+        limit_codepoints=limit_codepoints,
+        limit_errors=limit_errors,
+        expected_width=1,
+        largest_xpos=5,
+        report_lbound=2,
+        shell=shell,
+    )
+
     # test language support
     language_results = None
     if not quick:
@@ -630,6 +647,16 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         best_match=list(emoji_vs16_results.keys())[0],
     )
 
+    writer(
+        f'\nDisplaying results of {term.bold("Variation Selector-15")} sequence support and their success rate'
+    )
+    display_results_by_version(
+        term=term,
+        writer=writer,
+        results=emoji_vs15_results,
+        best_match=list(emoji_vs15_results.keys())[0],
+    )
+
     if language_results:
         writer(
             f'\nDisplaying results of WIDE and ZERO-WIDTH sequence support by {term.bold("language")}'
@@ -655,6 +682,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
                 emoji_zwj_version=emoji_zwj_version,
                 emoji_zwj_results=emoji_zwj_results,
                 emoji_vs16_results=emoji_vs16_results,
+                emoji_vs15_results=emoji_vs15_results,
                 language_results=language_results,
             ),
         )

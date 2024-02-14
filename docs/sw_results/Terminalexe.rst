@@ -4,9 +4,9 @@ Terminal.exe
 ------------
 
 
-Tested Software version Windows 10 on Windows
+Tested Software version  on Windows
 Full results available at ucs-detect_ repository path
-`data/win-Terminal-win10.yaml <https://github.com/jquast/ucs-detect/blob/master/data/win-Terminal-win10.yaml>`_
+`data/win-Terminal-win11.yaml <https://github.com/jquast/ucs-detect/blob/master/data/win-Terminal-win11.yaml>`_
 
 .. _Terminalexewide:
 
@@ -25,12 +25,12 @@ version      n_errors    n_total  pct_success
 '5.2.0'            79        269  70.6%
 '6.0.0'             0         13  100.0%
 '9.0.0'             0       5000  100.0%
-'10.0.0'           36        735  95.1%
-'11.0.0'            3         62  95.2%
-'12.0.0'            3         62  95.2%
+'10.0.0'            0        735  100.0%
+'11.0.0'            0         62  100.0%
+'12.0.0'            0         62  100.0%
 '12.1.0'            0          1  100.0%
-'13.0.0'           27        541  95.0%
-'14.0.0'            2         41  95.1%
+'13.0.0'            0        541  100.0%
+'14.0.0'            0         41  100.0%
 '15.0.0'            0         15  100.0%
 '15.1.0'            5          5  0.0%
 =========  ==========  =========  =============
@@ -129,16 +129,16 @@ The following 88 languages are not fully supported:
 ===========================  ==========  =========  =============
 lang                           n_errors    n_total  pct_success
 ===========================  ==========  =========  =============
-Javanese (Javanese)                 500        504  0.8%
+Javanese (Javanese)                 500        506  1.2%
 Maldivian                           500        515  2.9%
 Tamil                               500        516  3.1%
 Tamil (Sri Lanka)                   500        516  3.1%
 Burmese                             500        519  3.7%
 Mon                                 500        522  4.2%
 Shan                                500        523  4.4%
-Dzongkha                            341        358  4.7%
+Dzongkha                            340        357  4.8%
 Gujarati                            500        530  5.7%
-Tibetan, Central                    262        278  5.8%
+Tibetan, Central                    255        271  5.9%
 Malayalam                           500        533  6.2%
 Tamang, Eastern                      42         45  6.7%
 Kannada                             500        536  6.7%
@@ -155,13 +155,13 @@ Hindi                               500        576  13.2%
 Sinhala                             500        577  13.3%
 Panjabi, Eastern                    500        578  13.5%
 Bhojpuri                            500        584  14.4%
-Thai (2)                            267        313  14.7%
+Thai (2)                            265        311  14.8%
 Maithili                            500        613  18.4%
-Thai                                272        340  20.0%
+Thai                                271        339  20.1%
 Magahi                              500        643  22.2%
 Vietnamese                          500        660  24.2%
 Tagalog (Tagalog)                    21         31  32.3%
-Lao                                 267        423  36.9%
+Lao                                 259        415  37.6%
 Lingala (tones)                     500        844  40.8%
 Pular (Adlam)                       500       1044  52.1%
 Yiddish, Eastern                    500       1062  52.9%

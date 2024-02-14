@@ -45,7 +45,8 @@ def main():
             show_software_header(entry, sw_name)
             show_wide_character_support(sw_name, entry)
             show_emoji_zwj_results(sw_name, entry)
-            show_vs16_results(sw_name, entry)
+            show_vs_results(sw_name, entry, '16')
+            show_vs_results(sw_name, entry, '15')
             show_language_results(sw_name, entry)
             display_common_hyperlinks()
         print('ok', file=sys.stderr)
@@ -102,43 +103,51 @@ def make_score_table():
     # Suggest generating YAML files with something like:
     #     python ucs_detect/__init__.py --save-yaml data/output.yaml --limit-codepoints=1000 --limit-words=1000 --limit-errors=100
     #
-    for yaml_path in [
-        os.path.join(DATA_PATH, fname)
-        for fname in os.listdir(DATA_PATH)
-        if fname.endswith(".yaml") and os.path.isfile(os.path.join(DATA_PATH, fname))
-    ]:
-        data = yaml.safe_load(open(yaml_path, "r"))
+    try:
+        for yaml_path in [
+            os.path.join(DATA_PATH, fname)
+            for fname in os.listdir(DATA_PATH)
+            if fname.endswith(".yaml") and os.path.isfile(os.path.join(DATA_PATH, fname))
+        ]:
+            data = yaml.safe_load(open(yaml_path, "r"))
 
-        # determine score for 'WIDE',
-        version_best_wide = data["test_results"]["unicode_wide_version"]
-        _score_wide = score_wide(data)
+            # determine score for 'WIDE',
+            version_best_wide = data["test_results"]["unicode_wide_version"]
+            _score_wide = score_wide(data)
 
-        # 'EMOJI ZWJ',
-        version_best_zwj = data["test_results"]["emoji_zwj_version"]
-        _score_zwj = score_zwj(data)
+            # 'EMOJI ZWJ',
+            version_best_zwj = data["test_results"]["emoji_zwj_version"]
+            _score_zwj = score_zwj(data)
 
-        # 'EMOJI VS-16',
-        score_emoji_vs16 = data["test_results"]["emoji_vs16_results"]["9.0.0"]["pct_success"] / 100
+            # 'EMOJI VS-16',
+            score_emoji_vs16 = data["test_results"]["emoji_vs16_results"]["9.0.0"]["pct_success"] / 100
 
-        # Language Support,
-        score_language = score_lang(data)
-        scores = (score_language, score_emoji_vs16, _score_zwj, _score_wide)
-        score_table.append(
-            dict(
-                terminal_software_name=data["software"],
-                terminal_software_version=data["version"],
-                os_system=data["system"],
-                score_emoji_vs16=score_emoji_vs16,
-                score_final=sum(scores) / len(scores),
-                score_language=score_language,
-                score_wide=_score_wide,
-                score_zwj=_score_zwj,
-                version_best_wide=version_best_wide,
-                version_best_zwj=version_best_zwj,
-                data=data,
-                fname=os.path.basename(yaml_path),
+            # 'EMOJI VS-15',
+            score_emoji_vs15 = data["test_results"]["emoji_vs15_results"]["9.0.0"]["pct_success"] / 100
+
+            # Language Support,
+            score_language = score_lang(data)
+            scores = (score_language, score_emoji_vs16, score_emoji_vs15, _score_zwj, _score_wide)
+            score_table.append(
+                dict(
+                    terminal_software_name=data["software"],
+                    terminal_software_version=data["version"],
+                    os_system=data["system"],
+                    score_emoji_vs16=score_emoji_vs16,
+                    score_emoji_vs15=score_emoji_vs15,
+                    score_final=sum(scores) / len(scores),
+                    score_language=score_language,
+                    score_wide=_score_wide,
+                    score_zwj=_score_zwj,
+                    version_best_wide=version_best_wide,
+                    version_best_zwj=version_best_zwj,
+                    data=data,
+                    fname=os.path.basename(yaml_path),
+                )
             )
-        )
+    except Exception:
+        print(f"Error in yaml_path={yaml_path}", file=sys.stderr)
+        raise
     # after accumulating all entries, create graded scale
     result = []
     _score_keys = [key for key in score_table[0].keys() if key.startswith("score_")]
@@ -210,6 +219,7 @@ def display_tabulated_scores(score_table):
                 "LANG score": make_outbound_hyperlink(make_grade(result["score_language_scaled"]), result["terminal_software_name"] + "_lang"),
                 "ZWJ score": make_outbound_hyperlink(make_grade(result["score_zwj_scaled"]), result["terminal_software_name"] + "_zwj"),
                 "VS16 score": make_outbound_hyperlink(make_grade(result["score_emoji_vs16_scaled"]), result["terminal_software_name"] + "_vs16"),
+                "VS15 score": make_outbound_hyperlink(make_grade(result["score_emoji_vs15_scaled"]), result["terminal_software_name"] + "_vs15"),
             }
         )
 
@@ -242,6 +252,10 @@ def display_table_definitions():
     print(
         "- *VS16 score*: Determined by the number of Emoji using Variation\n"
         "  Selector-16 supported as wide characters, scaled."
+    )
+    print(
+        "- *VS15 score*: Determined by the number of Emoji using Variation\n"
+        "  Selector-15 supported as narrow characters, scaled."
     )
     print()
 
@@ -413,22 +427,23 @@ def show_emoji_zwj_results(sw_name, entry):
         show_record_failure(sw_name, whatis, fail_record)
 
 
-def show_vs16_results(sw_name, entry):
-    display_inbound_hyperlink(entry["terminal_software_name"] + "_vs16")
-    display_title("Variation Selector-16 support", 3)
+def show_vs_results(sw_name, entry, variation_str):
+    display_inbound_hyperlink(entry["terminal_software_name"] + f"_vs{variation_str}")
+    display_title(f"Variation Selector-{variation_str} support", 3)
     show_failed_version = "9.0.0"  # static table, '9.0.0' in beta PR of wcwidth,
-    records = entry["data"]["test_results"]["emoji_vs16_results"][show_failed_version]
+    records = entry["data"]["test_results"][f"emoji_vs{variation_str}_results"][show_failed_version]
     n_errors = records["n_errors"]
     n_total = records["n_total"]
     pct_success = records["pct_success"]
-    print(f"Emoji VS-16 results for *{sw_name}* is {n_errors} errors")
+    print(f"Emoji VS-{variation_str} results for *{sw_name}* is {n_errors} errors")
     print(f"out of {n_total} total codepoints tested, {pct_success:0.1f}% success.")
     failed_codepoints = records["failed_codepoints"]
     if not failed_codepoints:
-        print("All codepoint combinations with Variation Selector-16 tested were successful.")
+        print(f"All codepoint combinations with Variation Selector-{variation_str} tested were successful.")
     else:
         failure_record = failed_codepoints[len(failed_codepoints) // 2]
-        whatis = "of a NARROW Emoji made WIDE by *Variation Selector-16*,"
+        description = 'NARROW Emoji made WIDE' if variation_str == '16' else 'WIDE Emoji made NARROW'
+        whatis = f"of a {description} by *Variation Selector-{variation_str}*,"
         show_record_failure(sw_name, whatis, failure_record)
     print()
 
