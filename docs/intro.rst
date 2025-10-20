@@ -127,6 +127,13 @@ wcwidth_ library, which contains every past unicode table version, to determine
 how dependent python programs, such as IPython_ render wide and zero-width
 characters.
 
+UDHR Data
+=========
+
+UDHR data is fetched from http://efele.net/udhr/assemblies/udhr_txt.zip -- I'm
+not sure if it is maintained, note that https://www.unicode.org/udhr/ now
+contains a message that such files are no longer hosted there as of January 2024
+
 History
 =======
 

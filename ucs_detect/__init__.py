@@ -98,7 +98,7 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, timeout, test_all_dec_private_modes):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, timeout):
     """Program entry point."""
     term, writer = init_term(stream, quick)
 
@@ -121,14 +121,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
 
     terminal_results = {}
     if not no_terminal_test:
-        terminal_results = terminal.do_terminal_detection(all_modes=test_all_dec_private_modes)
-        if terminal_results.get("modes").get("2027") == "RESET":
-            # Test whether the terminal supports "grapheme clustering" for
-            # things like ZWJ, but it is turned off, then turn it on before testing!
-            #
-            # In all practicality, any terminal that supports grapheme
-            # clustering will have it on by default, but just in case ..
-            print('\x1b[?2027h', end='', flush=True)
+        terminal_results = terminal.do_terminal_detection()
 
     if save_yaml:
         if terminal_results["software"]:
@@ -443,12 +436,6 @@ def parse_args():
         action="store_true",
         default=False,
         help="Do not perform any additional terminal fingerprinting"
-    )
-    args.add_argument(
-        "--test-all-dec-private-modes",
-        action="store_true",
-        default=False,
-        help="Test all DEC private modes, this is useful for testing terminal emulator capabilities"
     )
     args.add_argument(
         "--timeout",

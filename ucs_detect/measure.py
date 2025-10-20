@@ -60,9 +60,9 @@ def test_language_support(
     failure_report = collections.defaultdict(list)
     start_time = time.monotonic()
     for lang, multiline_text in parse_udhr():
-        writer(term.csr(0, term.height) + term.move_yx(top - 1, orig_xpos))
+        writer(term.move_yx(top - 1, orig_xpos))
         writer(f"{lang}" + term.clear_eos)
-        writer(term.csr(top, bottom) + term.move_yx(top, 0))
+        writer(term.move_yx(top, 0))
         last_ypos = top
         for line in [
             _line.strip() for _line in multiline_text.splitlines() if _line.strip()
@@ -78,7 +78,7 @@ def test_language_support(
                 expected_width = wcwidth.wcswidth(
                     wchars, unicode_version=(unicode_version or "auto")
                 )
-                assert expected_width != -1, (wchars, unicode_version)
+                assert expected_width != -1, (wchars, lang, unicode_version)
                 if expected_width >= term.width:
                     # filter: do not test long phrases that span margin
                     continue
@@ -120,10 +120,14 @@ def test_language_support(
                 # reset estimates to actual
                 estimated_xpos = end_xpos
                 last_ypos = end_ypos
+                if end_ypos >= bottom - 2:
+                    last_ypos = top
+                    writer(term.move_yx(top - 1, orig_xpos))
+                    writer(f"{lang}" + term.clear_eos)
+                    writer(term.move_yx(top, 0))
 
-    # reset scrolling region to default
-    # and move cursor to bottom right
-    writer(term.set_scrolling_region(0, term.height))
+
+    # move cursor to bottom right when leaving .. maybe top+1 is better?
     writer(term.move_yx(term.height, term.width - 1) + "\n")
 
     report_languages = [
@@ -134,9 +138,9 @@ def test_language_support(
     test_total_sum = sum(success_report.values()) + sum(
         [len(v) for v in failure_report.values()]
     )
-    writer(
-        f"ucs-detect Languages testing completed {test_total_sum:n} wchars in total, "
-    )
+
+    writer(term.move_yx(top - 1, 0) + term.clear_eos)
+    writer(f"ucs-detect Languages testing completed {test_total_sum:n} wchars in total, ")
     writer(f"{time.monotonic() - start_time:.2f}s elapsed.")
 
     return {
@@ -154,7 +158,7 @@ def test_language_support(
 
 
 def exit_and_display_timeout_error(term, writer, timeout, orig_xpos, top):
-    writer(term.csr(0, term.height) + term.move_yx(top - 1, orig_xpos) + term.clear_eos)
+    writer(term.move_yx(top - 1, orig_xpos) + term.clear_eos)
     writer(term.reverse_red(f"Timeout Exceeded ({timeout:.1f}s)"))
     sys.exit(1)
 
@@ -305,23 +309,20 @@ def do_languages_test(
         top = max(0, term.height - 20)
     bottom = min(top + 20, term.height - 1)
     start_time = time.monotonic()
-    try:
-        writer(term.csr(top, bottom) + term.move_yx(top, 0) + term.clear_eos)
-        language_results = test_language_support(
-            term=term,
-            writer=writer,
-            timeout=timeout,
-            orig_xpos=orig_xpos,
-            top=top,
-            bottom=bottom,
-            unicode_version=unicode_version,
-            largest_xpos=15,
-            limit_words=limit_words,
-            limit_errors=limit_errors,
-        )
-    finally:
-        # reset scrolling region
-        writer(term.csr(0, term.height))
+    writer(term.move_yx(top, 0) + term.clear_eos)
+    language_results = test_language_support(
+        term=term,
+        writer=writer,
+        timeout=timeout,
+        orig_xpos=orig_xpos,
+        top=top,
+        bottom=bottom,
+        unicode_version=unicode_version,
+        largest_xpos=15,
+        limit_words=limit_words,
+        limit_errors=limit_errors,
+    )
+
     writer(term.move_yx(top, 0) + term.clear_eos)
     writer(term.move_yx(top - 1, orig_xpos))
     writer(f"{len(language_results):n} total, ")
@@ -335,13 +336,20 @@ def make_success_pct(n_errors, n_total):
 def parse_udhr():
     path_udhr = os.path.join(os.path.dirname(__file__), 'udhr')
     for fname in os.listdir(path_udhr):
+        if not fname.lower().endswith('.txt'):
+            # skip past xml file
+            continue
         with open(os.path.join(path_udhr, fname)) as fin:
             # read only up to first '-----' marker
             language = fin.readline().split('-', 1)[1].strip()
             while True:
                 line = fin.readline()
-                if line == '---\n':
+                if line.startswith('---'):
+                    # stop at language break
                     break
+                elif not line:
+                    # reached EOF without finding a marker
+                    raise RuntimeError(f'No marker found in {fname!r}, expected "---"')
             text_parts = []
             while True:
                 line = fin.readline()
