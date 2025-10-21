@@ -101,7 +101,7 @@ def maybe_determine_cell_size(term, writer):
     cell_height, cell_width = term.get_cell_height_and_width(timeout=1.0)
     if cell_height != -1 and cell_width != -1:
         return {"cell_height": cell_height, "cell_width": cell_width}
-    return 
+    return {}
 
 def maybe_determine_pixel_size(term, writer):
     # use "sixel calculation" from blessed, which uses some heuristics
