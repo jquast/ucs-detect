@@ -20,6 +20,7 @@ in_folder = lambda fname: os.path.join(os.path.dirname(__file__), 'ucs_detect', 
 FIXES = {
     in_folder('udhr_kng_AO.txt'): (b'\xc2\x92', b'\xe2\x80\x99'),
     in_folder('udhr_sco.txt'): (b'\xc2\x91', b'\xe2\x80\x98'),
+    in_folder('udhr_kea.txt'): (b'\xc2\x92', b'\xe2\x80\x99'),
 }
 
 

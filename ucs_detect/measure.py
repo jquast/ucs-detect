@@ -59,7 +59,7 @@ def test_language_support(
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
     start_time = time.monotonic()
-    for lang, multiline_text in parse_udhr():
+    for lang, multiline_text in parse_udhr(unicode_version=unicode_version):
         writer(term.move_yx(top - 1, orig_xpos))
         writer(f"{lang}" + term.clear_eos)
         writer(term.move_yx(top, 0))
@@ -125,10 +125,6 @@ def test_language_support(
                     writer(term.move_yx(top - 1, orig_xpos))
                     writer(f"{lang}" + term.clear_eos)
                     writer(term.move_yx(top, 0))
-
-
-    # move cursor to bottom right when leaving .. maybe top+1 is better?
-    writer(term.move_yx(term.height, term.width - 1) + "\n")
 
     report_languages = [
         language
@@ -333,13 +329,17 @@ def make_success_pct(n_errors, n_total):
     # protect from divide-by-zero and convert decimal to whole percentage points
     return ((n_total - n_errors) / n_total if n_total else 0) * 100
 
-def parse_udhr():
+def parse_udhr(unicode_version="auto"):
     path_udhr = os.path.join(os.path.dirname(__file__), 'udhr')
-    for fname in os.listdir(path_udhr):
+    for fname in sorted(os.listdir(path_udhr)):
         if not fname.lower().endswith('.txt'):
             # skip past xml file
             continue
-        with open(os.path.join(path_udhr, fname)) as fin:
+
+        full_path = os.path.join(path_udhr, fname)
+
+        # First pass: quick scan to determine if file is interesting
+        with open(full_path) as fin:
             # read only up to first '-----' marker
             language = fin.readline().split('-', 1)[1].strip()
             while True:
@@ -350,6 +350,33 @@ def parse_udhr():
                 elif not line:
                     # reached EOF without finding a marker
                     raise RuntimeError(f'No marker found in {fname!r}, expected "---"')
+
+            # Quick scan: check if any line has complex unicode
+            is_interesting = False
+            while True:
+                line = fin.readline()
+                if not line:
+                    break
+                stripped = line.strip()
+                if stripped:
+                    wcs_width = wcwidth.wcswidth(stripped, unicode_version=unicode_version)
+                    if wcs_width == -1 or wcs_width != len(stripped):
+                        is_interesting = True
+                        break  # Found interesting line, stop scanning
+
+        # Skip files where all lines have wcwidth == len (no complex unicode)
+        if not is_interesting:
+            continue
+
+        # Second pass: collect the actual text for interesting files
+        with open(full_path) as fin:
+            # Skip header again
+            fin.readline()  # language line
+            while True:
+                line = fin.readline()
+                if line.startswith('---'):
+                    break
+
             text_parts = []
             while True:
                 line = fin.readline()

@@ -37,7 +37,7 @@ import yaml
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_wide import WIDE_CHARACTERS
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
-from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
+from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW, VS15_CJK_SEQUENCES
 from ucs_detect import measure, terminal
 
 
@@ -77,6 +77,50 @@ def determine_best_match(
     return best_match[2] if best_match[0] > lbound_pct else None
 
 
+def split_vs15_results(all_results: dict, cjk_only: bool = False) -> dict:
+    """
+    Split VS15 results into Type A (all) or Type B (CJK only) reports.
+
+    Type A: All 158 sequences tested (100% = all narrowed)
+    Type B: Just 4 CJK sequences (0% = stayed wide/Type B, 100% = narrowed/Type A)
+    """
+    split_results = {}
+    for ver, result in all_results.items():
+        if cjk_only:
+            # Type B: Filter to show only CJK sequences
+            # Decode unicode escape strings back to codepoint tuples
+            cjk_failures = []
+            for fail in result["failed_codepoints"]:
+                wchar_str = fail.get("wchar", "")
+                # Decode escape sequence like "\\u3030\\ufe0e" back to codepoints
+                try:
+                    decoded = wchar_str.encode().decode('unicode-escape')
+                    codepoints = tuple(ord(c) for c in decoded)
+                    if codepoints in VS15_CJK_SEQUENCES:
+                        cjk_failures.append(fail)
+                except:
+                    pass
+
+            # Count CJK that stayed wide (failures) vs narrowed (successes)
+            n_cjk_total = len(VS15_CJK_SEQUENCES)
+            n_cjk_stayed_wide = len(cjk_failures)
+            n_cjk_narrowed = n_cjk_total - n_cjk_stayed_wide
+
+            # For Type B report: success means narrowed (Type A behavior)
+            # 0% success = all stayed wide (Type B compliant)
+            # 100% success = all narrowed (Type A behavior, not Type B)
+            split_results[ver] = {
+                "n_errors": n_cjk_stayed_wide,
+                "n_total": n_cjk_total,
+                "pct_success": measure.make_success_pct(n_cjk_stayed_wide, n_cjk_total),
+                "failed_codepoints": cjk_failures,
+            }
+        else:
+            # Type A: Return all results as-is
+            split_results[ver] = result
+    return split_results
+
+
 def init_term(stream, quick):
     # set locale support for '{:n}' formatter, https://stackoverflow.com/a/3909907
     locale.setlocale(locale.LC_ALL, "")
@@ -98,7 +142,7 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, timeout):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, no_languages_test, timeout):
     """Program entry point."""
     term, writer = init_term(stream, quick)
 
@@ -122,18 +166,22 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     terminal_results = {}
     if not no_terminal_test:
         terminal_results = terminal.do_terminal_detection()
+        if not shell:
+            display_terminal_results(term, writer, terminal_results)
 
     if save_yaml:
-        if terminal_results["software"]:
-            default_software = terminal_results["software"][0]
-            terminal_software = input(f'\nEnter "Terminal Software" (press return for "{default_software}"): ')
+        print()
+        if terminal_results.get("software_name"):
+            default_software = terminal_results["software_name"]
+            terminal_software = input(f'Enter "Terminal Software" (press return for "{default_software}"): ')
             if not terminal_software.strip():
                 terminal_software = default_software
         else:
-            terminal_software = input('\nEnter "Terminal Software": ')
-        if terminal_results["software_version"]:
+            # TODO: fallback environment variable for automation
+            terminal_software = input('Enter "Terminal Software": ')
+        if terminal_results.get("software_version"):
             default_software_version = terminal_results["software_version"]
-            terminal_version = input(f'\nEnter "Software Version" (press return for "{default_software_version}"): ')
+            terminal_version = input(f'Enter "Software Version" (press return for "{default_software_version}"): ')
             if not terminal_version.strip():
                 terminal_version = default_software_version
         else:
@@ -143,10 +191,8 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
 
     # test full-wide unicode table
     if not shell:
-        writer(
-            f"\nucs-detect: "
-            + term.reverse("Testing in progress. DO NOT TYPE. DO NOT RESIZE WINDOW.")
-        )
+        msg_do_not = "Testing in progress. DO NOT TYPE. DO NOT RESIZE WINDOW."
+        writer(f"\nucs-detect: " + term.reverse(msg_do_not))
         writer(f"\nucs-detect: WIDE testing")
     wide_results = measure.test_support(
         table=WIDE_CHARACTERS,
@@ -214,9 +260,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         shell=shell,
     )
 
-    # Variation-15 emoji sequences
+    # Variation-15 emoji sequences - Test once, report twice
     writer(f"\nucs-detect: VS15 testing")
-    emoji_vs15_results = measure.test_support(
+    emoji_vs15_all_results = measure.test_support(
         table=VS15_WIDE_TO_NARROW,
         term=term,
         writer=writer,
@@ -229,10 +275,13 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
     )
+    # Split results: Type A shows all 158, Type B shows just 4 CJK
+    emoji_vs15_type_a_results = split_vs15_results(emoji_vs15_all_results, cjk_only=False)
+    emoji_vs15_type_b_results = split_vs15_results(emoji_vs15_all_results, cjk_only=True)
 
     # test language support
     language_results = None
-    if not quick:
+    if not quick and not no_languages_test:
         language_results = measure.do_languages_test(
             term, writer, timeout, unicode_version, limit_words, limit_errors
         )
@@ -266,13 +315,23 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     )
 
     writer(
-        f'\nDisplaying results of {term.bold("Variation Selector-15")} sequence support and their success rate'
+        f'\nDisplaying results of {term.bold("Variation Selector-15 Type A (Unicode Literal)")} sequence support'
     )
     display_results_by_version(
         term=term,
         writer=writer,
-        results=emoji_vs15_results,
-        best_match=list(emoji_vs15_results.keys())[0],
+        results=emoji_vs15_type_a_results,
+        best_match=list(emoji_vs15_type_a_results.keys())[0],
+    )
+
+    writer(
+        f'\nDisplaying results of {term.bold("Variation Selector-15 Type B (CJK-Preserving)")} sequence support'
+    )
+    display_results_by_version(
+        term=term,
+        writer=writer,
+        results=emoji_vs15_type_b_results,
+        best_match=list(emoji_vs15_type_b_results.keys())[0],
     )
 
     if language_results:
@@ -289,8 +348,8 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         do_save_yaml(
             save_yaml,
             session_arguments=session_arguments,
-            software=terminal_software,
-            version=terminal_version,
+            software_name=terminal_software,
+            software_version=terminal_version,
             seconds_elapsed=time.monotonic() - start_time,
             width=term.width,
             height=term.height,
@@ -304,7 +363,8 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
                 emoji_zwj_version=emoji_zwj_version,
                 emoji_zwj_results=emoji_zwj_results,
                 emoji_vs16_results=emoji_vs16_results,
-                emoji_vs15_results=emoji_vs15_results,
+                emoji_vs15_type_a_results=emoji_vs15_type_a_results,
+                emoji_vs15_type_b_results=emoji_vs15_type_b_results,
                 language_results=language_results,
             ),
             terminal_results=terminal_results,
@@ -372,6 +432,63 @@ def display_results_by_language(term, writer, results):
         writer(f"\n{label_s}: {total_s}, {pct_s_colored} %")
 
 
+def display_terminal_results(term, writer, results):
+    """Display terminal detection results in a formatted manner."""
+    if not results:
+        return
+
+    writer(f'\n{term.bold("Terminal Detection Results")}')
+
+    # Basic terminal info
+    if results.get('ttype'):
+        writer(f"\n{'Terminal Type':>24s}: {results['ttype']}")
+
+    if results.get('software_name'):
+        software = results['software_name']
+        if results.get('software_version'):
+            software += f" {results['software_version']}"
+        writer(f"\n{'Software':>24s}: {software}")
+
+    if results.get('number_of_colors') is not None:
+        writer(f"\n{'Colors':>24s}: {results['number_of_colors']:n}")
+
+    # Dimensions
+    if results.get('width') and results.get('height'):
+        writer(f"\n{'Size (cells)':>24s}: {results['width']} x {results['height']}")
+
+    if results.get('pixels_width') and results.get('pixels_height'):
+        writer(f"\n{'Size (pixels)':>24s}: {results['pixels_width']} x {results['pixels_height']}")
+
+    if results.get('cell_width') and results.get('cell_height'):
+        writer(f"\n{'Cell Size (pixels)':>24s}: {results['cell_width']} x {results['cell_height']}")
+
+    # Screen ratio
+    if results.get('screen_ratio'):
+        ratio_info = results['screen_ratio']
+        if results.get('screen_ratio_name'):
+            ratio_info += f" ({results['screen_ratio_name']})"
+        writer(f"\n{'Aspect Ratio':>24s}: {ratio_info}")
+
+    # Graphics support
+    if results.get('sixel') is not None:
+        sixel_status = 'Yes' if results['sixel'] else 'No'
+        writer(f"\n{'Sixel Graphics':>24s}: {sixel_status}")
+
+    # Device attributes
+    if results.get('device_attributes'):
+        da = results['device_attributes']
+        if da.get('service_class') is not None:
+            writer(f"\n{'Device Class':>24s}: {da['service_class']}")
+        if da.get('extensions'):
+            ext_count = len(da['extensions'])
+            writer(f"\n{'Device Extensions':>24s}: {ext_count} supported")
+
+    # DEC modes summary
+    if results.get('modes'):
+        modes_count = len(results['modes'])
+        writer(f"\n{'DEC Modes Detected':>24s}: {modes_count:n}")
+
+
 def do_save_yaml( save_yaml, **kwargs):
     yaml.safe_dump(kwargs, open(save_yaml, "w"), sort_keys=True)
 
@@ -436,6 +553,12 @@ def parse_args():
         action="store_true",
         default=False,
         help="Do not perform any additional terminal fingerprinting"
+    )
+    args.add_argument(
+        "--no-languages-test",
+        action="store_true",
+        default=False,
+        help="Do not perform language support testing"
     )
     args.add_argument(
         "--timeout",
