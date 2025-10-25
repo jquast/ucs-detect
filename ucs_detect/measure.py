@@ -9,6 +9,9 @@ import collections
 # 3rd party
 import wcwidth
 
+# local
+from ucs_detect import terminal
+
 # to accommodate varying screen sizes, we measure by each word,
 # but some languages do not use ASCII space, we make some
 # effort to use any their word boundaries.
@@ -158,6 +161,7 @@ def exit_and_display_timeout_error(term, writer, timeout, orig_xpos, top):
     writer(term.reverse_red(f"Timeout Exceeded ({timeout:.1f}s)"))
     sys.exit(1)
 
+
 def test_support(
     table,
     term,
@@ -170,8 +174,11 @@ def test_support(
     largest_xpos,
     report_lbound,
     shell,
+    emit_osc1337=True,
+    emit_grapheme=True,
 ):
-    # begin test by version, newest to old
+    # Conditionally enable grapheme clustering mode for entire test.
+    # OSC 1337 Unicode version is set per-version within the test loop.
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
 
@@ -180,75 +187,64 @@ def test_support(
     if (-1, -1) == (outer_xpos, outer_xpos):
         exit_and_display_timeout_error(term, writer, timeout, orig_xpos=1, top=term.height)
 
-    for ver, wchars in table:
-        maybe_str = f", version={ver}: " if not shell else ""
-        writer(term.move_yx(outer_ypos, outer_xpos) + maybe_str + term.clear_eol)
-        orig_start_ypos, orig_start_xpos = term.get_location(timeout=timeout)
-        if (-1, -1) == (orig_start_ypos, orig_start_xpos):
-                exit_and_display_timeout_error(term, writer, timeout, orig_xpos=outer_xpos, top=term.height)
+    with terminal.maybe_grapheme_clustering_mode(term, emit_grapheme):
+        for ver, wchars in table:
+            with terminal.osc_1337_for_version(writer, ver, emit_osc1337):
+                maybe_str = f", version={ver}: " if not shell else ""
+                writer(term.move_yx(outer_ypos, outer_xpos) + maybe_str + term.clear_eol)
+                orig_start_ypos, orig_start_xpos = term.get_location(timeout=timeout)
+                if (-1, -1) == (orig_start_ypos, orig_start_xpos):
+                    exit_and_display_timeout_error(term, writer, timeout, orig_xpos=outer_xpos, top=term.height)
 
-        start_ypos, start_xpos = orig_start_ypos, orig_start_xpos
-        # prime this variable for breaking out of loop when the distant
-        # end stops responding and exceeds timeout in get-location() by
-        # return value of -1, -1
-        end_ypos, end_xpos = 0, 0
-        for wchar in wchars[: limit_codepoints if limit_codepoints else None]:
-            # write test character or sequence
-            wchars_str = (
-                chr(wchar)
-                if isinstance(wchar, int)
-                else "".join(chr(_wc) for _wc in wchar)
-            )
-            writer(wchars_str)
-
-            # measure cursor distance,
-            end_ypos, end_xpos = term.get_location(timeout=timeout)
-            if (-1, -1) == (end_ypos, end_xpos):
-                writer(term.move_yx(outer_ypos, outer_xpos))
-                writer(term.reverse_red(f"Timeout Exceeded ({timeout:.2f}s)"))
-                if quick or shell:
-                    break
-                term.inkey(timeout=1)
-            delta_xpos = end_xpos - start_xpos
-            delta_ypos = end_ypos - start_ypos
-            if (delta_ypos, delta_xpos) == (0, expected_width):
-                success_report[ver] += 1
-            else:
-                # add failure_report record, conditionally add delta_ypos and
-                # delta_xpos only when unexepcted values,
-                failure_report[ver].append(
-                    ({"wchar": unicode_escape_string(wchars_str)})
-                )
-                if delta_ypos != 0:
-                    failure_report[ver][-1]["delta_ypos"] = delta_ypos
-                if delta_xpos != expected_width:
-                    failure_report[ver][-1]["measured_by_wcwidth"] = expected_width
-                    failure_report[ver][-1]["measured_by_terminal"] = delta_xpos
-                # and break version test early on --limit-errors.
-                if limit_errors and len(failure_report[ver]) >= limit_errors:
-                    break
-
-            start_ypos, start_xpos = end_ypos, end_xpos + delta_xpos
-            maybe_clear_eol = ""
-            if end_xpos > (term.width - largest_xpos) or delta_ypos != 0:
-                # out-of-bounds, reset (y, x) to home position
                 start_ypos, start_xpos = orig_start_ypos, orig_start_xpos
-                maybe_clear_eol = term.clear_eol
-            writer(term.move_yx(start_ypos, start_xpos) + maybe_clear_eol)
+                end_ypos, end_xpos = 0, 0
+                for wchar in wchars[: limit_codepoints if limit_codepoints else None]:
+                    wchars_str = (
+                        chr(wchar)
+                        if isinstance(wchar, int)
+                        else "".join(chr(_wc) for _wc in wchar)
+                    )
+                    writer(wchars_str)
 
-        if quick:
-            # sub-versions like 12.1.0 are tricky, because there is only one single
-            # new codepoint, otherwise stop immediately on first 100% success,
-            # except for tables of very small codepoints!
-            if (
-                wchars
-                and not failure_report[ver]
-                and success_report[ver] >= report_lbound
-            ):
-                break
-            if (-1, -1) == (end_ypos, end_xpos):
-                # stop immediately on any timeout
-                break
+                    end_ypos, end_xpos = term.get_location(timeout=timeout)
+                    if (-1, -1) == (end_ypos, end_xpos):
+                        writer(term.move_yx(outer_ypos, outer_xpos))
+                        writer(term.reverse_red(f"Timeout Exceeded ({timeout:.2f}s)"))
+                        if quick or shell:
+                            break
+                        term.inkey(timeout=1)
+                    delta_xpos = end_xpos - start_xpos
+                    delta_ypos = end_ypos - start_ypos
+                    if (delta_ypos, delta_xpos) == (0, expected_width):
+                        success_report[ver] += 1
+                    else:
+                        failure_report[ver].append(
+                            ({"wchar": unicode_escape_string(wchars_str)})
+                        )
+                        if delta_ypos != 0:
+                            failure_report[ver][-1]["delta_ypos"] = delta_ypos
+                        if delta_xpos != expected_width:
+                            failure_report[ver][-1]["measured_by_wcwidth"] = expected_width
+                            failure_report[ver][-1]["measured_by_terminal"] = delta_xpos
+                        if limit_errors and len(failure_report[ver]) >= limit_errors:
+                            break
+
+                    start_ypos, start_xpos = end_ypos, end_xpos
+                    maybe_clear_eol = ""
+                    if end_xpos > (term.width - largest_xpos) or delta_ypos != 0:
+                        start_ypos, start_xpos = orig_start_ypos, orig_start_xpos
+                        maybe_clear_eol = term.clear_eol
+                    writer(term.move_yx(start_ypos, start_xpos) + maybe_clear_eol)
+
+                if quick:
+                    if (
+                        wchars
+                        and not failure_report[ver]
+                        and success_report[ver] >= report_lbound
+                    ):
+                        break
+                    if (-1, -1) == (end_ypos, end_xpos):
+                        break
 
     writer(term.move_yx(outer_ypos, outer_xpos))
     if shell:
