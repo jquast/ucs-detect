@@ -80,26 +80,6 @@ class osc_1337_unicode_version_context:
         return False
 
 
-class grapheme_clustering_mode_context:
-    """
-    Context manager for DEC mode 2027 (GRAPHEME_CLUSTERING).
-
-    Enables grapheme clustering on entry and restores original state on exit.
-    """
-    def __init__(self, term):
-        self.term = term
-
-    def __enter__(self):
-        from blessed.dec_modes import DecPrivateMode
-        self.term._stream.write(self.term.set_dec_mode(DecPrivateMode.GRAPHEME_CLUSTERING))
-        self.term._stream.flush()
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        from blessed.dec_modes import DecPrivateMode
-        self.term._stream.write(self.term.reset_dec_mode(DecPrivateMode.GRAPHEME_CLUSTERING))
-        self.term._stream.flush()
-        return False
 
 
 @contextlib.contextmanager
@@ -127,9 +107,11 @@ def maybe_grapheme_clustering_mode(term, enabled):
     Return grapheme clustering context manager if enabled, otherwise nullcontext.
 
     This allows conditional use of DEC mode 2027 (GRAPHEME_CLUSTERING).
+    Uses blessed's dec_modes_enabled which queries the current state and restores it on exit.
     """
+    from blessed.dec_modes import DecPrivateMode
     if enabled:
-        return grapheme_clustering_mode_context(term)
+        return term.dec_modes_enabled(DecPrivateMode.GRAPHEME_CLUSTERING, timeout=1)
     return contextlib.nullcontext()
 
 
@@ -140,7 +122,7 @@ def _get_all_dec_private_mode_numbers():
         getattr(DecPrivateMode, attr)
         for attr in dir(DecPrivateMode)
         if attr.isupper() and isinstance(getattr(DecPrivateMode, attr), int) and getattr(DecPrivateMode, attr) > 0
-    ])
+        ])
 
 
 def _nearest_fraction(numerator: int, denominator: int, fractions: list[tuple[int, int]]):
@@ -157,7 +139,7 @@ def _nearest_fraction(numerator: int, denominator: int, fractions: list[tuple[in
             closest_pair = (tgt_numerator, tgt_denominator)
 
     return closest_pair
-    
+
 
 def get_tty_size(term, writer):
     # parse TIOCGWINSZ for terminal size and initial pixel_width and height
@@ -165,11 +147,11 @@ def get_tty_size(term, writer):
     # the tty. blessed does a fallback to environment variables LINES and
     # COLUMNS, which is traditional for non-ttys
     return {
-        'width': term.width,
-        'height': term.height,
-        'pixels_width': term.pixel_width,
-        'pixels_height': term.pixel_height,
-    }
+            'width': term.width,
+            'height': term.height,
+            'pixels_width': term.pixel_width,
+            'pixels_height': term.pixel_height,
+            }
 
 
 def maybe_determine_dec_modes(term):
@@ -184,14 +166,14 @@ def maybe_determine_dec_modes(term):
         # Only include modes that were successfully *queried*,
         if not response.failed:
             result['modes'][mode_num] = {
-                'value': response.value,
-                'value_description': str(response),
-                'mode_description': response.description,
-                'mode_name': response.mode.name,
-                'supported': response.supported,
-                'enabled': response.enabled,
-                'changeable': response.changeable,
-            }
+                    'value': response.value,
+                    'value_description': str(response),
+                    'mode_description': response.description,
+                    'mode_name': response.mode.name,
+                    'supported': response.supported,
+                    'enabled': response.enabled,
+                    'changeable': response.changeable,
+                    }
     return result
 
 def maybe_determine_da_and_sixel(term):
@@ -201,9 +183,9 @@ def maybe_determine_da_and_sixel(term):
 
     if da is not None:
         result['device_attributes'] = {
-            'service_class': da.service_class,
-            'extensions': sorted(da.extensions),
-        }
+                'service_class': da.service_class,
+                'extensions': sorted(da.extensions),
+                }
     result['sixel'] = term.does_sixel(timeout=1.0)
     return result
 
@@ -214,6 +196,13 @@ def maybe_determine_software(term, writer):
         result['software_name'] = sv.name
         if sv.version:
             result['software_version'] = sv.version
+    else:
+        # XTVERSION failed, try ENQ (answerback) sequence as fallback
+        writer('\x05')  # Send ENQ (Ctrl+E)
+        response = term.flushinp(timeout=0.2).strip()
+        if response:
+            result['software_name'] = response
+
     return result
 
 def maybe_determine_cell_size(term, writer):
