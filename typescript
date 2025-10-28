@@ -1,0 +1,31 @@
+Script started on Tue Oct 28 13:36:15 2025
+]1337;RemoteHost=jq@jq-2.local]1337;CurrentDir=/Users/jq/Code/ucs-detect]1337;ShellIntegrationVersion=12;shell=zshoh-my-zsh:110ms brew:26ms pyenv:91ms iterm2:13ms total:259ms 
+[1m[7m%[27m[1m[0m                                                                                                                                                                                       ]7;file://jq-2.local/Users/jq/Code/ucs-detect]2;jq@jq-2]1;..de/ucs-detect]7;file://jq-2.local/Users/jq/Code/ucs-detect\]133;D;0]1337;RemoteHost=jq@jq-2.local]1337;CurrentDir=/Users/jq/Code/ucs-detect[0m[27m[24m[J]133;ACode/ucs-detect »[0m ]133;B[K[?1h=[?2004huucs-detect --save-yaml data/macos-Terminal-2.15.yaml --limit-codepoints=5000 --limit-words=5000 --limit-errors=1000;ucs-detect --save-yaml data/macos-Terminal-2.15-n [Koo-emit.yaml --limit-codepoints=5000 --limit-words=5000 --limit-errors=1000 --no-emit-osc1337 --no-emit-grapheme[A[93D[7mu[7mc[7ms[7m-[7md[7me[7mt[7me[7mc[7mt[7m [7m-[7m-[7ms[7ma[7mv[7me[7m-[7my[7ma[7mm[7ml[7m [7md[7ma[7mt[7ma[7m/[7mm[7ma[7mc[7mo[7ms[7m-[7mT[7me[7mr[7mm[7mi[7mn[7ma[7ml[7m-[7m2[7m.[7m1[7m5[7m.[7my[7ma[7mm[7ml[7m [7m-[7m-[7ml[7mi[7mm[7mi[7mt[7m-[7mc[7mo[7md[7me[7mp[7mo[7mi[7mn[7mt[7ms[7m=[7m5[7m0[7m0[7m0[7m [7m-[7m-[7ml[7mi[7mm[7mi[7mt[7m-[7mw[7mo[7mr[7md[7ms[7m=[7m5[7m0[7m0[7m0[7m [7m-[7m-[7ml[7mi[7mm[7mi[7mt[7m-[7me[7mr[7mr[7mo[7mr[7ms[7m=[7m1[7m0[7m0[7m0[7m;[7mu[7mc[7ms[7m-[7md[7me[7mt[7me[7mc[7mt[7m [7m-[7m-[7ms[7ma[7mv[7me[7m-[7my[7ma[7mm[7ml[7m [7md[7ma[7mt[7ma[7m/[7mm[7ma[7mc[7mo[7ms[7m-[7mT[7me[7mr[7mm[7mi[7mn[7ma[7ml[7m-[7m2[7m.[7m1[7m5[7m-[7mn[7mo[7m-[7me[7mm[7mi[7mt[7m.[7my[7ma[7mm[7ml[7m [7m-[7m-[7ml[7mi[7mm[7mi[7mt[7m-[7mc[7mo[7md[7me[7mp[7mo[7mi[7mn[7mt[7ms[7m=[7m5[7m0[7m0[7m0[7m [7m-[7m-[7ml[7mi[7mm[7mi[7mt[7m-[7mw[7mo[7mr[7md[7ms[7m=[7m5[7m0[7m0[7m0[7m [7m-[7m-[7ml[7mi[7mm[7mi[7mt[7m-[7me[7mr[7mr[7mo[7mr[7ms[7m=[7m1[7m0[7m0[7m0[7m [7m-[7m-[7mn[7mo[7m-[7me[7mm[7mi[7mt[7m-[7mo[7ms[7mc[7m1[7m3[7m3[7m7[7m [7m-[7m-[7mn[7mo[7m-[7me[7mm[7mi[7mt[7m-[7mg[7mr[7ma[7mp[7mh[7me[7mm[7me[27m[A[93D[27mu[27mc[27ms[27m-[27md[27me[27mt[27me[27mc[27mt[27m [27m-[27m-[27ms[27ma[27mv[27me[27m-[27my[27ma[27mm[27ml[27m [27md[27ma[27mt[27ma[27m/[27mm[27ma[27mc[27mo[27ms[27m-[27mT[27me[27mr[27mm[27mi[27mn[27ma[27ml[27m-[27m2[27m.[27m1[27m5[27m.[27my[27ma[27mm[27ml[27m [27m-[27m-[27ml[27mi[27mm[27mi[27mt[27m-[27mc[27mo[27md[27me[27mp[27mo[27mi[27mn[27mt[27ms[27m=[27m5[27m0[27m0[27m0[27m [27m-[27m-[27ml[27mi[27mm[27mi[27mt[27m-[27mw[27mo[27mr[27md[27ms[27m=[27m5[27m0[27m0[27m0[27m [27m-[27m-[27ml[27mi[27mm[27mi[27mt[27m-[27me[27mr[27mr[27mo[27mr[27ms[27m=[27m1[27m0[27m0[27m0[27m;[27mu[27mc[27ms[27m-[27md[27me[27mt[27me[27mc[27mt[27m [27m-[27m-[27ms[27ma[27mv[27me[27m-[27my[27ma[27mm[27ml[27m [27md[27ma[27mt[27ma[27m/[27mm[27ma[27mc[27mo[27ms[27m-[27mT[27me[27mr[27mm[27mi[27mn[27ma[27ml[27m-[27m2[27m.[27m1[27m5[27m-[27mno[27m-[27me[27mm[27mi[27mt[27m.[27my[27ma[27mm[27ml[27m [27m-[27m-[27ml[27mi[27mm[27mi[27mt[27m-[27mc[27mo[27md[27me[27mp[27mo[27mi[27mn[27mt[27ms[27m=[27m5[27m0[27m0[27m0[27m [27m-[27m-[27ml[27mi[27mm[27mi[27mt[27m-[27mw[27mo[27mr[27md[27ms[27m=[27m5[27m0[27m0[27m0[27m [27m-[27m-[27ml[27mi[27mm[27mi[27mt[27m-[27me[27mr[27mr[27mo[27mr[27ms[27m=[27m1[27m0[27m0[27m0[27m [27m-[27m-[27mn[27mo[27m-[27me[27mm[27mi[27mt[27m-[27mo[27ms[27mc[27m1[27m3[27m3[27m7[27m [27m-[27m-[27mn[27mo[27m-[27me[27mm[27mi[27mt[27m-[27mg[27mr[27ma[27mp[27mh[27me[27mm[27me[?1l>[?2004l
+]2;ucs-detect --save-yaml data/macos-Terminal-2.15.yaml --limit-codepoints=5000 ]1;ucs-detect]133;C;ucs-detect: stream=stderr, quick=False, limit_codepoints=5000, limit_errors=1000, limit_words=5000)[6n
+ucs-detect: Interactive terminal detected ![?1$p[c[>q[16t[?2;1;0S[14t
+[1mTerminal Detection Results(B[m
+           Terminal Type: xterm-256color
+                  Colors: 16,777,216
+            Size (cells): 183 x 49
+           Size (pixels): 1850 x 996
+            Aspect Ratio: 16:9 (HD)
+          Sixel Graphics: No
+            Device Class: 1
+       Device Extensions: 1 supported
+Enter "Terminal Software": ^CTraceback (most recent call last):
+  File "/Users/jq/.virtualenvs/ucs-detect-mhgh/bin/ucs-detect", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/Users/jq/Code/ucs-detect/ucs_detect/__init__.py", line 604, in main
+    sys.exit(run(**parse_args()))
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/jq/Code/ucs-detect/ucs_detect/__init__.py", line 181, in run
+    terminal_software = input('Enter "Terminal Software": ')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+[1m[7m%[27m[1m[0m                                                                                                                                                                                       ]7;file://jq-2.local/Users/jq/Code/ucs-detect]2;jq@jq-2]1;..de/ucs-detect]7;file://jq-2.local/Users/jq/Code/ucs-detect\]133;D;130]1337;RemoteHost=jq@jq-2.local]1337;CurrentDir=/Users/jq/Code/ucs-detect[0m[27m[24m[J]133;ACode/ucs-detect »[0m ]133;B[K[?1h=[?2004h[?2004l
+
+Saving session...completed.
+
+Script done on Tue Oct 28 13:36:29 2025
