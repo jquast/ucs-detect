@@ -62,7 +62,7 @@ def test_language_support(
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
     start_time = time.monotonic()
-    for lang, multiline_text in parse_udhr(unicode_version=unicode_version):
+    for lang, multiline_text in parse_udhr(unicode_version=unicode_version or 'auto'):
         writer(term.move_yx(top - 1, orig_xpos))
         writer(f"{lang}" + term.clear_eos)
         writer(term.move_yx(top, 0))
