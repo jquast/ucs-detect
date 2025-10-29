@@ -1,14 +1,14 @@
-datetime: 2025-10-29 20:54:56 UTC
-height: 43
+datetime: 2025-10-29 22:38:31 UTC
+height: 46
 python_version: 3.12.8
-seconds_elapsed: 390.36469983401184
+seconds_elapsed: 533.8213367499993
 session_arguments:
   limit_codepoints: 5000
   limit_errors: 1000
   limit_words: 5000
   quick: false
   stream: stderr
-software_name: rioterm
+software_name: rio
 software_version: 0.2.28
 system: Darwin
 terminal_results:
@@ -20,16 +20,16 @@ terminal_results:
     - 6
     - 22
     service_class: 62
-  height: 43
+  height: 46
   modes: {}
   number_of_colors: 16777216
-  pixels_height: 741
-  pixels_width: 1422
+  pixels_height: 802
+  pixels_width: 1577
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
   ttype: rio
-  width: 177
+  width: 197
 test_results:
   emoji_vs15_type_a_results:
     9.0.0:
@@ -5540,118 +5540,109 @@ test_results:
   language_results:
     (Jinan):
       failed:
-      - measured_by_terminal: -14
+      - measured_by_terminal: -24
         measured_by_wcwidth: 8
-        wchars: \u7b2c\u5341\u4e09\u6761
-      - measured_by_terminal: -16
-        measured_by_wcwidth: 10
-        wchars: \u5bb9\u5fcd\u548c\u53cb\u8c0a
-      n_errors: 2
+        wchars: \u624d\u80fd\u7f14\u5a5a
+      n_errors: 1
       n_total: 211
-      pct_success: 99.0521327014218
+      pct_success: 99.52606635071089
     (Yeonbyeon):
       failed:
-      - measured_by_terminal: -2
+      - measured_by_terminal: -1
         measured_by_wcwidth: 4
-        wchars: \uc624\ub294
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 7
-        wchars: \uc788\ub294\ub2e4.
+        wchars: \ubaa8\ub4e0
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 6
+        wchars: \uc0ac\ub78c\uc758
       n_errors: 2
       n_total: 1061
       pct_success: 99.8114985862394
     Aja:
       failed:
-      - measured_by_terminal: -12
-        measured_by_wcwidth: 4
-        wchars: nuwo
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: kaka
-      - measured_by_terminal: -2
+      - measured_by_terminal: -6
         measured_by_wcwidth: 1
-        wchars: \u0254
+        wchars: a
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 12
+        wchars: s\u025bns\u025bnwanawo
+      - measured_by_terminal: -15
+        measured_by_wcwidth: 1
+        wchars: a
       n_errors: 3
       n_total: 2061
       pct_success: 99.85443959243085
     Amarakaeri:
       failed:
-      - measured_by_terminal: -1
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 2
+        wchars: '4.'
+      - measured_by_terminal: -2
         measured_by_wcwidth: 5
-        wchars: apag'
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 8
-        wchars: kenpa'ti
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 7
-        wchars: ee\u0331'nayo
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 5
-        wchars: nogda
-      n_errors: 4
+        wchars: Keje'
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 6
+        wchars: o\u0331'nepo
+      n_errors: 3
       n_total: 1446
-      pct_success: 99.72337482710927
+      pct_success: 99.79253112033194
     Arabic, Standard:
       failed:
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 6
-        wchars: \u0627\u0644\u0645\u0627\u062f\u0629
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 6
-        wchars: \u0644\u0644\u0639\u0645\u0644.
+      - measured_by_terminal: -6
+        measured_by_wcwidth: 2
+        wchars: \u0639\u0646
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 7
+        wchars: \u0627\u0644\u062d\u0645\u0627\u064a\u0629
       n_errors: 2
       n_total: 1348
       pct_success: 99.85163204747775
     Assyrian Neo-Aramaic:
       failed:
-      - measured_by_terminal: -6
-        measured_by_wcwidth: 2
-        wchars: \u071f\u0720
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 3
-        wchars: \u0712\u071d\u0720
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 6
+        wchars: \u0721\u071a\u071d\u0715\u0710.
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 6
+        wchars: \u0721\u071a\u071d\u0715\u0710.
       n_errors: 2
       n_total: 1160
       pct_success: 99.82758620689656
     Baatonum:
       failed:
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 5
-        wchars: gan\u025b.
       - measured_by_terminal: -1
+        measured_by_wcwidth: 1
+        wchars: n
+      - measured_by_terminal: -3
         measured_by_wcwidth: 2
-        wchars: mi
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 2
-        wchars: ta
-      n_errors: 3
+        wchars: m\u0254
+      n_errors: 2
       n_total: 1939
-      pct_success: 99.8452810727179
+      pct_success: 99.8968540484786
     Bamun:
       failed:
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 5
-        wchars: mkpe\u0300n
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 2
-        wchars: yi
       - measured_by_terminal: -1
         measured_by_wcwidth: 3
-        wchars: nga
+        wchars: ke\u0302t
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 2
+        wchars: gu\u0302
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 6
+        wchars: meshi\u2019
       n_errors: 3
       n_total: 2285
       pct_success: 99.86870897155362
     Belanda Viri:
       failed:
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 4
-        wchars: nako
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 3
-        wchars: w\xe9i
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 3
-        wchars: t\xe9i
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 2
+        wchars: t\xed
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 5
+        wchars: w\xe1gb\xe1
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 2
+        wchars: ta
       n_errors: 3
       n_total: 2246
       pct_success: 99.86642920747997
@@ -6809,9 +6800,6 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0986\u200c\u0987\u09a8\u09c7
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 5
-        wchars: \u09aa\u09cd\u09b0\u09a6\u09a4\u09cd\u09a4
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u09ae\u09cc\u09b2\u09bf\u0995
@@ -6956,7 +6944,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u09aa\u09cd\u09b0\u0995\u09be\u09b6\u09cd\u09af
-      - measured_by_terminal: 5
+      - measured_by_terminal: -1
         measured_by_wcwidth: 3
         wchars: \u09b6\u09c1\u09a8\u09be\u09a8\u09bf
       - measured_by_terminal: 5
@@ -7979,7 +7967,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 4
         wchars: \u099a\u09be\u0995\u09c1\u09b0\u09c0\u09a4\u09c7
-      - measured_by_terminal: -3
+      - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u09b8\u09ae\u09be\u09a8
       - measured_by_terminal: 4
@@ -8261,7 +8249,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0985\u09a7\u09bf\u0995\u09be\u09b0
-      - measured_by_terminal: 9
+      - measured_by_terminal: 3
         measured_by_wcwidth: 7
         wchars: \u09aa\u09cd\u09b0\u09a4\u09cd\u09af\u09c7\u0995\u09c7\u09b0\u200c\u0987
       - measured_by_terminal: 4
@@ -8657,9 +8645,12 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u09b9\u09ac\u09c7\u0964
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 5
+        wchars: \u09aa\u09cd\u09b0\u09be\u09a5\u09ae\u09bf\u0995
       n_errors: 1000
-      n_total: 1165
-      pct_success: 14.163090128755366
+      n_total: 1166
+      pct_success: 14.236706689536879
     Bhojpuri:
       failed:
       - measured_by_terminal: 10
@@ -9640,7 +9631,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0938\u094d\u0935\u0924\u0902\u0924\u094d\u0930\u093e
-      - measured_by_terminal: 2
+      - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0928\u093f\u0937\u094d\u092a\u0915\u094d\u0937
       - measured_by_terminal: 4
@@ -9760,6 +9751,9 @@ test_results:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u091c\u093e
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 3
+        wchars: \u0930\u0939\u0932
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0939\u094b\u0916\u0947
@@ -10537,7 +10531,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u092a\u0948\u0938\u093e
-      - measured_by_terminal: 0
+      - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u092a\u093e\u0935\u0947
       - measured_by_terminal: 6
@@ -10771,6 +10765,9 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0905\u0927\u093f\u0915\u093e\u0930
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 3
+        wchars: \u0914\u0930\u0924
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u092c\u091a\u094d\u091a\u093e
@@ -11296,29 +11293,26 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0939\u094b\u0916\u0947\u0964
-      n_errors: 878
+      n_errors: 880
       n_total: 1737
-      pct_success: 49.453080023028214
+      pct_success: 49.337938975244676
     Bora:
       failed:
-      - measured_by_terminal: 12
-        measured_by_wcwidth: 21
-        wchars: ma\xe1vyej\xfa\xfall\xe9jcats\xedmy\xe9
-      - measured_by_terminal: 10
-        measured_by_wcwidth: 20
-        wchars: mec\xfavej\xe1\xe1n\xfa\xedtyur\xf3ne.
-      - measured_by_terminal: -9
-        measured_by_wcwidth: 5
-        wchars: ditye
-      - measured_by_terminal: -13
+      - measured_by_terminal: -6
         measured_by_wcwidth: 4
-        wchars: Ehdu
+        wchars: tene
+      - measured_by_terminal: -7
+        measured_by_wcwidth: 3
+        wchars: ts\xe1
       - measured_by_terminal: -3
-        measured_by_wcwidth: 14
-        wchars: me\xfar\xe1\xe1vy\xe9iy\xf3n\xe9
-      n_errors: 5
+        measured_by_wcwidth: 7
+        wchars: T\xe9hdure
+      - measured_by_terminal: -14
+        measured_by_wcwidth: 3
+        wchars: im\xed
+      n_errors: 4
       n_total: 1598
-      pct_success: 99.68710888610764
+      pct_success: 99.7496871088861
     Burmese:
       failed:
       - measured_by_terminal: 11
@@ -12002,7 +11996,7 @@ test_results:
       - measured_by_terminal: 11
         measured_by_wcwidth: 10
         wchars: \u101c\u1030\u1019\u103e\u102f\u1021\u1006\u1004\u1037\u103a\u1021\u1010\u1014\u103a\u1038\u1014\u103e\u1004\u1037\u103a
-      - measured_by_terminal: -7
+      - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u1006\u102d\u102f\u1004\u103a\u101e\u1031\u102c
       - measured_by_terminal: 5
@@ -12122,7 +12116,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: \u101e\u102d\u102f\u1037\u1010\u100a\u103a\u1038\u1019\u101f\u102f\u1010\u103a
-      - measured_by_terminal: 7
+      - measured_by_terminal: 3
         measured_by_wcwidth: 6
         wchars: \u1021\u102f\u1015\u103a\u1001\u103b\u102f\u1015\u103a\u1001\u103d\u1004\u1037\u103a
       - measured_by_terminal: 5
@@ -12806,7 +12800,7 @@ test_results:
       - measured_by_terminal: 12
         measured_by_wcwidth: 8
         wchars: \u1021\u1019\u103e\u102f\u1021\u1001\u1004\u103a\u1038\u1019\u103b\u102c\u1038\u1010\u103d\u1004\u103a
-      - measured_by_terminal: -7
+      - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u1021\u1011\u1000\u103a\u1015\u102b
       - measured_by_terminal: 8
@@ -13001,6 +12995,9 @@ test_results:
       - measured_by_terminal: 17
         measured_by_wcwidth: 10
         wchars: \u1000\u102c\u1000\u103d\u101a\u103a\u1005\u1031\u102c\u1004\u1037\u103a\u101b\u103e\u1031\u102c\u1000\u103a\u1001\u103c\u1004\u103a\u1038\u1000\u102d\u102f
+      - measured_by_terminal: -9
+        measured_by_wcwidth: 8
+        wchars: \u1001\u1036\u101a\u1030\u1001\u103d\u1004\u1037\u103a\u101b\u103e\u102d\u101e\u100a\u103a\u104b
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u101c\u1030\u1010\u102d\u102f\u1004\u103a\u1038\u1010\u103d\u1004\u103a
@@ -13535,7 +13532,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u1021\u101c\u102f\u1015\u103a\u101e\u1019\u102c\u1038
-      - measured_by_terminal: 4
+      - measured_by_terminal: 11
         measured_by_wcwidth: 6
         wchars: \u1021\u1005\u100a\u103a\u1038\u1021\u101b\u102f\u1036\u1038\u1019\u103b\u102c\u1038
       - measured_by_terminal: 7
@@ -13808,7 +13805,7 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 7
         wchars: \u1021\u101b\u100a\u103a\u1021\u1001\u103b\u1004\u103a\u1038\u1000\u102d\u102f
-      - measured_by_terminal: 8
+      - measured_by_terminal: -1
         measured_by_wcwidth: 5
         wchars: \u1021\u1001\u103c\u1031\u1001\u1036\u1015\u103c\u102f\u104d
       - measured_by_terminal: 5
@@ -14243,26 +14240,23 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u1019\u101b\u103e\u102d\u1005\u1031\u101b\u104b
-      n_errors: 974
+      n_errors: 975
       n_total: 1223
-      pct_success: 20.35977105478332
+      pct_success: 20.27800490596893
     Catalan (2):
       failed:
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 8
-        wchars: poli\u0301tica
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 7
-        wchars: Nacions
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 3
-        wchars: una
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 11
-        wchars: d\u2019assegurar
-      n_errors: 4
+      - measured_by_terminal: -8
+        measured_by_wcwidth: 1
+        wchars: i
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 2
+        wchars: te\u0301
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 4
+        wchars: tant
+      n_errors: 3
       n_total: 1909
-      pct_success: 99.7904662126768
+      pct_success: 99.84284965950759
     Chakma:
       failed:
       - measured_by_terminal: 8
@@ -14898,9 +14892,6 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \U00011121\U0001112c\U0001111d\U00011127\U00011141
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 2
-        wchars: \U00011109\U00011128\U00011122\U00011128
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \U00011105\U0001112a\U00011122\U0001112a\U00011122\U0001112c
@@ -14979,6 +14970,9 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \U00011103\U00011125\U00011133\U00011122\U00011127\U00011120\U0001112c
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 3
+        wchars: \U00011117\U0001111a\U00011122\U00011134
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \U0001111d\U0001112c\U00011107\U00011134\U00011105\U0001111a\U00011127\U00011122\U00011134
@@ -15501,9 +15495,6 @@ test_results:
       - measured_by_terminal: 8
         measured_by_wcwidth: 6
         wchars: \U0001111d\U0001112c\U00011107\U00011134\U00011105\U0001111a\U00011127\U00011116\U00011133\U00011120\U0001112c
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 4
-        wchars: \U0001111b\U00011127\U00011116\U00011134\U00011117\U00011127\U0001111f\U00011134
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \U00011125\U00011128\U00011107\U00011134\U00011108\U0001112c
@@ -15660,7 +15651,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \U0001111d\U0001112c\U00011107\U00011134\U00011105\U0001111a\U00011127\U00011122\U00011134
-      - measured_by_terminal: 2
+      - measured_by_terminal: -4
         measured_by_wcwidth: 1
         wchars: \U00011125\U0001112c
       - measured_by_terminal: 5
@@ -15750,409 +15741,382 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \U0001111b\U00011122\U0001112c\U00011141
-      n_errors: 495
+      n_errors: 494
       n_total: 1444
-      pct_success: 65.7202216066482
+      pct_success: 65.78947368421053
     Chickasaw:
       failed:
-      - measured_by_terminal: 7
-        measured_by_wcwidth: 19
-        wchars: ikshok\xed\u0331shtokootoko\u0331.
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 6
-        wchars: ishki'
-      n_errors: 2
+      - measured_by_terminal: -10
+        measured_by_wcwidth: 8
+        wchars: Kaniya'o\u0331
+      n_errors: 1
       n_total: 554
-      pct_success: 99.63898916967509
+      pct_success: 99.81949458483754
     Chinantec, Chiltepec:
       failed:
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 4
-        wchars: jnia
-      - measured_by_terminal: -1
+      - measured_by_terminal: -2
         measured_by_wcwidth: 3
-        wchars: tsa
+        wchars: lii
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 1
+        wchars: e
       n_errors: 2
       n_total: 1729
       pct_success: 99.88432620011567
     Chinese, Gan:
       failed:
-      - measured_by_terminal: 26
-        measured_by_wcwidth: 68
-        wchars: \u5728\u771f\u6b63\u7531\u4e8e\u975e\u653f\u6cbb\u6027\u4e2a\u7f6a\u884c\u6216\u6627\u5230\u8054\u5408\u56fd\u4e2a\u5b97\u65e8\u8ddf\u539f\u5219\u4e2a\u884c\u4e3a\u800c\u88ab\u8d77\u8bc9\u4e2a\u5730\u6b65
-      - measured_by_terminal: 21
-        measured_by_wcwidth: 34
-        wchars: \u4eba\u4eba\u6709\u6743\u8981\u6c42\u4e00\u79cd\u793e\u4f1a\u4e2a\u8ddf\u56fd\u9645\u4e2a\u6cbb\u5b89
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 8
+        wchars: \u4e0d\u53d7\u79cd\u65cf
+      - measured_by_terminal: -36
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 211
       pct_success: 99.0521327014218
     Chinese, Hakka:
       failed:
-      - measured_by_terminal: 28
-        measured_by_wcwidth: 70
-        wchars: \u5728\u771f\u6b63\u7531\u4e8e\u975e\u653f\u6cbb\u6027\u4e2a\u7f6a\u884c\u6216\u8fdd\u80cc\u8054\u5408\u56fd\u4e2a\u5b97\u65e8\u540c\u539f\u5219\u4e2a\u884c\u4e3a\u800c\u88ab\u8d77\u4e8b\u4e2a\u6c14\u8c61\u4e0b
-      - measured_by_terminal: -8
-        measured_by_wcwidth: 10
-        wchars: \u7b2c\u4e8c\u5341\u516b\u6761
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 8
+        wchars: \u5514\u53d7\u79cd\u65cf
+      - measured_by_terminal: -36
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 212
       pct_success: 99.05660377358491
     Chinese, Jinyu:
       failed:
-      - measured_by_terminal: 30
-        measured_by_wcwidth: 68
-        wchars: \u5728\u771f\u6b63\u7531\u4e8e\u975e\u653f\u6cbb\u6027\u7684\u4e8b\u6216\u8fdd\u80cc\u8054\u5408\u56fd\u7684\u5b97\u65e8\u548c\u539f\u5219\u7684\u884c\u4e3a\u800c\u88ab\u8d77\u8bc9\u7684\u52bf\u5934\u4e0b
-      - measured_by_terminal: 21
-        measured_by_wcwidth: 34
-        wchars: \u4eba\u4eba\u6709\u6743\u8981\u6c42\u4e00\u79cd\u793e\u4f1a\u7684\u548c\u56fd\u9645\u7684\u4e16\u9053
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 14
+        wchars: \u6210\u5e74\u7684\u7537\u7684\u5973\u7684
+      - measured_by_terminal: -36
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 212
       pct_success: 99.05660377358491
     Chinese, Mandarin (Beijing):
       failed:
-      - measured_by_terminal: 22
-        measured_by_wcwidth: 68
-        wchars: \u5728\u771f\u6b63\u7531\u4e8e\u975e\u653f\u6cbb\u6027\u7684\u7f6a\u884c\u6216\u8fdd\u80cc\u8054\u5408\u56fd\u7684\u5b97\u65e8\u548c\u539f\u5219\u7684\u884c\u4e3a\u800c\u88ab\u8d77\u8bc9\u7684\u78b4\u513f
-      - measured_by_terminal: 12
-        measured_by_wcwidth: 40
-        wchars: \u6587\u5b66\u6216\u7f8e\u672f\u4f5c\u54c1\u800c\u4ea7\u751f\u7684\u7cbe\u795e\u7684\u548c\u7269\u8d28\u7684\u5229\u76ca
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 8
+        wchars: \u4e0d\u53d7\u79cd\u65cf
+      - measured_by_terminal: -36
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 212
       pct_success: 99.05660377358491
     Chinese, Mandarin (Guiyang):
       failed:
-      - measured_by_terminal: -14
+      - measured_by_terminal: 0
         measured_by_wcwidth: 8
-        wchars: \u7b2c\u5341\u4e09\u6761
-      - measured_by_terminal: -22
+        wchars: \u6210\u5e74\u7537\u5973
+      - measured_by_terminal: -36
         measured_by_wcwidth: 8
-        wchars: \u4eab\u53d7\u827a\u672f
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 211
       pct_success: 99.0521327014218
     Chinese, Mandarin (Harbin):
       failed:
-      - measured_by_terminal: 30
-        measured_by_wcwidth: 72
-        wchars: \u5728\u5730\u9053\u7684\u7531\u4e8e\u975e\u653f\u6cbb\u6027\u7684\u7f6a\u884c\u6216\u8fdd\u80cc\u8054\u5408\u56fd\u7684\u5b97\u65e8\u548c\u539f\u5219\u7684\u884c\u4e3a\u800c\u88ab\u8d77\u8bc9\u7684\u52bf\u5934\u4e0b
-      - measured_by_terminal: -6
-        measured_by_wcwidth: 10
-        wchars: \u7b2c\u4e8c\u5341\u516b\u6761
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 8
+        wchars: \u6210\u5e74\u7537\u5973
+      - measured_by_terminal: -34
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 210
       pct_success: 99.04761904761905
     Chinese, Mandarin (Nanjing):
       failed:
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 22
-        wchars: \u514d\u5f97\u53d7\u8fd9\u79cd\u5e72\u6d89\u6216\u8005\u653b\u51fb
-      - measured_by_terminal: -18
-        measured_by_wcwidth: 10
-        wchars: \u5bb9\u5fcd\u544a\u53cb\u8c0a
-      n_errors: 2
+      - measured_by_terminal: 16
+        measured_by_wcwidth: 32
+        wchars: \u53ea\u6709\u7ecf\u7537\u5973\u53cc\u65b9\u7684\u81ea\u7531\u544a\u5b8c\u5168\u7684\u540c\u610f
+      n_errors: 1
       n_total: 212
-      pct_success: 99.05660377358491
+      pct_success: 99.52830188679245
     Chinese, Mandarin (Simplified):
       failed:
-      - measured_by_terminal: 12
-        measured_by_wcwidth: 32
-        wchars: \u5211\u7f5a\u4e0d\u5f97\u91cd\u4e8e\u72af\u7f6a\u65f6\u9002\u7528\u7684\u6cd5\u5f8b\u89c4\u5b9a
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 30
-        wchars: \u7236\u6bcd\u5bf9\u5176\u5b50\u5973\u6240\u5e94\u53d7\u7684\u6559\u80b2\u7684\u79cd\u7c7b
+      - measured_by_terminal: -54
+        measured_by_wcwidth: 16
+        wchars: \u4e0d\u5f97\u63f4\u7528\u6b64\u79cd\u6743\u5229
+      - measured_by_terminal: -36
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 225
       pct_success: 99.11111111111111
     Chinese, Mandarin (Tianjin):
       failed:
-      - measured_by_terminal: 16
-        measured_by_wcwidth: 36
-        wchars: \u5211\u7f5a\u4e0d\u5f97\u91cd\u4e8e\u72af\u7f6a\u7684\u5de5\u592b\u9002\u7528\u7684\u6cd5\u5f8b\u89c4\u5b9a
-      - measured_by_terminal: -6
-        measured_by_wcwidth: 20
-        wchars: \u521d\u7ea7\u6559\u80b2\u5e94\u5c5e\u4e49\u52a1\u6027\u8d28
+      - measured_by_terminal: -52
+        measured_by_wcwidth: 18
+        wchars: \u4e0d\u5f97\u63f4\u7528\u4ecb\u4efd\u513f\u6743\u5229
+      - measured_by_terminal: 50
+        measured_by_wcwidth: 70
+        wchars: \u786e\u5b9a\u4ecb\u4efd\u513f\u9650\u5236\u7684\u552f\u4e00\u76ee\u7684\u5728\u4e8e\u4fdd\u8bc1\u5bf9\u65c1\u4eba\u7684\u6743\u5229\u548c\u81ea\u7531\u7ed9\u4e88\u5e94\u6709\u7684\u627f\u8ba4\u548c\u5c0a\u91cd
       n_errors: 2
       n_total: 212
       pct_success: 99.05660377358491
     Chinese, Mandarin (Traditional):
       failed:
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 26
-        wchars: \u4ea6\u4e0d\u5f97\u5426\u8a8d\u5176\u6539\u8b8a\u570b\u7c4d\u7684\u6b0a\u5229
-      - measured_by_terminal: -24
-        measured_by_wcwidth: 26
-        wchars: \u4eba\u4eba\u5728\u884c\u4f7f\u4ed6\u7684\u6b0a\u5229\u548c\u81ea\u7531\u6642
-      n_errors: 2
+      - measured_by_terminal: -6
+        measured_by_wcwidth: 22
+        wchars: \u4e26\u61c9\u53d7\u793e\u6703\u548c\u570b\u5bb6\u7684\u4fdd\u8b77
+      n_errors: 1
       n_total: 210
-      pct_success: 99.04761904761905
+      pct_success: 99.52380952380952
     Chinese, Min Nan:
       failed:
-      - measured_by_terminal: 30
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 12
+        wchars: \u6210\u5e74\u4e08\u592b\u67e5\u67d0
+      - measured_by_terminal: 46
         measured_by_wcwidth: 70
-        wchars: \u5728\u771f\u6b63\u7531\u4e8e\u65e0\u653f\u6cbb\u6027\u7684\u7f6a\u884c\u6291\u8fdd\u9006\u8054\u5408\u56fd\u7684\u5b97\u65e8\u5408\u539f\u5219\u7684\u884c\u4e3a\u800c\u4e92\u8d77\u8bc9\u7684\u4ee3\u5fd7\u4e0b
-      - measured_by_terminal: 24
-        measured_by_wcwidth: 34
-        wchars: \u4eba\u4eba\u6709\u6743\u8981\u6c42\u4e00\u6b3e\u793e\u4f1a\u7684\u5408\u56fd\u9645\u7684\u79e9\u5e8f
+        wchars: \u96c6\u56e2\u6291\u4e2a\u4eba\u6709\u6743\u8fdb\u884c\u4efb\u4f55\u65e8\u5728\u7834\u574f\u5373\u4e2a\u5ba3\u8a00\u6240\u8f7d\u7684\u4efb\u4f55\u6743\u5229\u5408\u81ea\u7531\u7684\u6d3b\u52a8\u6291\u884c\u4e3a
       n_errors: 2
       n_total: 212
       pct_success: 99.05660377358491
     Chinese, Wu:
       failed:
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 22
-        wchars: \u4ee5\u52ff\u53d7\u63b0\u6392\u91cc\u5e72\u6d89\u6216\u653b\u51fb
-      - measured_by_terminal: -44
+      - measured_by_terminal: -16
         measured_by_wcwidth: 14
-        wchars: \u6559\u80b2\u5e94\u4fc3\u8fdb\u5404\u56fd
+        wchars: \u8981\u6709\u5e73\u7b49\u4e2a\u6743\u5229
+      - measured_by_terminal: -38
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 211
       pct_success: 99.0521327014218
     Chinese, Xiang:
       failed:
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 12
-        wchars: \u5e76\u6709\u6743\u6253\u56de\u8f6c
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 30
-        wchars: \u4eba\u4eba\u5bf9\u7531\u4e8e\u4ed6\u6240\u521b\u4f5c\u7684\u968f\u4e48\u5b50\u79d1\u5b66
+      - measured_by_terminal: -8
+        measured_by_wcwidth: 8
+        wchars: \u4e0d\u53d7\u79cd\u65cf
+      - measured_by_terminal: -34
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 212
       pct_success: 99.05660377358491
     Chinese, Yue:
       failed:
-      - measured_by_terminal: 30
-        measured_by_wcwidth: 72
-        wchars: \u55ba\u771f\u6b63\u7531\u4e8e\u975e\u653f\u6cbb\u6027\u5605\u7f6a\u884c\u6216\u8fdd\u80cc\u8054\u5408\u56fd\u5605\u5b97\u65e8\u540c\u57cb\u539f\u5219\u5605\u884c\u4e3a\u800c\u4ffe\u8d77\u8bc9\u5605\u60c5\u51b5\u4e0b
-      - measured_by_terminal: -6
-        measured_by_wcwidth: 10
-        wchars: \u7b2c\u4e8c\u5341\u516b\u6761
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 8
+        wchars: \u6210\u5e74\u7537\u5973
+      - measured_by_terminal: -42
+        measured_by_wcwidth: 8
+        wchars: \u7b2c\u4e09\u5341\u6761
       n_errors: 2
       n_total: 210
       pct_success: 99.04761904761905
     Colorado:
       failed:
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 2
+        wchars: se
       - measured_by_terminal: 1
-        measured_by_wcwidth: 9
-        wchars: kiratu'to
-      - measured_by_terminal: -9
-        measured_by_wcwidth: 1
-        wchars: o
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 9
-        wchars: Tsankenan
-      n_errors: 3
+        measured_by_wcwidth: 4
+        wchars: keno
+      n_errors: 2
       n_total: 1263
-      pct_success: 99.7624703087886
+      pct_success: 99.84164687252573
     Dagaare, Southern:
       failed:
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 7
-        wchars: sobiri.
-      - measured_by_terminal: 4
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 4
+        wchars: gang
+      - measured_by_terminal: 2
         measured_by_wcwidth: 6
-        wchars: Ne\u025bzaa
-      - measured_by_terminal: -7
-        measured_by_wcwidth: 2
-        wchars: ka
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 2
-        wchars: ba
-      n_errors: 4
+        wchars: bo\u0254r\u0254;
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 5
+        wchars: sonn\u0254
+      n_errors: 3
       n_total: 2582
-      pct_success: 99.84508133230054
+      pct_success: 99.8838109992254
     Dangme:
       failed:
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 3
+        wchars: jua
       - measured_by_terminal: -2
-        measured_by_wcwidth: 1
-        wchars: a
-      - measured_by_terminal: 0
         measured_by_wcwidth: 2
-        wchars: n\u025b
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 1
-        wchars: e
+        wchars: be
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 2
+        wchars: k\u025b
       n_errors: 3
       n_total: 2912
       pct_success: 99.89697802197803
     Dari:
       failed:
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 2
-        wchars: \u0627\u0632
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 10
-        wchars: \u0645\u0633\u0627\u0644\u0645\u062a\u200c\u0622\u0645\u06cc\u0632
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 2
-        wchars: \u0622\u0646
-      n_errors: 3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 6
+        wchars: \u062f\u0627\u062f\u06af\u0627\u0647
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 5
+        wchars: \u0644\u0627\u0632\u0645\u0647\u0654
+      n_errors: 2
       n_total: 1872
-      pct_success: 99.83974358974359
+      pct_success: 99.8931623931624
     Dendi:
       failed:
-      - measured_by_terminal: -7
-        measured_by_wcwidth: 1
-        wchars: a
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 2
-        wchars: ni
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 5
+        wchars: senni
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 3
+        wchars: nna
       n_errors: 2
       n_total: 1569
       pct_success: 99.87253027405991
     Dinka, Northeastern:
       failed:
-      - measured_by_terminal: -3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 4
+        wchars: akeu
+      - measured_by_terminal: -2
         measured_by_wcwidth: 2
-        wchars: ci
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 3
-        wchars: kua
+        wchars: '27'
       n_errors: 2
       n_total: 1529
       pct_success: 99.86919555264879
     Ditammari:
       failed:
-      - measured_by_terminal: 1
+      - measured_by_terminal: -2
         measured_by_wcwidth: 3
-        wchars: baa
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 4
-        wchars: mari
+        wchars: kaa
+      - measured_by_terminal: -11
+        measured_by_wcwidth: 1
+        wchars: a
       - measured_by_terminal: -1
         measured_by_wcwidth: 6
-        wchars: tim\u0254\u0169.
+        wchars: yan\u0256u.
       n_errors: 3
       n_total: 1882
       pct_success: 99.84059511158343
     Dzongkha:
       failed:
-      - measured_by_terminal: -38
-        measured_by_wcwidth: 8
-        wchars: \u0f62\u0fa9\u0f0b\u0f5a\u0f53\u0f0b\u0f25\u0f54\u0f0d
-      - measured_by_terminal: -52
+      - measured_by_terminal: -26
         measured_by_wcwidth: 15
-        wchars: \u0f56\u0f5f\u0f60\u0f0b\u0f5a\u0f44\u0f0b\u0f5f\u0f7a\u0f62\u0f0b\u0f58\u0f72\u0f0b\u0f60\u0f51\u0f72\u0f0b
-      - measured_by_terminal: -9
-        measured_by_wcwidth: 36
-        wchars: \u0f58\u0f60\u0f72\u0f0b\u0f42\u0f53\u0f66\u0f0b\u0f66\u0f90\u0f56\u0f66\u0f0b\u0f51\u0f44\u0f0b\u0f68\u0f0b\u0f63\u0f74\u0f60\u0f72\u0f0b\u0f42\u0f53\u0f66\u0f0b\u0f66\u0f90\u0f56\u0f66\u0f0b\u0f60\u0f51\u0f72\u0f0b\u0f42\u0f49\u0f72\u0f66\u0f0b\u0f63\u0f74\u0f0b
+        wchars: \u0f49\u0f7a\u0f0b\u0f62\u0f72\u0f44\u0f0b\u0f51\u0f44\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f62\u0f72\u0f66\u0f0d
+      - measured_by_terminal: 27
+        measured_by_wcwidth: 49
+        wchars: \u0f42\u0f0b\u0f63\u0f74\u0f0b\u0f61\u0f44\u0f0b\u0f5a\u0f7c\u0f42\u0f66\u0f0b\u0f54\u0f0b\u0f45\u0f72\u0f42\u0f0b\u0f53\u0f44\u0f0b\u0f60\u0f5b\u0f74\u0f63\u0f0b\u0f51\u0f42\u0f7c\u0f0b\u0f54\u0f60\u0f72\u0f0b\u0f50\u0f56\u0f66\u0f0b\u0f58\u0f7a\u0f51\u0f0b\u0f56\u0fb1\u0f0b\u0f56\u0f0b\u0f56\u0f59\u0f74\u0f42\u0f66\u0f0b\u0f58\u0f72\u0f0b\u0f46\u0f7c\u0f42
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 6
+        wchars: \u0f42\u0f0b\u0f62\u0f0b\u0f63\u0f74\u0f0b
       n_errors: 3
       n_total: 359
       pct_success: 99.16434540389972
     Evenki:
       failed:
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 5
-        wchars: \u0434\u044f\u0440\u0438\u043d
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 9
-        wchars: \u0442\u0430\u0440\u0433\u0430\u0447\u0438\u043d\u0430
+      - measured_by_terminal: -7
+        measured_by_wcwidth: 7
+        wchars: \u0441\u0443\u0440\u0443\u043c\u0447\u044d\u0304
+      - measured_by_terminal: -6
+        measured_by_wcwidth: 7
+        wchars: \u0422\u0430\u0442\u044b\u0433\u0430\u043d
       n_errors: 2
       n_total: 899
       pct_success: 99.77753058954394
     Farsi, Western:
       failed:
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: \u0642\u0631\u0627\u0631
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: \u0627\u0645\u0648\u0631
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 4
-        wchars: \u0646\u0638\u0645\u06cc
-      n_errors: 3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 5
+        wchars: \u062c\u0632\u0627\u0626\u06cc
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 3
+        wchars: \u062e\u0648\u062f
+      n_errors: 2
       n_total: 1822
-      pct_success: 99.83534577387486
+      pct_success: 99.89023051591658
     Fon:
       failed:
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 1
-        wchars: \u0254
-      - measured_by_terminal: -11
-        measured_by_wcwidth: 1
-        wchars: e
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 7
-        wchars: nuv\u0254nnu
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 11
+        wchars: adakacom\u025bwu
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 3
+        wchars: h\u025bn
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 4
+        wchars: bonu
       n_errors: 3
       n_total: 2520
       pct_success: 99.88095238095238
     French (Welche):
       failed:
-      - measured_by_terminal: -10
-        measured_by_wcwidth: 1
-        wchars: e\u0300
-      - measured_by_terminal: -7
-        measured_by_wcwidth: 1
-        wchars: e\u0301
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 4
+        wchars: lwe\u0300.
       - measured_by_terminal: -1
-        measured_by_wcwidth: 10
-        wchars: L\u2019e\u0301dukasyo
+        measured_by_wcwidth: 4
+        wchars: pati
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 3
+        wchars: te\u0301y
       n_errors: 3
       n_total: 1928
       pct_success: 99.84439834024896
     Fur:
       failed:
       - measured_by_terminal: 1
-        measured_by_wcwidth: 5
-        wchars: k\u0289y\u0268\u014b
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: d\xe9\xe9\u014b
-      - measured_by_terminal: -1
+        measured_by_wcwidth: 7
+        wchars: ny\xe9tti\u014b
+      - measured_by_terminal: -3
         measured_by_wcwidth: 2
-        wchars: bi
+        wchars: g\xe9
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 3
+        wchars: pi\xe1
       n_errors: 3
       n_total: 1838
       pct_success: 99.83677910772579
     Ga:
       failed:
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 8
-        wchars: ny\u0254\u014byeli
+      - measured_by_terminal: -11
+        measured_by_wcwidth: 2
+        wchars: b\u0254
       - measured_by_terminal: 2
-        measured_by_wcwidth: 5
-        wchars: ekome
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 3
-        wchars: ko.
+        measured_by_wcwidth: 4
+        wchars: k\u025bj\u025b
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 4
+        wchars: amli
       n_errors: 3
       n_total: 2039
       pct_success: 99.85286905345758
     Gen:
       failed:
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 6
-        wchars: gblam\u025b
-      - measured_by_terminal: -3
+      - measured_by_terminal: 0
         measured_by_wcwidth: 2
-        wchars: la
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 11
-        wchars: wiv\u0254t\u0254ng\u0254an
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 6
-        wchars: \u0256\u0254nwin
-      n_errors: 4
+        wchars: \u0256e
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 1
+        wchars: a
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 4
+        wchars: ke\u014bu
+      n_errors: 3
       n_total: 2309
-      pct_success: 99.82676483326115
+      pct_success: 99.87007362494586
     Gilyak:
       failed:
-      - measured_by_terminal: -10
-        measured_by_wcwidth: 2
-        wchars: \u043b\u0443
+      - measured_by_terminal: -7
+        measured_by_wcwidth: 3
+        wchars: \u043c\u0443\u043a
       - measured_by_terminal: 0
         measured_by_wcwidth: 6
         wchars: \u0421\u0442\u0430\u0442\u044c\u044f
-      - measured_by_terminal: -2
+      - measured_by_terminal: -7
         measured_by_wcwidth: 4
-        wchars: \u0438\u0432\u0440\u0430
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 5
-        wchars: \u04ff\u044b\u043c\u0434\u0438
-      n_errors: 4
+        wchars: \u04ff\u0430\u0440\u0430
+      n_errors: 3
       n_total: 1504
-      pct_success: 99.7340425531915
+      pct_success: 99.80053191489363
     Gujarati:
       failed:
       - measured_by_terminal: 4
@@ -17130,7 +17094,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0ab0\u0abe\u0ab7\u0acd\u0a9f\u0acd\u0ab0\u0ac0\u0aaf
-      - measured_by_terminal: 3
+      - measured_by_terminal: 10
         measured_by_wcwidth: 7
         wchars: \u0aa8\u0acd\u0aaf\u0abe\u0aaf\u0abe\u0aa7\u0abf\u0a95\u0ab0\u0aa3
       - measured_by_terminal: 5
@@ -17244,9 +17208,6 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0a9c\u0ac7\u0aa8\u0ac0
-      - measured_by_terminal: 7
-        measured_by_wcwidth: 4
-        wchars: \u0aab\u0acb\u0a9c\u0aa6\u0abe\u0ab0\u0ac0
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u0a97\u0ac1\u0aa8\u0abe\u0aa8\u0acb
@@ -18123,7 +18084,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u0aa6\u0ac7\u0ab6\u0abe\u0aa8\u0ac0
-      - measured_by_terminal: -2
+      - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0a9c\u0abe\u0ab9\u0ac7\u0ab0
       - measured_by_terminal: 8
@@ -18360,7 +18321,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0aae\u0ac7\u0ab3\u0ab5\u0ab5\u0abe\u0aa8\u0acb
-      - measured_by_terminal: 6
+      - measured_by_terminal: -1
         measured_by_wcwidth: 4
         wchars: \u0a85\u0aa7\u0abf\u0a95\u0abe\u0ab0
       - measured_by_terminal: 3
@@ -19092,7 +19053,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0ab0\u0abe\u0ab7\u0acd\u0a9f\u0acd\u0ab0\u0aa8\u0abe
-      - measured_by_terminal: 6
+      - measured_by_terminal: 9
         measured_by_wcwidth: 5
         wchars: \u0ab8\u0abf\u0aa6\u0acd\u0aa7\u0abe\u0a82\u0aa4\u0acb\u0aa8\u0ac0
       - measured_by_terminal: 5
@@ -19155,20 +19116,23 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0a95\u0ab0\u0ab5\u0abe\u0aa8\u0acb
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0a95\u0acb\u0a87
       n_errors: 1000
-      n_total: 1520
-      pct_success: 34.21052631578947
+      n_total: 1521
+      pct_success: 34.25378040762656
     Gumuz:
       failed:
-      - measured_by_terminal: -9
-        measured_by_wcwidth: 4
-        wchars: tso.
-      - measured_by_terminal: -7
-        measured_by_wcwidth: 5
-        wchars: kas\ua78ce
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 9
-        wchars: kama\ua78ciiya
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 8
+        wchars: maahaaca
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 8
+        wchars: gasaanza
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 7
+        wchars: kab\ua78caga
       n_errors: 3
       n_total: 1283
       pct_success: 99.76617303195636
@@ -20320,7 +20284,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u091c\u093e\u090f\u0917\u093e
-      - measured_by_terminal: 0
+      - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0935\u094d\u092f\u0915\u094d\u0924\u093f
       - measured_by_terminal: 2
@@ -20461,6 +20425,9 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0935\u094d\u092f\u0915\u094d\u0924\u093f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchars: \u0930\u0942\u092a
       - measured_by_terminal: 13
         measured_by_wcwidth: 9
         wchars: \u0938\u094d\u0935\u0940\u0915\u0943\u0924\u093f-\u092a\u094d\u0930\u093e\u092a\u094d\u0924\u093f
@@ -21445,9 +21412,6 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u091c\u093e\u090f\u0917\u093e
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 5
-        wchars: \u0905\u0928\u0941\u091a\u094d\u091b\u0947\u0926
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0935\u094d\u092f\u0915\u094d\u0924\u093f
@@ -21703,6 +21667,9 @@ test_results:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u0915\u094b
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 2
+        wchars: \u0926\u0947\u0936
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0936\u093e\u0938\u0928
@@ -22171,48 +22138,39 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0915\u093e\u092e
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u0918\u0902\u091f\u094b\u0902
       n_errors: 1000
-      n_total: 1631
-      pct_success: 38.68792152053955
+      n_total: 1629
+      pct_success: 38.61264579496624
     Japanese:
       failed:
-      - measured_by_terminal: -36
-        measured_by_wcwidth: 4
-        wchars: \u307e\u305f
-      - measured_by_terminal: 38
-        measured_by_wcwidth: 48
-        wchars: \u5e73\u548c\u7684\u306a\u96c6\u4f1a\u53ca\u3073\u7d50\u793e\u306e\u81ea\u7531\u3092\u4eab\u6709\u3059\u308b\u6a29\u5229\u3092\u6709\u3059\u308b
-      - measured_by_terminal: -68
+      - measured_by_terminal: -18
         measured_by_wcwidth: 6
-        wchars: \u7b2c28\u6761
-      n_errors: 3
+        wchars: \u7b2c10\u6761
+      - measured_by_terminal: 20
+        measured_by_wcwidth: 26
+        wchars: \u5404\u56fd\u306e\u7d44\u7e54\u53ca\u3073\u8cc7\u6e90\u306b\u5fdc\u3058\u3066
+      n_errors: 2
       n_total: 299
-      pct_success: 98.99665551839465
+      pct_success: 99.33110367892976
     Japanese (Osaka):
       failed:
-      - measured_by_terminal: -36
-        measured_by_wcwidth: 4
-        wchars: \u307e\u305f
-      - measured_by_terminal: -40
-        measured_by_wcwidth: 4
-        wchars: \u307e\u305f
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 18
-        wchars: \u305d\u306e\u5275\u4f5c\u3057\u305f\u79d1\u5b66\u7684
-      n_errors: 3
+      - measured_by_terminal: 18
+        measured_by_wcwidth: 84
+        wchars: \u72ec\u7acb\u306e\u516c\u5e73\u306a\u88c1\u5224\u6240\u306b\u3088\u308b\u516c\u5e73\u306a\u516c\u958b\u306e\u5be9\u7406\u3092\u53d7\u3051\u308b\u3053\u3068\u306b\u3064\u3044\u3066\u5b8c\u5168\u306b\u5e73\u7b49\u306e\u6a29\u5229\u3092\u6709\u3059\u308b
+      - measured_by_terminal: 26
+        measured_by_wcwidth: 30
+        wchars: \u56fd\u5bb6\u7684\u52aa\u529b\u53ca\u3073\u56fd\u969b\u7684\u5354\u529b\u306b\u3088\u308a
+      n_errors: 2
       n_total: 308
-      pct_success: 99.02597402597402
+      pct_success: 99.35064935064936
     Japanese (Tokyo):
       failed:
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 58
-        wchars: \u6a29\u9650\u304c\u3042\u308b\u56fd\u5185\u88c1\u5224\u6240\u306b\u3088\u308b\u52b9\u679c\u7684\u306a\u6551\u6e08\u3092\u53d7\u3051\u308b\u6a29\u5229\u3092\u6709\u3059\u308b
-      - measured_by_terminal: -42
-        measured_by_wcwidth: 10
-        wchars: \u3053\u306e\u9078\u6319\u306f
+      - measured_by_terminal: 18
+        measured_by_wcwidth: 82
+        wchars: \u72ec\u7acb\u306e\u516c\u5e73\u306a\u88c1\u5224\u6240\u306b\u3088\u308b\u516c\u5e73\u306a\u516c\u958b\u306e\u5be9\u7406\u3092\u53d7\u3051\u308b\u3053\u3068\u306b\u3064\u3044\u3066\u5b8c\u5168\u306b\u5e73\u7b49\u306e\u6a29\u5229\u304c\u3042\u308b
+      - measured_by_terminal: 12
+        measured_by_wcwidth: 30
+        wchars: \u516c\u5e73\u304b\u3064\u6709\u5229\u306a\u52b4\u50cd\u6761\u4ef6\u3092\u78ba\u4fdd\u3057
       n_errors: 2
       n_total: 320
       pct_success: 99.375
@@ -22315,9 +22273,6 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \ua9a0\ua9a4
       - measured_by_terminal: 7
-        measured_by_wcwidth: 6
-        wchars: \ua9b1\ua98f\ua9a5\ua9b6\ua9aa\ua992\ua9a9
-      - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \ua9a5\ua9b1\ua9ab\ua9ba\ua98f\ua9a0
       - measured_by_terminal: 3
@@ -22410,7 +22365,7 @@ test_results:
       - measured_by_terminal: 11
         measured_by_wcwidth: 6
         wchars: \ua99b\ua9b6\ua9a0\ua9bc\ua982\ua9ae\ua9ba\ua9b4\ua995\ua9ba\ua9b4\ua9ad\ua9a4
-      - measured_by_terminal: 8
+      - measured_by_terminal: 7
         measured_by_wcwidth: 4
         wchars: \ua9a5\ua9bf\ua9b1\ua9ba\ua9b4\ua997\ua9c8
       - measured_by_terminal: 3
@@ -22488,9 +22443,6 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9a5\ua9bf\ua99a\ua9a0\ua9a4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: \ua9b2\ua9b8\ua9a9\ua9b8\ua9a9
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \ua994\ua9bc\ua9a4\ua9a4\ua9b6\ua9b2\ua98f
@@ -22536,6 +22488,9 @@ test_results:
       - measured_by_terminal: 11
         measured_by_wcwidth: 10
         wchars: \ua9ae\ua982\ua992\ua9a4\ua9b6\ua981\ua98f\ua9b8\ua9ad\ua9ae\ua982\ua992\ua9b2\ua9b8\ua9a9\ua9a0
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \ua9a9\ua9a4\ua9b8\ua981\ua9b1\ua9c8
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \ua9a0\ua98f\ua9ba\ua9ad\ua9a4
@@ -22569,9 +22524,6 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua98f
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: \ua9b2\ua9b8\ua9a9\ua9a0
       - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: \ua9a9\ua9a4\ua9b8\ua981\ua9b1\ua9a7\ua9b6\ua9b1\ua99a
@@ -22611,7 +22563,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9a4\ua9b6\ua981\ua9b2\ua9b8\ua9a9\ua9a0
-      - measured_by_terminal: 9
+      - measured_by_terminal: 10
         measured_by_wcwidth: 8
         wchars: \ua9a9\ua9a4\ua9b8\ua981\ua9b1\ua9a7\ua9b6\ua9b1\ua994\ua9bf\ua9b1\ua98f
       - measured_by_terminal: 6
@@ -22677,6 +22629,9 @@ test_results:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \ua9c8
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \ua9a7\ua981\ua9a9\ua9a4\ua9ae\ua9b2\ua98f
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua98f
@@ -22758,7 +22713,7 @@ test_results:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \ua9c8
-      - measured_by_terminal: 17
+      - measured_by_terminal: 18
         measured_by_wcwidth: 15
         wchars: \ua9a7\ua981\ua9a9\ua9a4\ua9ae\ua9a9\ua9bc\ua98f\ua982\ua9ab\ua9b6\ua981\ua9a5\ua9a9\ua9bc\ua982\ua9a2\ua9b6\ua9a5\ua981\ua992\ua9b8\ua9ad\ua9ba\ua9b4\ua9ae\ua9bc\ua9a4
       - measured_by_terminal: 6
@@ -22815,9 +22770,6 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \ua98f\ua98f\ua9ba\ua98f\ua9a4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: \ua99b\ua9b6\ua9a0\ua9a4
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua99d\ua9bc\ua9b1
@@ -22974,15 +22926,15 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \ua9a7\ua981\ua9b1\ua9a7\ua981\ua9b1\ua9c9
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \ua9a7\ua981\ua9a9\ua9a4\ua9ae\ua98f\ua9a4
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \ua99b\ua9b6\ua9a9\ua9a4\ua9b8\ua981\ua992\ua9ad
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \ua9ad\ua9b6\ua981\ua9a5\ua994\ua9bc\ua982\ua9a0\ua9ba\ua9a4
-      - measured_by_terminal: 6
-        measured_by_wcwidth: 5
-        wchars: \ua994\ua9bc\ua9a4\ua9a4\ua9b6\ua9b2\ua98f
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua98f
@@ -23133,6 +23085,9 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua98f\ua9b1\ua9bc\ua9a7\ua9b8\ua9a0
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 6
+        wchars: \ua9b1\ua9aa\ua9a9\ua9bc\ua98f\ua982\ua994\ua9bd\ua9a9
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua98f\ua9c9
@@ -23196,7 +23151,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9a2\ua9a4
-      - measured_by_terminal: 17
+      - measured_by_terminal: 18
         measured_by_wcwidth: 15
         wchars: \ua98f\ua981\ua98f\ua9a7\ua9ae\ua983\ua9a5\ua994\ua9b8\ua9ae\ua9b1\ua9a4\ua9b6\ua981\ua9b2\ua981\ua992\ua9bc\ua982\ua9b2\ua981\ua992\ua9bc\ua982\ua9ab\ua9ba\ua9c9
       - measured_by_terminal: 4
@@ -23226,9 +23181,6 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 7
         wchars: \ua98f\ua9a7\ua9ba\ua983\ua9a5\ua9b6\ua9a4\ua9ab\ua9b6\ua981\ua994\ua9a4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: \ua9b2\ua98f\ua9ad
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9ad\ua9a4
@@ -23313,7 +23265,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: \ua9ae\ua982\ua9a4\ua9a4\ua9b6\ua981\ua9b2\ua9ae\ua98f
-      - measured_by_terminal: 12
+      - measured_by_terminal: 11
         measured_by_wcwidth: 9
         wchars: \ua9a7\ua9ba\ua9a2\ua9a7\ua9ba\ua9a2\ua9a4\ua9b6\ua981\ua9ad\ua9a4\ua981\ua9ad\ua9a4
       - measured_by_terminal: 6
@@ -23472,7 +23424,7 @@ test_results:
       - measured_by_terminal: 20
         measured_by_wcwidth: 15
         wchars: \ua9cb\ua9b2\ua9ba\ua9b4\ua9ab\ua98f\ua9bc\ua9a4\ua9b1\ua9ae\ua9b6\ua997\ua9b6\ua9a4\ua9b6\ua981\ua9b2\ua9b8\ua9ae\ua9ba\ua9b4\ua981\ua9a2\ua9b6\ua9a2\ua9a2\ua9ba\ua98f
-      - measured_by_terminal: 7
+      - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \ua98f\ua98f\ua9ba\ua9a7\ua9b8\ua99d\ua98f
       - measured_by_terminal: 7
@@ -23481,7 +23433,10 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9a0\ua9b6\ua981\ua9a7\ua9b8\ua99d\ua98f
-      - measured_by_terminal: 6
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9a4
+      - measured_by_terminal: 8
         measured_by_wcwidth: 5
         wchars: \ua9a7\ua9a0\ua9b8\ua982\ua9a0\ua9b8\ua98f\ua9ba\ua9b4\ua9a4
       - measured_by_terminal: 3
@@ -23532,9 +23487,12 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 6
         wchars: \ua9b2\ua9b8\ua9ae\ua9ba\ua9b4\ua981\ua9a2\ua982\ua9a7\ua9ba\ua9b2\ua98f
-      - measured_by_terminal: 5
+      - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9a0\ua9b8\ua9a9\ua9bf\ua9a5
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 3
+        wchars: \ua9a5\ua9b1\ua9bc\ua98f
       - measured_by_terminal: 19
         measured_by_wcwidth: 15
         wchars: \ua9b1\ua9b6\ua9b2\ua9b6\ua981\ua9b1\ua997\ua9bf\ua9ba\ua9b4\ua9a4\ua9b6\ua981\ua9b2\ua981\ua992\ua9bc\ua982\ua9b2\ua981\ua992\ua9bc\ua982\ua9a9\ua9b6\ua9a4\ua981\ua98f\ua9b2\ua9b8\ua9a9\ua9a0
@@ -23589,16 +23547,19 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9a2\ua98f
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b2\ua9a9
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua9ba\ua9a2\ua9a9
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua9ba\ua9a2\ua98f
-      - measured_by_terminal: 11
+      - measured_by_terminal: 10
         measured_by_wcwidth: 7
         wchars: \ua98f\ua98f\ua9ba\ua98f\ua981\ua9b2\ua9ba\ua9b4\ua9ab\ua995\ua9b8\ua9a4
-      - measured_by_terminal: 3
+      - measured_by_terminal: -7
         measured_by_wcwidth: 2
         wchars: \ua99d\ua9b8\ua98f
       - measured_by_terminal: 10
@@ -23730,6 +23691,9 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9a0\ua9b8\ua9a9
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ab\ua9a5
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9a5\ua994\ua9a2\ua9b6\ua9ad
@@ -23766,9 +23730,6 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua992\ua9a4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9bc\ua9a0\ua9bc\ua9a5
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \ua9a5\ua98f\ua9ba\ua9b2\ua98f
@@ -23814,7 +23775,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9c7\ua9d1\ua9d1\ua9c7
-      - measured_by_terminal: 8
+      - measured_by_terminal: 9
         measured_by_wcwidth: 6
         wchars: \ua9b2\ua9b8\ua9ae\ua9ba\ua9b4\ua981\ua98f\ua981\ua9a2\ua9b6\ua9a2\ua98f
       - measured_by_terminal: 9
@@ -23946,7 +23907,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9a9\ua9a4
-      - measured_by_terminal: 9
+      - measured_by_terminal: 10
         measured_by_wcwidth: 6
         wchars: \ua98f\ua981\ua9ad\ua9b8\ua9ae\ua9b6\ua983\ua9b2\ua9a7\ua9ba\ua9b4\ua9a2
       - measured_by_terminal: 4
@@ -24000,7 +23961,7 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua9b8\ua981\ua994\ua9a4
-      - measured_by_terminal: 5
+      - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9a4\ua9ba\ua9a4\ua9a9
       - measured_by_terminal: 4
@@ -24129,7 +24090,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9a9\ua9a4
-      - measured_by_terminal: 8
+      - measured_by_terminal: 9
         measured_by_wcwidth: 6
         wchars: \ua9b2\ua9a9\ua982\ua992\ua9b2\ua981\ua992\ua9ba\ua9b4\ua9a4
       - measured_by_terminal: 11
@@ -24189,6 +24150,9 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9a0\ua9a4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \ua9a7\ua981\ua9b1\ua9a7\ua981\ua9b1\ua9c9
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9c7\ua9d1\ua9d5\ua9c7
@@ -24249,6 +24213,9 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: \ua9ae\ua9a4\ua9b6\ua9a0\ua98f\ua981\ua9ae\ua9b8\ua9b1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 5
+        wchars: \ua9a2\ua9b6\ua9ae\ua9b1\ua98f\ua9a4
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua99b\ua9b6\ua9a0\ua9a4
@@ -24276,9 +24243,6 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua994\ua9b8\ua9a4
-      - measured_by_terminal: 6
-        measured_by_wcwidth: 5
-        wchars: \ua98f\ua9b8\ua9ad\ua9ae\ua982\ua992\ua9c9
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \ua98f\ua9a7\ua9ba\ua983\ua9a4
@@ -24324,6 +24288,9 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua9ba\ua9a7\ua9b1
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9a4
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9a0\ua9bc\ua9a9\ua9bc\ua9a4
@@ -24399,7 +24366,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua99d\ua9c8
-      - measured_by_terminal: 13
+      - measured_by_terminal: 14
         measured_by_wcwidth: 12
         wchars: \ua99b\ua9b6\ua9a5\ua9bf\ua9b6\ua9a7\ua9a2\ua9b6\ua9b2\ua9b8\ua9a0\ua9ae\ua9a7\ua9bc\ua9a7\ua989\ua981\ua994\ua9a4
       - measured_by_terminal: 14
@@ -24462,7 +24429,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua98f
-      - measured_by_terminal: 4
+      - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua9ba\ua9a7\ua9b1
       - measured_by_terminal: 8
@@ -24501,7 +24468,7 @@ test_results:
       - measured_by_terminal: 14
         measured_by_wcwidth: 8
         wchars: \ua98f\ua9ab\ua9ba\ua9b4\ua9b2\ua9b8\ua9ae\ua9ba\ua9b4\ua981\ua9ad\ua9b6\ua9aa\ua9a4\ua9ba\ua9c8
-      - measured_by_terminal: 9
+      - measured_by_terminal: 8
         measured_by_wcwidth: 7
         wchars: \ua9b2\ua9b8\ua9a0\ua9ae\ua9a5\ua9bf\ua9b6\ua9a7\ua9a2\ua9b6\ua9c9
       - measured_by_terminal: 5
@@ -24516,7 +24483,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \ua9b1\ua9ba\ua9b2\ua98f
-      - measured_by_terminal: 4
+      - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua9ba\ua9a7\ua9b1
       - measured_by_terminal: 7
@@ -24576,9 +24543,6 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9ad\ua9ad\ua9a2
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \ua9a2\ua9a4
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \ua9c9
@@ -24591,7 +24555,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \ua9a2\ua9b8\ua9ae\ua9ba\ua9a4\ua9b6\ua9b2\ua98f
-      - measured_by_terminal: -2
+      - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9b2\ua9b6\ua981\ua994\ua9a0\ua9b1
       - measured_by_terminal: 5
@@ -24657,9 +24621,9 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 6
         wchars: \ua9a0\ua983\ua9a4\ua992\ua9ab\ua9a4\ua9ba\ua9c8
-      - measured_by_terminal: 10
-        measured_by_wcwidth: 9
-        wchars: \ua99b\ua9b6\ua9ad\ua981\ua9b1\ua9b8\ua981\ua9b2\ua9b8\ua9a0\ua9ae\ua9ad\ua9b8\ua9a9\ua9a4
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 4
+        wchars: \ua9a0\ua982\ua9ae\ua98f\ua9b6\ua9ad
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9ae\ua98f\ua9b6\ua9ad
@@ -24723,15 +24687,12 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \ua9a0\ua98f\ua9ba\ua98f\ua9a4
-      - measured_by_terminal: 13
+      - measured_by_terminal: 14
         measured_by_wcwidth: 11
         wchars: \ua99b\ua9b6\ua995\ua9ab\ua9b2\ua9a4\ua9a4\ua9ba\ua9a5\ua9a9\ua9b6\ua9ad\ua9b6\ua983\ua9b2\ua9a4
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9b2\ua9b8\ua9a9\ua9b8\ua9a9
-      - measured_by_terminal: 6
-        measured_by_wcwidth: 5
-        wchars: \ua98f\ua981\ua9a2\ua9b6\ua9b2\ua9a4\ua98f
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \ua98f\ua98f\ua9ba\ua9b2\ua9b6\ua981\ua9ae\ua9bc\ua98f
@@ -24801,7 +24762,7 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9a7\ua982\ua9ab\ua9a4
-      - measured_by_terminal: 11
+      - measured_by_terminal: 12
         measured_by_wcwidth: 10
         wchars: \ua9a7\ua98f\ua9b8\ua9ae\ua9bc\ua9ae\ua9bc\ua9a4\ua981\ua994\ua9ba\ua9a5\ua9a9\ua9ab\ua9b6\ua9a4
       - measured_by_terminal: 4
@@ -24816,7 +24777,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \ua9a0\ua98f\ua9ba\ua98f\ua9a4
-      - measured_by_terminal: 14
+      - measured_by_terminal: 13
         measured_by_wcwidth: 11
         wchars: \ua99b\ua9b6\ua995\ua9ab\ua9b2\ua9a4\ua9a4\ua9ba\ua9a5\ua9a9\ua9b6\ua9ad\ua9b6\ua983\ua9b2\ua9a4
       - measured_by_terminal: 4
@@ -24900,10 +24861,10 @@ test_results:
       - measured_by_terminal: 8
         measured_by_wcwidth: 6
         wchars: \ua9b1\ua982\ua9a0\ua9a2\ua982\ua9a7\ua9ba\ua9b2\ua98f
-      - measured_by_terminal: 8
+      - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \ua9b2\ua9a9\ua9bf\ua9b6\ua983\ua98f\ua98a\ua98f
-      - measured_by_terminal: 4
+      - measured_by_terminal: -3
         measured_by_wcwidth: 3
         wchars: \ua9b1\ua9a4\ua9a4
       - measured_by_terminal: 5
@@ -25014,7 +24975,7 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \ua9b1\ua982\ua9a0\ua9a4
-      - measured_by_terminal: 6
+      - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \ua9a2\ua9b8\ua9ae\ua9ba\ua9a4\ua9b6\ua9b2\ua98f
       - measured_by_terminal: 8
@@ -25050,9 +25011,6 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \ua9a5\ua992\ua9ae\ua9ba\ua9aa\ua9a4
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua98f\ua981\ua9a5\ua99d\ua9c9
       - measured_by_terminal: 7
         measured_by_wcwidth: 4
         wchars: \ua9b2\ua9b8\ua9ae\ua9ba\ua9b4\ua981\ua98f\ua981\ua994
@@ -25077,7 +25035,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua994\ua9b8\ua9a4
-      - measured_by_terminal: 5
+      - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \ua9a0\ua9b8\ua981\ua994\ua98f\ua9ba\ua9c8
       - measured_by_terminal: 13
@@ -25122,7 +25080,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua994
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 7
         wchars: \ua9ad\ua9bc\ua9a7\ua9ba\ua9b4\ua9a4\ua9b6\ua9a5\ua992\ua9b8\ua9aa\ua9b8\ua9a7
       - measured_by_terminal: 3
@@ -25140,7 +25098,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: \ua9a9\ua9b6\ua98f\ua9a5\ua9bc\ua982\ua9ad\ua9b8\ua9ae\ua9a4
-      - measured_by_terminal: 3
+      - measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \ua9a4\ua9ba\ua9c9
       - measured_by_terminal: 5
@@ -25206,7 +25164,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \ua9a2\ua9b8\ua9ae\ua9ba\ua9a4\ua9b6\ua9b2\ua98f
-      - measured_by_terminal: 8
+      - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: \ua9a7\ua9b6\ua9b1\ua9a4\ua9ba\ua9b2\ua9b8\ua9ab\ua9b6\ua9a5
       - measured_by_terminal: 3
@@ -25223,15 +25181,15 @@ test_results:
       pct_success: 11.26885536823425
     Kabyle:
       failed:
-      - measured_by_terminal: 6
-        measured_by_wcwidth: 9
-        wchars: yiman-is.
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 5
-        wchars: ukmil
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 1
-        wchars: d
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 4
+        wchars: gdan
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 2
+        wchars: ma
+      - measured_by_terminal: -6
+        measured_by_wcwidth: 2
+        wchars: ad
       n_errors: 3
       n_total: 1815
       pct_success: 99.83471074380165
@@ -26095,7 +26053,7 @@ test_results:
       - measured_by_terminal: 14
         measured_by_wcwidth: 11
         wchars: \u0cb8\u0cae\u0cbe\u0ca8\u0cb8\u0c82\u0cb0\u0c95\u0ccd\u0cb7\u0ca3\u0cc6\u0caf\u0ca8\u0ccd\u0ca8\u0cc1
-      - measured_by_terminal: -10
+      - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0caa\u0ca1\u0cc6\u0caf\u0cb2\u0cc1
       - measured_by_terminal: 6
@@ -26200,7 +26158,7 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 7
         wchars: \u0ca6\u0ccb\u0cb7\u0cbe\u0ca4\u0ccd\u0cae\u0c95\u0cb5\u0cbe\u0ca6
-      - measured_by_terminal: 6
+      - measured_by_terminal: -4
         measured_by_wcwidth: 5
         wchars: \u0ca4\u0caa\u0ccd\u0caa\u0ca8\u0ccd\u0ca8\u0cc2
       - measured_by_terminal: 12
@@ -26932,7 +26890,7 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0cb9\u0c95\u0ccd\u0c95\u0cc1
-      - measured_by_terminal: 5
+      - measured_by_terminal: 10
         measured_by_wcwidth: 8
         wchars: \u0caa\u0ccd\u0cb0\u0ca4\u0cbf\u0caf\u0cca\u0cac\u0ccd\u0cac\u0ca8\u0cbf\u0c97\u0cc2
       - measured_by_terminal: 5
@@ -27130,7 +27088,7 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 8
         wchars: \u0caa\u0ccd\u0cb0\u0ca4\u0cbf\u0caf\u0cca\u0cac\u0ccd\u0cac\u0ca8\u0cbf\u0c97\u0cc2
-      - measured_by_terminal: 8
+      - measured_by_terminal: -2
         measured_by_wcwidth: 5
         wchars: \u0cb9\u0c95\u0ccd\u0c95\u0cc1\u0c82\u0c9f\u0cc1.
       - measured_by_terminal: 3
@@ -27817,7 +27775,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: \u0cb8\u0cbe\u0cb0\u0ccd\u0cb5\u0c9c\u0ca8\u0cbf\u0c95
-      - measured_by_terminal: 5
+      - measured_by_terminal: 12
         measured_by_wcwidth: 9
         wchars: \u0caf\u0ccb\u0c97\u0c95\u0ccd\u0cb7\u0cc7\u0cae\u0c97\u0cb3\u0ca8\u0ccd\u0ca8\u0cc1
       - measured_by_terminal: 6
@@ -28392,7 +28350,7 @@ test_results:
       - measured_by_terminal: 25
         measured_by_wcwidth: 19
         wchars: \u1798\u17b6\u1793\u179f\u17b7\u1791\u17d2\u1792\u17b7\u1791\u1791\u17bd\u179b\u1780\u17b6\u179a\u1780\u17b6\u179a\u1796\u17b6\u179a\u179f\u17d2\u1798\u17be\u17d7\u1782\u17d2\u1793\u17b6
-      - measured_by_terminal: -7
+      - measured_by_terminal: 18
         measured_by_wcwidth: 13
         wchars: \u1794\u17d2\u179a\u1786\u17b6\u17c6\u1784\u1793\u17b9\u1784\u1780\u17b6\u179a\u179a\u17be\u179f\u17a2\u17be\u1784\u178e\u17b6
       - measured_by_terminal: 22
@@ -28428,7 +28386,7 @@ test_results:
       - measured_by_terminal: 12
         measured_by_wcwidth: 9
         wchars: \u1782\u17d2\u1798\u17b6\u1793\u1787\u1793\u178e\u17b6\u1798\u17d2\u1793\u17b6\u1780\u17cb
-      - measured_by_terminal: 12
+      - measured_by_terminal: 0
         measured_by_wcwidth: 10
         wchars: \u178f\u17d2\u179a\u17bc\u179c\u1794\u17b6\u1793\u1785\u17b6\u1794\u17cb\u1781\u17d2\u179b\u17bd\u1793
       - measured_by_terminal: 9
@@ -28812,9 +28770,6 @@ test_results:
       - measured_by_terminal: 20
         measured_by_wcwidth: 14
         wchars: \u178a\u17c2\u179b\u1794\u17b6\u1793\u1787\u17d2\u179a\u17be\u179f\u179a\u17be\u179f\u178a\u17c4\u1799\u179f\u17c1\u179a\u17b8\u17d4
-      - measured_by_terminal: -12
-        measured_by_wcwidth: 9
-        wchars: \u1798\u1793\u17bb\u179f\u17d2\u179f\u1782\u17d2\u179a\u1794\u17cb\u179a\u17bc\u1794
       - measured_by_terminal: 37
         measured_by_wcwidth: 29
         wchars: \u1798\u17b6\u1793\u179f\u17b7\u1791\u17d2\u1792\u17b7\u1785\u17bc\u179b\u1794\u1798\u17d2\u179a\u17be\u1798\u17bb\u1781\u1784\u17b6\u179a\u179f\u17b6\u1792\u17b6\u179a\u178e\u17c8\u1793\u17c3\u1794\u17d2\u179a\u1791\u17c1\u179f\u179a\u1794\u179f\u17cb\u1781\u17d2\u179b\u17bd\u1793
@@ -28899,7 +28854,7 @@ test_results:
       - measured_by_terminal: 21
         measured_by_wcwidth: 19
         wchars: \u1791\u1791\u17bd\u179b\u179b\u1780\u17d2\u1781\u1781\u178e\u17d2\u178c\u1780\u17b6\u179a\u1784\u17b6\u179a\u178f\u17d2\u179a\u17b9\u1798\u178f\u17d2\u179a\u17bc\u179c
-      - measured_by_terminal: 8
+      - measured_by_terminal: -13
         measured_by_wcwidth: 7
         wchars: \u1793\u17b7\u1784\u1796\u17c1\u1789\u1785\u17b7\u178f\u17d2\u178a
       - measured_by_terminal: 36
@@ -29229,7 +29184,7 @@ test_results:
       - measured_by_terminal: 12
         measured_by_wcwidth: 10
         wchars: \u1793\u17b7\u1784\u1780\u17b6\u179a\u1782\u17c4\u179a\u1796\u179f\u17b7\u1791\u17d2\u1792\u17b7
-      - measured_by_terminal: 5
+      - measured_by_terminal: 17
         measured_by_wcwidth: 14
         wchars: \u1793\u17b7\u1784\u179f\u17c1\u179a\u17b8\u1797\u17b6\u1796\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u178a\u1791\u17c3
       - measured_by_terminal: 33
@@ -29295,9 +29250,9 @@ test_results:
       - measured_by_terminal: 31
         measured_by_wcwidth: 22
         wchars: \u178a\u17c2\u179b\u1798\u17b6\u1793\u1785\u17c2\u1784\u1793\u17c5\u1780\u17d2\u1793\u17bb\u1784\u179f\u17c1\u1785\u1780\u17d2\u178a\u17b8\u1794\u17d2\u179a\u1780\u17b6\u179f\u1793\u17c1\u17c7\u17a1\u17be\u1799\u17d4
-      n_errors: 449
+      n_errors: 448
       n_total: 528
-      pct_success: 14.962121212121213
+      pct_success: 15.151515151515152
     "Kh\xFCn":
       failed:
       - measured_by_terminal: 15
@@ -29738,7 +29693,7 @@ test_results:
       - measured_by_terminal: 23
         measured_by_wcwidth: 20
         wchars: \u1a34\u1a69\u1a20\u1a24\u1a60\u1a36\u1a6b\u1a3e\u1a66\u1a48\u1a65\u1a34\u1a60\u1a35\u1a65\u1a34\u1a66\u1a75\u1a27\u1a62\u1a4b\u1a60\u1a4b\u1a20\u1a36\u1a60\u1a4b\u1a20\u1a37\u1a55\u1a34\u1a6e\u1a60\u1a48\u1a71\u1a2f\u1a62
-      - measured_by_terminal: -3
+      - measured_by_terminal: 20
         measured_by_wcwidth: 15
         wchars: \u1a41\u1a60\u1a45\u1a3e\u1a3b\u1a71\u1a33\u1a60\u1a26\u1a68\u1a37\u1a55\u1a34\u1a6e\u1a60\u1a48\u1a21\u1a60\u1a4b\u1a26\u1a32\u1a60\u1a45\u1a6b\u1a20\u1a6e\u1a62\u1a75\u1a63
       - measured_by_terminal: 23
@@ -29804,7 +29759,7 @@ test_results:
       - measured_by_terminal: 21
         measured_by_wcwidth: 14
         wchars: \u1a2f\u1a70\u1a60\u1a3f\u1a37\u1a55\u1a63\u1a48\u1a27\u1a63\u1a60\u1a20\u1a48\u1a6e\u1a3f\u1a60\u1a26\u1a62\u1a21\u1a73\u1a76\u1a49\u1a62\u1a63\u1a60\u1a3e\u1a2f\u1a71\u1aa7
-      - measured_by_terminal: 13
+      - measured_by_terminal: -8
         measured_by_wcwidth: 12
         wchars: \u1a4b\u1a60\u1a36\u1a62\u1a23\u1a60\u1a4b\u1a62\u1a26\u1a20\u1a75\u1a63\u1a60\u1a3f\u1a20\u1a62\u1a60\u1a37\u1a2f\u1a62\u1a60\u1a45\u1a60\u1a3f
       - measured_by_terminal: 6
@@ -30197,7 +30152,7 @@ test_results:
       - measured_by_terminal: 25
         measured_by_wcwidth: 20
         wchars: \u1a45\u1a2f\u1a60\u1a30\u1a36\u1a63\u1a20\u1a63\u1a60\u1a41\u1a38\u1a6e\u1a60\u1a36\u1a40\u1a6a\u1a75\u1a21\u1a60\u1a4b\u1a26\u1a3e\u1a36\u1a69\u1a54\u1a7c\u1a40\u1a75\u1a63\u1a60\u1a26\u1a32\u1a6e\u1a60\u1a3e\u1a34\u1a66\u1a75
-      - measured_by_terminal: -7
+      - measured_by_terminal: 18
         measured_by_wcwidth: 15
         wchars: \u1a53\u1a62\u1a3f\u1a60\u1a26\u1a62\u1a24\u1a6e\u1a62\u1a63\u1a41\u1a6b\u1a60\u1a37\u1a32\u1a73\u1a75\u1a48\u1a65\u1a34\u1a60\u1a35\u1a65\u1a3e\u1a36\u1a69\u1a54\u1a29\u1a63\u1a60\u1a32
       - measured_by_terminal: 8
@@ -30332,7 +30287,7 @@ test_results:
       - measured_by_terminal: 29
         measured_by_wcwidth: 24
         wchars: \u1a53\u1a62\u1a24\u1a6e\u1a62\u1a63\u1a41\u1a6b\u1a60\u1a37\u1a48\u1a65\u1a34\u1a60\u1a35\u1a65\u1a48\u1a6e\u1a41\u1a66\u1a3d\u1a63\u1a60\u1a37\u1a21\u1a60\u1a4b\u1a26\u1a39\u1a6a\u1a62\u1a4b\u1a60\u1a36\u1a68\u1a75\u1a32\u1a63\u1a60\u1a3e\u1a48\u1a60\u1a3e\u1a6b\u1a23\u1a60\u1a45\u1a41
-      - measured_by_terminal: 37
+      - measured_by_terminal: 8
         measured_by_wcwidth: 33
         wchars: \u1a53\u1a62\u1a34\u1a66\u1a75\u1a27\u1a62\u1a2f\u1a71\u1a62\u1a33\u1a6b\u1a60\u1a37\u1a20\u1a62\u1a60\u1a37\u1a23\u1a60\u1a45\u1a63\u1a60\u1a3e\u1a32\u1a60\u1a4b\u1a62\u1a26\u1a20\u1a63\u1a60\u1a41\u1a4b\u1a60\u1a36\u1a62\u1a39\u1a60\u1a3f\u1a75\u1a26\u1a3b\u1a60\u1a3f\u1a26\u1a20\u1a60\u1a36\u1a62\u1a49\u1a6f\u1a60\u1a26\u1a75\u1a48\u1a66\u1a43\u1a35\u1a3e\u1a60\u1a3e\u1a7c
       - measured_by_terminal: 12
@@ -30388,38 +30343,38 @@ test_results:
       pct_success: 18.32579185520362
     Korean:
       failed:
-      - measured_by_terminal: -7
-        measured_by_wcwidth: 2
-        wchars: \uc81c
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 6
-        wchars: \ud611\ub825\uc744
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 4
+        wchars: \ub610\ub294
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 8
+        wchars: \ud3ec\ud568\ud558\uc5ec
       n_errors: 2
       n_total: 1185
       pct_success: 99.83122362869197
     Lamnso':
       failed:
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 4
-        wchars: ghay
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 1
-        wchars: e
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 1
-        wchars: a
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 2
+        wchars: r\u0259
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 5
+        wchars: y\xecm\xf2\u2019
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 2
+        wchars: '30'
       n_errors: 3
       n_total: 2237
       pct_success: 99.86589181940099
     Lao:
       failed:
-      - measured_by_terminal: -7
-        measured_by_wcwidth: 1
-        wchars: \u0eab\u0ebc\u0eb7
-      - measured_by_terminal: -38
-        measured_by_wcwidth: 1
-        wchars: \u0eab\u0ebc\u0eb7
-      - measured_by_terminal: -25
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 2
+        wchars: '6.'
+      - measured_by_terminal: 54
+        measured_by_wcwidth: 98
+        wchars: \u0e84\u0ea7\u0eb2\u0ea1\u0ec0\u0e88\u0e94\u0e95\u0eb0\u0e99\u0eb2\u0e99\u0eb5\u0ec9\u0e95\u0ec9\u0ead\u0e87\u0ec3\u0eab\u0ec9\u0eaa\u0eb0\u0ec1\u0e94\u0e87\u0ead\u0ead\u0e81\u0ea1\u0eb2\u0e95\u0eb2\u0ea1\u0e9e\u0eb4\u0e97\u0eb5\u0e84\u0eb1\u0e94\u0ec0\u0ea5\u0eb7\u0ead\u0e81\u0ea2\u0ec8\u0eb2\u0e87\u0eaa\u0eb8\u0e94\u0e88\u0eb0\u0eab\u0ebc\u0eb4\u0e94\u0e8a\u0eb7\u0ec8\u0e87\u0e88\u0eb0\u0e95\u0ec9\u0ead\u0e87\u0e81\u0eb0\u0e97\u0eb3\u0e81\u0eb1\u0e99\u0e95\u0eb2\u0ea1\u0e81\u0eb3\u0e99\u0ebb\u0e94\u0ec0\u0ea7\u0ea5\u0eb2\u0ec2\u0e94\u0e8d\u0ea1\u0eb5\u0e81\u0eb2\u0e99\u0ea5\u0ebb\u0e87\u0e84\u0eb0\u0ec1\u0e99\u0e99\u0eaa\u0ebd\u0e87\u0eaa\u0eb0\u0ec0\u0edd\u0eb5\u0e81\u0eb1\u0e99\u0e97\u0ebb\u0ec8\u0ea7\u0ec4\u0e9b
+      - measured_by_terminal: -16
         measured_by_wcwidth: 3
         wchars: \u0ec1\u0ea5\u0eb0
       n_errors: 3
@@ -30427,15 +30382,15 @@ test_results:
       pct_success: 99.29577464788733
     Lingala (tones):
       failed:
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 6
-        wchars: likoki\u0301
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 3
+        wchars: mp\u0254\u0302
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 4
+        wchars: moto
       - measured_by_terminal: 0
-        measured_by_wcwidth: 2
-        wchars: '18'
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 2
-        wchars: na
+        measured_by_wcwidth: 6
+        wchars: mab\u0254\u0301k\u0254
       n_errors: 3
       n_total: 1818
       pct_success: 99.83498349834984
@@ -31359,7 +31314,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0930\u093e\u0937\u094d\u091f\u094d\u0930\u0940\u092f
-      - measured_by_terminal: -6
+      - measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u092f\u093e
       - measured_by_terminal: 11
@@ -31473,6 +31428,9 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0905\u0927\u093f\u0915\u093e\u0930
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 3
+        wchars: \u0939\u0908\u0964
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0930\u093e\u091c\u094d\u092f
@@ -32232,9 +32190,6 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0905\u0927\u093f\u0915\u093e\u0930
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 2
-        wchars: \u0938\u092c
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0906\u0930\u093e\u092e
@@ -32460,6 +32415,9 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u0936\u093f\u0915\u094d\u0937\u093e
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 1
+        wchars: \u0924
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0939\u094b\u090f
@@ -32874,9 +32832,9 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u091c\u093e\u090f\u0964
-      n_errors: 811
+      n_errors: 812
       n_total: 1716
-      pct_success: 52.73892773892774
+      pct_success: 52.680652680652685
     Maithili:
       failed:
       - measured_by_terminal: 7
@@ -33824,9 +33782,6 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0905\u0927\u093f\u0915\u093e\u0930
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 1
-        wchars: '7'
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0915\u093e\u0928\u0942\u0928\u0915
@@ -33935,6 +33890,9 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0905\u092a\u0928\u093e
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 2
+        wchars: \u092a\u0930
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0932\u0917\u093e\u0913\u0932
@@ -34763,7 +34721,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0928\u093f\u0930\u094d\u0935\u093e\u091a\u0928
-      - measured_by_terminal: 0
+      - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0938\u093e\u0930\u094d\u0935\u092d\u094c\u092e
       - measured_by_terminal: 4
@@ -34973,6 +34931,9 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u092a\u0921\u093c\u0932\u093e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 5
+        wchars: \u0905\u0928\u0941\u092a\u0942\u0930\u0923
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u092a\u094d\u0930\u0915\u093e\u0930\u0915
@@ -35687,6 +35648,9 @@ test_results:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u0939\u094b
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u0915\u094b\u0928\u094b
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0930\u093e\u091c\u094d\u092f\u0915\u0947\u0901
@@ -35738,9 +35702,9 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0939\u094b\u0964
-      n_errors: 953
+      n_errors: 955
       n_total: 1519
-      pct_success: 37.26135615536537
+      pct_success: 37.12969058591178
     Malayalam:
       failed:
       - measured_by_terminal: 21
@@ -36448,7 +36412,7 @@ test_results:
       - measured_by_terminal: 12
         measured_by_wcwidth: 9
         wchars: \u0d35\u0d3e\u0d26\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28\u0d24\u0d3f\u0d28\u0d4d\u0d28\u0d41
-      - measured_by_terminal: 5
+      - measured_by_terminal: 9
         measured_by_wcwidth: 7
         wchars: \u0d38\u0d28\u0d4d\u0d26\u0d30\u0d4d\u200d\u0d2d\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02
       - measured_by_terminal: 4
@@ -36556,7 +36520,7 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 8
         wchars: \u0d2a\u0d3e\u0d1f\u0d41\u0d33\u0d4d\u0d33\u0d24\u0d32\u0d4d\u0d32.
-      - measured_by_terminal: 8
+      - measured_by_terminal: -1
         measured_by_wcwidth: 5
         wchars: \u0d06\u0d30\u0d46\u0d19\u0d4d\u0d15\u0d3f\u0d32\u0d41\u0d02
       - measured_by_terminal: 12
@@ -37204,7 +37168,7 @@ test_results:
       - measured_by_terminal: 11
         measured_by_wcwidth: 8
         wchars: \u0d28\u0d3f\u0d2c\u0d28\u0d4d\u0d27\u0d28\u0d15\u0d33\u0d4d\u200d\u0d15\u0d4d\u0d15\u0d41\u0d02
-      - measured_by_terminal: 8
+      - measured_by_terminal: 20
         measured_by_wcwidth: 14
         wchars: \u0d2a\u0d4d\u0d30\u0d35\u0d43\u0d24\u0d4d\u0d24\u0d3f\u0d2f\u0d3f\u0d32\u0d4d\u0d32\u0d3e\u0d2f\u0d4d\u0d2e\u0d2f\u0d3f\u0d32\u0d4d\u200d\u0d28\u0d3f\u0d28\u0d4d\u0d28\u0d41
       - measured_by_terminal: 13
@@ -37402,7 +37366,7 @@ test_results:
       - measured_by_terminal: 11
         measured_by_wcwidth: 8
         wchars: \u0d05\u0d2a\u0d30\u0d3f\u0d39\u0d3e\u0d30\u0d4d\u0d2f\u0d2e\u0d3e\u0d2f
-      - measured_by_terminal: 20
+      - measured_by_terminal: 9
         measured_by_wcwidth: 14
         wchars: \u0d2e\u0d31\u0d4d\u0d31\u0d47\u0d24\u0d46\u0d19\u0d4d\u0d15\u0d3f\u0d32\u0d41\u0d2e\u0d4a\u0d30\u0d35\u0d38\u0d4d\u0d25\u0d2f\u0d3f\u0d32\u0d41\u0d02
       - measured_by_terminal: 9
@@ -38575,7 +38539,7 @@ test_results:
       - measured_by_terminal: 12
         measured_by_wcwidth: 9
         wchars: \u0d35\u0d3e\u0d26\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28\u0d24\u0d3f\u0d28\u0d4d\u0d28\u0d41
-      - measured_by_terminal: 5
+      - measured_by_terminal: 9
         measured_by_wcwidth: 8
         wchars: \u0d38\u0d28\u0d4d\u0d26\u0d7c\u0d2d\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02
       - measured_by_terminal: 4
@@ -38683,7 +38647,7 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 8
         wchars: \u0d2a\u0d3e\u0d1f\u0d41\u0d33\u0d4d\u0d33\u0d24\u0d32\u0d4d\u0d32.
-      - measured_by_terminal: 8
+      - measured_by_terminal: -1
         measured_by_wcwidth: 5
         wchars: \u0d06\u0d30\u0d46\u0d19\u0d4d\u0d15\u0d3f\u0d32\u0d41\u0d02
       - measured_by_terminal: 12
@@ -38748,35 +38712,32 @@ test_results:
       pct_success: 13.494809688581316
     Maldivian:
       failed:
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 2
-        wchars: \u0780\u07aa\u0783\u07ac
-      - measured_by_terminal: 3
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 4
+        wchars: \u078e\u07ae\u078c\u07a6\u0786\u07aa\u0782\u07b0
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 4
+        wchars: \u0787\u07ac\u0787\u07b0\u0788\u07ac\u0790\u07b0
+      - measured_by_terminal: 1
         measured_by_wcwidth: 6
-        wchars: \u0789\u07a9\u0780\u07a6\u0786\u07a6\u0781\u07b0\u0789\u07ac\u060c
-      - measured_by_terminal: -6
-        measured_by_wcwidth: 2
-        wchars: \u0780\u07a6\u0789\u07a6
+        wchars: \u078c\u07a6\u07a2\u07aa\u078d\u07a9\u0789\u07ac\u0788\u07ac.
       n_errors: 3
       n_total: 1918
       pct_success: 99.84358706986444
     Maori (2):
       failed:
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 3
-        wchars: nei
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 4
-        wchars: ake.
-      - measured_by_terminal: -10
-        measured_by_wcwidth: 2
-        wchars: ki
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 7
-        wchars: tangata
-      n_errors: 4
+      - measured_by_terminal: 9
+        measured_by_wcwidth: 12
+        wchars: haumarutanga
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 14
+        wchars: a\u0304-karangatanga
+      - measured_by_terminal: -7
+        measured_by_wcwidth: 1
+        wchars: e
+      n_errors: 3
       n_total: 2385
-      pct_success: 99.83228511530399
+      pct_success: 99.87421383647799
     Marathi:
       failed:
       - measured_by_terminal: 5
@@ -39751,7 +39712,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0926\u0943\u0937\u094d\u091f\u0940\u0928\u0947
-      - measured_by_terminal: -1
+      - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u092e\u093e\u0923\u0942\u0938
       - measured_by_terminal: 6
@@ -39865,7 +39826,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0915\u0943\u0924\u094d\u092f\u093e\u0902\u091a\u094d\u092f\u093e
-      - measured_by_terminal: 6
+      - measured_by_terminal: -2
         measured_by_wcwidth: 4
         wchars: \u092c\u093e\u092c\u0924\u0940\u0924
       - measured_by_terminal: 7
@@ -40711,7 +40672,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0938\u094d\u0935\u0924\u0903\u091a\u093e
-      - measured_by_terminal: 1
+      - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0905\u0925\u0935\u093e
       - measured_by_terminal: 5
@@ -40951,7 +40912,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0918\u0947\u0923\u094d\u092f\u093e\u091a\u093e
-      - measured_by_terminal: 6
+      - measured_by_terminal: 0
         measured_by_wcwidth: 4
         wchars: \u0905\u0927\u093f\u0915\u093e\u0930
       - measured_by_terminal: 7
@@ -41671,7 +41632,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0917\u091f\u093e\u0902\u092e\u0927\u094d\u092f\u0947
-      - measured_by_terminal: -2
+      - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u0938\u0932\u094b\u0916\u093e
       - measured_by_terminal: 7
@@ -41784,40 +41745,37 @@ test_results:
       pct_success: 29.62702322308234
     Mazahua Central:
       failed:
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 1
-        wchars: o
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 5
-        wchars: nesta
+      - measured_by_terminal: -7
+        measured_by_wcwidth: 4
+        wchars: Texe
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 4
+        wchars: nrra
       n_errors: 2
       n_total: 1574
       pct_success: 99.87293519695044
     Mirandese:
       failed:
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 8
-        wchars: stribada
-      - measured_by_terminal: -9
-        measured_by_wcwidth: 2
-        wchars: de
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 11
-        wchars: c\u0327creminac\u0327on
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 3
-        wchars: sta\u0301
-      n_errors: 4
-      n_total: 1966
-      pct_success: 99.79654120040692
-    "Mixtec, Metlat\xF3noc":
-      failed:
       - measured_by_terminal: -3
         measured_by_wcwidth: 6
-        wchars: \xf1ayiv\xed
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 4
-        wchars: Taka
+        wchars: Artigo
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 3
+        wchars: ten
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 5
+        wchars: Todos
+      n_errors: 3
+      n_total: 1966
+      pct_success: 99.84740590030519
+    "Mixtec, Metlat\xF3noc":
+      failed:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchars: ku
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 3
+        wchars: iyo
       n_errors: 2
       n_total: 1367
       pct_success: 99.85369422092172
@@ -42483,7 +42441,7 @@ test_results:
       - measured_by_terminal: 11
         measured_by_wcwidth: 5
         wchars: \u101e\u1039\u1002\u1031\u102c\u1036\u1007\u103c\u1038\u1005\u103e\u103a\u1031\u1021\u102c
-      - measured_by_terminal: -2
+      - measured_by_terminal: 9
         measured_by_wcwidth: 7
         wchars: (\u101f\u103d\u1036\u101e\u1031\u105a\u103a\u1019\u1039\u1002\u1038)
       - measured_by_terminal: 6
@@ -42552,7 +42510,7 @@ test_results:
       - measured_by_terminal: 15
         measured_by_wcwidth: 13
         wchars: \u1021\u1010\u103a\u102d\u102f\u105a\u103a\u101e\u1007\u102d\u102f\u105a\u103a\u1012\u1000\u103a\u1015\u1010\u1014\u103a\u101e\u105e\u1031\u102c\u101d\u103a
-      - measured_by_terminal: 6
+      - measured_by_terminal: -9
         measured_by_wcwidth: 5
         wchars: (\u101f\u103d\u1036\u101e\u1031\u105a\u103a)
       - measured_by_terminal: 10
@@ -43170,7 +43128,7 @@ test_results:
       - measured_by_terminal: 15
         measured_by_wcwidth: 13
         wchars: \u101c\u1010\u1030\u1006\u1014\u1039\u1012\u100a\u1038\u100d\u102f\u105a\u103a\u1000\u103d\u102c\u1014\u103a\u1010\u1036\u101b\u104b
-      - measured_by_terminal: -1
+      - measured_by_terminal: 14
         measured_by_wcwidth: 10
         wchars: \u1007\u105f\u102c\u1015\u103a\u1019\u105e\u102d\u101f\u103a\u1021\u1001\u1031\u102b\u105a\u103a\u1005\u102f\u1010\u103a\u1019\u102c\u1032
       - measured_by_terminal: 13
@@ -43332,7 +43290,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u1007\u105f\u102c\u1015\u103a\u1019\u105e\u102d\u101f\u103a
-      - measured_by_terminal: 5
+      - measured_by_terminal: -2
         measured_by_wcwidth: 4
         wchars: \u1015\u101b\u1030\u1015\u101b\u102c
       - measured_by_terminal: 12
@@ -43861,49 +43819,46 @@ test_results:
       pct_success: 100.0
     "M\xF2or\xE9":
       failed:
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 4
-        wchars: soog
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 5
-        wchars: Ko\u025b\u025bg
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 6
-        wchars: (fut\xe3)
       - measured_by_terminal: -2
+        measured_by_wcwidth: 1
+        wchars: n
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 1
+        wchars: n
+      - measured_by_terminal: -1
         measured_by_wcwidth: 3
-        wchars: se\u0303n
-      n_errors: 4
+        wchars: w\u028am
+      n_errors: 3
       n_total: 2447
-      pct_success: 99.8365345320801
+      pct_success: 99.87740089906008
     Nanai:
       failed:
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 11
-        wchars: \u0430\u043b\u0438\u0447\u0430\u0438\u0306\u043d\u0438-\u043d\u0443
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 10
-        wchars: \u043e\u0431\u0449\u0435\u0441\u0442\u0432\u043e\u0434\u0438
-      - measured_by_terminal: 4
+      - measured_by_terminal: 3
         measured_by_wcwidth: 9
-        wchars: \u043d\u0430\u0447\u0430\u043b\u044c\u043d\u0430\u0438\u0306
+        wchars: \u041d\u044e\u04c8\u0433\u0438\u044d\u0447\u0438\u044d
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 11
+        wchars: \u0433\u044d\u043b\u044d\u043c\u044d\u0447\u0438\u0443\u0440\u0438
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 12
+        wchars: \u0441\u0432\u043e\u0431\u043e\u0434\u0430\u0441\u0430\u043b\u0431\u0438
       n_errors: 3
       n_total: 1207
       pct_success: 99.75144987572494
     Navajo:
       failed:
-      - measured_by_terminal: 6
-        measured_by_wcwidth: 11
-        wchars: Yisdzoh\xedg\xed\xed
-      - measured_by_terminal: -1
+      - measured_by_terminal: -14
+        measured_by_wcwidth: 3
+        wchars: bee
+      - measured_by_terminal: -10
         measured_by_wcwidth: 5
-        wchars: Biyi\u02bc
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 8
-        wchars: \xed\xedshj\xe1n\xe1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 7
-        wchars: \xf3odl\xe1n\xed
+        wchars: G\xf3ne\u02bc
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 4
+        wchars: D\xed\xed\u02bc
+      - measured_by_terminal: -8
+        measured_by_wcwidth: 2
+        wchars: \xe9\xed
       n_errors: 4
       n_total: 1600
       pct_success: 99.75
@@ -44965,7 +44920,7 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u092a\u094d\u0930\u0924\u093f
-      - measured_by_terminal: 0
+      - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u092a\u0928\u093f
       - measured_by_terminal: 8
@@ -45100,7 +45055,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 3
         wchars: \u0938\u093f\u092e\u093e\u0928\u093e
-      - measured_by_terminal: 4
+      - measured_by_terminal: -3
         measured_by_wcwidth: 3
         wchars: \u092d\u093f\u0924\u094d\u0930
       - measured_by_terminal: 8
@@ -45952,7 +45907,7 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 7
         wchars: \u0935\u0928\u094d\u0926\u094b\u092c\u0938\u094d\u0924\u0915\u094b
-      - measured_by_terminal: -6
+      - measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u0932\u093e\u0917\u093f
       - measured_by_terminal: 4
@@ -46192,7 +46147,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u091c\u0928\u094d\u092e\u0947\u0915\u093e
-      - measured_by_terminal: 12
+      - measured_by_terminal: 9
         measured_by_wcwidth: 7
         wchars: \u092c\u093e\u0932\u092c\u093e\u0932\u093f\u0915\u093e\u0932\u093e\u0908
       - measured_by_terminal: 4
@@ -46707,37 +46662,37 @@ test_results:
       pct_success: 32.7797833935018
     Nuosu:
       failed:
-      - measured_by_terminal: -14
-        measured_by_wcwidth: 16
-        wchars: \ua1ec\ua3e2\ua1cb\ua1ec\ua052\ua400\ua00b\ua246
-      - measured_by_terminal: -22
-        measured_by_wcwidth: 10
-        wchars: \ua44d\ua28e\ua0d8\ua3e2\ua320
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 66
+        wchars: \ua2cb\ua1b9\ua0f9\ua41a\ua0c5\ua354\ua35e\ua0c6\ua0b1\ua47d\ua0e4\ua00b\ua26c\ua010\ua1ec\ua27b\ua3d1\ua1e9\ua3e4\ua3e4\ua109\ua320\ua3e5\ua3e6\ua460\ua489\ua137\ua00b\ua26c\ua0c5\ua30c\ua147\ua3b9
+      - measured_by_terminal: 14
+        measured_by_wcwidth: 24
+        wchars: \ua2bf\ua0b7\ua200\ua425\ua320\ua427\ua2e6\ua1ec\ua327\ua1d0\ua425\ua428
       n_errors: 2
       n_total: 230
       pct_success: 99.1304347826087
     Orok:
       failed:
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 6
-        wchars: \u0447\u0438\u043f\u0430\u0304\u043b\u0438
+      - measured_by_terminal: -6
+        measured_by_wcwidth: 1
+        wchars: '6'
       - measured_by_terminal: 5
+        measured_by_wcwidth: 9
+        wchars: \u043a\u0430\u043c\u0430\u043b\u0438\u0447\u0447\u0435\u0304
+      - measured_by_terminal: 8
         measured_by_wcwidth: 12
-        wchars: \u0442\u043e\u043a\u0442\u043e\u0443\u043c\u0430\u0447\u0438\u043c\u0438
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 8
-        wchars: \u043d\u0443\u043c\u0438\u0431\u0431\u0458\u04e3
+        wchars: \u0431\u0438\u0432\u0432\u0443\u0440\u0438\u0442\u044d\u0438\u043d\u0438
       n_errors: 3
       n_total: 1245
       pct_success: 99.75903614457832
     Otomi, Mezquital:
       failed:
-      - measured_by_terminal: -4
+      - measured_by_terminal: -2
         measured_by_wcwidth: 2
-        wchars: nu
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: (22)
+        wchars: ji
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 2
+        wchars: da
       n_errors: 2
       n_total: 1849
       pct_success: 99.89183342347215
@@ -47838,9 +47793,6 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: '\u0a06\u0a30\u0a1f\u0a40\u0a15\u0a32:'
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 3
-        wchars: \u0a2e\u0a28\u0a41\u0a71\u0a16
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u0a1c\u0a3f\u0a3c\u0a70\u0a26\u0a17\u0a40
@@ -47994,7 +47946,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0a38\u0a3e\u0a39\u0a2e\u0a23\u0a47
-      - measured_by_terminal: 5
+      - measured_by_terminal: 2
         measured_by_wcwidth: 4
         wchars: \u0a07\u0a28\u0a38\u0a3e\u0a28
       - measured_by_terminal: 4
@@ -48945,7 +48897,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0a2a\u0a4d\u0a30\u0a26\u0a3e\u0a28
-      - measured_by_terminal: -1
+      - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0a15\u0a30\u0a47\u0a17\u0a40
       - measured_by_terminal: 7
@@ -49203,6 +49155,9 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0a35\u0a3f\u0a05\u0a15\u0a24\u0a40
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 5
+        wchars: \u0a2a\u0a41\u0a30\u0a05\u0a2e\u0a28
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u0a38\u0a2d\u0a3e\u0a35\u0a3e\u0a02
@@ -49748,74 +49703,68 @@ test_results:
       pct_success: 45.385035499726925
     Panjabi, Western:
       failed:
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 6
+        wchars: \u063a\u0631\u06cc\u0628\u06cc\u060c
       - measured_by_terminal: -1
+        measured_by_wcwidth: 2
+        wchars: \u062a\u06d2
+      - measured_by_terminal: 0
         measured_by_wcwidth: 3
-        wchars: \u0646\u0627\u0644
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 4
-        wchars: \u0627\u06cc\u06c1\u06c1
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 5
-        wchars: \u0630\u0631\u06cc\u0639\u06c1
+        wchars: \u0628\u0686\u06c1
       n_errors: 3
       n_total: 2419
       pct_success: 99.87598181066556
     Pashto, Northern:
       failed:
       - measured_by_terminal: -3
-        measured_by_wcwidth: 2
-        wchars: \u067e\u0647
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 3
-        wchars: \u0644\u0631\u064a
-      - measured_by_terminal: -2
         measured_by_wcwidth: 3
         wchars: \u0634\u064a\u06d4
+      - measured_by_terminal: -6
+        measured_by_wcwidth: 2
+        wchars: \u0646\u0647
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 2
+        wchars: \u062d\u0642
       n_errors: 3
       n_total: 2242
       pct_success: 99.86619090098127
     Picard:
       failed:
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 2
-        wchars: l'
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 8
-        wchars: s'on-\xe8st
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 7
-        wchars: ovr\xe8dje
-      - measured_by_terminal: -6
-        measured_by_wcwidth: 2
-        wchars: \xe8t
-      n_errors: 4
-      n_total: 2024
-      pct_success: 99.80237154150198
-    Pular (Adlam):
-      failed:
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 4
-        wchars: \U0001e938\U0001e922\U0001e933\U0001e946\U0001e92b
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: \U0001e92c\U0001e92b\U0001e923\U0001e946\U0001e92b
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 3
+        wchars: \xe5rt
       - measured_by_terminal: -2
         measured_by_wcwidth: 3
-        wchars: \U0001e922\U0001e944\U0001e923\U0001e92b\U0001e945
+        wchars: d\xe8l
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 3
+        wchars: l\xe8s
       n_errors: 3
+      n_total: 2024
+      pct_success: 99.85177865612648
+    Pular (Adlam):
+      failed:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 11
+        wchars: \U0001e929\U0001e92b\U0001e932\U0001e93a\U0001e935\U0001e945\U0001e92a\U0001e92e\U0001e93c\U0001e922\U0001e944\U0001e933\U0001e92e
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 1
+        wchars: \U0001e92b
+      n_errors: 2
       n_total: 1613
-      pct_success: 99.81401115933043
+      pct_success: 99.87600743955363
     Saint Lucian Creole French:
       failed:
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 2
-        wchars: ni
       - measured_by_terminal: 0
         measured_by_wcwidth: 4
-        wchars: moun
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 2
-        wchars: ni
+        wchars: Atik
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 3
+        wchars: kay
+      - measured_by_terminal: 5
+        measured_by_wcwidth: 8
+        wchars: libe\u0300te\u0301-a
       n_errors: 3
       n_total: 1777
       pct_success: 99.83117613956107
@@ -50550,7 +50499,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0938\u0902\u0938\u094d\u0924\u0941\u0924\u093e\u0928\u093e\u0902
-      - measured_by_terminal: 1
+      - measured_by_terminal: 8
         measured_by_wcwidth: 5
         wchars: \u092a\u094d\u0930\u092d\u093e\u0935\u093f\u0928\u093e\u0902
       - measured_by_terminal: 8
@@ -50658,6 +50607,9 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0905\u0928\u0941\u091a\u094d\u091b\u0947\u0926\u0903
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 2
+        wchars: \u0967\u0967
       - measured_by_terminal: 8
         measured_by_wcwidth: 7
         wchars: \u092a\u094d\u0930\u0924\u094d\u092f\u0947\u0915\u092e\u092a\u093f
@@ -51315,7 +51267,7 @@ test_results:
       - measured_by_terminal: 15
         measured_by_wcwidth: 10
         wchars: \u0938\u093e\u092e\u093e\u091c\u093f\u0915-\u0938\u0941\u0930\u0915\u094d\u0937\u093e\u092f\u093e
-      - measured_by_terminal: -9
+      - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0905\u0927\u093f\u0915\u093e\u0930\u0902
       - measured_by_terminal: 9
@@ -51480,7 +51432,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0938\u0902\u092f\u094b\u091c\u092f\u093f\u0924\u0941\u0902
-      - measured_by_terminal: 10
+      - measured_by_terminal: 2
         measured_by_wcwidth: 9
         wchars: \u090f\u0924\u093e\u0926\u0943\u0915\u094d-\u0938\u0902\u0918\u091f\u0928\u0902
       - measured_by_terminal: 2
@@ -52053,7 +52005,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 6
         wchars: \u0930\u093e\u0937\u094d\u091f\u094d\u0930\u0938\u094d\u092f
-      - measured_by_terminal: -2
+      - measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u0935\u093e
       - measured_by_terminal: 14
@@ -52083,9 +52035,9 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 8
         wchars: \u0938\u094d\u0935\u0940\u091f\u094d\u091c\u093c\u0930\u0932\u0948\u0923\u094d\u0921
-      n_errors: 754
+      n_errors: 755
       n_total: 1000
-      pct_success: 24.6
+      pct_success: 24.5
     Sanskrit (Grantha):
       failed:
       - measured_by_terminal: 14
@@ -52796,7 +52748,7 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011305\U0001132a\U0001133f
-      - measured_by_terminal: 9
+      - measured_by_terminal: 11
         measured_by_wcwidth: 6
         wchars: \U00011326\U0001133e\U00011338\U00011335\U0001134d\U0001132f\U0001133e\U0001132a\U0001133e\U00011330\U00011303
       - measured_by_terminal: 10
@@ -52919,7 +52871,7 @@ test_results:
       - measured_by_terminal: 15
         measured_by_wcwidth: 9
         wchars: \U00011338\U00011302\U00011330\U00011315\U0001134d\U00011337\U00011323\U0001132e\U00011335\U0001133e\U0001132a\U0001134d\U00011324\U00011341\U00011302
-      - measured_by_terminal: 9
+      - measured_by_terminal: -7
         measured_by_wcwidth: 6
         wchars: \U00011305\U00011330\U0001134d\U00011339\U00011328\U0001134d\U00011324\U0001133f\u0964
       - measured_by_terminal: 6
@@ -53543,7 +53495,7 @@ test_results:
       - measured_by_terminal: 8
         measured_by_wcwidth: 4
         wchars: \U00011305\U00011328\U0001134d\U0001132f\U00011347\U00011337\U0001133e\U00011302
-      - measured_by_terminal: 6
+      - measured_by_terminal: 14
         measured_by_wcwidth: 10
         wchars: \U00011338\U00011339\U0001132f\U0001134b\U00011317-\U0001132a\U00011341\U00011330\U00011338\U0001134d\U00011338\U00011330\U00011302
       - measured_by_terminal: 5
@@ -53735,7 +53687,7 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 5
         wchars: \U00011305\U00011328\U00011341\U0001131a\U0001134d\U0001131b\U00011347\U00011326\U00011303
-      - measured_by_terminal: 11
+      - measured_by_terminal: 8
         measured_by_wcwidth: 7
         wchars: \U0001132a\U0001134d\U00011330\U00011324\U0001134d\U0001132f\U00011347\U00011315\U0001132e\U00011347\U00011335
       - measured_by_terminal: 3
@@ -54239,7 +54191,7 @@ test_results:
       - measured_by_terminal: 13
         measured_by_wcwidth: 8
         wchars: \U00011305\U00011330\U0001134d\U00011339\U0001133f\U00011337\U0001134d\U0001132f\U00011328\U0001134d\U00011324\U0001133f\u0964
-      - measured_by_terminal: -4
+      - measured_by_terminal: 9
         measured_by_wcwidth: 5
         wchars: \U00011305\U00011328\U00011341\U0001131a\U0001134d\U0001131b\U00011347\U00011326\U00011303
       - measured_by_terminal: 11
@@ -54518,9 +54470,6 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 5
         wchars: \U00011305\U00011328\U00011341\U0001131a\U0001134d\U0001131b\U00011347\U00011326\U00011303
-      - measured_by_terminal: 6
-        measured_by_wcwidth: 3
-        wchars: \U00011305\U00011338\U0001134d\U0001132f\U0001133e\U00011302
       - measured_by_terminal: 11
         measured_by_wcwidth: 6
         wchars: \U00011305\U0001132d\U0001133f\U00011318\U0001134b\U00011337\U00011323\U0001133e\U0001132f\U0001133e\U00011302
@@ -54767,45 +54716,45 @@ test_results:
       - measured_by_terminal: 12
         measured_by_wcwidth: 8
         wchars: \U00011338\U0001134d\U00011335\U00011340\U0001131f\U0001134d\U0001131c\U0001133c\U00011330\U00011332\U00011348\U00011323\U0001134d\U00011321
-      n_errors: 893
+      n_errors: 892
       n_total: 1006
-      pct_success: 11.232604373757455
+      pct_success: 11.332007952286283
     Secoya:
       failed:
-      - measured_by_terminal: 1
+      - measured_by_terminal: 0
         measured_by_wcwidth: 7
-        wchars: peoyeje
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 7
-        wchars: pa'iji.
-      - measured_by_terminal: -3
+        wchars: Si'apai
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 8
+        wchars: tsi'siji
+      - measured_by_terminal: -2
         measured_by_wcwidth: 5
-        wchars: pa'ye
+        wchars: iwa'i
       n_errors: 3
       n_total: 1409
       pct_success: 99.78708303761533
     Seraiki:
       failed:
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 3
-        wchars: \u06a9\u0648\u06ba
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 4
-        wchars: \u062f\u0641\u0639\u06c1
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 2
-        wchars: \u06c1\u06d2
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 5
+        wchars: \u06cc\u0627\u0628\u06cc\u0646
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 5
+        wchars: \u0631\u0633\u0645\u0627\u06ba
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 1
+        wchars: \u06d4
       n_errors: 3
       n_total: 2242
       pct_success: 99.86619090098127
     Serer-Sine:
       failed:
-      - measured_by_terminal: -7
+      - measured_by_terminal: -6
         measured_by_wcwidth: 2
-        wchars: Ar
-      - measured_by_terminal: -2
+        wchars: Ke
+      - measured_by_terminal: 1
         measured_by_wcwidth: 3
-        wchars: naa
+        wchars: kaa
       n_errors: 2
       n_total: 1596
       pct_success: 99.87468671679198
@@ -55459,7 +55408,7 @@ test_results:
       - measured_by_terminal: 19
         measured_by_wcwidth: 12
         wchars: \u1010\u1083\u1087\u1081\u1030\u1019\u103a\u1087\u101c\u1030\u1019\u103a\u1088\u1078\u1030\u101d\u103a\u108a\u1015\u1062\u107c\u103a\u1019\u107c\u103a\u1038\u104b
-      - measured_by_terminal: -16
+      - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1010\u103d\u107c\u103a\u1088
       - measured_by_terminal: 23
@@ -55546,7 +55495,7 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 5
         wchars: \u1075\u1030\u107c\u103a\u1038\u1075\u1031\u1083\u1089\u107c\u102d\u102f\u1004\u103a\u1088
-      - measured_by_terminal: 9
+      - measured_by_terminal: -2
         measured_by_wcwidth: 5
         wchars: \u1010\u1083\u1087\u1075\u1030\u108a\u101c\u103d\u1004\u103a\u1088\u104b
       - measured_by_terminal: 3
@@ -56167,7 +56116,7 @@ test_results:
       - measured_by_terminal: 8
         measured_by_wcwidth: 5
         wchars: \u1010\u1031\u101c\u1086\u1088\u1081\u1035\u1010\u103a\u1038\u104b
-      - measured_by_terminal: 3
+      - measured_by_terminal: 12
         measured_by_wcwidth: 5
         wchars: \u107c\u1083\u1088\u1081\u1031\u1083\u1010\u1031\u1083\u1081\u102d\u1030\u107c\u103a\u1038
       - measured_by_terminal: 8
@@ -56347,7 +56296,7 @@ test_results:
       - measured_by_terminal: 15
         measured_by_wcwidth: 10
         wchars: \u101c\u103d\u1010\u103a\u1088\u101c\u103d\u1010\u103a\u1088\u101c\u1085\u101d\u103a\u1038\u101c\u1085\u101d\u103a\u1038\u101a\u1030\u1087\u104a
-      - measured_by_terminal: 9
+      - measured_by_terminal: -6
         measured_by_wcwidth: 5
         wchars: \u107c\u1082\u103a\u1038\u107c\u107c\u103a\u1015\u1083\u1038\u101d\u1086\u1089
       - measured_by_terminal: 7
@@ -56860,7 +56809,7 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 5
         wchars: \u1019\u102d\u1030\u101d\u103a\u1088\u1011\u101d\u103a\u1088\u1075\u1084\u1087
-      - measured_by_terminal: -5
+      - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u1022\u1019\u103a\u1087\u107c\u107c\u103a
       - measured_by_terminal: 20
@@ -57088,7 +57037,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 4
         wchars: \u1019\u102e\u1038\u101e\u102f\u107c\u103a\u1087\u101c\u1086\u1088
-      - measured_by_terminal: 14
+      - measured_by_terminal: 6
         measured_by_wcwidth: 9
         wchars: \u1010\u1083\u1087\u101c\u102d\u1030\u1075\u103a\u1088\u1022\u101d\u103a\u1078\u102d\u1030\u101d\u103a\u1089\u101e\u1085\u107c\u103a\u1038
       - measured_by_terminal: 9
@@ -57420,30 +57369,27 @@ test_results:
       pct_success: 5.136612021857923
     Shipibo-Conibo:
       failed:
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 6
-        wchars: jonibo
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 5
+        wchars: benbo
       - measured_by_terminal: -8
         measured_by_wcwidth: 6
-        wchars: inonbi
-      - measured_by_terminal: -6
-        measured_by_wcwidth: 4
-        wchars: iqui
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 9
-        wchars: pot\xe1bicho
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 7
-        wchars: as\u0308heati
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 9
-        wchars: Huestiora
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 7
-        wchars: acainco
-      n_errors: 7
+        wchars: huetsa
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 8
+        wchars: huetsabo
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 15
+        wchars: jahuequescamabi
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 13
+        wchars: Jains\u0308honnbira
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 8
+        wchars: Jainoas\u0308h
+      n_errors: 6
       n_total: 2540
-      pct_success: 99.72440944881889
+      pct_success: 99.76377952755907
     Sinhala:
       failed:
       - measured_by_terminal: 4
@@ -58295,9 +58241,6 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0d85\u0db8\u0dcf\u0db1\u0dd4\u0dc2\u0dd2\u0d9a
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 3
-        wchars: \u0db4\u0dc4\u0dad\u0dca
       - measured_by_terminal: 8
         measured_by_wcwidth: 7
         wchars: \u0dc3\u0dd0\u0dc5\u0d9a\u0dd2\u0dbd\u0dca\u0dbd\u0d9a\u0da7
@@ -58400,6 +58343,9 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0dc0\u0dda.
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u0dc0\u0db1
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0d86\u0dab\u0dca\u0da9\u0dd4\u0d9a\u0dca\u200d\u0dbb\u0db8
@@ -59081,9 +59027,6 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0dc3\u0dd1\u0db8
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 4
-        wchars: \u0d85\u0dba\u0dd2\u0dad\u0dd2\u0dba
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0d85\u0db1\u0dd4\u0db1\u0dca\u0d9c\u0dda
@@ -59285,7 +59228,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0dc3\u0db8\u0dcf\u0da2\u0dba\u0dd2\u0d9a
-      - measured_by_terminal: 2
+      - measured_by_terminal: -4
         measured_by_wcwidth: 1
         wchars: \u0dc4\u0dcf
       - measured_by_terminal: 7
@@ -59903,7 +59846,7 @@ test_results:
       - measured_by_terminal: 9
         measured_by_wcwidth: 6
         wchars: \u0db4\u0dca\u200d\u0dbb\u0d9a\u0dcf\u0dc1\u0db1\u0dba\u0dd9\u0dc4\u0dd2
-      - measured_by_terminal: 3
+      - measured_by_terminal: 8
         measured_by_wcwidth: 7
         wchars: \u0d85\u0dba\u0dd2\u0dad\u0dd2\u0dc0\u0dcf\u0dc3\u0dd2\u0d9a\u0db8\u0dca
       - measured_by_terminal: 2
@@ -60107,34 +60050,34 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0db1\u0ddc\u0d9a\u0dc5
-      n_errors: 887
+      n_errors: 886
       n_total: 1655
-      pct_success: 46.404833836858
+      pct_success: 46.46525679758308
     Siona:
       failed:
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 10
-        wchars: Teo'huaije\u0331
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 5
+        wchars: yo'ye
       - measured_by_terminal: 2
-        measured_by_wcwidth: 6
-        wchars: aqu\xebre
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 7
-        wchars: Sia'bai\u0331
+        measured_by_wcwidth: 8
+        wchars: Art\xedculo
+      - measured_by_terminal: -8
+        measured_by_wcwidth: 4
+        wchars: cato
       n_errors: 3
       n_total: 1492
       pct_success: 99.79892761394102
     South Azerbaijani:
       failed:
+      - measured_by_terminal: 3
+        measured_by_wcwidth: 9
+        wchars: bulundug\u0306u
       - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: veya
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 5
-        wchars: kimse
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 2
-        wchars: '25'
+        measured_by_wcwidth: 6
+        wchars: vicdan
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 6
+        wchars: tu\u0308ru\u0308nu\u0308
       n_errors: 3
       n_total: 1396
       pct_success: 99.78510028653295
@@ -60145,12 +60088,12 @@ test_results:
       pct_success: 100.0
     Tai Dam:
       failed:
-      - measured_by_terminal: 0
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 1
+        wchars: \uaa8e\uaab4
+      - measured_by_terminal: -2
         measured_by_wcwidth: 2
-        wchars: \uaabb\uaa90
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 3
-        wchars: \uaab9\uaaa4\uaab8\uaa92
+        wchars: \uaab9\uaa8b\uaab7
       n_errors: 2
       n_total: 2386
       pct_success: 99.91617770326907
@@ -60260,15 +60203,15 @@ test_results:
       pct_success: 26.666666666666668
     Tamazight, Central Atlas:
       failed:
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 6
-        wchars: tehkim
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 6
-        wchars: alamma
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 1
-        wchars: n
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 8
+        wchars: itekksen
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 2
+        wchars: di
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 4
+        wchars: akkw
       n_errors: 3
       n_total: 1822
       pct_success: 99.83534577387486
@@ -61105,7 +61048,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u0b9a\u0bca\u0ba4\u0bcd\u0ba4\u0bc1
-      - measured_by_terminal: 0
+      - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0baa\u0bbf\u0bb1\u0baa\u0bcd\u0baa\u0bc1
       - measured_by_terminal: 5
@@ -61216,7 +61159,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0b85\u0bb2\u0bcd\u0bb2\u0ba4\u0bc1
-      - measured_by_terminal: 5
+      - measured_by_terminal: 0
         measured_by_wcwidth: 3
         wchars: \u0b87\u0bb1\u0bc8\u0bae\u0bc8
       - measured_by_terminal: 9
@@ -61927,7 +61870,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0b9a\u0bc6\u0bb2\u0bcd\u0bb2\u0bb5\u0bc1\u0bae\u0bcd
-      - measured_by_terminal: -1
+      - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0ba4\u0ba4\u0bcd\u0ba4\u0bae\u0ba4\u0bc1
       - measured_by_terminal: 9
@@ -62134,9 +62077,6 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0b92\u0bb0\u0bc1
-      - measured_by_terminal: 9
-        measured_by_wcwidth: 6
-        wchars: \u0b95\u0bc1\u0b9f\u0bc1\u0bae\u0bcd\u0baa\u0ba4\u0bcd\u0ba4\u0bc8
       - measured_by_terminal: 14
         measured_by_wcwidth: 10
         wchars: \u0b89\u0bb0\u0bc1\u0bb5\u0bbe\u0b95\u0bcd\u0b95\u0bc1\u0bb5\u0ba4\u0bb1\u0bcd\u0b95\u0bc1\u0bae\u0bcd
@@ -62749,7 +62689,7 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 7
         wchars: \u0bb5\u0bc7\u0ba3\u0bcd\u0b9f\u0baa\u0bcd\u0baa\u0bc6\u0bb1\u0bc1\u0bae\u0bcd
-      - measured_by_terminal: -1
+      - measured_by_terminal: 9
         measured_by_wcwidth: 5
         wchars: \u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bbe\u0ba4\u0bbe\u0bb0
       - measured_by_terminal: 4
@@ -63049,7 +62989,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0b85\u0ba4\u0bcd\u0ba4\u0bc1\u0b9f\u0ba9\u0bcd
-      - measured_by_terminal: 9
+      - measured_by_terminal: 3
         measured_by_wcwidth: 5
         wchars: \u0bb5\u0bc7\u0bb2\u0bc8\u0baf\u0bbf\u0ba9\u0bcd\u0bae\u0bc8
       - measured_by_terminal: 6
@@ -63274,9 +63214,12 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0bae\u0ba9\u0bbf\u0ba4\u0ba9\u0bbf\u0ba9\u0bcd
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 4
+        wchars: \u0b86\u0bb3\u0bc1\u0bae\u0bc8\u0baf\u0bc8
       n_errors: 1000
-      n_total: 1075
-      pct_success: 6.976744186046512
+      n_total: 1076
+      pct_success: 7.063197026022305
     Tamil (Sri Lanka):
       failed:
       - measured_by_terminal: 4
@@ -64110,7 +64053,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 3
         wchars: \u0b9a\u0bca\u0ba4\u0bcd\u0ba4\u0bc1
-      - measured_by_terminal: 0
+      - measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \u0baa\u0bbf\u0bb1\u0baa\u0bcd\u0baa\u0bc1
       - measured_by_terminal: 5
@@ -64221,7 +64164,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0b85\u0bb2\u0bcd\u0bb2\u0ba4\u0bc1
-      - measured_by_terminal: 5
+      - measured_by_terminal: 0
         measured_by_wcwidth: 3
         wchars: \u0b87\u0bb1\u0bc8\u0bae\u0bc8
       - measured_by_terminal: 9
@@ -64932,7 +64875,7 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0b9a\u0bc6\u0bb2\u0bcd\u0bb2\u0bb5\u0bc1\u0bae\u0bcd
-      - measured_by_terminal: -1
+      - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0ba4\u0ba4\u0bcd\u0ba4\u0bae\u0ba4\u0bc1
       - measured_by_terminal: 9
@@ -65139,9 +65082,6 @@ test_results:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0b92\u0bb0\u0bc1
-      - measured_by_terminal: 9
-        measured_by_wcwidth: 6
-        wchars: \u0b95\u0bc1\u0b9f\u0bc1\u0bae\u0bcd\u0baa\u0ba4\u0bcd\u0ba4\u0bc8
       - measured_by_terminal: 14
         measured_by_wcwidth: 10
         wchars: \u0b89\u0bb0\u0bc1\u0bb5\u0bbe\u0b95\u0bcd\u0b95\u0bc1\u0bb5\u0ba4\u0bb1\u0bcd\u0b95\u0bc1\u0bae\u0bcd
@@ -65754,7 +65694,7 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 7
         wchars: \u0bb5\u0bc7\u0ba3\u0bcd\u0b9f\u0baa\u0bcd\u0baa\u0bc6\u0bb1\u0bc1\u0bae\u0bcd
-      - measured_by_terminal: -1
+      - measured_by_terminal: 9
         measured_by_wcwidth: 5
         wchars: \u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bbe\u0ba4\u0bbe\u0bb0
       - measured_by_terminal: 4
@@ -66054,7 +65994,7 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 5
         wchars: \u0b85\u0ba4\u0bcd\u0ba4\u0bc1\u0b9f\u0ba9\u0bcd
-      - measured_by_terminal: 9
+      - measured_by_terminal: 3
         measured_by_wcwidth: 5
         wchars: \u0bb5\u0bc7\u0bb2\u0bc8\u0baf\u0bbf\u0ba9\u0bcd\u0bae\u0bc8
       - measured_by_terminal: 6
@@ -66279,9 +66219,12 @@ test_results:
       - measured_by_terminal: 7
         measured_by_wcwidth: 5
         wchars: \u0bae\u0ba9\u0bbf\u0ba4\u0ba9\u0bbf\u0ba9\u0bcd
+      - measured_by_terminal: 7
+        measured_by_wcwidth: 4
+        wchars: \u0b86\u0bb3\u0bc1\u0bae\u0bc8\u0baf\u0bc8
       n_errors: 1000
-      n_total: 1074
-      pct_success: 6.890130353817504
+      n_total: 1075
+      pct_success: 6.976744186046512
     Telugu:
       failed:
       - measured_by_terminal: 10
@@ -66971,7 +66914,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0c17\u0c32\u0c26\u0c41.
-      - measured_by_terminal: 2
+      - measured_by_terminal: 8
         measured_by_wcwidth: 6
         wchars: \u0c05\u0c28\u0c41\u0c1a\u0c4d\u0c1b\u0c47\u0c26\u0c2e\u0c41
       - measured_by_terminal: 7
@@ -67058,7 +67001,7 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 8
         wchars: \u0c06\u0c35\u0c36\u0c4d\u0c2f\u0c15\u0c2e\u0c41\u0c32\u0c17\u0c41
-      - measured_by_terminal: 6
+      - measured_by_terminal: -4
         measured_by_wcwidth: 5
         wchars: \u0c05\u0c2d\u0c2f\u0c2e\u0c41\u0c32
       - measured_by_terminal: 7
@@ -67664,7 +67607,7 @@ test_results:
       - measured_by_terminal: 8
         measured_by_wcwidth: 6
         wchars: \u0c26\u0c47\u0c36\u0c2e\u0c41\u0c28\u0c02\u0c26\u0c32\u0c3f
-      - measured_by_terminal: 6
+      - measured_by_terminal: 9
         measured_by_wcwidth: 8
         wchars: \u0c2a\u0c4d\u0c30\u0c35\u0c47\u0c36\u0c3e\u0c27\u0c3f\u0c15\u0c3e\u0c30\u0c2e\u0c41
       - measured_by_terminal: 5
@@ -67817,7 +67760,7 @@ test_results:
       - measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \u0c17\u0c32\u0c26\u0c41.
-      - measured_by_terminal: 6
+      - measured_by_terminal: -2
         measured_by_wcwidth: 5
         wchars: \u0c05\u0c30\u0c4d\u0c39\u0c2e\u0c17\u0c41
       - measured_by_terminal: 7
@@ -68318,9 +68261,6 @@ test_results:
       - measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u0c2e\u0c30\u0c3f\u0c2f\u0c41
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 7
-        wchars: \u0c2a\u0c4d\u0c30\u0c1c\u0c3e\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f\u0c15
       - measured_by_terminal: 9
         measured_by_wcwidth: 6
         wchars: \u0c38\u0c2e\u0c3e\u0c1c\u0c2e\u0c41\u0c28\u0c02\u0c26\u0c41
@@ -68432,257 +68372,230 @@ test_results:
       - measured_by_terminal: 8
         measured_by_wcwidth: 6
         wchars: \u0c1a\u0c47\u0c2f\u0c15\u0c42\u0c21\u0c26\u0c41.
-      n_errors: 716
+      n_errors: 715
       n_total: 1129
-      pct_success: 36.58104517271922
+      pct_success: 36.6696191319752
     Tem:
       failed:
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 1
-        wchars: '4'
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 3
+        wchars: y\xe1\xe1
       - measured_by_terminal: 0
         measured_by_wcwidth: 4
-        wchars: y\xedko
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 6
-        wchars: bef\xe9re
+        wchars: \u0269c\u0254\u0301\u0254
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 9
+        wchars: b\u0269dam\xe1\xe1na
       n_errors: 3
       n_total: 1659
       pct_success: 99.81916817359856
     Thai:
       failed:
-      - measured_by_terminal: -32
-        measured_by_wcwidth: 2
-        wchars: \u0e02\u0e49\u0e2d
-      - measured_by_terminal: -32
-        measured_by_wcwidth: 12
-        wchars: \u0e41\u0e25\u0e30\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e41\u0e17\u0e49\u0e08\u0e23\u0e34\u0e07
-      - measured_by_terminal: -53
-        measured_by_wcwidth: 1
-        wchars: \u0e46
-      n_errors: 3
+      - measured_by_terminal: -37
+        measured_by_wcwidth: 40
+        wchars: \u0e0b\u0e36\u0e48\u0e07\u0e15\u0e19\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e2b\u0e25\u0e31\u0e01\u0e1b\u0e23\u0e30\u0e01\u0e31\u0e19\u0e1a\u0e23\u0e23\u0e14\u0e32\u0e17\u0e35\u0e48\u0e08\u0e33\u0e40\u0e1b\u0e47\u0e19\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e15\u0e48\u0e2d\u0e2a\u0e39\u0e49\u0e04\u0e14\u0e35
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 29
+        wchars: \u0e23\u0e27\u0e21\u0e17\u0e31\u0e49\u0e07\u0e01\u0e32\u0e23\u0e08\u0e33\u0e01\u0e31\u0e14\u0e40\u0e27\u0e25\u0e32\u0e17\u0e33\u0e07\u0e32\u0e19\u0e15\u0e32\u0e21\u0e2a\u0e21\u0e04\u0e27\u0e23
+      n_errors: 2
       n_total: 341
-      pct_success: 99.12023460410558
+      pct_success: 99.41348973607037
     Thai (2):
       failed:
-      - measured_by_terminal: -31
-        measured_by_wcwidth: 2
-        wchars: \u0e02\u0e49\u0e2d
-      - measured_by_terminal: 13
-        measured_by_wcwidth: 48
-        wchars: \u0e17\u0e38\u0e01\u0e04\u0e19\u0e21\u0e35\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e17\u0e35\u0e48\u0e08\u0e30\u0e40\u0e02\u0e49\u0e32\u0e16\u0e36\u0e07\u0e1a\u0e23\u0e34\u0e01\u0e32\u0e23\u0e2a\u0e32\u0e18\u0e32\u0e23\u0e13\u0e30\u0e43\u0e19\u0e1b\u0e23\u0e30\u0e40\u0e17\u0e28\u0e15\u0e19\u0e42\u0e14\u0e22\u0e40\u0e2a\u0e21\u0e2d\u0e20\u0e32\u0e04
-      - measured_by_terminal: -22
-        measured_by_wcwidth: 44
-        wchars: \u0e41\u0e25\u0e30\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e43\u0e2b\u0e49\u0e2a\u0e2d\u0e14\u0e23\u0e31\u0e1a\u0e01\u0e31\u0e1a\u0e04\u0e27\u0e32\u0e21\u0e15\u0e49\u0e2d\u0e07\u0e01\u0e32\u0e23\u0e2d\u0e31\u0e19\u0e2a\u0e21\u0e04\u0e27\u0e23\u0e17\u0e32\u0e07\u0e14\u0e49\u0e32\u0e19\u0e28\u0e35\u0e25\u0e18\u0e23\u0e23\u0e21
-      n_errors: 3
+      - measured_by_terminal: 55
+        measured_by_wcwidth: 84
+        wchars: \u0e21\u0e35\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e17\u0e35\u0e48\u0e08\u0e30\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e2a\u0e31\u0e19\u0e19\u0e34\u0e29\u0e10\u0e32\u0e19\u0e44\u0e27\u0e49\u0e01\u0e48\u0e2d\u0e19\u0e27\u0e48\u0e32\u0e1a\u0e23\u0e34\u0e2a\u0e38\u0e17\u0e18\u0e34\u0e4c\u0e08\u0e19\u0e01\u0e27\u0e48\u0e32\u0e08\u0e30\u0e1e\u0e34\u0e2a\u0e39\u0e08\u0e19\u0e4c\u0e44\u0e14\u0e49\u0e27\u0e48\u0e32\u0e21\u0e35\u0e04\u0e27\u0e32\u0e21\u0e1c\u0e34\u0e14\u0e15\u0e32\u0e21\u0e01\u0e0e\u0e2b\u0e21\u0e32\u0e22\u0e43\u0e19\u0e01\u0e32\u0e23\u0e1e\u0e34\u0e08\u0e32\u0e23\u0e13\u0e32\u0e04\u0e14\u0e35\u0e17\u0e35\u0e48\u0e40\u0e1b\u0e34\u0e14\u0e40\u0e1c\u0e22
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 30
+        wchars: \u0e41\u0e25\u0e30\u0e27\u0e31\u0e19\u0e2b\u0e22\u0e38\u0e14\u0e40\u0e1b\u0e47\u0e19\u0e04\u0e23\u0e31\u0e49\u0e07\u0e04\u0e23\u0e32\u0e27\u0e42\u0e14\u0e22\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e04\u0e48\u0e32\u0e08\u0e49\u0e32\u0e07
+      n_errors: 2
       n_total: 313
-      pct_success: 99.04153354632588
+      pct_success: 99.36102236421725
     Tibetan, Central:
       failed:
-      - measured_by_terminal: 27
-        measured_by_wcwidth: 55
-        wchars: \u0f41\u0f7c\u0f44\u0f0b\u0f5a\u0f7c\u0f62\u0f0b\u0f62\u0f44\u0f0b\u0f56\u0fb1\u0f74\u0f44\u0f0b\u0f42\u0f72\u0f0b\u0f56\u0fb3\u0f7c\u0f0b\u0f62\u0fa9\u0f63\u0f0b\u0f51\u0f44\u0f0b\u0f56\u0f66\u0f58\u0f0b\u0f5a\u0f74\u0f63\u0f0b\u0f56\u0f5f\u0f44\u0f0b\u0f54\u0f7c\u0f0b\u0f60\u0f51\u0f7c\u0f53\u0f0b\u0f54\u0f60\u0f72\u0f0b\u0f60\u0f7c\u0f66\u0f0b\u0f56\u0f56\u0f66\u0f0b\u0f40\u0fb1\u0f44\u0f0b\u0f61\u0f7c\u0f51\u0f0d
-      - measured_by_terminal: -17
-        measured_by_wcwidth: 34
-        wchars: \u0f61\u0f44\u0f0b\u0f53\u0f0b\u0f62\u0f44\u0f0b\u0f61\u0f74\u0f63\u0f0b\u0f51\u0f74\u0f0b\u0f55\u0fb1\u0f72\u0f62\u0f0b\u0f63\u0f7c\u0f42\u0f0b\u0f56\u0fb1\u0f7a\u0f51\u0f0b\u0f54\u0f60\u0f72\u0f0b\u0f50\u0f7c\u0f56\u0f0b\u0f50\u0f44\u0f0b\u0f61\u0f7c\u0f51\u0f0e
-      - measured_by_terminal: -33
-        measured_by_wcwidth: 15
-        wchars: \u0f51\u0f7c\u0f53\u0f0b\u0f5a\u0f53\u0f0b\u0f49\u0f7a\u0f62\u0f0b\u0f42\u0f66\u0f74\u0f58\u0f0b\u0f54\u0f0d
-      - measured_by_terminal: -43
-        measured_by_wcwidth: 15
-        wchars: \u0f62\u0f44\u0f0b\u0f42\u0f72\u0f0b\u0f50\u0f7c\u0f56\u0f0b\u0f50\u0f44\u0f0b\u0f51\u0f44\u0f0c\u0f0d
-      n_errors: 4
+      - measured_by_terminal: -15
+        measured_by_wcwidth: 11
+        wchars: \u0f51\u0f7c\u0f53\u0f0b\u0f5a\u0f53\u0f0b\u0f56\u0f5e\u0f72\u0f0b\u0f54\u0f0d
+      - measured_by_terminal: -44
+        measured_by_wcwidth: 14
+        wchars: \u0f51\u0f7a\u0f0b\u0f63\u0f0b\u0f5a\u0f7c\u0f42\u0f66\u0f0b\u0f66\u0fa1\u0f7a\u0f0b\u0f51\u0f44\u0f0c\u0f0d
+      - measured_by_terminal: -11
+        measured_by_wcwidth: 27
+        wchars: \u0f62\u0f7c\u0f42\u0f66\u0f0b\u0f62\u0f58\u0f0b\u0f51\u0f42\u0f7c\u0f66\u0f0b\u0f54\u0f60\u0f72\u0f0b\u0f50\u0f7c\u0f56\u0f0b\u0f50\u0f44\u0f0b\u0f61\u0f7c\u0f51\u0f0b\u0f45\u0f72\u0f44\u0f0c\u0f0d
+      n_errors: 3
       n_total: 280
-      pct_success: 98.57142857142858
+      pct_success: 98.92857142857143
     Ticuna:
-      failed:
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 4
-        wchars: tama
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 6
-        wchars: yax\u0169x\xfc\u0303
-      - measured_by_terminal: 7
-        measured_by_wcwidth: 9
-        wchars: w\xfcxichig\xfc
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 1
-        wchars: i
-      n_errors: 4
-      n_total: 2048
-      pct_success: 99.8046875
-    Uduk:
       failed:
       - measured_by_terminal: -6
         measured_by_wcwidth: 2
-        wchars: mo
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 5
-        wchars: sho\u2019k
-      - measured_by_terminal: 0
+        wchars: '5.'
+      - measured_by_terminal: -7
+        measured_by_wcwidth: 2
+        wchars: r\xfc
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 2
+        wchars: na
+      n_errors: 3
+      n_total: 2048
+      pct_success: 99.853515625
+    Uduk:
+      failed:
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 1
+        wchars: e
+      - measured_by_terminal: -1
         measured_by_wcwidth: 3
-        wchars: Uni
+        wchars: jin
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 4
+        wchars: midi
+      - measured_by_terminal: -3
+        measured_by_wcwidth: 3
+        wchars: uni
       - measured_by_terminal: -3
         measured_by_wcwidth: 6
-        wchars: bampan
-      - measured_by_terminal: 3
-        measured_by_wcwidth: 5
-        wchars: mmoc\u0331i
+        wchars: \u2019kwani
       n_errors: 5
       n_total: 3247
       pct_success: 99.84601170311056
     Urdu:
       failed:
-      - measured_by_terminal: -3
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 3
+        wchars: \u0634\u06a9\u0644
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 3
+        wchars: \u06a9\u0631\u06d2
+      - measured_by_terminal: -2
         measured_by_wcwidth: 2
-        wchars: \u06a9\u06cc
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 4
-        wchars: \u067e\u0648\u0631\u06cc
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 2
-        wchars: \u06a9\u0627
+        wchars: \u0648\u06c1
       n_errors: 3
       n_total: 2237
       pct_success: 99.86589181940099
     Urdu (2):
       failed:
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 2
-        wchars: \u06cc\u0627
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 7
-        wchars: \u0627\u0632\u062f\u0648\u0627\u062c\u06cc
       - measured_by_terminal: 0
-        measured_by_wcwidth: 4
-        wchars: \u062a\u0645\u0627\u0645
+        measured_by_wcwidth: 2
+        wchars: \u06a9\u06cc
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchars: \u062d\u0642
+      - measured_by_terminal: -2
+        measured_by_wcwidth: 3
+        wchars: \u0633\u06d2\u060c
       n_errors: 3
       n_total: 2251
       pct_success: 99.86672589960017
     Veps:
       failed:
-      - measured_by_terminal: -2
+      - measured_by_terminal: -5
         measured_by_wcwidth: 6
-        wchars: Nikeda
-      - measured_by_terminal: 9
-        measured_by_wcwidth: 10
-        wchars: valdkundan
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 2
-        wchars: om
+        wchars: Kaikil
+      - measured_by_terminal: -6
+        measured_by_wcwidth: 4
+        wchars: ect\xe4
+      - measured_by_terminal: 8
+        measured_by_wcwidth: 15
+        wchars: tedoprogressaha
       n_errors: 3
       n_total: 1323
       pct_success: 99.77324263038548
     Vietnamese:
       failed:
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 3
-        wchars: hay
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 2
-        wchars: bi\u0323
       - measured_by_terminal: -2
         measured_by_wcwidth: 2
-        wchars: \u0111\xea\u0309
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 4
-        wchars: \u0111\xf4\u0323ng
-      n_errors: 4
+        wchars: '5:'
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 3
+        wchars: t\xf4n
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 5
+        wchars: h\u01b0\u01a1\u0301ng
+      n_errors: 3
       n_total: 2502
-      pct_success: 99.84012789768185
+      pct_success: 99.8800959232614
     Vietnamese (Han nom):
       failed:
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 40
-        wchars: \u6bcf\U0002029b\u8abf\u5f97\u6cd5\u5f8b\u4fdd\u885e\U00022da2\u540f\u4ecd\u884c\u7232\u5e72\u6d89\u6216\u4fb5\u72af\u5982\u4e15
-      - measured_by_terminal: 14
-        measured_by_wcwidth: 52
-        wchars: \u6bcf\U0002029b\u8abf\U0002338f\u6b0a\u5f97\u4fdd\u8b77\u5c0d\U00022b72\u4ecd\u6b0a\u5229\U000275f1\u7269\u8cea\u5427\u7cbe\u795e\u51fa\u767c\u81ea\u5de5\u7a0b\u79d1\u5b78
-      n_errors: 2
+      - measured_by_terminal: -40
+        measured_by_wcwidth: 6
+        wchars: \u689d16\uff1a
+      n_errors: 1
       n_total: 199
-      pct_success: 98.99497487437185
+      pct_success: 99.49748743718592
     Waama:
       failed:
-      - measured_by_terminal: -3
-        measured_by_wcwidth: 1
-        wchars: o
+      - measured_by_terminal: -5
+        measured_by_wcwidth: 2
+        wchars: b\xe0
       n_errors: 1
       n_total: 1000
       pct_success: 99.9
     "Yanesha\u02BC":
       failed:
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 10
-        wchars: allohueney
-      - measured_by_terminal: -7
-        measured_by_wcwidth: 5
-        wchars: ama't
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 5
-        wchars: ache\xf1
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 4
-        wchars: e'\xf1e
-      - measured_by_terminal: -4
-        measured_by_wcwidth: 7
-        wchars: allcha'
-      - measured_by_terminal: -1
-        measured_by_wcwidth: 7
-        wchars: derecho
       - measured_by_terminal: -2
         measured_by_wcwidth: 5
-        wchars: amach
-      n_errors: 7
+        wchars: yesen
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 11
+        wchars: yemo\xf1enaya.
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 7
+        wchars: monenet
+      - measured_by_terminal: -1
+        measured_by_wcwidth: 11
+        wchars: cot\u0303ap\u0303\xf1atser
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 12
+        wchars: taruasatset.
+      - measured_by_terminal: -4
+        measured_by_wcwidth: 4
+        wchars: \xf1e\xf1t
+      n_errors: 6
       n_total: 2536
-      pct_success: 99.72397476340694
+      pct_success: 99.76340694006309
     Yiddish, Eastern:
       failed:
-      - measured_by_terminal: 3
+      - measured_by_terminal: 4
         measured_by_wcwidth: 6
-        wchars: \u05e9\u05d8\u05e8\u05e2\u05e0\u05d2
-      - measured_by_terminal: -7
+        wchars: \u05d2\u05dc\u05f2\u05b7\u05db\u05e2\u05e8
+      - measured_by_terminal: -9
         measured_by_wcwidth: 3
         wchars: \u05d0\u05d5\u05df
-      - measured_by_terminal: 5
-        measured_by_wcwidth: 8
-        wchars: \u05d6\u05d9\u05db\u05e2\u05e8\u05e7\u05f2\u05d8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 9
+        wchars: \u05e7\u05d5\u05dc\u05d8\u05d5\u05e8\u05e2\u05dc\u05df
       n_errors: 3
       n_total: 1775
       pct_success: 99.83098591549296
     Yoruba:
       failed:
       - measured_by_terminal: 4
-        measured_by_wcwidth: 9
-        wchars: or\xedl\u1eb9\u0300\u2010\xe8d\xe8
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 3
-        wchars: y\xec\xed
-      - measured_by_terminal: 2
-        measured_by_wcwidth: 6
-        wchars: k\u1ecd\u0300\u1ecd\u0300kan
-      - measured_by_terminal: -2
-        measured_by_wcwidth: 4
-        wchars: l\xe1ti
-      n_errors: 4
+        measured_by_wcwidth: 7
+        wchars: \xf2m\xecnira
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 8
+        wchars: \xe0t\u1ecdk\xe0nw\xe1
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 8
+        wchars: \xecr\xe0nl\u1ecd\u0301w\u1ecd\u0301
+      n_errors: 3
       n_total: 2454
-      pct_success: 99.83700081499592
+      pct_success: 99.87775061124694
     "\xC9w\xE9":
       failed:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 8
+        wchars: leabl\u0254\u0256e
+      - measured_by_terminal: -6
+        measured_by_wcwidth: 3
+        wchars: ate
       - measured_by_terminal: -7
-        measured_by_wcwidth: 3
-        wchars: alo
-      - measured_by_terminal: -5
-        measured_by_wcwidth: 3
-        wchars: si.
-      - measured_by_terminal: 12
-        measured_by_wcwidth: 14
-        wchars: hadomegben\u0254nya
-      - measured_by_terminal: -11
-        measured_by_wcwidth: 3
-        wchars: me.
-      n_errors: 4
+        measured_by_wcwidth: 4
+        wchars: \u0189O\u0189O
+      n_errors: 3
       n_total: 2230
-      pct_success: 99.82062780269058
+      pct_success: 99.86547085201794
   unicode_wide_results:
     10.0.0:
       failed_codepoints: []
@@ -69212,4 +69125,4 @@ test_results:
       pct_success: 100.0
   unicode_wide_version: 16.0.0
 wcwidth_version: 0.2.14
-width: 177
+width: 197
