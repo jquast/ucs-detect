@@ -122,30 +122,19 @@ def main():
     print(f"# Found {len(all_sequences)} total VS15 sequences", file=sys.stderr)
     print(f"# Found {len(cjk_sequences)} CJK sequences", file=sys.stderr)
 
-    print("# Unified VS-15 table for testing emoji variation sequences")
-    print("# All sequences expect width=1 (narrow) after VS-15 in Type A interpretation")
-    print("# Type A: All 158 sequences should narrow (Unicode literal interpretation)")
-    print("# Type B: CJK sequences (lines 63-66) should remain wide (CJK-preserving interpretation)")
+    print("# VS-15 table for testing emoji variation sequences")
+    print("# Per wcwidth specification, all sequences should narrow to width=1 after VS-15")
     print()
     print("VS15_WIDE_TO_NARROW = (")
     print(f"  ('{version}', (")
     for seq in all_sequences:
-        if seq in cjk_set:
-            print(f"    {seq},  # CJK - Type B expects this to remain wide")
-        else:
-            print(f"    {seq},")
+        print(f"    {seq},")
     print("    ),")
     print("  ),")
     print(")")
-    print()
-    print("# CJK sequences that distinguish Type A from Type B behavior")
-    print("VS15_CJK_SEQUENCES = frozenset([")
-    for seq in cjk_sequences:
-        print(f"    {seq},")
-    print("])")
 
 
 if __name__ == "__main__":
-    # Unified VS15 table generator, for use:
+    # VS15 table generator, for use:
     # $ python make_vs15_table.py > ucs_detect/table_vs15.py
     main()

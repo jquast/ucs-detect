@@ -20,18 +20,19 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          33.15%       0.0%            (version_index / total_versions) × (pct_success / 100)
 ZWJ           8.97%        12.0%           (version_index / total_versions) × (pct_success / 100)
-LANG          58.33%       60.6%           languages_supported / total_languages
+LANG          58.33%       72.6%           languages_supported / total_languages
 VS16          88.00%       88.0%           pct_success / 100
 VS15          N/A          N/A             pct_success / 100
+DEC Modes     N/A          N/A             modes_supported / total_modes
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
 
 - Raw Final Score: 47.11%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
 
-- Scaled Final Score: 50.2%
+- Scaled Final Score: 70.4%
   (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -1990,6 +1991,13 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermdecmodes:
+
+DEC Private Modes Support
++++++++++++++++++++++++++
+
+DEC private modes results for *cool-retro-term* are not available.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

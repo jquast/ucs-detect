@@ -20,18 +20,19 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          90.91%       86.4%           (version_index / total_versions) × (pct_success / 100)
 ZWJ           75.00%       100.0%          (version_index / total_versions) × (pct_success / 100)
-LANG          1.68%        1.7%            languages_supported / total_languages
+LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          94.37%       94.4%           pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
+DEC Modes     100.00%      100.0%          modes_supported / total_modes
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
 
-- Raw Final Score: 52.39%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+- Raw Final Score: 60.33%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
 
-- Scaled Final Score: 56.9%
+- Scaled Final Score: 94.6%
   (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -3775,6 +3776,182 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *iTerm2* measures width -1.
+
+.. _iTerm2decmodes:
+
+DEC Private Modes Support
++++++++++++++++++++++++++
+
+DEC private modes results for *iTerm2*: 159 supported modes
+out of 159 total modes tested (100.0% support).
+
+Complete list of DEC private modes tested:
+
+===============  =============================  =======================================================================  ===========  ============
+Mode             Name                           Description                                                              Supported    Changeable
+===============  =============================  =======================================================================  ===========  ============
+DEC Mode 1       DECCKM                         Cursor Keys Mode                                                         Yes          Yes
+DEC Mode 2       DECANM                         ANSI/VT52 Mode                                                           Yes          Yes
+DEC Mode 3       DECCOLM                        Column Mode                                                              Yes          Yes
+DEC Mode 4       DECSCLM                        Scrolling Mode                                                           Yes          No
+DEC Mode 5       DECSCNM                        Screen Mode (light or dark screen)                                       Yes          Yes
+DEC Mode 6       DECOM                          Origin Mode                                                              Yes          Yes
+DEC Mode 7       DECAWM                         Auto Wrap Mode                                                           Yes          Yes
+DEC Mode 8       DECARM                         Auto Repeat Mode                                                         Yes          Yes
+DEC Mode 9       DECINLM                        Interlace Mode / Mouse X10 tracking                                      Yes          No
+DEC Mode 10      DECEDM                         Editing Mode / Show toolbar (rxvt)                                       Yes          No
+DEC Mode 11      DECLTM                         Line Transmit Mode                                                       Yes          No
+DEC Mode 12      DECKANAM                       Katakana Shift Mode / Blinking cursor (xterm)                            Yes          Yes
+DEC Mode 13      DECSCFDM                       Space Compression/Field Delimiter Mode / Start blinking cursor (xterm)   Yes          No
+DEC Mode 14      DECTEM                         Transmit Execution Mode / Enable XOR of blinking cursor control (xterm)  Yes          No
+DEC Mode 16      DECEKEM                        Edit Key Execution Mode                                                  Yes          No
+DEC Mode 18      DECPFF                         Print Form Feed                                                          Yes          No
+DEC Mode 19      DECPEX                         Printer Extent                                                           Yes          No
+DEC Mode 20      OV1                            Overstrike                                                               Yes          No
+DEC Mode 21      BA1                            Local BASIC                                                              Yes          No
+DEC Mode 22      BA2                            Host BASIC                                                               Yes          No
+DEC Mode 23      PK1                            Programmable Keypad                                                      Yes          No
+DEC Mode 24      AH1                            Auto Hardcopy                                                            Yes          No
+DEC Mode 25      DECTCEM                        Text Cursor Enable Mode                                                  Yes          Yes
+DEC Mode 27      DECPSP                         Proportional Spacing                                                     Yes          No
+DEC Mode 29      DECPSM                         Pitch Select Mode                                                        Yes          No
+DEC Mode 30      SHOW_SCROLLBAR_RXVT            Show scrollbar (rxvt)                                                    Yes          No
+DEC Mode 34      DECRLM                         Cursor Right to Left Mode                                                Yes          No
+DEC Mode 35      DECHEBM                        Hebrew (Keyboard) Mode / Enable font-shifting functions (rxvt)           Yes          No
+DEC Mode 36      DECHEM                         Hebrew Encoding Mode                                                     Yes          No
+DEC Mode 38      DECTEK                         Tektronix 4010/4014 Mode                                                 Yes          No
+DEC Mode 40      DECCRNLM                       Carriage Return/New Line Mode / Allow 80⇒132 mode (xterm)                Yes          Yes
+DEC Mode 41      DECUPM                         Unidirectional Print Mode / more(1) fix (xterm)                          Yes          Yes
+DEC Mode 42      DECNRCM                        National Replacement Character Set Mode                                  Yes          No
+DEC Mode 43      DECGEPM                        Graphics Expanded Print Mode                                             Yes          No
+DEC Mode 44      DECGPCM                        Graphics Print Color Mode / Turn on margin bell (xterm)                  Yes          No
+DEC Mode 45      DECGPCS                        Graphics Print Color Syntax / Reverse-wraparound mode (xterm)            Yes          Yes
+DEC Mode 46      DECGPBM                        Graphics Print Background Mode / Start logging (xterm)                   Yes          No
+DEC Mode 47      DECGRPM                        Graphics Rotated Print Mode / Use Alternate Screen Buffer (xterm)        Yes          Yes
+DEC Mode 49      DECTHAIM                       Thai Input Mode                                                          Yes          No
+DEC Mode 50      DECTHAICM                      Thai Cursor Mode                                                         Yes          No
+DEC Mode 51      DECBWRM                        Black/White Reversal Mode                                                Yes          No
+DEC Mode 52      DECOPM                         Origin Placement Mode                                                    Yes          No
+DEC Mode 53      DEC131TM                       VT131 Transmit Mode                                                      Yes          No
+DEC Mode 55      DECBPM                         Bold Page Mode                                                           Yes          No
+DEC Mode 57      DECNAKB                        Greek/N-A Keyboard Mapping Mode                                          Yes          No
+DEC Mode 58      DECIPEM                        Enter IBM Proprinter Emulation Mode                                      Yes          No
+DEC Mode 59      DECKKDM                        Kanji/Katakana Display Mode                                              Yes          No
+DEC Mode 60      DECHCCM                        Horizontal Cursor Coupling                                               Yes          No
+DEC Mode 61      DECVCCM                        Vertical Cursor Coupling Mode                                            Yes          No
+DEC Mode 64      DECPCCM                        Page Cursor Coupling Mode                                                Yes          No
+DEC Mode 65      DECBCMM                        Business Color Matching Mode                                             Yes          No
+DEC Mode 66      DECNKM                         Numeric Keypad Mode                                                      Yes          Yes
+DEC Mode 67      DECBKM                         Backarrow Key Mode                                                       Yes          No
+DEC Mode 68      DECKBUM                        Keyboard Usage Mode                                                      Yes          No
+DEC Mode 69      DECVSSM                        Vertical Split Screen Mode / DECLRMM - Left Right Margin Mode            Yes          Yes
+DEC Mode 70      DECFPM                         Force Plot Mode                                                          Yes          No
+DEC Mode 73      DECXRLM                        Transmission Rate Limiting                                               Yes          No
+DEC Mode 80      DECSDM                         Sixel Display Mode                                                       Yes          Yes
+DEC Mode 81      DECKPM                         Key Position Mode                                                        Yes          No
+DEC Mode 83      WY_52_LINE                     52 line mode (WY-370)                                                    Yes          No
+DEC Mode 84      WYENAT_OFF                     Erasable/nonerasable WYENAT Off attribute select (WY-370)                Yes          No
+DEC Mode 85      REPLACEMENT_CHAR_COLOR         Replacement character color (WY-370)                                     Yes          No
+DEC Mode 90      DECTHAISCM                     Thai Space Compensating Mode                                             Yes          No
+DEC Mode 95      DECNCSM                        No Clearing Screen on Column Change Mode                                 Yes          Yes
+DEC Mode 96      DECRLCM                        Right to Left Copy Mode                                                  Yes          No
+DEC Mode 97      DECCRTSM                       CRT Save Mode                                                            Yes          No
+DEC Mode 98      DECARSM                        Auto Resize Mode                                                         Yes          No
+DEC Mode 99      DECMCM                         Modem Control Mode                                                       Yes          No
+DEC Mode 100     DECAAM                         Auto Answerback Mode                                                     Yes          No
+DEC Mode 101     DECCANSM                       Conceal Answerback Message Mode                                          Yes          No
+DEC Mode 102     DECNULM                        Ignore Null Mode                                                         Yes          No
+DEC Mode 103     DECHDPXM                       Half Duplex Mode                                                         Yes          No
+DEC Mode 104     DECESKM                        Secondary Keyboard Language Mode                                         Yes          No
+DEC Mode 106     DECOSCNM                       Overscan Mode                                                            Yes          No
+DEC Mode 108     DECNUMLK                       NumLock Mode                                                             Yes          No
+DEC Mode 109     DECCAPSLK                      Caps Lock Mode                                                           Yes          No
+DEC Mode 110     DECKLHIM                       Keyboard LEDs Host Indicator Mode                                        Yes          No
+DEC Mode 111     DECFWM                         Framed Windows Mode                                                      Yes          No
+DEC Mode 112     DECRPL                         Review Previous Lines Mode                                               Yes          No
+DEC Mode 113     DECHWUM                        Host Wake-Up Mode                                                        Yes          No
+DEC Mode 114     DECATCUM                       Alternate Text Color Underline Mode                                      Yes          No
+DEC Mode 115     DECATCBM                       Alternate Text Color Blink Mode                                          Yes          No
+DEC Mode 116     DECBBSM                        Bold and Blink Style Mode                                                Yes          No
+DEC Mode 117     DECECM                         Erase Color Mode                                                         Yes          No
+DEC Mode 1000    MOUSE_REPORT_CLICK             Send Mouse X & Y on button press                                         Yes          Yes
+DEC Mode 1001    MOUSE_HILITE_TRACKING          Use Hilite Mouse Tracking                                                Yes          Yes
+DEC Mode 1002    MOUSE_REPORT_DRAG              Use Cell Motion Mouse Tracking                                           Yes          Yes
+DEC Mode 1003    MOUSE_ALL_MOTION               Use All Motion Mouse Tracking                                            Yes          Yes
+DEC Mode 1004    FOCUS_IN_OUT_EVENTS            Send FocusIn/FocusOut events                                             Yes          Yes
+DEC Mode 1005    MOUSE_EXTENDED_UTF8            Enable UTF-8 Mouse Mode                                                  Yes          Yes
+DEC Mode 1006    MOUSE_EXTENDED_SGR             Enable SGR Mouse Mode                                                    Yes          Yes
+DEC Mode 1007    ALT_SCROLL_XTERM               Enable Alternate Scroll Mode                                             Yes          Yes
+DEC Mode 1010    SCROLL_ON_TTY_OUTPUT_RXVT      Scroll to bottom on tty output                                           Yes          No
+DEC Mode 1011    SCROLL_ON_KEYPRESS_RXVT        Scroll to bottom on key press                                            Yes          No
+DEC Mode 1014    FAST_SCROLL                    Enable fastScroll resource                                               Yes          No
+DEC Mode 1015    MOUSE_URXVT                    Enable urxvt Mouse Mode                                                  Yes          Yes
+DEC Mode 1016    MOUSE_SGR_PIXELS               Enable SGR Mouse PixelMode                                               Yes          No
+DEC Mode 1021    BOLD_ITALIC_HIGH_INTENSITY     Bold/italic implies high intensity                                       Yes          No
+DEC Mode 1034    META_SETS_EIGHTH_BIT           Interpret "meta" key                                                     Yes          No
+DEC Mode 1035    MODIFIERS_ALT_NUMLOCK          Enable special modifiers for Alt and NumLock keys                        Yes          No
+DEC Mode 1036    META_SENDS_ESC                 Send ESC when Meta modifies a key                                        Yes          Yes
+DEC Mode 1037    KP_DELETE_SENDS_DEL            Send DEL from the editing-keypad Delete key                              Yes          No
+DEC Mode 1039    ALT_SENDS_ESC                  Send ESC when Alt modifies a key                                         Yes          No
+DEC Mode 1040    KEEP_SELECTION_NO_HILITE       Keep selection even if not highlighted                                   Yes          No
+DEC Mode 1041    USE_CLIPBOARD_SELECTION        Use the CLIPBOARD selection                                              Yes          No
+DEC Mode 1042    URGENCY_ON_CTRL_G              Enable Urgency window manager hint when Control-G is received            Yes          No
+DEC Mode 1043    RAISE_ON_CTRL_G                Enable raising of the window when Control-G is received                  Yes          No
+DEC Mode 1044    REUSE_CLIPBOARD_DATA           Reuse the most recent data copied to CLIPBOARD                           Yes          No
+DEC Mode 1045    EXTENDED_REVERSE_WRAPAROUND    Extended Reverse-wraparound mode (XTREVWRAP2)                            Yes          No
+DEC Mode 1046    ALT_SCREEN_BUFFER_SWITCH       Enable switching to/from Alternate Screen Buffer                         Yes          No
+DEC Mode 1047    ALT_SCREEN_BUFFER_XTERM        Use Alternate Screen Buffer                                              Yes          Yes
+DEC Mode 1048    SAVE_CURSOR_DECSC              Save cursor as in DECSC                                                  Yes          Yes
+DEC Mode 1049    ALT_SCREEN_AND_SAVE_CLEAR      Save cursor as in DECSC and use alternate screen buffer                  Yes          Yes
+DEC Mode 1050    TERMINFO_FUNC_KEY_MODE         Set terminfo/termcap function-key mode                                   Yes          No
+DEC Mode 1051    SUN_FUNC_KEY_MODE              Set Sun function-key mode                                                Yes          No
+DEC Mode 1052    HP_FUNC_KEY_MODE               Set HP function-key mode                                                 Yes          No
+DEC Mode 1053    SCO_FUNC_KEY_MODE              Set SCO function-key mode                                                Yes          No
+DEC Mode 1060    LEGACY_KBD_X11R6               Set legacy keyboard emulation, i.e, X11R6                                Yes          No
+DEC Mode 1061    VT220_KBD_EMULATION            Set VT220 keyboard emulation                                             Yes          No
+DEC Mode 1070    SIXEL_PRIVATE_PALETTE          Use private color registers for each graphic                             Yes          No
+DEC Mode 1243    BIDI_ARROW_KEY_SWAPPING        Arrow keys swapping (BiDi)                                               Yes          No
+DEC Mode 1337    ITERM2_REPORT_KEY_UP           Report Key Up                                                            Yes          Yes
+DEC Mode 2001    READLINE_MOUSE_BUTTON_1        Enable readline mouse button-1                                           Yes          No
+DEC Mode 2002    READLINE_MOUSE_BUTTON_2        Enable readline mouse button-2                                           Yes          No
+DEC Mode 2003    READLINE_MOUSE_BUTTON_3        Enable readline mouse button-3                                           Yes          No
+DEC Mode 2004    BRACKETED_PASTE                Set bracketed paste mode                                                 Yes          Yes
+DEC Mode 2005    READLINE_CHARACTER_QUOTING     Enable readline character-quoting                                        Yes          No
+DEC Mode 2006    READLINE_NEWLINE_PASTING       Enable readline newline pasting                                          Yes          No
+DEC Mode 2026    SYNCHRONIZED_OUTPUT            Synchronized Output                                                      Yes          Yes
+DEC Mode 2027    GRAPHEME_CLUSTERING            Grapheme Clustering                                                      Yes          No
+DEC Mode 2028    TEXT_REFLOW                    Text reflow                                                              Yes          No
+DEC Mode 2029    PASSIVE_MOUSE_TRACKING         Passive Mouse Tracking                                                   Yes          No
+DEC Mode 2030    REPORT_GRID_CELL_SELECTION     Report grid cell selection                                               Yes          No
+DEC Mode 2031    COLOR_PALETTE_UPDATES          Color palette updates                                                    Yes          No
+DEC Mode 2048    IN_BAND_WINDOW_RESIZE          In-Band Window Resize Notifications                                      Yes          Yes
+DEC Mode 2500    MIRROR_BOX_DRAWING             Mirror box drawing characters                                            Yes          No
+DEC Mode 2501    BIDI_AUTODETECTION             BiDi autodetection                                                       Yes          No
+DEC Mode 7700    AMBIGUOUS_WIDTH_REPORTING      Ambiguous width reporting                                                Yes          No
+DEC Mode 7711    SCROLL_MARKERS                 Scroll markers (prompt start)                                            Yes          No
+DEC Mode 7723    REWRAP_ON_RESIZE_MINTTY        Rewrap on resize                                                         Yes          No
+DEC Mode 7727    APPLICATION_ESCAPE_KEY         Application escape key mode                                              Yes          No
+DEC Mode 7728    ESC_KEY_SENDS_BACKSLASH        Send ^\ instead of the standard ^[ for the ESC key                       Yes          No
+DEC Mode 7730    GRAPHICS_POSITION              Graphics position                                                        Yes          No
+DEC Mode 7765    ALT_MODIFIED_MOUSEWHEEL        Alt-modified mousewheel mode                                             Yes          No
+DEC Mode 7766    SHOW_HIDE_SCROLLBAR            Show/hide scrollbar                                                      Yes          No
+DEC Mode 7767    FONT_CHANGE_REPORTING          Font change reporting                                                    Yes          No
+DEC Mode 7780    GRAPHICS_POSITION_2            Graphics position                                                        Yes          No
+DEC Mode 7783    SHORTCUT_KEY_MODE              Shortcut key mode                                                        Yes          No
+DEC Mode 7786    MOUSEWHEEL_REPORTING           Mousewheel reporting                                                     Yes          No
+DEC Mode 7787    APPLICATION_MOUSEWHEEL         Application mousewheel mode                                              Yes          No
+DEC Mode 7796    BIDI_CURRENT_LINE              BiDi on current line                                                     Yes          No
+DEC Mode 8200    TTCTH                          Terminal-to-Computer Talk-back Handler                                   Yes          No
+DEC Mode 8452    SIXEL_SCROLLING_LEAVES_CURSOR  Sixel scrolling leaves cursor to right of graphic                        Yes          No
+DEC Mode 8800    CHARACTER_MAPPING_SERVICE      enable/disable character mapping service                                 Yes          No
+DEC Mode 8840    AMBIGUOUS_WIDTH_DOUBLE_WIDTH   Treat ambiguous width characters as double-width                         Yes          No
+DEC Mode 9001    WIN32_INPUT_MODE               win32-input-mode                                                         Yes          No
+DEC Mode 19997   KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode                                                Yes          No
+DEC Mode 77096   MINTTY_BIDI                    BiDi                                                                     Yes          No
+DEC Mode 737769  INPUT_METHOD_EDITOR            Input Method Editor (IME) mode                                           Yes          No
+===============  =============================  =======================================================================  ===========  ============
+
+**Summary**: 159 supported, 0 unsupported.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

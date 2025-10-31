@@ -37,7 +37,7 @@ import yaml
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_wide import WIDE_CHARACTERS
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
-from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW, VS15_CJK_SEQUENCES
+from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
 from ucs_detect import measure, terminal
 from ucs_detect.error_matcher import ErrorMatcher
 
@@ -78,48 +78,6 @@ def determine_best_match(
     return best_match[2] if best_match[0] > lbound_pct else None
 
 
-def split_vs15_results(all_results: dict, cjk_only: bool = False) -> dict:
-    """
-    Split VS15 results into Type A (all) or Type B (CJK only) reports.
-
-    Type A: All 158 sequences tested (100% = all narrowed)
-    Type B: Just 4 CJK sequences (0% = stayed wide/Type B, 100% = narrowed/Type A)
-    """
-    split_results = {}
-    for ver, result in all_results.items():
-        if cjk_only:
-            # Type B: Filter to show only CJK sequences
-            # Decode unicode escape strings back to codepoint tuples
-            cjk_failures = []
-            for fail in result["failed_codepoints"]:
-                wchar_str = fail.get("wchar", "")
-                # Decode escape sequence like "\\u3030\\ufe0e" back to codepoints
-                try:
-                    decoded = wchar_str.encode().decode('unicode-escape')
-                    codepoints = tuple(ord(c) for c in decoded)
-                    if codepoints in VS15_CJK_SEQUENCES:
-                        cjk_failures.append(fail)
-                except:
-                    pass
-
-            # Count CJK that stayed wide (failures) vs narrowed (successes)
-            n_cjk_total = len(VS15_CJK_SEQUENCES)
-            n_cjk_stayed_wide = len(cjk_failures)
-            n_cjk_narrowed = n_cjk_total - n_cjk_stayed_wide
-
-            # For Type B report: success means narrowed (Type A behavior)
-            # 0% success = all stayed wide (Type B compliant)
-            # 100% success = all narrowed (Type A behavior, not Type B)
-            split_results[ver] = {
-                "n_errors": n_cjk_stayed_wide,
-                "n_total": n_cjk_total,
-                "pct_success": measure.make_success_pct(n_cjk_stayed_wide, n_cjk_total),
-                "failed_codepoints": cjk_failures,
-            }
-        else:
-            # Type A: Return all results as-is
-            split_results[ver] = result
-    return split_results
 
 
 def init_term(stream, quick):
@@ -273,9 +231,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         test_type="vs16",
     )
 
-    # Variation-15 emoji sequences - Test once, report twice
+    # Variation-15 emoji sequences
     writer(f"\nucs-detect: VS15 testing")
-    emoji_vs15_all_results = measure.test_support(
+    emoji_vs15_results = measure.test_support(
         table=VS15_WIDE_TO_NARROW,
         term=term,
         writer=writer,
@@ -291,9 +249,6 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         stop_at_error=error_matcher,
         test_type="vs15",
     )
-    # Split results: Type A shows all 158, Type B shows just 4 CJK
-    emoji_vs15_type_a_results = split_vs15_results(emoji_vs15_all_results, cjk_only=False)
-    emoji_vs15_type_b_results = split_vs15_results(emoji_vs15_all_results, cjk_only=True)
 
     # test language support
     language_results = None
@@ -331,23 +286,13 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     )
 
     writer(
-        f'\nDisplaying results of {term.bold("Variation Selector-15 Type A (Unicode Literal)")} sequence support'
+        f'\nDisplaying results of {term.bold("Variation Selector-15")} sequence support'
     )
     display_results_by_version(
         term=term,
         writer=writer,
-        results=emoji_vs15_type_a_results,
-        best_match=list(emoji_vs15_type_a_results.keys())[0],
-    )
-
-    writer(
-        f'\nDisplaying results of {term.bold("Variation Selector-15 Type B (CJK-Preserving)")} sequence support'
-    )
-    display_results_by_version(
-        term=term,
-        writer=writer,
-        results=emoji_vs15_type_b_results,
-        best_match=list(emoji_vs15_type_b_results.keys())[0],
+        results=emoji_vs15_results,
+        best_match=list(emoji_vs15_results.keys())[0],
     )
 
     if language_results:
@@ -379,8 +324,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
                 emoji_zwj_version=emoji_zwj_version,
                 emoji_zwj_results=emoji_zwj_results,
                 emoji_vs16_results=emoji_vs16_results,
-                emoji_vs15_type_a_results=emoji_vs15_type_a_results,
-                emoji_vs15_type_b_results=emoji_vs15_type_b_results,
+                emoji_vs15_results=emoji_vs15_results,
                 language_results=language_results,
             ),
             terminal_results=terminal_results,

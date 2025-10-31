@@ -1,7 +1,5 @@
-# Unified VS-15 table for testing emoji variation sequences
-# All sequences expect width=1 (narrow) after VS-15 in Type A interpretation
-# Type A: All 158 sequences should narrow (Unicode literal interpretation)
-# Type B: CJK sequences (lines 63-66) should remain wide (CJK-preserving interpretation)
+# VS-15 table for testing emoji variation sequences
+# Per wcwidth specification, all sequences should narrow to width=1 after VS-15
 
 VS15_WIDE_TO_NARROW = (
   ('9.0.0', (
@@ -65,10 +63,10 @@ VS15_WIDE_TO_NARROW = (
     (11036, 65038),
     (11088, 65038),
     (11093, 65038),
-    (12336, 65038),  # CJK - Type B expects this to remain wide
-    (12349, 65038),  # CJK - Type B expects this to remain wide
-    (12951, 65038),  # CJK - Type B expects this to remain wide
-    (12953, 65038),  # CJK - Type B expects this to remain wide
+    (12336, 65038),
+    (12349, 65038),
+    (12951, 65038),
+    (12953, 65038),
     (126980, 65038),
     (127490, 65038),
     (127514, 65038),
@@ -166,11 +164,3 @@ VS15_WIDE_TO_NARROW = (
     ),
   ),
 )
-
-# CJK sequences that distinguish Type A from Type B behavior
-VS15_CJK_SEQUENCES = frozenset([
-    (12336, 65038),
-    (12349, 65038),
-    (12951, 65038),
-    (12953, 65038),
-])

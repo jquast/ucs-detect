@@ -6,7 +6,7 @@ Konsole
 
 Tested Software version 23.08.5 on Linux
 Full results available at ucs-detect_ repository path
-`data/linux-konsole-23.08.5-no-emit.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-konsole-23.08.5-no-emit.yaml>`_
+`data/linux-konsole-23.08.5.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-konsole-23.08.5.yaml>`_
 
 .. _Konsolescores:
 
@@ -20,18 +20,19 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          72.73%       59.2%           (version_index / total_versions) × (pct_success / 100)
 ZWJ           66.67%       88.9%           (version_index / total_versions) × (pct_success / 100)
-LANG          1.68%        1.7%            languages_supported / total_languages
+LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          100.00%      100.0%          pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
+DEC Modes     N/A          N/A             modes_supported / total_modes
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
 
 - Raw Final Score: 48.21%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
 
-- Scaled Final Score: 51.6%
+- Scaled Final Score: 72.4%
   (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -3805,6 +3806,13 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Konsole* measures width -2.
+
+.. _Konsoledecmodes:
+
+DEC Private Modes Support
++++++++++++++++++++++++++
+
+DEC private modes results for *Konsole* are not available.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

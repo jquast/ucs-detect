@@ -20,18 +20,19 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          90.91%       86.4%           (version_index / total_versions) × (pct_success / 100)
 ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-LANG          1.68%        1.7%            languages_supported / total_languages
+LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
+DEC Modes     N/A          N/A             modes_supported / total_modes
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
 
 - Raw Final Score: 18.52%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
 
-- Scaled Final Score: 13.9%
+- Scaled Final Score: 17.9%
   (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -3865,6 +3866,13 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rio* measures width -3.
+
+.. _riodecmodes:
+
+DEC Private Modes Support
++++++++++++++++++++++++++
+
+DEC private modes results for *rio* are not available.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

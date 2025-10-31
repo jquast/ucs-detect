@@ -1,47 +1,47 @@
-.. _foot:
+.. _XTerm:
 
-foot
-----
+XTerm
+-----
 
 
-Tested Software version 1.16.2 on Linux
+Tested Software version 390 on Linux
 Full results available at ucs-detect_ repository path
-`data/linux-foot-1.16.2.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-foot-1.16.2.yaml>`_
+`data/linux-xterm-390.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-xterm-390.yaml>`_
 
-.. _footscores:
+.. _XTermscores:
 
 Score Breakdown
 +++++++++++++++
 
-Detailed breakdown of how scores are calculated for *foot*:
+Detailed breakdown of how scores are calculated for *XTerm*:
 
 ============  ===========  ==============  ======================================================
 Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          81.82%       72.8%           (version_index / total_versions) × (pct_success / 100)
-ZWJ           66.67%       88.9%           (version_index / total_versions) × (pct_success / 100)
+ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
 LANG          1.68%        2.1%            languages_supported / total_languages
-VS16          100.00%      100.0%          pct_success / 100
+VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
-DEC Modes     20.75%       11.8%           modes_supported / total_modes
+DEC Modes     43.95%       37.6%           modes_supported / total_modes
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
 
-- Raw Final Score: 45.15%
+- Raw Final Score: 21.24%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
 
-- Scaled Final Score: 66.8%
+- Scaled Final Score: 22.9%
   (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
-.. _footwide:
+.. _XTermwide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for foot appears to be 
+The best wide unicode table version for XTerm appears to be 
 **15.1.0**, this is from a summary of the following
 results:
 
@@ -80,33 +80,33 @@ Total codepoints: 1
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width 0.
+  while *XTerm* measures width 1.
 
-.. _footzwj:
+.. _XTermzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *foot* appears to be 
-**15.1**, this is from a summary of the following
+The best Emoji ZWJ table version for *XTerm* appears to be 
+**None**, this is from a summary of the following
 results:
 
 
 =========  ==========  =========  =============
 version      n_errors    n_total  pct_success
 =========  ==========  =========  =============
-'2.0'               0         22  100.0%
-'4.0'               0        579  100.0%
-'5.0'               0        100  100.0%
-'11.0'              0         73  100.0%
-'12.0'              0        112  100.0%
-'12.1'              0        165  100.0%
-'13.0'              0         51  100.0%
-'13.1'              0         83  100.0%
-'14.0'              0         20  100.0%
-'15.0'              0          1  100.0%
-'15.1'              0        109  100.0%
-'17.0'             58        130  55.4%
+'2.0'              21         22  4.5%
+'4.0'             571        579  1.4%
+'5.0'             100        100  0.0%
+'11.0'             73         73  0.0%
+'12.0'            112        112  0.0%
+'12.1'            165        165  0.0%
+'13.0'             50         51  2.0%
+'13.1'             83         83  0.0%
+'14.0'             20         20  0.0%
+'15.0'              1          1  0.0%
+'15.1'            109        109  0.0%
+'17.0'            130        130  0.0%
 =========  ==========  =========  =============
 
 Sequence of an Emoji ZWJ Sequence from Emoji Version 17.0, from midpoint of alignment failure records:
@@ -115,12 +115,12 @@ Sequence of an Emoji ZWJ Sequence from Emoji Version 17.0, from midpoint of alig
 Codepoint                                          Python         Category      wcwidth  Name
 =================================================  =============  ==========  =========  =================================
 `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
-`U+0001F3FD <https://codepoints.net/U+0001F3FD>`_  '\\U0001f3fd'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-4
+`U+0001F3FE <https://codepoints.net/U+0001F3FE>`_  '\\U0001f3fe'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-5
 `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
 `U+0001FAEF <https://codepoints.net/U+0001FAEF>`_  '\\U0001faef'  Cn                  2  na
 `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
 `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
-`U+0001F3FC <https://codepoints.net/U+0001F3FC>`_  '\\U0001f3fc'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-3
+`U+0001F3FF <https://codepoints.net/U+0001F3FF>`_  '\\U0001f3ff'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-6
 =================================================  =============  ==========  =========  =================================
 
 Total codepoints: 7
@@ -128,30 +128,50 @@ Total codepoints: 7
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\x91\xa9\xf0\x9f\x8f\xbd\xe2\x80\x8d\xf0\x9f\xab\xaf\xe2\x80\x8d\xf0\x9f\x91\xa9\xf0\x9f\x8f\xbc|\\n12|\\n"
-        👩🏽‍🫯‍👩🏼|
+        $ printf "\xf0\x9f\x91\xa9\xf0\x9f\x8f\xbe\xe2\x80\x8d\xf0\x9f\xab\xaf\xe2\x80\x8d\xf0\x9f\x91\xa9\xf0\x9f\x8f\xbf|\\n12|\\n"
+        👩🏾‍🫯‍👩🏿|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width 4.
+  while *XTerm* measures width 9.
 
-.. _footvs16:
+.. _XTermvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *foot* is 0 errors
-out of 213 total codepoints tested, 100.0% success.
-All codepoint combinations with Variation Selector-16 tested were successful.
+Emoji VS-16 results for *XTerm* is 213 errors
+out of 213 total codepoints tested, 0.0% success.
+Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
-.. _footvs15:
+=========================================  =========  ==========  =========  =====================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =====================
+`U+2733 <https://codepoints.net/U+2733>`_  '\\u2733'  So                  1  EIGHT SPOKED ASTERISK
+`U+FE0F <https://codepoints.net/U+FE0F>`_  '\\ufe0f'  Mn                  0  VARIATION SELECTOR-16
+=========================================  =========  ==========  =========  =====================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe2\x9c\xb3\xef\xb8\x8f|\\n12|\\n"
+        ✳️|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width 1.
+
+
+.. _XTermvs15:
 
 Variation Selector-15 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-15 results for *foot* are not available.
+Emoji VS-15 results for *XTerm* are not available.
 
-.. _footlang:
+.. _XTermlang:
 
 Language Support
 ++++++++++++++++
@@ -166,31 +186,32 @@ The following 117 languages are not fully supported:
 lang                               n_errors    n_total  pct_success
 ===============================  ==========  =========  =============
 Shan                                    868        915  5.1%
-Tamil (Sri Lanka)                      1000       1073  6.8%
-Tamil                                  1000       1075  7.0%
-Sanskrit (Grantha)                      894       1006  11.1%
-Javanese (Javanese)                    1000       1134  11.8%
+Tamil (Sri Lanka)                      1000       1075  7.0%
+Tamil                                  1000       1076  7.1%
+Sanskrit (Grantha)                      893       1006  11.2%
+Javanese (Javanese)                    1000       1131  11.6%
+Malayalam                              1000       1156  13.5%
+Bengali                                1000       1166  14.2%
 Khmer, Central                          448        528  15.2%
-Kannada                                 904       1080  16.3%
-Khün                                    361        442  18.3%
-Bengali                                1000       1251  20.1%
+Kannada                                 902       1080  16.5%
+Khün                                    362        442  18.1%
 Burmese                                 974       1223  20.4%
-Malayalam                              1000       1316  24.0%
-Mon                                     678        946  28.3%
-Sanskrit                                668       1000  33.2%
-Tamang, Eastern                          29         45  35.6%
-Nepali                                  841       1385  39.3%
-Gujarati                                928       1536  39.6%
-Telugu                                  677       1129  40.0%
-Marathi                                 965       1614  40.2%
-Hindi                                  1000       1820  45.1%
-Panjabi, Eastern                       1000       1831  45.4%
-Sinhala                                 888       1655  46.3%
-Maithili                                815       1519  46.3%
-Bhojpuri                                813       1737  53.2%
-Magahi                                  743       1716  56.7%
-Chakma                                  496       1444  65.7%
+Sanskrit                                754       1000  24.6%
+Tamang, Eastern                          33         45  26.7%
+Mon                                     677        946  28.4%
+Marathi                                1000       1420  29.6%
+Nepali                                  932       1385  32.7%
+Gujarati                               1000       1518  34.1%
+Telugu                                  716       1129  36.6%
+Maithili                                954       1519  37.2%
+Hindi                                  1000       1632  38.7%
+Panjabi, Eastern                       1000       1834  45.5%
+Sinhala                                 889       1655  46.3%
+Bhojpuri                                880       1737  49.3%
+Magahi                                  813       1716  52.6%
+Chakma                                  494       1444  65.8%
 Vietnamese (Han nom)                      3        199  98.5%
+Tibetan, Central                          4        279  98.6%
 Chinese, Mandarin (Harbin)                3        210  98.6%
 Chinese, Mandarin (Traditional)           3        210  98.6%
 Chinese, Yue                              3        210  98.6%
@@ -205,6 +226,7 @@ Chinese, Mandarin (Nanjing)               3        212  98.6%
 Chinese, Mandarin (Tianjin)               3        212  98.6%
 Chinese, Min Nan                          3        212  98.6%
 Chinese, Xiang                            3        212  98.6%
+Dzongkha                                  5        359  98.6%
 Japanese                                  4        299  98.7%
 Chinese, Mandarin (Simplified)            3        225  98.7%
 Nuosu                                     3        230  98.7%
@@ -212,16 +234,16 @@ Japanese (Osaka)                          4        308  98.7%
 Thai (2)                                  4        313  98.7%
 Japanese (Tokyo)                          4        320  98.8%
 Thai                                      4        341  98.8%
-Lao                                       3        426  99.3%
+Lao                                       4        425  99.1%
 Chickasaw                                 3        554  99.5%
 Bora                                      7       1598  99.6%
 Orok                                      5       1245  99.6%
-Yaneshaʼ                                 10       2536  99.6%
 Shipibo-Conibo                           10       2540  99.6%
 Gumuz                                     5       1283  99.6%
 Veps                                      5       1323  99.6%
 Navajo                                    6       1600  99.6%
 South Azerbaijani                         5       1396  99.6%
+Yaneshaʼ                                  9       2536  99.6%
 Secoya                                    5       1409  99.6%
 Amarakaeri                                5       1446  99.7%
 Korean                                    4       1185  99.7%
@@ -231,13 +253,11 @@ Gilyak                                    5       1504  99.7%
 Nanai                                     4       1207  99.7%
 Colorado                                  4       1263  99.7%
 Tem                                       5       1659  99.7%
-Ticuna                                    6       2048  99.7%
 (Yeonbyeon)                               3       1061  99.7%
 Yiddish, Eastern                          5       1775  99.7%
 Kabyle                                    5       1815  99.7%
 Lingala (tones)                           5       1818  99.7%
 Tamazight, Central Atlas                  5       1822  99.7%
-Fur                                       5       1838  99.7%
 Éwé                                       6       2230  99.7%
 Urdu                                      6       2237  99.7%
 Urdu (2)                                  6       2251  99.7%
@@ -246,23 +266,21 @@ Maldivian                                 5       1918  99.7%
 French (Welche)                           5       1928  99.7%
 Assyrian Neo-Aramaic                      3       1160  99.7%
 Mirandese                                 5       1966  99.7%
-Maori (2)                                 6       2385  99.7%
 Pular (Adlam)                             4       1613  99.8%
 Picard                                    5       2024  99.8%
 Ga                                        5       2039  99.8%
+Ticuna                                    5       2048  99.8%
 Saint Lucian Creole French                4       1777  99.8%
-Pashto, Northern                          5       2242  99.8%
-Seraiki                                   5       2242  99.8%
-Belanda Viri                              5       2246  99.8%
 Arabic, Standard                          3       1348  99.8%
 Farsi, Western                            4       1822  99.8%
 Mixtec, Metlatónoc                        3       1367  99.8%
 Bamun                                     5       2285  99.8%
+Fur                                       4       1838  99.8%
 Gen                                       5       2309  99.8%
-Otomi, Mezquital                          4       1849  99.8%
 Uduk                                      7       3247  99.8%
 Dari                                      4       1872  99.8%
 Ditammari                                 4       1882  99.8%
+Maori (2)                                 5       2385  99.8%
 Panjabi, Western                          5       2419  99.8%
 Baatonum                                  4       1939  99.8%
 Mòoré                                     5       2447  99.8%
@@ -277,10 +295,12 @@ Dendi                                     3       1569  99.8%
 Mazahua Central                           3       1574  99.8%
 Serer-Sine                                3       1596  99.8%
 Lamnso'                                   4       2237  99.8%
+Pashto, Northern                          4       2242  99.8%
+Seraiki                                   4       2242  99.8%
+Belanda Viri                              4       2246  99.8%
 Chinantec, Chiltepec                      3       1729  99.8%
 Dangme                                    5       2912  99.8%
-Dzongkha                                  4       3060  99.9%
-Tibetan, Central                          4       3174  99.9%
+Otomi, Mezquital                          3       1849  99.8%
 Tai Dam                                   3       2386  99.9%
 ===============================  ==========  =========  =============
 
@@ -319,7 +339,7 @@ Total codepoints: 15
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 9.
+  while *XTerm* measures width 9.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -345,7 +365,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
+  while *XTerm* measures width 4.
 
 Tamil
 ^^^^^
@@ -371,7 +391,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
+  while *XTerm* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -407,7 +427,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width 13.
+  while *XTerm* measures width 14.
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -433,7 +453,92 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
+  while *XTerm* measures width 4.
+
+Malayalam
+^^^^^^^^^
+
+Sequence of language *Malayalam* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  =======================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =======================
+`U+0D2E <https://codepoints.net/U+0D2E>`_  '\\u0d2e'  Lo                  1  MALAYALAM LETTER MA
+`U+0D28 <https://codepoints.net/U+0D28>`_  '\\u0d28'  Lo                  1  MALAYALAM LETTER NA
+`U+0D41 <https://codepoints.net/U+0D41>`_  '\\u0d41'  Mn                  0  MALAYALAM VOWEL SIGN U
+`U+0D37 <https://codepoints.net/U+0D37>`_  '\\u0d37'  Lo                  1  MALAYALAM LETTER SSA
+`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
+`U+0D2F <https://codepoints.net/U+0D2F>`_  '\\u0d2f'  Lo                  1  MALAYALAM LETTER YA
+`U+0D3E <https://codepoints.net/U+0D3E>`_  '\\u0d3e'  Mc                  0  MALAYALAM VOWEL SIGN AA
+`U+0D35 <https://codepoints.net/U+0D35>`_  '\\u0d35'  Lo                  1  MALAYALAM LETTER VA
+`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
+`U+0D3E <https://codepoints.net/U+0D3E>`_  '\\u0d3e'  Mc                  0  MALAYALAM VOWEL SIGN AA
+`U+0D36 <https://codepoints.net/U+0D36>`_  '\\u0d36'  Lo                  1  MALAYALAM LETTER SHA
+`U+0D19 <https://codepoints.net/U+0D19>`_  '\\u0d19'  Lo                  1  MALAYALAM LETTER NGA
+`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
+`U+0D19 <https://codepoints.net/U+0D19>`_  '\\u0d19'  Lo                  1  MALAYALAM LETTER NGA
+`U+0D33 <https://codepoints.net/U+0D33>`_  '\\u0d33'  Lo                  1  MALAYALAM LETTER LLA
+`U+0D46 <https://codepoints.net/U+0D46>`_  '\\u0d46'  Mc                  0  MALAYALAM VOWEL SIGN E
+`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
+`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
+`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
+`U+0D41 <https://codepoints.net/U+0D41>`_  '\\u0d41'  Mn                  0  MALAYALAM VOWEL SIGN U
+`U+0D31 <https://codepoints.net/U+0D31>`_  '\\u0d31'  Lo                  1  MALAYALAM LETTER RRA
+`U+0D3F <https://codepoints.net/U+0D3F>`_  '\\u0d3f'  Mc                  0  MALAYALAM VOWEL SIGN I
+`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
+`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
+`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
+`U+0D41 <https://codepoints.net/U+0D41>`_  '\\u0d41'  Mn                  0  MALAYALAM VOWEL SIGN U
+`U+0D28 <https://codepoints.net/U+0D28>`_  '\\u0d28'  Lo                  1  MALAYALAM LETTER NA
+`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
+`U+0D28 <https://codepoints.net/U+0D28>`_  '\\u0d28'  Lo                  1  MALAYALAM LETTER NA
+=========================================  =========  ==========  =========  =======================
+
+Total codepoints: 29
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xb4\xae\xe0\xb4\xa8\xe0\xb5\x81\xe0\xb4\xb7\xe0\xb5\x8d\xe0\xb4\xaf\xe0\xb4\xbe\xe0\xb4\xb5\xe0\xb4\x95\xe0\xb4\xbe\xe0\xb4\xb6\xe0\xb4\x99\xe0\xb5\x8d\xe0\xb4\x99\xe0\xb4\xb3\xe0\xb5\x86\xe0\xb4\x95\xe0\xb5\x8d\xe0\xb4\x95\xe0\xb5\x81\xe0\xb4\xb1\xe0\xb4\xbf\xe0\xb4\x95\xe0\xb5\x8d\xe0\xb4\x95\xe0\xb5\x81\xe0\xb4\xa8\xe0\xb5\x8d\xe0\xb4\xa8|\\n12345678901234567|\\n"
+        മനുഷ്യാവകാശങ്ങളെക്കുറിക്കുന്ന|
+        12345678901234567|
+
+- python `wcwidth.wcswidth()`_ measures width 17,
+  while *XTerm* measures width 21.
+
+Bengali
+^^^^^^^
+
+Sequence of language *Bengali* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  =====================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =====================
+`U+09AE <https://codepoints.net/U+09AE>`_  '\\u09ae'  Lo                  1  BENGALI LETTER MA
+`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
+`U+09A8 <https://codepoints.net/U+09A8>`_  '\\u09a8'  Lo                  1  BENGALI LETTER NA
+`U+09AC <https://codepoints.net/U+09AC>`_  '\\u09ac'  Lo                  1  BENGALI LETTER BA
+`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
+`U+09A7 <https://codepoints.net/U+09A7>`_  '\\u09a7'  Lo                  1  BENGALI LETTER DHA
+`U+09BF <https://codepoints.net/U+09BF>`_  '\\u09bf'  Mc                  0  BENGALI VOWEL SIGN I
+`U+0995 <https://codepoints.net/U+0995>`_  '\\u0995'  Lo                  1  BENGALI LETTER KA
+`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
+`U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
+`U+09C7 <https://codepoints.net/U+09C7>`_  '\\u09c7'  Mc                  0  BENGALI VOWEL SIGN E
+`U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
+=========================================  =========  ==========  =========  =====================
+
+Total codepoints: 12
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa6\xae\xe0\xa6\xbe\xe0\xa6\xa8\xe0\xa6\xac\xe0\xa6\xbe\xe0\xa6\xa7\xe0\xa6\xbf\xe0\xa6\x95\xe0\xa6\xbe\xe0\xa6\xb0\xe0\xa7\x87\xe0\xa6\xb0|\\n1234567|\\n"
+        মানবাধিকারের|
+        1234567|
+
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *XTerm* measures width 12.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -491,7 +596,7 @@ Total codepoints: 36
         1234567890123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 22,
-  while *foot* measures width 25.
+  while *XTerm* measures width 25.
 
 Kannada
 ^^^^^^^
@@ -517,7 +622,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
+  while *XTerm* measures width 4.
 
 Khün
 ^^^^
@@ -561,41 +666,7 @@ Total codepoints: 22
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *foot* measures width 15.
-
-Bengali
-^^^^^^^
-
-Sequence of language *Bengali* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  =====================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =====================
-`U+09AE <https://codepoints.net/U+09AE>`_  '\\u09ae'  Lo                  1  BENGALI LETTER MA
-`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
-`U+09A8 <https://codepoints.net/U+09A8>`_  '\\u09a8'  Lo                  1  BENGALI LETTER NA
-`U+09AC <https://codepoints.net/U+09AC>`_  '\\u09ac'  Lo                  1  BENGALI LETTER BA
-`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
-`U+09A7 <https://codepoints.net/U+09A7>`_  '\\u09a7'  Lo                  1  BENGALI LETTER DHA
-`U+09BF <https://codepoints.net/U+09BF>`_  '\\u09bf'  Mc                  0  BENGALI VOWEL SIGN I
-`U+0995 <https://codepoints.net/U+0995>`_  '\\u0995'  Lo                  1  BENGALI LETTER KA
-`U+09BE <https://codepoints.net/U+09BE>`_  '\\u09be'  Mc                  0  BENGALI VOWEL SIGN AA
-`U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
-`U+09C7 <https://codepoints.net/U+09C7>`_  '\\u09c7'  Mc                  0  BENGALI VOWEL SIGN E
-`U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
-=========================================  =========  ==========  =========  =====================
-
-Total codepoints: 12
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xa6\xae\xe0\xa6\xbe\xe0\xa6\xa8\xe0\xa6\xac\xe0\xa6\xbe\xe0\xa6\xa7\xe0\xa6\xbf\xe0\xa6\x95\xe0\xa6\xbe\xe0\xa6\xb0\xe0\xa7\x87\xe0\xa6\xb0|\\n1234567|\\n"
-        মানবাধিকারের|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width 12.
+  while *XTerm* measures width 15.
 
 Burmese
 ^^^^^^^
@@ -633,90 +704,7 @@ Total codepoints: 16
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *foot* measures width 11.
-
-Malayalam
-^^^^^^^^^
-
-Sequence of language *Malayalam* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  =======================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =======================
-`U+0D2E <https://codepoints.net/U+0D2E>`_  '\\u0d2e'  Lo                  1  MALAYALAM LETTER MA
-`U+0D28 <https://codepoints.net/U+0D28>`_  '\\u0d28'  Lo                  1  MALAYALAM LETTER NA
-`U+0D41 <https://codepoints.net/U+0D41>`_  '\\u0d41'  Mn                  0  MALAYALAM VOWEL SIGN U
-`U+0D37 <https://codepoints.net/U+0D37>`_  '\\u0d37'  Lo                  1  MALAYALAM LETTER SSA
-`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
-`U+0D2F <https://codepoints.net/U+0D2F>`_  '\\u0d2f'  Lo                  1  MALAYALAM LETTER YA
-`U+0D3E <https://codepoints.net/U+0D3E>`_  '\\u0d3e'  Mc                  0  MALAYALAM VOWEL SIGN AA
-`U+0D35 <https://codepoints.net/U+0D35>`_  '\\u0d35'  Lo                  1  MALAYALAM LETTER VA
-`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
-`U+0D3E <https://codepoints.net/U+0D3E>`_  '\\u0d3e'  Mc                  0  MALAYALAM VOWEL SIGN AA
-`U+0D36 <https://codepoints.net/U+0D36>`_  '\\u0d36'  Lo                  1  MALAYALAM LETTER SHA
-`U+0D19 <https://codepoints.net/U+0D19>`_  '\\u0d19'  Lo                  1  MALAYALAM LETTER NGA
-`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
-`U+0D19 <https://codepoints.net/U+0D19>`_  '\\u0d19'  Lo                  1  MALAYALAM LETTER NGA
-`U+0D33 <https://codepoints.net/U+0D33>`_  '\\u0d33'  Lo                  1  MALAYALAM LETTER LLA
-`U+0D46 <https://codepoints.net/U+0D46>`_  '\\u0d46'  Mc                  0  MALAYALAM VOWEL SIGN E
-`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
-`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
-`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
-`U+0D41 <https://codepoints.net/U+0D41>`_  '\\u0d41'  Mn                  0  MALAYALAM VOWEL SIGN U
-`U+0D31 <https://codepoints.net/U+0D31>`_  '\\u0d31'  Lo                  1  MALAYALAM LETTER RRA
-`U+0D3F <https://codepoints.net/U+0D3F>`_  '\\u0d3f'  Mc                  0  MALAYALAM VOWEL SIGN I
-`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
-`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
-`U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
-`U+0D41 <https://codepoints.net/U+0D41>`_  '\\u0d41'  Mn                  0  MALAYALAM VOWEL SIGN U
-`U+0D28 <https://codepoints.net/U+0D28>`_  '\\u0d28'  Lo                  1  MALAYALAM LETTER NA
-`U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
-`U+0D28 <https://codepoints.net/U+0D28>`_  '\\u0d28'  Lo                  1  MALAYALAM LETTER NA
-=========================================  =========  ==========  =========  =======================
-
-Total codepoints: 29
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xb4\xae\xe0\xb4\xa8\xe0\xb5\x81\xe0\xb4\xb7\xe0\xb5\x8d\xe0\xb4\xaf\xe0\xb4\xbe\xe0\xb4\xb5\xe0\xb4\x95\xe0\xb4\xbe\xe0\xb4\xb6\xe0\xb4\x99\xe0\xb5\x8d\xe0\xb4\x99\xe0\xb4\xb3\xe0\xb5\x86\xe0\xb4\x95\xe0\xb5\x8d\xe0\xb4\x95\xe0\xb5\x81\xe0\xb4\xb1\xe0\xb4\xbf\xe0\xb4\x95\xe0\xb5\x8d\xe0\xb4\x95\xe0\xb5\x81\xe0\xb4\xa8\xe0\xb5\x8d\xe0\xb4\xa8|\\n12345678901234567|\\n"
-        മനുഷ്യാവകാശങ്ങളെക്കുറിക്കുന്ന|
-        12345678901234567|
-
-- python `wcwidth.wcswidth()`_ measures width 17,
-  while *foot* measures width 20.
-
-Mon
-^^^
-
-Sequence of language *Mon* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ======================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======================
-`U+101C <https://codepoints.net/U+101C>`_  '\\u101c'  Lo                  1  MYANMAR LETTER LA
-`U+102D <https://codepoints.net/U+102D>`_  '\\u102d'  Mn                  0  MYANMAR VOWEL SIGN I
-`U+1000 <https://codepoints.net/U+1000>`_  '\\u1000'  Lo                  1  MYANMAR LETTER KA
-`U+103A <https://codepoints.net/U+103A>`_  '\\u103a'  Mn                  0  MYANMAR SIGN ASAT
-`U+101C <https://codepoints.net/U+101C>`_  '\\u101c'  Lo                  1  MYANMAR LETTER LA
-`U+101C <https://codepoints.net/U+101C>`_  '\\u101c'  Lo                  1  MYANMAR LETTER LA
-`U+1031 <https://codepoints.net/U+1031>`_  '\\u1031'  Mc                  0  MYANMAR VOWEL SIGN E
-`U+102C <https://codepoints.net/U+102C>`_  '\\u102c'  Mc                  0  MYANMAR VOWEL SIGN AA
-`U+105A <https://codepoints.net/U+105A>`_  '\\u105a'  Lo                  1  MYANMAR LETTER MON NGA
-`U+103A <https://codepoints.net/U+103A>`_  '\\u103a'  Mn                  0  MYANMAR SIGN ASAT
-=========================================  =========  ==========  =========  ======================
-
-Total codepoints: 10
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe1\x80\x9c\xe1\x80\xad\xe1\x80\x80\xe1\x80\xba\xe1\x80\x9c\xe1\x80\x9c\xe1\x80\xb1\xe1\x80\xac\xe1\x81\x9a\xe1\x80\xba|\\n12345|\\n"
-        လိက်လလောၚ်|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 7.
+  while *XTerm* measures width 11.
 
 Sanskrit
 ^^^^^^^^
@@ -752,7 +740,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width 13.
+  while *XTerm* measures width 13.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -762,11 +750,71 @@ Sequence of language *Tamang, Eastern* from midpoint of alignment failure record
 =========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ========================
-`U+092F <https://codepoints.net/U+092F>`_  '\\u092f'  Lo                  1  DEVANAGARI LETTER YA
-`U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
-`U+0919 <https://codepoints.net/U+0919>`_  '\\u0919'  Lo                  1  DEVANAGARI LETTER NGA
+`U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
+`U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+`U+0939 <https://codepoints.net/U+0939>`_  '\\u0939'  Lo                  1  DEVANAGARI LETTER HA
+`U+0940 <https://codepoints.net/U+0940>`_  '\\u0940'  Mc                  0  DEVANAGARI VOWEL SIGN II
 `U+0938 <https://codepoints.net/U+0938>`_  '\\u0938'  Lo                  1  DEVANAGARI LETTER SA
 `U+0947 <https://codepoints.net/U+0947>`_  '\\u0947'  Mn                  0  DEVANAGARI VOWEL SIGN E
+=========================================  =========  ==========  =========  ========================
+
+Total codepoints: 6
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\xae\xe0\xa5\x8d\xe0\xa4\xb9\xe0\xa5\x80\xe0\xa4\xb8\xe0\xa5\x87|\\n123|\\n"
+        म्हीसे|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *XTerm* measures width 4.
+
+Mon
+^^^
+
+Sequence of language *Mon* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ======================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ======================
+`U+101C <https://codepoints.net/U+101C>`_  '\\u101c'  Lo                  1  MYANMAR LETTER LA
+`U+102D <https://codepoints.net/U+102D>`_  '\\u102d'  Mn                  0  MYANMAR VOWEL SIGN I
+`U+1000 <https://codepoints.net/U+1000>`_  '\\u1000'  Lo                  1  MYANMAR LETTER KA
+`U+103A <https://codepoints.net/U+103A>`_  '\\u103a'  Mn                  0  MYANMAR SIGN ASAT
+`U+101C <https://codepoints.net/U+101C>`_  '\\u101c'  Lo                  1  MYANMAR LETTER LA
+`U+101C <https://codepoints.net/U+101C>`_  '\\u101c'  Lo                  1  MYANMAR LETTER LA
+`U+1031 <https://codepoints.net/U+1031>`_  '\\u1031'  Mc                  0  MYANMAR VOWEL SIGN E
+`U+102C <https://codepoints.net/U+102C>`_  '\\u102c'  Mc                  0  MYANMAR VOWEL SIGN AA
+`U+105A <https://codepoints.net/U+105A>`_  '\\u105a'  Lo                  1  MYANMAR LETTER MON NGA
+`U+103A <https://codepoints.net/U+103A>`_  '\\u103a'  Mn                  0  MYANMAR SIGN ASAT
+=========================================  =========  ==========  =========  ======================
+
+Total codepoints: 10
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe1\x80\x9c\xe1\x80\xad\xe1\x80\x80\xe1\x80\xba\xe1\x80\x9c\xe1\x80\x9c\xe1\x80\xb1\xe1\x80\xac\xe1\x81\x9a\xe1\x80\xba|\\n12345|\\n"
+        လိက်လလောၚ်|
+        12345|
+
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *XTerm* measures width 7.
+
+Marathi
+^^^^^^^
+
+Sequence of language *Marathi* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ========================
+`U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
+`U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
+`U+0928 <https://codepoints.net/U+0928>`_  '\\u0928'  Lo                  1  DEVANAGARI LETTER NA
+`U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
+`U+0940 <https://codepoints.net/U+0940>`_  '\\u0940'  Mc                  0  DEVANAGARI VOWEL SIGN II
 =========================================  =========  ==========  =========  ========================
 
 Total codepoints: 5
@@ -774,12 +822,12 @@ Total codepoints: 5
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe0\xa4\xaf\xe0\xa4\xbe\xe0\xa4\x99\xe0\xa4\xb8\xe0\xa5\x87|\\n123|\\n"
-        याङसे|
+        $ printf "\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5\xe0\xa5\x80|\\n123|\\n"
+        मानवी|
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
+  while *XTerm* measures width 5.
 
 Nepali
 ^^^^^^
@@ -805,7 +853,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
+  while *XTerm* measures width 4.
 
 Gujarati
 ^^^^^^^^
@@ -831,7 +879,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
+  while *XTerm* measures width 4.
 
 Telugu
 ^^^^^^
@@ -866,114 +914,7 @@ Total codepoints: 13
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *foot* measures width 10.
-
-Marathi
-^^^^^^^
-
-Sequence of language *Marathi* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ========================
-`U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
-`U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
-`U+0928 <https://codepoints.net/U+0928>`_  '\\u0928'  Lo                  1  DEVANAGARI LETTER NA
-`U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
-`U+0940 <https://codepoints.net/U+0940>`_  '\\u0940'  Mc                  0  DEVANAGARI VOWEL SIGN II
-=========================================  =========  ==========  =========  ========================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5\xe0\xa5\x80|\\n123|\\n"
-        मानवी|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 5.
-
-Hindi
-^^^^^
-
-Sequence of language *Hindi* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ========================
-`U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
-`U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
-`U+0928 <https://codepoints.net/U+0928>`_  '\\u0928'  Lo                  1  DEVANAGARI LETTER NA
-`U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
-=========================================  =========  ==========  =========  ========================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5|\\n123|\\n"
-        मानव|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
-
-Panjabi, Eastern
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Panjabi, Eastern* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ======================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======================
-`U+0A2E <https://codepoints.net/U+0A2E>`_  '\\u0a2e'  Lo                  1  GURMUKHI LETTER MA
-`U+0A28 <https://codepoints.net/U+0A28>`_  '\\u0a28'  Lo                  1  GURMUKHI LETTER NA
-`U+0A41 <https://codepoints.net/U+0A41>`_  '\\u0a41'  Mn                  0  GURMUKHI VOWEL SIGN U
-`U+0A71 <https://codepoints.net/U+0A71>`_  '\\u0a71'  Mn                  0  GURMUKHI ADDAK
-`U+0A16 <https://codepoints.net/U+0A16>`_  '\\u0a16'  Lo                  1  GURMUKHI LETTER KHA
-`U+0A40 <https://codepoints.net/U+0A40>`_  '\\u0a40'  Mc                  0  GURMUKHI VOWEL SIGN II
-=========================================  =========  ==========  =========  ======================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xa8\xae\xe0\xa8\xa8\xe0\xa9\x81\xe0\xa9\xb1\xe0\xa8\x96\xe0\xa9\x80|\\n123|\\n"
-        ਮਨੁੱਖੀ|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
-
-Sinhala
-^^^^^^^
-
-Sequence of language *Sinhala* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==============================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==============================
-`U+0DB8 <https://codepoints.net/U+0DB8>`_  '\\u0db8'  Lo                  1  SINHALA LETTER MAYANNA
-`U+0DCF <https://codepoints.net/U+0DCF>`_  '\\u0dcf'  Mc                  0  SINHALA VOWEL SIGN AELA-PILLA
-`U+0DB1 <https://codepoints.net/U+0DB1>`_  '\\u0db1'  Lo                  1  SINHALA LETTER DANTAJA NAYANNA
-`U+0DC0 <https://codepoints.net/U+0DC0>`_  '\\u0dc0'  Lo                  1  SINHALA LETTER VAYANNA
-=========================================  =========  ==========  =========  ==============================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xb6\xb8\xe0\xb7\x8f\xe0\xb6\xb1\xe0\xb7\x80|\\n123|\\n"
-        මානව|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 4.
+  while *XTerm* measures width 10.
 
 Maithili
 ^^^^^^^^
@@ -1003,7 +944,87 @@ Total codepoints: 8
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 7.
+  while *XTerm* measures width 7.
+
+Hindi
+^^^^^
+
+Sequence of language *Hindi* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ========================
+`U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
+`U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
+`U+0928 <https://codepoints.net/U+0928>`_  '\\u0928'  Lo                  1  DEVANAGARI LETTER NA
+`U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
+=========================================  =========  ==========  =========  ========================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5|\\n123|\\n"
+        मानव|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *XTerm* measures width 4.
+
+Panjabi, Eastern
+^^^^^^^^^^^^^^^^
+
+Sequence of language *Panjabi, Eastern* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ======================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ======================
+`U+0A2E <https://codepoints.net/U+0A2E>`_  '\\u0a2e'  Lo                  1  GURMUKHI LETTER MA
+`U+0A28 <https://codepoints.net/U+0A28>`_  '\\u0a28'  Lo                  1  GURMUKHI LETTER NA
+`U+0A41 <https://codepoints.net/U+0A41>`_  '\\u0a41'  Mn                  0  GURMUKHI VOWEL SIGN U
+`U+0A71 <https://codepoints.net/U+0A71>`_  '\\u0a71'  Mn                  0  GURMUKHI ADDAK
+`U+0A16 <https://codepoints.net/U+0A16>`_  '\\u0a16'  Lo                  1  GURMUKHI LETTER KHA
+`U+0A40 <https://codepoints.net/U+0A40>`_  '\\u0a40'  Mc                  0  GURMUKHI VOWEL SIGN II
+=========================================  =========  ==========  =========  ======================
+
+Total codepoints: 6
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa8\xae\xe0\xa8\xa8\xe0\xa9\x81\xe0\xa9\xb1\xe0\xa8\x96\xe0\xa9\x80|\\n123|\\n"
+        ਮਨੁੱਖੀ|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *XTerm* measures width 4.
+
+Sinhala
+^^^^^^^
+
+Sequence of language *Sinhala* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==============================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==============================
+`U+0DB8 <https://codepoints.net/U+0DB8>`_  '\\u0db8'  Lo                  1  SINHALA LETTER MAYANNA
+`U+0DCF <https://codepoints.net/U+0DCF>`_  '\\u0dcf'  Mc                  0  SINHALA VOWEL SIGN AELA-PILLA
+`U+0DB1 <https://codepoints.net/U+0DB1>`_  '\\u0db1'  Lo                  1  SINHALA LETTER DANTAJA NAYANNA
+`U+0DC0 <https://codepoints.net/U+0DC0>`_  '\\u0dc0'  Lo                  1  SINHALA LETTER VAYANNA
+=========================================  =========  ==========  =========  ==============================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xb6\xb8\xe0\xb7\x8f\xe0\xb6\xb1\xe0\xb7\x80|\\n123|\\n"
+        මානව|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *XTerm* measures width 4.
 
 Bhojpuri
 ^^^^^^^^
@@ -1035,7 +1056,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 10.
+  while *XTerm* measures width 10.
 
 Magahi
 ^^^^^^
@@ -1067,7 +1088,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 10.
+  while *XTerm* measures width 10.
 
 Chakma
 ^^^^^^
@@ -1102,7 +1123,7 @@ Total codepoints: 13
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width 8.
+  while *XTerm* measures width 8.
 
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
@@ -1113,7 +1134,7 @@ Sequence of language *Vietnamese (Han nom)* from midpoint of alignment failure r
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ==========================
 `U+689D <https://codepoints.net/U+689D>`_  '\\u689d'  Lo                  2  CJK UNIFIED IDEOGRAPH-689D
-`U+0038 <https://codepoints.net/U+0038>`_  '8'        Nd                  1  DIGIT EIGHT
+`U+0039 <https://codepoints.net/U+0039>`_  '9'        Nd                  1  DIGIT NINE
 `U+FF1A <https://codepoints.net/U+FF1A>`_  '\\uff1a'  Po                  2  FULLWIDTH COLON
 =========================================  =========  ==========  =========  ==========================
 
@@ -1122,164 +1143,90 @@ Total codepoints: 3
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe6\xa2\x9d8\xef\xbc\x9a|\\n12345|\\n"
-        條8：|
+        $ printf "\xe6\xa2\x9d9\xef\xbc\x9a|\\n12345|\\n"
+        條9：|
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width -75.
+  while *XTerm* measures width -69.
+
+Tibetan, Central
+^^^^^^^^^^^^^^^^
+
+Sequence of language *Tibetan, Central* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==================================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==================================
+`U+0F62 <https://codepoints.net/U+0F62>`_  '\\u0f62'  Lo                  1  TIBETAN LETTER RA
+`U+0F92 <https://codepoints.net/U+0F92>`_  '\\u0f92'  Mn                  0  TIBETAN SUBJOINED LETTER GA
+`U+0FB1 <https://codepoints.net/U+0FB1>`_  '\\u0fb1'  Mn                  0  TIBETAN SUBJOINED LETTER YA
+`U+0F63 <https://codepoints.net/U+0F63>`_  '\\u0f63'  Lo                  1  TIBETAN LETTER LA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
+`U+0FA4 <https://codepoints.net/U+0FA4>`_  '\\u0fa4'  Mn                  0  TIBETAN SUBJOINED LETTER PA
+`U+0FB1 <https://codepoints.net/U+0FB1>`_  '\\u0fb1'  Mn                  0  TIBETAN SUBJOINED LETTER YA
+`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
+`U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
+`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F50 <https://codepoints.net/U+0F50>`_  '\\u0f50'  Lo                  1  TIBETAN LETTER THA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F74 <https://codepoints.net/U+0F74>`_  '\\u0f74'  Mn                  0  TIBETAN VOWEL SIGN U
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F7A <https://codepoints.net/U+0F7A>`_  '\\u0f7a'  Mn                  0  TIBETAN VOWEL SIGN E
+`U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
+`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
+`U+0F53 <https://codepoints.net/U+0F53>`_  '\\u0f53'  Lo                  1  TIBETAN LETTER NA
+`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F5A <https://codepoints.net/U+0F5A>`_  '\\u0f5a'  Lo                  1  TIBETAN LETTER TSHA
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F58 <https://codepoints.net/U+0F58>`_  '\\u0f58'  Lo                  1  TIBETAN LETTER MA
+`U+0F50 <https://codepoints.net/U+0F50>`_  '\\u0f50'  Lo                  1  TIBETAN LETTER THA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F62 <https://codepoints.net/U+0F62>`_  '\\u0f62'  Lo                  1  TIBETAN LETTER RA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
+`U+0F4F <https://codepoints.net/U+0F4F>`_  '\\u0f4f'  Lo                  1  TIBETAN LETTER TA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
+`U+0F0C <https://codepoints.net/U+0F0C>`_  '\\u0f0c'  Po                  1  TIBETAN MARK DELIMITER TSHEG BSTAR
+`U+0F0D <https://codepoints.net/U+0F0D>`_  '\\u0f0d'  Po                  1  TIBETAN MARK SHAD
+=========================================  =========  ==========  =========  ==================================
+
+Total codepoints: 51
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xbd\xa2\xe0\xbe\x92\xe0\xbe\xb1\xe0\xbd\xa3\xe0\xbc\x8b\xe0\xbd\xa6\xe0\xbe\xa4\xe0\xbe\xb1\xe0\xbd\xb2\xe0\xbd\xa0\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x90\xe0\xbd\xbc\xe0\xbd\x82\xe0\xbc\x8b\xe0\xbd\x91\xe0\xbd\xb4\xe0\xbc\x8b\xe0\xbd\x91\xe0\xbd\xba\xe0\xbd\xa0\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x82\xe0\xbd\x93\xe0\xbd\xa6\xe0\xbc\x8b\xe0\xbd\x9a\xe0\xbd\x91\xe0\xbc\x8b\xe0\xbd\x82\xe0\xbd\xbc\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\x98\xe0\xbd\x90\xe0\xbd\xbc\xe0\xbd\xa2\xe0\xbc\x8b\xe0\xbd\x82\xe0\xbd\x8f\xe0\xbd\xbc\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\x96\xe0\xbc\x8b\xe0\xbd\x91\xe0\xbd\x84\xe0\xbc\x8c\xe0\xbc\x8d|\\n12345678901234567890123456789012345678|\\n"
+        རྒྱལ་སྤྱིའི་ཐོག་དུ་དེའི་གནས་ཚད་གོང་མཐོར་གཏོང་བ་དང༌།|
+        12345678901234567890123456789012345678|
+
+- python `wcwidth.wcswidth()`_ measures width 38,
+  while *XTerm* measures width -14.
 
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sequence of language *Chinese, Mandarin (Harbin)* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==========================
-`U+6CD5 <https://codepoints.net/U+6CD5>`_  '\\u6cd5'  Lo                  2  CJK UNIFIED IDEOGRAPH-6CD5
-`U+5F8B <https://codepoints.net/U+5F8B>`_  '\\u5f8b'  Lo                  2  CJK UNIFIED IDEOGRAPH-5F8B
-`U+4E4B <https://codepoints.net/U+4E4B>`_  '\\u4e4b'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E4B
-`U+524D <https://codepoints.net/U+524D>`_  '\\u524d'  Lo                  2  CJK UNIFIED IDEOGRAPH-524D
-`U+662F <https://codepoints.net/U+662F>`_  '\\u662f'  Lo                  2  CJK UNIFIED IDEOGRAPH-662F
-`U+51E1 <https://codepoints.net/U+51E1>`_  '\\u51e1'  Lo                  2  CJK UNIFIED IDEOGRAPH-51E1
-`U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-`U+90FD <https://codepoints.net/U+90FD>`_  '\\u90fd'  Lo                  2  CJK UNIFIED IDEOGRAPH-90FD
-`U+5E73 <https://codepoints.net/U+5E73>`_  '\\u5e73'  Lo                  2  CJK UNIFIED IDEOGRAPH-5E73
-`U+7B49 <https://codepoints.net/U+7B49>`_  '\\u7b49'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B49
-=========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 10
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe6\xb3\x95\xe5\xbe\x8b\xe4\xb9\x8b\xe5\x89\x8d\xe6\x98\xaf\xe5\x87\xa1\xe4\xba\xba\xe9\x83\xbd\xe5\xb9\xb3\xe7\xad\x89|\\n12345678901234567890|\\n"
-        法律之前是凡人都平等|
-        12345678901234567890|
-
-- python `wcwidth.wcswidth()`_ measures width 20,
-  while *foot* measures width 14.
-
-Chinese, Mandarin (Traditional)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Traditional)* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==========================
-`U+4E0D <https://codepoints.net/U+4E0D>`_  '\\u4e0d'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E0D
-`U+53D7 <https://codepoints.net/U+53D7>`_  '\\u53d7'  Lo                  2  CJK UNIFIED IDEOGRAPH-53D7
-`U+4EFB <https://codepoints.net/U+4EFB>`_  '\\u4efb'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EFB
-`U+4F55 <https://codepoints.net/U+4F55>`_  '\\u4f55'  Lo                  2  CJK UNIFIED IDEOGRAPH-4F55
-`U+6B67 <https://codepoints.net/U+6B67>`_  '\\u6b67'  Lo                  2  CJK UNIFIED IDEOGRAPH-6B67
-`U+8996 <https://codepoints.net/U+8996>`_  '\\u8996'  Lo                  2  CJK UNIFIED IDEOGRAPH-8996
-=========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe4\xb8\x8d\xe5\x8f\x97\xe4\xbb\xbb\xe4\xbd\x95\xe6\xad\xa7\xe8\xa6\x96|\\n123456789012|\\n"
-        不受任何歧視|
-        123456789012|
-
-- python `wcwidth.wcswidth()`_ measures width 12,
-  while *foot* measures width -12.
-
-Chinese, Yue
-^^^^^^^^^^^^
-
-Sequence of language *Chinese, Yue* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==========================
-`U+5514 <https://codepoints.net/U+5514>`_  '\\u5514'  Lo                  2  CJK UNIFIED IDEOGRAPH-5514
-`U+53D7 <https://codepoints.net/U+53D7>`_  '\\u53d7'  Lo                  2  CJK UNIFIED IDEOGRAPH-53D7
-`U+4EFB <https://codepoints.net/U+4EFB>`_  '\\u4efb'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EFB
-`U+4F55 <https://codepoints.net/U+4F55>`_  '\\u4f55'  Lo                  2  CJK UNIFIED IDEOGRAPH-4F55
-`U+6B67 <https://codepoints.net/U+6B67>`_  '\\u6b67'  Lo                  2  CJK UNIFIED IDEOGRAPH-6B67
-`U+89C6 <https://codepoints.net/U+89C6>`_  '\\u89c6'  Lo                  2  CJK UNIFIED IDEOGRAPH-89C6
-=========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe5\x94\x94\xe5\x8f\x97\xe4\xbb\xbb\xe4\xbd\x95\xe6\xad\xa7\xe8\xa7\x86|\\n123456789012|\\n"
-        唔受任何歧视|
-        123456789012|
-
-- python `wcwidth.wcswidth()`_ measures width 12,
-  while *foot* measures width -14.
-
-(Jinan)
-^^^^^^^
-
-Sequence of language *(Jinan)* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==========================
-`U+6CD5 <https://codepoints.net/U+6CD5>`_  '\\u6cd5'  Lo                  2  CJK UNIFIED IDEOGRAPH-6CD5
-`U+5F8B <https://codepoints.net/U+5F8B>`_  '\\u5f8b'  Lo                  2  CJK UNIFIED IDEOGRAPH-5F8B
-`U+4E4B <https://codepoints.net/U+4E4B>`_  '\\u4e4b'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E4B
-`U+524D <https://codepoints.net/U+524D>`_  '\\u524d'  Lo                  2  CJK UNIFIED IDEOGRAPH-524D
-`U+662F <https://codepoints.net/U+662F>`_  '\\u662f'  Lo                  2  CJK UNIFIED IDEOGRAPH-662F
-`U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-`U+90FD <https://codepoints.net/U+90FD>`_  '\\u90fd'  Lo                  2  CJK UNIFIED IDEOGRAPH-90FD
-`U+5E73 <https://codepoints.net/U+5E73>`_  '\\u5e73'  Lo                  2  CJK UNIFIED IDEOGRAPH-5E73
-`U+7B49 <https://codepoints.net/U+7B49>`_  '\\u7b49'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B49
-=========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 9
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe6\xb3\x95\xe5\xbe\x8b\xe4\xb9\x8b\xe5\x89\x8d\xe6\x98\xaf\xe4\xba\xba\xe9\x83\xbd\xe5\xb9\xb3\xe7\xad\x89|\\n123456789012345678|\\n"
-        法律之前是人都平等|
-        123456789012345678|
-
-- python `wcwidth.wcswidth()`_ measures width 18,
-  while *foot* measures width 12.
-
-Chinese, Gan
-^^^^^^^^^^^^
-
-Sequence of language *Chinese, Gan* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==========================
-`U+4E0D <https://codepoints.net/U+4E0D>`_  '\\u4e0d'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E0D
-`U+53D7 <https://codepoints.net/U+53D7>`_  '\\u53d7'  Lo                  2  CJK UNIFIED IDEOGRAPH-53D7
-`U+4EFB <https://codepoints.net/U+4EFB>`_  '\\u4efb'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EFB
-`U+4F55 <https://codepoints.net/U+4F55>`_  '\\u4f55'  Lo                  2  CJK UNIFIED IDEOGRAPH-4F55
-`U+6B67 <https://codepoints.net/U+6B67>`_  '\\u6b67'  Lo                  2  CJK UNIFIED IDEOGRAPH-6B67
-`U+89C6 <https://codepoints.net/U+89C6>`_  '\\u89c6'  Lo                  2  CJK UNIFIED IDEOGRAPH-89C6
-=========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe4\xb8\x8d\xe5\x8f\x97\xe4\xbb\xbb\xe4\xbd\x95\xe6\xad\xa7\xe8\xa7\x86|\\n123456789012|\\n"
-        不受任何歧视|
-        123456789012|
-
-- python `wcwidth.wcswidth()`_ measures width 12,
-  while *foot* measures width -12.
-
-Chinese, Mandarin (Guiyang)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Guiyang)* from midpoint of alignment failure records:
 
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
@@ -1308,7 +1255,135 @@ Total codepoints: 12
         123456789012345678901234|
 
 - python `wcwidth.wcswidth()`_ measures width 24,
-  while *foot* measures width 2.
+  while *XTerm* measures width 3.
+
+Chinese, Mandarin (Traditional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Chinese, Mandarin (Traditional)* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==========================
+`U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
+`U+516B <https://codepoints.net/U+516B>`_  '\\u516b'  Lo                  2  CJK UNIFIED IDEOGRAPH-516B
+`U+689D <https://codepoints.net/U+689D>`_  '\\u689d'  Lo                  2  CJK UNIFIED IDEOGRAPH-689D
+=========================================  =========  ==========  =========  ==========================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe7\xac\xac\xe5\x85\xab\xe6\xa2\x9d|\\n123456|\\n"
+        第八條|
+        123456|
+
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -54.
+
+Chinese, Yue
+^^^^^^^^^^^^
+
+Sequence of language *Chinese, Yue* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==========================
+`U+5514 <https://codepoints.net/U+5514>`_  '\\u5514'  Lo                  2  CJK UNIFIED IDEOGRAPH-5514
+`U+53D7 <https://codepoints.net/U+53D7>`_  '\\u53d7'  Lo                  2  CJK UNIFIED IDEOGRAPH-53D7
+`U+4EFB <https://codepoints.net/U+4EFB>`_  '\\u4efb'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EFB
+`U+4F55 <https://codepoints.net/U+4F55>`_  '\\u4f55'  Lo                  2  CJK UNIFIED IDEOGRAPH-4F55
+`U+6B67 <https://codepoints.net/U+6B67>`_  '\\u6b67'  Lo                  2  CJK UNIFIED IDEOGRAPH-6B67
+`U+89C6 <https://codepoints.net/U+89C6>`_  '\\u89c6'  Lo                  2  CJK UNIFIED IDEOGRAPH-89C6
+=========================================  =========  ==========  =========  ==========================
+
+Total codepoints: 6
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe5\x94\x94\xe5\x8f\x97\xe4\xbb\xbb\xe4\xbd\x95\xe6\xad\xa7\xe8\xa7\x86|\\n123456789012|\\n"
+        唔受任何歧视|
+        123456789012|
+
+- python `wcwidth.wcswidth()`_ measures width 12,
+  while *XTerm* measures width -14.
+
+(Jinan)
+^^^^^^^
+
+Sequence of language *(Jinan)* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==========================
+`U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
+`U+516B <https://codepoints.net/U+516B>`_  '\\u516b'  Lo                  2  CJK UNIFIED IDEOGRAPH-516B
+`U+6761 <https://codepoints.net/U+6761>`_  '\\u6761'  Lo                  2  CJK UNIFIED IDEOGRAPH-6761
+=========================================  =========  ==========  =========  ==========================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe7\xac\xac\xe5\x85\xab\xe6\x9d\xa1|\\n123456|\\n"
+        第八条|
+        123456|
+
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -54.
+
+Chinese, Gan
+^^^^^^^^^^^^
+
+Sequence of language *Chinese, Gan* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==========================
+`U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
+`U+516B <https://codepoints.net/U+516B>`_  '\\u516b'  Lo                  2  CJK UNIFIED IDEOGRAPH-516B
+`U+6761 <https://codepoints.net/U+6761>`_  '\\u6761'  Lo                  2  CJK UNIFIED IDEOGRAPH-6761
+=========================================  =========  ==========  =========  ==========================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe7\xac\xac\xe5\x85\xab\xe6\x9d\xa1|\\n123456|\\n"
+        第八条|
+        123456|
+
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -56.
+
+Chinese, Mandarin (Guiyang)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Chinese, Mandarin (Guiyang)* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==========================
+`U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
+`U+516B <https://codepoints.net/U+516B>`_  '\\u516b'  Lo                  2  CJK UNIFIED IDEOGRAPH-516B
+`U+6761 <https://codepoints.net/U+6761>`_  '\\u6761'  Lo                  2  CJK UNIFIED IDEOGRAPH-6761
+=========================================  =========  ==========  =========  ==========================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe7\xac\xac\xe5\x85\xab\xe6\x9d\xa1|\\n123456|\\n"
+        第八条|
+        123456|
+
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -54.
 
 Chinese, Wu
 ^^^^^^^^^^^
@@ -1318,27 +1393,31 @@ Sequence of language *Chinese, Wu* from midpoint of alignment failure records:
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ==========================
+`U+5E76 <https://codepoints.net/U+5E76>`_  '\\u5e76'  Lo                  2  CJK UNIFIED IDEOGRAPH-5E76
+`U+6709 <https://codepoints.net/U+6709>`_  '\\u6709'  Lo                  2  CJK UNIFIED IDEOGRAPH-6709
+`U+6743 <https://codepoints.net/U+6743>`_  '\\u6743'  Lo                  2  CJK UNIFIED IDEOGRAPH-6743
+`U+4EAB <https://codepoints.net/U+4EAB>`_  '\\u4eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EAB
+`U+53D7 <https://codepoints.net/U+53D7>`_  '\\u53d7'  Lo                  2  CJK UNIFIED IDEOGRAPH-53D7
 `U+6CD5 <https://codepoints.net/U+6CD5>`_  '\\u6cd5'  Lo                  2  CJK UNIFIED IDEOGRAPH-6CD5
 `U+5F8B <https://codepoints.net/U+5F8B>`_  '\\u5f8b'  Lo                  2  CJK UNIFIED IDEOGRAPH-5F8B
-`U+4E4B <https://codepoints.net/U+4E4B>`_  '\\u4e4b'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E4B
-`U+524D <https://codepoints.net/U+524D>`_  '\\u524d'  Lo                  2  CJK UNIFIED IDEOGRAPH-524D
-`U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-`U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
+`U+4E2A <https://codepoints.net/U+4E2A>`_  '\\u4e2a'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E2A
 `U+5E73 <https://codepoints.net/U+5E73>`_  '\\u5e73'  Lo                  2  CJK UNIFIED IDEOGRAPH-5E73
 `U+7B49 <https://codepoints.net/U+7B49>`_  '\\u7b49'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B49
+`U+4FDD <https://codepoints.net/U+4FDD>`_  '\\u4fdd'  Lo                  2  CJK UNIFIED IDEOGRAPH-4FDD
+`U+62A4 <https://codepoints.net/U+62A4>`_  '\\u62a4'  Lo                  2  CJK UNIFIED IDEOGRAPH-62A4
 =========================================  =========  ==========  =========  ==========================
 
-Total codepoints: 8
+Total codepoints: 12
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe6\xb3\x95\xe5\xbe\x8b\xe4\xb9\x8b\xe5\x89\x8d\xe4\xba\xba\xe4\xba\xba\xe5\xb9\xb3\xe7\xad\x89|\\n1234567890123456|\\n"
-        法律之前人人平等|
-        1234567890123456|
+        $ printf "\xe5\xb9\xb6\xe6\x9c\x89\xe6\x9d\x83\xe4\xba\xab\xe5\x8f\x97\xe6\xb3\x95\xe5\xbe\x8b\xe4\xb8\xaa\xe5\xb9\xb3\xe7\xad\x89\xe4\xbf\x9d\xe6\x8a\xa4|\\n123456789012345678901234|\\n"
+        并有权享受法律个平等保护|
+        123456789012345678901234|
 
-- python `wcwidth.wcswidth()`_ measures width 16,
-  while *foot* measures width 10.
+- python `wcwidth.wcswidth()`_ measures width 24,
+  while *XTerm* measures width 7.
 
 Chinese, Hakka
 ^^^^^^^^^^^^^^
@@ -1368,7 +1447,7 @@ Total codepoints: 8
         1234567890123456|
 
 - python `wcwidth.wcswidth()`_ measures width 16,
-  while *foot* measures width 10.
+  while *XTerm* measures width 10.
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1378,24 +1457,40 @@ Sequence of language *Chinese, Jinyu* from midpoint of alignment failure records
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ==========================
-`U+4E0D <https://codepoints.net/U+4E0D>`_  '\\u4e0d'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E0D
+`U+8C01 <https://codepoints.net/U+8C01>`_  '\\u8c01'  Lo                  2  CJK UNIFIED IDEOGRAPH-8C01
+`U+5F53 <https://codepoints.net/U+5F53>`_  '\\u5f53'  Lo                  2  CJK UNIFIED IDEOGRAPH-5F53
+`U+5BAA <https://codepoints.net/U+5BAA>`_  '\\u5baa'  Lo                  2  CJK UNIFIED IDEOGRAPH-5BAA
+`U+6CD5 <https://codepoints.net/U+6CD5>`_  '\\u6cd5'  Lo                  2  CJK UNIFIED IDEOGRAPH-6CD5
+`U+6216 <https://codepoints.net/U+6216>`_  '\\u6216'  Lo                  2  CJK UNIFIED IDEOGRAPH-6216
+`U+6CD5 <https://codepoints.net/U+6CD5>`_  '\\u6cd5'  Lo                  2  CJK UNIFIED IDEOGRAPH-6CD5
+`U+5F8B <https://codepoints.net/U+5F8B>`_  '\\u5f8b'  Lo                  2  CJK UNIFIED IDEOGRAPH-5F8B
+`U+6240 <https://codepoints.net/U+6240>`_  '\\u6240'  Lo                  2  CJK UNIFIED IDEOGRAPH-6240
+`U+8D4B <https://codepoints.net/U+8D4B>`_  '\\u8d4b'  Lo                  2  CJK UNIFIED IDEOGRAPH-8D4B
+`U+4E88 <https://codepoints.net/U+4E88>`_  '\\u4e88'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E88
+`U+4ED6 <https://codepoints.net/U+4ED6>`_  '\\u4ed6'  Lo                  2  CJK UNIFIED IDEOGRAPH-4ED6
+`U+7684 <https://codepoints.net/U+7684>`_  '\\u7684'  Lo                  2  CJK UNIFIED IDEOGRAPH-7684
+`U+57FA <https://codepoints.net/U+57FA>`_  '\\u57fa'  Lo                  2  CJK UNIFIED IDEOGRAPH-57FA
+`U+672C <https://codepoints.net/U+672C>`_  '\\u672c'  Lo                  2  CJK UNIFIED IDEOGRAPH-672C
+`U+6743 <https://codepoints.net/U+6743>`_  '\\u6743'  Lo                  2  CJK UNIFIED IDEOGRAPH-6743
+`U+5229 <https://codepoints.net/U+5229>`_  '\\u5229'  Lo                  2  CJK UNIFIED IDEOGRAPH-5229
+`U+906D <https://codepoints.net/U+906D>`_  '\\u906d'  Lo                  2  CJK UNIFIED IDEOGRAPH-906D
 `U+53D7 <https://codepoints.net/U+53D7>`_  '\\u53d7'  Lo                  2  CJK UNIFIED IDEOGRAPH-53D7
-`U+751A <https://codepoints.net/U+751A>`_  '\\u751a'  Lo                  2  CJK UNIFIED IDEOGRAPH-751A
-`U+6B67 <https://codepoints.net/U+6B67>`_  '\\u6b67'  Lo                  2  CJK UNIFIED IDEOGRAPH-6B67
-`U+89C6 <https://codepoints.net/U+89C6>`_  '\\u89c6'  Lo                  2  CJK UNIFIED IDEOGRAPH-89C6
+`U+4FB5 <https://codepoints.net/U+4FB5>`_  '\\u4fb5'  Lo                  2  CJK UNIFIED IDEOGRAPH-4FB5
+`U+5BB3 <https://codepoints.net/U+5BB3>`_  '\\u5bb3'  Lo                  2  CJK UNIFIED IDEOGRAPH-5BB3
+`U+65F6 <https://codepoints.net/U+65F6>`_  '\\u65f6'  Lo                  2  CJK UNIFIED IDEOGRAPH-65F6
 =========================================  =========  ==========  =========  ==========================
 
-Total codepoints: 5
+Total codepoints: 21
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe4\xb8\x8d\xe5\x8f\x97\xe7\x94\x9a\xe6\xad\xa7\xe8\xa7\x86|\\n1234567890|\\n"
-        不受甚歧视|
-        1234567890|
+        $ printf "\xe8\xb0\x81\xe5\xbd\x93\xe5\xae\xaa\xe6\xb3\x95\xe6\x88\x96\xe6\xb3\x95\xe5\xbe\x8b\xe6\x89\x80\xe8\xb5\x8b\xe4\xba\x88\xe4\xbb\x96\xe7\x9a\x84\xe5\x9f\xba\xe6\x9c\xac\xe6\x9d\x83\xe5\x88\xa9\xe9\x81\xad\xe5\x8f\x97\xe4\xbe\xb5\xe5\xae\xb3\xe6\x97\xb6|\\n123456789012345678901234567890123456789012|\\n"
+        谁当宪法或法律所赋予他的基本权利遭受侵害时|
+        123456789012345678901234567890123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 10,
-  while *foot* measures width -14.
+- python `wcwidth.wcswidth()`_ measures width 42,
+  while *XTerm* measures width 36.
 
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1425,7 +1520,7 @@ Total codepoints: 8
         1234567890123456|
 
 - python `wcwidth.wcswidth()`_ measures width 16,
-  while *foot* measures width 10.
+  while *XTerm* measures width 10.
 
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1435,28 +1530,22 @@ Sequence of language *Chinese, Mandarin (Nanjing)* from midpoint of alignment fa
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ==========================
-`U+6CD5 <https://codepoints.net/U+6CD5>`_  '\\u6cd5'  Lo                  2  CJK UNIFIED IDEOGRAPH-6CD5
-`U+5F8B <https://codepoints.net/U+5F8B>`_  '\\u5f8b'  Lo                  2  CJK UNIFIED IDEOGRAPH-5F8B
-`U+4E4B <https://codepoints.net/U+4E4B>`_  '\\u4e4b'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E4B
-`U+524D <https://codepoints.net/U+524D>`_  '\\u524d'  Lo                  2  CJK UNIFIED IDEOGRAPH-524D
-`U+5927 <https://codepoints.net/U+5927>`_  '\\u5927'  Lo                  2  CJK UNIFIED IDEOGRAPH-5927
-`U+5BB6 <https://codepoints.net/U+5BB6>`_  '\\u5bb6'  Lo                  2  CJK UNIFIED IDEOGRAPH-5BB6
-`U+90FD <https://codepoints.net/U+90FD>`_  '\\u90fd'  Lo                  2  CJK UNIFIED IDEOGRAPH-90FD
-`U+5E73 <https://codepoints.net/U+5E73>`_  '\\u5e73'  Lo                  2  CJK UNIFIED IDEOGRAPH-5E73
-`U+7B49 <https://codepoints.net/U+7B49>`_  '\\u7b49'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B49
+`U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
+`U+516B <https://codepoints.net/U+516B>`_  '\\u516b'  Lo                  2  CJK UNIFIED IDEOGRAPH-516B
+`U+6761 <https://codepoints.net/U+6761>`_  '\\u6761'  Lo                  2  CJK UNIFIED IDEOGRAPH-6761
 =========================================  =========  ==========  =========  ==========================
 
-Total codepoints: 9
+Total codepoints: 3
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe6\xb3\x95\xe5\xbe\x8b\xe4\xb9\x8b\xe5\x89\x8d\xe5\xa4\xa7\xe5\xae\xb6\xe9\x83\xbd\xe5\xb9\xb3\xe7\xad\x89|\\n123456789012345678|\\n"
-        法律之前大家都平等|
-        123456789012345678|
+        $ printf "\xe7\xac\xac\xe5\x85\xab\xe6\x9d\xa1|\\n123456|\\n"
+        第八条|
+        123456|
 
-- python `wcwidth.wcswidth()`_ measures width 18,
-  while *foot* measures width 9.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -52.
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1466,31 +1555,22 @@ Sequence of language *Chinese, Mandarin (Tianjin)* from midpoint of alignment fa
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ==========================
-`U+6CD5 <https://codepoints.net/U+6CD5>`_  '\\u6cd5'  Lo                  2  CJK UNIFIED IDEOGRAPH-6CD5
-`U+5F8B <https://codepoints.net/U+5F8B>`_  '\\u5f8b'  Lo                  2  CJK UNIFIED IDEOGRAPH-5F8B
-`U+4E4B <https://codepoints.net/U+4E4B>`_  '\\u4e4b'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E4B
-`U+524D <https://codepoints.net/U+524D>`_  '\\u524d'  Lo                  2  CJK UNIFIED IDEOGRAPH-524D
-`U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-`U+4E2A <https://codepoints.net/U+4E2A>`_  '\\u4e2a'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E2A
-`U+9876 <https://codepoints.net/U+9876>`_  '\\u9876'  Lo                  2  CJK UNIFIED IDEOGRAPH-9876
-`U+4E2A <https://codepoints.net/U+4E2A>`_  '\\u4e2a'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E2A
-`U+4E00 <https://codepoints.net/U+4E00>`_  '\\u4e00'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E00
-`U+8FB9 <https://codepoints.net/U+8FB9>`_  '\\u8fb9'  Lo                  2  CJK UNIFIED IDEOGRAPH-8FB9
-`U+513F <https://codepoints.net/U+513F>`_  '\\u513f'  Lo                  2  CJK UNIFIED IDEOGRAPH-513F
-`U+5927 <https://codepoints.net/U+5927>`_  '\\u5927'  Lo                  2  CJK UNIFIED IDEOGRAPH-5927
+`U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
+`U+516B <https://codepoints.net/U+516B>`_  '\\u516b'  Lo                  2  CJK UNIFIED IDEOGRAPH-516B
+`U+6761 <https://codepoints.net/U+6761>`_  '\\u6761'  Lo                  2  CJK UNIFIED IDEOGRAPH-6761
 =========================================  =========  ==========  =========  ==========================
 
-Total codepoints: 12
+Total codepoints: 3
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe6\xb3\x95\xe5\xbe\x8b\xe4\xb9\x8b\xe5\x89\x8d\xe4\xba\xba\xe4\xb8\xaa\xe9\xa1\xb6\xe4\xb8\xaa\xe4\xb8\x80\xe8\xbe\xb9\xe5\x84\xbf\xe5\xa4\xa7|\\n123456789012345678901234|\\n"
-        法律之前人个顶个一边儿大|
-        123456789012345678901234|
+        $ printf "\xe7\xac\xac\xe5\x85\xab\xe6\x9d\xa1|\\n123456|\\n"
+        第八条|
+        123456|
 
-- python `wcwidth.wcswidth()`_ measures width 24,
-  while *foot* measures width 17.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -58.
 
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
@@ -1500,25 +1580,22 @@ Sequence of language *Chinese, Min Nan* from midpoint of alignment failure recor
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ==========================
-`U+65E0 <https://codepoints.net/U+65E0>`_  '\\u65e0'  Lo                  2  CJK UNIFIED IDEOGRAPH-65E0
-`U+53D7 <https://codepoints.net/U+53D7>`_  '\\u53d7'  Lo                  2  CJK UNIFIED IDEOGRAPH-53D7
-`U+4EFB <https://codepoints.net/U+4EFB>`_  '\\u4efb'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EFB
-`U+4F55 <https://codepoints.net/U+4F55>`_  '\\u4f55'  Lo                  2  CJK UNIFIED IDEOGRAPH-4F55
-`U+6B67 <https://codepoints.net/U+6B67>`_  '\\u6b67'  Lo                  2  CJK UNIFIED IDEOGRAPH-6B67
-`U+89C6 <https://codepoints.net/U+89C6>`_  '\\u89c6'  Lo                  2  CJK UNIFIED IDEOGRAPH-89C6
+`U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
+`U+516B <https://codepoints.net/U+516B>`_  '\\u516b'  Lo                  2  CJK UNIFIED IDEOGRAPH-516B
+`U+6761 <https://codepoints.net/U+6761>`_  '\\u6761'  Lo                  2  CJK UNIFIED IDEOGRAPH-6761
 =========================================  =========  ==========  =========  ==========================
 
-Total codepoints: 6
+Total codepoints: 3
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe6\x97\xa0\xe5\x8f\x97\xe4\xbb\xbb\xe4\xbd\x95\xe6\xad\xa7\xe8\xa7\x86|\\n123456789012|\\n"
-        无受任何歧视|
-        123456789012|
+        $ printf "\xe7\xac\xac\xe5\x85\xab\xe6\x9d\xa1|\\n123456|\\n"
+        第八条|
+        123456|
 
-- python `wcwidth.wcswidth()`_ measures width 12,
-  while *foot* measures width -12.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -58.
 
 Chinese, Xiang
 ^^^^^^^^^^^^^^
@@ -1548,7 +1625,73 @@ Total codepoints: 8
         1234567890123456|
 
 - python `wcwidth.wcswidth()`_ measures width 16,
-  while *foot* measures width 10.
+  while *XTerm* measures width 10.
+
+Dzongkha
+^^^^^^^^
+
+Sequence of language *Dzongkha* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ================================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ================================
+`U+0F42 <https://codepoints.net/U+0F42>`_  '\\u0f42'  Lo                  1  TIBETAN LETTER GA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F62 <https://codepoints.net/U+0F62>`_  '\\u0f62'  Lo                  1  TIBETAN LETTER RA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F63 <https://codepoints.net/U+0F63>`_  '\\u0f63'  Lo                  1  TIBETAN LETTER LA
+`U+0F74 <https://codepoints.net/U+0F74>`_  '\\u0f74'  Mn                  0  TIBETAN VOWEL SIGN U
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
+`U+0F62 <https://codepoints.net/U+0F62>`_  '\\u0f62'  Lo                  1  TIBETAN LETTER RA
+`U+0FA9 <https://codepoints.net/U+0FA9>`_  '\\u0fa9'  Mn                  0  TIBETAN SUBJOINED LETTER TSA
+`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F58 <https://codepoints.net/U+0F58>`_  '\\u0f58'  Lo                  1  TIBETAN LETTER MA
+`U+0F50 <https://codepoints.net/U+0F50>`_  '\\u0f50'  Lo                  1  TIBETAN LETTER THA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F50 <https://codepoints.net/U+0F50>`_  '\\u0f50'  Lo                  1  TIBETAN LETTER THA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
+`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0FB2 <https://codepoints.net/U+0FB2>`_  '\\u0fb2'  Mn                  0  TIBETAN SUBJOINED LETTER RA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F58 <https://codepoints.net/U+0F58>`_  '\\u0f58'  Lo                  1  TIBETAN LETTER MA
+`U+0F49 <https://codepoints.net/U+0F49>`_  '\\u0f49'  Lo                  1  TIBETAN LETTER NYA
+`U+0F58 <https://codepoints.net/U+0F58>`_  '\\u0f58'  Lo                  1  TIBETAN LETTER MA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
+`U+0FA6 <https://codepoints.net/U+0FA6>`_  '\\u0fa6'  Mn                  0  TIBETAN SUBJOINED LETTER BA
+`U+0F7A <https://codepoints.net/U+0F7A>`_  '\\u0f7a'  Mn                  0  TIBETAN VOWEL SIGN E
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F61 <https://codepoints.net/U+0F61>`_  '\\u0f61'  Lo                  1  TIBETAN LETTER YA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F0D <https://codepoints.net/U+0F0D>`_  '\\u0f0d'  Po                  1  TIBETAN MARK SHAD
+=========================================  =========  ==========  =========  ================================
+
+Total codepoints: 44
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xbd\x82\xe0\xbc\x8b\xe0\xbd\xa2\xe0\xbc\x8b\xe0\xbd\xa3\xe0\xbd\xb4\xe0\xbc\x8b\xe0\xbd\x96\xe0\xbd\xa2\xe0\xbe\xa9\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x98\xe0\xbd\x90\xe0\xbd\xbc\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\x91\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\x90\xe0\xbd\xbc\xe0\xbd\x96\xe0\xbc\x8b\xe0\xbd\x91\xe0\xbd\x96\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\xa0\xe0\xbd\x91\xe0\xbe\xb2\xe0\xbc\x8b\xe0\xbd\x98\xe0\xbd\x89\xe0\xbd\x98\xe0\xbc\x8b\xe0\xbd\xa6\xe0\xbe\xa6\xe0\xbd\xba\xe0\xbc\x8b\xe0\xbd\xa1\xe0\xbd\xbc\xe0\xbd\x91\xe0\xbc\x8d|\\n12345678901234567890123456789012345|\\n"
+        ག་ར་ལུ་བརྩི་མཐོང་དང་ཐོབ་དབང་འདྲ་མཉམ་སྦེ་ཡོད།|
+        12345678901234567890123456789012345|
+
+- python `wcwidth.wcswidth()`_ measures width 35,
+  while *XTerm* measures width -5.
 
 Japanese
 ^^^^^^^^
@@ -1579,7 +1722,7 @@ Total codepoints: 9
         123456789012345678|
 
 - python `wcwidth.wcswidth()`_ measures width 18,
-  while *foot* measures width -2.
+  while *XTerm* measures width -2.
 
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1615,7 +1758,7 @@ Total codepoints: 14
         1234567890123456789012345678|
 
 - python `wcwidth.wcswidth()`_ measures width 28,
-  while *foot* measures width 15.
+  while *XTerm* measures width 16.
 
 Nuosu
 ^^^^^
@@ -1641,7 +1784,7 @@ Total codepoints: 4
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *foot* measures width -30.
+  while *XTerm* measures width -30.
 
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
@@ -1651,26 +1794,22 @@ Sequence of language *Japanese (Osaka)* from midpoint of alignment failure recor
 =========================================  =========  ==========  =========  ==========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ==========================
-`U+975E <https://codepoints.net/U+975E>`_  '\\u975e'  Lo                  2  CJK UNIFIED IDEOGRAPH-975E
-`U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-`U+6CBB <https://codepoints.net/U+6CBB>`_  '\\u6cbb'  Lo                  2  CJK UNIFIED IDEOGRAPH-6CBB
-`U+5730 <https://codepoints.net/U+5730>`_  '\\u5730'  Lo                  2  CJK UNIFIED IDEOGRAPH-5730
-`U+57DF <https://codepoints.net/U+57DF>`_  '\\u57df'  Lo                  2  CJK UNIFIED IDEOGRAPH-57DF
-`U+3084 <https://codepoints.net/U+3084>`_  '\\u3084'  Lo                  2  HIRAGANA LETTER YA
-`U+3068 <https://codepoints.net/U+3068>`_  '\\u3068'  Lo                  2  HIRAGANA LETTER TO
+`U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
+`U+FF13 <https://codepoints.net/U+FF13>`_  '\\uff13'  Nd                  2  FULLWIDTH DIGIT THREE
+`U+6761 <https://codepoints.net/U+6761>`_  '\\u6761'  Lo                  2  CJK UNIFIED IDEOGRAPH-6761
 =========================================  =========  ==========  =========  ==========================
 
-Total codepoints: 7
+Total codepoints: 3
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe9\x9d\x9e\xe8\x87\xaa\xe6\xb2\xbb\xe5\x9c\xb0\xe5\x9f\x9f\xe3\x82\x84\xe3\x81\xa8|\\n12345678901234|\\n"
-        非自治地域やと|
-        12345678901234|
+        $ printf "\xe7\xac\xac\xef\xbc\x93\xe6\x9d\xa1|\\n123456|\\n"
+        第３条|
+        123456|
 
-- python `wcwidth.wcswidth()`_ measures width 14,
-  while *foot* measures width -2.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -52.
 
 Thai (2)
 ^^^^^^^^
@@ -1714,7 +1853,7 @@ Total codepoints: 22
         12345678901234567|
 
 - python `wcwidth.wcswidth()`_ measures width 17,
-  while *foot* measures width -10.
+  while *XTerm* measures width -10.
 
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
@@ -1739,7 +1878,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width -52.
+  while *XTerm* measures width -52.
 
 Thai
 ^^^^
@@ -1770,7 +1909,7 @@ Total codepoints: 9
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 1.
+  while *XTerm* measures width 1.
 
 Lao
 ^^^
@@ -1862,7 +2001,7 @@ Total codepoints: 70
         123456789012345678901234567890123456789012345678901|
 
 - python `wcwidth.wcswidth()`_ measures width 51,
-  while *foot* measures width 34.
+  while *XTerm* measures width 35.
 
 Chickasaw
 ^^^^^^^^^
@@ -1872,36 +2011,25 @@ Sequence of language *Chickasaw* from midpoint of alignment failure records:
 =========================================  ========  ==========  =========  ======================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ======================
-`U+0041 <https://codepoints.net/U+0041>`_  'A'       Lu                  1  LATIN CAPITAL LETTER A
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-`U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
-`U+0070 <https://codepoints.net/U+0070>`_  'p'       Ll                  1  LATIN SMALL LETTER P
+`U+0048 <https://codepoints.net/U+0048>`_  'H'       Lu                  1  LATIN CAPITAL LETTER H
 `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+004B <https://codepoints.net/U+004B>`_  'K'       Lu                  1  LATIN CAPITAL LETTER K
+`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
+`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
 `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-`U+0068 <https://codepoints.net/U+0068>`_  'h'       Ll                  1  LATIN SMALL LETTER H
-`U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
-`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-`U+0027 <https://codepoints.net/U+0027>`_  "'"       Po                  1  APOSTROPHE
-`U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
-`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-`U+0037 <https://codepoints.net/U+0037>`_  '7'       Nd                  1  DIGIT SEVEN
+`U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
 =========================================  ========  ==========  =========  ======================
 
-Total codepoints: 17
+Total codepoints: 6
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "AnompaKanihmo'si7|\\n12345678901234567|\\n"
-        AnompaKanihmo'si7|
-        12345678901234567|
+        $ printf "Hattak|\\n123456|\\n"
+        Hattak|
+        123456|
 
-- python `wcwidth.wcswidth()`_ measures width 17,
-  while *foot* measures width 8.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -12.
 
 Bora
 ^^^^
@@ -1945,95 +2073,63 @@ Total codepoints: 22
         1234567890123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 22,
-  while *foot* measures width 11.
+  while *XTerm* measures width 11.
 
 Orok
 ^^^^
 
 Sequence of language *Orok* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  =========================
+=========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =========================
-`U+0433 <https://codepoints.net/U+0433>`_  '\\u0433'  Ll                  1  CYRILLIC SMALL LETTER GHE
-`U+044D <https://codepoints.net/U+044D>`_  '\\u044d'  Ll                  1  CYRILLIC SMALL LETTER E
-`U+0432 <https://codepoints.net/U+0432>`_  '\\u0432'  Ll                  1  CYRILLIC SMALL LETTER VE
-`U+0443 <https://codepoints.net/U+0443>`_  '\\u0443'  Ll                  1  CYRILLIC SMALL LETTER U
+=========================================  =========  ==========  =========  ========================
+`U+043E <https://codepoints.net/U+043E>`_  '\\u043e'  Ll                  1  CYRILLIC SMALL LETTER O
 `U+043C <https://codepoints.net/U+043C>`_  '\\u043c'  Ll                  1  CYRILLIC SMALL LETTER EM
-`U+044D <https://codepoints.net/U+044D>`_  '\\u044d'  Ll                  1  CYRILLIC SMALL LETTER E
-=========================================  =========  ==========  =========  =========================
+`U+043E <https://codepoints.net/U+043E>`_  '\\u043e'  Ll                  1  CYRILLIC SMALL LETTER O
+`U+0442 <https://codepoints.net/U+0442>`_  '\\u0442'  Ll                  1  CYRILLIC SMALL LETTER TE
+`U+0442 <https://codepoints.net/U+0442>`_  '\\u0442'  Ll                  1  CYRILLIC SMALL LETTER TE
+`U+043E <https://codepoints.net/U+043E>`_  '\\u043e'  Ll                  1  CYRILLIC SMALL LETTER O
+=========================================  =========  ==========  =========  ========================
 
 Total codepoints: 6
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xd0\xb3\xd1\x8d\xd0\xb2\xd1\x83\xd0\xbc\xd1\x8d|\\n123456|\\n"
-        гэвумэ|
+        $ printf "\xd0\xbe\xd0\xbc\xd0\xbe\xd1\x82\xd1\x82\xd0\xbe|\\n123456|\\n"
+        омотто|
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width -1.
-
-Yaneshaʼ
-^^^^^^^^
-
-Sequence of language *Yaneshaʼ* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ===============================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ===============================
-`U+0070 <https://codepoints.net/U+0070>`_  'p'       Ll                  1  LATIN SMALL LETTER P
-`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-`U+0027 <https://codepoints.net/U+0027>`_  "'"       Po                  1  APOSTROPHE
-`U+0070 <https://codepoints.net/U+0070>`_  'p'       Ll                  1  LATIN SMALL LETTER P
-`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-`U+00F1 <https://codepoints.net/U+00F1>`_  '\\xf1'   Ll                  1  LATIN SMALL LETTER N WITH TILDE
-=========================================  ========  ==========  =========  ===============================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "po'po\xc3\xb1|\\n123456|\\n"
-        po'poñ|
-        123456|
-
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 1.
+  while *XTerm* measures width -1.
 
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
 
 Sequence of language *Shipibo-Conibo* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ====================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ====================
-`U+0071 <https://codepoints.net/U+0071>`_  'q'        Ll                  1  LATIN SMALL LETTER Q
-`U+0075 <https://codepoints.net/U+0075>`_  'u'        Ll                  1  LATIN SMALL LETTER U
-`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-`U+0073 <https://codepoints.net/U+0073>`_  's'        Ll                  1  LATIN SMALL LETTER S
-`U+0308 <https://codepoints.net/U+0308>`_  '\\u0308'  Mn                  0  COMBINING DIAERESIS
-`U+0068 <https://codepoints.net/U+0068>`_  'h'        Ll                  1  LATIN SMALL LETTER H
-`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-=========================================  =========  ==========  =========  ====================
+=========================================  ========  ==========  =========  ======================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ======================
+`U+0044 <https://codepoints.net/U+0044>`_  'D'       Lu                  1  LATIN CAPITAL LETTER D
+`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
+`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
+`U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
+`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
+`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
+=========================================  ========  ==========  =========  ======================
 
-Total codepoints: 10
+Total codepoints: 6
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "queens\xcc\x88hon|\\n123456789|\\n"
-        queens̈hon|
-        123456789|
+        $ printf "Diosen|\\n123456|\\n"
+        Diosen|
+        123456|
 
-- python `wcwidth.wcswidth()`_ measures width 9,
-  while *foot* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -3.
 
 Gumuz
 ^^^^^
@@ -2043,31 +2139,29 @@ Sequence of language *Gumuz* from midpoint of alignment failure records:
 =========================================  =========  ==========  =========  ===========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ===========================
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-`U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
 `U+006C <https://codepoints.net/U+006C>`_  'l'        Ll                  1  LATIN SMALL LETTER L
 `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+006D <https://codepoints.net/U+006D>`_  'm'        Ll                  1  LATIN SMALL LETTER M
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+0068 <https://codepoints.net/U+0068>`_  'h'        Ll                  1  LATIN SMALL LETTER H
-`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-`U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
+`U+0064 <https://codepoints.net/U+0064>`_  'd'        Ll                  1  LATIN SMALL LETTER D
+`U+0075 <https://codepoints.net/U+0075>`_  'u'        Ll                  1  LATIN SMALL LETTER U
+`U+0062 <https://codepoints.net/U+0062>`_  'b'        Ll                  1  LATIN SMALL LETTER B
 `U+A78C <https://codepoints.net/U+A78C>`_  '\\ua78c'  Ll                  1  LATIN SMALL LETTER SALTILLO
-`U+0077 <https://codepoints.net/U+0077>`_  'w'        Ll                  1  LATIN SMALL LETTER W
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+`U+0067 <https://codepoints.net/U+0067>`_  'g'        Ll                  1  LATIN SMALL LETTER G
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
 =========================================  =========  ==========  =========  ===========================
 
-Total codepoints: 12
+Total codepoints: 10
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "nilamaahok\xea\x9e\x8cw|\\n123456789012|\\n"
-        nilamaahokꞌw|
-        123456789012|
+        $ printf "aladub\xea\x9e\x8caga|\\n1234567890|\\n"
+        aladubꞌaga|
+        1234567890|
 
-- python `wcwidth.wcswidth()`_ measures width 12,
-  while *foot* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 10,
+  while *XTerm* measures width -2.
 
 Veps
 ^^^^
@@ -2077,24 +2171,23 @@ Sequence of language *Veps* from midpoint of alignment failure records:
 =========================================  =========  ==========  =========  ===============================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  ===============================
-`U+0054 <https://codepoints.net/U+0054>`_  'T'        Lu                  1  LATIN CAPITAL LETTER T
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+006D <https://codepoints.net/U+006D>`_  'm'        Ll                  1  LATIN SMALL LETTER M
 `U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
-`U+017E <https://codepoints.net/U+017E>`_  '\\u017e'  Ll                  1  LATIN SMALL LETTER Z WITH CARON
+`U+0161 <https://codepoints.net/U+0161>`_  '\\u0161'  Ll                  1  LATIN SMALL LETTER S WITH CARON
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
 =========================================  =========  ==========  =========  ===============================
 
-Total codepoints: 5
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "Tari\xc5\xbe|\\n12345|\\n"
-        Tariž|
-        12345|
+        $ printf "mi\xc5\xa1e|\\n1234|\\n"
+        miše|
+        1234|
 
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width -3.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width -1.
 
 Navajo
 ^^^^^^
@@ -2120,113 +2213,141 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *foot* measures width -7.
+  while *XTerm* measures width -1.
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
 
 Sequence of language *South Azerbaijani* from midpoint of alignment failure records:
 
-=========================================  ========  ==========  =========  ======================
+=========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ======================
-`U+0048 <https://codepoints.net/U+0048>`_  'H'       Lu                  1  LATIN CAPITAL LETTER H
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
-=========================================  ========  ==========  =========  ======================
+=========================================  ========  ==========  =========  ====================
+`U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
+`U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
+=========================================  ========  ==========  =========  ====================
 
-Total codepoints: 3
+Total codepoints: 2
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "Her|\\n123|\\n"
-        Her|
-        123|
+        $ printf "bu|\\n12|\\n"
+        bu|
+        12|
 
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width -2.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -5.
+
+Yaneshaʼ
+^^^^^^^^
+
+Sequence of language *Yaneshaʼ* from midpoint of alignment failure records:
+
+=========================================  ========  ==========  =========  ===============================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ===============================
+`U+00F1 <https://codepoints.net/U+00F1>`_  '\\xf1'   Ll                  1  LATIN SMALL LETTER N WITH TILDE
+`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
+`U+00F1 <https://codepoints.net/U+00F1>`_  '\\xf1'   Ll                  1  LATIN SMALL LETTER N WITH TILDE
+`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
+=========================================  ========  ==========  =========  ===============================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xc3\xb1e\xc3\xb1t|\\n1234|\\n"
+        ñeñt|
+        1234|
+
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width -2.
 
 Secoya
 ^^^^^^
 
 Sequence of language *Secoya* from midpoint of alignment failure records:
 
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-`U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
-`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-`U+0027 <https://codepoints.net/U+0027>`_  "'"       Po                  1  APOSTROPHE
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-=========================================  ========  ==========  =========  ====================
+=========================================  =========  ==========  =========  ======================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ======================
+`U+0063 <https://codepoints.net/U+0063>`_  'c'        Ll                  1  LATIN SMALL LETTER C
+`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+`U+0331 <https://codepoints.net/U+0331>`_  '\\u0331'  Mn                  0  COMBINING MACRON BELOW
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+`U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
+=========================================  =========  ==========  =========  ======================
 
-Total codepoints: 6
+Total codepoints: 5
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "kui'ne|\\n123456|\\n"
-        kui'ne|
-        123456|
+        $ printf "co\xcc\xb1ni|\\n1234|\\n"
+        co̱ni|
+        1234|
 
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width -2.
 
 Amarakaeri
 ^^^^^^^^^^
 
 Sequence of language *Amarakaeri* from midpoint of alignment failure records:
 
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+0070 <https://codepoints.net/U+0070>`_  'p'       Ll                  1  LATIN SMALL LETTER P
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+0027 <https://codepoints.net/U+0027>`_  "'"       Po                  1  APOSTROPHE
-`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
-`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-=========================================  ========  ==========  =========  ====================
+=========================================  =========  ==========  =========  ======================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ======================
+`U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+`U+0070 <https://codepoints.net/U+0070>`_  'p'        Ll                  1  LATIN SMALL LETTER P
+`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+0331 <https://codepoints.net/U+0331>`_  '\\u0331'  Mn                  0  COMBINING MACRON BELOW
+`U+0027 <https://codepoints.net/U+0027>`_  "'"        Po                  1  APOSTROPHE
+`U+0070 <https://codepoints.net/U+0070>`_  'p'        Ll                  1  LATIN SMALL LETTER P
+`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+=========================================  =========  ==========  =========  ======================
 
-Total codepoints: 8
+Total codepoints: 12
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "kenpa'ti|\\n12345678|\\n"
-        kenpa'ti|
-        12345678|
+        $ printf "kannopoe\xcc\xb1'po|\\n12345678901|\\n"
+        kannopoe̱'po|
+        12345678901|
 
-- python `wcwidth.wcswidth()`_ measures width 8,
-  while *foot* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 11,
+  while *XTerm* measures width 4.
 
 Korean
 ^^^^^^
 
 Sequence of language *Korean* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ==================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==================
-`U+C81C <https://codepoints.net/U+C81C>`_  '\\uc81c'  Lo                  2  HANGUL SYLLABLE JE
-=========================================  =========  ==========  =========  ==================
+=========================================  ========  ==========  =========  ===========
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ===========
+`U+0033 <https://codepoints.net/U+0033>`_  '3'       Nd                  1  DIGIT THREE
+=========================================  ========  ==========  =========  ===========
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xec\xa0\x9c|\\n12|\\n"
-        제|
-        12|
+        $ printf "3|\\n1|\\n"
+        3|
+        1|
 
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -7.
+- python `wcwidth.wcswidth()`_ measures width 1,
+  while *XTerm* measures width -2.
 
 Siona
 ^^^^^
@@ -2236,12 +2357,12 @@ Sequence of language *Siona* from midpoint of alignment failure records:
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
-`U+006A <https://codepoints.net/U+006A>`_  'j'       Ll                  1  LATIN SMALL LETTER J
+`U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
 `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+0063 <https://codepoints.net/U+0063>`_  'c'       Ll                  1  LATIN SMALL LETTER C
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
+`U+0027 <https://codepoints.net/U+0027>`_  "'"       Po                  1  APOSTROPHE
+`U+0079 <https://codepoints.net/U+0079>`_  'y'       Ll                  1  LATIN SMALL LETTER Y
+`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
 =========================================  ========  ==========  =========  ====================
 
 Total codepoints: 6
@@ -2249,41 +2370,40 @@ Total codepoints: 6
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "jamaca|\\n123456|\\n"
-        jamaca|
+        $ printf "bai'ye|\\n123456|\\n"
+        bai'ye|
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 1.
+  while *XTerm* measures width -5.
 
 Evenki
 ^^^^^^
 
 Sequence of language *Evenki* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ========================
+=========================================  =========  ==========  =========  =======================================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ========================
-`U+0431 <https://codepoints.net/U+0431>`_  '\\u0431'  Ll                  1  CYRILLIC SMALL LETTER BE
+=========================================  =========  ==========  =========  =======================================
+`U+0422 <https://codepoints.net/U+0422>`_  '\\u0422'  Lu                  1  CYRILLIC CAPITAL LETTER TE
+`U+0443 <https://codepoints.net/U+0443>`_  '\\u0443'  Ll                  1  CYRILLIC SMALL LETTER U
+`U+043D <https://codepoints.net/U+043D>`_  '\\u043d'  Ll                  1  CYRILLIC SMALL LETTER EN
+`U+04A3 <https://codepoints.net/U+04A3>`_  '\\u04a3'  Ll                  1  CYRILLIC SMALL LETTER EN WITH DESCENDER
 `U+0438 <https://codepoints.net/U+0438>`_  '\\u0438'  Ll                  1  CYRILLIC SMALL LETTER I
-`U+0434 <https://codepoints.net/U+0434>`_  '\\u0434'  Ll                  1  CYRILLIC SMALL LETTER DE
-`U+0435 <https://codepoints.net/U+0435>`_  '\\u0435'  Ll                  1  CYRILLIC SMALL LETTER IE
-`U+043C <https://codepoints.net/U+043C>`_  '\\u043c'  Ll                  1  CYRILLIC SMALL LETTER EM
-`U+0438 <https://codepoints.net/U+0438>`_  '\\u0438'  Ll                  1  CYRILLIC SMALL LETTER I
-`U+003B <https://codepoints.net/U+003B>`_  ';'        Po                  1  SEMICOLON
-=========================================  =========  ==========  =========  ========================
+`U+0304 <https://codepoints.net/U+0304>`_  '\\u0304'  Mn                  0  COMBINING MACRON
+=========================================  =========  ==========  =========  =======================================
 
-Total codepoints: 7
+Total codepoints: 6
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xd0\xb1\xd0\xb8\xd0\xb4\xd0\xb5\xd0\xbc\xd0\xb8;|\\n1234567|\\n"
-        бидеми;|
-        1234567|
+        $ printf "\xd0\xa2\xd1\x83\xd0\xbd\xd2\xa3\xd0\xb8\xcc\x84|\\n12345|\\n"
+        Тунңӣ|
+        12345|
 
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width 3.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *XTerm* measures width -7.
 
 Gilyak
 ^^^^^^
@@ -2307,42 +2427,36 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -14.
+  while *XTerm* measures width -14.
 
 Nanai
 ^^^^^
 
 Sequence of language *Nanai* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  =========================
+=========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =========================
-`U+0442 <https://codepoints.net/U+0442>`_  '\\u0442'  Ll                  1  CYRILLIC SMALL LETTER TE
-`U+044D <https://codepoints.net/U+044D>`_  '\\u044d'  Ll                  1  CYRILLIC SMALL LETTER E
-`U+0434 <https://codepoints.net/U+0434>`_  '\\u0434'  Ll                  1  CYRILLIC SMALL LETTER DE
-`U+0435 <https://codepoints.net/U+0435>`_  '\\u0435'  Ll                  1  CYRILLIC SMALL LETTER IE
-`U+043C <https://codepoints.net/U+043C>`_  '\\u043c'  Ll                  1  CYRILLIC SMALL LETTER EM
-`U+044D <https://codepoints.net/U+044D>`_  '\\u044d'  Ll                  1  CYRILLIC SMALL LETTER E
+=========================================  =========  ==========  =========  ========================
 `U+043D <https://codepoints.net/U+043D>`_  '\\u043d'  Ll                  1  CYRILLIC SMALL LETTER EN
-`U+0434 <https://codepoints.net/U+0434>`_  '\\u0434'  Ll                  1  CYRILLIC SMALL LETTER DE
+`U+0430 <https://codepoints.net/U+0430>`_  '\\u0430'  Ll                  1  CYRILLIC SMALL LETTER A
 `U+0438 <https://codepoints.net/U+0438>`_  '\\u0438'  Ll                  1  CYRILLIC SMALL LETTER I
-`U+0432 <https://codepoints.net/U+0432>`_  '\\u0432'  Ll                  1  CYRILLIC SMALL LETTER VE
-`U+044D <https://codepoints.net/U+044D>`_  '\\u044d'  Ll                  1  CYRILLIC SMALL LETTER E
-`U+0447 <https://codepoints.net/U+0447>`_  '\\u0447'  Ll                  1  CYRILLIC SMALL LETTER CHE
-`U+0438 <https://codepoints.net/U+0438>`_  '\\u0438'  Ll                  1  CYRILLIC SMALL LETTER I
-=========================================  =========  ==========  =========  =========================
+`U+0306 <https://codepoints.net/U+0306>`_  '\\u0306'  Mn                  0  COMBINING BREVE
+`U+0441 <https://codepoints.net/U+0441>`_  '\\u0441'  Ll                  1  CYRILLIC SMALL LETTER ES
+`U+0430 <https://codepoints.net/U+0430>`_  '\\u0430'  Ll                  1  CYRILLIC SMALL LETTER A
+`U+043B <https://codepoints.net/U+043B>`_  '\\u043b'  Ll                  1  CYRILLIC SMALL LETTER EL
+=========================================  =========  ==========  =========  ========================
 
-Total codepoints: 13
+Total codepoints: 7
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xd1\x82\xd1\x8d\xd0\xb4\xd0\xb5\xd0\xbc\xd1\x8d\xd0\xbd\xd0\xb4\xd0\xb8\xd0\xb2\xd1\x8d\xd1\x87\xd0\xb8|\\n1234567890123|\\n"
-        тэдемэндивэчи|
-        1234567890123|
+        $ printf "\xd0\xbd\xd0\xb0\xd0\xb8\xcc\x86\xd1\x81\xd0\xb0\xd0\xbb|\\n123456|\\n"
+        найсал|
+        123456|
 
-- python `wcwidth.wcswidth()`_ measures width 13,
-  while *foot* measures width -4.
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width 1.
 
 Colorado
 ^^^^^^^^
@@ -2352,179 +2466,157 @@ Sequence of language *Colorado* from midpoint of alignment failure records:
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
-`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
+`U+0070 <https://codepoints.net/U+0070>`_  'p'       Ll                  1  LATIN SMALL LETTER P
+`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
+`U+0064 <https://codepoints.net/U+0064>`_  'd'       Ll                  1  LATIN SMALL LETTER D
+`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
 =========================================  ========  ==========  =========  ====================
 
-Total codepoints: 2
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "in|\\n12|\\n"
-        in|
-        12|
+        $ printf "pode|\\n1234|\\n"
+        pode|
+        1234|
 
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -7.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width -2.
 
 Tem
 ^^^
 
 Sequence of language *Tem* from midpoint of alignment failure records:
 
-=========================================  ========  ==========  =========  ===============================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ===============================
-`U+0079 <https://codepoints.net/U+0079>`_  'y'       Ll                  1  LATIN SMALL LETTER Y
-`U+00ED <https://codepoints.net/U+00ED>`_  '\\xed'   Ll                  1  LATIN SMALL LETTER I WITH ACUTE
-`U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-`U+0077 <https://codepoints.net/U+0077>`_  'w'       Ll                  1  LATIN SMALL LETTER W
-`U+00E1 <https://codepoints.net/U+00E1>`_  '\\xe1'   Ll                  1  LATIN SMALL LETTER A WITH ACUTE
-=========================================  ========  ==========  =========  ===============================
+=========================================  =========  ==========  =========  ==========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==========================
+`U+0269 <https://codepoints.net/U+0269>`_  '\\u0269'  Ll                  1  LATIN SMALL LETTER IOTA
+`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+028A <https://codepoints.net/U+028A>`_  '\\u028a'  Ll                  1  LATIN SMALL LETTER UPSILON
+`U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
+`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
+`U+0269 <https://codepoints.net/U+0269>`_  '\\u0269'  Ll                  1  LATIN SMALL LETTER IOTA
+=========================================  =========  ==========  =========  ==========================
 
 Total codepoints: 6
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "y\xc3\xadkow\xc3\xa1|\\n123456|\\n"
-        yíkowá|
-        123456|
+        $ printf "\xc9\xa9r\xca\x8a\xcc\x81t\xc9\xa9|\\n12345|\\n"
+        ɩrʊ́tɩ|
+        12345|
 
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 4.
-
-Ticuna
-^^^^^^
-
-Sequence of language *Ticuna* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ===================================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ===================================
-`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
-`U+00FC <https://codepoints.net/U+00FC>`_  '\\xfc'   Ll                  1  LATIN SMALL LETTER U WITH DIAERESIS
-=========================================  ========  ==========  =========  ===================================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "r\xc3\xbc|\\n12|\\n"
-        rü|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -6.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *XTerm* measures width 3.
 
 (Yeonbyeon)
 ^^^^^^^^^^^
 
 Sequence of language *(Yeonbyeon)* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  =====================
+=========================================  =========  ==========  =========  ====================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =====================
-`U+C778 <https://codepoints.net/U+C778>`_  '\\uc778'  Lo                  2  HANGUL SYLLABLE IN
-`U+ACA9 <https://codepoints.net/U+ACA9>`_  '\\uaca9'  Lo                  2  HANGUL SYLLABLE GYEOG
-`U+C744 <https://codepoints.net/U+C744>`_  '\\uc744'  Lo                  2  HANGUL SYLLABLE EUL
-=========================================  =========  ==========  =========  =====================
+=========================================  =========  ==========  =========  ====================
+`U+C788 <https://codepoints.net/U+C788>`_  '\\uc788'  Lo                  2  HANGUL SYLLABLE ISS
+`U+B294 <https://codepoints.net/U+B294>`_  '\\ub294'  Lo                  2  HANGUL SYLLABLE NEUN
+`U+B2E4 <https://codepoints.net/U+B2E4>`_  '\\ub2e4'  Lo                  2  HANGUL SYLLABLE DA
+`U+002E <https://codepoints.net/U+002E>`_  '.'        Po                  1  FULL STOP
+=========================================  =========  ==========  =========  ====================
 
-Total codepoints: 3
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xec\x9d\xb8\xea\xb2\xa9\xec\x9d\x84|\\n123456|\\n"
-        인격을|
-        123456|
+        $ printf "\xec\x9e\x88\xeb\x8a\x94\xeb\x8b\xa4.|\\n1234567|\\n"
+        있는다.|
+        1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width -1.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *XTerm* measures width 1.
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
 
 Sequence of language *Yiddish, Eastern* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ==================================
+=========================================  =========  ==========  =========  ===================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==================================
-`U+05D2 <https://codepoints.net/U+05D2>`_  '\\u05d2'  Lo                  1  HEBREW LETTER GIMEL
-`U+05E2 <https://codepoints.net/U+05E2>`_  '\\u05e2'  Lo                  1  HEBREW LETTER AYIN
-`U+05F0 <https://codepoints.net/U+05F0>`_  '\\u05f0'  Lo                  1  HEBREW LIGATURE YIDDISH DOUBLE VAV
+=========================================  =========  ==========  =========  ===================
 `U+05D9 <https://codepoints.net/U+05D9>`_  '\\u05d9'  Lo                  1  HEBREW LETTER YOD
-`U+05E1 <https://codepoints.net/U+05E1>`_  '\\u05e1'  Lo                  1  HEBREW LETTER SAMEKH
-`U+05DF <https://codepoints.net/U+05DF>`_  '\\u05df'  Lo                  1  HEBREW LETTER FINAL NUN
-`U+003B <https://codepoints.net/U+003B>`_  ';'        Po                  1  SEMICOLON
-=========================================  =========  ==========  =========  ==================================
+`U+05E2 <https://codepoints.net/U+05E2>`_  '\\u05e2'  Lo                  1  HEBREW LETTER AYIN
+`U+05D3 <https://codepoints.net/U+05D3>`_  '\\u05d3'  Lo                  1  HEBREW LETTER DALET
+`U+05E2 <https://codepoints.net/U+05E2>`_  '\\u05e2'  Lo                  1  HEBREW LETTER AYIN
+`U+05E8 <https://codepoints.net/U+05E8>`_  '\\u05e8'  Lo                  1  HEBREW LETTER RESH
+=========================================  =========  ==========  =========  ===================
 
-Total codepoints: 7
+Total codepoints: 5
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xd7\x92\xd7\xa2\xd7\xb0\xd7\x99\xd7\xa1\xd7\x9f;|\\n1234567|\\n"
-        געװיסן;|
-        1234567|
+        $ printf "\xd7\x99\xd7\xa2\xd7\x93\xd7\xa2\xd7\xa8|\\n12345|\\n"
+        יעדער|
+        12345|
 
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width 4.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *XTerm* measures width -2.
 
 Kabyle
 ^^^^^^
 
 Sequence of language *Kabyle* from midpoint of alignment failure records:
 
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+0064 <https://codepoints.net/U+0064>`_  'd'       Ll                  1  LATIN SMALL LETTER D
-=========================================  ========  ==========  =========  ====================
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "d|\\n1|\\n"
-        d|
-        1|
-
-- python `wcwidth.wcswidth()`_ measures width 1,
-  while *foot* measures width -5.
-
-Lingala (tones)
-^^^^^^^^^^^^^^^
-
-Sequence of language *Lingala (tones)* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ======================
+=========================================  =========  ==========  =========  ========================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======================
-`U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+=========================================  =========  ==========  =========  ========================
+`U+0263 <https://codepoints.net/U+0263>`_  '\\u0263'  Ll                  1  LATIN SMALL LETTER GAMMA
+`U+0075 <https://codepoints.net/U+0075>`_  'u'        Ll                  1  LATIN SMALL LETTER U
+`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+002D <https://codepoints.net/U+002D>`_  '-'        Pd                  1  HYPHEN-MINUS
 `U+0073 <https://codepoints.net/U+0073>`_  's'        Ll                  1  LATIN SMALL LETTER S
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
-`U+006C <https://codepoints.net/U+006C>`_  'l'        Ll                  1  LATIN SMALL LETTER L
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-=========================================  =========  ==========  =========  ======================
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+=========================================  =========  ==========  =========  ========================
 
 Total codepoints: 7
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "kosa\xcc\x81la|\\n123456|\\n"
-        kosála|
-        123456|
+        $ printf "\xc9\xa3ur-sen|\\n1234567|\\n"
+        ɣur-sen|
+        1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width -3.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *XTerm* measures width -1.
+
+Lingala (tones)
+^^^^^^^^^^^^^^^
+
+Sequence of language *Lingala (tones)* from midpoint of alignment failure records:
+
+=========================================  ========  ==========  =========  ====================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ====================
+`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
+`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+=========================================  ========  ==========  =========  ====================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "na|\\n12|\\n"
+        na|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -6.
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2534,10 +2626,10 @@ Sequence of language *Tamazight, Central Atlas* from midpoint of alignment failu
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
-`U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
 `U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
+`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+0067 <https://codepoints.net/U+0067>`_  'g'       Ll                  1  LATIN SMALL LETTER G
+`U+0068 <https://codepoints.net/U+0068>`_  'h'       Ll                  1  LATIN SMALL LETTER H
 =========================================  ========  ==========  =========  ====================
 
 Total codepoints: 4
@@ -2545,40 +2637,12 @@ Total codepoints: 4
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "sent|\\n1234|\\n"
-        sent|
+        $ printf "nagh|\\n1234|\\n"
+        nagh|
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *foot* measures width 3.
-
-Fur
-^^^
-
-Sequence of language *Fur* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ===============================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ===============================
-`U+0062 <https://codepoints.net/U+0062>`_  'b'        Ll                  1  LATIN SMALL LETTER B
-`U+0289 <https://codepoints.net/U+0289>`_  '\\u0289'  Ll                  1  LATIN SMALL LETTER U BAR
-`U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
-`U+006C <https://codepoints.net/U+006C>`_  'l'        Ll                  1  LATIN SMALL LETTER L
-`U+00F3 <https://codepoints.net/U+00F3>`_  '\\xf3'    Ll                  1  LATIN SMALL LETTER O WITH ACUTE
-`U+014B <https://codepoints.net/U+014B>`_  '\\u014b'  Ll                  1  LATIN SMALL LETTER ENG
-=========================================  =========  ==========  =========  ===============================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "b\xca\x89\xcc\x81l\xc3\xb3\xc5\x8b|\\n12345|\\n"
-        bʉ́lóŋ|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width -2.
+  while *XTerm* measures width -1.
 
 Éwé
 ^^^
@@ -2611,7 +2675,7 @@ Total codepoints: 11
         12345678901|
 
 - python `wcwidth.wcswidth()`_ measures width 11,
-  while *foot* measures width 7.
+  while *XTerm* measures width 7.
 
 Urdu
 ^^^^
@@ -2639,7 +2703,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 6.
+  while *XTerm* measures width 6.
 
 Urdu (2)
 ^^^^^^^^
@@ -2667,7 +2731,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 6.
+  while *XTerm* measures width 6.
 
 Catalan (2)
 ^^^^^^^^^^^
@@ -2677,7 +2741,7 @@ Sequence of language *Catalan (2)* from midpoint of alignment failure records:
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
 =========================================  ========  ==========  =========  ====================
 
 Total codepoints: 1
@@ -2685,48 +2749,50 @@ Total codepoints: 1
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "a|\\n1|\\n"
-        a|
+        $ printf "i|\\n1|\\n"
+        i|
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *foot* measures width -7.
+  while *XTerm* measures width -9.
 
 Maldivian
 ^^^^^^^^^
 
 Sequence of language *Maldivian* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ===================
+=========================================  =========  ==========  =========  =======================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ===================
-`U+0789 <https://codepoints.net/U+0789>`_  '\\u0789'  Lo                  1  THAANA LETTER MEEMU
-`U+07A8 <https://codepoints.net/U+07A8>`_  '\\u07a8'  Mn                  0  THAANA IBIFILI
-`U+0799 <https://codepoints.net/U+0799>`_  '\\u0799'  Lo                  1  THAANA LETTER HHAA
-`U+07A6 <https://codepoints.net/U+07A6>`_  '\\u07a6'  Mn                  0  THAANA ABAFILI
-`U+0787 <https://codepoints.net/U+0787>`_  '\\u0787'  Lo                  1  THAANA LETTER ALIFU
-`U+07B0 <https://codepoints.net/U+07B0>`_  '\\u07b0'  Mn                  0  THAANA SUKUN
-`U+07A4 <https://codepoints.net/U+07A4>`_  '\\u07a4'  Lo                  1  THAANA LETTER QAAFU
+=========================================  =========  ==========  =========  =======================
+`U+0780 <https://codepoints.net/U+0780>`_  '\\u0780'  Lo                  1  THAANA LETTER HAA
 `U+07AA <https://codepoints.net/U+07AA>`_  '\\u07aa'  Mn                  0  THAANA UBUFILI
-`U+078C <https://codepoints.net/U+078C>`_  '\\u078c'  Lo                  1  THAANA LETTER THAA
+`U+0783 <https://codepoints.net/U+0783>`_  '\\u0783'  Lo                  1  THAANA LETTER RAA
+`U+07AA <https://codepoints.net/U+07AA>`_  '\\u07aa'  Mn                  0  THAANA UBUFILI
+`U+0789 <https://codepoints.net/U+0789>`_  '\\u0789'  Lo                  1  THAANA LETTER MEEMU
 `U+07A6 <https://codepoints.net/U+07A6>`_  '\\u07a6'  Mn                  0  THAANA ABAFILI
-`U+0786 <https://codepoints.net/U+0786>`_  '\\u0786'  Lo                  1  THAANA LETTER KAAFU
-`U+07A7 <https://codepoints.net/U+07A7>`_  '\\u07a7'  Mn                  0  THAANA AABAAFILI
-`U+0787 <https://codepoints.net/U+0787>`_  '\\u0787'  Lo                  1  THAANA LETTER ALIFU
+`U+078C <https://codepoints.net/U+078C>`_  '\\u078c'  Lo                  1  THAANA LETTER THAA
+`U+07B0 <https://codepoints.net/U+07B0>`_  '\\u07b0'  Mn                  0  THAANA SUKUN
+`U+078C <https://codepoints.net/U+078C>`_  '\\u078c'  Lo                  1  THAANA LETTER THAA
+`U+07AC <https://codepoints.net/U+07AC>`_  '\\u07ac'  Mn                  0  THAANA EBEFILI
+`U+0783 <https://codepoints.net/U+0783>`_  '\\u0783'  Lo                  1  THAANA LETTER RAA
 `U+07A8 <https://codepoints.net/U+07A8>`_  '\\u07a8'  Mn                  0  THAANA IBIFILI
-=========================================  =========  ==========  =========  ===================
+`U+0786 <https://codepoints.net/U+0786>`_  '\\u0786'  Lo                  1  THAANA LETTER KAAFU
+`U+07AE <https://codepoints.net/U+07AE>`_  '\\u07ae'  Mn                  0  THAANA OBOFILI
+`U+0781 <https://codepoints.net/U+0781>`_  '\\u0781'  Lo                  1  THAANA LETTER SHAVIYANI
+`U+07B0 <https://codepoints.net/U+07B0>`_  '\\u07b0'  Mn                  0  THAANA SUKUN
+=========================================  =========  ==========  =========  =======================
 
-Total codepoints: 14
+Total codepoints: 16
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xde\x89\xde\xa8\xde\x99\xde\xa6\xde\x87\xde\xb0\xde\xa4\xde\xaa\xde\x8c\xde\xa6\xde\x86\xde\xa7\xde\x87\xde\xa8|\\n1234567|\\n"
-        މިޙައްޤުތަކާއި|
-        1234567|
+        $ printf "\xde\x80\xde\xaa\xde\x83\xde\xaa\xde\x89\xde\xa6\xde\x8c\xde\xb0\xde\x8c\xde\xac\xde\x83\xde\xa8\xde\x86\xde\xae\xde\x81\xde\xb0|\\n12345678|\\n"
+        ހުރުމަތްތެރިކޮށް|
+        12345678|
 
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width -3.
+- python `wcwidth.wcswidth()`_ measures width 8,
+  while *XTerm* measures width -1.
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -2750,35 +2816,37 @@ Total codepoints: 2
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *foot* measures width -9.
+  while *XTerm* measures width -9.
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
 Sequence of language *Assyrian Neo-Aramaic* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ===================
+=========================================  =========  ==========  =========  ====================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ===================
-`U+0726 <https://codepoints.net/U+0726>`_  '\\u0726'  Lo                  1  SYRIAC LETTER PE
-`U+0718 <https://codepoints.net/U+0718>`_  '\\u0718'  Lo                  1  SYRIAC LETTER WAW
-`U+072A <https://codepoints.net/U+072A>`_  '\\u072a'  Lo                  1  SYRIAC LETTER RISH
+=========================================  =========  ==========  =========  ====================
 `U+0725 <https://codepoints.net/U+0725>`_  '\\u0725'  Lo                  1  SYRIAC LETTER E
+`U+0712 <https://codepoints.net/U+0712>`_  '\\u0712'  Lo                  1  SYRIAC LETTER BETH
+`U+0742 <https://codepoints.net/U+0742>`_  '\\u0742'  Mn                  0  SYRIAC RUKKAKHA
+`U+0715 <https://codepoints.net/U+0715>`_  '\\u0715'  Lo                  1  SYRIAC LETTER DALATH
+`U+0718 <https://codepoints.net/U+0718>`_  '\\u0718'  Lo                  1  SYRIAC LETTER WAW
 `U+071D <https://codepoints.net/U+071D>`_  '\\u071d'  Lo                  1  SYRIAC LETTER YUDH
+`U+072C <https://codepoints.net/U+072C>`_  '\\u072c'  Lo                  1  SYRIAC LETTER TAW
 `U+0710 <https://codepoints.net/U+0710>`_  '\\u0710'  Lo                  1  SYRIAC LETTER ALAPH
-=========================================  =========  ==========  =========  ===================
+=========================================  =========  ==========  =========  ====================
 
-Total codepoints: 6
+Total codepoints: 8
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xdc\xa6\xdc\x98\xdc\xaa\xdc\xa5\xdc\x9d\xdc\x90|\\n123456|\\n"
-        ܦܘܪܥܝܐ|
-        123456|
+        $ printf "\xdc\xa5\xdc\x92\xdd\x82\xdc\x95\xdc\x98\xdc\x9d\xdc\xac\xdc\x90|\\n1234567|\\n"
+        ܥܒ݂ܕܘܝܬܐ|
+        1234567|
 
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 1.
+- python `wcwidth.wcswidth()`_ measures width 7,
+  while *XTerm* measures width 5.
 
 Mirandese
 ^^^^^^^^^
@@ -2791,19 +2859,402 @@ Codepoint                                  Python    Category      wcwidth  Name
 `U+0070 <https://codepoints.net/U+0070>`_  'p'       Ll                  1  LATIN SMALL LETTER P
 `U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
 `U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
+`U+0067 <https://codepoints.net/U+0067>`_  'g'       Ll                  1  LATIN SMALL LETTER G
+`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
+`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
+`U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
+`U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
+`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
+`U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
+`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
 =========================================  ========  ==========  =========  ====================
 
-Total codepoints: 3
+Total codepoints: 12
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "por|\\n123|\\n"
-        por|
-        123|
+        $ printf "porgressibas|\\n123456789012|\\n"
+        porgressibas|
+        123456789012|
 
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 2.
+- python `wcwidth.wcswidth()`_ measures width 12,
+  while *XTerm* measures width 5.
+
+Pular (Adlam)
+^^^^^^^^^^^^^
+
+Sequence of language *Pular (Adlam)* from midpoint of alignment failure records:
+
+=================================================  =============  ==========  =========  =======================
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  =======================
+`U+0001E93B <https://codepoints.net/U+0001E93B>`_  '\\U0001e93b'  Ll                  1  ADLAM SMALL LETTER NYA
+`U+0001E922 <https://codepoints.net/U+0001E922>`_  '\\U0001e922'  Ll                  1  ADLAM SMALL LETTER ALIF
+`U+0001E944 <https://codepoints.net/U+0001E944>`_  '\\U0001e944'  Mn                  0  ADLAM ALIF LENGTHENER
+`U+0001E931 <https://codepoints.net/U+0001E931>`_  '\\U0001e931'  Ll                  1  ADLAM SMALL LETTER WAW
+`U+0001E92E <https://codepoints.net/U+0001E92E>`_  '\\U0001e92e'  Ll                  1  ADLAM SMALL LETTER O
+`U+0001E945 <https://codepoints.net/U+0001E945>`_  '\\U0001e945'  Mn                  0  ADLAM VOWEL LENGTHENER
+`U+0001E92A <https://codepoints.net/U+0001E92A>`_  '\\U0001e92a'  Ll                  1  ADLAM SMALL LETTER RA
+`U+0001E92B <https://codepoints.net/U+0001E92B>`_  '\\U0001e92b'  Ll                  1  ADLAM SMALL LETTER E
+=================================================  =============  ==========  =========  =======================
+
+Total codepoints: 8
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x9e\xa4\xbb\xf0\x9e\xa4\xa2\xf0\x9e\xa5\x84\xf0\x9e\xa4\xb1\xf0\x9e\xa4\xae\xf0\x9e\xa5\x85\xf0\x9e\xa4\xaa\xf0\x9e\xa4\xab|\\n123456|\\n"
+        𞤻𞤢𞥄𞤱𞤮𞥅𞤪𞤫|
+        123456|
+
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width -4.
+
+Picard
+^^^^^^
+
+Sequence of language *Picard* from midpoint of alignment failure records:
+
+=========================================  ========  ==========  =========  ===============================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ===============================
+`U+0063 <https://codepoints.net/U+0063>`_  'c'       Ll                  1  LATIN SMALL LETTER C
+`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
+`U+00E8 <https://codepoints.net/U+00E8>`_  '\\xe8'   Ll                  1  LATIN SMALL LETTER E WITH GRAVE
+`U+0068 <https://codepoints.net/U+0068>`_  'h'       Ll                  1  LATIN SMALL LETTER H
+`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
+=========================================  ========  ==========  =========  ===============================
+
+Total codepoints: 5
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "cr\xc3\xa8he|\\n12345|\\n"
+        crèhe|
+        12345|
+
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *XTerm* measures width 2.
+
+Ga
+^^
+
+Sequence of language *Ga* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  =========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =========================
+`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
+`U+025B <https://codepoints.net/U+025B>`_  '\\u025b'  Ll                  1  LATIN SMALL LETTER OPEN E
+=========================================  =========  ==========  =========  =========================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "y\xc9\x9b|\\n12|\\n"
+        yɛ|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -1.
+
+Ticuna
+^^^^^^
+
+Sequence of language *Ticuna* from midpoint of alignment failure records:
+
+=========================================  ========  ==========  =========  ===================================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ===================================
+`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
+`U+00FC <https://codepoints.net/U+00FC>`_  '\\xfc'   Ll                  1  LATIN SMALL LETTER U WITH DIAERESIS
+=========================================  ========  ==========  =========  ===================================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "r\xc3\xbc|\\n12|\\n"
+        rü|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -6.
+
+Saint Lucian Creole French
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Saint Lucian Creole French* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ======================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ======================
+`U+006C <https://codepoints.net/U+006C>`_  'l'        Ll                  1  LATIN SMALL LETTER L
+`U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
+`U+0062 <https://codepoints.net/U+0062>`_  'b'        Ll                  1  LATIN SMALL LETTER B
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
+`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
+`U+002D <https://codepoints.net/U+002D>`_  '-'        Pd                  1  HYPHEN-MINUS
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+=========================================  =========  ==========  =========  ======================
+
+Total codepoints: 10
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "libe\xcc\x80te\xcc\x81-a|\\n12345678|\\n"
+        libèté-a|
+        12345678|
+
+- python `wcwidth.wcswidth()`_ measures width 8,
+  while *XTerm* measures width 5.
+
+Arabic, Standard
+^^^^^^^^^^^^^^^^
+
+Sequence of language *Arabic, Standard* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ===================================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ===================================
+`U+0623 <https://codepoints.net/U+0623>`_  '\\u0623'  Lo                  1  ARABIC LETTER ALEF WITH HAMZA ABOVE
+`U+0648 <https://codepoints.net/U+0648>`_  '\\u0648'  Lo                  1  ARABIC LETTER WAW
+=========================================  =========  ==========  =========  ===================================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xd8\xa3\xd9\x88|\\n12|\\n"
+        أو|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -5.
+
+Farsi, Western
+^^^^^^^^^^^^^^
+
+Sequence of language *Farsi, Western* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==================
+`U+0645 <https://codepoints.net/U+0645>`_  '\\u0645'  Lo                  1  ARABIC LETTER MEEM
+`U+0633 <https://codepoints.net/U+0633>`_  '\\u0633'  Lo                  1  ARABIC LETTER SEEN
+`U+062A <https://codepoints.net/U+062A>`_  '\\u062a'  Lo                  1  ARABIC LETTER TEH
+`U+0642 <https://codepoints.net/U+0642>`_  '\\u0642'  Lo                  1  ARABIC LETTER QAF
+`U+0644 <https://codepoints.net/U+0644>`_  '\\u0644'  Lo                  1  ARABIC LETTER LAM
+`U+060C <https://codepoints.net/U+060C>`_  '\\u060c'  Po                  1  ARABIC COMMA
+=========================================  =========  ==========  =========  ==================
+
+Total codepoints: 6
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xd9\x85\xd8\xb3\xd8\xaa\xd9\x82\xd9\x84\xd8\x8c|\\n123456|\\n"
+        مستقل،|
+        123456|
+
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width 2.
+
+Mixtec, Metlatónoc
+^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Mixtec, Metlatónoc* from midpoint of alignment failure records:
+
+=========================================  ========  ==========  =========  ===============================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ===============================
+`U+0041 <https://codepoints.net/U+0041>`_  'A'       Lu                  1  LATIN CAPITAL LETTER A
+`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
+`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
+`U+00ED <https://codepoints.net/U+00ED>`_  '\\xed'   Ll                  1  LATIN SMALL LETTER I WITH ACUTE
+`U+0063 <https://codepoints.net/U+0063>`_  'c'       Ll                  1  LATIN SMALL LETTER C
+`U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
+`U+006C <https://codepoints.net/U+006C>`_  'l'       Ll                  1  LATIN SMALL LETTER L
+`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
+=========================================  ========  ==========  =========  ===============================
+
+Total codepoints: 8
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "Art\xc3\xadculo|\\n12345678|\\n"
+        Artículo|
+        12345678|
+
+- python `wcwidth.wcswidth()`_ measures width 8,
+  while *XTerm* measures width -4.
+
+Bamun
+^^^^^
+
+Sequence of language *Bamun* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ======================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ======================
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+`U+0067 <https://codepoints.net/U+0067>`_  'g'        Ll                  1  LATIN SMALL LETTER G
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
+`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+=========================================  =========  ==========  =========  ======================
+
+Total codepoints: 7
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "nge\xcc\x81tne|\\n123456|\\n"
+        ngétne|
+        123456|
+
+- python `wcwidth.wcswidth()`_ measures width 6,
+  while *XTerm* measures width 0.
+
+Fur
+^^^
+
+Sequence of language *Fur* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ===============================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ===============================
+`U+00E1 <https://codepoints.net/U+00E1>`_  '\\xe1'    Ll                  1  LATIN SMALL LETTER A WITH ACUTE
+`U+006C <https://codepoints.net/U+006C>`_  'l'        Ll                  1  LATIN SMALL LETTER L
+`U+00E1 <https://codepoints.net/U+00E1>`_  '\\xe1'    Ll                  1  LATIN SMALL LETTER A WITH ACUTE
+`U+014B <https://codepoints.net/U+014B>`_  '\\u014b'  Ll                  1  LATIN SMALL LETTER ENG
+=========================================  =========  ==========  =========  ===============================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xc3\xa1l\xc3\xa1\xc5\x8b|\\n1234|\\n"
+        áláŋ|
+        1234|
+
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width 1.
+
+Gen
+^^^
+
+Sequence of language *Gen* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ==============================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==============================
+`U+0256 <https://codepoints.net/U+0256>`_  '\\u0256'  Ll                  1  LATIN SMALL LETTER D WITH TAIL
+`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+=========================================  =========  ==========  =========  ==============================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xc9\x96o|\\n12|\\n"
+        ɖo|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width 0.
+
+Uduk
+^^^^
+
+Sequence of language *Uduk* from midpoint of alignment failure records:
+
+=========================================  ========  ==========  =========  ====================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ====================
+`U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
+`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
+=========================================  ========  ==========  =========  ====================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "mo|\\n12|\\n"
+        mo|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -2.
+
+Dari
+^^^^
+
+Sequence of language *Dari* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ===================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ===================
+`U+06A9 <https://codepoints.net/U+06A9>`_  '\\u06a9'  Lo                  1  ARABIC LETTER KEHEH
+`U+0634 <https://codepoints.net/U+0634>`_  '\\u0634'  Lo                  1  ARABIC LETTER SHEEN
+`U+0648 <https://codepoints.net/U+0648>`_  '\\u0648'  Lo                  1  ARABIC LETTER WAW
+`U+0631 <https://codepoints.net/U+0631>`_  '\\u0631'  Lo                  1  ARABIC LETTER REH
+=========================================  =========  ==========  =========  ===================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xda\xa9\xd8\xb4\xd9\x88\xd8\xb1|\\n1234|\\n"
+        کشور|
+        1234|
+
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width -5.
+
+Ditammari
+^^^^^^^^^
+
+Sequence of language *Ditammari* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  =========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =========================
+`U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
+`U+0070 <https://codepoints.net/U+0070>`_  'p'        Ll                  1  LATIN SMALL LETTER P
+`U+025B <https://codepoints.net/U+025B>`_  '\\u025b'  Ll                  1  LATIN SMALL LETTER OPEN E
+`U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
+=========================================  =========  ==========  =========  =========================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "kp\xc9\x9bi|\\n1234|\\n"
+        kpɛi|
+        1234|
+
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width 1.
 
 Maori (2)
 ^^^^^^^^^
@@ -2832,398 +3283,112 @@ Total codepoints: 7
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width -1.
+  while *XTerm* measures width -1.
 
-Pular (Adlam)
-^^^^^^^^^^^^^
+Panjabi, Western
+^^^^^^^^^^^^^^^^
 
-Sequence of language *Pular (Adlam)* from midpoint of alignment failure records:
+Sequence of language *Panjabi, Western* from midpoint of alignment failure records:
 
-=================================================  =============  ==========  =========  ========================
-Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ========================
-`U+0001E923 <https://codepoints.net/U+0001E923>`_  '\\U0001e923'  Ll                  1  ADLAM SMALL LETTER DAALI
-`U+0001E92E <https://codepoints.net/U+0001E92E>`_  '\\U0001e92e'  Ll                  1  ADLAM SMALL LETTER O
-`U+0001E931 <https://codepoints.net/U+0001E931>`_  '\\U0001e931'  Ll                  1  ADLAM SMALL LETTER WAW
-=================================================  =============  ==========  =========  ========================
+=========================================  =========  ==========  =========  ==================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ==================
+`U+0639 <https://codepoints.net/U+0639>`_  '\\u0639'  Lo                  1  ARABIC LETTER AIN
+`U+0627 <https://codepoints.net/U+0627>`_  '\\u0627'  Lo                  1  ARABIC LETTER ALEF
+`U+0645 <https://codepoints.net/U+0645>`_  '\\u0645'  Lo                  1  ARABIC LETTER MEEM
+=========================================  =========  ==========  =========  ==================
 
 Total codepoints: 3
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9e\xa4\xa3\xf0\x9e\xa4\xae\xf0\x9e\xa4\xb1|\\n123|\\n"
-        𞤣𞤮𞤱|
+        $ printf "\xd8\xb9\xd8\xa7\xd9\x85|\\n123|\\n"
+        عام|
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 1.
+  while *XTerm* measures width -1.
 
-Picard
-^^^^^^
+Baatonum
+^^^^^^^^
 
-Sequence of language *Picard* from midpoint of alignment failure records:
+Sequence of language *Baatonum* from midpoint of alignment failure records:
 
-=========================================  ========  ==========  =========  ===============================
+=========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ===============================
-`U+0063 <https://codepoints.net/U+0063>`_  'c'       Ll                  1  LATIN SMALL LETTER C
-`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
-`U+00E8 <https://codepoints.net/U+00E8>`_  '\\xe8'   Ll                  1  LATIN SMALL LETTER E WITH GRAVE
-`U+0068 <https://codepoints.net/U+0068>`_  'h'       Ll                  1  LATIN SMALL LETTER H
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-=========================================  ========  ==========  =========  ===============================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "cr\xc3\xa8he|\\n12345|\\n"
-        crèhe|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 2.
-
-Ga
-^^
-
-Sequence of language *Ga* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  =========
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  =========
-`U+0032 <https://codepoints.net/U+0032>`_  '2'       Nd                  1  DIGIT TWO
-=========================================  ========  ==========  =========  =========
+=========================================  ========  ==========  =========  ====================
+`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
+=========================================  ========  ==========  =========  ====================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "2|\\n1|\\n"
-        2|
+        $ printf "n|\\n1|\\n"
+        n|
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *foot* measures width -10.
+  while *XTerm* measures width -3.
 
-Saint Lucian Creole French
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Saint Lucian Creole French* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ======================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======================
-`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-`U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
-`U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-=========================================  =========  ==========  =========  ======================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "e\xcc\x80k|\\n12|\\n"
-        èk|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -3.
-
-Pashto, Northern
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Pashto, Northern* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  =================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =================
-`U+0639 <https://codepoints.net/U+0639>`_  '\\u0639'  Lo                  1  ARABIC LETTER AIN
-`U+0642 <https://codepoints.net/U+0642>`_  '\\u0642'  Lo                  1  ARABIC LETTER QAF
-`U+064A <https://codepoints.net/U+064A>`_  '\\u064a'  Lo                  1  ARABIC LETTER YEH
-`U+062F <https://codepoints.net/U+062F>`_  '\\u062f'  Lo                  1  ARABIC LETTER DAL
-`U+0647 <https://codepoints.net/U+0647>`_  '\\u0647'  Lo                  1  ARABIC LETTER HEH
-=========================================  =========  ==========  =========  =================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd8\xb9\xd9\x82\xd9\x8a\xd8\xaf\xd9\x87|\\n12345|\\n"
-        عقيده|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 2.
-
-Seraiki
-^^^^^^^
-
-Sequence of language *Seraiki* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ===================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ===================
-`U+0648 <https://codepoints.net/U+0648>`_  '\\u0648'  Lo                  1  ARABIC LETTER WAW
-`U+0686 <https://codepoints.net/U+0686>`_  '\\u0686'  Lo                  1  ARABIC LETTER TCHEH
-=========================================  =========  ==========  =========  ===================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd9\x88\xda\x86|\\n12|\\n"
-        وچ|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -2.
-
-Belanda Viri
-^^^^^^^^^^^^
-
-Sequence of language *Belanda Viri* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-=========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ta|\\n12|\\n"
-        ta|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -3.
-
-Arabic, Standard
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Arabic, Standard* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  =========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =========================
-`U+0627 <https://codepoints.net/U+0627>`_  '\\u0627'  Lo                  1  ARABIC LETTER ALEF
-`U+0644 <https://codepoints.net/U+0644>`_  '\\u0644'  Lo                  1  ARABIC LETTER LAM
-`U+0648 <https://codepoints.net/U+0648>`_  '\\u0648'  Lo                  1  ARABIC LETTER WAW
-`U+0635 <https://codepoints.net/U+0635>`_  '\\u0635'  Lo                  1  ARABIC LETTER SAD
-`U+0627 <https://codepoints.net/U+0627>`_  '\\u0627'  Lo                  1  ARABIC LETTER ALEF
-`U+064A <https://codepoints.net/U+064A>`_  '\\u064a'  Lo                  1  ARABIC LETTER YEH
-`U+0629 <https://codepoints.net/U+0629>`_  '\\u0629'  Lo                  1  ARABIC LETTER TEH MARBUTA
-=========================================  =========  ==========  =========  =========================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd8\xa7\xd9\x84\xd9\x88\xd8\xb5\xd8\xa7\xd9\x8a\xd8\xa9|\\n1234567|\\n"
-        الوصاية|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width 4.
-
-Farsi, Western
-^^^^^^^^^^^^^^
-
-Sequence of language *Farsi, Western* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==================
-`U+062F <https://codepoints.net/U+062F>`_  '\\u062f'  Lo                  1  ARABIC LETTER DAL
-`U+0627 <https://codepoints.net/U+0627>`_  '\\u0627'  Lo                  1  ARABIC LETTER ALEF
-`U+0631 <https://codepoints.net/U+0631>`_  '\\u0631'  Lo                  1  ARABIC LETTER REH
-`U+062F <https://codepoints.net/U+062F>`_  '\\u062f'  Lo                  1  ARABIC LETTER DAL
-`U+060C <https://codepoints.net/U+060C>`_  '\\u060c'  Po                  1  ARABIC COMMA
-=========================================  =========  ==========  =========  ==================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd8\xaf\xd8\xa7\xd8\xb1\xd8\xaf\xd8\x8c|\\n12345|\\n"
-        دارد،|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 1.
-
-Mixtec, Metlatónoc
-^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Mixtec, Metlatónoc* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+006A <https://codepoints.net/U+006A>`_  'j'       Ll                  1  LATIN SMALL LETTER J
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-=========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ja|\\n12|\\n"
-        ja|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -6.
-
-Bamun
+Mòoré
 ^^^^^
 
-Sequence of language *Bamun* from midpoint of alignment failure records:
+Sequence of language *Mòoré* from midpoint of alignment failure records:
 
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-=========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ne|\\n12|\\n"
-        ne|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -5.
-
-Gen
-^^^
-
-Sequence of language *Gen* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+0076 <https://codepoints.net/U+0076>`_  'v'       Ll                  1  LATIN SMALL LETTER V
-`U+006C <https://codepoints.net/U+006C>`_  'l'       Ll                  1  LATIN SMALL LETTER L
-`U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
+`U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
+`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
 `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
 =========================================  ========  ==========  =========  ====================
 
-Total codepoints: 6
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "vlunka|\\n123456|\\n"
-        vlunka|
-        123456|
-
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width 3.
-
-Otomi, Mezquital
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Otomi, Mezquital* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ======================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======================
-`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-`U+0331 <https://codepoints.net/U+0331>`_  '\\u0331'  Mn                  0  COMBINING MACRON BELOW
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-`U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
-=========================================  =========  ==========  =========  ======================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "to\xcc\xb1ni|\\n1234|\\n"
-        to̱ni|
+        $ printf "soab|\\n1234|\\n"
+        soab|
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *foot* measures width -2.
+  while *XTerm* measures width 0.
 
-Uduk
-^^^^
+Yoruba
+^^^^^^
 
-Sequence of language *Uduk* from midpoint of alignment failure records:
+Sequence of language *Yoruba* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ====================================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ====================================
-`U+0077 <https://codepoints.net/U+0077>`_  'w'        Ll                  1  LATIN SMALL LETTER W
-`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-`U+1E6F <https://codepoints.net/U+1E6F>`_  '\\u1e6f'  Ll                  1  LATIN SMALL LETTER T WITH LINE BELOW
-`U+1E96 <https://codepoints.net/U+1E96>`_  '\\u1e96'  Ll                  1  LATIN SMALL LETTER H WITH LINE BELOW
-=========================================  =========  ==========  =========  ====================================
+=========================================  ========  ==========  =========  ===============================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ===============================
+`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
+`U+00E0 <https://codepoints.net/U+00E0>`_  '\\xe0'   Ll                  1  LATIN SMALL LETTER A WITH GRAVE
+`U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
+`U+00ED <https://codepoints.net/U+00ED>`_  '\\xed'   Ll                  1  LATIN SMALL LETTER I WITH ACUTE
+=========================================  ========  ==========  =========  ===============================
 
 Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "wo\xe1\xb9\xaf\xe1\xba\x96|\\n1234|\\n"
-        woṯẖ|
+        $ printf "t\xc3\xa0b\xc3\xad|\\n1234|\\n"
+        tàbí|
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *foot* measures width -4.
+  while *XTerm* measures width -1.
 
-Dari
-^^^^
+Waama
+^^^^^
 
-Sequence of language *Dari* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ===================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ===================
-`U+06A9 <https://codepoints.net/U+06A9>`_  '\\u06a9'  Lo                  1  ARABIC LETTER KEHEH
-`U+0634 <https://codepoints.net/U+0634>`_  '\\u0634'  Lo                  1  ARABIC LETTER SHEEN
-`U+0648 <https://codepoints.net/U+0648>`_  '\\u0648'  Lo                  1  ARABIC LETTER WAW
-`U+0631 <https://codepoints.net/U+0631>`_  '\\u0631'  Lo                  1  ARABIC LETTER REH
-=========================================  =========  ==========  =========  ===================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xda\xa9\xd8\xb4\xd9\x88\xd8\xb1|\\n1234|\\n"
-        کشور|
-        1234|
-
-- python `wcwidth.wcswidth()`_ measures width 4,
-  while *foot* measures width -5.
-
-Ditammari
-^^^^^^^^^
-
-Sequence of language *Ditammari* from midpoint of alignment failure records:
+Sequence of language *Waama* from midpoint of alignment failure records:
 
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
@@ -3241,210 +3406,85 @@ Total codepoints: 1
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *foot* measures width -5.
-
-Panjabi, Western
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Panjabi, Western* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==================
-`U+0645 <https://codepoints.net/U+0645>`_  '\\u0645'  Lo                  1  ARABIC LETTER MEEM
-`U+0627 <https://codepoints.net/U+0627>`_  '\\u0627'  Lo                  1  ARABIC LETTER ALEF
-`U+062D <https://codepoints.net/U+062D>`_  '\\u062d'  Lo                  1  ARABIC LETTER HAH
-`U+0648 <https://codepoints.net/U+0648>`_  '\\u0648'  Lo                  1  ARABIC LETTER WAW
-`U+0644 <https://codepoints.net/U+0644>`_  '\\u0644'  Lo                  1  ARABIC LETTER LAM
-=========================================  =========  ==========  =========  ==================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd9\x85\xd8\xa7\xd8\xad\xd9\x88\xd9\x84|\\n12345|\\n"
-        ماحول|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 3.
-
-Baatonum
-^^^^^^^^
-
-Sequence of language *Baatonum* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+0067 <https://codepoints.net/U+0067>`_  'g'       Ll                  1  LATIN SMALL LETTER G
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+002E <https://codepoints.net/U+002E>`_  '.'       Po                  1  FULL STOP
-=========================================  ========  ==========  =========  ====================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "gana.|\\n12345|\\n"
-        gana.|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width -4.
-
-Mòoré
-^^^^^
-
-Sequence of language *Mòoré* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-=========================================  ========  ==========  =========  ====================
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "a|\\n1|\\n"
-        a|
-        1|
-
-- python `wcwidth.wcswidth()`_ measures width 1,
-  while *foot* measures width -3.
-
-Yoruba
-^^^^^^
-
-Sequence of language *Yoruba* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-=========================================  ========  ==========  =========  ====================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "kan|\\n123|\\n"
-        kan|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width -6.
-
-Waama
-^^^^^
-
-Sequence of language *Waama* from midpoint of alignment failure records:
-
-=========================================  ========  ==========  =========  ===============================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ===============================
-`U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
-`U+00E0 <https://codepoints.net/U+00E0>`_  '\\xe0'   Ll                  1  LATIN SMALL LETTER A WITH GRAVE
-=========================================  ========  ==========  =========  ===============================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "b\xc3\xa0|\\n12|\\n"
-        bà|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -6.
+  while *XTerm* measures width -9.
 
 Vietnamese
 ^^^^^^^^^^
 
 Sequence of language *Vietnamese* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ====================================
+=========================================  =========  ==========  =========  ====================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ====================================
-`U+0071 <https://codepoints.net/U+0071>`_  'q'        Ll                  1  LATIN SMALL LETTER Q
+=========================================  =========  ==========  =========  ====================
+`U+0063 <https://codepoints.net/U+0063>`_  'c'        Ll                  1  LATIN SMALL LETTER C
 `U+0075 <https://codepoints.net/U+0075>`_  'u'        Ll                  1  LATIN SMALL LETTER U
-`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
-`U+00EA <https://codepoints.net/U+00EA>`_  '\\xea'    Ll                  1  LATIN SMALL LETTER E WITH CIRCUMFLEX
-`U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-=========================================  =========  ==========  =========  ====================================
+`U+0309 <https://codepoints.net/U+0309>`_  '\\u0309'  Mn                  0  COMBINING HOOK ABOVE
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+=========================================  =========  ==========  =========  ====================
 
-Total codepoints: 6
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "quy\xc3\xaa\xcc\x80n|\\n12345|\\n"
-        quyền|
-        12345|
+        $ printf "cu\xcc\x89a|\\n123|\\n"
+        của|
+        123|
 
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *foot* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *XTerm* measures width 0.
 
 Fon
 ^^^
 
 Sequence of language *Fon* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ==============================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==============================
-`U+0256 <https://codepoints.net/U+0256>`_  '\\u0256'  Ll                  1  LATIN SMALL LETTER D WITH TAIL
-`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-=========================================  =========  ==========  =========  ==============================
+=========================================  ========  ==========  =========  ====================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ====================
+`U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
+`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+006A <https://codepoints.net/U+006A>`_  'j'       Ll                  1  LATIN SMALL LETTER J
+`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
+=========================================  ========  ==========  =========  ====================
 
-Total codepoints: 2
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xc9\x96o|\\n12|\\n"
-        ɖo|
-        12|
+        $ printf "taji|\\n1234|\\n"
+        taji|
+        1234|
 
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width 2.
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
 
 Sequence of language *Dinka, Northeastern* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ===================================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ===================================
-`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
-`U+00F6 <https://codepoints.net/U+00F6>`_  '\\xf6'    Ll                  1  LATIN SMALL LETTER O WITH DIAERESIS
-`U+014B <https://codepoints.net/U+014B>`_  '\\u014b'  Ll                  1  LATIN SMALL LETTER ENG
-=========================================  =========  ==========  =========  ===================================
+=========================================  ========  ==========  =========  ====================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ====================
+`U+006A <https://codepoints.net/U+006A>`_  'j'       Ll                  1  LATIN SMALL LETTER J
+`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
+`U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
+`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
+=========================================  ========  ==========  =========  ====================
 
-Total codepoints: 3
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "y\xc3\xb6\xc5\x8b|\\n123|\\n"
-        yöŋ|
-        123|
+        $ printf "joor|\\n1234|\\n"
+        joor|
+        1234|
 
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width -1.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width 2.
 
 Aja
 ^^^
@@ -3454,46 +3494,50 @@ Sequence of language *Aja* from midpoint of alignment failure records:
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
-`U+0064 <https://codepoints.net/U+0064>`_  'd'       Ll                  1  LATIN SMALL LETTER D
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
+`U+0067 <https://codepoints.net/U+0067>`_  'g'       Ll                  1  LATIN SMALL LETTER G
+`U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
+`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+007A <https://codepoints.net/U+007A>`_  'z'       Ll                  1  LATIN SMALL LETTER Z
+`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
 =========================================  ========  ==========  =========  ====================
 
-Total codepoints: 2
+Total codepoints: 5
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "de|\\n12|\\n"
-        de|
-        12|
+        $ printf "gbaza|\\n12345|\\n"
+        gbaza|
+        12345|
 
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -4.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *XTerm* measures width 2.
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
 
 Sequence of language *Dagaare, Southern* from midpoint of alignment failure records:
 
-=========================================  ========  ==========  =========  ====================
-Codepoint                                  Python    Category      wcwidth  Name
-=========================================  ========  ==========  =========  ====================
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-=========================================  ========  ==========  =========  ====================
+=========================================  =========  ==========  =========  =========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =========================
+`U+0070 <https://codepoints.net/U+0070>`_  'p'        Ll                  1  LATIN SMALL LETTER P
+`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+`U+0254 <https://codepoints.net/U+0254>`_  '\\u0254'  Ll                  1  LATIN SMALL LETTER OPEN O
+`U+002E <https://codepoints.net/U+002E>`_  '.'        Po                  1  FULL STOP
+=========================================  =========  ==========  =========  =========================
 
-Total codepoints: 3
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "ane|\\n123|\\n"
-        ane|
-        123|
+        $ printf "po\xc9\x94.|\\n1234|\\n"
+        poɔ.|
+        1234|
 
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width -1.
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width -1.
 
 Dendi
 ^^^^^
@@ -3503,56 +3547,45 @@ Sequence of language *Dendi* from midpoint of alignment failure records:
 =========================================  =========  ==========  =========  =========================
 Codepoint                                  Python     Category      wcwidth  Name
 =========================================  =========  ==========  =========  =========================
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-`U+025B <https://codepoints.net/U+025B>`_  '\\u025b'  Ll                  1  LATIN SMALL LETTER OPEN E
-`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
-`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-`U+006D <https://codepoints.net/U+006D>`_  'm'        Ll                  1  LATIN SMALL LETTER M
+`U+0066 <https://codepoints.net/U+0066>`_  'f'        Ll                  1  LATIN SMALL LETTER F
+`U+0254 <https://codepoints.net/U+0254>`_  '\\u0254'  Ll                  1  LATIN SMALL LETTER OPEN O
 =========================================  =========  ==========  =========  =========================
 
-Total codepoints: 8
+Total codepoints: 2
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "naan\xc9\x9byom|\\n12345678|\\n"
-        naanɛyom|
-        12345678|
+        $ printf "f\xc9\x94|\\n12|\\n"
+        fɔ|
+        12|
 
-- python `wcwidth.wcswidth()`_ measures width 8,
-  while *foot* measures width 3.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -2.
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
 Sequence of language *Mazahua Central* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ================================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ================================
-`U+007A <https://codepoints.net/U+007A>`_  'z'        Ll                  1  LATIN SMALL LETTER Z
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-`U+0064 <https://codepoints.net/U+0064>`_  'd'        Ll                  1  LATIN SMALL LETTER D
-`U+0027 <https://codepoints.net/U+0027>`_  "'"        Po                  1  APOSTROPHE
-`U+A7B9 <https://codepoints.net/U+A7B9>`_  '\\ua7b9'  Ll                  1  LATIN SMALL LETTER U WITH STROKE
-`U+006A <https://codepoints.net/U+006A>`_  'j'        Ll                  1  LATIN SMALL LETTER J
-`U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
-=========================================  =========  ==========  =========  ================================
+=========================================  ========  ==========  =========  ====================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ====================
+`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
+`U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
+=========================================  ========  ==========  =========  ====================
 
-Total codepoints: 7
+Total codepoints: 2
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "zad'\xea\x9e\xb9ji|\\n1234567|\\n"
-        zad'ꞹji|
-        1234567|
+        $ printf "nu|\\n12|\\n"
+        nu|
+        12|
 
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *foot* measures width 5.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -6.
 
 Serer-Sine
 ^^^^^^^^^^
@@ -3562,25 +3595,22 @@ Sequence of language *Serer-Sine* from midpoint of alignment failure records:
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
-`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-`U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-`U+002E <https://codepoints.net/U+002E>`_  '.'       Po                  1  FULL STOP
+`U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
+`U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
+`U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
 =========================================  ========  ==========  =========  ====================
 
-Total codepoints: 6
+Total codepoints: 3
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "neeke.|\\n123456|\\n"
-        neeke.|
-        123456|
+        $ printf "muu|\\n123|\\n"
+        muu|
+        123|
 
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *foot* measures width -1.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *XTerm* measures width -1.
 
 Lamnso'
 ^^^^^^^
@@ -3590,9 +3620,9 @@ Sequence of language *Lamnso'* from midpoint of alignment failure records:
 =========================================  ========  ==========  =========  ===============================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ===============================
-`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
-`U+00E1 <https://codepoints.net/U+00E1>`_  '\\xe1'   Ll                  1  LATIN SMALL LETTER A WITH ACUTE
-`U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
+`U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
+`U+00EC <https://codepoints.net/U+00EC>`_  '\\xec'   Ll                  1  LATIN SMALL LETTER I WITH GRAVE
+`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
 =========================================  ========  ==========  =========  ===============================
 
 Total codepoints: 3
@@ -3600,12 +3630,86 @@ Total codepoints: 3
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "r\xc3\xa1m|\\n123|\\n"
-        rám|
+        $ printf "k\xc3\xacn|\\n123|\\n"
+        kìn|
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *foot* measures width 0.
+  while *XTerm* measures width -3.
+
+Pashto, Northern
+^^^^^^^^^^^^^^^^
+
+Sequence of language *Pashto, Northern* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ===================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ===================
+`U+0686 <https://codepoints.net/U+0686>`_  '\\u0686'  Lo                  1  ARABIC LETTER TCHEH
+`U+06D0 <https://codepoints.net/U+06D0>`_  '\\u06d0'  Lo                  1  ARABIC LETTER E
+=========================================  =========  ==========  =========  ===================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xda\x86\xdb\x90|\\n12|\\n"
+        چې|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -4.
+
+Seraiki
+^^^^^^^
+
+Sequence of language *Seraiki* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ========================
+`U+0686 <https://codepoints.net/U+0686>`_  '\\u0686'  Lo                  1  ARABIC LETTER TCHEH
+`U+0646 <https://codepoints.net/U+0646>`_  '\\u0646'  Lo                  1  ARABIC LETTER NOON
+`U+06AF <https://codepoints.net/U+06AF>`_  '\\u06af'  Lo                  1  ARABIC LETTER GAF
+`U+06D2 <https://codepoints.net/U+06D2>`_  '\\u06d2'  Lo                  1  ARABIC LETTER YEH BARREE
+=========================================  =========  ==========  =========  ========================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xda\x86\xd9\x86\xda\xaf\xdb\x92|\\n1234|\\n"
+        چنگے|
+        1234|
+
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *XTerm* measures width 2.
+
+Belanda Viri
+^^^^^^^^^^^^
+
+Sequence of language *Belanda Viri* from midpoint of alignment failure records:
+
+=========================================  ========  ==========  =========  ===============================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ===============================
+`U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
+`U+00E1 <https://codepoints.net/U+00E1>`_  '\\xe1'   Ll                  1  LATIN SMALL LETTER A WITH ACUTE
+=========================================  ========  ==========  =========  ===============================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "n\xc3\xa1|\\n12|\\n"
+        ná|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *XTerm* measures width -2.
 
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
@@ -3616,20 +3720,23 @@ Sequence of language *Chinantec, Chiltepec* from midpoint of alignment failure r
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
 `U+006C <https://codepoints.net/U+006C>`_  'l'       Ll                  1  LATIN SMALL LETTER L
-`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
+`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
+`U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
+`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
+`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
 =========================================  ========  ==========  =========  ====================
 
-Total codepoints: 2
+Total codepoints: 5
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "le|\\n12|\\n"
-        le|
-        12|
+        $ printf "lisia|\\n12345|\\n"
+        lisia|
+        12345|
 
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -1.
+- python `wcwidth.wcswidth()`_ measures width 5,
+  while *XTerm* measures width 3.
 
 Dangme
 ^^^^^^
@@ -3639,8 +3746,8 @@ Sequence of language *Dangme* from midpoint of alignment failure records:
 =========================================  ========  ==========  =========  ====================
 Codepoint                                  Python    Category      wcwidth  Name
 =========================================  ========  ==========  =========  ====================
-`U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
-`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+0079 <https://codepoints.net/U+0079>`_  'y'       Ll                  1  LATIN SMALL LETTER Y
+`U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
 =========================================  ========  ==========  =========  ====================
 
 Total codepoints: 2
@@ -3648,262 +3755,238 @@ Total codepoints: 2
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "ma|\\n12|\\n"
-        ma|
+        $ printf "ye|\\n12|\\n"
+        ye|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *foot* measures width -2.
+  while *XTerm* measures width -1.
 
-Dzongkha
-^^^^^^^^
-
-Sequence of language *Dzongkha* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  ==================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ==================
-`U+0F64 <https://codepoints.net/U+0F64>`_  '\\u0f64'  Lo                  1  TIBETAN LETTER SHA
-=========================================  =========  ==========  =========  ==================
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xbd\xa4|\\n1|\\n"
-        ཤ|
-        1|
-
-- python `wcwidth.wcswidth()`_ measures width 1,
-  while *foot* measures width 0.
-
-Tibetan, Central
+Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
 
-Sequence of language *Tibetan, Central* from midpoint of alignment failure records:
+Sequence of language *Otomi, Mezquital* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ====================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ====================
-`U+0F58 <https://codepoints.net/U+0F58>`_  '\\u0f58'  Lo                  1  TIBETAN LETTER MA
-`U+0F50 <https://codepoints.net/U+0F50>`_  '\\u0f50'  Lo                  1  TIBETAN LETTER THA
-`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
-`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
-`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
-=========================================  =========  ==========  =========  ====================
+=========================================  ========  ==========  =========  ====================
+Codepoint                                  Python    Category      wcwidth  Name
+=========================================  ========  ==========  =========  ====================
+`U+006A <https://codepoints.net/U+006A>`_  'j'       Ll                  1  LATIN SMALL LETTER J
+`U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
+`U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
+`U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
+=========================================  ========  ==========  =========  ====================
 
-Total codepoints: 5
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe0\xbd\x98\xe0\xbd\x90\xe0\xbd\xbc\xe0\xbd\x84\xe0\xbd\xa6|\\n1234|\\n"
-        མཐོངས|
+        $ printf "jari|\\n1234|\\n"
+        jari|
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *foot* measures width 3.
+  while *XTerm* measures width -1.
 
 Tai Dam
 ^^^^^^^
 
 Sequence of language *Tai Dam* from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ========================
+=========================================  =========  ==========  =========  ======================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ========================
-`U+AA84 <https://codepoints.net/U+AA84>`_  '\\uaa84'  Lo                  1  TAI VIET LETTER LOW KHHO
-`U+AAB4 <https://codepoints.net/U+AAB4>`_  '\\uaab4'  Mn                  0  TAI VIET VOWEL U
-=========================================  =========  ==========  =========  ========================
+=========================================  =========  ==========  =========  ======================
+`U+AA80 <https://codepoints.net/U+AA80>`_  '\\uaa80'  Lo                  1  TAI VIET LETTER LOW KO
+`U+AAA8 <https://codepoints.net/U+AAA8>`_  '\\uaaa8'  Lo                  1  TAI VIET LETTER LOW LO
+`U+AAB0 <https://codepoints.net/U+AAB0>`_  '\\uaab0'  Mn                  0  TAI VIET MAI KANG
+`U+AA92 <https://codepoints.net/U+AA92>`_  '\\uaa92'  Lo                  1  TAI VIET LETTER LOW DO
+=========================================  =========  ==========  =========  ======================
 
-Total codepoints: 2
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xea\xaa\x84\xea\xaa\xb4|\\n1|\\n"
-        ꪄꪴ|
-        1|
+        $ printf "\xea\xaa\x80\xea\xaa\xa8\xea\xaa\xb0\xea\xaa\x92|\\n123|\\n"
+        ꪀꪨꪰꪒ|
+        123|
 
-- python `wcwidth.wcswidth()`_ measures width 1,
-  while *foot* measures width 0.
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *XTerm* measures width 0.
 
-.. _footdecmodes:
+.. _XTermdecmodes:
 
 DEC Private Modes Support
 +++++++++++++++++++++++++
 
-DEC private modes results for *foot*: 33 supported modes
-out of 159 total modes tested (20.8% support).
+DEC private modes results for *XTerm*: 69 supported modes
+out of 157 total modes tested (43.9% support).
 
 Complete list of DEC private modes tested:
 
-===============  =============================  =======================================================================  ===========  ============
-Mode             Name                           Description                                                              Supported    Changeable
-===============  =============================  =======================================================================  ===========  ============
-DEC Mode 1       DECCKM                         Cursor Keys Mode                                                         Yes          Yes
-DEC Mode 2       DECANM                         ANSI/VT52 Mode                                                           No           No
-DEC Mode 3       DECCOLM                        Column Mode                                                              No           No
-DEC Mode 4       DECSCLM                        Scrolling Mode                                                           No           No
-DEC Mode 5       DECSCNM                        Screen Mode (light or dark screen)                                       Yes          Yes
-DEC Mode 6       DECOM                          Origin Mode                                                              Yes          Yes
-DEC Mode 7       DECAWM                         Auto Wrap Mode                                                           Yes          Yes
-DEC Mode 8       DECARM                         Auto Repeat Mode                                                         No           No
-DEC Mode 9       DECINLM                        Interlace Mode / Mouse X10 tracking                                      Yes          No
-DEC Mode 10      DECEDM                         Editing Mode / Show toolbar (rxvt)                                       No           No
-DEC Mode 11      DECLTM                         Line Transmit Mode                                                       No           No
-DEC Mode 12      DECKANAM                       Katakana Shift Mode / Blinking cursor (xterm)                            Yes          Yes
-DEC Mode 13      DECSCFDM                       Space Compression/Field Delimiter Mode / Start blinking cursor (xterm)   No           No
-DEC Mode 14      DECTEM                         Transmit Execution Mode / Enable XOR of blinking cursor control (xterm)  No           No
-DEC Mode 16      DECEKEM                        Edit Key Execution Mode                                                  No           No
-DEC Mode 18      DECPFF                         Print Form Feed                                                          No           No
-DEC Mode 19      DECPEX                         Printer Extent                                                           No           No
-DEC Mode 20      OV1                            Overstrike                                                               No           No
-DEC Mode 21      BA1                            Local BASIC                                                              No           No
-DEC Mode 22      BA2                            Host BASIC                                                               No           No
-DEC Mode 23      PK1                            Programmable Keypad                                                      No           No
-DEC Mode 24      AH1                            Auto Hardcopy                                                            No           No
-DEC Mode 25      DECTCEM                        Text Cursor Enable Mode                                                  Yes          Yes
-DEC Mode 27      DECPSP                         Proportional Spacing                                                     No           No
-DEC Mode 29      DECPSM                         Pitch Select Mode                                                        No           No
-DEC Mode 30      SHOW_SCROLLBAR_RXVT            Show scrollbar (rxvt)                                                    No           No
-DEC Mode 34      DECRLM                         Cursor Right to Left Mode                                                No           No
-DEC Mode 35      DECHEBM                        Hebrew (Keyboard) Mode / Enable font-shifting functions (rxvt)           No           No
-DEC Mode 36      DECHEM                         Hebrew Encoding Mode                                                     No           No
-DEC Mode 38      DECTEK                         Tektronix 4010/4014 Mode                                                 No           No
-DEC Mode 40      DECCRNLM                       Carriage Return/New Line Mode / Allow 80⇒132 mode (xterm)                No           No
-DEC Mode 41      DECUPM                         Unidirectional Print Mode / more(1) fix (xterm)                          No           No
-DEC Mode 42      DECNRCM                        National Replacement Character Set Mode                                  No           No
-DEC Mode 43      DECGEPM                        Graphics Expanded Print Mode                                             No           No
-DEC Mode 44      DECGPCM                        Graphics Print Color Mode / Turn on margin bell (xterm)                  No           No
-DEC Mode 45      DECGPCS                        Graphics Print Color Syntax / Reverse-wraparound mode (xterm)            Yes          Yes
-DEC Mode 46      DECGPBM                        Graphics Print Background Mode / Start logging (xterm)                   No           No
-DEC Mode 47      DECGRPM                        Graphics Rotated Print Mode / Use Alternate Screen Buffer (xterm)        Yes          Yes
-DEC Mode 49      DECTHAIM                       Thai Input Mode                                                          No           No
-DEC Mode 50      DECTHAICM                      Thai Cursor Mode                                                         No           No
-DEC Mode 51      DECBWRM                        Black/White Reversal Mode                                                No           No
-DEC Mode 52      DECOPM                         Origin Placement Mode                                                    No           No
-DEC Mode 53      DEC131TM                       VT131 Transmit Mode                                                      No           No
-DEC Mode 55      DECBPM                         Bold Page Mode                                                           No           No
-DEC Mode 57      DECNAKB                        Greek/N-A Keyboard Mapping Mode                                          No           No
-DEC Mode 58      DECIPEM                        Enter IBM Proprinter Emulation Mode                                      No           No
-DEC Mode 59      DECKKDM                        Kanji/Katakana Display Mode                                              No           No
-DEC Mode 60      DECHCCM                        Horizontal Cursor Coupling                                               No           No
-DEC Mode 61      DECVCCM                        Vertical Cursor Coupling Mode                                            No           No
-DEC Mode 64      DECPCCM                        Page Cursor Coupling Mode                                                No           No
-DEC Mode 65      DECBCMM                        Business Color Matching Mode                                             No           No
-DEC Mode 66      DECNKM                         Numeric Keypad Mode                                                      Yes          Yes
-DEC Mode 67      DECBKM                         Backarrow Key Mode                                                       No           No
-DEC Mode 68      DECKBUM                        Keyboard Usage Mode                                                      No           No
-DEC Mode 69      DECVSSM                        Vertical Split Screen Mode / DECLRMM - Left Right Margin Mode            No           No
-DEC Mode 70      DECFPM                         Force Plot Mode                                                          No           No
-DEC Mode 73      DECXRLM                        Transmission Rate Limiting                                               No           No
-DEC Mode 80      DECSDM                         Sixel Display Mode                                                       Yes          Yes
-DEC Mode 81      DECKPM                         Key Position Mode                                                        No           No
-DEC Mode 83      WY_52_LINE                     52 line mode (WY-370)                                                    No           No
-DEC Mode 84      WYENAT_OFF                     Erasable/nonerasable WYENAT Off attribute select (WY-370)                No           No
-DEC Mode 85      REPLACEMENT_CHAR_COLOR         Replacement character color (WY-370)                                     No           No
-DEC Mode 90      DECTHAISCM                     Thai Space Compensating Mode                                             No           No
-DEC Mode 95      DECNCSM                        No Clearing Screen on Column Change Mode                                 No           No
-DEC Mode 96      DECRLCM                        Right to Left Copy Mode                                                  No           No
-DEC Mode 97      DECCRTSM                       CRT Save Mode                                                            No           No
-DEC Mode 98      DECARSM                        Auto Resize Mode                                                         No           No
-DEC Mode 99      DECMCM                         Modem Control Mode                                                       No           No
-DEC Mode 100     DECAAM                         Auto Answerback Mode                                                     No           No
-DEC Mode 101     DECCANSM                       Conceal Answerback Message Mode                                          No           No
-DEC Mode 102     DECNULM                        Ignore Null Mode                                                         No           No
-DEC Mode 103     DECHDPXM                       Half Duplex Mode                                                         No           No
-DEC Mode 104     DECESKM                        Secondary Keyboard Language Mode                                         No           No
-DEC Mode 106     DECOSCNM                       Overscan Mode                                                            No           No
-DEC Mode 108     DECNUMLK                       NumLock Mode                                                             No           No
-DEC Mode 109     DECCAPSLK                      Caps Lock Mode                                                           No           No
-DEC Mode 110     DECKLHIM                       Keyboard LEDs Host Indicator Mode                                        No           No
-DEC Mode 111     DECFWM                         Framed Windows Mode                                                      No           No
-DEC Mode 112     DECRPL                         Review Previous Lines Mode                                               No           No
-DEC Mode 113     DECHWUM                        Host Wake-Up Mode                                                        No           No
-DEC Mode 114     DECATCUM                       Alternate Text Color Underline Mode                                      No           No
-DEC Mode 115     DECATCBM                       Alternate Text Color Blink Mode                                          No           No
-DEC Mode 116     DECBBSM                        Bold and Blink Style Mode                                                No           No
-DEC Mode 117     DECECM                         Erase Color Mode                                                         No           No
-DEC Mode 1000    MOUSE_REPORT_CLICK             Send Mouse X & Y on button press                                         Yes          Yes
-DEC Mode 1001    MOUSE_HILITE_TRACKING          Use Hilite Mouse Tracking                                                Yes          No
-DEC Mode 1002    MOUSE_REPORT_DRAG              Use Cell Motion Mouse Tracking                                           Yes          Yes
-DEC Mode 1003    MOUSE_ALL_MOTION               Use All Motion Mouse Tracking                                            Yes          Yes
-DEC Mode 1004    FOCUS_IN_OUT_EVENTS            Send FocusIn/FocusOut events                                             Yes          Yes
-DEC Mode 1005    MOUSE_EXTENDED_UTF8            Enable UTF-8 Mouse Mode                                                  Yes          No
-DEC Mode 1006    MOUSE_EXTENDED_SGR             Enable SGR Mouse Mode                                                    Yes          Yes
-DEC Mode 1007    ALT_SCROLL_XTERM               Enable Alternate Scroll Mode                                             Yes          Yes
-DEC Mode 1010    SCROLL_ON_TTY_OUTPUT_RXVT      Scroll to bottom on tty output                                           No           No
-DEC Mode 1011    SCROLL_ON_KEYPRESS_RXVT        Scroll to bottom on key press                                            No           No
-DEC Mode 1014    FAST_SCROLL                    Enable fastScroll resource                                               No           No
-DEC Mode 1015    MOUSE_URXVT                    Enable urxvt Mouse Mode                                                  Yes          Yes
-DEC Mode 1016    MOUSE_SGR_PIXELS               Enable SGR Mouse PixelMode                                               Yes          Yes
-DEC Mode 1021    BOLD_ITALIC_HIGH_INTENSITY     Bold/italic implies high intensity                                       No           No
-DEC Mode 1034    META_SETS_EIGHTH_BIT           Interpret "meta" key                                                     Yes          Yes
-DEC Mode 1035    MODIFIERS_ALT_NUMLOCK          Enable special modifiers for Alt and NumLock keys                        Yes          Yes
-DEC Mode 1036    META_SENDS_ESC                 Send ESC when Meta modifies a key                                        Yes          Yes
-DEC Mode 1037    KP_DELETE_SENDS_DEL            Send DEL from the editing-keypad Delete key                              No           No
-DEC Mode 1039    ALT_SENDS_ESC                  Send ESC when Alt modifies a key                                         No           No
-DEC Mode 1040    KEEP_SELECTION_NO_HILITE       Keep selection even if not highlighted                                   No           No
-DEC Mode 1041    USE_CLIPBOARD_SELECTION        Use the CLIPBOARD selection                                              No           No
-DEC Mode 1042    URGENCY_ON_CTRL_G              Enable Urgency window manager hint when Control-G is received            Yes          Yes
-DEC Mode 1043    RAISE_ON_CTRL_G                Enable raising of the window when Control-G is received                  No           No
-DEC Mode 1044    REUSE_CLIPBOARD_DATA           Reuse the most recent data copied to CLIPBOARD                           No           No
-DEC Mode 1045    EXTENDED_REVERSE_WRAPAROUND    Extended Reverse-wraparound mode (XTREVWRAP2)                            No           No
-DEC Mode 1046    ALT_SCREEN_BUFFER_SWITCH       Enable switching to/from Alternate Screen Buffer                         No           No
-DEC Mode 1047    ALT_SCREEN_BUFFER_XTERM        Use Alternate Screen Buffer                                              Yes          Yes
-DEC Mode 1048    SAVE_CURSOR_DECSC              Save cursor as in DECSC                                                  No           No
-DEC Mode 1049    ALT_SCREEN_AND_SAVE_CLEAR      Save cursor as in DECSC and use alternate screen buffer                  Yes          Yes
-DEC Mode 1050    TERMINFO_FUNC_KEY_MODE         Set terminfo/termcap function-key mode                                   No           No
-DEC Mode 1051    SUN_FUNC_KEY_MODE              Set Sun function-key mode                                                No           No
-DEC Mode 1052    HP_FUNC_KEY_MODE               Set HP function-key mode                                                 No           No
-DEC Mode 1053    SCO_FUNC_KEY_MODE              Set SCO function-key mode                                                No           No
-DEC Mode 1060    LEGACY_KBD_X11R6               Set legacy keyboard emulation, i.e, X11R6                                No           No
-DEC Mode 1061    VT220_KBD_EMULATION            Set VT220 keyboard emulation                                             No           No
-DEC Mode 1070    SIXEL_PRIVATE_PALETTE          Use private color registers for each graphic                             Yes          Yes
-DEC Mode 1243    BIDI_ARROW_KEY_SWAPPING        Arrow keys swapping (BiDi)                                               No           No
-DEC Mode 1337    ITERM2_REPORT_KEY_UP           Report Key Up                                                            No           No
-DEC Mode 2001    READLINE_MOUSE_BUTTON_1        Enable readline mouse button-1                                           No           No
-DEC Mode 2002    READLINE_MOUSE_BUTTON_2        Enable readline mouse button-2                                           No           No
-DEC Mode 2003    READLINE_MOUSE_BUTTON_3        Enable readline mouse button-3                                           No           No
-DEC Mode 2004    BRACKETED_PASTE                Set bracketed paste mode                                                 Yes          Yes
-DEC Mode 2005    READLINE_CHARACTER_QUOTING     Enable readline character-quoting                                        No           No
-DEC Mode 2006    READLINE_NEWLINE_PASTING       Enable readline newline pasting                                          No           No
-DEC Mode 2026    SYNCHRONIZED_OUTPUT            Synchronized Output                                                      Yes          Yes
-DEC Mode 2027    GRAPHEME_CLUSTERING            Grapheme Clustering                                                      Yes          Yes
-DEC Mode 2028    TEXT_REFLOW                    Text reflow                                                              No           No
-DEC Mode 2029    PASSIVE_MOUSE_TRACKING         Passive Mouse Tracking                                                   No           No
-DEC Mode 2030    REPORT_GRID_CELL_SELECTION     Report grid cell selection                                               No           No
-DEC Mode 2031    COLOR_PALETTE_UPDATES          Color palette updates                                                    No           No
-DEC Mode 2048    IN_BAND_WINDOW_RESIZE          In-Band Window Resize Notifications                                      No           No
-DEC Mode 2500    MIRROR_BOX_DRAWING             Mirror box drawing characters                                            No           No
-DEC Mode 2501    BIDI_AUTODETECTION             BiDi autodetection                                                       No           No
-DEC Mode 7700    AMBIGUOUS_WIDTH_REPORTING      Ambiguous width reporting                                                No           No
-DEC Mode 7711    SCROLL_MARKERS                 Scroll markers (prompt start)                                            No           No
-DEC Mode 7723    REWRAP_ON_RESIZE_MINTTY        Rewrap on resize                                                         No           No
-DEC Mode 7727    APPLICATION_ESCAPE_KEY         Application escape key mode                                              No           No
-DEC Mode 7728    ESC_KEY_SENDS_BACKSLASH        Send ^\ instead of the standard ^[ for the ESC key                       No           No
-DEC Mode 7730    GRAPHICS_POSITION              Graphics position                                                        No           No
-DEC Mode 7765    ALT_MODIFIED_MOUSEWHEEL        Alt-modified mousewheel mode                                             No           No
-DEC Mode 7766    SHOW_HIDE_SCROLLBAR            Show/hide scrollbar                                                      No           No
-DEC Mode 7767    FONT_CHANGE_REPORTING          Font change reporting                                                    No           No
-DEC Mode 7780    GRAPHICS_POSITION_2            Graphics position                                                        No           No
-DEC Mode 7783    SHORTCUT_KEY_MODE              Shortcut key mode                                                        No           No
-DEC Mode 7786    MOUSEWHEEL_REPORTING           Mousewheel reporting                                                     No           No
-DEC Mode 7787    APPLICATION_MOUSEWHEEL         Application mousewheel mode                                              No           No
-DEC Mode 7796    BIDI_CURRENT_LINE              BiDi on current line                                                     No           No
-DEC Mode 8200    TTCTH                          Terminal-to-Computer Talk-back Handler                                   No           No
-DEC Mode 8452    SIXEL_SCROLLING_LEAVES_CURSOR  Sixel scrolling leaves cursor to right of graphic                        Yes          Yes
-DEC Mode 8800    CHARACTER_MAPPING_SERVICE      enable/disable character mapping service                                 No           No
-DEC Mode 8840    AMBIGUOUS_WIDTH_DOUBLE_WIDTH   Treat ambiguous width characters as double-width                         No           No
-DEC Mode 9001    WIN32_INPUT_MODE               win32-input-mode                                                         No           No
-DEC Mode 19997   KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode                                                No           No
-DEC Mode 77096   MINTTY_BIDI                    BiDi                                                                     No           No
-DEC Mode 737769  INPUT_METHOD_EDITOR            Input Method Editor (IME) mode                                           Yes          Yes
-===============  =============================  =======================================================================  ===========  ============
+==============  =============================  =======================================================================  ===========  ============
+Mode            Name                           Description                                                              Supported    Changeable
+==============  =============================  =======================================================================  ===========  ============
+DEC Mode 1      DECCKM                         Cursor Keys Mode                                                         Yes          Yes
+DEC Mode 2      DECANM                         ANSI/VT52 Mode                                                           Yes          Yes
+DEC Mode 3      DECCOLM                        Column Mode                                                              Yes          Yes
+DEC Mode 4      DECSCLM                        Scrolling Mode                                                           Yes          Yes
+DEC Mode 5      DECSCNM                        Screen Mode (light or dark screen)                                       Yes          Yes
+DEC Mode 6      DECOM                          Origin Mode                                                              Yes          Yes
+DEC Mode 7      DECAWM                         Auto Wrap Mode                                                           Yes          Yes
+DEC Mode 8      DECARM                         Auto Repeat Mode                                                         Yes          No
+DEC Mode 9      DECINLM                        Interlace Mode / Mouse X10 tracking                                      Yes          Yes
+DEC Mode 10     DECEDM                         Editing Mode / Show toolbar (rxvt)                                       No           No
+DEC Mode 11     DECLTM                         Line Transmit Mode                                                       No           No
+DEC Mode 12     DECKANAM                       Katakana Shift Mode / Blinking cursor (xterm)                            Yes          Yes
+DEC Mode 13     DECSCFDM                       Space Compression/Field Delimiter Mode / Start blinking cursor (xterm)   Yes          Yes
+DEC Mode 14     DECTEM                         Transmit Execution Mode / Enable XOR of blinking cursor control (xterm)  Yes          No
+DEC Mode 16     DECEKEM                        Edit Key Execution Mode                                                  No           No
+DEC Mode 18     DECPFF                         Print Form Feed                                                          Yes          Yes
+DEC Mode 19     DECPEX                         Printer Extent                                                           Yes          Yes
+DEC Mode 20     OV1                            Overstrike                                                               No           No
+DEC Mode 21     BA1                            Local BASIC                                                              No           No
+DEC Mode 22     BA2                            Host BASIC                                                               No           No
+DEC Mode 23     PK1                            Programmable Keypad                                                      No           No
+DEC Mode 24     AH1                            Auto Hardcopy                                                            No           No
+DEC Mode 25     DECTCEM                        Text Cursor Enable Mode                                                  Yes          Yes
+DEC Mode 27     DECPSP                         Proportional Spacing                                                     No           No
+DEC Mode 29     DECPSM                         Pitch Select Mode                                                        No           No
+DEC Mode 30     SHOW_SCROLLBAR_RXVT            Show scrollbar (rxvt)                                                    Yes          Yes
+DEC Mode 34     DECRLM                         Cursor Right to Left Mode                                                No           No
+DEC Mode 35     DECHEBM                        Hebrew (Keyboard) Mode / Enable font-shifting functions (rxvt)           Yes          Yes
+DEC Mode 36     DECHEM                         Hebrew Encoding Mode                                                     No           No
+DEC Mode 38     DECTEK                         Tektronix 4010/4014 Mode                                                 Yes          Yes
+DEC Mode 40     DECCRNLM                       Carriage Return/New Line Mode / Allow 80⇒132 mode (xterm)                Yes          Yes
+DEC Mode 41     DECUPM                         Unidirectional Print Mode / more(1) fix (xterm)                          Yes          Yes
+DEC Mode 42     DECNRCM                        National Replacement Character Set Mode                                  Yes          Yes
+DEC Mode 43     DECGEPM                        Graphics Expanded Print Mode                                             No           No
+DEC Mode 44     DECGPCM                        Graphics Print Color Mode / Turn on margin bell (xterm)                  Yes          Yes
+DEC Mode 45     DECGPCS                        Graphics Print Color Syntax / Reverse-wraparound mode (xterm)            Yes          Yes
+DEC Mode 46     DECGPBM                        Graphics Print Background Mode / Start logging (xterm)                   Yes          No
+DEC Mode 47     DECGRPM                        Graphics Rotated Print Mode / Use Alternate Screen Buffer (xterm)        Yes          Yes
+DEC Mode 49     DECTHAIM                       Thai Input Mode                                                          No           No
+DEC Mode 50     DECTHAICM                      Thai Cursor Mode                                                         No           No
+DEC Mode 51     DECBWRM                        Black/White Reversal Mode                                                No           No
+DEC Mode 52     DECOPM                         Origin Placement Mode                                                    No           No
+DEC Mode 53     DEC131TM                       VT131 Transmit Mode                                                      No           No
+DEC Mode 55     DECBPM                         Bold Page Mode                                                           No           No
+DEC Mode 57     DECNAKB                        Greek/N-A Keyboard Mapping Mode                                          No           No
+DEC Mode 58     DECIPEM                        Enter IBM Proprinter Emulation Mode                                      No           No
+DEC Mode 59     DECKKDM                        Kanji/Katakana Display Mode                                              No           No
+DEC Mode 60     DECHCCM                        Horizontal Cursor Coupling                                               No           No
+DEC Mode 61     DECVCCM                        Vertical Cursor Coupling Mode                                            No           No
+DEC Mode 64     DECPCCM                        Page Cursor Coupling Mode                                                No           No
+DEC Mode 65     DECBCMM                        Business Color Matching Mode                                             No           No
+DEC Mode 66     DECNKM                         Numeric Keypad Mode                                                      Yes          Yes
+DEC Mode 67     DECBKM                         Backarrow Key Mode                                                       Yes          Yes
+DEC Mode 68     DECKBUM                        Keyboard Usage Mode                                                      No           No
+DEC Mode 69     DECVSSM                        Vertical Split Screen Mode / DECLRMM - Left Right Margin Mode            Yes          Yes
+DEC Mode 70     DECFPM                         Force Plot Mode                                                          No           No
+DEC Mode 73     DECXRLM                        Transmission Rate Limiting                                               No           No
+DEC Mode 80     DECSDM                         Sixel Display Mode                                                       Yes          Yes
+DEC Mode 81     DECKPM                         Key Position Mode                                                        No           No
+DEC Mode 83     WY_52_LINE                     52 line mode (WY-370)                                                    No           No
+DEC Mode 84     WYENAT_OFF                     Erasable/nonerasable WYENAT Off attribute select (WY-370)                No           No
+DEC Mode 85     REPLACEMENT_CHAR_COLOR         Replacement character color (WY-370)                                     No           No
+DEC Mode 90     DECTHAISCM                     Thai Space Compensating Mode                                             No           No
+DEC Mode 95     DECNCSM                        No Clearing Screen on Column Change Mode                                 No           No
+DEC Mode 96     DECRLCM                        Right to Left Copy Mode                                                  No           No
+DEC Mode 97     DECCRTSM                       CRT Save Mode                                                            No           No
+DEC Mode 98     DECARSM                        Auto Resize Mode                                                         No           No
+DEC Mode 99     DECMCM                         Modem Control Mode                                                       No           No
+DEC Mode 100    DECAAM                         Auto Answerback Mode                                                     No           No
+DEC Mode 101    DECCANSM                       Conceal Answerback Message Mode                                          No           No
+DEC Mode 102    DECNULM                        Ignore Null Mode                                                         No           No
+DEC Mode 103    DECHDPXM                       Half Duplex Mode                                                         No           No
+DEC Mode 104    DECESKM                        Secondary Keyboard Language Mode                                         No           No
+DEC Mode 106    DECOSCNM                       Overscan Mode                                                            No           No
+DEC Mode 108    DECNUMLK                       NumLock Mode                                                             No           No
+DEC Mode 109    DECCAPSLK                      Caps Lock Mode                                                           No           No
+DEC Mode 110    DECKLHIM                       Keyboard LEDs Host Indicator Mode                                        No           No
+DEC Mode 111    DECFWM                         Framed Windows Mode                                                      No           No
+DEC Mode 112    DECRPL                         Review Previous Lines Mode                                               No           No
+DEC Mode 113    DECHWUM                        Host Wake-Up Mode                                                        No           No
+DEC Mode 114    DECATCUM                       Alternate Text Color Underline Mode                                      No           No
+DEC Mode 115    DECATCBM                       Alternate Text Color Blink Mode                                          No           No
+DEC Mode 116    DECBBSM                        Bold and Blink Style Mode                                                No           No
+DEC Mode 117    DECECM                         Erase Color Mode                                                         No           No
+DEC Mode 1000   MOUSE_REPORT_CLICK             Send Mouse X & Y on button press                                         Yes          Yes
+DEC Mode 1001   MOUSE_HILITE_TRACKING          Use Hilite Mouse Tracking                                                Yes          Yes
+DEC Mode 1002   MOUSE_REPORT_DRAG              Use Cell Motion Mouse Tracking                                           Yes          Yes
+DEC Mode 1003   MOUSE_ALL_MOTION               Use All Motion Mouse Tracking                                            Yes          Yes
+DEC Mode 1004   FOCUS_IN_OUT_EVENTS            Send FocusIn/FocusOut events                                             Yes          Yes
+DEC Mode 1005   MOUSE_EXTENDED_UTF8            Enable UTF-8 Mouse Mode                                                  Yes          Yes
+DEC Mode 1006   MOUSE_EXTENDED_SGR             Enable SGR Mouse Mode                                                    Yes          Yes
+DEC Mode 1007   ALT_SCROLL_XTERM               Enable Alternate Scroll Mode                                             Yes          Yes
+DEC Mode 1010   SCROLL_ON_TTY_OUTPUT_RXVT      Scroll to bottom on tty output                                           Yes          Yes
+DEC Mode 1011   SCROLL_ON_KEYPRESS_RXVT        Scroll to bottom on key press                                            Yes          Yes
+DEC Mode 1014   FAST_SCROLL                    Enable fastScroll resource                                               Yes          Yes
+DEC Mode 1015   MOUSE_URXVT                    Enable urxvt Mouse Mode                                                  Yes          Yes
+DEC Mode 1016   MOUSE_SGR_PIXELS               Enable SGR Mouse PixelMode                                               Yes          Yes
+DEC Mode 1021   BOLD_ITALIC_HIGH_INTENSITY     Bold/italic implies high intensity                                       No           No
+DEC Mode 1034   META_SETS_EIGHTH_BIT           Interpret "meta" key                                                     Yes          Yes
+DEC Mode 1035   MODIFIERS_ALT_NUMLOCK          Enable special modifiers for Alt and NumLock keys                        Yes          Yes
+DEC Mode 1036   META_SENDS_ESC                 Send ESC when Meta modifies a key                                        Yes          Yes
+DEC Mode 1037   KP_DELETE_SENDS_DEL            Send DEL from the editing-keypad Delete key                              Yes          Yes
+DEC Mode 1039   ALT_SENDS_ESC                  Send ESC when Alt modifies a key                                         Yes          Yes
+DEC Mode 1040   KEEP_SELECTION_NO_HILITE       Keep selection even if not highlighted                                   Yes          Yes
+DEC Mode 1041   USE_CLIPBOARD_SELECTION        Use the CLIPBOARD selection                                              Yes          Yes
+DEC Mode 1042   URGENCY_ON_CTRL_G              Enable Urgency window manager hint when Control-G is received            Yes          Yes
+DEC Mode 1043   RAISE_ON_CTRL_G                Enable raising of the window when Control-G is received                  Yes          Yes
+DEC Mode 1044   REUSE_CLIPBOARD_DATA           Reuse the most recent data copied to CLIPBOARD                           Yes          Yes
+DEC Mode 1045   EXTENDED_REVERSE_WRAPAROUND    Extended Reverse-wraparound mode (XTREVWRAP2)                            Yes          Yes
+DEC Mode 1046   ALT_SCREEN_BUFFER_SWITCH       Enable switching to/from Alternate Screen Buffer                         Yes          Yes
+DEC Mode 1047   ALT_SCREEN_BUFFER_XTERM        Use Alternate Screen Buffer                                              Yes          Yes
+DEC Mode 1048   SAVE_CURSOR_DECSC              Save cursor as in DECSC                                                  Yes          Yes
+DEC Mode 1049   ALT_SCREEN_AND_SAVE_CLEAR      Save cursor as in DECSC and use alternate screen buffer                  Yes          Yes
+DEC Mode 1050   TERMINFO_FUNC_KEY_MODE         Set terminfo/termcap function-key mode                                   Yes          Yes
+DEC Mode 1051   SUN_FUNC_KEY_MODE              Set Sun function-key mode                                                Yes          Yes
+DEC Mode 1052   HP_FUNC_KEY_MODE               Set HP function-key mode                                                 No           No
+DEC Mode 1053   SCO_FUNC_KEY_MODE              Set SCO function-key mode                                                No           No
+DEC Mode 1060   LEGACY_KBD_X11R6               Set legacy keyboard emulation, i.e, X11R6                                Yes          Yes
+DEC Mode 1061   VT220_KBD_EMULATION            Set VT220 keyboard emulation                                             Yes          Yes
+DEC Mode 1070   SIXEL_PRIVATE_PALETTE          Use private color registers for each graphic                             Yes          Yes
+DEC Mode 1243   BIDI_ARROW_KEY_SWAPPING        Arrow keys swapping (BiDi)                                               No           No
+DEC Mode 1337   ITERM2_REPORT_KEY_UP           Report Key Up                                                            No           No
+DEC Mode 2001   READLINE_MOUSE_BUTTON_1        Enable readline mouse button-1                                           Yes          Yes
+DEC Mode 2002   READLINE_MOUSE_BUTTON_2        Enable readline mouse button-2                                           Yes          Yes
+DEC Mode 2003   READLINE_MOUSE_BUTTON_3        Enable readline mouse button-3                                           Yes          Yes
+DEC Mode 2004   BRACKETED_PASTE                Set bracketed paste mode                                                 Yes          Yes
+DEC Mode 2005   READLINE_CHARACTER_QUOTING     Enable readline character-quoting                                        Yes          Yes
+DEC Mode 2006   READLINE_NEWLINE_PASTING       Enable readline newline pasting                                          Yes          Yes
+DEC Mode 2026   SYNCHRONIZED_OUTPUT            Synchronized Output                                                      No           No
+DEC Mode 2027   GRAPHEME_CLUSTERING            Grapheme Clustering                                                      No           No
+DEC Mode 2028   TEXT_REFLOW                    Text reflow                                                              No           No
+DEC Mode 2029   PASSIVE_MOUSE_TRACKING         Passive Mouse Tracking                                                   No           No
+DEC Mode 2030   REPORT_GRID_CELL_SELECTION     Report grid cell selection                                               No           No
+DEC Mode 2031   COLOR_PALETTE_UPDATES          Color palette updates                                                    No           No
+DEC Mode 2048   IN_BAND_WINDOW_RESIZE          In-Band Window Resize Notifications                                      No           No
+DEC Mode 2500   MIRROR_BOX_DRAWING             Mirror box drawing characters                                            No           No
+DEC Mode 2501   BIDI_AUTODETECTION             BiDi autodetection                                                       No           No
+DEC Mode 7700   AMBIGUOUS_WIDTH_REPORTING      Ambiguous width reporting                                                No           No
+DEC Mode 7711   SCROLL_MARKERS                 Scroll markers (prompt start)                                            No           No
+DEC Mode 7723   REWRAP_ON_RESIZE_MINTTY        Rewrap on resize                                                         No           No
+DEC Mode 7727   APPLICATION_ESCAPE_KEY         Application escape key mode                                              No           No
+DEC Mode 7728   ESC_KEY_SENDS_BACKSLASH        Send ^\ instead of the standard ^[ for the ESC key                       No           No
+DEC Mode 7730   GRAPHICS_POSITION              Graphics position                                                        No           No
+DEC Mode 7765   ALT_MODIFIED_MOUSEWHEEL        Alt-modified mousewheel mode                                             No           No
+DEC Mode 7766   SHOW_HIDE_SCROLLBAR            Show/hide scrollbar                                                      No           No
+DEC Mode 7767   FONT_CHANGE_REPORTING          Font change reporting                                                    No           No
+DEC Mode 7780   GRAPHICS_POSITION_2            Graphics position                                                        No           No
+DEC Mode 7783   SHORTCUT_KEY_MODE              Shortcut key mode                                                        No           No
+DEC Mode 7786   MOUSEWHEEL_REPORTING           Mousewheel reporting                                                     No           No
+DEC Mode 7787   APPLICATION_MOUSEWHEEL         Application mousewheel mode                                              No           No
+DEC Mode 7796   BIDI_CURRENT_LINE              BiDi on current line                                                     No           No
+DEC Mode 8200   TTCTH                          Terminal-to-Computer Talk-back Handler                                   No           No
+DEC Mode 8452   SIXEL_SCROLLING_LEAVES_CURSOR  Sixel scrolling leaves cursor to right of graphic                        Yes          Yes
+DEC Mode 8800   CHARACTER_MAPPING_SERVICE      enable/disable character mapping service                                 No           No
+DEC Mode 8840   AMBIGUOUS_WIDTH_DOUBLE_WIDTH   Treat ambiguous width characters as double-width                         No           No
+DEC Mode 9001   WIN32_INPUT_MODE               win32-input-mode                                                         No           No
+DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode                                                No           No
+==============  =============================  =======================================================================  ===========  ============
 
-**Summary**: 33 supported, 126 unsupported.
+**Summary**: 69 supported, 88 unsupported.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

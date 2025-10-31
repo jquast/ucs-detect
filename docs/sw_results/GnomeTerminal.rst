@@ -1,19 +1,19 @@
-.. _xfce4terminal:
+.. _GnomeTerminal:
 
-xfce4-terminal
+Gnome Terminal
 --------------
 
 
-Tested Software version 1.1.3(VTE/7600) on Linux
+Tested Software version 3.52.0(VTE/7600) on Linux
 Full results available at ucs-detect_ repository path
-`data/linux-xfce4-terminal-1.1.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-xfce4-terminal-1.1.3.yaml>`_
+`data/linux-gnome-terminal-3.52.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-gnome-terminal-3.52.0.yaml>`_
 
-.. _xfce4terminalscores:
+.. _GnomeTerminalscores:
 
 Score Breakdown
 +++++++++++++++
 
-Detailed breakdown of how scores are calculated for *xfce4-terminal*:
+Detailed breakdown of how scores are calculated for *Gnome Terminal*:
 
 ============  ===========  ==============  ======================================================
 Score Type    Raw Score    Scaled Score    Calculation
@@ -36,12 +36,12 @@ DEC Modes     81.53%       79.4%           modes_supported / total_modes
   (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
-.. _xfce4terminalwide:
+.. _GnomeTerminalwide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for xfce4-terminal appears to be 
+The best wide unicode table version for Gnome Terminal appears to be 
 **15.0.0**, this is from a summary of the following
 results:
 
@@ -80,14 +80,14 @@ Total codepoints: 1
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width 1.
+  while *Gnome Terminal* measures width 1.
 
-.. _xfce4terminalzwj:
+.. _GnomeTerminalzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *xfce4-terminal* appears to be 
+The best Emoji ZWJ table version for *Gnome Terminal* appears to be 
 **None**, this is from a summary of the following
 results:
 
@@ -133,14 +133,14 @@ Total codepoints: 7
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width 9.
+  while *Gnome Terminal* measures width 9.
 
-.. _xfce4terminalvs16:
+.. _GnomeTerminalvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *xfce4-terminal* is 213 errors
+Emoji VS-16 results for *Gnome Terminal* is 213 errors
 out of 213 total codepoints tested, 0.0% success.
 Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
@@ -161,17 +161,17 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width 1.
+  while *Gnome Terminal* measures width 1.
 
 
-.. _xfce4terminalvs15:
+.. _GnomeTerminalvs15:
 
 Variation Selector-15 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-15 results for *xfce4-terminal* are not available.
+Emoji VS-15 results for *Gnome Terminal* are not available.
 
-.. _xfce4terminallang:
+.. _GnomeTerminallang:
 
 Language Support
 ++++++++++++++++
@@ -339,7 +339,7 @@ Total codepoints: 15
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 9.
+  while *Gnome Terminal* measures width 9.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -365,7 +365,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Tamil
 ^^^^^
@@ -391,7 +391,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -427,7 +427,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *xfce4-terminal* measures width 14.
+  while *Gnome Terminal* measures width 14.
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -453,7 +453,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Malayalam
 ^^^^^^^^^
@@ -504,7 +504,7 @@ Total codepoints: 29
         12345678901234567|
 
 - python `wcwidth.wcswidth()`_ measures width 17,
-  while *xfce4-terminal* measures width 21.
+  while *Gnome Terminal* measures width 21.
 
 Bengali
 ^^^^^^^
@@ -538,7 +538,7 @@ Total codepoints: 12
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *xfce4-terminal* measures width 12.
+  while *Gnome Terminal* measures width 12.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -596,7 +596,7 @@ Total codepoints: 36
         1234567890123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 22,
-  while *xfce4-terminal* measures width 25.
+  while *Gnome Terminal* measures width 25.
 
 Kannada
 ^^^^^^^
@@ -622,7 +622,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Khün
 ^^^^
@@ -666,7 +666,7 @@ Total codepoints: 22
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *xfce4-terminal* measures width 15.
+  while *Gnome Terminal* measures width 15.
 
 Burmese
 ^^^^^^^
@@ -704,7 +704,7 @@ Total codepoints: 16
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *xfce4-terminal* measures width 11.
+  while *Gnome Terminal* measures width 11.
 
 Sanskrit
 ^^^^^^^^
@@ -740,7 +740,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *xfce4-terminal* measures width 13.
+  while *Gnome Terminal* measures width 13.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -768,7 +768,7 @@ Total codepoints: 6
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Mon
 ^^^
@@ -800,7 +800,7 @@ Total codepoints: 10
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width 7.
+  while *Gnome Terminal* measures width 7.
 
 Marathi
 ^^^^^^^
@@ -827,7 +827,7 @@ Total codepoints: 5
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 5.
+  while *Gnome Terminal* measures width 5.
 
 Nepali
 ^^^^^^
@@ -853,7 +853,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Gujarati
 ^^^^^^^^
@@ -879,7 +879,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Telugu
 ^^^^^^
@@ -914,7 +914,7 @@ Total codepoints: 13
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *xfce4-terminal* measures width 10.
+  while *Gnome Terminal* measures width 10.
 
 Maithili
 ^^^^^^^^
@@ -944,7 +944,7 @@ Total codepoints: 8
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width 7.
+  while *Gnome Terminal* measures width 7.
 
 Hindi
 ^^^^^
@@ -970,7 +970,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -998,7 +998,7 @@ Total codepoints: 6
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Sinhala
 ^^^^^^^
@@ -1024,7 +1024,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Bhojpuri
 ^^^^^^^^
@@ -1056,7 +1056,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 10.
+  while *Gnome Terminal* measures width 10.
 
 Magahi
 ^^^^^^
@@ -1088,7 +1088,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 10.
+  while *Gnome Terminal* measures width 10.
 
 Chakma
 ^^^^^^
@@ -1123,7 +1123,7 @@ Total codepoints: 13
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *xfce4-terminal* measures width 8.
+  while *Gnome Terminal* measures width 8.
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -1196,7 +1196,7 @@ Total codepoints: 51
         12345678901234567890123456789012345678|
 
 - python `wcwidth.wcswidth()`_ measures width 38,
-  while *xfce4-terminal* measures width -14.
+  while *Gnome Terminal* measures width -14.
 
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1241,7 +1241,7 @@ Total codepoints: 23
         1234567890123456789012345678901234567890123456|
 
 - python `wcwidth.wcswidth()`_ measures width 46,
-  while *xfce4-terminal* measures width 39.
+  while *Gnome Terminal* measures width 39.
 
 Chinese, Yue
 ^^^^^^^^^^^^
@@ -1269,7 +1269,7 @@ Total codepoints: 6
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *xfce4-terminal* measures width -12.
+  while *Gnome Terminal* measures width -12.
 
 Chinese, Gan
 ^^^^^^^^^^^^
@@ -1298,7 +1298,7 @@ Total codepoints: 7
         12345678901234|
 
 - python `wcwidth.wcswidth()`_ measures width 14,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Chinese, Wu
 ^^^^^^^^^^^
@@ -1323,7 +1323,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -58.
+  while *Gnome Terminal* measures width -58.
 
 Chinese, Hakka
 ^^^^^^^^^^^^^^
@@ -1349,7 +1349,7 @@ Total codepoints: 4
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *xfce4-terminal* measures width -10.
+  while *Gnome Terminal* measures width -10.
 
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1374,7 +1374,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -54.
+  while *Gnome Terminal* measures width -54.
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1399,7 +1399,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -42.
+  while *Gnome Terminal* measures width -42.
 
 Chinese, Xiang
 ^^^^^^^^^^^^^^
@@ -1424,7 +1424,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -58.
+  while *Gnome Terminal* measures width -58.
 
 Dzongkha
 ^^^^^^^^
@@ -1490,7 +1490,7 @@ Total codepoints: 44
         12345678901234567890123456789012345|
 
 - python `wcwidth.wcswidth()`_ measures width 35,
-  while *xfce4-terminal* measures width -5.
+  while *Gnome Terminal* measures width -5.
 
 Japanese
 ^^^^^^^^
@@ -1521,7 +1521,7 @@ Total codepoints: 9
         123456789012345678|
 
 - python `wcwidth.wcswidth()`_ measures width 18,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1546,7 +1546,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -22.
+  while *Gnome Terminal* measures width -22.
 
 Nuosu
 ^^^^^
@@ -1572,7 +1572,7 @@ Total codepoints: 4
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *xfce4-terminal* measures width -42.
+  while *Gnome Terminal* measures width -42.
 
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
@@ -1597,7 +1597,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -52.
+  while *Gnome Terminal* measures width -52.
 
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
@@ -1622,7 +1622,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -52.
+  while *Gnome Terminal* measures width -52.
 
 Thai
 ^^^^
@@ -1662,7 +1662,7 @@ Total codepoints: 18
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *xfce4-terminal* measures width -15.
+  while *Gnome Terminal* measures width -15.
 
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
@@ -1687,7 +1687,7 @@ Total codepoints: 3
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width -69.
+  while *Gnome Terminal* measures width -69.
 
 Thai (2)
 ^^^^^^^^
@@ -1718,7 +1718,7 @@ Total codepoints: 9
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *xfce4-terminal* measures width -17.
+  while *Gnome Terminal* measures width -17.
 
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1745,7 +1745,7 @@ Total codepoints: 5
         1234567890|
 
 - python `wcwidth.wcswidth()`_ measures width 10,
-  while *xfce4-terminal* measures width -12.
+  while *Gnome Terminal* measures width -12.
 
 (Jinan)
 ^^^^^^^
@@ -1772,7 +1772,7 @@ Total codepoints: 5
         1234567890|
 
 - python `wcwidth.wcswidth()`_ measures width 10,
-  while *xfce4-terminal* measures width -12.
+  while *Gnome Terminal* measures width -12.
 
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1799,7 +1799,7 @@ Total codepoints: 5
         1234567890|
 
 - python `wcwidth.wcswidth()`_ measures width 10,
-  while *xfce4-terminal* measures width -12.
+  while *Gnome Terminal* measures width -12.
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1830,7 +1830,7 @@ Total codepoints: 9
         123456789012345678|
 
 - python `wcwidth.wcswidth()`_ measures width 18,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1860,7 +1860,7 @@ Total codepoints: 8
         1234567890123456|
 
 - python `wcwidth.wcswidth()`_ measures width 16,
-  while *xfce4-terminal* measures width -6.
+  while *Gnome Terminal* measures width -6.
 
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
@@ -1885,7 +1885,7 @@ Total codepoints: 3
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -36.
+  while *Gnome Terminal* measures width -36.
 
 Lao
 ^^^
@@ -1910,7 +1910,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width -10.
+  while *Gnome Terminal* measures width -10.
 
 Bora
 ^^^^
@@ -1951,7 +1951,7 @@ Total codepoints: 19
         1234567890123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 19,
-  while *xfce4-terminal* measures width 11.
+  while *Gnome Terminal* measures width 11.
 
 Orok
 ^^^^
@@ -1979,7 +1979,7 @@ Total codepoints: 6
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -5.
+  while *Gnome Terminal* measures width -5.
 
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
@@ -2012,7 +2012,7 @@ Total codepoints: 11
         1234567890|
 
 - python `wcwidth.wcswidth()`_ measures width 10,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Gumuz
 ^^^^^
@@ -2040,7 +2040,7 @@ Total codepoints: 6
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Navajo
 ^^^^^^
@@ -2076,7 +2076,7 @@ Total codepoints: 14
         1234567890123|
 
 - python `wcwidth.wcswidth()`_ measures width 13,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Chickasaw
 ^^^^^^^^^
@@ -2109,7 +2109,7 @@ Total codepoints: 11
         12345678901|
 
 - python `wcwidth.wcswidth()`_ measures width 11,
-  while *xfce4-terminal* measures width -8.
+  while *Gnome Terminal* measures width -8.
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
@@ -2134,7 +2134,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 1.
+  while *Gnome Terminal* measures width 1.
 
 Yaneshaʼ
 ^^^^^^^^
@@ -2160,7 +2160,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Amarakaeri
 ^^^^^^^^^^
@@ -2189,7 +2189,7 @@ Total codepoints: 7
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *xfce4-terminal* measures width 3.
+  while *Gnome Terminal* measures width 3.
 
 Siona
 ^^^^^
@@ -2215,7 +2215,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width 1.
+  while *Gnome Terminal* measures width 1.
 
 Evenki
 ^^^^^^
@@ -2242,7 +2242,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width -6.
+  while *Gnome Terminal* measures width -6.
 
 Gilyak
 ^^^^^^
@@ -2266,7 +2266,7 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width -1.
+  while *Gnome Terminal* measures width -1.
 
 Nanai
 ^^^^^
@@ -2295,7 +2295,7 @@ Total codepoints: 7
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *xfce4-terminal* measures width 2.
+  while *Gnome Terminal* measures width 2.
 
 Colorado
 ^^^^^^^^
@@ -2319,7 +2319,7 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width -6.
+  while *Gnome Terminal* measures width -6.
 
 Veps
 ^^^^
@@ -2350,7 +2350,7 @@ Total codepoints: 9
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *xfce4-terminal* measures width 5.
+  while *Gnome Terminal* measures width 5.
 
 Secoya
 ^^^^^^
@@ -2376,7 +2376,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width -4.
+  while *Gnome Terminal* measures width -4.
 
 (Yeonbyeon)
 ^^^^^^^^^^^
@@ -2404,7 +2404,7 @@ Total codepoints: 6
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *xfce4-terminal* measures width 6.
+  while *Gnome Terminal* measures width 6.
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -2436,7 +2436,7 @@ Total codepoints: 10
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *xfce4-terminal* measures width 6.
+  while *Gnome Terminal* measures width 6.
 
 Kabyle
 ^^^^^^
@@ -2468,7 +2468,7 @@ Total codepoints: 10
         1234567890|
 
 - python `wcwidth.wcswidth()`_ measures width 10,
-  while *xfce4-terminal* measures width 3.
+  while *Gnome Terminal* measures width 3.
 
 Catalan (2)
 ^^^^^^^^^^^
@@ -2491,7 +2491,7 @@ Total codepoints: 1
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *xfce4-terminal* measures width -12.
+  while *Gnome Terminal* measures width -12.
 
 Maldivian
 ^^^^^^^^^
@@ -2527,7 +2527,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *xfce4-terminal* measures width 3.
+  while *Gnome Terminal* measures width 3.
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
@@ -2551,7 +2551,7 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width -3.
+  while *Gnome Terminal* measures width -3.
 
 Mirandese
 ^^^^^^^^^
@@ -2583,7 +2583,7 @@ Total codepoints: 10
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *xfce4-terminal* measures width 6.
+  while *Gnome Terminal* measures width 6.
 
 Korean
 ^^^^^^
@@ -2607,7 +2607,7 @@ Total codepoints: 2
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width -4.
+  while *Gnome Terminal* measures width -4.
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -2633,7 +2633,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width 1.
+  while *Gnome Terminal* measures width 1.
 
 Picard
 ^^^^^^
@@ -2659,7 +2659,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width -13.
+  while *Gnome Terminal* measures width -13.
 
 Ticuna
 ^^^^^^
@@ -2683,7 +2683,7 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Tem
 ^^^
@@ -2713,7 +2713,7 @@ Total codepoints: 8
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2741,7 +2741,7 @@ Total codepoints: 6
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 2.
+  while *Gnome Terminal* measures width 2.
 
 Éwé
 ^^^
@@ -2769,7 +2769,7 @@ Total codepoints: 6
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2797,7 +2797,7 @@ Total codepoints: 6
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -1.
+  while *Gnome Terminal* measures width -1.
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -2826,7 +2826,7 @@ Total codepoints: 7
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Farsi, Western
 ^^^^^^^^^^^^^^
@@ -2853,7 +2853,7 @@ Total codepoints: 5
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2880,7 +2880,7 @@ Total codepoints: 5
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
@@ -2906,7 +2906,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Bamun
 ^^^^^
@@ -2933,7 +2933,7 @@ Total codepoints: 5
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width 2.
+  while *Gnome Terminal* measures width 2.
 
 Fur
 ^^^
@@ -2958,7 +2958,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width -3.
+  while *Gnome Terminal* measures width -3.
 
 Gen
 ^^^
@@ -2982,7 +2982,7 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width -4.
+  while *Gnome Terminal* measures width -4.
 
 Uduk
 ^^^^
@@ -3007,7 +3007,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width -1.
+  while *Gnome Terminal* measures width -1.
 
 Dari
 ^^^^
@@ -3032,7 +3032,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 1.
+  while *Gnome Terminal* measures width 1.
 
 Ditammari
 ^^^^^^^^^
@@ -3060,7 +3060,7 @@ Total codepoints: 6
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 4.
+  while *Gnome Terminal* measures width 4.
 
 Maori (2)
 ^^^^^^^^^
@@ -3084,7 +3084,7 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width -14.
+  while *Gnome Terminal* measures width -14.
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -3109,7 +3109,7 @@ Total codepoints: 3
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width -5.
+  while *Gnome Terminal* measures width -5.
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -3136,7 +3136,7 @@ Total codepoints: 5
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Baatonum
 ^^^^^^^^
@@ -3162,7 +3162,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Mòoré
 ^^^^^
@@ -3190,7 +3190,7 @@ Total codepoints: 6
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width 3.
+  while *Gnome Terminal* measures width 3.
 
 Yoruba
 ^^^^^^
@@ -3218,7 +3218,7 @@ Total codepoints: 6
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *xfce4-terminal* measures width -1.
+  while *Gnome Terminal* measures width -1.
 
 Waama
 ^^^^^
@@ -3244,7 +3244,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width 2.
+  while *Gnome Terminal* measures width 2.
 
 Vietnamese
 ^^^^^^^^^^
@@ -3269,7 +3269,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
@@ -3300,7 +3300,7 @@ Total codepoints: 9
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *xfce4-terminal* measures width 3.
+  while *Gnome Terminal* measures width 3.
 
 Ga
 ^^
@@ -3327,7 +3327,7 @@ Total codepoints: 5
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width 3.
+  while *Gnome Terminal* measures width 3.
 
 Aja
 ^^^
@@ -3354,7 +3354,7 @@ Total codepoints: 5
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width -1.
+  while *Gnome Terminal* measures width -1.
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
@@ -3377,7 +3377,7 @@ Total codepoints: 1
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Dendi
 ^^^^^
@@ -3402,7 +3402,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width -4.
+  while *Gnome Terminal* measures width -4.
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -3429,7 +3429,7 @@ Total codepoints: 5
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width -1.
+  while *Gnome Terminal* measures width -1.
 
 Serer-Sine
 ^^^^^^^^^^
@@ -3454,7 +3454,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Lamnso'
 ^^^^^^^
@@ -3478,7 +3478,7 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width -2.
+  while *Gnome Terminal* measures width -2.
 
 Urdu
 ^^^^
@@ -3505,7 +3505,7 @@ Total codepoints: 5
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width 2.
+  while *Gnome Terminal* measures width 2.
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -3532,7 +3532,7 @@ Total codepoints: 5
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *xfce4-terminal* measures width 2.
+  while *Gnome Terminal* measures width 2.
 
 Seraiki
 ^^^^^^^
@@ -3558,7 +3558,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Belanda Viri
 ^^^^^^^^^^^^
@@ -3584,7 +3584,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width -3.
+  while *Gnome Terminal* measures width -3.
 
 Urdu (2)
 ^^^^^^^^
@@ -3609,7 +3609,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
@@ -3634,7 +3634,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 1.
+  while *Gnome Terminal* measures width 1.
 
 Dangme
 ^^^^^^
@@ -3660,7 +3660,7 @@ Total codepoints: 4
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
-  while *xfce4-terminal* measures width -1.
+  while *Gnome Terminal* measures width -1.
 
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
@@ -3683,7 +3683,7 @@ Total codepoints: 1
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *xfce4-terminal* measures width -3.
+  while *Gnome Terminal* measures width -3.
 
 Fon
 ^^^
@@ -3708,7 +3708,7 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
 Tai Dam
 ^^^^^^^
@@ -3733,14 +3733,14 @@ Total codepoints: 3
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *xfce4-terminal* measures width 0.
+  while *Gnome Terminal* measures width 0.
 
-.. _xfce4terminaldecmodes:
+.. _GnomeTerminaldecmodes:
 
 DEC Private Modes Support
 +++++++++++++++++++++++++
 
-DEC private modes results for *xfce4-terminal*: 128 supported modes
+DEC private modes results for *Gnome Terminal*: 128 supported modes
 out of 157 total modes tested (81.5% support).
 
 Complete list of DEC private modes tested:

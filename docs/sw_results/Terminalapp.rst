@@ -20,18 +20,19 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          90.91%       86.4%           (version_index / total_versions) × (pct_success / 100)
 ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-LANG          0.84%        0.9%            languages_supported / total_languages
+LANG          0.84%        1.0%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
+DEC Modes     N/A          N/A             modes_supported / total_modes
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
 
 - Raw Final Score: 18.35%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
 
-- Scaled Final Score: 13.6%
+- Scaled Final Score: 17.6%
   (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -3738,6 +3739,13 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width -1.
+
+.. _Terminalappdecmodes:
+
+DEC Private Modes Support
++++++++++++++++++++++++++
+
+DEC private modes results for *Terminal.app* are not available.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html
