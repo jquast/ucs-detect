@@ -88,20 +88,20 @@ def wrap_with_score_role(text, score):
 
 def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
     """
-    Wrap score text with both a hyperlink and score styling.
+    Wrap score text with both a hyperlink and score styling using the :sref: role.
 
     Args:
-        text: The text to display (e.g., "75.0%")
+        text: The text to display (e.g., "75.0%", "32s")
         score: The score value (0.0 to 1.0) for styling
         terminal_name: The terminal name for creating the link target
-        section_suffix: The section suffix (e.g., "_wide", "_lang")
+        section_suffix: The section suffix (e.g., "_wide", "_lang", "_time")
 
     Returns:
-        Text wrapped with hyperlink and role: :score-75:`:ref:`75.0% <terminal_wide>``
+        Text wrapped with hyperlink and role: :sref:`75.0% <terminal_wide> 75`
     """
-    role_name = make_score_css_class(score)
+    score_value = int(score * 100) if not math.isnan(score) else 'na'
     link_target = make_link(terminal_name + section_suffix)
-    return f':{role_name}:`:ref:`{text} <{link_target}>`'
+    return f':sref:`{text} <{link_target}> {score_value}`'
 
 
 def main():
@@ -137,6 +137,7 @@ def main():
             show_vs_results(sw_name, entry, '15')
             show_language_results(sw_name, entry)
             show_dec_modes_results(sw_name, entry)
+            show_time_elapsed_results(sw_name, entry)
             display_common_hyperlinks()
         print('ok', file=sys.stderr)
 
@@ -226,6 +227,11 @@ def make_score_table():
             # DEC Modes Support,
             _score_dec_modes = score_dec_modes(data)
 
+            # Elapsed time (inverse score - lower is better)
+            _score_elapsed = score_elapsed_time(data)
+            _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
+
+            # Exclude elapsed time from raw average since it's in seconds, not 0-1 fraction
             scores = (score_language, score_emoji_vs16, score_emoji_vs15, _score_zwj, _score_wide, _score_dec_modes)
             valid_scores = [s for s in scores if not math.isnan(s)]
             score_table.append(
@@ -236,6 +242,8 @@ def make_score_table():
                     score_emoji_vs16=score_emoji_vs16,
                     score_emoji_vs15=score_emoji_vs15,
                     score_dec_modes=_score_dec_modes,
+                    score_elapsed=_score_elapsed,
+                    elapsed_seconds=_elapsed_seconds,
                     score_final=sum(valid_scores) / len(valid_scores) if valid_scores else float('NaN'),
                     score_language=score_language,
                     score_wide=_score_wide,
@@ -328,6 +336,9 @@ def display_tabulated_scores(score_table):
         # Create DEC modes display text (just the number, hyperlink will be added by wrap_score_with_hyperlink)
         dec_modes_display = f"{dec_modes_count}" if not math.isnan(result["score_dec_modes"]) else "N/A"
 
+        # Create elapsed time display text (integer seconds with 's' suffix)
+        elapsed_display = f"{int(result['elapsed_seconds'])}s" if not math.isnan(result['elapsed_seconds']) else "N/A"
+
         tabulated_scores.append(
             {
                 "Terminal Software": make_outbound_hyperlink(result["terminal_software_name"]),
@@ -377,6 +388,12 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_dec_modes"
                 ),
+                "TIME": wrap_score_with_hyperlink(
+                    elapsed_display,
+                    result["score_elapsed_scaled"],
+                    result["terminal_software_name"],
+                    "_time"
+                ),
             }
         )
 
@@ -425,6 +442,11 @@ def display_table_definitions():
         "  supported by the terminal, scaled. The number in parentheses shows\n"
         "  the total count of supported modes, with a link to detailed results."
     )
+    print(
+        "- *TIME score*: Determined by test execution time in seconds, scaled\n"
+        "  inversely (lower time is better). The value shows elapsed seconds\n"
+        "  during the test run, with a link to detailed timing information."
+    )
     print()
 
 
@@ -439,6 +461,11 @@ def scale_scores(score_table, entry, key):
     min_score = min(valid_scores)
     if max_score == min_score:
         return 1.0  # All scores are the same
+
+    # Inverse scaling for elapsed time (lower is better)
+    if key == 'score_elapsed':
+        return 1.0 - ((my_score - min_score) / (max_score - min_score))
+
     return (my_score - min_score) / (max_score - min_score)
 
 
@@ -500,6 +527,19 @@ def score_dec_modes(data):
         return float('NaN')
 
     return supported_modes / total_modes
+
+
+def score_elapsed_time(data):
+    """
+    Calculate score based on elapsed time (inverse - lower is better).
+
+    Returns the raw seconds_elapsed value, which will be inverted during scaling.
+    This is a raw score where lower values are better.
+    """
+    elapsed = data.get("seconds_elapsed")
+    if elapsed is None or math.isnan(elapsed):
+        return float('NaN')
+    return elapsed
 
 
 
@@ -597,14 +637,26 @@ def display_dec_modes_feature_table(score_table):
 
         for mode_num in sorted_modes:
             mode_info = all_modes[mode_num]
-            mode_label = f"{mode_num}\n{mode_info['name']}"
+            # Split long mode names at underscores for better column width
+            mode_name = mode_info['name']
+            # For names longer than 15 chars, try to split at underscores
+            if len(mode_name) > 15 and '_' in mode_name:
+                # Split into chunks at underscores, recombine with newlines
+                parts = mode_name.split('_')
+                # Group parts to avoid too many lines
+                if len(parts) > 2:
+                    # Put first part on one line, rest on another
+                    mode_name = parts[0] + '\n' + '_'.join(parts[1:])
+            mode_label = f"{mode_num}\n{mode_name}"
 
             # Check if terminal supports this mode
             is_supported = terminal_modes[terminal_name].get(mode_num, False)
 
             # Use score-100 for Yes (green) and score-0 for No (red)
+            # Link "Yes" to the specific mode in the terminal's detail page
             if is_supported:
-                cell_value = wrap_with_score_role("Yes", 1.0)  # score-100
+                mode_anchor = make_link(f"{terminal_name}_decmode_{mode_num}")
+                cell_value = f':sref:`Yes <{mode_anchor}> 100`'
             else:
                 cell_value = wrap_with_score_role("No", 0.0)   # score-0
 
@@ -672,6 +724,12 @@ def show_score_breakdown(sw_name, entry):
             "Scaled Score": format_score_pct(entry["score_dec_modes_scaled"]),
             "Calculation": f'modes_supported / total_modes',
         },
+        {
+            "Score Type": "TIME",
+            "Raw Score": f"{entry['elapsed_seconds']:.2f}s" if not math.isnan(entry['elapsed_seconds']) else "N/A",
+            "Scaled Score": format_score_pct(entry["score_elapsed_scaled"]),
+            "Calculation": f'1 - ((elapsed - min) / (max - min)) [inverse]',
+        },
     ]
     print(tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst"))
     print()
@@ -680,9 +738,10 @@ def show_score_breakdown(sw_name, entry):
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
     print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6")
     print(f"  the categorized 'average' absolute support level of this terminal")
+    print(f"  Note: TIME is excluded from raw average since it measures performance, not feature support")
     print()
     print(f"- Scaled Final Score: {format_score_pct(entry['score_final_scaled'])}")
-    print(f"  (normalized across all terminals tested).")
+    print(f"  (normalized across all terminals tested, including TIME performance).")
     print(f"  *Scaled scores* are normalized (0-100%) relative to all terminals tested")
     print()
 
@@ -880,10 +939,21 @@ def show_dec_modes_results(sw_name, entry):
     print(f"out of {total_modes} total modes tested ({(supported_modes/total_modes*100):0.1f}% support).")
     print()
 
-    # Create detailed table of all modes
+    # Create detailed table of all modes with reference anchors
+    print("Complete list of DEC private modes tested:")
+    print()
+
+    # We need to manually create the table with anchors for each supported mode
+    # First, create the table data
     tabulated_modes = []
     for mode_num in sorted(modes.keys(), key=int):
         mode_data = modes[mode_num]
+
+        # Add anchor for supported modes
+        if mode_data.get("supported", False):
+            mode_anchor = make_link(f"{sw_name}_decmode_{mode_num}")
+            display_inbound_hyperlink(mode_anchor)
+
         tabulated_modes.append({
             "Mode": f"DEC Mode {mode_num}",
             "Name": mode_data.get("mode_name", "N/A"),
@@ -892,13 +962,37 @@ def show_dec_modes_results(sw_name, entry):
             "Changeable": "Yes" if mode_data.get("changeable", False) else "No",
         })
 
-    print("Complete list of DEC private modes tested:")
-    print()
     print(tabulate.tabulate(tabulated_modes, headers="keys", tablefmt="rst"))
     print()
 
     # Show summary of supported vs unsupported modes
     print(f"**Summary**: {supported_modes} supported, {unsupported_modes} unsupported.")
+    print()
+
+
+def show_time_elapsed_results(sw_name, entry):
+    """
+    Display test execution time results.
+    """
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_time")
+    display_title("Test Execution Time", 3)
+
+    if math.isnan(entry["elapsed_seconds"]):
+        print(f"Test execution time for *{sw_name}* is not available.")
+        print()
+        return
+
+    elapsed = entry["elapsed_seconds"]
+    print(f"The test suite completed in **{elapsed:.2f} seconds** ({int(elapsed)}s).")
+    print()
+    print(f"This time measurement represents the total duration of the test execution,")
+    print(f"including all Unicode wide character tests, emoji ZWJ sequences, variation")
+    print(f"selectors, language support checks, and DEC mode detection.")
+    print()
+    print(f"Faster execution times generally indicate more efficient terminal rendering")
+    print(f"and/or faster response to terminal control sequences. However, execution")
+    print(f"time can also be affected by system load, terminal implementation complexity,")
+    print(f"and the number of features being tested.")
     print()
 
 

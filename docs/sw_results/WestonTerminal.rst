@@ -24,6 +24,7 @@ LANG          0.00%        0.0%            languages_supported / total_languages
 VS16          100.00%      100.0%          pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
+TIME          18.81s       100.0%          1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     N/A          N/A             modes_supported / total_modes
 - Raw Final Score: 36.36%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 50.7%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _WestonTerminalwide:
@@ -149,7 +151,29 @@ All codepoint combinations with Variation Selector-16 tested were successful.
 Variation Selector-15 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-15 results for *Weston Terminal* are not available.
+Emoji VS-15 results for *Weston Terminal* is 100 errors
+out of 100 total codepoints tested, 0.0% success.
+Sequence of a WIDE Emoji made NARROW by *Variation Selector-15*, from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  =============================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =============================
+`U+2757 <https://codepoints.net/U+2757>`_  '\\u2757'  So                  2  HEAVY EXCLAMATION MARK SYMBOL
+`U+FE0E <https://codepoints.net/U+FE0E>`_  '\\ufe0e'  Mn                  0  VARIATION SELECTOR-15
+=========================================  =========  ==========  =========  =============================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe2\x9d\x97\xef\xb8\x8e|\\n1|\\n"
+        ❗︎|
+        1|
+
+- python `wcwidth.wcswidth()`_ measures width 1,
+  while *Weston Terminal* measures width 3.
+
 
 .. _WestonTerminallang:
 
@@ -243,8 +267,8 @@ Dari                                     37       1037  96.4%
 Secoya                                   29       1029  97.2%
 Uduk                                     29       1029  97.2%
 Picard                                   27       1027  97.4%
-Gen                                      25       1025  97.6%
 Mazahua Central                          25       1025  97.6%
+Gen                                      24       1024  97.7%
 Arabic, Standard                         23       1023  97.8%
 Mixtec, Metlatónoc                       23       1023  97.8%
 Urdu (2)                                 23       1023  97.8%
@@ -2715,34 +2739,6 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width 9.
 
-Gen
-^^^
-
-Sequence of language *Gen* from midpoint of alignment failure records:
-
-=========================================  =========  ==========  =========  =========================
-Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  =========================
-`U+0064 <https://codepoints.net/U+0064>`_  'd'        Ll                  1  LATIN SMALL LETTER D
-`U+0254 <https://codepoints.net/U+0254>`_  '\\u0254'  Ll                  1  LATIN SMALL LETTER OPEN O
-`U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-=========================================  =========  ==========  =========  =========================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "d\xc9\x94\xcc\x80nna|\\n12345|\\n"
-        dɔ̀nna|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *Weston Terminal* measures width 6.
-
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
@@ -2769,6 +2765,34 @@ Total codepoints: 6
         1234|
 
 - python `wcwidth.wcswidth()`_ measures width 4,
+  while *Weston Terminal* measures width 6.
+
+Gen
+^^^
+
+Sequence of language *Gen* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  =========================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  =========================
+`U+0064 <https://codepoints.net/U+0064>`_  'd'        Ll                  1  LATIN SMALL LETTER D
+`U+0254 <https://codepoints.net/U+0254>`_  '\\u0254'  Ll                  1  LATIN SMALL LETTER OPEN O
+`U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+=========================================  =========  ==========  =========  =========================
+
+Total codepoints: 6
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "d\xc9\x94\xcc\x80nna|\\n12345|\\n"
+        dɔ̀nna|
+        12345|
+
+- python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
 
 Arabic, Standard
@@ -3960,6 +3984,22 @@ DEC Private Modes Support
 +++++++++++++++++++++++++
 
 DEC private modes results for *Weston Terminal* are not available.
+
+.. _WestonTerminaltime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **18.81 seconds** (18s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

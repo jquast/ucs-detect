@@ -24,6 +24,7 @@ LANG          32.58%       40.6%           languages_supported / total_languages
 VS16          100.00%      100.0%          pct_success / 100
 VS15          N/A          N/A             pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
+TIME          1064.78s     92.8%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     N/A          N/A             modes_supported / total_modes
 - Raw Final Score: 53.98%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 83.0%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _ExtratermQtwide:
@@ -3044,6 +3046,22 @@ DEC Private Modes Support
 +++++++++++++++++++++++++
 
 DEC private modes results for *ExtratermQt* are not available.
+
+.. _ExtratermQttime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **1064.78 seconds** (1064s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

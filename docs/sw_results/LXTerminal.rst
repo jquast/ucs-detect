@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     81.53%       79.4%           modes_supported / total_modes
+TIME          4828.29s     67.1%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     81.53%       79.4%           modes_supported / total_modes
 - Raw Final Score: 25.99%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 31.6%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _LXTerminalwide:
@@ -3702,6 +3704,262 @@ out of 157 total modes tested (81.5% support).
 
 Complete list of DEC private modes tested:
 
+.. _LXTerminaldecmode1:
+
+.. _LXTerminaldecmode2:
+
+.. _LXTerminaldecmode3:
+
+.. _LXTerminaldecmode4:
+
+.. _LXTerminaldecmode5:
+
+.. _LXTerminaldecmode6:
+
+.. _LXTerminaldecmode7:
+
+.. _LXTerminaldecmode8:
+
+.. _LXTerminaldecmode9:
+
+.. _LXTerminaldecmode10:
+
+.. _LXTerminaldecmode11:
+
+.. _LXTerminaldecmode12:
+
+.. _LXTerminaldecmode13:
+
+.. _LXTerminaldecmode14:
+
+.. _LXTerminaldecmode16:
+
+.. _LXTerminaldecmode18:
+
+.. _LXTerminaldecmode19:
+
+.. _LXTerminaldecmode25:
+
+.. _LXTerminaldecmode30:
+
+.. _LXTerminaldecmode34:
+
+.. _LXTerminaldecmode35:
+
+.. _LXTerminaldecmode36:
+
+.. _LXTerminaldecmode38:
+
+.. _LXTerminaldecmode40:
+
+.. _LXTerminaldecmode41:
+
+.. _LXTerminaldecmode42:
+
+.. _LXTerminaldecmode43:
+
+.. _LXTerminaldecmode44:
+
+.. _LXTerminaldecmode45:
+
+.. _LXTerminaldecmode46:
+
+.. _LXTerminaldecmode47:
+
+.. _LXTerminaldecmode53:
+
+.. _LXTerminaldecmode57:
+
+.. _LXTerminaldecmode58:
+
+.. _LXTerminaldecmode59:
+
+.. _LXTerminaldecmode60:
+
+.. _LXTerminaldecmode61:
+
+.. _LXTerminaldecmode64:
+
+.. _LXTerminaldecmode66:
+
+.. _LXTerminaldecmode67:
+
+.. _LXTerminaldecmode68:
+
+.. _LXTerminaldecmode69:
+
+.. _LXTerminaldecmode73:
+
+.. _LXTerminaldecmode80:
+
+.. _LXTerminaldecmode81:
+
+.. _LXTerminaldecmode83:
+
+.. _LXTerminaldecmode84:
+
+.. _LXTerminaldecmode85:
+
+.. _LXTerminaldecmode90:
+
+.. _LXTerminaldecmode95:
+
+.. _LXTerminaldecmode96:
+
+.. _LXTerminaldecmode97:
+
+.. _LXTerminaldecmode98:
+
+.. _LXTerminaldecmode99:
+
+.. _LXTerminaldecmode100:
+
+.. _LXTerminaldecmode101:
+
+.. _LXTerminaldecmode102:
+
+.. _LXTerminaldecmode103:
+
+.. _LXTerminaldecmode104:
+
+.. _LXTerminaldecmode106:
+
+.. _LXTerminaldecmode108:
+
+.. _LXTerminaldecmode109:
+
+.. _LXTerminaldecmode110:
+
+.. _LXTerminaldecmode111:
+
+.. _LXTerminaldecmode112:
+
+.. _LXTerminaldecmode113:
+
+.. _LXTerminaldecmode114:
+
+.. _LXTerminaldecmode115:
+
+.. _LXTerminaldecmode116:
+
+.. _LXTerminaldecmode117:
+
+.. _LXTerminaldecmode1000:
+
+.. _LXTerminaldecmode1001:
+
+.. _LXTerminaldecmode1002:
+
+.. _LXTerminaldecmode1003:
+
+.. _LXTerminaldecmode1004:
+
+.. _LXTerminaldecmode1005:
+
+.. _LXTerminaldecmode1006:
+
+.. _LXTerminaldecmode1007:
+
+.. _LXTerminaldecmode1010:
+
+.. _LXTerminaldecmode1011:
+
+.. _LXTerminaldecmode1014:
+
+.. _LXTerminaldecmode1015:
+
+.. _LXTerminaldecmode1016:
+
+.. _LXTerminaldecmode1021:
+
+.. _LXTerminaldecmode1034:
+
+.. _LXTerminaldecmode1035:
+
+.. _LXTerminaldecmode1036:
+
+.. _LXTerminaldecmode1037:
+
+.. _LXTerminaldecmode1039:
+
+.. _LXTerminaldecmode1040:
+
+.. _LXTerminaldecmode1041:
+
+.. _LXTerminaldecmode1042:
+
+.. _LXTerminaldecmode1043:
+
+.. _LXTerminaldecmode1044:
+
+.. _LXTerminaldecmode1046:
+
+.. _LXTerminaldecmode1047:
+
+.. _LXTerminaldecmode1048:
+
+.. _LXTerminaldecmode1049:
+
+.. _LXTerminaldecmode1050:
+
+.. _LXTerminaldecmode1051:
+
+.. _LXTerminaldecmode1052:
+
+.. _LXTerminaldecmode1053:
+
+.. _LXTerminaldecmode1060:
+
+.. _LXTerminaldecmode1061:
+
+.. _LXTerminaldecmode1070:
+
+.. _LXTerminaldecmode1243:
+
+.. _LXTerminaldecmode2001:
+
+.. _LXTerminaldecmode2002:
+
+.. _LXTerminaldecmode2003:
+
+.. _LXTerminaldecmode2004:
+
+.. _LXTerminaldecmode2005:
+
+.. _LXTerminaldecmode2006:
+
+.. _LXTerminaldecmode2026:
+
+.. _LXTerminaldecmode2500:
+
+.. _LXTerminaldecmode2501:
+
+.. _LXTerminaldecmode7700:
+
+.. _LXTerminaldecmode7711:
+
+.. _LXTerminaldecmode7727:
+
+.. _LXTerminaldecmode7728:
+
+.. _LXTerminaldecmode7730:
+
+.. _LXTerminaldecmode7766:
+
+.. _LXTerminaldecmode7767:
+
+.. _LXTerminaldecmode7783:
+
+.. _LXTerminaldecmode7786:
+
+.. _LXTerminaldecmode7787:
+
+.. _LXTerminaldecmode7796:
+
+.. _LXTerminaldecmode8452:
+
+.. _LXTerminaldecmode8800:
+
 ==============  =============================  =======================================================================  ===========  ============
 Mode            Name                           Description                                                              Supported    Changeable
 ==============  =============================  =======================================================================  ===========  ============
@@ -3865,6 +4123,22 @@ DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode        
 ==============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 128 supported, 29 unsupported.
+
+.. _LXTerminaltime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **4828.29 seconds** (4828s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

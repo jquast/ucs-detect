@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     14.65%       5.0%            modes_supported / total_modes
+TIME          558.80s      96.3%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     14.65%       5.0%            modes_supported / total_modes
 - Raw Final Score: 30.37%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 39.7%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _WezTermwide:
@@ -3658,6 +3660,52 @@ out of 157 total modes tested (14.6% support).
 
 Complete list of DEC private modes tested:
 
+.. _WezTermdecmode1:
+
+.. _WezTermdecmode2:
+
+.. _WezTermdecmode3:
+
+.. _WezTermdecmode6:
+
+.. _WezTermdecmode7:
+
+.. _WezTermdecmode12:
+
+.. _WezTermdecmode25:
+
+.. _WezTermdecmode45:
+
+.. _WezTermdecmode69:
+
+.. _WezTermdecmode80:
+
+.. _WezTermdecmode1000:
+
+.. _WezTermdecmode1002:
+
+.. _WezTermdecmode1003:
+
+.. _WezTermdecmode1004:
+
+.. _WezTermdecmode1005:
+
+.. _WezTermdecmode1006:
+
+.. _WezTermdecmode1016:
+
+.. _WezTermdecmode1070:
+
+.. _WezTermdecmode2004:
+
+.. _WezTermdecmode2026:
+
+.. _WezTermdecmode2027:
+
+.. _WezTermdecmode8452:
+
+.. _WezTermdecmode9001:
+
 ==============  =============================  =======================================================================  ===========  ============
 Mode            Name                           Description                                                              Supported    Changeable
 ==============  =============================  =======================================================================  ===========  ============
@@ -3821,6 +3869,22 @@ DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode        
 ==============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 23 supported, 134 unsupported.
+
+.. _WezTermtime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **558.80 seconds** (558s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

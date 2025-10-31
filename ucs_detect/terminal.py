@@ -189,8 +189,18 @@ def maybe_determine_software(term, writer):
             result['software_version'] = sv.version
     else:
         # XTVERSION failed, try ENQ (answerback) sequence as fallback
-        writer('\x05')  # Send ENQ (Ctrl+E)
-        response = term.flushinp(timeout=0.2).strip()
+        # Write ENQ directly to terminal stream instead of through writer
+        if term.stream:
+            term.stream.write('\x05')
+            term.stream.flush()
+        else:
+            # Fallback to stderr if no stream
+            sys.stderr.write('\x05')
+            sys.stderr.flush()
+
+        # Small delay to allow answerback response to arrive
+        time.sleep(0.1)
+        response = term.flushinp(timeout=0.5).strip()
         if response:
             result['software_name'] = response
 

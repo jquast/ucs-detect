@@ -24,6 +24,7 @@ LANG          2.52%        3.1%            languages_supported / total_languages
 VS16          94.37%       94.4%           pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     21.66%       12.8%           modes_supported / total_modes
+TIME          43.99s       99.8%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     21.66%       12.8%           modes_supported / total_modes
 - Raw Final Score: 44.38%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 65.4%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _ghosttywide:
@@ -3700,6 +3702,74 @@ out of 157 total modes tested (21.7% support).
 
 Complete list of DEC private modes tested:
 
+.. _ghosttydecmode1:
+
+.. _ghosttydecmode3:
+
+.. _ghosttydecmode4:
+
+.. _ghosttydecmode5:
+
+.. _ghosttydecmode6:
+
+.. _ghosttydecmode7:
+
+.. _ghosttydecmode8:
+
+.. _ghosttydecmode9:
+
+.. _ghosttydecmode12:
+
+.. _ghosttydecmode25:
+
+.. _ghosttydecmode40:
+
+.. _ghosttydecmode45:
+
+.. _ghosttydecmode66:
+
+.. _ghosttydecmode69:
+
+.. _ghosttydecmode1000:
+
+.. _ghosttydecmode1002:
+
+.. _ghosttydecmode1003:
+
+.. _ghosttydecmode1004:
+
+.. _ghosttydecmode1005:
+
+.. _ghosttydecmode1006:
+
+.. _ghosttydecmode1007:
+
+.. _ghosttydecmode1015:
+
+.. _ghosttydecmode1016:
+
+.. _ghosttydecmode1035:
+
+.. _ghosttydecmode1036:
+
+.. _ghosttydecmode1039:
+
+.. _ghosttydecmode1045:
+
+.. _ghosttydecmode1047:
+
+.. _ghosttydecmode1049:
+
+.. _ghosttydecmode2004:
+
+.. _ghosttydecmode2026:
+
+.. _ghosttydecmode2027:
+
+.. _ghosttydecmode2031:
+
+.. _ghosttydecmode2048:
+
 ==============  =============================  =======================================================================  ===========  ============
 Mode            Name                           Description                                                              Supported    Changeable
 ==============  =============================  =======================================================================  ===========  ============
@@ -3863,6 +3933,22 @@ DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode        
 ==============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 34 supported, 123 unsupported.
+
+.. _ghosttytime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **43.99 seconds** (43s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

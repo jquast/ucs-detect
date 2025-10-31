@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     81.53%       79.4%           modes_supported / total_modes
+TIME          2816.31s     80.9%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     81.53%       79.4%           modes_supported / total_modes
 - Raw Final Score: 25.99%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 31.6%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _terminatorwide:
@@ -3702,6 +3704,262 @@ out of 157 total modes tested (81.5% support).
 
 Complete list of DEC private modes tested:
 
+.. _terminatordecmode1:
+
+.. _terminatordecmode2:
+
+.. _terminatordecmode3:
+
+.. _terminatordecmode4:
+
+.. _terminatordecmode5:
+
+.. _terminatordecmode6:
+
+.. _terminatordecmode7:
+
+.. _terminatordecmode8:
+
+.. _terminatordecmode9:
+
+.. _terminatordecmode10:
+
+.. _terminatordecmode11:
+
+.. _terminatordecmode12:
+
+.. _terminatordecmode13:
+
+.. _terminatordecmode14:
+
+.. _terminatordecmode16:
+
+.. _terminatordecmode18:
+
+.. _terminatordecmode19:
+
+.. _terminatordecmode25:
+
+.. _terminatordecmode30:
+
+.. _terminatordecmode34:
+
+.. _terminatordecmode35:
+
+.. _terminatordecmode36:
+
+.. _terminatordecmode38:
+
+.. _terminatordecmode40:
+
+.. _terminatordecmode41:
+
+.. _terminatordecmode42:
+
+.. _terminatordecmode43:
+
+.. _terminatordecmode44:
+
+.. _terminatordecmode45:
+
+.. _terminatordecmode46:
+
+.. _terminatordecmode47:
+
+.. _terminatordecmode53:
+
+.. _terminatordecmode57:
+
+.. _terminatordecmode58:
+
+.. _terminatordecmode59:
+
+.. _terminatordecmode60:
+
+.. _terminatordecmode61:
+
+.. _terminatordecmode64:
+
+.. _terminatordecmode66:
+
+.. _terminatordecmode67:
+
+.. _terminatordecmode68:
+
+.. _terminatordecmode69:
+
+.. _terminatordecmode73:
+
+.. _terminatordecmode80:
+
+.. _terminatordecmode81:
+
+.. _terminatordecmode83:
+
+.. _terminatordecmode84:
+
+.. _terminatordecmode85:
+
+.. _terminatordecmode90:
+
+.. _terminatordecmode95:
+
+.. _terminatordecmode96:
+
+.. _terminatordecmode97:
+
+.. _terminatordecmode98:
+
+.. _terminatordecmode99:
+
+.. _terminatordecmode100:
+
+.. _terminatordecmode101:
+
+.. _terminatordecmode102:
+
+.. _terminatordecmode103:
+
+.. _terminatordecmode104:
+
+.. _terminatordecmode106:
+
+.. _terminatordecmode108:
+
+.. _terminatordecmode109:
+
+.. _terminatordecmode110:
+
+.. _terminatordecmode111:
+
+.. _terminatordecmode112:
+
+.. _terminatordecmode113:
+
+.. _terminatordecmode114:
+
+.. _terminatordecmode115:
+
+.. _terminatordecmode116:
+
+.. _terminatordecmode117:
+
+.. _terminatordecmode1000:
+
+.. _terminatordecmode1001:
+
+.. _terminatordecmode1002:
+
+.. _terminatordecmode1003:
+
+.. _terminatordecmode1004:
+
+.. _terminatordecmode1005:
+
+.. _terminatordecmode1006:
+
+.. _terminatordecmode1007:
+
+.. _terminatordecmode1010:
+
+.. _terminatordecmode1011:
+
+.. _terminatordecmode1014:
+
+.. _terminatordecmode1015:
+
+.. _terminatordecmode1016:
+
+.. _terminatordecmode1021:
+
+.. _terminatordecmode1034:
+
+.. _terminatordecmode1035:
+
+.. _terminatordecmode1036:
+
+.. _terminatordecmode1037:
+
+.. _terminatordecmode1039:
+
+.. _terminatordecmode1040:
+
+.. _terminatordecmode1041:
+
+.. _terminatordecmode1042:
+
+.. _terminatordecmode1043:
+
+.. _terminatordecmode1044:
+
+.. _terminatordecmode1046:
+
+.. _terminatordecmode1047:
+
+.. _terminatordecmode1048:
+
+.. _terminatordecmode1049:
+
+.. _terminatordecmode1050:
+
+.. _terminatordecmode1051:
+
+.. _terminatordecmode1052:
+
+.. _terminatordecmode1053:
+
+.. _terminatordecmode1060:
+
+.. _terminatordecmode1061:
+
+.. _terminatordecmode1070:
+
+.. _terminatordecmode1243:
+
+.. _terminatordecmode2001:
+
+.. _terminatordecmode2002:
+
+.. _terminatordecmode2003:
+
+.. _terminatordecmode2004:
+
+.. _terminatordecmode2005:
+
+.. _terminatordecmode2006:
+
+.. _terminatordecmode2026:
+
+.. _terminatordecmode2500:
+
+.. _terminatordecmode2501:
+
+.. _terminatordecmode7700:
+
+.. _terminatordecmode7711:
+
+.. _terminatordecmode7727:
+
+.. _terminatordecmode7728:
+
+.. _terminatordecmode7730:
+
+.. _terminatordecmode7766:
+
+.. _terminatordecmode7767:
+
+.. _terminatordecmode7783:
+
+.. _terminatordecmode7786:
+
+.. _terminatordecmode7787:
+
+.. _terminatordecmode7796:
+
+.. _terminatordecmode8452:
+
+.. _terminatordecmode8800:
+
 ==============  =============================  =======================================================================  ===========  ============
 Mode            Name                           Description                                                              Supported    Changeable
 ==============  =============================  =======================================================================  ===========  ============
@@ -3865,6 +4123,22 @@ DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode        
 ==============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 128 supported, 29 unsupported.
+
+.. _terminatortime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **2816.31 seconds** (2816s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

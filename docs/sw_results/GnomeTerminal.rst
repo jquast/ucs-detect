@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     81.53%       79.4%           modes_supported / total_modes
+TIME          2845.60s     80.7%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     81.53%       79.4%           modes_supported / total_modes
 - Raw Final Score: 25.99%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 31.6%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _GnomeTerminalwide:
@@ -3745,6 +3747,262 @@ out of 157 total modes tested (81.5% support).
 
 Complete list of DEC private modes tested:
 
+.. _GnomeTerminaldecmode1:
+
+.. _GnomeTerminaldecmode2:
+
+.. _GnomeTerminaldecmode3:
+
+.. _GnomeTerminaldecmode4:
+
+.. _GnomeTerminaldecmode5:
+
+.. _GnomeTerminaldecmode6:
+
+.. _GnomeTerminaldecmode7:
+
+.. _GnomeTerminaldecmode8:
+
+.. _GnomeTerminaldecmode9:
+
+.. _GnomeTerminaldecmode10:
+
+.. _GnomeTerminaldecmode11:
+
+.. _GnomeTerminaldecmode12:
+
+.. _GnomeTerminaldecmode13:
+
+.. _GnomeTerminaldecmode14:
+
+.. _GnomeTerminaldecmode16:
+
+.. _GnomeTerminaldecmode18:
+
+.. _GnomeTerminaldecmode19:
+
+.. _GnomeTerminaldecmode25:
+
+.. _GnomeTerminaldecmode30:
+
+.. _GnomeTerminaldecmode34:
+
+.. _GnomeTerminaldecmode35:
+
+.. _GnomeTerminaldecmode36:
+
+.. _GnomeTerminaldecmode38:
+
+.. _GnomeTerminaldecmode40:
+
+.. _GnomeTerminaldecmode41:
+
+.. _GnomeTerminaldecmode42:
+
+.. _GnomeTerminaldecmode43:
+
+.. _GnomeTerminaldecmode44:
+
+.. _GnomeTerminaldecmode45:
+
+.. _GnomeTerminaldecmode46:
+
+.. _GnomeTerminaldecmode47:
+
+.. _GnomeTerminaldecmode53:
+
+.. _GnomeTerminaldecmode57:
+
+.. _GnomeTerminaldecmode58:
+
+.. _GnomeTerminaldecmode59:
+
+.. _GnomeTerminaldecmode60:
+
+.. _GnomeTerminaldecmode61:
+
+.. _GnomeTerminaldecmode64:
+
+.. _GnomeTerminaldecmode66:
+
+.. _GnomeTerminaldecmode67:
+
+.. _GnomeTerminaldecmode68:
+
+.. _GnomeTerminaldecmode69:
+
+.. _GnomeTerminaldecmode73:
+
+.. _GnomeTerminaldecmode80:
+
+.. _GnomeTerminaldecmode81:
+
+.. _GnomeTerminaldecmode83:
+
+.. _GnomeTerminaldecmode84:
+
+.. _GnomeTerminaldecmode85:
+
+.. _GnomeTerminaldecmode90:
+
+.. _GnomeTerminaldecmode95:
+
+.. _GnomeTerminaldecmode96:
+
+.. _GnomeTerminaldecmode97:
+
+.. _GnomeTerminaldecmode98:
+
+.. _GnomeTerminaldecmode99:
+
+.. _GnomeTerminaldecmode100:
+
+.. _GnomeTerminaldecmode101:
+
+.. _GnomeTerminaldecmode102:
+
+.. _GnomeTerminaldecmode103:
+
+.. _GnomeTerminaldecmode104:
+
+.. _GnomeTerminaldecmode106:
+
+.. _GnomeTerminaldecmode108:
+
+.. _GnomeTerminaldecmode109:
+
+.. _GnomeTerminaldecmode110:
+
+.. _GnomeTerminaldecmode111:
+
+.. _GnomeTerminaldecmode112:
+
+.. _GnomeTerminaldecmode113:
+
+.. _GnomeTerminaldecmode114:
+
+.. _GnomeTerminaldecmode115:
+
+.. _GnomeTerminaldecmode116:
+
+.. _GnomeTerminaldecmode117:
+
+.. _GnomeTerminaldecmode1000:
+
+.. _GnomeTerminaldecmode1001:
+
+.. _GnomeTerminaldecmode1002:
+
+.. _GnomeTerminaldecmode1003:
+
+.. _GnomeTerminaldecmode1004:
+
+.. _GnomeTerminaldecmode1005:
+
+.. _GnomeTerminaldecmode1006:
+
+.. _GnomeTerminaldecmode1007:
+
+.. _GnomeTerminaldecmode1010:
+
+.. _GnomeTerminaldecmode1011:
+
+.. _GnomeTerminaldecmode1014:
+
+.. _GnomeTerminaldecmode1015:
+
+.. _GnomeTerminaldecmode1016:
+
+.. _GnomeTerminaldecmode1021:
+
+.. _GnomeTerminaldecmode1034:
+
+.. _GnomeTerminaldecmode1035:
+
+.. _GnomeTerminaldecmode1036:
+
+.. _GnomeTerminaldecmode1037:
+
+.. _GnomeTerminaldecmode1039:
+
+.. _GnomeTerminaldecmode1040:
+
+.. _GnomeTerminaldecmode1041:
+
+.. _GnomeTerminaldecmode1042:
+
+.. _GnomeTerminaldecmode1043:
+
+.. _GnomeTerminaldecmode1044:
+
+.. _GnomeTerminaldecmode1046:
+
+.. _GnomeTerminaldecmode1047:
+
+.. _GnomeTerminaldecmode1048:
+
+.. _GnomeTerminaldecmode1049:
+
+.. _GnomeTerminaldecmode1050:
+
+.. _GnomeTerminaldecmode1051:
+
+.. _GnomeTerminaldecmode1052:
+
+.. _GnomeTerminaldecmode1053:
+
+.. _GnomeTerminaldecmode1060:
+
+.. _GnomeTerminaldecmode1061:
+
+.. _GnomeTerminaldecmode1070:
+
+.. _GnomeTerminaldecmode1243:
+
+.. _GnomeTerminaldecmode2001:
+
+.. _GnomeTerminaldecmode2002:
+
+.. _GnomeTerminaldecmode2003:
+
+.. _GnomeTerminaldecmode2004:
+
+.. _GnomeTerminaldecmode2005:
+
+.. _GnomeTerminaldecmode2006:
+
+.. _GnomeTerminaldecmode2026:
+
+.. _GnomeTerminaldecmode2500:
+
+.. _GnomeTerminaldecmode2501:
+
+.. _GnomeTerminaldecmode7700:
+
+.. _GnomeTerminaldecmode7711:
+
+.. _GnomeTerminaldecmode7727:
+
+.. _GnomeTerminaldecmode7728:
+
+.. _GnomeTerminaldecmode7730:
+
+.. _GnomeTerminaldecmode7766:
+
+.. _GnomeTerminaldecmode7767:
+
+.. _GnomeTerminaldecmode7783:
+
+.. _GnomeTerminaldecmode7786:
+
+.. _GnomeTerminaldecmode7787:
+
+.. _GnomeTerminaldecmode7796:
+
+.. _GnomeTerminaldecmode8452:
+
+.. _GnomeTerminaldecmode8800:
+
 ==============  =============================  =======================================================================  ===========  ============
 Mode            Name                           Description                                                              Supported    Changeable
 ==============  =============================  =======================================================================  ===========  ============
@@ -3908,6 +4166,22 @@ DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode        
 ==============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 128 supported, 29 unsupported.
+
+.. _GnomeTerminaltime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **2845.60 seconds** (2845s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     81.53%       79.4%           modes_supported / total_modes
+TIME          14644.96s    0.0%            1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     81.53%       79.4%           modes_supported / total_modes
 - Raw Final Score: 25.99%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 31.6%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _xfce4terminalwide:
@@ -3745,6 +3747,262 @@ out of 157 total modes tested (81.5% support).
 
 Complete list of DEC private modes tested:
 
+.. _xfce4terminaldecmode1:
+
+.. _xfce4terminaldecmode2:
+
+.. _xfce4terminaldecmode3:
+
+.. _xfce4terminaldecmode4:
+
+.. _xfce4terminaldecmode5:
+
+.. _xfce4terminaldecmode6:
+
+.. _xfce4terminaldecmode7:
+
+.. _xfce4terminaldecmode8:
+
+.. _xfce4terminaldecmode9:
+
+.. _xfce4terminaldecmode10:
+
+.. _xfce4terminaldecmode11:
+
+.. _xfce4terminaldecmode12:
+
+.. _xfce4terminaldecmode13:
+
+.. _xfce4terminaldecmode14:
+
+.. _xfce4terminaldecmode16:
+
+.. _xfce4terminaldecmode18:
+
+.. _xfce4terminaldecmode19:
+
+.. _xfce4terminaldecmode25:
+
+.. _xfce4terminaldecmode30:
+
+.. _xfce4terminaldecmode34:
+
+.. _xfce4terminaldecmode35:
+
+.. _xfce4terminaldecmode36:
+
+.. _xfce4terminaldecmode38:
+
+.. _xfce4terminaldecmode40:
+
+.. _xfce4terminaldecmode41:
+
+.. _xfce4terminaldecmode42:
+
+.. _xfce4terminaldecmode43:
+
+.. _xfce4terminaldecmode44:
+
+.. _xfce4terminaldecmode45:
+
+.. _xfce4terminaldecmode46:
+
+.. _xfce4terminaldecmode47:
+
+.. _xfce4terminaldecmode53:
+
+.. _xfce4terminaldecmode57:
+
+.. _xfce4terminaldecmode58:
+
+.. _xfce4terminaldecmode59:
+
+.. _xfce4terminaldecmode60:
+
+.. _xfce4terminaldecmode61:
+
+.. _xfce4terminaldecmode64:
+
+.. _xfce4terminaldecmode66:
+
+.. _xfce4terminaldecmode67:
+
+.. _xfce4terminaldecmode68:
+
+.. _xfce4terminaldecmode69:
+
+.. _xfce4terminaldecmode73:
+
+.. _xfce4terminaldecmode80:
+
+.. _xfce4terminaldecmode81:
+
+.. _xfce4terminaldecmode83:
+
+.. _xfce4terminaldecmode84:
+
+.. _xfce4terminaldecmode85:
+
+.. _xfce4terminaldecmode90:
+
+.. _xfce4terminaldecmode95:
+
+.. _xfce4terminaldecmode96:
+
+.. _xfce4terminaldecmode97:
+
+.. _xfce4terminaldecmode98:
+
+.. _xfce4terminaldecmode99:
+
+.. _xfce4terminaldecmode100:
+
+.. _xfce4terminaldecmode101:
+
+.. _xfce4terminaldecmode102:
+
+.. _xfce4terminaldecmode103:
+
+.. _xfce4terminaldecmode104:
+
+.. _xfce4terminaldecmode106:
+
+.. _xfce4terminaldecmode108:
+
+.. _xfce4terminaldecmode109:
+
+.. _xfce4terminaldecmode110:
+
+.. _xfce4terminaldecmode111:
+
+.. _xfce4terminaldecmode112:
+
+.. _xfce4terminaldecmode113:
+
+.. _xfce4terminaldecmode114:
+
+.. _xfce4terminaldecmode115:
+
+.. _xfce4terminaldecmode116:
+
+.. _xfce4terminaldecmode117:
+
+.. _xfce4terminaldecmode1000:
+
+.. _xfce4terminaldecmode1001:
+
+.. _xfce4terminaldecmode1002:
+
+.. _xfce4terminaldecmode1003:
+
+.. _xfce4terminaldecmode1004:
+
+.. _xfce4terminaldecmode1005:
+
+.. _xfce4terminaldecmode1006:
+
+.. _xfce4terminaldecmode1007:
+
+.. _xfce4terminaldecmode1010:
+
+.. _xfce4terminaldecmode1011:
+
+.. _xfce4terminaldecmode1014:
+
+.. _xfce4terminaldecmode1015:
+
+.. _xfce4terminaldecmode1016:
+
+.. _xfce4terminaldecmode1021:
+
+.. _xfce4terminaldecmode1034:
+
+.. _xfce4terminaldecmode1035:
+
+.. _xfce4terminaldecmode1036:
+
+.. _xfce4terminaldecmode1037:
+
+.. _xfce4terminaldecmode1039:
+
+.. _xfce4terminaldecmode1040:
+
+.. _xfce4terminaldecmode1041:
+
+.. _xfce4terminaldecmode1042:
+
+.. _xfce4terminaldecmode1043:
+
+.. _xfce4terminaldecmode1044:
+
+.. _xfce4terminaldecmode1046:
+
+.. _xfce4terminaldecmode1047:
+
+.. _xfce4terminaldecmode1048:
+
+.. _xfce4terminaldecmode1049:
+
+.. _xfce4terminaldecmode1050:
+
+.. _xfce4terminaldecmode1051:
+
+.. _xfce4terminaldecmode1052:
+
+.. _xfce4terminaldecmode1053:
+
+.. _xfce4terminaldecmode1060:
+
+.. _xfce4terminaldecmode1061:
+
+.. _xfce4terminaldecmode1070:
+
+.. _xfce4terminaldecmode1243:
+
+.. _xfce4terminaldecmode2001:
+
+.. _xfce4terminaldecmode2002:
+
+.. _xfce4terminaldecmode2003:
+
+.. _xfce4terminaldecmode2004:
+
+.. _xfce4terminaldecmode2005:
+
+.. _xfce4terminaldecmode2006:
+
+.. _xfce4terminaldecmode2026:
+
+.. _xfce4terminaldecmode2500:
+
+.. _xfce4terminaldecmode2501:
+
+.. _xfce4terminaldecmode7700:
+
+.. _xfce4terminaldecmode7711:
+
+.. _xfce4terminaldecmode7727:
+
+.. _xfce4terminaldecmode7728:
+
+.. _xfce4terminaldecmode7730:
+
+.. _xfce4terminaldecmode7766:
+
+.. _xfce4terminaldecmode7767:
+
+.. _xfce4terminaldecmode7783:
+
+.. _xfce4terminaldecmode7786:
+
+.. _xfce4terminaldecmode7787:
+
+.. _xfce4terminaldecmode7796:
+
+.. _xfce4terminaldecmode8452:
+
+.. _xfce4terminaldecmode8800:
+
 ==============  =============================  =======================================================================  ===========  ============
 Mode            Name                           Description                                                              Supported    Changeable
 ==============  =============================  =======================================================================  ===========  ============
@@ -3908,6 +4166,22 @@ DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode        
 ==============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 128 supported, 29 unsupported.
+
+.. _xfce4terminaltime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **14644.96 seconds** (14644s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

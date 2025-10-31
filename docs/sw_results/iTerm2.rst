@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          94.37%       94.4%           pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     100.00%      100.0%          modes_supported / total_modes
+TIME          3848.38s     73.8%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     100.00%      100.0%          modes_supported / total_modes
 - Raw Final Score: 60.33%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 94.6%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _iTerm2wide:
@@ -3787,6 +3789,324 @@ out of 159 total modes tested (100.0% support).
 
 Complete list of DEC private modes tested:
 
+.. _iTerm2decmode1:
+
+.. _iTerm2decmode2:
+
+.. _iTerm2decmode3:
+
+.. _iTerm2decmode4:
+
+.. _iTerm2decmode5:
+
+.. _iTerm2decmode6:
+
+.. _iTerm2decmode7:
+
+.. _iTerm2decmode8:
+
+.. _iTerm2decmode9:
+
+.. _iTerm2decmode10:
+
+.. _iTerm2decmode11:
+
+.. _iTerm2decmode12:
+
+.. _iTerm2decmode13:
+
+.. _iTerm2decmode14:
+
+.. _iTerm2decmode16:
+
+.. _iTerm2decmode18:
+
+.. _iTerm2decmode19:
+
+.. _iTerm2decmode20:
+
+.. _iTerm2decmode21:
+
+.. _iTerm2decmode22:
+
+.. _iTerm2decmode23:
+
+.. _iTerm2decmode24:
+
+.. _iTerm2decmode25:
+
+.. _iTerm2decmode27:
+
+.. _iTerm2decmode29:
+
+.. _iTerm2decmode30:
+
+.. _iTerm2decmode34:
+
+.. _iTerm2decmode35:
+
+.. _iTerm2decmode36:
+
+.. _iTerm2decmode38:
+
+.. _iTerm2decmode40:
+
+.. _iTerm2decmode41:
+
+.. _iTerm2decmode42:
+
+.. _iTerm2decmode43:
+
+.. _iTerm2decmode44:
+
+.. _iTerm2decmode45:
+
+.. _iTerm2decmode46:
+
+.. _iTerm2decmode47:
+
+.. _iTerm2decmode49:
+
+.. _iTerm2decmode50:
+
+.. _iTerm2decmode51:
+
+.. _iTerm2decmode52:
+
+.. _iTerm2decmode53:
+
+.. _iTerm2decmode55:
+
+.. _iTerm2decmode57:
+
+.. _iTerm2decmode58:
+
+.. _iTerm2decmode59:
+
+.. _iTerm2decmode60:
+
+.. _iTerm2decmode61:
+
+.. _iTerm2decmode64:
+
+.. _iTerm2decmode65:
+
+.. _iTerm2decmode66:
+
+.. _iTerm2decmode67:
+
+.. _iTerm2decmode68:
+
+.. _iTerm2decmode69:
+
+.. _iTerm2decmode70:
+
+.. _iTerm2decmode73:
+
+.. _iTerm2decmode80:
+
+.. _iTerm2decmode81:
+
+.. _iTerm2decmode83:
+
+.. _iTerm2decmode84:
+
+.. _iTerm2decmode85:
+
+.. _iTerm2decmode90:
+
+.. _iTerm2decmode95:
+
+.. _iTerm2decmode96:
+
+.. _iTerm2decmode97:
+
+.. _iTerm2decmode98:
+
+.. _iTerm2decmode99:
+
+.. _iTerm2decmode100:
+
+.. _iTerm2decmode101:
+
+.. _iTerm2decmode102:
+
+.. _iTerm2decmode103:
+
+.. _iTerm2decmode104:
+
+.. _iTerm2decmode106:
+
+.. _iTerm2decmode108:
+
+.. _iTerm2decmode109:
+
+.. _iTerm2decmode110:
+
+.. _iTerm2decmode111:
+
+.. _iTerm2decmode112:
+
+.. _iTerm2decmode113:
+
+.. _iTerm2decmode114:
+
+.. _iTerm2decmode115:
+
+.. _iTerm2decmode116:
+
+.. _iTerm2decmode117:
+
+.. _iTerm2decmode1000:
+
+.. _iTerm2decmode1001:
+
+.. _iTerm2decmode1002:
+
+.. _iTerm2decmode1003:
+
+.. _iTerm2decmode1004:
+
+.. _iTerm2decmode1005:
+
+.. _iTerm2decmode1006:
+
+.. _iTerm2decmode1007:
+
+.. _iTerm2decmode1010:
+
+.. _iTerm2decmode1011:
+
+.. _iTerm2decmode1014:
+
+.. _iTerm2decmode1015:
+
+.. _iTerm2decmode1016:
+
+.. _iTerm2decmode1021:
+
+.. _iTerm2decmode1034:
+
+.. _iTerm2decmode1035:
+
+.. _iTerm2decmode1036:
+
+.. _iTerm2decmode1037:
+
+.. _iTerm2decmode1039:
+
+.. _iTerm2decmode1040:
+
+.. _iTerm2decmode1041:
+
+.. _iTerm2decmode1042:
+
+.. _iTerm2decmode1043:
+
+.. _iTerm2decmode1044:
+
+.. _iTerm2decmode1045:
+
+.. _iTerm2decmode1046:
+
+.. _iTerm2decmode1047:
+
+.. _iTerm2decmode1048:
+
+.. _iTerm2decmode1049:
+
+.. _iTerm2decmode1050:
+
+.. _iTerm2decmode1051:
+
+.. _iTerm2decmode1052:
+
+.. _iTerm2decmode1053:
+
+.. _iTerm2decmode1060:
+
+.. _iTerm2decmode1061:
+
+.. _iTerm2decmode1070:
+
+.. _iTerm2decmode1243:
+
+.. _iTerm2decmode1337:
+
+.. _iTerm2decmode2001:
+
+.. _iTerm2decmode2002:
+
+.. _iTerm2decmode2003:
+
+.. _iTerm2decmode2004:
+
+.. _iTerm2decmode2005:
+
+.. _iTerm2decmode2006:
+
+.. _iTerm2decmode2026:
+
+.. _iTerm2decmode2027:
+
+.. _iTerm2decmode2028:
+
+.. _iTerm2decmode2029:
+
+.. _iTerm2decmode2030:
+
+.. _iTerm2decmode2031:
+
+.. _iTerm2decmode2048:
+
+.. _iTerm2decmode2500:
+
+.. _iTerm2decmode2501:
+
+.. _iTerm2decmode7700:
+
+.. _iTerm2decmode7711:
+
+.. _iTerm2decmode7723:
+
+.. _iTerm2decmode7727:
+
+.. _iTerm2decmode7728:
+
+.. _iTerm2decmode7730:
+
+.. _iTerm2decmode7765:
+
+.. _iTerm2decmode7766:
+
+.. _iTerm2decmode7767:
+
+.. _iTerm2decmode7780:
+
+.. _iTerm2decmode7783:
+
+.. _iTerm2decmode7786:
+
+.. _iTerm2decmode7787:
+
+.. _iTerm2decmode7796:
+
+.. _iTerm2decmode8200:
+
+.. _iTerm2decmode8452:
+
+.. _iTerm2decmode8800:
+
+.. _iTerm2decmode8840:
+
+.. _iTerm2decmode9001:
+
+.. _iTerm2decmode19997:
+
+.. _iTerm2decmode77096:
+
+.. _iTerm2decmode737769:
+
 ===============  =============================  =======================================================================  ===========  ============
 Mode             Name                           Description                                                              Supported    Changeable
 ===============  =============================  =======================================================================  ===========  ============
@@ -3952,6 +4272,22 @@ DEC Mode 737769  INPUT_METHOD_EDITOR            Input Method Editor (IME) mode  
 ===============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 159 supported, 0 unsupported.
+
+.. _iTerm2time:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **3848.38 seconds** (3848s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

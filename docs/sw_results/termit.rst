@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     81.53%       79.4%           modes_supported / total_modes
+TIME          3701.42s     74.8%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     81.53%       79.4%           modes_supported / total_modes
 - Raw Final Score: 25.99%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 31.6%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _termitwide:
@@ -3702,6 +3704,262 @@ out of 157 total modes tested (81.5% support).
 
 Complete list of DEC private modes tested:
 
+.. _termitdecmode1:
+
+.. _termitdecmode2:
+
+.. _termitdecmode3:
+
+.. _termitdecmode4:
+
+.. _termitdecmode5:
+
+.. _termitdecmode6:
+
+.. _termitdecmode7:
+
+.. _termitdecmode8:
+
+.. _termitdecmode9:
+
+.. _termitdecmode10:
+
+.. _termitdecmode11:
+
+.. _termitdecmode12:
+
+.. _termitdecmode13:
+
+.. _termitdecmode14:
+
+.. _termitdecmode16:
+
+.. _termitdecmode18:
+
+.. _termitdecmode19:
+
+.. _termitdecmode25:
+
+.. _termitdecmode30:
+
+.. _termitdecmode34:
+
+.. _termitdecmode35:
+
+.. _termitdecmode36:
+
+.. _termitdecmode38:
+
+.. _termitdecmode40:
+
+.. _termitdecmode41:
+
+.. _termitdecmode42:
+
+.. _termitdecmode43:
+
+.. _termitdecmode44:
+
+.. _termitdecmode45:
+
+.. _termitdecmode46:
+
+.. _termitdecmode47:
+
+.. _termitdecmode53:
+
+.. _termitdecmode57:
+
+.. _termitdecmode58:
+
+.. _termitdecmode59:
+
+.. _termitdecmode60:
+
+.. _termitdecmode61:
+
+.. _termitdecmode64:
+
+.. _termitdecmode66:
+
+.. _termitdecmode67:
+
+.. _termitdecmode68:
+
+.. _termitdecmode69:
+
+.. _termitdecmode73:
+
+.. _termitdecmode80:
+
+.. _termitdecmode81:
+
+.. _termitdecmode83:
+
+.. _termitdecmode84:
+
+.. _termitdecmode85:
+
+.. _termitdecmode90:
+
+.. _termitdecmode95:
+
+.. _termitdecmode96:
+
+.. _termitdecmode97:
+
+.. _termitdecmode98:
+
+.. _termitdecmode99:
+
+.. _termitdecmode100:
+
+.. _termitdecmode101:
+
+.. _termitdecmode102:
+
+.. _termitdecmode103:
+
+.. _termitdecmode104:
+
+.. _termitdecmode106:
+
+.. _termitdecmode108:
+
+.. _termitdecmode109:
+
+.. _termitdecmode110:
+
+.. _termitdecmode111:
+
+.. _termitdecmode112:
+
+.. _termitdecmode113:
+
+.. _termitdecmode114:
+
+.. _termitdecmode115:
+
+.. _termitdecmode116:
+
+.. _termitdecmode117:
+
+.. _termitdecmode1000:
+
+.. _termitdecmode1001:
+
+.. _termitdecmode1002:
+
+.. _termitdecmode1003:
+
+.. _termitdecmode1004:
+
+.. _termitdecmode1005:
+
+.. _termitdecmode1006:
+
+.. _termitdecmode1007:
+
+.. _termitdecmode1010:
+
+.. _termitdecmode1011:
+
+.. _termitdecmode1014:
+
+.. _termitdecmode1015:
+
+.. _termitdecmode1016:
+
+.. _termitdecmode1021:
+
+.. _termitdecmode1034:
+
+.. _termitdecmode1035:
+
+.. _termitdecmode1036:
+
+.. _termitdecmode1037:
+
+.. _termitdecmode1039:
+
+.. _termitdecmode1040:
+
+.. _termitdecmode1041:
+
+.. _termitdecmode1042:
+
+.. _termitdecmode1043:
+
+.. _termitdecmode1044:
+
+.. _termitdecmode1046:
+
+.. _termitdecmode1047:
+
+.. _termitdecmode1048:
+
+.. _termitdecmode1049:
+
+.. _termitdecmode1050:
+
+.. _termitdecmode1051:
+
+.. _termitdecmode1052:
+
+.. _termitdecmode1053:
+
+.. _termitdecmode1060:
+
+.. _termitdecmode1061:
+
+.. _termitdecmode1070:
+
+.. _termitdecmode1243:
+
+.. _termitdecmode2001:
+
+.. _termitdecmode2002:
+
+.. _termitdecmode2003:
+
+.. _termitdecmode2004:
+
+.. _termitdecmode2005:
+
+.. _termitdecmode2006:
+
+.. _termitdecmode2026:
+
+.. _termitdecmode2500:
+
+.. _termitdecmode2501:
+
+.. _termitdecmode7700:
+
+.. _termitdecmode7711:
+
+.. _termitdecmode7727:
+
+.. _termitdecmode7728:
+
+.. _termitdecmode7730:
+
+.. _termitdecmode7766:
+
+.. _termitdecmode7767:
+
+.. _termitdecmode7783:
+
+.. _termitdecmode7786:
+
+.. _termitdecmode7787:
+
+.. _termitdecmode7796:
+
+.. _termitdecmode8452:
+
+.. _termitdecmode8800:
+
 ==============  =============================  =======================================================================  ===========  ============
 Mode            Name                           Description                                                              Supported    Changeable
 ==============  =============================  =======================================================================  ===========  ============
@@ -3865,6 +4123,22 @@ DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode        
 ==============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 128 supported, 29 unsupported.
+
+.. _termittime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **3701.42 seconds** (3701s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

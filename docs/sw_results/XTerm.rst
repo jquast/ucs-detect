@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     43.95%       37.6%           modes_supported / total_modes
+TIME          47.97s       99.8%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     43.95%       37.6%           modes_supported / total_modes
 - Raw Final Score: 21.24%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 22.9%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _XTermwide:
@@ -3824,6 +3826,144 @@ out of 157 total modes tested (43.9% support).
 
 Complete list of DEC private modes tested:
 
+.. _XTermdecmode1:
+
+.. _XTermdecmode2:
+
+.. _XTermdecmode3:
+
+.. _XTermdecmode4:
+
+.. _XTermdecmode5:
+
+.. _XTermdecmode6:
+
+.. _XTermdecmode7:
+
+.. _XTermdecmode8:
+
+.. _XTermdecmode9:
+
+.. _XTermdecmode12:
+
+.. _XTermdecmode13:
+
+.. _XTermdecmode14:
+
+.. _XTermdecmode18:
+
+.. _XTermdecmode19:
+
+.. _XTermdecmode25:
+
+.. _XTermdecmode30:
+
+.. _XTermdecmode35:
+
+.. _XTermdecmode38:
+
+.. _XTermdecmode40:
+
+.. _XTermdecmode41:
+
+.. _XTermdecmode42:
+
+.. _XTermdecmode44:
+
+.. _XTermdecmode45:
+
+.. _XTermdecmode46:
+
+.. _XTermdecmode47:
+
+.. _XTermdecmode66:
+
+.. _XTermdecmode67:
+
+.. _XTermdecmode69:
+
+.. _XTermdecmode80:
+
+.. _XTermdecmode1000:
+
+.. _XTermdecmode1001:
+
+.. _XTermdecmode1002:
+
+.. _XTermdecmode1003:
+
+.. _XTermdecmode1004:
+
+.. _XTermdecmode1005:
+
+.. _XTermdecmode1006:
+
+.. _XTermdecmode1007:
+
+.. _XTermdecmode1010:
+
+.. _XTermdecmode1011:
+
+.. _XTermdecmode1014:
+
+.. _XTermdecmode1015:
+
+.. _XTermdecmode1016:
+
+.. _XTermdecmode1034:
+
+.. _XTermdecmode1035:
+
+.. _XTermdecmode1036:
+
+.. _XTermdecmode1037:
+
+.. _XTermdecmode1039:
+
+.. _XTermdecmode1040:
+
+.. _XTermdecmode1041:
+
+.. _XTermdecmode1042:
+
+.. _XTermdecmode1043:
+
+.. _XTermdecmode1044:
+
+.. _XTermdecmode1045:
+
+.. _XTermdecmode1046:
+
+.. _XTermdecmode1047:
+
+.. _XTermdecmode1048:
+
+.. _XTermdecmode1049:
+
+.. _XTermdecmode1050:
+
+.. _XTermdecmode1051:
+
+.. _XTermdecmode1060:
+
+.. _XTermdecmode1061:
+
+.. _XTermdecmode1070:
+
+.. _XTermdecmode2001:
+
+.. _XTermdecmode2002:
+
+.. _XTermdecmode2003:
+
+.. _XTermdecmode2004:
+
+.. _XTermdecmode2005:
+
+.. _XTermdecmode2006:
+
+.. _XTermdecmode8452:
+
 ==============  =============================  =======================================================================  ===========  ============
 Mode            Name                           Description                                                              Supported    Changeable
 ==============  =============================  =======================================================================  ===========  ============
@@ -3987,6 +4127,22 @@ DEC Mode 19997  KITTY_HANDLE_CTRL_C_Z          Handle Ctrl-C/Ctrl-Z mode        
 ==============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 69 supported, 88 unsupported.
+
+.. _XTermtime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **47.97 seconds** (47s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

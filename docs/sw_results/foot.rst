@@ -24,6 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          100.00%      100.0%          pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     20.75%       11.8%           modes_supported / total_modes
+TIME          36.70s       99.9%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -31,9 +32,10 @@ DEC Modes     20.75%       11.8%           modes_supported / total_modes
 - Raw Final Score: 45.15%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
+  Note: TIME is excluded from raw average since it measures performance, not feature support
 
 - Scaled Final Score: 66.8%
-  (normalized across all terminals tested).
+  (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _footwide:
@@ -149,7 +151,29 @@ All codepoint combinations with Variation Selector-16 tested were successful.
 Variation Selector-15 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-15 results for *foot* are not available.
+Emoji VS-15 results for *foot* is 158 errors
+out of 158 total codepoints tested, 0.0% success.
+Sequence of a WIDE Emoji made NARROW by *Variation Selector-15*, from midpoint of alignment failure records:
+
+=================================================  =============  ==========  =========  =====================
+Codepoint                                          Python         Category      wcwidth  Name
+=================================================  =============  ==========  =========  =====================
+`U+0001F3AE <https://codepoints.net/U+0001F3AE>`_  '\\U0001f3ae'  So                  2  VIDEO GAME
+`U+FE0E <https://codepoints.net/U+FE0E>`_          '\\ufe0e'      Mn                  0  VARIATION SELECTOR-15
+=================================================  =============  ==========  =========  =====================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x9f\x8e\xae\xef\xb8\x8e|\\n1|\\n"
+        🎮︎|
+        1|
+
+- python `wcwidth.wcswidth()`_ measures width 1,
+  while *foot* measures width 2.
+
 
 .. _footlang:
 
@@ -3739,6 +3763,72 @@ out of 159 total modes tested (20.8% support).
 
 Complete list of DEC private modes tested:
 
+.. _footdecmode1:
+
+.. _footdecmode5:
+
+.. _footdecmode6:
+
+.. _footdecmode7:
+
+.. _footdecmode9:
+
+.. _footdecmode12:
+
+.. _footdecmode25:
+
+.. _footdecmode45:
+
+.. _footdecmode47:
+
+.. _footdecmode66:
+
+.. _footdecmode80:
+
+.. _footdecmode1000:
+
+.. _footdecmode1001:
+
+.. _footdecmode1002:
+
+.. _footdecmode1003:
+
+.. _footdecmode1004:
+
+.. _footdecmode1005:
+
+.. _footdecmode1006:
+
+.. _footdecmode1007:
+
+.. _footdecmode1015:
+
+.. _footdecmode1016:
+
+.. _footdecmode1034:
+
+.. _footdecmode1035:
+
+.. _footdecmode1036:
+
+.. _footdecmode1042:
+
+.. _footdecmode1047:
+
+.. _footdecmode1049:
+
+.. _footdecmode1070:
+
+.. _footdecmode2004:
+
+.. _footdecmode2026:
+
+.. _footdecmode2027:
+
+.. _footdecmode8452:
+
+.. _footdecmode737769:
+
 ===============  =============================  =======================================================================  ===========  ============
 Mode             Name                           Description                                                              Supported    Changeable
 ===============  =============================  =======================================================================  ===========  ============
@@ -3904,6 +3994,22 @@ DEC Mode 737769  INPUT_METHOD_EDITOR            Input Method Editor (IME) mode  
 ===============  =============================  =======================================================================  ===========  ============
 
 **Summary**: 33 supported, 126 unsupported.
+
+.. _foottime:
+
+Test Execution Time
++++++++++++++++++++
+
+The test suite completed in **36.70 seconds** (36s).
+
+This time measurement represents the total duration of the test execution,
+including all Unicode wide character tests, emoji ZWJ sequences, variation
+selectors, language support checks, and DEC mode detection.
+
+Faster execution times generally indicate more efficient terminal rendering
+and/or faster response to terminal control sequences. However, execution
+time can also be affected by system load, terminal implementation complexity,
+and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html
