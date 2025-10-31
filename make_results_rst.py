@@ -5,6 +5,7 @@ import sys
 import yaml
 import contextlib
 import unicodedata
+import colorsys
 
 # 3rd party
 import wcwidth
@@ -13,20 +14,92 @@ import tabulate
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
 RST_DEPTH = [None, "=", "-", "+", "^"]
-GRADES = ["F", "D-", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
 
 
-def make_grade(score):
+def score_to_color(score):
+    # Map score to hue: 0 degrees (red) to 120 degrees (green)
+    # In HSV, hue is 0-1, so 120 degrees = 120/360 = 0.333
+    hue = score * 0.333
+    saturation = 0.2
+    value = 0.95
+
+    # Convert HSV to RGB (returns 0-1 range)
+    r, g, b = colorsys.hsv_to_rgb(hue, saturation, value)
+
+    # Convert to 0-255 range
+    return (int(r * 255), int(g * 255), int(b * 255))
+
+
+def make_score_css_class(score):
+    return f'score-{int(score * 100)}'
+
+
+def generate_score_css():
     """
-    Return grade string for score
+    Generate CSS rules for all score classes (0-100).
+    Returns a string containing CSS rules.
     """
-    return GRADES[int(score * (len(GRADES) - 1))]
+    css_lines = ['/* Auto-generated score color classes */']
+    for score_pct in range(101):
+        score = score_pct / 100.0
+        r, g, b = score_to_color(score)
+        class_name = make_score_css_class(score)
+        css_lines.append(f'.{class_name} {{ background-color: rgb({r}, {g}, {b}); }}')
+    return '\n'.join(css_lines)
+
+
+def add_rst_classes_to_table(table_str, row_classes):
+    """
+    Add rst-class directives to a tabulated RST table.
+
+    Args:
+        table_str: The RST table string from tabulate
+        row_classes: List of CSS class names, one per data row
+
+    Returns:
+        Modified table string with rst-class directives inserted
+    """
+    lines = table_str.split('\n')
+    result = []
+    row_idx = 0
+    in_data_rows = False
+
+    for i, line in enumerate(lines):
+        # Detect the separator after the header
+        if '=' in line and i > 0 and not in_data_rows:
+            # This is the separator after the header
+            result.append(line)
+            in_data_rows = True
+            continue
+
+        # Detect end of table
+        if '=' in line and in_data_rows and i == len(lines) - 1:
+            # This is the final separator
+            result.append(line)
+            break
+
+        # If we're in data rows and this is a content row
+        if in_data_rows and line.strip() and '=' not in line:
+            # Add rst-class directive before this row
+            if row_idx < len(row_classes):
+                result.append(f'\n.. rst-class:: {row_classes[row_idx]}\n')
+                row_idx += 1
+
+        result.append(line)
+
+    return '\n'.join(result)
 
 
 def main():
     print(f'Generating score table... ', file=sys.stderr, end='', flush=True)
     score_table, all_successful_languages = make_score_table()
+    print('ok', file=sys.stderr)
+
+    print(f'Writing docs/_static/score-colors.css ... ', file=sys.stderr, end='', flush=True)
+    os.makedirs('docs/_static', exist_ok=True)
+    with open('docs/_static/score-colors.css', 'w') as fout:
+        fout.write(generate_score_css())
     print('ok', file=sys.stderr)
 
     print(f'Writing docs/results.rst ... ', file=sys.stderr, end='', flush=True)
@@ -43,6 +116,7 @@ def main():
         print(f'Writing {fname} ... ', file=sys.stderr, end='', flush=True)
         with open(fname, 'w') as fout, contextlib.redirect_stdout(fout):
             show_software_header(entry, sw_name)
+            show_score_breakdown(sw_name, entry)
             show_wide_character_support(sw_name, entry)
             show_emoji_zwj_results(sw_name, entry)
             show_vs_results(sw_name, entry, '16')
@@ -178,12 +252,14 @@ def make_score_table():
     all_successful_languages = set()
     for lang in all_languages:
         if all(
+            lang in entry["data"]["test_results"]["language_results"] and
             entry["data"]["test_results"]["language_results"][lang]["n_errors"] == 0
             for entry in result
         ):
             all_successful_languages.add(lang)
             for entry in result:
-                del entry["data"]["test_results"]["language_results"][lang]
+                if lang in entry["data"]["test_results"]["language_results"]:
+                    del entry["data"]["test_results"]["language_results"][lang]
     return result, all_successful_languages
 
 
@@ -211,6 +287,8 @@ def find_failed_version(entry, version_keys, results_key, best_match_version):
 
 def display_tabulated_scores(score_table):
     tabulated_scores = []
+    row_classes = []
+
     for result in score_table:
         tabulated_scores.append(
             {
@@ -219,17 +297,23 @@ def display_tabulated_scores(score_table):
                 "OS System": result["os_system"],
                 "Wide Unicode version": result["version_best_wide"] or "na",
 
-                "FINAL score": make_grade(result["score_final_scaled"]),
-                "WIDE score": make_outbound_hyperlink(make_grade(result["score_wide_scaled"]), result["terminal_software_name"] + "_wide"),
-                "LANG score": make_outbound_hyperlink(make_grade(result["score_language_scaled"]), result["terminal_software_name"] + "_lang"),
-                "ZWJ score": make_outbound_hyperlink(make_grade(result["score_zwj_scaled"]), result["terminal_software_name"] + "_zwj"),
-                "VS16 score": make_outbound_hyperlink(make_grade(result["score_emoji_vs16_scaled"]), result["terminal_software_name"] + "_vs16"),
-                "VS15 score": make_outbound_hyperlink(make_grade(result["score_emoji_vs15_scaled"]), result["terminal_software_name"] + "_vs15"),
+                "FINAL score": make_outbound_hyperlink(f'{result["score_final_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
+                "WIDE score": make_outbound_hyperlink(f'{result["score_wide_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
+                "LANG score": make_outbound_hyperlink(f'{result["score_language_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
+                "ZWJ score": make_outbound_hyperlink(f'{result["score_zwj_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
+                "VS16 score": make_outbound_hyperlink(f'{result["score_emoji_vs16_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
+                "VS15 score": make_outbound_hyperlink(f'{result["score_emoji_vs15_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
             }
         )
+        # Use final scaled score for row coloring
+        row_classes.append(make_score_css_class(result["score_final_scaled"]))
 
     display_title("Testing Results", 1)
-    print(tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst"))
+
+    # Generate table and add color classes
+    table_str = tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst")
+    colored_table = add_rst_classes_to_table(table_str, row_classes)
+    print(colored_table)
     print()
 
 
@@ -338,6 +422,62 @@ def display_common_languages(all_successful_languages):
         print()
         print("\n".join(sorted(all_successful_languages)) + ".")
         print()
+
+
+def show_score_breakdown(sw_name, entry):
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_scores")
+    display_title("Score Breakdown", 3)
+    print(f"Detailed breakdown of how scores are calculated for *{sw_name}*:")
+    print()
+
+    # Create table showing raw scores, scaled scores, and how they're calculated
+    score_breakdown = [
+        {
+            "Score Type": "WIDE",
+            "Raw Score": f'{entry["score_wide"]*100:0.2f}%',
+            "Scaled Score": f'{entry["score_wide_scaled"]*100:0.1f}%',
+            "Calculation": f'(version_index / total_versions) × (pct_success / 100)',
+        },
+        {
+            "Score Type": "ZWJ",
+            "Raw Score": f'{entry["score_zwj"]*100:0.2f}%',
+            "Scaled Score": f'{entry["score_zwj_scaled"]*100:0.1f}%',
+            "Calculation": f'(version_index / total_versions) × (pct_success / 100)',
+        },
+        {
+            "Score Type": "LANG",
+            "Raw Score": f'{entry["score_language"]*100:0.2f}%',
+            "Scaled Score": f'{entry["score_language_scaled"]*100:0.1f}%',
+            "Calculation": f'languages_supported / total_languages',
+        },
+        {
+            "Score Type": "VS16",
+            "Raw Score": f'{entry["score_emoji_vs16"]*100:0.2f}%',
+            "Scaled Score": f'{entry["score_emoji_vs16_scaled"]*100:0.1f}%',
+            "Calculation": f'pct_success / 100',
+        },
+        {
+            "Score Type": "VS15",
+            "Raw Score": f'{entry["score_emoji_vs15"]*100:0.2f}%',
+            "Scaled Score": f'{entry["score_emoji_vs15_scaled"]*100:0.1f}%',
+            "Calculation": f'pct_success / 100',
+        },
+    ]
+    print(tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst"))
+    print()
+    print(f"**Final Score Calculation:**")
+    print()
+    print(f"- Raw Final Score: {entry['score_final']*100:0.2f}%")
+    print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5")
+    print("   the categorized 'average' absolute support level of this terminal")
+    print()
+    print(f"- Scaled Final Score: {entry['score_final_scaled']*100:0.1f}%")
+    print(f"  (normalized across all terminals tested).")
+    print("   *Scaled scores* are normalized (0-100%) relative to all terminals tested")
+    print()
+    print("**Notes:**")
+    print()
+    print()
 
 
 def show_software_header(entry, sw_name):

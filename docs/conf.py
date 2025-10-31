@@ -34,4 +34,5 @@ default_dark_mode = True
 
 def setup(app):
     app.add_css_file("my_theme.css")
+    app.add_css_file("score-colors.css")
 
