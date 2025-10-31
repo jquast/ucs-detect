@@ -123,15 +123,20 @@ def make_score_table():
             score_emoji_vs16 = data["test_results"]["emoji_vs16_results"]["9.0.0"]["pct_success"] / 100
 
             # 'EMOJI VS-15',
-            score_emoji_vs15 = data["test_results"]["emoji_vs15_results"]["9.0.0"]["pct_success"] / 100
+            
+            _vs15_base = data["test_results"].get("emoji_vs15_type_a_results", data["test_results"].get("emoji_vs15_results"))
+            if _vs15_base:
+                score_emoji_vs15 = _vs15_base["9.0.0"]["pct_success"] / 100
+            else:
+                score_emoji_vs15 = float('NaN')
 
             # Language Support,
             score_language = score_lang(data)
             scores = (score_language, score_emoji_vs16, score_emoji_vs15, _score_zwj, _score_wide)
             score_table.append(
                 dict(
-                    terminal_software_name=data["software"],
-                    terminal_software_version=data["version"],
+                    terminal_software_name=data.get("software_name", data.get('software')),
+                    terminal_software_version=data.get("software_version", data.get('version')),
                     os_system=data["system"],
                     score_emoji_vs16=score_emoji_vs16,
                     score_emoji_vs15=score_emoji_vs15,

@@ -18,6 +18,70 @@ from ucs_detect import terminal
 WORD_SPLIT_DELIMITERS = (" ", "，", "、", ",", "\u200b", "。", "\uA9C0", "\u0f0b")
 
 
+def make_printf_hex(wchar):
+    """
+    Convert a Unicode string to printf hex escape format.
+
+    Python's b'\x12..' representation is compatible enough with printf(1).
+    """
+    return repr(bytes(wchar, "utf8").decode("unicode-escape").encode("utf8"))[2:-1]
+
+
+def display_error_and_prompt(
+    term, writer, context_name, wchars_display, measured_by_terminal, measured_by_wcwidth
+):
+    """
+    Display error details and prompt user to continue or disable stopping.
+
+    :param term: blessed.Terminal instance
+    :param writer: Output writer function
+    :param context_name: Test type or language name
+    :param wchars_display: The character(s) that failed
+    :param measured_by_terminal: Width measured by terminal
+    :param measured_by_wcwidth: Width measured by wcwidth
+    :return: True to continue stopping, False to disable stopping
+    """
+    # Save current cursor position
+    saved_ypos, saved_xpos = term.get_location(timeout=1.0)
+
+    # Move to current y position (column 0) and clear to end of screen
+    if saved_ypos != -1:
+        writer(term.move_yx(saved_ypos, 0) + term.clear_eos)
+
+    # Display error information
+    writer(term.bold(f"Failure in {context_name}:\n"))
+
+    # Create a box around the failing character(s)
+    box_width = max(30, len(wchars_display) + 4, measured_by_terminal + 4)
+    top_line = "+" + "-" * (box_width - 2) + "+"
+    bottom_line = "+" + "-" * (box_width - 2) + "+"
+
+    writer(f"{top_line}\n")
+    writer(f"|{wchars_display.center(box_width - 2)}|\n")
+    writer(f"{bottom_line}\n")
+
+    writer(f"\nmeasured by terminal: {measured_by_terminal}\n")
+    writer(f"measured by wcwidth:  {measured_by_wcwidth}\n")
+
+    # Display printf statement
+    printf_hex = make_printf_hex(wchars_display)
+    writer(f"\nprintf '{printf_hex}'\n")
+
+    writer(f"\n{term.bold('press return for next error, or')} {term.bold_red('n')} {term.bold('for non-stop:')}")
+
+    # Wait for user input
+    key = term.inkey()
+
+    # Check if user wants to disable stopping
+    should_continue_stopping = key.lower() != 'n'
+
+    # Restore screen (move back to saved position if possible)
+    if saved_ypos != -1 and saved_xpos != -1:
+        writer(term.move_yx(saved_ypos, saved_xpos))
+
+    return should_continue_stopping
+
+
 def word_splitter(line):
     """
     A version of re.split that also includes the delimiters in the result
@@ -49,6 +113,7 @@ def test_language_support(
     largest_xpos,
     limit_words,
     limit_errors,
+    stop_at_error=None,
 ):
     # This is more of a "Test zero-width support" exercise,
     # many languages include zero-width characters, at least:
@@ -60,8 +125,10 @@ def test_language_support(
     # begin test, successgroup-by language
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
+    time_report = {}
     start_time = time.monotonic()
     for lang, multiline_text in parse_udhr(unicode_version=unicode_version or 'auto'):
+        lang_start_time = time.monotonic()
         writer(term.move_yx(top - 1, orig_xpos))
         writer(f"{lang}" + term.clear_eos)
         writer(term.move_yx(top, 0))
@@ -120,6 +187,19 @@ def test_language_support(
                     failure_report[lang][-1]["measured_by_wcwidth"] = expected_width
                     failure_report[lang][-1]["measured_by_terminal"] = delta_xpos
 
+                    # Check if we should stop at this error
+                    if stop_at_error and stop_at_error.matches_language(lang):
+                        should_continue = display_error_and_prompt(
+                            term=term,
+                            writer=writer,
+                            context_name=f"language '{lang}'",
+                            wchars_display=wchars,
+                            measured_by_terminal=delta_xpos,
+                            measured_by_wcwidth=expected_width,
+                        )
+                        if not should_continue:
+                            stop_at_error.disable()
+
                 # reset estimates to actual
                 estimated_xpos = end_xpos
                 last_ypos = end_ypos
@@ -128,6 +208,9 @@ def test_language_support(
                     writer(term.move_yx(top - 1, orig_xpos))
                     writer(f"{lang}" + term.clear_eos)
                     writer(term.move_yx(top, 0))
+
+        # Record elapsed time for this language
+        time_report[lang] = time.monotonic() - lang_start_time
 
     report_languages = [
         language
@@ -149,6 +232,12 @@ def test_language_support(
             "pct_success": make_success_pct(
                 n_errors=len(failure_report[lang]),
                 n_total=len(failure_report[lang]) + success_report[lang],
+            ),
+            "seconds_elapsed": time_report.get(lang, 0.0),
+            "codepoints_per_second": (
+                (len(failure_report[lang]) + success_report[lang]) / time_report.get(lang, 1.0)
+                if time_report.get(lang, 0.0) > 0
+                else 0.0
             ),
             "failed": failure_report[lang],
         }
@@ -175,11 +264,14 @@ def test_support(
     report_lbound,
     shell,
     emit_osc1337=True,
+    stop_at_error=None,
+    test_type=None,
 ):
     # Enable grapheme clustering mode if terminal supports it (queries with DECRQM first).
     # OSC 1337 Unicode version is set per-version within the test loop.
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
+    time_report = {}
 
     start_time = time.monotonic()
     outer_ypos, outer_xpos = term.get_location(timeout=timeout)
@@ -188,6 +280,7 @@ def test_support(
 
     with terminal.maybe_grapheme_clustering_mode(term):
         for ver, wchars in table:
+            ver_start_time = time.monotonic()
             with terminal.osc_1337_for_version(writer, ver, emit_osc1337):
                 maybe_str = f", version={ver}: " if not shell else ""
                 writer(term.move_yx(outer_ypos, outer_xpos) + maybe_str + term.clear_eol)
@@ -225,6 +318,20 @@ def test_support(
                         if delta_xpos != expected_width:
                             failure_report[ver][-1]["measured_by_wcwidth"] = expected_width
                             failure_report[ver][-1]["measured_by_terminal"] = delta_xpos
+
+                        # Check if we should stop at this error
+                        if stop_at_error and test_type and stop_at_error.matches_test_type(test_type):
+                            should_continue = display_error_and_prompt(
+                                term=term,
+                                writer=writer,
+                                context_name=f"{test_type.upper()} test (version {ver})",
+                                wchars_display=wchars_str,
+                                measured_by_terminal=delta_xpos,
+                                measured_by_wcwidth=expected_width,
+                            )
+                            if not should_continue:
+                                stop_at_error.disable()
+
                         if limit_errors and len(failure_report[ver]) >= limit_errors:
                             break
 
@@ -244,6 +351,9 @@ def test_support(
                         break
                     if (-1, -1) == (end_ypos, end_xpos):
                         break
+
+            # Record elapsed time for this version
+            time_report[ver] = time.monotonic() - ver_start_time
 
     writer(term.move_yx(outer_ypos, outer_xpos))
     if shell:
@@ -280,13 +390,19 @@ def test_support(
                 n_errors=len(failure_report[ver]),
                 n_total=len(failure_report[ver]) + success_report[ver],
             ),
+            "seconds_elapsed": time_report.get(ver, 0.0),
+            "codepoints_per_second": (
+                (len(failure_report[ver]) + success_report[ver]) / time_report.get(ver, 1.0)
+                if time_report.get(ver, 0.0) > 0
+                else 0.0
+            ),
             "failed_codepoints": failure_report[ver],
         }
         for ver in report_versions
     }
 
 def do_languages_test(
-    term, writer, timeout, unicode_version, limit_words, limit_errors
+    term, writer, timeout, unicode_version, limit_words, limit_errors, stop_at_error=None
 ):
     writer(f"\nucs-detect: testing language support: ")
     orig_ypos, orig_xpos = term.get_location(timeout=timeout)
@@ -311,9 +427,10 @@ def do_languages_test(
         unicode_version=unicode_version,
         # ensure up to ~half the screen is available, for really long language "words"
         # eg. 'རྒྱལ་ཡོངས་དང་རྒྱལ་སྤྱིའི་ཉེས་འགེལ་ཁྲིམས་ཀྱི་གྲངས་སུ་ཐོ་བཀོད་འབད་དེ་མེད་པ་ཅིན་'
-        largest_xpos=math.max(40, term.width // 2),
+        largest_xpos=max(40, term.width // 2),
         limit_words=limit_words,
         limit_errors=limit_errors,
+        stop_at_error=stop_at_error,
     )
 
     writer(term.move_yx(top, 0) + term.clear_eos)

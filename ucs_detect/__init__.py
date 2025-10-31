@@ -39,6 +39,7 @@ from ucs_detect.table_wide import WIDE_CHARACTERS
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW, VS15_CJK_SEQUENCES
 from ucs_detect import measure, terminal
+from ucs_detect.error_matcher import ErrorMatcher
 
 
 def determine_best_match(
@@ -142,9 +143,12 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, no_languages_test, timeout, no_emit_osc1337):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, no_languages_test, timeout, no_emit_osc1337, stop_at_error):
     """Program entry point."""
     term, writer = init_term(stream, quick)
+
+    # Create error matcher for interactive debugging
+    error_matcher = ErrorMatcher(stop_at_error)
 
     # record and display program arguments
     local_vars = locals().copy()
@@ -207,6 +211,8 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
         emit_osc1337=not no_emit_osc1337,
+        stop_at_error=error_matcher,
+        test_type="wide",
     )
     if unicode_version:
         # match by CLI argument, '--unicode-version'
@@ -241,6 +247,8 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
         emit_osc1337=not no_emit_osc1337,
+        stop_at_error=error_matcher,
+        test_type="zwj",
     )
     emoji_zwj_version = determine_best_match(
         emoji_zwj_results, lbound_pct=90, report_lbound=2
@@ -261,6 +269,8 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
         emit_osc1337=not no_emit_osc1337,
+        stop_at_error=error_matcher,
+        test_type="vs16",
     )
 
     # Variation-15 emoji sequences - Test once, report twice
@@ -278,6 +288,8 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
         emit_osc1337=not no_emit_osc1337,
+        stop_at_error=error_matcher,
+        test_type="vs15",
     )
     # Split results: Type A shows all 158, Type B shows just 4 CJK
     emoji_vs15_type_a_results = split_vs15_results(emoji_vs15_all_results, cjk_only=False)
@@ -287,7 +299,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     language_results = None
     if not quick and not no_languages_test:
         language_results = measure.do_languages_test(
-            term, writer, timeout, unicode_version, limit_words, limit_errors
+            term, writer, timeout, unicode_version, limit_words, limit_errors, error_matcher
         )
 
     # display results
@@ -575,6 +587,15 @@ def parse_args():
         action="store_true",
         default=False,
         help="Do not emit OSC 1337 escape sequence to set Unicode version"
+    )
+    args.add_argument(
+        "--stop-at-error",
+        default=None,
+        help=(
+            "Interactively stop and display details when matching errors occur. "
+            "Values: 'zwj', 'wide', 'vs16', 'vs15', 'lang' (all languages), "
+            "or specific language name (e.g., 'english', 'korean', 'chinese')"
+        )
     )
     results = vars(args.parse_args())
     if results["quick"]:
