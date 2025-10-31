@@ -8,6 +8,33 @@ Tested Software version 0.4.1.6292 on Windows
 Full results available at ucs-detect_ repository path
 `data/win-contour-0.4.1.6292.yaml <https://github.com/jquast/ucs-detect/blob/master/data/win-contour-0.4.1.6292.yaml>`_
 
+.. _Contourscores:
+
+Score Breakdown
++++++++++++++++
+
+Detailed breakdown of how scores are calculated for *Contour*:
+
+============  ===========  ==============  ======================================================
+Score Type    Raw Score    Scaled Score    Calculation
+============  ===========  ==============  ======================================================
+WIDE          100.00%      100.0%          (version_index / total_versions) × (pct_success / 100)
+ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
+LANG          33.33%       34.6%           languages_supported / total_languages
+VS16          48.00%       48.0%           pct_success / 100
+VS15          N/A          N/A             pct_success / 100
+============  ===========  ==============  ======================================================
+
+**Final Score Calculation:**
+
+- Raw Final Score: 45.33%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  the categorized 'average' absolute support level of this terminal
+
+- Scaled Final Score: 47.9%
+  (normalized across all terminals tested).
+  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
 .. _Contourwide:
 
 Wide character support
@@ -135,14 +162,21 @@ Total codepoints: 2
   while *Contour* measures width 3.
 
 
+.. _Contourvs15:
+
+Variation Selector-15 support
++++++++++++++++++++++++++++++
+
+Emoji VS-15 results for *Contour* are not available.
+
 .. _Contourlang:
 
 Language Support
 ++++++++++++++++
 
-The following 10 languages were tested with 100% success:
+The following 44 languages were tested with 100% success:
 
-Adyghe, Cherokee (cased), Idoma, Kabardian, Nuosu, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Vietnamese (Han nom), Yukaghir, Northern.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Azerbaijani, North (Latin), Belarusan, Bulgarian, Cashinahua, Cherokee (cased), Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Latin (1), Montenegrin, Nuosu, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Seselwa Creole French, Sorbian, Upper, Sukuma, Swati, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Uzbek, Northern (Cyrillic), Vai, Vietnamese (Han nom), Walloon, Yukaghir, Northern.
 
 The following 88 languages are not fully supported:
 

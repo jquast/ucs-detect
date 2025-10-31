@@ -2,6 +2,7 @@
 import re
 import os
 import sys
+import math
 import yaml
 import contextlib
 import unicodedata
@@ -32,6 +33,8 @@ def score_to_color(score):
 
 
 def make_score_css_class(score):
+    if math.isnan(score):
+        return 'score-na'
     return f'score-{int(score * 100)}'
 
 
@@ -207,6 +210,7 @@ def make_score_table():
             # Language Support,
             score_language = score_lang(data)
             scores = (score_language, score_emoji_vs16, score_emoji_vs15, _score_zwj, _score_wide)
+            valid_scores = [s for s in scores if not math.isnan(s)]
             score_table.append(
                 dict(
                     terminal_software_name=data.get("software_name", data.get('software')),
@@ -214,7 +218,7 @@ def make_score_table():
                     os_system=data["system"],
                     score_emoji_vs16=score_emoji_vs16,
                     score_emoji_vs15=score_emoji_vs15,
-                    score_final=sum(scores) / len(scores),
+                    score_final=sum(valid_scores) / len(valid_scores) if valid_scores else float('NaN'),
                     score_language=score_language,
                     score_wide=_score_wide,
                     score_zwj=_score_zwj,
@@ -234,7 +238,8 @@ def make_score_table():
         for key in _score_keys:
             entry[key + "_scaled"] = scale_scores(score_table, entry, key)
         result.append(entry)
-    result.sort(key=lambda x: x["score_final"], reverse=True)
+    # Sort with NaN values at the end (treat NaN as negative infinity for sorting)
+    result.sort(key=lambda x: (math.isnan(x["score_final"]), -x["score_final"] if not math.isnan(x["score_final"]) else 0))
 
     # create unique set of all languages tested, then find languages that are
     # successful for all terminals (english, etc.) and remove them from the
@@ -285,6 +290,13 @@ def find_failed_version(entry, version_keys, results_key, best_match_version):
     return best_match_version
 
 
+def format_score_pct(score):
+    """Format a score as a percentage, handling NaN values."""
+    if math.isnan(score):
+        return "N/A"
+    return f'{score*100:0.1f}%'
+
+
 def display_tabulated_scores(score_table):
     tabulated_scores = []
     row_classes = []
@@ -297,12 +309,12 @@ def display_tabulated_scores(score_table):
                 "OS System": result["os_system"],
                 "Wide Unicode version": result["version_best_wide"] or "na",
 
-                "FINAL score": make_outbound_hyperlink(f'{result["score_final_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
-                "WIDE score": make_outbound_hyperlink(f'{result["score_wide_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
-                "LANG score": make_outbound_hyperlink(f'{result["score_language_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
-                "ZWJ score": make_outbound_hyperlink(f'{result["score_zwj_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
-                "VS16 score": make_outbound_hyperlink(f'{result["score_emoji_vs16_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
-                "VS15 score": make_outbound_hyperlink(f'{result["score_emoji_vs15_scaled"]*100:0.1f}%', result["terminal_software_name"] + "_scores"),
+                "FINAL score": make_outbound_hyperlink(format_score_pct(result["score_final_scaled"]), result["terminal_software_name"] + "_scores"),
+                "WIDE score": make_outbound_hyperlink(format_score_pct(result["score_wide_scaled"]), result["terminal_software_name"] + "_scores"),
+                "LANG score": make_outbound_hyperlink(format_score_pct(result["score_language_scaled"]), result["terminal_software_name"] + "_scores"),
+                "ZWJ score": make_outbound_hyperlink(format_score_pct(result["score_zwj_scaled"]), result["terminal_software_name"] + "_scores"),
+                "VS16 score": make_outbound_hyperlink(format_score_pct(result["score_emoji_vs16_scaled"]), result["terminal_software_name"] + "_scores"),
+                "VS15 score": make_outbound_hyperlink(format_score_pct(result["score_emoji_vs15_scaled"]), result["terminal_software_name"] + "_scores"),
             }
         )
         # Use final scaled score for row coloring
@@ -351,8 +363,15 @@ def display_table_definitions():
 
 def scale_scores(score_table, entry, key):
     my_score = entry[key]
-    max_score = max([_entry[key] for _entry in score_table])
-    min_score = min([_entry[key] for _entry in score_table])
+    if math.isnan(my_score):
+        return float('NaN')
+    valid_scores = [_entry[key] for _entry in score_table if not math.isnan(_entry[key])]
+    if not valid_scores:
+        return float('NaN')
+    max_score = max(valid_scores)
+    min_score = min(valid_scores)
+    if max_score == min_score:
+        return 1.0  # All scores are the same
     return (my_score - min_score) / (max_score - min_score)
 
 
@@ -431,35 +450,38 @@ def show_score_breakdown(sw_name, entry):
     print()
 
     # Create table showing raw scores, scaled scores, and how they're calculated
+    def format_raw_score(score):
+        return "N/A" if math.isnan(score) else f'{score*100:0.2f}%'
+
     score_breakdown = [
         {
             "Score Type": "WIDE",
-            "Raw Score": f'{entry["score_wide"]*100:0.2f}%',
-            "Scaled Score": f'{entry["score_wide_scaled"]*100:0.1f}%',
+            "Raw Score": format_raw_score(entry["score_wide"]),
+            "Scaled Score": format_score_pct(entry["score_wide_scaled"]),
             "Calculation": f'(version_index / total_versions) × (pct_success / 100)',
         },
         {
             "Score Type": "ZWJ",
-            "Raw Score": f'{entry["score_zwj"]*100:0.2f}%',
-            "Scaled Score": f'{entry["score_zwj_scaled"]*100:0.1f}%',
+            "Raw Score": format_raw_score(entry["score_zwj"]),
+            "Scaled Score": format_score_pct(entry["score_zwj_scaled"]),
             "Calculation": f'(version_index / total_versions) × (pct_success / 100)',
         },
         {
             "Score Type": "LANG",
-            "Raw Score": f'{entry["score_language"]*100:0.2f}%',
-            "Scaled Score": f'{entry["score_language_scaled"]*100:0.1f}%',
+            "Raw Score": format_raw_score(entry["score_language"]),
+            "Scaled Score": format_score_pct(entry["score_language_scaled"]),
             "Calculation": f'languages_supported / total_languages',
         },
         {
             "Score Type": "VS16",
-            "Raw Score": f'{entry["score_emoji_vs16"]*100:0.2f}%',
-            "Scaled Score": f'{entry["score_emoji_vs16_scaled"]*100:0.1f}%',
+            "Raw Score": format_raw_score(entry["score_emoji_vs16"]),
+            "Scaled Score": format_score_pct(entry["score_emoji_vs16_scaled"]),
             "Calculation": f'pct_success / 100',
         },
         {
             "Score Type": "VS15",
-            "Raw Score": f'{entry["score_emoji_vs15"]*100:0.2f}%',
-            "Scaled Score": f'{entry["score_emoji_vs15_scaled"]*100:0.1f}%',
+            "Raw Score": format_raw_score(entry["score_emoji_vs15"]),
+            "Scaled Score": format_score_pct(entry["score_emoji_vs15_scaled"]),
             "Calculation": f'pct_success / 100',
         },
     ]
@@ -467,18 +489,14 @@ def show_score_breakdown(sw_name, entry):
     print()
     print(f"**Final Score Calculation:**")
     print()
-    print(f"- Raw Final Score: {entry['score_final']*100:0.2f}%")
+    print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
     print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5")
-    print("   the categorized 'average' absolute support level of this terminal")
+    print(f"  the categorized 'average' absolute support level of this terminal")
     print()
-    print(f"- Scaled Final Score: {entry['score_final_scaled']*100:0.1f}%")
+    print(f"- Scaled Final Score: {format_score_pct(entry['score_final_scaled'])}")
     print(f"  (normalized across all terminals tested).")
-    print("   *Scaled scores* are normalized (0-100%) relative to all terminals tested")
+    print(f"  *Scaled scores* are normalized (0-100%) relative to all terminals tested")
     print()
-    print("**Notes:**")
-    print()
-    print()
-
 
 def show_software_header(entry, sw_name):
     display_inbound_hyperlink(entry["terminal_software_name"])
@@ -575,8 +593,16 @@ def show_emoji_zwj_results(sw_name, entry):
 def show_vs_results(sw_name, entry, variation_str):
     display_inbound_hyperlink(entry["terminal_software_name"] + f"_vs{variation_str}")
     display_title(f"Variation Selector-{variation_str} support", 3)
+
+    # Check if the VS results exist (e.g., VS15 might not be available for all terminals)
+    vs_results_key = f"emoji_vs{variation_str}_results"
+    if vs_results_key not in entry["data"]["test_results"]:
+        print(f"Emoji VS-{variation_str} results for *{sw_name}* are not available.")
+        print()
+        return
+
     show_failed_version = "9.0.0"  # static table, '9.0.0' in beta PR of wcwidth,
-    records = entry["data"]["test_results"][f"emoji_vs{variation_str}_results"][show_failed_version]
+    records = entry["data"]["test_results"][vs_results_key][show_failed_version]
     n_errors = records["n_errors"]
     n_total = records["n_total"]
     pct_success = records["pct_success"]

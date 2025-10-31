@@ -1,19 +1,46 @@
-.. _Zutty:
+.. _xterm:
 
-Zutty
+xterm
 -----
 
 
-Tested Software version 0.14.8.20231210 on Linux
+Tested Software version 388 on Linux
 Full results available at ucs-detect_ repository path
-`data/linux-zutty-0.14.8.20231210.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-zutty-0.14.8.20231210.yaml>`_
+`data/linux-xterm-388.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-xterm-388.yaml>`_
 
-.. _Zuttywide:
+.. _xtermscores:
+
+Score Breakdown
++++++++++++++++
+
+Detailed breakdown of how scores are calculated for *xterm*:
+
+============  ===========  ==============  ======================================================
+Score Type    Raw Score    Scaled Score    Calculation
+============  ===========  ==============  ======================================================
+WIDE          85.56%       78.4%           (version_index / total_versions) × (pct_success / 100)
+ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
+LANG          78.03%       81.1%           languages_supported / total_languages
+VS16          0.00%        0.0%            pct_success / 100
+VS15          N/A          N/A             pct_success / 100
+============  ===========  ==============  ======================================================
+
+**Final Score Calculation:**
+
+- Raw Final Score: 40.90%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  the categorized 'average' absolute support level of this terminal
+
+- Scaled Final Score: 42.3%
+  (normalized across all terminals tested).
+  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+.. _xtermwide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for Zutty appears to be 
+The best wide unicode table version for xterm appears to be 
 **15.0.0**, this is from a summary of the following
 results:
 
@@ -37,11 +64,11 @@ version      n_errors    n_total  pct_success
 
 Sequence of a WIDE character from Unicode Version 15.0.0, from midpoint of alignment failure records:
 
-=================================================  =============  ==========  =========  ======
+=================================================  =============  ==========  =========  =========
 Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ======
-`U+0001FABC <https://codepoints.net/U+0001FABC>`_  '\\U0001fabc'  Cn                  2  na
-=================================================  =============  ==========  =========  ======
+=================================================  =============  ==========  =========  =========
+`U+0001FABC <https://codepoints.net/U+0001FABC>`_  '\\U0001fabc'  So                  2  JELLYFISH
+=================================================  =============  ==========  =========  =========
 
 Total codepoints: 1
 
@@ -53,14 +80,14 @@ Total codepoints: 1
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Zutty* measures width 1.
+  while *xterm* measures width 1.
 
-.. _Zuttyzwj:
+.. _xtermzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *Zutty* appears to be 
+The best Emoji ZWJ table version for *xterm* appears to be 
 **None**, this is from a summary of the following
 results:
 
@@ -104,14 +131,14 @@ Total codepoints: 6
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Zutty* measures width 5.
+  while *xterm* measures width 5.
 
-.. _Zuttyvs16:
+.. _xtermvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *Zutty* is 100 errors
+Emoji VS-16 results for *xterm* is 100 errors
 out of 100 total codepoints tested, 0.0% success.
 Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
@@ -132,19 +159,26 @@ Total codepoints: 2
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Zutty* measures width 1.
+  while *xterm* measures width 1.
 
 
-.. _Zuttylang:
+.. _xtermvs15:
+
+Variation Selector-15 support
++++++++++++++++++++++++++++++
+
+Emoji VS-15 results for *xterm* are not available.
+
+.. _xtermlang:
 
 Language Support
 ++++++++++++++++
 
-The following 71 languages were tested with 100% success:
+The following 103 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gumuz, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Secoya, Seraiki, Serer-Sine, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Azerbaijani, North (Latin), Baatonum, Bamun, Belarusan, Bora, Bulgarian, Cashinahua, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Garifuna, Gen, Gilyak, Greek (polytonic), Gumuz, Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Lamnso', Lao, Latin (1), Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Montenegrin, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pijin, Pular, Pular (Adlam), Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Secoya, Seraiki, Serer-Sine, Seselwa Creole French, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Swati, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Ticuna, Uduk, Uzbek, Northern (Cyrillic), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
-The following 27 languages are not fully supported:
+The following 29 languages are not fully supported:
 
 ===================  ==========  =========  =============
 lang                   n_errors    n_total  pct_success
@@ -174,6 +208,8 @@ Sinhala                     500        947  47.2%
 Bhojpuri                    500       1009  50.4%
 Magahi                      500       1074  53.4%
 Chakma                      493       1444  65.9%
+Tibetan, Central              2        260  99.2%
+Yaneshaʼ                      5       2536  99.8%
 Urdu                          1       2237  100.0%
 Urdu (2)                      1       2251  100.0%
 ===================  ==========  =========  =============
@@ -213,7 +249,7 @@ Total codepoints: 15
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *Zutty* measures width 9.
+  while *xterm* measures width 9.
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -239,7 +275,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Tamil
 ^^^^^
@@ -265,7 +301,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -301,7 +337,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *Zutty* measures width 14.
+  while *xterm* measures width 14.
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -327,7 +363,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Malayalam
 ^^^^^^^^^
@@ -378,7 +414,7 @@ Total codepoints: 29
         12345678901234567|
 
 - python `wcwidth.wcswidth()`_ measures width 17,
-  while *Zutty* measures width 21.
+  while *xterm* measures width 21.
 
 Bengali
 ^^^^^^^
@@ -412,7 +448,7 @@ Total codepoints: 12
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *Zutty* measures width 12.
+  while *xterm* measures width 12.
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -470,7 +506,7 @@ Total codepoints: 36
         1234567890123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 22,
-  while *Zutty* measures width 25.
+  while *xterm* measures width 25.
 
 Kannada
 ^^^^^^^
@@ -496,7 +532,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Burmese
 ^^^^^^^
@@ -534,7 +570,7 @@ Total codepoints: 16
         12345678|
 
 - python `wcwidth.wcswidth()`_ measures width 8,
-  while *Zutty* measures width 11.
+  while *xterm* measures width 11.
 
 Khün
 ^^^^
@@ -578,7 +614,7 @@ Total codepoints: 22
         123456789012|
 
 - python `wcwidth.wcswidth()`_ measures width 12,
-  while *Zutty* measures width 15.
+  while *xterm* measures width 15.
 
 Sanskrit
 ^^^^^^^^
@@ -614,7 +650,7 @@ Total codepoints: 14
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *Zutty* measures width 13.
+  while *xterm* measures width 13.
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -642,7 +678,7 @@ Total codepoints: 6
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Nepali
 ^^^^^^
@@ -668,7 +704,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Marathi
 ^^^^^^^
@@ -695,7 +731,7 @@ Total codepoints: 5
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 5.
+  while *xterm* measures width 5.
 
 Mon
 ^^^
@@ -727,7 +763,7 @@ Total codepoints: 10
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *Zutty* measures width 7.
+  while *xterm* measures width 7.
 
 Gujarati
 ^^^^^^^^
@@ -753,7 +789,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Hindi
 ^^^^^
@@ -779,7 +815,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Telugu
 ^^^^^^
@@ -814,7 +850,7 @@ Total codepoints: 13
         123456789|
 
 - python `wcwidth.wcswidth()`_ measures width 9,
-  while *Zutty* measures width 10.
+  while *xterm* measures width 10.
 
 Maithili
 ^^^^^^^^
@@ -844,7 +880,7 @@ Total codepoints: 8
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *Zutty* measures width 7.
+  while *xterm* measures width 7.
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -872,7 +908,7 @@ Total codepoints: 6
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Sinhala
 ^^^^^^^
@@ -898,7 +934,7 @@ Total codepoints: 4
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *Zutty* measures width 4.
+  while *xterm* measures width 4.
 
 Bhojpuri
 ^^^^^^^^
@@ -930,7 +966,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *Zutty* measures width 10.
+  while *xterm* measures width 10.
 
 Magahi
 ^^^^^^
@@ -962,7 +998,7 @@ Total codepoints: 10
         123456|
 
 - python `wcwidth.wcswidth()`_ measures width 6,
-  while *Zutty* measures width 10.
+  while *xterm* measures width 10.
 
 Chakma
 ^^^^^^
@@ -997,7 +1033,90 @@ Total codepoints: 13
         1234567|
 
 - python `wcwidth.wcswidth()`_ measures width 7,
-  while *Zutty* measures width 8.
+  while *xterm* measures width 8.
+
+Tibetan, Central
+^^^^^^^^^^^^^^^^
+
+Sequence of language *Tibetan, Central* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ================================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ================================
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F66 <https://codepoints.net/U+0F66>`_  '\\u0f66'  Lo                  1  TIBETAN LETTER SA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F54 <https://codepoints.net/U+0F54>`_  '\\u0f54'  Lo                  1  TIBETAN LETTER PA
+`U+0F60 <https://codepoints.net/U+0F60>`_  '\\u0f60'  Lo                  1  TIBETAN LETTER -A
+`U+0F72 <https://codepoints.net/U+0F72>`_  '\\u0f72'  Mn                  0  TIBETAN VOWEL SIGN I
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F50 <https://codepoints.net/U+0F50>`_  '\\u0f50'  Lo                  1  TIBETAN LETTER THA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F56 <https://codepoints.net/U+0F56>`_  '\\u0f56'  Lo                  1  TIBETAN LETTER BA
+`U+0F44 <https://codepoints.net/U+0F44>`_  '\\u0f44'  Lo                  1  TIBETAN LETTER NGA
+`U+0F0B <https://codepoints.net/U+0F0B>`_  '\\u0f0b'  Po                  1  TIBETAN MARK INTERSYLLABIC TSHEG
+`U+0F61 <https://codepoints.net/U+0F61>`_  '\\u0f61'  Lo                  1  TIBETAN LETTER YA
+`U+0F7C <https://codepoints.net/U+0F7C>`_  '\\u0f7c'  Mn                  0  TIBETAN VOWEL SIGN O
+`U+0F51 <https://codepoints.net/U+0F51>`_  '\\u0f51'  Lo                  1  TIBETAN LETTER DA
+`U+0F0D <https://codepoints.net/U+0F0D>`_  '\\u0f0d'  Po                  1  TIBETAN MARK SHAD
+=========================================  =========  ==========  =========  ================================
+
+Total codepoints: 19
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xbd\xbc\xe0\xbd\xa6\xe0\xbc\x8b\xe0\xbd\x94\xe0\xbd\xa0\xe0\xbd\xb2\xe0\xbc\x8b\xe0\xbd\x90\xe0\xbd\xbc\xe0\xbd\x96\xe0\xbc\x8b\xe0\xbd\x91\xe0\xbd\x96\xe0\xbd\x84\xe0\xbc\x8b\xe0\xbd\xa1\xe0\xbd\xbc\xe0\xbd\x91\xe0\xbc\x8d|\\n123456789012345|\\n"
+        ོས་པའི་ཐོབ་དབང་ཡོད།|
+        123456789012345|
+
+- python `wcwidth.wcswidth()`_ measures width 15,
+  while *xterm* measures width 16.
+
+Yaneshaʼ
+^^^^^^^^
+
+Sequence of language *Yaneshaʼ* from midpoint of alignment failure records:
+
+=========================================  =========  ==========  =========  ====================
+Codepoint                                  Python     Category      wcwidth  Name
+=========================================  =========  ==========  =========  ====================
+`U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+`U+0070 <https://codepoints.net/U+0070>`_  'p'        Ll                  1  LATIN SMALL LETTER P
+`U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+`U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
+`U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
+`U+0027 <https://codepoints.net/U+0027>`_  "'"        Po                  1  APOSTROPHE
+`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
+`U+0073 <https://codepoints.net/U+0073>`_  's'        Ll                  1  LATIN SMALL LETTER S
+`U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
+`U+0027 <https://codepoints.net/U+0027>`_  "'"        Po                  1  APOSTROPHE
+`U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
+`U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
+`U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
+=========================================  =========  ==========  =========  ====================
+
+Total codepoints: 20
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xcc\x83errap\xcc\x83aro'tsa'yenet|\\n123456789012345678|\\n"
+        ̃errap̃aro'tsa'yenet|
+        123456789012345678|
+
+- python `wcwidth.wcswidth()`_ measures width 18,
+  while *xterm* measures width 19.
 
 Urdu
 ^^^^
@@ -1025,7 +1144,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *Zutty* measures width 6.
+  while *xterm* measures width 6.
 
 Urdu (2)
 ^^^^^^^^
@@ -1053,7 +1172,7 @@ Total codepoints: 6
         12345|
 
 - python `wcwidth.wcswidth()`_ measures width 5,
-  while *Zutty* measures width 6.
+  while *xterm* measures width 6.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

@@ -8,6 +8,33 @@ Tested Software version 1.2.0 on Darwin
 Full results available at ucs-detect_ repository path
 `data/macos-cool-retro-term-1.2.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-cool-retro-term-1.2.0.yaml>`_
 
+.. _coolretrotermscores:
+
+Score Breakdown
++++++++++++++++
+
+Detailed breakdown of how scores are calculated for *cool-retro-term*:
+
+============  ===========  ==============  ======================================================
+Score Type    Raw Score    Scaled Score    Calculation
+============  ===========  ==============  ======================================================
+WIDE          33.15%       0.0%            (version_index / total_versions) × (pct_success / 100)
+ZWJ           8.97%        12.0%           (version_index / total_versions) × (pct_success / 100)
+LANG          58.33%       60.6%           languages_supported / total_languages
+VS16          88.00%       88.0%           pct_success / 100
+VS15          N/A          N/A             pct_success / 100
+============  ===========  ==============  ======================================================
+
+**Final Score Calculation:**
+
+- Raw Final Score: 47.11%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  the categorized 'average' absolute support level of this terminal
+
+- Scaled Final Score: 50.2%
+  (normalized across all terminals tested).
+  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
 .. _coolretrotermwide:
 
 Wide character support
@@ -133,14 +160,21 @@ Total codepoints: 2
   while *cool-retro-term* measures width 1.
 
 
+.. _coolretrotermvs15:
+
+Variation Selector-15 support
++++++++++++++++++++++++++++++
+
+Emoji VS-15 results for *cool-retro-term* are not available.
+
 .. _coolretrotermlang:
 
 Language Support
 ++++++++++++++++
 
-The following 43 languages were tested with 100% success:
+The following 77 languages were tested with 100% success:
 
-Aja, Amarakaeri, Baatonum, Bamun, Bora, Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, Ga, Gen, Lamnso', Lingala (tones), Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Otomi, Mezquital, Picard, Secoya, Serer-Sine, Siona, South Azerbaijani, Tamazight, Central Atlas, Tem, Thai, Thai (2), Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yoruba, Éwé.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Aja, Amarakaeri, Azerbaijani, North (Latin), Baatonum, Bamun, Belarusan, Bora, Bulgarian, Cashinahua, Chickasaw, Chinantec, Chiltepec, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, Ga, Garifuna, Gen, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Ladino, Lamnso', Latin (1), Lingala (tones), Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Montenegrin, Mòoré, Nanai, Navajo, Nuosu, Otomi, Mezquital, Picard, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Secoya, Serer-Sine, Seselwa Creole French, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Swati, Tamazight, Central Atlas, Tem, Thai, Thai (2), Ticuna, Uduk, Uzbek, Northern (Cyrillic), Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yaneshaʼ, Yoruba, Éwé.
 
 The following 55 languages are not fully supported:
 

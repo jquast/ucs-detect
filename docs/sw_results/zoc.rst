@@ -8,6 +8,33 @@ Tested Software version 8.07.3 on Darwin
 Full results available at ucs-detect_ repository path
 `data/macos-zoc-8.07.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-zoc-8.07.3.yaml>`_
 
+.. _zocscores:
+
+Score Breakdown
++++++++++++++++
+
+Detailed breakdown of how scores are calculated for *zoc*:
+
+============  ===========  ==============  ======================================================
+Score Type    Raw Score    Scaled Score    Calculation
+============  ===========  ==============  ======================================================
+WIDE          85.56%       78.4%           (version_index / total_versions) × (pct_success / 100)
+ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
+LANG          31.06%       32.3%           languages_supported / total_languages
+VS16          100.00%      100.0%          pct_success / 100
+VS15          N/A          N/A             pct_success / 100
+============  ===========  ==============  ======================================================
+
+**Final Score Calculation:**
+
+- Raw Final Score: 54.15%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  the categorized 'average' absolute support level of this terminal
+
+- Scaled Final Score: 59.1%
+  (normalized across all terminals tested).
+  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
 .. _zocwide:
 
 Wide character support
@@ -37,11 +64,11 @@ version      n_errors    n_total  pct_success
 
 Sequence of a WIDE character from Unicode Version 15.0.0, from midpoint of alignment failure records:
 
-=================================================  =============  ==========  =========  ======
+=================================================  =============  ==========  =========  ========
 Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ======
-`U+0001F6DC <https://codepoints.net/U+0001F6DC>`_  '\\U0001f6dc'  Cn                  2  na
-=================================================  =============  ==========  =========  ======
+=================================================  =============  ==========  =========  ========
+`U+0001F6DC <https://codepoints.net/U+0001F6DC>`_  '\\U0001f6dc'  So                  2  WIRELESS
+=================================================  =============  ==========  =========  ========
 
 Total codepoints: 1
 
@@ -115,14 +142,21 @@ Emoji VS-16 results for *zoc* is 0 errors
 out of 100 total codepoints tested, 100.0% success.
 All codepoint combinations with Variation Selector-16 tested were successful.
 
+.. _zocvs15:
+
+Variation Selector-15 support
++++++++++++++++++++++++++++++
+
+Emoji VS-15 results for *zoc* are not available.
+
 .. _zoclang:
 
 Language Support
 ++++++++++++++++
 
-The following 7 languages were tested with 100% success:
+The following 41 languages were tested with 100% success:
 
-Adyghe, Idoma, Kabardian, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Yukaghir, Northern.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Azerbaijani, North (Latin), Belarusan, Bulgarian, Cashinahua, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Latin (1), Montenegrin, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Seselwa Creole French, Sorbian, Upper, Sukuma, Swati, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Uzbek, Northern (Cyrillic), Vai, Walloon, Yukaghir, Northern.
 
 The following 91 languages are not fully supported:
 

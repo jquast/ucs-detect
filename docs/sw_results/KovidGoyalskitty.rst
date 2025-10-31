@@ -8,6 +8,33 @@ Tested Software version 0.31.0 on Darwin
 Full results available at ucs-detect_ repository path
 `data/macos-kitty-0.31.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-kitty-0.31.0.yaml>`_
 
+.. _KovidGoyalskittyscores:
+
+Score Breakdown
++++++++++++++++
+
+Detailed breakdown of how scores are calculated for *Kovid Goyal's kitty*:
+
+============  ===========  ==============  ======================================================
+Score Type    Raw Score    Scaled Score    Calculation
+============  ===========  ==============  ======================================================
+WIDE          91.67%       87.5%           (version_index / total_versions) × (pct_success / 100)
+ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
+LANG          96.21%       100.0%          languages_supported / total_languages
+VS16          100.00%      100.0%          pct_success / 100
+VS15          N/A          N/A             pct_success / 100
+============  ===========  ==============  ======================================================
+
+**Final Score Calculation:**
+
+- Raw Final Score: 71.97%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  the categorized 'average' absolute support level of this terminal
+
+- Scaled Final Score: 81.7%
+  (normalized across all terminals tested).
+  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
 .. _KovidGoyalskittywide:
 
 Wide character support
@@ -37,11 +64,11 @@ version      n_errors    n_total  pct_success
 
 Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ======
+=========================================  =========  ==========  =========  =======================================================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======
-`U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  Cn                  2  na
-=========================================  =========  ==========  =========  ======
+=========================================  =========  ==========  =========  =======================================================
+`U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  So                  2  IDEOGRAPHIC DESCRIPTION CHARACTER HORIZONTAL REFLECTION
+=========================================  =========  ==========  =========  =======================================================
 
 Total codepoints: 1
 
@@ -115,14 +142,21 @@ Emoji VS-16 results for *Kovid Goyal's kitty* is 0 errors
 out of 100 total codepoints tested, 100.0% success.
 All codepoint combinations with Variation Selector-16 tested were successful.
 
+.. _KovidGoyalskittyvs15:
+
+Variation Selector-15 support
++++++++++++++++++++++++++++++
+
+Emoji VS-15 results for *Kovid Goyal's kitty* are not available.
+
 .. _KovidGoyalskittylang:
 
 Language Support
 ++++++++++++++++
 
-The following 93 languages were tested with 100% success:
+The following 127 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bhojpuri, Bora, Burmese, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Shan, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Azerbaijani, North (Latin), Baatonum, Bamun, Belarusan, Bhojpuri, Bora, Bulgarian, Burmese, Cashinahua, Chakma, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Garifuna, Gen, Gilyak, Greek (polytonic), Gujarati, Gumuz, Hausa, Hindi, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Javanese (Javanese), Kabardian, Kannada, Khmer, Central, Khün, Ladino, Lamnso', Lao, Latin (1), Lingala (tones), Magahi, Maithili, Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Montenegrin, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pijin, Pular, Pular (Adlam), Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Serer-Sine, Seselwa Creole French, Shan, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Swati, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Uzbek, Northern (Cyrillic), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 5 languages are not fully supported:
 

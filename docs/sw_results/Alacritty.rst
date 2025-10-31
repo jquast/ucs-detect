@@ -8,6 +8,33 @@ Tested Software version 0.13.0_1 on Darwin
 Full results available at ucs-detect_ repository path
 `data/macos-Alacritty-0.13.0_1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-Alacritty-0.13.0_1.yaml>`_
 
+.. _Alacrittyscores:
+
+Score Breakdown
++++++++++++++++
+
+Detailed breakdown of how scores are calculated for *Alacritty*:
+
+============  ===========  ==============  ======================================================
+Score Type    Raw Score    Scaled Score    Calculation
+============  ===========  ==============  ======================================================
+WIDE          100.00%      100.0%          (version_index / total_versions) × (pct_success / 100)
+ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
+LANG          81.06%       84.3%           languages_supported / total_languages
+VS16          0.00%        0.0%            pct_success / 100
+VS15          N/A          N/A             pct_success / 100
+============  ===========  ==============  ======================================================
+
+**Final Score Calculation:**
+
+- Raw Final Score: 45.27%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  the categorized 'average' absolute support level of this terminal
+
+- Scaled Final Score: 47.8%
+  (normalized across all terminals tested).
+  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
 .. _Alacrittywide:
 
 Wide character support
@@ -37,11 +64,11 @@ version      n_errors    n_total  pct_success
 
 Sequence of a WIDE character from Unicode Version 15.0.0, from midpoint of alignment failure records:
 
-=================================================  =============  ==========  =========  ======
+=================================================  =============  ==========  =========  =========
 Codepoint                                          Python         Category      wcwidth  Name
-=================================================  =============  ==========  =========  ======
-`U+0001FABC <https://codepoints.net/U+0001FABC>`_  '\\U0001fabc'  Cn                  2  na
-=================================================  =============  ==========  =========  ======
+=================================================  =============  ==========  =========  =========
+`U+0001FABC <https://codepoints.net/U+0001FABC>`_  '\\U0001fabc'  So                  2  JELLYFISH
+=================================================  =============  ==========  =========  =========
 
 Total codepoints: 1
 
@@ -135,14 +162,21 @@ Total codepoints: 2
   while *Alacritty* measures width 1.
 
 
+.. _Alacrittyvs15:
+
+Variation Selector-15 support
++++++++++++++++++++++++++++++
+
+Emoji VS-15 results for *Alacritty* are not available.
+
 .. _Alacrittylang:
 
 Language Support
 ++++++++++++++++
 
-The following 73 languages were tested with 100% success:
+The following 107 languages were tested with 100% success:
 
-Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Gen, Gilyak, Gumuz, Idoma, Kabardian, Lamnso', Lao, Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Secoya, Seraiki, Serer-Sine, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Azerbaijani, North (Latin), Baatonum, Bamun, Belarusan, Bora, Bulgarian, Cashinahua, Cherokee (cased), Chickasaw, Chinantec, Chiltepec, Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, Fur, Ga, Garifuna, Gen, Gilyak, Greek (polytonic), Gumuz, Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Lamnso', Lao, Latin (1), Lingala (tones), Maldivian, Mazahua Central, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Montenegrin, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pijin, Pular, Pular (Adlam), Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Secoya, Seraiki, Serer-Sine, Seselwa Creole French, Siona, Sorbian, Upper, South Azerbaijani, Sukuma, Swati, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Uzbek, Northern (Cyrillic), Vai, Veps, Vietnamese, Vietnamese (Han nom), Waama, Walloon, Yaneshaʼ, Yiddish, Eastern, Yoruba, Yukaghir, Northern, Éwé.
 
 The following 25 languages are not fully supported:
 

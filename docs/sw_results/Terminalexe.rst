@@ -4,9 +4,36 @@ Terminal.exe
 ------------
 
 
-Tested Software version  on Windows
+Tested Software version Windows 10 on Windows
 Full results available at ucs-detect_ repository path
-`data/win-Terminal-win11.yaml <https://github.com/jquast/ucs-detect/blob/master/data/win-Terminal-win11.yaml>`_
+`data/win-Terminal-win10.yaml <https://github.com/jquast/ucs-detect/blob/master/data/win-Terminal-win10.yaml>`_
+
+.. _Terminalexescores:
+
+Score Breakdown
++++++++++++++++
+
+Detailed breakdown of how scores are calculated for *Terminal.exe*:
+
+============  ===========  ==============  ======================================================
+Score Type    Raw Score    Scaled Score    Calculation
+============  ===========  ==============  ======================================================
+WIDE          91.67%       87.5%           (version_index / total_versions) × (pct_success / 100)
+ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
+LANG          33.33%       34.6%           languages_supported / total_languages
+VS16          100.00%      100.0%          pct_success / 100
+VS15          N/A          N/A             pct_success / 100
+============  ===========  ==============  ======================================================
+
+**Final Score Calculation:**
+
+- Raw Final Score: 56.25%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15) / 5
+  the categorized 'average' absolute support level of this terminal
+
+- Scaled Final Score: 61.8%
+  (normalized across all terminals tested).
+  *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 .. _Terminalexewide:
 
@@ -25,23 +52,23 @@ version      n_errors    n_total  pct_success
 '5.2.0'            79        269  70.6%
 '6.0.0'             0         13  100.0%
 '9.0.0'             0       5000  100.0%
-'10.0.0'            0        735  100.0%
-'11.0.0'            0         62  100.0%
-'12.0.0'            0         62  100.0%
+'10.0.0'           36        735  95.1%
+'11.0.0'            3         62  95.2%
+'12.0.0'            3         62  95.2%
 '12.1.0'            0          1  100.0%
-'13.0.0'            0        541  100.0%
-'14.0.0'            0         41  100.0%
+'13.0.0'           27        541  95.0%
+'14.0.0'            2         41  95.1%
 '15.0.0'            0         15  100.0%
 '15.1.0'            5          5  0.0%
 =========  ==========  =========  =============
 
 Sequence of a WIDE character from Unicode Version 15.1.0, from midpoint of alignment failure records:
 
-=========================================  =========  ==========  =========  ======
+=========================================  =========  ==========  =========  =======================================================
 Codepoint                                  Python     Category      wcwidth  Name
-=========================================  =========  ==========  =========  ======
-`U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  Cn                  2  na
-=========================================  =========  ==========  =========  ======
+=========================================  =========  ==========  =========  =======================================================
+`U+2FFE <https://codepoints.net/U+2FFE>`_  '\\u2ffe'  So                  2  IDEOGRAPHIC DESCRIPTION CHARACTER HORIZONTAL REFLECTION
+=========================================  =========  ==========  =========  =======================================================
 
 Total codepoints: 1
 
@@ -115,30 +142,37 @@ Emoji VS-16 results for *Terminal.exe* is 0 errors
 out of 100 total codepoints tested, 100.0% success.
 All codepoint combinations with Variation Selector-16 tested were successful.
 
+.. _Terminalexevs15:
+
+Variation Selector-15 support
++++++++++++++++++++++++++++++
+
+Emoji VS-15 results for *Terminal.exe* are not available.
+
 .. _Terminalexelang:
 
 Language Support
 ++++++++++++++++
 
-The following 10 languages were tested with 100% success:
+The following 44 languages were tested with 100% success:
 
-Adyghe, Cherokee (cased), Idoma, Kabardian, Nuosu, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Vai, Vietnamese (Han nom), Yukaghir, Northern.
+(Bizisa), (Yeonbyeon), Achuar-Shiwiar (1), Adyghe, Azerbaijani, North (Latin), Belarusan, Bulgarian, Cashinahua, Cherokee (cased), Chinese, Yue, Cree, Swampy, Crimean Tatar, Crioulo, Upper Guinea (008), Garifuna, Greek (polytonic), Hausa, Hmong Njua, Hmong, Northern Qiandong, Icelandic, Idoma, Kabardian, Ladino, Latin (1), Montenegrin, Nuosu, Pijin, Pular, Purepecha, Quechua, Ayacucho, Quechua, Cajamarca, Quechua, Cusco, Romansch (Surmiran), Rundi, Seselwa Creole French, Sorbian, Upper, Sukuma, Swati, Tamazight, Central Atlas (Tifinagh), Tamazight, Standard Morocan, Uzbek, Northern (Cyrillic), Vai, Vietnamese (Han nom), Walloon, Yukaghir, Northern.
 
 The following 88 languages are not fully supported:
 
 ===========================  ==========  =========  =============
 lang                           n_errors    n_total  pct_success
 ===========================  ==========  =========  =============
-Javanese (Javanese)                 500        506  1.2%
+Javanese (Javanese)                 500        504  0.8%
 Maldivian                           500        515  2.9%
 Tamil                               500        516  3.1%
 Tamil (Sri Lanka)                   500        516  3.1%
 Burmese                             500        519  3.7%
 Mon                                 500        522  4.2%
 Shan                                500        523  4.4%
-Dzongkha                            340        357  4.8%
+Dzongkha                            341        358  4.7%
 Gujarati                            500        530  5.7%
-Tibetan, Central                    255        271  5.9%
+Tibetan, Central                    262        278  5.8%
 Malayalam                           500        533  6.2%
 Tamang, Eastern                      42         45  6.7%
 Kannada                             500        536  6.7%
@@ -155,13 +189,13 @@ Hindi                               500        576  13.2%
 Sinhala                             500        577  13.3%
 Panjabi, Eastern                    500        578  13.5%
 Bhojpuri                            500        584  14.4%
-Thai (2)                            265        311  14.8%
+Thai (2)                            267        313  14.7%
 Maithili                            500        613  18.4%
-Thai                                271        339  20.1%
+Thai                                272        340  20.0%
 Magahi                              500        643  22.2%
 Vietnamese                          500        660  24.2%
 Tagalog (Tagalog)                    21         31  32.3%
-Lao                                 259        415  37.6%
+Lao                                 267        423  36.9%
 Lingala (tones)                     500        844  40.8%
 Pular (Adlam)                       500       1044  52.1%
 Yiddish, Eastern                    500       1062  52.9%
