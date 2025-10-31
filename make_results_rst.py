@@ -52,46 +52,38 @@ def generate_score_css():
     return '\n'.join(css_lines)
 
 
-def add_rst_classes_to_table(table_str, row_classes):
+def generate_score_roles():
     """
-    Add rst-class directives to a tabulated RST table.
+    Generate reStructuredText role definitions for all score classes.
+    Returns a string containing role definitions that can be used inline.
+    """
+    lines = ['.. Generate custom roles for score coloring', '']
+    for score_pct in range(101):
+        score = score_pct / 100.0
+        class_name = make_score_css_class(score)
+        lines.append(f'.. role:: {class_name}')
+        lines.append(f'   :class: {class_name}')
+        lines.append('')
+    # Add role for N/A scores
+    lines.append('.. role:: score-na')
+    lines.append('   :class: score-na')
+    lines.append('')
+    return '\n'.join(lines)
+
+
+def wrap_with_score_role(text, score):
+    """
+    Wrap text with a reStructuredText role based on the score.
 
     Args:
-        table_str: The RST table string from tabulate
-        row_classes: List of CSS class names, one per data row
+        text: The text content to wrap (e.g., "75.0%")
+        score: The score value (0.0 to 1.0) used to determine the role class
 
     Returns:
-        Modified table string with rst-class directives inserted
+        Text wrapped with inline role syntax: :score-75:`75.0%`
     """
-    lines = table_str.split('\n')
-    result = []
-    row_idx = 0
-    in_data_rows = False
-
-    for i, line in enumerate(lines):
-        # Detect the separator after the header
-        if '=' in line and i > 0 and not in_data_rows:
-            # This is the separator after the header
-            result.append(line)
-            in_data_rows = True
-            continue
-
-        # Detect end of table
-        if '=' in line and in_data_rows and i == len(lines) - 1:
-            # This is the final separator
-            result.append(line)
-            break
-
-        # If we're in data rows and this is a content row
-        if in_data_rows and line.strip() and '=' not in line:
-            # Add rst-class directive before this row
-            if row_idx < len(row_classes):
-                result.append(f'\n.. rst-class:: {row_classes[row_idx]}\n')
-                row_idx += 1
-
-        result.append(line)
-
-    return '\n'.join(result)
+    role_name = make_score_css_class(score)
+    return f':{role_name}:`{text}`'
 
 
 def main():
@@ -299,7 +291,6 @@ def format_score_pct(score):
 
 def display_tabulated_scores(score_table):
     tabulated_scores = []
-    row_classes = []
 
     for result in score_table:
         tabulated_scores.append(
@@ -309,23 +300,23 @@ def display_tabulated_scores(score_table):
                 "OS System": result["os_system"],
                 "Wide Unicode version": result["version_best_wide"] or "na",
 
-                "FINAL score": make_outbound_hyperlink(format_score_pct(result["score_final_scaled"]), result["terminal_software_name"] + "_scores"),
-                "WIDE score": make_outbound_hyperlink(format_score_pct(result["score_wide_scaled"]), result["terminal_software_name"] + "_scores"),
-                "LANG score": make_outbound_hyperlink(format_score_pct(result["score_language_scaled"]), result["terminal_software_name"] + "_scores"),
-                "ZWJ score": make_outbound_hyperlink(format_score_pct(result["score_zwj_scaled"]), result["terminal_software_name"] + "_scores"),
-                "VS16 score": make_outbound_hyperlink(format_score_pct(result["score_emoji_vs16_scaled"]), result["terminal_software_name"] + "_scores"),
-                "VS15 score": make_outbound_hyperlink(format_score_pct(result["score_emoji_vs15_scaled"]), result["terminal_software_name"] + "_scores"),
+                "FINAL": wrap_with_score_role(format_score_pct(result["score_final_scaled"]), result["score_final_scaled"]),
+                "WIDE": wrap_with_score_role(format_score_pct(result["score_wide_scaled"]), result["score_wide_scaled"]),
+                "LANG": wrap_with_score_role(format_score_pct(result["score_language_scaled"]), result["score_language_scaled"]),
+                "ZWJ": wrap_with_score_role(format_score_pct(result["score_zwj_scaled"]), result["score_zwj_scaled"]),
+                "VS16": wrap_with_score_role(format_score_pct(result["score_emoji_vs16_scaled"]), result["score_emoji_vs16_scaled"]),
+                "VS15": wrap_with_score_role(format_score_pct(result["score_emoji_vs15_scaled"]), result["score_emoji_vs15_scaled"]),
             }
         )
-        # Use final scaled score for row coloring
-        row_classes.append(make_score_css_class(result["score_final_scaled"]))
 
     display_title("Testing Results", 1)
 
-    # Generate table and add color classes
+    # Output role definitions for inline score coloring
+    print(generate_score_roles())
+
+    # Generate and print table with inline role-colored scores
     table_str = tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst")
-    colored_table = add_rst_classes_to_table(table_str, row_classes)
-    print(colored_table)
+    print(table_str)
     print()
 
 

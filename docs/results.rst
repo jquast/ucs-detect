@@ -1,302 +1,391 @@
 Testing Results
 ===============
 
-=============================================  ========================  ===========  ======================  =====================================  =====================================  ======================================  ====================================  ======================================  ===================================
-Terminal Software                              Software Version          OS System    Wide Unicode version    FINAL score                            WIDE score                             LANG score                              ZWJ score                             VS16 score                              VS15 score
-=============================================  ========================  ===========  ======================  =====================================  =====================================  ======================================  ====================================  ======================================  ===================================
+.. Generate custom roles for score coloring
 
-.. rst-class:: score-100
+.. role:: score-0
+   :class: score-0
 
-:ref:`Konsole <Konsole>`                       23.08.1                   Linux        15.0.0                  :ref:`100.0% <Konsolescores>`          :ref:`87.5% <Konsolescores>`           :ref:`84.3% <Konsolescores>`            :ref:`97.0% <Konsolescores>`          :ref:`100.0% <Konsolescores>`           :ref:`N/A <Konsolescores>`
+.. role:: score-1
+   :class: score-1
 
-.. rst-class:: score-97
+.. role:: score-2
+   :class: score-2
 
-:ref:`foot <foot>`                             1.16.2                    Linux        15.0.0                  :ref:`97.6% <footscores>`              :ref:`78.4% <footscores>`              :ref:`82.7% <footscores>`               :ref:`97.0% <footscores>`             :ref:`100.0% <footscores>`              :ref:`N/A <footscores>`
+.. role:: score-3
+   :class: score-3
 
-.. rst-class:: score-94
+.. role:: score-4
+   :class: score-4
 
-:ref:`iTerm2 <iTerm2>`                         3.5.0 beta18              Darwin       15.0.0                  :ref:`94.7% <iTerm2scores>`            :ref:`78.4% <iTerm2scores>`            :ref:`82.7% <iTerm2scores>`             :ref:`97.0% <iTerm2scores>`           :ref:`91.0% <iTerm2scores>`             :ref:`N/A <iTerm2scores>`
+.. role:: score-5
+   :class: score-5
 
-.. rst-class:: score-88
+.. role:: score-6
+   :class: score-6
 
-:ref:`kitty <kitty>`                           0.32.2                    Darwin       15.0.0                  :ref:`88.1% <kittyscores>`             :ref:`83.4% <kittyscores>`             :ref:`100.0% <kittyscores>`             :ref:`0.0% <kittyscores>`             :ref:`100.0% <kittyscores>`             :ref:`100.0% <kittyscores>`
+.. role:: score-7
+   :class: score-7
 
-.. rst-class:: score-81
+.. role:: score-8
+   :class: score-8
 
-:ref:`Kovid Goyal's kitty <KovidGoyalskitty>`  0.31.0                    Darwin       15.0.0                  :ref:`81.7% <KovidGoyalskittyscores>`  :ref:`87.5% <KovidGoyalskittyscores>`  :ref:`100.0% <KovidGoyalskittyscores>`  :ref:`0.0% <KovidGoyalskittyscores>`  :ref:`100.0% <KovidGoyalskittyscores>`  :ref:`N/A <KovidGoyalskittyscores>`
+.. role:: score-9
+   :class: score-9
 
-.. rst-class:: score-73
+.. role:: score-10
+   :class: score-10
 
-:ref:`iTerm2 <iTerm2>`                         3.5.0 beta20              Darwin       15.0.0                  :ref:`73.5% <iTerm2scores>`            :ref:`71.3% <iTerm2scores>`            :ref:`82.7% <iTerm2scores>`             :ref:`97.0% <iTerm2scores>`           :ref:`94.4% <iTerm2scores>`             :ref:`0.0% <iTerm2scores>`
+.. role:: score-11
+   :class: score-11
 
-.. rst-class:: score-71
+.. role:: score-12
+   :class: score-12
 
-:ref:`WezTerm <WezTerm>`                       20230712                  Darwin       15.0.0                  :ref:`71.1% <WezTermscores>`           :ref:`78.4% <WezTermscores>`           :ref:`100.0% <WezTermscores>`           :ref:`97.0% <WezTermscores>`          :ref:`0.0% <WezTermscores>`             :ref:`N/A <WezTermscores>`
+.. role:: score-13
+   :class: score-13
 
-.. rst-class:: score-61
+.. role:: score-14
+   :class: score-14
 
-:ref:`Terminal.exe <Terminalexe>`              Windows 10                Windows      15.0.0                  :ref:`61.8% <Terminalexescores>`       :ref:`87.5% <Terminalexescores>`       :ref:`34.6% <Terminalexescores>`        :ref:`0.0% <Terminalexescores>`       :ref:`100.0% <Terminalexescores>`       :ref:`N/A <Terminalexescores>`
+.. role:: score-15
+   :class: score-15
 
-.. rst-class:: score-60
+.. role:: score-16
+   :class: score-16
 
-:ref:`kitty <kitty>`                           0.32.2                    Linux        15.0.0                  :ref:`60.2% <kittyscores>`             :ref:`59.2% <kittyscores>`             :ref:`2.6% <kittyscores>`               :ref:`0.0% <kittyscores>`             :ref:`100.0% <kittyscores>`             :ref:`100.0% <kittyscores>`
+.. role:: score-17
+   :class: score-17
 
-.. rst-class:: score-59
+.. role:: score-18
+   :class: score-18
 
-:ref:`zoc <zoc>`                               8.07.3                    Darwin       15.0.0                  :ref:`59.1% <zocscores>`               :ref:`78.4% <zocscores>`               :ref:`32.3% <zocscores>`                :ref:`0.0% <zocscores>`               :ref:`100.0% <zocscores>`               :ref:`N/A <zocscores>`
+.. role:: score-19
+   :class: score-19
 
-.. rst-class:: score-58
+.. role:: score-20
+   :class: score-20
 
-:ref:`ExtratermQt <ExtratermQt>`               0.75.0                    Darwin       14.0.0                  :ref:`58.9% <ExtratermQtscores>`       :ref:`75.1% <ExtratermQtscores>`       :ref:`33.9% <ExtratermQtscores>`        :ref:`0.0% <ExtratermQtscores>`       :ref:`100.0% <ExtratermQtscores>`       :ref:`N/A <ExtratermQtscores>`
+.. role:: score-21
+   :class: score-21
 
-.. rst-class:: score-56
+.. role:: score-22
+   :class: score-22
 
-:ref:`iTerm2 <iTerm2>`                         3.6.5                     Darwin       16.0.0                  :ref:`56.9% <iTerm2scores>`            :ref:`86.4% <iTerm2scores>`            :ref:`1.7% <iTerm2scores>`              :ref:`100.0% <iTerm2scores>`          :ref:`94.4% <iTerm2scores>`             :ref:`0.0% <iTerm2scores>`
+.. role:: score-23
+   :class: score-23
 
-.. rst-class:: score-53
+.. role:: score-24
+   :class: score-24
 
-:ref:`WezTerm <WezTerm>`                       20240203                  Darwin       15.0.0                  :ref:`53.8% <WezTermscores>`           :ref:`71.3% <WezTermscores>`           :ref:`100.0% <WezTermscores>`           :ref:`97.0% <WezTermscores>`          :ref:`0.0% <WezTermscores>`             :ref:`0.0% <WezTermscores>`
+.. role:: score-25
+   :class: score-25
 
-.. rst-class:: score-52
+.. role:: score-26
+   :class: score-26
 
-:ref:`ghostty <ghostty>`                       1.1.3-dev+0000000         Linux        15.0.0                  :ref:`52.5% <ghosttyscores>`           :ref:`59.2% <ghosttyscores>`           :ref:`2.6% <ghosttyscores>`             :ref:`100.0% <ghosttyscores>`         :ref:`94.4% <ghosttyscores>`            :ref:`0.0% <ghosttyscores>`
+.. role:: score-27
+   :class: score-27
 
-.. rst-class:: score-52
+.. role:: score-28
+   :class: score-28
 
-:ref:`ghostty <ghostty>`                       1.1.3-dev+0000000         Linux        15.0.0                  :ref:`52.5% <ghosttyscores>`           :ref:`59.2% <ghosttyscores>`           :ref:`2.6% <ghosttyscores>`             :ref:`100.0% <ghosttyscores>`         :ref:`94.4% <ghosttyscores>`            :ref:`0.0% <ghosttyscores>`
+.. role:: score-28
+   :class: score-28
 
-.. rst-class:: score-51
+.. role:: score-30
+   :class: score-30
 
-:ref:`Konsole <Konsole>`                       23.08.5                   Linux        15.0.0                  :ref:`51.6% <Konsolescores>`           :ref:`59.2% <Konsolescores>`           :ref:`1.7% <Konsolescores>`             :ref:`88.9% <Konsolescores>`          :ref:`100.0% <Konsolescores>`           :ref:`0.0% <Konsolescores>`
+.. role:: score-31
+   :class: score-31
 
-.. rst-class:: score-51
+.. role:: score-32
+   :class: score-32
 
-:ref:`Konsole <Konsole>`                       23.08.5                   Linux        15.0.0                  :ref:`51.6% <Konsolescores>`           :ref:`59.2% <Konsolescores>`           :ref:`1.7% <Konsolescores>`             :ref:`88.9% <Konsolescores>`          :ref:`100.0% <Konsolescores>`           :ref:`0.0% <Konsolescores>`
+.. role:: score-33
+   :class: score-33
 
-.. rst-class:: score-50
+.. role:: score-34
+   :class: score-34
 
-:ref:`cool-retro-term <coolretroterm>`         1.2.0                     Darwin       9.0.0                   :ref:`50.2% <coolretrotermscores>`     :ref:`0.0% <coolretrotermscores>`      :ref:`60.6% <coolretrotermscores>`      :ref:`12.0% <coolretrotermscores>`    :ref:`88.0% <coolretrotermscores>`      :ref:`N/A <coolretrotermscores>`
+.. role:: score-35
+   :class: score-35
 
-.. rst-class:: score-49
+.. role:: score-36
+   :class: score-36
 
-:ref:`ConsoleZ <ConsoleZ>`                     1.19.0.19104              Windows      15.1.0                  :ref:`49.8% <ConsoleZscores>`          :ref:`100.0% <ConsoleZscores>`         :ref:`34.6% <ConsoleZscores>`           :ref:`0.0% <ConsoleZscores>`          :ref:`54.0% <ConsoleZscores>`           :ref:`N/A <ConsoleZscores>`
+.. role:: score-37
+   :class: score-37
 
-.. rst-class:: score-47
+.. role:: score-38
+   :class: score-38
 
-:ref:`cmd.exe <cmdexe>`                        Win10                     Windows      15.1.0                  :ref:`47.9% <cmdexescores>`            :ref:`100.0% <cmdexescores>`           :ref:`34.6% <cmdexescores>`             :ref:`0.0% <cmdexescores>`            :ref:`48.0% <cmdexescores>`             :ref:`N/A <cmdexescores>`
+.. role:: score-39
+   :class: score-39
 
-.. rst-class:: score-47
+.. role:: score-40
+   :class: score-40
 
-:ref:`Contour <Contour>`                       0.4.1.6292                Windows      15.1.0                  :ref:`47.9% <Contourscores>`           :ref:`100.0% <Contourscores>`          :ref:`34.6% <Contourscores>`            :ref:`0.0% <Contourscores>`           :ref:`48.0% <Contourscores>`            :ref:`N/A <Contourscores>`
+.. role:: score-41
+   :class: score-41
 
-.. rst-class:: score-47
+.. role:: score-42
+   :class: score-42
 
-:ref:`rio <rio>`                               0.0.33                    Darwin       15.1.0                  :ref:`47.8% <rioscores>`               :ref:`100.0% <rioscores>`              :ref:`84.3% <rioscores>`                :ref:`0.0% <rioscores>`               :ref:`0.0% <rioscores>`                 :ref:`N/A <rioscores>`
+.. role:: score-43
+   :class: score-43
 
-.. rst-class:: score-47
+.. role:: score-44
+   :class: score-44
 
-:ref:`Alacritty <Alacritty>`                   0.13.0_1                  Darwin       15.1.0                  :ref:`47.8% <Alacrittyscores>`         :ref:`100.0% <Alacrittyscores>`        :ref:`84.3% <Alacrittyscores>`          :ref:`0.0% <Alacrittyscores>`         :ref:`0.0% <Alacrittyscores>`           :ref:`N/A <Alacrittyscores>`
+.. role:: score-45
+   :class: score-45
 
-.. rst-class:: score-43
+.. role:: score-46
+   :class: score-46
 
-:ref:`xfce4-terminal <xfce4terminal>`          1.1.1                     Linux        15.0.0                  :ref:`43.2% <xfce4terminalscores>`     :ref:`78.4% <xfce4terminalscores>`     :ref:`84.3% <xfce4terminalscores>`      :ref:`0.0% <xfce4terminalscores>`     :ref:`0.0% <xfce4terminalscores>`       :ref:`N/A <xfce4terminalscores>`
+.. role:: score-47
+   :class: score-47
 
-.. rst-class:: score-43
+.. role:: score-48
+   :class: score-48
 
-:ref:`Gnome Terminal <GnomeTerminal>`          3.50.1                    Linux        15.0.0                  :ref:`43.2% <GnomeTerminalscores>`     :ref:`78.4% <GnomeTerminalscores>`     :ref:`84.3% <GnomeTerminalscores>`      :ref:`0.0% <GnomeTerminalscores>`     :ref:`0.0% <GnomeTerminalscores>`       :ref:`N/A <GnomeTerminalscores>`
+.. role:: score-49
+   :class: score-49
 
-.. rst-class:: score-42
+.. role:: score-50
+   :class: score-50
 
-:ref:`xterm <xterm>`                           388                       Linux        15.0.0                  :ref:`42.3% <xtermscores>`             :ref:`78.4% <xtermscores>`             :ref:`81.1% <xtermscores>`              :ref:`0.0% <xtermscores>`             :ref:`0.0% <xtermscores>`               :ref:`N/A <xtermscores>`
+.. role:: score-51
+   :class: score-51
 
-.. rst-class:: score-39
+.. role:: score-52
+   :class: score-52
 
-:ref:`PuTTY <PuTTY>`                           0.80                      Windows      14.0.0                  :ref:`39.9% <PuTTYscores>`             :ref:`62.9% <PuTTYscores>`             :ref:`84.3% <PuTTYscores>`              :ref:`0.0% <PuTTYscores>`             :ref:`0.0% <PuTTYscores>`               :ref:`N/A <PuTTYscores>`
+.. role:: score-53
+   :class: score-53
 
-.. rst-class:: score-38
+.. role:: score-54
+   :class: score-54
 
-:ref:`Terminal.app <Terminalapp>`              2.12.7                    Darwin       14.0.0                  :ref:`38.3% <Terminalappscores>`       :ref:`62.9% <Terminalappscores>`       :ref:`78.7% <Terminalappscores>`        :ref:`0.0% <Terminalappscores>`       :ref:`0.0% <Terminalappscores>`         :ref:`N/A <Terminalappscores>`
+.. role:: score-55
+   :class: score-55
 
-.. rst-class:: score-34
+.. role:: score-56
+   :class: score-56
 
-:ref:`Visual Studio Code <VisualStudioCode>`   1.85.0                    Darwin       12.0.0                  :ref:`34.3% <VisualStudioCodescores>`  :ref:`37.7% <VisualStudioCodescores>`  :ref:`83.5% <VisualStudioCodescores>`   :ref:`0.0% <VisualStudioCodescores>`  :ref:`0.0% <VisualStudioCodescores>`    :ref:`N/A <VisualStudioCodescores>`
+.. role:: score-56
+   :class: score-56
 
-.. rst-class:: score-34
+.. role:: score-57
+   :class: score-57
 
-:ref:`tabby <tabby>`                           1.0.205                   Darwin       12.0.0                  :ref:`34.3% <tabbyscores>`             :ref:`37.7% <tabbyscores>`             :ref:`83.5% <tabbyscores>`              :ref:`0.0% <tabbyscores>`             :ref:`0.0% <tabbyscores>`               :ref:`N/A <tabbyscores>`
+.. role:: score-59
+   :class: score-59
 
-.. rst-class:: score-34
+.. role:: score-60
+   :class: score-60
 
-:ref:`Hyper <Hyper>`                           4.0.0-canary.5            Darwin       12.0.0                  :ref:`34.1% <Hyperscores>`             :ref:`37.7% <Hyperscores>`             :ref:`82.7% <Hyperscores>`              :ref:`0.0% <Hyperscores>`             :ref:`0.0% <Hyperscores>`               :ref:`N/A <Hyperscores>`
+.. role:: score-61
+   :class: score-61
 
-.. rst-class:: score-32
+.. role:: score-62
+   :class: score-62
 
-:ref:`contour <contour>`                       0.6.1.7494                Linux        16.0.0                  :ref:`32.9% <contourscores>`           :ref:`86.4% <contourscores>`           :ref:`1.7% <contourscores>`             :ref:`100.0% <contourscores>`         :ref:`0.0% <contourscores>`             :ref:`0.0% <contourscores>`
+.. role:: score-63
+   :class: score-63
 
-.. rst-class:: score-32
+.. role:: score-64
+   :class: score-64
 
-:ref:`WezTerm <WezTerm>`                       20251014-193657-64f2907c  Linux        16.0.0                  :ref:`32.9% <WezTermscores>`           :ref:`86.4% <WezTermscores>`           :ref:`1.7% <WezTermscores>`             :ref:`100.0% <WezTermscores>`         :ref:`0.0% <WezTermscores>`             :ref:`0.0% <WezTermscores>`
+.. role:: score-65
+   :class: score-65
 
-.. rst-class:: score-32
+.. role:: score-66
+   :class: score-66
 
-:ref:`WezTerm <WezTerm>`                       20251014-193657-64f2907c  Linux        16.0.0                  :ref:`32.9% <WezTermscores>`           :ref:`86.4% <WezTermscores>`           :ref:`1.7% <WezTermscores>`             :ref:`100.0% <WezTermscores>`         :ref:`0.0% <WezTermscores>`             :ref:`0.0% <WezTermscores>`
+.. role:: score-67
+   :class: score-67
 
-.. rst-class:: score-32
+.. role:: score-68
+   :class: score-68
 
-:ref:`contour <contour>`                       0.6.1.7494                Linux        16.0.0                  :ref:`32.9% <contourscores>`           :ref:`86.4% <contourscores>`           :ref:`1.7% <contourscores>`             :ref:`100.0% <contourscores>`         :ref:`0.0% <contourscores>`             :ref:`0.0% <contourscores>`
+.. role:: score-69
+   :class: score-69
 
-.. rst-class:: score-28
+.. role:: score-70
+   :class: score-70
 
-:ref:`WezTerm <WezTerm>`                       20240203-110809-5046fc22  Linux        15.0.0                  :ref:`28.5% <WezTermscores>`           :ref:`59.2% <WezTermscores>`           :ref:`2.6% <WezTermscores>`             :ref:`100.0% <WezTermscores>`         :ref:`0.0% <WezTermscores>`             :ref:`0.0% <WezTermscores>`
+.. role:: score-71
+   :class: score-71
 
-.. rst-class:: score-15
+.. role:: score-72
+   :class: score-72
 
-:ref:`terminology <terminology>`               1.13.0                    Linux        17.0.0                  :ref:`15.2% <terminologyscores>`       :ref:`97.1% <terminologyscores>`       :ref:`0.0% <terminologyscores>`         :ref:`0.0% <terminologyscores>`       :ref:`0.0% <terminologyscores>`         :ref:`0.0% <terminologyscores>`
+.. role:: score-73
+   :class: score-73
 
-.. rst-class:: score-15
+.. role:: score-74
+   :class: score-74
 
-:ref:`terminology <terminology>`               1.13.0                    Linux        17.0.0                  :ref:`15.2% <terminologyscores>`       :ref:`97.1% <terminologyscores>`       :ref:`0.0% <terminologyscores>`         :ref:`0.0% <terminologyscores>`       :ref:`0.0% <terminologyscores>`         :ref:`0.0% <terminologyscores>`
+.. role:: score-75
+   :class: score-75
 
-.. rst-class:: score-13
+.. role:: score-76
+   :class: score-76
 
-:ref:`rio <rio>`                               0.2.28                    Darwin       16.0.0                  :ref:`13.9% <rioscores>`               :ref:`86.4% <rioscores>`               :ref:`1.7% <rioscores>`                 :ref:`0.0% <rioscores>`               :ref:`0.0% <rioscores>`                 :ref:`0.0% <rioscores>`
+.. role:: score-77
+   :class: score-77
 
-.. rst-class:: score-13
+.. role:: score-78
+   :class: score-78
 
-:ref:`Bobcat <Bobcat>`                         0.9.7 (r348)              Linux        16.0.0                  :ref:`13.9% <Bobcatscores>`            :ref:`86.4% <Bobcatscores>`            :ref:`1.7% <Bobcatscores>`              :ref:`0.0% <Bobcatscores>`            :ref:`0.0% <Bobcatscores>`              :ref:`0.0% <Bobcatscores>`
+.. role:: score-79
+   :class: score-79
 
-.. rst-class:: score-13
+.. role:: score-80
+   :class: score-80
 
-:ref:`PuTTY <PuTTY>`                           0.83                      Linux        16.0.0                  :ref:`13.9% <PuTTYscores>`             :ref:`86.4% <PuTTYscores>`             :ref:`1.7% <PuTTYscores>`               :ref:`0.0% <PuTTYscores>`             :ref:`0.0% <PuTTYscores>`               :ref:`0.0% <PuTTYscores>`
+.. role:: score-81
+   :class: score-81
 
-.. rst-class:: score-13
+.. role:: score-82
+   :class: score-82
 
-:ref:`PuTTY <PuTTY>`                           0.83                      Linux        16.0.0                  :ref:`13.9% <PuTTYscores>`             :ref:`86.4% <PuTTYscores>`             :ref:`1.7% <PuTTYscores>`               :ref:`0.0% <PuTTYscores>`             :ref:`0.0% <PuTTYscores>`               :ref:`0.0% <PuTTYscores>`
+.. role:: score-83
+   :class: score-83
 
-.. rst-class:: score-13
+.. role:: score-84
+   :class: score-84
 
-:ref:`Bobcat <Bobcat>`                         0.9.7 (r348)              Linux        16.0.0                  :ref:`13.9% <Bobcatscores>`            :ref:`86.4% <Bobcatscores>`            :ref:`1.7% <Bobcatscores>`              :ref:`0.0% <Bobcatscores>`            :ref:`0.0% <Bobcatscores>`              :ref:`0.0% <Bobcatscores>`
+.. role:: score-85
+   :class: score-85
 
-.. rst-class:: score-13
+.. role:: score-86
+   :class: score-86
 
-:ref:`Terminal.app <Terminalapp>`              2.15 (464)                Darwin       16.0.0                  :ref:`13.6% <Terminalappscores>`       :ref:`86.4% <Terminalappscores>`       :ref:`0.9% <Terminalappscores>`         :ref:`0.0% <Terminalappscores>`       :ref:`0.0% <Terminalappscores>`         :ref:`0.0% <Terminalappscores>`
+.. role:: score-87
+   :class: score-87
 
-.. rst-class:: score-13
+.. role:: score-88
+   :class: score-88
 
-:ref:`Terminal.app <Terminalapp>`              2.15 (464)                Darwin       16.0.0                  :ref:`13.6% <Terminalappscores>`       :ref:`86.4% <Terminalappscores>`       :ref:`0.9% <Terminalappscores>`         :ref:`0.0% <Terminalappscores>`       :ref:`0.0% <Terminalappscores>`         :ref:`0.0% <Terminalappscores>`
+.. role:: score-89
+   :class: score-89
 
-.. rst-class:: score-11
+.. role:: score-90
+   :class: score-90
 
-:ref:`QTerminal <QTerminal>`                   1.4.0                     Linux        15.1.0                  :ref:`11.8% <QTerminalscores>`         :ref:`72.8% <QTerminalscores>`         :ref:`2.6% <QTerminalscores>`           :ref:`0.0% <QTerminalscores>`         :ref:`0.0% <QTerminalscores>`           :ref:`0.0% <QTerminalscores>`
+.. role:: score-91
+   :class: score-91
 
-.. rst-class:: score-11
+.. role:: score-92
+   :class: score-92
 
-:ref:`XTerm <XTerm>`                           390                       Linux        15.1.0                  :ref:`11.5% <XTermscores>`             :ref:`72.8% <XTermscores>`             :ref:`1.7% <XTermscores>`               :ref:`0.0% <XTermscores>`             :ref:`0.0% <XTermscores>`               :ref:`0.0% <XTermscores>`
-
-.. rst-class:: score-11
-
-:ref:`zutty <zutty>`                           0.14.8.20231210           Linux        15.1.0                  :ref:`11.5% <zuttyscores>`             :ref:`72.8% <zuttyscores>`             :ref:`1.7% <zuttyscores>`               :ref:`0.0% <zuttyscores>`             :ref:`0.0% <zuttyscores>`               :ref:`0.0% <zuttyscores>`
-
-.. rst-class:: score-11
-
-:ref:`rxvt-unicode <rxvtunicode>`              9.31                      Linux        15.1.0                  :ref:`11.5% <rxvtunicodescores>`       :ref:`72.8% <rxvtunicodescores>`       :ref:`1.7% <rxvtunicodescores>`         :ref:`0.0% <rxvtunicodescores>`       :ref:`0.0% <rxvtunicodescores>`         :ref:`0.0% <rxvtunicodescores>`
-
-.. rst-class:: score-11
-
-:ref:`alacritty <alacritty>`                   0.13.2                    Linux        15.1.0                  :ref:`11.5% <alacrittyscores>`         :ref:`72.8% <alacrittyscores>`         :ref:`1.7% <alacrittyscores>`           :ref:`0.0% <alacrittyscores>`         :ref:`0.0% <alacrittyscores>`           :ref:`0.0% <alacrittyscores>`
-
-.. rst-class:: score-11
-
-:ref:`rxvt-unicode <rxvtunicode>`              9.31                      Linux        15.1.0                  :ref:`11.5% <rxvtunicodescores>`       :ref:`72.8% <rxvtunicodescores>`       :ref:`1.7% <rxvtunicodescores>`         :ref:`0.0% <rxvtunicodescores>`       :ref:`0.0% <rxvtunicodescores>`         :ref:`0.0% <rxvtunicodescores>`
-
-.. rst-class:: score-11
-
-:ref:`st <st>`                                 0.9                       Linux        15.1.0                  :ref:`11.5% <stscores>`                :ref:`72.8% <stscores>`                :ref:`1.7% <stscores>`                  :ref:`0.0% <stscores>`                :ref:`0.0% <stscores>`                  :ref:`0.0% <stscores>`
-
-.. rst-class:: score-11
-
-:ref:`XTerm <XTerm>`                           390                       Linux        15.1.0                  :ref:`11.5% <XTermscores>`             :ref:`72.8% <XTermscores>`             :ref:`1.7% <XTermscores>`               :ref:`0.0% <XTermscores>`             :ref:`0.0% <XTermscores>`               :ref:`0.0% <XTermscores>`
-
-.. rst-class:: score-11
-
-:ref:`zutty <zutty>`                           0.14.8.20231210           Linux        15.1.0                  :ref:`11.5% <zuttyscores>`             :ref:`72.8% <zuttyscores>`             :ref:`1.7% <zuttyscores>`               :ref:`0.0% <zuttyscores>`             :ref:`0.0% <zuttyscores>`               :ref:`0.0% <zuttyscores>`
-
-.. rst-class:: score-11
-
-:ref:`alacritty <alacritty>`                   0.13.2                    Linux        15.1.0                  :ref:`11.5% <alacrittyscores>`         :ref:`72.8% <alacrittyscores>`         :ref:`1.7% <alacrittyscores>`           :ref:`0.0% <alacrittyscores>`         :ref:`0.0% <alacrittyscores>`           :ref:`0.0% <alacrittyscores>`
-
-.. rst-class:: score-11
-
-:ref:`st <st>`                                 0.9                       Linux        15.1.0                  :ref:`11.5% <stscores>`                :ref:`72.8% <stscores>`                :ref:`1.7% <stscores>`                  :ref:`0.0% <stscores>`                :ref:`0.0% <stscores>`                  :ref:`0.0% <stscores>`
-
-.. rst-class:: score-11
-
-:ref:`XTerm <XTerm>`                           390                       Linux        15.1.0                  :ref:`11.5% <XTermscores>`             :ref:`72.8% <XTermscores>`             :ref:`1.7% <XTermscores>`               :ref:`0.0% <XTermscores>`             :ref:`0.0% <XTermscores>`               :ref:`0.0% <XTermscores>`
-
-.. rst-class:: score-11
-
-:ref:`XTerm <XTerm>`                           390                       Linux        15.1.0                  :ref:`11.5% <XTermscores>`             :ref:`72.8% <XTermscores>`             :ref:`1.7% <XTermscores>`               :ref:`0.0% <XTermscores>`             :ref:`0.0% <XTermscores>`               :ref:`0.0% <XTermscores>`
-
-.. rst-class:: score-9
-
-:ref:`Gnome Terminal <GnomeTerminal>`          3.52.0(VTE/7600)          Linux        15.0.0                  :ref:`9.2% <GnomeTerminalscores>`      :ref:`59.2% <GnomeTerminalscores>`     :ref:`1.7% <GnomeTerminalscores>`       :ref:`0.0% <GnomeTerminalscores>`     :ref:`0.0% <GnomeTerminalscores>`       :ref:`0.0% <GnomeTerminalscores>`
-
-.. rst-class:: score-9
-
-:ref:`xfce4-terminal <xfce4terminal>`          1.1.3(VTE/7600)           Linux        15.0.0                  :ref:`9.2% <xfce4terminalscores>`      :ref:`59.2% <xfce4terminalscores>`     :ref:`1.7% <xfce4terminalscores>`       :ref:`0.0% <xfce4terminalscores>`     :ref:`0.0% <xfce4terminalscores>`       :ref:`0.0% <xfce4terminalscores>`
-
-.. rst-class:: score-9
-
-:ref:`Gnome Terminal <GnomeTerminal>`          3.52.0(VTE/7600)          Linux        15.0.0                  :ref:`9.2% <GnomeTerminalscores>`      :ref:`59.2% <GnomeTerminalscores>`     :ref:`1.7% <GnomeTerminalscores>`       :ref:`0.0% <GnomeTerminalscores>`     :ref:`0.0% <GnomeTerminalscores>`       :ref:`0.0% <GnomeTerminalscores>`
-
-.. rst-class:: score-9
-
-:ref:`mlterm <mlterm>`                         3.9.3                     Linux        15.0.0                  :ref:`9.2% <mltermscores>`             :ref:`59.2% <mltermscores>`            :ref:`1.7% <mltermscores>`              :ref:`0.0% <mltermscores>`            :ref:`0.0% <mltermscores>`              :ref:`0.0% <mltermscores>`
-
-.. rst-class:: score-9
-
-:ref:`LXTerminal <LXTerminal>`                 0.4.0(VTE/7600)           Linux        15.0.0                  :ref:`9.2% <LXTerminalscores>`         :ref:`59.2% <LXTerminalscores>`        :ref:`1.7% <LXTerminalscores>`          :ref:`0.0% <LXTerminalscores>`        :ref:`0.0% <LXTerminalscores>`          :ref:`0.0% <LXTerminalscores>`
-
-.. rst-class:: score-9
-
-:ref:`xfce4-terminal <xfce4terminal>`          1.1.3(VTE/7600)           Linux        15.0.0                  :ref:`9.2% <xfce4terminalscores>`      :ref:`59.2% <xfce4terminalscores>`     :ref:`1.7% <xfce4terminalscores>`       :ref:`0.0% <xfce4terminalscores>`     :ref:`0.0% <xfce4terminalscores>`       :ref:`0.0% <xfce4terminalscores>`
-
-.. rst-class:: score-9
-
-:ref:`LXTerminal <LXTerminal>`                 0.4.0(VTE/7600)           Linux        15.0.0                  :ref:`9.2% <LXTerminalscores>`         :ref:`59.2% <LXTerminalscores>`        :ref:`1.7% <LXTerminalscores>`          :ref:`0.0% <LXTerminalscores>`        :ref:`0.0% <LXTerminalscores>`          :ref:`0.0% <LXTerminalscores>`
-
-.. rst-class:: score-9
-
-:ref:`mlterm <mlterm>`                         3.9.3                     Linux        15.0.0                  :ref:`9.2% <mltermscores>`             :ref:`59.2% <mltermscores>`            :ref:`1.7% <mltermscores>`              :ref:`0.0% <mltermscores>`            :ref:`0.0% <mltermscores>`              :ref:`0.0% <mltermscores>`
-
-.. rst-class:: score-9
-
-:ref:`terminator <terminator>`                 2.1.3(VTE/7600)           Linux        15.0.0                  :ref:`9.2% <terminatorscores>`         :ref:`59.2% <terminatorscores>`        :ref:`1.7% <terminatorscores>`          :ref:`0.0% <terminatorscores>`        :ref:`0.0% <terminatorscores>`          :ref:`0.0% <terminatorscores>`
-
-.. rst-class:: score-9
-
-:ref:`termit <termit>`                         3.1 (VTE/7600)            Linux        15.0.0                  :ref:`9.2% <termitscores>`             :ref:`59.2% <termitscores>`            :ref:`1.7% <termitscores>`              :ref:`0.0% <termitscores>`            :ref:`0.0% <termitscores>`              :ref:`0.0% <termitscores>`
-
-.. rst-class:: score-9
-
-:ref:`termit <termit>`                         3.1 (VTE/7600)            Linux        15.0.0                  :ref:`9.2% <termitscores>`             :ref:`59.2% <termitscores>`            :ref:`1.7% <termitscores>`              :ref:`0.0% <termitscores>`            :ref:`0.0% <termitscores>`              :ref:`0.0% <termitscores>`
-
-.. rst-class:: score-9
-
-:ref:`terminator <terminator>`                 2.1.3(VTE/7600)           Linux        15.0.0                  :ref:`9.2% <terminatorscores>`         :ref:`59.2% <terminatorscores>`        :ref:`1.7% <terminatorscores>`          :ref:`0.0% <terminatorscores>`        :ref:`0.0% <terminatorscores>`          :ref:`0.0% <terminatorscores>`
-
-.. rst-class:: score-6
-
-:ref:`putty <putty>`                           0.81                      Linux        14.0.0                  :ref:`6.9% <puttyscores>`              :ref:`45.6% <puttyscores>`             :ref:`1.7% <puttyscores>`               :ref:`0.0% <puttyscores>`             :ref:`0.0% <puttyscores>`               :ref:`0.0% <puttyscores>`
-
-.. rst-class:: score-0
-
-:ref:`tabby <tabby>`                           1.0.228                   Darwin       12.0.0                  :ref:`0.0% <tabbyscores>`              :ref:`4.8% <tabbyscores>`              :ref:`1.7% <tabbyscores>`               :ref:`0.0% <tabbyscores>`             :ref:`0.0% <tabbyscores>`               :ref:`0.0% <tabbyscores>`
-
-.. rst-class:: score-0
-
-:ref:`tabby <tabby>`                           1.0.228                   Darwin       12.0.0                  :ref:`0.0% <tabbyscores>`              :ref:`4.8% <tabbyscores>`              :ref:`1.7% <tabbyscores>`               :ref:`0.0% <tabbyscores>`             :ref:`0.0% <tabbyscores>`               :ref:`0.0% <tabbyscores>`
-=============================================  ========================  ===========  ======================  =====================================  =====================================  ======================================  ====================================  ======================================  ===================================
+.. role:: score-93
+   :class: score-93
+
+.. role:: score-94
+   :class: score-94
+
+.. role:: score-95
+   :class: score-95
+
+.. role:: score-96
+   :class: score-96
+
+.. role:: score-97
+   :class: score-97
+
+.. role:: score-98
+   :class: score-98
+
+.. role:: score-99
+   :class: score-99
+
+.. role:: score-100
+   :class: score-100
+
+.. role:: score-na
+   :class: score-na
+
+=============================================  ========================  ===========  ======================  ===================  ===================  ===================  ===================  ===================  ===================
+Terminal Software                              Software Version          OS System    Wide Unicode version    FINAL                WIDE                 LANG                 ZWJ                  VS16                 VS15
+=============================================  ========================  ===========  ======================  ===================  ===================  ===================  ===================  ===================  ===================
+:ref:`Konsole <Konsole>`                       23.08.1                   Linux        15.0.0                  :score-100:`100.0%`  :score-87:`87.5%`    :score-84:`84.3%`    :score-96:`97.0%`    :score-100:`100.0%`  :score-na:`N/A`
+:ref:`foot <foot>`                             1.16.2                    Linux        15.0.0                  :score-97:`97.6%`    :score-78:`78.4%`    :score-82:`82.7%`    :score-96:`97.0%`    :score-100:`100.0%`  :score-na:`N/A`
+:ref:`iTerm2 <iTerm2>`                         3.5.0 beta18              Darwin       15.0.0                  :score-94:`94.7%`    :score-78:`78.4%`    :score-82:`82.7%`    :score-96:`97.0%`    :score-91:`91.0%`    :score-na:`N/A`
+:ref:`kitty <kitty>`                           0.32.2                    Darwin       15.0.0                  :score-88:`88.1%`    :score-83:`83.4%`    :score-100:`100.0%`  :score-0:`0.0%`      :score-100:`100.0%`  :score-100:`100.0%`
+:ref:`Kovid Goyal's kitty <KovidGoyalskitty>`  0.31.0                    Darwin       15.0.0                  :score-81:`81.7%`    :score-87:`87.5%`    :score-100:`100.0%`  :score-0:`0.0%`      :score-100:`100.0%`  :score-na:`N/A`
+:ref:`iTerm2 <iTerm2>`                         3.5.0 beta20              Darwin       15.0.0                  :score-73:`73.5%`    :score-71:`71.3%`    :score-82:`82.7%`    :score-96:`97.0%`    :score-94:`94.4%`    :score-0:`0.0%`
+:ref:`WezTerm <WezTerm>`                       20230712                  Darwin       15.0.0                  :score-71:`71.1%`    :score-78:`78.4%`    :score-100:`100.0%`  :score-96:`97.0%`    :score-0:`0.0%`      :score-na:`N/A`
+:ref:`Terminal.exe <Terminalexe>`              Windows 10                Windows      15.0.0                  :score-61:`61.8%`    :score-87:`87.5%`    :score-34:`34.6%`    :score-0:`0.0%`      :score-100:`100.0%`  :score-na:`N/A`
+:ref:`kitty <kitty>`                           0.32.2                    Linux        15.0.0                  :score-60:`60.2%`    :score-59:`59.2%`    :score-2:`2.6%`      :score-0:`0.0%`      :score-100:`100.0%`  :score-100:`100.0%`
+:ref:`zoc <zoc>`                               8.07.3                    Darwin       15.0.0                  :score-59:`59.1%`    :score-78:`78.4%`    :score-32:`32.3%`    :score-0:`0.0%`      :score-100:`100.0%`  :score-na:`N/A`
+:ref:`ExtratermQt <ExtratermQt>`               0.75.0                    Darwin       14.0.0                  :score-58:`58.9%`    :score-75:`75.1%`    :score-33:`33.9%`    :score-0:`0.0%`      :score-100:`100.0%`  :score-na:`N/A`
+:ref:`iTerm2 <iTerm2>`                         3.6.5                     Darwin       16.0.0                  :score-56:`56.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-100:`100.0%`  :score-94:`94.4%`    :score-0:`0.0%`
+:ref:`WezTerm <WezTerm>`                       20240203                  Darwin       15.0.0                  :score-53:`53.8%`    :score-71:`71.3%`    :score-100:`100.0%`  :score-96:`97.0%`    :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`ghostty <ghostty>`                       1.1.3-dev+0000000         Linux        15.0.0                  :score-52:`52.5%`    :score-59:`59.2%`    :score-2:`2.6%`      :score-100:`100.0%`  :score-94:`94.4%`    :score-0:`0.0%`
+:ref:`ghostty <ghostty>`                       1.1.3-dev+0000000         Linux        15.0.0                  :score-52:`52.5%`    :score-59:`59.2%`    :score-2:`2.6%`      :score-100:`100.0%`  :score-94:`94.4%`    :score-0:`0.0%`
+:ref:`Konsole <Konsole>`                       23.08.5                   Linux        15.0.0                  :score-51:`51.6%`    :score-59:`59.2%`    :score-1:`1.7%`      :score-88:`88.9%`    :score-100:`100.0%`  :score-0:`0.0%`
+:ref:`Konsole <Konsole>`                       23.08.5                   Linux        15.0.0                  :score-51:`51.6%`    :score-59:`59.2%`    :score-1:`1.7%`      :score-88:`88.9%`    :score-100:`100.0%`  :score-0:`0.0%`
+:ref:`cool-retro-term <coolretroterm>`         1.2.0                     Darwin       9.0.0                   :score-50:`50.2%`    :score-0:`0.0%`      :score-60:`60.6%`    :score-11:`12.0%`    :score-88:`88.0%`    :score-na:`N/A`
+:ref:`ConsoleZ <ConsoleZ>`                     1.19.0.19104              Windows      15.1.0                  :score-49:`49.8%`    :score-100:`100.0%`  :score-34:`34.6%`    :score-0:`0.0%`      :score-54:`54.0%`    :score-na:`N/A`
+:ref:`cmd.exe <cmdexe>`                        Win10                     Windows      15.1.0                  :score-47:`47.9%`    :score-100:`100.0%`  :score-34:`34.6%`    :score-0:`0.0%`      :score-48:`48.0%`    :score-na:`N/A`
+:ref:`Contour <Contour>`                       0.4.1.6292                Windows      15.1.0                  :score-47:`47.9%`    :score-100:`100.0%`  :score-34:`34.6%`    :score-0:`0.0%`      :score-48:`48.0%`    :score-na:`N/A`
+:ref:`rio <rio>`                               0.0.33                    Darwin       15.1.0                  :score-47:`47.8%`    :score-100:`100.0%`  :score-84:`84.3%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`Alacritty <Alacritty>`                   0.13.0_1                  Darwin       15.1.0                  :score-47:`47.8%`    :score-100:`100.0%`  :score-84:`84.3%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`xfce4-terminal <xfce4terminal>`          1.1.1                     Linux        15.0.0                  :score-43:`43.2%`    :score-78:`78.4%`    :score-84:`84.3%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`Gnome Terminal <GnomeTerminal>`          3.50.1                    Linux        15.0.0                  :score-43:`43.2%`    :score-78:`78.4%`    :score-84:`84.3%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`xterm <xterm>`                           388                       Linux        15.0.0                  :score-42:`42.3%`    :score-78:`78.4%`    :score-81:`81.1%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`PuTTY <PuTTY>`                           0.80                      Windows      14.0.0                  :score-39:`39.9%`    :score-62:`62.9%`    :score-84:`84.3%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`Terminal.app <Terminalapp>`              2.12.7                    Darwin       14.0.0                  :score-38:`38.3%`    :score-62:`62.9%`    :score-78:`78.7%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`Visual Studio Code <VisualStudioCode>`   1.85.0                    Darwin       12.0.0                  :score-34:`34.3%`    :score-37:`37.7%`    :score-83:`83.5%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`tabby <tabby>`                           1.0.205                   Darwin       12.0.0                  :score-34:`34.3%`    :score-37:`37.7%`    :score-83:`83.5%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`Hyper <Hyper>`                           4.0.0-canary.5            Darwin       12.0.0                  :score-34:`34.1%`    :score-37:`37.7%`    :score-82:`82.7%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-na:`N/A`
+:ref:`contour <contour>`                       0.6.1.7494                Linux        16.0.0                  :score-32:`32.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-100:`100.0%`  :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`WezTerm <WezTerm>`                       20251014-193657-64f2907c  Linux        16.0.0                  :score-32:`32.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-100:`100.0%`  :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`WezTerm <WezTerm>`                       20251014-193657-64f2907c  Linux        16.0.0                  :score-32:`32.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-100:`100.0%`  :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`contour <contour>`                       0.6.1.7494                Linux        16.0.0                  :score-32:`32.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-100:`100.0%`  :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`WezTerm <WezTerm>`                       20240203-110809-5046fc22  Linux        15.0.0                  :score-28:`28.5%`    :score-59:`59.2%`    :score-2:`2.6%`      :score-100:`100.0%`  :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`terminology <terminology>`               1.13.0                    Linux        17.0.0                  :score-15:`15.2%`    :score-97:`97.1%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`terminology <terminology>`               1.13.0                    Linux        17.0.0                  :score-15:`15.2%`    :score-97:`97.1%`    :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`rio <rio>`                               0.2.28                    Darwin       16.0.0                  :score-13:`13.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`Bobcat <Bobcat>`                         0.9.7 (r348)              Linux        16.0.0                  :score-13:`13.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`PuTTY <PuTTY>`                           0.83                      Linux        16.0.0                  :score-13:`13.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`PuTTY <PuTTY>`                           0.83                      Linux        16.0.0                  :score-13:`13.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`Bobcat <Bobcat>`                         0.9.7 (r348)              Linux        16.0.0                  :score-13:`13.9%`    :score-86:`86.4%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`Terminal.app <Terminalapp>`              2.15 (464)                Darwin       16.0.0                  :score-13:`13.6%`    :score-86:`86.4%`    :score-0:`0.9%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`Terminal.app <Terminalapp>`              2.15 (464)                Darwin       16.0.0                  :score-13:`13.6%`    :score-86:`86.4%`    :score-0:`0.9%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`QTerminal <QTerminal>`                   1.4.0                     Linux        15.1.0                  :score-11:`11.8%`    :score-72:`72.8%`    :score-2:`2.6%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`XTerm <XTerm>`                           390                       Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`zutty <zutty>`                           0.14.8.20231210           Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`rxvt-unicode <rxvtunicode>`              9.31                      Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`alacritty <alacritty>`                   0.13.2                    Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`rxvt-unicode <rxvtunicode>`              9.31                      Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`st <st>`                                 0.9                       Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`XTerm <XTerm>`                           390                       Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`zutty <zutty>`                           0.14.8.20231210           Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`alacritty <alacritty>`                   0.13.2                    Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`st <st>`                                 0.9                       Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`XTerm <XTerm>`                           390                       Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`XTerm <XTerm>`                           390                       Linux        15.1.0                  :score-11:`11.5%`    :score-72:`72.8%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`Gnome Terminal <GnomeTerminal>`          3.52.0(VTE/7600)          Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`xfce4-terminal <xfce4terminal>`          1.1.3(VTE/7600)           Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`Gnome Terminal <GnomeTerminal>`          3.52.0(VTE/7600)          Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`mlterm <mlterm>`                         3.9.3                     Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`LXTerminal <LXTerminal>`                 0.4.0(VTE/7600)           Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`xfce4-terminal <xfce4terminal>`          1.1.3(VTE/7600)           Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`LXTerminal <LXTerminal>`                 0.4.0(VTE/7600)           Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`mlterm <mlterm>`                         3.9.3                     Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`terminator <terminator>`                 2.1.3(VTE/7600)           Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`termit <termit>`                         3.1 (VTE/7600)            Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`termit <termit>`                         3.1 (VTE/7600)            Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`terminator <terminator>`                 2.1.3(VTE/7600)           Linux        15.0.0                  :score-9:`9.2%`      :score-59:`59.2%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`putty <putty>`                           0.81                      Linux        14.0.0                  :score-6:`6.9%`      :score-45:`45.6%`    :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`tabby <tabby>`                           1.0.228                   Darwin       12.0.0                  :score-0:`0.0%`      :score-4:`4.8%`      :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+:ref:`tabby <tabby>`                           1.0.228                   Darwin       12.0.0                  :score-0:`0.0%`      :score-4:`4.8%`      :score-1:`1.7%`      :score-0:`0.0%`      :score-0:`0.0%`      :score-0:`0.0%`
+=============================================  ========================  ===========  ======================  ===================  ===================  ===================  ===================  ===================  ===================
 
 Definitions:
 
