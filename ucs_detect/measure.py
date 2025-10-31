@@ -15,8 +15,7 @@ from ucs_detect import terminal
 # to accommodate varying screen sizes, we measure by each word,
 # but some languages do not use ASCII space, we make some
 # effort to use any their word boundaries.
-WORD_SPLIT_DELIMITERS = (" ", "，", "、", ",", "\u200b", "。", "\uA9C0")
-
+WORD_SPLIT_DELIMITERS = (" ", "，", "、", ",", "\u200b", "。", "\uA9C0", "\u0f0b")
 
 
 def word_splitter(line):
@@ -86,7 +85,7 @@ def test_language_support(
                     # filter: do not test long phrases that span margin
                     continue
 
-                # next word goes beyond saftey margin, word-wrap
+                # next word goes beyond "safety margin", which is ~1/2 of screen
                 if expected_width + estimated_xpos > (term.width - largest_xpos):
                     writer("\n")
                     estimated_xpos = 0
@@ -120,6 +119,7 @@ def test_language_support(
                         failure_report[lang][-1]["delta_ypos"] = delta_ypos
                     failure_report[lang][-1]["measured_by_wcwidth"] = expected_width
                     failure_report[lang][-1]["measured_by_terminal"] = delta_xpos
+
                 # reset estimates to actual
                 estimated_xpos = end_xpos
                 last_ypos = end_ypos
@@ -175,9 +175,8 @@ def test_support(
     report_lbound,
     shell,
     emit_osc1337=True,
-    emit_grapheme=True,
 ):
-    # Conditionally enable grapheme clustering mode for entire test.
+    # Enable grapheme clustering mode if terminal supports it (queries with DECRQM first).
     # OSC 1337 Unicode version is set per-version within the test loop.
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
@@ -187,7 +186,7 @@ def test_support(
     if (-1, -1) == (outer_xpos, outer_xpos):
         exit_and_display_timeout_error(term, writer, timeout, orig_xpos=1, top=term.height)
 
-    with terminal.maybe_grapheme_clustering_mode(term, emit_grapheme):
+    with terminal.maybe_grapheme_clustering_mode(term):
         for ver, wchars in table:
             with terminal.osc_1337_for_version(writer, ver, emit_osc1337):
                 maybe_str = f", version={ver}: " if not shell else ""
@@ -310,7 +309,9 @@ def do_languages_test(
         top=top,
         bottom=bottom,
         unicode_version=unicode_version,
-        largest_xpos=15,
+        # ensure up to ~half the screen is available, for really long language "words"
+        # eg. 'རྒྱལ་ཡོངས་དང་རྒྱལ་སྤྱིའི་ཉེས་འགེལ་ཁྲིམས་ཀྱི་གྲངས་སུ་ཐོ་བཀོད་འབད་དེ་མེད་པ་ཅིན་'
+        largest_xpos=math.max(40, term.width // 2),
         limit_words=limit_words,
         limit_errors=limit_errors,
     )

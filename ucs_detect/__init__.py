@@ -142,7 +142,7 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, no_languages_test, timeout, no_emit_osc1337, no_emit_grapheme):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, no_languages_test, timeout, no_emit_osc1337):
     """Program entry point."""
     term, writer = init_term(stream, quick)
 
@@ -207,7 +207,6 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
         emit_osc1337=not no_emit_osc1337,
-        emit_grapheme=not no_emit_grapheme,
     )
     if unicode_version:
         # match by CLI argument, '--unicode-version'
@@ -242,7 +241,6 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
         emit_osc1337=not no_emit_osc1337,
-        emit_grapheme=not no_emit_grapheme,
     )
     emoji_zwj_version = determine_best_match(
         emoji_zwj_results, lbound_pct=90, report_lbound=2
@@ -263,7 +261,6 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
         emit_osc1337=not no_emit_osc1337,
-        emit_grapheme=not no_emit_grapheme,
     )
 
     # Variation-15 emoji sequences - Test once, report twice
@@ -281,7 +278,6 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         report_lbound=2,
         shell=shell,
         emit_osc1337=not no_emit_osc1337,
-        emit_grapheme=not no_emit_grapheme,
     )
     # Split results: Type A shows all 158, Type B shows just 4 CJK
     emoji_vs15_type_a_results = split_vs15_results(emoji_vs15_all_results, cjk_only=False)
@@ -579,12 +575,6 @@ def parse_args():
         action="store_true",
         default=False,
         help="Do not emit OSC 1337 escape sequence to set Unicode version"
-    )
-    args.add_argument(
-        "--no-emit-grapheme",
-        action="store_true",
-        default=False,
-        help="Do not enable grapheme clustering mode (DEC 2027)"
     )
     results = vars(args.parse_args())
     if results["quick"]:

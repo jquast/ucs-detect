@@ -102,17 +102,8 @@ def osc_1337_for_version(writer, version_str, enabled):
         yield
 
 
-def maybe_grapheme_clustering_mode(term, enabled):
-    """
-    Return grapheme clustering context manager if enabled, otherwise nullcontext.
-
-    This allows conditional use of DEC mode 2027 (GRAPHEME_CLUSTERING).
-    Uses blessed's dec_modes_enabled which queries the current state and restores it on exit.
-    """
-    from blessed.dec_modes import DecPrivateMode
-    if enabled:
-        return term.dec_modes_enabled(DecPrivateMode.GRAPHEME_CLUSTERING, timeout=1)
-    return contextlib.nullcontext()
+def maybe_grapheme_clustering_mode(term):
+    return term.dec_modes_enabled(term.DecPrivateMode.GRAPHEME_CLUSTERING, timeout=1)
 
 
 def _get_all_dec_private_mode_numbers():

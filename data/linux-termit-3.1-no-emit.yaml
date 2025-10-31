@@ -8,7 +8,7 @@ session_arguments:
   limit_words: 5000
   quick: false
   stream: stderr
-software_name: termi
+software_name: termit
 software_version: 3.1 (VTE/7600)
 system: Linux
 terminal_results:
