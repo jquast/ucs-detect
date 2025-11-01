@@ -335,11 +335,11 @@ def display_tabulated_scores(score_table):
     tabulated_scores = []
 
     for result in score_table:
-        # Get the total number of supported DEC modes for display
+        # Get the total number of changeable DEC modes for display
         dec_modes_count = 0
         if not math.isnan(result["score_dec_modes"]):
             modes = result["data"]["terminal_results"]["modes"]
-            dec_modes_count = sum(1 for mode_data in modes.values() if mode_data.get("supported", False))
+            dec_modes_count = sum(1 for mode_data in modes.values() if mode_data.get("changeable", False))
 
         # Create DEC modes display text (just the number, hyperlink will be added by wrap_score_with_hyperlink)
         dec_modes_display = f"{dec_modes_count}" if not math.isnan(result["score_dec_modes"]) else "N/A"
@@ -347,12 +347,16 @@ def display_tabulated_scores(score_table):
         # Create elapsed time display text (integer seconds with 's' suffix)
         elapsed_display = f"{int(result['elapsed_seconds'])}s" if not math.isnan(result['elapsed_seconds']) else "N/A"
 
+        # Create WIDE display text combining version and percentage (e.g., "16.0.0/86.4%")
+        wide_version = result["version_best_wide"] or "na"
+        wide_pct = format_score_pct(result["score_wide_scaled"])
+        wide_display = f"{wide_version}/{wide_pct}"
+
         tabulated_scores.append(
             {
                 "Terminal Software": make_outbound_hyperlink(result["terminal_software_name"]),
                 "Software Version": result["terminal_software_version"],
                 "OS System": result["os_system"],
-                "Wide Unicode version": result["version_best_wide"] or "na",
 
                 "FINAL": wrap_score_with_hyperlink(
                     format_score_pct(result["score_final_scaled"]),
@@ -361,7 +365,7 @@ def display_tabulated_scores(score_table):
                     "_scores"
                 ),
                 "WIDE": wrap_score_with_hyperlink(
-                    format_score_pct(result["score_wide_scaled"]),
+                    wide_display,
                     result["score_wide_scaled"],
                     result["terminal_software_name"],
                     "_wide"
@@ -419,14 +423,11 @@ def display_tabulated_scores(score_table):
 def display_table_definitions():
     print("Definitions:\n")
     print(
-        "- *WIDE score*: Determined by version release level of wide character\n"
-        "  support, multiplied by the pct of wide codepoints supported at that\n"
-        "  version, scaled."
-    )
-    print(
-        "- *Wide Unicode version*: The Unicode version specification most\n"
-        "  closely matching in compatibility, the highest version value with "
-        "  90% match or greater)."
+        "- *WIDE score*: Shows the Unicode version specification most closely\n"
+        "  matching in compatibility (highest version with 90% match or greater),\n"
+        "  followed by the scaled percentage score (determined by version release\n"
+        "  level multiplied by the pct of wide codepoints supported at that version).\n"
+        "  Format: version/percentage (e.g., 16.0.0/86.4%)."
     )
     print(
         "- *LANG score*: The percentage of international languages tested\n"
@@ -447,8 +448,8 @@ def display_table_definitions():
     )
     print(
         "- *DEC Modes score*: Determined by the number of DEC private modes\n"
-        "  supported by the terminal, scaled. The number in parentheses shows\n"
-        "  the total count of supported modes, with a link to detailed results."
+        "  that are changeable by the terminal, scaled. The number shows\n"
+        "  the total count of changeable modes, with a link to detailed results."
     )
     print(
         "- *TIME score*: Determined by test execution time in seconds, scaled\n"
@@ -520,24 +521,24 @@ def score_lang(data):
 
 def score_dec_modes(data):
     """
-    Calculate score based on supported DEC private modes.
+    Calculate score based on changeable DEC private modes.
 
-    Returns the ratio of supported modes to total modes tested.
+    Returns the ratio of changeable modes to total modes tested.
     """
     if "terminal_results" not in data or "modes" not in data["terminal_results"]:
         return float('NaN')
 
     modes = data["terminal_results"]["modes"]
     total_modes = len(modes)
-    supported_modes = sum(
+    changeable_modes = sum(
         1 for mode_data in modes.values()
-        if mode_data.get("supported", False)
+        if mode_data.get("changeable", False)
     )
 
     if total_modes == 0:
         return float('NaN')
 
-    return supported_modes / total_modes
+    return changeable_modes / total_modes
 
 
 def score_elapsed_time(data):
@@ -587,12 +588,12 @@ def display_dec_modes_feature_table(score_table):
     """
     Display a feature comparison table for DEC Private Modes.
 
-    Shows which terminals support which DEC modes as a yes/no matrix,
-    limited to the union set of modes that at least one terminal supports.
+    Shows which terminals can change which DEC modes as a yes/no matrix,
+    limited to the union set of modes that at least one terminal can change.
     """
     # Collect all DEC modes across all terminals
     all_modes = {}  # mode_num -> mode_info (name, description)
-    terminal_modes = {}  # terminal_name -> {mode_num -> supported}
+    terminal_modes = {}  # terminal_name -> {mode_num -> changeable}
 
     for entry in score_table:
         terminal_name = entry["terminal_software_name"]
@@ -613,26 +614,26 @@ def display_dec_modes_feature_table(score_table):
                     "description": mode_data.get("mode_description", "N/A")
                 }
 
-            # Track whether this terminal supports this mode
-            terminal_modes[terminal_name][mode_num] = mode_data.get("supported", False)
+            # Track whether this terminal can change this mode
+            terminal_modes[terminal_name][mode_num] = mode_data.get("changeable", False)
 
-    # Find union set of supported modes (modes that at least one terminal supports)
-    supported_modes = set()
+    # Find union set of changeable modes (modes that at least one terminal can change)
+    changeable_modes = set()
     for terminal_name, modes in terminal_modes.items():
-        for mode_num, is_supported in modes.items():
-            if is_supported:
-                supported_modes.add(mode_num)
+        for mode_num, is_changeable in modes.items():
+            if is_changeable:
+                changeable_modes.add(mode_num)
 
-    if not supported_modes:
-        # No DEC modes are supported by any terminal
+    if not changeable_modes:
+        # No DEC modes are changeable by any terminal
         return
 
     # Sort modes numerically
-    sorted_modes = sorted(supported_modes, key=int)
+    sorted_modes = sorted(changeable_modes, key=int)
 
     display_title("DEC Private Modes Feature Comparison", 2)
-    print("This table shows which DEC Private Modes are supported by each terminal.")
-    print("Only modes supported by at least one terminal are shown.")
+    print("This table shows which DEC Private Modes are changeable by each terminal.")
+    print("Only modes changeable by at least one terminal are shown.")
     print()
 
     # Build the table data
@@ -660,12 +661,12 @@ def display_dec_modes_feature_table(score_table):
                     mode_name = parts[0] + '\n' + '_'.join(parts[1:])
             mode_label = f"{mode_num}\n{mode_name}"
 
-            # Check if terminal supports this mode
-            is_supported = terminal_modes[terminal_name].get(mode_num, False)
+            # Check if terminal can change this mode
+            is_changeable = terminal_modes[terminal_name].get(mode_num, False)
 
             # Use score-100 for Yes (green) and score-0 for No (red)
             # Link "Yes" to the specific mode in the terminal's detail page
-            if is_supported:
+            if is_changeable:
                 mode_anchor = make_link(f"{terminal_name}_decmode_{mode_num}")
                 cell_value = f':sref:`Yes <{mode_anchor}> 100`'
             else:
@@ -733,7 +734,7 @@ def show_score_breakdown(sw_name, entry):
             "Score Type": "DEC Modes",
             "Raw Score": format_raw_score(entry["score_dec_modes"]),
             "Scaled Score": format_score_pct(entry["score_dec_modes_scaled"]),
-            "Calculation": f'modes_supported / total_modes',
+            "Calculation": f'modes_changeable / total_modes',
         },
         {
             "Score Type": "TIME",
@@ -944,25 +945,28 @@ def show_dec_modes_results(sw_name, entry):
         print()
         return
 
+    changeable_modes = sum(1 for mode_data in modes.values() if mode_data.get("changeable", False))
     supported_modes = sum(1 for mode_data in modes.values() if mode_data.get("supported", False))
-    unsupported_modes = total_modes - supported_modes
+    unchangeable_modes = total_modes - changeable_modes
 
-    print(f"DEC private modes results for *{sw_name}*: {supported_modes} supported modes")
-    print(f"out of {total_modes} total modes tested ({(supported_modes/total_modes*100):0.1f}% support).")
+    print(f"DEC private modes results for *{sw_name}*: {changeable_modes} changeable modes")
+    print(f"of {supported_modes} supported out of {total_modes} total modes tested "
+          f"({(supported_modes/total_modes*100):0.1f}% support, "
+          f"{(changeable_modes/total_modes*100):0.1f}% changeable).")
     print()
 
     # Create detailed table of all modes with reference anchors
     print("Complete list of DEC private modes tested:")
     print()
 
-    # We need to manually create the table with anchors for each supported mode
+    # We need to manually create the table with anchors for each changeable mode
     # First, create the table data
     tabulated_modes = []
     for mode_num in sorted(modes.keys(), key=int):
         mode_data = modes[mode_num]
 
-        # Add anchor for supported modes
-        if mode_data.get("supported", False):
+        # Add anchor for changeable modes
+        if mode_data.get("changeable", False):
             mode_anchor = make_link(f"{sw_name}_decmode_{mode_num}")
             display_inbound_hyperlink(mode_anchor)
 
@@ -972,13 +976,14 @@ def show_dec_modes_results(sw_name, entry):
             "Description": mode_data.get("mode_description", "N/A"),
             "Supported": "Yes" if mode_data.get("supported", False) else "No",
             "Changeable": "Yes" if mode_data.get("changeable", False) else "No",
+            "Enabled": "Yes" if mode_data.get("enabled", False) else "No",
         })
 
     print(tabulate.tabulate(tabulated_modes, headers="keys", tablefmt="rst"))
     print()
 
-    # Show summary of supported vs unsupported modes
-    print(f"**Summary**: {supported_modes} supported, {unsupported_modes} unsupported.")
+    # Show summary of changeable vs unchangeable modes
+    print(f"**Summary**: {changeable_modes} changeable, {unchangeable_modes} not changeable.")
     print()
 
 
