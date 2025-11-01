@@ -202,7 +202,22 @@ def maybe_determine_software(term, writer):
         time.sleep(0.1)
         response = term.flushinp(timeout=0.5).strip()
         if response:
+            # Parse answerback response to extract software name and version
+            if response.startswith('>|'):
+                # remove this answerback prefix sometimes used
+                response = response[len('>|'):]
             result['software_name'] = response
+
+            # Try to split into name and version
+            # Format: "SoftwareName Version.Number"
+            parts = response.split()
+            if len(parts) >= 2:
+                # Check if last part looks like a version number (contains digits and dots)
+                last_part = parts[-1]
+                if any(c.isdigit() for c in last_part):
+                    # Last part is (maybe) a version number
+                    result['software_name'] = ' '.join(parts[:-1])
+                    result['software_version'] = last_part
 
     return result
 
