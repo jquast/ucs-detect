@@ -6,7 +6,7 @@ alacritty
 
 Tested Software version 0.13.2 on Linux
 Full results available at ucs-detect_ repository path
-`data/alacritty-0.13.2.yaml <https://github.com/jquast/ucs-detect/blob/master/data/alacritty-0.13.2.yaml>`_
+`data/linux-alacritty-0.13.2.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-alacritty-0.13.2.yaml>`_
 
 .. _alacrittyscores:
 
