@@ -462,9 +462,12 @@ def scale_scores(score_table, entry, key):
     if max_score == min_score:
         return 1.0  # All scores are the same
 
-    # Inverse scaling for elapsed time (lower is better)
+    # Inverse log10 scaling for elapsed time (lower is better, log scale for color distribution)
     if key == 'score_elapsed':
-        return 1.0 - ((my_score - min_score) / (max_score - min_score))
+        log_my_score = math.log10(my_score)
+        log_min_score = math.log10(min_score)
+        log_max_score = math.log10(max_score)
+        return 1.0 - ((log_my_score - log_min_score) / (log_max_score - log_min_score))
 
     return (my_score - min_score) / (max_score - min_score)
 
@@ -894,7 +897,7 @@ def show_language_results(sw_name, entry):
     )
     tabulated_failed_language_results = [
         {
-            "lang": lang,
+            "lang": make_outbound_hyperlink(lang, sw_name + "_lang_" + lang),
             "n_errors": entry["data"]["test_results"]["language_results"][lang]["n_errors"],
             "n_total": entry["data"]["test_results"]["language_results"][lang]["n_total"],
             "pct_success": f'{entry["data"]["test_results"]["language_results"][lang]["pct_success"]:0.1f}%',
@@ -908,6 +911,7 @@ def show_language_results(sw_name, entry):
     print()
     for failed_lang in languages_failed:
         fail_record = entry["data"]["test_results"]["language_results"][failed_lang]["failed"][0]
+        display_inbound_hyperlink(sw_name + "_lang_" + failed_lang)
         display_title(failed_lang, 4)
         show_record_failure(sw_name, f"of language *{failed_lang}*", fail_record)
 
