@@ -989,12 +989,6 @@ def show_time_elapsed_results(sw_name, entry):
     print(f"including all Unicode wide character tests, emoji ZWJ sequences, variation")
     print(f"selectors, language support checks, and DEC mode detection.")
     print()
-    print(f"Faster execution times generally indicate more efficient terminal rendering")
-    print(f"and/or faster response to terminal control sequences. However, execution")
-    print(f"time can also be affected by system load, terminal implementation complexity,")
-    print(f"and the number of features being tested.")
-    print()
-
 
 def show_record_failure(sw_name, whatis, fail_record):
     num_bars = "1234567890" * ((fail_record["measured_by_wcwidth"] // 10) + 1)
