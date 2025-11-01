@@ -24,7 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
-TIME          533.82s      96.5%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          533.82s      49.7%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -184,127 +184,129 @@ Mongolian, Halh (Mongolian), Tagalog (Tagalog).
 
 The following 117 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Shan                                    868        915  5.1%
-Tamil (Sri Lanka)                      1000       1075  7.0%
-Tamil                                  1000       1076  7.1%
-Javanese (Javanese)                    1000       1127  11.3%
-Sanskrit (Grantha)                      892       1006  11.3%
-Malayalam                              1000       1156  13.5%
-Bengali                                1000       1166  14.2%
-Khmer, Central                          448        528  15.2%
-Kannada                                 902       1080  16.5%
-Khün                                    361        442  18.3%
-Burmese                                 975       1223  20.3%
-Sanskrit                                755       1000  24.5%
-Tamang, Eastern                          33         45  26.7%
-Mon                                     676        946  28.5%
-Marathi                                1000       1421  29.6%
-Nepali                                  931       1385  32.8%
-Gujarati                               1000       1521  34.3%
-Telugu                                  715       1129  36.7%
-Maithili                                955       1519  37.1%
-Hindi                                  1000       1629  38.6%
-Panjabi, Eastern                       1000       1831  45.4%
-Sinhala                                 886       1655  46.5%
-Bhojpuri                                880       1737  49.3%
-Magahi                                  812       1716  52.7%
-Chakma                                  494       1444  65.8%
-Tibetan, Central                          3        280  98.9%
-Chinese, Mandarin (Harbin)                2        210  99.0%
-Chinese, Yue                              2        210  99.0%
-Chinese, Gan                              2        211  99.1%
-Chinese, Mandarin (Guiyang)               2        211  99.1%
-Chinese, Wu                               2        211  99.1%
-Chinese, Hakka                            2        212  99.1%
-Chinese, Jinyu                            2        212  99.1%
-Chinese, Mandarin (Beijing)               2        212  99.1%
-Chinese, Mandarin (Tianjin)               2        212  99.1%
-Chinese, Min Nan                          2        212  99.1%
-Chinese, Xiang                            2        212  99.1%
-Chinese, Mandarin (Simplified)            2        225  99.1%
-Nuosu                                     2        230  99.1%
-Dzongkha                                  3        359  99.2%
-Lao                                       3        426  99.3%
-Japanese                                  2        299  99.3%
-Japanese (Osaka)                          2        308  99.4%
-Thai (2)                                  2        313  99.4%
-Japanese (Tokyo)                          2        320  99.4%
-Thai                                      2        341  99.4%
-Vietnamese (Han nom)                      1        199  99.5%
-Chinese, Mandarin (Traditional)           1        210  99.5%
-(Jinan)                                   1        211  99.5%
-Chinese, Mandarin (Nanjing)               1        212  99.5%
-Bora                                      4       1598  99.7%
-Navajo                                    4       1600  99.8%
-Nanai                                     3       1207  99.8%
-Orok                                      3       1245  99.8%
-Yaneshaʼ                                  6       2536  99.8%
-Shipibo-Conibo                            6       2540  99.8%
-Gumuz                                     3       1283  99.8%
-Veps                                      3       1323  99.8%
-Evenki                                    2        899  99.8%
-South Azerbaijani                         3       1396  99.8%
-Secoya                                    3       1409  99.8%
-Amarakaeri                                3       1446  99.8%
-Siona                                     3       1492  99.8%
-Gilyak                                    3       1504  99.8%
-(Yeonbyeon)                               2       1061  99.8%
-Tem                                       3       1659  99.8%
-Chickasaw                                 1        554  99.8%
-Assyrian Neo-Aramaic                      2       1160  99.8%
-Yiddish, Eastern                          3       1775  99.8%
-Saint Lucian Creole French                3       1777  99.8%
-Korean                                    2       1185  99.8%
-Kabyle                                    3       1815  99.8%
-Lingala (tones)                           3       1818  99.8%
-Tamazight, Central Atlas                  3       1822  99.8%
-Fur                                       3       1838  99.8%
-Ditammari                                 3       1882  99.8%
-Colorado                                  2       1263  99.8%
-Catalan (2)                               3       1909  99.8%
-Maldivian                                 3       1918  99.8%
-French (Welche)                           3       1928  99.8%
-Uduk                                      5       3247  99.8%
-Mirandese                                 3       1966  99.8%
-Arabic, Standard                          2       1348  99.9%
-Picard                                    3       2024  99.9%
-Ga                                        3       2039  99.9%
-Ticuna                                    3       2048  99.9%
-Mixtec, Metlatónoc                        2       1367  99.9%
-Aja                                       3       2061  99.9%
-Éwé                                       3       2230  99.9%
-Lamnso'                                   3       2237  99.9%
-Urdu                                      3       2237  99.9%
-Pashto, Northern                          3       2242  99.9%
-Seraiki                                   3       2242  99.9%
-Belanda Viri                              3       2246  99.9%
-Urdu (2)                                  3       2251  99.9%
-Bamun                                     3       2285  99.9%
-Dinka, Northeastern                       2       1529  99.9%
-Gen                                       3       2309  99.9%
-Dendi                                     2       1569  99.9%
-Mazahua Central                           2       1574  99.9%
-Maori (2)                                 3       2385  99.9%
-Serer-Sine                                2       1596  99.9%
-Panjabi, Western                          3       2419  99.9%
-Pular (Adlam)                             2       1613  99.9%
-Mòoré                                     3       2447  99.9%
-Yoruba                                    3       2454  99.9%
-Vietnamese                                3       2502  99.9%
-Fon                                       3       2520  99.9%
-Dagaare, Southern                         3       2582  99.9%
-Chinantec, Chiltepec                      2       1729  99.9%
-Farsi, Western                            2       1822  99.9%
-Otomi, Mezquital                          2       1849  99.9%
-Dari                                      2       1872  99.9%
-Baatonum                                  2       1939  99.9%
-Dangme                                    3       2912  99.9%
-Waama                                     1       1000  99.9%
-Tai Dam                                   2       2386  99.9%
-===============================  ==========  =========  =============
+==========================================================================  ==========  =========  =============
+lang                                                                          n_errors    n_total  pct_success
+==========================================================================  ==========  =========  =============
+:ref:`Shan <riolangShan>`                                                          868        915  5.1%
+:ref:`Tamil (Sri Lanka) <riolangTamilSriLanka>`                                   1000       1075  7.0%
+:ref:`Tamil <riolangTamil>`                                                       1000       1076  7.1%
+:ref:`Javanese (Javanese) <riolangJavaneseJavanese>`                              1000       1127  11.3%
+:ref:`Sanskrit (Grantha) <riolangSanskritGrantha>`                                 892       1006  11.3%
+:ref:`Malayalam <riolangMalayalam>`                                               1000       1156  13.5%
+:ref:`Bengali <riolangBengali>`                                                   1000       1166  14.2%
+:ref:`Khmer, Central <riolangKhmerCentral>`                                        448        528  15.2%
+:ref:`Kannada <riolangKannada>`                                                    902       1080  16.5%
+:ref:`Khün <riolangKhn>`                                                           361        442  18.3%
+:ref:`Burmese <riolangBurmese>`                                                    975       1223  20.3%
+:ref:`Sanskrit <riolangSanskrit>`                                                  755       1000  24.5%
+:ref:`Tamang, Eastern <riolangTamangEastern>`                                       33         45  26.7%
+:ref:`Mon <riolangMon>`                                                            676        946  28.5%
+:ref:`Marathi <riolangMarathi>`                                                   1000       1421  29.6%
+:ref:`Nepali <riolangNepali>`                                                      931       1385  32.8%
+:ref:`Gujarati <riolangGujarati>`                                                 1000       1521  34.3%
+:ref:`Telugu <riolangTelugu>`                                                      715       1129  36.7%
+:ref:`Maithili <riolangMaithili>`                                                  955       1519  37.1%
+:ref:`Hindi <riolangHindi>`                                                       1000       1629  38.6%
+:ref:`Panjabi, Eastern <riolangPanjabiEastern>`                                   1000       1831  45.4%
+:ref:`Sinhala <riolangSinhala>`                                                    886       1655  46.5%
+:ref:`Bhojpuri <riolangBhojpuri>`                                                  880       1737  49.3%
+:ref:`Magahi <riolangMagahi>`                                                      812       1716  52.7%
+:ref:`Chakma <riolangChakma>`                                                      494       1444  65.8%
+:ref:`Tibetan, Central <riolangTibetanCentral>`                                      3        280  98.9%
+:ref:`Chinese, Mandarin (Harbin) <riolangChineseMandarinHarbin>`                     2        210  99.0%
+:ref:`Chinese, Yue <riolangChineseYue>`                                              2        210  99.0%
+:ref:`Chinese, Gan <riolangChineseGan>`                                              2        211  99.1%
+:ref:`Chinese, Mandarin (Guiyang) <riolangChineseMandarinGuiyang>`                   2        211  99.1%
+:ref:`Chinese, Wu <riolangChineseWu>`                                                2        211  99.1%
+:ref:`Chinese, Hakka <riolangChineseHakka>`                                          2        212  99.1%
+:ref:`Chinese, Jinyu <riolangChineseJinyu>`                                          2        212  99.1%
+:ref:`Chinese, Mandarin (Beijing) <riolangChineseMandarinBeijing>`                   2        212  99.1%
+:ref:`Chinese, Mandarin (Tianjin) <riolangChineseMandarinTianjin>`                   2        212  99.1%
+:ref:`Chinese, Min Nan <riolangChineseMinNan>`                                       2        212  99.1%
+:ref:`Chinese, Xiang <riolangChineseXiang>`                                          2        212  99.1%
+:ref:`Chinese, Mandarin (Simplified) <riolangChineseMandarinSimplified>`             2        225  99.1%
+:ref:`Nuosu <riolangNuosu>`                                                          2        230  99.1%
+:ref:`Dzongkha <riolangDzongkha>`                                                    3        359  99.2%
+:ref:`Lao <riolangLao>`                                                              3        426  99.3%
+:ref:`Japanese <riolangJapanese>`                                                    2        299  99.3%
+:ref:`Japanese (Osaka) <riolangJapaneseOsaka>`                                       2        308  99.4%
+:ref:`Thai (2) <riolangThai2>`                                                       2        313  99.4%
+:ref:`Japanese (Tokyo) <riolangJapaneseTokyo>`                                       2        320  99.4%
+:ref:`Thai <riolangThai>`                                                            2        341  99.4%
+:ref:`Vietnamese (Han nom) <riolangVietnameseHannom>`                                1        199  99.5%
+:ref:`Chinese, Mandarin (Traditional) <riolangChineseMandarinTraditional>`           1        210  99.5%
+:ref:`(Jinan) <riolangJinan>`                                                        1        211  99.5%
+:ref:`Chinese, Mandarin (Nanjing) <riolangChineseMandarinNanjing>`                   1        212  99.5%
+:ref:`Bora <riolangBora>`                                                            4       1598  99.7%
+:ref:`Navajo <riolangNavajo>`                                                        4       1600  99.8%
+:ref:`Nanai <riolangNanai>`                                                          3       1207  99.8%
+:ref:`Orok <riolangOrok>`                                                            3       1245  99.8%
+:ref:`Yaneshaʼ <riolangYanesha>`                                                     6       2536  99.8%
+:ref:`Shipibo-Conibo <riolangShipiboConibo>`                                         6       2540  99.8%
+:ref:`Gumuz <riolangGumuz>`                                                          3       1283  99.8%
+:ref:`Veps <riolangVeps>`                                                            3       1323  99.8%
+:ref:`Evenki <riolangEvenki>`                                                        2        899  99.8%
+:ref:`South Azerbaijani <riolangSouthAzerbaijani>`                                   3       1396  99.8%
+:ref:`Secoya <riolangSecoya>`                                                        3       1409  99.8%
+:ref:`Amarakaeri <riolangAmarakaeri>`                                                3       1446  99.8%
+:ref:`Siona <riolangSiona>`                                                          3       1492  99.8%
+:ref:`Gilyak <riolangGilyak>`                                                        3       1504  99.8%
+:ref:`(Yeonbyeon) <riolangYeonbyeon>`                                                2       1061  99.8%
+:ref:`Tem <riolangTem>`                                                              3       1659  99.8%
+:ref:`Chickasaw <riolangChickasaw>`                                                  1        554  99.8%
+:ref:`Assyrian Neo-Aramaic <riolangAssyrianNeoAramaic>`                              2       1160  99.8%
+:ref:`Yiddish, Eastern <riolangYiddishEastern>`                                      3       1775  99.8%
+:ref:`Saint Lucian Creole French <riolangSaintLucianCreoleFrench>`                   3       1777  99.8%
+:ref:`Korean <riolangKorean>`                                                        2       1185  99.8%
+:ref:`Kabyle <riolangKabyle>`                                                        3       1815  99.8%
+:ref:`Lingala (tones) <riolangLingalatones>`                                         3       1818  99.8%
+:ref:`Tamazight, Central Atlas <riolangTamazightCentralAtlas>`                       3       1822  99.8%
+:ref:`Fur <riolangFur>`                                                              3       1838  99.8%
+:ref:`Ditammari <riolangDitammari>`                                                  3       1882  99.8%
+:ref:`Colorado <riolangColorado>`                                                    2       1263  99.8%
+:ref:`Catalan (2) <riolangCatalan2>`                                                 3       1909  99.8%
+:ref:`Maldivian <riolangMaldivian>`                                                  3       1918  99.8%
+:ref:`French (Welche) <riolangFrenchWelche>`                                         3       1928  99.8%
+:ref:`Uduk <riolangUduk>`                                                            5       3247  99.8%
+:ref:`Mirandese <riolangMirandese>`                                                  3       1966  99.8%
+:ref:`Arabic, Standard <riolangArabicStandard>`                                      2       1348  99.9%
+:ref:`Picard <riolangPicard>`                                                        3       2024  99.9%
+:ref:`Ga <riolangGa>`                                                                3       2039  99.9%
+:ref:`Ticuna <riolangTicuna>`                                                        3       2048  99.9%
+:ref:`Mixtec, Metlatónoc <riolangMixtecMetlatnoc>`                                   2       1367  99.9%
+:ref:`Aja <riolangAja>`                                                              3       2061  99.9%
+:ref:`Éwé <riolangw>`                                                                3       2230  99.9%
+:ref:`Lamnso' <riolangLamnso>`                                                       3       2237  99.9%
+:ref:`Urdu <riolangUrdu>`                                                            3       2237  99.9%
+:ref:`Pashto, Northern <riolangPashtoNorthern>`                                      3       2242  99.9%
+:ref:`Seraiki <riolangSeraiki>`                                                      3       2242  99.9%
+:ref:`Belanda Viri <riolangBelandaViri>`                                             3       2246  99.9%
+:ref:`Urdu (2) <riolangUrdu2>`                                                       3       2251  99.9%
+:ref:`Bamun <riolangBamun>`                                                          3       2285  99.9%
+:ref:`Dinka, Northeastern <riolangDinkaNortheastern>`                                2       1529  99.9%
+:ref:`Gen <riolangGen>`                                                              3       2309  99.9%
+:ref:`Dendi <riolangDendi>`                                                          2       1569  99.9%
+:ref:`Mazahua Central <riolangMazahuaCentral>`                                       2       1574  99.9%
+:ref:`Maori (2) <riolangMaori2>`                                                     3       2385  99.9%
+:ref:`Serer-Sine <riolangSererSine>`                                                 2       1596  99.9%
+:ref:`Panjabi, Western <riolangPanjabiWestern>`                                      3       2419  99.9%
+:ref:`Pular (Adlam) <riolangPularAdlam>`                                             2       1613  99.9%
+:ref:`Mòoré <riolangMor>`                                                            3       2447  99.9%
+:ref:`Yoruba <riolangYoruba>`                                                        3       2454  99.9%
+:ref:`Vietnamese <riolangVietnamese>`                                                3       2502  99.9%
+:ref:`Fon <riolangFon>`                                                              3       2520  99.9%
+:ref:`Dagaare, Southern <riolangDagaareSouthern>`                                    3       2582  99.9%
+:ref:`Chinantec, Chiltepec <riolangChinantecChiltepec>`                              2       1729  99.9%
+:ref:`Farsi, Western <riolangFarsiWestern>`                                          2       1822  99.9%
+:ref:`Otomi, Mezquital <riolangOtomiMezquital>`                                      2       1849  99.9%
+:ref:`Dari <riolangDari>`                                                            2       1872  99.9%
+:ref:`Baatonum <riolangBaatonum>`                                                    2       1939  99.9%
+:ref:`Dangme <riolangDangme>`                                                        3       2912  99.9%
+:ref:`Waama <riolangWaama>`                                                          1       1000  99.9%
+:ref:`Tai Dam <riolangTaiDam>`                                                       2       2386  99.9%
+==========================================================================  ==========  =========  =============
+
+.. _riolangShan:
 
 Shan
 ^^^^
@@ -343,6 +345,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width 9.
 
+.. _riolangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -368,6 +372,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
+
+.. _riolangTamil:
 
 Tamil
 ^^^^^
@@ -395,6 +401,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
 
+.. _riolangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -420,6 +428,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
+
+.. _riolangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -456,6 +466,8 @@ Total codepoints: 14
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rio* measures width 14.
+
+.. _riolangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -508,6 +520,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *rio* measures width 21.
 
+.. _riolangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -541,6 +555,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rio* measures width 12.
+
+.. _riolangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -600,6 +616,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *rio* measures width 25.
 
+.. _riolangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -625,6 +643,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
+
+.. _riolangKhn:
 
 Khün
 ^^^^
@@ -670,6 +690,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *rio* measures width 15.
 
+.. _riolangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -708,6 +730,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width 11.
 
+.. _riolangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -744,6 +768,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rio* measures width 13.
 
+.. _riolangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -771,6 +797,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
+
+.. _riolangMon:
 
 Mon
 ^^^
@@ -804,6 +832,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rio* measures width 7.
 
+.. _riolangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -831,6 +861,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 5.
 
+.. _riolangNepali:
+
 Nepali
 ^^^^^^
 
@@ -857,6 +889,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
 
+.. _riolangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -882,6 +916,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
+
+.. _riolangTelugu:
 
 Telugu
 ^^^^^^
@@ -918,6 +954,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *rio* measures width 10.
 
+.. _riolangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -948,6 +986,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rio* measures width 7.
 
+.. _riolangHindi:
+
 Hindi
 ^^^^^
 
@@ -973,6 +1013,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
+
+.. _riolangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1002,6 +1044,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
 
+.. _riolangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1027,6 +1071,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width 4.
+
+.. _riolangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1060,6 +1106,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width 10.
 
+.. _riolangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1091,6 +1139,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width 10.
+
+.. _riolangChakma:
 
 Chakma
 ^^^^^^
@@ -1127,6 +1177,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rio* measures width 8.
 
+.. _riolangTibetanCentral:
+
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
 
@@ -1162,6 +1214,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *rio* measures width -15.
 
+.. _riolangChineseMandarinHarbin:
+
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1187,6 +1241,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width 0.
+
+.. _riolangChineseYue:
 
 Chinese, Yue
 ^^^^^^^^^^^^
@@ -1214,6 +1270,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width 0.
 
+.. _riolangChineseGan:
+
 Chinese, Gan
 ^^^^^^^^^^^^
 
@@ -1240,6 +1298,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width 0.
 
+.. _riolangChineseMandarinGuiyang:
+
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1265,6 +1325,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width 0.
+
+.. _riolangChineseWu:
 
 Chinese, Wu
 ^^^^^^^^^^^
@@ -1295,6 +1357,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *rio* measures width -16.
 
+.. _riolangChineseHakka:
+
 Chinese, Hakka
 ^^^^^^^^^^^^^^
 
@@ -1320,6 +1384,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width -1.
+
+.. _riolangChineseJinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1350,6 +1416,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *rio* measures width 6.
 
+.. _riolangChineseMandarinBeijing:
+
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1375,6 +1443,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width 0.
+
+.. _riolangChineseMandarinTianjin:
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1407,6 +1477,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 18,
   while *rio* measures width -52.
 
+.. _riolangChineseMinNan:
+
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
 
@@ -1435,6 +1507,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *rio* measures width 1.
 
+.. _riolangChineseXiang:
+
 Chinese, Xiang
 ^^^^^^^^^^^^^^
 
@@ -1460,6 +1534,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width -8.
+
+.. _riolangChineseMandarinSimplified:
 
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1490,6 +1566,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *rio* measures width -54.
+
+.. _riolangNuosu:
 
 Nuosu
 ^^^^^
@@ -1546,6 +1624,8 @@ Total codepoints: 33
 - python `wcwidth.wcswidth()`_ measures width 66,
   while *rio* measures width 8.
 
+.. _riolangDzongkha:
+
 Dzongkha
 ^^^^^^^^
 
@@ -1588,6 +1668,8 @@ Total codepoints: 20
 - python `wcwidth.wcswidth()`_ measures width 15,
   while *rio* measures width -26.
 
+.. _riolangLao:
+
 Lao
 ^^^
 
@@ -1611,6 +1693,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -3.
+
+.. _riolangJapanese:
 
 Japanese
 ^^^^^^^^
@@ -1637,6 +1721,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width -18.
+
+.. _riolangJapaneseOsaka:
 
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
@@ -1701,6 +1787,8 @@ Total codepoints: 42
 
 - python `wcwidth.wcswidth()`_ measures width 84,
   while *rio* measures width 18.
+
+.. _riolangThai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1837,6 +1925,8 @@ Total codepoints: 113
 - python `wcwidth.wcswidth()`_ measures width 84,
   while *rio* measures width 55.
 
+.. _riolangJapaneseTokyo:
+
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
 
@@ -1899,6 +1989,8 @@ Total codepoints: 41
 
 - python `wcwidth.wcswidth()`_ measures width 82,
   while *rio* measures width 18.
+
+.. _riolangThai:
 
 Thai
 ^^^^
@@ -1976,6 +2068,8 @@ Total codepoints: 54
 - python `wcwidth.wcswidth()`_ measures width 40,
   while *rio* measures width -37.
 
+.. _riolangVietnameseHannom:
+
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2001,6 +2095,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width -40.
+
+.. _riolangChineseMandarinTraditional:
 
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2035,6 +2131,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *rio* measures width -6.
 
+.. _riolangJinan:
+
 (Jinan)
 ^^^^^^^
 
@@ -2060,6 +2158,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width -24.
+
+.. _riolangChineseMandarinNanjing:
 
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2099,6 +2199,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 32,
   while *rio* measures width 16.
 
+.. _riolangBora:
+
 Bora
 ^^^^
 
@@ -2125,6 +2227,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width -6.
 
+.. _riolangNavajo:
+
 Navajo
 ^^^^^^
 
@@ -2149,6 +2253,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -14.
+
+.. _riolangNanai:
 
 Nanai
 ^^^^^
@@ -2181,6 +2287,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *rio* measures width 3.
 
+.. _riolangOrok:
+
 Orok
 ^^^^
 
@@ -2203,6 +2311,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rio* measures width -6.
+
+.. _riolangYanesha:
 
 Yaneshaʼ
 ^^^^^^^^
@@ -2231,6 +2341,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rio* measures width -2.
 
+.. _riolangShipiboConibo:
+
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
 
@@ -2257,6 +2369,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rio* measures width 1.
+
+.. _riolangGumuz:
 
 Gumuz
 ^^^^^
@@ -2288,6 +2402,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width 0.
 
+.. _riolangVeps:
+
 Veps
 ^^^^
 
@@ -2315,6 +2431,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width -5.
+
+.. _riolangEvenki:
 
 Evenki
 ^^^^^^
@@ -2345,6 +2463,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rio* measures width -7.
+
+.. _riolangSouthAzerbaijani:
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
@@ -2378,6 +2498,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *rio* measures width 3.
 
+.. _riolangSecoya:
+
 Secoya
 ^^^^^^
 
@@ -2407,6 +2529,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rio* measures width 0.
 
+.. _riolangAmarakaeri:
+
 Amarakaeri
 ^^^^^^^^^^
 
@@ -2430,6 +2554,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -5.
+
+.. _riolangSiona:
 
 Siona
 ^^^^^
@@ -2458,6 +2584,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rio* measures width -1.
 
+.. _riolangGilyak:
+
 Gilyak
 ^^^^^^
 
@@ -2483,6 +2611,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -7.
 
+.. _riolangYeonbyeon:
+
 (Yeonbyeon)
 ^^^^^^^^^^^
 
@@ -2506,6 +2636,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width -1.
+
+.. _riolangTem:
 
 Tem
 ^^^
@@ -2531,6 +2663,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -2.
+
+.. _riolangChickasaw:
 
 Chickasaw
 ^^^^^^^^^
@@ -2563,6 +2697,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width -10.
 
+.. _riolangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2590,6 +2726,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width 0.
+
+.. _riolangYiddishEastern:
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -2620,6 +2758,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width 4.
 
+.. _riolangSaintLucianCreoleFrench:
+
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2646,6 +2786,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width 0.
 
+.. _riolangKorean:
+
 Korean
 ^^^^^^
 
@@ -2669,6 +2811,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width -2.
+
+.. _riolangKabyle:
 
 Kabyle
 ^^^^^^
@@ -2696,6 +2840,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width -3.
 
+.. _riolangLingalatones:
+
 Lingala (tones)
 ^^^^^^^^^^^^^^^
 
@@ -2721,6 +2867,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -3.
+
+.. _riolangTamazightCentralAtlas:
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2752,6 +2900,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width -4.
 
+.. _riolangFur:
+
 Fur
 ^^^
 
@@ -2781,6 +2931,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rio* measures width 1.
 
+.. _riolangDitammari:
+
 Ditammari
 ^^^^^^^^^
 
@@ -2806,6 +2958,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -2.
 
+.. _riolangColorado:
+
 Colorado
 ^^^^^^^^
 
@@ -2830,6 +2984,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -5.
 
+.. _riolangCatalan2:
+
 Catalan (2)
 ^^^^^^^^^^^
 
@@ -2852,6 +3008,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rio* measures width -8.
+
+.. _riolangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -2883,6 +3041,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width -1.
 
+.. _riolangFrenchWelche:
+
 French (Welche)
 ^^^^^^^^^^^^^^^
 
@@ -2910,6 +3070,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width 2.
 
+.. _riolangUduk:
+
 Uduk
 ^^^^
 
@@ -2932,6 +3094,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rio* measures width -4.
+
+.. _riolangMirandese:
 
 Mirandese
 ^^^^^^^^^
@@ -2961,6 +3125,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width -3.
 
+.. _riolangArabicStandard:
+
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
 
@@ -2984,6 +3150,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -6.
+
+.. _riolangPicard:
 
 Picard
 ^^^^^^
@@ -3010,6 +3178,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -4.
 
+.. _riolangGa:
+
 Ga
 ^^
 
@@ -3033,6 +3203,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -11.
+
+.. _riolangTicuna:
 
 Ticuna
 ^^^^^^
@@ -3058,6 +3230,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -6.
 
+.. _riolangMixtecMetlatnoc:
+
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
 
@@ -3082,6 +3256,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width 0.
 
+.. _riolangAja:
+
 Aja
 ^^^
 
@@ -3104,6 +3280,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rio* measures width -6.
+
+.. _riolangw:
 
 Éwé
 ^^^
@@ -3135,6 +3313,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rio* measures width 4.
 
+.. _riolangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -3158,6 +3338,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -2.
+
+.. _riolangUrdu:
 
 Urdu
 ^^^^
@@ -3184,6 +3366,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -1.
 
+.. _riolangPashtoNorthern:
+
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
@@ -3208,6 +3392,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -3.
+
+.. _riolangSeraiki:
 
 Seraiki
 ^^^^^^^
@@ -3236,6 +3422,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rio* measures width -3.
 
+.. _riolangBelandaViri:
+
 Belanda Viri
 ^^^^^^^^^^^^
 
@@ -3260,6 +3448,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -3.
 
+.. _riolangUrdu2:
+
 Urdu (2)
 ^^^^^^^^
 
@@ -3283,6 +3473,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width 0.
+
+.. _riolangBamun:
 
 Bamun
 ^^^^^
@@ -3310,6 +3502,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -1.
 
+.. _riolangDinkaNortheastern:
+
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
 
@@ -3336,6 +3530,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width 0.
 
+.. _riolangGen:
+
 Gen
 ^^^
 
@@ -3359,6 +3555,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width 0.
+
+.. _riolangDendi:
 
 Dendi
 ^^^^^
@@ -3387,6 +3585,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rio* measures width 2.
 
+.. _riolangMazahuaCentral:
+
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
@@ -3412,6 +3612,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width -7.
+
+.. _riolangMaori2:
 
 Maori (2)
 ^^^^^^^^^
@@ -3447,6 +3649,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *rio* measures width 9.
 
+.. _riolangSererSine:
+
 Serer-Sine
 ^^^^^^^^^^
 
@@ -3470,6 +3674,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -6.
+
+.. _riolangPanjabiWestern:
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -3498,6 +3704,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width 1.
+
+.. _riolangPularAdlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -3534,6 +3742,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *rio* measures width 4.
 
+.. _riolangMor:
+
 Mòoré
 ^^^^^
 
@@ -3556,6 +3766,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rio* measures width -2.
+
+.. _riolangYoruba:
 
 Yoruba
 ^^^^^^
@@ -3586,6 +3798,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rio* measures width 4.
 
+.. _riolangVietnamese:
+
 Vietnamese
 ^^^^^^^^^^
 
@@ -3609,6 +3823,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -2.
+
+.. _riolangFon:
 
 Fon
 ^^^
@@ -3643,6 +3859,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *rio* measures width 6.
 
+.. _riolangDagaareSouthern:
+
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
 
@@ -3669,6 +3887,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rio* measures width 0.
 
+.. _riolangChinantecChiltepec:
+
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -3693,6 +3913,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -2.
+
+.. _riolangFarsiWestern:
 
 Farsi, Western
 ^^^^^^^^^^^^^^
@@ -3721,6 +3943,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rio* measures width 0.
 
+.. _riolangOtomiMezquital:
+
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
 
@@ -3744,6 +3968,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -2.
+
+.. _riolangDari:
 
 Dari
 ^^^^
@@ -3773,6 +3999,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rio* measures width 1.
 
+.. _riolangBaatonum:
+
 Baatonum
 ^^^^^^^^
 
@@ -3795,6 +4023,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rio* measures width -1.
+
+.. _riolangDangme:
 
 Dangme
 ^^^^^^
@@ -3821,6 +4051,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rio* measures width -3.
 
+.. _riolangWaama:
+
 Waama
 ^^^^^
 
@@ -3844,6 +4076,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rio* measures width -5.
+
+.. _riolangTaiDam:
 
 Tai Dam
 ^^^^^^^
@@ -3886,11 +4120,6 @@ The test suite completed in **533.82 seconds** (533s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

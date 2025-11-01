@@ -20,11 +20,11 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          100.00%      100.0%          (version_index / total_versions) × (pct_success / 100)
 ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-LANG          33.33%       41.5%           languages_supported / total_languages
+LANG          33.33%       41.9%           languages_supported / total_languages
 VS16          48.00%       48.0%           pct_success / 100
 VS15          N/A          N/A             pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
-TIME          940.71s      93.7%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          940.71s      41.2%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -183,98 +183,100 @@ The following 44 languages were tested with 100% success:
 
 The following 88 languages are not fully supported:
 
-===========================  ==========  =========  =============
-lang                           n_errors    n_total  pct_success
-===========================  ==========  =========  =============
-Chakma                              500        500  0.0%
-Pular (Adlam)                       500        500  0.0%
-Javanese (Javanese)                 500        504  0.8%
-Maldivian                           500        515  2.9%
-Tamil                               500        516  3.1%
-Tamil (Sri Lanka)                   500        516  3.1%
-Burmese                             500        519  3.7%
-Sanskrit (Grantha)                  500        520  3.8%
-Mon                                 500        522  4.2%
-Shan                                500        523  4.4%
-Dzongkha                            341        358  4.7%
-Gujarati                            500        530  5.7%
-Tibetan, Central                    262        278  5.8%
-Malayalam                           500        533  6.2%
-Tamang, Eastern                      42         45  6.7%
-Kannada                             500        536  6.7%
-Khün                                412        442  6.8%
-Khmer, Central                      492        528  6.8%
-Bengali                             500        540  7.4%
-Telugu                              500        550  9.1%
-Nepali                              500        554  9.7%
-Sanskrit                            500        563  11.2%
-Marathi                             500        571  12.4%
-Hindi                               500        576  13.2%
-Sinhala                             500        577  13.3%
-Panjabi, Eastern                    500        578  13.5%
-Bhojpuri                            500        584  14.4%
-Thai (2)                            267        313  14.7%
-Maithili                            500        613  18.4%
-Thai                                272        340  20.0%
-Magahi                              500        643  22.2%
-Vietnamese                          500        660  24.2%
-Tagalog (Tagalog)                    21         31  32.3%
-Lao                                 267        423  36.9%
-Lingala (tones)                     500        844  40.8%
-Yiddish, Eastern                    500       1062  52.9%
-Bamun                               500       1138  56.1%
-Orok                                490       1245  60.6%
-Tem                                 500       1290  61.2%
-Tai Dam                             500       1322  62.2%
-Nanai                               379       1207  68.6%
-Evenki                              267        899  70.3%
-Yaneshaʼ                            500       1762  71.6%
-Ticuna                              500       1767  71.7%
-Amarakaeri                          401       1446  72.3%
-South Azerbaijani                   385       1396  72.4%
-Yoruba                              500       2177  77.0%
-Chickasaw                           122        554  78.0%
-Siona                               273       1492  81.7%
-Fur                                 228       1838  87.6%
-Chinantec, Chiltepec                213       1729  87.7%
-Gumuz                               132       1283  89.7%
-Bora                                162       1598  89.9%
-Mòoré                               226       2447  90.8%
-Mongolian, Halh (Mongolian)           3         33  90.9%
-Lamnso'                             197       2237  91.2%
-Navajo                              138       1600  91.4%
-Tamazight, Central Atlas            154       1822  91.5%
-Gilyak                              124       1504  91.8%
-Ditammari                           139       1882  92.6%
-Assyrian Neo-Aramaic                 74       1160  93.6%
-Farsi, Western                      102       1822  94.4%
-Otomi, Mezquital                     85       1849  95.4%
-Veps                                 59       1323  95.5%
-Waama                                38       1000  96.2%
-Dinka, Northeastern                  56       1529  96.3%
-Dari                                 66       1872  96.5%
-Éwé                                  55       2230  97.5%
-Baatonum                             47       1939  97.6%
-Urdu (2)                             52       2251  97.7%
-Urdu                                 50       2237  97.8%
-Uduk                                 71       3247  97.8%
-Mazahua Central                      34       1574  97.8%
-Secoya                               29       1409  97.9%
-Gen                                  46       2309  98.0%
-Picard                               36       2024  98.2%
-Mixtec, Metlatónoc                   24       1367  98.2%
-Arabic, Standard                     20       1348  98.5%
-Ga                                   26       2039  98.7%
-Panjabi, Western                     21       2419  99.1%
-Dangme                               22       2912  99.2%
-Dagaare, Southern                    19       2582  99.3%
-Serer-Sine                            7       1596  99.6%
-Fon                                  10       2520  99.6%
-Aja                                   7       2061  99.7%
-Pashto, Northern                      4       2242  99.8%
-Dendi                                 2       1569  99.9%
-Seraiki                               2       2242  99.9%
-===========================  ==========  =========  =============
+=====================================================================  ==========  =========  =============
+lang                                                                     n_errors    n_total  pct_success
+=====================================================================  ==========  =========  =============
+:ref:`Chakma <cmdexelangChakma>`                                              500        500  0.0%
+:ref:`Pular (Adlam) <cmdexelangPularAdlam>`                                   500        500  0.0%
+:ref:`Javanese (Javanese) <cmdexelangJavaneseJavanese>`                       500        504  0.8%
+:ref:`Maldivian <cmdexelangMaldivian>`                                        500        515  2.9%
+:ref:`Tamil <cmdexelangTamil>`                                                500        516  3.1%
+:ref:`Tamil (Sri Lanka) <cmdexelangTamilSriLanka>`                            500        516  3.1%
+:ref:`Burmese <cmdexelangBurmese>`                                            500        519  3.7%
+:ref:`Sanskrit (Grantha) <cmdexelangSanskritGrantha>`                         500        520  3.8%
+:ref:`Mon <cmdexelangMon>`                                                    500        522  4.2%
+:ref:`Shan <cmdexelangShan>`                                                  500        523  4.4%
+:ref:`Dzongkha <cmdexelangDzongkha>`                                          341        358  4.7%
+:ref:`Gujarati <cmdexelangGujarati>`                                          500        530  5.7%
+:ref:`Tibetan, Central <cmdexelangTibetanCentral>`                            262        278  5.8%
+:ref:`Malayalam <cmdexelangMalayalam>`                                        500        533  6.2%
+:ref:`Tamang, Eastern <cmdexelangTamangEastern>`                               42         45  6.7%
+:ref:`Kannada <cmdexelangKannada>`                                            500        536  6.7%
+:ref:`Khün <cmdexelangKhn>`                                                   412        442  6.8%
+:ref:`Khmer, Central <cmdexelangKhmerCentral>`                                492        528  6.8%
+:ref:`Bengali <cmdexelangBengali>`                                            500        540  7.4%
+:ref:`Telugu <cmdexelangTelugu>`                                              500        550  9.1%
+:ref:`Nepali <cmdexelangNepali>`                                              500        554  9.7%
+:ref:`Sanskrit <cmdexelangSanskrit>`                                          500        563  11.2%
+:ref:`Marathi <cmdexelangMarathi>`                                            500        571  12.4%
+:ref:`Hindi <cmdexelangHindi>`                                                500        576  13.2%
+:ref:`Sinhala <cmdexelangSinhala>`                                            500        577  13.3%
+:ref:`Panjabi, Eastern <cmdexelangPanjabiEastern>`                            500        578  13.5%
+:ref:`Bhojpuri <cmdexelangBhojpuri>`                                          500        584  14.4%
+:ref:`Thai (2) <cmdexelangThai2>`                                             267        313  14.7%
+:ref:`Maithili <cmdexelangMaithili>`                                          500        613  18.4%
+:ref:`Thai <cmdexelangThai>`                                                  272        340  20.0%
+:ref:`Magahi <cmdexelangMagahi>`                                              500        643  22.2%
+:ref:`Vietnamese <cmdexelangVietnamese>`                                      500        660  24.2%
+:ref:`Tagalog (Tagalog) <cmdexelangTagalogTagalog>`                            21         31  32.3%
+:ref:`Lao <cmdexelangLao>`                                                    267        423  36.9%
+:ref:`Lingala (tones) <cmdexelangLingalatones>`                               500        844  40.8%
+:ref:`Yiddish, Eastern <cmdexelangYiddishEastern>`                            500       1062  52.9%
+:ref:`Bamun <cmdexelangBamun>`                                                500       1138  56.1%
+:ref:`Orok <cmdexelangOrok>`                                                  490       1245  60.6%
+:ref:`Tem <cmdexelangTem>`                                                    500       1290  61.2%
+:ref:`Tai Dam <cmdexelangTaiDam>`                                             500       1322  62.2%
+:ref:`Nanai <cmdexelangNanai>`                                                379       1207  68.6%
+:ref:`Evenki <cmdexelangEvenki>`                                              267        899  70.3%
+:ref:`Yaneshaʼ <cmdexelangYanesha>`                                           500       1762  71.6%
+:ref:`Ticuna <cmdexelangTicuna>`                                              500       1767  71.7%
+:ref:`Amarakaeri <cmdexelangAmarakaeri>`                                      401       1446  72.3%
+:ref:`South Azerbaijani <cmdexelangSouthAzerbaijani>`                         385       1396  72.4%
+:ref:`Yoruba <cmdexelangYoruba>`                                              500       2177  77.0%
+:ref:`Chickasaw <cmdexelangChickasaw>`                                        122        554  78.0%
+:ref:`Siona <cmdexelangSiona>`                                                273       1492  81.7%
+:ref:`Fur <cmdexelangFur>`                                                    228       1838  87.6%
+:ref:`Chinantec, Chiltepec <cmdexelangChinantecChiltepec>`                    213       1729  87.7%
+:ref:`Gumuz <cmdexelangGumuz>`                                                132       1283  89.7%
+:ref:`Bora <cmdexelangBora>`                                                  162       1598  89.9%
+:ref:`Mòoré <cmdexelangMor>`                                                  226       2447  90.8%
+:ref:`Mongolian, Halh (Mongolian) <cmdexelangMongolianHalhMongolian>`           3         33  90.9%
+:ref:`Lamnso' <cmdexelangLamnso>`                                             197       2237  91.2%
+:ref:`Navajo <cmdexelangNavajo>`                                              138       1600  91.4%
+:ref:`Tamazight, Central Atlas <cmdexelangTamazightCentralAtlas>`             154       1822  91.5%
+:ref:`Gilyak <cmdexelangGilyak>`                                              124       1504  91.8%
+:ref:`Ditammari <cmdexelangDitammari>`                                        139       1882  92.6%
+:ref:`Assyrian Neo-Aramaic <cmdexelangAssyrianNeoAramaic>`                     74       1160  93.6%
+:ref:`Farsi, Western <cmdexelangFarsiWestern>`                                102       1822  94.4%
+:ref:`Otomi, Mezquital <cmdexelangOtomiMezquital>`                             85       1849  95.4%
+:ref:`Veps <cmdexelangVeps>`                                                   59       1323  95.5%
+:ref:`Waama <cmdexelangWaama>`                                                 38       1000  96.2%
+:ref:`Dinka, Northeastern <cmdexelangDinkaNortheastern>`                       56       1529  96.3%
+:ref:`Dari <cmdexelangDari>`                                                   66       1872  96.5%
+:ref:`Éwé <cmdexelangw>`                                                       55       2230  97.5%
+:ref:`Baatonum <cmdexelangBaatonum>`                                           47       1939  97.6%
+:ref:`Urdu (2) <cmdexelangUrdu2>`                                              52       2251  97.7%
+:ref:`Urdu <cmdexelangUrdu>`                                                   50       2237  97.8%
+:ref:`Uduk <cmdexelangUduk>`                                                   71       3247  97.8%
+:ref:`Mazahua Central <cmdexelangMazahuaCentral>`                              34       1574  97.8%
+:ref:`Secoya <cmdexelangSecoya>`                                               29       1409  97.9%
+:ref:`Gen <cmdexelangGen>`                                                     46       2309  98.0%
+:ref:`Picard <cmdexelangPicard>`                                               36       2024  98.2%
+:ref:`Mixtec, Metlatónoc <cmdexelangMixtecMetlatnoc>`                          24       1367  98.2%
+:ref:`Arabic, Standard <cmdexelangArabicStandard>`                             20       1348  98.5%
+:ref:`Ga <cmdexelangGa>`                                                       26       2039  98.7%
+:ref:`Panjabi, Western <cmdexelangPanjabiWestern>`                             21       2419  99.1%
+:ref:`Dangme <cmdexelangDangme>`                                               22       2912  99.2%
+:ref:`Dagaare, Southern <cmdexelangDagaareSouthern>`                           19       2582  99.3%
+:ref:`Serer-Sine <cmdexelangSererSine>`                                         7       1596  99.6%
+:ref:`Fon <cmdexelangFon>`                                                     10       2520  99.6%
+:ref:`Aja <cmdexelangAja>`                                                      7       2061  99.7%
+:ref:`Pashto, Northern <cmdexelangPashtoNorthern>`                              4       2242  99.8%
+:ref:`Dendi <cmdexelangDendi>`                                                  2       1569  99.9%
+:ref:`Seraiki <cmdexelangSeraiki>`                                              2       2242  99.9%
+=====================================================================  ==========  =========  =============
+
+.. _cmdexelangChakma:
 
 Chakma
 ^^^^^^
@@ -311,6 +313,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 26.
 
+.. _cmdexelangPularAdlam:
+
 Pular (Adlam)
 ^^^^^^^^^^^^^
 
@@ -343,6 +347,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *cmd.exe* measures width 20.
 
+.. _cmdexelangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -369,6 +375,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
+
+.. _cmdexelangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -401,6 +409,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 9.
 
+.. _cmdexelangTamil:
+
 Tamil
 ^^^^^
 
@@ -427,6 +437,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
 
+.. _cmdexelangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -452,6 +464,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangBurmese:
 
 Burmese
 ^^^^^^^
@@ -491,6 +505,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cmd.exe* measures width 16.
 
+.. _cmdexelangSanskritGrantha:
+
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
 
@@ -527,6 +543,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 28.
 
+.. _cmdexelangMon:
+
 Mon
 ^^^
 
@@ -558,6 +576,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 10.
+
+.. _cmdexelangShan:
 
 Shan
 ^^^^
@@ -595,6 +615,8 @@ Total codepoints: 15
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cmd.exe* measures width 15.
+
+.. _cmdexelangDzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -659,6 +681,8 @@ Total codepoints: 41
 - python `wcwidth.wcswidth()`_ measures width 32,
   while *cmd.exe* measures width 41.
 
+.. _cmdexelangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -684,6 +708,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -747,6 +773,8 @@ Total codepoints: 40
 - python `wcwidth.wcswidth()`_ measures width 31,
   while *cmd.exe* measures width 40.
 
+.. _cmdexelangMalayalam:
+
 Malayalam
 ^^^^^^^^^
 
@@ -798,6 +826,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *cmd.exe* measures width 29.
 
+.. _cmdexelangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -826,6 +856,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 6.
 
+.. _cmdexelangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -851,6 +883,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangKhn:
 
 Khün
 ^^^^
@@ -895,6 +929,8 @@ Total codepoints: 22
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *cmd.exe* measures width 22.
+
+.. _cmdexelangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -954,6 +990,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *cmd.exe* measures width 36.
 
+.. _cmdexelangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -987,6 +1025,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 12.
+
+.. _cmdexelangTelugu:
 
 Telugu
 ^^^^^^
@@ -1023,6 +1063,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cmd.exe* measures width 13.
 
+.. _cmdexelangNepali:
+
 Nepali
 ^^^^^^
 
@@ -1048,6 +1090,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangSanskrit:
 
 Sanskrit
 ^^^^^^^^
@@ -1085,6 +1129,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 14.
 
+.. _cmdexelangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -1112,6 +1158,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 5.
 
+.. _cmdexelangHindi:
+
 Hindi
 ^^^^^
 
@@ -1138,6 +1186,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
 
+.. _cmdexelangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1163,6 +1213,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1191,6 +1243,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 6.
+
+.. _cmdexelangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1223,6 +1277,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cmd.exe* measures width 10.
+
+.. _cmdexelangThai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1275,6 +1331,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *cmd.exe* measures width 29.
 
+.. _cmdexelangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -1304,6 +1362,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 8.
+
+.. _cmdexelangThai:
 
 Thai
 ^^^^
@@ -1356,6 +1416,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *cmd.exe* measures width 29.
 
+.. _cmdexelangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1388,6 +1450,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cmd.exe* measures width 10.
 
+.. _cmdexelangVietnamese:
+
 Vietnamese
 ^^^^^^^^^^
 
@@ -1415,6 +1479,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
 
+.. _cmdexelangTagalogTagalog:
+
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
 
@@ -1440,6 +1506,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangLao:
 
 Lao
 ^^^
@@ -1473,6 +1541,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cmd.exe* measures width 10.
 
+.. _cmdexelangLingalatones:
+
 Lingala (tones)
 ^^^^^^^^^^^^^^^
 
@@ -1503,6 +1573,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 9.
+
+.. _cmdexelangYiddishEastern:
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1537,6 +1609,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *cmd.exe* measures width 11.
 
+.. _cmdexelangBamun:
+
 Bamun
 ^^^^^
 
@@ -1562,6 +1636,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangOrok:
 
 Orok
 ^^^^
@@ -1599,6 +1675,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *cmd.exe* measures width 14.
 
+.. _cmdexelangTem:
+
 Tem
 ^^^
 
@@ -1630,6 +1708,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 9.
 
+.. _cmdexelangTaiDam:
+
 Tai Dam
 ^^^^^^^
 
@@ -1656,6 +1736,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
 
+.. _cmdexelangNanai:
+
 Nanai
 ^^^^^
 
@@ -1681,6 +1763,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangEvenki:
 
 Evenki
 ^^^^^^
@@ -1710,6 +1794,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cmd.exe* measures width 7.
+
+.. _cmdexelangYanesha:
 
 Yaneshaʼ
 ^^^^^^^^
@@ -1742,6 +1828,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cmd.exe* measures width 9.
 
+.. _cmdexelangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -1768,6 +1856,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
+
+.. _cmdexelangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -1801,6 +1891,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cmd.exe* measures width 10.
 
+.. _cmdexelangSouthAzerbaijani:
+
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
 
@@ -1829,6 +1921,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
 
+.. _cmdexelangYoruba:
+
 Yoruba
 ^^^^^^
 
@@ -1855,6 +1949,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 5.
+
+.. _cmdexelangChickasaw:
 
 Chickasaw
 ^^^^^^^^^
@@ -1883,6 +1979,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
 
+.. _cmdexelangSiona:
+
 Siona
 ^^^^^
 
@@ -1910,6 +2008,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
+
+.. _cmdexelangFur:
 
 Fur
 ^^^
@@ -1944,6 +2044,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cmd.exe* measures width 11.
 
+.. _cmdexelangChinantecChiltepec:
+
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1974,6 +2076,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 8.
 
+.. _cmdexelangGumuz:
+
 Gumuz
 ^^^^^
 
@@ -2001,6 +2105,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
+
+.. _cmdexelangBora:
 
 Bora
 ^^^^
@@ -2033,6 +2139,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cmd.exe* measures width 9.
 
+.. _cmdexelangMor:
+
 Mòoré
 ^^^^^
 
@@ -2058,6 +2166,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
+
+.. _cmdexelangMongolianHalhMongolian:
 
 Mongolian, Halh (Mongolian)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2086,6 +2196,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
 
+.. _cmdexelangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -2113,6 +2225,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
+
+.. _cmdexelangNavajo:
 
 Navajo
 ^^^^^^
@@ -2144,6 +2258,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cmd.exe* measures width 9.
+
+.. _cmdexelangTamazightCentralAtlas:
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2177,6 +2293,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cmd.exe* measures width 11.
+
+.. _cmdexelangGilyak:
 
 Gilyak
 ^^^^^^
@@ -2213,6 +2331,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *cmd.exe* measures width 13.
 
+.. _cmdexelangDitammari:
+
 Ditammari
 ^^^^^^^^^
 
@@ -2244,6 +2364,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cmd.exe* measures width 9.
 
+.. _cmdexelangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2273,6 +2395,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cmd.exe* measures width 7.
 
+.. _cmdexelangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -2299,6 +2423,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
+
+.. _cmdexelangOtomiMezquital:
 
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
@@ -2331,6 +2457,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cmd.exe* measures width 9.
 
+.. _cmdexelangVeps:
+
 Veps
 ^^^^
 
@@ -2361,6 +2489,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 8.
 
+.. _cmdexelangWaama:
+
 Waama
 ^^^^^
 
@@ -2384,6 +2514,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *cmd.exe* measures width 2.
+
+.. _cmdexelangDinkaNortheastern:
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
@@ -2411,6 +2543,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
 
+.. _cmdexelangDari:
+
 Dari
 ^^^^
 
@@ -2437,6 +2571,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
+
+.. _cmdexelangw:
 
 Éwé
 ^^^
@@ -2470,6 +2606,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cmd.exe* measures width 10.
 
+.. _cmdexelangBaatonum:
+
 Baatonum
 ^^^^^^^^
 
@@ -2494,6 +2632,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *cmd.exe* measures width 3.
+
+.. _cmdexelangUrdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -2523,6 +2663,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
 
+.. _cmdexelangUrdu:
+
 Urdu
 ^^^^
 
@@ -2551,6 +2693,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
 
+.. _cmdexelangUduk:
+
 Uduk
 ^^^^
 
@@ -2577,6 +2721,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
+
+.. _cmdexelangMazahuaCentral:
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -2605,6 +2751,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 6.
+
+.. _cmdexelangSecoya:
 
 Secoya
 ^^^^^^
@@ -2636,6 +2784,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cmd.exe* measures width 8.
 
+.. _cmdexelangGen:
+
 Gen
 ^^^
 
@@ -2663,6 +2813,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
+
+.. _cmdexelangPicard:
 
 Picard
 ^^^^^^
@@ -2695,6 +2847,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cmd.exe* measures width 9.
 
+.. _cmdexelangMixtecMetlatnoc:
+
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
 
@@ -2722,6 +2876,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
+
+.. _cmdexelangArabicStandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2751,6 +2907,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
 
+.. _cmdexelangGa:
+
 Ga
 ^^
 
@@ -2778,6 +2936,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
 
+.. _cmdexelangPanjabiWestern:
+
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
 
@@ -2804,6 +2964,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 4.
 
+.. _cmdexelangDangme:
+
 Dangme
 ^^^^^^
 
@@ -2828,6 +2990,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *cmd.exe* measures width 3.
+
+.. _cmdexelangDagaareSouthern:
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
@@ -2855,6 +3019,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cmd.exe* measures width 5.
+
+.. _cmdexelangSererSine:
 
 Serer-Sine
 ^^^^^^^^^^
@@ -2884,6 +3050,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
 
+.. _cmdexelangFon:
+
 Fon
 ^^^
 
@@ -2910,6 +3078,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cmd.exe* measures width 5.
+
+.. _cmdexelangAja:
 
 Aja
 ^^^
@@ -2941,6 +3111,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cmd.exe* measures width 8.
 
+.. _cmdexelangPashtoNorthern:
+
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
@@ -2969,6 +3141,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
 
+.. _cmdexelangDendi:
+
 Dendi
 ^^^^^
 
@@ -2996,6 +3170,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cmd.exe* measures width 6.
+
+.. _cmdexelangSeraiki:
 
 Seraiki
 ^^^^^^^
@@ -3040,11 +3216,6 @@ The test suite completed in **940.71 seconds** (940s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

@@ -18,6 +18,43 @@ from ucs_detect import terminal
 WORD_SPLIT_DELIMITERS = (" ", "，", "、", ",", "\u200b", "。", "\uA9C0", "\u0f0b")
 
 
+def get_location_with_retry(term, timeout, max_retries=3):
+    """
+    Wrapper around term.get_location() that handles false timeouts.
+
+    Blessed may use time.time() internally which is affected by VM clock skew,
+    causing false timeouts. This wrapper uses time.monotonic() to validate the
+    actual elapsed time and retries if a suspiciously fast timeout occurs.
+
+    :param term: blessed.Terminal instance
+    :param timeout: Timeout in seconds
+    :param max_retries: Maximum number of retries for false timeouts
+    :return: Tuple of (ypos, xpos)
+    """
+    for attempt in range(max_retries):
+        start = time.monotonic()
+        ypos, xpos = term.get_location(timeout=timeout)
+        elapsed = time.monotonic() - start
+
+        # Success case
+        if (ypos, xpos) != (-1, -1):
+            return (ypos, xpos)
+
+        # Check if this was a false timeout (returned too quickly)
+        # Allow 10% tolerance for processing time
+        if elapsed < (timeout * 0.1):
+            # Suspiciously fast timeout, likely a false timeout due to clock skew
+            # Retry with a slightly longer timeout (I'm using vm's on laptop sometimes)
+            timeout = timeout * 1.5
+            continue
+
+        # Real timeout - actual time elapsed
+        return (-1, -1)
+
+    # All retries exhausted
+    return (-1, -1)
+
+
 def make_printf_hex(wchar):
     """
     Convert a Unicode string to printf hex escape format.
@@ -42,7 +79,7 @@ def display_error_and_prompt(
     :return: True to continue stopping, False to disable stopping
     """
     # Save current cursor position
-    saved_ypos, saved_xpos = term.get_location(timeout=1.0)
+    saved_ypos, saved_xpos = get_location_with_retry(term, 1.0)
 
     # Move to current y position (column 0) and clear to end of screen
     if saved_ypos != -1:
@@ -167,7 +204,7 @@ def test_language_support(
                     continue
 
                 # fetch cursor position
-                end_ypos, end_xpos = term.get_location(timeout=timeout)
+                end_ypos, end_xpos = get_location_with_retry(term, timeout)
                 if (-1, -1) == (end_ypos, end_xpos):
                     exit_and_display_timeout_error(term, writer, timeout, orig_xpos, top)
 
@@ -274,7 +311,7 @@ def test_support(
     time_report = {}
 
     start_time = time.monotonic()
-    outer_ypos, outer_xpos = term.get_location(timeout=timeout)
+    outer_ypos, outer_xpos = get_location_with_retry(term, timeout)
     if (-1, -1) == (outer_xpos, outer_xpos):
         exit_and_display_timeout_error(term, writer, timeout, orig_xpos=1, top=term.height)
 
@@ -284,7 +321,7 @@ def test_support(
             with terminal.osc_1337_for_version(writer, ver, emit_osc1337):
                 maybe_str = f", version={ver}: " if not shell else ""
                 writer(term.move_yx(outer_ypos, outer_xpos) + maybe_str + term.clear_eol)
-                orig_start_ypos, orig_start_xpos = term.get_location(timeout=timeout)
+                orig_start_ypos, orig_start_xpos = get_location_with_retry(term, timeout)
                 if (-1, -1) == (orig_start_ypos, orig_start_xpos):
                     exit_and_display_timeout_error(term, writer, timeout, orig_xpos=outer_xpos, top=term.height)
 
@@ -298,7 +335,7 @@ def test_support(
                     )
                     writer(wchars_str)
 
-                    end_ypos, end_xpos = term.get_location(timeout=timeout)
+                    end_ypos, end_xpos = get_location_with_retry(term, timeout)
                     if (-1, -1) == (end_ypos, end_xpos):
                         writer(term.move_yx(outer_ypos, outer_xpos))
                         writer(term.reverse_red(f"Timeout Exceeded ({timeout:.2f}s)"))
@@ -405,12 +442,12 @@ def do_languages_test(
     term, writer, timeout, unicode_version, limit_words, limit_errors, stop_at_error=None
 ):
     writer(f"\nucs-detect: testing language support: ")
-    orig_ypos, orig_xpos = term.get_location(timeout=timeout)
+    orig_ypos, orig_xpos = get_location_with_retry(term, timeout)
     if (-1, -1) == (orig_ypos, orig_xpos):
         exit_and_display_timeout_error(term, writer, timeout, orig_xpos=1, top=term.height-1)
     writer("\n" * 20)
     if orig_ypos != term.height - 1:
-        next_ypos, _ = term.get_location(timeout=timeout)
+        next_ypos, _ = get_location_with_retry(term, timeout)
         top = max(0, next_ypos - 19)
     else:
         top = max(0, term.height - 20)

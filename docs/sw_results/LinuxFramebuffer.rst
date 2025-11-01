@@ -24,7 +24,7 @@ LANG          0.00%        0.0%            languages_supported / total_languages
 VS16          100.00%      100.0%          pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
-TIME          31.67s       99.9%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          31.67s       92.2%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -186,129 +186,131 @@ The following 0 languages were tested with 100% success:
 
 The following 119 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Maldivian                              1000       1029  2.8%
-Tamil                                  1000       1029  2.8%
-Tamil (Sri Lanka)                      1000       1029  2.8%
-Burmese                                1000       1032  3.1%
-Mon                                     910        946  3.8%
-Shan                                    880        915  3.8%
-Javanese (Javanese)                    1000       1055  5.2%
-Gujarati                               1000       1061  5.7%
-Malayalam                              1000       1062  5.8%
-Kannada                                1000       1069  6.5%
-Khün                                    413        442  6.6%
-Tamang, Eastern                          42         45  6.7%
-Khmer, Central                          492        528  6.8%
-Chakma                                 1000       1078  7.2%
-Bengali                                1000       1085  7.8%
-Telugu                                 1000       1090  8.3%
-Sanskrit                                891       1000  10.9%
-Sanskrit (Grantha)                      893       1006  11.2%
-Marathi                                1000       1150  13.0%
-Nepali                                 1000       1159  13.7%
-Thai (2)                                268        313  14.4%
-Sinhala                                1000       1168  14.4%
-Hindi                                  1000       1171  14.6%
-Panjabi, Eastern                       1000       1177  15.0%
-Bhojpuri                               1000       1204  16.9%
-Maithili                               1000       1218  17.9%
-Thai                                    274        341  19.6%
-Magahi                                 1000       1309  23.6%
-Vietnamese                             1000       1320  24.2%
-Tagalog (Tagalog)                        21         31  32.3%
-Tibetan, Central                       1000       1509  33.7%
-Lao                                     272        426  36.2%
-Dzongkha                               1000       1571  36.3%
-Lingala (tones)                        1000       1726  42.1%
-French (Welche)                        1000       1912  47.7%
-Yiddish, Eastern                        871       1775  50.9%
-Pular (Adlam)                           783       1613  51.5%
-Bamun                                  1000       2215  54.9%
-Tai Dam                                 946       2386  60.4%
-Orok                                    492       1245  60.5%
-Tem                                     639       1659  61.5%
-Saint Lucian Creole French              599       1777  66.3%
-Nanai                                   382       1207  68.4%
-Evenki                                  269        899  70.1%
-Ticuna                                  578       2048  71.8%
-Amarakaeri                              404       1446  72.1%
-Yaneshaʼ                                708       2536  72.1%
-South Azerbaijani                       388       1396  72.2%
-Yoruba                                  554       2454  77.4%
-Chickasaw                               124        554  77.6%
-Maori (2)                               480       2385  79.9%
-Siona                                   275       1492  81.6%
-Catalan (2)                             265       1909  86.1%
-Shipibo-Conibo                          323       2540  87.3%
-Fur                                     231       1838  87.4%
-Chinantec, Chiltepec                    215       1729  87.6%
-Mirandese                               228       1966  88.4%
-Gumuz                                   135       1283  89.5%
-Bora                                    166       1598  89.6%
-Mòoré                                   229       2447  90.6%
-Mongolian, Halh (Mongolian)               3         33  90.9%
-Lamnso'                                 200       2237  91.1%
-Navajo                                  140       1600  91.2%
-Tamazight, Central Atlas                156       1822  91.4%
-Gilyak                                  127       1504  91.6%
-Ditammari                               142       1882  92.5%
-Assyrian Neo-Aramaic                     76       1160  93.4%
-Otomi, Mezquital                         87       1849  95.3%
-Veps                                     62       1323  95.3%
-Waama                                    39       1000  96.1%
-Dinka, Northeastern                      58       1529  96.2%
-Kabyle                                   67       1815  96.3%
-Farsi, Western                           66       1822  96.4%
-Éwé                                      58       2230  97.4%
-Baatonum                                 49       1939  97.5%
-Urdu (2)                                 55       2251  97.6%
-Urdu                                     53       2237  97.6%
-Uduk                                     75       3247  97.7%
-Mazahua Central                          36       1574  97.7%
-Secoya                                   32       1409  97.7%
-Gen                                      49       2309  97.9%
-Picard                                   40       2024  98.0%
-Mixtec, Metlatónoc                       26       1367  98.1%
-Dari                                     33       1872  98.2%
-Arabic, Standard                         22       1348  98.4%
-Ga                                       29       2039  98.6%
-Belanda Viri                             23       2246  99.0%
-Vietnamese (Han nom)                      2        199  99.0%
-Chinese, Mandarin (Harbin)                2        210  99.0%
-Chinese, Mandarin (Traditional)           2        210  99.0%
-Chinese, Yue                              2        210  99.0%
-(Jinan)                                   2        211  99.1%
-Chinese, Gan                              2        211  99.1%
-Chinese, Mandarin (Guiyang)               2        211  99.1%
-Chinese, Wu                               2        211  99.1%
-Chinese, Hakka                            2        212  99.1%
-Chinese, Jinyu                            2        212  99.1%
-Chinese, Mandarin (Beijing)               2        212  99.1%
-Chinese, Mandarin (Nanjing)               2        212  99.1%
-Chinese, Mandarin (Tianjin)               2        212  99.1%
-Chinese, Min Nan                          2        212  99.1%
-Chinese, Xiang                            2        212  99.1%
-Japanese (Tokyo)                          3        320  99.1%
-Panjabi, Western                         22       2419  99.1%
-Chinese, Mandarin (Simplified)            2        225  99.1%
-Nuosu                                     2        230  99.1%
-Dangme                                   25       2912  99.1%
-Dagaare, Southern                        22       2582  99.1%
-Japanese                                  2        299  99.3%
-Japanese (Osaka)                          2        308  99.4%
-Serer-Sine                                9       1596  99.4%
-Fon                                      13       2520  99.5%
-Aja                                      10       2061  99.5%
-Pashto, Northern                          7       2242  99.7%
-Dendi                                     4       1569  99.7%
-Colorado                                  3       1263  99.8%
-Seraiki                                   5       2242  99.8%
-(Yeonbyeon)                               2       1061  99.8%
-Korean                                    2       1185  99.8%
-===============================  ==========  =========  =============
+=======================================================================================  ==========  =========  =============
+lang                                                                                       n_errors    n_total  pct_success
+=======================================================================================  ==========  =========  =============
+:ref:`Maldivian <LinuxFramebufferlangMaldivian>`                                               1000       1029  2.8%
+:ref:`Tamil <LinuxFramebufferlangTamil>`                                                       1000       1029  2.8%
+:ref:`Tamil (Sri Lanka) <LinuxFramebufferlangTamilSriLanka>`                                   1000       1029  2.8%
+:ref:`Burmese <LinuxFramebufferlangBurmese>`                                                   1000       1032  3.1%
+:ref:`Mon <LinuxFramebufferlangMon>`                                                            910        946  3.8%
+:ref:`Shan <LinuxFramebufferlangShan>`                                                          880        915  3.8%
+:ref:`Javanese (Javanese) <LinuxFramebufferlangJavaneseJavanese>`                              1000       1055  5.2%
+:ref:`Gujarati <LinuxFramebufferlangGujarati>`                                                 1000       1061  5.7%
+:ref:`Malayalam <LinuxFramebufferlangMalayalam>`                                               1000       1062  5.8%
+:ref:`Kannada <LinuxFramebufferlangKannada>`                                                   1000       1069  6.5%
+:ref:`Khün <LinuxFramebufferlangKhn>`                                                           413        442  6.6%
+:ref:`Tamang, Eastern <LinuxFramebufferlangTamangEastern>`                                       42         45  6.7%
+:ref:`Khmer, Central <LinuxFramebufferlangKhmerCentral>`                                        492        528  6.8%
+:ref:`Chakma <LinuxFramebufferlangChakma>`                                                     1000       1078  7.2%
+:ref:`Bengali <LinuxFramebufferlangBengali>`                                                   1000       1085  7.8%
+:ref:`Telugu <LinuxFramebufferlangTelugu>`                                                     1000       1090  8.3%
+:ref:`Sanskrit <LinuxFramebufferlangSanskrit>`                                                  891       1000  10.9%
+:ref:`Sanskrit (Grantha) <LinuxFramebufferlangSanskritGrantha>`                                 893       1006  11.2%
+:ref:`Marathi <LinuxFramebufferlangMarathi>`                                                   1000       1150  13.0%
+:ref:`Nepali <LinuxFramebufferlangNepali>`                                                     1000       1159  13.7%
+:ref:`Thai (2) <LinuxFramebufferlangThai2>`                                                     268        313  14.4%
+:ref:`Sinhala <LinuxFramebufferlangSinhala>`                                                   1000       1168  14.4%
+:ref:`Hindi <LinuxFramebufferlangHindi>`                                                       1000       1171  14.6%
+:ref:`Panjabi, Eastern <LinuxFramebufferlangPanjabiEastern>`                                   1000       1177  15.0%
+:ref:`Bhojpuri <LinuxFramebufferlangBhojpuri>`                                                 1000       1204  16.9%
+:ref:`Maithili <LinuxFramebufferlangMaithili>`                                                 1000       1218  17.9%
+:ref:`Thai <LinuxFramebufferlangThai>`                                                          274        341  19.6%
+:ref:`Magahi <LinuxFramebufferlangMagahi>`                                                     1000       1309  23.6%
+:ref:`Vietnamese <LinuxFramebufferlangVietnamese>`                                             1000       1320  24.2%
+:ref:`Tagalog (Tagalog) <LinuxFramebufferlangTagalogTagalog>`                                    21         31  32.3%
+:ref:`Tibetan, Central <LinuxFramebufferlangTibetanCentral>`                                   1000       1509  33.7%
+:ref:`Lao <LinuxFramebufferlangLao>`                                                            272        426  36.2%
+:ref:`Dzongkha <LinuxFramebufferlangDzongkha>`                                                 1000       1571  36.3%
+:ref:`Lingala (tones) <LinuxFramebufferlangLingalatones>`                                      1000       1726  42.1%
+:ref:`French (Welche) <LinuxFramebufferlangFrenchWelche>`                                      1000       1912  47.7%
+:ref:`Yiddish, Eastern <LinuxFramebufferlangYiddishEastern>`                                    871       1775  50.9%
+:ref:`Pular (Adlam) <LinuxFramebufferlangPularAdlam>`                                           783       1613  51.5%
+:ref:`Bamun <LinuxFramebufferlangBamun>`                                                       1000       2215  54.9%
+:ref:`Tai Dam <LinuxFramebufferlangTaiDam>`                                                     946       2386  60.4%
+:ref:`Orok <LinuxFramebufferlangOrok>`                                                          492       1245  60.5%
+:ref:`Tem <LinuxFramebufferlangTem>`                                                            639       1659  61.5%
+:ref:`Saint Lucian Creole French <LinuxFramebufferlangSaintLucianCreoleFrench>`                 599       1777  66.3%
+:ref:`Nanai <LinuxFramebufferlangNanai>`                                                        382       1207  68.4%
+:ref:`Evenki <LinuxFramebufferlangEvenki>`                                                      269        899  70.1%
+:ref:`Ticuna <LinuxFramebufferlangTicuna>`                                                      578       2048  71.8%
+:ref:`Amarakaeri <LinuxFramebufferlangAmarakaeri>`                                              404       1446  72.1%
+:ref:`Yaneshaʼ <LinuxFramebufferlangYanesha>`                                                   708       2536  72.1%
+:ref:`South Azerbaijani <LinuxFramebufferlangSouthAzerbaijani>`                                 388       1396  72.2%
+:ref:`Yoruba <LinuxFramebufferlangYoruba>`                                                      554       2454  77.4%
+:ref:`Chickasaw <LinuxFramebufferlangChickasaw>`                                                124        554  77.6%
+:ref:`Maori (2) <LinuxFramebufferlangMaori2>`                                                   480       2385  79.9%
+:ref:`Siona <LinuxFramebufferlangSiona>`                                                        275       1492  81.6%
+:ref:`Catalan (2) <LinuxFramebufferlangCatalan2>`                                               265       1909  86.1%
+:ref:`Shipibo-Conibo <LinuxFramebufferlangShipiboConibo>`                                       323       2540  87.3%
+:ref:`Fur <LinuxFramebufferlangFur>`                                                            231       1838  87.4%
+:ref:`Chinantec, Chiltepec <LinuxFramebufferlangChinantecChiltepec>`                            215       1729  87.6%
+:ref:`Mirandese <LinuxFramebufferlangMirandese>`                                                228       1966  88.4%
+:ref:`Gumuz <LinuxFramebufferlangGumuz>`                                                        135       1283  89.5%
+:ref:`Bora <LinuxFramebufferlangBora>`                                                          166       1598  89.6%
+:ref:`Mòoré <LinuxFramebufferlangMor>`                                                          229       2447  90.6%
+:ref:`Mongolian, Halh (Mongolian) <LinuxFramebufferlangMongolianHalhMongolian>`                   3         33  90.9%
+:ref:`Lamnso' <LinuxFramebufferlangLamnso>`                                                     200       2237  91.1%
+:ref:`Navajo <LinuxFramebufferlangNavajo>`                                                      140       1600  91.2%
+:ref:`Tamazight, Central Atlas <LinuxFramebufferlangTamazightCentralAtlas>`                     156       1822  91.4%
+:ref:`Gilyak <LinuxFramebufferlangGilyak>`                                                      127       1504  91.6%
+:ref:`Ditammari <LinuxFramebufferlangDitammari>`                                                142       1882  92.5%
+:ref:`Assyrian Neo-Aramaic <LinuxFramebufferlangAssyrianNeoAramaic>`                             76       1160  93.4%
+:ref:`Otomi, Mezquital <LinuxFramebufferlangOtomiMezquital>`                                     87       1849  95.3%
+:ref:`Veps <LinuxFramebufferlangVeps>`                                                           62       1323  95.3%
+:ref:`Waama <LinuxFramebufferlangWaama>`                                                         39       1000  96.1%
+:ref:`Dinka, Northeastern <LinuxFramebufferlangDinkaNortheastern>`                               58       1529  96.2%
+:ref:`Kabyle <LinuxFramebufferlangKabyle>`                                                       67       1815  96.3%
+:ref:`Farsi, Western <LinuxFramebufferlangFarsiWestern>`                                         66       1822  96.4%
+:ref:`Éwé <LinuxFramebufferlangw>`                                                               58       2230  97.4%
+:ref:`Baatonum <LinuxFramebufferlangBaatonum>`                                                   49       1939  97.5%
+:ref:`Urdu (2) <LinuxFramebufferlangUrdu2>`                                                      55       2251  97.6%
+:ref:`Urdu <LinuxFramebufferlangUrdu>`                                                           53       2237  97.6%
+:ref:`Uduk <LinuxFramebufferlangUduk>`                                                           75       3247  97.7%
+:ref:`Mazahua Central <LinuxFramebufferlangMazahuaCentral>`                                      36       1574  97.7%
+:ref:`Secoya <LinuxFramebufferlangSecoya>`                                                       32       1409  97.7%
+:ref:`Gen <LinuxFramebufferlangGen>`                                                             49       2309  97.9%
+:ref:`Picard <LinuxFramebufferlangPicard>`                                                       40       2024  98.0%
+:ref:`Mixtec, Metlatónoc <LinuxFramebufferlangMixtecMetlatnoc>`                                  26       1367  98.1%
+:ref:`Dari <LinuxFramebufferlangDari>`                                                           33       1872  98.2%
+:ref:`Arabic, Standard <LinuxFramebufferlangArabicStandard>`                                     22       1348  98.4%
+:ref:`Ga <LinuxFramebufferlangGa>`                                                               29       2039  98.6%
+:ref:`Belanda Viri <LinuxFramebufferlangBelandaViri>`                                            23       2246  99.0%
+:ref:`Vietnamese (Han nom) <LinuxFramebufferlangVietnameseHannom>`                                2        199  99.0%
+:ref:`Chinese, Mandarin (Harbin) <LinuxFramebufferlangChineseMandarinHarbin>`                     2        210  99.0%
+:ref:`Chinese, Mandarin (Traditional) <LinuxFramebufferlangChineseMandarinTraditional>`           2        210  99.0%
+:ref:`Chinese, Yue <LinuxFramebufferlangChineseYue>`                                              2        210  99.0%
+:ref:`(Jinan) <LinuxFramebufferlangJinan>`                                                        2        211  99.1%
+:ref:`Chinese, Gan <LinuxFramebufferlangChineseGan>`                                              2        211  99.1%
+:ref:`Chinese, Mandarin (Guiyang) <LinuxFramebufferlangChineseMandarinGuiyang>`                   2        211  99.1%
+:ref:`Chinese, Wu <LinuxFramebufferlangChineseWu>`                                                2        211  99.1%
+:ref:`Chinese, Hakka <LinuxFramebufferlangChineseHakka>`                                          2        212  99.1%
+:ref:`Chinese, Jinyu <LinuxFramebufferlangChineseJinyu>`                                          2        212  99.1%
+:ref:`Chinese, Mandarin (Beijing) <LinuxFramebufferlangChineseMandarinBeijing>`                   2        212  99.1%
+:ref:`Chinese, Mandarin (Nanjing) <LinuxFramebufferlangChineseMandarinNanjing>`                   2        212  99.1%
+:ref:`Chinese, Mandarin (Tianjin) <LinuxFramebufferlangChineseMandarinTianjin>`                   2        212  99.1%
+:ref:`Chinese, Min Nan <LinuxFramebufferlangChineseMinNan>`                                       2        212  99.1%
+:ref:`Chinese, Xiang <LinuxFramebufferlangChineseXiang>`                                          2        212  99.1%
+:ref:`Japanese (Tokyo) <LinuxFramebufferlangJapaneseTokyo>`                                       3        320  99.1%
+:ref:`Panjabi, Western <LinuxFramebufferlangPanjabiWestern>`                                     22       2419  99.1%
+:ref:`Chinese, Mandarin (Simplified) <LinuxFramebufferlangChineseMandarinSimplified>`             2        225  99.1%
+:ref:`Nuosu <LinuxFramebufferlangNuosu>`                                                          2        230  99.1%
+:ref:`Dangme <LinuxFramebufferlangDangme>`                                                       25       2912  99.1%
+:ref:`Dagaare, Southern <LinuxFramebufferlangDagaareSouthern>`                                   22       2582  99.1%
+:ref:`Japanese <LinuxFramebufferlangJapanese>`                                                    2        299  99.3%
+:ref:`Japanese (Osaka) <LinuxFramebufferlangJapaneseOsaka>`                                       2        308  99.4%
+:ref:`Serer-Sine <LinuxFramebufferlangSererSine>`                                                 9       1596  99.4%
+:ref:`Fon <LinuxFramebufferlangFon>`                                                             13       2520  99.5%
+:ref:`Aja <LinuxFramebufferlangAja>`                                                             10       2061  99.5%
+:ref:`Pashto, Northern <LinuxFramebufferlangPashtoNorthern>`                                      7       2242  99.7%
+:ref:`Dendi <LinuxFramebufferlangDendi>`                                                          4       1569  99.7%
+:ref:`Colorado <LinuxFramebufferlangColorado>`                                                    3       1263  99.8%
+:ref:`Seraiki <LinuxFramebufferlangSeraiki>`                                                      5       2242  99.8%
+:ref:`(Yeonbyeon) <LinuxFramebufferlangYeonbyeon>`                                                2       1061  99.8%
+:ref:`Korean <LinuxFramebufferlangKorean>`                                                        2       1185  99.8%
+=======================================================================================  ==========  =========  =============
+
+.. _LinuxFramebufferlangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -341,6 +343,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 9.
 
+.. _LinuxFramebufferlangTamil:
+
 Tamil
 ^^^^^
 
@@ -367,6 +371,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
 
+.. _LinuxFramebufferlangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -392,6 +398,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangBurmese:
 
 Burmese
 ^^^^^^^
@@ -431,6 +439,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width 16.
 
+.. _LinuxFramebufferlangMon:
+
 Mon
 ^^^
 
@@ -462,6 +472,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 10.
+
+.. _LinuxFramebufferlangShan:
 
 Shan
 ^^^^
@@ -500,6 +512,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Linux Framebuffer* measures width 15.
 
+.. _LinuxFramebufferlangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -527,6 +541,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
 
+.. _LinuxFramebufferlangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -552,6 +568,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -604,6 +622,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *Linux Framebuffer* measures width 29.
 
+.. _LinuxFramebufferlangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -629,6 +649,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangKhn:
 
 Khün
 ^^^^
@@ -674,6 +696,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Linux Framebuffer* measures width 22.
 
+.. _LinuxFramebufferlangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -701,6 +725,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -760,6 +786,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Linux Framebuffer* measures width 36.
 
+.. _LinuxFramebufferlangChakma:
+
 Chakma
 ^^^^^^
 
@@ -795,6 +823,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 13.
 
+.. _LinuxFramebufferlangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -828,6 +858,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 12.
+
+.. _LinuxFramebufferlangTelugu:
 
 Telugu
 ^^^^^^
@@ -863,6 +895,8 @@ Total codepoints: 13
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Linux Framebuffer* measures width 13.
+
+.. _LinuxFramebufferlangSanskrit:
 
 Sanskrit
 ^^^^^^^^
@@ -900,6 +934,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 14.
 
+.. _LinuxFramebufferlangSanskritGrantha:
+
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
 
@@ -936,6 +972,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 14.
 
+.. _LinuxFramebufferlangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -963,6 +1001,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 5.
 
+.. _LinuxFramebufferlangNepali:
+
 Nepali
 ^^^^^^
 
@@ -988,6 +1028,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangThai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1040,6 +1082,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *Linux Framebuffer* measures width 29.
 
+.. _LinuxFramebufferlangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1066,6 +1110,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
 
+.. _LinuxFramebufferlangHindi:
+
 Hindi
 ^^^^^
 
@@ -1091,6 +1137,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1119,6 +1167,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1152,6 +1202,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Linux Framebuffer* measures width 10.
 
+.. _LinuxFramebufferlangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -1181,6 +1233,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 8.
+
+.. _LinuxFramebufferlangThai:
 
 Thai
 ^^^^
@@ -1233,6 +1287,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *Linux Framebuffer* measures width 29.
 
+.. _LinuxFramebufferlangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1265,6 +1321,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Linux Framebuffer* measures width 10.
 
+.. _LinuxFramebufferlangVietnamese:
+
 Vietnamese
 ^^^^^^^^^^
 
@@ -1292,6 +1350,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
 
+.. _LinuxFramebufferlangTagalogTagalog:
+
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
 
@@ -1318,6 +1378,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
 
+.. _LinuxFramebufferlangTibetanCentral:
+
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
 
@@ -1343,6 +1405,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangLao:
 
 Lao
 ^^^
@@ -1376,6 +1440,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Linux Framebuffer* measures width 10.
 
+.. _LinuxFramebufferlangDzongkha:
+
 Dzongkha
 ^^^^^^^^
 
@@ -1401,6 +1467,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangLingalatones:
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -1432,6 +1500,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 9.
+
+.. _LinuxFramebufferlangFrenchWelche:
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -1467,6 +1537,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Linux Framebuffer* measures width 12.
 
+.. _LinuxFramebufferlangYiddishEastern:
+
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
 
@@ -1499,6 +1571,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Linux Framebuffer* measures width 11.
+
+.. _LinuxFramebufferlangPularAdlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -1535,6 +1609,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *Linux Framebuffer* measures width 13.
 
+.. _LinuxFramebufferlangBamun:
+
 Bamun
 ^^^^^
 
@@ -1561,6 +1637,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
 
+.. _LinuxFramebufferlangTaiDam:
+
 Tai Dam
 ^^^^^^^
 
@@ -1586,6 +1664,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangOrok:
 
 Orok
 ^^^^
@@ -1623,6 +1703,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Linux Framebuffer* measures width 14.
 
+.. _LinuxFramebufferlangTem:
+
 Tem
 ^^^
 
@@ -1653,6 +1735,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 9.
+
+.. _LinuxFramebufferlangSaintLucianCreoleFrench:
 
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1688,6 +1772,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *Linux Framebuffer* measures width 12.
 
+.. _LinuxFramebufferlangNanai:
+
 Nanai
 ^^^^^
 
@@ -1713,6 +1799,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangEvenki:
 
 Evenki
 ^^^^^^
@@ -1743,6 +1831,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Linux Framebuffer* measures width 7.
 
+.. _LinuxFramebufferlangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -1769,6 +1859,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
+
+.. _LinuxFramebufferlangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -1802,6 +1894,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Linux Framebuffer* measures width 10.
 
+.. _LinuxFramebufferlangYanesha:
+
 Yaneshaʼ
 ^^^^^^^^
 
@@ -1833,6 +1927,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width 9.
 
+.. _LinuxFramebufferlangSouthAzerbaijani:
+
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
 
@@ -1861,6 +1957,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
 
+.. _LinuxFramebufferlangYoruba:
+
 Yoruba
 ^^^^^^
 
@@ -1888,6 +1986,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 5.
 
+.. _LinuxFramebufferlangChickasaw:
+
 Chickasaw
 ^^^^^^^^^
 
@@ -1914,6 +2014,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
+
+.. _LinuxFramebufferlangMaori2:
 
 Maori (2)
 ^^^^^^^^^
@@ -1943,6 +2045,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
 
+.. _LinuxFramebufferlangSiona:
+
 Siona
 ^^^^^
 
@@ -1970,6 +2074,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangCatalan2:
 
 Catalan (2)
 ^^^^^^^^^^^
@@ -2004,6 +2110,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Linux Framebuffer* measures width 11.
 
+.. _LinuxFramebufferlangShipiboConibo:
+
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
 
@@ -2036,6 +2144,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Linux Framebuffer* measures width 11.
+
+.. _LinuxFramebufferlangFur:
 
 Fur
 ^^^
@@ -2070,6 +2180,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Linux Framebuffer* measures width 11.
 
+.. _LinuxFramebufferlangChinantecChiltepec:
+
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2099,6 +2211,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 8.
+
+.. _LinuxFramebufferlangMirandese:
 
 Mirandese
 ^^^^^^^^^
@@ -2133,6 +2247,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Linux Framebuffer* measures width 11.
 
+.. _LinuxFramebufferlangGumuz:
+
 Gumuz
 ^^^^^
 
@@ -2160,6 +2276,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangBora:
 
 Bora
 ^^^^
@@ -2192,6 +2310,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width 9.
 
+.. _LinuxFramebufferlangMor:
+
 Mòoré
 ^^^^^
 
@@ -2217,6 +2337,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangMongolianHalhMongolian:
 
 Mongolian, Halh (Mongolian)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2245,6 +2367,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
 
+.. _LinuxFramebufferlangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -2272,6 +2396,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangNavajo:
 
 Navajo
 ^^^^^^
@@ -2303,6 +2429,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width 9.
+
+.. _LinuxFramebufferlangTamazightCentralAtlas:
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2336,6 +2464,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Linux Framebuffer* measures width 11.
+
+.. _LinuxFramebufferlangGilyak:
 
 Gilyak
 ^^^^^^
@@ -2372,6 +2502,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Linux Framebuffer* measures width 13.
 
+.. _LinuxFramebufferlangDitammari:
+
 Ditammari
 ^^^^^^^^^
 
@@ -2403,6 +2535,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width 9.
 
+.. _LinuxFramebufferlangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2431,6 +2565,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Linux Framebuffer* measures width 7.
+
+.. _LinuxFramebufferlangOtomiMezquital:
 
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
@@ -2463,6 +2599,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width 9.
 
+.. _LinuxFramebufferlangVeps:
+
 Veps
 ^^^^
 
@@ -2493,6 +2631,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 8.
 
+.. _LinuxFramebufferlangWaama:
+
 Waama
 ^^^^^
 
@@ -2516,6 +2656,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Linux Framebuffer* measures width 2.
+
+.. _LinuxFramebufferlangDinkaNortheastern:
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
@@ -2542,6 +2684,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
+
+.. _LinuxFramebufferlangKabyle:
 
 Kabyle
 ^^^^^^
@@ -2572,6 +2716,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Linux Framebuffer* measures width 7.
 
+.. _LinuxFramebufferlangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -2598,6 +2744,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
+
+.. _LinuxFramebufferlangw:
 
 Éwé
 ^^^
@@ -2631,6 +2779,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Linux Framebuffer* measures width 10.
 
+.. _LinuxFramebufferlangBaatonum:
+
 Baatonum
 ^^^^^^^^
 
@@ -2655,6 +2805,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Linux Framebuffer* measures width 3.
+
+.. _LinuxFramebufferlangUrdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -2684,6 +2836,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
 
+.. _LinuxFramebufferlangUrdu:
+
 Urdu
 ^^^^
 
@@ -2712,6 +2866,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
 
+.. _LinuxFramebufferlangUduk:
+
 Uduk
 ^^^^
 
@@ -2738,6 +2894,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
+
+.. _LinuxFramebufferlangMazahuaCentral:
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -2766,6 +2924,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangSecoya:
 
 Secoya
 ^^^^^^
@@ -2797,6 +2957,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width 8.
 
+.. _LinuxFramebufferlangGen:
+
 Gen
 ^^^
 
@@ -2824,6 +2986,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangPicard:
 
 Picard
 ^^^^^^
@@ -2856,6 +3020,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width 9.
 
+.. _LinuxFramebufferlangMixtecMetlatnoc:
+
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
 
@@ -2884,6 +3050,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
 
+.. _LinuxFramebufferlangDari:
+
 Dari
 ^^^^
 
@@ -2910,6 +3078,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
+
+.. _LinuxFramebufferlangArabicStandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2939,6 +3109,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
 
+.. _LinuxFramebufferlangGa:
+
 Ga
 ^^
 
@@ -2965,6 +3137,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
+
+.. _LinuxFramebufferlangBelandaViri:
 
 Belanda Viri
 ^^^^^^^^^^^^
@@ -2993,6 +3167,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
 
+.. _LinuxFramebufferlangVietnameseHannom:
+
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -3018,6 +3194,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width -14.
+
+.. _LinuxFramebufferlangChineseMandarinHarbin:
 
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3077,6 +3255,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 72,
   while *Linux Framebuffer* measures width 30.
 
+.. _LinuxFramebufferlangChineseMandarinTraditional:
+
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -3105,6 +3285,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *Linux Framebuffer* measures width -10.
+
+.. _LinuxFramebufferlangChineseYue:
 
 Chinese, Yue
 ^^^^^^^^^^^^
@@ -3139,6 +3321,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *Linux Framebuffer* measures width 2.
+
+.. _LinuxFramebufferlangJinan:
 
 (Jinan)
 ^^^^^^^
@@ -3183,6 +3367,8 @@ Total codepoints: 22
 
 - python `wcwidth.wcswidth()`_ measures width 44,
   while *Linux Framebuffer* measures width 36.
+
+.. _LinuxFramebufferlangChineseGan:
 
 Chinese, Gan
 ^^^^^^^^^^^^
@@ -3239,6 +3425,8 @@ Total codepoints: 34
 
 - python `wcwidth.wcswidth()`_ measures width 68,
   while *Linux Framebuffer* measures width 26.
+
+.. _LinuxFramebufferlangChineseMandarinGuiyang:
 
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3297,6 +3485,8 @@ Total codepoints: 35
 - python `wcwidth.wcswidth()`_ measures width 70,
   while *Linux Framebuffer* measures width 28.
 
+.. _LinuxFramebufferlangChineseWu:
+
 Chinese, Wu
 ^^^^^^^^^^^
 
@@ -3341,6 +3531,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 44,
   while *Linux Framebuffer* measures width 36.
 
+.. _LinuxFramebufferlangChineseHakka:
+
 Chinese, Hakka
 ^^^^^^^^^^^^^^
 
@@ -3370,6 +3562,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *Linux Framebuffer* measures width -54.
+
+.. _LinuxFramebufferlangChineseJinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -3403,6 +3597,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Linux Framebuffer* measures width 0.
+
+.. _LinuxFramebufferlangChineseMandarinBeijing:
 
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3460,6 +3656,8 @@ Total codepoints: 34
 - python `wcwidth.wcswidth()`_ measures width 68,
   while *Linux Framebuffer* measures width 22.
 
+.. _LinuxFramebufferlangChineseMandarinNanjing:
+
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -3486,6 +3684,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Linux Framebuffer* measures width -22.
+
+.. _LinuxFramebufferlangChineseMandarinTianjin:
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3521,6 +3721,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *Linux Framebuffer* measures width 0.
 
+.. _LinuxFramebufferlangChineseMinNan:
+
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
 
@@ -3555,6 +3757,8 @@ Total codepoints: 13
 
 - python `wcwidth.wcswidth()`_ measures width 26,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangChineseXiang:
 
 Chinese, Xiang
 ^^^^^^^^^^^^^^
@@ -3613,6 +3817,8 @@ Total codepoints: 35
 - python `wcwidth.wcswidth()`_ measures width 70,
   while *Linux Framebuffer* measures width 34.
 
+.. _LinuxFramebufferlangJapaneseTokyo:
+
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
 
@@ -3637,6 +3843,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width -22.
+
+.. _LinuxFramebufferlangPanjabiWestern:
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -3664,6 +3872,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
 
+.. _LinuxFramebufferlangChineseMandarinSimplified:
+
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -3689,6 +3899,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width -12.
+
+.. _LinuxFramebufferlangNuosu:
 
 Nuosu
 ^^^^^
@@ -3720,6 +3932,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *Linux Framebuffer* measures width -14.
 
+.. _LinuxFramebufferlangDangme:
+
 Dangme
 ^^^^^^
 
@@ -3744,6 +3958,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Linux Framebuffer* measures width 3.
+
+.. _LinuxFramebufferlangDagaareSouthern:
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
@@ -3771,6 +3987,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 5.
+
+.. _LinuxFramebufferlangJapanese:
 
 Japanese
 ^^^^^^^^
@@ -3824,6 +4042,8 @@ Total codepoints: 30
 - python `wcwidth.wcswidth()`_ measures width 60,
   while *Linux Framebuffer* measures width 0.
 
+.. _LinuxFramebufferlangJapaneseOsaka:
+
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
 
@@ -3876,6 +4096,8 @@ Total codepoints: 30
 - python `wcwidth.wcswidth()`_ measures width 60,
   while *Linux Framebuffer* measures width 0.
 
+.. _LinuxFramebufferlangSererSine:
+
 Serer-Sine
 ^^^^^^^^^^
 
@@ -3904,6 +4126,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
 
+.. _LinuxFramebufferlangFon:
+
 Fon
 ^^^
 
@@ -3930,6 +4154,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Linux Framebuffer* measures width 5.
+
+.. _LinuxFramebufferlangAja:
 
 Aja
 ^^^
@@ -3961,6 +4187,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Linux Framebuffer* measures width 8.
 
+.. _LinuxFramebufferlangPashtoNorthern:
+
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
@@ -3989,6 +4217,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
 
+.. _LinuxFramebufferlangDendi:
+
 Dendi
 ^^^^^
 
@@ -4016,6 +4246,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Linux Framebuffer* measures width 6.
+
+.. _LinuxFramebufferlangColorado:
 
 Colorado
 ^^^^^^^^
@@ -4046,6 +4278,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Linux Framebuffer* measures width -1.
 
+.. _LinuxFramebufferlangSeraiki:
+
 Seraiki
 ^^^^^^^
 
@@ -4072,6 +4306,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Linux Framebuffer* measures width 4.
 
+.. _LinuxFramebufferlangYeonbyeon:
+
 (Yeonbyeon)
 ^^^^^^^^^^^
 
@@ -4097,6 +4333,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Linux Framebuffer* measures width 1.
+
+.. _LinuxFramebufferlangKorean:
 
 Korean
 ^^^^^^
@@ -4140,11 +4378,6 @@ The test suite completed in **31.67 seconds** (31s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

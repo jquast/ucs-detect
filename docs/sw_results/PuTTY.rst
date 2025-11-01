@@ -24,7 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
-TIME          66.40s       99.7%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          66.40s       81.1%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -206,127 +206,129 @@ Mongolian, Halh (Mongolian), Tagalog (Tagalog).
 
 The following 117 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Shan                                    869        915  5.0%
-Tamil                                  1000       1074  6.9%
-Tamil (Sri Lanka)                      1000       1074  6.9%
-Sanskrit (Grantha)                      894       1006  11.1%
-Javanese (Javanese)                    1000       1141  12.4%
-Malayalam                              1000       1156  13.5%
-Bengali                                1000       1166  14.2%
-Khmer, Central                          449        528  15.0%
-Kannada                                 902       1080  16.5%
-Khün                                    362        442  18.1%
-Burmese                                 975       1223  20.3%
-Sanskrit                                757       1000  24.3%
-Tamang, Eastern                          33         45  26.7%
-Mon                                     677        946  28.4%
-Marathi                                1000       1420  29.6%
-Nepali                                  935       1385  32.5%
-Gujarati                               1000       1518  34.1%
-Telugu                                  718       1129  36.4%
-Maithili                                955       1519  37.1%
-Hindi                                  1000       1624  38.4%
-Panjabi, Eastern                       1000       1834  45.5%
-Sinhala                                 888       1655  46.3%
-Bhojpuri                                880       1737  49.3%
-Magahi                                  812       1716  52.7%
-Chakma                                  495       1444  65.7%
-Vietnamese (Han nom)                      5        199  97.5%
-Chinese, Hakka                            5        212  97.6%
-Chinese, Mandarin (Tianjin)               5        212  97.6%
-Chinese, Min Nan                          5        212  97.6%
-Thai (2)                                  7        313  97.8%
-Chinese, Mandarin (Simplified)            5        225  97.8%
-Japanese                                  6        299  98.0%
-Japanese (Osaka)                          6        308  98.1%
-Chinese, Mandarin (Harbin)                4        210  98.1%
-Chinese, Mandarin (Traditional)           4        210  98.1%
-Chinese, Yue                              4        210  98.1%
-(Jinan)                                   4        211  98.1%
-Chinese, Gan                              4        211  98.1%
-Chinese, Jinyu                            4        212  98.1%
-Chinese, Mandarin (Beijing)               4        212  98.1%
-Chinese, Xiang                            4        212  98.1%
-Nuosu                                     4        230  98.3%
-Japanese (Tokyo)                          5        320  98.4%
-Chinese, Mandarin (Guiyang)               3        211  98.6%
-Chinese, Mandarin (Nanjing)               3        212  98.6%
-Lao                                       5        426  98.8%
-Thai                                      4        341  98.8%
-Chinese, Wu                               2        211  99.1%
-Bora                                     12       1598  99.2%
-Chickasaw                                 4        554  99.3%
-Orok                                      8       1245  99.4%
-Shipibo-Conibo                           16       2540  99.4%
-Gumuz                                     8       1283  99.4%
-Amarakaeri                                9       1446  99.4%
-Veps                                      8       1323  99.4%
-Yaneshaʼ                                 15       2536  99.4%
-Nanai                                     7       1207  99.4%
-South Azerbaijani                         8       1396  99.4%
-Secoya                                    8       1409  99.4%
-Navajo                                    9       1600  99.4%
-Evenki                                    5        899  99.4%
-Siona                                     8       1492  99.5%
-Gilyak                                    8       1504  99.5%
-Korean                                    6       1185  99.5%
-Tem                                       8       1659  99.5%
-Colorado                                  6       1263  99.5%
-Catalan (2)                               9       1909  99.5%
-(Yeonbyeon)                               5       1061  99.5%
-Mirandese                                 9       1966  99.5%
-Yiddish, Eastern                          8       1775  99.5%
-Arabic, Standard                          6       1348  99.6%
-Picard                                    9       2024  99.6%
-Kabyle                                    8       1815  99.6%
-Lingala (tones)                           8       1818  99.6%
-Ticuna                                    9       2048  99.6%
-Tamazight, Central Atlas                  8       1822  99.6%
-Pular (Adlam)                             7       1613  99.6%
-Maldivian                                 8       1918  99.6%
-Éwé                                       9       2230  99.6%
-Saint Lucian Creole French                7       1777  99.6%
-Farsi, Western                            7       1822  99.6%
-Dendi                                     6       1569  99.6%
-Mazahua Central                           6       1574  99.6%
-Fur                                       7       1838  99.6%
-Maori (2)                                 9       2385  99.6%
-Dari                                      7       1872  99.6%
-Ditammari                                 7       1882  99.6%
-Uduk                                     12       3247  99.6%
-Yoruba                                    9       2454  99.6%
-Mixtec, Metlatónoc                        5       1367  99.6%
-French (Welche)                           7       1928  99.6%
-Bamun                                     8       2285  99.6%
-Chinantec, Chiltepec                      6       1729  99.7%
-Gen                                       8       2309  99.7%
-Assyrian Neo-Aramaic                      4       1160  99.7%
-Ga                                        7       2039  99.7%
-Aja                                       7       2061  99.7%
-Panjabi, Western                          8       2419  99.7%
-Dinka, Northeastern                       5       1529  99.7%
-Mòoré                                     8       2447  99.7%
-Otomi, Mezquital                          6       1849  99.7%
-Vietnamese                                8       2502  99.7%
-Serer-Sine                                5       1596  99.7%
-Lamnso'                                   7       2237  99.7%
-Urdu                                      7       2237  99.7%
-Pashto, Northern                          7       2242  99.7%
-Seraiki                                   7       2242  99.7%
-Belanda Viri                              7       2246  99.7%
-Urdu (2)                                  7       2251  99.7%
-Dagaare, Southern                         8       2582  99.7%
-Baatonum                                  6       1939  99.7%
-Waama                                     3       1000  99.7%
-Fon                                       7       2520  99.7%
-Dangme                                    8       2912  99.7%
-Tai Dam                                   6       2386  99.7%
-Dzongkha                                  7       3060  99.8%
-Tibetan, Central                          7       3174  99.8%
-===============================  ==========  =========  =============
+============================================================================  ==========  =========  =============
+lang                                                                            n_errors    n_total  pct_success
+============================================================================  ==========  =========  =============
+:ref:`Shan <PuTTYlangShan>`                                                          869        915  5.0%
+:ref:`Tamil <PuTTYlangTamil>`                                                       1000       1074  6.9%
+:ref:`Tamil (Sri Lanka) <PuTTYlangTamilSriLanka>`                                   1000       1074  6.9%
+:ref:`Sanskrit (Grantha) <PuTTYlangSanskritGrantha>`                                 894       1006  11.1%
+:ref:`Javanese (Javanese) <PuTTYlangJavaneseJavanese>`                              1000       1141  12.4%
+:ref:`Malayalam <PuTTYlangMalayalam>`                                               1000       1156  13.5%
+:ref:`Bengali <PuTTYlangBengali>`                                                   1000       1166  14.2%
+:ref:`Khmer, Central <PuTTYlangKhmerCentral>`                                        449        528  15.0%
+:ref:`Kannada <PuTTYlangKannada>`                                                    902       1080  16.5%
+:ref:`Khün <PuTTYlangKhn>`                                                           362        442  18.1%
+:ref:`Burmese <PuTTYlangBurmese>`                                                    975       1223  20.3%
+:ref:`Sanskrit <PuTTYlangSanskrit>`                                                  757       1000  24.3%
+:ref:`Tamang, Eastern <PuTTYlangTamangEastern>`                                       33         45  26.7%
+:ref:`Mon <PuTTYlangMon>`                                                            677        946  28.4%
+:ref:`Marathi <PuTTYlangMarathi>`                                                   1000       1420  29.6%
+:ref:`Nepali <PuTTYlangNepali>`                                                      935       1385  32.5%
+:ref:`Gujarati <PuTTYlangGujarati>`                                                 1000       1518  34.1%
+:ref:`Telugu <PuTTYlangTelugu>`                                                      718       1129  36.4%
+:ref:`Maithili <PuTTYlangMaithili>`                                                  955       1519  37.1%
+:ref:`Hindi <PuTTYlangHindi>`                                                       1000       1624  38.4%
+:ref:`Panjabi, Eastern <PuTTYlangPanjabiEastern>`                                   1000       1834  45.5%
+:ref:`Sinhala <PuTTYlangSinhala>`                                                    888       1655  46.3%
+:ref:`Bhojpuri <PuTTYlangBhojpuri>`                                                  880       1737  49.3%
+:ref:`Magahi <PuTTYlangMagahi>`                                                      812       1716  52.7%
+:ref:`Chakma <PuTTYlangChakma>`                                                      495       1444  65.7%
+:ref:`Vietnamese (Han nom) <PuTTYlangVietnameseHannom>`                                5        199  97.5%
+:ref:`Chinese, Hakka <PuTTYlangChineseHakka>`                                          5        212  97.6%
+:ref:`Chinese, Mandarin (Tianjin) <PuTTYlangChineseMandarinTianjin>`                   5        212  97.6%
+:ref:`Chinese, Min Nan <PuTTYlangChineseMinNan>`                                       5        212  97.6%
+:ref:`Thai (2) <PuTTYlangThai2>`                                                       7        313  97.8%
+:ref:`Chinese, Mandarin (Simplified) <PuTTYlangChineseMandarinSimplified>`             5        225  97.8%
+:ref:`Japanese <PuTTYlangJapanese>`                                                    6        299  98.0%
+:ref:`Japanese (Osaka) <PuTTYlangJapaneseOsaka>`                                       6        308  98.1%
+:ref:`Chinese, Mandarin (Harbin) <PuTTYlangChineseMandarinHarbin>`                     4        210  98.1%
+:ref:`Chinese, Mandarin (Traditional) <PuTTYlangChineseMandarinTraditional>`           4        210  98.1%
+:ref:`Chinese, Yue <PuTTYlangChineseYue>`                                              4        210  98.1%
+:ref:`(Jinan) <PuTTYlangJinan>`                                                        4        211  98.1%
+:ref:`Chinese, Gan <PuTTYlangChineseGan>`                                              4        211  98.1%
+:ref:`Chinese, Jinyu <PuTTYlangChineseJinyu>`                                          4        212  98.1%
+:ref:`Chinese, Mandarin (Beijing) <PuTTYlangChineseMandarinBeijing>`                   4        212  98.1%
+:ref:`Chinese, Xiang <PuTTYlangChineseXiang>`                                          4        212  98.1%
+:ref:`Nuosu <PuTTYlangNuosu>`                                                          4        230  98.3%
+:ref:`Japanese (Tokyo) <PuTTYlangJapaneseTokyo>`                                       5        320  98.4%
+:ref:`Chinese, Mandarin (Guiyang) <PuTTYlangChineseMandarinGuiyang>`                   3        211  98.6%
+:ref:`Chinese, Mandarin (Nanjing) <PuTTYlangChineseMandarinNanjing>`                   3        212  98.6%
+:ref:`Lao <PuTTYlangLao>`                                                              5        426  98.8%
+:ref:`Thai <PuTTYlangThai>`                                                            4        341  98.8%
+:ref:`Chinese, Wu <PuTTYlangChineseWu>`                                                2        211  99.1%
+:ref:`Bora <PuTTYlangBora>`                                                           12       1598  99.2%
+:ref:`Chickasaw <PuTTYlangChickasaw>`                                                  4        554  99.3%
+:ref:`Orok <PuTTYlangOrok>`                                                            8       1245  99.4%
+:ref:`Shipibo-Conibo <PuTTYlangShipiboConibo>`                                        16       2540  99.4%
+:ref:`Gumuz <PuTTYlangGumuz>`                                                          8       1283  99.4%
+:ref:`Amarakaeri <PuTTYlangAmarakaeri>`                                                9       1446  99.4%
+:ref:`Veps <PuTTYlangVeps>`                                                            8       1323  99.4%
+:ref:`Yaneshaʼ <PuTTYlangYanesha>`                                                    15       2536  99.4%
+:ref:`Nanai <PuTTYlangNanai>`                                                          7       1207  99.4%
+:ref:`South Azerbaijani <PuTTYlangSouthAzerbaijani>`                                   8       1396  99.4%
+:ref:`Secoya <PuTTYlangSecoya>`                                                        8       1409  99.4%
+:ref:`Navajo <PuTTYlangNavajo>`                                                        9       1600  99.4%
+:ref:`Evenki <PuTTYlangEvenki>`                                                        5        899  99.4%
+:ref:`Siona <PuTTYlangSiona>`                                                          8       1492  99.5%
+:ref:`Gilyak <PuTTYlangGilyak>`                                                        8       1504  99.5%
+:ref:`Korean <PuTTYlangKorean>`                                                        6       1185  99.5%
+:ref:`Tem <PuTTYlangTem>`                                                              8       1659  99.5%
+:ref:`Colorado <PuTTYlangColorado>`                                                    6       1263  99.5%
+:ref:`Catalan (2) <PuTTYlangCatalan2>`                                                 9       1909  99.5%
+:ref:`(Yeonbyeon) <PuTTYlangYeonbyeon>`                                                5       1061  99.5%
+:ref:`Mirandese <PuTTYlangMirandese>`                                                  9       1966  99.5%
+:ref:`Yiddish, Eastern <PuTTYlangYiddishEastern>`                                      8       1775  99.5%
+:ref:`Arabic, Standard <PuTTYlangArabicStandard>`                                      6       1348  99.6%
+:ref:`Picard <PuTTYlangPicard>`                                                        9       2024  99.6%
+:ref:`Kabyle <PuTTYlangKabyle>`                                                        8       1815  99.6%
+:ref:`Lingala (tones) <PuTTYlangLingalatones>`                                         8       1818  99.6%
+:ref:`Ticuna <PuTTYlangTicuna>`                                                        9       2048  99.6%
+:ref:`Tamazight, Central Atlas <PuTTYlangTamazightCentralAtlas>`                       8       1822  99.6%
+:ref:`Pular (Adlam) <PuTTYlangPularAdlam>`                                             7       1613  99.6%
+:ref:`Maldivian <PuTTYlangMaldivian>`                                                  8       1918  99.6%
+:ref:`Éwé <PuTTYlangw>`                                                                9       2230  99.6%
+:ref:`Saint Lucian Creole French <PuTTYlangSaintLucianCreoleFrench>`                   7       1777  99.6%
+:ref:`Farsi, Western <PuTTYlangFarsiWestern>`                                          7       1822  99.6%
+:ref:`Dendi <PuTTYlangDendi>`                                                          6       1569  99.6%
+:ref:`Mazahua Central <PuTTYlangMazahuaCentral>`                                       6       1574  99.6%
+:ref:`Fur <PuTTYlangFur>`                                                              7       1838  99.6%
+:ref:`Maori (2) <PuTTYlangMaori2>`                                                     9       2385  99.6%
+:ref:`Dari <PuTTYlangDari>`                                                            7       1872  99.6%
+:ref:`Ditammari <PuTTYlangDitammari>`                                                  7       1882  99.6%
+:ref:`Uduk <PuTTYlangUduk>`                                                           12       3247  99.6%
+:ref:`Yoruba <PuTTYlangYoruba>`                                                        9       2454  99.6%
+:ref:`Mixtec, Metlatónoc <PuTTYlangMixtecMetlatnoc>`                                   5       1367  99.6%
+:ref:`French (Welche) <PuTTYlangFrenchWelche>`                                         7       1928  99.6%
+:ref:`Bamun <PuTTYlangBamun>`                                                          8       2285  99.6%
+:ref:`Chinantec, Chiltepec <PuTTYlangChinantecChiltepec>`                              6       1729  99.7%
+:ref:`Gen <PuTTYlangGen>`                                                              8       2309  99.7%
+:ref:`Assyrian Neo-Aramaic <PuTTYlangAssyrianNeoAramaic>`                              4       1160  99.7%
+:ref:`Ga <PuTTYlangGa>`                                                                7       2039  99.7%
+:ref:`Aja <PuTTYlangAja>`                                                              7       2061  99.7%
+:ref:`Panjabi, Western <PuTTYlangPanjabiWestern>`                                      8       2419  99.7%
+:ref:`Dinka, Northeastern <PuTTYlangDinkaNortheastern>`                                5       1529  99.7%
+:ref:`Mòoré <PuTTYlangMor>`                                                            8       2447  99.7%
+:ref:`Otomi, Mezquital <PuTTYlangOtomiMezquital>`                                      6       1849  99.7%
+:ref:`Vietnamese <PuTTYlangVietnamese>`                                                8       2502  99.7%
+:ref:`Serer-Sine <PuTTYlangSererSine>`                                                 5       1596  99.7%
+:ref:`Lamnso' <PuTTYlangLamnso>`                                                       7       2237  99.7%
+:ref:`Urdu <PuTTYlangUrdu>`                                                            7       2237  99.7%
+:ref:`Pashto, Northern <PuTTYlangPashtoNorthern>`                                      7       2242  99.7%
+:ref:`Seraiki <PuTTYlangSeraiki>`                                                      7       2242  99.7%
+:ref:`Belanda Viri <PuTTYlangBelandaViri>`                                             7       2246  99.7%
+:ref:`Urdu (2) <PuTTYlangUrdu2>`                                                       7       2251  99.7%
+:ref:`Dagaare, Southern <PuTTYlangDagaareSouthern>`                                    8       2582  99.7%
+:ref:`Baatonum <PuTTYlangBaatonum>`                                                    6       1939  99.7%
+:ref:`Waama <PuTTYlangWaama>`                                                          3       1000  99.7%
+:ref:`Fon <PuTTYlangFon>`                                                              7       2520  99.7%
+:ref:`Dangme <PuTTYlangDangme>`                                                        8       2912  99.7%
+:ref:`Tai Dam <PuTTYlangTaiDam>`                                                       6       2386  99.7%
+:ref:`Dzongkha <PuTTYlangDzongkha>`                                                    7       3060  99.8%
+:ref:`Tibetan, Central <PuTTYlangTibetanCentral>`                                      7       3174  99.8%
+============================================================================  ==========  =========  =============
+
+.. _PuTTYlangShan:
 
 Shan
 ^^^^
@@ -365,6 +367,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width 9.
 
+.. _PuTTYlangTamil:
+
 Tamil
 ^^^^^
 
@@ -391,6 +395,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
 
+.. _PuTTYlangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -416,6 +422,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
+
+.. _PuTTYlangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -453,6 +461,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width 14.
 
+.. _PuTTYlangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -478,6 +488,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
+
+.. _PuTTYlangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -530,6 +542,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *PuTTY* measures width 21.
 
+.. _PuTTYlangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -563,6 +577,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width 12.
+
+.. _PuTTYlangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -622,6 +638,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *PuTTY* measures width 25.
 
+.. _PuTTYlangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -647,6 +665,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
+
+.. _PuTTYlangKhn:
 
 Khün
 ^^^^
@@ -692,6 +712,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *PuTTY* measures width 15.
 
+.. _PuTTYlangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -730,6 +752,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *PuTTY* measures width 11.
 
+.. _PuTTYlangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -766,6 +790,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width 13.
 
+.. _PuTTYlangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -793,6 +819,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
+
+.. _PuTTYlangMon:
 
 Mon
 ^^^
@@ -826,6 +854,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 7.
 
+.. _PuTTYlangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -853,6 +883,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 5.
 
+.. _PuTTYlangNepali:
+
 Nepali
 ^^^^^^
 
@@ -879,6 +911,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
 
+.. _PuTTYlangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -904,6 +938,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
+
+.. _PuTTYlangTelugu:
 
 Telugu
 ^^^^^^
@@ -940,6 +976,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *PuTTY* measures width 10.
 
+.. _PuTTYlangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -970,6 +1008,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 7.
 
+.. _PuTTYlangHindi:
+
 Hindi
 ^^^^^
 
@@ -995,6 +1035,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
+
+.. _PuTTYlangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1024,6 +1066,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
 
+.. _PuTTYlangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1049,6 +1093,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width 4.
+
+.. _PuTTYlangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1082,6 +1128,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width 10.
 
+.. _PuTTYlangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1113,6 +1161,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width 10.
+
+.. _PuTTYlangChakma:
 
 Chakma
 ^^^^^^
@@ -1149,6 +1199,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width 8.
 
+.. _PuTTYlangVietnameseHannom:
+
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1179,6 +1231,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *PuTTY* measures width -30.
 
+.. _PuTTYlangChineseHakka:
+
 Chinese, Hakka
 ^^^^^^^^^^^^^^
 
@@ -1206,6 +1260,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *PuTTY* measures width 5.
+
+.. _PuTTYlangChineseMandarinTianjin:
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1243,6 +1299,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 28,
   while *PuTTY* measures width -12.
 
+.. _PuTTYlangChineseMinNan:
+
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
 
@@ -1270,6 +1328,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *PuTTY* measures width 5.
+
+.. _PuTTYlangThai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1299,6 +1359,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -22.
 
+.. _PuTTYlangChineseMandarinSimplified:
+
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1322,6 +1384,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -4.
+
+.. _PuTTYlangJapanese:
 
 Japanese
 ^^^^^^^^
@@ -1357,6 +1421,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *PuTTY* measures width -14.
 
+.. _PuTTYlangJapaneseOsaka:
+
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
 
@@ -1380,6 +1446,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -20.
+
+.. _PuTTYlangChineseMandarinHarbin:
 
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1405,6 +1473,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width -20.
+
+.. _PuTTYlangChineseMandarinTraditional:
 
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1444,6 +1514,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 32,
   while *PuTTY* measures width 12.
 
+.. _PuTTYlangChineseYue:
+
 Chinese, Yue
 ^^^^^^^^^^^^
 
@@ -1469,6 +1541,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *PuTTY* measures width -42.
+
+.. _PuTTYlangJinan:
 
 (Jinan)
 ^^^^^^^
@@ -1497,6 +1571,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *PuTTY* measures width -12.
 
+.. _PuTTYlangChineseGan:
+
 Chinese, Gan
 ^^^^^^^^^^^^
 
@@ -1522,6 +1598,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *PuTTY* measures width -40.
+
+.. _PuTTYlangChineseJinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1551,6 +1629,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *PuTTY* measures width 5.
 
+.. _PuTTYlangChineseMandarinBeijing:
+
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1576,6 +1656,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *PuTTY* measures width -40.
+
+.. _PuTTYlangChineseXiang:
 
 Chinese, Xiang
 ^^^^^^^^^^^^^^
@@ -1605,6 +1687,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *PuTTY* measures width 5.
 
+.. _PuTTYlangNuosu:
+
 Nuosu
 ^^^^^
 
@@ -1631,6 +1715,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *PuTTY* measures width -14.
 
+.. _PuTTYlangJapaneseTokyo:
+
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
 
@@ -1655,6 +1741,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width -22.
+
+.. _PuTTYlangChineseMandarinGuiyang:
 
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1685,6 +1773,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *PuTTY* measures width -46.
 
+.. _PuTTYlangChineseMandarinNanjing:
+
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1713,6 +1803,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *PuTTY* measures width 5.
 
+.. _PuTTYlangLao:
+
 Lao
 ^^^
 
@@ -1740,6 +1832,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 3.
+
+.. _PuTTYlangThai:
 
 Thai
 ^^^^
@@ -1813,6 +1907,8 @@ Total codepoints: 50
 - python `wcwidth.wcswidth()`_ measures width 39,
   while *PuTTY* measures width 17.
 
+.. _PuTTYlangChineseWu:
+
 Chinese, Wu
 ^^^^^^^^^^^
 
@@ -1847,6 +1943,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *PuTTY* measures width -22.
 
+.. _PuTTYlangBora:
+
 Bora
 ^^^^
 
@@ -1878,6 +1976,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *PuTTY* measures width -8.
 
+.. _PuTTYlangChickasaw:
+
 Chickasaw
 ^^^^^^^^^
 
@@ -1906,6 +2006,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width -4.
+
+.. _PuTTYlangOrok:
 
 Orok
 ^^^^
@@ -1943,6 +2045,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *PuTTY* measures width 8.
 
+.. _PuTTYlangShipiboConibo:
+
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
 
@@ -1972,6 +2076,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width -2.
 
+.. _PuTTYlangGumuz:
+
 Gumuz
 ^^^^^
 
@@ -1999,6 +2105,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width 0.
+
+.. _PuTTYlangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -2028,6 +2136,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width -2.
 
+.. _PuTTYlangVeps:
+
 Veps
 ^^^^
 
@@ -2051,6 +2161,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -7.
+
+.. _PuTTYlangYanesha:
 
 Yaneshaʼ
 ^^^^^^^^
@@ -2080,6 +2192,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width 3.
 
+.. _PuTTYlangNanai:
+
 Nanai
 ^^^^^
 
@@ -2106,6 +2220,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width -7.
+
+.. _PuTTYlangSouthAzerbaijani:
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
@@ -2135,6 +2251,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width -10.
+
+.. _PuTTYlangSecoya:
 
 Secoya
 ^^^^^^
@@ -2168,6 +2286,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *PuTTY* measures width 2.
 
+.. _PuTTYlangNavajo:
+
 Navajo
 ^^^^^^
 
@@ -2191,6 +2311,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -8.
+
+.. _PuTTYlangEvenki:
 
 Evenki
 ^^^^^^
@@ -2221,6 +2343,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width -1.
 
+.. _PuTTYlangSiona:
+
 Siona
 ^^^^^
 
@@ -2247,6 +2371,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -10.
 
+.. _PuTTYlangGilyak:
+
 Gilyak
 ^^^^^^
 
@@ -2272,6 +2398,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -2.
+
+.. _PuTTYlangKorean:
 
 Korean
 ^^^^^^
@@ -2300,6 +2428,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *PuTTY* measures width 0.
 
+.. _PuTTYlangTem:
+
 Tem
 ^^^
 
@@ -2323,6 +2453,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -1.
+
+.. _PuTTYlangColorado:
 
 Colorado
 ^^^^^^^^
@@ -2350,6 +2482,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -3.
 
+.. _PuTTYlangCatalan2:
+
 Catalan (2)
 ^^^^^^^^^^^
 
@@ -2373,6 +2507,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -6.
+
+.. _PuTTYlangYeonbyeon:
 
 (Yeonbyeon)
 ^^^^^^^^^^^
@@ -2399,6 +2535,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width -2.
 
+.. _PuTTYlangMirandese:
+
 Mirandese
 ^^^^^^^^^
 
@@ -2423,6 +2561,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -9.
+
+.. _PuTTYlangYiddishEastern:
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -2453,6 +2593,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width -4.
 
+.. _PuTTYlangArabicStandard:
+
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
 
@@ -2481,6 +2623,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width -2.
 
+.. _PuTTYlangPicard:
+
 Picard
 ^^^^^^
 
@@ -2506,6 +2650,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -5.
 
+.. _PuTTYlangKabyle:
+
 Kabyle
 ^^^^^^
 
@@ -2528,6 +2674,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *PuTTY* measures width -8.
+
+.. _PuTTYlangLingalatones:
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -2555,6 +2703,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -3.
 
+.. _PuTTYlangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -2579,6 +2729,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -3.
 
+.. _PuTTYlangTamazightCentralAtlas:
+
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2601,6 +2753,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *PuTTY* measures width -7.
+
+.. _PuTTYlangPularAdlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -2626,6 +2780,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -4.
+
+.. _PuTTYlangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -2659,6 +2815,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width -2.
 
+.. _PuTTYlangw:
+
 Éwé
 ^^^
 
@@ -2682,6 +2840,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -6.
+
+.. _PuTTYlangSaintLucianCreoleFrench:
 
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2713,6 +2873,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *PuTTY* measures width 1.
 
+.. _PuTTYlangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -2737,6 +2899,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -4.
+
+.. _PuTTYlangDendi:
 
 Dendi
 ^^^^^
@@ -2764,6 +2928,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width 1.
 
+.. _PuTTYlangMazahuaCentral:
+
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
@@ -2787,6 +2953,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -3.
+
+.. _PuTTYlangFur:
 
 Fur
 ^^^
@@ -2815,6 +2983,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -4.
 
+.. _PuTTYlangMaori2:
+
 Maori (2)
 ^^^^^^^^^
 
@@ -2841,6 +3011,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -5.
 
+.. _PuTTYlangDari:
+
 Dari
 ^^^^
 
@@ -2866,6 +3038,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -1.
+
+.. _PuTTYlangDitammari:
 
 Ditammari
 ^^^^^^^^^
@@ -2897,6 +3071,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *PuTTY* measures width 6.
 
+.. _PuTTYlangUduk:
+
 Uduk
 ^^^^
 
@@ -2921,6 +3097,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -4.
+
+.. _PuTTYlangYoruba:
 
 Yoruba
 ^^^^^^
@@ -2955,6 +3133,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *PuTTY* measures width 6.
 
+.. _PuTTYlangMixtecMetlatnoc:
+
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
 
@@ -2978,6 +3158,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -3.
+
+.. _PuTTYlangFrenchWelche:
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -3007,6 +3189,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 1.
 
+.. _PuTTYlangBamun:
+
 Bamun
 ^^^^^
 
@@ -3030,6 +3214,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -3.
+
+.. _PuTTYlangChinantecChiltepec:
 
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
@@ -3056,6 +3242,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width 2.
+
+.. _PuTTYlangGen:
 
 Gen
 ^^^
@@ -3085,6 +3273,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *PuTTY* measures width 4.
 
+.. _PuTTYlangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -3112,6 +3302,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 0.
 
+.. _PuTTYlangGa:
+
 Ga
 ^^
 
@@ -3136,6 +3328,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -9.
 
+.. _PuTTYlangAja:
+
 Aja
 ^^^
 
@@ -3159,6 +3353,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -1.
+
+.. _PuTTYlangPanjabiWestern:
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -3187,6 +3383,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 3.
 
+.. _PuTTYlangDinkaNortheastern:
+
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
 
@@ -3211,6 +3409,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -1.
 
+.. _PuTTYlangMor:
+
 Mòoré
 ^^^^^
 
@@ -3234,6 +3434,8 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *PuTTY* measures width -4.
 
+.. _PuTTYlangOtomiMezquital:
+
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
 
@@ -3256,6 +3458,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *PuTTY* measures width -5.
+
+.. _PuTTYlangVietnamese:
 
 Vietnamese
 ^^^^^^^^^^
@@ -3284,6 +3488,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width 1.
 
+.. _PuTTYlangSererSine:
+
 Serer-Sine
 ^^^^^^^^^^
 
@@ -3309,6 +3515,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -1.
 
+.. _PuTTYlangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -3333,6 +3541,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *PuTTY* measures width -3.
+
+.. _PuTTYlangUrdu:
 
 Urdu
 ^^^^
@@ -3362,6 +3572,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 0.
 
+.. _PuTTYlangPashtoNorthern:
+
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
@@ -3388,6 +3600,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 1.
+
+.. _PuTTYlangSeraiki:
 
 Seraiki
 ^^^^^^^
@@ -3416,6 +3630,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 2.
 
+.. _PuTTYlangBelandaViri:
+
 Belanda Viri
 ^^^^^^^^^^^^
 
@@ -3438,6 +3654,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *PuTTY* measures width -1.
+
+.. _PuTTYlangUrdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -3466,6 +3684,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *PuTTY* measures width 0.
 
+.. _PuTTYlangDagaareSouthern:
+
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
 
@@ -3489,6 +3709,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -3.
+
+.. _PuTTYlangBaatonum:
 
 Baatonum
 ^^^^^^^^
@@ -3514,6 +3736,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -1.
 
+.. _PuTTYlangWaama:
+
 Waama
 ^^^^^
 
@@ -3536,6 +3760,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *PuTTY* measures width -7.
+
+.. _PuTTYlangFon:
 
 Fon
 ^^^
@@ -3563,6 +3789,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *PuTTY* measures width -8.
 
+.. _PuTTYlangDangme:
+
 Dangme
 ^^^^^^
 
@@ -3586,6 +3814,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -3.
+
+.. _PuTTYlangTaiDam:
 
 Tai Dam
 ^^^^^^^
@@ -3612,6 +3842,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width 0.
 
+.. _PuTTYlangDzongkha:
+
 Dzongkha
 ^^^^^^^^
 
@@ -3635,6 +3867,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *PuTTY* measures width -2.
+
+.. _PuTTYlangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -3678,11 +3912,6 @@ The test suite completed in **66.40 seconds** (66s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

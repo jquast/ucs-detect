@@ -117,7 +117,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     if not shell:
         writer(f"ucs-detect: {display_args(session_arguments)})")
 
-    if term.get_location(timeout=timeout) == (-1, -1):
+    if measure.get_location_with_retry(term, timeout) == (-1, -1):
         raise RuntimeError(f"Not a terminal or Timeout exceeded ({timeout:.1f}s)!")
 
     # Use a very long timeout, some terminals have slowdown difficulties with

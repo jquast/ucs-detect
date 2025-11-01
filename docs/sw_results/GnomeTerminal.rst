@@ -24,7 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     81.53%       79.4%           modes_supported / total_modes
-TIME          2845.60s     80.7%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          2845.60s     24.6%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -184,127 +184,129 @@ Mongolian, Halh (Mongolian), Tagalog (Tagalog).
 
 The following 117 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Shan                                    869        915  5.0%
-Tamil (Sri Lanka)                      1000       1074  6.9%
-Tamil                                  1000       1075  7.0%
-Sanskrit (Grantha)                      894       1006  11.1%
-Javanese (Javanese)                    1000       1133  11.7%
-Malayalam                              1000       1154  13.3%
-Bengali                                1000       1166  14.2%
-Khmer, Central                          448        528  15.2%
-Kannada                                 902       1080  16.5%
-Khün                                    361        442  18.3%
-Burmese                                 975       1223  20.3%
-Sanskrit                                756       1000  24.4%
-Tamang, Eastern                          33         45  26.7%
-Mon                                     677        946  28.4%
-Marathi                                1000       1421  29.6%
-Nepali                                  931       1385  32.8%
-Gujarati                               1000       1520  34.2%
-Telugu                                  716       1129  36.6%
-Maithili                                953       1519  37.3%
-Hindi                                  1000       1631  38.7%
-Panjabi, Eastern                       1000       1829  45.3%
-Sinhala                                 887       1655  46.4%
-Bhojpuri                                880       1737  49.3%
-Magahi                                  812       1716  52.7%
-Chakma                                  493       1444  65.9%
-Tibetan, Central                          5        279  98.2%
-Chinese, Mandarin (Harbin)                3        210  98.6%
-Chinese, Yue                              3        210  98.6%
-Chinese, Gan                              3        211  98.6%
-Chinese, Wu                               3        211  98.6%
-Chinese, Hakka                            3        212  98.6%
-Chinese, Mandarin (Beijing)               3        212  98.6%
-Chinese, Mandarin (Tianjin)               3        212  98.6%
-Chinese, Xiang                            3        212  98.6%
-Dzongkha                                  5        359  98.6%
-Japanese                                  4        299  98.7%
-Chinese, Mandarin (Simplified)            3        225  98.7%
-Nuosu                                     3        230  98.7%
-Japanese (Osaka)                          4        308  98.7%
-Japanese (Tokyo)                          4        320  98.8%
-Thai                                      4        341  98.8%
-Vietnamese (Han nom)                      2        199  99.0%
-Thai (2)                                  3        313  99.0%
-Chinese, Mandarin (Traditional)           2        210  99.0%
-(Jinan)                                   2        211  99.1%
-Chinese, Mandarin (Guiyang)               2        211  99.1%
-Chinese, Jinyu                            2        212  99.1%
-Chinese, Mandarin (Nanjing)               2        212  99.1%
-Chinese, Min Nan                          2        212  99.1%
-Lao                                       3        426  99.3%
-Bora                                      7       1598  99.6%
-Orok                                      5       1245  99.6%
-Shipibo-Conibo                           10       2540  99.6%
-Gumuz                                     5       1283  99.6%
-Navajo                                    6       1600  99.6%
-Chickasaw                                 2        554  99.6%
-South Azerbaijani                         5       1396  99.6%
-Yaneshaʼ                                  9       2536  99.6%
-Amarakaeri                                5       1446  99.7%
-Siona                                     5       1492  99.7%
-Evenki                                    3        899  99.7%
-Gilyak                                    5       1504  99.7%
-Nanai                                     4       1207  99.7%
-Colorado                                  4       1263  99.7%
-Veps                                      4       1323  99.7%
-Secoya                                    4       1409  99.7%
-(Yeonbyeon)                               3       1061  99.7%
-Yiddish, Eastern                          5       1775  99.7%
-Kabyle                                    5       1815  99.7%
-Catalan (2)                               5       1909  99.7%
-Maldivian                                 5       1918  99.7%
-Assyrian Neo-Aramaic                      3       1160  99.7%
-Mirandese                                 5       1966  99.7%
-Korean                                    3       1185  99.7%
-Pular (Adlam)                             4       1613  99.8%
-Picard                                    5       2024  99.8%
-Ticuna                                    5       2048  99.8%
-Tem                                       4       1659  99.8%
-Saint Lucian Creole French                4       1777  99.8%
-Éwé                                       5       2230  99.8%
-Arabic, Standard                          3       1348  99.8%
-Lingala (tones)                           4       1818  99.8%
-Farsi, Western                            4       1822  99.8%
-Tamazight, Central Atlas                  4       1822  99.8%
-Mixtec, Metlatónoc                        3       1367  99.8%
-Bamun                                     5       2285  99.8%
-Fur                                       4       1838  99.8%
-Gen                                       5       2309  99.8%
-Uduk                                      7       3247  99.8%
-Dari                                      4       1872  99.8%
-Ditammari                                 4       1882  99.8%
-Maori (2)                                 5       2385  99.8%
-French (Welche)                           4       1928  99.8%
-Panjabi, Western                          5       2419  99.8%
-Baatonum                                  4       1939  99.8%
-Mòoré                                     5       2447  99.8%
-Yoruba                                    5       2454  99.8%
-Waama                                     2       1000  99.8%
-Vietnamese                                5       2502  99.8%
-Dinka, Northeastern                       3       1529  99.8%
-Ga                                        4       2039  99.8%
-Aja                                       4       2061  99.8%
-Dagaare, Southern                         5       2582  99.8%
-Dendi                                     3       1569  99.8%
-Mazahua Central                           3       1574  99.8%
-Serer-Sine                                3       1596  99.8%
-Lamnso'                                   4       2237  99.8%
-Urdu                                      4       2237  99.8%
-Pashto, Northern                          4       2242  99.8%
-Seraiki                                   4       2242  99.8%
-Belanda Viri                              4       2246  99.8%
-Urdu (2)                                  4       2251  99.8%
-Chinantec, Chiltepec                      3       1729  99.8%
-Dangme                                    5       2912  99.8%
-Otomi, Mezquital                          3       1849  99.8%
-Fon                                       4       2520  99.8%
-Tai Dam                                   3       2386  99.9%
-===============================  ==========  =========  =============
+====================================================================================  ==========  =========  =============
+lang                                                                                    n_errors    n_total  pct_success
+====================================================================================  ==========  =========  =============
+:ref:`Shan <GnomeTerminallangShan>`                                                          869        915  5.0%
+:ref:`Tamil (Sri Lanka) <GnomeTerminallangTamilSriLanka>`                                   1000       1074  6.9%
+:ref:`Tamil <GnomeTerminallangTamil>`                                                       1000       1075  7.0%
+:ref:`Sanskrit (Grantha) <GnomeTerminallangSanskritGrantha>`                                 894       1006  11.1%
+:ref:`Javanese (Javanese) <GnomeTerminallangJavaneseJavanese>`                              1000       1133  11.7%
+:ref:`Malayalam <GnomeTerminallangMalayalam>`                                               1000       1154  13.3%
+:ref:`Bengali <GnomeTerminallangBengali>`                                                   1000       1166  14.2%
+:ref:`Khmer, Central <GnomeTerminallangKhmerCentral>`                                        448        528  15.2%
+:ref:`Kannada <GnomeTerminallangKannada>`                                                    902       1080  16.5%
+:ref:`Khün <GnomeTerminallangKhn>`                                                           361        442  18.3%
+:ref:`Burmese <GnomeTerminallangBurmese>`                                                    975       1223  20.3%
+:ref:`Sanskrit <GnomeTerminallangSanskrit>`                                                  756       1000  24.4%
+:ref:`Tamang, Eastern <GnomeTerminallangTamangEastern>`                                       33         45  26.7%
+:ref:`Mon <GnomeTerminallangMon>`                                                            677        946  28.4%
+:ref:`Marathi <GnomeTerminallangMarathi>`                                                   1000       1421  29.6%
+:ref:`Nepali <GnomeTerminallangNepali>`                                                      931       1385  32.8%
+:ref:`Gujarati <GnomeTerminallangGujarati>`                                                 1000       1520  34.2%
+:ref:`Telugu <GnomeTerminallangTelugu>`                                                      716       1129  36.6%
+:ref:`Maithili <GnomeTerminallangMaithili>`                                                  953       1519  37.3%
+:ref:`Hindi <GnomeTerminallangHindi>`                                                       1000       1631  38.7%
+:ref:`Panjabi, Eastern <GnomeTerminallangPanjabiEastern>`                                   1000       1829  45.3%
+:ref:`Sinhala <GnomeTerminallangSinhala>`                                                    887       1655  46.4%
+:ref:`Bhojpuri <GnomeTerminallangBhojpuri>`                                                  880       1737  49.3%
+:ref:`Magahi <GnomeTerminallangMagahi>`                                                      812       1716  52.7%
+:ref:`Chakma <GnomeTerminallangChakma>`                                                      493       1444  65.9%
+:ref:`Tibetan, Central <GnomeTerminallangTibetanCentral>`                                      5        279  98.2%
+:ref:`Chinese, Mandarin (Harbin) <GnomeTerminallangChineseMandarinHarbin>`                     3        210  98.6%
+:ref:`Chinese, Yue <GnomeTerminallangChineseYue>`                                              3        210  98.6%
+:ref:`Chinese, Gan <GnomeTerminallangChineseGan>`                                              3        211  98.6%
+:ref:`Chinese, Wu <GnomeTerminallangChineseWu>`                                                3        211  98.6%
+:ref:`Chinese, Hakka <GnomeTerminallangChineseHakka>`                                          3        212  98.6%
+:ref:`Chinese, Mandarin (Beijing) <GnomeTerminallangChineseMandarinBeijing>`                   3        212  98.6%
+:ref:`Chinese, Mandarin (Tianjin) <GnomeTerminallangChineseMandarinTianjin>`                   3        212  98.6%
+:ref:`Chinese, Xiang <GnomeTerminallangChineseXiang>`                                          3        212  98.6%
+:ref:`Dzongkha <GnomeTerminallangDzongkha>`                                                    5        359  98.6%
+:ref:`Japanese <GnomeTerminallangJapanese>`                                                    4        299  98.7%
+:ref:`Chinese, Mandarin (Simplified) <GnomeTerminallangChineseMandarinSimplified>`             3        225  98.7%
+:ref:`Nuosu <GnomeTerminallangNuosu>`                                                          3        230  98.7%
+:ref:`Japanese (Osaka) <GnomeTerminallangJapaneseOsaka>`                                       4        308  98.7%
+:ref:`Japanese (Tokyo) <GnomeTerminallangJapaneseTokyo>`                                       4        320  98.8%
+:ref:`Thai <GnomeTerminallangThai>`                                                            4        341  98.8%
+:ref:`Vietnamese (Han nom) <GnomeTerminallangVietnameseHannom>`                                2        199  99.0%
+:ref:`Thai (2) <GnomeTerminallangThai2>`                                                       3        313  99.0%
+:ref:`Chinese, Mandarin (Traditional) <GnomeTerminallangChineseMandarinTraditional>`           2        210  99.0%
+:ref:`(Jinan) <GnomeTerminallangJinan>`                                                        2        211  99.1%
+:ref:`Chinese, Mandarin (Guiyang) <GnomeTerminallangChineseMandarinGuiyang>`                   2        211  99.1%
+:ref:`Chinese, Jinyu <GnomeTerminallangChineseJinyu>`                                          2        212  99.1%
+:ref:`Chinese, Mandarin (Nanjing) <GnomeTerminallangChineseMandarinNanjing>`                   2        212  99.1%
+:ref:`Chinese, Min Nan <GnomeTerminallangChineseMinNan>`                                       2        212  99.1%
+:ref:`Lao <GnomeTerminallangLao>`                                                              3        426  99.3%
+:ref:`Bora <GnomeTerminallangBora>`                                                            7       1598  99.6%
+:ref:`Orok <GnomeTerminallangOrok>`                                                            5       1245  99.6%
+:ref:`Shipibo-Conibo <GnomeTerminallangShipiboConibo>`                                        10       2540  99.6%
+:ref:`Gumuz <GnomeTerminallangGumuz>`                                                          5       1283  99.6%
+:ref:`Navajo <GnomeTerminallangNavajo>`                                                        6       1600  99.6%
+:ref:`Chickasaw <GnomeTerminallangChickasaw>`                                                  2        554  99.6%
+:ref:`South Azerbaijani <GnomeTerminallangSouthAzerbaijani>`                                   5       1396  99.6%
+:ref:`Yaneshaʼ <GnomeTerminallangYanesha>`                                                     9       2536  99.6%
+:ref:`Amarakaeri <GnomeTerminallangAmarakaeri>`                                                5       1446  99.7%
+:ref:`Siona <GnomeTerminallangSiona>`                                                          5       1492  99.7%
+:ref:`Evenki <GnomeTerminallangEvenki>`                                                        3        899  99.7%
+:ref:`Gilyak <GnomeTerminallangGilyak>`                                                        5       1504  99.7%
+:ref:`Nanai <GnomeTerminallangNanai>`                                                          4       1207  99.7%
+:ref:`Colorado <GnomeTerminallangColorado>`                                                    4       1263  99.7%
+:ref:`Veps <GnomeTerminallangVeps>`                                                            4       1323  99.7%
+:ref:`Secoya <GnomeTerminallangSecoya>`                                                        4       1409  99.7%
+:ref:`(Yeonbyeon) <GnomeTerminallangYeonbyeon>`                                                3       1061  99.7%
+:ref:`Yiddish, Eastern <GnomeTerminallangYiddishEastern>`                                      5       1775  99.7%
+:ref:`Kabyle <GnomeTerminallangKabyle>`                                                        5       1815  99.7%
+:ref:`Catalan (2) <GnomeTerminallangCatalan2>`                                                 5       1909  99.7%
+:ref:`Maldivian <GnomeTerminallangMaldivian>`                                                  5       1918  99.7%
+:ref:`Assyrian Neo-Aramaic <GnomeTerminallangAssyrianNeoAramaic>`                              3       1160  99.7%
+:ref:`Mirandese <GnomeTerminallangMirandese>`                                                  5       1966  99.7%
+:ref:`Korean <GnomeTerminallangKorean>`                                                        3       1185  99.7%
+:ref:`Pular (Adlam) <GnomeTerminallangPularAdlam>`                                             4       1613  99.8%
+:ref:`Picard <GnomeTerminallangPicard>`                                                        5       2024  99.8%
+:ref:`Ticuna <GnomeTerminallangTicuna>`                                                        5       2048  99.8%
+:ref:`Tem <GnomeTerminallangTem>`                                                              4       1659  99.8%
+:ref:`Saint Lucian Creole French <GnomeTerminallangSaintLucianCreoleFrench>`                   4       1777  99.8%
+:ref:`Éwé <GnomeTerminallangw>`                                                                5       2230  99.8%
+:ref:`Arabic, Standard <GnomeTerminallangArabicStandard>`                                      3       1348  99.8%
+:ref:`Lingala (tones) <GnomeTerminallangLingalatones>`                                         4       1818  99.8%
+:ref:`Farsi, Western <GnomeTerminallangFarsiWestern>`                                          4       1822  99.8%
+:ref:`Tamazight, Central Atlas <GnomeTerminallangTamazightCentralAtlas>`                       4       1822  99.8%
+:ref:`Mixtec, Metlatónoc <GnomeTerminallangMixtecMetlatnoc>`                                   3       1367  99.8%
+:ref:`Bamun <GnomeTerminallangBamun>`                                                          5       2285  99.8%
+:ref:`Fur <GnomeTerminallangFur>`                                                              4       1838  99.8%
+:ref:`Gen <GnomeTerminallangGen>`                                                              5       2309  99.8%
+:ref:`Uduk <GnomeTerminallangUduk>`                                                            7       3247  99.8%
+:ref:`Dari <GnomeTerminallangDari>`                                                            4       1872  99.8%
+:ref:`Ditammari <GnomeTerminallangDitammari>`                                                  4       1882  99.8%
+:ref:`Maori (2) <GnomeTerminallangMaori2>`                                                     5       2385  99.8%
+:ref:`French (Welche) <GnomeTerminallangFrenchWelche>`                                         4       1928  99.8%
+:ref:`Panjabi, Western <GnomeTerminallangPanjabiWestern>`                                      5       2419  99.8%
+:ref:`Baatonum <GnomeTerminallangBaatonum>`                                                    4       1939  99.8%
+:ref:`Mòoré <GnomeTerminallangMor>`                                                            5       2447  99.8%
+:ref:`Yoruba <GnomeTerminallangYoruba>`                                                        5       2454  99.8%
+:ref:`Waama <GnomeTerminallangWaama>`                                                          2       1000  99.8%
+:ref:`Vietnamese <GnomeTerminallangVietnamese>`                                                5       2502  99.8%
+:ref:`Dinka, Northeastern <GnomeTerminallangDinkaNortheastern>`                                3       1529  99.8%
+:ref:`Ga <GnomeTerminallangGa>`                                                                4       2039  99.8%
+:ref:`Aja <GnomeTerminallangAja>`                                                              4       2061  99.8%
+:ref:`Dagaare, Southern <GnomeTerminallangDagaareSouthern>`                                    5       2582  99.8%
+:ref:`Dendi <GnomeTerminallangDendi>`                                                          3       1569  99.8%
+:ref:`Mazahua Central <GnomeTerminallangMazahuaCentral>`                                       3       1574  99.8%
+:ref:`Serer-Sine <GnomeTerminallangSererSine>`                                                 3       1596  99.8%
+:ref:`Lamnso' <GnomeTerminallangLamnso>`                                                       4       2237  99.8%
+:ref:`Urdu <GnomeTerminallangUrdu>`                                                            4       2237  99.8%
+:ref:`Pashto, Northern <GnomeTerminallangPashtoNorthern>`                                      4       2242  99.8%
+:ref:`Seraiki <GnomeTerminallangSeraiki>`                                                      4       2242  99.8%
+:ref:`Belanda Viri <GnomeTerminallangBelandaViri>`                                             4       2246  99.8%
+:ref:`Urdu (2) <GnomeTerminallangUrdu2>`                                                       4       2251  99.8%
+:ref:`Chinantec, Chiltepec <GnomeTerminallangChinantecChiltepec>`                              3       1729  99.8%
+:ref:`Dangme <GnomeTerminallangDangme>`                                                        5       2912  99.8%
+:ref:`Otomi, Mezquital <GnomeTerminallangOtomiMezquital>`                                      3       1849  99.8%
+:ref:`Fon <GnomeTerminallangFon>`                                                              4       2520  99.8%
+:ref:`Tai Dam <GnomeTerminallangTaiDam>`                                                       3       2386  99.9%
+====================================================================================  ==========  =========  =============
+
+.. _GnomeTerminallangShan:
 
 Shan
 ^^^^
@@ -343,6 +345,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 9.
 
+.. _GnomeTerminallangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -369,6 +373,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
 
+.. _GnomeTerminallangTamil:
+
 Tamil
 ^^^^^
 
@@ -394,6 +400,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
+
+.. _GnomeTerminallangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -431,6 +439,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Gnome Terminal* measures width 14.
 
+.. _GnomeTerminallangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -456,6 +466,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
+
+.. _GnomeTerminallangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -508,6 +520,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *Gnome Terminal* measures width 21.
 
+.. _GnomeTerminallangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -541,6 +555,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Gnome Terminal* measures width 12.
+
+.. _GnomeTerminallangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -600,6 +616,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Gnome Terminal* measures width 25.
 
+.. _GnomeTerminallangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -625,6 +643,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
+
+.. _GnomeTerminallangKhn:
 
 Khün
 ^^^^
@@ -670,6 +690,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Gnome Terminal* measures width 15.
 
+.. _GnomeTerminallangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -708,6 +730,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Gnome Terminal* measures width 11.
 
+.. _GnomeTerminallangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -744,6 +768,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Gnome Terminal* measures width 13.
 
+.. _GnomeTerminallangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -771,6 +797,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
+
+.. _GnomeTerminallangMon:
 
 Mon
 ^^^
@@ -804,6 +832,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width 7.
 
+.. _GnomeTerminallangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -831,6 +861,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 5.
 
+.. _GnomeTerminallangNepali:
+
 Nepali
 ^^^^^^
 
@@ -857,6 +889,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
 
+.. _GnomeTerminallangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -882,6 +916,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
+
+.. _GnomeTerminallangTelugu:
 
 Telugu
 ^^^^^^
@@ -918,6 +954,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Gnome Terminal* measures width 10.
 
+.. _GnomeTerminallangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -948,6 +986,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width 7.
 
+.. _GnomeTerminallangHindi:
+
 Hindi
 ^^^^^
 
@@ -973,6 +1013,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
+
+.. _GnomeTerminallangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1002,6 +1044,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
 
+.. _GnomeTerminallangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1027,6 +1071,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 4.
+
+.. _GnomeTerminallangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1060,6 +1106,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 10.
 
+.. _GnomeTerminallangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1091,6 +1139,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 10.
+
+.. _GnomeTerminallangChakma:
 
 Chakma
 ^^^^^^
@@ -1126,6 +1176,8 @@ Total codepoints: 13
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Gnome Terminal* measures width 8.
+
+.. _GnomeTerminallangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -1200,6 +1252,8 @@ Total codepoints: 51
 - python `wcwidth.wcswidth()`_ measures width 38,
   while *Gnome Terminal* measures width -14.
 
+.. _GnomeTerminallangChineseMandarinHarbin:
+
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1245,6 +1299,8 @@ Total codepoints: 23
 - python `wcwidth.wcswidth()`_ measures width 46,
   while *Gnome Terminal* measures width 39.
 
+.. _GnomeTerminallangChineseYue:
+
 Chinese, Yue
 ^^^^^^^^^^^^
 
@@ -1272,6 +1328,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Gnome Terminal* measures width -12.
+
+.. _GnomeTerminallangChineseGan:
 
 Chinese, Gan
 ^^^^^^^^^^^^
@@ -1302,6 +1360,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *Gnome Terminal* measures width 0.
 
+.. _GnomeTerminallangChineseWu:
+
 Chinese, Wu
 ^^^^^^^^^^^
 
@@ -1326,6 +1386,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -58.
+
+.. _GnomeTerminallangChineseHakka:
 
 Chinese, Hakka
 ^^^^^^^^^^^^^^
@@ -1353,6 +1415,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Gnome Terminal* measures width -10.
 
+.. _GnomeTerminallangChineseMandarinBeijing:
+
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1377,6 +1441,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -54.
+
+.. _GnomeTerminallangChineseMandarinTianjin:
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1403,6 +1469,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -42.
 
+.. _GnomeTerminallangChineseXiang:
+
 Chinese, Xiang
 ^^^^^^^^^^^^^^
 
@@ -1427,6 +1495,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -58.
+
+.. _GnomeTerminallangDzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -1494,6 +1564,8 @@ Total codepoints: 44
 - python `wcwidth.wcswidth()`_ measures width 35,
   while *Gnome Terminal* measures width -5.
 
+.. _GnomeTerminallangJapanese:
+
 Japanese
 ^^^^^^^^
 
@@ -1525,6 +1597,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 18,
   while *Gnome Terminal* measures width -2.
 
+.. _GnomeTerminallangChineseMandarinSimplified:
+
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1549,6 +1623,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -22.
+
+.. _GnomeTerminallangNuosu:
 
 Nuosu
 ^^^^^
@@ -1576,6 +1652,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Gnome Terminal* measures width -42.
 
+.. _GnomeTerminallangJapaneseOsaka:
+
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
 
@@ -1601,6 +1679,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -52.
 
+.. _GnomeTerminallangJapaneseTokyo:
+
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
 
@@ -1625,6 +1705,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -52.
+
+.. _GnomeTerminallangThai:
 
 Thai
 ^^^^
@@ -1666,6 +1748,8 @@ Total codepoints: 18
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Gnome Terminal* measures width -15.
 
+.. _GnomeTerminallangVietnameseHannom:
+
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1690,6 +1774,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width -69.
+
+.. _GnomeTerminallangThai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1722,6 +1808,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Gnome Terminal* measures width -17.
 
+.. _GnomeTerminallangChineseMandarinTraditional:
+
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1748,6 +1836,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Gnome Terminal* measures width -12.
+
+.. _GnomeTerminallangJinan:
 
 (Jinan)
 ^^^^^^^
@@ -1776,6 +1866,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Gnome Terminal* measures width -12.
 
+.. _GnomeTerminallangChineseMandarinGuiyang:
+
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1802,6 +1894,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Gnome Terminal* measures width -12.
+
+.. _GnomeTerminallangChineseJinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1834,6 +1928,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 18,
   while *Gnome Terminal* measures width -2.
 
+.. _GnomeTerminallangChineseMandarinNanjing:
+
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1864,6 +1960,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *Gnome Terminal* measures width -6.
 
+.. _GnomeTerminallangChineseMinNan:
+
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
 
@@ -1889,6 +1987,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -36.
 
+.. _GnomeTerminallangLao:
+
 Lao
 ^^^
 
@@ -1913,6 +2013,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width -10.
+
+.. _GnomeTerminallangBora:
 
 Bora
 ^^^^
@@ -1955,6 +2057,8 @@ Total codepoints: 19
 - python `wcwidth.wcswidth()`_ measures width 19,
   while *Gnome Terminal* measures width 11.
 
+.. _GnomeTerminallangOrok:
+
 Orok
 ^^^^
 
@@ -1982,6 +2086,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -5.
+
+.. _GnomeTerminallangShipiboConibo:
 
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
@@ -2016,6 +2122,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Gnome Terminal* measures width 0.
 
+.. _GnomeTerminallangGumuz:
+
 Gumuz
 ^^^^^
 
@@ -2043,6 +2151,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 0.
+
+.. _GnomeTerminallangNavajo:
 
 Navajo
 ^^^^^^
@@ -2080,6 +2190,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 13,
   while *Gnome Terminal* measures width 4.
 
+.. _GnomeTerminallangChickasaw:
+
 Chickasaw
 ^^^^^^^^^
 
@@ -2113,6 +2225,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *Gnome Terminal* measures width -8.
 
+.. _GnomeTerminallangSouthAzerbaijani:
+
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
 
@@ -2137,6 +2251,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 1.
+
+.. _GnomeTerminallangYanesha:
 
 Yaneshaʼ
 ^^^^^^^^
@@ -2163,6 +2279,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width -2.
+
+.. _GnomeTerminallangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -2193,6 +2311,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Gnome Terminal* measures width 3.
 
+.. _GnomeTerminallangSiona:
+
 Siona
 ^^^^^
 
@@ -2218,6 +2338,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width 1.
+
+.. _GnomeTerminallangEvenki:
 
 Evenki
 ^^^^^^
@@ -2246,6 +2368,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width -6.
 
+.. _GnomeTerminallangGilyak:
+
 Gilyak
 ^^^^^^
 
@@ -2269,6 +2393,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Gnome Terminal* measures width -1.
+
+.. _GnomeTerminallangNanai:
 
 Nanai
 ^^^^^
@@ -2299,6 +2425,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Gnome Terminal* measures width 2.
 
+.. _GnomeTerminallangColorado:
+
 Colorado
 ^^^^^^^^
 
@@ -2322,6 +2450,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Gnome Terminal* measures width -6.
+
+.. _GnomeTerminallangVeps:
 
 Veps
 ^^^^
@@ -2354,6 +2484,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Gnome Terminal* measures width 5.
 
+.. _GnomeTerminallangSecoya:
+
 Secoya
 ^^^^^^
 
@@ -2379,6 +2511,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width -4.
+
+.. _GnomeTerminallangYeonbyeon:
 
 (Yeonbyeon)
 ^^^^^^^^^^^
@@ -2407,6 +2541,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Gnome Terminal* measures width 6.
+
+.. _GnomeTerminallangYiddishEastern:
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -2440,6 +2576,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Gnome Terminal* measures width 6.
 
+.. _GnomeTerminallangKabyle:
+
 Kabyle
 ^^^^^^
 
@@ -2472,6 +2610,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Gnome Terminal* measures width 3.
 
+.. _GnomeTerminallangCatalan2:
+
 Catalan (2)
 ^^^^^^^^^^^
 
@@ -2494,6 +2634,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Gnome Terminal* measures width -12.
+
+.. _GnomeTerminallangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -2531,6 +2673,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Gnome Terminal* measures width 3.
 
+.. _GnomeTerminallangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2554,6 +2698,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Gnome Terminal* measures width -3.
+
+.. _GnomeTerminallangMirandese:
 
 Mirandese
 ^^^^^^^^^
@@ -2587,6 +2733,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Gnome Terminal* measures width 6.
 
+.. _GnomeTerminallangKorean:
+
 Korean
 ^^^^^^
 
@@ -2610,6 +2758,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width -4.
+
+.. _GnomeTerminallangPularAdlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -2637,6 +2787,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width 1.
 
+.. _GnomeTerminallangPicard:
+
 Picard
 ^^^^^^
 
@@ -2663,6 +2815,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width -13.
 
+.. _GnomeTerminallangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -2686,6 +2840,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Gnome Terminal* measures width -2.
+
+.. _GnomeTerminallangTem:
 
 Tem
 ^^^
@@ -2717,6 +2873,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Gnome Terminal* measures width 0.
 
+.. _GnomeTerminallangSaintLucianCreoleFrench:
+
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2744,6 +2902,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 2.
+
+.. _GnomeTerminallangw:
 
 Éwé
 ^^^
@@ -2773,6 +2933,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 4.
 
+.. _GnomeTerminallangArabicStandard:
+
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
 
@@ -2800,6 +2962,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -1.
+
+.. _GnomeTerminallangLingalatones:
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -2830,6 +2994,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 0.
 
+.. _GnomeTerminallangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -2856,6 +3022,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width -2.
+
+.. _GnomeTerminallangTamazightCentralAtlas:
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2884,6 +3052,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width -2.
 
+.. _GnomeTerminallangMixtecMetlatnoc:
+
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
 
@@ -2909,6 +3079,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width 0.
+
+.. _GnomeTerminallangBamun:
 
 Bamun
 ^^^^^
@@ -2937,6 +3109,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width 2.
 
+.. _GnomeTerminallangFur:
+
 Fur
 ^^^
 
@@ -2962,6 +3136,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width -3.
 
+.. _GnomeTerminallangGen:
+
 Gen
 ^^^
 
@@ -2985,6 +3161,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Gnome Terminal* measures width -4.
+
+.. _GnomeTerminallangUduk:
 
 Uduk
 ^^^^
@@ -3011,6 +3189,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width -1.
 
+.. _GnomeTerminallangDari:
+
 Dari
 ^^^^
 
@@ -3035,6 +3215,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 1.
+
+.. _GnomeTerminallangDitammari:
 
 Ditammari
 ^^^^^^^^^
@@ -3064,6 +3246,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 4.
 
+.. _GnomeTerminallangMaori2:
+
 Maori (2)
 ^^^^^^^^^
 
@@ -3087,6 +3271,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Gnome Terminal* measures width -14.
+
+.. _GnomeTerminallangFrenchWelche:
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -3112,6 +3298,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Gnome Terminal* measures width -5.
+
+.. _GnomeTerminallangPanjabiWestern:
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -3140,6 +3328,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width 0.
 
+.. _GnomeTerminallangBaatonum:
+
 Baatonum
 ^^^^^^^^
 
@@ -3165,6 +3355,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width 0.
+
+.. _GnomeTerminallangMor:
 
 Mòoré
 ^^^^^
@@ -3194,6 +3386,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width 3.
 
+.. _GnomeTerminallangYoruba:
+
 Yoruba
 ^^^^^^
 
@@ -3222,6 +3416,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Gnome Terminal* measures width -1.
 
+.. _GnomeTerminallangWaama:
+
 Waama
 ^^^^^
 
@@ -3248,6 +3444,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width 2.
 
+.. _GnomeTerminallangVietnamese:
+
 Vietnamese
 ^^^^^^^^^^
 
@@ -3272,6 +3470,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width -2.
+
+.. _GnomeTerminallangDinkaNortheastern:
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
@@ -3304,6 +3504,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Gnome Terminal* measures width 3.
 
+.. _GnomeTerminallangGa:
+
 Ga
 ^^
 
@@ -3330,6 +3532,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width 3.
+
+.. _GnomeTerminallangAja:
 
 Aja
 ^^^
@@ -3358,6 +3562,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width -1.
 
+.. _GnomeTerminallangDagaareSouthern:
+
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
 
@@ -3380,6 +3586,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Gnome Terminal* measures width -2.
+
+.. _GnomeTerminallangDendi:
 
 Dendi
 ^^^^^
@@ -3405,6 +3613,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width -4.
+
+.. _GnomeTerminallangMazahuaCentral:
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -3433,6 +3643,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width -1.
 
+.. _GnomeTerminallangSererSine:
+
 Serer-Sine
 ^^^^^^^^^^
 
@@ -3458,6 +3670,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width -2.
 
+.. _GnomeTerminallangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -3481,6 +3695,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Gnome Terminal* measures width -2.
+
+.. _GnomeTerminallangUrdu:
 
 Urdu
 ^^^^
@@ -3509,6 +3725,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width 2.
 
+.. _GnomeTerminallangPashtoNorthern:
+
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
@@ -3536,6 +3754,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Gnome Terminal* measures width 2.
 
+.. _GnomeTerminallangSeraiki:
+
 Seraiki
 ^^^^^^^
 
@@ -3561,6 +3781,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width 0.
+
+.. _GnomeTerminallangBelandaViri:
 
 Belanda Viri
 ^^^^^^^^^^^^
@@ -3588,6 +3810,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width -3.
 
+.. _GnomeTerminallangUrdu2:
+
 Urdu (2)
 ^^^^^^^^
 
@@ -3613,6 +3837,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 0.
 
+.. _GnomeTerminallangChinantecChiltepec:
+
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -3637,6 +3863,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 1.
+
+.. _GnomeTerminallangDangme:
 
 Dangme
 ^^^^^^
@@ -3664,6 +3892,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Gnome Terminal* measures width -1.
 
+.. _GnomeTerminallangOtomiMezquital:
+
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
 
@@ -3686,6 +3916,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Gnome Terminal* measures width -3.
+
+.. _GnomeTerminallangFon:
 
 Fon
 ^^^
@@ -3711,6 +3943,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Gnome Terminal* measures width 0.
+
+.. _GnomeTerminallangTaiDam:
 
 Tai Dam
 ^^^^^^^
@@ -4177,11 +4411,6 @@ The test suite completed in **2845.60 seconds** (2845s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

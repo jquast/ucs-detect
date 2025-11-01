@@ -20,11 +20,11 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          33.15%       0.0%            (version_index / total_versions) × (pct_success / 100)
 ZWJ           8.97%        12.0%           (version_index / total_versions) × (pct_success / 100)
-LANG          58.33%       72.6%           languages_supported / total_languages
+LANG          58.33%       73.3%           languages_supported / total_languages
 VS16          88.00%       88.0%           pct_success / 100
 VS15          N/A          N/A             pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
-TIME          86.87s       99.5%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          86.87s       77.0%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -181,65 +181,67 @@ The following 77 languages were tested with 100% success:
 
 The following 55 languages are not fully supported:
 
-===================================  ==========  =========  =============
-lang                                   n_errors    n_total  pct_success
-===================================  ==========  =========  =============
-Tamazight, Central Atlas (Tifinagh)          22         22  0.0%
-Vai                                         500        500  0.0%
-Javanese (Javanese)                         500        501  0.2%
-Cherokee (cased)                            500        507  1.4%
-Tai Dam                                     500        511  2.2%
-Maldivian                                   500        515  2.9%
-Dzongkha                                    341        358  4.7%
-Tamazight, Standard Morocan                 500        525  4.8%
-Gujarati                                    500        530  5.7%
-Tibetan, Central                            258        274  5.8%
-Burmese                                     500        534  6.4%
-Tamang, Eastern                              42         45  6.7%
-Kannada                                     500        536  6.7%
-Malayalam                                   500        536  6.7%
-Khün                                        412        442  6.8%
-Khmer, Central                              492        528  6.8%
-Tamil (Sri Lanka)                           500        537  6.9%
-Tamil                                       500        538  7.1%
-Bengali                                     500        544  8.1%
-Mon                                         500        544  8.1%
-Telugu                                      500        550  9.1%
-Nepali                                      500        554  9.7%
-Sanskrit                                    500        563  11.2%
-Marathi                                     500        571  12.4%
-Hindi                                       500        576  13.2%
-Sanskrit (Grantha)                          500        577  13.3%
-Sinhala                                     500        577  13.3%
-Panjabi, Eastern                            500        578  13.5%
-Bhojpuri                                    500        584  14.4%
-Maithili                                    500        613  18.4%
-Chakma                                      500        618  19.1%
-Magahi                                      500        643  22.2%
-Shan                                        500        672  25.6%
-Tagalog (Tagalog)                            21         31  32.3%
-Lao                                         260        416  37.5%
-Yiddish, Eastern                            500       1063  53.0%
-Gumuz                                       444       1283  65.4%
-Idoma                                       500       1672  70.1%
-Gilyak                                      398       1504  73.5%
-Yukaghir, Northern                          172        776  77.8%
-Adyghe                                      226       1198  81.1%
-Kabardian                                   223       1272  82.5%
-Mazahua Central                             229       1574  85.5%
-Fur                                         218       1838  88.1%
-Assyrian Neo-Aramaic                         51       1160  95.6%
-Farsi, Western                               63       1822  96.5%
-Urdu (2)                                     52       2251  97.7%
-Urdu                                         50       2237  97.8%
-Dari                                         30       1872  98.4%
-Arabic, Standard                             20       1348  98.5%
-Panjabi, Western                             19       2419  99.2%
-Orok                                          4       1245  99.7%
-Pular (Adlam)                                 5       1613  99.7%
-Pashto, Northern                              5       2242  99.8%
-Seraiki                                       2       2242  99.9%
-===================================  ==========  =========  =============
+===========================================================================================  ==========  =========  =============
+lang                                                                                           n_errors    n_total  pct_success
+===========================================================================================  ==========  =========  =============
+:ref:`Tamazight, Central Atlas (Tifinagh) <coolretrotermlangTamazightCentralAtlasTifinagh>`          22         22  0.0%
+:ref:`Vai <coolretrotermlangVai>`                                                                   500        500  0.0%
+:ref:`Javanese (Javanese) <coolretrotermlangJavaneseJavanese>`                                      500        501  0.2%
+:ref:`Cherokee (cased) <coolretrotermlangCherokeecased>`                                            500        507  1.4%
+:ref:`Tai Dam <coolretrotermlangTaiDam>`                                                            500        511  2.2%
+:ref:`Maldivian <coolretrotermlangMaldivian>`                                                       500        515  2.9%
+:ref:`Dzongkha <coolretrotermlangDzongkha>`                                                         341        358  4.7%
+:ref:`Tamazight, Standard Morocan <coolretrotermlangTamazightStandardMorocan>`                      500        525  4.8%
+:ref:`Gujarati <coolretrotermlangGujarati>`                                                         500        530  5.7%
+:ref:`Tibetan, Central <coolretrotermlangTibetanCentral>`                                           258        274  5.8%
+:ref:`Burmese <coolretrotermlangBurmese>`                                                           500        534  6.4%
+:ref:`Tamang, Eastern <coolretrotermlangTamangEastern>`                                              42         45  6.7%
+:ref:`Kannada <coolretrotermlangKannada>`                                                           500        536  6.7%
+:ref:`Malayalam <coolretrotermlangMalayalam>`                                                       500        536  6.7%
+:ref:`Khün <coolretrotermlangKhn>`                                                                  412        442  6.8%
+:ref:`Khmer, Central <coolretrotermlangKhmerCentral>`                                               492        528  6.8%
+:ref:`Tamil (Sri Lanka) <coolretrotermlangTamilSriLanka>`                                           500        537  6.9%
+:ref:`Tamil <coolretrotermlangTamil>`                                                               500        538  7.1%
+:ref:`Bengali <coolretrotermlangBengali>`                                                           500        544  8.1%
+:ref:`Mon <coolretrotermlangMon>`                                                                   500        544  8.1%
+:ref:`Telugu <coolretrotermlangTelugu>`                                                             500        550  9.1%
+:ref:`Nepali <coolretrotermlangNepali>`                                                             500        554  9.7%
+:ref:`Sanskrit <coolretrotermlangSanskrit>`                                                         500        563  11.2%
+:ref:`Marathi <coolretrotermlangMarathi>`                                                           500        571  12.4%
+:ref:`Hindi <coolretrotermlangHindi>`                                                               500        576  13.2%
+:ref:`Sanskrit (Grantha) <coolretrotermlangSanskritGrantha>`                                        500        577  13.3%
+:ref:`Sinhala <coolretrotermlangSinhala>`                                                           500        577  13.3%
+:ref:`Panjabi, Eastern <coolretrotermlangPanjabiEastern>`                                           500        578  13.5%
+:ref:`Bhojpuri <coolretrotermlangBhojpuri>`                                                         500        584  14.4%
+:ref:`Maithili <coolretrotermlangMaithili>`                                                         500        613  18.4%
+:ref:`Chakma <coolretrotermlangChakma>`                                                             500        618  19.1%
+:ref:`Magahi <coolretrotermlangMagahi>`                                                             500        643  22.2%
+:ref:`Shan <coolretrotermlangShan>`                                                                 500        672  25.6%
+:ref:`Tagalog (Tagalog) <coolretrotermlangTagalogTagalog>`                                           21         31  32.3%
+:ref:`Lao <coolretrotermlangLao>`                                                                   260        416  37.5%
+:ref:`Yiddish, Eastern <coolretrotermlangYiddishEastern>`                                           500       1063  53.0%
+:ref:`Gumuz <coolretrotermlangGumuz>`                                                               444       1283  65.4%
+:ref:`Idoma <coolretrotermlangIdoma>`                                                               500       1672  70.1%
+:ref:`Gilyak <coolretrotermlangGilyak>`                                                             398       1504  73.5%
+:ref:`Yukaghir, Northern <coolretrotermlangYukaghirNorthern>`                                       172        776  77.8%
+:ref:`Adyghe <coolretrotermlangAdyghe>`                                                             226       1198  81.1%
+:ref:`Kabardian <coolretrotermlangKabardian>`                                                       223       1272  82.5%
+:ref:`Mazahua Central <coolretrotermlangMazahuaCentral>`                                            229       1574  85.5%
+:ref:`Fur <coolretrotermlangFur>`                                                                   218       1838  88.1%
+:ref:`Assyrian Neo-Aramaic <coolretrotermlangAssyrianNeoAramaic>`                                    51       1160  95.6%
+:ref:`Farsi, Western <coolretrotermlangFarsiWestern>`                                                63       1822  96.5%
+:ref:`Urdu (2) <coolretrotermlangUrdu2>`                                                             52       2251  97.7%
+:ref:`Urdu <coolretrotermlangUrdu>`                                                                  50       2237  97.8%
+:ref:`Dari <coolretrotermlangDari>`                                                                  30       1872  98.4%
+:ref:`Arabic, Standard <coolretrotermlangArabicStandard>`                                            20       1348  98.5%
+:ref:`Panjabi, Western <coolretrotermlangPanjabiWestern>`                                            19       2419  99.2%
+:ref:`Orok <coolretrotermlangOrok>`                                                                   4       1245  99.7%
+:ref:`Pular (Adlam) <coolretrotermlangPularAdlam>`                                                    5       1613  99.7%
+:ref:`Pashto, Northern <coolretrotermlangPashtoNorthern>`                                             5       2242  99.8%
+:ref:`Seraiki <coolretrotermlangSeraiki>`                                                             2       2242  99.9%
+===========================================================================================  ==========  =========  =============
+
+.. _coolretrotermlangTamazightCentralAtlasTifinagh:
 
 Tamazight, Central Atlas (Tifinagh)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -270,6 +272,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cool-retro-term* measures width 0.
 
+.. _coolretrotermlangVai:
+
 Vai
 ^^^
 
@@ -293,6 +297,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *cool-retro-term* measures width 0.
+
+.. _coolretrotermlangJavaneseJavanese:
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -321,6 +327,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cool-retro-term* measures width 0.
 
+.. _coolretrotermlangCherokeecased:
+
 Cherokee (cased)
 ^^^^^^^^^^^^^^^^
 
@@ -347,6 +355,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cool-retro-term* measures width 1.
 
+.. _coolretrotermlangTaiDam:
+
 Tai Dam
 ^^^^^^^
 
@@ -372,6 +382,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cool-retro-term* measures width 0.
+
+.. _coolretrotermlangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -403,6 +415,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 9.
+
+.. _coolretrotermlangDzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -467,6 +481,8 @@ Total codepoints: 41
 - python `wcwidth.wcswidth()`_ measures width 32,
   while *cool-retro-term* measures width 41.
 
+.. _coolretrotermlangTamazightStandardMorocan:
+
 Tamazight, Standard Morocan
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -493,6 +509,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cool-retro-term* measures width 0.
 
+.. _coolretrotermlangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -518,6 +536,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -581,6 +601,8 @@ Total codepoints: 40
 - python `wcwidth.wcswidth()`_ measures width 31,
   while *cool-retro-term* measures width 40.
 
+.. _coolretrotermlangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -619,6 +641,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cool-retro-term* measures width 11.
 
+.. _coolretrotermlangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -647,6 +671,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 6.
 
+.. _coolretrotermlangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -672,6 +698,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -724,6 +752,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *cool-retro-term* measures width 29.
 
+.. _coolretrotermlangKhn:
+
 Khün
 ^^^^
 
@@ -767,6 +797,8 @@ Total codepoints: 22
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *cool-retro-term* measures width 0.
+
+.. _coolretrotermlangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -826,6 +858,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *cool-retro-term* measures width 36.
 
+.. _coolretrotermlangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -852,6 +886,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
 
+.. _coolretrotermlangTamil:
+
 Tamil
 ^^^^^
 
@@ -877,6 +913,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangBengali:
 
 Bengali
 ^^^^^^^
@@ -912,6 +950,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cool-retro-term* measures width 12.
 
+.. _coolretrotermlangMon:
+
 Mon
 ^^^
 
@@ -943,6 +983,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 7.
+
+.. _coolretrotermlangTelugu:
 
 Telugu
 ^^^^^^
@@ -979,6 +1021,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cool-retro-term* measures width 13.
 
+.. _coolretrotermlangNepali:
+
 Nepali
 ^^^^^^
 
@@ -1004,6 +1048,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangSanskrit:
 
 Sanskrit
 ^^^^^^^^
@@ -1041,6 +1087,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cool-retro-term* measures width 14.
 
+.. _coolretrotermlangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -1068,6 +1116,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 5.
 
+.. _coolretrotermlangHindi:
+
 Hindi
 ^^^^^
 
@@ -1093,6 +1143,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -1130,6 +1182,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cool-retro-term* measures width 14.
 
+.. _coolretrotermlangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1155,6 +1209,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1183,6 +1239,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 6.
+
+.. _coolretrotermlangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1216,6 +1274,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cool-retro-term* measures width 10.
 
+.. _coolretrotermlangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -1245,6 +1305,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 8.
+
+.. _coolretrotermlangChakma:
 
 Chakma
 ^^^^^^
@@ -1281,6 +1343,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cool-retro-term* measures width 10.
 
+.. _coolretrotermlangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1312,6 +1376,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cool-retro-term* measures width 10.
+
+.. _coolretrotermlangShan:
 
 Shan
 ^^^^
@@ -1352,6 +1418,8 @@ Total codepoints: 17
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *cool-retro-term* measures width 7.
 
+.. _coolretrotermlangTagalogTagalog:
+
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
 
@@ -1377,6 +1445,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangLao:
 
 Lao
 ^^^
@@ -1409,6 +1479,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cool-retro-term* measures width 10.
+
+.. _coolretrotermlangYiddishEastern:
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1443,6 +1515,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *cool-retro-term* measures width 11.
 
+.. _coolretrotermlangGumuz:
+
 Gumuz
 ^^^^^
 
@@ -1474,6 +1548,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cool-retro-term* measures width 8.
 
+.. _coolretrotermlangIdoma:
+
 Idoma
 ^^^^^
 
@@ -1503,6 +1579,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *cool-retro-term* measures width 6.
 
+.. _coolretrotermlangGilyak:
+
 Gilyak
 ^^^^^^
 
@@ -1530,6 +1608,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cool-retro-term* measures width 5.
+
+.. _coolretrotermlangYukaghirNorthern:
 
 Yukaghir, Northern
 ^^^^^^^^^^^^^^^^^^
@@ -1566,6 +1646,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 13,
   while *cool-retro-term* measures width 12.
 
+.. _coolretrotermlangAdyghe:
+
 Adyghe
 ^^^^^^
 
@@ -1592,6 +1674,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangKabardian:
 
 Kabardian
 ^^^^^^^^^
@@ -1620,6 +1704,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 4.
 
+.. _coolretrotermlangMazahuaCentral:
+
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
@@ -1646,6 +1732,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangFur:
 
 Fur
 ^^^
@@ -1680,6 +1768,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *cool-retro-term* measures width 8.
 
+.. _coolretrotermlangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1709,6 +1799,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cool-retro-term* measures width 7.
 
+.. _coolretrotermlangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -1735,6 +1827,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cool-retro-term* measures width 5.
+
+.. _coolretrotermlangUrdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -1764,6 +1858,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 6.
 
+.. _coolretrotermlangUrdu:
+
 Urdu
 ^^^^
 
@@ -1792,6 +1888,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 6.
 
+.. _coolretrotermlangDari:
+
 Dari
 ^^^^
 
@@ -1818,6 +1916,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *cool-retro-term* measures width 5.
+
+.. _coolretrotermlangArabicStandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -1847,6 +1947,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *cool-retro-term* measures width 6.
 
+.. _coolretrotermlangPanjabiWestern:
+
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
 
@@ -1872,6 +1974,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangOrok:
 
 Orok
 ^^^^
@@ -1908,6 +2012,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *cool-retro-term* measures width 11.
 
+.. _coolretrotermlangPularAdlam:
+
 Pular (Adlam)
 ^^^^^^^^^^^^^
 
@@ -1935,6 +2041,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *cool-retro-term* measures width 5.
+
+.. _coolretrotermlangPashtoNorthern:
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -1967,6 +2075,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *cool-retro-term* measures width 8.
+
+.. _coolretrotermlangSeraiki:
 
 Seraiki
 ^^^^^^^
@@ -2011,11 +2121,6 @@ The test suite completed in **86.87 seconds** (86s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

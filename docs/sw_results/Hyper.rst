@@ -20,11 +20,11 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          58.33%       37.7%           (version_index / total_versions) × (pct_success / 100)
 ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-LANG          79.55%       99.1%           languages_supported / total_languages
+LANG          79.55%       100.0%          languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          N/A          N/A             pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
-TIME          4155.56s     71.7%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          4155.56s     18.9%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -183,37 +183,39 @@ The following 105 languages were tested with 100% success:
 
 The following 27 languages are not fully supported:
 
-===================  ==========  =========  =============
-lang                   n_errors    n_total  pct_success
-===================  ==========  =========  =============
-Shan                        500        533  6.2%
-Tamil (Sri Lanka)           500        539  7.2%
-Tamil                       500        540  7.4%
-Javanese (Javanese)         500        565  11.5%
-Sanskrit (Grantha)          500        565  11.5%
-Malayalam                   500        579  13.6%
-Bengali                     500        588  15.0%
-Khmer, Central              448        528  15.2%
-Kannada                     500        598  16.4%
-Burmese                     500        608  17.8%
-Khün                        361        442  18.3%
-Sanskrit                    500        677  26.1%
-Tamang, Eastern              33         45  26.7%
-Nepali                      500        701  28.7%
-Marathi                     500        703  28.9%
-Mon                         500        711  29.7%
-Gujarati                    500        756  33.9%
-Hindi                       500        774  35.4%
-Telugu                      500        779  35.8%
-Maithili                    500        794  37.0%
-Panjabi, Eastern            500        860  41.9%
-Sinhala                     500        947  47.2%
-Bhojpuri                    500       1009  50.4%
-Magahi                      500       1074  53.4%
-Chakma                      493       1444  65.9%
-Tibetan, Central              1        275  99.6%
-Yaneshaʼ                      2       2536  99.9%
-===================  ==========  =========  =============
+======================================================  ==========  =========  =============
+lang                                                      n_errors    n_total  pct_success
+======================================================  ==========  =========  =============
+:ref:`Shan <HyperlangShan>`                                    500        533  6.2%
+:ref:`Tamil (Sri Lanka) <HyperlangTamilSriLanka>`              500        539  7.2%
+:ref:`Tamil <HyperlangTamil>`                                  500        540  7.4%
+:ref:`Javanese (Javanese) <HyperlangJavaneseJavanese>`         500        565  11.5%
+:ref:`Sanskrit (Grantha) <HyperlangSanskritGrantha>`           500        565  11.5%
+:ref:`Malayalam <HyperlangMalayalam>`                          500        579  13.6%
+:ref:`Bengali <HyperlangBengali>`                              500        588  15.0%
+:ref:`Khmer, Central <HyperlangKhmerCentral>`                  448        528  15.2%
+:ref:`Kannada <HyperlangKannada>`                              500        598  16.4%
+:ref:`Burmese <HyperlangBurmese>`                              500        608  17.8%
+:ref:`Khün <HyperlangKhn>`                                     361        442  18.3%
+:ref:`Sanskrit <HyperlangSanskrit>`                            500        677  26.1%
+:ref:`Tamang, Eastern <HyperlangTamangEastern>`                 33         45  26.7%
+:ref:`Nepali <HyperlangNepali>`                                500        701  28.7%
+:ref:`Marathi <HyperlangMarathi>`                              500        703  28.9%
+:ref:`Mon <HyperlangMon>`                                      500        711  29.7%
+:ref:`Gujarati <HyperlangGujarati>`                            500        756  33.9%
+:ref:`Hindi <HyperlangHindi>`                                  500        774  35.4%
+:ref:`Telugu <HyperlangTelugu>`                                500        779  35.8%
+:ref:`Maithili <HyperlangMaithili>`                            500        794  37.0%
+:ref:`Panjabi, Eastern <HyperlangPanjabiEastern>`              500        860  41.9%
+:ref:`Sinhala <HyperlangSinhala>`                              500        947  47.2%
+:ref:`Bhojpuri <HyperlangBhojpuri>`                            500       1009  50.4%
+:ref:`Magahi <HyperlangMagahi>`                                500       1074  53.4%
+:ref:`Chakma <HyperlangChakma>`                                493       1444  65.9%
+:ref:`Tibetan, Central <HyperlangTibetanCentral>`                1        275  99.6%
+:ref:`Yaneshaʼ <HyperlangYanesha>`                               2       2536  99.9%
+======================================================  ==========  =========  =============
+
+.. _HyperlangShan:
 
 Shan
 ^^^^
@@ -252,6 +254,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Hyper* measures width 9.
 
+.. _HyperlangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -277,6 +281,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
+
+.. _HyperlangTamil:
 
 Tamil
 ^^^^^
@@ -304,6 +310,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
 
+.. _HyperlangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -329,6 +337,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
+
+.. _HyperlangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -365,6 +375,8 @@ Total codepoints: 14
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Hyper* measures width 14.
+
+.. _HyperlangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -417,6 +429,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *Hyper* measures width 21.
 
+.. _HyperlangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -450,6 +464,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Hyper* measures width 12.
+
+.. _HyperlangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -509,6 +525,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Hyper* measures width 25.
 
+.. _HyperlangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -534,6 +552,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
+
+.. _HyperlangBurmese:
 
 Burmese
 ^^^^^^^
@@ -572,6 +592,8 @@ Total codepoints: 16
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Hyper* measures width 11.
+
+.. _HyperlangKhn:
 
 Khün
 ^^^^
@@ -617,6 +639,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Hyper* measures width 15.
 
+.. _HyperlangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -653,6 +677,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Hyper* measures width 13.
 
+.. _HyperlangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -681,6 +707,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
 
+.. _HyperlangNepali:
+
 Nepali
 ^^^^^^
 
@@ -706,6 +734,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
+
+.. _HyperlangMarathi:
 
 Marathi
 ^^^^^^^
@@ -733,6 +763,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 5.
+
+.. _HyperlangMon:
 
 Mon
 ^^^
@@ -766,6 +798,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Hyper* measures width 7.
 
+.. _HyperlangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -792,6 +826,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
 
+.. _HyperlangHindi:
+
 Hindi
 ^^^^^
 
@@ -817,6 +853,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
+
+.. _HyperlangTelugu:
 
 Telugu
 ^^^^^^
@@ -853,6 +891,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Hyper* measures width 10.
 
+.. _HyperlangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -883,6 +923,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Hyper* measures width 7.
 
+.. _HyperlangPanjabiEastern:
+
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
 
@@ -911,6 +953,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
 
+.. _HyperlangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -936,6 +980,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Hyper* measures width 4.
+
+.. _HyperlangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -969,6 +1015,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Hyper* measures width 10.
 
+.. _HyperlangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1000,6 +1048,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Hyper* measures width 10.
+
+.. _HyperlangChakma:
 
 Chakma
 ^^^^^^
@@ -1035,6 +1085,8 @@ Total codepoints: 13
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Hyper* measures width 8.
+
+.. _HyperlangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -1141,6 +1193,8 @@ Total codepoints: 83
 - python `wcwidth.wcswidth()`_ measures width 62,
   while *Hyper* measures width 63.
 
+.. _HyperlangYanesha:
+
 Yaneshaʼ
 ^^^^^^^^
 
@@ -1193,11 +1247,6 @@ The test suite completed in **4155.56 seconds** (4155s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

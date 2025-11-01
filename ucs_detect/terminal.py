@@ -180,6 +180,42 @@ def maybe_determine_da_and_sixel(term):
     result['sixel'] = term.does_sixel(timeout=1.0)
     return result
 
+def _read_dcs_or_plain_response(term, timeout=0.5):
+    """
+    Read a response that might be plain text or a DCS sequence.
+
+    Handles both:
+    - Plain answerback: ">|mintty 3.8.0"
+    - DCS answerback: "ESC P >|mintty 3.8.0 ESC \"
+
+    Returns the extracted content without DCS wrapper.
+    """
+    response = term.flushinp(timeout=timeout)
+    if not response:
+        return ''
+
+    # Check if response contains DCS sequence: ESC P ... ESC \ or ESC P ... ST
+    # DCS starts with ESC P (\x1bP) and ends with ESC \ (\x1b\x5c) or ST (\x9c)
+    if '\x1bP' in response:
+        # Extract content between DCS start and end
+        start_idx = response.find('\x1bP')
+        # Look for ESC \ terminator
+        end_idx = response.find('\x1b\\', start_idx)
+        if end_idx == -1:
+            # Look for ST terminator
+            end_idx = response.find('\x9c', start_idx)
+
+        if end_idx > start_idx:
+            # Extract DCS content (skip ESC P, stop before terminator)
+            dcs_content = response[start_idx + 2:end_idx]
+            return dcs_content.strip()
+        else:
+            # No terminator found, return content after DCS start
+            return response[start_idx + 2:].strip()
+
+    # Not a DCS, return as-is
+    return response.strip()
+
 def maybe_determine_software(term, writer):
     result = {}
     sv = term.get_software_version(timeout=1.0)
@@ -200,7 +236,7 @@ def maybe_determine_software(term, writer):
 
         # Small delay to allow answerback response to arrive
         time.sleep(0.1)
-        response = term.flushinp(timeout=0.5).strip()
+        response = _read_dcs_or_plain_response(term, timeout=0.5)
         if response:
             # Parse answerback response to extract software name and version
             if response.startswith('>|'):

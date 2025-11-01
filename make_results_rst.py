@@ -43,7 +43,15 @@ def generate_score_css():
     Generate CSS rules for all score classes (0-100).
     Returns a string containing CSS rules.
     """
-    css_lines = ['/* Auto-generated score color classes */']
+    css_lines = [
+        '/* Auto-generated score color classes */',
+        '/* Common properties for all score classes */',
+        '[class^="score-"], [class*=" score-"] {',
+        '  display: block;',
+        '  padding: 0.3em 0.5em;',
+        '}',
+        ''
+    ]
     for score_pct in range(101):
         score = score_pct / 100.0
         r, g, b = score_to_color(score)

@@ -20,11 +20,11 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          85.56%       78.4%           (version_index / total_versions) × (pct_success / 100)
 ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-LANG          31.06%       38.7%           languages_supported / total_languages
+LANG          31.06%       39.0%           languages_supported / total_languages
 VS16          100.00%      100.0%          pct_success / 100
 VS15          N/A          N/A             pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
-TIME          79.42s       99.6%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          79.42s       78.4%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -163,101 +163,103 @@ The following 41 languages were tested with 100% success:
 
 The following 91 languages are not fully supported:
 
-===========================  ==========  =========  =============
-lang                           n_errors    n_total  pct_success
-===========================  ==========  =========  =============
-Javanese (Javanese)                 500        500  0.0%
-Nuosu                               230        230  0.0%
-Cherokee (cased)                    500        507  1.4%
-Tai Dam                             500        511  2.2%
-Maldivian                           500        515  2.9%
-Tamil                               500        516  3.1%
-Tamil (Sri Lanka)                   500        516  3.1%
-Burmese                             500        519  3.7%
-Mon                                 500        522  4.2%
-Shan                                500        523  4.4%
-Dzongkha                            342        359  4.7%
-Gujarati                            500        530  5.7%
-Tibetan, Central                    263        279  5.7%
-Malayalam                           500        533  6.2%
-Tamang, Eastern                      42         45  6.7%
-Kannada                             500        536  6.7%
-Khün                                412        442  6.8%
-Khmer, Central                      492        528  6.8%
-Bengali                             500        540  7.4%
-Chakma                              500        540  7.4%
-Telugu                              500        550  9.1%
-Nepali                              500        554  9.7%
-Sanskrit                            500        563  11.2%
-Sanskrit (Grantha)                  500        565  11.5%
-Marathi                             500        571  12.4%
-Hindi                               500        576  13.2%
-Sinhala                             500        577  13.3%
-Panjabi, Eastern                    500        578  13.5%
-Bhojpuri                            500        584  14.4%
-Thai (2)                            267        313  14.7%
-Maithili                            500        613  18.4%
-Thai                                273        341  19.9%
-Magahi                              500        643  22.2%
-Vietnamese                          500        660  24.2%
-Tagalog (Tagalog)                    21         31  32.3%
-Lao                                 270        426  36.6%
-Lingala (tones)                     500        844  40.8%
-Vietnamese (Han nom)                107        199  46.2%
-Pular (Adlam)                       500       1044  52.1%
-Yiddish, Eastern                    500       1062  52.9%
-Bamun                               500       1138  56.1%
-Orok                                490       1245  60.6%
-Tem                                 500       1290  61.2%
-Nanai                               379       1207  68.6%
-Evenki                              267        899  70.3%
-Yaneshaʼ                            500       1762  71.6%
-Ticuna                              500       1767  71.7%
-Amarakaeri                          401       1446  72.3%
-South Azerbaijani                   385       1396  72.4%
-Yoruba                              500       2177  77.0%
-Chickasaw                           122        554  78.0%
-Siona                               273       1492  81.7%
-Fur                                 228       1838  87.6%
-Chinantec, Chiltepec                213       1729  87.7%
-Gumuz                               132       1283  89.7%
-Bora                                162       1598  89.9%
-Mòoré                               226       2447  90.8%
-Mongolian, Halh (Mongolian)           3         33  90.9%
-Lamnso'                             197       2237  91.2%
-Navajo                              138       1600  91.4%
-Tamazight, Central Atlas            154       1822  91.5%
-Gilyak                              124       1504  91.8%
-Ditammari                           139       1882  92.6%
-Assyrian Neo-Aramaic                 74       1160  93.6%
-Farsi, Western                      102       1822  94.4%
-Otomi, Mezquital                     85       1849  95.4%
-Veps                                 59       1323  95.5%
-Waama                                38       1000  96.2%
-Dinka, Northeastern                  56       1529  96.3%
-Dari                                 66       1872  96.5%
-Éwé                                  55       2230  97.5%
-Baatonum                             47       1939  97.6%
-Urdu (2)                             52       2251  97.7%
-Urdu                                 50       2237  97.8%
-Uduk                                 71       3247  97.8%
-Mazahua Central                      34       1574  97.8%
-Secoya                               29       1409  97.9%
-Gen                                  46       2309  98.0%
-Picard                               36       2024  98.2%
-Mixtec, Metlatónoc                   24       1367  98.2%
-Arabic, Standard                     20       1348  98.5%
-Ga                                   26       2039  98.7%
-Panjabi, Western                     21       2419  99.1%
-Dangme                               22       2912  99.2%
-Dagaare, Southern                    19       2582  99.3%
-Serer-Sine                            7       1596  99.6%
-Fon                                  10       2520  99.6%
-Aja                                   7       2061  99.7%
-Pashto, Northern                      4       2242  99.8%
-Dendi                                 2       1569  99.9%
-Seraiki                               2       2242  99.9%
-===========================  ==========  =========  =============
+==================================================================  ==========  =========  =============
+lang                                                                  n_errors    n_total  pct_success
+==================================================================  ==========  =========  =============
+:ref:`Javanese (Javanese) <zoclangJavaneseJavanese>`                       500        500  0.0%
+:ref:`Nuosu <zoclangNuosu>`                                                230        230  0.0%
+:ref:`Cherokee (cased) <zoclangCherokeecased>`                             500        507  1.4%
+:ref:`Tai Dam <zoclangTaiDam>`                                             500        511  2.2%
+:ref:`Maldivian <zoclangMaldivian>`                                        500        515  2.9%
+:ref:`Tamil <zoclangTamil>`                                                500        516  3.1%
+:ref:`Tamil (Sri Lanka) <zoclangTamilSriLanka>`                            500        516  3.1%
+:ref:`Burmese <zoclangBurmese>`                                            500        519  3.7%
+:ref:`Mon <zoclangMon>`                                                    500        522  4.2%
+:ref:`Shan <zoclangShan>`                                                  500        523  4.4%
+:ref:`Dzongkha <zoclangDzongkha>`                                          342        359  4.7%
+:ref:`Gujarati <zoclangGujarati>`                                          500        530  5.7%
+:ref:`Tibetan, Central <zoclangTibetanCentral>`                            263        279  5.7%
+:ref:`Malayalam <zoclangMalayalam>`                                        500        533  6.2%
+:ref:`Tamang, Eastern <zoclangTamangEastern>`                               42         45  6.7%
+:ref:`Kannada <zoclangKannada>`                                            500        536  6.7%
+:ref:`Khün <zoclangKhn>`                                                   412        442  6.8%
+:ref:`Khmer, Central <zoclangKhmerCentral>`                                492        528  6.8%
+:ref:`Bengali <zoclangBengali>`                                            500        540  7.4%
+:ref:`Chakma <zoclangChakma>`                                              500        540  7.4%
+:ref:`Telugu <zoclangTelugu>`                                              500        550  9.1%
+:ref:`Nepali <zoclangNepali>`                                              500        554  9.7%
+:ref:`Sanskrit <zoclangSanskrit>`                                          500        563  11.2%
+:ref:`Sanskrit (Grantha) <zoclangSanskritGrantha>`                         500        565  11.5%
+:ref:`Marathi <zoclangMarathi>`                                            500        571  12.4%
+:ref:`Hindi <zoclangHindi>`                                                500        576  13.2%
+:ref:`Sinhala <zoclangSinhala>`                                            500        577  13.3%
+:ref:`Panjabi, Eastern <zoclangPanjabiEastern>`                            500        578  13.5%
+:ref:`Bhojpuri <zoclangBhojpuri>`                                          500        584  14.4%
+:ref:`Thai (2) <zoclangThai2>`                                             267        313  14.7%
+:ref:`Maithili <zoclangMaithili>`                                          500        613  18.4%
+:ref:`Thai <zoclangThai>`                                                  273        341  19.9%
+:ref:`Magahi <zoclangMagahi>`                                              500        643  22.2%
+:ref:`Vietnamese <zoclangVietnamese>`                                      500        660  24.2%
+:ref:`Tagalog (Tagalog) <zoclangTagalogTagalog>`                            21         31  32.3%
+:ref:`Lao <zoclangLao>`                                                    270        426  36.6%
+:ref:`Lingala (tones) <zoclangLingalatones>`                               500        844  40.8%
+:ref:`Vietnamese (Han nom) <zoclangVietnameseHannom>`                      107        199  46.2%
+:ref:`Pular (Adlam) <zoclangPularAdlam>`                                   500       1044  52.1%
+:ref:`Yiddish, Eastern <zoclangYiddishEastern>`                            500       1062  52.9%
+:ref:`Bamun <zoclangBamun>`                                                500       1138  56.1%
+:ref:`Orok <zoclangOrok>`                                                  490       1245  60.6%
+:ref:`Tem <zoclangTem>`                                                    500       1290  61.2%
+:ref:`Nanai <zoclangNanai>`                                                379       1207  68.6%
+:ref:`Evenki <zoclangEvenki>`                                              267        899  70.3%
+:ref:`Yaneshaʼ <zoclangYanesha>`                                           500       1762  71.6%
+:ref:`Ticuna <zoclangTicuna>`                                              500       1767  71.7%
+:ref:`Amarakaeri <zoclangAmarakaeri>`                                      401       1446  72.3%
+:ref:`South Azerbaijani <zoclangSouthAzerbaijani>`                         385       1396  72.4%
+:ref:`Yoruba <zoclangYoruba>`                                              500       2177  77.0%
+:ref:`Chickasaw <zoclangChickasaw>`                                        122        554  78.0%
+:ref:`Siona <zoclangSiona>`                                                273       1492  81.7%
+:ref:`Fur <zoclangFur>`                                                    228       1838  87.6%
+:ref:`Chinantec, Chiltepec <zoclangChinantecChiltepec>`                    213       1729  87.7%
+:ref:`Gumuz <zoclangGumuz>`                                                132       1283  89.7%
+:ref:`Bora <zoclangBora>`                                                  162       1598  89.9%
+:ref:`Mòoré <zoclangMor>`                                                  226       2447  90.8%
+:ref:`Mongolian, Halh (Mongolian) <zoclangMongolianHalhMongolian>`           3         33  90.9%
+:ref:`Lamnso' <zoclangLamnso>`                                             197       2237  91.2%
+:ref:`Navajo <zoclangNavajo>`                                              138       1600  91.4%
+:ref:`Tamazight, Central Atlas <zoclangTamazightCentralAtlas>`             154       1822  91.5%
+:ref:`Gilyak <zoclangGilyak>`                                              124       1504  91.8%
+:ref:`Ditammari <zoclangDitammari>`                                        139       1882  92.6%
+:ref:`Assyrian Neo-Aramaic <zoclangAssyrianNeoAramaic>`                     74       1160  93.6%
+:ref:`Farsi, Western <zoclangFarsiWestern>`                                102       1822  94.4%
+:ref:`Otomi, Mezquital <zoclangOtomiMezquital>`                             85       1849  95.4%
+:ref:`Veps <zoclangVeps>`                                                   59       1323  95.5%
+:ref:`Waama <zoclangWaama>`                                                 38       1000  96.2%
+:ref:`Dinka, Northeastern <zoclangDinkaNortheastern>`                       56       1529  96.3%
+:ref:`Dari <zoclangDari>`                                                   66       1872  96.5%
+:ref:`Éwé <zoclangw>`                                                       55       2230  97.5%
+:ref:`Baatonum <zoclangBaatonum>`                                           47       1939  97.6%
+:ref:`Urdu (2) <zoclangUrdu2>`                                              52       2251  97.7%
+:ref:`Urdu <zoclangUrdu>`                                                   50       2237  97.8%
+:ref:`Uduk <zoclangUduk>`                                                   71       3247  97.8%
+:ref:`Mazahua Central <zoclangMazahuaCentral>`                              34       1574  97.8%
+:ref:`Secoya <zoclangSecoya>`                                               29       1409  97.9%
+:ref:`Gen <zoclangGen>`                                                     46       2309  98.0%
+:ref:`Picard <zoclangPicard>`                                               36       2024  98.2%
+:ref:`Mixtec, Metlatónoc <zoclangMixtecMetlatnoc>`                          24       1367  98.2%
+:ref:`Arabic, Standard <zoclangArabicStandard>`                             20       1348  98.5%
+:ref:`Ga <zoclangGa>`                                                       26       2039  98.7%
+:ref:`Panjabi, Western <zoclangPanjabiWestern>`                             21       2419  99.1%
+:ref:`Dangme <zoclangDangme>`                                               22       2912  99.2%
+:ref:`Dagaare, Southern <zoclangDagaareSouthern>`                           19       2582  99.3%
+:ref:`Serer-Sine <zoclangSererSine>`                                         7       1596  99.6%
+:ref:`Fon <zoclangFon>`                                                     10       2520  99.6%
+:ref:`Aja <zoclangAja>`                                                      7       2061  99.7%
+:ref:`Pashto, Northern <zoclangPashtoNorthern>`                              4       2242  99.8%
+:ref:`Dendi <zoclangDendi>`                                                  2       1569  99.9%
+:ref:`Seraiki <zoclangSeraiki>`                                              2       2242  99.9%
+==================================================================  ==========  =========  =============
+
+.. _zoclangJavaneseJavanese:
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -285,6 +287,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 10.
+
+.. _zoclangNuosu:
 
 Nuosu
 ^^^^^
@@ -319,6 +323,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *zoc* measures width 13.
 
+.. _zoclangCherokeecased:
+
 Cherokee (cased)
 ^^^^^^^^^^^^^^^^
 
@@ -345,6 +351,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 7.
 
+.. _zoclangTaiDam:
+
 Tai Dam
 ^^^^^^^
 
@@ -370,6 +378,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 8.
+
+.. _zoclangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -402,6 +412,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 9.
 
+.. _zoclangTamil:
+
 Tamil
 ^^^^^
 
@@ -428,6 +440,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
 
+.. _zoclangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -453,6 +467,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangBurmese:
 
 Burmese
 ^^^^^^^
@@ -492,6 +508,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *zoc* measures width 16.
 
+.. _zoclangMon:
+
 Mon
 ^^^
 
@@ -523,6 +541,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 10.
+
+.. _zoclangShan:
 
 Shan
 ^^^^
@@ -560,6 +580,8 @@ Total codepoints: 15
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *zoc* measures width 15.
+
+.. _zoclangDzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -624,6 +646,8 @@ Total codepoints: 41
 - python `wcwidth.wcswidth()`_ measures width 32,
   while *zoc* measures width 41.
 
+.. _zoclangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -649,6 +673,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -712,6 +738,8 @@ Total codepoints: 40
 - python `wcwidth.wcswidth()`_ measures width 31,
   while *zoc* measures width 40.
 
+.. _zoclangMalayalam:
+
 Malayalam
 ^^^^^^^^^
 
@@ -763,6 +791,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *zoc* measures width 29.
 
+.. _zoclangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -791,6 +821,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 6.
 
+.. _zoclangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -816,6 +848,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangKhn:
 
 Khün
 ^^^^
@@ -860,6 +894,8 @@ Total codepoints: 22
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *zoc* measures width 22.
+
+.. _zoclangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -919,6 +955,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *zoc* measures width 36.
 
+.. _zoclangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -952,6 +990,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 12.
+
+.. _zoclangChakma:
 
 Chakma
 ^^^^^^
@@ -988,6 +1028,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 13.
 
+.. _zoclangTelugu:
+
 Telugu
 ^^^^^^
 
@@ -1023,6 +1065,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *zoc* measures width 13.
 
+.. _zoclangNepali:
+
 Nepali
 ^^^^^^
 
@@ -1048,6 +1092,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangSanskrit:
 
 Sanskrit
 ^^^^^^^^
@@ -1085,6 +1131,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 14.
 
+.. _zoclangSanskritGrantha:
+
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
 
@@ -1121,6 +1169,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 14.
 
+.. _zoclangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -1148,6 +1198,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 5.
 
+.. _zoclangHindi:
+
 Hindi
 ^^^^^
 
@@ -1174,6 +1226,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
 
+.. _zoclangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1199,6 +1253,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1227,6 +1283,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 6.
+
+.. _zoclangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1259,6 +1317,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *zoc* measures width 10.
+
+.. _zoclangThai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1311,6 +1371,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *zoc* measures width 29.
 
+.. _zoclangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -1340,6 +1402,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 8.
+
+.. _zoclangThai:
 
 Thai
 ^^^^
@@ -1392,6 +1456,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *zoc* measures width 29.
 
+.. _zoclangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1424,6 +1490,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *zoc* measures width 10.
 
+.. _zoclangVietnamese:
+
 Vietnamese
 ^^^^^^^^^^
 
@@ -1451,6 +1519,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
 
+.. _zoclangTagalogTagalog:
+
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
 
@@ -1476,6 +1546,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangLao:
 
 Lao
 ^^^
@@ -1509,6 +1581,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *zoc* measures width 10.
 
+.. _zoclangLingalatones:
+
 Lingala (tones)
 ^^^^^^^^^^^^^^^
 
@@ -1539,6 +1613,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 9.
+
+.. _zoclangVietnameseHannom:
 
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
@@ -1572,6 +1648,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *zoc* measures width 13.
+
+.. _zoclangPularAdlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -1608,6 +1686,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *zoc* measures width 13.
 
+.. _zoclangYiddishEastern:
+
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
 
@@ -1641,6 +1721,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *zoc* measures width 11.
 
+.. _zoclangBamun:
+
 Bamun
 ^^^^^
 
@@ -1666,6 +1748,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangOrok:
 
 Orok
 ^^^^
@@ -1703,6 +1787,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *zoc* measures width 14.
 
+.. _zoclangTem:
+
 Tem
 ^^^
 
@@ -1734,6 +1820,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 9.
 
+.. _zoclangNanai:
+
 Nanai
 ^^^^^
 
@@ -1759,6 +1847,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangEvenki:
 
 Evenki
 ^^^^^^
@@ -1788,6 +1878,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *zoc* measures width 7.
+
+.. _zoclangYanesha:
 
 Yaneshaʼ
 ^^^^^^^^
@@ -1820,6 +1912,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *zoc* measures width 9.
 
+.. _zoclangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -1846,6 +1940,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
+
+.. _zoclangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -1879,6 +1975,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *zoc* measures width 10.
 
+.. _zoclangSouthAzerbaijani:
+
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
 
@@ -1907,6 +2005,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
 
+.. _zoclangYoruba:
+
 Yoruba
 ^^^^^^
 
@@ -1933,6 +2033,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 5.
+
+.. _zoclangChickasaw:
 
 Chickasaw
 ^^^^^^^^^
@@ -1961,6 +2063,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
 
+.. _zoclangSiona:
+
 Siona
 ^^^^^
 
@@ -1988,6 +2092,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
+
+.. _zoclangFur:
 
 Fur
 ^^^
@@ -2022,6 +2128,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *zoc* measures width 11.
 
+.. _zoclangChinantecChiltepec:
+
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2052,6 +2160,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 8.
 
+.. _zoclangGumuz:
+
 Gumuz
 ^^^^^
 
@@ -2079,6 +2189,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
+
+.. _zoclangBora:
 
 Bora
 ^^^^
@@ -2111,6 +2223,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *zoc* measures width 9.
 
+.. _zoclangMor:
+
 Mòoré
 ^^^^^
 
@@ -2136,6 +2250,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
+
+.. _zoclangMongolianHalhMongolian:
 
 Mongolian, Halh (Mongolian)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2164,6 +2280,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
 
+.. _zoclangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -2191,6 +2309,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
+
+.. _zoclangNavajo:
 
 Navajo
 ^^^^^^
@@ -2222,6 +2342,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *zoc* measures width 9.
+
+.. _zoclangTamazightCentralAtlas:
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2255,6 +2377,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *zoc* measures width 11.
+
+.. _zoclangGilyak:
 
 Gilyak
 ^^^^^^
@@ -2291,6 +2415,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *zoc* measures width 13.
 
+.. _zoclangDitammari:
+
 Ditammari
 ^^^^^^^^^
 
@@ -2322,6 +2448,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *zoc* measures width 9.
 
+.. _zoclangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2351,6 +2479,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *zoc* measures width 7.
 
+.. _zoclangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -2377,6 +2507,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
+
+.. _zoclangOtomiMezquital:
 
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
@@ -2409,6 +2541,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *zoc* measures width 9.
 
+.. _zoclangVeps:
+
 Veps
 ^^^^
 
@@ -2439,6 +2573,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 8.
 
+.. _zoclangWaama:
+
 Waama
 ^^^^^
 
@@ -2462,6 +2598,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *zoc* measures width 2.
+
+.. _zoclangDinkaNortheastern:
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
@@ -2489,6 +2627,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
 
+.. _zoclangDari:
+
 Dari
 ^^^^
 
@@ -2515,6 +2655,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
+
+.. _zoclangw:
 
 Éwé
 ^^^
@@ -2548,6 +2690,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *zoc* measures width 10.
 
+.. _zoclangBaatonum:
+
 Baatonum
 ^^^^^^^^
 
@@ -2572,6 +2716,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *zoc* measures width 3.
+
+.. _zoclangUrdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -2601,6 +2747,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
 
+.. _zoclangUrdu:
+
 Urdu
 ^^^^
 
@@ -2629,6 +2777,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
 
+.. _zoclangUduk:
+
 Uduk
 ^^^^
 
@@ -2655,6 +2805,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
+
+.. _zoclangMazahuaCentral:
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -2683,6 +2835,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 6.
+
+.. _zoclangSecoya:
 
 Secoya
 ^^^^^^
@@ -2714,6 +2868,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *zoc* measures width 8.
 
+.. _zoclangGen:
+
 Gen
 ^^^
 
@@ -2741,6 +2897,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
+
+.. _zoclangPicard:
 
 Picard
 ^^^^^^
@@ -2773,6 +2931,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *zoc* measures width 9.
 
+.. _zoclangMixtecMetlatnoc:
+
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
 
@@ -2800,6 +2960,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
+
+.. _zoclangArabicStandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2829,6 +2991,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
 
+.. _zoclangGa:
+
 Ga
 ^^
 
@@ -2856,6 +3020,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
 
+.. _zoclangPanjabiWestern:
+
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
 
@@ -2882,6 +3048,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 4.
 
+.. _zoclangDangme:
+
 Dangme
 ^^^^^^
 
@@ -2906,6 +3074,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *zoc* measures width 3.
+
+.. _zoclangDagaareSouthern:
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
@@ -2933,6 +3103,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *zoc* measures width 5.
+
+.. _zoclangSererSine:
 
 Serer-Sine
 ^^^^^^^^^^
@@ -2962,6 +3134,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
 
+.. _zoclangFon:
+
 Fon
 ^^^
 
@@ -2988,6 +3162,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *zoc* measures width 5.
+
+.. _zoclangAja:
 
 Aja
 ^^^
@@ -3019,6 +3195,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *zoc* measures width 8.
 
+.. _zoclangPashtoNorthern:
+
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
@@ -3047,6 +3225,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
 
+.. _zoclangDendi:
+
 Dendi
 ^^^^^
 
@@ -3074,6 +3254,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *zoc* measures width 6.
+
+.. _zoclangSeraiki:
 
 Seraiki
 ^^^^^^^
@@ -3118,11 +3300,6 @@ The test suite completed in **79.42 seconds** (79s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

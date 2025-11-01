@@ -24,7 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     81.53%       79.4%           modes_supported / total_modes
-TIME          3701.42s     74.8%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          3701.42s     20.7%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -184,127 +184,129 @@ Mongolian, Halh (Mongolian), Tagalog (Tagalog).
 
 The following 117 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Shan                                    868        915  5.1%
-Tamil (Sri Lanka)                      1000       1074  6.9%
-Tamil                                  1000       1075  7.0%
-Sanskrit (Grantha)                      894       1006  11.1%
-Javanese (Javanese)                    1000       1127  11.3%
-Malayalam                              1000       1156  13.5%
-Bengali                                1000       1165  14.2%
-Khmer, Central                          448        528  15.2%
-Kannada                                 902       1080  16.5%
-Khün                                    361        442  18.3%
-Burmese                                 974       1223  20.4%
-Sanskrit                                753       1000  24.7%
-Tamang, Eastern                          33         45  26.7%
-Mon                                     677        946  28.4%
-Marathi                                1000       1421  29.6%
-Nepali                                  931       1385  32.8%
-Gujarati                               1000       1520  34.2%
-Telugu                                  714       1129  36.8%
-Maithili                                955       1519  37.1%
-Hindi                                  1000       1631  38.7%
-Panjabi, Eastern                       1000       1831  45.4%
-Sinhala                                 886       1655  46.5%
-Bhojpuri                                880       1737  49.3%
-Magahi                                  812       1716  52.7%
-Chakma                                  494       1444  65.8%
-Tibetan, Central                          4        280  98.6%
-Japanese                                  4        299  98.7%
-Nuosu                                     3        230  98.7%
-Japanese (Osaka)                          4        308  98.7%
-Japanese (Tokyo)                          4        320  98.8%
-Dzongkha                                  4        359  98.9%
-Vietnamese (Han nom)                      2        199  99.0%
-Thai (2)                                  3        313  99.0%
-Chinese, Mandarin (Harbin)                2        210  99.0%
-Chinese, Mandarin (Traditional)           2        210  99.0%
-Chinese, Yue                              2        210  99.0%
-(Jinan)                                   2        211  99.1%
-Chinese, Gan                              2        211  99.1%
-Chinese, Mandarin (Guiyang)               2        211  99.1%
-Chinese, Wu                               2        211  99.1%
-Chinese, Hakka                            2        212  99.1%
-Chinese, Jinyu                            2        212  99.1%
-Chinese, Mandarin (Beijing)               2        212  99.1%
-Chinese, Mandarin (Nanjing)               2        212  99.1%
-Chinese, Mandarin (Tianjin)               2        212  99.1%
-Chinese, Min Nan                          2        212  99.1%
-Chinese, Xiang                            2        212  99.1%
-Lao                                       4        426  99.1%
-Chinese, Mandarin (Simplified)            2        225  99.1%
-Thai                                      3        341  99.1%
-Bora                                      6       1598  99.6%
-Chickasaw                                 2        554  99.6%
-Shipibo-Conibo                            9       2540  99.6%
-Amarakaeri                                5       1446  99.7%
-Evenki                                    3        899  99.7%
-Nanai                                     4       1207  99.7%
-Orok                                      4       1245  99.7%
-Yaneshaʼ                                  8       2536  99.7%
-Navajo                                    5       1600  99.7%
-Gumuz                                     4       1283  99.7%
-Veps                                      4       1323  99.7%
-South Azerbaijani                         4       1396  99.7%
-Secoya                                    4       1409  99.7%
-(Yeonbyeon)                               3       1061  99.7%
-Siona                                     4       1492  99.7%
-Gilyak                                    4       1504  99.7%
-Catalan (2)                               5       1909  99.7%
-Mirandese                                 5       1966  99.7%
-Korean                                    3       1185  99.7%
-Pular (Adlam)                             4       1613  99.8%
-Picard                                    5       2024  99.8%
-Ticuna                                    5       2048  99.8%
-Tem                                       4       1659  99.8%
-Colorado                                  3       1263  99.8%
-Yiddish, Eastern                          4       1775  99.8%
-Saint Lucian Creole French                4       1777  99.8%
-Éwé                                       5       2230  99.8%
-Arabic, Standard                          3       1348  99.8%
-Kabyle                                    4       1815  99.8%
-Lingala (tones)                           4       1818  99.8%
-Tamazight, Central Atlas                  4       1822  99.8%
-Mixtec, Metlatónoc                        3       1367  99.8%
-Fur                                       4       1838  99.8%
-Gen                                       5       2309  99.8%
-Uduk                                      7       3247  99.8%
-Dari                                      4       1872  99.8%
-Ditammari                                 4       1882  99.8%
-Maori (2)                                 5       2385  99.8%
-Maldivian                                 4       1918  99.8%
-French (Welche)                           4       1928  99.8%
-Yoruba                                    5       2454  99.8%
-Waama                                     2       1000  99.8%
-Dinka, Northeastern                       3       1529  99.8%
-Ga                                        4       2039  99.8%
-Aja                                       4       2061  99.8%
-Dagaare, Southern                         5       2582  99.8%
-Dendi                                     3       1569  99.8%
-Mazahua Central                           3       1574  99.8%
-Serer-Sine                                3       1596  99.8%
-Lamnso'                                   4       2237  99.8%
-Urdu                                      4       2237  99.8%
-Pashto, Northern                          4       2242  99.8%
-Seraiki                                   4       2242  99.8%
-Belanda Viri                              4       2246  99.8%
-Urdu (2)                                  4       2251  99.8%
-Bamun                                     4       2285  99.8%
-Chinantec, Chiltepec                      3       1729  99.8%
-Assyrian Neo-Aramaic                      2       1160  99.8%
-Panjabi, Western                          4       2419  99.8%
-Farsi, Western                            3       1822  99.8%
-Mòoré                                     4       2447  99.8%
-Otomi, Mezquital                          3       1849  99.8%
-Vietnamese                                4       2502  99.8%
-Fon                                       4       2520  99.8%
-Baatonum                                  3       1939  99.8%
-Dangme                                    4       2912  99.9%
-Tai Dam                                   3       2386  99.9%
-===============================  ==========  =========  =============
+=============================================================================  ==========  =========  =============
+lang                                                                             n_errors    n_total  pct_success
+=============================================================================  ==========  =========  =============
+:ref:`Shan <termitlangShan>`                                                          868        915  5.1%
+:ref:`Tamil (Sri Lanka) <termitlangTamilSriLanka>`                                   1000       1074  6.9%
+:ref:`Tamil <termitlangTamil>`                                                       1000       1075  7.0%
+:ref:`Sanskrit (Grantha) <termitlangSanskritGrantha>`                                 894       1006  11.1%
+:ref:`Javanese (Javanese) <termitlangJavaneseJavanese>`                              1000       1127  11.3%
+:ref:`Malayalam <termitlangMalayalam>`                                               1000       1156  13.5%
+:ref:`Bengali <termitlangBengali>`                                                   1000       1165  14.2%
+:ref:`Khmer, Central <termitlangKhmerCentral>`                                        448        528  15.2%
+:ref:`Kannada <termitlangKannada>`                                                    902       1080  16.5%
+:ref:`Khün <termitlangKhn>`                                                           361        442  18.3%
+:ref:`Burmese <termitlangBurmese>`                                                    974       1223  20.4%
+:ref:`Sanskrit <termitlangSanskrit>`                                                  753       1000  24.7%
+:ref:`Tamang, Eastern <termitlangTamangEastern>`                                       33         45  26.7%
+:ref:`Mon <termitlangMon>`                                                            677        946  28.4%
+:ref:`Marathi <termitlangMarathi>`                                                   1000       1421  29.6%
+:ref:`Nepali <termitlangNepali>`                                                      931       1385  32.8%
+:ref:`Gujarati <termitlangGujarati>`                                                 1000       1520  34.2%
+:ref:`Telugu <termitlangTelugu>`                                                      714       1129  36.8%
+:ref:`Maithili <termitlangMaithili>`                                                  955       1519  37.1%
+:ref:`Hindi <termitlangHindi>`                                                       1000       1631  38.7%
+:ref:`Panjabi, Eastern <termitlangPanjabiEastern>`                                   1000       1831  45.4%
+:ref:`Sinhala <termitlangSinhala>`                                                    886       1655  46.5%
+:ref:`Bhojpuri <termitlangBhojpuri>`                                                  880       1737  49.3%
+:ref:`Magahi <termitlangMagahi>`                                                      812       1716  52.7%
+:ref:`Chakma <termitlangChakma>`                                                      494       1444  65.8%
+:ref:`Tibetan, Central <termitlangTibetanCentral>`                                      4        280  98.6%
+:ref:`Japanese <termitlangJapanese>`                                                    4        299  98.7%
+:ref:`Nuosu <termitlangNuosu>`                                                          3        230  98.7%
+:ref:`Japanese (Osaka) <termitlangJapaneseOsaka>`                                       4        308  98.7%
+:ref:`Japanese (Tokyo) <termitlangJapaneseTokyo>`                                       4        320  98.8%
+:ref:`Dzongkha <termitlangDzongkha>`                                                    4        359  98.9%
+:ref:`Vietnamese (Han nom) <termitlangVietnameseHannom>`                                2        199  99.0%
+:ref:`Thai (2) <termitlangThai2>`                                                       3        313  99.0%
+:ref:`Chinese, Mandarin (Harbin) <termitlangChineseMandarinHarbin>`                     2        210  99.0%
+:ref:`Chinese, Mandarin (Traditional) <termitlangChineseMandarinTraditional>`           2        210  99.0%
+:ref:`Chinese, Yue <termitlangChineseYue>`                                              2        210  99.0%
+:ref:`(Jinan) <termitlangJinan>`                                                        2        211  99.1%
+:ref:`Chinese, Gan <termitlangChineseGan>`                                              2        211  99.1%
+:ref:`Chinese, Mandarin (Guiyang) <termitlangChineseMandarinGuiyang>`                   2        211  99.1%
+:ref:`Chinese, Wu <termitlangChineseWu>`                                                2        211  99.1%
+:ref:`Chinese, Hakka <termitlangChineseHakka>`                                          2        212  99.1%
+:ref:`Chinese, Jinyu <termitlangChineseJinyu>`                                          2        212  99.1%
+:ref:`Chinese, Mandarin (Beijing) <termitlangChineseMandarinBeijing>`                   2        212  99.1%
+:ref:`Chinese, Mandarin (Nanjing) <termitlangChineseMandarinNanjing>`                   2        212  99.1%
+:ref:`Chinese, Mandarin (Tianjin) <termitlangChineseMandarinTianjin>`                   2        212  99.1%
+:ref:`Chinese, Min Nan <termitlangChineseMinNan>`                                       2        212  99.1%
+:ref:`Chinese, Xiang <termitlangChineseXiang>`                                          2        212  99.1%
+:ref:`Lao <termitlangLao>`                                                              4        426  99.1%
+:ref:`Chinese, Mandarin (Simplified) <termitlangChineseMandarinSimplified>`             2        225  99.1%
+:ref:`Thai <termitlangThai>`                                                            3        341  99.1%
+:ref:`Bora <termitlangBora>`                                                            6       1598  99.6%
+:ref:`Chickasaw <termitlangChickasaw>`                                                  2        554  99.6%
+:ref:`Shipibo-Conibo <termitlangShipiboConibo>`                                         9       2540  99.6%
+:ref:`Amarakaeri <termitlangAmarakaeri>`                                                5       1446  99.7%
+:ref:`Evenki <termitlangEvenki>`                                                        3        899  99.7%
+:ref:`Nanai <termitlangNanai>`                                                          4       1207  99.7%
+:ref:`Orok <termitlangOrok>`                                                            4       1245  99.7%
+:ref:`Yaneshaʼ <termitlangYanesha>`                                                     8       2536  99.7%
+:ref:`Navajo <termitlangNavajo>`                                                        5       1600  99.7%
+:ref:`Gumuz <termitlangGumuz>`                                                          4       1283  99.7%
+:ref:`Veps <termitlangVeps>`                                                            4       1323  99.7%
+:ref:`South Azerbaijani <termitlangSouthAzerbaijani>`                                   4       1396  99.7%
+:ref:`Secoya <termitlangSecoya>`                                                        4       1409  99.7%
+:ref:`(Yeonbyeon) <termitlangYeonbyeon>`                                                3       1061  99.7%
+:ref:`Siona <termitlangSiona>`                                                          4       1492  99.7%
+:ref:`Gilyak <termitlangGilyak>`                                                        4       1504  99.7%
+:ref:`Catalan (2) <termitlangCatalan2>`                                                 5       1909  99.7%
+:ref:`Mirandese <termitlangMirandese>`                                                  5       1966  99.7%
+:ref:`Korean <termitlangKorean>`                                                        3       1185  99.7%
+:ref:`Pular (Adlam) <termitlangPularAdlam>`                                             4       1613  99.8%
+:ref:`Picard <termitlangPicard>`                                                        5       2024  99.8%
+:ref:`Ticuna <termitlangTicuna>`                                                        5       2048  99.8%
+:ref:`Tem <termitlangTem>`                                                              4       1659  99.8%
+:ref:`Colorado <termitlangColorado>`                                                    3       1263  99.8%
+:ref:`Yiddish, Eastern <termitlangYiddishEastern>`                                      4       1775  99.8%
+:ref:`Saint Lucian Creole French <termitlangSaintLucianCreoleFrench>`                   4       1777  99.8%
+:ref:`Éwé <termitlangw>`                                                                5       2230  99.8%
+:ref:`Arabic, Standard <termitlangArabicStandard>`                                      3       1348  99.8%
+:ref:`Kabyle <termitlangKabyle>`                                                        4       1815  99.8%
+:ref:`Lingala (tones) <termitlangLingalatones>`                                         4       1818  99.8%
+:ref:`Tamazight, Central Atlas <termitlangTamazightCentralAtlas>`                       4       1822  99.8%
+:ref:`Mixtec, Metlatónoc <termitlangMixtecMetlatnoc>`                                   3       1367  99.8%
+:ref:`Fur <termitlangFur>`                                                              4       1838  99.8%
+:ref:`Gen <termitlangGen>`                                                              5       2309  99.8%
+:ref:`Uduk <termitlangUduk>`                                                            7       3247  99.8%
+:ref:`Dari <termitlangDari>`                                                            4       1872  99.8%
+:ref:`Ditammari <termitlangDitammari>`                                                  4       1882  99.8%
+:ref:`Maori (2) <termitlangMaori2>`                                                     5       2385  99.8%
+:ref:`Maldivian <termitlangMaldivian>`                                                  4       1918  99.8%
+:ref:`French (Welche) <termitlangFrenchWelche>`                                         4       1928  99.8%
+:ref:`Yoruba <termitlangYoruba>`                                                        5       2454  99.8%
+:ref:`Waama <termitlangWaama>`                                                          2       1000  99.8%
+:ref:`Dinka, Northeastern <termitlangDinkaNortheastern>`                                3       1529  99.8%
+:ref:`Ga <termitlangGa>`                                                                4       2039  99.8%
+:ref:`Aja <termitlangAja>`                                                              4       2061  99.8%
+:ref:`Dagaare, Southern <termitlangDagaareSouthern>`                                    5       2582  99.8%
+:ref:`Dendi <termitlangDendi>`                                                          3       1569  99.8%
+:ref:`Mazahua Central <termitlangMazahuaCentral>`                                       3       1574  99.8%
+:ref:`Serer-Sine <termitlangSererSine>`                                                 3       1596  99.8%
+:ref:`Lamnso' <termitlangLamnso>`                                                       4       2237  99.8%
+:ref:`Urdu <termitlangUrdu>`                                                            4       2237  99.8%
+:ref:`Pashto, Northern <termitlangPashtoNorthern>`                                      4       2242  99.8%
+:ref:`Seraiki <termitlangSeraiki>`                                                      4       2242  99.8%
+:ref:`Belanda Viri <termitlangBelandaViri>`                                             4       2246  99.8%
+:ref:`Urdu (2) <termitlangUrdu2>`                                                       4       2251  99.8%
+:ref:`Bamun <termitlangBamun>`                                                          4       2285  99.8%
+:ref:`Chinantec, Chiltepec <termitlangChinantecChiltepec>`                              3       1729  99.8%
+:ref:`Assyrian Neo-Aramaic <termitlangAssyrianNeoAramaic>`                              2       1160  99.8%
+:ref:`Panjabi, Western <termitlangPanjabiWestern>`                                      4       2419  99.8%
+:ref:`Farsi, Western <termitlangFarsiWestern>`                                          3       1822  99.8%
+:ref:`Mòoré <termitlangMor>`                                                            4       2447  99.8%
+:ref:`Otomi, Mezquital <termitlangOtomiMezquital>`                                      3       1849  99.8%
+:ref:`Vietnamese <termitlangVietnamese>`                                                4       2502  99.8%
+:ref:`Fon <termitlangFon>`                                                              4       2520  99.8%
+:ref:`Baatonum <termitlangBaatonum>`                                                    3       1939  99.8%
+:ref:`Dangme <termitlangDangme>`                                                        4       2912  99.9%
+:ref:`Tai Dam <termitlangTaiDam>`                                                       3       2386  99.9%
+=============================================================================  ==========  =========  =============
+
+.. _termitlangShan:
 
 Shan
 ^^^^
@@ -343,6 +345,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 9.
 
+.. _termitlangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -369,6 +373,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
 
+.. _termitlangTamil:
+
 Tamil
 ^^^^^
 
@@ -394,6 +400,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
+
+.. _termitlangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -431,6 +439,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *termit* measures width 14.
 
+.. _termitlangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -456,6 +466,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
+
+.. _termitlangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -508,6 +520,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *termit* measures width 21.
 
+.. _termitlangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -541,6 +555,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *termit* measures width 12.
+
+.. _termitlangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -600,6 +616,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *termit* measures width 25.
 
+.. _termitlangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -625,6 +643,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
+
+.. _termitlangKhn:
 
 Khün
 ^^^^
@@ -670,6 +690,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *termit* measures width 15.
 
+.. _termitlangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -708,6 +730,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width 11.
 
+.. _termitlangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -744,6 +768,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *termit* measures width 13.
 
+.. _termitlangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -771,6 +797,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
+
+.. _termitlangMon:
 
 Mon
 ^^^
@@ -804,6 +832,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width 7.
 
+.. _termitlangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -831,6 +861,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 5.
 
+.. _termitlangNepali:
+
 Nepali
 ^^^^^^
 
@@ -857,6 +889,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
 
+.. _termitlangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -882,6 +916,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
+
+.. _termitlangTelugu:
 
 Telugu
 ^^^^^^
@@ -918,6 +954,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *termit* measures width 10.
 
+.. _termitlangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -948,6 +986,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width 7.
 
+.. _termitlangHindi:
+
 Hindi
 ^^^^^
 
@@ -973,6 +1013,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
+
+.. _termitlangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1002,6 +1044,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
 
+.. _termitlangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1027,6 +1071,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 4.
+
+.. _termitlangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1060,6 +1106,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 10.
 
+.. _termitlangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1091,6 +1139,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 10.
+
+.. _termitlangChakma:
 
 Chakma
 ^^^^^^
@@ -1126,6 +1176,8 @@ Total codepoints: 13
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *termit* measures width 8.
+
+.. _termitlangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -1167,6 +1219,8 @@ Total codepoints: 18
 - python `wcwidth.wcswidth()`_ measures width 15,
   while *termit* measures width -52.
 
+.. _termitlangJapanese:
+
 Japanese
 ^^^^^^^^
 
@@ -1195,6 +1249,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *termit* measures width 6.
 
+.. _termitlangNuosu:
+
 Nuosu
 ^^^^^
 
@@ -1221,6 +1277,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width -50.
 
+.. _termitlangJapaneseOsaka:
+
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
 
@@ -1245,6 +1303,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -32.
+
+.. _termitlangJapaneseTokyo:
 
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
@@ -1282,6 +1342,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 28,
   while *termit* measures width 8.
 
+.. _termitlangDzongkha:
+
 Dzongkha
 ^^^^^^^^
 
@@ -1309,6 +1371,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width -18.
+
+.. _termitlangVietnameseHannom:
 
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
@@ -1355,6 +1419,8 @@ Total codepoints: 23
 - python `wcwidth.wcswidth()`_ measures width 46,
   while *termit* measures width 28.
 
+.. _termitlangThai2:
+
 Thai (2)
 ^^^^^^^^
 
@@ -1384,6 +1450,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -11.
 
+.. _termitlangChineseMandarinHarbin:
+
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1408,6 +1476,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -4.
+
+.. _termitlangChineseMandarinTraditional:
 
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1441,6 +1511,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 20,
   while *termit* measures width -22.
 
+.. _termitlangChineseYue:
+
 Chinese, Yue
 ^^^^^^^^^^^^
 
@@ -1472,6 +1544,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 18,
   while *termit* measures width 7.
 
+.. _termitlangJinan:
+
 (Jinan)
 ^^^^^^^
 
@@ -1497,6 +1571,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width -40.
+
+.. _termitlangChineseGan:
 
 Chinese, Gan
 ^^^^^^^^^^^^
@@ -1524,6 +1600,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width -40.
 
+.. _termitlangChineseMandarinGuiyang:
+
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1548,6 +1626,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -4.
+
+.. _termitlangChineseWu:
 
 Chinese, Wu
 ^^^^^^^^^^^
@@ -1574,6 +1654,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width -42.
+
+.. _termitlangChineseHakka:
 
 Chinese, Hakka
 ^^^^^^^^^^^^^^
@@ -1604,6 +1686,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *termit* measures width 6.
 
+.. _termitlangChineseJinyu:
+
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
 
@@ -1629,6 +1713,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width -40.
+
+.. _termitlangChineseMandarinBeijing:
 
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1657,6 +1743,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *termit* measures width -12.
 
+.. _termitlangChineseMandarinNanjing:
+
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1682,6 +1770,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width -40.
+
+.. _termitlangChineseMandarinTianjin:
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1732,6 +1822,8 @@ Total codepoints: 27
 - python `wcwidth.wcswidth()`_ measures width 54,
   while *termit* measures width -12.
 
+.. _termitlangChineseMinNan:
+
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
 
@@ -1778,6 +1870,8 @@ Total codepoints: 24
 - python `wcwidth.wcswidth()`_ measures width 48,
   while *termit* measures width -14.
 
+.. _termitlangChineseXiang:
+
 Chinese, Xiang
 ^^^^^^^^^^^^^^
 
@@ -1802,6 +1896,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -4.
+
+.. _termitlangLao:
 
 Lao
 ^^^
@@ -1828,6 +1924,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width -15.
 
+.. _termitlangChineseMandarinSimplified:
+
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1852,6 +1950,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -40.
+
+.. _termitlangThai:
 
 Thai
 ^^^^
@@ -1881,6 +1981,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -17.
+
+.. _termitlangBora:
 
 Bora
 ^^^^
@@ -1914,6 +2016,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *termit* measures width 3.
 
+.. _termitlangChickasaw:
+
 Chickasaw
 ^^^^^^^^^
 
@@ -1942,6 +2046,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *termit* measures width 1.
+
+.. _termitlangShipiboConibo:
 
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
@@ -1978,6 +2084,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 13,
   while *termit* measures width 11.
 
+.. _termitlangAmarakaeri:
+
 Amarakaeri
 ^^^^^^^^^^
 
@@ -2006,6 +2114,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -2.
 
+.. _termitlangEvenki:
+
 Evenki
 ^^^^^^
 
@@ -2033,6 +2143,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width -6.
+
+.. _termitlangNanai:
 
 Nanai
 ^^^^^
@@ -2066,6 +2178,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *termit* measures width 2.
 
+.. _termitlangOrok:
+
 Orok
 ^^^^
 
@@ -2098,6 +2212,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *termit* measures width 1.
 
+.. _termitlangYanesha:
+
 Yaneshaʼ
 ^^^^^^^^
 
@@ -2125,6 +2241,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 0.
+
+.. _termitlangNavajo:
 
 Navajo
 ^^^^^^
@@ -2164,6 +2282,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *termit* measures width 13.
 
+.. _termitlangGumuz:
+
 Gumuz
 ^^^^^
 
@@ -2197,6 +2317,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *termit* measures width 6.
 
+.. _termitlangVeps:
+
 Veps
 ^^^^
 
@@ -2221,6 +2343,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width -6.
+
+.. _termitlangSouthAzerbaijani:
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
@@ -2250,6 +2374,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 1.
 
+.. _termitlangSecoya:
+
 Secoya
 ^^^^^^
 
@@ -2273,6 +2399,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -3.
+
+.. _termitlangYeonbyeon:
 
 (Yeonbyeon)
 ^^^^^^^^^^^
@@ -2300,6 +2428,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width -2.
 
+.. _termitlangSiona:
+
 Siona
 ^^^^^
 
@@ -2326,6 +2456,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width -2.
+
+.. _termitlangGilyak:
 
 Gilyak
 ^^^^^^
@@ -2362,6 +2494,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 13,
   while *termit* measures width 5.
 
+.. _termitlangCatalan2:
+
 Catalan (2)
 ^^^^^^^^^^^
 
@@ -2389,6 +2523,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 0.
+
+.. _termitlangMirandese:
 
 Mirandese
 ^^^^^^^^^
@@ -2419,6 +2555,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *termit* measures width 2.
 
+.. _termitlangKorean:
+
 Korean
 ^^^^^^
 
@@ -2441,6 +2579,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -7.
+
+.. _termitlangPularAdlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -2471,6 +2611,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 2.
 
+.. _termitlangPicard:
+
 Picard
 ^^^^^^
 
@@ -2498,6 +2640,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width 1.
 
+.. _termitlangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -2520,6 +2664,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *termit* measures width -8.
+
+.. _termitlangTem:
 
 Tem
 ^^^
@@ -2545,6 +2691,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width -7.
+
+.. _termitlangColorado:
 
 Colorado
 ^^^^^^^^
@@ -2577,6 +2725,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *termit* measures width 2.
 
+.. _termitlangYiddishEastern:
+
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
 
@@ -2604,6 +2754,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width -6.
 
+.. _termitlangSaintLucianCreoleFrench:
+
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2627,6 +2779,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -2.
+
+.. _termitlangw:
 
 Éwé
 ^^^
@@ -2654,6 +2808,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width -6.
+
+.. _termitlangArabicStandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2684,6 +2840,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *termit* measures width -2.
 
+.. _termitlangKabyle:
+
 Kabyle
 ^^^^^^
 
@@ -2711,6 +2869,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 2.
+
+.. _termitlangLingalatones:
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -2741,6 +2901,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width -1.
 
+.. _termitlangTamazightCentralAtlas:
+
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2768,6 +2930,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 1.
+
+.. _termitlangMixtecMetlatnoc:
 
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
@@ -2799,6 +2963,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width 6.
 
+.. _termitlangFur:
+
 Fur
 ^^^
 
@@ -2825,6 +2991,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width 0.
 
+.. _termitlangGen:
+
 Gen
 ^^^
 
@@ -2849,6 +3017,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width -6.
+
+.. _termitlangUduk:
 
 Uduk
 ^^^^
@@ -2878,6 +3048,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 3.
 
+.. _termitlangDari:
+
 Dari
 ^^^^
 
@@ -2901,6 +3073,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -4.
+
+.. _termitlangDitammari:
 
 Ditammari
 ^^^^^^^^^
@@ -2926,6 +3100,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -2.
 
+.. _termitlangMaori2:
+
 Maori (2)
 ^^^^^^^^^
 
@@ -2948,6 +3124,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *termit* measures width -3.
+
+.. _termitlangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -2976,6 +3154,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width -3.
+
+.. _termitlangFrenchWelche:
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -3008,6 +3188,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *termit* measures width 3.
 
+.. _termitlangYoruba:
+
 Yoruba
 ^^^^^^
 
@@ -3030,6 +3212,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *termit* measures width -2.
+
+.. _termitlangWaama:
 
 Waama
 ^^^^^
@@ -3055,6 +3239,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -6.
 
+.. _termitlangDinkaNortheastern:
+
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
 
@@ -3078,6 +3264,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -2.
+
+.. _termitlangGa:
 
 Ga
 ^^
@@ -3103,6 +3291,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width 0.
 
+.. _termitlangAja:
+
 Aja
 ^^^
 
@@ -3126,6 +3316,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -6.
+
+.. _termitlangDagaareSouthern:
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
@@ -3153,6 +3345,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width 2.
 
+.. _termitlangDendi:
+
 Dendi
 ^^^^^
 
@@ -3179,6 +3373,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width 0.
 
+.. _termitlangMazahuaCentral:
+
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
@@ -3202,6 +3398,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -2.
+
+.. _termitlangSererSine:
 
 Serer-Sine
 ^^^^^^^^^^
@@ -3230,6 +3428,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width 3.
 
+.. _termitlangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -3255,6 +3455,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 2.
 
+.. _termitlangUrdu:
+
 Urdu
 ^^^^
 
@@ -3279,6 +3481,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width -1.
+
+.. _termitlangPashtoNorthern:
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -3306,6 +3510,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width 0.
 
+.. _termitlangSeraiki:
+
 Seraiki
 ^^^^^^^
 
@@ -3329,6 +3535,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -6.
+
+.. _termitlangBelandaViri:
 
 Belanda Viri
 ^^^^^^^^^^^^
@@ -3356,6 +3564,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width -2.
 
+.. _termitlangUrdu2:
+
 Urdu (2)
 ^^^^^^^^
 
@@ -3382,6 +3592,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width -2.
 
+.. _termitlangBamun:
+
 Bamun
 ^^^^^
 
@@ -3406,6 +3618,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 0.
+
+.. _termitlangChinantecChiltepec:
 
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
@@ -3434,6 +3648,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width 1.
 
+.. _termitlangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -3461,6 +3677,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *termit* measures width -2.
 
+.. _termitlangPanjabiWestern:
+
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
 
@@ -3486,6 +3704,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width 2.
+
+.. _termitlangFarsiWestern:
 
 Farsi, Western
 ^^^^^^^^^^^^^^
@@ -3515,6 +3735,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 4.
 
+.. _termitlangMor:
+
 Mòoré
 ^^^^^
 
@@ -3543,6 +3765,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *termit* measures width 5.
 
+.. _termitlangOtomiMezquital:
+
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
 
@@ -3570,6 +3794,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *termit* measures width -3.
 
+.. _termitlangVietnamese:
+
 Vietnamese
 ^^^^^^^^^^
 
@@ -3596,6 +3822,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width -2.
 
+.. _termitlangFon:
+
 Fon
 ^^^
 
@@ -3619,6 +3847,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -4.
+
+.. _termitlangBaatonum:
 
 Baatonum
 ^^^^^^^^
@@ -3644,6 +3874,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *termit* measures width -6.
 
+.. _termitlangDangme:
+
 Dangme
 ^^^^^^
 
@@ -3668,6 +3900,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *termit* measures width 1.
+
+.. _termitlangTaiDam:
 
 Tai Dam
 ^^^^^^^
@@ -4134,11 +4368,6 @@ The test suite completed in **3701.42 seconds** (3701s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

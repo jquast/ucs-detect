@@ -186,129 +186,131 @@ The following 0 languages were tested with 100% success:
 
 The following 119 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Javanese (Javanese)                     100        100  0.0%
-Tamil                                   100        101  1.0%
-Tamil (Sri Lanka)                       100        101  1.0%
-Chakma                                  100        102  2.0%
-Kannada                                 100        102  2.0%
-Gujarati                                100        103  2.9%
-Khün                                    100        104  3.8%
-Burmese                                 100        105  4.8%
-Malayalam                               100        105  4.8%
-Mon                                     100        105  4.8%
-Shan                                    100        105  4.8%
-Telugu                                  100        105  4.8%
-Khmer, Central                          100        107  6.5%
-Sanskrit                                100        107  6.5%
-Sanskrit (Grantha)                      100        107  6.5%
-Tamang, Eastern                          42         45  6.7%
-Bengali                                 100        108  7.4%
-Marathi                                 100        108  7.4%
-Nepali                                  100        112  10.7%
-Maldivian                               100        113  11.5%
-Sinhala                                 100        116  13.8%
-Bhojpuri                                100        117  14.5%
-Hindi                                   100        117  14.5%
-Panjabi, Eastern                        100        119  16.0%
-Thai (2)                                100        120  16.7%
-Maithili                                100        122  18.0%
-Magahi                                  100        126  20.6%
-Thai                                    100        126  20.6%
-Vietnamese                              100        140  28.6%
-Lao                                     100        145  31.0%
-Tagalog (Tagalog)                        21         31  32.3%
-Dzongkha                                100        156  35.9%
-Tibetan, Central                        100        160  37.5%
-French (Welche)                         100        186  46.2%
-Lingala (tones)                         100        188  46.8%
-Pular (Adlam)                           100        214  53.3%
-Orok                                    100        245  59.2%
-Yiddish, Eastern                        100        245  59.2%
-Tai Dam                                 100        247  59.5%
-Tem                                     100        251  60.2%
-Bamun                                   100        253  60.5%
-Saint Lucian Creole French              100        255  60.8%
-Evenki                                  100        324  69.1%
-South Azerbaijani                       100        329  69.6%
-Ticuna                                  100        334  70.1%
-Nanai                                   100        354  71.8%
-Yaneshaʼ                                100        389  74.3%
-Yoruba                                  100        415  75.9%
-Amarakaeri                              100        420  76.2%
-Chickasaw                               100        426  76.5%
-Siona                                   100        488  79.5%
-Maori (2)                               100        527  81.0%
-Fur                                     100        671  85.1%
-Catalan (2)                             100        689  85.5%
-Mirandese                               100        773  87.1%
-Chinantec, Chiltepec                    100        817  87.8%
-Shipibo-Conibo                          100        946  89.4%
-Bora                                    100        983  89.8%
-Mòoré                                   100       1004  90.0%
-Gumuz                                   100       1041  90.4%
-Navajo                                  100       1043  90.4%
-Mongolian, Halh (Mongolian)               3         33  90.9%
-Gilyak                                   96       1096  91.2%
-Lamnso'                                  91       1091  91.7%
-Tamazight, Central Atlas                 90       1090  91.7%
-Ditammari                                77       1077  92.9%
-Assyrian Neo-Aramaic                     71       1071  93.4%
-Farsi, Western                           63       1063  94.1%
-Dinka, Northeastern                      55       1055  94.8%
-Veps                                     55       1055  94.8%
-Otomi, Mezquital                         51       1051  95.1%
-Kabyle                                   45       1045  95.7%
-Waama                                    41       1000  95.9%
-Baatonum                                 38       1038  96.3%
-Dari                                     37       1037  96.4%
-Secoya                                   29       1029  97.2%
-Uduk                                     29       1029  97.2%
-Picard                                   27       1027  97.4%
-Mazahua Central                          25       1025  97.6%
-Gen                                      24       1024  97.7%
-Arabic, Standard                         23       1023  97.8%
-Mixtec, Metlatónoc                       23       1023  97.8%
-Urdu (2)                                 23       1023  97.8%
-Nuosu                                     5        230  97.8%
-Urdu                                     22       1022  97.8%
-Vietnamese (Han nom)                      4        199  98.0%
-Éwé                                      20       1020  98.0%
-Chinese, Mandarin (Traditional)           4        210  98.1%
-Chinese, Yue                              4        210  98.1%
-Chinese, Wu                               4        211  98.1%
-Chinese, Jinyu                            4        212  98.1%
-Chinese, Mandarin (Beijing)               4        212  98.1%
-Chinese, Mandarin (Nanjing)               4        212  98.1%
-Chinese, Min Nan                          4        212  98.1%
-Japanese (Tokyo)                          6        320  98.1%
-Ga                                       18       1018  98.2%
-Japanese                                  5        299  98.3%
-Japanese (Osaka)                          5        308  98.4%
-Chinese, Mandarin (Harbin)                3        210  98.6%
-(Jinan)                                   3        211  98.6%
-Chinese, Gan                              3        211  98.6%
-Chinese, Mandarin (Guiyang)               3        211  98.6%
-Chinese, Hakka                            3        212  98.6%
-Chinese, Mandarin (Tianjin)               3        212  98.6%
-Chinese, Xiang                            3        212  98.6%
-Chinese, Mandarin (Simplified)            3        225  98.7%
-Dangme                                   13       1013  98.7%
-Panjabi, Western                         10       1010  99.0%
-Belanda Viri                              8       1008  99.2%
-Aja                                       7       1007  99.3%
-Dagaare, Southern                         7       1007  99.3%
-Serer-Sine                                7       1007  99.3%
-Pashto, Northern                          6       1006  99.4%
-Dendi                                     5       1005  99.5%
-(Yeonbyeon)                               4       1004  99.6%
-Colorado                                  4       1004  99.6%
-Korean                                    4       1004  99.6%
-Seraiki                                   4       1004  99.6%
-Fon                                       3       1003  99.7%
-===============================  ==========  =========  =============
+=====================================================================================  ==========  =========  =============
+lang                                                                                     n_errors    n_total  pct_success
+=====================================================================================  ==========  =========  =============
+:ref:`Javanese (Javanese) <WestonTerminallangJavaneseJavanese>`                               100        100  0.0%
+:ref:`Tamil <WestonTerminallangTamil>`                                                        100        101  1.0%
+:ref:`Tamil (Sri Lanka) <WestonTerminallangTamilSriLanka>`                                    100        101  1.0%
+:ref:`Chakma <WestonTerminallangChakma>`                                                      100        102  2.0%
+:ref:`Kannada <WestonTerminallangKannada>`                                                    100        102  2.0%
+:ref:`Gujarati <WestonTerminallangGujarati>`                                                  100        103  2.9%
+:ref:`Khün <WestonTerminallangKhn>`                                                           100        104  3.8%
+:ref:`Burmese <WestonTerminallangBurmese>`                                                    100        105  4.8%
+:ref:`Malayalam <WestonTerminallangMalayalam>`                                                100        105  4.8%
+:ref:`Mon <WestonTerminallangMon>`                                                            100        105  4.8%
+:ref:`Shan <WestonTerminallangShan>`                                                          100        105  4.8%
+:ref:`Telugu <WestonTerminallangTelugu>`                                                      100        105  4.8%
+:ref:`Khmer, Central <WestonTerminallangKhmerCentral>`                                        100        107  6.5%
+:ref:`Sanskrit <WestonTerminallangSanskrit>`                                                  100        107  6.5%
+:ref:`Sanskrit (Grantha) <WestonTerminallangSanskritGrantha>`                                 100        107  6.5%
+:ref:`Tamang, Eastern <WestonTerminallangTamangEastern>`                                       42         45  6.7%
+:ref:`Bengali <WestonTerminallangBengali>`                                                    100        108  7.4%
+:ref:`Marathi <WestonTerminallangMarathi>`                                                    100        108  7.4%
+:ref:`Nepali <WestonTerminallangNepali>`                                                      100        112  10.7%
+:ref:`Maldivian <WestonTerminallangMaldivian>`                                                100        113  11.5%
+:ref:`Sinhala <WestonTerminallangSinhala>`                                                    100        116  13.8%
+:ref:`Bhojpuri <WestonTerminallangBhojpuri>`                                                  100        117  14.5%
+:ref:`Hindi <WestonTerminallangHindi>`                                                        100        117  14.5%
+:ref:`Panjabi, Eastern <WestonTerminallangPanjabiEastern>`                                    100        119  16.0%
+:ref:`Thai (2) <WestonTerminallangThai2>`                                                     100        120  16.7%
+:ref:`Maithili <WestonTerminallangMaithili>`                                                  100        122  18.0%
+:ref:`Magahi <WestonTerminallangMagahi>`                                                      100        126  20.6%
+:ref:`Thai <WestonTerminallangThai>`                                                          100        126  20.6%
+:ref:`Vietnamese <WestonTerminallangVietnamese>`                                              100        140  28.6%
+:ref:`Lao <WestonTerminallangLao>`                                                            100        145  31.0%
+:ref:`Tagalog (Tagalog) <WestonTerminallangTagalogTagalog>`                                    21         31  32.3%
+:ref:`Dzongkha <WestonTerminallangDzongkha>`                                                  100        156  35.9%
+:ref:`Tibetan, Central <WestonTerminallangTibetanCentral>`                                    100        160  37.5%
+:ref:`French (Welche) <WestonTerminallangFrenchWelche>`                                       100        186  46.2%
+:ref:`Lingala (tones) <WestonTerminallangLingalatones>`                                       100        188  46.8%
+:ref:`Pular (Adlam) <WestonTerminallangPularAdlam>`                                           100        214  53.3%
+:ref:`Orok <WestonTerminallangOrok>`                                                          100        245  59.2%
+:ref:`Yiddish, Eastern <WestonTerminallangYiddishEastern>`                                    100        245  59.2%
+:ref:`Tai Dam <WestonTerminallangTaiDam>`                                                     100        247  59.5%
+:ref:`Tem <WestonTerminallangTem>`                                                            100        251  60.2%
+:ref:`Bamun <WestonTerminallangBamun>`                                                        100        253  60.5%
+:ref:`Saint Lucian Creole French <WestonTerminallangSaintLucianCreoleFrench>`                 100        255  60.8%
+:ref:`Evenki <WestonTerminallangEvenki>`                                                      100        324  69.1%
+:ref:`South Azerbaijani <WestonTerminallangSouthAzerbaijani>`                                 100        329  69.6%
+:ref:`Ticuna <WestonTerminallangTicuna>`                                                      100        334  70.1%
+:ref:`Nanai <WestonTerminallangNanai>`                                                        100        354  71.8%
+:ref:`Yaneshaʼ <WestonTerminallangYanesha>`                                                   100        389  74.3%
+:ref:`Yoruba <WestonTerminallangYoruba>`                                                      100        415  75.9%
+:ref:`Amarakaeri <WestonTerminallangAmarakaeri>`                                              100        420  76.2%
+:ref:`Chickasaw <WestonTerminallangChickasaw>`                                                100        426  76.5%
+:ref:`Siona <WestonTerminallangSiona>`                                                        100        488  79.5%
+:ref:`Maori (2) <WestonTerminallangMaori2>`                                                   100        527  81.0%
+:ref:`Fur <WestonTerminallangFur>`                                                            100        671  85.1%
+:ref:`Catalan (2) <WestonTerminallangCatalan2>`                                               100        689  85.5%
+:ref:`Mirandese <WestonTerminallangMirandese>`                                                100        773  87.1%
+:ref:`Chinantec, Chiltepec <WestonTerminallangChinantecChiltepec>`                            100        817  87.8%
+:ref:`Shipibo-Conibo <WestonTerminallangShipiboConibo>`                                       100        946  89.4%
+:ref:`Bora <WestonTerminallangBora>`                                                          100        983  89.8%
+:ref:`Mòoré <WestonTerminallangMor>`                                                          100       1004  90.0%
+:ref:`Gumuz <WestonTerminallangGumuz>`                                                        100       1041  90.4%
+:ref:`Navajo <WestonTerminallangNavajo>`                                                      100       1043  90.4%
+:ref:`Mongolian, Halh (Mongolian) <WestonTerminallangMongolianHalhMongolian>`                   3         33  90.9%
+:ref:`Gilyak <WestonTerminallangGilyak>`                                                       96       1096  91.2%
+:ref:`Lamnso' <WestonTerminallangLamnso>`                                                      91       1091  91.7%
+:ref:`Tamazight, Central Atlas <WestonTerminallangTamazightCentralAtlas>`                      90       1090  91.7%
+:ref:`Ditammari <WestonTerminallangDitammari>`                                                 77       1077  92.9%
+:ref:`Assyrian Neo-Aramaic <WestonTerminallangAssyrianNeoAramaic>`                             71       1071  93.4%
+:ref:`Farsi, Western <WestonTerminallangFarsiWestern>`                                         63       1063  94.1%
+:ref:`Dinka, Northeastern <WestonTerminallangDinkaNortheastern>`                               55       1055  94.8%
+:ref:`Veps <WestonTerminallangVeps>`                                                           55       1055  94.8%
+:ref:`Otomi, Mezquital <WestonTerminallangOtomiMezquital>`                                     51       1051  95.1%
+:ref:`Kabyle <WestonTerminallangKabyle>`                                                       45       1045  95.7%
+:ref:`Waama <WestonTerminallangWaama>`                                                         41       1000  95.9%
+:ref:`Baatonum <WestonTerminallangBaatonum>`                                                   38       1038  96.3%
+:ref:`Dari <WestonTerminallangDari>`                                                           37       1037  96.4%
+:ref:`Secoya <WestonTerminallangSecoya>`                                                       29       1029  97.2%
+:ref:`Uduk <WestonTerminallangUduk>`                                                           29       1029  97.2%
+:ref:`Picard <WestonTerminallangPicard>`                                                       27       1027  97.4%
+:ref:`Mazahua Central <WestonTerminallangMazahuaCentral>`                                      25       1025  97.6%
+:ref:`Gen <WestonTerminallangGen>`                                                             24       1024  97.7%
+:ref:`Arabic, Standard <WestonTerminallangArabicStandard>`                                     23       1023  97.8%
+:ref:`Mixtec, Metlatónoc <WestonTerminallangMixtecMetlatnoc>`                                  23       1023  97.8%
+:ref:`Urdu (2) <WestonTerminallangUrdu2>`                                                      23       1023  97.8%
+:ref:`Nuosu <WestonTerminallangNuosu>`                                                          5        230  97.8%
+:ref:`Urdu <WestonTerminallangUrdu>`                                                           22       1022  97.8%
+:ref:`Vietnamese (Han nom) <WestonTerminallangVietnameseHannom>`                                4        199  98.0%
+:ref:`Éwé <WestonTerminallangw>`                                                               20       1020  98.0%
+:ref:`Chinese, Mandarin (Traditional) <WestonTerminallangChineseMandarinTraditional>`           4        210  98.1%
+:ref:`Chinese, Yue <WestonTerminallangChineseYue>`                                              4        210  98.1%
+:ref:`Chinese, Wu <WestonTerminallangChineseWu>`                                                4        211  98.1%
+:ref:`Chinese, Jinyu <WestonTerminallangChineseJinyu>`                                          4        212  98.1%
+:ref:`Chinese, Mandarin (Beijing) <WestonTerminallangChineseMandarinBeijing>`                   4        212  98.1%
+:ref:`Chinese, Mandarin (Nanjing) <WestonTerminallangChineseMandarinNanjing>`                   4        212  98.1%
+:ref:`Chinese, Min Nan <WestonTerminallangChineseMinNan>`                                       4        212  98.1%
+:ref:`Japanese (Tokyo) <WestonTerminallangJapaneseTokyo>`                                       6        320  98.1%
+:ref:`Ga <WestonTerminallangGa>`                                                               18       1018  98.2%
+:ref:`Japanese <WestonTerminallangJapanese>`                                                    5        299  98.3%
+:ref:`Japanese (Osaka) <WestonTerminallangJapaneseOsaka>`                                       5        308  98.4%
+:ref:`Chinese, Mandarin (Harbin) <WestonTerminallangChineseMandarinHarbin>`                     3        210  98.6%
+:ref:`(Jinan) <WestonTerminallangJinan>`                                                        3        211  98.6%
+:ref:`Chinese, Gan <WestonTerminallangChineseGan>`                                              3        211  98.6%
+:ref:`Chinese, Mandarin (Guiyang) <WestonTerminallangChineseMandarinGuiyang>`                   3        211  98.6%
+:ref:`Chinese, Hakka <WestonTerminallangChineseHakka>`                                          3        212  98.6%
+:ref:`Chinese, Mandarin (Tianjin) <WestonTerminallangChineseMandarinTianjin>`                   3        212  98.6%
+:ref:`Chinese, Xiang <WestonTerminallangChineseXiang>`                                          3        212  98.6%
+:ref:`Chinese, Mandarin (Simplified) <WestonTerminallangChineseMandarinSimplified>`             3        225  98.7%
+:ref:`Dangme <WestonTerminallangDangme>`                                                       13       1013  98.7%
+:ref:`Panjabi, Western <WestonTerminallangPanjabiWestern>`                                     10       1010  99.0%
+:ref:`Belanda Viri <WestonTerminallangBelandaViri>`                                             8       1008  99.2%
+:ref:`Aja <WestonTerminallangAja>`                                                              7       1007  99.3%
+:ref:`Dagaare, Southern <WestonTerminallangDagaareSouthern>`                                    7       1007  99.3%
+:ref:`Serer-Sine <WestonTerminallangSererSine>`                                                 7       1007  99.3%
+:ref:`Pashto, Northern <WestonTerminallangPashtoNorthern>`                                      6       1006  99.4%
+:ref:`Dendi <WestonTerminallangDendi>`                                                          5       1005  99.5%
+:ref:`(Yeonbyeon) <WestonTerminallangYeonbyeon>`                                                4       1004  99.6%
+:ref:`Colorado <WestonTerminallangColorado>`                                                    4       1004  99.6%
+:ref:`Korean <WestonTerminallangKorean>`                                                        4       1004  99.6%
+:ref:`Seraiki <WestonTerminallangSeraiki>`                                                      4       1004  99.6%
+:ref:`Fon <WestonTerminallangFon>`                                                              3       1003  99.7%
+=====================================================================================  ==========  =========  =============
+
+.. _WestonTerminallangJavaneseJavanese:
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -337,6 +339,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
 
+.. _WestonTerminallangTamil:
+
 Tamil
 ^^^^^
 
@@ -363,6 +367,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
 
+.. _WestonTerminallangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -388,6 +394,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangChakma:
 
 Chakma
 ^^^^^^
@@ -424,6 +432,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 13.
 
+.. _WestonTerminallangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -450,6 +460,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
 
+.. _WestonTerminallangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -475,6 +487,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangKhn:
 
 Khün
 ^^^^
@@ -520,6 +534,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Weston Terminal* measures width 22.
 
+.. _WestonTerminallangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -557,6 +573,8 @@ Total codepoints: 16
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width 16.
+
+.. _WestonTerminallangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -609,6 +627,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *Weston Terminal* measures width 29.
 
+.. _WestonTerminallangMon:
+
 Mon
 ^^^
 
@@ -640,6 +660,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 10.
+
+.. _WestonTerminallangShan:
 
 Shan
 ^^^^
@@ -678,6 +700,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 15.
 
+.. _WestonTerminallangTelugu:
+
 Telugu
 ^^^^^^
 
@@ -712,6 +736,8 @@ Total codepoints: 13
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Weston Terminal* measures width 13.
+
+.. _WestonTerminallangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -771,6 +797,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Weston Terminal* measures width 36.
 
+.. _WestonTerminallangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -806,6 +834,8 @@ Total codepoints: 14
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 14.
+
+.. _WestonTerminallangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -843,6 +873,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 14.
 
+.. _WestonTerminallangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -870,6 +902,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangBengali:
 
 Bengali
 ^^^^^^^
@@ -905,6 +939,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 12.
 
+.. _WestonTerminallangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -932,6 +968,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 5.
 
+.. _WestonTerminallangNepali:
+
 Nepali
 ^^^^^^
 
@@ -957,6 +995,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -989,6 +1029,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 9.
 
+.. _WestonTerminallangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1014,6 +1056,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1047,6 +1091,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 10.
 
+.. _WestonTerminallangHindi:
+
 Hindi
 ^^^^^
 
@@ -1072,6 +1118,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1100,6 +1148,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangThai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1152,6 +1202,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *Weston Terminal* measures width 29.
 
+.. _WestonTerminallangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -1181,6 +1233,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 8.
+
+.. _WestonTerminallangMagahi:
 
 Magahi
 ^^^^^^
@@ -1213,6 +1267,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 10.
+
+.. _WestonTerminallangThai:
 
 Thai
 ^^^^
@@ -1265,6 +1321,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *Weston Terminal* measures width 29.
 
+.. _WestonTerminallangVietnamese:
+
 Vietnamese
 ^^^^^^^^^^
 
@@ -1291,6 +1349,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
+
+.. _WestonTerminallangLao:
 
 Lao
 ^^^
@@ -1324,6 +1384,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Weston Terminal* measures width 10.
 
+.. _WestonTerminallangTagalogTagalog:
+
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
 
@@ -1349,6 +1411,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangDzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -1376,6 +1440,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Weston Terminal* measures width 4.
 
+.. _WestonTerminallangTibetanCentral:
+
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
 
@@ -1401,6 +1467,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangFrenchWelche:
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -1436,6 +1504,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Weston Terminal* measures width 12.
 
+.. _WestonTerminallangLingalatones:
+
 Lingala (tones)
 ^^^^^^^^^^^^^^^
 
@@ -1466,6 +1536,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 9.
+
+.. _WestonTerminallangPularAdlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -1501,6 +1573,8 @@ Total codepoints: 13
 
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *Weston Terminal* measures width 13.
+
+.. _WestonTerminallangOrok:
 
 Orok
 ^^^^
@@ -1538,6 +1612,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Weston Terminal* measures width 14.
 
+.. _WestonTerminallangYiddishEastern:
+
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
 
@@ -1571,6 +1647,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Weston Terminal* measures width 11.
 
+.. _WestonTerminallangTaiDam:
+
 Tai Dam
 ^^^^^^^
 
@@ -1596,6 +1674,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangTem:
 
 Tem
 ^^^
@@ -1628,6 +1708,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 9.
 
+.. _WestonTerminallangBamun:
+
 Bamun
 ^^^^^
 
@@ -1653,6 +1735,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangSaintLucianCreoleFrench:
 
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1688,6 +1772,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *Weston Terminal* measures width 12.
 
+.. _WestonTerminallangEvenki:
+
 Evenki
 ^^^^^^
 
@@ -1717,6 +1803,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 7.
 
+.. _WestonTerminallangSouthAzerbaijani:
+
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
 
@@ -1745,6 +1833,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
 
+.. _WestonTerminallangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -1772,6 +1862,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
 
+.. _WestonTerminallangNanai:
+
 Nanai
 ^^^^^
 
@@ -1797,6 +1889,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangYanesha:
 
 Yaneshaʼ
 ^^^^^^^^
@@ -1829,6 +1923,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width 9.
 
+.. _WestonTerminallangYoruba:
+
 Yoruba
 ^^^^^^
 
@@ -1855,6 +1951,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 5.
+
+.. _WestonTerminallangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -1888,6 +1986,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Weston Terminal* measures width 10.
 
+.. _WestonTerminallangChickasaw:
+
 Chickasaw
 ^^^^^^^^^
 
@@ -1914,6 +2014,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
+
+.. _WestonTerminallangSiona:
 
 Siona
 ^^^^^
@@ -1943,6 +2045,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
 
+.. _WestonTerminallangMaori2:
+
 Maori (2)
 ^^^^^^^^^
 
@@ -1970,6 +2074,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangFur:
 
 Fur
 ^^^
@@ -2004,6 +2110,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Weston Terminal* measures width 11.
 
+.. _WestonTerminallangCatalan2:
+
 Catalan (2)
 ^^^^^^^^^^^
 
@@ -2036,6 +2144,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Weston Terminal* measures width 11.
+
+.. _WestonTerminallangMirandese:
 
 Mirandese
 ^^^^^^^^^
@@ -2070,6 +2180,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Weston Terminal* measures width 11.
 
+.. _WestonTerminallangChinantecChiltepec:
+
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2099,6 +2211,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 8.
+
+.. _WestonTerminallangShipiboConibo:
 
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
@@ -2133,6 +2247,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Weston Terminal* measures width 11.
 
+.. _WestonTerminallangBora:
+
 Bora
 ^^^^
 
@@ -2164,6 +2280,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width 9.
 
+.. _WestonTerminallangMor:
+
 Mòoré
 ^^^^^
 
@@ -2189,6 +2307,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangGumuz:
 
 Gumuz
 ^^^^^
@@ -2217,6 +2337,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangNavajo:
 
 Navajo
 ^^^^^^
@@ -2249,6 +2371,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width 9.
 
+.. _WestonTerminallangMongolianHalhMongolian:
+
 Mongolian, Halh (Mongolian)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2275,6 +2399,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
+
+.. _WestonTerminallangGilyak:
 
 Gilyak
 ^^^^^^
@@ -2311,6 +2437,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Weston Terminal* measures width 13.
 
+.. _WestonTerminallangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -2338,6 +2466,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangTamazightCentralAtlas:
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2372,6 +2502,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Weston Terminal* measures width 11.
 
+.. _WestonTerminallangDitammari:
+
 Ditammari
 ^^^^^^^^^
 
@@ -2403,6 +2535,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width 9.
 
+.. _WestonTerminallangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2432,6 +2566,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 7.
 
+.. _WestonTerminallangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -2459,6 +2595,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
 
+.. _WestonTerminallangDinkaNortheastern:
+
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
 
@@ -2484,6 +2622,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
+
+.. _WestonTerminallangVeps:
 
 Veps
 ^^^^
@@ -2514,6 +2654,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 8.
+
+.. _WestonTerminallangOtomiMezquital:
 
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
@@ -2546,6 +2688,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width 9.
 
+.. _WestonTerminallangKabyle:
+
 Kabyle
 ^^^^^^
 
@@ -2575,6 +2719,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 7.
 
+.. _WestonTerminallangWaama:
+
 Waama
 ^^^^^
 
@@ -2598,6 +2744,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Weston Terminal* measures width 2.
+
+.. _WestonTerminallangBaatonum:
 
 Baatonum
 ^^^^^^^^
@@ -2623,6 +2771,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Weston Terminal* measures width 3.
+
+.. _WestonTerminallangDari:
 
 Dari
 ^^^^
@@ -2650,6 +2800,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
+
+.. _WestonTerminallangSecoya:
 
 Secoya
 ^^^^^^
@@ -2681,6 +2833,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Weston Terminal* measures width 8.
 
+.. _WestonTerminallangUduk:
+
 Uduk
 ^^^^
 
@@ -2707,6 +2861,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
+
+.. _WestonTerminallangPicard:
 
 Picard
 ^^^^^^
@@ -2739,6 +2895,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width 9.
 
+.. _WestonTerminallangMazahuaCentral:
+
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
@@ -2766,6 +2924,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangGen:
 
 Gen
 ^^^
@@ -2795,6 +2955,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
 
+.. _WestonTerminallangArabicStandard:
+
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
 
@@ -2822,6 +2984,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangMixtecMetlatnoc:
 
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
@@ -2851,6 +3015,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
 
+.. _WestonTerminallangUrdu2:
+
 Urdu (2)
 ^^^^^^^^
 
@@ -2878,6 +3044,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangNuosu:
 
 Nuosu
 ^^^^^
@@ -2917,6 +3085,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 32,
   while *Weston Terminal* measures width -2.
 
+.. _WestonTerminallangUrdu:
+
 Urdu
 ^^^^
 
@@ -2944,6 +3114,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangVietnameseHannom:
 
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
@@ -2973,6 +3145,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *Weston Terminal* measures width -4.
+
+.. _WestonTerminallangw:
 
 Éwé
 ^^^
@@ -3006,6 +3180,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Weston Terminal* measures width 10.
 
+.. _WestonTerminallangChineseMandarinTraditional:
+
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -3030,6 +3206,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width -18.
+
+.. _WestonTerminallangChineseYue:
 
 Chinese, Yue
 ^^^^^^^^^^^^
@@ -3072,6 +3250,8 @@ Total codepoints: 19
 - python `wcwidth.wcswidth()`_ measures width 38,
   while *Weston Terminal* measures width 14.
 
+.. _WestonTerminallangChineseWu:
+
 Chinese, Wu
 ^^^^^^^^^^^
 
@@ -3104,6 +3284,8 @@ Total codepoints: 11
 
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Weston Terminal* measures width -14.
+
+.. _WestonTerminallangChineseJinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -3146,6 +3328,8 @@ Total codepoints: 19
 - python `wcwidth.wcswidth()`_ measures width 38,
   while *Weston Terminal* measures width 16.
 
+.. _WestonTerminallangChineseMandarinBeijing:
+
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -3186,6 +3370,8 @@ Total codepoints: 18
 - python `wcwidth.wcswidth()`_ measures width 36,
   while *Weston Terminal* measures width 12.
 
+.. _WestonTerminallangChineseMandarinNanjing:
+
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -3217,6 +3403,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 20,
   while *Weston Terminal* measures width -16.
+
+.. _WestonTerminallangChineseMinNan:
 
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
@@ -3259,6 +3447,8 @@ Total codepoints: 19
 - python `wcwidth.wcswidth()`_ measures width 38,
   while *Weston Terminal* measures width 14.
 
+.. _WestonTerminallangJapaneseTokyo:
+
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
 
@@ -3292,6 +3482,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Weston Terminal* measures width -30.
 
+.. _WestonTerminallangGa:
+
 Ga
 ^^
 
@@ -3318,6 +3510,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 5.
+
+.. _WestonTerminallangJapanese:
 
 Japanese
 ^^^^^^^^
@@ -3347,6 +3541,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Weston Terminal* measures width -42.
 
+.. _WestonTerminallangJapaneseOsaka:
+
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
 
@@ -3370,6 +3566,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width -36.
+
+.. _WestonTerminallangChineseMandarinHarbin:
 
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3405,6 +3603,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *Weston Terminal* measures width -12.
 
+.. _WestonTerminallangJinan:
+
 (Jinan)
 ^^^^^^^
 
@@ -3437,6 +3637,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 20,
   while *Weston Terminal* measures width -16.
 
+.. _WestonTerminallangChineseGan:
+
 Chinese, Gan
 ^^^^^^^^^^^^
 
@@ -3462,6 +3664,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Weston Terminal* measures width -12.
+
+.. _WestonTerminallangChineseMandarinGuiyang:
 
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3495,6 +3699,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 20,
   while *Weston Terminal* measures width -16.
 
+.. _WestonTerminallangChineseHakka:
+
 Chinese, Hakka
 ^^^^^^^^^^^^^^
 
@@ -3526,6 +3732,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 20,
   while *Weston Terminal* measures width -16.
+
+.. _WestonTerminallangChineseMandarinTianjin:
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3568,6 +3776,8 @@ Total codepoints: 19
 - python `wcwidth.wcswidth()`_ measures width 38,
   while *Weston Terminal* measures width 14.
 
+.. _WestonTerminallangChineseXiang:
+
 Chinese, Xiang
 ^^^^^^^^^^^^^^
 
@@ -3602,6 +3812,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *Weston Terminal* measures width -12.
 
+.. _WestonTerminallangChineseMandarinSimplified:
+
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -3630,6 +3842,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Weston Terminal* measures width 6.
 
+.. _WestonTerminallangDangme:
+
 Dangme
 ^^^^^^
 
@@ -3654,6 +3868,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Weston Terminal* measures width 3.
+
+.. _WestonTerminallangPanjabiWestern:
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -3681,6 +3897,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 4.
 
+.. _WestonTerminallangBelandaViri:
+
 Belanda Viri
 ^^^^^^^^^^^^
 
@@ -3706,6 +3924,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 1.
+
+.. _WestonTerminallangAja:
 
 Aja
 ^^^
@@ -3737,6 +3957,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 8.
 
+.. _WestonTerminallangDagaareSouthern:
+
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
 
@@ -3763,6 +3985,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Weston Terminal* measures width 5.
+
+.. _WestonTerminallangSererSine:
 
 Serer-Sine
 ^^^^^^^^^^
@@ -3792,6 +4016,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
 
+.. _WestonTerminallangPashtoNorthern:
+
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
@@ -3819,6 +4045,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 6.
+
+.. _WestonTerminallangDendi:
 
 Dendi
 ^^^^^
@@ -3848,6 +4076,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 0.
 
+.. _WestonTerminallangYeonbyeon:
+
 (Yeonbyeon)
 ^^^^^^^^^^^
 
@@ -3871,6 +4101,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Weston Terminal* measures width 1.
+
+.. _WestonTerminallangColorado:
 
 Colorado
 ^^^^^^^^
@@ -3899,6 +4131,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 0.
 
+.. _WestonTerminallangKorean:
+
 Korean
 ^^^^^^
 
@@ -3923,6 +4157,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Weston Terminal* measures width 0.
+
+.. _WestonTerminallangSeraiki:
 
 Seraiki
 ^^^^^^^
@@ -3950,6 +4186,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Weston Terminal* measures width 3.
+
+.. _WestonTerminallangFon:
 
 Fon
 ^^^
@@ -3995,11 +4233,6 @@ The test suite completed in **18.81 seconds** (18s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

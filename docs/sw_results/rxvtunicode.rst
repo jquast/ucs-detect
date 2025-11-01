@@ -24,7 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     17.61%       8.3%            modes_supported / total_modes
-TIME          32.67s       99.9%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          32.67s       91.7%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -206,127 +206,129 @@ Mongolian, Halh (Mongolian), Tagalog (Tagalog).
 
 The following 117 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Shan                                    868        915  5.1%
-Tamil (Sri Lanka)                      1000       1073  6.8%
-Tamil                                  1000       1075  7.0%
-Sanskrit (Grantha)                      895       1006  11.0%
-Javanese (Javanese)                    1000       1146  12.7%
-Malayalam                              1000       1156  13.5%
-Bengali                                1000       1164  14.1%
-Khmer, Central                          448        528  15.2%
-Kannada                                 903       1080  16.4%
-Khün                                    361        442  18.3%
-Burmese                                 976       1223  20.2%
-Sanskrit                                756       1000  24.4%
-Tamang, Eastern                          33         45  26.7%
-Mon                                     676        946  28.5%
-Marathi                                1000       1421  29.6%
-Nepali                                  934       1385  32.6%
-Gujarati                               1000       1518  34.1%
-Telugu                                  716       1129  36.6%
-Maithili                                954       1519  37.2%
-Hindi                                  1000       1624  38.4%
-Panjabi, Eastern                       1000       1825  45.2%
-Sinhala                                 888       1655  46.3%
-Bhojpuri                                881       1737  49.3%
-Magahi                                  813       1716  52.6%
-Chakma                                  494       1444  65.8%
-Chinese, Mandarin (Tianjin)               5        212  97.6%
-Thai (2)                                  6        313  98.1%
-Chinese, Mandarin (Harbin)                4        210  98.1%
-Chinese, Mandarin (Traditional)           4        210  98.1%
-(Jinan)                                   4        211  98.1%
-Chinese, Hakka                            4        212  98.1%
-Chinese, Jinyu                            4        212  98.1%
-Chinese, Mandarin (Beijing)               4        212  98.1%
-Chinese, Mandarin (Nanjing)               4        212  98.1%
-Chinese, Min Nan                          4        212  98.1%
-Chinese, Mandarin (Simplified)            4        225  98.2%
-Nuosu                                     4        230  98.3%
-Japanese                                  5        299  98.3%
-Japanese (Osaka)                          5        308  98.4%
-Japanese (Tokyo)                          5        320  98.4%
-Thai                                      5        341  98.5%
-Chinese, Yue                              3        210  98.6%
-Chinese, Mandarin (Guiyang)               3        211  98.6%
-Chinese, Wu                               3        211  98.6%
-Chinese, Xiang                            3        212  98.6%
-Vietnamese (Han nom)                      2        199  99.0%
-Chinese, Gan                              2        211  99.1%
-Lao                                       4        426  99.1%
-Chickasaw                                 4        554  99.3%
-Bora                                     11       1598  99.3%
-Shipibo-Conibo                           15       2540  99.4%
-Nanai                                     7       1207  99.4%
-Navajo                                    9       1600  99.4%
-Orok                                      7       1245  99.4%
-Evenki                                    5        899  99.4%
-Amarakaeri                                8       1446  99.4%
-Yaneshaʼ                                 14       2536  99.4%
-Gumuz                                     7       1283  99.5%
-Veps                                      7       1323  99.5%
-South Azerbaijani                         7       1396  99.5%
-Secoya                                    7       1409  99.5%
-Colorado                                  6       1263  99.5%
-(Yeonbyeon)                               5       1061  99.5%
-Siona                                     7       1492  99.5%
-Gilyak                                    7       1504  99.5%
-Korean                                    5       1185  99.6%
-Tem                                       7       1659  99.6%
-Catalan (2)                               8       1909  99.6%
-Mirandese                                 8       1966  99.6%
-Picard                                    8       2024  99.6%
-Yiddish, Eastern                          7       1775  99.6%
-Ticuna                                    8       2048  99.6%
-Kabyle                                    7       1815  99.6%
-Lingala (tones)                           7       1818  99.6%
-Tamazight, Central Atlas                  7       1822  99.6%
-Fur                                       7       1838  99.6%
-Pular (Adlam)                             6       1613  99.6%
-Arabic, Standard                          5       1348  99.6%
-Mixtec, Metlatónoc                        5       1367  99.6%
-Maldivian                                 7       1918  99.6%
-French (Welche)                           7       1928  99.6%
-Éwé                                       8       2230  99.6%
-Urdu                                      8       2237  99.6%
-Urdu (2)                                  8       2251  99.6%
-Gen                                       8       2309  99.7%
-Assyrian Neo-Aramaic                      4       1160  99.7%
-Ga                                        7       2039  99.7%
-Aja                                       7       2061  99.7%
-Uduk                                     11       3247  99.7%
-Saint Lucian Creole French                6       1777  99.7%
-Maori (2)                                 8       2385  99.7%
-Farsi, Western                            6       1822  99.7%
-Dinka, Northeastern                       5       1529  99.7%
-Yoruba                                    8       2454  99.7%
-Dari                                      6       1872  99.7%
-Ditammari                                 6       1882  99.7%
-Dendi                                     5       1569  99.7%
-Mazahua Central                           5       1574  99.7%
-Serer-Sine                                5       1596  99.7%
-Pashto, Northern                          7       2242  99.7%
-Seraiki                                   7       2242  99.7%
-Belanda Viri                              7       2246  99.7%
-Dagaare, Southern                         8       2582  99.7%
-Baatonum                                  6       1939  99.7%
-Bamun                                     7       2285  99.7%
-Waama                                     3       1000  99.7%
-Panjabi, Western                          7       2419  99.7%
-Chinantec, Chiltepec                      5       1729  99.7%
-Mòoré                                     7       2447  99.7%
-Vietnamese                                7       2502  99.7%
-Fon                                       7       2520  99.7%
-Otomi, Mezquital                          5       1849  99.7%
-Lamnso'                                   6       2237  99.7%
-Dangme                                    7       2912  99.8%
-Tibetan, Central                          7       3174  99.8%
-Tai Dam                                   5       2386  99.8%
-Dzongkha                                  6       3060  99.8%
-===============================  ==========  =========  =============
+==================================================================================  ==========  =========  =============
+lang                                                                                  n_errors    n_total  pct_success
+==================================================================================  ==========  =========  =============
+:ref:`Shan <rxvtunicodelangShan>`                                                          868        915  5.1%
+:ref:`Tamil (Sri Lanka) <rxvtunicodelangTamilSriLanka>`                                   1000       1073  6.8%
+:ref:`Tamil <rxvtunicodelangTamil>`                                                       1000       1075  7.0%
+:ref:`Sanskrit (Grantha) <rxvtunicodelangSanskritGrantha>`                                 895       1006  11.0%
+:ref:`Javanese (Javanese) <rxvtunicodelangJavaneseJavanese>`                              1000       1146  12.7%
+:ref:`Malayalam <rxvtunicodelangMalayalam>`                                               1000       1156  13.5%
+:ref:`Bengali <rxvtunicodelangBengali>`                                                   1000       1164  14.1%
+:ref:`Khmer, Central <rxvtunicodelangKhmerCentral>`                                        448        528  15.2%
+:ref:`Kannada <rxvtunicodelangKannada>`                                                    903       1080  16.4%
+:ref:`Khün <rxvtunicodelangKhn>`                                                           361        442  18.3%
+:ref:`Burmese <rxvtunicodelangBurmese>`                                                    976       1223  20.2%
+:ref:`Sanskrit <rxvtunicodelangSanskrit>`                                                  756       1000  24.4%
+:ref:`Tamang, Eastern <rxvtunicodelangTamangEastern>`                                       33         45  26.7%
+:ref:`Mon <rxvtunicodelangMon>`                                                            676        946  28.5%
+:ref:`Marathi <rxvtunicodelangMarathi>`                                                   1000       1421  29.6%
+:ref:`Nepali <rxvtunicodelangNepali>`                                                      934       1385  32.6%
+:ref:`Gujarati <rxvtunicodelangGujarati>`                                                 1000       1518  34.1%
+:ref:`Telugu <rxvtunicodelangTelugu>`                                                      716       1129  36.6%
+:ref:`Maithili <rxvtunicodelangMaithili>`                                                  954       1519  37.2%
+:ref:`Hindi <rxvtunicodelangHindi>`                                                       1000       1624  38.4%
+:ref:`Panjabi, Eastern <rxvtunicodelangPanjabiEastern>`                                   1000       1825  45.2%
+:ref:`Sinhala <rxvtunicodelangSinhala>`                                                    888       1655  46.3%
+:ref:`Bhojpuri <rxvtunicodelangBhojpuri>`                                                  881       1737  49.3%
+:ref:`Magahi <rxvtunicodelangMagahi>`                                                      813       1716  52.6%
+:ref:`Chakma <rxvtunicodelangChakma>`                                                      494       1444  65.8%
+:ref:`Chinese, Mandarin (Tianjin) <rxvtunicodelangChineseMandarinTianjin>`                   5        212  97.6%
+:ref:`Thai (2) <rxvtunicodelangThai2>`                                                       6        313  98.1%
+:ref:`Chinese, Mandarin (Harbin) <rxvtunicodelangChineseMandarinHarbin>`                     4        210  98.1%
+:ref:`Chinese, Mandarin (Traditional) <rxvtunicodelangChineseMandarinTraditional>`           4        210  98.1%
+:ref:`(Jinan) <rxvtunicodelangJinan>`                                                        4        211  98.1%
+:ref:`Chinese, Hakka <rxvtunicodelangChineseHakka>`                                          4        212  98.1%
+:ref:`Chinese, Jinyu <rxvtunicodelangChineseJinyu>`                                          4        212  98.1%
+:ref:`Chinese, Mandarin (Beijing) <rxvtunicodelangChineseMandarinBeijing>`                   4        212  98.1%
+:ref:`Chinese, Mandarin (Nanjing) <rxvtunicodelangChineseMandarinNanjing>`                   4        212  98.1%
+:ref:`Chinese, Min Nan <rxvtunicodelangChineseMinNan>`                                       4        212  98.1%
+:ref:`Chinese, Mandarin (Simplified) <rxvtunicodelangChineseMandarinSimplified>`             4        225  98.2%
+:ref:`Nuosu <rxvtunicodelangNuosu>`                                                          4        230  98.3%
+:ref:`Japanese <rxvtunicodelangJapanese>`                                                    5        299  98.3%
+:ref:`Japanese (Osaka) <rxvtunicodelangJapaneseOsaka>`                                       5        308  98.4%
+:ref:`Japanese (Tokyo) <rxvtunicodelangJapaneseTokyo>`                                       5        320  98.4%
+:ref:`Thai <rxvtunicodelangThai>`                                                            5        341  98.5%
+:ref:`Chinese, Yue <rxvtunicodelangChineseYue>`                                              3        210  98.6%
+:ref:`Chinese, Mandarin (Guiyang) <rxvtunicodelangChineseMandarinGuiyang>`                   3        211  98.6%
+:ref:`Chinese, Wu <rxvtunicodelangChineseWu>`                                                3        211  98.6%
+:ref:`Chinese, Xiang <rxvtunicodelangChineseXiang>`                                          3        212  98.6%
+:ref:`Vietnamese (Han nom) <rxvtunicodelangVietnameseHannom>`                                2        199  99.0%
+:ref:`Chinese, Gan <rxvtunicodelangChineseGan>`                                              2        211  99.1%
+:ref:`Lao <rxvtunicodelangLao>`                                                              4        426  99.1%
+:ref:`Chickasaw <rxvtunicodelangChickasaw>`                                                  4        554  99.3%
+:ref:`Bora <rxvtunicodelangBora>`                                                           11       1598  99.3%
+:ref:`Shipibo-Conibo <rxvtunicodelangShipiboConibo>`                                        15       2540  99.4%
+:ref:`Nanai <rxvtunicodelangNanai>`                                                          7       1207  99.4%
+:ref:`Navajo <rxvtunicodelangNavajo>`                                                        9       1600  99.4%
+:ref:`Orok <rxvtunicodelangOrok>`                                                            7       1245  99.4%
+:ref:`Evenki <rxvtunicodelangEvenki>`                                                        5        899  99.4%
+:ref:`Amarakaeri <rxvtunicodelangAmarakaeri>`                                                8       1446  99.4%
+:ref:`Yaneshaʼ <rxvtunicodelangYanesha>`                                                    14       2536  99.4%
+:ref:`Gumuz <rxvtunicodelangGumuz>`                                                          7       1283  99.5%
+:ref:`Veps <rxvtunicodelangVeps>`                                                            7       1323  99.5%
+:ref:`South Azerbaijani <rxvtunicodelangSouthAzerbaijani>`                                   7       1396  99.5%
+:ref:`Secoya <rxvtunicodelangSecoya>`                                                        7       1409  99.5%
+:ref:`Colorado <rxvtunicodelangColorado>`                                                    6       1263  99.5%
+:ref:`(Yeonbyeon) <rxvtunicodelangYeonbyeon>`                                                5       1061  99.5%
+:ref:`Siona <rxvtunicodelangSiona>`                                                          7       1492  99.5%
+:ref:`Gilyak <rxvtunicodelangGilyak>`                                                        7       1504  99.5%
+:ref:`Korean <rxvtunicodelangKorean>`                                                        5       1185  99.6%
+:ref:`Tem <rxvtunicodelangTem>`                                                              7       1659  99.6%
+:ref:`Catalan (2) <rxvtunicodelangCatalan2>`                                                 8       1909  99.6%
+:ref:`Mirandese <rxvtunicodelangMirandese>`                                                  8       1966  99.6%
+:ref:`Picard <rxvtunicodelangPicard>`                                                        8       2024  99.6%
+:ref:`Yiddish, Eastern <rxvtunicodelangYiddishEastern>`                                      7       1775  99.6%
+:ref:`Ticuna <rxvtunicodelangTicuna>`                                                        8       2048  99.6%
+:ref:`Kabyle <rxvtunicodelangKabyle>`                                                        7       1815  99.6%
+:ref:`Lingala (tones) <rxvtunicodelangLingalatones>`                                         7       1818  99.6%
+:ref:`Tamazight, Central Atlas <rxvtunicodelangTamazightCentralAtlas>`                       7       1822  99.6%
+:ref:`Fur <rxvtunicodelangFur>`                                                              7       1838  99.6%
+:ref:`Pular (Adlam) <rxvtunicodelangPularAdlam>`                                             6       1613  99.6%
+:ref:`Arabic, Standard <rxvtunicodelangArabicStandard>`                                      5       1348  99.6%
+:ref:`Mixtec, Metlatónoc <rxvtunicodelangMixtecMetlatnoc>`                                   5       1367  99.6%
+:ref:`Maldivian <rxvtunicodelangMaldivian>`                                                  7       1918  99.6%
+:ref:`French (Welche) <rxvtunicodelangFrenchWelche>`                                         7       1928  99.6%
+:ref:`Éwé <rxvtunicodelangw>`                                                                8       2230  99.6%
+:ref:`Urdu <rxvtunicodelangUrdu>`                                                            8       2237  99.6%
+:ref:`Urdu (2) <rxvtunicodelangUrdu2>`                                                       8       2251  99.6%
+:ref:`Gen <rxvtunicodelangGen>`                                                              8       2309  99.7%
+:ref:`Assyrian Neo-Aramaic <rxvtunicodelangAssyrianNeoAramaic>`                              4       1160  99.7%
+:ref:`Ga <rxvtunicodelangGa>`                                                                7       2039  99.7%
+:ref:`Aja <rxvtunicodelangAja>`                                                              7       2061  99.7%
+:ref:`Uduk <rxvtunicodelangUduk>`                                                           11       3247  99.7%
+:ref:`Saint Lucian Creole French <rxvtunicodelangSaintLucianCreoleFrench>`                   6       1777  99.7%
+:ref:`Maori (2) <rxvtunicodelangMaori2>`                                                     8       2385  99.7%
+:ref:`Farsi, Western <rxvtunicodelangFarsiWestern>`                                          6       1822  99.7%
+:ref:`Dinka, Northeastern <rxvtunicodelangDinkaNortheastern>`                                5       1529  99.7%
+:ref:`Yoruba <rxvtunicodelangYoruba>`                                                        8       2454  99.7%
+:ref:`Dari <rxvtunicodelangDari>`                                                            6       1872  99.7%
+:ref:`Ditammari <rxvtunicodelangDitammari>`                                                  6       1882  99.7%
+:ref:`Dendi <rxvtunicodelangDendi>`                                                          5       1569  99.7%
+:ref:`Mazahua Central <rxvtunicodelangMazahuaCentral>`                                       5       1574  99.7%
+:ref:`Serer-Sine <rxvtunicodelangSererSine>`                                                 5       1596  99.7%
+:ref:`Pashto, Northern <rxvtunicodelangPashtoNorthern>`                                      7       2242  99.7%
+:ref:`Seraiki <rxvtunicodelangSeraiki>`                                                      7       2242  99.7%
+:ref:`Belanda Viri <rxvtunicodelangBelandaViri>`                                             7       2246  99.7%
+:ref:`Dagaare, Southern <rxvtunicodelangDagaareSouthern>`                                    8       2582  99.7%
+:ref:`Baatonum <rxvtunicodelangBaatonum>`                                                    6       1939  99.7%
+:ref:`Bamun <rxvtunicodelangBamun>`                                                          7       2285  99.7%
+:ref:`Waama <rxvtunicodelangWaama>`                                                          3       1000  99.7%
+:ref:`Panjabi, Western <rxvtunicodelangPanjabiWestern>`                                      7       2419  99.7%
+:ref:`Chinantec, Chiltepec <rxvtunicodelangChinantecChiltepec>`                              5       1729  99.7%
+:ref:`Mòoré <rxvtunicodelangMor>`                                                            7       2447  99.7%
+:ref:`Vietnamese <rxvtunicodelangVietnamese>`                                                7       2502  99.7%
+:ref:`Fon <rxvtunicodelangFon>`                                                              7       2520  99.7%
+:ref:`Otomi, Mezquital <rxvtunicodelangOtomiMezquital>`                                      5       1849  99.7%
+:ref:`Lamnso' <rxvtunicodelangLamnso>`                                                       6       2237  99.7%
+:ref:`Dangme <rxvtunicodelangDangme>`                                                        7       2912  99.8%
+:ref:`Tibetan, Central <rxvtunicodelangTibetanCentral>`                                      7       3174  99.8%
+:ref:`Tai Dam <rxvtunicodelangTaiDam>`                                                       5       2386  99.8%
+:ref:`Dzongkha <rxvtunicodelangDzongkha>`                                                    6       3060  99.8%
+==================================================================================  ==========  =========  =============
+
+.. _rxvtunicodelangShan:
 
 Shan
 ^^^^
@@ -365,6 +367,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width 9.
 
+.. _rxvtunicodelangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -391,6 +395,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
 
+.. _rxvtunicodelangTamil:
+
 Tamil
 ^^^^^
 
@@ -416,6 +422,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
+
+.. _rxvtunicodelangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -453,6 +461,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rxvt-unicode* measures width 14.
 
+.. _rxvtunicodelangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -478,6 +488,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
+
+.. _rxvtunicodelangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -530,6 +542,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *rxvt-unicode* measures width 21.
 
+.. _rxvtunicodelangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -563,6 +577,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rxvt-unicode* measures width 12.
+
+.. _rxvtunicodelangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -622,6 +638,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *rxvt-unicode* measures width 25.
 
+.. _rxvtunicodelangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -647,6 +665,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
+
+.. _rxvtunicodelangKhn:
 
 Khün
 ^^^^
@@ -692,6 +712,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *rxvt-unicode* measures width 15.
 
+.. _rxvtunicodelangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -730,6 +752,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rxvt-unicode* measures width 11.
 
+.. _rxvtunicodelangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -766,6 +790,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rxvt-unicode* measures width 13.
 
+.. _rxvtunicodelangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -793,6 +819,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
+
+.. _rxvtunicodelangMon:
 
 Mon
 ^^^
@@ -826,6 +854,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 7.
 
+.. _rxvtunicodelangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -853,6 +883,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 5.
 
+.. _rxvtunicodelangNepali:
+
 Nepali
 ^^^^^^
 
@@ -879,6 +911,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
 
+.. _rxvtunicodelangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -904,6 +938,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
+
+.. _rxvtunicodelangTelugu:
 
 Telugu
 ^^^^^^
@@ -940,6 +976,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *rxvt-unicode* measures width 10.
 
+.. _rxvtunicodelangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -970,6 +1008,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 7.
 
+.. _rxvtunicodelangHindi:
+
 Hindi
 ^^^^^
 
@@ -995,6 +1035,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
+
+.. _rxvtunicodelangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1024,6 +1066,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
 
+.. _rxvtunicodelangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1049,6 +1093,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 4.
+
+.. _rxvtunicodelangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1082,6 +1128,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width 10.
 
+.. _rxvtunicodelangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1113,6 +1161,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width 10.
+
+.. _rxvtunicodelangChakma:
 
 Chakma
 ^^^^^^
@@ -1149,6 +1199,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rxvt-unicode* measures width 8.
 
+.. _rxvtunicodelangChineseMandarinTianjin:
+
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1173,6 +1225,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width -20.
+
+.. _rxvtunicodelangThai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1216,6 +1270,8 @@ Total codepoints: 20
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *rxvt-unicode* measures width -29.
 
+.. _rxvtunicodelangChineseMandarinHarbin:
+
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1258,6 +1314,8 @@ Total codepoints: 20
 - python `wcwidth.wcswidth()`_ measures width 40,
   while *rxvt-unicode* measures width 16.
 
+.. _rxvtunicodelangChineseMandarinTraditional:
+
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1281,6 +1339,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -4.
+
+.. _rxvtunicodelangJinan:
 
 (Jinan)
 ^^^^^^^
@@ -1306,6 +1366,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -4.
 
+.. _rxvtunicodelangChineseHakka:
+
 Chinese, Hakka
 ^^^^^^^^^^^^^^
 
@@ -1329,6 +1391,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -4.
+
+.. _rxvtunicodelangChineseJinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1371,6 +1435,8 @@ Total codepoints: 19
 - python `wcwidth.wcswidth()`_ measures width 38,
   while *rxvt-unicode* measures width 16.
 
+.. _rxvtunicodelangChineseMandarinBeijing:
+
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1394,6 +1460,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -4.
+
+.. _rxvtunicodelangChineseMandarinNanjing:
 
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1426,6 +1494,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 20,
   while *rxvt-unicode* measures width -16.
+
+.. _rxvtunicodelangChineseMinNan:
 
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
@@ -1468,6 +1538,8 @@ Total codepoints: 19
 - python `wcwidth.wcswidth()`_ measures width 38,
   while *rxvt-unicode* measures width 14.
 
+.. _rxvtunicodelangChineseMandarinSimplified:
+
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1495,6 +1567,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *rxvt-unicode* measures width 5.
+
+.. _rxvtunicodelangNuosu:
 
 Nuosu
 ^^^^^
@@ -1527,6 +1601,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 18,
   while *rxvt-unicode* measures width 12.
 
+.. _rxvtunicodelangJapanese:
+
 Japanese
 ^^^^^^^^
 
@@ -1555,6 +1631,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *rxvt-unicode* measures width -42.
 
+.. _rxvtunicodelangJapaneseOsaka:
+
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
 
@@ -1578,6 +1656,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -36.
+
+.. _rxvtunicodelangJapaneseTokyo:
 
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
@@ -1605,6 +1685,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *rxvt-unicode* measures width -42.
+
+.. _rxvtunicodelangThai:
 
 Thai
 ^^^^
@@ -1663,6 +1745,8 @@ Total codepoints: 35
 - python `wcwidth.wcswidth()`_ measures width 27,
   while *rxvt-unicode* measures width -6.
 
+.. _rxvtunicodelangChineseYue:
+
 Chinese, Yue
 ^^^^^^^^^^^^
 
@@ -1688,6 +1772,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width -24.
 
+.. _rxvtunicodelangChineseMandarinGuiyang:
+
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1711,6 +1797,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -4.
+
+.. _rxvtunicodelangChineseWu:
 
 Chinese, Wu
 ^^^^^^^^^^^
@@ -1737,6 +1825,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width -20.
 
+.. _rxvtunicodelangChineseXiang:
+
 Chinese, Xiang
 ^^^^^^^^^^^^^^
 
@@ -1760,6 +1850,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -4.
+
+.. _rxvtunicodelangVietnameseHannom:
 
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
@@ -1786,6 +1878,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width -45.
 
+.. _rxvtunicodelangChineseGan:
+
 Chinese, Gan
 ^^^^^^^^^^^^
 
@@ -1810,6 +1904,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -2.
 
+.. _rxvtunicodelangLao:
+
 Lao
 ^^^
 
@@ -1833,6 +1929,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -3.
+
+.. _rxvtunicodelangChickasaw:
 
 Chickasaw
 ^^^^^^^^^
@@ -1864,6 +1962,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rxvt-unicode* measures width -9.
 
+.. _rxvtunicodelangBora:
+
 Bora
 ^^^^
 
@@ -1890,6 +1990,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width -2.
+
+.. _rxvtunicodelangShipiboConibo:
 
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
@@ -1921,6 +2023,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rxvt-unicode* measures width -9.
 
+.. _rxvtunicodelangNanai:
+
 Nanai
 ^^^^^
 
@@ -1949,6 +2053,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width -2.
 
+.. _rxvtunicodelangNavajo:
+
 Navajo
 ^^^^^^
 
@@ -1972,6 +2078,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -4.
+
+.. _rxvtunicodelangOrok:
 
 Orok
 ^^^^
@@ -2006,6 +2114,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *rxvt-unicode* measures width 0.
 
+.. _rxvtunicodelangEvenki:
+
 Evenki
 ^^^^^^
 
@@ -2034,6 +2144,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width -4.
+
+.. _rxvtunicodelangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -2067,6 +2179,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *rxvt-unicode* measures width -1.
 
+.. _rxvtunicodelangYanesha:
+
 Yaneshaʼ
 ^^^^^^^^
 
@@ -2096,6 +2210,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rxvt-unicode* measures width 2.
+
+.. _rxvtunicodelangGumuz:
 
 Gumuz
 ^^^^^
@@ -2127,6 +2243,8 @@ Total codepoints: 9
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *rxvt-unicode* measures width 0.
+
+.. _rxvtunicodelangVeps:
 
 Veps
 ^^^^
@@ -2162,6 +2280,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *rxvt-unicode* measures width 11.
 
+.. _rxvtunicodelangSouthAzerbaijani:
+
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
 
@@ -2190,6 +2310,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rxvt-unicode* measures width -1.
+
+.. _rxvtunicodelangSecoya:
 
 Secoya
 ^^^^^^
@@ -2221,6 +2343,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rxvt-unicode* measures width -4.
 
+.. _rxvtunicodelangColorado:
+
 Colorado
 ^^^^^^^^
 
@@ -2247,6 +2371,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -5.
 
+.. _rxvtunicodelangYeonbyeon:
+
 (Yeonbyeon)
 ^^^^^^^^^^^
 
@@ -2269,6 +2395,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -2.
+
+.. _rxvtunicodelangSiona:
 
 Siona
 ^^^^^
@@ -2298,6 +2426,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width -3.
 
+.. _rxvtunicodelangGilyak:
+
 Gilyak
 ^^^^^^
 
@@ -2324,6 +2454,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -3.
 
+.. _rxvtunicodelangKorean:
+
 Korean
 ^^^^^^
 
@@ -2346,6 +2478,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -7.
+
+.. _rxvtunicodelangTem:
 
 Tem
 ^^^
@@ -2372,6 +2506,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -2.
+
+.. _rxvtunicodelangCatalan2:
 
 Catalan (2)
 ^^^^^^^^^^^
@@ -2404,6 +2540,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *rxvt-unicode* measures width 7.
 
+.. _rxvtunicodelangMirandese:
+
 Mirandese
 ^^^^^^^^^
 
@@ -2434,6 +2572,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rxvt-unicode* measures width 6.
 
+.. _rxvtunicodelangPicard:
+
 Picard
 ^^^^^^
 
@@ -2460,6 +2600,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width -7.
 
+.. _rxvtunicodelangYiddishEastern:
+
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
 
@@ -2483,6 +2625,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -8.
+
+.. _rxvtunicodelangTicuna:
 
 Ticuna
 ^^^^^^
@@ -2509,6 +2653,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width -4.
 
+.. _rxvtunicodelangKabyle:
+
 Kabyle
 ^^^^^^
 
@@ -2531,6 +2677,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rxvt-unicode* measures width -7.
+
+.. _rxvtunicodelangLingalatones:
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -2556,6 +2704,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -3.
 
+.. _rxvtunicodelangTamazightCentralAtlas:
+
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2578,6 +2728,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rxvt-unicode* measures width -7.
+
+.. _rxvtunicodelangFur:
 
 Fur
 ^^^
@@ -2606,6 +2758,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width -3.
 
+.. _rxvtunicodelangPularAdlam:
+
 Pular (Adlam)
 ^^^^^^^^^^^^^
 
@@ -2630,6 +2784,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width -5.
+
+.. _rxvtunicodelangArabicStandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2658,6 +2814,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width 1.
+
+.. _rxvtunicodelangMixtecMetlatnoc:
 
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
@@ -2688,6 +2846,8 @@ Total codepoints: 8
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *rxvt-unicode* measures width 1.
+
+.. _rxvtunicodelangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -2721,6 +2881,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 0.
 
+.. _rxvtunicodelangFrenchWelche:
+
 French (Welche)
 ^^^^^^^^^^^^^^^
 
@@ -2745,6 +2907,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width -11.
+
+.. _rxvtunicodelangw:
 
 Éwé
 ^^^
@@ -2771,6 +2935,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width 1.
+
+.. _rxvtunicodelangUrdu:
 
 Urdu
 ^^^^
@@ -2800,6 +2966,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 6.
 
+.. _rxvtunicodelangUrdu2:
+
 Urdu (2)
 ^^^^^^^^
 
@@ -2828,6 +2996,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 6.
 
+.. _rxvtunicodelangGen:
+
 Gen
 ^^^
 
@@ -2854,6 +3024,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width -4.
+
+.. _rxvtunicodelangAssyrianNeoAramaic:
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
@@ -2882,6 +3054,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 3.
 
+.. _rxvtunicodelangGa:
+
 Ga
 ^^
 
@@ -2909,6 +3083,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width 2.
+
+.. _rxvtunicodelangAja:
 
 Aja
 ^^^
@@ -2941,6 +3117,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *rxvt-unicode* measures width 7.
 
+.. _rxvtunicodelangUduk:
+
 Uduk
 ^^^^
 
@@ -2967,6 +3145,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width 1.
 
+.. _rxvtunicodelangSaintLucianCreoleFrench:
+
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2991,6 +3171,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width -5.
+
+.. _rxvtunicodelangMaori2:
 
 Maori (2)
 ^^^^^^^^^
@@ -3018,6 +3200,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width 1.
 
+.. _rxvtunicodelangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -3041,6 +3225,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width 1.
+
+.. _rxvtunicodelangDinkaNortheastern:
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
@@ -3070,6 +3256,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width 3.
 
+.. _rxvtunicodelangYoruba:
+
 Yoruba
 ^^^^^^
 
@@ -3095,6 +3283,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width -5.
 
+.. _rxvtunicodelangDari:
+
 Dari
 ^^^^
 
@@ -3118,6 +3308,8 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rxvt-unicode* measures width -6.
 
+.. _rxvtunicodelangDitammari:
+
 Ditammari
 ^^^^^^^^^
 
@@ -3140,6 +3332,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rxvt-unicode* measures width -1.
+
+.. _rxvtunicodelangDendi:
 
 Dendi
 ^^^^^
@@ -3167,6 +3361,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width 0.
 
+.. _rxvtunicodelangMazahuaCentral:
+
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
@@ -3190,6 +3386,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -2.
+
+.. _rxvtunicodelangSererSine:
 
 Serer-Sine
 ^^^^^^^^^^
@@ -3215,6 +3413,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width -2.
+
+.. _rxvtunicodelangPashtoNorthern:
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -3245,6 +3445,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *rxvt-unicode* measures width 4.
 
+.. _rxvtunicodelangSeraiki:
+
 Seraiki
 ^^^^^^^
 
@@ -3272,6 +3474,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 2.
 
+.. _rxvtunicodelangBelandaViri:
+
 Belanda Viri
 ^^^^^^^^^^^^
 
@@ -3297,6 +3501,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *rxvt-unicode* measures width 1.
+
+.. _rxvtunicodelangDagaareSouthern:
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
@@ -3329,6 +3535,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *rxvt-unicode* measures width 7.
 
+.. _rxvtunicodelangBaatonum:
+
 Baatonum
 ^^^^^^^^
 
@@ -3353,6 +3561,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -3.
 
+.. _rxvtunicodelangBamun:
+
 Bamun
 ^^^^^
 
@@ -3376,6 +3586,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -3.
+
+.. _rxvtunicodelangWaama:
 
 Waama
 ^^^^^
@@ -3405,6 +3617,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width 2.
 
+.. _rxvtunicodelangPanjabiWestern:
+
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
 
@@ -3433,6 +3647,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *rxvt-unicode* measures width 3.
 
+.. _rxvtunicodelangChinantecChiltepec:
+
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -3460,6 +3676,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 3.
 
+.. _rxvtunicodelangMor:
+
 Mòoré
 ^^^^^
 
@@ -3486,6 +3704,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 2.
+
+.. _rxvtunicodelangVietnamese:
 
 Vietnamese
 ^^^^^^^^^^
@@ -3515,6 +3735,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 0.
 
+.. _rxvtunicodelangFon:
+
 Fon
 ^^^
 
@@ -3540,6 +3762,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width -2.
 
+.. _rxvtunicodelangOtomiMezquital:
+
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
 
@@ -3562,6 +3786,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rxvt-unicode* measures width -3.
+
+.. _rxvtunicodelangLamnso:
 
 Lamnso'
 ^^^^^^^
@@ -3590,6 +3816,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *rxvt-unicode* measures width 0.
 
+.. _rxvtunicodelangDangme:
+
 Dangme
 ^^^^^^
 
@@ -3614,6 +3842,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 0.
+
+.. _rxvtunicodelangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -3641,6 +3871,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *rxvt-unicode* measures width 1.
 
+.. _rxvtunicodelangTaiDam:
+
 Tai Dam
 ^^^^^^^
 
@@ -3665,6 +3897,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *rxvt-unicode* measures width -1.
+
+.. _rxvtunicodelangDzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -3932,11 +4166,6 @@ The test suite completed in **32.67 seconds** (32s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

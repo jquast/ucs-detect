@@ -20,11 +20,11 @@ Score Type    Raw Score    Scaled Score    Calculation
 ============  ===========  ==============  ======================================================
 WIDE          90.91%       86.4%           (version_index / total_versions) × (pct_success / 100)
 ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-LANG          0.84%        1.0%            languages_supported / total_languages
+LANG          0.84%        1.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     N/A          N/A             modes_supported / total_modes
-TIME          59.63s       99.7%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          59.63s       82.7%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -184,128 +184,130 @@ Tagalog (Tagalog).
 
 The following 118 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Javanese (Javanese)                    1000       1027  2.6%
-Shan                                    868        915  5.1%
-Tamil (Sri Lanka)                      1000       1074  6.9%
-Tamil                                  1000       1075  7.0%
-Malayalam                              1000       1098  8.9%
-Sanskrit (Grantha)                      893       1006  11.2%
-Bengali                                1000       1161  13.9%
-Khmer, Central                          448        528  15.2%
-Kannada                                 903       1080  16.4%
-Khün                                    362        442  18.1%
-Burmese                                 974       1223  20.4%
-Sanskrit                                755       1000  24.5%
-Tamang, Eastern                          33         45  26.7%
-Mon                                     676        946  28.5%
-Marathi                                1000       1420  29.6%
-Nepali                                  931       1385  32.8%
-Gujarati                               1000       1519  34.2%
-Telugu                                  716       1129  36.6%
-Maithili                                955       1519  37.1%
-Hindi                                  1000       1624  38.4%
-Panjabi, Eastern                       1000       1831  45.4%
-Sinhala                                 888       1655  46.3%
-Bhojpuri                                880       1737  49.3%
-Magahi                                  812       1716  52.7%
-Chakma                                  492       1444  65.9%
-Mongolian, Halh (Mongolian)               3         33  90.9%
-Farsi, Western                           43       1822  97.6%
-Dari                                     40       1872  97.9%
-Tibetan, Central                          4        280  98.6%
-Chinese, Mandarin (Tianjin)               3        212  98.6%
-Japanese                                  4        299  98.7%
-Chinese, Mandarin (Simplified)            3        225  98.7%
-Nuosu                                     3        230  98.7%
-Japanese (Osaka)                          4        308  98.7%
-Japanese (Tokyo)                          4        320  98.8%
-Dzongkha                                  4        359  98.9%
-Vietnamese (Han nom)                      2        199  99.0%
-Thai (2)                                  3        313  99.0%
-Chinese, Mandarin (Harbin)                2        210  99.0%
-Chinese, Mandarin (Traditional)           2        210  99.0%
-Chinese, Yue                              2        210  99.0%
-(Jinan)                                   2        211  99.1%
-Chinese, Gan                              2        211  99.1%
-Chinese, Mandarin (Guiyang)               2        211  99.1%
-Chinese, Wu                               2        211  99.1%
-Chinese, Hakka                            2        212  99.1%
-Chinese, Jinyu                            2        212  99.1%
-Chinese, Mandarin (Beijing)               2        212  99.1%
-Chinese, Mandarin (Nanjing)               2        212  99.1%
-Chinese, Min Nan                          2        212  99.1%
-Chinese, Xiang                            2        212  99.1%
-Lao                                       4        426  99.1%
-Thai                                      3        341  99.1%
-Bora                                      7       1598  99.6%
-Gumuz                                     5       1283  99.6%
-Chickasaw                                 2        554  99.6%
-Yaneshaʼ                                  9       2536  99.6%
-Shipibo-Conibo                            9       2540  99.6%
-Amarakaeri                                5       1446  99.7%
-Siona                                     5       1492  99.7%
-Evenki                                    3        899  99.7%
-Gilyak                                    5       1504  99.7%
-Nanai                                     4       1207  99.7%
-Orok                                      4       1245  99.7%
-Navajo                                    5       1600  99.7%
-Veps                                      4       1323  99.7%
-South Azerbaijani                         4       1396  99.7%
-Secoya                                    4       1409  99.7%
-(Yeonbyeon)                               3       1061  99.7%
-Yiddish, Eastern                          5       1775  99.7%
-Catalan (2)                               5       1909  99.7%
-Mirandese                                 5       1966  99.7%
-Korean                                    3       1185  99.7%
-Panjabi, Western                          6       2419  99.8%
-Pular (Adlam)                             4       1613  99.8%
-Picard                                    5       2024  99.8%
-Ticuna                                    5       2048  99.8%
-Tem                                       4       1659  99.8%
-Colorado                                  3       1263  99.8%
-Saint Lucian Creole French                4       1777  99.8%
-Éwé                                       5       2230  99.8%
-Urdu                                      5       2237  99.8%
-Arabic, Standard                          3       1348  99.8%
-Urdu (2)                                  5       2251  99.8%
-Kabyle                                    4       1815  99.8%
-Lingala (tones)                           4       1818  99.8%
-Tamazight, Central Atlas                  4       1822  99.8%
-Mixtec, Metlatónoc                        3       1367  99.8%
-Fur                                       4       1838  99.8%
-Gen                                       5       2309  99.8%
-Uduk                                      7       3247  99.8%
-Ditammari                                 4       1882  99.8%
-Maori (2)                                 5       2385  99.8%
-Maldivian                                 4       1918  99.8%
-French (Welche)                           4       1928  99.8%
-Mòoré                                     5       2447  99.8%
-Yoruba                                    5       2454  99.8%
-Waama                                     2       1000  99.8%
-Vietnamese                                5       2502  99.8%
-Dinka, Northeastern                       3       1529  99.8%
-Ga                                        4       2039  99.8%
-Aja                                       4       2061  99.8%
-Dagaare, Southern                         5       2582  99.8%
-Dendi                                     3       1569  99.8%
-Mazahua Central                           3       1574  99.8%
-Serer-Sine                                3       1596  99.8%
-Lamnso'                                   4       2237  99.8%
-Pashto, Northern                          4       2242  99.8%
-Seraiki                                   4       2242  99.8%
-Belanda Viri                              4       2246  99.8%
-Bamun                                     4       2285  99.8%
-Chinantec, Chiltepec                      3       1729  99.8%
-Assyrian Neo-Aramaic                      2       1160  99.8%
-Otomi, Mezquital                          3       1849  99.8%
-Fon                                       4       2520  99.8%
-Baatonum                                  3       1939  99.8%
-Dangme                                    4       2912  99.9%
-Tai Dam                                   3       2386  99.9%
-===============================  ==========  =========  =============
+==================================================================================  ==========  =========  =============
+lang                                                                                  n_errors    n_total  pct_success
+==================================================================================  ==========  =========  =============
+:ref:`Javanese (Javanese) <TerminalapplangJavaneseJavanese>`                              1000       1027  2.6%
+:ref:`Shan <TerminalapplangShan>`                                                          868        915  5.1%
+:ref:`Tamil (Sri Lanka) <TerminalapplangTamilSriLanka>`                                   1000       1074  6.9%
+:ref:`Tamil <TerminalapplangTamil>`                                                       1000       1075  7.0%
+:ref:`Malayalam <TerminalapplangMalayalam>`                                               1000       1098  8.9%
+:ref:`Sanskrit (Grantha) <TerminalapplangSanskritGrantha>`                                 893       1006  11.2%
+:ref:`Bengali <TerminalapplangBengali>`                                                   1000       1161  13.9%
+:ref:`Khmer, Central <TerminalapplangKhmerCentral>`                                        448        528  15.2%
+:ref:`Kannada <TerminalapplangKannada>`                                                    903       1080  16.4%
+:ref:`Khün <TerminalapplangKhn>`                                                           362        442  18.1%
+:ref:`Burmese <TerminalapplangBurmese>`                                                    974       1223  20.4%
+:ref:`Sanskrit <TerminalapplangSanskrit>`                                                  755       1000  24.5%
+:ref:`Tamang, Eastern <TerminalapplangTamangEastern>`                                       33         45  26.7%
+:ref:`Mon <TerminalapplangMon>`                                                            676        946  28.5%
+:ref:`Marathi <TerminalapplangMarathi>`                                                   1000       1420  29.6%
+:ref:`Nepali <TerminalapplangNepali>`                                                      931       1385  32.8%
+:ref:`Gujarati <TerminalapplangGujarati>`                                                 1000       1519  34.2%
+:ref:`Telugu <TerminalapplangTelugu>`                                                      716       1129  36.6%
+:ref:`Maithili <TerminalapplangMaithili>`                                                  955       1519  37.1%
+:ref:`Hindi <TerminalapplangHindi>`                                                       1000       1624  38.4%
+:ref:`Panjabi, Eastern <TerminalapplangPanjabiEastern>`                                   1000       1831  45.4%
+:ref:`Sinhala <TerminalapplangSinhala>`                                                    888       1655  46.3%
+:ref:`Bhojpuri <TerminalapplangBhojpuri>`                                                  880       1737  49.3%
+:ref:`Magahi <TerminalapplangMagahi>`                                                      812       1716  52.7%
+:ref:`Chakma <TerminalapplangChakma>`                                                      492       1444  65.9%
+:ref:`Mongolian, Halh (Mongolian) <TerminalapplangMongolianHalhMongolian>`                   3         33  90.9%
+:ref:`Farsi, Western <TerminalapplangFarsiWestern>`                                         43       1822  97.6%
+:ref:`Dari <TerminalapplangDari>`                                                           40       1872  97.9%
+:ref:`Tibetan, Central <TerminalapplangTibetanCentral>`                                      4        280  98.6%
+:ref:`Chinese, Mandarin (Tianjin) <TerminalapplangChineseMandarinTianjin>`                   3        212  98.6%
+:ref:`Japanese <TerminalapplangJapanese>`                                                    4        299  98.7%
+:ref:`Chinese, Mandarin (Simplified) <TerminalapplangChineseMandarinSimplified>`             3        225  98.7%
+:ref:`Nuosu <TerminalapplangNuosu>`                                                          3        230  98.7%
+:ref:`Japanese (Osaka) <TerminalapplangJapaneseOsaka>`                                       4        308  98.7%
+:ref:`Japanese (Tokyo) <TerminalapplangJapaneseTokyo>`                                       4        320  98.8%
+:ref:`Dzongkha <TerminalapplangDzongkha>`                                                    4        359  98.9%
+:ref:`Vietnamese (Han nom) <TerminalapplangVietnameseHannom>`                                2        199  99.0%
+:ref:`Thai (2) <TerminalapplangThai2>`                                                       3        313  99.0%
+:ref:`Chinese, Mandarin (Harbin) <TerminalapplangChineseMandarinHarbin>`                     2        210  99.0%
+:ref:`Chinese, Mandarin (Traditional) <TerminalapplangChineseMandarinTraditional>`           2        210  99.0%
+:ref:`Chinese, Yue <TerminalapplangChineseYue>`                                              2        210  99.0%
+:ref:`(Jinan) <TerminalapplangJinan>`                                                        2        211  99.1%
+:ref:`Chinese, Gan <TerminalapplangChineseGan>`                                              2        211  99.1%
+:ref:`Chinese, Mandarin (Guiyang) <TerminalapplangChineseMandarinGuiyang>`                   2        211  99.1%
+:ref:`Chinese, Wu <TerminalapplangChineseWu>`                                                2        211  99.1%
+:ref:`Chinese, Hakka <TerminalapplangChineseHakka>`                                          2        212  99.1%
+:ref:`Chinese, Jinyu <TerminalapplangChineseJinyu>`                                          2        212  99.1%
+:ref:`Chinese, Mandarin (Beijing) <TerminalapplangChineseMandarinBeijing>`                   2        212  99.1%
+:ref:`Chinese, Mandarin (Nanjing) <TerminalapplangChineseMandarinNanjing>`                   2        212  99.1%
+:ref:`Chinese, Min Nan <TerminalapplangChineseMinNan>`                                       2        212  99.1%
+:ref:`Chinese, Xiang <TerminalapplangChineseXiang>`                                          2        212  99.1%
+:ref:`Lao <TerminalapplangLao>`                                                              4        426  99.1%
+:ref:`Thai <TerminalapplangThai>`                                                            3        341  99.1%
+:ref:`Bora <TerminalapplangBora>`                                                            7       1598  99.6%
+:ref:`Gumuz <TerminalapplangGumuz>`                                                          5       1283  99.6%
+:ref:`Chickasaw <TerminalapplangChickasaw>`                                                  2        554  99.6%
+:ref:`Yaneshaʼ <TerminalapplangYanesha>`                                                     9       2536  99.6%
+:ref:`Shipibo-Conibo <TerminalapplangShipiboConibo>`                                         9       2540  99.6%
+:ref:`Amarakaeri <TerminalapplangAmarakaeri>`                                                5       1446  99.7%
+:ref:`Siona <TerminalapplangSiona>`                                                          5       1492  99.7%
+:ref:`Evenki <TerminalapplangEvenki>`                                                        3        899  99.7%
+:ref:`Gilyak <TerminalapplangGilyak>`                                                        5       1504  99.7%
+:ref:`Nanai <TerminalapplangNanai>`                                                          4       1207  99.7%
+:ref:`Orok <TerminalapplangOrok>`                                                            4       1245  99.7%
+:ref:`Navajo <TerminalapplangNavajo>`                                                        5       1600  99.7%
+:ref:`Veps <TerminalapplangVeps>`                                                            4       1323  99.7%
+:ref:`South Azerbaijani <TerminalapplangSouthAzerbaijani>`                                   4       1396  99.7%
+:ref:`Secoya <TerminalapplangSecoya>`                                                        4       1409  99.7%
+:ref:`(Yeonbyeon) <TerminalapplangYeonbyeon>`                                                3       1061  99.7%
+:ref:`Yiddish, Eastern <TerminalapplangYiddishEastern>`                                      5       1775  99.7%
+:ref:`Catalan (2) <TerminalapplangCatalan2>`                                                 5       1909  99.7%
+:ref:`Mirandese <TerminalapplangMirandese>`                                                  5       1966  99.7%
+:ref:`Korean <TerminalapplangKorean>`                                                        3       1185  99.7%
+:ref:`Panjabi, Western <TerminalapplangPanjabiWestern>`                                      6       2419  99.8%
+:ref:`Pular (Adlam) <TerminalapplangPularAdlam>`                                             4       1613  99.8%
+:ref:`Picard <TerminalapplangPicard>`                                                        5       2024  99.8%
+:ref:`Ticuna <TerminalapplangTicuna>`                                                        5       2048  99.8%
+:ref:`Tem <TerminalapplangTem>`                                                              4       1659  99.8%
+:ref:`Colorado <TerminalapplangColorado>`                                                    3       1263  99.8%
+:ref:`Saint Lucian Creole French <TerminalapplangSaintLucianCreoleFrench>`                   4       1777  99.8%
+:ref:`Éwé <Terminalapplangw>`                                                                5       2230  99.8%
+:ref:`Urdu <TerminalapplangUrdu>`                                                            5       2237  99.8%
+:ref:`Arabic, Standard <TerminalapplangArabicStandard>`                                      3       1348  99.8%
+:ref:`Urdu (2) <TerminalapplangUrdu2>`                                                       5       2251  99.8%
+:ref:`Kabyle <TerminalapplangKabyle>`                                                        4       1815  99.8%
+:ref:`Lingala (tones) <TerminalapplangLingalatones>`                                         4       1818  99.8%
+:ref:`Tamazight, Central Atlas <TerminalapplangTamazightCentralAtlas>`                       4       1822  99.8%
+:ref:`Mixtec, Metlatónoc <TerminalapplangMixtecMetlatnoc>`                                   3       1367  99.8%
+:ref:`Fur <TerminalapplangFur>`                                                              4       1838  99.8%
+:ref:`Gen <TerminalapplangGen>`                                                              5       2309  99.8%
+:ref:`Uduk <TerminalapplangUduk>`                                                            7       3247  99.8%
+:ref:`Ditammari <TerminalapplangDitammari>`                                                  4       1882  99.8%
+:ref:`Maori (2) <TerminalapplangMaori2>`                                                     5       2385  99.8%
+:ref:`Maldivian <TerminalapplangMaldivian>`                                                  4       1918  99.8%
+:ref:`French (Welche) <TerminalapplangFrenchWelche>`                                         4       1928  99.8%
+:ref:`Mòoré <TerminalapplangMor>`                                                            5       2447  99.8%
+:ref:`Yoruba <TerminalapplangYoruba>`                                                        5       2454  99.8%
+:ref:`Waama <TerminalapplangWaama>`                                                          2       1000  99.8%
+:ref:`Vietnamese <TerminalapplangVietnamese>`                                                5       2502  99.8%
+:ref:`Dinka, Northeastern <TerminalapplangDinkaNortheastern>`                                3       1529  99.8%
+:ref:`Ga <TerminalapplangGa>`                                                                4       2039  99.8%
+:ref:`Aja <TerminalapplangAja>`                                                              4       2061  99.8%
+:ref:`Dagaare, Southern <TerminalapplangDagaareSouthern>`                                    5       2582  99.8%
+:ref:`Dendi <TerminalapplangDendi>`                                                          3       1569  99.8%
+:ref:`Mazahua Central <TerminalapplangMazahuaCentral>`                                       3       1574  99.8%
+:ref:`Serer-Sine <TerminalapplangSererSine>`                                                 3       1596  99.8%
+:ref:`Lamnso' <TerminalapplangLamnso>`                                                       4       2237  99.8%
+:ref:`Pashto, Northern <TerminalapplangPashtoNorthern>`                                      4       2242  99.8%
+:ref:`Seraiki <TerminalapplangSeraiki>`                                                      4       2242  99.8%
+:ref:`Belanda Viri <TerminalapplangBelandaViri>`                                             4       2246  99.8%
+:ref:`Bamun <TerminalapplangBamun>`                                                          4       2285  99.8%
+:ref:`Chinantec, Chiltepec <TerminalapplangChinantecChiltepec>`                              3       1729  99.8%
+:ref:`Assyrian Neo-Aramaic <TerminalapplangAssyrianNeoAramaic>`                              2       1160  99.8%
+:ref:`Otomi, Mezquital <TerminalapplangOtomiMezquital>`                                      3       1849  99.8%
+:ref:`Fon <TerminalapplangFon>`                                                              4       2520  99.8%
+:ref:`Baatonum <TerminalapplangBaatonum>`                                                    3       1939  99.8%
+:ref:`Dangme <TerminalapplangDangme>`                                                        4       2912  99.9%
+:ref:`Tai Dam <TerminalapplangTaiDam>`                                                       3       2386  99.9%
+==================================================================================  ==========  =========  =============
+
+.. _TerminalapplangJavaneseJavanese:
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -332,6 +334,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
+
+.. _TerminalapplangShan:
 
 Shan
 ^^^^
@@ -370,6 +374,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width 9.
 
+.. _TerminalapplangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -396,6 +402,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
 
+.. _TerminalapplangTamil:
+
 Tamil
 ^^^^^
 
@@ -421,6 +429,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
+
+.. _TerminalapplangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -473,6 +483,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *Terminal.app* measures width 21.
 
+.. _TerminalapplangSanskritGrantha:
+
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
 
@@ -509,6 +521,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Terminal.app* measures width 14.
 
+.. _TerminalapplangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -542,6 +556,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Terminal.app* measures width 12.
+
+.. _TerminalapplangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -601,6 +617,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Terminal.app* measures width 25.
 
+.. _TerminalapplangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -626,6 +644,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
+
+.. _TerminalapplangKhn:
 
 Khün
 ^^^^
@@ -671,6 +691,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Terminal.app* measures width 15.
 
+.. _TerminalapplangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -709,6 +731,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Terminal.app* measures width 11.
 
+.. _TerminalapplangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -745,6 +769,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Terminal.app* measures width 13.
 
+.. _TerminalapplangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -772,6 +798,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
+
+.. _TerminalapplangMon:
 
 Mon
 ^^^
@@ -805,6 +833,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width 7.
 
+.. _TerminalapplangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -832,6 +862,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 5.
 
+.. _TerminalapplangNepali:
+
 Nepali
 ^^^^^^
 
@@ -858,6 +890,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
 
+.. _TerminalapplangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -883,6 +917,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
+
+.. _TerminalapplangTelugu:
 
 Telugu
 ^^^^^^
@@ -919,6 +955,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Terminal.app* measures width 10.
 
+.. _TerminalapplangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -949,6 +987,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width 7.
 
+.. _TerminalapplangHindi:
+
 Hindi
 ^^^^^
 
@@ -974,6 +1014,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
+
+.. _TerminalapplangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1003,6 +1045,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
 
+.. _TerminalapplangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1028,6 +1072,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 4.
+
+.. _TerminalapplangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1061,6 +1107,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width 10.
 
+.. _TerminalapplangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1092,6 +1140,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width 10.
+
+.. _TerminalapplangChakma:
 
 Chakma
 ^^^^^^
@@ -1128,6 +1178,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Terminal.app* measures width 8.
 
+.. _TerminalapplangMongolianHalhMongolian:
+
 Mongolian, Halh (Mongolian)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1154,6 +1206,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width 5.
+
+.. _TerminalapplangFarsiWestern:
 
 Farsi, Western
 ^^^^^^^^^^^^^^
@@ -1187,6 +1241,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Terminal.app* measures width 10.
 
+.. _TerminalapplangDari:
+
 Dari
 ^^^^
 
@@ -1218,6 +1274,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Terminal.app* measures width 10.
+
+.. _TerminalapplangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -1285,6 +1343,8 @@ Total codepoints: 44
 - python `wcwidth.wcswidth()`_ measures width 36,
   while *Terminal.app* measures width -55.
 
+.. _TerminalapplangChineseMandarinTianjin:
+
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1309,6 +1369,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -42.
+
+.. _TerminalapplangJapanese:
 
 Japanese
 ^^^^^^^^
@@ -1355,6 +1417,8 @@ Total codepoints: 23
 - python `wcwidth.wcswidth()`_ measures width 46,
   while *Terminal.app* measures width 26.
 
+.. _TerminalapplangChineseMandarinSimplified:
+
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1379,6 +1443,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -22.
+
+.. _TerminalapplangNuosu:
 
 Nuosu
 ^^^^^
@@ -1406,6 +1472,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Terminal.app* measures width -42.
 
+.. _TerminalapplangJapaneseOsaka:
+
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
 
@@ -1431,6 +1499,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -52.
 
+.. _TerminalapplangJapaneseTokyo:
+
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
 
@@ -1455,6 +1525,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -52.
+
+.. _TerminalapplangDzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -1537,6 +1609,8 @@ Total codepoints: 59
 - python `wcwidth.wcswidth()`_ measures width 44,
   while *Terminal.app* measures width 22.
 
+.. _TerminalapplangVietnameseHannom:
+
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1582,6 +1656,8 @@ Total codepoints: 23
 - python `wcwidth.wcswidth()`_ measures width 46,
   while *Terminal.app* measures width 26.
 
+.. _TerminalapplangThai2:
+
 Thai (2)
 ^^^^^^^^
 
@@ -1606,6 +1682,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width -25.
+
+.. _TerminalapplangChineseMandarinHarbin:
 
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1634,6 +1712,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Terminal.app* measures width -12.
 
+.. _TerminalapplangChineseMandarinTraditional:
+
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1658,6 +1738,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -4.
+
+.. _TerminalapplangChineseYue:
 
 Chinese, Yue
 ^^^^^^^^^^^^
@@ -1684,6 +1766,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Terminal.app* measures width -42.
+
+.. _TerminalapplangJinan:
 
 (Jinan)
 ^^^^^^^
@@ -1712,6 +1796,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Terminal.app* measures width -12.
 
+.. _TerminalapplangChineseGan:
+
 Chinese, Gan
 ^^^^^^^^^^^^
 
@@ -1736,6 +1822,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -8.
+
+.. _TerminalapplangChineseMandarinGuiyang:
 
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1763,6 +1851,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Terminal.app* measures width -12.
+
+.. _TerminalapplangChineseWu:
 
 Chinese, Wu
 ^^^^^^^^^^^
@@ -1810,6 +1900,8 @@ Total codepoints: 24
 - python `wcwidth.wcswidth()`_ measures width 48,
   while *Terminal.app* measures width -2.
 
+.. _TerminalapplangChineseHakka:
+
 Chinese, Hakka
 ^^^^^^^^^^^^^^
 
@@ -1834,6 +1926,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -2.
+
+.. _TerminalapplangChineseJinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1860,6 +1954,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -12.
 
+.. _TerminalapplangChineseMandarinBeijing:
+
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1884,6 +1980,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -46.
+
+.. _TerminalapplangChineseMandarinNanjing:
 
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1910,6 +2008,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -12.
 
+.. _TerminalapplangChineseMinNan:
+
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
 
@@ -1934,6 +2034,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -4.
+
+.. _TerminalapplangChineseXiang:
 
 Chinese, Xiang
 ^^^^^^^^^^^^^^
@@ -1962,6 +2064,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Terminal.app* measures width -10.
 
+.. _TerminalapplangLao:
+
 Lao
 ^^^
 
@@ -1987,6 +2091,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width -9.
 
+.. _TerminalapplangThai:
+
 Thai
 ^^^^
 
@@ -2009,6 +2115,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Terminal.app* measures width -24.
+
+.. _TerminalapplangBora:
 
 Bora
 ^^^^
@@ -2036,6 +2144,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width -4.
+
+.. _TerminalapplangGumuz:
 
 Gumuz
 ^^^^^
@@ -2067,6 +2177,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Terminal.app* measures width 0.
 
+.. _TerminalapplangChickasaw:
+
 Chickasaw
 ^^^^^^^^^
 
@@ -2095,6 +2207,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width -2.
 
+.. _TerminalapplangYanesha:
+
 Yaneshaʼ
 ^^^^^^^^
 
@@ -2120,6 +2234,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width -2.
+
+.. _TerminalapplangShipiboConibo:
 
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
@@ -2148,6 +2264,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width 1.
+
+.. _TerminalapplangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -2180,6 +2298,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Terminal.app* measures width -2.
+
+.. _TerminalapplangSiona:
 
 Siona
 ^^^^^
@@ -2216,6 +2336,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 13,
   while *Terminal.app* measures width 9.
 
+.. _TerminalapplangEvenki:
+
 Evenki
 ^^^^^^
 
@@ -2244,6 +2366,8 @@ Total codepoints: 7
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Terminal.app* measures width 4.
+
+.. _TerminalapplangGilyak:
 
 Gilyak
 ^^^^^^
@@ -2275,6 +2399,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Terminal.app* measures width 5.
 
+.. _TerminalapplangNanai:
+
 Nanai
 ^^^^^
 
@@ -2301,6 +2427,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width 1.
+
+.. _TerminalapplangOrok:
 
 Orok
 ^^^^
@@ -2333,6 +2461,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Terminal.app* measures width -5.
 
+.. _TerminalapplangNavajo:
+
 Navajo
 ^^^^^^
 
@@ -2360,6 +2490,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width -7.
 
+.. _TerminalapplangVeps:
+
 Veps
 ^^^^
 
@@ -2385,6 +2517,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width -1.
+
+.. _TerminalapplangSouthAzerbaijani:
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
@@ -2412,6 +2546,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 0.
 
+.. _TerminalapplangSecoya:
+
 Secoya
 ^^^^^^
 
@@ -2438,6 +2574,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width -3.
 
+.. _TerminalapplangYeonbyeon:
+
 (Yeonbyeon)
 ^^^^^^^^^^^
 
@@ -2463,6 +2601,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -2.
 
+.. _TerminalapplangYiddishEastern:
+
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
 
@@ -2487,6 +2627,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Terminal.app* measures width 3.
+
+.. _TerminalapplangCatalan2:
 
 Catalan (2)
 ^^^^^^^^^^^
@@ -2517,6 +2659,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Terminal.app* measures width 1.
 
+.. _TerminalapplangMirandese:
+
 Mirandese
 ^^^^^^^^^
 
@@ -2542,6 +2686,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width -3.
+
+.. _TerminalapplangKorean:
 
 Korean
 ^^^^^^
@@ -2570,6 +2716,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Terminal.app* measures width 6.
 
+.. _TerminalapplangPanjabiWestern:
+
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
 
@@ -2597,6 +2745,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width 0.
 
+.. _TerminalapplangPularAdlam:
+
 Pular (Adlam)
 ^^^^^^^^^^^^^
 
@@ -2619,6 +2769,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Terminal.app* measures width -5.
+
+.. _TerminalapplangPicard:
 
 Picard
 ^^^^^^
@@ -2648,6 +2800,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width 0.
 
+.. _TerminalapplangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -2670,6 +2824,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Terminal.app* measures width -8.
+
+.. _TerminalapplangTem:
 
 Tem
 ^^^
@@ -2699,6 +2855,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width -4.
 
+.. _TerminalapplangColorado:
+
 Colorado
 ^^^^^^^^
 
@@ -2725,6 +2883,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width -1.
+
+.. _TerminalapplangSaintLucianCreoleFrench:
 
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2753,6 +2913,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width -4.
 
+.. _Terminalapplangw:
+
 Éwé
 ^^^
 
@@ -2778,6 +2940,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width -9.
+
+.. _TerminalapplangUrdu:
 
 Urdu
 ^^^^
@@ -2807,6 +2971,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width 6.
 
+.. _TerminalapplangArabicStandard:
+
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
 
@@ -2834,6 +3000,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width 0.
+
+.. _TerminalapplangUrdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -2863,6 +3031,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width 6.
 
+.. _TerminalapplangKabyle:
+
 Kabyle
 ^^^^^^
 
@@ -2885,6 +3055,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Terminal.app* measures width -5.
+
+.. _TerminalapplangLingalatones:
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -2911,6 +3083,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width -3.
 
+.. _TerminalapplangTamazightCentralAtlas:
+
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2935,6 +3109,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width -1.
+
+.. _TerminalapplangMixtecMetlatnoc:
 
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
@@ -2968,6 +3144,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Terminal.app* measures width 5.
 
+.. _TerminalapplangFur:
+
 Fur
 ^^^
 
@@ -2994,6 +3172,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width -1.
+
+.. _TerminalapplangGen:
 
 Gen
 ^^^
@@ -3024,6 +3204,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Terminal.app* measures width 0.
 
+.. _TerminalapplangUduk:
+
 Uduk
 ^^^^
 
@@ -3048,6 +3230,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width -4.
+
+.. _TerminalapplangDitammari:
 
 Ditammari
 ^^^^^^^^^
@@ -3076,6 +3260,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width -2.
 
+.. _TerminalapplangMaori2:
+
 Maori (2)
 ^^^^^^^^^
 
@@ -3098,6 +3284,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Terminal.app* measures width -7.
+
+.. _TerminalapplangMaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -3131,6 +3319,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width 0.
 
+.. _TerminalapplangFrenchWelche:
+
 French (Welche)
 ^^^^^^^^^^^^^^^
 
@@ -3159,6 +3349,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width -2.
 
+.. _TerminalapplangMor:
+
 Mòoré
 ^^^^^
 
@@ -3185,6 +3377,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width -5.
 
+.. _TerminalapplangYoruba:
+
 Yoruba
 ^^^^^^
 
@@ -3210,6 +3404,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width -1.
 
+.. _TerminalapplangWaama:
+
 Waama
 ^^^^^
 
@@ -3233,6 +3429,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width -6.
+
+.. _TerminalapplangVietnamese:
 
 Vietnamese
 ^^^^^^^^^^
@@ -3260,6 +3458,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 1.
 
+.. _TerminalapplangDinkaNortheastern:
+
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
 
@@ -3283,6 +3483,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width -2.
+
+.. _TerminalapplangGa:
 
 Ga
 ^^
@@ -3308,6 +3510,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 1.
+
+.. _TerminalapplangAja:
 
 Aja
 ^^^
@@ -3335,6 +3539,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width 2.
 
+.. _TerminalapplangDagaareSouthern:
+
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
 
@@ -3361,6 +3567,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width 3.
 
+.. _TerminalapplangDendi:
+
 Dendi
 ^^^^^
 
@@ -3383,6 +3591,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Terminal.app* measures width -7.
+
+.. _TerminalapplangMazahuaCentral:
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -3412,6 +3622,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Terminal.app* measures width 3.
 
+.. _TerminalapplangSererSine:
+
 Serer-Sine
 ^^^^^^^^^^
 
@@ -3436,6 +3648,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width -4.
 
+.. _TerminalapplangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -3458,6 +3672,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Terminal.app* measures width -2.
+
+.. _TerminalapplangPashtoNorthern:
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -3483,6 +3699,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width 1.
+
+.. _TerminalapplangSeraiki:
 
 Seraiki
 ^^^^^^^
@@ -3510,6 +3728,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Terminal.app* measures width -2.
+
+.. _TerminalapplangBelandaViri:
 
 Belanda Viri
 ^^^^^^^^^^^^
@@ -3541,6 +3761,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Terminal.app* measures width 6.
 
+.. _TerminalapplangBamun:
+
 Bamun
 ^^^^^
 
@@ -3564,6 +3786,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width -2.
+
+.. _TerminalapplangChinantecChiltepec:
 
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
@@ -3590,6 +3814,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width -2.
 
+.. _TerminalapplangAssyrianNeoAramaic:
+
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -3613,6 +3839,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width 0.
+
+.. _TerminalapplangOtomiMezquital:
 
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
@@ -3638,6 +3866,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Terminal.app* measures width -4.
+
+.. _TerminalapplangFon:
 
 Fon
 ^^^
@@ -3668,6 +3898,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Terminal.app* measures width 5.
 
+.. _TerminalapplangBaatonum:
+
 Baatonum
 ^^^^^^^^
 
@@ -3694,6 +3926,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Terminal.app* measures width 2.
 
+.. _TerminalapplangDangme:
+
 Dangme
 ^^^^^^
 
@@ -3717,6 +3951,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Terminal.app* measures width -3.
+
+.. _TerminalapplangTaiDam:
 
 Tai Dam
 ^^^^^^^
@@ -3759,11 +3995,6 @@ The test suite completed in **59.63 seconds** (59s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html

@@ -24,7 +24,7 @@ LANG          1.68%        2.1%            languages_supported / total_languages
 VS16          0.00%        0.0%            pct_success / 100
 VS15          0.00%        0.0%            pct_success / 100
 DEC Modes     20.13%       11.1%           modes_supported / total_modes
-TIME          41.39s       99.8%           1 - ((elapsed - min) / (max - min)) [inverse]
+TIME          41.39s       88.2%           1 - ((elapsed - min) / (max - min)) [inverse]
 ============  ===========  ==============  ======================================================
 
 **Final Score Calculation:**
@@ -206,127 +206,129 @@ Mongolian, Halh (Mongolian), Tagalog (Tagalog).
 
 The following 117 languages are not fully supported:
 
-===============================  ==========  =========  =============
-lang                               n_errors    n_total  pct_success
-===============================  ==========  =========  =============
-Shan                                    868        915  5.1%
-Tamil (Sri Lanka)                      1000       1074  6.9%
-Tamil                                  1000       1075  7.0%
-Sanskrit (Grantha)                      895       1006  11.0%
-Javanese (Javanese)                    1000       1137  12.0%
-Malayalam                              1000       1154  13.3%
-Bengali                                1000       1166  14.2%
-Khmer, Central                          450        528  14.8%
-Kannada                                 902       1080  16.5%
-Khün                                    363        442  17.9%
-Burmese                                 974       1223  20.4%
-Sanskrit                                756       1000  24.4%
-Tamang, Eastern                          33         45  26.7%
-Mon                                     678        946  28.3%
-Marathi                                1000       1421  29.6%
-Nepali                                  931       1385  32.8%
-Gujarati                               1000       1517  34.1%
-Telugu                                  720       1129  36.2%
-Maithili                                955       1519  37.1%
-Hindi                                  1000       1631  38.7%
-Panjabi, Eastern                       1000       1831  45.4%
-Sinhala                                 889       1655  46.3%
-Bhojpuri                                881       1737  49.3%
-Magahi                                  813       1716  52.6%
-Chakma                                  497       1444  65.6%
-Chinese, Xiang                            5        212  97.6%
-Vietnamese (Han nom)                      4        199  98.0%
-Thai (2)                                  6        313  98.1%
-Chinese, Wu                               4        211  98.1%
-Chinese, Jinyu                            4        212  98.1%
-Nuosu                                     4        230  98.3%
-Japanese                                  5        299  98.3%
-Chinese, Mandarin (Harbin)                3        210  98.6%
-Chinese, Mandarin (Traditional)           3        210  98.6%
-(Jinan)                                   3        211  98.6%
-Chinese, Gan                              3        211  98.6%
-Chinese, Mandarin (Guiyang)               3        211  98.6%
-Chinese, Mandarin (Nanjing)               3        212  98.6%
-Chinese, Min Nan                          3        212  98.6%
-Chinese, Mandarin (Simplified)            3        225  98.7%
-Japanese (Osaka)                          4        308  98.7%
-Japanese (Tokyo)                          4        320  98.8%
-Thai                                      4        341  98.8%
-Chinese, Yue                              2        210  99.0%
-Chinese, Hakka                            2        212  99.1%
-Chinese, Mandarin (Beijing)               2        212  99.1%
-Chinese, Mandarin (Tianjin)               2        212  99.1%
-Lao                                       4        426  99.1%
-Bora                                     12       1598  99.2%
-Chickasaw                                 4        554  99.3%
-Orok                                      8       1245  99.4%
-Shipibo-Conibo                           16       2540  99.4%
-Gumuz                                     8       1283  99.4%
-Amarakaeri                                9       1446  99.4%
-Veps                                      8       1323  99.4%
-Yaneshaʼ                                 15       2536  99.4%
-Nanai                                     7       1207  99.4%
-South Azerbaijani                         8       1396  99.4%
-Secoya                                    8       1409  99.4%
-Navajo                                    9       1600  99.4%
-Evenki                                    5        899  99.4%
-Siona                                     8       1492  99.5%
-Gilyak                                    8       1504  99.5%
-Korean                                    6       1185  99.5%
-Tem                                       8       1659  99.5%
-Colorado                                  6       1263  99.5%
-Catalan (2)                               9       1909  99.5%
-(Yeonbyeon)                               5       1061  99.5%
-Mirandese                                 9       1966  99.5%
-Yiddish, Eastern                          8       1775  99.5%
-Picard                                    9       2024  99.6%
-Kabyle                                    8       1815  99.6%
-Lingala (tones)                           8       1818  99.6%
-Ticuna                                    9       2048  99.6%
-Tamazight, Central Atlas                  8       1822  99.6%
-Pular (Adlam)                             7       1613  99.6%
-Maldivian                                 8       1918  99.6%
-Éwé                                       9       2230  99.6%
-Saint Lucian Creole French                7       1777  99.6%
-Farsi, Western                            7       1822  99.6%
-Dendi                                     6       1569  99.6%
-Mazahua Central                           6       1574  99.6%
-Fur                                       7       1838  99.6%
-Maori (2)                                 9       2385  99.6%
-Dari                                      7       1872  99.6%
-Ditammari                                 7       1882  99.6%
-Arabic, Standard                          5       1348  99.6%
-Uduk                                     12       3247  99.6%
-Yoruba                                    9       2454  99.6%
-Mixtec, Metlatónoc                        5       1367  99.6%
-French (Welche)                           7       1928  99.6%
-Bamun                                     8       2285  99.6%
-Chinantec, Chiltepec                      6       1729  99.7%
-Gen                                       8       2309  99.7%
-Assyrian Neo-Aramaic                      4       1160  99.7%
-Ga                                        7       2039  99.7%
-Aja                                       7       2061  99.7%
-Panjabi, Western                          8       2419  99.7%
-Dinka, Northeastern                       5       1529  99.7%
-Mòoré                                     8       2447  99.7%
-Otomi, Mezquital                          6       1849  99.7%
-Vietnamese                                8       2502  99.7%
-Serer-Sine                                5       1596  99.7%
-Lamnso'                                   7       2237  99.7%
-Urdu                                      7       2237  99.7%
-Pashto, Northern                          7       2242  99.7%
-Seraiki                                   7       2242  99.7%
-Belanda Viri                              7       2246  99.7%
-Urdu (2)                                  7       2251  99.7%
-Dagaare, Southern                         8       2582  99.7%
-Baatonum                                  6       1939  99.7%
-Waama                                     3       1000  99.7%
-Fon                                       7       2520  99.7%
-Dangme                                    8       2912  99.7%
-Tai Dam                                   6       2386  99.7%
-Dzongkha                                  7       3060  99.8%
-Tibetan, Central                          7       3174  99.8%
-===============================  ==========  =========  =============
+=============================================================================  ==========  =========  =============
+lang                                                                             n_errors    n_total  pct_success
+=============================================================================  ==========  =========  =============
+:ref:`Shan <BobcatlangShan>`                                                          868        915  5.1%
+:ref:`Tamil (Sri Lanka) <BobcatlangTamilSriLanka>`                                   1000       1074  6.9%
+:ref:`Tamil <BobcatlangTamil>`                                                       1000       1075  7.0%
+:ref:`Sanskrit (Grantha) <BobcatlangSanskritGrantha>`                                 895       1006  11.0%
+:ref:`Javanese (Javanese) <BobcatlangJavaneseJavanese>`                              1000       1137  12.0%
+:ref:`Malayalam <BobcatlangMalayalam>`                                               1000       1154  13.3%
+:ref:`Bengali <BobcatlangBengali>`                                                   1000       1166  14.2%
+:ref:`Khmer, Central <BobcatlangKhmerCentral>`                                        450        528  14.8%
+:ref:`Kannada <BobcatlangKannada>`                                                    902       1080  16.5%
+:ref:`Khün <BobcatlangKhn>`                                                           363        442  17.9%
+:ref:`Burmese <BobcatlangBurmese>`                                                    974       1223  20.4%
+:ref:`Sanskrit <BobcatlangSanskrit>`                                                  756       1000  24.4%
+:ref:`Tamang, Eastern <BobcatlangTamangEastern>`                                       33         45  26.7%
+:ref:`Mon <BobcatlangMon>`                                                            678        946  28.3%
+:ref:`Marathi <BobcatlangMarathi>`                                                   1000       1421  29.6%
+:ref:`Nepali <BobcatlangNepali>`                                                      931       1385  32.8%
+:ref:`Gujarati <BobcatlangGujarati>`                                                 1000       1517  34.1%
+:ref:`Telugu <BobcatlangTelugu>`                                                      720       1129  36.2%
+:ref:`Maithili <BobcatlangMaithili>`                                                  955       1519  37.1%
+:ref:`Hindi <BobcatlangHindi>`                                                       1000       1631  38.7%
+:ref:`Panjabi, Eastern <BobcatlangPanjabiEastern>`                                   1000       1831  45.4%
+:ref:`Sinhala <BobcatlangSinhala>`                                                    889       1655  46.3%
+:ref:`Bhojpuri <BobcatlangBhojpuri>`                                                  881       1737  49.3%
+:ref:`Magahi <BobcatlangMagahi>`                                                      813       1716  52.6%
+:ref:`Chakma <BobcatlangChakma>`                                                      497       1444  65.6%
+:ref:`Chinese, Xiang <BobcatlangChineseXiang>`                                          5        212  97.6%
+:ref:`Vietnamese (Han nom) <BobcatlangVietnameseHannom>`                                4        199  98.0%
+:ref:`Thai (2) <BobcatlangThai2>`                                                       6        313  98.1%
+:ref:`Chinese, Wu <BobcatlangChineseWu>`                                                4        211  98.1%
+:ref:`Chinese, Jinyu <BobcatlangChineseJinyu>`                                          4        212  98.1%
+:ref:`Nuosu <BobcatlangNuosu>`                                                          4        230  98.3%
+:ref:`Japanese <BobcatlangJapanese>`                                                    5        299  98.3%
+:ref:`Chinese, Mandarin (Harbin) <BobcatlangChineseMandarinHarbin>`                     3        210  98.6%
+:ref:`Chinese, Mandarin (Traditional) <BobcatlangChineseMandarinTraditional>`           3        210  98.6%
+:ref:`(Jinan) <BobcatlangJinan>`                                                        3        211  98.6%
+:ref:`Chinese, Gan <BobcatlangChineseGan>`                                              3        211  98.6%
+:ref:`Chinese, Mandarin (Guiyang) <BobcatlangChineseMandarinGuiyang>`                   3        211  98.6%
+:ref:`Chinese, Mandarin (Nanjing) <BobcatlangChineseMandarinNanjing>`                   3        212  98.6%
+:ref:`Chinese, Min Nan <BobcatlangChineseMinNan>`                                       3        212  98.6%
+:ref:`Chinese, Mandarin (Simplified) <BobcatlangChineseMandarinSimplified>`             3        225  98.7%
+:ref:`Japanese (Osaka) <BobcatlangJapaneseOsaka>`                                       4        308  98.7%
+:ref:`Japanese (Tokyo) <BobcatlangJapaneseTokyo>`                                       4        320  98.8%
+:ref:`Thai <BobcatlangThai>`                                                            4        341  98.8%
+:ref:`Chinese, Yue <BobcatlangChineseYue>`                                              2        210  99.0%
+:ref:`Chinese, Hakka <BobcatlangChineseHakka>`                                          2        212  99.1%
+:ref:`Chinese, Mandarin (Beijing) <BobcatlangChineseMandarinBeijing>`                   2        212  99.1%
+:ref:`Chinese, Mandarin (Tianjin) <BobcatlangChineseMandarinTianjin>`                   2        212  99.1%
+:ref:`Lao <BobcatlangLao>`                                                              4        426  99.1%
+:ref:`Bora <BobcatlangBora>`                                                           12       1598  99.2%
+:ref:`Chickasaw <BobcatlangChickasaw>`                                                  4        554  99.3%
+:ref:`Orok <BobcatlangOrok>`                                                            8       1245  99.4%
+:ref:`Shipibo-Conibo <BobcatlangShipiboConibo>`                                        16       2540  99.4%
+:ref:`Gumuz <BobcatlangGumuz>`                                                          8       1283  99.4%
+:ref:`Amarakaeri <BobcatlangAmarakaeri>`                                                9       1446  99.4%
+:ref:`Veps <BobcatlangVeps>`                                                            8       1323  99.4%
+:ref:`Yaneshaʼ <BobcatlangYanesha>`                                                    15       2536  99.4%
+:ref:`Nanai <BobcatlangNanai>`                                                          7       1207  99.4%
+:ref:`South Azerbaijani <BobcatlangSouthAzerbaijani>`                                   8       1396  99.4%
+:ref:`Secoya <BobcatlangSecoya>`                                                        8       1409  99.4%
+:ref:`Navajo <BobcatlangNavajo>`                                                        9       1600  99.4%
+:ref:`Evenki <BobcatlangEvenki>`                                                        5        899  99.4%
+:ref:`Siona <BobcatlangSiona>`                                                          8       1492  99.5%
+:ref:`Gilyak <BobcatlangGilyak>`                                                        8       1504  99.5%
+:ref:`Korean <BobcatlangKorean>`                                                        6       1185  99.5%
+:ref:`Tem <BobcatlangTem>`                                                              8       1659  99.5%
+:ref:`Colorado <BobcatlangColorado>`                                                    6       1263  99.5%
+:ref:`Catalan (2) <BobcatlangCatalan2>`                                                 9       1909  99.5%
+:ref:`(Yeonbyeon) <BobcatlangYeonbyeon>`                                                5       1061  99.5%
+:ref:`Mirandese <BobcatlangMirandese>`                                                  9       1966  99.5%
+:ref:`Yiddish, Eastern <BobcatlangYiddishEastern>`                                      8       1775  99.5%
+:ref:`Picard <BobcatlangPicard>`                                                        9       2024  99.6%
+:ref:`Kabyle <BobcatlangKabyle>`                                                        8       1815  99.6%
+:ref:`Lingala (tones) <BobcatlangLingalatones>`                                         8       1818  99.6%
+:ref:`Ticuna <BobcatlangTicuna>`                                                        9       2048  99.6%
+:ref:`Tamazight, Central Atlas <BobcatlangTamazightCentralAtlas>`                       8       1822  99.6%
+:ref:`Pular (Adlam) <BobcatlangPularAdlam>`                                             7       1613  99.6%
+:ref:`Maldivian <BobcatlangMaldivian>`                                                  8       1918  99.6%
+:ref:`Éwé <Bobcatlangw>`                                                                9       2230  99.6%
+:ref:`Saint Lucian Creole French <BobcatlangSaintLucianCreoleFrench>`                   7       1777  99.6%
+:ref:`Farsi, Western <BobcatlangFarsiWestern>`                                          7       1822  99.6%
+:ref:`Dendi <BobcatlangDendi>`                                                          6       1569  99.6%
+:ref:`Mazahua Central <BobcatlangMazahuaCentral>`                                       6       1574  99.6%
+:ref:`Fur <BobcatlangFur>`                                                              7       1838  99.6%
+:ref:`Maori (2) <BobcatlangMaori2>`                                                     9       2385  99.6%
+:ref:`Dari <BobcatlangDari>`                                                            7       1872  99.6%
+:ref:`Ditammari <BobcatlangDitammari>`                                                  7       1882  99.6%
+:ref:`Arabic, Standard <BobcatlangArabicStandard>`                                      5       1348  99.6%
+:ref:`Uduk <BobcatlangUduk>`                                                           12       3247  99.6%
+:ref:`Yoruba <BobcatlangYoruba>`                                                        9       2454  99.6%
+:ref:`Mixtec, Metlatónoc <BobcatlangMixtecMetlatnoc>`                                   5       1367  99.6%
+:ref:`French (Welche) <BobcatlangFrenchWelche>`                                         7       1928  99.6%
+:ref:`Bamun <BobcatlangBamun>`                                                          8       2285  99.6%
+:ref:`Chinantec, Chiltepec <BobcatlangChinantecChiltepec>`                              6       1729  99.7%
+:ref:`Gen <BobcatlangGen>`                                                              8       2309  99.7%
+:ref:`Assyrian Neo-Aramaic <BobcatlangAssyrianNeoAramaic>`                              4       1160  99.7%
+:ref:`Ga <BobcatlangGa>`                                                                7       2039  99.7%
+:ref:`Aja <BobcatlangAja>`                                                              7       2061  99.7%
+:ref:`Panjabi, Western <BobcatlangPanjabiWestern>`                                      8       2419  99.7%
+:ref:`Dinka, Northeastern <BobcatlangDinkaNortheastern>`                                5       1529  99.7%
+:ref:`Mòoré <BobcatlangMor>`                                                            8       2447  99.7%
+:ref:`Otomi, Mezquital <BobcatlangOtomiMezquital>`                                      6       1849  99.7%
+:ref:`Vietnamese <BobcatlangVietnamese>`                                                8       2502  99.7%
+:ref:`Serer-Sine <BobcatlangSererSine>`                                                 5       1596  99.7%
+:ref:`Lamnso' <BobcatlangLamnso>`                                                       7       2237  99.7%
+:ref:`Urdu <BobcatlangUrdu>`                                                            7       2237  99.7%
+:ref:`Pashto, Northern <BobcatlangPashtoNorthern>`                                      7       2242  99.7%
+:ref:`Seraiki <BobcatlangSeraiki>`                                                      7       2242  99.7%
+:ref:`Belanda Viri <BobcatlangBelandaViri>`                                             7       2246  99.7%
+:ref:`Urdu (2) <BobcatlangUrdu2>`                                                       7       2251  99.7%
+:ref:`Dagaare, Southern <BobcatlangDagaareSouthern>`                                    8       2582  99.7%
+:ref:`Baatonum <BobcatlangBaatonum>`                                                    6       1939  99.7%
+:ref:`Waama <BobcatlangWaama>`                                                          3       1000  99.7%
+:ref:`Fon <BobcatlangFon>`                                                              7       2520  99.7%
+:ref:`Dangme <BobcatlangDangme>`                                                        8       2912  99.7%
+:ref:`Tai Dam <BobcatlangTaiDam>`                                                       6       2386  99.7%
+:ref:`Dzongkha <BobcatlangDzongkha>`                                                    7       3060  99.8%
+:ref:`Tibetan, Central <BobcatlangTibetanCentral>`                                      7       3174  99.8%
+=============================================================================  ==========  =========  =============
+
+.. _BobcatlangShan:
 
 Shan
 ^^^^
@@ -365,6 +367,8 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width 9.
 
+.. _BobcatlangTamilSriLanka:
+
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
 
@@ -391,6 +395,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
 
+.. _BobcatlangTamil:
+
 Tamil
 ^^^^^
 
@@ -416,6 +422,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
+
+.. _BobcatlangSanskritGrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -453,6 +461,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Bobcat* measures width 14.
 
+.. _BobcatlangJavaneseJavanese:
+
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
 
@@ -478,6 +488,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
+
+.. _BobcatlangMalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -530,6 +542,8 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *Bobcat* measures width 21.
 
+.. _BobcatlangBengali:
+
 Bengali
 ^^^^^^^
 
@@ -563,6 +577,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Bobcat* measures width 12.
+
+.. _BobcatlangKhmerCentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -622,6 +638,8 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Bobcat* measures width 25.
 
+.. _BobcatlangKannada:
+
 Kannada
 ^^^^^^^
 
@@ -647,6 +665,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
+
+.. _BobcatlangKhn:
 
 Khün
 ^^^^
@@ -692,6 +712,8 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Bobcat* measures width 15.
 
+.. _BobcatlangBurmese:
+
 Burmese
 ^^^^^^^
 
@@ -730,6 +752,8 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Bobcat* measures width 11.
 
+.. _BobcatlangSanskrit:
+
 Sanskrit
 ^^^^^^^^
 
@@ -766,6 +790,8 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Bobcat* measures width 13.
 
+.. _BobcatlangTamangEastern:
+
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
 
@@ -793,6 +819,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
+
+.. _BobcatlangMon:
 
 Mon
 ^^^
@@ -826,6 +854,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 7.
 
+.. _BobcatlangMarathi:
+
 Marathi
 ^^^^^^^
 
@@ -853,6 +883,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 5.
 
+.. _BobcatlangNepali:
+
 Nepali
 ^^^^^^
 
@@ -879,6 +911,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
 
+.. _BobcatlangGujarati:
+
 Gujarati
 ^^^^^^^^
 
@@ -904,6 +938,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
+
+.. _BobcatlangTelugu:
 
 Telugu
 ^^^^^^
@@ -940,6 +976,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Bobcat* measures width 10.
 
+.. _BobcatlangMaithili:
+
 Maithili
 ^^^^^^^^
 
@@ -970,6 +1008,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 7.
 
+.. _BobcatlangHindi:
+
 Hindi
 ^^^^^
 
@@ -995,6 +1035,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
+
+.. _BobcatlangPanjabiEastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1024,6 +1066,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
 
+.. _BobcatlangSinhala:
+
 Sinhala
 ^^^^^^^
 
@@ -1049,6 +1093,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
+
+.. _BobcatlangBhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1082,6 +1128,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width 10.
 
+.. _BobcatlangMagahi:
+
 Magahi
 ^^^^^^
 
@@ -1113,6 +1161,8 @@ Total codepoints: 10
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width 10.
+
+.. _BobcatlangChakma:
 
 Chakma
 ^^^^^^
@@ -1149,6 +1199,8 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Bobcat* measures width 8.
 
+.. _BobcatlangChineseXiang:
+
 Chinese, Xiang
 ^^^^^^^^^^^^^^
 
@@ -1176,6 +1228,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Bobcat* measures width 5.
+
+.. _BobcatlangVietnameseHannom:
 
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
@@ -1207,6 +1261,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *Bobcat* measures width -30.
 
+.. _BobcatlangThai2:
+
 Thai (2)
 ^^^^^^^^
 
@@ -1235,6 +1291,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width -22.
 
+.. _BobcatlangChineseWu:
+
 Chinese, Wu
 ^^^^^^^^^^^
 
@@ -1260,6 +1318,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Bobcat* measures width -42.
+
+.. _BobcatlangChineseJinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1289,6 +1349,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Bobcat* measures width 5.
 
+.. _BobcatlangNuosu:
+
 Nuosu
 ^^^^^
 
@@ -1317,6 +1379,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Bobcat* measures width 1.
 
+.. _BobcatlangJapanese:
+
 Japanese
 ^^^^^^^^
 
@@ -1341,6 +1405,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width -54.
+
+.. _BobcatlangChineseMandarinHarbin:
 
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1375,6 +1441,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Bobcat* measures width -6.
 
+.. _BobcatlangChineseMandarinTraditional:
+
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1408,6 +1476,8 @@ Total codepoints: 12
 
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *Bobcat* measures width 10.
+
+.. _BobcatlangJinan:
 
 (Jinan)
 ^^^^^^^
@@ -1455,6 +1525,8 @@ Total codepoints: 24
 - python `wcwidth.wcswidth()`_ measures width 48,
   while *Bobcat* measures width 40.
 
+.. _BobcatlangChineseGan:
+
 Chinese, Gan
 ^^^^^^^^^^^^
 
@@ -1480,6 +1552,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Bobcat* measures width -40.
+
+.. _BobcatlangChineseMandarinGuiyang:
 
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1508,6 +1582,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Bobcat* measures width 5.
+
+.. _BobcatlangChineseMandarinNanjing:
 
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1543,6 +1619,8 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *Bobcat* measures width -4.
 
+.. _BobcatlangChineseMinNan:
+
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
 
@@ -1571,6 +1649,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Bobcat* measures width 5.
 
+.. _BobcatlangChineseMandarinSimplified:
+
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1595,6 +1675,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width -40.
+
+.. _BobcatlangJapaneseOsaka:
 
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
@@ -1621,6 +1703,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width -24.
 
+.. _BobcatlangJapaneseTokyo:
+
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
 
@@ -1645,6 +1729,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width -54.
+
+.. _BobcatlangThai:
 
 Thai
 ^^^^
@@ -1706,6 +1792,8 @@ Total codepoints: 38
 - python `wcwidth.wcswidth()`_ measures width 33,
   while *Bobcat* measures width 14.
 
+.. _BobcatlangChineseYue:
+
 Chinese, Yue
 ^^^^^^^^^^^^
 
@@ -1735,6 +1823,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 14,
   while *Bobcat* measures width 0.
 
+.. _BobcatlangChineseHakka:
+
 Chinese, Hakka
 ^^^^^^^^^^^^^^
 
@@ -1762,6 +1852,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *Bobcat* measures width 5.
+
+.. _BobcatlangChineseMandarinBeijing:
 
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1796,6 +1888,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Bobcat* measures width -22.
 
+.. _BobcatlangChineseMandarinTianjin:
+
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1829,6 +1923,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *Bobcat* measures width -6.
 
+.. _BobcatlangLao:
+
 Lao
 ^^^
 
@@ -1853,6 +1949,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Bobcat* measures width -55.
+
+.. _BobcatlangBora:
 
 Bora
 ^^^^
@@ -1897,6 +1995,8 @@ Total codepoints: 21
 - python `wcwidth.wcswidth()`_ measures width 21,
   while *Bobcat* measures width 14.
 
+.. _BobcatlangChickasaw:
+
 Chickasaw
 ^^^^^^^^^
 
@@ -1923,6 +2023,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width -5.
+
+.. _BobcatlangOrok:
 
 Orok
 ^^^^
@@ -1956,6 +2058,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *Bobcat* measures width 3.
 
+.. _BobcatlangShipiboConibo:
+
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
 
@@ -1986,6 +2090,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Bobcat* measures width -3.
 
+.. _BobcatlangGumuz:
+
 Gumuz
 ^^^^^
 
@@ -2013,6 +2119,8 @@ Total codepoints: 6
 
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width -12.
+
+.. _BobcatlangAmarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -2042,6 +2150,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width 0.
 
+.. _BobcatlangVeps:
+
 Veps
 ^^^^
 
@@ -2068,6 +2178,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 2.
+
+.. _BobcatlangYanesha:
 
 Yaneshaʼ
 ^^^^^^^^
@@ -2097,6 +2209,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width 3.
 
+.. _BobcatlangNanai:
+
 Nanai
 ^^^^^
 
@@ -2123,6 +2237,8 @@ Total codepoints: 5
 
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width -7.
+
+.. _BobcatlangSouthAzerbaijani:
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
@@ -2157,6 +2273,8 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Bobcat* measures width -3.
 
+.. _BobcatlangSecoya:
+
 Secoya
 ^^^^^^
 
@@ -2183,6 +2301,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width -7.
 
+.. _BobcatlangNavajo:
+
 Navajo
 ^^^^^^
 
@@ -2206,6 +2326,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -7.
+
+.. _BobcatlangEvenki:
 
 Evenki
 ^^^^^^
@@ -2236,6 +2358,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Bobcat* measures width -1.
 
+.. _BobcatlangSiona:
+
 Siona
 ^^^^^
 
@@ -2261,6 +2385,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width -10.
+
+.. _BobcatlangGilyak:
 
 Gilyak
 ^^^^^^
@@ -2290,6 +2416,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width 2.
 
+.. _BobcatlangKorean:
+
 Korean
 ^^^^^^
 
@@ -2315,6 +2443,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Bobcat* measures width -2.
+
+.. _BobcatlangTem:
 
 Tem
 ^^^
@@ -2344,6 +2474,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 2.
 
+.. _BobcatlangColorado:
+
 Colorado
 ^^^^^^^^
 
@@ -2369,6 +2501,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width -3.
+
+.. _BobcatlangCatalan2:
 
 Catalan (2)
 ^^^^^^^^^^^
@@ -2398,6 +2532,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width -1.
 
+.. _BobcatlangYeonbyeon:
+
 (Yeonbyeon)
 ^^^^^^^^^^^
 
@@ -2423,6 +2559,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width -2.
 
+.. _BobcatlangMirandese:
+
 Mirandese
 ^^^^^^^^^
 
@@ -2446,6 +2584,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -1.
+
+.. _BobcatlangYiddishEastern:
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -2472,6 +2612,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width -4.
 
+.. _BobcatlangPicard:
+
 Picard
 ^^^^^^
 
@@ -2497,6 +2639,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width -1.
+
+.. _BobcatlangKabyle:
 
 Kabyle
 ^^^^^^
@@ -2529,6 +2673,8 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Bobcat* measures width 8.
 
+.. _BobcatlangLingalatones:
+
 Lingala (tones)
 ^^^^^^^^^^^^^^^
 
@@ -2557,6 +2703,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width -2.
 
+.. _BobcatlangTicuna:
+
 Ticuna
 ^^^^^^
 
@@ -2581,6 +2729,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -2.
 
+.. _BobcatlangTamazightCentralAtlas:
+
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2603,6 +2753,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Bobcat* measures width -7.
+
+.. _BobcatlangPularAdlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -2629,6 +2781,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width -4.
 
+.. _BobcatlangMaldivian:
+
 Maldivian
 ^^^^^^^^^
 
@@ -2654,6 +2808,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -3.
+
+.. _Bobcatlangw:
 
 Éwé
 ^^^
@@ -2685,6 +2841,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Bobcat* measures width 6.
 
+.. _BobcatlangSaintLucianCreoleFrench:
+
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2715,6 +2873,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Bobcat* measures width 1.
 
+.. _BobcatlangFarsiWestern:
+
 Farsi, Western
 ^^^^^^^^^^^^^^
 
@@ -2742,6 +2902,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width -2.
 
+.. _BobcatlangDendi:
+
 Dendi
 ^^^^^
 
@@ -2768,6 +2930,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width 1.
 
+.. _BobcatlangMazahuaCentral:
+
 Mazahua Central
 ^^^^^^^^^^^^^^^
 
@@ -2791,6 +2955,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -2.
+
+.. _BobcatlangFur:
 
 Fur
 ^^^
@@ -2822,6 +2988,8 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *Bobcat* measures width 6.
 
+.. _BobcatlangMaori2:
+
 Maori (2)
 ^^^^^^^^^
 
@@ -2844,6 +3012,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Bobcat* measures width -10.
+
+.. _BobcatlangDari:
 
 Dari
 ^^^^
@@ -2872,6 +3042,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 0.
 
+.. _BobcatlangDitammari:
+
 Ditammari
 ^^^^^^^^^
 
@@ -2895,6 +3067,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -6.
+
+.. _BobcatlangArabicStandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2924,6 +3098,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *Bobcat* measures width -2.
 
+.. _BobcatlangUduk:
+
 Uduk
 ^^^^
 
@@ -2949,6 +3125,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width 0.
+
+.. _BobcatlangYoruba:
 
 Yoruba
 ^^^^^^
@@ -2982,6 +3160,8 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *Bobcat* measures width -1.
 
+.. _BobcatlangMixtecMetlatnoc:
+
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
 
@@ -3005,6 +3185,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -13.
+
+.. _BobcatlangFrenchWelche:
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -3034,6 +3216,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width 0.
 
+.. _BobcatlangBamun:
+
 Bamun
 ^^^^^
 
@@ -3058,6 +3242,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -1.
 
+.. _BobcatlangChinantecChiltepec:
+
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -3080,6 +3266,8 @@ Total codepoints: 1
 
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Bobcat* measures width -4.
+
+.. _BobcatlangGen:
 
 Gen
 ^^^
@@ -3104,6 +3292,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -4.
+
+.. _BobcatlangAssyrianNeoAramaic:
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
@@ -3134,6 +3324,8 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *Bobcat* measures width 1.
 
+.. _BobcatlangGa:
+
 Ga
 ^^
 
@@ -3157,6 +3349,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -8.
+
+.. _BobcatlangAja:
 
 Aja
 ^^^
@@ -3182,6 +3376,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width 1.
 
+.. _BobcatlangPanjabiWestern:
+
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
 
@@ -3206,6 +3402,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -2.
 
+.. _BobcatlangDinkaNortheastern:
+
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
 
@@ -3229,6 +3427,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -1.
+
+.. _BobcatlangMor:
 
 Mòoré
 ^^^^^
@@ -3257,6 +3457,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 1.
 
+.. _BobcatlangOtomiMezquital:
+
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
 
@@ -3284,6 +3486,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 0.
 
+.. _BobcatlangVietnamese:
+
 Vietnamese
 ^^^^^^^^^^
 
@@ -3310,6 +3514,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width -2.
 
+.. _BobcatlangSererSine:
+
 Serer-Sine
 ^^^^^^^^^^
 
@@ -3335,6 +3541,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 1.
 
+.. _BobcatlangLamnso:
+
 Lamnso'
 ^^^^^^^
 
@@ -3358,6 +3566,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -4.
+
+.. _BobcatlangUrdu:
 
 Urdu
 ^^^^
@@ -3387,6 +3597,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 0.
 
+.. _BobcatlangPashtoNorthern:
+
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
 
@@ -3414,6 +3626,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 0.
 
+.. _BobcatlangSeraiki:
+
 Seraiki
 ^^^^^^^
 
@@ -3440,6 +3654,8 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width -1.
 
+.. _BobcatlangBelandaViri:
+
 Belanda Viri
 ^^^^^^^^^^^^
 
@@ -3465,6 +3681,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *Bobcat* measures width 2.
+
+.. _BobcatlangUrdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -3494,6 +3712,8 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 0.
 
+.. _BobcatlangDagaareSouthern:
+
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
 
@@ -3521,6 +3741,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width -3.
 
+.. _BobcatlangBaatonum:
+
 Baatonum
 ^^^^^^^^
 
@@ -3546,6 +3768,8 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width -2.
 
+.. _BobcatlangWaama:
+
 Waama
 ^^^^^
 
@@ -3570,6 +3794,8 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -4.
 
+.. _BobcatlangFon:
+
 Fon
 ^^^
 
@@ -3593,6 +3819,8 @@ Total codepoints: 2
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -1.
+
+.. _BobcatlangDangme:
 
 Dangme
 ^^^^^^
@@ -3621,6 +3849,8 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *Bobcat* measures width 3.
 
+.. _BobcatlangTaiDam:
+
 Tai Dam
 ^^^^^^^
 
@@ -3645,6 +3875,8 @@ Total codepoints: 3
 
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 1.
+
+.. _BobcatlangDzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -3671,6 +3903,8 @@ Total codepoints: 4
 
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *Bobcat* measures width -1.
+
+.. _BobcatlangTibetanCentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -3947,11 +4181,6 @@ The test suite completed in **41.39 seconds** (41s).
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
 selectors, language support checks, and DEC mode detection.
-
-Faster execution times generally indicate more efficient terminal rendering
-and/or faster response to terminal control sequences. However, execution
-time can also be affected by system load, terminal implementation complexity,
-and the number of features being tested.
 
 .. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html
 .. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html
