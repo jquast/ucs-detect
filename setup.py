@@ -20,7 +20,7 @@ def main():
     """Setup.py entry point."""
     setuptools.setup(
         name='ucs_detect',
-        version='1.0.7',
+        version='1.0.8',
         description=(
             "Detects Unicode support of an interactive terminal"),
         long_description=codecs.open(
@@ -66,7 +66,10 @@ def main():
             'emoji'
             'emulator',
             'terminal',
+            'udhr'
             'unicode',
+            'vs15',
+            'vs16',
             'wcswidth',
             'wcwidth',
             'xterm',
