@@ -4,9 +4,10 @@ termit
 ------
 
 
-Tested Software version 3.1 (VTE/7600) on Linux
+Tested Software version 3.1 (VTE/7600) on Linux.
+The homepage URL of this terminal is https://github.com/nonstop/termit.
 Full results available at ucs-detect_ repository path
-`data/linux-termit-3.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-termit-3.1.yaml>`_
+`data/linux-termit-3.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-termit-3.1.yaml>`_.
 
 .. _termitscores:
 

@@ -4,9 +4,10 @@ Konsole
 -------
 
 
-Tested Software version 23.08.5 on Linux
+Tested Software version 23.08.5 on Linux.
+The homepage URL of this terminal is https://apps.kde.org/konsole/.
 Full results available at ucs-detect_ repository path
-`data/linux-konsole-23.08.5.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-konsole-23.08.5.yaml>`_
+`data/linux-konsole-23.08.5.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-konsole-23.08.5.yaml>`_.
 
 .. _konsolescores:
 

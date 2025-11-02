@@ -4,9 +4,10 @@ tmux
 ----
 
 
-Tested Software version 3.4 on Linux
+Tested Software version 3.4 on Linux.
+The homepage URL of this terminal is https://github.com/tmux/tmux.
 Full results available at ucs-detect_ repository path
-`data/linux-tmux-3.4.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-tmux-3.4.yaml>`_
+`data/linux-tmux-3.4.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-tmux-3.4.yaml>`_.
 
 .. _tmuxscores:
 

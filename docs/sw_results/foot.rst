@@ -4,9 +4,10 @@ foot
 ----
 
 
-Tested Software version 1.16.2 on Linux
+Tested Software version 1.16.2 on Linux.
+The homepage URL of this terminal is https://codeberg.org/dnkl/foot.
 Full results available at ucs-detect_ repository path
-`data/linux-foot-1.16.2.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-foot-1.16.2.yaml>`_
+`data/linux-foot-1.16.2.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-foot-1.16.2.yaml>`_.
 
 .. _footscores:
 

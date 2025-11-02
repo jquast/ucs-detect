@@ -4,9 +4,10 @@ LXTerminal
 ----------
 
 
-Tested Software version 0.4.0(VTE/7600) on Linux
+Tested Software version 0.4.0(VTE/7600) on Linux.
+The homepage URL of this terminal is https://github.com/lxde/lxterminal.
 Full results available at ucs-detect_ repository path
-`data/linux-LXTerminal-0.4.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-LXTerminal-0.4.0.yaml>`_
+`data/linux-LXTerminal-0.4.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-LXTerminal-0.4.0.yaml>`_.
 
 .. _lxterminalscores:
 

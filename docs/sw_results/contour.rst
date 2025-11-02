@@ -4,9 +4,10 @@ contour
 -------
 
 
-Tested Software version 0.6.2-master-5b1ad5be on Linux
+Tested Software version 0.6.2-master-5b1ad5be on Linux.
+The homepage URL of this terminal is https://contour-terminal.org/.
 Full results available at ucs-detect_ repository path
-`data/linux-contour-0.6.2-master-5b1ad5be.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-contour-0.6.2-master-5b1ad5be.yaml>`_
+`data/linux-contour-0.6.2-master-5b1ad5be.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-contour-0.6.2-master-5b1ad5be.yaml>`_.
 
 .. _contourscores:
 

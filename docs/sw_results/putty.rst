@@ -4,9 +4,10 @@ PuTTY
 -----
 
 
-Tested Software version 0.83 on Linux
+Tested Software version 0.83 on Linux.
+The homepage URL of this terminal is https://www.chiark.greenend.org.uk/~sgtatham/putty/.
 Full results available at ucs-detect_ repository path
-`data/linux-putty-0.83.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-putty-0.83.yaml>`_
+`data/linux-putty-0.83.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-putty-0.83.yaml>`_.
 
 .. _puttyscores:
 

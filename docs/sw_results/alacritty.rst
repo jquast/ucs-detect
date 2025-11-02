@@ -4,9 +4,10 @@ alacritty
 ---------
 
 
-Tested Software version 0.16.1 on Darwin
+Tested Software version 0.16.1 on Darwin.
+The homepage URL of this terminal is https://alacritty.org/.
 Full results available at ucs-detect_ repository path
-`data/macos-alacritty-0.16.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-alacritty-0.16.1.yaml>`_
+`data/macos-alacritty-0.16.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-alacritty-0.16.1.yaml>`_.
 
 .. _alacrittyscores:
 

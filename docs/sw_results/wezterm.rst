@@ -4,9 +4,10 @@ WezTerm
 -------
 
 
-Tested Software version 20251025-070338-b6e75fd7 on Linux
+Tested Software version 20251025-070338-b6e75fd7 on Linux.
+The homepage URL of this terminal is https://wezfurlong.org/wezterm/.
 Full results available at ucs-detect_ repository path
-`data/linux-wezterm-20251025-070338-b6e75fd7.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-wezterm-20251025-070338-b6e75fd7.yaml>`_
+`data/linux-wezterm-20251025-070338-b6e75fd7.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-wezterm-20251025-070338-b6e75fd7.yaml>`_.
 
 .. _weztermscores:
 

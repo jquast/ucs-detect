@@ -4,9 +4,10 @@ zutty
 -----
 
 
-Tested Software version 0.14.8 on Linux
+Tested Software version 0.14.8 on Linux.
+The homepage URL of this terminal is https://tomscii.sig7.se/zutty/.
 Full results available at ucs-detect_ repository path
-`data/linux-zutty-0.14.8.20231210.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-zutty-0.14.8.20231210.yaml>`_
+`data/linux-zutty-0.14.8.20231210.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-zutty-0.14.8.20231210.yaml>`_.
 
 .. _zuttyscores:
 

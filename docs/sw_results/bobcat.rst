@@ -4,9 +4,10 @@ Bobcat
 ------
 
 
-Tested Software version 0.9.7 (r348) on Linux
+Tested Software version 0.9.7 (r348) on Linux.
+The homepage URL of this terminal is https://github.com/ismail-yilmaz/Bobcat.
 Full results available at ucs-detect_ repository path
-`data/linux-bobcat-0.9.7.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-bobcat-0.9.7.yaml>`_
+`data/linux-bobcat-0.9.7.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-bobcat-0.9.7.yaml>`_.
 
 .. _bobcatscores:
 

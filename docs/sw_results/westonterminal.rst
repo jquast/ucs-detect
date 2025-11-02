@@ -4,9 +4,10 @@ weston-terminal
 ---------------
 
 
-Tested Software version 13.0.0 on Linux
+Tested Software version 13.0.0 on Linux.
+The homepage URL of this terminal is https://gitlab.freedesktop.org/wayland/weston.
 Full results available at ucs-detect_ repository path
-`data/linux-weston-terminal-13.0.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-weston-terminal-13.0.0.yaml>`_
+`data/linux-weston-terminal-13.0.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-weston-terminal-13.0.0.yaml>`_.
 
 .. _westonterminalscores:
 

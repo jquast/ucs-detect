@@ -4,9 +4,10 @@ XTerm
 -----
 
 
-Tested Software version 390 on Linux
+Tested Software version 390 on Linux.
+The homepage URL of this terminal is https://invisible-island.net/xterm/.
 Full results available at ucs-detect_ repository path
-`data/linux-uxterm-390.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-uxterm-390.yaml>`_
+`data/linux-uxterm-390.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-uxterm-390.yaml>`_.
 
 .. _xtermscores:
 

@@ -4,9 +4,10 @@ cool-retro-term
 ---------------
 
 
-Tested Software version 1.2.0 on Darwin
+Tested Software version 1.2.0 on Darwin.
+The homepage URL of this terminal is https://github.com/Swordfish90/cool-retro-term.
 Full results available at ucs-detect_ repository path
-`data/macos-cool-retro-term-1.2.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-cool-retro-term-1.2.0.yaml>`_
+`data/macos-cool-retro-term-1.2.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-cool-retro-term-1.2.0.yaml>`_.
 
 .. _coolretrotermscores:
 

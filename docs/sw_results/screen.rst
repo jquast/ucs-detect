@@ -4,9 +4,10 @@ screen
 ------
 
 
-Tested Software version 4.09.01 on Linux
+Tested Software version 4.09.01 on Linux.
+The homepage URL of this terminal is https://www.gnu.org/software/screen/.
 Full results available at ucs-detect_ repository path
-`data/linux-screen-4.09.01.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-screen-4.09.01.yaml>`_
+`data/linux-screen-4.09.01.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-screen-4.09.01.yaml>`_.
 
 .. _screenscores:
 

@@ -4,9 +4,10 @@ rio
 ---
 
 
-Tested Software version 0.2.28 on Darwin
+Tested Software version 0.2.28 on Darwin.
+The homepage URL of this terminal is https://rioterm.com/.
 Full results available at ucs-detect_ repository path
-`data/macos-rio-0.2.28.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-rio-0.2.28.yaml>`_
+`data/macos-rio-0.2.28.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-rio-0.2.28.yaml>`_.
 
 .. _rioscores:
 

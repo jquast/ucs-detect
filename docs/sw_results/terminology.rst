@@ -4,9 +4,10 @@ terminology
 -----------
 
 
-Tested Software version 1.13.0 on Linux
+Tested Software version 1.13.0 on Linux.
+The homepage URL of this terminal is https://www.enlightenment.org/about-terminology.
 Full results available at ucs-detect_ repository path
-`data/linux-terminology-1.13.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-terminology-1.13.0.yaml>`_
+`data/linux-terminology-1.13.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-terminology-1.13.0.yaml>`_.
 
 .. _terminologyscores:
 

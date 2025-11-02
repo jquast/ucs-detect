@@ -4,9 +4,10 @@ Terminator
 ----------
 
 
-Tested Software version 2.1.3(VTE/7600) on Linux
+Tested Software version 2.1.3(VTE/7600) on Linux.
+The homepage URL of this terminal is https://gnome-terminator.org/.
 Full results available at ucs-detect_ repository path
-`data/linux-terminator-2.1.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-terminator-2.1.3.yaml>`_
+`data/linux-terminator-2.1.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-terminator-2.1.3.yaml>`_.
 
 .. _terminatorscores:
 

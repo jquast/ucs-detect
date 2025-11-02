@@ -4,9 +4,10 @@ xfce4-terminal
 --------------
 
 
-Tested Software version 1.1.3(VTE/7600) on Linux
+Tested Software version 1.1.3(VTE/7600) on Linux.
+The homepage URL of this terminal is https://docs.xfce.org/apps/terminal/start.
 Full results available at ucs-detect_ repository path
-`data/linux-xfce4-terminal-1.1.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-xfce4-terminal-1.1.3.yaml>`_
+`data/linux-xfce4-terminal-1.1.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-xfce4-terminal-1.1.3.yaml>`_.
 
 .. _xfce4terminalscores:
 

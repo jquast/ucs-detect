@@ -4,9 +4,10 @@ tabby
 -----
 
 
-Tested Software version 1.0.228 on Darwin
+Tested Software version 1.0.228 on Darwin.
+The homepage URL of this terminal is https://tabby.sh/.
 Full results available at ucs-detect_ repository path
-`data/macos-tabby-1.0.228.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-tabby-1.0.228.yaml>`_
+`data/macos-tabby-1.0.228.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-tabby-1.0.228.yaml>`_.
 
 .. _tabbyscores:
 

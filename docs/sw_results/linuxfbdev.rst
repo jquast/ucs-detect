@@ -4,9 +4,10 @@ linux fbdev
 -----------
 
 
-Tested Software version 6.14.0-33 on Linux
+Tested Software version 6.14.0-33 on Linux.
+The homepage URL of this terminal is https://www.kernel.org/doc/Documentation/fb/fbcon.txt.
 Full results available at ucs-detect_ repository path
-`data/linux-6.14.0-33-fbdev.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-6.14.0-33-fbdev.yaml>`_
+`data/linux-6.14.0-33-fbdev.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-6.14.0-33-fbdev.yaml>`_.
 
 .. _linuxfbdevscores:
 

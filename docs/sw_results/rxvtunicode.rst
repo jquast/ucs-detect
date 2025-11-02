@@ -4,9 +4,10 @@ rxvt-unicode
 ------------
 
 
-Tested Software version 9.31 on Linux
+Tested Software version 9.31 on Linux.
+The homepage URL of this terminal is http://software.schmorp.de/pkg/rxvt-unicode.html.
 Full results available at ucs-detect_ repository path
-`data/linux-rxvt-unicode-9.31.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-rxvt-unicode-9.31.yaml>`_
+`data/linux-rxvt-unicode-9.31.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-rxvt-unicode-9.31.yaml>`_.
 
 .. _rxvtunicodescores:
 

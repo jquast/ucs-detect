@@ -4,9 +4,10 @@ Terminal.app
 ------------
 
 
-Tested Software version 2.15 on Darwin
+Tested Software version 2.15 on Darwin.
+The homepage URL of this terminal is https://support.apple.com/guide/terminal/welcome/mac.
 Full results available at ucs-detect_ repository path
-`data/macos-Terminal-2.15.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-Terminal-2.15.yaml>`_
+`data/macos-Terminal-2.15.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-Terminal-2.15.yaml>`_.
 
 .. _terminalappscores:
 

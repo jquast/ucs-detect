@@ -4,9 +4,10 @@ mlterm
 ------
 
 
-Tested Software version 3.9.3 on Linux
+Tested Software version 3.9.3 on Linux.
+The homepage URL of this terminal is https://mlterm.sourceforge.net/.
 Full results available at ucs-detect_ repository path
-`data/linux-mlterm-3.9.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-mlterm-3.9.3.yaml>`_
+`data/linux-mlterm-3.9.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-mlterm-3.9.3.yaml>`_.
 
 .. _mltermscores:
 

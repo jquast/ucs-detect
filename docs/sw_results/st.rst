@@ -4,9 +4,10 @@ st
 --
 
 
-Tested Software version 0.9 on Linux
+Tested Software version 0.9 on Linux.
+The homepage URL of this terminal is https://st.suckless.org/.
 Full results available at ucs-detect_ repository path
-`data/linux-st-0.9.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-st-0.9.yaml>`_
+`data/linux-st-0.9.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-st-0.9.yaml>`_.
 
 .. _stscores:
 

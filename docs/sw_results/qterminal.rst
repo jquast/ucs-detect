@@ -4,9 +4,10 @@ QTerminal
 ---------
 
 
-Tested Software version 1.4.0 on Linux
+Tested Software version 1.4.0 on Linux.
+The homepage URL of this terminal is https://github.com/lxqt/qterminal.
 Full results available at ucs-detect_ repository path
-`data/linux-QTerminal-1.4.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-QTerminal-1.4.0.yaml>`_
+`data/linux-QTerminal-1.4.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-QTerminal-1.4.0.yaml>`_.
 
 .. _qterminalscores:
 
