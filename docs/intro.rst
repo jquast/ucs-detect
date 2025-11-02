@@ -43,8 +43,12 @@ summary is published at URL https://ucs-detect.readthedocs.io/results.html
 
 An article describing the development of ucs-detect and summarizing the results
 for the 1.0.4 release of ucs-detect, November 2023 is published at
-https://www.jeffquast.com/post/ucs-detect-test-results/ and, a follow-up
-November 2025 article 
+https://www.jeffquast.com/post/ucs-detect-test-results/
+
+A follow-up November 2025 article discussing the results of another round of
+testing, including DEC Private Modes support, for release of ucs-detect 
+is published at
+https://www.jeffquast.com/post/state-of-terminal-emulation-2025/
 
 Individual yaml data file reports for these terminals may also be inspected at
 the repository folder ``data``,
@@ -136,8 +140,9 @@ UDHR data is sourced from https://github.com/eric-muller/udhr/
 History
 =======
 
-- 1.0.8 (2025-11-02) : added detection of DEC Private Modes, sixel
-  graphics, pixel size, and software version.
+- 1.0.8 (2025-11-02) : Added detection of DEC Private Modes, testing
+  of Variation Selector 15, Sixel graphics and pixel size, and 
+  automatic software version (XTVERSION and ^E answerback).
 
 - 1.0.7 (2024-01-06): Add python 3.10 compatibility for yaml file save and
   update wcwidth requirement to 0.2.13.

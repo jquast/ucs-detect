@@ -697,11 +697,12 @@ def display_dec_modes_feature_table(score_table):
     """
     Display a feature comparison table for DEC Private Modes.
 
-    Shows a compact table with changeable/supported counts and a list of supported modes.
+    Shows each changeable mode as a separate column, with terminals in rows.
     """
     # Collect all DEC modes across all terminals
     terminal_modes = {}  # terminal_name -> {mode_num -> (supported, changeable)}
     terminal_entries = {}  # terminal_name -> entry
+    all_changeable_modes = set()  # All modes that are changeable by at least one terminal
 
     for entry in score_table:
         terminal_name = entry["terminal_software_name"]
@@ -719,40 +720,43 @@ def display_dec_modes_feature_table(score_table):
             supported = mode_data.get("supported", False)
             changeable = mode_data.get("changeable", False)
             terminal_modes[terminal_name][mode_num] = (supported, changeable)
+            if changeable:
+                all_changeable_modes.add(mode_num)
 
     if not terminal_modes:
         # No DEC modes data available
         return
 
     display_title("DEC Private Modes by Terminal", 2)
-    print("This table shows DEC Private Modes support for each terminal.")
+    print("This table shows which DEC Private Modes are changeable for each terminal.")
     print("Terminals are sorted by number of changeable modes (most first).")
+    print("Each mode number column shows 'yes' if that mode is changeable.")
     print()
 
-    # Build the table data with counts and mode lists
+    # Sort all changeable modes by mode number
+    sorted_modes = sorted(all_changeable_modes, key=int)
+
+    # Build the table data
     table_data = []
     for terminal_name in terminal_modes:
-        entry = terminal_entries[terminal_name]
         modes = terminal_modes[terminal_name]
 
-        # Count supported and changeable modes
+        # Count changeable modes for this terminal
         changeable_count = sum(1 for supported, changeable in modes.values() if changeable)
-        supported_count = sum(1 for supported, changeable in modes.values() if supported)
 
-        # Create a simple link to the terminal's DEC modes section
-        if supported_count > 0:
-            supported_str = make_outbound_hyperlink(
-                str(supported_count),
-                terminal_name + "_dec_modes"
-            )
-        else:
-            supported_str = "0"
-
+        # Create row starting with Terminal and Changeable count
         row = {
             "Terminal": make_outbound_hyperlink(terminal_name, terminal_name + "_dec_modes"),
             "Changeable": str(changeable_count),
-            "Supported": supported_str
         }
+
+        # Add a column for each changeable mode
+        for mode_num in sorted_modes:
+            if mode_num in modes and modes[mode_num][1]:  # [1] is changeable
+                # Show hyperlinked "yes" for changeable modes
+                row[str(mode_num)] = make_outbound_hyperlink("yes", terminal_name + "_dec_modes")
+            else:
+                row[str(mode_num)] = ""
 
         table_data.append((changeable_count, row))
 
