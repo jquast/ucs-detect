@@ -266,6 +266,7 @@ def make_score_table():
             os.path.join(DATA_PATH, fname)
             for fname in os.listdir(DATA_PATH)
             if fname.endswith(".yaml") and os.path.isfile(os.path.join(DATA_PATH, fname))
+            and fname != 'terminal_detail_mixins.yaml'
         ]:
             data = yaml.safe_load(open(yaml_path, "r"))
 
