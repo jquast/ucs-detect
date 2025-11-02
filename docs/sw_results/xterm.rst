@@ -33,13 +33,13 @@ Detailed breakdown of how scores are calculated for *XTerm*:
 
 **Final Score Calculation:**
 
-- Raw Final Score: 1128.41%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
+- Raw Final Score: 50.85%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
-  Note: TIME is excluded from raw average since it measures performance, not feature support
+  Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 100.0%
-  (normalized across all terminals tested, including TIME performance).
+- Scaled Final Score: 35.2%
+  (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**

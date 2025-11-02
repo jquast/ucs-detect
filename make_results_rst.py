@@ -306,9 +306,6 @@ def make_score_table():
             _score_elapsed = score_elapsed_time(data)
             _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
 
-            # Exclude elapsed time from raw average since it's in seconds, not 0-1 fraction
-            scores = (score_language, score_emoji_vs16, score_emoji_vs15, _score_zwj, _score_wide, _score_dec_modes)
-            valid_scores = [s for s in scores if not math.isnan(s)]
             score_table.append(
                 dict(
                     terminal_software_name=data.get("software_name", data.get('software')),
@@ -319,7 +316,6 @@ def make_score_table():
                     score_dec_modes=_score_dec_modes,
                     score_elapsed=_score_elapsed,
                     elapsed_seconds=_elapsed_seconds,
-                    score_final=sum(valid_scores) / len(valid_scores) if valid_scores else float('NaN'),
                     score_language=score_language,
                     score_wide=_score_wide,
                     score_zwj=_score_zwj,
@@ -332,6 +328,57 @@ def make_score_table():
     except Exception:
         print(f"Error in yaml_path={yaml_path}", file=sys.stderr)
         raise
+
+    # Normalize DEC modes and elapsed time scores to 0-1 range
+    # Get valid dec_modes scores
+    valid_dec_modes = [e["score_dec_modes"] for e in score_table if not math.isnan(e["score_dec_modes"])]
+    max_dec_modes = max(valid_dec_modes) if valid_dec_modes else 1.0
+    min_dec_modes = min(valid_dec_modes) if valid_dec_modes else 0.0
+
+    # Get valid elapsed scores
+    valid_elapsed = [e["score_elapsed"] for e in score_table if not math.isnan(e["score_elapsed"])]
+    max_elapsed = max(valid_elapsed) if valid_elapsed else 1.0
+    min_elapsed = min(valid_elapsed) if valid_elapsed else 0.0
+
+    # Normalize and calculate final scores
+    for entry in score_table:
+        # Normalize DEC modes to 0-1
+        if not math.isnan(entry["score_dec_modes"]):
+            if max_dec_modes == min_dec_modes:
+                entry["score_dec_modes_norm"] = 1.0
+            else:
+                entry["score_dec_modes_norm"] = (
+                    (entry["score_dec_modes"] - min_dec_modes) / (max_dec_modes - min_dec_modes)
+                )
+        else:
+            entry["score_dec_modes_norm"] = float('NaN')
+
+        # Normalize elapsed time to 0-1 (inverse - lower is better)
+        if not math.isnan(entry["score_elapsed"]):
+            if max_elapsed == min_elapsed:
+                entry["score_elapsed_norm"] = 1.0
+            else:
+                # Use log scale for time (inverse)
+                log_elapsed = math.log10(entry["score_elapsed"])
+                log_min = math.log10(min_elapsed)
+                log_max = math.log10(max_elapsed)
+                entry["score_elapsed_norm"] = 1.0 - ((log_elapsed - log_min) / (log_max - log_min))
+        else:
+            entry["score_elapsed_norm"] = float('NaN')
+
+        # Calculate final score using normalized values
+        scores = (
+            entry["score_language"],
+            entry["score_emoji_vs16"],
+            entry["score_emoji_vs15"],
+            entry["score_zwj"],
+            entry["score_wide"],
+            entry["score_dec_modes_norm"],
+            entry["score_elapsed_norm"]
+        )
+        valid_scores = [s for s in scores if not math.isnan(s)]
+        entry["score_final"] = sum(valid_scores) / len(valid_scores) if valid_scores else float('NaN')
+
     # after accumulating all entries, create graded scale
     result = []
     _score_keys = [key for key in score_table[0].keys() if key.startswith("score_")]
@@ -536,10 +583,10 @@ def display_table_definitions():
     print("Definitions:\n")
     print(
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
-        "  the average of all feature scores (WIDE, LANG, ZWJ, VS16, VS15, and DEC Modes),\n"
+        "  the average of all feature scores (WIDE, LANG, ZWJ, VS16, VS15, DEC Modes, and TIME),\n"
         "  then scaled (normalized 0-100%) relative to all terminals tested. Higher scores\n"
-        "  indicate better overall Unicode and terminal feature support. This score excludes\n"
-        "  TIME performance metrics to focus purely on feature completeness."
+        "  indicate better overall Unicode and terminal feature support. DEC Modes and TIME\n"
+        "  are normalized to 0-1 range before averaging with other scores."
     )
     print(
         "- *WIDE score*: Overall percentage of wide character codepoints correctly\n"
@@ -693,8 +740,7 @@ def score_dec_modes(data):
     """
     Calculate score based on changeable DEC private modes.
 
-    Returns the absolute count of changeable modes.
-    This will be scaled relative to max changeable modes across all terminals.
+    Returns the count of changeable modes.
     """
     if "terminal_results" not in data or "modes" not in data["terminal_results"]:
         return float('NaN')
@@ -892,12 +938,12 @@ def show_score_breakdown(sw_name, entry):
     print(f"**Final Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6")
+    print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7")
     print(f"  the categorized 'average' absolute support level of this terminal")
-    print(f"  Note: TIME is excluded from raw average since it measures performance, not feature support")
+    print(f"  Note: DEC Modes and TIME are normalized to 0-1 range before averaging")
     print()
     print(f"- Scaled Final Score: {format_score_pct(entry['score_final_scaled'])}")
-    print(f"  (normalized across all terminals tested, including TIME performance).")
+    print(f"  (normalized across all terminals tested).")
     print(f"  *Scaled scores* are normalized (0-100%) relative to all terminals tested")
     print()
 
