@@ -714,13 +714,13 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_dec_modes"
                 ),
+                "Sixel": wrap_with_score_role("yes", 1.0) if result.get("sixel_support", False) else wrap_with_score_role("no", 0.0),
                 "Elapsed(s)": wrap_score_with_hyperlink(
                     elapsed_display,
                     result["score_elapsed_scaled"],
                     result["terminal_software_name"],
                     "_time"
                 ),
-                "Sixel": wrap_with_score_role("yes", 1.0) if result.get("sixel_support", False) else wrap_with_score_role("no", 0.0),
             }
         )
 
