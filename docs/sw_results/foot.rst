@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *foot*:
 .. table::
    :class: sphinx-datatable
 
-   ===============================  ===========  ==============
-   Score Type                       Raw Score    Scaled Score
-   ===============================  ===========  ==============
-   :ref:`WIDE <footwide>`           95.77%       95.7%
-   :ref:`ZWJ <footzwj>`             95.99%       96.0%
-   :ref:`LANG <footlang>`           75.75%       55.0%
-   :ref:`VS16 <footvs16>`           100.00%      100.0%
-   :ref:`VS15 <footvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <footdecmodes>`  30           45.5%
-   :ref:`TIME <foottime>`           71.76s       87.0%
-   ===============================  ===========  ==============
+   ===  ===============================  ===========  ==============
+     #  Score Type                       Raw Score    Scaled Score
+   ===  ===============================  ===========  ==============
+     1  :ref:`WIDE <footwide>`           95.77%       95.7%
+     2  :ref:`ZWJ <footzwj>`             95.99%       96.0%
+     3  :ref:`LANG <footlang>`           75.75%       55.0%
+     4  :ref:`VS16 <footvs16>`           100.00%      100.0%
+     5  :ref:`VS15 <footvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <footdecmodes>`  30           45.5%
+     7  :ref:`TIME <foottime>`           71.76s       87.0%
+   ===  ===============================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/foot_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/foot_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

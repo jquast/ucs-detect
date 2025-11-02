@@ -19,27 +19,43 @@ Detailed breakdown of how scores are calculated for *vscode terminal*:
 .. table::
    :class: sphinx-datatable
 
-   =========================================  ===========  ==============
-   Score Type                                 Raw Score    Scaled Score
-   =========================================  ===========  ==============
-   :ref:`WIDE <vscodeterminalwide>`           85.64%       85.2%
-   :ref:`ZWJ <vscodeterminalzwj>`             0.69%        0.7%
-   :ref:`LANG <vscodeterminallang>`           73.95%       51.7%
-   :ref:`VS16 <vscodeterminalvs16>`           0.00%        0.0%
-   :ref:`VS15 <vscodeterminalvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <vscodeterminaldecmodes>`  19           28.8%
-   :ref:`TIME <vscodeterminaltime>`           2380.01s     29.9%
-   =========================================  ===========  ==============
+   ===  =========================================  ===========  ==============
+     #  Score Type                                 Raw Score    Scaled Score
+   ===  =========================================  ===========  ==============
+     1  :ref:`WIDE <vscodeterminalwide>`           85.64%       85.2%
+     2  :ref:`ZWJ <vscodeterminalzwj>`             0.69%        0.7%
+     3  :ref:`LANG <vscodeterminallang>`           73.95%       51.7%
+     4  :ref:`VS16 <vscodeterminalvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <vscodeterminalvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <vscodeterminaldecmodes>`  19           28.8%
+     7  :ref:`TIME <vscodeterminaltime>`           2380.01s     29.9%
+   ===  =========================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/vscodeterminal_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/vscodeterminal_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 
-- Raw Final Score: 343.38%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
+- Raw Final Score: 31.29%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
-  Note: TIME is excluded from raw average since it measures performance, not feature support
+  Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 28.8%
-  (normalized across all terminals tested, including TIME performance).
+- Scaled Final Score: 2.0%
+  (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**

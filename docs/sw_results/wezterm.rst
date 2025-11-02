@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *WezTerm*:
 .. table::
    :class: sphinx-datatable
 
-   ==================================  ===========  ==============
-   Score Type                          Raw Score    Scaled Score
-   ==================================  ===========  ==============
-   :ref:`WIDE <weztermwide>`           97.72%       97.7%
-   :ref:`ZWJ <weztermzwj>`             100.00%      100.0%
-   :ref:`LANG <weztermlang>`           99.58%       99.4%
-   :ref:`VS16 <weztermvs16>`           0.00%        0.0%
-   :ref:`VS15 <weztermvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <weztermdecmodes>`  22           33.3%
-   :ref:`TIME <weztermtime>`           1050.68s     43.3%
-   ==================================  ===========  ==============
+   ===  ==================================  ===========  ==============
+     #  Score Type                          Raw Score    Scaled Score
+   ===  ==================================  ===========  ==============
+     1  :ref:`WIDE <weztermwide>`           97.72%       97.7%
+     2  :ref:`ZWJ <weztermzwj>`             100.00%      100.0%
+     3  :ref:`LANG <weztermlang>`           99.58%       99.4%
+     4  :ref:`VS16 <weztermvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <weztermvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <weztermdecmodes>`  22           33.3%
+     7  :ref:`TIME <weztermtime>`           1050.68s     43.3%
+   ===  ==================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/wezterm_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/wezterm_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

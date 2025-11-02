@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *alacritty*:
 .. table::
    :class: sphinx-datatable
 
-   ====================================  ===========  ==============
-   Score Type                            Raw Score    Scaled Score
-   ====================================  ===========  ==============
-   :ref:`WIDE <alacrittywide>`           100.00%      100.0%
-   :ref:`ZWJ <alacrittyzwj>`             0.69%        0.7%
-   :ref:`LANG <alacrittylang>`           76.33%       56.1%
-   :ref:`VS16 <alacrittyvs16>`           0.00%        0.0%
-   :ref:`VS15 <alacrittyvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <alacrittydecmodes>`  16           24.2%
-   :ref:`TIME <alacrittytime>`           128.14s      77.5%
-   ====================================  ===========  ==============
+   ===  ====================================  ===========  ==============
+     #  Score Type                            Raw Score    Scaled Score
+   ===  ====================================  ===========  ==============
+     1  :ref:`WIDE <alacrittywide>`           100.00%      100.0%
+     2  :ref:`ZWJ <alacrittyzwj>`             0.69%        0.7%
+     3  :ref:`LANG <alacrittylang>`           76.33%       56.1%
+     4  :ref:`VS16 <alacrittyvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <alacrittyvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <alacrittydecmodes>`  16           24.2%
+     7  :ref:`TIME <alacrittytime>`           128.14s      77.5%
+   ===  ====================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/alacritty_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/alacritty_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

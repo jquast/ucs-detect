@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *terminal.exe*:
 .. table::
    :class: sphinx-datatable
 
-   ======================================  ===========  ==============
-   Score Type                              Raw Score    Scaled Score
-   ======================================  ===========  ==============
-   :ref:`WIDE <terminalexewide>`           97.72%       97.7%
-   :ref:`ZWJ <terminalexezwj>`             100.00%      100.0%
-   :ref:`LANG <terminalexelang>`           69.96%       44.3%
-   :ref:`VS16 <terminalexevs16>`           100.00%      100.0%
-   :ref:`VS15 <terminalexevs15>`           0.00%        0.0%
-   :ref:`DEC Modes <terminalexedecmodes>`  26           39.4%
-   :ref:`TIME <terminalexetime>`           1147.06s     41.8%
-   ======================================  ===========  ==============
+   ===  ======================================  ===========  ==============
+     #  Score Type                              Raw Score    Scaled Score
+   ===  ======================================  ===========  ==============
+     1  :ref:`WIDE <terminalexewide>`           97.72%       97.7%
+     2  :ref:`ZWJ <terminalexezwj>`             100.00%      100.0%
+     3  :ref:`LANG <terminalexelang>`           69.96%       44.3%
+     4  :ref:`VS16 <terminalexevs16>`           100.00%      100.0%
+     5  :ref:`VS15 <terminalexevs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <terminalexedecmodes>`  26           39.4%
+     7  :ref:`TIME <terminalexetime>`           1147.06s     41.8%
+   ===  ======================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/terminalexe_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/terminalexe_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

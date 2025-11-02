@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *cool-retro-term*:
 .. table::
    :class: sphinx-datatable
 
-   ========================================  ===========  ==============
-   Score Type                                Raw Score    Scaled Score
-   ========================================  ===========  ==============
-   :ref:`WIDE <coolretrotermwide>`           94.77%       94.6%
-   :ref:`ZWJ <coolretrotermzwj>`             0.69%        0.7%
-   :ref:`LANG <coolretrotermlang>`           99.88%       100.0%
-   :ref:`VS16 <coolretrotermvs16>`           0.00%        0.0%
-   :ref:`VS15 <coolretrotermvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <coolretrotermdecmodes>`  0            0.0%
-   :ref:`TIME <coolretrotermtime>`           157.79s      74.1%
-   ========================================  ===========  ==============
+   ===  ========================================  ===========  ==============
+     #  Score Type                                Raw Score    Scaled Score
+   ===  ========================================  ===========  ==============
+     1  :ref:`WIDE <coolretrotermwide>`           94.77%       94.6%
+     2  :ref:`ZWJ <coolretrotermzwj>`             0.69%        0.7%
+     3  :ref:`LANG <coolretrotermlang>`           99.88%       100.0%
+     4  :ref:`VS16 <coolretrotermvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <coolretrotermvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <coolretrotermdecmodes>`  0            0.0%
+     7  :ref:`TIME <coolretrotermtime>`           157.79s      74.1%
+   ===  ========================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/coolretroterm_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/coolretroterm_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

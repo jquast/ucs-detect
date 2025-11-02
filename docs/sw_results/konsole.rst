@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *Konsole*:
 .. table::
    :class: sphinx-datatable
 
-   ==================================  ===========  ==============
-   Score Type                          Raw Score    Scaled Score
-   ==================================  ===========  ==============
-   :ref:`WIDE <konsolewide>`           94.77%       94.6%
-   :ref:`ZWJ <konsolezwj>`             95.99%       96.0%
-   :ref:`LANG <konsolelang>`           75.98%       55.5%
-   :ref:`VS16 <konsolevs16>`           100.00%      100.0%
-   :ref:`VS15 <konsolevs15>`           0.00%        0.0%
-   :ref:`DEC Modes <konsoledecmodes>`  0            0.0%
-   :ref:`TIME <konsoletime>`           75.93s       86.1%
-   ==================================  ===========  ==============
+   ===  ==================================  ===========  ==============
+     #  Score Type                          Raw Score    Scaled Score
+   ===  ==================================  ===========  ==============
+     1  :ref:`WIDE <konsolewide>`           94.77%       94.6%
+     2  :ref:`ZWJ <konsolezwj>`             95.99%       96.0%
+     3  :ref:`LANG <konsolelang>`           75.98%       55.5%
+     4  :ref:`VS16 <konsolevs16>`           100.00%      100.0%
+     5  :ref:`VS15 <konsolevs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <konsoledecmodes>`  0            0.0%
+     7  :ref:`TIME <konsoletime>`           75.93s       86.1%
+   ===  ==================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/konsole_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/konsole_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *kitty*:
 .. table::
    :class: sphinx-datatable
 
-   ================================  ===========  ==============
-   Score Type                        Raw Score    Scaled Score
-   ================================  ===========  ==============
-   :ref:`WIDE <kittywide>`           97.72%       97.7%
-   :ref:`ZWJ <kittyzwj>`             100.00%      100.0%
-   :ref:`LANG <kittylang>`           94.36%       89.7%
-   :ref:`VS16 <kittyvs16>`           100.00%      100.0%
-   :ref:`VS15 <kittyvs15>`           100.00%      100.0%
-   :ref:`DEC Modes <kittydecmodes>`  19           28.8%
-   :ref:`TIME <kittytime>`           1748.48s     35.0%
-   ================================  ===========  ==============
+   ===  ================================  ===========  ==============
+     #  Score Type                        Raw Score    Scaled Score
+   ===  ================================  ===========  ==============
+     1  :ref:`WIDE <kittywide>`           97.72%       97.7%
+     2  :ref:`ZWJ <kittyzwj>`             100.00%      100.0%
+     3  :ref:`LANG <kittylang>`           94.36%       89.7%
+     4  :ref:`VS16 <kittyvs16>`           100.00%      100.0%
+     5  :ref:`VS15 <kittyvs15>`           100.00%      100.0%
+     6  :ref:`DEC Modes <kittydecmodes>`  19           28.8%
+     7  :ref:`TIME <kittytime>`           1748.48s     35.0%
+   ===  ================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/kitty_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/kitty_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *rxvt-unicode*:
 .. table::
    :class: sphinx-datatable
 
-   ======================================  ===========  ==============
-   Score Type                              Raw Score    Scaled Score
-   ======================================  ===========  ==============
-   :ref:`WIDE <rxvtunicodewide>`           95.77%       95.7%
-   :ref:`ZWJ <rxvtunicodezwj>`             0.69%        0.7%
-   :ref:`LANG <rxvtunicodelang>`           74.00%       51.8%
-   :ref:`VS16 <rxvtunicodevs16>`           0.00%        0.0%
-   :ref:`VS15 <rxvtunicodevs15>`           0.00%        0.0%
-   :ref:`DEC Modes <rxvtunicodedecmodes>`  28           42.4%
-   :ref:`TIME <rxvtunicodetime>`           62.76s       89.2%
-   ======================================  ===========  ==============
+   ===  ======================================  ===========  ==============
+     #  Score Type                              Raw Score    Scaled Score
+   ===  ======================================  ===========  ==============
+     1  :ref:`WIDE <rxvtunicodewide>`           95.77%       95.7%
+     2  :ref:`ZWJ <rxvtunicodezwj>`             0.69%        0.7%
+     3  :ref:`LANG <rxvtunicodelang>`           74.00%       51.8%
+     4  :ref:`VS16 <rxvtunicodevs16>`           0.00%        0.0%
+     5  :ref:`VS15 <rxvtunicodevs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <rxvtunicodedecmodes>`  28           42.4%
+     7  :ref:`TIME <rxvtunicodetime>`           62.76s       89.2%
+   ===  ======================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/rxvtunicode_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/rxvtunicode_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

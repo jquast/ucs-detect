@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *QTerminal*:
 .. table::
    :class: sphinx-datatable
 
-   ====================================  ===========  ==============
-   Score Type                            Raw Score    Scaled Score
-   ====================================  ===========  ==============
-   :ref:`WIDE <qterminalwide>`           94.84%       94.7%
-   :ref:`ZWJ <qterminalzwj>`             0.73%        0.7%
-   :ref:`LANG <qterminallang>`           99.88%       100.0%
-   :ref:`VS16 <qterminalvs16>`           0.00%        0.0%
-   :ref:`VS15 <qterminalvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <qterminaldecmodes>`  0            0.0%
-   :ref:`TIME <qterminaltime>`           75.43s       86.2%
-   ====================================  ===========  ==============
+   ===  ====================================  ===========  ==============
+     #  Score Type                            Raw Score    Scaled Score
+   ===  ====================================  ===========  ==============
+     1  :ref:`WIDE <qterminalwide>`           94.84%       94.7%
+     2  :ref:`ZWJ <qterminalzwj>`             0.73%        0.7%
+     3  :ref:`LANG <qterminallang>`           99.88%       100.0%
+     4  :ref:`VS16 <qterminalvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <qterminalvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <qterminaldecmodes>`  0            0.0%
+     7  :ref:`TIME <qterminaltime>`           75.43s       86.2%
+   ===  ====================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/qterminal_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/qterminal_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

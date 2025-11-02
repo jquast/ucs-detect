@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *XTerm*:
 .. table::
    :class: sphinx-datatable
 
-   ================================  ===========  ==============
-   Score Type                        Raw Score    Scaled Score
-   ================================  ===========  ==============
-   :ref:`WIDE <xtermwide>`           95.77%       95.7%
-   :ref:`ZWJ <xtermzwj>`             0.69%        0.7%
-   :ref:`LANG <xtermlang>`           74.00%       51.8%
-   :ref:`VS16 <xtermvs16>`           0.00%        0.0%
-   :ref:`VS15 <xtermvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <xtermdecmodes>`  66           100.0%
-   :ref:`TIME <xtermtime>`           78.57s       85.5%
-   ================================  ===========  ==============
+   ===  ================================  ===========  ==============
+     #  Score Type                        Raw Score    Scaled Score
+   ===  ================================  ===========  ==============
+     1  :ref:`WIDE <xtermwide>`           95.77%       95.7%
+     2  :ref:`ZWJ <xtermzwj>`             0.69%        0.7%
+     3  :ref:`LANG <xtermlang>`           74.00%       51.8%
+     4  :ref:`VS16 <xtermvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <xtermvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <xtermdecmodes>`  66           100.0%
+     7  :ref:`TIME <xtermtime>`           78.57s       85.5%
+   ===  ================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/xterm_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/xterm_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

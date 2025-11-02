@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *contour*:
 .. table::
    :class: sphinx-datatable
 
-   ==================================  ===========  ==============
-   Score Type                          Raw Score    Scaled Score
-   ==================================  ===========  ==============
-   :ref:`WIDE <contourwide>`           97.72%       97.7%
-   :ref:`ZWJ <contourzwj>`             96.26%       96.3%
-   :ref:`LANG <contourlang>`           94.25%       89.5%
-   :ref:`VS16 <contourvs16>`           0.00%        0.0%
-   :ref:`VS15 <contourvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <contourdecmodes>`  39           59.1%
-   :ref:`TIME <contourtime>`           182.40s      71.8%
-   ==================================  ===========  ==============
+   ===  ==================================  ===========  ==============
+     #  Score Type                          Raw Score    Scaled Score
+   ===  ==================================  ===========  ==============
+     1  :ref:`WIDE <contourwide>`           97.72%       97.7%
+     2  :ref:`ZWJ <contourzwj>`             96.26%       96.3%
+     3  :ref:`LANG <contourlang>`           94.25%       89.5%
+     4  :ref:`VS16 <contourvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <contourvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <contourdecmodes>`  39           59.1%
+     7  :ref:`TIME <contourtime>`           182.40s      71.8%
+   ===  ==================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/contour_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/contour_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

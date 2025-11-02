@@ -5,3 +5,5 @@ sphinx-rtd-dark-mode
 sphinxcontrib.jquery
 sphinx-datatables
 tabulate
+matplotlib
+numpy

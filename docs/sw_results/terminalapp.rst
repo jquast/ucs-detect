@@ -19,27 +19,43 @@ Detailed breakdown of how scores are calculated for *Terminal.app*:
 .. table::
    :class: sphinx-datatable
 
-   ======================================  ===========  ==============
-   Score Type                              Raw Score    Scaled Score
-   ======================================  ===========  ==============
-   :ref:`WIDE <terminalappwide>`           97.72%       97.7%
-   :ref:`ZWJ <terminalappzwj>`             0.00%        0.0%
-   :ref:`LANG <terminalapplang>`           73.64%       51.1%
-   :ref:`VS16 <terminalappvs16>`           0.00%        0.0%
-   :ref:`VS15 <terminalappvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <terminalappdecmodes>`  0            0.0%
-   :ref:`TIME <terminalapptime>`           118.55s      78.8%
-   ======================================  ===========  ==============
+   ===  ======================================  ===========  ==============
+     #  Score Type                              Raw Score    Scaled Score
+   ===  ======================================  ===========  ==============
+     1  :ref:`WIDE <terminalappwide>`           97.72%       97.7%
+     2  :ref:`ZWJ <terminalappzwj>`             0.00%        0.0%
+     3  :ref:`LANG <terminalapplang>`           73.64%       51.1%
+     4  :ref:`VS16 <terminalappvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <terminalappvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <terminalappdecmodes>`  0            0.0%
+     7  :ref:`TIME <terminalapptime>`           118.55s      78.8%
+   ===  ======================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/terminalapp_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/terminalapp_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 
-- Raw Final Score: 28.56%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
+- Raw Final Score: 35.74%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
-  Note: TIME is excluded from raw average since it measures performance, not feature support
+  Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 0.3%
-  (normalized across all terminals tested, including TIME performance).
+- Scaled Final Score: 9.6%
+  (normalized across all terminals tested).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**

@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *weston-terminal*:
 .. table::
    :class: sphinx-datatable
 
-   =========================================  ===========  ==============
-   Score Type                                 Raw Score    Scaled Score
-   =========================================  ===========  ==============
-   :ref:`WIDE <westonterminalwide>`           92.83%       92.6%
-   :ref:`ZWJ <westonterminalzwj>`             0.00%        0.0%
-   :ref:`LANG <westonterminallang>`           46.21%       0.0%
-   :ref:`VS16 <westonterminalvs16>`           100.00%      100.0%
-   :ref:`VS15 <westonterminalvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <westonterminaldecmodes>`  0            0.0%
-   :ref:`TIME <westonterminaltime>`           32.29s       100.0%
-   =========================================  ===========  ==============
+   ===  =========================================  ===========  ==============
+     #  Score Type                                 Raw Score    Scaled Score
+   ===  =========================================  ===========  ==============
+     1  :ref:`WIDE <westonterminalwide>`           92.83%       92.6%
+     2  :ref:`ZWJ <westonterminalzwj>`             0.00%        0.0%
+     3  :ref:`LANG <westonterminallang>`           46.21%       0.0%
+     4  :ref:`VS16 <westonterminalvs16>`           100.00%      100.0%
+     5  :ref:`VS15 <westonterminalvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <westonterminaldecmodes>`  0            0.0%
+     7  :ref:`TIME <westonterminaltime>`           32.29s       100.0%
+   ===  =========================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/westonterminal_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/westonterminal_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

@@ -19,9 +19,16 @@ except ImportError:
 import wcwidth
 import tabulate
 
+# Plotting support
+import matplotlib
+matplotlib.use('Agg')  # Non-interactive backend for ReadTheDocs
+import matplotlib.pyplot as plt
+import numpy as np
+
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
 TERMINAL_DETAIL_MIXINS_PATH = os.path.join(DATA_PATH, "terminal_detail_mixins.yaml")
+PLOTS_PATH = os.path.join(os.path.dirname(__file__), "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
 
@@ -170,6 +177,128 @@ def print_datatable(table_str, caption=None):
     print()
 
 
+def create_score_plots(sw_name, entry, score_table):
+    """
+    Create matplotlib plots comparing terminal scores against all terminals.
+
+    Parameters
+    ----------
+    sw_name : str
+        Terminal software name
+    entry : dict
+        Score entry for this terminal
+    score_table : list
+        List of all score entries for comparison
+    """
+    # Collect all scores for comparison
+    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'VS15']
+    terminal_scores_raw = {}
+    terminal_scores_scaled = {}
+    all_scores_raw = {}
+    all_scores_scaled = {}
+
+    # Map metric names to entry keys
+    score_keys = {
+        'WIDE': 'score_wide',
+        'ZWJ': 'score_zwj',
+        'LANG': 'score_language',
+        'VS16': 'score_emoji_vs16',
+        'VS15': 'score_emoji_vs15',
+    }
+
+    for metric in metrics:
+        key = score_keys[metric]
+        terminal_scores_raw[metric] = entry[key]
+        terminal_scores_scaled[metric] = entry[key + '_scaled']
+        all_scores_raw[metric] = [e[key] for e in score_table]
+        all_scores_scaled[metric] = [e[key + '_scaled'] for e in score_table]
+
+    # Create output directory
+    os.makedirs(PLOTS_PATH, exist_ok=True)
+
+    # Create plot for raw scores
+    plot_filename_raw = f"{make_link(sw_name)}_scores_raw.png"
+    plot_path_raw = os.path.join(PLOTS_PATH, plot_filename_raw)
+    _create_multi_metric_plot(sw_name, terminal_scores_raw, all_scores_raw,
+                              plot_path_raw, use_scaled=False)
+
+    # Create plot for scaled scores
+    plot_filename_scaled = f"{make_link(sw_name)}_scores_scaled.png"
+    plot_path_scaled = os.path.join(PLOTS_PATH, plot_filename_scaled)
+    _create_multi_metric_plot(sw_name, terminal_scores_scaled, all_scores_scaled,
+                              plot_path_scaled, use_scaled=True)
+
+    return plot_filename_raw, plot_filename_scaled
+
+
+def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
+                               output_path, use_scaled=False):
+    """
+    Create a bar chart showing multiple metrics at once.
+
+    Parameters
+    ----------
+    terminal_name : str
+        Name of the terminal
+    scores_dict : dict
+        Dictionary of {metric_name: score_value}
+    all_scores_dict : dict
+        Dictionary of {metric_name: [list of all scores]}
+    output_path : str
+        Path to save the plot
+    use_scaled : bool
+        If True, use scaled scores, otherwise raw scores
+    """
+    metrics = list(scores_dict.keys())
+    values = []
+    percentiles = []
+
+    for metric in metrics:
+        score = scores_dict[metric]
+        all_scores = all_scores_dict[metric]
+        valid_scores = [s for s in all_scores if not math.isnan(s)]
+
+        if math.isnan(score):
+            values.append(0)
+            percentiles.append(0)
+        else:
+            values.append(score * 100)
+            pct = sum(1 for s in valid_scores if s <= score) / len(valid_scores) * 100
+            percentiles.append(pct)
+
+    # Create bar chart (6 inches at 100dpi = 600px wide)
+    fig, ax = plt.subplots(figsize=(6, 4))
+
+    x_pos = np.arange(len(metrics))
+    colors = ['#FF6B6B' if p < 33 else '#4ECDC4' if p < 66 else '#95E1D3'
+              for p in percentiles]
+
+    bars = ax.bar(x_pos, values, color=colors, alpha=0.7, edgecolor='black', linewidth=1.5)
+
+    # Add mean lines for each metric
+    for i, metric in enumerate(metrics):
+        all_scores = all_scores_dict[metric]
+        valid = [s * 100 for s in all_scores if not math.isnan(s)]
+        if valid:
+            mean_val = np.mean(valid)
+            ax.hlines(mean_val, i - 0.4, i + 0.4, colors='red',
+                     linestyles='dashed', linewidth=2, label='Mean' if i == 0 else '')
+
+    ylabel = 'Final Score' if use_scaled else 'RAW Score'
+    ax.set_ylabel(ylabel, fontsize=12)
+    ax.set_title(f'{terminal_name} - {"Scaled" if use_scaled else "Raw"} Scores vs All Terminals',
+                 fontsize=14, fontweight='bold')
+    ax.set_xticks(x_pos)
+    ax.set_xticklabels(metrics, rotation=0, ha='center')
+    ax.set_ylim(0, 110)
+    ax.grid(True, alpha=0.3, axis='y')
+    ax.legend()
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=100, bbox_inches='tight')
+    plt.close()
+
+
 def main():
     print(f'Generating score table... ', file=sys.stderr, end='', flush=True)
     score_table, all_successful_languages = make_score_table()
@@ -196,11 +325,18 @@ def main():
     print('ok', file=sys.stderr)
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
+
+        # Generate score comparison plots
+        print(f'Generating plots for {sw_name} ... ', file=sys.stderr, end='', flush=True)
+        plot_raw, plot_scaled = create_score_plots(sw_name, entry, score_table)
+        print('ok', file=sys.stderr)
+
+        # Write terminal documentation page
         fname = f'docs/sw_results/{make_link(sw_name)}.rst'
         print(f'Writing {fname} ... ', file=sys.stderr, end='', flush=True)
         with open(fname, 'w') as fout, contextlib.redirect_stdout(fout):
             show_software_header(entry, sw_name, terminal_mixins)
-            show_score_breakdown(sw_name, entry)
+            show_score_breakdown(sw_name, entry, plot_raw, plot_scaled)
             show_wide_character_support(sw_name, entry)
             show_emoji_zwj_results(sw_name, entry)
             show_vs_results(sw_name, entry, '16')
@@ -885,7 +1021,7 @@ def display_dec_modes_feature_table(score_table):
         print()
 
 
-def show_score_breakdown(sw_name, entry):
+def show_score_breakdown(sw_name, entry, plot_filename_raw, plot_filename_scaled):
     display_inbound_hyperlink(entry["terminal_software_name"] + "_scores")
     display_title("Score Breakdown", 3)
     print(f"Detailed breakdown of how scores are calculated for *{sw_name}*:")
@@ -897,36 +1033,43 @@ def show_score_breakdown(sw_name, entry):
 
     score_breakdown = [
         {
+            "#": 1,
             "Score Type": make_outbound_hyperlink("WIDE", sw_name + "_wide"),
             "Raw Score": format_raw_score(entry["score_wide"]),
             "Scaled Score": format_score_pct(entry["score_wide_scaled"]),
         },
         {
+            "#": 2,
             "Score Type": make_outbound_hyperlink("ZWJ", sw_name + "_zwj"),
             "Raw Score": format_raw_score(entry["score_zwj"]),
             "Scaled Score": format_score_pct(entry["score_zwj_scaled"]),
         },
         {
+            "#": 3,
             "Score Type": make_outbound_hyperlink("LANG", sw_name + "_lang"),
             "Raw Score": format_raw_score(entry["score_language"]),
             "Scaled Score": format_score_pct(entry["score_language_scaled"]),
         },
         {
+            "#": 4,
             "Score Type": make_outbound_hyperlink("VS16", sw_name + "_vs16"),
             "Raw Score": format_raw_score(entry["score_emoji_vs16"]),
             "Scaled Score": format_score_pct(entry["score_emoji_vs16_scaled"]),
         },
         {
+            "#": 5,
             "Score Type": make_outbound_hyperlink("VS15", sw_name + "_vs15"),
             "Raw Score": format_raw_score(entry["score_emoji_vs15"]),
             "Scaled Score": format_score_pct(entry["score_emoji_vs15_scaled"]),
         },
         {
+            "#": 6,
             "Score Type": make_outbound_hyperlink("DEC Modes", sw_name + "_dec_modes"),
             "Raw Score": f"{int(entry['score_dec_modes'])}" if not math.isnan(entry['score_dec_modes']) else "N/A",
             "Scaled Score": format_score_pct(entry["score_dec_modes_scaled"]),
         },
         {
+            "#": 7,
             "Score Type": make_outbound_hyperlink("TIME", sw_name + "_time"),
             "Raw Score": f"{entry['elapsed_seconds']:.2f}s" if not math.isnan(entry['elapsed_seconds']) else "N/A",
             "Scaled Score": format_score_pct(entry["score_elapsed_scaled"]),
@@ -934,6 +1077,26 @@ def show_score_breakdown(sw_name, entry):
     ]
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
     print_datatable(table_str)
+
+    # Add score comparison plots
+    print("**Score Comparison Plots:**")
+    print()
+    print("The following plots show how this terminal's scores compare to all other terminals tested.")
+    print()
+
+    print(".. figure:: ../_static/plots/" + plot_filename_raw)
+    print("   :align: left")
+    print("   :width: 600px")
+    print()
+    print("   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)")
+    print()
+
+    print(".. figure:: ../_static/plots/" + plot_filename_scaled)
+    print("   :align: left")
+    print("   :width: 600px")
+    print()
+    print("   Scaled scores comparison across metrics (normalized 0-100%)")
+    print()
 
     print(f"**Final Score Calculation:**")
     print()

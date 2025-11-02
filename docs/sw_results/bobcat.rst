@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
 .. table::
    :class: sphinx-datatable
 
-   =================================  ===========  ==============
-   Score Type                         Raw Score    Scaled Score
-   =================================  ===========  ==============
-   :ref:`WIDE <bobcatwide>`           97.72%       97.7%
-   :ref:`ZWJ <bobcatzwj>`             0.69%        0.7%
-   :ref:`LANG <bobcatlang>`           74.00%       51.8%
-   :ref:`VS16 <bobcatvs16>`           0.00%        0.0%
-   :ref:`VS15 <bobcatvs15>`           0.00%        0.0%
-   :ref:`DEC Modes <bobcatdecmodes>`  29           43.9%
-   :ref:`TIME <bobcattime>`           70.28s       87.3%
-   =================================  ===========  ==============
+   ===  =================================  ===========  ==============
+     #  Score Type                         Raw Score    Scaled Score
+   ===  =================================  ===========  ==============
+     1  :ref:`WIDE <bobcatwide>`           97.72%       97.7%
+     2  :ref:`ZWJ <bobcatzwj>`             0.69%        0.7%
+     3  :ref:`LANG <bobcatlang>`           74.00%       51.8%
+     4  :ref:`VS16 <bobcatvs16>`           0.00%        0.0%
+     5  :ref:`VS15 <bobcatvs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <bobcatdecmodes>`  29           43.9%
+     7  :ref:`TIME <bobcattime>`           70.28s       87.3%
+   ===  =================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/bobcat_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/bobcat_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

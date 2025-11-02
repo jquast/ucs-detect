@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
 .. table::
    :class: sphinx-datatable
 
-   =================================  ===========  ==============
-   Score Type                         Raw Score    Scaled Score
-   =================================  ===========  ==============
-   :ref:`WIDE <iterm2wide>`           94.55%       94.4%
-   :ref:`ZWJ <iterm2zwj>`             99.31%       99.3%
-   :ref:`LANG <iterm2lang>`           75.80%       55.1%
-   :ref:`VS16 <iterm2vs16>`           94.37%       94.4%
-   :ref:`VS15 <iterm2vs15>`           0.00%        0.0%
-   :ref:`DEC Modes <iterm2decmodes>`  34           51.5%
-   :ref:`TIME <iterm2time>`           4367.06s     20.0%
-   =================================  ===========  ==============
+   ===  =================================  ===========  ==============
+     #  Score Type                         Raw Score    Scaled Score
+   ===  =================================  ===========  ==============
+     1  :ref:`WIDE <iterm2wide>`           94.55%       94.4%
+     2  :ref:`ZWJ <iterm2zwj>`             99.31%       99.3%
+     3  :ref:`LANG <iterm2lang>`           75.80%       55.1%
+     4  :ref:`VS16 <iterm2vs16>`           94.37%       94.4%
+     5  :ref:`VS15 <iterm2vs15>`           0.00%        0.0%
+     6  :ref:`DEC Modes <iterm2decmodes>`  34           51.5%
+     7  :ref:`TIME <iterm2time>`           4367.06s     20.0%
+   ===  =================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/iterm2_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/iterm2_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 

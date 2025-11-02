@@ -19,17 +19,33 @@ Detailed breakdown of how scores are calculated for *ghostty*:
 .. table::
    :class: sphinx-datatable
 
-   ==================================  ===========  ==============
-   Score Type                          Raw Score    Scaled Score
-   ==================================  ===========  ==============
-   :ref:`WIDE <ghosttywide>`           94.77%       94.6%
-   :ref:`ZWJ <ghosttyzwj>`             100.00%      100.0%
-   :ref:`LANG <ghosttylang>`           94.37%       89.7%
-   :ref:`VS16 <ghosttyvs16>`           94.37%       94.4%
-   :ref:`VS15 <ghosttyvs15>`           100.00%      100.0%
-   :ref:`DEC Modes <ghosttydecmodes>`  36           54.5%
-   :ref:`TIME <ghosttytime>`           77.36s       85.8%
-   ==================================  ===========  ==============
+   ===  ==================================  ===========  ==============
+     #  Score Type                          Raw Score    Scaled Score
+   ===  ==================================  ===========  ==============
+     1  :ref:`WIDE <ghosttywide>`           94.77%       94.6%
+     2  :ref:`ZWJ <ghosttyzwj>`             100.00%      100.0%
+     3  :ref:`LANG <ghosttylang>`           94.37%       89.7%
+     4  :ref:`VS16 <ghosttyvs16>`           94.37%       94.4%
+     5  :ref:`VS15 <ghosttyvs15>`           100.00%      100.0%
+     6  :ref:`DEC Modes <ghosttydecmodes>`  36           54.5%
+     7  :ref:`TIME <ghosttytime>`           77.36s       85.8%
+   ===  ==================================  ===========  ==============
+
+**Score Comparison Plots:**
+
+The following plots show how this terminal's scores compare to all other terminals tested.
+
+.. figure:: ../_static/plots/ghostty_scores_raw.png
+   :align: left
+   :width: 600px
+
+   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+
+.. figure:: ../_static/plots/ghostty_scores_scaled.png
+   :align: left
+   :width: 600px
+
+   Scaled scores comparison across metrics (normalized 0-100%)
 
 **Final Score Calculation:**
 
