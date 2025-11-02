@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *WezTerm*:
    LANG          98.97%       99.4%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     14.01%       12.0%           modes_changeable / total_modes
+   DEC Modes     14.01%       14.0%           modes_changeable / total_modes
    TIME          465.48s      51.9%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *WezTerm*:
 - Scaled Final Score: 45.2%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 98.97%
 
 .. _WezTermwide:
 
@@ -4246,50 +4253,6 @@ DEC private modes results for *WezTerm*: 22 changeable modes
 of 23 supported out of 157 total modes tested (14.6% support, 14.0% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _WezTermdecmode1:
-
-.. _WezTermdecmode2:
-
-.. _WezTermdecmode3:
-
-.. _WezTermdecmode6:
-
-.. _WezTermdecmode7:
-
-.. _WezTermdecmode12:
-
-.. _WezTermdecmode25:
-
-.. _WezTermdecmode45:
-
-.. _WezTermdecmode69:
-
-.. _WezTermdecmode80:
-
-.. _WezTermdecmode1000:
-
-.. _WezTermdecmode1002:
-
-.. _WezTermdecmode1003:
-
-.. _WezTermdecmode1004:
-
-.. _WezTermdecmode1005:
-
-.. _WezTermdecmode1006:
-
-.. _WezTermdecmode1016:
-
-.. _WezTermdecmode1070:
-
-.. _WezTermdecmode2004:
-
-.. _WezTermdecmode2026:
-
-.. _WezTermdecmode8452:
-
-.. _WezTermdecmode9001:
 
 .. table::
    :class: sphinx-datatable

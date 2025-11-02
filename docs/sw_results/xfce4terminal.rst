@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *xfce4-terminal*:
    LANG          72.74%       52.6%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     17.83%       24.0%           modes_changeable / total_modes
+   DEC Modes     17.83%       17.8%           modes_changeable / total_modes
    TIME          14937.80s    0.0%            1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *xfce4-terminal*:
 - Scaled Final Score: 12.3%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 72.74%
 
 .. _xfce4terminalwide:
 
@@ -4275,63 +4282,13 @@ DEC Private Modes Support
 DEC private modes results for *xfce4-terminal*: 28 changeable modes
 of 128 supported out of 157 total modes tested (81.5% support, 17.8% changeable).
 
+.. note::
+
+   This terminal reports 92 modes as supported, but these modes
+   are neither enabled nor changeable. This may sometimes be interpreted as
+   not truly supporting these modes, as they cannot be toggled or utilized.
+
 Complete list of DEC private modes tested:
-
-.. _xfce4terminaldecmode1:
-
-.. _xfce4terminaldecmode3:
-
-.. _xfce4terminaldecmode5:
-
-.. _xfce4terminaldecmode6:
-
-.. _xfce4terminaldecmode7:
-
-.. _xfce4terminaldecmode9:
-
-.. _xfce4terminaldecmode25:
-
-.. _xfce4terminaldecmode40:
-
-.. _xfce4terminaldecmode47:
-
-.. _xfce4terminaldecmode66:
-
-.. _xfce4terminaldecmode69:
-
-.. _xfce4terminaldecmode80:
-
-.. _xfce4terminaldecmode1000:
-
-.. _xfce4terminaldecmode1001:
-
-.. _xfce4terminaldecmode1002:
-
-.. _xfce4terminaldecmode1003:
-
-.. _xfce4terminaldecmode1004:
-
-.. _xfce4terminaldecmode1006:
-
-.. _xfce4terminaldecmode1007:
-
-.. _xfce4terminaldecmode1036:
-
-.. _xfce4terminaldecmode1047:
-
-.. _xfce4terminaldecmode1048:
-
-.. _xfce4terminaldecmode1049:
-
-.. _xfce4terminaldecmode1070:
-
-.. _xfce4terminaldecmode1243:
-
-.. _xfce4terminaldecmode2004:
-
-.. _xfce4terminaldecmode2500:
-
-.. _xfce4terminaldecmode2501:
 
 .. table::
    :class: sphinx-datatable

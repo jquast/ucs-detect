@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *LXTerminal*:
    LANG          70.07%       47.8%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     17.83%       24.0%           modes_changeable / total_modes
+   DEC Modes     17.83%       17.8%           modes_changeable / total_modes
    TIME          7973.51s     9.4%            1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *LXTerminal*:
 - Scaled Final Score: 11.5%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 70.07%
 
 .. _LXTerminalwide:
 
@@ -4386,63 +4393,13 @@ DEC Private Modes Support
 DEC private modes results for *LXTerminal*: 28 changeable modes
 of 128 supported out of 157 total modes tested (81.5% support, 17.8% changeable).
 
+.. note::
+
+   This terminal reports 92 modes as supported, but these modes
+   are neither enabled nor changeable. This may sometimes be interpreted as
+   not truly supporting these modes, as they cannot be toggled or utilized.
+
 Complete list of DEC private modes tested:
-
-.. _LXTerminaldecmode1:
-
-.. _LXTerminaldecmode3:
-
-.. _LXTerminaldecmode5:
-
-.. _LXTerminaldecmode6:
-
-.. _LXTerminaldecmode7:
-
-.. _LXTerminaldecmode9:
-
-.. _LXTerminaldecmode25:
-
-.. _LXTerminaldecmode40:
-
-.. _LXTerminaldecmode47:
-
-.. _LXTerminaldecmode66:
-
-.. _LXTerminaldecmode69:
-
-.. _LXTerminaldecmode80:
-
-.. _LXTerminaldecmode1000:
-
-.. _LXTerminaldecmode1001:
-
-.. _LXTerminaldecmode1002:
-
-.. _LXTerminaldecmode1003:
-
-.. _LXTerminaldecmode1004:
-
-.. _LXTerminaldecmode1006:
-
-.. _LXTerminaldecmode1007:
-
-.. _LXTerminaldecmode1036:
-
-.. _LXTerminaldecmode1047:
-
-.. _LXTerminaldecmode1048:
-
-.. _LXTerminaldecmode1049:
-
-.. _LXTerminaldecmode1070:
-
-.. _LXTerminaldecmode1243:
-
-.. _LXTerminaldecmode2004:
-
-.. _LXTerminaldecmode2500:
-
-.. _LXTerminaldecmode2501:
 
 .. table::
    :class: sphinx-datatable

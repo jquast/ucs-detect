@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *contour*:
    LANG          93.70%       90.0%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     24.84%       46.0%           modes_changeable / total_modes
+   DEC Modes     24.84%       24.8%           modes_changeable / total_modes
    TIME          38.67s       89.2%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *contour*:
 - Scaled Final Score: 46.7%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 93.70%
 
 .. _contourwide:
 
@@ -4252,84 +4259,6 @@ DEC private modes results for *contour*: 39 changeable modes
 of 39 supported out of 157 total modes tested (24.8% support, 24.8% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _contourdecmode1:
-
-.. _contourdecmode2:
-
-.. _contourdecmode3:
-
-.. _contourdecmode4:
-
-.. _contourdecmode5:
-
-.. _contourdecmode6:
-
-.. _contourdecmode7:
-
-.. _contourdecmode9:
-
-.. _contourdecmode10:
-
-.. _contourdecmode12:
-
-.. _contourdecmode19:
-
-.. _contourdecmode25:
-
-.. _contourdecmode30:
-
-.. _contourdecmode40:
-
-.. _contourdecmode46:
-
-.. _contourdecmode47:
-
-.. _contourdecmode69:
-
-.. _contourdecmode80:
-
-.. _contourdecmode1000:
-
-.. _contourdecmode1001:
-
-.. _contourdecmode1002:
-
-.. _contourdecmode1003:
-
-.. _contourdecmode1004:
-
-.. _contourdecmode1005:
-
-.. _contourdecmode1006:
-
-.. _contourdecmode1007:
-
-.. _contourdecmode1015:
-
-.. _contourdecmode1016:
-
-.. _contourdecmode1048:
-
-.. _contourdecmode1049:
-
-.. _contourdecmode1070:
-
-.. _contourdecmode2004:
-
-.. _contourdecmode2026:
-
-.. _contourdecmode2027:
-
-.. _contourdecmode2028:
-
-.. _contourdecmode2029:
-
-.. _contourdecmode2030:
-
-.. _contourdecmode2031:
-
-.. _contourdecmode8452:
 
 .. table::
    :class: sphinx-datatable

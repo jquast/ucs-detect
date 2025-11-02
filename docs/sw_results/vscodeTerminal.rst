@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *vscode Terminal*:
    LANG          71.92%       51.1%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     11.95%       5.5%            modes_changeable / total_modes
+   DEC Modes     11.95%       11.9%           modes_changeable / total_modes
    TIME          1165.28s     38.2%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *vscode Terminal*:
 - Scaled Final Score: 0.0%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 71.92%
 
 .. _vscodeTerminalwide:
 
@@ -4337,44 +4344,6 @@ DEC private modes results for *vscode Terminal*: 19 changeable modes
 of 23 supported out of 159 total modes tested (14.5% support, 11.9% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _vscodeTerminaldecmode1:
-
-.. _vscodeTerminaldecmode6:
-
-.. _vscodeTerminaldecmode7:
-
-.. _vscodeTerminaldecmode9:
-
-.. _vscodeTerminaldecmode12:
-
-.. _vscodeTerminaldecmode25:
-
-.. _vscodeTerminaldecmode45:
-
-.. _vscodeTerminaldecmode47:
-
-.. _vscodeTerminaldecmode66:
-
-.. _vscodeTerminaldecmode1000:
-
-.. _vscodeTerminaldecmode1002:
-
-.. _vscodeTerminaldecmode1003:
-
-.. _vscodeTerminaldecmode1004:
-
-.. _vscodeTerminaldecmode1006:
-
-.. _vscodeTerminaldecmode1016:
-
-.. _vscodeTerminaldecmode1047:
-
-.. _vscodeTerminaldecmode1048:
-
-.. _vscodeTerminaldecmode1049:
-
-.. _vscodeTerminaldecmode2004:
 
 .. table::
    :class: sphinx-datatable

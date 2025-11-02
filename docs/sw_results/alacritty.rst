@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *alacritty*:
    LANG          72.66%       52.4%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     10.19%       0.0%            modes_changeable / total_modes
+   DEC Modes     10.19%       10.2%           modes_changeable / total_modes
    TIME          45.77s       86.7%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *alacritty*:
 - Scaled Final Score: 12.7%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 72.66%
 
 .. _alacrittywide:
 
@@ -4279,38 +4286,6 @@ DEC private modes results for *alacritty*: 16 changeable modes
 of 16 supported out of 157 total modes tested (10.2% support, 10.2% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _alacrittydecmode1:
-
-.. _alacrittydecmode6:
-
-.. _alacrittydecmode7:
-
-.. _alacrittydecmode12:
-
-.. _alacrittydecmode25:
-
-.. _alacrittydecmode1000:
-
-.. _alacrittydecmode1002:
-
-.. _alacrittydecmode1003:
-
-.. _alacrittydecmode1004:
-
-.. _alacrittydecmode1005:
-
-.. _alacrittydecmode1006:
-
-.. _alacrittydecmode1007:
-
-.. _alacrittydecmode1042:
-
-.. _alacrittydecmode1049:
-
-.. _alacrittydecmode2004:
-
-.. _alacrittydecmode2026:
 
 .. table::
    :class: sphinx-datatable

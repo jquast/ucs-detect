@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *kitty*:
    LANG          93.81%       90.2%           geometric_mean(language_percentages)
    VS16          100.00%      100.0%          pct_success / 100
    VS15          100.00%      100.0%          pct_success / 100
-   DEC Modes     11.95%       5.5%            modes_changeable / total_modes
+   DEC Modes     11.95%       11.9%           modes_changeable / total_modes
    TIME          849.99s      42.9%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *kitty*:
 - Scaled Final Score: 100.0%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 93.81%
 
 .. _kittywide:
 
@@ -4239,44 +4246,6 @@ DEC private modes results for *kitty*: 19 changeable modes
 of 19 supported out of 159 total modes tested (11.9% support, 11.9% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _kittydecmode1:
-
-.. _kittydecmode3:
-
-.. _kittydecmode5:
-
-.. _kittydecmode6:
-
-.. _kittydecmode7:
-
-.. _kittydecmode8:
-
-.. _kittydecmode25:
-
-.. _kittydecmode1000:
-
-.. _kittydecmode1002:
-
-.. _kittydecmode1003:
-
-.. _kittydecmode1004:
-
-.. _kittydecmode1005:
-
-.. _kittydecmode1006:
-
-.. _kittydecmode1016:
-
-.. _kittydecmode1049:
-
-.. _kittydecmode2004:
-
-.. _kittydecmode2026:
-
-.. _kittydecmode2031:
-
-.. _kittydecmode2048:
 
 .. table::
    :class: sphinx-datatable

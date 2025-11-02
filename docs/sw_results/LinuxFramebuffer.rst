@@ -41,6 +41,13 @@ Detailed breakdown of how scores are calculated for *Linux Framebuffer*:
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 48.11%
+
 .. _LinuxFramebufferwide:
 
 Wide character support

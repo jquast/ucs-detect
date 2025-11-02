@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
    LANG          72.71%       52.5%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     18.24%       25.3%           modes_changeable / total_modes
+   DEC Modes     18.24%       18.2%           modes_changeable / total_modes
    TIME          41.39s       88.2%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
 - Scaled Final Score: 17.6%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 72.71%
 
 .. _Bobcatwide:
 
@@ -4315,64 +4322,6 @@ DEC private modes results for *Bobcat*: 29 changeable modes
 of 32 supported out of 159 total modes tested (20.1% support, 18.2% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _Bobcatdecmode1:
-
-.. _Bobcatdecmode2:
-
-.. _Bobcatdecmode3:
-
-.. _Bobcatdecmode4:
-
-.. _Bobcatdecmode5:
-
-.. _Bobcatdecmode6:
-
-.. _Bobcatdecmode7:
-
-.. _Bobcatdecmode8:
-
-.. _Bobcatdecmode9:
-
-.. _Bobcatdecmode25:
-
-.. _Bobcatdecmode45:
-
-.. _Bobcatdecmode47:
-
-.. _Bobcatdecmode67:
-
-.. _Bobcatdecmode69:
-
-.. _Bobcatdecmode80:
-
-.. _Bobcatdecmode1000:
-
-.. _Bobcatdecmode1002:
-
-.. _Bobcatdecmode1003:
-
-.. _Bobcatdecmode1004:
-
-.. _Bobcatdecmode1005:
-
-.. _Bobcatdecmode1006:
-
-.. _Bobcatdecmode1007:
-
-.. _Bobcatdecmode1016:
-
-.. _Bobcatdecmode1035:
-
-.. _Bobcatdecmode1039:
-
-.. _Bobcatdecmode1047:
-
-.. _Bobcatdecmode1048:
-
-.. _Bobcatdecmode1049:
-
-.. _Bobcatdecmode2004:
 
 .. table::
    :class: sphinx-datatable

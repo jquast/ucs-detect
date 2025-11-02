@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *Terminator*:
    LANG          70.08%       47.8%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     17.83%       24.0%           modes_changeable / total_modes
+   DEC Modes     17.83%       17.8%           modes_changeable / total_modes
    TIME          8024.59s     9.3%            1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *Terminator*:
 - Scaled Final Score: 11.5%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 70.08%
 
 .. _Terminatorwide:
 
@@ -4298,63 +4305,13 @@ DEC Private Modes Support
 DEC private modes results for *Terminator*: 28 changeable modes
 of 128 supported out of 157 total modes tested (81.5% support, 17.8% changeable).
 
+.. note::
+
+   This terminal reports 92 modes as supported, but these modes
+   are neither enabled nor changeable. This may sometimes be interpreted as
+   not truly supporting these modes, as they cannot be toggled or utilized.
+
 Complete list of DEC private modes tested:
-
-.. _Terminatordecmode1:
-
-.. _Terminatordecmode3:
-
-.. _Terminatordecmode5:
-
-.. _Terminatordecmode6:
-
-.. _Terminatordecmode7:
-
-.. _Terminatordecmode9:
-
-.. _Terminatordecmode25:
-
-.. _Terminatordecmode40:
-
-.. _Terminatordecmode47:
-
-.. _Terminatordecmode66:
-
-.. _Terminatordecmode69:
-
-.. _Terminatordecmode80:
-
-.. _Terminatordecmode1000:
-
-.. _Terminatordecmode1001:
-
-.. _Terminatordecmode1002:
-
-.. _Terminatordecmode1003:
-
-.. _Terminatordecmode1004:
-
-.. _Terminatordecmode1006:
-
-.. _Terminatordecmode1007:
-
-.. _Terminatordecmode1036:
-
-.. _Terminatordecmode1047:
-
-.. _Terminatordecmode1048:
-
-.. _Terminatordecmode1049:
-
-.. _Terminatordecmode1070:
-
-.. _Terminatordecmode1243:
-
-.. _Terminatordecmode2004:
-
-.. _Terminatordecmode2500:
-
-.. _Terminatordecmode2501:
 
 .. table::
    :class: sphinx-datatable

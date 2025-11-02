@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
    LANG          73.69%       54.3%           geometric_mean(language_percentages)
    VS16          94.37%       94.4%           pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     21.38%       35.1%           modes_changeable / total_modes
+   DEC Modes     21.38%       21.4%           modes_changeable / total_modes
    TIME          2169.32s     28.9%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
 - Scaled Final Score: 66.9%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 73.69%
 
 .. _iTerm2wide:
 
@@ -4409,75 +4416,13 @@ of 159 supported out of 159 total modes tested (100.0% support, 21.4% changeable
    This terminal reports to support all 159 modes tested, but this
    is probably an error.
 
+.. note::
+
+   This terminal reports 125 modes as supported, but these modes
+   are neither enabled nor changeable. This may sometimes be interpreted as
+   not truly supporting these modes, as they cannot be toggled or utilized.
+
 Complete list of DEC private modes tested:
-
-.. _iTerm2decmode1:
-
-.. _iTerm2decmode2:
-
-.. _iTerm2decmode3:
-
-.. _iTerm2decmode5:
-
-.. _iTerm2decmode6:
-
-.. _iTerm2decmode7:
-
-.. _iTerm2decmode8:
-
-.. _iTerm2decmode12:
-
-.. _iTerm2decmode25:
-
-.. _iTerm2decmode40:
-
-.. _iTerm2decmode41:
-
-.. _iTerm2decmode45:
-
-.. _iTerm2decmode47:
-
-.. _iTerm2decmode66:
-
-.. _iTerm2decmode69:
-
-.. _iTerm2decmode80:
-
-.. _iTerm2decmode95:
-
-.. _iTerm2decmode1000:
-
-.. _iTerm2decmode1001:
-
-.. _iTerm2decmode1002:
-
-.. _iTerm2decmode1003:
-
-.. _iTerm2decmode1004:
-
-.. _iTerm2decmode1005:
-
-.. _iTerm2decmode1006:
-
-.. _iTerm2decmode1007:
-
-.. _iTerm2decmode1015:
-
-.. _iTerm2decmode1036:
-
-.. _iTerm2decmode1047:
-
-.. _iTerm2decmode1048:
-
-.. _iTerm2decmode1049:
-
-.. _iTerm2decmode1337:
-
-.. _iTerm2decmode2004:
-
-.. _iTerm2decmode2026:
-
-.. _iTerm2decmode2048:
 
 .. table::
    :class: sphinx-datatable

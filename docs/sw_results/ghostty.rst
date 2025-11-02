@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *ghostty*:
    LANG          93.78%       90.2%           geometric_mean(language_percentages)
    VS16          94.37%       94.4%           pct_success / 100
    VS15          100.00%      100.0%          pct_success / 100
-   DEC Modes     22.93%       40.0%           modes_changeable / total_modes
+   DEC Modes     22.93%       22.9%           modes_changeable / total_modes
    TIME          50.16s       85.3%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *ghostty*:
 - Scaled Final Score: 96.3%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 93.78%
 
 .. _ghosttywide:
 
@@ -4227,78 +4234,6 @@ DEC private modes results for *ghostty*: 36 changeable modes
 of 36 supported out of 157 total modes tested (22.9% support, 22.9% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _ghosttydecmode1:
-
-.. _ghosttydecmode3:
-
-.. _ghosttydecmode4:
-
-.. _ghosttydecmode5:
-
-.. _ghosttydecmode6:
-
-.. _ghosttydecmode7:
-
-.. _ghosttydecmode8:
-
-.. _ghosttydecmode9:
-
-.. _ghosttydecmode12:
-
-.. _ghosttydecmode25:
-
-.. _ghosttydecmode40:
-
-.. _ghosttydecmode45:
-
-.. _ghosttydecmode47:
-
-.. _ghosttydecmode66:
-
-.. _ghosttydecmode69:
-
-.. _ghosttydecmode1000:
-
-.. _ghosttydecmode1002:
-
-.. _ghosttydecmode1003:
-
-.. _ghosttydecmode1004:
-
-.. _ghosttydecmode1005:
-
-.. _ghosttydecmode1006:
-
-.. _ghosttydecmode1007:
-
-.. _ghosttydecmode1015:
-
-.. _ghosttydecmode1016:
-
-.. _ghosttydecmode1035:
-
-.. _ghosttydecmode1036:
-
-.. _ghosttydecmode1039:
-
-.. _ghosttydecmode1045:
-
-.. _ghosttydecmode1047:
-
-.. _ghosttydecmode1048:
-
-.. _ghosttydecmode1049:
-
-.. _ghosttydecmode2004:
-
-.. _ghosttydecmode2026:
-
-.. _ghosttydecmode2027:
-
-.. _ghosttydecmode2031:
-
-.. _ghosttydecmode2048:
 
 .. table::
    :class: sphinx-datatable

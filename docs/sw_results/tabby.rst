@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *tabby*:
    LANG          71.79%       50.9%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     11.95%       5.5%            modes_changeable / total_modes
+   DEC Modes     11.95%       11.9%           modes_changeable / total_modes
    TIME          162.19s      67.7%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *tabby*:
 - Scaled Final Score: 0.0%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 71.79%
 
 .. _tabbywide:
 
@@ -4417,44 +4424,6 @@ DEC private modes results for *tabby*: 19 changeable modes
 of 23 supported out of 159 total modes tested (14.5% support, 11.9% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _tabbydecmode1:
-
-.. _tabbydecmode6:
-
-.. _tabbydecmode7:
-
-.. _tabbydecmode9:
-
-.. _tabbydecmode12:
-
-.. _tabbydecmode25:
-
-.. _tabbydecmode45:
-
-.. _tabbydecmode47:
-
-.. _tabbydecmode66:
-
-.. _tabbydecmode1000:
-
-.. _tabbydecmode1002:
-
-.. _tabbydecmode1003:
-
-.. _tabbydecmode1004:
-
-.. _tabbydecmode1006:
-
-.. _tabbydecmode1016:
-
-.. _tabbydecmode1047:
-
-.. _tabbydecmode1048:
-
-.. _tabbydecmode1049:
-
-.. _tabbydecmode2004:
 
 .. table::
    :class: sphinx-datatable

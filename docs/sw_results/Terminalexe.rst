@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *Terminal.exe*:
    LANG          74.46%       55.6%           geometric_mean(language_percentages)
    VS16          100.00%      100.0%          pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     16.56%       20.0%           modes_changeable / total_modes
+   DEC Modes     16.56%       16.6%           modes_changeable / total_modes
    TIME          529.70s      50.0%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *Terminal.exe*:
 - Scaled Final Score: 67.4%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 74.46%
 
 .. _Terminalexewide:
 
@@ -4208,58 +4215,6 @@ DEC private modes results for *Terminal.exe*: 26 changeable modes
 of 27 supported out of 157 total modes tested (17.2% support, 16.6% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _Terminalexedecmode1:
-
-.. _Terminalexedecmode2:
-
-.. _Terminalexedecmode3:
-
-.. _Terminalexedecmode5:
-
-.. _Terminalexedecmode6:
-
-.. _Terminalexedecmode7:
-
-.. _Terminalexedecmode8:
-
-.. _Terminalexedecmode12:
-
-.. _Terminalexedecmode25:
-
-.. _Terminalexedecmode40:
-
-.. _Terminalexedecmode64:
-
-.. _Terminalexedecmode66:
-
-.. _Terminalexedecmode67:
-
-.. _Terminalexedecmode69:
-
-.. _Terminalexedecmode80:
-
-.. _Terminalexedecmode117:
-
-.. _Terminalexedecmode1000:
-
-.. _Terminalexedecmode1002:
-
-.. _Terminalexedecmode1003:
-
-.. _Terminalexedecmode1004:
-
-.. _Terminalexedecmode1005:
-
-.. _Terminalexedecmode1006:
-
-.. _Terminalexedecmode1007:
-
-.. _Terminalexedecmode1049:
-
-.. _Terminalexedecmode2004:
-
-.. _Terminalexedecmode9001:
 
 .. table::
    :class: sphinx-datatable

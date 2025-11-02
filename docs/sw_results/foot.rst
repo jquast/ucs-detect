@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *foot*:
    LANG          74.52%       55.7%           geometric_mean(language_percentages)
    VS16          100.00%      100.0%          pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     18.87%       27.2%           modes_changeable / total_modes
+   DEC Modes     18.87%       18.9%           modes_changeable / total_modes
    TIME          36.70s       90.0%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *foot*:
 - Scaled Final Score: 63.1%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 74.52%
 
 .. _footwide:
 
@@ -4368,66 +4375,6 @@ DEC private modes results for *foot*: 30 changeable modes
 of 33 supported out of 159 total modes tested (20.8% support, 18.9% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _footdecmode1:
-
-.. _footdecmode5:
-
-.. _footdecmode6:
-
-.. _footdecmode7:
-
-.. _footdecmode12:
-
-.. _footdecmode25:
-
-.. _footdecmode45:
-
-.. _footdecmode47:
-
-.. _footdecmode66:
-
-.. _footdecmode80:
-
-.. _footdecmode1000:
-
-.. _footdecmode1002:
-
-.. _footdecmode1003:
-
-.. _footdecmode1004:
-
-.. _footdecmode1006:
-
-.. _footdecmode1007:
-
-.. _footdecmode1015:
-
-.. _footdecmode1016:
-
-.. _footdecmode1034:
-
-.. _footdecmode1035:
-
-.. _footdecmode1036:
-
-.. _footdecmode1042:
-
-.. _footdecmode1047:
-
-.. _footdecmode1049:
-
-.. _footdecmode1070:
-
-.. _footdecmode2004:
-
-.. _footdecmode2026:
-
-.. _footdecmode2027:
-
-.. _footdecmode8452:
-
-.. _footdecmode737769:
 
 .. table::
    :class: sphinx-datatable

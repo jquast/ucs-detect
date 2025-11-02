@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *mlterm*:
    LANG          98.77%       99.1%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     21.66%       36.0%           modes_changeable / total_modes
+   DEC Modes     21.66%       21.7%           modes_changeable / total_modes
    TIME          56.45s       83.5%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *mlterm*:
 - Scaled Final Score: 20.8%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 98.77%
 
 .. _mltermwide:
 
@@ -4464,74 +4471,6 @@ DEC private modes results for *mlterm*: 34 changeable modes
 of 47 supported out of 157 total modes tested (29.9% support, 21.7% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _mltermdecmode1:
-
-.. _mltermdecmode2:
-
-.. _mltermdecmode3:
-
-.. _mltermdecmode5:
-
-.. _mltermdecmode6:
-
-.. _mltermdecmode7:
-
-.. _mltermdecmode25:
-
-.. _mltermdecmode40:
-
-.. _mltermdecmode47:
-
-.. _mltermdecmode66:
-
-.. _mltermdecmode67:
-
-.. _mltermdecmode69:
-
-.. _mltermdecmode80:
-
-.. _mltermdecmode95:
-
-.. _mltermdecmode116:
-
-.. _mltermdecmode117:
-
-.. _mltermdecmode1000:
-
-.. _mltermdecmode1002:
-
-.. _mltermdecmode1003:
-
-.. _mltermdecmode1004:
-
-.. _mltermdecmode1005:
-
-.. _mltermdecmode1006:
-
-.. _mltermdecmode1010:
-
-.. _mltermdecmode1015:
-
-.. _mltermdecmode1034:
-
-.. _mltermdecmode1036:
-
-.. _mltermdecmode1042:
-
-.. _mltermdecmode1047:
-
-.. _mltermdecmode1048:
-
-.. _mltermdecmode1049:
-
-.. _mltermdecmode2004:
-
-.. _mltermdecmode7727:
-
-.. _mltermdecmode8452:
-
-.. _mltermdecmode8800:
 
 .. table::
    :class: sphinx-datatable

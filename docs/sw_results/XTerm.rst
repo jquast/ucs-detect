@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *XTerm*:
    LANG          72.76%       52.6%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     42.04%       100.0%          modes_changeable / total_modes
+   DEC Modes     42.04%       42.0%           modes_changeable / total_modes
    TIME          49.87s       85.4%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *XTerm*:
 - Scaled Final Score: 21.8%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 72.76%
 
 .. _XTermwide:
 
@@ -4400,138 +4407,6 @@ DEC private modes results for *XTerm*: 66 changeable modes
 of 69 supported out of 157 total modes tested (43.9% support, 42.0% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _XTermdecmode1:
-
-.. _XTermdecmode2:
-
-.. _XTermdecmode3:
-
-.. _XTermdecmode4:
-
-.. _XTermdecmode5:
-
-.. _XTermdecmode6:
-
-.. _XTermdecmode7:
-
-.. _XTermdecmode9:
-
-.. _XTermdecmode12:
-
-.. _XTermdecmode13:
-
-.. _XTermdecmode18:
-
-.. _XTermdecmode19:
-
-.. _XTermdecmode25:
-
-.. _XTermdecmode30:
-
-.. _XTermdecmode35:
-
-.. _XTermdecmode38:
-
-.. _XTermdecmode40:
-
-.. _XTermdecmode41:
-
-.. _XTermdecmode42:
-
-.. _XTermdecmode44:
-
-.. _XTermdecmode45:
-
-.. _XTermdecmode47:
-
-.. _XTermdecmode66:
-
-.. _XTermdecmode67:
-
-.. _XTermdecmode69:
-
-.. _XTermdecmode80:
-
-.. _XTermdecmode1000:
-
-.. _XTermdecmode1001:
-
-.. _XTermdecmode1002:
-
-.. _XTermdecmode1003:
-
-.. _XTermdecmode1004:
-
-.. _XTermdecmode1005:
-
-.. _XTermdecmode1006:
-
-.. _XTermdecmode1007:
-
-.. _XTermdecmode1010:
-
-.. _XTermdecmode1011:
-
-.. _XTermdecmode1014:
-
-.. _XTermdecmode1015:
-
-.. _XTermdecmode1016:
-
-.. _XTermdecmode1034:
-
-.. _XTermdecmode1035:
-
-.. _XTermdecmode1036:
-
-.. _XTermdecmode1037:
-
-.. _XTermdecmode1039:
-
-.. _XTermdecmode1040:
-
-.. _XTermdecmode1041:
-
-.. _XTermdecmode1042:
-
-.. _XTermdecmode1043:
-
-.. _XTermdecmode1044:
-
-.. _XTermdecmode1045:
-
-.. _XTermdecmode1046:
-
-.. _XTermdecmode1047:
-
-.. _XTermdecmode1048:
-
-.. _XTermdecmode1049:
-
-.. _XTermdecmode1050:
-
-.. _XTermdecmode1051:
-
-.. _XTermdecmode1060:
-
-.. _XTermdecmode1061:
-
-.. _XTermdecmode1070:
-
-.. _XTermdecmode2001:
-
-.. _XTermdecmode2002:
-
-.. _XTermdecmode2003:
-
-.. _XTermdecmode2004:
-
-.. _XTermdecmode2005:
-
-.. _XTermdecmode2006:
-
-.. _XTermdecmode8452:
 
 .. table::
    :class: sphinx-datatable

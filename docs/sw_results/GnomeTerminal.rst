@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *Gnome Terminal*:
    LANG          69.92%       47.5%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     17.83%       24.0%           modes_changeable / total_modes
+   DEC Modes     17.83%       17.8%           modes_changeable / total_modes
    TIME          7755.84s     9.8%            1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *Gnome Terminal*:
 - Scaled Final Score: 11.5%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 69.92%
 
 .. _GnomeTerminalwide:
 
@@ -4304,63 +4311,13 @@ DEC Private Modes Support
 DEC private modes results for *Gnome Terminal*: 28 changeable modes
 of 128 supported out of 157 total modes tested (81.5% support, 17.8% changeable).
 
+.. note::
+
+   This terminal reports 92 modes as supported, but these modes
+   are neither enabled nor changeable. This may sometimes be interpreted as
+   not truly supporting these modes, as they cannot be toggled or utilized.
+
 Complete list of DEC private modes tested:
-
-.. _GnomeTerminaldecmode1:
-
-.. _GnomeTerminaldecmode3:
-
-.. _GnomeTerminaldecmode5:
-
-.. _GnomeTerminaldecmode6:
-
-.. _GnomeTerminaldecmode7:
-
-.. _GnomeTerminaldecmode9:
-
-.. _GnomeTerminaldecmode25:
-
-.. _GnomeTerminaldecmode40:
-
-.. _GnomeTerminaldecmode47:
-
-.. _GnomeTerminaldecmode66:
-
-.. _GnomeTerminaldecmode69:
-
-.. _GnomeTerminaldecmode80:
-
-.. _GnomeTerminaldecmode1000:
-
-.. _GnomeTerminaldecmode1001:
-
-.. _GnomeTerminaldecmode1002:
-
-.. _GnomeTerminaldecmode1003:
-
-.. _GnomeTerminaldecmode1004:
-
-.. _GnomeTerminaldecmode1006:
-
-.. _GnomeTerminaldecmode1007:
-
-.. _GnomeTerminaldecmode1036:
-
-.. _GnomeTerminaldecmode1047:
-
-.. _GnomeTerminaldecmode1048:
-
-.. _GnomeTerminaldecmode1049:
-
-.. _GnomeTerminaldecmode1070:
-
-.. _GnomeTerminaldecmode1243:
-
-.. _GnomeTerminaldecmode2004:
-
-.. _GnomeTerminaldecmode2500:
-
-.. _GnomeTerminaldecmode2501:
 
 .. table::
    :class: sphinx-datatable

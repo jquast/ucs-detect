@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *rxvt-unicode*:
    LANG          72.74%       52.6%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     17.61%       23.3%           modes_changeable / total_modes
+   DEC Modes     17.61%       17.6%           modes_changeable / total_modes
    TIME          32.67s       91.7%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *rxvt-unicode*:
 - Scaled Final Score: 14.8%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 72.74%
 
 .. _rxvtunicodewide:
 
@@ -4308,62 +4315,6 @@ DEC private modes results for *rxvt-unicode*: 28 changeable modes
 of 28 supported out of 159 total modes tested (17.6% support, 17.6% changeable).
 
 Complete list of DEC private modes tested:
-
-.. _rxvtunicodedecmode1:
-
-.. _rxvtunicodedecmode2:
-
-.. _rxvtunicodedecmode3:
-
-.. _rxvtunicodedecmode4:
-
-.. _rxvtunicodedecmode5:
-
-.. _rxvtunicodedecmode6:
-
-.. _rxvtunicodedecmode7:
-
-.. _rxvtunicodedecmode9:
-
-.. _rxvtunicodedecmode12:
-
-.. _rxvtunicodedecmode25:
-
-.. _rxvtunicodedecmode30:
-
-.. _rxvtunicodedecmode35:
-
-.. _rxvtunicodedecmode40:
-
-.. _rxvtunicodedecmode47:
-
-.. _rxvtunicodedecmode66:
-
-.. _rxvtunicodedecmode67:
-
-.. _rxvtunicodedecmode1000:
-
-.. _rxvtunicodedecmode1002:
-
-.. _rxvtunicodedecmode1003:
-
-.. _rxvtunicodedecmode1004:
-
-.. _rxvtunicodedecmode1005:
-
-.. _rxvtunicodedecmode1006:
-
-.. _rxvtunicodedecmode1010:
-
-.. _rxvtunicodedecmode1011:
-
-.. _rxvtunicodedecmode1015:
-
-.. _rxvtunicodedecmode1047:
-
-.. _rxvtunicodedecmode1049:
-
-.. _rxvtunicodedecmode2004:
 
 .. table::
    :class: sphinx-datatable

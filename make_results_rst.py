@@ -849,7 +849,7 @@ def show_score_breakdown(sw_name, entry):
 
         print(f"Geometric mean calculation:")
         print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} languages")
-        print(f"- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean")
+        print(f"- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_")
         print(f"- Result: {geo_mean*100:.2f}%")
         print()
 

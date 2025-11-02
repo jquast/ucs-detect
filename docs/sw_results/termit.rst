@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *termit*:
    LANG          70.20%       48.0%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     17.83%       24.0%           modes_changeable / total_modes
+   DEC Modes     17.83%       17.8%           modes_changeable / total_modes
    TIME          7793.79s     9.7%            1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -40,6 +40,13 @@ Detailed breakdown of how scores are calculated for *termit*:
 - Scaled Final Score: 11.6%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
+
+**LANG Score Details (Geometric Mean):**
+
+Geometric mean calculation:
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- Result: 70.20%
 
 .. _termitwide:
 
@@ -4302,63 +4309,13 @@ DEC Private Modes Support
 DEC private modes results for *termit*: 28 changeable modes
 of 128 supported out of 157 total modes tested (81.5% support, 17.8% changeable).
 
+.. note::
+
+   This terminal reports 92 modes as supported, but these modes
+   are neither enabled nor changeable. This may sometimes be interpreted as
+   not truly supporting these modes, as they cannot be toggled or utilized.
+
 Complete list of DEC private modes tested:
-
-.. _termitdecmode1:
-
-.. _termitdecmode3:
-
-.. _termitdecmode5:
-
-.. _termitdecmode6:
-
-.. _termitdecmode7:
-
-.. _termitdecmode9:
-
-.. _termitdecmode25:
-
-.. _termitdecmode40:
-
-.. _termitdecmode47:
-
-.. _termitdecmode66:
-
-.. _termitdecmode69:
-
-.. _termitdecmode80:
-
-.. _termitdecmode1000:
-
-.. _termitdecmode1001:
-
-.. _termitdecmode1002:
-
-.. _termitdecmode1003:
-
-.. _termitdecmode1004:
-
-.. _termitdecmode1006:
-
-.. _termitdecmode1007:
-
-.. _termitdecmode1036:
-
-.. _termitdecmode1047:
-
-.. _termitdecmode1048:
-
-.. _termitdecmode1049:
-
-.. _termitdecmode1070:
-
-.. _termitdecmode1243:
-
-.. _termitdecmode2004:
-
-.. _termitdecmode2500:
-
-.. _termitdecmode2501:
 
 .. table::
    :class: sphinx-datatable
