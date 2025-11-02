@@ -155,6 +155,11 @@ def main():
     if errors > 0:
         print(f"Errors: {errors} files", file=sys.stderr)
 
+    # Apply encoding fixes for known issues in upstream XML
+    print("\nApplying encoding fixes...")
+    import fix_udhr_data
+    fix_udhr_data.main()
+
     return errors
 
 

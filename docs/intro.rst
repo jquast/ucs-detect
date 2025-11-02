@@ -60,6 +60,34 @@ Please do not expect the maintainers of ucs-detect to update these data files. I
 you wish for this report to be corrected for any given Terminal, please feel free
 to submit a pull request with an update to the yaml data files.
 
+Problem Analysis
+----------------
+
+Use the CLI argument, --stop-at-error to interactively investigate discrepencies
+as they are detected. For example::
+
+    ucs-detect --stop-at-error 'Hindi'
+
+This presents output when an error occurs during Chinese language testing::
+
+    ucs-detect: testing language support: Hindi
+    मानव
+
+    Failure in language 'Hindi':
+    +----------------------------+
+    |            मानव             |
+    +----------------------------+
+
+    measured by terminal: 4
+    measured by wcwidth:  3
+
+    printf '\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5\n'
+    from blessed import Terminal
+    term = Terminal()
+    y1, x1 = term.get_location(); print('मानव', end='', flush=True); y2, x2 = term.get_location()
+    assert x2 - x1 == 3
+
+
 Problem
 -------
 

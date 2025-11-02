@@ -740,9 +740,9 @@ def display_dec_modes_feature_table(score_table):
         return
 
     display_title("DEC Private Modes by Terminal", 2)
-    print("This table shows which DEC Private Modes are changeable for each terminal.")
+    print("This table shows which DEC Private Modes are supported for each terminal.")
     print("Terminals are sorted by number of changeable modes (most first).")
-    print("Each mode number column shows 'yes' if that mode is changeable.")
+    print("Each mode number column shows 'yes' (green) if supported, or 'no' (red) if not supported.")
     print()
 
     # Sort all changeable modes by mode number
@@ -756,19 +756,25 @@ def display_dec_modes_feature_table(score_table):
         # Count changeable modes for this terminal
         changeable_count = sum(1 for supported, changeable in modes.values() if changeable)
 
-        # Create row starting with Terminal and Changeable count
+        # Create row starting with Terminal and Changeable count (as hyperlink)
         row = {
             "Terminal": make_outbound_hyperlink(terminal_name, terminal_name + "_dec_modes"),
-            "Changeable": str(changeable_count),
+            "Changeable": make_outbound_hyperlink(str(changeable_count), terminal_name + "_dec_modes"),
         }
 
         # Add a column for each changeable mode
         for mode_num in sorted_modes:
-            if mode_num in modes and modes[mode_num][1]:  # [1] is changeable
-                # Show hyperlinked "yes" for changeable modes
-                row[str(mode_num)] = make_outbound_hyperlink("yes", terminal_name + "_dec_modes")
+            if mode_num in modes:
+                supported = modes[mode_num][0]  # [0] is supported
+                if supported:
+                    # Show green "yes" with hyperlink for supported modes
+                    row[str(mode_num)] = f":sref:`yes <{make_link(terminal_name + '_dec_modes')}> 100`"
+                else:
+                    # Show red "no" without hyperlink for unsupported modes
+                    row[str(mode_num)] = wrap_with_score_role("no", 0.0)
             else:
-                row[str(mode_num)] = ""
+                # Mode not in this terminal's data - show red "no"
+                row[str(mode_num)] = wrap_with_score_role("no", 0.0)
 
         table_data.append((changeable_count, row))
 

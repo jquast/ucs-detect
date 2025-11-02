@@ -61,7 +61,7 @@ def make_printf_hex(wchar):
 
     Python's b'\x12..' representation is compatible enough with printf(1).
     """
-    return repr(bytes(wchar, "utf8").decode("unicode-escape").encode("utf8"))[2:-1]
+    return repr(wchar.encode("utf8"))[2:-1]
 
 
 def display_error_and_prompt(
@@ -83,18 +83,28 @@ def display_error_and_prompt(
 
     # Move to current y position (column 0) and clear to end of screen
     if saved_ypos != -1:
-        writer(term.move_yx(saved_ypos, 0) + term.clear_eos)
+        writer(term.move_yx(saved_ypos+1, 0) + term.clear_eos)
 
     # Display error information
     writer(term.bold(f"Failure in {context_name}:\n"))
 
     # Create a box around the failing character(s)
-    box_width = max(30, len(wchars_display) + 4, measured_by_terminal + 4)
+    # Use wcwidth to get the actual display width
+    display_width = wcwidth.wcswidth(wchars_display)
+    string_length = len(wchars_display)
+
+    # For complex scripts with many combining characters, use string length as a safety margin
+    box_width = max(30, display_width + 4, measured_by_wcwidth + 4, string_length + 4)
     top_line = "+" + "-" * (box_width - 2) + "+"
     bottom_line = "+" + "-" * (box_width - 2) + "+"
 
+    # For centering, we need to account for the display width vs string length difference
+    padding_total = box_width - 2 - display_width
+    padding_left = padding_total // 2
+    padding_right = padding_total - padding_left
+
     writer(f"{top_line}\n")
-    writer(f"|{wchars_display.center(box_width - 2)}|\n")
+    writer(f"|{' ' * padding_left}{wchars_display}{' ' * padding_right}|\n")
     writer(f"{bottom_line}\n")
 
     writer(f"\nmeasured by terminal: {measured_by_terminal}\n")
@@ -102,7 +112,12 @@ def display_error_and_prompt(
 
     # Display printf statement
     printf_hex = make_printf_hex(wchars_display)
-    writer(f"\nprintf '{printf_hex}'\n")
+    writer(f"\nprintf '{printf_hex}\\n'\n")
+
+    # Display Python blessed test snippet
+    writer(f"from blessed import Terminal;term = Terminal()\n")
+    writer(f"y1, x1 = term.get_location(); print({wchars_display!r}, end='', flush=True); y2, x2 = term.get_location()\n")
+    writer(f"assert x2 - x1 == {measured_by_wcwidth}, " + '(f"{x2}-{x1}={x2-x1}", "expected:", ' + str(measured_by_wcwidth) + ')')
 
     writer(f"\n{term.bold('press return for next error, or')} {term.bold_red('n')} {term.bold('for non-stop:')}")
 
@@ -112,9 +127,17 @@ def display_error_and_prompt(
     # Check if user wants to disable stopping
     should_continue_stopping = key.lower() != 'n'
 
-    # Restore screen (move back to saved position if possible)
-    if saved_ypos != -1 and saved_xpos != -1:
-        writer(term.move_yx(saved_ypos, saved_xpos))
+    # Check if screen scrolled by getting current position
+    current_ypos, current_xpos = get_location_with_retry(term, 1.0)
+
+    # If we're near the bottom or position seems invalid, just clear screen
+    # Otherwise try to restore to saved position
+    if current_ypos == -1 or current_ypos >= term.height - 2 or saved_ypos == -1:
+        # Screen likely scrolled or position invalid - clear everything
+        writer(term.home + term.clear)
+    else:
+        # Safe to restore - no scrolling occurred
+        writer(term.move_yx(saved_ypos, saved_xpos) + term.clear_eos)
 
     return should_continue_stopping
 
@@ -199,14 +222,16 @@ def test_language_support(
                 start_xpos = estimated_xpos
                 estimated_xpos += expected_width
 
-                if wchars in WORD_SPLIT_DELIMITERS:
-                    # small optimization, do not measure length of word-split delimiters
-                    continue
-
-                # fetch cursor position
+                # fetch cursor position (always, even for delimiters, to keep estimated_xpos in sync)
                 end_ypos, end_xpos = get_location_with_retry(term, timeout)
                 if (-1, -1) == (end_ypos, end_xpos):
                     exit_and_display_timeout_error(term, writer, timeout, orig_xpos, top)
+
+                if wchars in WORD_SPLIT_DELIMITERS:
+                    # Skip measurement for delimiters, but sync position
+                    estimated_xpos = end_xpos
+                    last_ypos = end_ypos
+                    continue
 
                 # measure distance
                 delta_xpos = end_xpos - start_xpos
