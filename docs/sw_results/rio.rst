@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *rio*:
      3  :ref:`LANG <riolang>`           74.00%       51.8%
      4  :ref:`VS16 <riovs16>`           0.00%        0.0%
      5  :ref:`VS15 <riovs15>`           0.00%        0.0%
-     6  :ref:`DEC Modes <riodecmodes>`  0            0.0%
-     7  :ref:`TIME <riotime>`           529.97s      54.4%
+     6  :ref:`Sixel <riosixel>`         yes          100.0%
+     7  :ref:`DEC Modes <riodecmodes>`  0            0.0%
+     8  :ref:`TIME <riotime>`           529.97s      54.4%
    ===  ==============================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/rio_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/rio_scores_scaled.png
    :align: center
@@ -49,12 +44,12 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 32.40%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 40.85%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Final Scaled Score: 3.9%
+- Final Scaled Score: 28.1%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 0.0%
 - Formula: 0.0 / 100
 - Result: 0.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **yes**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -289,6 +292,22 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *rio* measures width 2.
 
+
+.. _riosixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*rio* **supports Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: 4, 6, 22
+- Sixel indicator ('4'): present
 
 .. _riolang:
 

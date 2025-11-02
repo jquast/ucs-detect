@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *GNOME Terminal*:
      3  :ref:`LANG <gnometerminallang>`           71.44%       47.0%
      4  :ref:`VS16 <gnometerminalvs16>`           0.00%        0.0%
      5  :ref:`VS15 <gnometerminalvs15>`           0.00%        0.0%
-     6  :ref:`DEC Modes <gnometerminaldecmodes>`  28           42.4%
-     7  :ref:`TIME <gnometerminaltime>`           8524.93s     9.1%
+     6  :ref:`Sixel <gnometerminalsixel>`         no           0.0%
+     7  :ref:`DEC Modes <gnometerminaldecmodes>`  28           42.4%
+     8  :ref:`TIME <gnometerminaltime>`           8524.93s     9.1%
    ===  ========================================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/gnometerminal_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/gnometerminal_scores_scaled.png
    :align: center
@@ -49,8 +44,8 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 30.82%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 26.97%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 0.0%
 - Formula: 0.0 / 100
 - Result: 0.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **no**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -289,6 +292,22 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *GNOME Terminal* measures width 2.
 
+
+.. _gnometerminalsixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*GNOME Terminal* **does not support Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: 1, 21, 22
+- Sixel indicator ('4'): not present
 
 .. _gnometerminallang:
 

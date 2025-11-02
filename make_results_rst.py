@@ -179,7 +179,7 @@ def print_datatable(table_str, caption=None):
 
 def create_score_plots(sw_name, entry, score_table):
     """
-    Create matplotlib plots comparing terminal scores against all terminals.
+    Create matplotlib plot comparing terminal scores against all terminals.
 
     Parameters
     ----------
@@ -191,10 +191,8 @@ def create_score_plots(sw_name, entry, score_table):
         List of all score entries for comparison
     """
     # Collect all scores for comparison
-    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'VS15']
-    terminal_scores_raw = {}
+    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'VS15', 'Sixel', 'DEC', 'TIME']
     terminal_scores_scaled = {}
-    all_scores_raw = {}
     all_scores_scaled = {}
 
     # Map metric names to entry keys
@@ -204,23 +202,18 @@ def create_score_plots(sw_name, entry, score_table):
         'LANG': 'score_language',
         'VS16': 'score_emoji_vs16',
         'VS15': 'score_emoji_vs15',
+        'Sixel': 'score_sixel',
+        'DEC': 'score_dec_modes',
+        'TIME': 'score_elapsed',
     }
 
     for metric in metrics:
         key = score_keys[metric]
-        terminal_scores_raw[metric] = entry[key]
         terminal_scores_scaled[metric] = entry[key + '_scaled']
-        all_scores_raw[metric] = [e[key] for e in score_table]
         all_scores_scaled[metric] = [e[key + '_scaled'] for e in score_table]
 
     # Create output directory
     os.makedirs(PLOTS_PATH, exist_ok=True)
-
-    # Create plot for raw scores
-    plot_filename_raw = f"{make_link(sw_name)}_scores_raw.png"
-    plot_path_raw = os.path.join(PLOTS_PATH, plot_filename_raw)
-    _create_multi_metric_plot(sw_name, terminal_scores_raw, all_scores_raw,
-                              plot_path_raw, use_scaled=False)
 
     # Create plot for scaled scores
     plot_filename_scaled = f"{make_link(sw_name)}_scores_scaled.png"
@@ -228,7 +221,7 @@ def create_score_plots(sw_name, entry, score_table):
     _create_multi_metric_plot(sw_name, terminal_scores_scaled, all_scores_scaled,
                               plot_path_scaled, use_scaled=True)
 
-    return plot_filename_raw, plot_filename_scaled
+    return plot_filename_scaled
 
 
 def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
@@ -266,8 +259,8 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
             pct = sum(1 for s in valid_scores if s <= score) / len(valid_scores) * 100
             percentiles.append(pct)
 
-    # Create bar chart (6 inches at 100dpi = 600px wide)
-    fig, ax = plt.subplots(figsize=(6, 4))
+    # Create bar chart (8 inches at 100dpi = 800px wide to accommodate 8 metrics)
+    fig, ax = plt.subplots(figsize=(8, 4))
 
     x_pos = np.arange(len(metrics))
     colors = ['#FF6B6B' if p < 33 else '#4ECDC4' if p < 66 else '#95E1D3'
@@ -326,9 +319,9 @@ def main():
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
 
-        # Generate score comparison plots
+        # Generate score comparison plot
         print(f'Generating plots for {sw_name} ... ', file=sys.stderr, end='', flush=True)
-        plot_raw, plot_scaled = create_score_plots(sw_name, entry, score_table)
+        plot_scaled = create_score_plots(sw_name, entry, score_table)
         print('ok', file=sys.stderr)
 
         # Write terminal documentation page
@@ -336,11 +329,12 @@ def main():
         print(f'Writing {fname} ... ', file=sys.stderr, end='', flush=True)
         with open(fname, 'w') as fout, contextlib.redirect_stdout(fout):
             show_software_header(entry, sw_name, terminal_mixins)
-            show_score_breakdown(sw_name, entry, plot_raw, plot_scaled)
+            show_score_breakdown(sw_name, entry, plot_scaled)
             show_wide_character_support(sw_name, entry)
             show_emoji_zwj_results(sw_name, entry)
             show_vs_results(sw_name, entry, '16')
             show_vs_results(sw_name, entry, '15')
+            show_sixel_results(sw_name, entry)
             show_language_results(sw_name, entry)
             show_dec_modes_results(sw_name, entry)
             show_reproduce_command(sw_name, entry)
@@ -442,8 +436,9 @@ def make_score_table():
             _score_elapsed = score_elapsed_time(data)
             _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
 
-            # Sixel support
+            # Sixel support - binary score based on DA1 device attributes response
             _sixel_support = data.get("terminal_results", {}).get("sixel", False)
+            _score_sixel = 1.0 if _sixel_support else 0.0
 
             score_table.append(
                 dict(
@@ -458,6 +453,7 @@ def make_score_table():
                     score_language=score_language,
                     score_wide=_score_wide,
                     score_zwj=_score_zwj,
+                    score_sixel=_score_sixel,
                     version_best_wide=version_best_wide,
                     version_best_zwj=version_best_zwj,
                     sixel_support=_sixel_support,
@@ -513,6 +509,7 @@ def make_score_table():
             entry["score_emoji_vs15"],
             entry["score_zwj"],
             entry["score_wide"],
+            entry["score_sixel"],
             entry["score_dec_modes_norm"],
             entry["score_elapsed_norm"]
         )
@@ -788,8 +785,8 @@ def scale_scores(score_table, entry, key):
     if math.isnan(my_score):
         return float('NaN')
 
-    # VS16 and VS15 are not scaled - return raw score
-    if key in ('score_emoji_vs16', 'score_emoji_vs15'):
+    # VS16, VS15, and Sixel are not scaled - return raw score (binary 0/1)
+    if key in ('score_emoji_vs16', 'score_emoji_vs15', 'score_sixel'):
         return my_score
 
     valid_scores = [_entry[key] for _entry in score_table if not math.isnan(_entry[key])]
@@ -1057,7 +1054,7 @@ def display_dec_modes_feature_table(score_table):
         print()
 
 
-def show_score_breakdown(sw_name, entry, plot_filename_raw, plot_filename_scaled):
+def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     display_inbound_hyperlink(entry["terminal_software_name"] + "_scores")
     display_title("Score Breakdown", 3)
     print(f"Detailed breakdown of how scores are calculated for *{sw_name}*:")
@@ -1100,12 +1097,18 @@ def show_score_breakdown(sw_name, entry, plot_filename_raw, plot_filename_scaled
         },
         {
             "#": 6,
+            "Score Type": make_outbound_hyperlink("Sixel", sw_name + "_sixel"),
+            "Raw Score": "yes" if entry.get("sixel_support", False) else "no",
+            "Final Scaled Score": format_score_pct(entry["score_sixel_scaled"]),
+        },
+        {
+            "#": 7,
             "Score Type": make_outbound_hyperlink("DEC Modes", sw_name + "_dec_modes"),
             "Raw Score": f"{int(entry['score_dec_modes'])}" if not math.isnan(entry['score_dec_modes']) else "N/A",
             "Final Scaled Score": format_score_pct(entry["score_dec_modes_scaled"]),
         },
         {
-            "#": 7,
+            "#": 8,
             "Score Type": make_outbound_hyperlink("TIME", sw_name + "_time"),
             "Raw Score": f"{entry['elapsed_seconds']:.2f}s" if not math.isnan(entry['elapsed_seconds']) else "N/A",
             "Final Scaled Score": format_score_pct(entry["score_elapsed_scaled"]),
@@ -1114,30 +1117,23 @@ def show_score_breakdown(sw_name, entry, plot_filename_raw, plot_filename_scaled
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
     print_datatable(table_str)
 
-    # Add score comparison plots
-    print("**Score Comparison Plots:**")
+    # Add score comparison plot
+    print("**Score Comparison Plot:**")
     print()
-    print("The following plots show how this terminal's scores compare to all other terminals tested.")
-    print()
-
-    print(".. figure:: ../_static/plots/" + plot_filename_raw)
-    print("   :align: center")
-    print("   :width: 600px")
-    print()
-    print("   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)")
+    print("The following plot shows how this terminal's scores compare to all other terminals tested.")
     print()
 
     print(".. figure:: ../_static/plots/" + plot_filename_scaled)
     print("   :align: center")
-    print("   :width: 600px")
+    print("   :width: 800px")
     print()
-    print("   Scaled scores comparison across metrics (normalized 0-100%)")
+    print("   Scaled scores comparison across all metrics (normalized 0-100%)")
     print()
 
     print(f"**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7")
+    print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8")
     print(f"  the categorized 'average' absolute support level of this terminal")
     print(f"  Note: DEC Modes and TIME are normalized to 0-1 range before averaging")
     print()
@@ -1230,6 +1226,16 @@ def show_score_breakdown(sw_name, entry, plot_filename_raw, plot_filename_scaled
             print(f"VS15 results not available.")
     else:
         print(f"VS15 results not available.")
+    print()
+
+    print(f"**Sixel Score Details:**")
+    print()
+    sixel_status = "yes" if entry.get("sixel_support", False) else "no"
+    print(f"Sixel graphics support: **{sixel_status}**")
+    print()
+    print(f"Sixel support is determined by the terminal's response to the Device Attributes")
+    print(f"(DA1) query. Terminals that include '4' in their DA1 extensions response support")
+    print(f"Sixel graphics protocol.")
     print()
 
     print(f"**DEC Modes Score Details:**")
@@ -1402,6 +1408,38 @@ def show_vs_results(sw_name, entry, variation_str):
         whatis = f"of a {description} by *Variation Selector-{variation_str}*,"
         show_record_failure(sw_name, whatis, failure_record)
     print()
+
+
+def show_sixel_results(sw_name, entry):
+    """
+    Display Sixel graphics support results.
+    """
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_sixel")
+    display_title("Sixel Graphics Support", 3)
+
+    sixel_supported = entry.get("sixel_support", False)
+
+    if sixel_supported:
+        print(f"*{sw_name}* **supports Sixel graphics protocol**.")
+    else:
+        print(f"*{sw_name}* **does not support Sixel graphics protocol**.")
+    print()
+
+    print(f"Sixel support is determined by the terminal's response to the Device Attributes")
+    print(f"(DA1) query. Terminals that include '4' in their DA1 extensions response indicate")
+    print(f"support for the Sixel graphics protocol, which allows inline image rendering.")
+    print()
+
+    # Show DA1 response if available
+    if "terminal_results" in entry["data"] and "device_attributes" in entry["data"]["terminal_results"]:
+        da1_data = entry["data"]["terminal_results"]["device_attributes"]
+        extensions = da1_data.get("extensions", [])
+
+        print(f"**Device Attributes Response:**")
+        print()
+        print(f"- Extensions reported: {', '.join(map(str, extensions)) if extensions else 'none'}")
+        print(f"- Sixel indicator ('4'): {'present' if '4' in str(extensions) or 4 in extensions else 'not present'}")
+        print()
 
 
 def display_title(text, depth):

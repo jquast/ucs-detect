@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *Konsole*:
      3  :ref:`LANG <konsolelang>`           75.98%       55.5%
      4  :ref:`VS16 <konsolevs16>`           100.00%      100.0%
      5  :ref:`VS15 <konsolevs15>`           0.00%        0.0%
-     6  :ref:`DEC Modes <konsoledecmodes>`  0            0.0%
-     7  :ref:`TIME <konsoletime>`           75.93s       86.1%
+     6  :ref:`Sixel <konsolesixel>`         yes          100.0%
+     7  :ref:`DEC Modes <konsoledecmodes>`  0            0.0%
+     8  :ref:`TIME <konsoletime>`           75.93s       86.1%
    ===  ==================================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/konsole_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/konsole_scores_scaled.png
    :align: center
@@ -49,12 +44,12 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 64.69%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 69.10%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Final Scaled Score: 58.6%
+- Final Scaled Score: 82.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 0.0%
 - Formula: 0.0 / 100
 - Result: 0.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **yes**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -266,6 +269,22 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *Konsole* measures width 2.
 
+
+.. _konsolesixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*Konsole* **supports Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: 1, 4
+- Sixel indicator ('4'): present
 
 .. _konsolelang:
 

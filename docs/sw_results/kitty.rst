@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *kitty*:
      3  :ref:`LANG <kittylang>`           94.36%       89.7%
      4  :ref:`VS16 <kittyvs16>`           100.00%      100.0%
      5  :ref:`VS15 <kittyvs15>`           100.00%      100.0%
-     6  :ref:`DEC Modes <kittydecmodes>`  19           28.8%
-     7  :ref:`TIME <kittytime>`           1748.48s     35.0%
+     6  :ref:`Sixel <kittysixel>`         no           0.0%
+     7  :ref:`DEC Modes <kittydecmodes>`  19           28.8%
+     8  :ref:`TIME <kittytime>`           1748.48s     35.0%
    ===  ================================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/kitty_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/kitty_scores_scaled.png
    :align: center
@@ -49,8 +44,8 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 79.40%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 69.48%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 100.0%
 - Formula: 100.0 / 100
 - Result: 100.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **no**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -214,6 +217,17 @@ Variation Selector-15 support
 Emoji VS-15 results for *kitty* is 0 errors
 out of 158 total codepoints tested, 100.0% success.
 All codepoint combinations with Variation Selector-15 tested were successful.
+
+.. _kittysixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*kitty* **does not support Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
 
 .. _kittylang:
 

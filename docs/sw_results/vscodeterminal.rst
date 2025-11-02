@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *vscode terminal*:
      3  :ref:`LANG <vscodeterminallang>`           73.95%       51.7%
      4  :ref:`VS16 <vscodeterminalvs16>`           0.00%        0.0%
      5  :ref:`VS15 <vscodeterminalvs15>`           0.00%        0.0%
-     6  :ref:`DEC Modes <vscodeterminaldecmodes>`  19           28.8%
-     7  :ref:`TIME <vscodeterminaltime>`           2380.01s     29.9%
+     6  :ref:`Sixel <vscodeterminalsixel>`         no           0.0%
+     7  :ref:`DEC Modes <vscodeterminaldecmodes>`  19           28.8%
+     8  :ref:`TIME <vscodeterminaltime>`           2380.01s     29.9%
    ===  =========================================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/vscodeterminal_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/vscodeterminal_scores_scaled.png
    :align: center
@@ -49,8 +44,8 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 31.29%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 27.38%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 0.0%
 - Formula: 0.0 / 100
 - Result: 0.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **no**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -289,6 +292,22 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *vscode terminal* measures width 2.
 
+
+.. _vscodeterminalsixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*vscode terminal* **does not support Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: 2
+- Sixel indicator ('4'): not present
 
 .. _vscodeterminallang:
 

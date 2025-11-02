@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *linux fbdev*:
      3  :ref:`LANG <linuxfbdevlang>`           48.72%       4.7%
      4  :ref:`VS16 <linuxfbdevvs16>`           100.00%      100.0%
      5  :ref:`VS15 <linuxfbdevvs15>`           0.00%        0.0%
-     6  :ref:`DEC Modes <linuxfbdevdecmodes>`  0            0.0%
-     7  :ref:`TIME <linuxfbdevtime>`           58.03s       90.5%
+     6  :ref:`Sixel <linuxfbdevsixel>`         no           0.0%
+     7  :ref:`DEC Modes <linuxfbdevdecmodes>`  0            0.0%
+     8  :ref:`TIME <linuxfbdevtime>`           58.03s       90.5%
    ===  =====================================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/linuxfbdev_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/linuxfbdev_scores_scaled.png
    :align: center
@@ -49,8 +44,8 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 35.33%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 30.91%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 0.0%
 - Formula: 0.0 / 100
 - Result: 0.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **no**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -266,6 +269,22 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *linux fbdev* measures width 2.
 
+
+.. _linuxfbdevsixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*linux fbdev* **does not support Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: none
+- Sixel indicator ('4'): not present
 
 .. _linuxfbdevlang:
 

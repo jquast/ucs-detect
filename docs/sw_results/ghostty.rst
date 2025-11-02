@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *ghostty*:
      3  :ref:`LANG <ghosttylang>`           94.37%       89.7%
      4  :ref:`VS16 <ghosttyvs16>`           94.37%       94.4%
      5  :ref:`VS15 <ghosttyvs15>`           100.00%      100.0%
-     6  :ref:`DEC Modes <ghosttydecmodes>`  36           54.5%
-     7  :ref:`TIME <ghosttytime>`           77.36s       85.8%
+     6  :ref:`Sixel <ghosttysixel>`         no           0.0%
+     7  :ref:`DEC Modes <ghosttydecmodes>`  36           54.5%
+     8  :ref:`TIME <ghosttytime>`           77.36s       85.8%
    ===  ==================================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/ghostty_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/ghostty_scores_scaled.png
    :align: center
@@ -49,8 +44,8 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 89.12%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 77.98%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 100.0%
 - Formula: 100.0 / 100
 - Result: 100.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **no**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -237,6 +240,22 @@ Variation Selector-15 support
 Emoji VS-15 results for *ghostty* is 0 errors
 out of 158 total codepoints tested, 100.0% success.
 All codepoint combinations with Variation Selector-15 tested were successful.
+
+.. _ghosttysixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*ghostty* **does not support Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: 22, 52
+- Sixel indicator ('4'): not present
 
 .. _ghosttylang:
 

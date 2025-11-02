@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
      3  :ref:`LANG <iterm2lang>`           75.80%       55.1%
      4  :ref:`VS16 <iterm2vs16>`           94.37%       94.4%
      5  :ref:`VS15 <iterm2vs15>`           0.00%        0.0%
-     6  :ref:`DEC Modes <iterm2decmodes>`  34           51.5%
-     7  :ref:`TIME <iterm2time>`           4367.06s     20.0%
+     6  :ref:`Sixel <iterm2sixel>`         yes          100.0%
+     7  :ref:`DEC Modes <iterm2decmodes>`  34           51.5%
+     8  :ref:`TIME <iterm2time>`           4367.06s     20.0%
    ===  =================================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/iterm2_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/iterm2_scores_scaled.png
    :align: center
@@ -49,12 +44,12 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 62.23%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 66.95%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Final Scaled Score: 54.4%
+- Final Scaled Score: 78.6%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 0.0%
 - Formula: 0.0 / 100
 - Result: 0.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **yes**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -287,6 +290,22 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *iTerm2* measures width 2.
 
+
+.. _iterm2sixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*iTerm2* **supports Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: 1, 2, 4, 6, 17, 18, 21, 22
+- Sixel indicator ('4'): present
 
 .. _iterm2lang:
 

@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *foot*:
      3  :ref:`LANG <footlang>`           75.75%       55.0%
      4  :ref:`VS16 <footvs16>`           100.00%      100.0%
      5  :ref:`VS15 <footvs15>`           0.00%        0.0%
-     6  :ref:`DEC Modes <footdecmodes>`  30           45.5%
-     7  :ref:`TIME <foottime>`           71.76s       87.0%
+     6  :ref:`Sixel <footsixel>`         yes          100.0%
+     7  :ref:`DEC Modes <footdecmodes>`  30           45.5%
+     8  :ref:`TIME <foottime>`           71.76s       87.0%
    ===  ===============================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/foot_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/foot_scores_scaled.png
    :align: center
@@ -49,12 +44,12 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 71.42%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 74.99%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Final Scaled Score: 70.0%
+- Final Scaled Score: 94.2%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 0.0%
 - Formula: 0.0 / 100
 - Result: 0.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **yes**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -266,6 +269,22 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *foot* measures width 2.
 
+
+.. _footsixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*foot* **supports Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: 4, 22
+- Sixel indicator ('4'): present
 
 .. _footlang:
 

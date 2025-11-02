@@ -27,19 +27,14 @@ Detailed breakdown of how scores are calculated for *PuTTY*:
      3  :ref:`LANG <puttylang>`           74.00%       51.8%
      4  :ref:`VS16 <puttyvs16>`           0.00%        0.0%
      5  :ref:`VS15 <puttyvs15>`           0.00%        0.0%
-     6  :ref:`DEC Modes <puttydecmodes>`  0            0.0%
-     7  :ref:`TIME <puttytime>`           128.92s      77.4%
+     6  :ref:`Sixel <puttysixel>`         no           0.0%
+     7  :ref:`DEC Modes <puttydecmodes>`  0            0.0%
+     8  :ref:`TIME <puttytime>`           128.92s      77.4%
    ===  ================================  ===========  ====================
 
-**Score Comparison Plots:**
+**Score Comparison Plot:**
 
-The following plots show how this terminal's scores compare to all other terminals tested.
-
-.. figure:: ../_static/plots/putty_scores_raw.png
-   :align: center
-   :width: 600px
-
-   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
+The following plot shows how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/putty_scores_scaled.png
    :align: center
@@ -49,8 +44,8 @@ The following plots show how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 35.23%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
+- Raw Final Score: 30.82%
+  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
@@ -91,6 +86,14 @@ Variation Selector-15 support calculation:
 - Success rate: 0.0%
 - Formula: 0.0 / 100
 - Result: 0.00%
+
+**Sixel Score Details:**
+
+Sixel graphics support: **no**
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response support
+Sixel graphics protocol.
 
 **DEC Modes Score Details:**
 
@@ -289,6 +292,22 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *PuTTY* measures width 2.
 
+
+.. _puttysixel:
+
+Sixel Graphics Support
+++++++++++++++++++++++
+
+*PuTTY* **does not support Sixel graphics protocol**.
+
+Sixel support is determined by the terminal's response to the Device Attributes
+(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
+support for the Sixel graphics protocol, which allows inline image rendering.
+
+**Device Attributes Response:**
+
+- Extensions reported: none
+- Sixel indicator ('4'): not present
 
 .. _puttylang:
 
