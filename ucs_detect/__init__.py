@@ -454,7 +454,7 @@ def do_save_yaml( save_yaml, **kwargs):
 
 
 def parse_args():
-    args = argparse.ArgumentParser()
+    args = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     args.add_argument(
         "--stream",
         default="stderr",
