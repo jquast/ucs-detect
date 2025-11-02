@@ -1,0 +1,105 @@
+# Terminal detail mixins for ucs-detect
+# This file provides additional metadata about terminals that cannot be
+# automatically detected or stored in the test result YAML files.
+#
+# Keys are matched against software_name (case-insensitive after lowercasing)
+
+terminals:
+  alacritty:
+    homepage: https://alacritty.org/
+
+  bobcat:
+    homepage: https://github.com/ismail-yilmaz/Bobcat
+
+  contour:
+    homepage: https://contour-terminal.org/
+
+  cool-retro-term:
+    homepage: https://github.com/Swordfish90/cool-retro-term
+
+  extraterm:
+    homepage: https://extraterm.org/
+
+  foot:
+    homepage: https://codeberg.org/dnkl/foot
+
+  ghostty:
+    homepage: https://ghostty.org/
+
+  gnome terminal:
+    homepage: https://help.gnome.org/users/gnome-terminal/stable/
+
+  iterm2:
+    homepage: https://iterm2.com/
+
+  kitty:
+    homepage: https://sw.kovidgoyal.net/kitty/
+
+  konsole:
+    homepage: https://apps.kde.org/konsole/
+
+  linux fbdev:
+    homepage: https://www.kernel.org/doc/Documentation/fb/fbcon.txt
+
+  lxterminal:
+    homepage: https://github.com/lxde/lxterminal
+
+  mlterm:
+    homepage: https://mlterm.sourceforge.net/
+
+  putty:
+    homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/
+
+  qterminal:
+    homepage: https://github.com/lxqt/qterminal
+
+  rio:
+    homepage: https://rioterm.com/
+
+  rxvt-unicode:
+    homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
+
+  screen:
+    homepage: https://www.gnu.org/software/screen/
+
+  st:
+    homepage: https://st.suckless.org/
+
+  tabby:
+    homepage: https://tabby.sh/
+
+  terminal.app:
+    homepage: https://support.apple.com/guide/terminal/welcome/mac
+
+  terminal.exe:
+    homepage: https://learn.microsoft.com/en-us/windows/terminal/
+
+  terminator:
+    homepage: https://gnome-terminator.org/
+
+  terminology:
+    homepage: https://www.enlightenment.org/about-terminology
+
+  termit:
+    homepage: https://github.com/nonstop/termit
+
+  tmux:
+    homepage: https://github.com/tmux/tmux
+
+  vscode terminal:
+    homepage: https://code.visualstudio.com/docs/terminal/basics
+
+  weston-terminal:
+    homepage: https://gitlab.freedesktop.org/wayland/weston
+
+  wezterm:
+    homepage: https://wezfurlong.org/wezterm/
+
+  xfce4-terminal:
+    homepage: https://docs.xfce.org/apps/terminal/start
+
+  xterm:
+    homepage: https://invisible-island.net/xterm/
+
+  zutty:
+    homepage: https://tomscii.sig7.se/zutty/
