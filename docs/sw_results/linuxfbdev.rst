@@ -7,7 +7,7 @@ linux fbdev
 Tested Software version 6.14.0-33 on Linux.
 The homepage URL of this terminal is https://www.kernel.org/doc/Documentation/fb/fbcon.txt.
 Full results available at ucs-detect_ repository path
-`data/linux-6.14.0-33-fbdev.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-6.14.0-33-fbdev.yaml>`_.
+`data/linuxfbdev.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linuxfbdev.yaml>`_.
 
 .. _linuxfbdevscores:
 
@@ -3792,7 +3792,7 @@ To reproduce these results for *linux fbdev*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-6.14.0-33-fbdev.yaml \
+    ucs-detect --save-yaml=linuxfbdev.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

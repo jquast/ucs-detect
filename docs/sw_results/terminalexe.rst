@@ -7,7 +7,7 @@ terminal.exe
 Tested Software version 1.23.12811.0 on Linux.
 The homepage URL of this terminal is https://learn.microsoft.com/en-us/windows/terminal/.
 Full results available at ucs-detect_ repository path
-`data/win-Terminal-1.23.12811.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/win-Terminal-1.23.12811.0.yaml>`_.
+`data/terminalexe.yaml <https://github.com/jquast/ucs-detect/blob/master/data/terminalexe.yaml>`_.
 
 .. _terminalexescores:
 
@@ -1920,7 +1920,7 @@ To reproduce these results for *terminal.exe*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=win-Terminal-1.23.12811.0.yaml \
+    ucs-detect --save-yaml=terminalexe.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

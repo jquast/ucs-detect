@@ -7,7 +7,7 @@ xfce4-terminal
 Tested Software version 1.1.3(VTE/7600) on Linux.
 The homepage URL of this terminal is https://docs.xfce.org/apps/terminal/start.
 Full results available at ucs-detect_ repository path
-`data/linux-xfce4-terminal-1.1.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-xfce4-terminal-1.1.3.yaml>`_.
+`data/xfce4terminal.yaml <https://github.com/jquast/ucs-detect/blob/master/data/xfce4terminal.yaml>`_.
 
 .. _xfce4terminalscores:
 
@@ -1493,7 +1493,7 @@ To reproduce these results for *xfce4-terminal*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-xfce4-terminal-1.1.3.yaml \
+    ucs-detect --save-yaml=xfce4terminal.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

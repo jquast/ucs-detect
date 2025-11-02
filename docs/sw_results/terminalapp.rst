@@ -7,7 +7,7 @@ Terminal.app
 Tested Software version 2.15 on Darwin.
 The homepage URL of this terminal is https://support.apple.com/guide/terminal/welcome/mac.
 Full results available at ucs-detect_ repository path
-`data/macos-Terminal-2.15.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-Terminal-2.15.yaml>`_.
+`data/terminalapp.yaml <https://github.com/jquast/ucs-detect/blob/master/data/terminalapp.yaml>`_.
 
 .. _terminalappscores:
 
@@ -1564,7 +1564,7 @@ To reproduce these results for *Terminal.app*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=macos-Terminal-2.15.yaml \
+    ucs-detect --save-yaml=terminalapp.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

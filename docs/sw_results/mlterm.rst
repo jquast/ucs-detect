@@ -7,7 +7,7 @@ mlterm
 Tested Software version 3.9.3 on Linux.
 The homepage URL of this terminal is https://mlterm.sourceforge.net/.
 Full results available at ucs-detect_ repository path
-`data/linux-mlterm-3.9.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-mlterm-3.9.3.yaml>`_.
+`data/mlterm.yaml <https://github.com/jquast/ucs-detect/blob/master/data/mlterm.yaml>`_.
 
 .. _mltermscores:
 
@@ -1067,7 +1067,7 @@ To reproduce these results for *mlterm*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-mlterm-3.9.3.yaml \
+    ucs-detect --save-yaml=mlterm.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

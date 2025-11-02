@@ -7,7 +7,7 @@ Bobcat
 Tested Software version 0.9.7 (r348) on Linux.
 The homepage URL of this terminal is https://github.com/ismail-yilmaz/Bobcat.
 Full results available at ucs-detect_ repository path
-`data/linux-bobcat-0.9.7.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-bobcat-0.9.7.yaml>`_.
+`data/bobcat.yaml <https://github.com/jquast/ucs-detect/blob/master/data/bobcat.yaml>`_.
 
 .. _bobcatscores:
 
@@ -1489,7 +1489,7 @@ To reproduce these results for *Bobcat*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-bobcat-0.9.7.yaml \
+    ucs-detect --save-yaml=bobcat.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

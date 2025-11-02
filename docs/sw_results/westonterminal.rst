@@ -7,7 +7,7 @@ weston-terminal
 Tested Software version 13.0.0 on Linux.
 The homepage URL of this terminal is https://gitlab.freedesktop.org/wayland/weston.
 Full results available at ucs-detect_ repository path
-`data/linux-weston-terminal-13.0.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-weston-terminal-13.0.0.yaml>`_.
+`data/westonterminal.yaml <https://github.com/jquast/ucs-detect/blob/master/data/westonterminal.yaml>`_.
 
 .. _westonterminalscores:
 
@@ -3792,7 +3792,7 @@ To reproduce these results for *weston-terminal*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-weston-terminal-13.0.0.yaml \
+    ucs-detect --save-yaml=westonterminal.yaml \
         --limit-codepoints=1000 \
         --limit-words=1000 \
         --limit-errors=100

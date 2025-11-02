@@ -7,7 +7,7 @@ foot
 Tested Software version 1.16.2 on Linux.
 The homepage URL of this terminal is https://codeberg.org/dnkl/foot.
 Full results available at ucs-detect_ repository path
-`data/linux-foot-1.16.2.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-foot-1.16.2.yaml>`_.
+`data/foot.yaml <https://github.com/jquast/ucs-detect/blob/master/data/foot.yaml>`_.
 
 .. _footscores:
 
@@ -1533,7 +1533,7 @@ To reproduce these results for *foot*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-foot-1.16.2.yaml \
+    ucs-detect --save-yaml=foot.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

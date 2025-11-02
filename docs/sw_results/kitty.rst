@@ -7,7 +7,7 @@ kitty
 Tested Software version 0.43.1 on Linux.
 The homepage URL of this terminal is https://sw.kovidgoyal.net/kitty/.
 Full results available at ucs-detect_ repository path
-`data/linux-kitty-0.43.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-kitty-0.43.1.yaml>`_.
+`data/kitty.yaml <https://github.com/jquast/ucs-detect/blob/master/data/kitty.yaml>`_.
 
 .. _kittyscores:
 
@@ -1147,7 +1147,7 @@ To reproduce these results for *kitty*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-kitty-0.43.1.yaml \
+    ucs-detect --save-yaml=kitty.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

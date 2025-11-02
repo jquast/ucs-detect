@@ -7,7 +7,7 @@ LXTerminal
 Tested Software version 0.4.0(VTE/7600) on Linux.
 The homepage URL of this terminal is https://github.com/lxde/lxterminal.
 Full results available at ucs-detect_ repository path
-`data/linux-LXTerminal-0.4.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-LXTerminal-0.4.0.yaml>`_.
+`data/lxterminal.yaml <https://github.com/jquast/ucs-detect/blob/master/data/lxterminal.yaml>`_.
 
 .. _lxterminalscores:
 
@@ -1493,7 +1493,7 @@ To reproduce these results for *LXTerminal*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-LXTerminal-0.4.0.yaml \
+    ucs-detect --save-yaml=lxterminal.yaml \
         --limit-codepoints=1000 \
         --limit-words=1000 \
         --limit-errors=100

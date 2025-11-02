@@ -7,7 +7,7 @@ contour
 Tested Software version 0.6.2-master-5b1ad5be on Linux.
 The homepage URL of this terminal is https://contour-terminal.org/.
 Full results available at ucs-detect_ repository path
-`data/linux-contour-0.6.2-master-5b1ad5be.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-contour-0.6.2-master-5b1ad5be.yaml>`_.
+`data/contour.yaml <https://github.com/jquast/ucs-detect/blob/master/data/contour.yaml>`_.
 
 .. _contourscores:
 
@@ -1347,7 +1347,7 @@ To reproduce these results for *contour*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-contour-0.6.2-master-5b1ad5be.yaml \
+    ucs-detect --save-yaml=contour.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

@@ -7,7 +7,7 @@ terminology
 Tested Software version 1.13.0 on Linux.
 The homepage URL of this terminal is https://www.enlightenment.org/about-terminology.
 Full results available at ucs-detect_ repository path
-`data/linux-terminology-1.13.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-terminology-1.13.0.yaml>`_.
+`data/terminology.yaml <https://github.com/jquast/ucs-detect/blob/master/data/terminology.yaml>`_.
 
 .. _terminologyscores:
 
@@ -2048,7 +2048,7 @@ To reproduce these results for *terminology*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-terminology-1.13.0.yaml \
+    ucs-detect --save-yaml=terminology.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

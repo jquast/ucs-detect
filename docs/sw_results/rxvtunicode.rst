@@ -7,7 +7,7 @@ rxvt-unicode
 Tested Software version 9.31 on Linux.
 The homepage URL of this terminal is http://software.schmorp.de/pkg/rxvt-unicode.html.
 Full results available at ucs-detect_ repository path
-`data/linux-rxvt-unicode-9.31.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-rxvt-unicode-9.31.yaml>`_.
+`data/rxvtunicode.yaml <https://github.com/jquast/ucs-detect/blob/master/data/rxvtunicode.yaml>`_.
 
 .. _rxvtunicodescores:
 
@@ -1557,7 +1557,7 @@ To reproduce these results for *rxvt-unicode*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-rxvt-unicode-9.31.yaml \
+    ucs-detect --save-yaml=rxvtunicode.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

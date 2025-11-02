@@ -7,7 +7,7 @@ st
 Tested Software version 0.9 on Linux.
 The homepage URL of this terminal is https://st.suckless.org/.
 Full results available at ucs-detect_ repository path
-`data/linux-st-0.9.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-st-0.9.yaml>`_.
+`data/st.yaml <https://github.com/jquast/ucs-detect/blob/master/data/st.yaml>`_.
 
 .. _stscores:
 
@@ -1385,7 +1385,7 @@ To reproduce these results for *st*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-st-0.9.yaml \
+    ucs-detect --save-yaml=st.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

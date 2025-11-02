@@ -7,7 +7,7 @@ zutty
 Tested Software version 0.14.8 on Linux.
 The homepage URL of this terminal is https://tomscii.sig7.se/zutty/.
 Full results available at ucs-detect_ repository path
-`data/linux-zutty-0.14.8.20231210.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-zutty-0.14.8.20231210.yaml>`_.
+`data/zutty.yaml <https://github.com/jquast/ucs-detect/blob/master/data/zutty.yaml>`_.
 
 .. _zuttyscores:
 
@@ -1385,7 +1385,7 @@ To reproduce these results for *zutty*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-zutty-0.14.8.20231210.yaml \
+    ucs-detect --save-yaml=zutty.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

@@ -7,7 +7,7 @@ vscode terminal
 Tested Software version 1.105.1 on Linux.
 The homepage URL of this terminal is https://code.visualstudio.com/docs/terminal/basics.
 Full results available at ucs-detect_ repository path
-`data/linux-vscode-1.105.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-vscode-1.105.1.yaml>`_.
+`data/vscodeterminal.yaml <https://github.com/jquast/ucs-detect/blob/master/data/vscodeterminal.yaml>`_.
 
 .. _vscodeterminalscores:
 
@@ -1725,7 +1725,7 @@ To reproduce these results for *vscode terminal*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-vscode-1.105.1.yaml \
+    ucs-detect --save-yaml=vscodeterminal.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

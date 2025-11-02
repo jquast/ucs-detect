@@ -7,7 +7,7 @@ cool-retro-term
 Tested Software version 1.2.0 on Darwin.
 The homepage URL of this terminal is https://github.com/Swordfish90/cool-retro-term.
 Full results available at ucs-detect_ repository path
-`data/macos-cool-retro-term-1.2.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-cool-retro-term-1.2.0.yaml>`_.
+`data/coolretroterm.yaml <https://github.com/jquast/ucs-detect/blob/master/data/coolretroterm.yaml>`_.
 
 .. _coolretrotermscores:
 
@@ -544,7 +544,7 @@ To reproduce these results for *cool-retro-term*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=macos-cool-retro-term-1.2.0.yaml \
+    ucs-detect --save-yaml=coolretroterm.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

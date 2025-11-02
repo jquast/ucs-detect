@@ -7,7 +7,7 @@ termit
 Tested Software version 3.1(VTE/7600) on Linux.
 The homepage URL of this terminal is https://github.com/nonstop/termit.
 Full results available at ucs-detect_ repository path
-`data/linux-termit-3.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-termit-3.1.yaml>`_.
+`data/termit.yaml <https://github.com/jquast/ucs-detect/blob/master/data/termit.yaml>`_.
 
 .. _termitscores:
 
@@ -1493,7 +1493,7 @@ To reproduce these results for *termit*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-termit-3.1.yaml \
+    ucs-detect --save-yaml=termit.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

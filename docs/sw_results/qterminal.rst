@@ -7,7 +7,7 @@ QTerminal
 Tested Software version 1.4.0 on Linux.
 The homepage URL of this terminal is https://github.com/lxqt/qterminal.
 Full results available at ucs-detect_ repository path
-`data/linux-QTerminal-1.4.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-QTerminal-1.4.0.yaml>`_.
+`data/qterminal.yaml <https://github.com/jquast/ucs-detect/blob/master/data/qterminal.yaml>`_.
 
 .. _qterminalscores:
 
@@ -544,7 +544,7 @@ To reproduce these results for *QTerminal*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-QTerminal-1.4.0.yaml \
+    ucs-detect --save-yaml=qterminal.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=500

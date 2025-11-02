@@ -7,7 +7,7 @@ terminator
 Tested Software version 2.1.3(VTE/7600) on Linux.
 The homepage URL of this terminal is https://gnome-terminator.org/.
 Full results available at ucs-detect_ repository path
-`data/linux-terminator-2.1.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-terminator-2.1.3.yaml>`_.
+`data/terminator.yaml <https://github.com/jquast/ucs-detect/blob/master/data/terminator.yaml>`_.
 
 .. _terminatorscores:
 
@@ -1493,7 +1493,7 @@ To reproduce these results for *terminator*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-terminator-2.1.3.yaml \
+    ucs-detect --save-yaml=terminator.yaml \
         --limit-codepoints=1000 \
         --limit-words=1000 \
         --limit-errors=100

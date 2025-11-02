@@ -7,7 +7,7 @@ rio
 Tested Software version 0.2.28 on Darwin.
 The homepage URL of this terminal is https://rioterm.com/.
 Full results available at ucs-detect_ repository path
-`data/macos-rio-0.2.28.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-rio-0.2.28.yaml>`_.
+`data/rio.yaml <https://github.com/jquast/ucs-detect/blob/master/data/rio.yaml>`_.
 
 .. _rioscores:
 
@@ -1317,7 +1317,7 @@ To reproduce these results for *rio*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=macos-rio-0.2.28.yaml \
+    ucs-detect --save-yaml=rio.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

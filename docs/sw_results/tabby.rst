@@ -7,7 +7,7 @@ tabby
 Tested Software version 1.0.228 on Darwin.
 The homepage URL of this terminal is https://tabby.sh/.
 Full results available at ucs-detect_ repository path
-`data/macos-tabby-1.0.228.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-tabby-1.0.228.yaml>`_.
+`data/tabby.yaml <https://github.com/jquast/ucs-detect/blob/master/data/tabby.yaml>`_.
 
 .. _tabbyscores:
 
@@ -1725,7 +1725,7 @@ To reproduce these results for *tabby*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=macos-tabby-1.0.228.yaml \
+    ucs-detect --save-yaml=tabby.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

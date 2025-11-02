@@ -7,7 +7,7 @@ Konsole
 Tested Software version 23.08.5 on Linux.
 The homepage URL of this terminal is https://apps.kde.org/konsole/.
 Full results available at ucs-detect_ repository path
-`data/linux-konsole-23.08.5.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-konsole-23.08.5.yaml>`_.
+`data/konsole.yaml <https://github.com/jquast/ucs-detect/blob/master/data/konsole.yaml>`_.
 
 .. _konsolescores:
 
@@ -1294,7 +1294,7 @@ To reproduce these results for *Konsole*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-konsole-23.08.5.yaml \
+    ucs-detect --save-yaml=konsole.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

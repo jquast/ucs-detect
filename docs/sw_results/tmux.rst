@@ -7,7 +7,7 @@ tmux
 Tested Software version 3.4 on Linux.
 The homepage URL of this terminal is https://github.com/tmux/tmux.
 Full results available at ucs-detect_ repository path
-`data/linux-tmux-3.4.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-tmux-3.4.yaml>`_.
+`data/tmux.yaml <https://github.com/jquast/ucs-detect/blob/master/data/tmux.yaml>`_.
 
 .. _tmuxscores:
 
@@ -1362,7 +1362,7 @@ To reproduce these results for *tmux*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-tmux-3.4.yaml \
+    ucs-detect --save-yaml=tmux.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

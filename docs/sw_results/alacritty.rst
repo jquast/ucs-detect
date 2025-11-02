@@ -7,7 +7,7 @@ alacritty
 Tested Software version 0.16.1 on Darwin.
 The homepage URL of this terminal is https://alacritty.org/.
 Full results available at ucs-detect_ repository path
-`data/macos-alacritty-0.16.1.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-alacritty-0.16.1.yaml>`_.
+`data/alacritty.yaml <https://github.com/jquast/ucs-detect/blob/master/data/alacritty.yaml>`_.
 
 .. _alacrittyscores:
 
@@ -1537,7 +1537,7 @@ To reproduce these results for *alacritty*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=macos-alacritty-0.16.1.yaml \
+    ucs-detect --save-yaml=alacritty.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

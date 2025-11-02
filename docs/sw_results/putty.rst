@@ -7,7 +7,7 @@ PuTTY
 Tested Software version 0.83 on Linux.
 The homepage URL of this terminal is https://www.chiark.greenend.org.uk/~sgtatham/putty/.
 Full results available at ucs-detect_ repository path
-`data/linux-putty-0.83.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-putty-0.83.yaml>`_.
+`data/putty.yaml <https://github.com/jquast/ucs-detect/blob/master/data/putty.yaml>`_.
 
 .. _puttyscores:
 
@@ -1317,7 +1317,7 @@ To reproduce these results for *PuTTY*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-putty-0.83.yaml \
+    ucs-detect --save-yaml=putty.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

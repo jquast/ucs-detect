@@ -7,7 +7,7 @@ ghostty
 Tested Software version 1.2.3 on Linux.
 The homepage URL of this terminal is https://ghostty.org/.
 Full results available at ucs-detect_ repository path
-`data/linux-ghostty-1.2.3.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-ghostty-1.2.3.yaml>`_.
+`data/ghostty.yaml <https://github.com/jquast/ucs-detect/blob/master/data/ghostty.yaml>`_.
 
 .. _ghosttyscores:
 
@@ -983,7 +983,7 @@ To reproduce these results for *ghostty*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-ghostty-1.2.3.yaml \
+    ucs-detect --save-yaml=ghostty.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

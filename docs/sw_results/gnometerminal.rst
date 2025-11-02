@@ -7,7 +7,7 @@ GNOME Terminal
 Tested Software version 3.52.0(VTE/7600) on Linux.
 The homepage URL of this terminal is https://help.gnome.org/users/gnome-terminal/stable/.
 Full results available at ucs-detect_ repository path
-`data/linux-gnome-terminal-3.52.0.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-gnome-terminal-3.52.0.yaml>`_.
+`data/gnometerminal.yaml <https://github.com/jquast/ucs-detect/blob/master/data/gnometerminal.yaml>`_.
 
 .. _gnometerminalscores:
 
@@ -1493,7 +1493,7 @@ To reproduce these results for *GNOME Terminal*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-gnome-terminal-3.52.0.yaml \
+    ucs-detect --save-yaml=gnometerminal.yaml \
         --limit-codepoints=1000 \
         --limit-words=1000 \
         --limit-errors=100

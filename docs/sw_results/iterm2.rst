@@ -7,7 +7,7 @@ iTerm2
 Tested Software version 3.6.5 on Darwin.
 The homepage URL of this terminal is https://iterm2.com/.
 Full results available at ucs-detect_ repository path
-`data/macos-iTerm2-3.6.5.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-iTerm2-3.6.5.yaml>`_.
+`data/iterm2.yaml <https://github.com/jquast/ucs-detect/blob/master/data/iterm2.yaml>`_.
 
 .. _iterm2scores:
 
@@ -1514,7 +1514,7 @@ To reproduce these results for *iTerm2*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=macos-iTerm2-3.6.5.yaml \
+    ucs-detect --save-yaml=iterm2.yaml \
         --limit-codepoints=1000 \
         --limit-words=1000 \
         --limit-errors=500

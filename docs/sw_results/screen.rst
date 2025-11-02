@@ -7,7 +7,7 @@ screen
 Tested Software version 4.09.01 on Linux.
 The homepage URL of this terminal is https://www.gnu.org/software/screen/.
 Full results available at ucs-detect_ repository path
-`data/linux-screen-4.09.01.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-screen-4.09.01.yaml>`_.
+`data/screen.yaml <https://github.com/jquast/ucs-detect/blob/master/data/screen.yaml>`_.
 
 .. _screenscores:
 
@@ -1423,7 +1423,7 @@ To reproduce these results for *screen*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-screen-4.09.01.yaml \
+    ucs-detect --save-yaml=screen.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

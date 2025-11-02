@@ -7,7 +7,7 @@ WezTerm
 Tested Software version 20251025-070338-b6e75fd7 on Linux.
 The homepage URL of this terminal is https://wezfurlong.org/wezterm/.
 Full results available at ucs-detect_ repository path
-`data/linux-wezterm-20251025-070338-b6e75fd7.yaml <https://github.com/jquast/ucs-detect/blob/master/data/linux-wezterm-20251025-070338-b6e75fd7.yaml>`_.
+`data/wezterm.yaml <https://github.com/jquast/ucs-detect/blob/master/data/wezterm.yaml>`_.
 
 .. _weztermscores:
 
@@ -989,7 +989,7 @@ To reproduce these results for *WezTerm*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=linux-wezterm-20251025-070338-b6e75fd7.yaml \
+    ucs-detect --save-yaml=wezterm.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000

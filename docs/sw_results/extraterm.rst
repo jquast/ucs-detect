@@ -7,7 +7,7 @@ Extraterm
 Tested Software version 0.81.4 on Darwin.
 The homepage URL of this terminal is https://extraterm.org/.
 Full results available at ucs-detect_ repository path
-`data/macos-ExtratermQt-0.81.4.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-ExtratermQt-0.81.4.yaml>`_.
+`data/extraterm.yaml <https://github.com/jquast/ucs-detect/blob/master/data/extraterm.yaml>`_.
 
 .. _extratermscores:
 
@@ -3792,7 +3792,7 @@ To reproduce these results for *Extraterm*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=macos-ExtratermQt-0.81.4.yaml \
+    ucs-detect --save-yaml=extraterm.yaml \
         --limit-codepoints=5000 \
         --limit-words=5000 \
         --limit-errors=1000
