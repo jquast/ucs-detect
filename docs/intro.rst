@@ -161,7 +161,19 @@ This presents output when an error occurs during Chinese language testing::
 UDHR Data
 =========
 
-UDHR data is sourced from https://github.com/eric-muller/udhr/
+The Universal Declaration of Human Rights (UDHR) dataset contains translations into
+500+ languages, providing a practical multilingual test corpus for evaluating terminal
+emulator support of zero-width characters (category Mn - Nonspacing Mark), combining
+characters (category Mc - Spacing Mark), and language-specific scripts. The 532 UDHR
+text files in ``ucs_detect/udhr/`` are sourced from https://github.com/eric-muller/udhr/
+
+Although there is no fully complete test suite of all zero-width and combining
+characters across all possible Unicode codepoints, the UDHR provides practical
+coverage of the vast majority of the world's languages. By exhaustive interactive
+testing of this dataset (testing hundreds of languages with real-world text), the
+quality of language testing results serves as a suitable indicator of a terminal's
+quality of support for combining marks across diverse scripts, complex grapheme
+clusters, and script-specific rendering requirements.
 
 History
 =======
