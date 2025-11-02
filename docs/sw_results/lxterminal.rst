@@ -38,9 +38,9 @@ The following plot shows how this terminal's scores compare to all other termina
 
 .. figure:: ../_static/plots/lxterminal_scores_scaled.png
    :align: center
-   :width: 600px
+   :width: 800px
 
-   Scaled scores comparison across metrics (normalized 0-100%)
+   Scaled scores comparison across all metrics (normalized 0-100%)
 
 **Final Scaled Score Calculation:**
 

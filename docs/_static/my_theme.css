@@ -7,8 +7,12 @@
 /* Prevent tables from stretching to fill the screen */
 table.sphinx-datatable {
     width: auto !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
 
 table.sphinx-datatable.dataTable {
     width: auto !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
