@@ -502,19 +502,26 @@ def make_score_table():
         else:
             entry["score_elapsed_norm"] = float('NaN')
 
-        # Calculate final score using normalized values
-        scores = (
-            entry["score_language"],
-            entry["score_emoji_vs16"],
-            entry["score_emoji_vs15"],
-            entry["score_zwj"],
-            entry["score_wide"],
-            entry["score_sixel"],
-            entry["score_dec_modes_norm"],
-            entry["score_elapsed_norm"]
-        )
-        valid_scores = [s for s in scores if not math.isnan(s)]
-        entry["score_final"] = sum(valid_scores) / len(valid_scores) if valid_scores else float('NaN')
+        # Calculate final score using normalized values with weighted average
+        # Time is weighted at 0.5 (half as powerful as other metrics)
+        TIME_WEIGHT = 0.5
+        scores_with_weights = [
+            (entry["score_language"], 1.0),
+            (entry["score_emoji_vs16"], 1.0),
+            (entry["score_emoji_vs15"], 1.0),
+            (entry["score_zwj"], 1.0),
+            (entry["score_wide"], 1.0),
+            (entry["score_sixel"], 1.0),
+            (entry["score_dec_modes_norm"], 1.0),
+            (entry["score_elapsed_norm"], TIME_WEIGHT)
+        ]
+        valid_scores_with_weights = [(s, w) for s, w in scores_with_weights if not math.isnan(s)]
+        if valid_scores_with_weights:
+            weighted_sum = sum(s * w for s, w in valid_scores_with_weights)
+            total_weight = sum(w for s, w in valid_scores_with_weights)
+            entry["score_final"] = weighted_sum / total_weight
+        else:
+            entry["score_final"] = float('NaN')
 
     # after accumulating all entries, create graded scale
     result = []
@@ -737,10 +744,11 @@ def display_table_definitions():
     print("Definitions:\n")
     print(
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
-        "  the average of all feature scores (WIDE, LANG, ZWJ, VS16, VS15, DEC Modes, and TIME),\n"
+        "  the weighted average of all feature scores (WIDE, LANG, ZWJ, VS16, VS15, DEC Modes, and TIME),\n"
         "  then scaled (normalized 0-100%) relative to all terminals tested. Higher scores\n"
         "  indicate better overall Unicode and terminal feature support. DEC Modes and TIME\n"
-        "  are normalized to 0-1 range before averaging with other scores."
+        "  are normalized to 0-1 range before averaging. TIME is weighted at 0.5 (half as powerful\n"
+        "  as other metrics) to reduce its impact on the final score."
     )
     print(
         "- *WIDE score*: Overall percentage of wide character codepoints correctly\n"
@@ -1007,7 +1015,8 @@ def display_dec_modes_feature_table(score_table):
     print("This table shows which DEC Private Modes are supported for each terminal.")
     print("Terminals are sorted by number of changeable modes (most first).")
     print("Only terminals with at least one changeable mode are shown.")
-    print("Each cell shows 'yes' (green) if supported, or 'no' (red) if not supported.")
+    print("Each cell shows 'enabled' if the mode is enabled, 'may enable' if supported")
+    print("but not enabled and can be changed, or 'no' if not supported.")
     print()
 
     # Sort terminals by changeable count (descending)
@@ -1036,12 +1045,21 @@ def display_dec_modes_feature_table(score_table):
         for terminal_name in sorted_terminals:
             if mode_num in terminal_modes[terminal_name]:
                 supported, changeable, mode_data = terminal_modes[terminal_name][mode_num]
-                if supported:
-                    # Show green "yes" with hyperlink for supported modes
-                    row[terminal_name] = f":sref:`yes <{make_link(terminal_name + '_dec_modes')}> 100`"
+                enabled = mode_data.get("enabled", False)
+
+                # Determine status and score based on support, enabled state, and changeability
+                if supported and enabled:
+                    status = "enabled"
+                    score = 1.0
+                elif supported and not enabled and changeable:
+                    status = "may enable"
+                    score = 0.75
                 else:
-                    # Show red "no" without hyperlink for unsupported modes
-                    row[terminal_name] = wrap_with_score_role("no", 0.0)
+                    status = "no"
+                    score = 0.0
+
+                # Show status with hyperlink and appropriate color
+                row[terminal_name] = f":sref:`{status} <{make_link(terminal_name + '_dec_modes')}> {int(score * 100)}`"
             else:
                 # Mode not in this terminal's data - show red "no"
                 row[terminal_name] = wrap_with_score_role("no", 0.0)
@@ -1135,9 +1153,10 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print(f"**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8")
+    print(f"  (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)")
     print(f"  the categorized 'average' absolute support level of this terminal")
-    print(f"  Note: DEC Modes and TIME are normalized to 0-1 range before averaging")
+    print(f"  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.")
+    print(f"  TIME is weighted at 0.5 (half as powerful as other metrics).")
     print()
     print(f"- Final Scaled Score: {format_score_pct(entry['score_final_scaled'])}")
     print(f"  (normalized across all terminals tested).")

@@ -44,12 +44,13 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 44.50%
-  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + TIME) / 8
+- Raw Final Score: 41.76%
+  (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
-  Note: DEC Modes and TIME are normalized to 0-1 range before averaging
+  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
+  TIME is weighted at 0.5 (half as powerful as other metrics).
 
-- Final Scaled Score: 35.2%
+- Final Scaled Score: 30.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
