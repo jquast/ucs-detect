@@ -8,6 +8,7 @@ import yaml
 import contextlib
 import unicodedata
 import colorsys
+import textwrap
 
 # 3rd party
 import wcwidth
@@ -388,26 +389,35 @@ def display_tabulated_scores(score_table):
                     mode_2027_score = 1.0
                 elif is_supported and not is_enabled and is_changeable:
                     mode_2027_status = "may enable"
-                    mode_2027_score = 0.5
+                    mode_2027_score = 0.75
                 else:
                     mode_2027_status = "no"
-                    mode_2027_score = 0.0
+                    mode_2027_score = 0.5
             else:
                 mode_2027_status = "no"
-                mode_2027_score = 0.0
+                mode_2027_score = 0.5
         else:
             mode_2027_score = float('NaN')
 
         # Create DEC modes display text (just the number, hyperlink will be added by wrap_score_with_hyperlink)
-        dec_modes_display = f"{dec_modes_count}" if not math.isnan(result["score_dec_modes"]) else "N/A"
+        dec_modes_display = f"{dec_modes_count}" if not math.isnan(result["score_dec_modes"]) else "0"
 
         # Create elapsed time display text (integer seconds with 's' suffix)
         elapsed_display = f"{int(result['elapsed_seconds'])}s" if not math.isnan(result['elapsed_seconds']) else "N/A"
 
-        # Create WIDE display text combining version and percentage (e.g., "16.0.0/86.4%")
+        # Create WIDE display text showing only version (e.g., "16" instead of "16.0.0")
         wide_version = result["version_best_wide"] or "na"
-        wide_pct = format_score_pct(result["score_wide_scaled"])
-        wide_display = f"{wide_version}/{wide_pct}"
+        # Remove trailing .0's from version
+        if wide_version != "na":
+            wide_version = wide_version.rstrip('.0')
+            # Ensure we don't remove all digits after decimal if it's something like "15.1.0"
+            if not '.' in wide_version:
+                # If we stripped everything, it was like "16.0.0", keep just "16"
+                pass
+            elif wide_version.endswith('.'):
+                # If it ends with '.', remove it (was like "16.0.")
+                wide_version = wide_version.rstrip('.')
+        wide_display = wide_version
 
         tabulated_scores.append(
             {
@@ -451,19 +461,19 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_vs15"
                 ),
-                "Mode 2027": wrap_score_with_hyperlink(
+                "Mode\n2027": wrap_score_with_hyperlink(
                     mode_2027_status,
                     mode_2027_score,
                     result["terminal_software_name"],
                     "_dec_modes"
                 ) if not math.isnan(mode_2027_score) else wrap_with_score_role("N/A", 0.0),
-                "DEC Modes": wrap_score_with_hyperlink(
+                "DEC\nModes": wrap_score_with_hyperlink(
                     dec_modes_display,
-                    result["score_dec_modes_scaled"],
+                    result["score_dec_modes_scaled"] if not math.isnan(result["score_dec_modes_scaled"]) else 0.0,
                     result["terminal_software_name"],
                     "_dec_modes"
                 ),
-                "TIME": wrap_score_with_hyperlink(
+                "Elapsed\nTime": wrap_score_with_hyperlink(
                     elapsed_display,
                     result["score_elapsed_scaled"],
                     result["terminal_software_name"],
@@ -493,14 +503,15 @@ def display_table_definitions():
     )
     print(
         "- *WIDE score*: Shows the Unicode version specification most closely\n"
-        "  matching in compatibility (highest version with 90% match or greater),\n"
-        "  followed by the scaled percentage score (determined by version release\n"
-        "  level multiplied by the pct of wide codepoints supported at that version).\n"
-        "  Format: version/percentage (e.g., 16.0.0/86.4%)."
+        "  matching in compatibility (highest version with 90% match or greater).\n"
+        "  The version number is displayed (e.g., 16 or 15.1), with color indicating\n"
+        "  the scaled percentage score (determined by version release level\n"
+        "  multiplied by the pct of wide codepoints supported at that version)."
     )
     print(
-        "- *LANG score*: The percentage of international languages tested\n"
-        "  as having support, scaled."
+        "- *LANG score*: Calculated using the geometric mean of success percentages\n"
+        "  across all international languages tested. This fairly accounts for partial\n"
+        "  support (e.g., 99%, 98%) without letting one low score dominate, scaled."
     )
     print(
         "- *ZWJ score*: Determined by version release level of emoji sequences\n"
@@ -522,12 +533,12 @@ def display_table_definitions():
         "  This mode enables grapheme clustering behavior in the terminal."
     )
     print(
-        "- *DEC Modes score*: Determined by the number of DEC private modes\n"
+        "- *DEC Modes*: Determined by the number of DEC private modes\n"
         "  that are changeable by the terminal, scaled. The number shows\n"
         "  the total count of changeable modes, with a link to detailed results."
     )
     print(
-        "- *TIME score*: Determined by test execution time in seconds, scaled\n"
+        "- *Elapsed Time*: Determined by test execution time in seconds, scaled\n"
         "  inversely (lower time is better). The value shows elapsed seconds\n"
         "  during the test run, with a link to detailed timing information."
     )
@@ -585,13 +596,32 @@ def score_wide(data):
 
 
 def score_lang(data):
-    _total_langs_supported = sum(
-        1
-        for lang in data["test_results"]["language_results"]
-        if data["test_results"]["language_results"][lang]["n_errors"] == 0
-    )
-    _total_langs_available = len(data["test_results"]["language_results"])
-    return _total_langs_supported / _total_langs_available
+    """
+    Calculate language support score using geometric mean of all language success percentages.
+
+    This gives a fairer score than simple counting of 100% languages, as it considers
+    partial support (e.g., 99%, 98%) and doesn't let one low score dominate the result.
+    """
+    language_results = data["test_results"]["language_results"]
+    if not language_results:
+        return 0.0
+
+    # Get success percentages for all languages (as fractions 0.0-1.0)
+    percentages = [
+        lang_data["pct_success"] / 100
+        for lang_data in language_results.values()
+    ]
+
+    # Calculate geometric mean using log space to avoid overflow
+    # geometric_mean = exp(mean(log(percentages)))
+    if any(p == 0 for p in percentages):
+        # If any language has 0% support, treat those as very small values
+        percentages = [max(p, 0.0001) for p in percentages]
+
+    log_percentages = [math.log(p) for p in percentages]
+    geometric_mean = math.exp(sum(log_percentages) / len(log_percentages))
+
+    return geometric_mean
 
 
 def score_dec_modes(data):
@@ -691,7 +721,7 @@ def display_dec_modes_feature_table(score_table):
         # No DEC modes data available
         return
 
-    display_title("DEC Private Modes Feature Comparison", 2)
+    display_title("DEC Private Modes by Terminal", 2)
     print("This table shows DEC Private Modes support for each terminal.")
     print("Terminals are sorted by number of changeable modes (most first).")
     print()
@@ -721,8 +751,12 @@ def display_dec_modes_feature_table(score_table):
                 # Non-changeable modes shown as plain text
                 mode_strs.append(str(mode_num))
 
-        # Join mode strings with commas
-        supported_modes_str = ", ".join(mode_strs) if mode_strs else "None"
+        # Join mode strings with commas and wrap at ~50 characters
+        if mode_strs:
+            full_str = ", ".join(mode_strs)
+            supported_modes_str = "\n".join(textwrap.wrap(full_str, width=50))
+        else:
+            supported_modes_str = "None"
 
         row = {
             "Terminal": make_outbound_hyperlink(terminal_name, terminal_name + "_dec_modes"),
@@ -780,7 +814,7 @@ def show_score_breakdown(sw_name, entry):
             "Score Type": "LANG",
             "Raw Score": format_raw_score(entry["score_language"]),
             "Scaled Score": format_score_pct(entry["score_language_scaled"]),
-            "Calculation": f'languages_supported / total_languages',
+            "Calculation": f'geometric_mean(language_percentages)',
         },
         {
             "Score Type": "VS16",
@@ -809,6 +843,41 @@ def show_score_breakdown(sw_name, entry):
     ]
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
     print_datatable(table_str)
+
+    #Add detailed LANG score breakdown
+    print(f"**LANG Score Details (Geometric Mean):**")
+    print()
+    lang_results = entry["data"]["test_results"]["language_results"]
+    if lang_results:
+        lang_percentages = [(lang, data["pct_success"]) for lang, data in lang_results.items()]
+        lang_percentages.sort(key=lambda x: x[1])  # Sort by percentage
+
+        print(f"Language success percentages for *{sw_name}*:")
+        print()
+        # Show first few and last few languages
+        if len(lang_percentages) <= 10:
+            for lang, pct in lang_percentages:
+                print(f"- {lang}: {pct:.1f}%")
+        else:
+            for lang, pct in lang_percentages[:5]:
+                print(f"- {lang}: {pct:.1f}%")
+            print(f"- ... ({len(lang_percentages) - 10} more languages)")
+            for lang, pct in lang_percentages[-5:]:
+                print(f"- {lang}: {pct:.1f}%")
+        print()
+
+        # Calculate and show geometric mean formula
+        n = len(lang_percentages)
+        percentages_as_fractions = [pct/100 for _, pct in lang_percentages]
+        geo_mean = entry["score_language"]
+
+        print(f"Geometric mean calculation:")
+        print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} languages")
+        print(f"- This fairly balances all languages: one 0% doesn't make score 0,")
+        print(f"  and many 99%s aren't penalized as harshly as with arithmetic mean")
+        print(f"- Result: {geo_mean*100:.2f}%")
+        print()
+
     print(f"**Final Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")

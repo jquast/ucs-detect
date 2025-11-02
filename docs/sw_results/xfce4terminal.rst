@@ -23,7 +23,7 @@ Detailed breakdown of how scores are calculated for *xfce4-terminal*:
    ============  ===========  ==============  ======================================================
    WIDE          72.73%       58.9%           (version_index / total_versions) × (pct_success / 100)
    ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-   LANG          1.68%        2.1%            languages_supported / total_languages
+   LANG          72.74%       52.6%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
    DEC Modes     17.83%       24.0%           modes_changeable / total_modes
@@ -32,12 +32,12 @@ Detailed breakdown of how scores are calculated for *xfce4-terminal*:
 
 **Final Score Calculation:**
 
-- Raw Final Score: 15.37%
+- Raw Final Score: 27.22%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support
 
-- Scaled Final Score: 12.8%
+- Scaled Final Score: 12.3%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 

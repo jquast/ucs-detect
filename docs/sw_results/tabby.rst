@@ -23,7 +23,7 @@ Detailed breakdown of how scores are calculated for *tabby*:
    ============  ===========  ==============  ======================================================
    WIDE          36.36%       0.0%            (version_index / total_versions) × (pct_success / 100)
    ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-   LANG          1.68%        2.1%            languages_supported / total_languages
+   LANG          71.79%       50.9%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
    DEC Modes     11.95%       5.5%            modes_changeable / total_modes
@@ -32,7 +32,7 @@ Detailed breakdown of how scores are calculated for *tabby*:
 
 **Final Score Calculation:**
 
-- Raw Final Score: 8.33%
+- Raw Final Score: 20.02%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support

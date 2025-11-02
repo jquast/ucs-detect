@@ -23,7 +23,7 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
    ============  ===========  ==============  ======================================================
    WIDE          90.91%       88.4%           (version_index / total_versions) × (pct_success / 100)
    ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-   LANG          1.68%        2.1%            languages_supported / total_languages
+   LANG          72.71%       52.5%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
    DEC Modes     18.24%       25.3%           modes_changeable / total_modes
@@ -32,12 +32,12 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
 
 **Final Score Calculation:**
 
-- Raw Final Score: 18.47%
+- Raw Final Score: 30.31%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support
 
-- Scaled Final Score: 18.5%
+- Scaled Final Score: 17.6%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 

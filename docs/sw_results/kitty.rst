@@ -23,7 +23,7 @@ Detailed breakdown of how scores are calculated for *kitty*:
    ============  ===========  ==============  ======================================================
    WIDE          90.91%       88.4%           (version_index / total_versions) × (pct_success / 100)
    ZWJ           75.00%       100.0%          (version_index / total_versions) × (pct_success / 100)
-   LANG          1.68%        2.1%            languages_supported / total_languages
+   LANG          93.81%       90.2%           geometric_mean(language_percentages)
    VS16          100.00%      100.0%          pct_success / 100
    VS15          100.00%      100.0%          pct_success / 100
    DEC Modes     11.95%       5.5%            modes_changeable / total_modes
@@ -32,7 +32,7 @@ Detailed breakdown of how scores are calculated for *kitty*:
 
 **Final Score Calculation:**
 
-- Raw Final Score: 63.26%
+- Raw Final Score: 78.61%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support

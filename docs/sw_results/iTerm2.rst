@@ -23,7 +23,7 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
    ============  ===========  ==============  ======================================================
    WIDE          90.91%       88.4%           (version_index / total_versions) × (pct_success / 100)
    ZWJ           75.00%       100.0%          (version_index / total_versions) × (pct_success / 100)
-   LANG          1.68%        2.1%            languages_supported / total_languages
+   LANG          73.69%       54.3%           geometric_mean(language_percentages)
    VS16          94.37%       94.4%           pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
    DEC Modes     21.38%       35.1%           modes_changeable / total_modes
@@ -32,12 +32,12 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
 
 **Final Score Calculation:**
 
-- Raw Final Score: 47.22%
+- Raw Final Score: 59.22%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support
 
-- Scaled Final Score: 70.8%
+- Scaled Final Score: 66.9%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 

@@ -23,7 +23,7 @@ Detailed breakdown of how scores are calculated for *Terminal.exe*:
    ============  ===========  ==============  ======================================================
    WIDE          90.91%       88.4%           (version_index / total_versions) × (pct_success / 100)
    ZWJ           75.00%       100.0%          (version_index / total_versions) × (pct_success / 100)
-   LANG          1.68%        2.1%            languages_supported / total_languages
+   LANG          74.46%       55.6%           geometric_mean(language_percentages)
    VS16          100.00%      100.0%          pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
    DEC Modes     16.56%       20.0%           modes_changeable / total_modes
@@ -32,12 +32,12 @@ Detailed breakdown of how scores are calculated for *Terminal.exe*:
 
 **Final Score Calculation:**
 
-- Raw Final Score: 47.36%
+- Raw Final Score: 59.49%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support
 
-- Scaled Final Score: 71.1%
+- Scaled Final Score: 67.4%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 

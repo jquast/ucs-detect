@@ -23,7 +23,7 @@ Detailed breakdown of how scores are calculated for *Extraterm*:
    ============  ===========  ==============  ======================================================
    WIDE          63.64%       44.2%           (version_index / total_versions) × (pct_success / 100)
    ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-   LANG          0.00%        0.0%            languages_supported / total_languages
+   LANG          47.18%       6.9%            geometric_mean(language_percentages)
    VS16          100.00%      100.0%          pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
    DEC Modes     N/A          N/A             modes_changeable / total_modes
@@ -32,12 +32,12 @@ Detailed breakdown of how scores are calculated for *Extraterm*:
 
 **Final Score Calculation:**
 
-- Raw Final Score: 32.73%
+- Raw Final Score: 42.16%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support
 
-- Scaled Final Score: 44.4%
+- Scaled Final Score: 37.8%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
