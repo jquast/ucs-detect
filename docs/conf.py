@@ -88,12 +88,13 @@ def score_ref_role(name, rawtext, text, lineno, inliner, options={}, content=[])
     # Add the score class for coloring
     refnode['classes'].append(f'score-{color_score}')
 
-    # Add data-sort attribute if we have a separate sort value
-    if sort_value is not None:
-        refnode['data-sort'] = sort_value
-
     # Create the link text
     innernode = nodes.inline(title, title)
+
+    # Add data-sort attribute if we have a separate sort value
+    if sort_value is not None:
+        innernode.attributes['data-sort'] = sort_value
+
     refnode += innernode
 
     return [refnode], []
