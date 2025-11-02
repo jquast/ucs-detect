@@ -609,7 +609,7 @@ def display_tabulated_scores(score_table):
     display_title("General Tabulated Summary", 2)
     tabulated_scores = []
 
-    for result in score_table:
+    for rank, result in enumerate(score_table, start=1):
         # Get the total number of changeable DEC modes for display
         dec_modes_count = 0
         mode_2027_status = "N/A"
@@ -662,6 +662,7 @@ def display_tabulated_scores(score_table):
 
         tabulated_scores.append(
             {
+                "Rank": rank,
                 "Terminal Software": make_outbound_hyperlink(result["terminal_software_name"]),
                 "Software Version": result["terminal_software_version"],
                 "OS System": result["os_system"],
