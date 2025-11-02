@@ -19,9 +19,9 @@ Detailed breakdown of how scores are calculated for *XTerm*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ================================  ===========  ==============
-     #  Score Type                        Raw Score    Scaled Score
-   ===  ================================  ===========  ==============
+   ===  ================================  ===========  ====================
+     #  Score Type                        Raw Score    Final Scaled Score
+   ===  ================================  ===========  ====================
      1  :ref:`WIDE <xtermwide>`           95.77%       95.7%
      2  :ref:`ZWJ <xtermzwj>`             0.69%        0.7%
      3  :ref:`LANG <xtermlang>`           74.00%       51.8%
@@ -29,34 +29,34 @@ Detailed breakdown of how scores are calculated for *XTerm*:
      5  :ref:`VS15 <xtermvs15>`           0.00%        0.0%
      6  :ref:`DEC Modes <xtermdecmodes>`  66           100.0%
      7  :ref:`TIME <xtermtime>`           78.57s       85.5%
-   ===  ================================  ===========  ==============
+   ===  ================================  ===========  ====================
 
 **Score Comparison Plots:**
 
 The following plots show how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/xterm_scores_raw.png
-   :align: left
+   :align: center
    :width: 600px
 
    Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
 
 .. figure:: ../_static/plots/xterm_scores_scaled.png
-   :align: left
+   :align: center
    :width: 600px
 
    Scaled scores comparison across metrics (normalized 0-100%)
 
-**Final Score Calculation:**
+**Final Scaled Score Calculation:**
 
 - Raw Final Score: 50.85%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 35.2%
+- Final Scaled Score: 35.2%
   (normalized across all terminals tested).
-  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+  *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 

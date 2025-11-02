@@ -19,9 +19,9 @@ Detailed breakdown of how scores are calculated for *Konsole*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ==================================  ===========  ==============
-     #  Score Type                          Raw Score    Scaled Score
-   ===  ==================================  ===========  ==============
+   ===  ==================================  ===========  ====================
+     #  Score Type                          Raw Score    Final Scaled Score
+   ===  ==================================  ===========  ====================
      1  :ref:`WIDE <konsolewide>`           94.77%       94.6%
      2  :ref:`ZWJ <konsolezwj>`             95.99%       96.0%
      3  :ref:`LANG <konsolelang>`           75.98%       55.5%
@@ -29,34 +29,34 @@ Detailed breakdown of how scores are calculated for *Konsole*:
      5  :ref:`VS15 <konsolevs15>`           0.00%        0.0%
      6  :ref:`DEC Modes <konsoledecmodes>`  0            0.0%
      7  :ref:`TIME <konsoletime>`           75.93s       86.1%
-   ===  ==================================  ===========  ==============
+   ===  ==================================  ===========  ====================
 
 **Score Comparison Plots:**
 
 The following plots show how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/konsole_scores_raw.png
-   :align: left
+   :align: center
    :width: 600px
 
    Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
 
 .. figure:: ../_static/plots/konsole_scores_scaled.png
-   :align: left
+   :align: center
    :width: 600px
 
    Scaled scores comparison across metrics (normalized 0-100%)
 
-**Final Score Calculation:**
+**Final Scaled Score Calculation:**
 
 - Raw Final Score: 64.69%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 58.6%
+- Final Scaled Score: 58.6%
   (normalized across all terminals tested).
-  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+  *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 

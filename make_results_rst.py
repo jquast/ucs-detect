@@ -50,7 +50,7 @@ def score_to_color(score):
 def make_score_css_class(score):
     if math.isnan(score):
         return 'score-na'
-    return f'score-{int(score * 100)}'
+    return f'score-{round(score * 100)}'
 
 
 def generate_score_css():
@@ -122,7 +122,7 @@ def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
     Returns:
         Text wrapped with hyperlink and role: :sref:`75.0% <terminal_wide> 75`
     """
-    score_value = int(score * 100) if not math.isnan(score) else 'na'
+    score_value = round(score * 100) if not math.isnan(score) else 'na'
     link_target = make_link(terminal_name + section_suffix)
     return f':sref:`{text} <{link_target}> {score_value}`'
 
@@ -131,7 +131,7 @@ def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, sectio
     """
     Wrap elapsed time text with hyperlink and score styling, using actual seconds for sorting.
     """
-    score_value_for_color = int(score * 100) if not math.isnan(score) else 'na'
+    score_value_for_color = round(score * 100) if not math.isnan(score) else 'na'
     sort_value = int(elapsed_seconds) if not math.isnan(elapsed_seconds) else 'na'
     link_target = make_link(terminal_name + section_suffix)
     # Use score for color (inverted - faster is better), but elapsed_seconds for sorting
@@ -284,7 +284,7 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
             ax.hlines(mean_val, i - 0.4, i + 0.4, colors='red',
                      linestyles='dashed', linewidth=2, label='Mean' if i == 0 else '')
 
-    ylabel = 'Final Score' if use_scaled else 'RAW Score'
+    ylabel = 'Final Scaled Score' if use_scaled else 'RAW Score'
     ax.set_ylabel(ylabel, fontsize=12)
     ax.set_title(f'{terminal_name} - {"Scaled" if use_scaled else "Raw"} Scores vs All Terminals',
                  fontsize=14, fontweight='bold')
@@ -317,7 +317,7 @@ def main():
     print(f'Writing docs/results.rst ... ', file=sys.stderr, end='', flush=True)
     with open('docs/results.rst', 'w') as fout, contextlib.redirect_stdout(fout):
         display_tabulated_scores(score_table)
-        display_table_definitions()
+        # Definitions removed - not shown in individual terminal pages
         display_common_languages(all_successful_languages)
         display_dec_modes_feature_table(score_table)
         display_results_toc(score_table)
@@ -442,6 +442,9 @@ def make_score_table():
             _score_elapsed = score_elapsed_time(data)
             _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
 
+            # Sixel support
+            _sixel_support = data.get("terminal_results", {}).get("sixel", False)
+
             score_table.append(
                 dict(
                     terminal_software_name=data.get("software_name", data.get('software')),
@@ -457,6 +460,7 @@ def make_score_table():
                     score_zwj=_score_zwj,
                     version_best_wide=version_best_wide,
                     version_best_zwj=version_best_zwj,
+                    sixel_support=_sixel_support,
                     data=data,
                     fname=os.path.basename(yaml_path),
                 )
@@ -585,10 +589,26 @@ def format_score_int(score):
     """Format a score as an integer 0-100, handling NaN values."""
     if math.isnan(score):
         return "N/A"
-    return f'{int(score*100)}'
+    return f'{round(score*100)}'
 
 
 def display_tabulated_scores(score_table):
+    display_title("Results", 1)
+
+    # Introduction and disclaimer
+    print("This is a volunteer-maintained analysis created by and for terminal emulator developers.")
+    print("We welcome productive contributions and corrections to improve the accuracy and")
+    print("completeness of these measurements.")
+    print()
+    print(".. note::")
+    print()
+    print("   These test results are provided as-is and we do not guarantee their correctness.")
+    print("   The scores and ratings presented here are objective measurements of Unicode and")
+    print("   terminal feature support, and should not be interpreted as an overall assessment")
+    print("   of terminal emulator quality or a recommendation. Many factors beyond Unicode")
+    print("   support contribute to terminal quality.")
+    print()
+
     tabulated_scores = []
 
     for result in score_table:
@@ -648,7 +668,7 @@ def display_tabulated_scores(score_table):
                 "Software Version": result["terminal_software_version"],
                 "OS System": result["os_system"],
 
-                "FINAL": wrap_score_with_hyperlink(
+                "Final Scaled Score": wrap_score_with_hyperlink(
                     format_score_int(result["score_final_scaled"]),
                     result["score_final_scaled"],
                     result["terminal_software_name"],
@@ -702,10 +722,9 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_time"
                 ),
+                "Sixel": wrap_with_score_role("yes", 1.0) if result.get("sixel_support", False) else wrap_with_score_role("no", 0.0),
             }
         )
-
-    display_title("Results", 1)
 
     # Output role definitions for inline score coloring
     print(generate_score_roles())
@@ -938,12 +957,13 @@ def display_dec_modes_feature_table(score_table):
     """
     Display a feature comparison table for DEC Private Modes.
 
-    Shows each changeable mode as a separate column, with terminals in rows.
+    Shows each mode as a row, with terminals as columns.
     """
     # Collect all DEC modes across all terminals
-    terminal_modes = {}  # terminal_name -> {mode_num -> (supported, changeable)}
-    terminal_entries = {}  # terminal_name -> entry
+    terminal_modes = {}  # terminal_name -> {mode_num -> (supported, changeable, mode_data)}
+    terminal_changeable_counts = {}  # terminal_name -> changeable_count
     all_changeable_modes = set()  # All modes that are changeable by at least one terminal
+    mode_info = {}  # mode_num -> {name, description}
 
     for entry in score_table:
         terminal_name = entry["terminal_software_name"]
@@ -955,69 +975,85 @@ def display_dec_modes_feature_table(score_table):
 
         modes = entry["data"]["terminal_results"]["modes"]
         terminal_modes[terminal_name] = {}
-        terminal_entries[terminal_name] = entry
 
+        changeable_count = 0
         for mode_num, mode_data in modes.items():
             supported = mode_data.get("supported", False)
             changeable = mode_data.get("changeable", False)
-            terminal_modes[terminal_name][mode_num] = (supported, changeable)
+            terminal_modes[terminal_name][mode_num] = (supported, changeable, mode_data)
+
             if changeable:
                 all_changeable_modes.add(mode_num)
+                changeable_count += 1
 
-    if not terminal_modes:
-        # No DEC modes data available
+            # Store mode info (name and description) from any terminal that has it
+            if mode_num not in mode_info:
+                mode_info[mode_num] = {
+                    "name": mode_data.get("mode_name", ""),
+                    "description": mode_data.get("mode_description", "")
+                }
+
+        terminal_changeable_counts[terminal_name] = changeable_count
+
+    # Filter out terminals with 0 changeable modes
+    terminals_with_changeable = {
+        name: count for name, count in terminal_changeable_counts.items() if count > 0
+    }
+
+    if not terminals_with_changeable:
+        # No terminals with changeable modes
         return
 
-    display_title("DEC Private Modes by Terminal", 2)
+    display_title("DEC Private Modes by Mode", 2)
     print("This table shows which DEC Private Modes are supported for each terminal.")
     print("Terminals are sorted by number of changeable modes (most first).")
-    print("Each mode number column shows 'yes' (green) if supported, or 'no' (red) if not supported.")
+    print("Only terminals with at least one changeable mode are shown.")
+    print("Each cell shows 'yes' (green) if supported, or 'no' (red) if not supported.")
     print()
+
+    # Sort terminals by changeable count (descending)
+    sorted_terminals = sorted(terminals_with_changeable.keys(),
+                             key=lambda t: terminal_changeable_counts[t],
+                             reverse=True)
 
     # Sort all changeable modes by mode number
     sorted_modes = sorted(all_changeable_modes, key=int)
 
-    # Build the table data
+    # Build the table data (modes as rows, terminals as columns)
     table_data = []
-    for terminal_name in terminal_modes:
-        modes = terminal_modes[terminal_name]
+    for mode_num in sorted_modes:
+        # Get description and extract right-hand side if '/' present
+        description = mode_info[mode_num]["description"]
+        if '/' in description:
+            # Take the right-hand side after the '/'
+            description = description.split('/', 1)[1].strip()
 
-        # Count changeable modes for this terminal
-        changeable_count = sum(1 for supported, changeable in modes.values() if changeable)
-
-        # Create row starting with Terminal and Changeable count (as hyperlink)
         row = {
-            "Terminal": make_outbound_hyperlink(terminal_name, terminal_name + "_dec_modes"),
-            "Changeable": make_outbound_hyperlink(str(changeable_count), terminal_name + "_dec_modes"),
+            "Mode": mode_num,
+            "Description": description,
         }
 
-        # Add a column for each changeable mode
-        for mode_num in sorted_modes:
-            if mode_num in modes:
-                supported = modes[mode_num][0]  # [0] is supported
+        # Add a column for each terminal
+        for terminal_name in sorted_terminals:
+            if mode_num in terminal_modes[terminal_name]:
+                supported, changeable, mode_data = terminal_modes[terminal_name][mode_num]
                 if supported:
                     # Show green "yes" with hyperlink for supported modes
-                    row[str(mode_num)] = f":sref:`yes <{make_link(terminal_name + '_dec_modes')}> 100`"
+                    row[terminal_name] = f":sref:`yes <{make_link(terminal_name + '_dec_modes')}> 100`"
                 else:
                     # Show red "no" without hyperlink for unsupported modes
-                    row[str(mode_num)] = wrap_with_score_role("no", 0.0)
+                    row[terminal_name] = wrap_with_score_role("no", 0.0)
             else:
                 # Mode not in this terminal's data - show red "no"
-                row[str(mode_num)] = wrap_with_score_role("no", 0.0)
+                row[terminal_name] = wrap_with_score_role("no", 0.0)
 
-        table_data.append((changeable_count, row))
+        table_data.append(row)
 
-    # Sort by changeable count (descending)
-    table_data.sort(key=lambda x: x[0], reverse=True)
-
-    # Extract just the row dictionaries
-    sorted_rows = [row for count, row in table_data]
-
-    if sorted_rows:
-        table_str = tabulate.tabulate(sorted_rows, headers="keys", tablefmt="rst")
+    if table_data:
+        table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
         print_datatable(table_str)
     else:
-        print("No DEC Private Modes data available for any terminal.")
+        print("No changeable DEC Private Modes data available for any terminal.")
         print()
 
 
@@ -1036,43 +1072,43 @@ def show_score_breakdown(sw_name, entry, plot_filename_raw, plot_filename_scaled
             "#": 1,
             "Score Type": make_outbound_hyperlink("WIDE", sw_name + "_wide"),
             "Raw Score": format_raw_score(entry["score_wide"]),
-            "Scaled Score": format_score_pct(entry["score_wide_scaled"]),
+            "Final Scaled Score": format_score_pct(entry["score_wide_scaled"]),
         },
         {
             "#": 2,
             "Score Type": make_outbound_hyperlink("ZWJ", sw_name + "_zwj"),
             "Raw Score": format_raw_score(entry["score_zwj"]),
-            "Scaled Score": format_score_pct(entry["score_zwj_scaled"]),
+            "Final Scaled Score": format_score_pct(entry["score_zwj_scaled"]),
         },
         {
             "#": 3,
             "Score Type": make_outbound_hyperlink("LANG", sw_name + "_lang"),
             "Raw Score": format_raw_score(entry["score_language"]),
-            "Scaled Score": format_score_pct(entry["score_language_scaled"]),
+            "Final Scaled Score": format_score_pct(entry["score_language_scaled"]),
         },
         {
             "#": 4,
             "Score Type": make_outbound_hyperlink("VS16", sw_name + "_vs16"),
             "Raw Score": format_raw_score(entry["score_emoji_vs16"]),
-            "Scaled Score": format_score_pct(entry["score_emoji_vs16_scaled"]),
+            "Final Scaled Score": format_score_pct(entry["score_emoji_vs16_scaled"]),
         },
         {
             "#": 5,
             "Score Type": make_outbound_hyperlink("VS15", sw_name + "_vs15"),
             "Raw Score": format_raw_score(entry["score_emoji_vs15"]),
-            "Scaled Score": format_score_pct(entry["score_emoji_vs15_scaled"]),
+            "Final Scaled Score": format_score_pct(entry["score_emoji_vs15_scaled"]),
         },
         {
             "#": 6,
             "Score Type": make_outbound_hyperlink("DEC Modes", sw_name + "_dec_modes"),
             "Raw Score": f"{int(entry['score_dec_modes'])}" if not math.isnan(entry['score_dec_modes']) else "N/A",
-            "Scaled Score": format_score_pct(entry["score_dec_modes_scaled"]),
+            "Final Scaled Score": format_score_pct(entry["score_dec_modes_scaled"]),
         },
         {
             "#": 7,
             "Score Type": make_outbound_hyperlink("TIME", sw_name + "_time"),
             "Raw Score": f"{entry['elapsed_seconds']:.2f}s" if not math.isnan(entry['elapsed_seconds']) else "N/A",
-            "Scaled Score": format_score_pct(entry["score_elapsed_scaled"]),
+            "Final Scaled Score": format_score_pct(entry["score_elapsed_scaled"]),
         },
     ]
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
@@ -1085,29 +1121,29 @@ def show_score_breakdown(sw_name, entry, plot_filename_raw, plot_filename_scaled
     print()
 
     print(".. figure:: ../_static/plots/" + plot_filename_raw)
-    print("   :align: left")
+    print("   :align: center")
     print("   :width: 600px")
     print()
     print("   Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)")
     print()
 
     print(".. figure:: ../_static/plots/" + plot_filename_scaled)
-    print("   :align: left")
+    print("   :align: center")
     print("   :width: 600px")
     print()
     print("   Scaled scores comparison across metrics (normalized 0-100%)")
     print()
 
-    print(f"**Final Score Calculation:**")
+    print(f"**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
     print(f"  (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7")
     print(f"  the categorized 'average' absolute support level of this terminal")
     print(f"  Note: DEC Modes and TIME are normalized to 0-1 range before averaging")
     print()
-    print(f"- Scaled Final Score: {format_score_pct(entry['score_final_scaled'])}")
+    print(f"- Final Scaled Score: {format_score_pct(entry['score_final_scaled'])}")
     print(f"  (normalized across all terminals tested).")
-    print(f"  *Scaled scores* are normalized (0-100%) relative to all terminals tested")
+    print(f"  *Final Scaled scores* are normalized (0-100%) relative to all terminals tested")
     print()
 
     # Add detailed score breakdowns for each type

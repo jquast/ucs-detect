@@ -19,9 +19,9 @@ Detailed breakdown of how scores are calculated for *Extraterm*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ====================================  ===========  ==============
-     #  Score Type                            Raw Score    Scaled Score
-   ===  ====================================  ===========  ==============
+   ===  ====================================  ===========  ====================
+     #  Score Type                            Raw Score    Final Scaled Score
+   ===  ====================================  ===========  ====================
      1  :ref:`WIDE <extratermwide>`           94.45%       94.3%
      2  :ref:`ZWJ <extratermzwj>`             0.00%        0.0%
      3  :ref:`LANG <extratermlang>`           48.67%       4.6%
@@ -29,34 +29,34 @@ Detailed breakdown of how scores are calculated for *Extraterm*:
      5  :ref:`VS15 <extratermvs15>`           0.00%        0.0%
      6  :ref:`DEC Modes <extratermdecmodes>`  0            0.0%
      7  :ref:`TIME <extratermtime>`           3775.78s     22.4%
-   ===  ====================================  ===========  ==============
+   ===  ====================================  ===========  ====================
 
 **Score Comparison Plots:**
 
 The following plots show how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/extraterm_scores_raw.png
-   :align: left
+   :align: center
    :width: 600px
 
    Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
 
 .. figure:: ../_static/plots/extraterm_scores_scaled.png
-   :align: left
+   :align: center
    :width: 600px
 
    Scaled scores comparison across metrics (normalized 0-100%)
 
-**Final Score Calculation:**
+**Final Scaled Score Calculation:**
 
 - Raw Final Score: 37.93%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 13.3%
+- Final Scaled Score: 13.3%
   (normalized across all terminals tested).
-  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+  *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 

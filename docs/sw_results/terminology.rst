@@ -19,44 +19,44 @@ Detailed breakdown of how scores are calculated for *terminology*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ======================================  ===========  ==============
-     #  Score Type                              Raw Score    Scaled Score
-   ===  ======================================  ===========  ==============
+   ===  ======================================  ===========  ====================
+     #  Score Type                              Raw Score    Final Scaled Score
+   ===  ======================================  ===========  ====================
      1  :ref:`WIDE <terminologywide>`           96.77%       96.7%
      2  :ref:`ZWJ <terminologyzwj>`             0.69%        0.7%
      3  :ref:`LANG <terminologylang>`           52.95%       12.5%
      4  :ref:`VS16 <terminologyvs16>`           0.00%        0.0%
      5  :ref:`VS15 <terminologyvs15>`           0.00%        0.0%
      6  :ref:`DEC Modes <terminologydecmodes>`  0            0.0%
-     7  :ref:`TIME <terminologytime>`           73.49s       86.6%
-   ===  ======================================  ===========  ==============
+     7  :ref:`TIME <terminologytime>`           70.06s       87.4%
+   ===  ======================================  ===========  ====================
 
 **Score Comparison Plots:**
 
 The following plots show how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/terminology_scores_raw.png
-   :align: left
+   :align: center
    :width: 600px
 
    Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
 
 .. figure:: ../_static/plots/terminology_scores_scaled.png
-   :align: left
+   :align: center
    :width: 600px
 
    Scaled scores comparison across metrics (normalized 0-100%)
 
-**Final Score Calculation:**
+**Final Scaled Score Calculation:**
 
-- Raw Final Score: 33.86%
+- Raw Final Score: 33.97%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 6.4%
+- Final Scaled Score: 6.6%
   (normalized across all terminals tested).
-  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+  *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
@@ -103,10 +103,10 @@ DEC Private Modes support calculation:
 **TIME Score Details:**
 
 Test execution time:
-- Elapsed time: 73.49 seconds
+- Elapsed time: 70.06 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 86.6%
+- Scaled result: 87.4%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -2038,7 +2038,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **73.49 seconds** (73s).
+The test suite completed in **70.06 seconds** (70s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

@@ -19,9 +19,9 @@ Detailed breakdown of how scores are calculated for *foot*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ===============================  ===========  ==============
-     #  Score Type                       Raw Score    Scaled Score
-   ===  ===============================  ===========  ==============
+   ===  ===============================  ===========  ====================
+     #  Score Type                       Raw Score    Final Scaled Score
+   ===  ===============================  ===========  ====================
      1  :ref:`WIDE <footwide>`           95.77%       95.7%
      2  :ref:`ZWJ <footzwj>`             95.99%       96.0%
      3  :ref:`LANG <footlang>`           75.75%       55.0%
@@ -29,34 +29,34 @@ Detailed breakdown of how scores are calculated for *foot*:
      5  :ref:`VS15 <footvs15>`           0.00%        0.0%
      6  :ref:`DEC Modes <footdecmodes>`  30           45.5%
      7  :ref:`TIME <foottime>`           71.76s       87.0%
-   ===  ===============================  ===========  ==============
+   ===  ===============================  ===========  ====================
 
 **Score Comparison Plots:**
 
 The following plots show how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/foot_scores_raw.png
-   :align: left
+   :align: center
    :width: 600px
 
    Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
 
 .. figure:: ../_static/plots/foot_scores_scaled.png
-   :align: left
+   :align: center
    :width: 600px
 
    Scaled scores comparison across metrics (normalized 0-100%)
 
-**Final Score Calculation:**
+**Final Scaled Score Calculation:**
 
 - Raw Final Score: 71.42%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 70.0%
+- Final Scaled Score: 70.0%
   (normalized across all terminals tested).
-  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+  *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 

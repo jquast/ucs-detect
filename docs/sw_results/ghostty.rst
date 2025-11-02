@@ -19,9 +19,9 @@ Detailed breakdown of how scores are calculated for *ghostty*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ==================================  ===========  ==============
-     #  Score Type                          Raw Score    Scaled Score
-   ===  ==================================  ===========  ==============
+   ===  ==================================  ===========  ====================
+     #  Score Type                          Raw Score    Final Scaled Score
+   ===  ==================================  ===========  ====================
      1  :ref:`WIDE <ghosttywide>`           94.77%       94.6%
      2  :ref:`ZWJ <ghosttyzwj>`             100.00%      100.0%
      3  :ref:`LANG <ghosttylang>`           94.37%       89.7%
@@ -29,34 +29,34 @@ Detailed breakdown of how scores are calculated for *ghostty*:
      5  :ref:`VS15 <ghosttyvs15>`           100.00%      100.0%
      6  :ref:`DEC Modes <ghosttydecmodes>`  36           54.5%
      7  :ref:`TIME <ghosttytime>`           77.36s       85.8%
-   ===  ==================================  ===========  ==============
+   ===  ==================================  ===========  ====================
 
 **Score Comparison Plots:**
 
 The following plots show how this terminal's scores compare to all other terminals tested.
 
 .. figure:: ../_static/plots/ghostty_scores_raw.png
-   :align: left
+   :align: center
    :width: 600px
 
    Raw scores comparison across metrics (WIDE, ZWJ, LANG, VS16, VS15)
 
 .. figure:: ../_static/plots/ghostty_scores_scaled.png
-   :align: left
+   :align: center
    :width: 600px
 
    Scaled scores comparison across metrics (normalized 0-100%)
 
-**Final Score Calculation:**
+**Final Scaled Score Calculation:**
 
 - Raw Final Score: 89.12%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + TIME) / 7
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging
 
-- Scaled Final Score: 100.0%
+- Final Scaled Score: 100.0%
   (normalized across all terminals tested).
-  *Scaled scores* are normalized (0-100%) relative to all terminals tested
+  *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
