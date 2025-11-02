@@ -41,11 +41,52 @@ Detailed breakdown of how scores are calculated for *cool-retro-term*:
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
+**WIDE Score Details:**
+
+Wide character support calculation:
+- Best matching Unicode version: 15.0.0
+- Version index: 8 of 11 versions tested
+- Success rate at this version: 100.0%
+- Formula: (8 / 11) × (100.0 / 100)
+- Result: 72.73%
+
+**ZWJ Score Details:**
+
+No ZWJ support detected.
+
+**VS16 Score Details:**
+
+Variation Selector-16 support calculation:
+- Errors: 213 of 213 codepoints tested
+- Success rate: 0.0%
+- Formula: 0.0 / 100
+- Result: 0.00%
+
+**VS15 Score Details:**
+
+Variation Selector-15 support calculation:
+- Errors: 158 of 158 codepoints tested
+- Success rate: 0.0%
+- Formula: 0.0 / 100
+- Result: 0.00%
+
+**DEC Modes Score Details:**
+
+DEC Modes results not available.
+
+**TIME Score Details:**
+
+Test execution time:
+- Elapsed time: 72.09 seconds
+- Note: This is a raw measurement; lower is better
+- Scaled score uses inverse log10 scaling across all terminals
+- Scaled result: 79.9%
+
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
 - Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
-- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 99.27%
 
 .. _coolretrotermwide:

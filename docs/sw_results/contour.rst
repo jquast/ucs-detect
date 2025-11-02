@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *contour*:
    LANG          93.70%       90.0%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     24.84%       24.8%           modes_changeable / total_modes
+   DEC Modes     24.84%       46.0%           modes_changeable / total_modes
    TIME          38.67s       89.2%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -41,11 +41,61 @@ Detailed breakdown of how scores are calculated for *contour*:
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
+**WIDE Score Details:**
+
+Wide character support calculation:
+- Best matching Unicode version: 16.0.0
+- Version index: 10 of 11 versions tested
+- Success rate at this version: 100.0%
+- Formula: (10 / 11) × (100.0 / 100)
+- Result: 90.91%
+
+**ZWJ Score Details:**
+
+Emoji ZWJ (Zero-Width Joiner) support calculation:
+- Best matching Emoji version: 17.0
+- Version index: 9 of 12 versions tested
+- Success rate at this version: 100.0%
+- Formula: (9 / 12) × (100.0 / 100)
+- Result: 75.00%
+
+**VS16 Score Details:**
+
+Variation Selector-16 support calculation:
+- Errors: 213 of 213 codepoints tested
+- Success rate: 0.0%
+- Formula: 0.0 / 100
+- Result: 0.00%
+
+**VS15 Score Details:**
+
+Variation Selector-15 support calculation:
+- Errors: 158 of 158 codepoints tested
+- Success rate: 0.0%
+- Formula: 0.0 / 100
+- Result: 0.00%
+
+**DEC Modes Score Details:**
+
+DEC Private Modes support calculation:
+- Changeable modes: 39
+- Total modes tested: 157
+- Formula: 39 / 157
+- Result: 24.84%
+
+**TIME Score Details:**
+
+Test execution time:
+- Elapsed time: 38.67 seconds
+- Note: This is a raw measurement; lower is better
+- Scaled score uses inverse log10 scaling across all terminals
+- Scaled result: 89.2%
+
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
 - Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
-- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 93.70%
 
 .. _contourwide:

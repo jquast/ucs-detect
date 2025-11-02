@@ -548,8 +548,8 @@ def scale_scores(score_table, entry, key):
     if math.isnan(my_score):
         return float('NaN')
 
-    # VS16, VS15, and DEC Modes are not scaled - return raw score
-    if key in ('score_emoji_vs16', 'score_emoji_vs15', 'score_dec_modes'):
+    # VS16 and VS15 are not scaled - return raw score
+    if key in ('score_emoji_vs16', 'score_emoji_vs15'):
         return my_score
 
     valid_scores = [_entry[key] for _entry in score_table if not math.isnan(_entry[key])]
@@ -839,7 +839,117 @@ def show_score_breakdown(sw_name, entry):
     print(f"  *Scaled scores* are normalized (0-100%) relative to all terminals tested")
     print()
 
-    # Add detailed LANG score breakdown
+    # Add detailed score breakdowns for each type
+    print(f"**WIDE Score Details:**")
+    print()
+    best_wide_version = entry["version_best_wide"]
+    if best_wide_version:
+        unicode_versions = sorted(
+            entry["data"]["test_results"]["unicode_wide_results"].keys(),
+            key=lambda x: wcwidth._wcversion_value(x)
+        )
+        version_index = unicode_versions.index(best_wide_version) + 1
+        total_versions = len(unicode_versions)
+        pct_success = entry["data"]["test_results"]["unicode_wide_results"][best_wide_version]["pct_success"]
+
+        print(f"Wide character support calculation:")
+        print(f"- Best matching Unicode version: {best_wide_version}")
+        print(f"- Version index: {version_index} of {total_versions} versions tested")
+        print(f"- Success rate at this version: {pct_success:.1f}%")
+        print(f"- Formula: ({version_index} / {total_versions}) × ({pct_success:.1f} / 100)")
+        print(f"- Result: {entry['score_wide']*100:.2f}%")
+    else:
+        print(f"No WIDE character support detected.")
+    print()
+
+    print(f"**ZWJ Score Details:**")
+    print()
+    best_zwj_version = entry["version_best_zwj"]
+    if best_zwj_version:
+        emoji_zwj_versions = list(entry["data"]["test_results"]["emoji_zwj_results"].keys())
+        version_index = emoji_zwj_versions.index(best_zwj_version) + 1
+        total_versions = len(emoji_zwj_versions)
+        pct_success = entry["data"]["test_results"]["emoji_zwj_results"][best_zwj_version]["pct_success"]
+
+        print(f"Emoji ZWJ (Zero-Width Joiner) support calculation:")
+        print(f"- Best matching Emoji version: {best_zwj_version}")
+        print(f"- Version index: {version_index} of {total_versions} versions tested")
+        print(f"- Success rate at this version: {pct_success:.1f}%")
+        print(f"- Formula: ({version_index} / {total_versions}) × ({pct_success:.1f} / 100)")
+        print(f"- Result: {entry['score_zwj']*100:.2f}%")
+    else:
+        print(f"No ZWJ support detected.")
+    print()
+
+    print(f"**VS16 Score Details:**")
+    print()
+    if not math.isnan(entry["score_emoji_vs16"]):
+        vs16_results = entry["data"]["test_results"]["emoji_vs16_results"]["9.0.0"]
+        n_errors = vs16_results["n_errors"]
+        n_total = vs16_results["n_total"]
+        pct_success = vs16_results["pct_success"]
+
+        print(f"Variation Selector-16 support calculation:")
+        print(f"- Errors: {n_errors} of {n_total} codepoints tested")
+        print(f"- Success rate: {pct_success:.1f}%")
+        print(f"- Formula: {pct_success:.1f} / 100")
+        print(f"- Result: {entry['score_emoji_vs16']*100:.2f}%")
+    else:
+        print(f"VS16 results not available.")
+    print()
+
+    print(f"**VS15 Score Details:**")
+    print()
+    if not math.isnan(entry["score_emoji_vs15"]):
+        vs15_base = entry["data"]["test_results"].get("emoji_vs15_results",
+                                                       entry["data"]["test_results"].get("emoji_vs15_type_a_results"))
+        if vs15_base:
+            vs15_results = vs15_base["9.0.0"]
+            n_errors = vs15_results["n_errors"]
+            n_total = vs15_results["n_total"]
+            pct_success = vs15_results["pct_success"]
+
+            print(f"Variation Selector-15 support calculation:")
+            print(f"- Errors: {n_errors} of {n_total} codepoints tested")
+            print(f"- Success rate: {pct_success:.1f}%")
+            print(f"- Formula: {pct_success:.1f} / 100")
+            print(f"- Result: {entry['score_emoji_vs15']*100:.2f}%")
+        else:
+            print(f"VS15 results not available.")
+    else:
+        print(f"VS15 results not available.")
+    print()
+
+    print(f"**DEC Modes Score Details:**")
+    print()
+    if not math.isnan(entry["score_dec_modes"]):
+        modes = entry["data"]["terminal_results"]["modes"]
+        total_modes = len(modes)
+        changeable_modes = sum(1 for mode_data in modes.values() if mode_data.get("changeable", False))
+
+        print(f"DEC Private Modes support calculation:")
+        print(f"- Changeable modes: {changeable_modes}")
+        print(f"- Total modes tested: {total_modes}")
+        print(f"- Formula: {changeable_modes} / {total_modes}")
+        print(f"- Result: {entry['score_dec_modes']*100:.2f}%")
+    else:
+        print(f"DEC Modes results not available.")
+    print()
+
+    print(f"**TIME Score Details:**")
+    print()
+    if not math.isnan(entry["elapsed_seconds"]):
+        elapsed = entry["elapsed_seconds"]
+
+        print(f"Test execution time:")
+        print(f"- Elapsed time: {elapsed:.2f} seconds")
+        print(f"- Note: This is a raw measurement; lower is better")
+        print(f"- Scaled score uses inverse log10 scaling across all terminals")
+        print(f"- Scaled result: {format_score_pct(entry['score_elapsed_scaled'])}")
+    else:
+        print(f"Time results not available.")
+    print()
+
     print(f"**LANG Score Details (Geometric Mean):**")
     print()
     lang_results = entry["data"]["test_results"]["language_results"]
@@ -851,7 +961,7 @@ def show_score_breakdown(sw_name, entry):
         print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} languages")
         print(f"- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_")
         print(f"- Result: {geo_mean*100:.2f}%")
-        print()
+    print()
 
 def show_software_header(entry, sw_name):
     display_inbound_hyperlink(entry["terminal_software_name"])

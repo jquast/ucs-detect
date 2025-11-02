@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
    LANG          72.71%       52.5%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     18.24%       18.2%           modes_changeable / total_modes
+   DEC Modes     18.24%       25.3%           modes_changeable / total_modes
    TIME          41.39s       88.2%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -41,11 +41,56 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
+**WIDE Score Details:**
+
+Wide character support calculation:
+- Best matching Unicode version: 16.0.0
+- Version index: 10 of 11 versions tested
+- Success rate at this version: 100.0%
+- Formula: (10 / 11) × (100.0 / 100)
+- Result: 90.91%
+
+**ZWJ Score Details:**
+
+No ZWJ support detected.
+
+**VS16 Score Details:**
+
+Variation Selector-16 support calculation:
+- Errors: 213 of 213 codepoints tested
+- Success rate: 0.0%
+- Formula: 0.0 / 100
+- Result: 0.00%
+
+**VS15 Score Details:**
+
+Variation Selector-15 support calculation:
+- Errors: 158 of 158 codepoints tested
+- Success rate: 0.0%
+- Formula: 0.0 / 100
+- Result: 0.00%
+
+**DEC Modes Score Details:**
+
+DEC Private Modes support calculation:
+- Changeable modes: 29
+- Total modes tested: 159
+- Formula: 29 / 159
+- Result: 18.24%
+
+**TIME Score Details:**
+
+Test execution time:
+- Elapsed time: 41.39 seconds
+- Note: This is a raw measurement; lower is better
+- Scaled score uses inverse log10 scaling across all terminals
+- Scaled result: 88.2%
+
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
 - Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
-- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 72.71%
 
 .. _Bobcatwide:

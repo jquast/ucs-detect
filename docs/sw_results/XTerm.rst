@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *XTerm*:
    LANG          72.76%       52.6%           geometric_mean(language_percentages)
    VS16          0.00%        0.0%            pct_success / 100
    VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     42.04%       42.0%           modes_changeable / total_modes
+   DEC Modes     42.04%       100.0%          modes_changeable / total_modes
    TIME          49.87s       85.4%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -41,11 +41,56 @@ Detailed breakdown of how scores are calculated for *XTerm*:
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
+**WIDE Score Details:**
+
+Wide character support calculation:
+- Best matching Unicode version: 15.1.0
+- Version index: 9 of 11 versions tested
+- Success rate at this version: 100.0%
+- Formula: (9 / 11) × (100.0 / 100)
+- Result: 81.82%
+
+**ZWJ Score Details:**
+
+No ZWJ support detected.
+
+**VS16 Score Details:**
+
+Variation Selector-16 support calculation:
+- Errors: 213 of 213 codepoints tested
+- Success rate: 0.0%
+- Formula: 0.0 / 100
+- Result: 0.00%
+
+**VS15 Score Details:**
+
+Variation Selector-15 support calculation:
+- Errors: 158 of 158 codepoints tested
+- Success rate: 0.0%
+- Formula: 0.0 / 100
+- Result: 0.00%
+
+**DEC Modes Score Details:**
+
+DEC Private Modes support calculation:
+- Changeable modes: 66
+- Total modes tested: 157
+- Formula: 66 / 157
+- Result: 42.04%
+
+**TIME Score Details:**
+
+Test execution time:
+- Elapsed time: 49.87 seconds
+- Note: This is a raw measurement; lower is better
+- Scaled score uses inverse log10 scaling across all terminals
+- Scaled result: 85.4%
+
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
 - Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
-- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 72.76%
 
 .. _XTermwide:

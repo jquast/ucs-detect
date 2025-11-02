@@ -26,7 +26,7 @@ Detailed breakdown of how scores are calculated for *kitty*:
    LANG          93.81%       90.2%           geometric_mean(language_percentages)
    VS16          100.00%      100.0%          pct_success / 100
    VS15          100.00%      100.0%          pct_success / 100
-   DEC Modes     11.95%       11.9%           modes_changeable / total_modes
+   DEC Modes     11.95%       5.5%            modes_changeable / total_modes
    TIME          849.99s      42.9%           1 - ((elapsed - min) / (max - min)) [inverse]
    ============  ===========  ==============  ======================================================
 
@@ -41,11 +41,61 @@ Detailed breakdown of how scores are calculated for *kitty*:
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
+**WIDE Score Details:**
+
+Wide character support calculation:
+- Best matching Unicode version: 16.0.0
+- Version index: 10 of 11 versions tested
+- Success rate at this version: 100.0%
+- Formula: (10 / 11) × (100.0 / 100)
+- Result: 90.91%
+
+**ZWJ Score Details:**
+
+Emoji ZWJ (Zero-Width Joiner) support calculation:
+- Best matching Emoji version: 17.0
+- Version index: 9 of 12 versions tested
+- Success rate at this version: 100.0%
+- Formula: (9 / 12) × (100.0 / 100)
+- Result: 75.00%
+
+**VS16 Score Details:**
+
+Variation Selector-16 support calculation:
+- Errors: 0 of 213 codepoints tested
+- Success rate: 100.0%
+- Formula: 100.0 / 100
+- Result: 100.00%
+
+**VS15 Score Details:**
+
+Variation Selector-15 support calculation:
+- Errors: 0 of 158 codepoints tested
+- Success rate: 100.0%
+- Formula: 100.0 / 100
+- Result: 100.00%
+
+**DEC Modes Score Details:**
+
+DEC Private Modes support calculation:
+- Changeable modes: 19
+- Total modes tested: 159
+- Formula: 19 / 159
+- Result: 11.95%
+
+**TIME Score Details:**
+
+Test execution time:
+- Elapsed time: 849.99 seconds
+- Note: This is a raw measurement; lower is better
+- Scaled score uses inverse log10 scaling across all terminals
+- Scaled result: 42.9%
+
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
 - Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
-- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean
+- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 93.81%
 
 .. _kittywide:
