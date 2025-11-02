@@ -606,6 +606,7 @@ def display_tabulated_scores(score_table):
     print("   support contribute to terminal quality.")
     print()
 
+    display_title("General Tabulated Summary", 2)
     tabulated_scores = []
 
     for result in score_table:
@@ -1001,7 +1002,7 @@ def display_dec_modes_feature_table(score_table):
         # No terminals with changeable modes
         return
 
-    display_title("DEC Private Modes by Mode", 2)
+    display_title("DEC Private Modes Support", 2)
     print("This table shows which DEC Private Modes are supported for each terminal.")
     print("Terminals are sorted by number of changeable modes (most first).")
     print("Only terminals with at least one changeable mode are shown.")

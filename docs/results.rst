@@ -362,7 +362,7 @@ completeness of these measurements.
    :ref:`xfce4-terminal <xfce4terminal>`    1.1.3(VTE/7600)           Linux        :sref:`0 <xfce4terminalscores> 0`     :sref:`15 <xfce4terminalwide> 95`     :sref:`49 <xfce4terminallang> 49`    :sref:`1 <xfce4terminalzwj> 1`    :sref:`0 <xfce4terminalvs16> 0`       :sref:`0 <xfce4terminalvs15> 0`   :sref:`no <xfce4terminaldecmodes> 50`      :sref:`28 <xfce4terminaldecmodes> 42`   :sref:`14937 <xfce4terminaltime> 0`   :score-0:`no`
    =======================================  ========================  ===========  ====================================  ====================================  ===================================  ================================  ====================================  ================================  =========================================  ======================================  ====================================  ================
 
-DEC Private Modes by Mode
+DEC Private Modes Support
 -------------------------
 
 This table shows which DEC Private Modes are supported for each terminal.
