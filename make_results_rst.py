@@ -352,7 +352,7 @@ def make_unicode_codepoint(wchar):
 
 
 def display_results_toc(score_table):
-    display_title("Detailed Reports", 2)
+    display_title("Full Report by Terminal", 2)
     print(".. toctree::")
     print("   :maxdepth: 1")
     print()

@@ -13,6 +13,9 @@ completeness of these measurements.
    of terminal emulator quality or a recommendation. Many factors beyond Unicode
    support contribute to terminal quality.
 
+General Tabulated Summary
+-------------------------
+
 .. Generate custom roles for score coloring
 
 .. role:: score-0
