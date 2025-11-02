@@ -18,41 +18,46 @@ Detailed breakdown of how scores are calculated for *terminology*:
 .. table::
    :class: sphinx-datatable
 
-   ============  ===========  ==============  ======================================================
-   Score Type    Raw Score    Scaled Score    Calculation
-   ============  ===========  ==============  ======================================================
-   WIDE          98.09%       100.0%          (version_index / total_versions) × (pct_success / 100)
-   ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-   LANG          52.24%       16.0%           geometric_mean(language_percentages)
-   VS16          0.00%        0.0%            pct_success / 100
-   VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     N/A          N/A             modes_changeable / total_modes
-   TIME          37.70s       89.6%           1 - ((elapsed - min) / (max - min)) [inverse]
-   ============  ===========  ==============  ======================================================
+   ======================================  ===========  ==============
+   Score Type                              Raw Score    Scaled Score
+   ======================================  ===========  ==============
+   :ref:`WIDE <terminologywide>`           96.77%       96.7%
+   :ref:`ZWJ <terminologyzwj>`             0.69%        0.7%
+   :ref:`LANG <terminologylang>`           52.95%       12.5%
+   :ref:`VS16 <terminologyvs16>`           0.00%        0.0%
+   :ref:`VS15 <terminologyvs15>`           0.00%        0.0%
+   :ref:`DEC Modes <terminologydecmodes>`  0            0.0%
+   :ref:`TIME <terminologytime>`           73.49s       86.6%
+   ======================================  ===========  ==============
 
 **Final Score Calculation:**
 
-- Raw Final Score: 30.07%
+- Raw Final Score: 25.07%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support
 
-- Scaled Final Score: 17.1%
+- Scaled Final Score: 0.0%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
 Wide character support calculation:
+- Total successful codepoints: 6660
+- Total codepoints tested: 6882
 - Best matching Unicode version: 17.0.0
-- Version index: 11 of 11 versions tested
-- Success rate at this version: 98.1%
-- Formula: (11 / 11) × (98.1 / 100)
-- Result: 98.09%
+- Formula: 6660 / 6882
+- Result: 96.77%
 
 **ZWJ Score Details:**
 
-No ZWJ support detected.
+Emoji ZWJ (Zero-Width Joiner) support calculation:
+- Total successful sequences: 10
+- Total sequences tested: 1445
+- Best matching Emoji version: None
+- Formula: 10 / 1445
+- Result: 0.69%
 
 **VS16 Score Details:**
 
@@ -72,22 +77,26 @@ Variation Selector-15 support calculation:
 
 **DEC Modes Score Details:**
 
-DEC Modes results not available.
+DEC Private Modes support calculation:
+- Changeable modes: 0
+- Total modes tested: 0
+- Raw score: 0 modes
+- Scaled: normalized against max changeable modes across all terminals
 
 **TIME Score Details:**
 
 Test execution time:
-- Elapsed time: 37.70 seconds
+- Elapsed time: 73.49 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 89.6%
+- Scaled result: 86.6%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 119 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
-- Result: 52.24%
+- Result: 52.95%
 
 .. _terminologywide:
 
@@ -269,138 +278,66 @@ Total codepoints: 2
 Language Support
 ++++++++++++++++
 
-No languages were tested with 100% success.
+The following 73 languages were tested with 100% success:
 
-The following 119 languages are not fully supported:
+(Jinan), (Yeonbyeon), Aja, Amarakaeri, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Japanese, Japanese (Osaka), Japanese (Tokyo), Kabyle, Korean, Lamnso', Lingala (tones), Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Picard, Saint Lucian Creole French, Secoya, Shipibo-Conibo, Siona, South Azerbaijani, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yoruba, Éwé.
+
+The following 45 languages are not fully supported:
 
 .. table::
    :class: sphinx-datatable
 
-   ==================================================================================  ==========  =========  =============
-   lang                                                                                  n_errors    n_total  pct_success
-   ==================================================================================  ==========  =========  =============
-   :ref:`Maldivian <terminologylangMaldivian>`                                               1000       1028  2.7%
-   :ref:`Tamil <terminologylangTamil>`                                                       1000       1031  3.0%
-   :ref:`Tamil (Sri Lanka) <terminologylangTamilSriLanka>`                                   1000       1031  3.0%
-   :ref:`Burmese <terminologylangBurmese>`                                                   1000       1032  3.1%
-   :ref:`Mon <terminologylangMon>`                                                            910        946  3.8%
-   :ref:`Shan <terminologylangShan>`                                                          879        915  3.9%
-   :ref:`Javanese (Javanese) <terminologylangJavaneseJavanese>`                              1000       1059  5.6%
-   :ref:`Gujarati <terminologylangGujarati>`                                                 1000       1061  5.7%
-   :ref:`Malayalam <terminologylangMalayalam>`                                               1000       1061  5.7%
-   :ref:`Kannada <terminologylangKannada>`                                                   1000       1069  6.5%
-   :ref:`Tamang, Eastern <terminologylangTamangEastern>`                                       42         45  6.7%
-   :ref:`Khün <terminologylangKhn>`                                                           412        442  6.8%
-   :ref:`Khmer, Central <terminologylangKhmerCentral>`                                        492        528  6.8%
-   :ref:`Chakma <terminologylangChakma>`                                                     1000       1077  7.1%
-   :ref:`Bengali <terminologylangBengali>`                                                   1000       1085  7.8%
-   :ref:`Telugu <terminologylangTelugu>`                                                     1000       1091  8.3%
-   :ref:`Sanskrit <terminologylangSanskrit>`                                                  892       1000  10.8%
-   :ref:`Sanskrit (Grantha) <terminologylangSanskritGrantha>`                                 893       1006  11.2%
-   :ref:`Marathi <terminologylangMarathi>`                                                   1000       1151  13.1%
-   :ref:`Nepali <terminologylangNepali>`                                                     1000       1158  13.6%
-   :ref:`Thai (2) <terminologylangThai2>`                                                     268        313  14.4%
-   :ref:`Sinhala <terminologylangSinhala>`                                                   1000       1169  14.5%
-   :ref:`Hindi <terminologylangHindi>`                                                       1000       1170  14.5%
-   :ref:`Panjabi, Eastern <terminologylangPanjabiEastern>`                                   1000       1176  15.0%
-   :ref:`Bhojpuri <terminologylangBhojpuri>`                                                 1000       1204  16.9%
-   :ref:`Maithili <terminologylangMaithili>`                                                 1000       1216  17.8%
-   :ref:`Thai <terminologylangThai>`                                                          273        341  19.9%
-   :ref:`Magahi <terminologylangMagahi>`                                                     1000       1304  23.3%
-   :ref:`Tagalog (Tagalog) <terminologylangTagalogTagalog>`                                    21         31  32.3%
-   :ref:`Tibetan, Central <terminologylangTibetanCentral>`                                   1000       1507  33.6%
-   :ref:`Dzongkha <terminologylangDzongkha>`                                                 1000       1567  36.2%
-   :ref:`Lao <terminologylangLao>`                                                            271        426  36.4%
-   :ref:`Yiddish, Eastern <terminologylangYiddishEastern>`                                    873       1775  50.8%
-   :ref:`Pular (Adlam) <terminologylangPularAdlam>`                                           784       1613  51.4%
-   :ref:`Tai Dam <terminologylangTaiDam>`                                                     944       2386  60.4%
-   :ref:`Mongolian, Halh (Mongolian) <terminologylangMongolianHalhMongolian>`                   3         33  90.9%
-   :ref:`Assyrian Neo-Aramaic <terminologylangAssyrianNeoAramaic>`                             54       1160  95.3%
-   :ref:`Farsi, Western <terminologylangFarsiWestern>`                                         68       1822  96.3%
-   :ref:`Urdu (2) <terminologylangUrdu2>`                                                      58       2251  97.4%
-   :ref:`Urdu <terminologylangUrdu>`                                                           56       2237  97.5%
-   :ref:`Japanese (Osaka) <terminologylangJapaneseOsaka>`                                       6        308  98.1%
-   :ref:`Chinese, Mandarin (Harbin) <terminologylangChineseMandarinHarbin>`                     4        210  98.1%
-   :ref:`Chinese, Wu <terminologylangChineseWu>`                                                4        211  98.1%
-   :ref:`Chinese, Mandarin (Nanjing) <terminologylangChineseMandarinNanjing>`                   4        212  98.1%
-   :ref:`Chinese, Mandarin (Tianjin) <terminologylangChineseMandarinTianjin>`                   4        212  98.1%
-   :ref:`Chinese, Xiang <terminologylangChineseXiang>`                                          4        212  98.1%
-   :ref:`Dari <terminologylangDari>`                                                           35       1872  98.1%
-   :ref:`Arabic, Standard <terminologylangArabicStandard>`                                     24       1348  98.2%
-   :ref:`Japanese <terminologylangJapanese>`                                                    5        299  98.3%
-   :ref:`Vietnamese (Han nom) <terminologylangVietnameseHannom>`                                3        199  98.5%
-   :ref:`Chinese, Mandarin (Traditional) <terminologylangChineseMandarinTraditional>`           3        210  98.6%
-   :ref:`Chinese, Yue <terminologylangChineseYue>`                                              3        210  98.6%
-   :ref:`(Jinan) <terminologylangJinan>`                                                        3        211  98.6%
-   :ref:`Chinese, Gan <terminologylangChineseGan>`                                              3        211  98.6%
-   :ref:`Chinese, Mandarin (Guiyang) <terminologylangChineseMandarinGuiyang>`                   3        211  98.6%
-   :ref:`Chinese, Hakka <terminologylangChineseHakka>`                                          3        212  98.6%
-   :ref:`Chinese, Jinyu <terminologylangChineseJinyu>`                                          3        212  98.6%
-   :ref:`Chinese, Mandarin (Beijing) <terminologylangChineseMandarinBeijing>`                   3        212  98.6%
-   :ref:`Chinese, Min Nan <terminologylangChineseMinNan>`                                       3        212  98.6%
-   :ref:`Chinese, Mandarin (Simplified) <terminologylangChineseMandarinSimplified>`             3        225  98.7%
-   :ref:`Panjabi, Western <terminologylangPanjabiWestern>`                                     25       2419  99.0%
-   :ref:`Japanese (Tokyo) <terminologylangJapaneseTokyo>`                                       3        320  99.1%
-   :ref:`Nuosu <terminologylangNuosu>`                                                          2        230  99.1%
-   :ref:`Bora <terminologylangBora>`                                                            9       1598  99.4%
-   :ref:`Chickasaw <terminologylangChickasaw>`                                                  3        554  99.5%
-   :ref:`Shipibo-Conibo <terminologylangShipiboConibo>`                                        13       2540  99.5%
-   :ref:`Nanai <terminologylangNanai>`                                                          6       1207  99.5%
-   :ref:`Amarakaeri <terminologylangAmarakaeri>`                                                7       1446  99.5%
-   :ref:`Orok <terminologylangOrok>`                                                            6       1245  99.5%
-   :ref:`Yaneshaʼ <terminologylangYanesha>`                                                    12       2536  99.5%
-   :ref:`Gumuz <terminologylangGumuz>`                                                          6       1283  99.5%
-   :ref:`Veps <terminologylangVeps>`                                                            6       1323  99.5%
-   :ref:`Pashto, Northern <terminologylangPashtoNorthern>`                                     10       2242  99.6%
-   :ref:`Evenki <terminologylangEvenki>`                                                        4        899  99.6%
-   :ref:`Navajo <terminologylangNavajo>`                                                        7       1600  99.6%
-   :ref:`South Azerbaijani <terminologylangSouthAzerbaijani>`                                   6       1396  99.6%
-   :ref:`Secoya <terminologylangSecoya>`                                                        6       1409  99.6%
-   :ref:`Korean <terminologylangKorean>`                                                        5       1185  99.6%
-   :ref:`Siona <terminologylangSiona>`                                                          6       1492  99.6%
-   :ref:`Gilyak <terminologylangGilyak>`                                                        6       1504  99.6%
-   :ref:`Colorado <terminologylangColorado>`                                                    5       1263  99.6%
-   :ref:`(Yeonbyeon) <terminologylangYeonbyeon>`                                                4       1061  99.6%
-   :ref:`Catalan (2) <terminologylangCatalan2>`                                                 7       1909  99.6%
-   :ref:`Tem <terminologylangTem>`                                                              6       1659  99.6%
-   :ref:`Seraiki <terminologylangSeraiki>`                                                      8       2242  99.6%
-   :ref:`Mirandese <terminologylangMirandese>`                                                  7       1966  99.6%
-   :ref:`Picard <terminologylangPicard>`                                                        7       2024  99.7%
-   :ref:`Ticuna <terminologylangTicuna>`                                                        7       2048  99.7%
-   :ref:`Kabyle <terminologylangKabyle>`                                                        6       1815  99.7%
-   :ref:`Lingala (tones) <terminologylangLingalatones>`                                         6       1818  99.7%
-   :ref:`Tamazight, Central Atlas <terminologylangTamazightCentralAtlas>`                       6       1822  99.7%
-   :ref:`Fur <terminologylangFur>`                                                              6       1838  99.7%
-   :ref:`Éwé <terminologylangw>`                                                                7       2230  99.7%
-   :ref:`French (Welche) <terminologylangFrenchWelche>`                                         6       1928  99.7%
-   :ref:`Gen <terminologylangGen>`                                                              7       2309  99.7%
-   :ref:`Ga <terminologylangGa>`                                                                6       2039  99.7%
-   :ref:`Maori (2) <terminologylangMaori2>`                                                     7       2385  99.7%
-   :ref:`Mixtec, Metlatónoc <terminologylangMixtecMetlatnoc>`                                   4       1367  99.7%
-   :ref:`Aja <terminologylangAja>`                                                              6       2061  99.7%
-   :ref:`Yoruba <terminologylangYoruba>`                                                        7       2454  99.7%
-   :ref:`Saint Lucian Creole French <terminologylangSaintLucianCreoleFrench>`                   5       1777  99.7%
-   :ref:`Uduk <terminologylangUduk>`                                                            9       3247  99.7%
-   :ref:`Dagaare, Southern <terminologylangDagaareSouthern>`                                    7       2582  99.7%
-   :ref:`Belanda Viri <terminologylangBelandaViri>`                                             6       2246  99.7%
-   :ref:`Ditammari <terminologylangDitammari>`                                                  5       1882  99.7%
-   :ref:`Bamun <terminologylangBamun>`                                                          6       2285  99.7%
-   :ref:`Dinka, Northeastern <terminologylangDinkaNortheastern>`                                4       1529  99.7%
-   :ref:`Baatonum <terminologylangBaatonum>`                                                    5       1939  99.7%
-   :ref:`Dendi <terminologylangDendi>`                                                          4       1569  99.7%
-   :ref:`Mazahua Central <terminologylangMazahuaCentral>`                                       4       1574  99.7%
-   :ref:`Serer-Sine <terminologylangSererSine>`                                                 4       1596  99.7%
-   :ref:`Mòoré <terminologylangMor>`                                                            6       2447  99.8%
-   :ref:`Vietnamese <terminologylangVietnamese>`                                                6       2502  99.8%
-   :ref:`Fon <terminologylangFon>`                                                              6       2520  99.8%
-   :ref:`Chinantec, Chiltepec <terminologylangChinantecChiltepec>`                              4       1729  99.8%
-   :ref:`Lamnso' <terminologylangLamnso>`                                                       5       2237  99.8%
-   :ref:`Otomi, Mezquital <terminologylangOtomiMezquital>`                                      4       1849  99.8%
-   :ref:`Dangme <terminologylangDangme>`                                                        6       2912  99.8%
-   :ref:`Waama <terminologylangWaama>`                                                          2       1000  99.8%
-   ==================================================================================  ==========  =========  =============
+   ==========================================================================  ==========  =========  =============
+   lang                                                                          n_errors    n_total  pct_success
+   ==========================================================================  ==========  =========  =============
+   :ref:`Maldivian <terminologylangmaldivian>`                                       1000       1029  2.8%
+   :ref:`Tamil <terminologylangtamil>`                                               1000       1030  2.9%
+   :ref:`Tamil (Sri Lanka) <terminologylangtamilsrilanka>`                           1000       1030  2.9%
+   :ref:`Burmese <terminologylangburmese>`                                           1000       1033  3.2%
+   :ref:`Mon <terminologylangmon>`                                                    910        946  3.8%
+   :ref:`Shan <terminologylangshan>`                                                  880        915  3.8%
+   :ref:`Gujarati <terminologylanggujarati>`                                         1000       1061  5.7%
+   :ref:`Malayalam <terminologylangmalayalam>`                                       1000       1061  5.7%
+   :ref:`Kannada <terminologylangkannada>`                                           1000       1069  6.5%
+   :ref:`Tamang, Eastern <terminologylangtamangeastern>`                               42         45  6.7%
+   :ref:`Khün <terminologylangkhn>`                                                   412        442  6.8%
+   :ref:`Khmer, Central <terminologylangkhmercentral>`                                492        528  6.8%
+   :ref:`Chakma <terminologylangchakma>`                                             1000       1078  7.2%
+   :ref:`Bengali <terminologylangbengali>`                                           1000       1085  7.8%
+   :ref:`Telugu <terminologylangtelugu>`                                             1000       1091  8.3%
+   :ref:`Sanskrit <terminologylangsanskrit>`                                          891       1000  10.9%
+   :ref:`Sanskrit (Grantha) <terminologylangsanskritgrantha>`                         893       1006  11.2%
+   :ref:`Marathi <terminologylangmarathi>`                                           1000       1151  13.1%
+   :ref:`Nepali <terminologylangnepali>`                                             1000       1159  13.7%
+   :ref:`Sinhala <terminologylangsinhala>`                                           1000       1168  14.4%
+   :ref:`Hindi <terminologylanghindi>`                                               1000       1171  14.6%
+   :ref:`Thai (2) <terminologylangthai2>`                                             267        313  14.7%
+   :ref:`Panjabi, Eastern <terminologylangpanjabieastern>`                           1000       1177  15.0%
+   :ref:`Bhojpuri <terminologylangbhojpuri>`                                         1000       1204  16.9%
+   :ref:`Maithili <terminologylangmaithili>`                                         1000       1219  18.0%
+   :ref:`Thai <terminologylangthai>`                                                  273        341  19.9%
+   :ref:`Magahi <terminologylangmagahi>`                                             1000       1309  23.6%
+   :ref:`Javanese (Javanese) <terminologylangjavanesejavanese>`                      1000       1405  28.8%
+   :ref:`Tagalog (Tagalog) <terminologylangtagalogtagalog>`                            21         31  32.3%
+   :ref:`Tibetan, Central <terminologylangtibetancentral>`                           1000       1510  33.8%
+   :ref:`Dzongkha <terminologylangdzongkha>`                                         1000       1571  36.3%
+   :ref:`Lao <terminologylanglao>`                                                    270        426  36.6%
+   :ref:`Yiddish, Eastern <terminologylangyiddisheastern>`                            869       1775  51.0%
+   :ref:`Pular (Adlam) <terminologylangpularadlam>`                                   782       1613  51.5%
+   :ref:`Tai Dam <terminologylangtaidam>`                                             943       2386  60.5%
+   :ref:`Mongolian, Halh (Mongolian) <terminologylangmongolianhalhmongolian>`           3         33  90.9%
+   :ref:`Assyrian Neo-Aramaic <terminologylangassyrianneoaramaic>`                     51       1160  95.6%
+   :ref:`Farsi, Western <terminologylangfarsiwestern>`                                 63       1822  96.5%
+   :ref:`Urdu (2) <terminologylangurdu2>`                                              52       2251  97.7%
+   :ref:`Urdu <terminologylangurdu>`                                                   50       2237  97.8%
+   :ref:`Dari <terminologylangdari>`                                                   30       1872  98.4%
+   :ref:`Arabic, Standard <terminologylangarabicstandard>`                             20       1348  98.5%
+   :ref:`Panjabi, Western <terminologylangpanjabiwestern>`                             19       2419  99.2%
+   :ref:`Pashto, Northern <terminologylangpashtonorthern>`                              4       2242  99.8%
+   :ref:`Seraiki <terminologylangseraiki>`                                              2       2242  99.9%
+   ==========================================================================  ==========  =========  =============
 
-.. _terminologylangMaldivian:
+.. _terminologylangmaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -436,7 +373,7 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *terminology* measures width 9.
 
-.. _terminologylangTamil:
+.. _terminologylangtamil:
 
 Tamil
 ^^^^^
@@ -467,7 +404,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangTamilSriLanka:
+.. _terminologylangtamilsrilanka:
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -498,7 +435,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangBurmese:
+.. _terminologylangburmese:
 
 Burmese
 ^^^^^^^
@@ -541,7 +478,7 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *terminology* measures width 16.
 
-.. _terminologylangMon:
+.. _terminologylangmon:
 
 Mon
 ^^^
@@ -578,7 +515,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *terminology* measures width 10.
 
-.. _terminologylangShan:
+.. _terminologylangshan:
 
 Shan
 ^^^^
@@ -620,39 +557,7 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *terminology* measures width 15.
 
-.. _terminologylangJavaneseJavanese:
-
-Javanese (Javanese)
-^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =========================
-     1  `U+A9CB <https://codepoints.net/U+A9CB>`_  '\\ua9cb'  Po                  1  JAVANESE PADA ADEG ADEG
-     2  `U+A9B1 <https://codepoints.net/U+A9B1>`_  '\\ua9b1'  Lo                  1  JAVANESE LETTER SA
-     3  `U+A9A7 <https://codepoints.net/U+A9A7>`_  '\\ua9a7'  Lo                  1  JAVANESE LETTER BA
-     4  `U+A9BC <https://codepoints.net/U+A9BC>`_  '\\ua9bc'  Mn                  0  JAVANESE VOWEL SIGN PEPET
-     5  `U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
-   ===  =========================================  =========  ==========  =========  =========================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xea\xa7\x8b\xea\xa6\xb1\xea\xa6\xa7\xea\xa6\xbc\xea\xa6\xa4|\\n1234|\\n"
-        ꧋ꦱꦧꦼꦤ|
-        1234|
-
-- python `wcwidth.wcswidth()`_ measures width 4,
-  while *terminology* measures width 5.
-
-.. _terminologylangGujarati:
+.. _terminologylanggujarati:
 
 Gujarati
 ^^^^^^^^
@@ -683,7 +588,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangMalayalam:
+.. _terminologylangmalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -739,7 +644,7 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *terminology* measures width 29.
 
-.. _terminologylangKannada:
+.. _terminologylangkannada:
 
 Kannada
 ^^^^^^^
@@ -770,7 +675,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangTamangEastern:
+.. _terminologylangtamangeastern:
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -803,7 +708,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 6.
 
-.. _terminologylangKhn:
+.. _terminologylangkhn:
 
 Khün
 ^^^^
@@ -852,7 +757,7 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *terminology* measures width 22.
 
-.. _terminologylangKhmerCentral:
+.. _terminologylangkhmercentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -915,7 +820,7 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *terminology* measures width 36.
 
-.. _terminologylangChakma:
+.. _terminologylangchakma:
 
 Chakma
 ^^^^^^
@@ -955,7 +860,7 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *terminology* measures width 13.
 
-.. _terminologylangBengali:
+.. _terminologylangbengali:
 
 Bengali
 ^^^^^^^
@@ -994,7 +899,7 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *terminology* measures width 12.
 
-.. _terminologylangTelugu:
+.. _terminologylangtelugu:
 
 Telugu
 ^^^^^^
@@ -1034,7 +939,7 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *terminology* measures width 13.
 
-.. _terminologylangSanskrit:
+.. _terminologylangsanskrit:
 
 Sanskrit
 ^^^^^^^^
@@ -1075,7 +980,7 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *terminology* measures width 14.
 
-.. _terminologylangSanskritGrantha:
+.. _terminologylangsanskritgrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -1116,7 +1021,7 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *terminology* measures width 14.
 
-.. _terminologylangMarathi:
+.. _terminologylangmarathi:
 
 Marathi
 ^^^^^^^
@@ -1148,7 +1053,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 5.
 
-.. _terminologylangNepali:
+.. _terminologylangnepali:
 
 Nepali
 ^^^^^^
@@ -1179,7 +1084,69 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangThai2:
+.. _terminologylangsinhala:
+
+Sinhala
+^^^^^^^
+
+Sequence of language *Sinhala* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ==============================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ==============================
+     1  `U+0DB8 <https://codepoints.net/U+0DB8>`_  '\\u0db8'  Lo                  1  SINHALA LETTER MAYANNA
+     2  `U+0DCF <https://codepoints.net/U+0DCF>`_  '\\u0dcf'  Mc                  0  SINHALA VOWEL SIGN AELA-PILLA
+     3  `U+0DB1 <https://codepoints.net/U+0DB1>`_  '\\u0db1'  Lo                  1  SINHALA LETTER DANTAJA NAYANNA
+     4  `U+0DC0 <https://codepoints.net/U+0DC0>`_  '\\u0dc0'  Lo                  1  SINHALA LETTER VAYANNA
+   ===  =========================================  =========  ==========  =========  ==============================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xb6\xb8\xe0\xb7\x8f\xe0\xb6\xb1\xe0\xb7\x80|\\n123|\\n"
+        මානව|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *terminology* measures width 4.
+
+.. _terminologylanghindi:
+
+Hindi
+^^^^^
+
+Sequence of language *Hindi* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ========================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ========================
+     1  `U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
+     2  `U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
+     3  `U+0928 <https://codepoints.net/U+0928>`_  '\\u0928'  Lo                  1  DEVANAGARI LETTER NA
+     4  `U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
+   ===  =========================================  =========  ==========  =========  ========================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5|\\n123|\\n"
+        मानव|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *terminology* measures width 4.
+
+.. _terminologylangthai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1235,69 +1202,7 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *terminology* measures width 29.
 
-.. _terminologylangSinhala:
-
-Sinhala
-^^^^^^^
-
-Sequence of language *Sinhala* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==============================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==============================
-     1  `U+0DB8 <https://codepoints.net/U+0DB8>`_  '\\u0db8'  Lo                  1  SINHALA LETTER MAYANNA
-     2  `U+0DCF <https://codepoints.net/U+0DCF>`_  '\\u0dcf'  Mc                  0  SINHALA VOWEL SIGN AELA-PILLA
-     3  `U+0DB1 <https://codepoints.net/U+0DB1>`_  '\\u0db1'  Lo                  1  SINHALA LETTER DANTAJA NAYANNA
-     4  `U+0DC0 <https://codepoints.net/U+0DC0>`_  '\\u0dc0'  Lo                  1  SINHALA LETTER VAYANNA
-   ===  =========================================  =========  ==========  =========  ==============================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xb6\xb8\xe0\xb7\x8f\xe0\xb6\xb1\xe0\xb7\x80|\\n123|\\n"
-        මානව|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width 4.
-
-.. _terminologylangHindi:
-
-Hindi
-^^^^^
-
-Sequence of language *Hindi* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ========================
-     1  `U+092E <https://codepoints.net/U+092E>`_  '\\u092e'  Lo                  1  DEVANAGARI LETTER MA
-     2  `U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
-     3  `U+0928 <https://codepoints.net/U+0928>`_  '\\u0928'  Lo                  1  DEVANAGARI LETTER NA
-     4  `U+0935 <https://codepoints.net/U+0935>`_  '\\u0935'  Lo                  1  DEVANAGARI LETTER VA
-   ===  =========================================  =========  ==========  =========  ========================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5|\\n123|\\n"
-        मानव|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width 4.
-
-.. _terminologylangPanjabiEastern:
+.. _terminologylangpanjabieastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1330,7 +1235,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 6.
 
-.. _terminologylangBhojpuri:
+.. _terminologylangbhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1367,7 +1272,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *terminology* measures width 10.
 
-.. _terminologylangMaithili:
+.. _terminologylangmaithili:
 
 Maithili
 ^^^^^^^^
@@ -1402,7 +1307,7 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *terminology* measures width 8.
 
-.. _terminologylangThai:
+.. _terminologylangthai:
 
 Thai
 ^^^^
@@ -1458,7 +1363,7 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 23,
   while *terminology* measures width 29.
 
-.. _terminologylangMagahi:
+.. _terminologylangmagahi:
 
 Magahi
 ^^^^^^
@@ -1495,7 +1400,39 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *terminology* measures width 10.
 
-.. _terminologylangTagalogTagalog:
+.. _terminologylangjavanesejavanese:
+
+Javanese (Javanese)
+^^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =============================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =============================
+     1  `U+A9A5 <https://codepoints.net/U+A9A5>`_  '\\ua9a5'  Lo                  1  JAVANESE LETTER PA
+     2  `U+A9BF <https://codepoints.net/U+A9BF>`_  '\\ua9bf'  Mc                  0  JAVANESE CONSONANT SIGN CAKRA
+     3  `U+A99A <https://codepoints.net/U+A99A>`_  '\\ua99a'  Lo                  1  JAVANESE LETTER NYA
+     4  `U+A9A0 <https://codepoints.net/U+A9A0>`_  '\\ua9a0'  Lo                  1  JAVANESE LETTER TA
+     5  `U+A9A4 <https://codepoints.net/U+A9A4>`_  '\\ua9a4'  Lo                  1  JAVANESE LETTER NA
+   ===  =========================================  =========  ==========  =========  =============================
+
+Total codepoints: 5
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xea\xa6\xa5\xea\xa6\xbf\xea\xa6\x9a\xea\xa6\xa0\xea\xa6\xa4|\\n1234|\\n"
+        ꦥꦿꦚꦠꦤ|
+        1234|
+
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *terminology* measures width 5.
+
+.. _terminologylangtagalogtagalog:
 
 Tagalog (Tagalog)
 ^^^^^^^^^^^^^^^^^
@@ -1526,7 +1463,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangTibetanCentral:
+.. _terminologylangtibetancentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
@@ -1557,7 +1494,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangDzongkha:
+.. _terminologylangdzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -1588,7 +1525,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *terminology* measures width 4.
 
-.. _terminologylangLao:
+.. _terminologylanglao:
 
 Lao
 ^^^
@@ -1625,7 +1562,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *terminology* measures width 10.
 
-.. _terminologylangYiddishEastern:
+.. _terminologylangyiddisheastern:
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1663,7 +1600,7 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *terminology* measures width 11.
 
-.. _terminologylangPularAdlam:
+.. _terminologylangpularadlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -1703,7 +1640,7 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 11,
   while *terminology* measures width 13.
 
-.. _terminologylangTaiDam:
+.. _terminologylangtaidam:
 
 Tai Dam
 ^^^^^^^
@@ -1734,7 +1671,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangMongolianHalhMongolian:
+.. _terminologylangmongolianhalhmongolian:
 
 Mongolian, Halh (Mongolian)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1766,7 +1703,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *terminology* measures width 5.
 
-.. _terminologylangAssyrianNeoAramaic:
+.. _terminologylangassyrianneoaramaic:
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
@@ -1800,7 +1737,7 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *terminology* measures width 7.
 
-.. _terminologylangFarsiWestern:
+.. _terminologylangfarsiwestern:
 
 Farsi, Western
 ^^^^^^^^^^^^^^
@@ -1832,7 +1769,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *terminology* measures width 5.
 
-.. _terminologylangUrdu2:
+.. _terminologylangurdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -1865,7 +1802,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *terminology* measures width 6.
 
-.. _terminologylangUrdu:
+.. _terminologylangurdu:
 
 Urdu
 ^^^^
@@ -1898,215 +1835,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *terminology* measures width 6.
 
-.. _terminologylangJapaneseOsaka:
-
-Japanese (Osaka)
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Japanese (Osaka)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+751F <https://codepoints.net/U+751F>`_  '\\u751f'  Lo                  2  CJK UNIFIED IDEOGRAPH-751F
-     2  `U+307E <https://codepoints.net/U+307E>`_  '\\u307e'  Lo                  2  HIRAGANA LETTER MA
-     3  `U+308C <https://codepoints.net/U+308C>`_  '\\u308c'  Lo                  2  HIRAGANA LETTER RE
-     4  `U+306A <https://codepoints.net/U+306A>`_  '\\u306a'  Lo                  2  HIRAGANA LETTER NA
-     5  `U+304C <https://codepoints.net/U+304C>`_  '\\u304c'  Lo                  2  HIRAGANA LETTER GA
-     6  `U+3089 <https://codepoints.net/U+3089>`_  '\\u3089'  Lo                  2  HIRAGANA LETTER RA
-     7  `U+306B <https://codepoints.net/U+306B>`_  '\\u306b'  Lo                  2  HIRAGANA LETTER NI
-     8  `U+3057 <https://codepoints.net/U+3057>`_  '\\u3057'  Lo                  2  HIRAGANA LETTER SI
-     9  `U+3066 <https://codepoints.net/U+3066>`_  '\\u3066'  Lo                  2  HIRAGANA LETTER TE
-    10  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-    11  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-    12  `U+3084 <https://codepoints.net/U+3084>`_  '\\u3084'  Lo                  2  HIRAGANA LETTER YA
-    13  `U+3057 <https://codepoints.net/U+3057>`_  '\\u3057'  Lo                  2  HIRAGANA LETTER SI
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 13
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe7\x94\x9f\xe3\x81\xbe\xe3\x82\x8c\xe3\x81\xaa\xe3\x81\x8c\xe3\x82\x89\xe3\x81\xab\xe3\x81\x97\xe3\x81\xa6\xe8\x87\xaa\xe7\x94\xb1\xe3\x82\x84\xe3\x81\x97|\\n12345678901234567890123456|\\n"
-        生まれながらにして自由やし|
-        12345678901234567890123456|
-
-- python `wcwidth.wcswidth()`_ measures width 26,
-  while *terminology* measures width 12.
-
-.. _terminologylangChineseMandarinHarbin:
-
-Chinese, Mandarin (Harbin)
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Harbin)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     2  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     3  `U+6709 <https://codepoints.net/U+6709>`_  '\\u6709'  Lo                  2  CJK UNIFIED IDEOGRAPH-6709
-     4  `U+6743 <https://codepoints.net/U+6743>`_  '\\u6743'  Lo                  2  CJK UNIFIED IDEOGRAPH-6743
-     5  `U+4EAB <https://codepoints.net/U+4EAB>`_  '\\u4eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EAB
-     6  `U+6709 <https://codepoints.net/U+6709>`_  '\\u6709'  Lo                  2  CJK UNIFIED IDEOGRAPH-6709
-     7  `U+751F <https://codepoints.net/U+751F>`_  '\\u751f'  Lo                  2  CJK UNIFIED IDEOGRAPH-751F
-     8  `U+547D <https://codepoints.net/U+547D>`_  '\\u547d'  Lo                  2  CJK UNIFIED IDEOGRAPH-547D
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 8
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe4\xba\xba\xe4\xba\xba\xe6\x9c\x89\xe6\x9d\x83\xe4\xba\xab\xe6\x9c\x89\xe7\x94\x9f\xe5\x91\xbd|\\n1234567890123456|\\n"
-        人人有权享有生命|
-        1234567890123456|
-
-- python `wcwidth.wcswidth()`_ measures width 16,
-  while *terminology* measures width 10.
-
-.. _terminologylangChineseWu:
-
-Chinese, Wu
-^^^^^^^^^^^
-
-Sequence of language *Chinese, Wu* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+8131 <https://codepoints.net/U+8131>`_  '\\u8131'  Lo                  2  CJK UNIFIED IDEOGRAPH-8131
-     4  `U+4ED4 <https://codepoints.net/U+4ED4>`_  '\\u4ed4'  Lo                  2  CJK UNIFIED IDEOGRAPH-4ED4
-     5  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     6  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     7  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     8  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 8
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe8\x84\xb1\xe4\xbb\x94\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8|\\n1234567890123456|\\n"
-        自由脱仔人身安全|
-        1234567890123456|
-
-- python `wcwidth.wcswidth()`_ measures width 16,
-  while *terminology* measures width 0.
-
-.. _terminologylangChineseMandarinNanjing:
-
-Chinese, Mandarin (Nanjing)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Nanjing)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
-     2  `U+4E09 <https://codepoints.net/U+4E09>`_  '\\u4e09'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E09
-     3  `U+6761 <https://codepoints.net/U+6761>`_  '\\u6761'  Lo                  2  CJK UNIFIED IDEOGRAPH-6761
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe7\xac\xac\xe4\xb8\x89\xe6\x9d\xa1|\\n123456|\\n"
-        第三条|
-        123456|
-
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *terminology* measures width -40.
-
-.. _terminologylangChineseMandarinTianjin:
-
-Chinese, Mandarin (Tianjin)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Tianjin)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+6258 <https://codepoints.net/U+6258>`_  '\\u6258'  Lo                  2  CJK UNIFIED IDEOGRAPH-6258
-     2  `U+7BA1 <https://codepoints.net/U+7BA1>`_  '\\u7ba1'  Lo                  2  CJK UNIFIED IDEOGRAPH-7BA1
-     3  `U+9886 <https://codepoints.net/U+9886>`_  '\\u9886'  Lo                  2  CJK UNIFIED IDEOGRAPH-9886
-     4  `U+571F <https://codepoints.net/U+571F>`_  '\\u571f'  Lo                  2  CJK UNIFIED IDEOGRAPH-571F
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe6\x89\x98\xe7\xae\xa1\xe9\xa2\x86\xe5\x9c\x9f|\\n12345678|\\n"
-        托管领土|
-        12345678|
-
-- python `wcwidth.wcswidth()`_ measures width 8,
-  while *terminology* measures width -12.
-
-.. _terminologylangChineseXiang:
-
-Chinese, Xiang
-^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Xiang* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     2  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     3  `U+4E00 <https://codepoints.net/U+4E00>`_  '\\u4e00'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E00
-     4  `U+4E8B <https://codepoints.net/U+4E8B>`_  '\\u4e8b'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E8B
-     5  `U+6709 <https://codepoints.net/U+6709>`_  '\\u6709'  Lo                  2  CJK UNIFIED IDEOGRAPH-6709
-     6  `U+6743 <https://codepoints.net/U+6743>`_  '\\u6743'  Lo                  2  CJK UNIFIED IDEOGRAPH-6743
-     7  `U+4EAB <https://codepoints.net/U+4EAB>`_  '\\u4eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EAB
-     8  `U+6709 <https://codepoints.net/U+6709>`_  '\\u6709'  Lo                  2  CJK UNIFIED IDEOGRAPH-6709
-     9  `U+751F <https://codepoints.net/U+751F>`_  '\\u751f'  Lo                  2  CJK UNIFIED IDEOGRAPH-751F
-    10  `U+547D <https://codepoints.net/U+547D>`_  '\\u547d'  Lo                  2  CJK UNIFIED IDEOGRAPH-547D
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 10
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe4\xba\xba\xe4\xba\xba\xe4\xb8\x80\xe4\xba\x8b\xe6\x9c\x89\xe6\x9d\x83\xe4\xba\xab\xe6\x9c\x89\xe7\x94\x9f\xe5\x91\xbd|\\n12345678901234567890|\\n"
-        人人一事有权享有生命|
-        12345678901234567890|
-
-- python `wcwidth.wcswidth()`_ measures width 20,
-  while *terminology* measures width 14.
-
-.. _terminologylangDari:
+.. _terminologylangdari:
 
 Dari
 ^^^^
@@ -2138,7 +1867,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *terminology* measures width 5.
 
-.. _terminologylangArabicStandard:
+.. _terminologylangarabicstandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2171,437 +1900,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *terminology* measures width 6.
 
-.. _terminologylangJapanese:
-
-Japanese
-^^^^^^^^
-
-Sequence of language *Japanese* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+751F <https://codepoints.net/U+751F>`_  '\\u751f'  Lo                  2  CJK UNIFIED IDEOGRAPH-751F
-     2  `U+307E <https://codepoints.net/U+307E>`_  '\\u307e'  Lo                  2  HIRAGANA LETTER MA
-     3  `U+308C <https://codepoints.net/U+308C>`_  '\\u308c'  Lo                  2  HIRAGANA LETTER RE
-     4  `U+306A <https://codepoints.net/U+306A>`_  '\\u306a'  Lo                  2  HIRAGANA LETTER NA
-     5  `U+304C <https://codepoints.net/U+304C>`_  '\\u304c'  Lo                  2  HIRAGANA LETTER GA
-     6  `U+3089 <https://codepoints.net/U+3089>`_  '\\u3089'  Lo                  2  HIRAGANA LETTER RA
-     7  `U+306B <https://codepoints.net/U+306B>`_  '\\u306b'  Lo                  2  HIRAGANA LETTER NI
-     8  `U+3057 <https://codepoints.net/U+3057>`_  '\\u3057'  Lo                  2  HIRAGANA LETTER SI
-     9  `U+3066 <https://codepoints.net/U+3066>`_  '\\u3066'  Lo                  2  HIRAGANA LETTER TE
-    10  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-    11  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-    12  `U+3067 <https://codepoints.net/U+3067>`_  '\\u3067'  Lo                  2  HIRAGANA LETTER DE
-    13  `U+3042 <https://codepoints.net/U+3042>`_  '\\u3042'  Lo                  2  HIRAGANA LETTER A
-    14  `U+308A <https://codepoints.net/U+308A>`_  '\\u308a'  Lo                  2  HIRAGANA LETTER RI
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 14
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe7\x94\x9f\xe3\x81\xbe\xe3\x82\x8c\xe3\x81\xaa\xe3\x81\x8c\xe3\x82\x89\xe3\x81\xab\xe3\x81\x97\xe3\x81\xa6\xe8\x87\xaa\xe7\x94\xb1\xe3\x81\xa7\xe3\x81\x82\xe3\x82\x8a|\\n1234567890123456789012345678|\\n"
-        生まれながらにして自由であり|
-        1234567890123456789012345678|
-
-- python `wcwidth.wcswidth()`_ measures width 28,
-  while *terminology* measures width 14.
-
-.. _terminologylangVietnameseHannom:
-
-Vietnamese (Han nom)
-^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Vietnamese (Han nom)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =================================================  =============  ==========  =========  ===========================
-     #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ===========================
-     1  `U+000235D3 <https://codepoints.net/U+000235D3>`_  '\\U000235d3'  Lo                  2  CJK UNIFIED IDEOGRAPH-235D3
-     2  `U+81EA <https://codepoints.net/U+81EA>`_          '\\u81ea'      Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     3  `U+7BA1 <https://codepoints.net/U+7BA1>`_          '\\u7ba1'      Lo                  2  CJK UNIFIED IDEOGRAPH-7BA1
-     4  `U+548D <https://codepoints.net/U+548D>`_          '\\u548d'      Lo                  2  CJK UNIFIED IDEOGRAPH-548D
-     5  `U+0002338F <https://codepoints.net/U+0002338F>`_  '\\U0002338f'  Lo                  2  CJK UNIFIED IDEOGRAPH-2338F
-     6  `U+4E3B <https://codepoints.net/U+4E3B>`_          '\\u4e3b'      Lo                  2  CJK UNIFIED IDEOGRAPH-4E3B
-     7  `U+6B0A <https://codepoints.net/U+6B0A>`_          '\\u6b0a'      Lo                  2  CJK UNIFIED IDEOGRAPH-6B0A
-     8  `U+9650 <https://codepoints.net/U+9650>`_          '\\u9650'      Lo                  2  CJK UNIFIED IDEOGRAPH-9650
-     9  `U+5236 <https://codepoints.net/U+5236>`_          '\\u5236'      Lo                  2  CJK UNIFIED IDEOGRAPH-5236
-   ===  =================================================  =============  ==========  =========  ===========================
-
-Total codepoints: 9
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\xa3\x97\x93\xe8\x87\xaa\xe7\xae\xa1\xe5\x92\x8d\xf0\xa3\x8e\x8f\xe4\xb8\xbb\xe6\xac\x8a\xe9\x99\x90\xe5\x88\xb6|\\n123456789012345678|\\n"
-        𣗓自管咍𣎏主權限制|
-        123456789012345678|
-
-- python `wcwidth.wcswidth()`_ measures width 18,
-  while *terminology* measures width 4.
-
-.. _terminologylangChineseMandarinTraditional:
-
-Chinese, Mandarin (Traditional)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Traditional)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+7B2C <https://codepoints.net/U+7B2C>`_  '\\u7b2c'  Lo                  2  CJK UNIFIED IDEOGRAPH-7B2C
-     2  `U+4E94 <https://codepoints.net/U+4E94>`_  '\\u4e94'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E94
-     3  `U+689D <https://codepoints.net/U+689D>`_  '\\u689d'  Lo                  2  CJK UNIFIED IDEOGRAPH-689D
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe7\xac\xac\xe4\xba\x94\xe6\xa2\x9d|\\n123456|\\n"
-        第五條|
-        123456|
-
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *terminology* measures width -6.
-
-.. _terminologylangChineseYue:
-
-Chinese, Yue
-^^^^^^^^^^^^
-
-Sequence of language *Chinese, Yue* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+540C <https://codepoints.net/U+540C>`_  '\\u540c'  Lo                  2  CJK UNIFIED IDEOGRAPH-540C
-     4  `U+57CB <https://codepoints.net/U+57CB>`_  '\\u57cb'  Lo                  2  CJK UNIFIED IDEOGRAPH-57CB
-     5  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     6  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     7  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     8  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 8
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe5\x90\x8c\xe5\x9f\x8b\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8|\\n1234567890123456|\\n"
-        自由同埋人身安全|
-        1234567890123456|
-
-- python `wcwidth.wcswidth()`_ measures width 16,
-  while *terminology* measures width 0.
-
-.. _terminologylangJinan:
-
-(Jinan)
-^^^^^^^
-
-Sequence of language *(Jinan)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+548C <https://codepoints.net/U+548C>`_  '\\u548c'  Lo                  2  CJK UNIFIED IDEOGRAPH-548C
-     4  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     5  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     6  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     7  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe5\x92\x8c\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8|\\n12345678901234|\\n"
-        自由和人身安全|
-        12345678901234|
-
-- python `wcwidth.wcswidth()`_ measures width 14,
-  while *terminology* measures width -4.
-
-.. _terminologylangChineseGan:
-
-Chinese, Gan
-^^^^^^^^^^^^
-
-Sequence of language *Chinese, Gan* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+8DDF <https://codepoints.net/U+8DDF>`_  '\\u8ddf'  Lo                  2  CJK UNIFIED IDEOGRAPH-8DDF
-     4  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     5  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     6  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     7  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe8\xb7\x9f\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8|\\n12345678901234|\\n"
-        自由跟人身安全|
-        12345678901234|
-
-- python `wcwidth.wcswidth()`_ measures width 14,
-  while *terminology* measures width -2.
-
-.. _terminologylangChineseMandarinGuiyang:
-
-Chinese, Mandarin (Guiyang)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Guiyang)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+548C <https://codepoints.net/U+548C>`_  '\\u548c'  Lo                  2  CJK UNIFIED IDEOGRAPH-548C
-     4  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     5  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     6  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     7  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe5\x92\x8c\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8|\\n12345678901234|\\n"
-        自由和人身安全|
-        12345678901234|
-
-- python `wcwidth.wcswidth()`_ measures width 14,
-  while *terminology* measures width -2.
-
-.. _terminologylangChineseHakka:
-
-Chinese, Hakka
-^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Hakka* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+540C <https://codepoints.net/U+540C>`_  '\\u540c'  Lo                  2  CJK UNIFIED IDEOGRAPH-540C
-     4  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     5  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     6  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     7  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe5\x90\x8c\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8|\\n12345678901234|\\n"
-        自由同人身安全|
-        12345678901234|
-
-- python `wcwidth.wcswidth()`_ measures width 14,
-  while *terminology* measures width -2.
-
-.. _terminologylangChineseJinyu:
-
-Chinese, Jinyu
-^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Jinyu* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+548C <https://codepoints.net/U+548C>`_  '\\u548c'  Lo                  2  CJK UNIFIED IDEOGRAPH-548C
-     4  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     5  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     6  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     7  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe5\x92\x8c\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8|\\n12345678901234|\\n"
-        自由和人身安全|
-        12345678901234|
-
-- python `wcwidth.wcswidth()`_ measures width 14,
-  while *terminology* measures width -2.
-
-.. _terminologylangChineseMandarinBeijing:
-
-Chinese, Mandarin (Beijing)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Beijing)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+548C <https://codepoints.net/U+548C>`_  '\\u548c'  Lo                  2  CJK UNIFIED IDEOGRAPH-548C
-     4  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     5  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     6  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     7  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-     8  `U+7684 <https://codepoints.net/U+7684>`_  '\\u7684'  Lo                  2  CJK UNIFIED IDEOGRAPH-7684
-     9  `U+6743 <https://codepoints.net/U+6743>`_  '\\u6743'  Lo                  2  CJK UNIFIED IDEOGRAPH-6743
-    10  `U+5229 <https://codepoints.net/U+5229>`_  '\\u5229'  Lo                  2  CJK UNIFIED IDEOGRAPH-5229
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 10
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe5\x92\x8c\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8\xe7\x9a\x84\xe6\x9d\x83\xe5\x88\xa9|\\n12345678901234567890|\\n"
-        自由和人身安全的权利|
-        12345678901234567890|
-
-- python `wcwidth.wcswidth()`_ measures width 20,
-  while *terminology* measures width 6.
-
-.. _terminologylangChineseMinNan:
-
-Chinese, Min Nan
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Min Nan* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-     2  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-     3  `U+5408 <https://codepoints.net/U+5408>`_  '\\u5408'  Lo                  2  CJK UNIFIED IDEOGRAPH-5408
-     4  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     5  `U+8EAB <https://codepoints.net/U+8EAB>`_  '\\u8eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-8EAB
-     6  `U+5B89 <https://codepoints.net/U+5B89>`_  '\\u5b89'  Lo                  2  CJK UNIFIED IDEOGRAPH-5B89
-     7  `U+5168 <https://codepoints.net/U+5168>`_  '\\u5168'  Lo                  2  CJK UNIFIED IDEOGRAPH-5168
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe8\x87\xaa\xe7\x94\xb1\xe5\x90\x88\xe4\xba\xba\xe8\xba\xab\xe5\xae\x89\xe5\x85\xa8|\\n12345678901234|\\n"
-        自由合人身安全|
-        12345678901234|
-
-- python `wcwidth.wcswidth()`_ measures width 14,
-  while *terminology* measures width -6.
-
-.. _terminologylangChineseMandarinSimplified:
-
-Chinese, Mandarin (Simplified)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinese, Mandarin (Simplified)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     2  `U+4EBA <https://codepoints.net/U+4EBA>`_  '\\u4eba'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EBA
-     3  `U+6709 <https://codepoints.net/U+6709>`_  '\\u6709'  Lo                  2  CJK UNIFIED IDEOGRAPH-6709
-     4  `U+8D44 <https://codepoints.net/U+8D44>`_  '\\u8d44'  Lo                  2  CJK UNIFIED IDEOGRAPH-8D44
-     5  `U+683C <https://codepoints.net/U+683C>`_  '\\u683c'  Lo                  2  CJK UNIFIED IDEOGRAPH-683C
-     6  `U+4EAB <https://codepoints.net/U+4EAB>`_  '\\u4eab'  Lo                  2  CJK UNIFIED IDEOGRAPH-4EAB
-     7  `U+6709 <https://codepoints.net/U+6709>`_  '\\u6709'  Lo                  2  CJK UNIFIED IDEOGRAPH-6709
-     8  `U+672C <https://codepoints.net/U+672C>`_  '\\u672c'  Lo                  2  CJK UNIFIED IDEOGRAPH-672C
-     9  `U+5BA3 <https://codepoints.net/U+5BA3>`_  '\\u5ba3'  Lo                  2  CJK UNIFIED IDEOGRAPH-5BA3
-    10  `U+8A00 <https://codepoints.net/U+8A00>`_  '\\u8a00'  Lo                  2  CJK UNIFIED IDEOGRAPH-8A00
-    11  `U+6240 <https://codepoints.net/U+6240>`_  '\\u6240'  Lo                  2  CJK UNIFIED IDEOGRAPH-6240
-    12  `U+8F7D <https://codepoints.net/U+8F7D>`_  '\\u8f7d'  Lo                  2  CJK UNIFIED IDEOGRAPH-8F7D
-    13  `U+7684 <https://codepoints.net/U+7684>`_  '\\u7684'  Lo                  2  CJK UNIFIED IDEOGRAPH-7684
-    14  `U+4E00 <https://codepoints.net/U+4E00>`_  '\\u4e00'  Lo                  2  CJK UNIFIED IDEOGRAPH-4E00
-    15  `U+5207 <https://codepoints.net/U+5207>`_  '\\u5207'  Lo                  2  CJK UNIFIED IDEOGRAPH-5207
-    16  `U+6743 <https://codepoints.net/U+6743>`_  '\\u6743'  Lo                  2  CJK UNIFIED IDEOGRAPH-6743
-    17  `U+5229 <https://codepoints.net/U+5229>`_  '\\u5229'  Lo                  2  CJK UNIFIED IDEOGRAPH-5229
-    18  `U+548C <https://codepoints.net/U+548C>`_  '\\u548c'  Lo                  2  CJK UNIFIED IDEOGRAPH-548C
-    19  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-    20  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 20
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe4\xba\xba\xe4\xba\xba\xe6\x9c\x89\xe8\xb5\x84\xe6\xa0\xbc\xe4\xba\xab\xe6\x9c\x89\xe6\x9c\xac\xe5\xae\xa3\xe8\xa8\x80\xe6\x89\x80\xe8\xbd\xbd\xe7\x9a\x84\xe4\xb8\x80\xe5\x88\x87\xe6\x9d\x83\xe5\x88\xa9\xe5\x92\x8c\xe8\x87\xaa\xe7\x94\xb1|\\n1234567890123456789012345678901234567890|\\n"
-        人人有资格享有本宣言所载的一切权利和自由|
-        1234567890123456789012345678901234567890|
-
-- python `wcwidth.wcswidth()`_ measures width 40,
-  while *terminology* measures width 33.
-
-.. _terminologylangPanjabiWestern:
+.. _terminologylangpanjabiwestern:
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -2632,396 +1931,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *terminology* measures width 4.
 
-.. _terminologylangJapaneseTokyo:
-
-Japanese (Tokyo)
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Japanese (Tokyo)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==========================
-     1  `U+9580 <https://codepoints.net/U+9580>`_  '\\u9580'  Lo                  2  CJK UNIFIED IDEOGRAPH-9580
-     2  `U+5730 <https://codepoints.net/U+5730>`_  '\\u5730'  Lo                  2  CJK UNIFIED IDEOGRAPH-5730
-     3  `U+305D <https://codepoints.net/U+305D>`_  '\\u305d'  Lo                  2  HIRAGANA LETTER SO
-     4  `U+306E <https://codepoints.net/U+306E>`_  '\\u306e'  Lo                  2  HIRAGANA LETTER NO
-     5  `U+4ED6 <https://codepoints.net/U+4ED6>`_  '\\u4ed6'  Lo                  2  CJK UNIFIED IDEOGRAPH-4ED6
-     6  `U+306E <https://codepoints.net/U+306E>`_  '\\u306e'  Lo                  2  HIRAGANA LETTER NO
-     7  `U+5730 <https://codepoints.net/U+5730>`_  '\\u5730'  Lo                  2  CJK UNIFIED IDEOGRAPH-5730
-     8  `U+4F4D <https://codepoints.net/U+4F4D>`_  '\\u4f4d'  Lo                  2  CJK UNIFIED IDEOGRAPH-4F4D
-     9  `U+53C8 <https://codepoints.net/U+53C8>`_  '\\u53c8'  Lo                  2  CJK UNIFIED IDEOGRAPH-53C8
-    10  `U+306F <https://codepoints.net/U+306F>`_  '\\u306f'  Lo                  2  HIRAGANA LETTER HA
-    11  `U+3053 <https://codepoints.net/U+3053>`_  '\\u3053'  Lo                  2  HIRAGANA LETTER KO
-    12  `U+308C <https://codepoints.net/U+308C>`_  '\\u308c'  Lo                  2  HIRAGANA LETTER RE
-    13  `U+306B <https://codepoints.net/U+306B>`_  '\\u306b'  Lo                  2  HIRAGANA LETTER NI
-    14  `U+985E <https://codepoints.net/U+985E>`_  '\\u985e'  Lo                  2  CJK UNIFIED IDEOGRAPH-985E
-    15  `U+3059 <https://codepoints.net/U+3059>`_  '\\u3059'  Lo                  2  HIRAGANA LETTER SU
-    16  `U+308B <https://codepoints.net/U+308B>`_  '\\u308b'  Lo                  2  HIRAGANA LETTER RU
-    17  `U+3044 <https://codepoints.net/U+3044>`_  '\\u3044'  Lo                  2  HIRAGANA LETTER I
-    18  `U+304B <https://codepoints.net/U+304B>`_  '\\u304b'  Lo                  2  HIRAGANA LETTER KA
-    19  `U+306A <https://codepoints.net/U+306A>`_  '\\u306a'  Lo                  2  HIRAGANA LETTER NA
-    20  `U+308B <https://codepoints.net/U+308B>`_  '\\u308b'  Lo                  2  HIRAGANA LETTER RU
-    21  `U+81EA <https://codepoints.net/U+81EA>`_  '\\u81ea'  Lo                  2  CJK UNIFIED IDEOGRAPH-81EA
-    22  `U+7531 <https://codepoints.net/U+7531>`_  '\\u7531'  Lo                  2  CJK UNIFIED IDEOGRAPH-7531
-    23  `U+306B <https://codepoints.net/U+306B>`_  '\\u306b'  Lo                  2  HIRAGANA LETTER NI
-    24  `U+3088 <https://codepoints.net/U+3088>`_  '\\u3088'  Lo                  2  HIRAGANA LETTER YO
-    25  `U+308B <https://codepoints.net/U+308B>`_  '\\u308b'  Lo                  2  HIRAGANA LETTER RU
-    26  `U+5DEE <https://codepoints.net/U+5DEE>`_  '\\u5dee'  Lo                  2  CJK UNIFIED IDEOGRAPH-5DEE
-    27  `U+5225 <https://codepoints.net/U+5225>`_  '\\u5225'  Lo                  2  CJK UNIFIED IDEOGRAPH-5225
-    28  `U+3092 <https://codepoints.net/U+3092>`_  '\\u3092'  Lo                  2  HIRAGANA LETTER WO
-    29  `U+3082 <https://codepoints.net/U+3082>`_  '\\u3082'  Lo                  2  HIRAGANA LETTER MO
-    30  `U+53D7 <https://codepoints.net/U+53D7>`_  '\\u53d7'  Lo                  2  CJK UNIFIED IDEOGRAPH-53D7
-    31  `U+3051 <https://codepoints.net/U+3051>`_  '\\u3051'  Lo                  2  HIRAGANA LETTER KE
-    32  `U+308B <https://codepoints.net/U+308B>`_  '\\u308b'  Lo                  2  HIRAGANA LETTER RU
-    33  `U+3053 <https://codepoints.net/U+3053>`_  '\\u3053'  Lo                  2  HIRAGANA LETTER KO
-    34  `U+3068 <https://codepoints.net/U+3068>`_  '\\u3068'  Lo                  2  HIRAGANA LETTER TO
-    35  `U+306A <https://codepoints.net/U+306A>`_  '\\u306a'  Lo                  2  HIRAGANA LETTER NA
-    36  `U+304F <https://codepoints.net/U+304F>`_  '\\u304f'  Lo                  2  HIRAGANA LETTER KU
-   ===  =========================================  =========  ==========  =========  ==========================
-
-Total codepoints: 36
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe9\x96\x80\xe5\x9c\xb0\xe3\x81\x9d\xe3\x81\xae\xe4\xbb\x96\xe3\x81\xae\xe5\x9c\xb0\xe4\xbd\x8d\xe5\x8f\x88\xe3\x81\xaf\xe3\x81\x93\xe3\x82\x8c\xe3\x81\xab\xe9\xa1\x9e\xe3\x81\x99\xe3\x82\x8b\xe3\x81\x84\xe3\x81\x8b\xe3\x81\xaa\xe3\x82\x8b\xe8\x87\xaa\xe7\x94\xb1\xe3\x81\xab\xe3\x82\x88\xe3\x82\x8b\xe5\xb7\xae\xe5\x88\xa5\xe3\x82\x92\xe3\x82\x82\xe5\x8f\x97\xe3\x81\x91\xe3\x82\x8b\xe3\x81\x93\xe3\x81\xa8\xe3\x81\xaa\xe3\x81\x8f|\\n123456789012345678901234567890123456789012345678901234567890123456789012|\\n"
-        門地その他の地位又はこれに類するいかなる自由による差別をも受けることなく|
-        123456789012345678901234567890123456789012345678901234567890123456789012|
-
-- python `wcwidth.wcswidth()`_ measures width 72,
-  while *terminology* measures width 68.
-
-.. _terminologylangNuosu:
-
-Nuosu
-^^^^^
-
-Sequence of language *Nuosu* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ================
-     1  `U+A314 <https://codepoints.net/U+A314>`_  '\\ua314'  Lo                  2  YI SYLLABLE SUOX
-     2  `U+A3E2 <https://codepoints.net/U+A3E2>`_  '\\ua3e2'  Lo                  2  YI SYLLABLE JI
-     3  `U+A3E1 <https://codepoints.net/U+A3E1>`_  '\\ua3e1'  Lo                  2  YI SYLLABLE JIX
-     4  `U+A320 <https://codepoints.net/U+A320>`_  '\\ua320'  Lo                  2  YI SYLLABLE SU
-   ===  =========================================  =========  ==========  =========  ================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xea\x8c\x94\xea\x8f\xa2\xea\x8f\xa1\xea\x8c\xa0|\\n12345678|\\n"
-        ꌔꏢꏡꌠ|
-        12345678|
-
-- python `wcwidth.wcswidth()`_ measures width 8,
-  while *terminology* measures width -40.
-
-.. _terminologylangBora:
-
-Bora
-^^^^
-
-Sequence of language *Bora* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ================================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ================================
-     1  `U+0268 <https://codepoints.net/U+0268>`_  '\\u0268'  Ll                  1  LATIN SMALL LETTER I WITH STROKE
-     2  `U+0268 <https://codepoints.net/U+0268>`_  '\\u0268'  Ll                  1  LATIN SMALL LETTER I WITH STROKE
-     3  `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-     4  `U+00E1 <https://codepoints.net/U+00E1>`_  '\\xe1'    Ll                  1  LATIN SMALL LETTER A WITH ACUTE
-   ===  =========================================  =========  ==========  =========  ================================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xc9\xa8\xc9\xa8n\xc3\xa1|\\n1234|\\n"
-        ɨɨná|
-        1234|
-
-- python `wcwidth.wcswidth()`_ measures width 4,
-  while *terminology* measures width -8.
-
-.. _terminologylangChickasaw:
-
-Chickasaw
-^^^^^^^^^
-
-Sequence of language *Chickasaw* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ======================
-     1  `U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     3  `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-     4  `U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
-     5  `U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
-     6  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     7  `U+0068 <https://codepoints.net/U+0068>`_  'h'        Ll                  1  LATIN SMALL LETTER H
-     8  `U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-     9  `U+0331 <https://codepoints.net/U+0331>`_  '\\u0331'  Mn                  0  COMBINING MACRON BELOW
-   ===  =========================================  =========  ==========  =========  ======================
-
-Total codepoints: 9
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "kaniyaho\xcc\xb1|\\n12345678|\\n"
-        kaniyaho̱|
-        12345678|
-
-- python `wcwidth.wcswidth()`_ measures width 8,
-  while *terminology* measures width -9.
-
-.. _terminologylangShipiboConibo:
-
-Shipibo-Conibo
-^^^^^^^^^^^^^^
-
-Sequence of language *Shipibo-Conibo* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ===============================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ===============================
-     1  `U+006A <https://codepoints.net/U+006A>`_  'j'       Ll                  1  LATIN SMALL LETTER J
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-     3  `U+0068 <https://codepoints.net/U+0068>`_  'h'       Ll                  1  LATIN SMALL LETTER H
-     4  `U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
-     5  `U+00E9 <https://codepoints.net/U+00E9>`_  '\\xe9'   Ll                  1  LATIN SMALL LETTER E WITH ACUTE
-     6  `U+0071 <https://codepoints.net/U+0071>`_  'q'       Ll                  1  LATIN SMALL LETTER Q
-     7  `U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
-     8  `U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-     9  `U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
-    10  `U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-   ===  =========================================  ========  ==========  =========  ===============================
-
-Total codepoints: 10
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "jahu\xc3\xa9quibo|\\n1234567890|\\n"
-        jahuéquibo|
-        1234567890|
-
-- python `wcwidth.wcswidth()`_ measures width 10,
-  while *terminology* measures width 5.
-
-.. _terminologylangNanai:
-
-Nanai
-^^^^^
-
-Sequence of language *Nanai* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =======================
-     1  `U+044D <https://codepoints.net/U+044D>`_  '\\u044d'  Ll                  1  CYRILLIC SMALL LETTER E
-     2  `U+0438 <https://codepoints.net/U+0438>`_  '\\u0438'  Ll                  1  CYRILLIC SMALL LETTER I
-     3  `U+0306 <https://codepoints.net/U+0306>`_  '\\u0306'  Mn                  0  COMBINING BREVE
-   ===  =========================================  =========  ==========  =========  =======================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd1\x8d\xd0\xb8\xcc\x86|\\n12|\\n"
-        эй|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -3.
-
-.. _terminologylangAmarakaeri:
-
-Amarakaeri
-^^^^^^^^^^
-
-Sequence of language *Amarakaeri* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ======================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ======================
-     1  `U+004B <https://codepoints.net/U+004B>`_  'K'       Lu                  1  LATIN CAPITAL LETTER K
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-     3  `U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-     4  `U+0064 <https://codepoints.net/U+0064>`_  'd'       Ll                  1  LATIN SMALL LETTER D
-     5  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  ========  ==========  =========  ======================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "Kenda|\\n12345|\\n"
-        Kenda|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *terminology* measures width -7.
-
-.. _terminologylangOrok:
-
-Orok
-^^^^
-
-Sequence of language *Orok* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ========================
-     1  `U+0430 <https://codepoints.net/U+0430>`_  '\\u0430'  Ll                  1  CYRILLIC SMALL LETTER A
-     2  `U+043B <https://codepoints.net/U+043B>`_  '\\u043b'  Ll                  1  CYRILLIC SMALL LETTER EL
-     3  `U+043B <https://codepoints.net/U+043B>`_  '\\u043b'  Ll                  1  CYRILLIC SMALL LETTER EL
-     4  `U+0430 <https://codepoints.net/U+0430>`_  '\\u0430'  Ll                  1  CYRILLIC SMALL LETTER A
-     5  `U+0443 <https://codepoints.net/U+0443>`_  '\\u0443'  Ll                  1  CYRILLIC SMALL LETTER U
-     6  `U+043F <https://codepoints.net/U+043F>`_  '\\u043f'  Ll                  1  CYRILLIC SMALL LETTER PE
-     7  `U+0443 <https://codepoints.net/U+0443>`_  '\\u0443'  Ll                  1  CYRILLIC SMALL LETTER U
-     8  `U+0440 <https://codepoints.net/U+0440>`_  '\\u0440'  Ll                  1  CYRILLIC SMALL LETTER ER
-     9  `U+0438 <https://codepoints.net/U+0438>`_  '\\u0438'  Ll                  1  CYRILLIC SMALL LETTER I
-   ===  =========================================  =========  ==========  =========  ========================
-
-Total codepoints: 9
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd0\xb0\xd0\xbb\xd0\xbb\xd0\xb0\xd1\x83\xd0\xbf\xd1\x83\xd1\x80\xd0\xb8|\\n123456789|\\n"
-        аллаупури|
-        123456789|
-
-- python `wcwidth.wcswidth()`_ measures width 9,
-  while *terminology* measures width 1.
-
-.. _terminologylangYanesha:
-
-Yaneshaʼ
-^^^^^^^^
-
-Sequence of language *Yaneshaʼ* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ===============================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ===============================
-     1  `U+00F1 <https://codepoints.net/U+00F1>`_  '\\xf1'    Ll                  1  LATIN SMALL LETTER N WITH TILDE
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-     3  `U+00F1 <https://codepoints.net/U+00F1>`_  '\\xf1'    Ll                  1  LATIN SMALL LETTER N WITH TILDE
-     4  `U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-     5  `U+0303 <https://codepoints.net/U+0303>`_  '\\u0303'  Mn                  0  COMBINING TILDE
-   ===  =========================================  =========  ==========  =========  ===============================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xc3\xb1e\xc3\xb1t\xcc\x83|\\n1234|\\n"
-        ñeñt̃|
-        1234|
-
-- python `wcwidth.wcswidth()`_ measures width 4,
-  while *terminology* measures width -7.
-
-.. _terminologylangGumuz:
-
-Gumuz
-^^^^^
-
-Sequence of language *Gumuz* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-     3  `U+002D <https://codepoints.net/U+002D>`_  '-'       Pd                  1  HYPHEN-MINUS
-     4  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-     5  `U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
-     6  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "na-eba|\\n123456|\\n"
-        na-eba|
-        123456|
-
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *terminology* measures width -4.
-
-.. _terminologylangVeps:
-
-Veps
-^^^^
-
-Sequence of language *Veps* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "i|\\n1|\\n"
-        i|
-        1|
-
-- python `wcwidth.wcswidth()`_ measures width 1,
-  while *terminology* measures width -11.
-
-.. _terminologylangPashtoNorthern:
+.. _terminologylangpashtonorthern:
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -3054,361 +1964,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *terminology* measures width 6.
 
-.. _terminologylangEvenki:
-
-Evenki
-^^^^^^
-
-Sequence of language *Evenki* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =======================================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =======================================
-     1  `U+04A3 <https://codepoints.net/U+04A3>`_  '\\u04a3'  Ll                  1  CYRILLIC SMALL LETTER EN WITH DESCENDER
-     2  `U+0438 <https://codepoints.net/U+0438>`_  '\\u0438'  Ll                  1  CYRILLIC SMALL LETTER I
-     3  `U+0442 <https://codepoints.net/U+0442>`_  '\\u0442'  Ll                  1  CYRILLIC SMALL LETTER TE
-     4  `U+043A <https://codepoints.net/U+043A>`_  '\\u043a'  Ll                  1  CYRILLIC SMALL LETTER KA
-     5  `U+0438 <https://codepoints.net/U+0438>`_  '\\u0438'  Ll                  1  CYRILLIC SMALL LETTER I
-     6  `U+002D <https://codepoints.net/U+002D>`_  '-'        Pd                  1  HYPHEN-MINUS
-     7  `U+0432 <https://codepoints.net/U+0432>`_  '\\u0432'  Ll                  1  CYRILLIC SMALL LETTER VE
-     8  `U+044D <https://codepoints.net/U+044D>`_  '\\u044d'  Ll                  1  CYRILLIC SMALL LETTER E
-     9  `U+043B <https://codepoints.net/U+043B>`_  '\\u043b'  Ll                  1  CYRILLIC SMALL LETTER EL
-   ===  =========================================  =========  ==========  =========  =======================================
-
-Total codepoints: 9
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd2\xa3\xd0\xb8\xd1\x82\xd0\xba\xd0\xb8-\xd0\xb2\xd1\x8d\xd0\xbb|\\n123456789|\\n"
-        ңитки-вэл|
-        123456789|
-
-- python `wcwidth.wcswidth()`_ measures width 9,
-  while *terminology* measures width -5.
-
-.. _terminologylangNavajo:
-
-Navajo
-^^^^^^
-
-Sequence of language *Navajo* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ================================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ================================
-     1  `U+0068 <https://codepoints.net/U+0068>`_  'h'        Ll                  1  LATIN SMALL LETTER H
-     2  `U+00F3 <https://codepoints.net/U+00F3>`_  '\\xf3'    Ll                  1  LATIN SMALL LETTER O WITH ACUTE
-     3  `U+0063 <https://codepoints.net/U+0063>`_  'c'        Ll                  1  LATIN SMALL LETTER C
-     4  `U+0068 <https://codepoints.net/U+0068>`_  'h'        Ll                  1  LATIN SMALL LETTER H
-     5  `U+02BC <https://codepoints.net/U+02BC>`_  '\\u02bc'  Lm                  1  MODIFIER LETTER APOSTROPHE
-     6  `U+012F <https://codepoints.net/U+012F>`_  '\\u012f'  Ll                  1  LATIN SMALL LETTER I WITH OGONEK
-     7  `U+02BC <https://codepoints.net/U+02BC>`_  '\\u02bc'  Lm                  1  MODIFIER LETTER APOSTROPHE
-     8  `U+00ED <https://codepoints.net/U+00ED>`_  '\\xed'    Ll                  1  LATIN SMALL LETTER I WITH ACUTE
-     9  `U+0067 <https://codepoints.net/U+0067>`_  'g'        Ll                  1  LATIN SMALL LETTER G
-    10  `U+00ED <https://codepoints.net/U+00ED>`_  '\\xed'    Ll                  1  LATIN SMALL LETTER I WITH ACUTE
-    11  `U+00ED <https://codepoints.net/U+00ED>`_  '\\xed'    Ll                  1  LATIN SMALL LETTER I WITH ACUTE
-   ===  =========================================  =========  ==========  =========  ================================
-
-Total codepoints: 11
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "h\xc3\xb3ch\xca\xbc\xc4\xaf\xca\xbc\xc3\xadg\xc3\xad\xc3\xad|\\n12345678901|\\n"
-        hóchʼįʼígíí|
-        12345678901|
-
-- python `wcwidth.wcswidth()`_ measures width 11,
-  while *terminology* measures width 8.
-
-.. _terminologylangSouthAzerbaijani:
-
-South Azerbaijani
-^^^^^^^^^^^^^^^^^
-
-Sequence of language *South Azerbaijani* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0076 <https://codepoints.net/U+0076>`_  'v'       Ll                  1  LATIN SMALL LETTER V
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ve|\\n12|\\n"
-        ve|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -7.
-
-.. _terminologylangSecoya:
-
-Secoya
-^^^^^^
-
-Sequence of language *Secoya* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ======================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ======================
-     1  `U+0049 <https://codepoints.net/U+0049>`_  'I'       Lu                  1  LATIN CAPITAL LETTER I
-     2  `U+0079 <https://codepoints.net/U+0079>`_  'y'       Ll                  1  LATIN SMALL LETTER Y
-     3  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-   ===  =========================================  ========  ==========  =========  ======================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "Iye|\\n123|\\n"
-        Iye|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width -2.
-
-.. _terminologylangKorean:
-
-Korean
-^^^^^^
-
-Sequence of language *Korean* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =====================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =====================
-     1  `U+ACAC <https://codepoints.net/U+ACAC>`_  '\\uacac'  Lo                  2  HANGUL SYLLABLE GYEON
-     2  `U+D574 <https://codepoints.net/U+D574>`_  '\\ud574'  Lo                  2  HANGUL SYLLABLE HAE
-   ===  =========================================  =========  ==========  =========  =====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xea\xb2\xac\xed\x95\xb4|\\n1234|\\n"
-        견해|
-        1234|
-
-- python `wcwidth.wcswidth()`_ measures width 4,
-  while *terminology* measures width -2.
-
-.. _terminologylangSiona:
-
-Siona
-^^^^^
-
-Sequence of language *Siona* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ===================================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ===================================
-     1  `U+006A <https://codepoints.net/U+006A>`_  'j'       Ll                  1  LATIN SMALL LETTER J
-     2  `U+00EB <https://codepoints.net/U+00EB>`_  '\\xeb'   Ll                  1  LATIN SMALL LETTER E WITH DIAERESIS
-     3  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-     4  `U+0079 <https://codepoints.net/U+0079>`_  'y'       Ll                  1  LATIN SMALL LETTER Y
-     5  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-   ===  =========================================  ========  ==========  =========  ===================================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "j\xc3\xabaye|\\n12345|\\n"
-        jëaye|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *terminology* measures width -1.
-
-.. _terminologylangGilyak:
-
-Gilyak
-^^^^^^
-
-Sequence of language *Gilyak* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =========================
-     1  `U+043F <https://codepoints.net/U+043F>`_  '\\u043f'  Ll                  1  CYRILLIC SMALL LETTER PE
-     2  `U+0440 <https://codepoints.net/U+0440>`_  '\\u0440'  Ll                  1  CYRILLIC SMALL LETTER ER
-     3  `U+043E <https://codepoints.net/U+043E>`_  '\\u043e'  Ll                  1  CYRILLIC SMALL LETTER O
-     4  `U+0433 <https://codepoints.net/U+0433>`_  '\\u0433'  Ll                  1  CYRILLIC SMALL LETTER GHE
-     5  `U+0440 <https://codepoints.net/U+0440>`_  '\\u0440'  Ll                  1  CYRILLIC SMALL LETTER ER
-     6  `U+0435 <https://codepoints.net/U+0435>`_  '\\u0435'  Ll                  1  CYRILLIC SMALL LETTER IE
-     7  `U+0441 <https://codepoints.net/U+0441>`_  '\\u0441'  Ll                  1  CYRILLIC SMALL LETTER ES
-     8  `U+0441 <https://codepoints.net/U+0441>`_  '\\u0441'  Ll                  1  CYRILLIC SMALL LETTER ES
-   ===  =========================================  =========  ==========  =========  =========================
-
-Total codepoints: 8
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xd0\xbf\xd1\x80\xd0\xbe\xd0\xb3\xd1\x80\xd0\xb5\xd1\x81\xd1\x81|\\n12345678|\\n"
-        прогресс|
-        12345678|
-
-- python `wcwidth.wcswidth()`_ measures width 8,
-  while *terminology* measures width -2.
-
-.. _terminologylangColorado:
-
-Colorado
-^^^^^^^^
-
-Sequence of language *Colorado* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
-     2  `U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
-     3  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-     4  `U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-     5  `U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "tsano|\\n12345|\\n"
-        tsano|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *terminology* measures width 0.
-
-.. _terminologylangYeonbyeon:
-
-(Yeonbyeon)
-^^^^^^^^^^^
-
-Sequence of language *(Yeonbyeon)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ==================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ==================
-     1  `U+CC28 <https://codepoints.net/U+CC28>`_  '\\ucc28'  Lo                  2  HANGUL SYLLABLE CA
-     2  `U+C774 <https://codepoints.net/U+C774>`_  '\\uc774'  Lo                  2  HANGUL SYLLABLE I
-     3  `U+AC00 <https://codepoints.net/U+AC00>`_  '\\uac00'  Lo                  2  HANGUL SYLLABLE GA
-   ===  =========================================  =========  ==========  =========  ==================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xec\xb0\xa8\xec\x9d\xb4\xea\xb0\x80|\\n123456|\\n"
-        차이가|
-        123456|
-
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *terminology* measures width 0.
-
-.. _terminologylangCatalan2:
-
-Catalan (2)
-^^^^^^^^^^^
-
-Sequence of language *Catalan (2)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ======================
-     1  `U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-     3  `U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
-   ===  =========================================  =========  ==========  =========  ======================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "te\xcc\x81|\\n12|\\n"
-        té|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -8.
-
-.. _terminologylangTem:
-
-Tem
-^^^
-
-Sequence of language *Tem* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =======================
-     1  `U+0066 <https://codepoints.net/U+0066>`_  'f'        Ll                  1  LATIN SMALL LETTER F
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     3  `U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-     4  `U+0269 <https://codepoints.net/U+0269>`_  '\\u0269'  Ll                  1  LATIN SMALL LETTER IOTA
-     5  `U+006D <https://codepoints.net/U+006D>`_  'm'        Ll                  1  LATIN SMALL LETTER M
-     6  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  =========  ==========  =========  =======================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "fat\xc9\xa9ma|\\n123456|\\n"
-        fatɩma|
-        123456|
-
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *terminology* measures width 0.
-
-.. _terminologylangSeraiki:
+.. _terminologylangseraiki:
 
 Seraiki
 ^^^^^^^
@@ -3418,1076 +1974,26 @@ Sequence of language *Seraiki* from midpoint of alignment failure records:
 .. table::
    :class: sphinx-datatable
 
-   ===  =========================================  =========  ==========  =========  =========================
+   ===  =========================================  =========  ==========  =========  ========================
      #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =========================
-     1  `U+06A9 <https://codepoints.net/U+06A9>`_  '\\u06a9'  Lo                  1  ARABIC LETTER KEHEH
-     2  `U+0648 <https://codepoints.net/U+0648>`_  '\\u0648'  Lo                  1  ARABIC LETTER WAW
-     3  `U+06BA <https://codepoints.net/U+06BA>`_  '\\u06ba'  Lo                  1  ARABIC LETTER NOON GHUNNA
-   ===  =========================================  =========  ==========  =========  =========================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xda\xa9\xd9\x88\xda\xba|\\n123|\\n"
-        کوں|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width -2.
-
-.. _terminologylangMirandese:
-
-Mirandese
-^^^^^^^^^
-
-Sequence of language *Mirandese* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0063 <https://codepoints.net/U+0063>`_  'c'       Ll                  1  LATIN SMALL LETTER C
-     2  `U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
-     3  `U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
-     4  `U+0070 <https://codepoints.net/U+0070>`_  'p'       Ll                  1  LATIN SMALL LETTER P
-     5  `U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
-     6  `U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-     7  `U+006D <https://codepoints.net/U+006D>`_  'm'       Ll                  1  LATIN SMALL LETTER M
-     8  `U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-     9  `U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
-    10  `U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
-    11  `U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-    12  `U+003A <https://codepoints.net/U+003A>`_  ':'       Po                  1  COLON
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 12
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "cumpromisso:|\\n123456789012|\\n"
-        cumpromisso:|
-        123456789012|
-
-- python `wcwidth.wcswidth()`_ measures width 12,
-  while *terminology* measures width 9.
-
-.. _terminologylangPicard:
-
-Picard
-^^^^^^
-
-Sequence of language *Picard* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+006C <https://codepoints.net/U+006C>`_  'l'       Ll                  1  LATIN SMALL LETTER L
-     2  `U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "li|\\n12|\\n"
-        li|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -3.
-
-.. _terminologylangTicuna:
-
-Ticuna
-^^^^^^
-
-Sequence of language *Ticuna* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ======================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ======================
-     1  `U+004E <https://codepoints.net/U+004E>`_  'N'       Lu                  1  LATIN CAPITAL LETTER N
-     2  `U+0045 <https://codepoints.net/U+0045>`_  'E'       Lu                  1  LATIN CAPITAL LETTER E
-   ===  =========================================  ========  ==========  =========  ======================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "NE|\\n12|\\n"
-        NE|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -9.
-
-.. _terminologylangKabyle:
-
-Kabyle
-^^^^^^
-
-Sequence of language *Kabyle* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-     2  `U+0077 <https://codepoints.net/U+0077>`_  'w'       Ll                  1  LATIN SMALL LETTER W
-     3  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-     4  `U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-     5  `U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-     6  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-     7  `U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "iwakken|\\n1234567|\\n"
-        iwakken|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *terminology* measures width 0.
-
-.. _terminologylangLingalatones:
-
-Lingala (tones)
-^^^^^^^^^^^^^^^
-
-Sequence of language *Lingala (tones)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ======================
-     1  `U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     3  `U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
-     4  `U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-     5  `U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
-   ===  =========================================  =========  ==========  =========  ======================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ka\xcc\x81ti|\\n1234|\\n"
-        káti|
-        1234|
-
-- python `wcwidth.wcswidth()`_ measures width 4,
-  while *terminology* measures width 2.
-
-.. _terminologylangTamazightCentralAtlas:
-
-Tamazight, Central Atlas
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Tamazight, Central Atlas* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-     2  `U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-     3  `U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-     4  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-     5  `U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "akken|\\n12345|\\n"
-        akken|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *terminology* measures width -4.
-
-.. _terminologylangFur:
-
-Fur
-^^^
-
-Sequence of language *Fur* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-     2  `U+0077 <https://codepoints.net/U+0077>`_  'w'       Ll                  1  LATIN SMALL LETTER W
-     3  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "kwa|\\n123|\\n"
-        kwa|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width -2.
-
-.. _terminologylangw:
-
-Éwé
-^^^
-
-Sequence of language *Éwé* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
-     2  `U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-     3  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "sia|\\n123|\\n"
-        sia|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width -8.
-
-.. _terminologylangFrenchWelche:
-
-French (Welche)
-^^^^^^^^^^^^^^^
-
-Sequence of language *French (Welche)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ======================
-     1  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-     2  `U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
-     3  `U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-     4  `U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-   ===  =========================================  =========  ==========  =========  ======================
+   ===  =========================================  =========  ==========  =========  ========================
+     1  `U+0627 <https://codepoints.net/U+0627>`_  '\\u0627'  Lo                  1  ARABIC LETTER ALEF
+     2  `U+064F <https://codepoints.net/U+064F>`_  '\\u064f'  Mn                  0  ARABIC DAMMA
+     3  `U+062A <https://codepoints.net/U+062A>`_  '\\u062a'  Lo                  1  ARABIC LETTER TEH
+     4  `U+06D2 <https://codepoints.net/U+06D2>`_  '\\u06d2'  Lo                  1  ARABIC LETTER YEH BARREE
+   ===  =========================================  =========  ==========  =========  ========================
 
 Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "e\xcc\x80ko|\\n123|\\n"
-        èko|
+        $ printf "\xd8\xa7\xd9\x8f\xd8\xaa\xdb\x92|\\n123|\\n"
+        اُتے|
         123|
 
 - python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width -7.
-
-.. _terminologylangGen:
-
-Gen
-^^^
-
-Sequence of language *Gen* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+006B <https://codepoints.net/U+006B>`_  'k'       Ll                  1  LATIN SMALL LETTER K
-     2  `U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ku|\\n12|\\n"
-        ku|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -7.
-
-.. _terminologylangGa:
-
-Ga
-^^
-
-Sequence of language *Ga* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =========================
-     1  `U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-     2  `U+025B <https://codepoints.net/U+025B>`_  '\\u025b'  Ll                  1  LATIN SMALL LETTER OPEN E
-   ===  =========================================  =========  ==========  =========  =========================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "k\xc9\x9b|\\n12|\\n"
-        kɛ|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -4.
-
-.. _terminologylangMaori2:
-
-Maori (2)
-^^^^^^^^^
-
-Sequence of language *Maori (2)* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ====================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ====================
-     1  `U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-     3  `U+0304 <https://codepoints.net/U+0304>`_  '\\u0304'  Mn                  0  COMBINING MACRON
-     4  `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-     5  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-     6  `U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
-   ===  =========================================  =========  ==========  =========  ====================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "te\xcc\x84nei|\\n12345|\\n"
-        tēnei|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *terminology* measures width 2.
-
-.. _terminologylangMixtecMetlatnoc:
-
-Mixtec, Metlatónoc
-^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Mixtec, Metlatónoc* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0076 <https://codepoints.net/U+0076>`_  'v'       Ll                  1  LATIN SMALL LETTER V
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-     3  `U+0027 <https://codepoints.net/U+0027>`_  "'"       Po                  1  APOSTROPHE
-     4  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 4
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ve'e|\\n1234|\\n"
-        ve'e|
-        1234|
-
-- python `wcwidth.wcswidth()`_ measures width 4,
-  while *terminology* measures width -2.
-
-.. _terminologylangAja:
-
-Aja
-^^^
-
-Sequence of language *Aja* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+006C <https://codepoints.net/U+006C>`_  'l'       Ll                  1  LATIN SMALL LETTER L
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "le|\\n12|\\n"
-        le|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -8.
-
-.. _terminologylangYoruba:
-
-Yoruba
-^^^^^^
-
-Sequence of language *Yoruba* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ===============================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ===============================
-     1  `U+00E0 <https://codepoints.net/U+00E0>`_  '\\xe0'   Ll                  1  LATIN SMALL LETTER A WITH GRAVE
-     2  `U+0067 <https://codepoints.net/U+0067>`_  'g'       Ll                  1  LATIN SMALL LETTER G
-     3  `U+0062 <https://codepoints.net/U+0062>`_  'b'       Ll                  1  LATIN SMALL LETTER B
-     4  `U+00E1 <https://codepoints.net/U+00E1>`_  '\\xe1'   Ll                  1  LATIN SMALL LETTER A WITH ACUTE
-     5  `U+0079 <https://codepoints.net/U+0079>`_  'y'       Ll                  1  LATIN SMALL LETTER Y
-     6  `U+00E9 <https://codepoints.net/U+00E9>`_  '\\xe9'   Ll                  1  LATIN SMALL LETTER E WITH ACUTE
-   ===  =========================================  ========  ==========  =========  ===============================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xc3\xa0gb\xc3\xa1y\xc3\xa9|\\n123456|\\n"
-        àgbáyé|
-        123456|
-
-- python `wcwidth.wcswidth()`_ measures width 6,
-  while *terminology* measures width -3.
-
-.. _terminologylangSaintLucianCreoleFrench:
-
-Saint Lucian Creole French
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Saint Lucian Creole French* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ======================
-     1  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     2  `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-     3  `U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-     4  `U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-     5  `U+0075 <https://codepoints.net/U+0075>`_  'u'        Ll                  1  LATIN SMALL LETTER U
-     6  `U+0077 <https://codepoints.net/U+0077>`_  'w'        Ll                  1  LATIN SMALL LETTER W
-     7  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     8  `U+006A <https://codepoints.net/U+006A>`_  'j'        Ll                  1  LATIN SMALL LETTER J
-     9  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-    10  `U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
-   ===  =========================================  =========  ==========  =========  ======================
-
-Total codepoints: 10
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ankouwaje\xcc\x81|\\n123456789|\\n"
-        ankouwajé|
-        123456789|
-
-- python `wcwidth.wcswidth()`_ measures width 9,
-  while *terminology* measures width 6.
-
-.. _terminologylangUduk:
-
-Uduk
-^^^^
-
-Sequence of language *Uduk* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ===========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ===========================
-     1  `U+2019 <https://codepoints.net/U+2019>`_  '\\u2019'  Pf                  1  RIGHT SINGLE QUOTATION MARK
-     2  `U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-     3  `U+0077 <https://codepoints.net/U+0077>`_  'w'        Ll                  1  LATIN SMALL LETTER W
-     4  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     5  `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-     6  `U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
-     7  `U+014B <https://codepoints.net/U+014B>`_  '\\u014b'  Ll                  1  LATIN SMALL LETTER ENG
-   ===  =========================================  =========  ==========  =========  ===========================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe2\x80\x99kwani\xc5\x8b|\\n1234567|\\n"
-        ’kwaniŋ|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *terminology* measures width 3.
-
-.. _terminologylangDagaareSouthern:
-
-Dagaare, Southern
-^^^^^^^^^^^^^^^^^
-
-Sequence of language *Dagaare, Southern* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =========================
-     1  `U+0070 <https://codepoints.net/U+0070>`_  'p'        Ll                  1  LATIN SMALL LETTER P
-     2  `U+006F <https://codepoints.net/U+006F>`_  'o'        Ll                  1  LATIN SMALL LETTER O
-     3  `U+0254 <https://codepoints.net/U+0254>`_  '\\u0254'  Ll                  1  LATIN SMALL LETTER OPEN O
-   ===  =========================================  =========  ==========  =========  =========================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "po\xc9\x94|\\n123|\\n"
-        poɔ|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width -2.
-
-.. _terminologylangBelandaViri:
-
-Belanda Viri
-^^^^^^^^^^^^
-
-Sequence of language *Belanda Viri* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ===============================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ===============================
-     1  `U+006E <https://codepoints.net/U+006E>`_  'n'       Ll                  1  LATIN SMALL LETTER N
-     2  `U+0064 <https://codepoints.net/U+0064>`_  'd'       Ll                  1  LATIN SMALL LETTER D
-     3  `U+00ED <https://codepoints.net/U+00ED>`_  '\\xed'   Ll                  1  LATIN SMALL LETTER I WITH ACUTE
-   ===  =========================================  ========  ==========  =========  ===============================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "nd\xc3\xad|\\n123|\\n"
-        ndí|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width 1.
-
-.. _terminologylangDitammari:
-
-Ditammari
-^^^^^^^^^
-
-Sequence of language *Ditammari* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =========================
-     1  `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-     2  `U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-     3  `U+0077 <https://codepoints.net/U+0077>`_  'w'        Ll                  1  LATIN SMALL LETTER W
-     4  `U+0075 <https://codepoints.net/U+0075>`_  'u'        Ll                  1  LATIN SMALL LETTER U
-     5  `U+0254 <https://codepoints.net/U+0254>`_  '\\u0254'  Ll                  1  LATIN SMALL LETTER OPEN O
-   ===  =========================================  =========  ==========  =========  =========================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "nkwu\xc9\x94|\\n12345|\\n"
-        nkwuɔ|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *terminology* measures width 3.
-
-.. _terminologylangBamun:
-
-Bamun
-^^^^^
-
-Sequence of language *Bamun* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ======================
-     1  `U+0079 <https://codepoints.net/U+0079>`_  'y'        Ll                  1  LATIN SMALL LETTER Y
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-     3  `U+0301 <https://codepoints.net/U+0301>`_  '\\u0301'  Mn                  0  COMBINING ACUTE ACCENT
-     4  `U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-     5  `U+006E <https://codepoints.net/U+006E>`_  'n'        Ll                  1  LATIN SMALL LETTER N
-     6  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-   ===  =========================================  =========  ==========  =========  ======================
-
-Total codepoints: 6
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ye\xcc\x81tne|\\n12345|\\n"
-        yétne|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *terminology* measures width 3.
-
-.. _terminologylangDinkaNortheastern:
-
-Dinka, Northeastern
-^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Dinka, Northeastern* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0074 <https://codepoints.net/U+0074>`_  't'       Ll                  1  LATIN SMALL LETTER T
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'       Ll                  1  LATIN SMALL LETTER E
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "te|\\n12|\\n"
-        te|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -1.
-
-.. _terminologylangBaatonum:
-
-Baatonum
-^^^^^^^^
-
-Sequence of language *Baatonum* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0073 <https://codepoints.net/U+0073>`_  's'       Ll                  1  LATIN SMALL LETTER S
-     2  `U+0069 <https://codepoints.net/U+0069>`_  'i'       Ll                  1  LATIN SMALL LETTER I
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "si|\\n12|\\n"
-        si|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -1.
-
-.. _terminologylangDendi:
-
-Dendi
-^^^^^
-
-Sequence of language *Dendi* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ======================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ======================
-     1  `U+0042 <https://codepoints.net/U+0042>`_  'B'       Lu                  1  LATIN CAPITAL LETTER B
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-     3  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  ========  ==========  =========  ======================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "Baa|\\n123|\\n"
-        Baa|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width 0.
-
-.. _terminologylangMazahuaCentral:
-
-Mazahua Central
-^^^^^^^^^^^^^^^
-
-Sequence of language *Mazahua Central* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0079 <https://codepoints.net/U+0079>`_  'y'       Ll                  1  LATIN SMALL LETTER Y
-     2  `U+006F <https://codepoints.net/U+006F>`_  'o'       Ll                  1  LATIN SMALL LETTER O
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "yo|\\n12|\\n"
-        yo|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -4.
-
-.. _terminologylangSererSine:
-
-Serer-Sine
-^^^^^^^^^^
-
-Sequence of language *Serer-Sine* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ======================
-     1  `U+0053 <https://codepoints.net/U+0053>`_  'S'        Lu                  1  LATIN CAPITAL LETTER S
-     2  `U+0065 <https://codepoints.net/U+0065>`_  'e'        Ll                  1  LATIN SMALL LETTER E
-     3  `U+014B <https://codepoints.net/U+014B>`_  '\\u014b'  Ll                  1  LATIN SMALL LETTER ENG
-     4  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     5  `U+0074 <https://codepoints.net/U+0074>`_  't'        Ll                  1  LATIN SMALL LETTER T
-     6  `U+0069 <https://codepoints.net/U+0069>`_  'i'        Ll                  1  LATIN SMALL LETTER I
-     7  `U+0072 <https://codepoints.net/U+0072>`_  'r'        Ll                  1  LATIN SMALL LETTER R
-   ===  =========================================  =========  ==========  =========  ======================
-
-Total codepoints: 7
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "Se\xc5\x8batir|\\n1234567|\\n"
-        Seŋatir|
-        1234567|
-
-- python `wcwidth.wcswidth()`_ measures width 7,
-  while *terminology* measures width -5.
-
-.. _terminologylangMor:
-
-Mòoré
-^^^^^
-
-Sequence of language *Mòoré* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+006C <https://codepoints.net/U+006C>`_  'l'       Ll                  1  LATIN SMALL LETTER L
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "la|\\n12|\\n"
-        la|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -7.
-
-.. _terminologylangVietnamese:
-
-Vietnamese
-^^^^^^^^^^
-
-Sequence of language *Vietnamese* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ======================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ======================
-     1  `U+0076 <https://codepoints.net/U+0076>`_  'v'        Ll                  1  LATIN SMALL LETTER V
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'        Ll                  1  LATIN SMALL LETTER A
-     3  `U+0300 <https://codepoints.net/U+0300>`_  '\\u0300'  Mn                  0  COMBINING GRAVE ACCENT
-   ===  =========================================  =========  ==========  =========  ======================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "va\xcc\x80|\\n12|\\n"
-        và|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -2.
-
-.. _terminologylangFon:
-
-Fon
-^^^
-
-Sequence of language *Fon* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =========================
-     1  `U+006C <https://codepoints.net/U+006C>`_  'l'        Ll                  1  LATIN SMALL LETTER L
-     2  `U+025B <https://codepoints.net/U+025B>`_  '\\u025b'  Ll                  1  LATIN SMALL LETTER OPEN E
-   ===  =========================================  =========  ==========  =========  =========================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "l\xc9\x9b|\\n12|\\n"
-        lɛ|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -3.
-
-.. _terminologylangChinantecChiltepec:
-
-Chinantec, Chiltepec
-^^^^^^^^^^^^^^^^^^^^
-
-Sequence of language *Chinantec, Chiltepec* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+006A <https://codepoints.net/U+006A>`_  'j'       Ll                  1  LATIN SMALL LETTER J
-     2  `U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
-     3  `U+0075 <https://codepoints.net/U+0075>`_  'u'       Ll                  1  LATIN SMALL LETTER U
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 3
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "juu|\\n123|\\n"
-        juu|
-        123|
-
-- python `wcwidth.wcswidth()`_ measures width 3,
-  while *terminology* measures width -1.
-
-.. _terminologylangLamnso:
-
-Lamnso'
-^^^^^^^
-
-Sequence of language *Lamnso'* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ===============================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ===============================
-     1  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-     2  `U+00E1 <https://codepoints.net/U+00E1>`_  '\\xe1'   Ll                  1  LATIN SMALL LETTER A WITH ACUTE
-   ===  =========================================  ========  ==========  =========  ===============================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "a\xc3\xa1|\\n12|\\n"
-        aá|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -2.
-
-.. _terminologylangOtomiMezquital:
-
-Otomi, Mezquital
-^^^^^^^^^^^^^^^^
-
-Sequence of language *Otomi, Mezquital* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0072 <https://codepoints.net/U+0072>`_  'r'       Ll                  1  LATIN SMALL LETTER R
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "ra|\\n12|\\n"
-        ra|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -1.
-
-.. _terminologylangDangme:
-
-Dangme
-^^^^^^
-
-Sequence of language *Dangme* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =========================
-     1  `U+006B <https://codepoints.net/U+006B>`_  'k'        Ll                  1  LATIN SMALL LETTER K
-     2  `U+025B <https://codepoints.net/U+025B>`_  '\\u025b'  Ll                  1  LATIN SMALL LETTER OPEN E
-   ===  =========================================  =========  ==========  =========  =========================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "k\xc9\x9b|\\n12|\\n"
-        kɛ|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width 0.
-
-.. _terminologylangWaama:
-
-Waama
-^^^^^
-
-Sequence of language *Waama* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  ========  ==========  =========  ====================
-     #  Codepoint                                  Python    Category      wcwidth  Name
-   ===  =========================================  ========  ==========  =========  ====================
-     1  `U+0064 <https://codepoints.net/U+0064>`_  'd'       Ll                  1  LATIN SMALL LETTER D
-     2  `U+0061 <https://codepoints.net/U+0061>`_  'a'       Ll                  1  LATIN SMALL LETTER A
-   ===  =========================================  ========  ==========  =========  ====================
-
-Total codepoints: 2
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "da|\\n12|\\n"
-        da|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminology* measures width -7.
+  while *terminology* measures width 4.
 
 .. _terminologydecmodes:
 
@@ -4515,7 +2021,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **37.70 seconds** (37s).
+The test suite completed in **73.49 seconds** (73s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

@@ -15,6 +15,7 @@ import tabulate
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
+TERMINAL_DETAIL_MIXINS_PATH = os.path.join(DATA_PATH, "terminal_detail_mixins.yaml")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
 
@@ -124,6 +125,22 @@ def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, sectio
     return f':sref:`{text} <{link_target}> {score_value_for_color}:{sort_value}`'
 
 
+def load_terminal_detail_mixins():
+    """
+    Load terminal detail mixins from YAML file.
+    Returns a dictionary keyed by lowercase software_name.
+    """
+    if not os.path.exists(TERMINAL_DETAIL_MIXINS_PATH):
+        return {}
+
+    with open(TERMINAL_DETAIL_MIXINS_PATH, 'r') as f:
+        data = yaml.safe_load(f)
+
+    # Normalize keys to lowercase for case-insensitive matching
+    terminals = data.get('terminals', {})
+    return {key.lower(): value for key, value in terminals.items()}
+
+
 def print_datatable(table_str, caption=None):
     """
     Print a table with sphinx-datatable class for sortable/searchable functionality.
@@ -152,6 +169,10 @@ def main():
     score_table, all_successful_languages = make_score_table()
     print('ok', file=sys.stderr)
 
+    print(f'Loading terminal detail mixins... ', file=sys.stderr, end='', flush=True)
+    terminal_mixins = load_terminal_detail_mixins()
+    print('ok', file=sys.stderr)
+
     print(f'Writing docs/_static/score-colors.css ... ', file=sys.stderr, end='', flush=True)
     os.makedirs('docs/_static', exist_ok=True)
     with open('docs/_static/score-colors.css', 'w') as fout:
@@ -172,7 +193,7 @@ def main():
         fname = f'docs/sw_results/{make_link(sw_name)}.rst'
         print(f'Writing {fname} ... ', file=sys.stderr, end='', flush=True)
         with open(fname, 'w') as fout, contextlib.redirect_stdout(fout):
-            show_software_header(entry, sw_name)
+            show_software_header(entry, sw_name, terminal_mixins)
             show_score_breakdown(sw_name, entry)
             show_wide_character_support(sw_name, entry)
             show_emoji_zwj_results(sw_name, entry)
@@ -212,7 +233,7 @@ def display_common_hyperlinks():
     print(".. _`DEC Private Modes`: https://blessed.readthedocs.io/en/latest/dec_modes.html")
 
 def make_link(text):
-    return re.sub(LINK_REGEX, '', text)
+    return re.sub(LINK_REGEX, '', text).lower()
 
 def make_outbound_hyperlink(text, link_text=None):
     if link_text is None:
@@ -414,8 +435,8 @@ def display_tabulated_scores(score_table):
         # Create DEC modes display text (just the number, hyperlink will be added by wrap_score_with_hyperlink)
         dec_modes_display = f"{dec_modes_count}" if not math.isnan(result["score_dec_modes"]) else "0"
 
-        # Create elapsed time display text (integer seconds with 's' suffix)
-        elapsed_display = f"{int(result['elapsed_seconds'])}s" if not math.isnan(result['elapsed_seconds']) else "N/A"
+        # Create elapsed time display text (integer seconds, no suffix)
+        elapsed_display = f"{int(result['elapsed_seconds'])}" if not math.isnan(result['elapsed_seconds']) else "N/A"
 
         # Create WIDE display text showing only version (e.g., "16" instead of "16.0.0")
         wide_version = result["version_best_wide"] or "na"
@@ -485,10 +506,9 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_dec_modes"
                 ),
-                "Elapsed\nTime": wrap_time_with_hyperlink(
+                "Elapsed(s)": wrap_score_with_hyperlink(
                     elapsed_display,
                     result["score_elapsed_scaled"],
-                    result["elapsed_seconds"],
                     result["terminal_software_name"],
                     "_time"
                 ),
@@ -515,10 +535,9 @@ def display_table_definitions():
         "  TIME performance metrics to focus purely on feature completeness."
     )
     print(
-        "- *WIDE score*: Shows the Unicode version specification most closely\n"
-        "  matching in compatibility (highest version with 90% match or greater).\n"
-        "  Determined by version release level multiplied by the pct of wide\n"
-        "  codepoints supported at that version, scaled."
+        "- *WIDE score*: Overall percentage of wide character codepoints correctly\n"
+        "  displayed across all Unicode versions tested. Calculated as the total\n"
+        "  number of successful codepoints divided by total codepoints tested, scaled."
     )
     print(
         "- *LANG score*: Calculated using the geometric mean of success percentages\n"
@@ -526,9 +545,9 @@ def display_table_definitions():
         "  support (e.g., 99%, 98%) without letting one low score dominate, scaled."
     )
     print(
-        "- *ZWJ score*: Determined by version release level of emoji sequences\n"
-        "  with Zero-Width Joiner support, multiplied by the pct of emoji\n"
-        "  sequences supported at that version, scaled."
+        "- *ZWJ score*: Overall percentage of emoji ZWJ (Zero-Width Joiner) sequences\n"
+        "  correctly displayed across all emoji versions tested. Calculated as the total\n"
+        "  number of successful sequences divided by total sequences tested, scaled."
     )
     print(
         "- *VS16 score*: Determined by the number of Emoji using Variation\n"
@@ -583,31 +602,55 @@ def scale_scores(score_table, entry, key):
 
 
 def score_zwj(data):
-    score = 0.0
-    best_zwj_version = data["test_results"]["emoji_zwj_version"]
-    if best_zwj_version:
-        score = (
-            list(data["test_results"]["emoji_zwj_results"].keys()).index(best_zwj_version) + 1
-        ) / len(data["test_results"]["emoji_zwj_results"])
-    score2 = 0.01
-    if best_zwj_version:
-        score2 = data["test_results"]["emoji_zwj_results"][best_zwj_version]["pct_success"] / 100
-    return score * score2
+    """
+    Calculate ZWJ score as the total percentage of successful codepoints across all versions.
+
+    Returns the overall success rate across all ZWJ emoji sequences tested.
+    """
+    zwj_results = data["test_results"]["emoji_zwj_results"]
+    if not zwj_results:
+        return 0.0
+
+    # Calculate total successes and total codepoints across all versions
+    total_success = 0
+    total_tested = 0
+    for version_data in zwj_results.values():
+        n_total = version_data["n_total"]
+        n_errors = version_data["n_errors"]
+        n_success = n_total - n_errors
+        total_success += n_success
+        total_tested += n_total
+
+    if total_tested == 0:
+        return 0.0
+
+    return total_success / total_tested
 
 
 def score_wide(data):
-    score = 0.0
-    best_wide_version = data["test_results"]["unicode_wide_version"]
-    unicode_versions = sorted(data["test_results"]["unicode_wide_results"].keys(),
-                              key=lambda x: wcwidth._wcversion_value(x))
-    if best_wide_version and best_wide_version in unicode_versions:
-        score = (unicode_versions.index(best_wide_version) + 1) / len(unicode_versions)
-    score2 = 0.01
-    if best_wide_version:
-        score2 = (
-            data["test_results"]["unicode_wide_results"][best_wide_version]["pct_success"] / 100
-        )
-    return score * score2
+    """
+    Calculate WIDE score as the total percentage of successful codepoints across all versions.
+
+    Returns the overall success rate across all wide character codepoints tested.
+    """
+    wide_results = data["test_results"]["unicode_wide_results"]
+    if not wide_results:
+        return 0.0
+
+    # Calculate total successes and total codepoints across all versions
+    total_success = 0
+    total_tested = 0
+    for version_data in wide_results.values():
+        n_total = version_data["n_total"]
+        n_errors = version_data["n_errors"]
+        n_success = n_total - n_errors
+        total_success += n_success
+        total_tested += n_total
+
+    if total_tested == 0:
+        return 0.0
+
+    return total_success / total_tested
 
 
 def score_lang(data):
@@ -643,22 +686,19 @@ def score_dec_modes(data):
     """
     Calculate score based on changeable DEC private modes.
 
-    Returns the ratio of changeable modes to total modes tested.
+    Returns the absolute count of changeable modes.
+    This will be scaled relative to max changeable modes across all terminals.
     """
     if "terminal_results" not in data or "modes" not in data["terminal_results"]:
         return float('NaN')
 
     modes = data["terminal_results"]["modes"]
-    total_modes = len(modes)
     changeable_modes = sum(
         1 for mode_data in modes.values()
         if mode_data.get("changeable", False)
     )
 
-    if total_modes == 0:
-        return float('NaN')
-
-    return changeable_modes / total_modes
+    return changeable_modes
 
 
 def score_elapsed_time(data):
@@ -804,46 +844,39 @@ def show_score_breakdown(sw_name, entry):
 
     score_breakdown = [
         {
-            "Score Type": "WIDE",
+            "Score Type": make_outbound_hyperlink("WIDE", sw_name + "_wide"),
             "Raw Score": format_raw_score(entry["score_wide"]),
             "Scaled Score": format_score_pct(entry["score_wide_scaled"]),
-            "Calculation": f'(version_index / total_versions) × (pct_success / 100)',
         },
         {
-            "Score Type": "ZWJ",
+            "Score Type": make_outbound_hyperlink("ZWJ", sw_name + "_zwj"),
             "Raw Score": format_raw_score(entry["score_zwj"]),
             "Scaled Score": format_score_pct(entry["score_zwj_scaled"]),
-            "Calculation": f'(version_index / total_versions) × (pct_success / 100)',
         },
         {
-            "Score Type": "LANG",
+            "Score Type": make_outbound_hyperlink("LANG", sw_name + "_lang"),
             "Raw Score": format_raw_score(entry["score_language"]),
             "Scaled Score": format_score_pct(entry["score_language_scaled"]),
-            "Calculation": f'geometric_mean(language_percentages)',
         },
         {
-            "Score Type": "VS16",
+            "Score Type": make_outbound_hyperlink("VS16", sw_name + "_vs16"),
             "Raw Score": format_raw_score(entry["score_emoji_vs16"]),
             "Scaled Score": format_score_pct(entry["score_emoji_vs16_scaled"]),
-            "Calculation": f'pct_success / 100',
         },
         {
-            "Score Type": "VS15",
+            "Score Type": make_outbound_hyperlink("VS15", sw_name + "_vs15"),
             "Raw Score": format_raw_score(entry["score_emoji_vs15"]),
             "Scaled Score": format_score_pct(entry["score_emoji_vs15_scaled"]),
-            "Calculation": f'pct_success / 100',
         },
         {
-            "Score Type": "DEC Modes",
-            "Raw Score": format_raw_score(entry["score_dec_modes"]),
+            "Score Type": make_outbound_hyperlink("DEC Modes", sw_name + "_dec_modes"),
+            "Raw Score": f"{int(entry['score_dec_modes'])}" if not math.isnan(entry['score_dec_modes']) else "N/A",
             "Scaled Score": format_score_pct(entry["score_dec_modes_scaled"]),
-            "Calculation": f'modes_changeable / total_modes',
         },
         {
-            "Score Type": "TIME",
+            "Score Type": make_outbound_hyperlink("TIME", sw_name + "_time"),
             "Raw Score": f"{entry['elapsed_seconds']:.2f}s" if not math.isnan(entry['elapsed_seconds']) else "N/A",
             "Scaled Score": format_score_pct(entry["score_elapsed_scaled"]),
-            "Calculation": f'1 - ((elapsed - min) / (max - min)) [inverse]',
         },
     ]
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
@@ -864,21 +897,22 @@ def show_score_breakdown(sw_name, entry):
     # Add detailed score breakdowns for each type
     print(f"**WIDE Score Details:**")
     print()
-    best_wide_version = entry["version_best_wide"]
-    if best_wide_version:
-        unicode_versions = sorted(
-            entry["data"]["test_results"]["unicode_wide_results"].keys(),
-            key=lambda x: wcwidth._wcversion_value(x)
-        )
-        version_index = unicode_versions.index(best_wide_version) + 1
-        total_versions = len(unicode_versions)
-        pct_success = entry["data"]["test_results"]["unicode_wide_results"][best_wide_version]["pct_success"]
+    wide_results = entry["data"]["test_results"]["unicode_wide_results"]
+    if wide_results:
+        # Calculate totals across all versions
+        total_success = 0
+        total_tested = 0
+        for version_data in wide_results.values():
+            n_total = version_data["n_total"]
+            n_errors = version_data["n_errors"]
+            total_success += (n_total - n_errors)
+            total_tested += n_total
 
         print(f"Wide character support calculation:")
-        print(f"- Best matching Unicode version: {best_wide_version}")
-        print(f"- Version index: {version_index} of {total_versions} versions tested")
-        print(f"- Success rate at this version: {pct_success:.1f}%")
-        print(f"- Formula: ({version_index} / {total_versions}) × ({pct_success:.1f} / 100)")
+        print(f"- Total successful codepoints: {total_success}")
+        print(f"- Total codepoints tested: {total_tested}")
+        print(f"- Best matching Unicode version: {entry['version_best_wide']}")
+        print(f"- Formula: {total_success} / {total_tested}")
         print(f"- Result: {entry['score_wide']*100:.2f}%")
     else:
         print(f"No WIDE character support detected.")
@@ -886,18 +920,22 @@ def show_score_breakdown(sw_name, entry):
 
     print(f"**ZWJ Score Details:**")
     print()
-    best_zwj_version = entry["version_best_zwj"]
-    if best_zwj_version:
-        emoji_zwj_versions = list(entry["data"]["test_results"]["emoji_zwj_results"].keys())
-        version_index = emoji_zwj_versions.index(best_zwj_version) + 1
-        total_versions = len(emoji_zwj_versions)
-        pct_success = entry["data"]["test_results"]["emoji_zwj_results"][best_zwj_version]["pct_success"]
+    zwj_results = entry["data"]["test_results"]["emoji_zwj_results"]
+    if zwj_results:
+        # Calculate totals across all versions
+        total_success = 0
+        total_tested = 0
+        for version_data in zwj_results.values():
+            n_total = version_data["n_total"]
+            n_errors = version_data["n_errors"]
+            total_success += (n_total - n_errors)
+            total_tested += n_total
 
         print(f"Emoji ZWJ (Zero-Width Joiner) support calculation:")
-        print(f"- Best matching Emoji version: {best_zwj_version}")
-        print(f"- Version index: {version_index} of {total_versions} versions tested")
-        print(f"- Success rate at this version: {pct_success:.1f}%")
-        print(f"- Formula: ({version_index} / {total_versions}) × ({pct_success:.1f} / 100)")
+        print(f"- Total successful sequences: {total_success}")
+        print(f"- Total sequences tested: {total_tested}")
+        print(f"- Best matching Emoji version: {entry['version_best_zwj']}")
+        print(f"- Formula: {total_success} / {total_tested}")
         print(f"- Result: {entry['score_zwj']*100:.2f}%")
     else:
         print(f"No ZWJ support detected.")
@@ -952,8 +990,8 @@ def show_score_breakdown(sw_name, entry):
         print(f"DEC Private Modes support calculation:")
         print(f"- Changeable modes: {changeable_modes}")
         print(f"- Total modes tested: {total_modes}")
-        print(f"- Formula: {changeable_modes} / {total_modes}")
-        print(f"- Result: {entry['score_dec_modes']*100:.2f}%")
+        print(f"- Raw score: {int(entry['score_dec_modes'])} modes")
+        print(f"- Scaled: normalized against max changeable modes across all terminals")
     else:
         print(f"DEC Modes results not available.")
     print()
@@ -985,13 +1023,21 @@ def show_score_breakdown(sw_name, entry):
         print(f"- Result: {geo_mean*100:.2f}%")
     print()
 
-def show_software_header(entry, sw_name):
+def show_software_header(entry, sw_name, terminal_mixins):
     display_inbound_hyperlink(entry["terminal_software_name"])
     display_title(sw_name, 2)
     print()
-    print(f'Tested Software version {entry["terminal_software_version"]} on {entry["os_system"]}')
+    print(f'Tested Software version {entry["terminal_software_version"]} on {entry["os_system"]}.')
+
+    # Look up homepage URL from terminal_mixins (case-insensitive)
+    sw_name_lower = entry["terminal_software_name"].lower()
+    if sw_name_lower in terminal_mixins:
+        homepage = terminal_mixins[sw_name_lower].get('homepage')
+        if homepage:
+            print(f'The homepage URL of this terminal is {homepage}.')
+
     print('Full results available at ucs-detect_ repository path')
-    print(f"`data/{entry['fname']} <{GITHUB_DATA_LINK.format(fname=entry['fname'])}>`_")
+    print(f"`data/{entry['fname']} <{GITHUB_DATA_LINK.format(fname=entry['fname'])}>`_.")
     print()
 
 

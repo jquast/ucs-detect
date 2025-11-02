@@ -18,41 +18,46 @@ Detailed breakdown of how scores are calculated for *xfce4-terminal*:
 .. table::
    :class: sphinx-datatable
 
-   ============  ===========  ==============  ======================================================
-   Score Type    Raw Score    Scaled Score    Calculation
-   ============  ===========  ==============  ======================================================
-   WIDE          72.73%       58.9%           (version_index / total_versions) × (pct_success / 100)
-   ZWJ           0.00%        0.0%            (version_index / total_versions) × (pct_success / 100)
-   LANG          72.74%       52.6%           geometric_mean(language_percentages)
-   VS16          0.00%        0.0%            pct_success / 100
-   VS15          0.00%        0.0%            pct_success / 100
-   DEC Modes     17.83%       24.0%           modes_changeable / total_modes
-   TIME          14937.80s    0.0%            1 - ((elapsed - min) / (max - min)) [inverse]
-   ============  ===========  ==============  ======================================================
+   ========================================  ===========  ==============
+   Score Type                                Raw Score    Scaled Score
+   ========================================  ===========  ==============
+   :ref:`WIDE <xfce4terminalwide>`           94.77%       94.6%
+   :ref:`ZWJ <xfce4terminalzwj>`             0.69%        0.7%
+   :ref:`LANG <xfce4terminallang>`           72.74%       49.4%
+   :ref:`VS16 <xfce4terminalvs16>`           0.00%        0.0%
+   :ref:`VS15 <xfce4terminalvs15>`           0.00%        0.0%
+   :ref:`DEC Modes <xfce4terminaldecmodes>`  28           42.4%
+   :ref:`TIME <xfce4terminaltime>`           14937.80s    0.0%
+   ========================================  ===========  ==============
 
 **Final Score Calculation:**
 
-- Raw Final Score: 27.22%
+- Raw Final Score: 494.70%
   (average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes) / 6
   the categorized 'average' absolute support level of this terminal
   Note: TIME is excluded from raw average since it measures performance, not feature support
 
-- Scaled Final Score: 12.3%
+- Scaled Final Score: 42.6%
   (normalized across all terminals tested, including TIME performance).
   *Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
 Wide character support calculation:
+- Total successful codepoints: 6522
+- Total codepoints tested: 6882
 - Best matching Unicode version: 15.0.0
-- Version index: 8 of 11 versions tested
-- Success rate at this version: 100.0%
-- Formula: (8 / 11) × (100.0 / 100)
-- Result: 72.73%
+- Formula: 6522 / 6882
+- Result: 94.77%
 
 **ZWJ Score Details:**
 
-No ZWJ support detected.
+Emoji ZWJ (Zero-Width Joiner) support calculation:
+- Total successful sequences: 10
+- Total sequences tested: 1445
+- Best matching Emoji version: None
+- Formula: 10 / 1445
+- Result: 0.69%
 
 **VS16 Score Details:**
 
@@ -75,8 +80,8 @@ Variation Selector-15 support calculation:
 DEC Private Modes support calculation:
 - Changeable modes: 28
 - Total modes tested: 157
-- Formula: 28 / 157
-- Result: 17.83%
+- Raw score: 28 modes
+- Scaled: normalized against max changeable modes across all terminals
 
 **TIME Score Details:**
 
@@ -285,126 +290,126 @@ The following 117 languages are not fully supported:
    ====================================================================================  ==========  =========  =============
    lang                                                                                    n_errors    n_total  pct_success
    ====================================================================================  ==========  =========  =============
-   :ref:`Shan <xfce4terminallangShan>`                                                          868        915  5.1%
-   :ref:`Tamil (Sri Lanka) <xfce4terminallangTamilSriLanka>`                                   1000       1073  6.8%
-   :ref:`Tamil <xfce4terminallangTamil>`                                                       1000       1074  6.9%
-   :ref:`Sanskrit (Grantha) <xfce4terminallangSanskritGrantha>`                                 893       1006  11.2%
-   :ref:`Javanese (Javanese) <xfce4terminallangJavaneseJavanese>`                              1000       1151  13.1%
-   :ref:`Malayalam <xfce4terminallangMalayalam>`                                               1000       1151  13.1%
-   :ref:`Bengali <xfce4terminallangBengali>`                                                   1000       1166  14.2%
-   :ref:`Khmer, Central <xfce4terminallangKhmerCentral>`                                        448        528  15.2%
-   :ref:`Kannada <xfce4terminallangKannada>`                                                    902       1080  16.5%
-   :ref:`Khün <xfce4terminallangKhn>`                                                           361        442  18.3%
-   :ref:`Burmese <xfce4terminallangBurmese>`                                                    974       1223  20.4%
-   :ref:`Sanskrit <xfce4terminallangSanskrit>`                                                  755       1000  24.5%
-   :ref:`Tamang, Eastern <xfce4terminallangTamangEastern>`                                       33         45  26.7%
-   :ref:`Mon <xfce4terminallangMon>`                                                            677        946  28.4%
-   :ref:`Marathi <xfce4terminallangMarathi>`                                                   1000       1420  29.6%
-   :ref:`Nepali <xfce4terminallangNepali>`                                                      931       1385  32.8%
-   :ref:`Gujarati <xfce4terminallangGujarati>`                                                 1000       1518  34.1%
-   :ref:`Telugu <xfce4terminallangTelugu>`                                                      716       1129  36.6%
-   :ref:`Maithili <xfce4terminallangMaithili>`                                                  956       1519  37.1%
-   :ref:`Hindi <xfce4terminallangHindi>`                                                       1000       1624  38.4%
-   :ref:`Panjabi, Eastern <xfce4terminallangPanjabiEastern>`                                   1000       1825  45.2%
-   :ref:`Sinhala <xfce4terminallangSinhala>`                                                    886       1655  46.5%
-   :ref:`Bhojpuri <xfce4terminallangBhojpuri>`                                                  882       1737  49.2%
-   :ref:`Magahi <xfce4terminallangMagahi>`                                                      812       1716  52.7%
-   :ref:`Chakma <xfce4terminallangChakma>`                                                      495       1444  65.7%
-   :ref:`Vietnamese (Han nom) <xfce4terminallangVietnameseHannom>`                                5        199  97.5%
-   :ref:`Chinese, Jinyu <xfce4terminallangChineseJinyu>`                                          5        212  97.6%
-   :ref:`Japanese (Osaka) <xfce4terminallangJapaneseOsaka>`                                       6        308  98.1%
-   :ref:`Thai (2) <xfce4terminallangThai2>`                                                       6        313  98.1%
-   :ref:`Chinese, Yue <xfce4terminallangChineseYue>`                                              4        210  98.1%
-   :ref:`Chinese, Mandarin (Guiyang) <xfce4terminallangChineseMandarinGuiyang>`                   4        211  98.1%
-   :ref:`Chinese, Mandarin (Nanjing) <xfce4terminallangChineseMandarinNanjing>`                   4        212  98.1%
-   :ref:`Chinese, Mandarin (Tianjin) <xfce4terminallangChineseMandarinTianjin>`                   4        212  98.1%
-   :ref:`Chinese, Xiang <xfce4terminallangChineseXiang>`                                          4        212  98.1%
-   :ref:`Japanese (Tokyo) <xfce4terminallangJapaneseTokyo>`                                       6        320  98.1%
-   :ref:`Chinese, Mandarin (Simplified) <xfce4terminallangChineseMandarinSimplified>`             4        225  98.2%
-   :ref:`Nuosu <xfce4terminallangNuosu>`                                                          4        230  98.3%
-   :ref:`Japanese <xfce4terminallangJapanese>`                                                    5        299  98.3%
-   :ref:`Thai <xfce4terminallangThai>`                                                            5        341  98.5%
-   :ref:`Chinese, Mandarin (Harbin) <xfce4terminallangChineseMandarinHarbin>`                     3        210  98.6%
-   :ref:`Chinese, Mandarin (Traditional) <xfce4terminallangChineseMandarinTraditional>`           3        210  98.6%
-   :ref:`(Jinan) <xfce4terminallangJinan>`                                                        3        211  98.6%
-   :ref:`Chinese, Gan <xfce4terminallangChineseGan>`                                              3        211  98.6%
-   :ref:`Chinese, Wu <xfce4terminallangChineseWu>`                                                3        211  98.6%
-   :ref:`Chinese, Min Nan <xfce4terminallangChineseMinNan>`                                       3        212  98.6%
-   :ref:`Chinese, Hakka <xfce4terminallangChineseHakka>`                                          2        212  99.1%
-   :ref:`Chinese, Mandarin (Beijing) <xfce4terminallangChineseMandarinBeijing>`                   2        212  99.1%
-   :ref:`Bora <xfce4terminallangBora>`                                                           12       1598  99.2%
-   :ref:`Chickasaw <xfce4terminallangChickasaw>`                                                  4        554  99.3%
-   :ref:`Lao <xfce4terminallangLao>`                                                              3        426  99.3%
-   :ref:`Shipibo-Conibo <xfce4terminallangShipiboConibo>`                                        17       2540  99.3%
-   :ref:`Orok <xfce4terminallangOrok>`                                                            8       1245  99.4%
-   :ref:`Yaneshaʼ <xfce4terminallangYanesha>`                                                    16       2536  99.4%
-   :ref:`Navajo <xfce4terminallangNavajo>`                                                       10       1600  99.4%
-   :ref:`Gumuz <xfce4terminallangGumuz>`                                                          8       1283  99.4%
-   :ref:`Amarakaeri <xfce4terminallangAmarakaeri>`                                                9       1446  99.4%
-   :ref:`Veps <xfce4terminallangVeps>`                                                            8       1323  99.4%
-   :ref:`Nanai <xfce4terminallangNanai>`                                                          7       1207  99.4%
-   :ref:`South Azerbaijani <xfce4terminallangSouthAzerbaijani>`                                   8       1396  99.4%
-   :ref:`Secoya <xfce4terminallangSecoya>`                                                        8       1409  99.4%
-   :ref:`(Yeonbyeon) <xfce4terminallangYeonbyeon>`                                                6       1061  99.4%
-   :ref:`Evenki <xfce4terminallangEvenki>`                                                        5        899  99.4%
-   :ref:`Colorado <xfce4terminallangColorado>`                                                    7       1263  99.4%
-   :ref:`Siona <xfce4terminallangSiona>`                                                          8       1492  99.5%
-   :ref:`Gilyak <xfce4terminallangGilyak>`                                                        8       1504  99.5%
-   :ref:`Korean <xfce4terminallangKorean>`                                                        6       1185  99.5%
-   :ref:`Tem <xfce4terminallangTem>`                                                              8       1659  99.5%
-   :ref:`Catalan (2) <xfce4terminallangCatalan2>`                                                 9       1909  99.5%
-   :ref:`Mirandese <xfce4terminallangMirandese>`                                                  9       1966  99.5%
-   :ref:`Yiddish, Eastern <xfce4terminallangYiddishEastern>`                                      8       1775  99.5%
-   :ref:`Arabic, Standard <xfce4terminallangArabicStandard>`                                      6       1348  99.6%
-   :ref:`Picard <xfce4terminallangPicard>`                                                        9       2024  99.6%
-   :ref:`Kabyle <xfce4terminallangKabyle>`                                                        8       1815  99.6%
-   :ref:`Lingala (tones) <xfce4terminallangLingalatones>`                                         8       1818  99.6%
-   :ref:`Ticuna <xfce4terminallangTicuna>`                                                        9       2048  99.6%
-   :ref:`Tamazight, Central Atlas <xfce4terminallangTamazightCentralAtlas>`                       8       1822  99.6%
-   :ref:`Mixtec, Metlatónoc <xfce4terminallangMixtecMetlatnoc>`                                   6       1367  99.6%
-   :ref:`Fur <xfce4terminallangFur>`                                                              8       1838  99.6%
-   :ref:`Pular (Adlam) <xfce4terminallangPularAdlam>`                                             7       1613  99.6%
-   :ref:`Assyrian Neo-Aramaic <xfce4terminallangAssyrianNeoAramaic>`                              5       1160  99.6%
-   :ref:`Maldivian <xfce4terminallangMaldivian>`                                                  8       1918  99.6%
-   :ref:`French (Welche) <xfce4terminallangFrenchWelche>`                                         8       1928  99.6%
+   :ref:`Shan <xfce4terminallangshan>`                                                          868        915  5.1%
+   :ref:`Tamil (Sri Lanka) <xfce4terminallangtamilsrilanka>`                                   1000       1073  6.8%
+   :ref:`Tamil <xfce4terminallangtamil>`                                                       1000       1074  6.9%
+   :ref:`Sanskrit (Grantha) <xfce4terminallangsanskritgrantha>`                                 893       1006  11.2%
+   :ref:`Javanese (Javanese) <xfce4terminallangjavanesejavanese>`                              1000       1151  13.1%
+   :ref:`Malayalam <xfce4terminallangmalayalam>`                                               1000       1151  13.1%
+   :ref:`Bengali <xfce4terminallangbengali>`                                                   1000       1166  14.2%
+   :ref:`Khmer, Central <xfce4terminallangkhmercentral>`                                        448        528  15.2%
+   :ref:`Kannada <xfce4terminallangkannada>`                                                    902       1080  16.5%
+   :ref:`Khün <xfce4terminallangkhn>`                                                           361        442  18.3%
+   :ref:`Burmese <xfce4terminallangburmese>`                                                    974       1223  20.4%
+   :ref:`Sanskrit <xfce4terminallangsanskrit>`                                                  755       1000  24.5%
+   :ref:`Tamang, Eastern <xfce4terminallangtamangeastern>`                                       33         45  26.7%
+   :ref:`Mon <xfce4terminallangmon>`                                                            677        946  28.4%
+   :ref:`Marathi <xfce4terminallangmarathi>`                                                   1000       1420  29.6%
+   :ref:`Nepali <xfce4terminallangnepali>`                                                      931       1385  32.8%
+   :ref:`Gujarati <xfce4terminallanggujarati>`                                                 1000       1518  34.1%
+   :ref:`Telugu <xfce4terminallangtelugu>`                                                      716       1129  36.6%
+   :ref:`Maithili <xfce4terminallangmaithili>`                                                  956       1519  37.1%
+   :ref:`Hindi <xfce4terminallanghindi>`                                                       1000       1624  38.4%
+   :ref:`Panjabi, Eastern <xfce4terminallangpanjabieastern>`                                   1000       1825  45.2%
+   :ref:`Sinhala <xfce4terminallangsinhala>`                                                    886       1655  46.5%
+   :ref:`Bhojpuri <xfce4terminallangbhojpuri>`                                                  882       1737  49.2%
+   :ref:`Magahi <xfce4terminallangmagahi>`                                                      812       1716  52.7%
+   :ref:`Chakma <xfce4terminallangchakma>`                                                      495       1444  65.7%
+   :ref:`Vietnamese (Han nom) <xfce4terminallangvietnamesehannom>`                                5        199  97.5%
+   :ref:`Chinese, Jinyu <xfce4terminallangchinesejinyu>`                                          5        212  97.6%
+   :ref:`Japanese (Osaka) <xfce4terminallangjapaneseosaka>`                                       6        308  98.1%
+   :ref:`Thai (2) <xfce4terminallangthai2>`                                                       6        313  98.1%
+   :ref:`Chinese, Yue <xfce4terminallangchineseyue>`                                              4        210  98.1%
+   :ref:`Chinese, Mandarin (Guiyang) <xfce4terminallangchinesemandaringuiyang>`                   4        211  98.1%
+   :ref:`Chinese, Mandarin (Nanjing) <xfce4terminallangchinesemandarinnanjing>`                   4        212  98.1%
+   :ref:`Chinese, Mandarin (Tianjin) <xfce4terminallangchinesemandarintianjin>`                   4        212  98.1%
+   :ref:`Chinese, Xiang <xfce4terminallangchinesexiang>`                                          4        212  98.1%
+   :ref:`Japanese (Tokyo) <xfce4terminallangjapanesetokyo>`                                       6        320  98.1%
+   :ref:`Chinese, Mandarin (Simplified) <xfce4terminallangchinesemandarinsimplified>`             4        225  98.2%
+   :ref:`Nuosu <xfce4terminallangnuosu>`                                                          4        230  98.3%
+   :ref:`Japanese <xfce4terminallangjapanese>`                                                    5        299  98.3%
+   :ref:`Thai <xfce4terminallangthai>`                                                            5        341  98.5%
+   :ref:`Chinese, Mandarin (Harbin) <xfce4terminallangchinesemandarinharbin>`                     3        210  98.6%
+   :ref:`Chinese, Mandarin (Traditional) <xfce4terminallangchinesemandarintraditional>`           3        210  98.6%
+   :ref:`(Jinan) <xfce4terminallangjinan>`                                                        3        211  98.6%
+   :ref:`Chinese, Gan <xfce4terminallangchinesegan>`                                              3        211  98.6%
+   :ref:`Chinese, Wu <xfce4terminallangchinesewu>`                                                3        211  98.6%
+   :ref:`Chinese, Min Nan <xfce4terminallangchineseminnan>`                                       3        212  98.6%
+   :ref:`Chinese, Hakka <xfce4terminallangchinesehakka>`                                          2        212  99.1%
+   :ref:`Chinese, Mandarin (Beijing) <xfce4terminallangchinesemandarinbeijing>`                   2        212  99.1%
+   :ref:`Bora <xfce4terminallangbora>`                                                           12       1598  99.2%
+   :ref:`Chickasaw <xfce4terminallangchickasaw>`                                                  4        554  99.3%
+   :ref:`Lao <xfce4terminallanglao>`                                                              3        426  99.3%
+   :ref:`Shipibo-Conibo <xfce4terminallangshipiboconibo>`                                        17       2540  99.3%
+   :ref:`Orok <xfce4terminallangorok>`                                                            8       1245  99.4%
+   :ref:`Yaneshaʼ <xfce4terminallangyanesha>`                                                    16       2536  99.4%
+   :ref:`Navajo <xfce4terminallangnavajo>`                                                       10       1600  99.4%
+   :ref:`Gumuz <xfce4terminallanggumuz>`                                                          8       1283  99.4%
+   :ref:`Amarakaeri <xfce4terminallangamarakaeri>`                                                9       1446  99.4%
+   :ref:`Veps <xfce4terminallangveps>`                                                            8       1323  99.4%
+   :ref:`Nanai <xfce4terminallangnanai>`                                                          7       1207  99.4%
+   :ref:`South Azerbaijani <xfce4terminallangsouthazerbaijani>`                                   8       1396  99.4%
+   :ref:`Secoya <xfce4terminallangsecoya>`                                                        8       1409  99.4%
+   :ref:`(Yeonbyeon) <xfce4terminallangyeonbyeon>`                                                6       1061  99.4%
+   :ref:`Evenki <xfce4terminallangevenki>`                                                        5        899  99.4%
+   :ref:`Colorado <xfce4terminallangcolorado>`                                                    7       1263  99.4%
+   :ref:`Siona <xfce4terminallangsiona>`                                                          8       1492  99.5%
+   :ref:`Gilyak <xfce4terminallanggilyak>`                                                        8       1504  99.5%
+   :ref:`Korean <xfce4terminallangkorean>`                                                        6       1185  99.5%
+   :ref:`Tem <xfce4terminallangtem>`                                                              8       1659  99.5%
+   :ref:`Catalan (2) <xfce4terminallangcatalan2>`                                                 9       1909  99.5%
+   :ref:`Mirandese <xfce4terminallangmirandese>`                                                  9       1966  99.5%
+   :ref:`Yiddish, Eastern <xfce4terminallangyiddisheastern>`                                      8       1775  99.5%
+   :ref:`Arabic, Standard <xfce4terminallangarabicstandard>`                                      6       1348  99.6%
+   :ref:`Picard <xfce4terminallangpicard>`                                                        9       2024  99.6%
+   :ref:`Kabyle <xfce4terminallangkabyle>`                                                        8       1815  99.6%
+   :ref:`Lingala (tones) <xfce4terminallanglingalatones>`                                         8       1818  99.6%
+   :ref:`Ticuna <xfce4terminallangticuna>`                                                        9       2048  99.6%
+   :ref:`Tamazight, Central Atlas <xfce4terminallangtamazightcentralatlas>`                       8       1822  99.6%
+   :ref:`Mixtec, Metlatónoc <xfce4terminallangmixtecmetlatnoc>`                                   6       1367  99.6%
+   :ref:`Fur <xfce4terminallangfur>`                                                              8       1838  99.6%
+   :ref:`Pular (Adlam) <xfce4terminallangpularadlam>`                                             7       1613  99.6%
+   :ref:`Assyrian Neo-Aramaic <xfce4terminallangassyrianneoaramaic>`                              5       1160  99.6%
+   :ref:`Maldivian <xfce4terminallangmaldivian>`                                                  8       1918  99.6%
+   :ref:`French (Welche) <xfce4terminallangfrenchwelche>`                                         8       1928  99.6%
    :ref:`Éwé <xfce4terminallangw>`                                                                9       2230  99.6%
-   :ref:`Saint Lucian Creole French <xfce4terminallangSaintLucianCreoleFrench>`                   7       1777  99.6%
-   :ref:`Ga <xfce4terminallangGa>`                                                                8       2039  99.6%
-   :ref:`Gen <xfce4terminallangGen>`                                                              9       2309  99.6%
-   :ref:`Farsi, Western <xfce4terminallangFarsiWestern>`                                          7       1822  99.6%
-   :ref:`Dendi <xfce4terminallangDendi>`                                                          6       1569  99.6%
-   :ref:`Mazahua Central <xfce4terminallangMazahuaCentral>`                                       6       1574  99.6%
-   :ref:`Maori (2) <xfce4terminallangMaori2>`                                                     9       2385  99.6%
-   :ref:`Serer-Sine <xfce4terminallangSererSine>`                                                 6       1596  99.6%
-   :ref:`Dari <xfce4terminallangDari>`                                                            7       1872  99.6%
-   :ref:`Ditammari <xfce4terminallangDitammari>`                                                  7       1882  99.6%
-   :ref:`Uduk <xfce4terminallangUduk>`                                                           12       3247  99.6%
-   :ref:`Yoruba <xfce4terminallangYoruba>`                                                        9       2454  99.6%
-   :ref:`Urdu <xfce4terminallangUrdu>`                                                            8       2237  99.6%
-   :ref:`Pashto, Northern <xfce4terminallangPashtoNorthern>`                                      8       2242  99.6%
-   :ref:`Seraiki <xfce4terminallangSeraiki>`                                                      8       2242  99.6%
-   :ref:`Belanda Viri <xfce4terminallangBelandaViri>`                                             8       2246  99.6%
-   :ref:`Urdu (2) <xfce4terminallangUrdu2>`                                                       8       2251  99.6%
-   :ref:`Bamun <xfce4terminallangBamun>`                                                          8       2285  99.6%
-   :ref:`Dagaare, Southern <xfce4terminallangDagaareSouthern>`                                    9       2582  99.7%
-   :ref:`Chinantec, Chiltepec <xfce4terminallangChinantecChiltepec>`                              6       1729  99.7%
-   :ref:`Aja <xfce4terminallangAja>`                                                              7       2061  99.7%
-   :ref:`Panjabi, Western <xfce4terminallangPanjabiWestern>`                                      8       2419  99.7%
-   :ref:`Dinka, Northeastern <xfce4terminallangDinkaNortheastern>`                                5       1529  99.7%
-   :ref:`Mòoré <xfce4terminallangMor>`                                                            8       2447  99.7%
-   :ref:`Otomi, Mezquital <xfce4terminallangOtomiMezquital>`                                      6       1849  99.7%
-   :ref:`Vietnamese <xfce4terminallangVietnamese>`                                                8       2502  99.7%
-   :ref:`Fon <xfce4terminallangFon>`                                                              8       2520  99.7%
-   :ref:`Lamnso' <xfce4terminallangLamnso>`                                                       7       2237  99.7%
-   :ref:`Baatonum <xfce4terminallangBaatonum>`                                                    6       1939  99.7%
-   :ref:`Waama <xfce4terminallangWaama>`                                                          3       1000  99.7%
-   :ref:`Dangme <xfce4terminallangDangme>`                                                        8       2912  99.7%
-   :ref:`Tai Dam <xfce4terminallangTaiDam>`                                                       6       2386  99.7%
-   :ref:`Dzongkha <xfce4terminallangDzongkha>`                                                    7       3060  99.8%
-   :ref:`Tibetan, Central <xfce4terminallangTibetanCentral>`                                      7       3174  99.8%
+   :ref:`Saint Lucian Creole French <xfce4terminallangsaintluciancreolefrench>`                   7       1777  99.6%
+   :ref:`Ga <xfce4terminallangga>`                                                                8       2039  99.6%
+   :ref:`Gen <xfce4terminallanggen>`                                                              9       2309  99.6%
+   :ref:`Farsi, Western <xfce4terminallangfarsiwestern>`                                          7       1822  99.6%
+   :ref:`Dendi <xfce4terminallangdendi>`                                                          6       1569  99.6%
+   :ref:`Mazahua Central <xfce4terminallangmazahuacentral>`                                       6       1574  99.6%
+   :ref:`Maori (2) <xfce4terminallangmaori2>`                                                     9       2385  99.6%
+   :ref:`Serer-Sine <xfce4terminallangserersine>`                                                 6       1596  99.6%
+   :ref:`Dari <xfce4terminallangdari>`                                                            7       1872  99.6%
+   :ref:`Ditammari <xfce4terminallangditammari>`                                                  7       1882  99.6%
+   :ref:`Uduk <xfce4terminallanguduk>`                                                           12       3247  99.6%
+   :ref:`Yoruba <xfce4terminallangyoruba>`                                                        9       2454  99.6%
+   :ref:`Urdu <xfce4terminallangurdu>`                                                            8       2237  99.6%
+   :ref:`Pashto, Northern <xfce4terminallangpashtonorthern>`                                      8       2242  99.6%
+   :ref:`Seraiki <xfce4terminallangseraiki>`                                                      8       2242  99.6%
+   :ref:`Belanda Viri <xfce4terminallangbelandaviri>`                                             8       2246  99.6%
+   :ref:`Urdu (2) <xfce4terminallangurdu2>`                                                       8       2251  99.6%
+   :ref:`Bamun <xfce4terminallangbamun>`                                                          8       2285  99.6%
+   :ref:`Dagaare, Southern <xfce4terminallangdagaaresouthern>`                                    9       2582  99.7%
+   :ref:`Chinantec, Chiltepec <xfce4terminallangchinantecchiltepec>`                              6       1729  99.7%
+   :ref:`Aja <xfce4terminallangaja>`                                                              7       2061  99.7%
+   :ref:`Panjabi, Western <xfce4terminallangpanjabiwestern>`                                      8       2419  99.7%
+   :ref:`Dinka, Northeastern <xfce4terminallangdinkanortheastern>`                                5       1529  99.7%
+   :ref:`Mòoré <xfce4terminallangmor>`                                                            8       2447  99.7%
+   :ref:`Otomi, Mezquital <xfce4terminallangotomimezquital>`                                      6       1849  99.7%
+   :ref:`Vietnamese <xfce4terminallangvietnamese>`                                                8       2502  99.7%
+   :ref:`Fon <xfce4terminallangfon>`                                                              8       2520  99.7%
+   :ref:`Lamnso' <xfce4terminallanglamnso>`                                                       7       2237  99.7%
+   :ref:`Baatonum <xfce4terminallangbaatonum>`                                                    6       1939  99.7%
+   :ref:`Waama <xfce4terminallangwaama>`                                                          3       1000  99.7%
+   :ref:`Dangme <xfce4terminallangdangme>`                                                        8       2912  99.7%
+   :ref:`Tai Dam <xfce4terminallangtaidam>`                                                       6       2386  99.7%
+   :ref:`Dzongkha <xfce4terminallangdzongkha>`                                                    7       3060  99.8%
+   :ref:`Tibetan, Central <xfce4terminallangtibetancentral>`                                      7       3174  99.8%
    ====================================================================================  ==========  =========  =============
 
-.. _xfce4terminallangShan:
+.. _xfce4terminallangshan:
 
 Shan
 ^^^^
@@ -446,7 +451,7 @@ Total codepoints: 15
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width 9.
 
-.. _xfce4terminallangTamilSriLanka:
+.. _xfce4terminallangtamilsrilanka:
 
 Tamil (Sri Lanka)
 ^^^^^^^^^^^^^^^^^
@@ -477,7 +482,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangTamil:
+.. _xfce4terminallangtamil:
 
 Tamil
 ^^^^^
@@ -508,7 +513,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangSanskritGrantha:
+.. _xfce4terminallangsanskritgrantha:
 
 Sanskrit (Grantha)
 ^^^^^^^^^^^^^^^^^^
@@ -549,7 +554,7 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *xfce4-terminal* measures width 14.
 
-.. _xfce4terminallangJavaneseJavanese:
+.. _xfce4terminallangjavanesejavanese:
 
 Javanese (Javanese)
 ^^^^^^^^^^^^^^^^^^^
@@ -580,7 +585,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangMalayalam:
+.. _xfce4terminallangmalayalam:
 
 Malayalam
 ^^^^^^^^^
@@ -636,7 +641,7 @@ Total codepoints: 29
 - python `wcwidth.wcswidth()`_ measures width 17,
   while *xfce4-terminal* measures width 21.
 
-.. _xfce4terminallangBengali:
+.. _xfce4terminallangbengali:
 
 Bengali
 ^^^^^^^
@@ -675,7 +680,7 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *xfce4-terminal* measures width 12.
 
-.. _xfce4terminallangKhmerCentral:
+.. _xfce4terminallangkhmercentral:
 
 Khmer, Central
 ^^^^^^^^^^^^^^
@@ -738,7 +743,7 @@ Total codepoints: 36
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *xfce4-terminal* measures width 25.
 
-.. _xfce4terminallangKannada:
+.. _xfce4terminallangkannada:
 
 Kannada
 ^^^^^^^
@@ -769,7 +774,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangKhn:
+.. _xfce4terminallangkhn:
 
 Khün
 ^^^^
@@ -818,7 +823,7 @@ Total codepoints: 22
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *xfce4-terminal* measures width 15.
 
-.. _xfce4terminallangBurmese:
+.. _xfce4terminallangburmese:
 
 Burmese
 ^^^^^^^
@@ -861,7 +866,7 @@ Total codepoints: 16
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *xfce4-terminal* measures width 11.
 
-.. _xfce4terminallangSanskrit:
+.. _xfce4terminallangsanskrit:
 
 Sanskrit
 ^^^^^^^^
@@ -902,7 +907,7 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *xfce4-terminal* measures width 13.
 
-.. _xfce4terminallangTamangEastern:
+.. _xfce4terminallangtamangeastern:
 
 Tamang, Eastern
 ^^^^^^^^^^^^^^^
@@ -935,7 +940,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangMon:
+.. _xfce4terminallangmon:
 
 Mon
 ^^^
@@ -972,7 +977,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *xfce4-terminal* measures width 7.
 
-.. _xfce4terminallangMarathi:
+.. _xfce4terminallangmarathi:
 
 Marathi
 ^^^^^^^
@@ -1004,7 +1009,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 5.
 
-.. _xfce4terminallangNepali:
+.. _xfce4terminallangnepali:
 
 Nepali
 ^^^^^^
@@ -1035,7 +1040,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangGujarati:
+.. _xfce4terminallanggujarati:
 
 Gujarati
 ^^^^^^^^
@@ -1066,7 +1071,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangTelugu:
+.. _xfce4terminallangtelugu:
 
 Telugu
 ^^^^^^
@@ -1106,7 +1111,7 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *xfce4-terminal* measures width 10.
 
-.. _xfce4terminallangMaithili:
+.. _xfce4terminallangmaithili:
 
 Maithili
 ^^^^^^^^
@@ -1141,7 +1146,7 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *xfce4-terminal* measures width 7.
 
-.. _xfce4terminallangHindi:
+.. _xfce4terminallanghindi:
 
 Hindi
 ^^^^^
@@ -1172,7 +1177,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangPanjabiEastern:
+.. _xfce4terminallangpanjabieastern:
 
 Panjabi, Eastern
 ^^^^^^^^^^^^^^^^
@@ -1205,7 +1210,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangSinhala:
+.. _xfce4terminallangsinhala:
 
 Sinhala
 ^^^^^^^
@@ -1236,7 +1241,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangBhojpuri:
+.. _xfce4terminallangbhojpuri:
 
 Bhojpuri
 ^^^^^^^^
@@ -1273,7 +1278,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width 10.
 
-.. _xfce4terminallangMagahi:
+.. _xfce4terminallangmagahi:
 
 Magahi
 ^^^^^^
@@ -1310,7 +1315,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width 10.
 
-.. _xfce4terminallangChakma:
+.. _xfce4terminallangchakma:
 
 Chakma
 ^^^^^^
@@ -1350,7 +1355,7 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *xfce4-terminal* measures width 8.
 
-.. _xfce4terminallangVietnameseHannom:
+.. _xfce4terminallangvietnamesehannom:
 
 Vietnamese (Han nom)
 ^^^^^^^^^^^^^^^^^^^^
@@ -1385,7 +1390,7 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *xfce4-terminal* measures width -30.
 
-.. _xfce4terminallangChineseJinyu:
+.. _xfce4terminallangchinesejinyu:
 
 Chinese, Jinyu
 ^^^^^^^^^^^^^^
@@ -1418,7 +1423,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *xfce4-terminal* measures width 5.
 
-.. _xfce4terminallangJapaneseOsaka:
+.. _xfce4terminallangjapaneseosaka:
 
 Japanese (Osaka)
 ^^^^^^^^^^^^^^^^
@@ -1447,7 +1452,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width -20.
 
-.. _xfce4terminallangThai2:
+.. _xfce4terminallangthai2:
 
 Thai (2)
 ^^^^^^^^
@@ -1493,7 +1498,7 @@ Total codepoints: 19
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *xfce4-terminal* measures width -25.
 
-.. _xfce4terminallangChineseYue:
+.. _xfce4terminallangchineseyue:
 
 Chinese, Yue
 ^^^^^^^^^^^^
@@ -1525,7 +1530,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width -12.
 
-.. _xfce4terminallangChineseMandarinGuiyang:
+.. _xfce4terminallangchinesemandaringuiyang:
 
 Chinese, Mandarin (Guiyang)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1557,7 +1562,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width -12.
 
-.. _xfce4terminallangChineseMandarinNanjing:
+.. _xfce4terminallangchinesemandarinnanjing:
 
 Chinese, Mandarin (Nanjing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1592,7 +1597,7 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *xfce4-terminal* measures width -6.
 
-.. _xfce4terminallangChineseMandarinTianjin:
+.. _xfce4terminallangchinesemandarintianjin:
 
 Chinese, Mandarin (Tianjin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1633,7 +1638,7 @@ Total codepoints: 14
 - python `wcwidth.wcswidth()`_ measures width 28,
   while *xfce4-terminal* measures width -12.
 
-.. _xfce4terminallangChineseXiang:
+.. _xfce4terminallangchinesexiang:
 
 Chinese, Xiang
 ^^^^^^^^^^^^^^
@@ -1665,7 +1670,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width -10.
 
-.. _xfce4terminallangJapaneseTokyo:
+.. _xfce4terminallangjapanesetokyo:
 
 Japanese (Tokyo)
 ^^^^^^^^^^^^^^^^
@@ -1694,7 +1699,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width -20.
 
-.. _xfce4terminallangChineseMandarinSimplified:
+.. _xfce4terminallangchinesemandarinsimplified:
 
 Chinese, Mandarin (Simplified)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1723,7 +1728,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangNuosu:
+.. _xfce4terminallangnuosu:
 
 Nuosu
 ^^^^^
@@ -1756,7 +1761,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangJapanese:
+.. _xfce4terminallangjapanese:
 
 Japanese
 ^^^^^^^^
@@ -1795,7 +1800,7 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *xfce4-terminal* measures width -14.
 
-.. _xfce4terminallangThai:
+.. _xfce4terminallangthai:
 
 Thai
 ^^^^
@@ -1823,7 +1828,7 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -5.
 
-.. _xfce4terminallangChineseMandarinHarbin:
+.. _xfce4terminallangchinesemandarinharbin:
 
 Chinese, Mandarin (Harbin)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1855,7 +1860,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width -12.
 
-.. _xfce4terminallangChineseMandarinTraditional:
+.. _xfce4terminallangchinesemandarintraditional:
 
 Chinese, Mandarin (Traditional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1894,7 +1899,7 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 24,
   while *xfce4-terminal* measures width 10.
 
-.. _xfce4terminallangJinan:
+.. _xfce4terminallangjinan:
 
 (Jinan)
 ^^^^^^^
@@ -1926,7 +1931,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width -12.
 
-.. _xfce4terminallangChineseGan:
+.. _xfce4terminallangchinesegan:
 
 Chinese, Gan
 ^^^^^^^^^^^^
@@ -1957,7 +1962,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *xfce4-terminal* measures width -40.
 
-.. _xfce4terminallangChineseWu:
+.. _xfce4terminallangchinesewu:
 
 Chinese, Wu
 ^^^^^^^^^^^
@@ -1989,7 +1994,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width -12.
 
-.. _xfce4terminallangChineseMinNan:
+.. _xfce4terminallangchineseminnan:
 
 Chinese, Min Nan
 ^^^^^^^^^^^^^^^^
@@ -2020,7 +2025,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *xfce4-terminal* measures width -40.
 
-.. _xfce4terminallangChineseHakka:
+.. _xfce4terminallangchinesehakka:
 
 Chinese, Hakka
 ^^^^^^^^^^^^^^
@@ -2051,7 +2056,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *xfce4-terminal* measures width -18.
 
-.. _xfce4terminallangChineseMandarinBeijing:
+.. _xfce4terminallangchinesemandarinbeijing:
 
 Chinese, Mandarin (Beijing)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2089,7 +2094,7 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 22,
   while *xfce4-terminal* measures width -22.
 
-.. _xfce4terminallangBora:
+.. _xfce4terminallangbora:
 
 Bora
 ^^^^
@@ -2125,7 +2130,7 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *xfce4-terminal* measures width -8.
 
-.. _xfce4terminallangChickasaw:
+.. _xfce4terminallangchickasaw:
 
 Chickasaw
 ^^^^^^^^^
@@ -2159,7 +2164,7 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangLao:
+.. _xfce4terminallanglao:
 
 Lao
 ^^^
@@ -2189,7 +2194,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -55.
 
-.. _xfce4terminallangShipiboConibo:
+.. _xfce4terminallangshipiboconibo:
 
 Shipibo-Conibo
 ^^^^^^^^^^^^^^
@@ -2227,7 +2232,7 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangOrok:
+.. _xfce4terminallangorok:
 
 Orok
 ^^^^
@@ -2260,7 +2265,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangYanesha:
+.. _xfce4terminallangyanesha:
 
 Yaneshaʼ
 ^^^^^^^^
@@ -2297,7 +2302,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width -2.
 
-.. _xfce4terminallangNavajo:
+.. _xfce4terminallangnavajo:
 
 Navajo
 ^^^^^^
@@ -2327,7 +2332,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -1.
 
-.. _xfce4terminallangGumuz:
+.. _xfce4terminallanggumuz:
 
 Gumuz
 ^^^^^
@@ -2359,7 +2364,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *xfce4-terminal* measures width -5.
 
-.. _xfce4terminallangAmarakaeri:
+.. _xfce4terminallangamarakaeri:
 
 Amarakaeri
 ^^^^^^^^^^
@@ -2392,7 +2397,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangVeps:
+.. _xfce4terminallangveps:
 
 Veps
 ^^^^
@@ -2427,7 +2432,7 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangNanai:
+.. _xfce4terminallangnanai:
 
 Nanai
 ^^^^^
@@ -2464,7 +2469,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width 2.
 
-.. _xfce4terminallangSouthAzerbaijani:
+.. _xfce4terminallangsouthazerbaijani:
 
 South Azerbaijani
 ^^^^^^^^^^^^^^^^^
@@ -2508,7 +2513,7 @@ Total codepoints: 17
 - python `wcwidth.wcswidth()`_ measures width 16,
   while *xfce4-terminal* measures width 5.
 
-.. _xfce4terminallangSecoya:
+.. _xfce4terminallangsecoya:
 
 Secoya
 ^^^^^^
@@ -2538,7 +2543,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangYeonbyeon:
+.. _xfce4terminallangyeonbyeon:
 
 (Yeonbyeon)
 ^^^^^^^^^^^
@@ -2567,7 +2572,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangEvenki:
+.. _xfce4terminallangevenki:
 
 Evenki
 ^^^^^^
@@ -2597,7 +2602,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -7.
 
-.. _xfce4terminallangColorado:
+.. _xfce4terminallangcolorado:
 
 Colorado
 ^^^^^^^^
@@ -2630,7 +2635,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangSiona:
+.. _xfce4terminallangsiona:
 
 Siona
 ^^^^^
@@ -2667,7 +2672,7 @@ Total codepoints: 10
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width 6.
 
-.. _xfce4terminallangGilyak:
+.. _xfce4terminallanggilyak:
 
 Gilyak
 ^^^^^^
@@ -2698,7 +2703,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangKorean:
+.. _xfce4terminallangkorean:
 
 Korean
 ^^^^^^
@@ -2730,7 +2735,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 10,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangTem:
+.. _xfce4terminallangtem:
 
 Tem
 ^^^
@@ -2758,7 +2763,7 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -5.
 
-.. _xfce4terminallangCatalan2:
+.. _xfce4terminallangcatalan2:
 
 Catalan (2)
 ^^^^^^^^^^^
@@ -2792,7 +2797,7 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangMirandese:
+.. _xfce4terminallangmirandese:
 
 Mirandese
 ^^^^^^^^^
@@ -2823,7 +2828,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -7.
 
-.. _xfce4terminallangYiddishEastern:
+.. _xfce4terminallangyiddisheastern:
 
 Yiddish, Eastern
 ^^^^^^^^^^^^^^^^
@@ -2852,7 +2857,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangArabicStandard:
+.. _xfce4terminallangarabicstandard:
 
 Arabic, Standard
 ^^^^^^^^^^^^^^^^
@@ -2881,7 +2886,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -6.
 
-.. _xfce4terminallangPicard:
+.. _xfce4terminallangpicard:
 
 Picard
 ^^^^^^
@@ -2920,7 +2925,7 @@ Total codepoints: 12
 - python `wcwidth.wcswidth()`_ measures width 12,
   while *xfce4-terminal* measures width 5.
 
-.. _xfce4terminallangKabyle:
+.. _xfce4terminallangkabyle:
 
 Kabyle
 ^^^^^^
@@ -2955,7 +2960,7 @@ Total codepoints: 8
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *xfce4-terminal* measures width -2.
 
-.. _xfce4terminallangLingalatones:
+.. _xfce4terminallanglingalatones:
 
 Lingala (tones)
 ^^^^^^^^^^^^^^^
@@ -2993,7 +2998,7 @@ Total codepoints: 11
 - python `wcwidth.wcswidth()`_ measures width 8,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangTicuna:
+.. _xfce4terminallangticuna:
 
 Ticuna
 ^^^^^^
@@ -3021,7 +3026,7 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -7.
 
-.. _xfce4terminallangTamazightCentralAtlas:
+.. _xfce4terminallangtamazightcentralatlas:
 
 Tamazight, Central Atlas
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3049,7 +3054,7 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -9.
 
-.. _xfce4terminallangMixtecMetlatnoc:
+.. _xfce4terminallangmixtecmetlatnoc:
 
 Mixtec, Metlatónoc
 ^^^^^^^^^^^^^^^^^^
@@ -3085,7 +3090,7 @@ Total codepoints: 9
 - python `wcwidth.wcswidth()`_ measures width 9,
   while *xfce4-terminal* measures width 7.
 
-.. _xfce4terminallangFur:
+.. _xfce4terminallangfur:
 
 Fur
 ^^^
@@ -3114,7 +3119,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangPularAdlam:
+.. _xfce4terminallangpularadlam:
 
 Pular (Adlam)
 ^^^^^^^^^^^^^
@@ -3146,7 +3151,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangAssyrianNeoAramaic:
+.. _xfce4terminallangassyrianneoaramaic:
 
 Assyrian Neo-Aramaic
 ^^^^^^^^^^^^^^^^^^^^
@@ -3176,7 +3181,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -2.
 
-.. _xfce4terminallangMaldivian:
+.. _xfce4terminallangmaldivian:
 
 Maldivian
 ^^^^^^^^^
@@ -3207,7 +3212,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangFrenchWelche:
+.. _xfce4terminallangfrenchwelche:
 
 French (Welche)
 ^^^^^^^^^^^^^^^
@@ -3276,7 +3281,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangSaintLucianCreoleFrench:
+.. _xfce4terminallangsaintluciancreolefrench:
 
 Saint Lucian Creole French
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3306,7 +3311,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -5.
 
-.. _xfce4terminallangGa:
+.. _xfce4terminallangga:
 
 Ga
 ^^
@@ -3339,7 +3344,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width 1.
 
-.. _xfce4terminallangGen:
+.. _xfce4terminallanggen:
 
 Gen
 ^^^
@@ -3372,7 +3377,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width -2.
 
-.. _xfce4terminallangFarsiWestern:
+.. _xfce4terminallangfarsiwestern:
 
 Farsi, Western
 ^^^^^^^^^^^^^^
@@ -3404,7 +3409,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *xfce4-terminal* measures width -1.
 
-.. _xfce4terminallangDendi:
+.. _xfce4terminallangdendi:
 
 Dendi
 ^^^^^
@@ -3435,7 +3440,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width -2.
 
-.. _xfce4terminallangMazahuaCentral:
+.. _xfce4terminallangmazahuacentral:
 
 Mazahua Central
 ^^^^^^^^^^^^^^^
@@ -3464,7 +3469,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -2.
 
-.. _xfce4terminallangMaori2:
+.. _xfce4terminallangmaori2:
 
 Maori (2)
 ^^^^^^^^^
@@ -3493,7 +3498,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width 1.
 
-.. _xfce4terminallangSererSine:
+.. _xfce4terminallangserersine:
 
 Serer-Sine
 ^^^^^^^^^^
@@ -3521,7 +3526,7 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -7.
 
-.. _xfce4terminallangDari:
+.. _xfce4terminallangdari:
 
 Dari
 ^^^^
@@ -3551,7 +3556,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangDitammari:
+.. _xfce4terminallangditammari:
 
 Ditammari
 ^^^^^^^^^
@@ -3582,7 +3587,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width -1.
 
-.. _xfce4terminallangUduk:
+.. _xfce4terminallanguduk:
 
 Uduk
 ^^^^
@@ -3612,7 +3617,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangYoruba:
+.. _xfce4terminallangyoruba:
 
 Yoruba
 ^^^^^^
@@ -3645,7 +3650,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width 3.
 
-.. _xfce4terminallangUrdu:
+.. _xfce4terminallangurdu:
 
 Urdu
 ^^^^
@@ -3679,7 +3684,7 @@ Total codepoints: 7
 - python `wcwidth.wcswidth()`_ measures width 7,
   while *xfce4-terminal* measures width 1.
 
-.. _xfce4terminallangPashtoNorthern:
+.. _xfce4terminallangpashtonorthern:
 
 Pashto, Northern
 ^^^^^^^^^^^^^^^^
@@ -3710,7 +3715,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangSeraiki:
+.. _xfce4terminallangseraiki:
 
 Seraiki
 ^^^^^^^
@@ -3741,7 +3746,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangBelandaViri:
+.. _xfce4terminallangbelandaviri:
 
 Belanda Viri
 ^^^^^^^^^^^^
@@ -3770,7 +3775,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangUrdu2:
+.. _xfce4terminallangurdu2:
 
 Urdu (2)
 ^^^^^^^^
@@ -3803,7 +3808,7 @@ Total codepoints: 6
 - python `wcwidth.wcswidth()`_ measures width 6,
   while *xfce4-terminal* measures width 4.
 
-.. _xfce4terminallangBamun:
+.. _xfce4terminallangbamun:
 
 Bamun
 ^^^^^
@@ -3833,7 +3838,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangDagaareSouthern:
+.. _xfce4terminallangdagaaresouthern:
 
 Dagaare, Southern
 ^^^^^^^^^^^^^^^^^
@@ -3865,7 +3870,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *xfce4-terminal* measures width -4.
 
-.. _xfce4terminallangChinantecChiltepec:
+.. _xfce4terminallangchinantecchiltepec:
 
 Chinantec, Chiltepec
 ^^^^^^^^^^^^^^^^^^^^
@@ -3896,7 +3901,7 @@ Total codepoints: 4
 - python `wcwidth.wcswidth()`_ measures width 4,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangAja:
+.. _xfce4terminallangaja:
 
 Aja
 ^^^
@@ -3925,7 +3930,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangPanjabiWestern:
+.. _xfce4terminallangpanjabiwestern:
 
 Panjabi, Western
 ^^^^^^^^^^^^^^^^
@@ -3955,7 +3960,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangDinkaNortheastern:
+.. _xfce4terminallangdinkanortheastern:
 
 Dinka, Northeastern
 ^^^^^^^^^^^^^^^^^^^
@@ -3987,7 +3992,7 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 5,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangMor:
+.. _xfce4terminallangmor:
 
 Mòoré
 ^^^^^
@@ -4027,7 +4032,7 @@ Total codepoints: 13
 - python `wcwidth.wcswidth()`_ measures width 13,
   while *xfce4-terminal* measures width 5.
 
-.. _xfce4terminallangOtomiMezquital:
+.. _xfce4terminallangotomimezquital:
 
 Otomi, Mezquital
 ^^^^^^^^^^^^^^^^
@@ -4056,7 +4061,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -6.
 
-.. _xfce4terminallangVietnamese:
+.. _xfce4terminallangvietnamese:
 
 Vietnamese
 ^^^^^^^^^^
@@ -4086,7 +4091,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -1.
 
-.. _xfce4terminallangFon:
+.. _xfce4terminallangfon:
 
 Fon
 ^^^
@@ -4114,7 +4119,7 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -2.
 
-.. _xfce4terminallangLamnso:
+.. _xfce4terminallanglamnso:
 
 Lamnso'
 ^^^^^^^
@@ -4144,7 +4149,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangBaatonum:
+.. _xfce4terminallangbaatonum:
 
 Baatonum
 ^^^^^^^^
@@ -4173,7 +4178,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -1.
 
-.. _xfce4terminallangWaama:
+.. _xfce4terminallangwaama:
 
 Waama
 ^^^^^
@@ -4201,7 +4206,7 @@ Total codepoints: 1
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -3.
 
-.. _xfce4terminallangDangme:
+.. _xfce4terminallangdangme:
 
 Dangme
 ^^^^^^
@@ -4230,7 +4235,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 2,
   while *xfce4-terminal* measures width -1.
 
-.. _xfce4terminallangTaiDam:
+.. _xfce4terminallangtaidam:
 
 Tai Dam
 ^^^^^^^
@@ -4259,7 +4264,7 @@ Total codepoints: 2
 - python `wcwidth.wcswidth()`_ measures width 1,
   while *xfce4-terminal* measures width -2.
 
-.. _xfce4terminallangDzongkha:
+.. _xfce4terminallangdzongkha:
 
 Dzongkha
 ^^^^^^^^
@@ -4289,7 +4294,7 @@ Total codepoints: 3
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *xfce4-terminal* measures width 0.
 
-.. _xfce4terminallangTibetanCentral:
+.. _xfce4terminallangtibetancentral:
 
 Tibetan, Central
 ^^^^^^^^^^^^^^^^
