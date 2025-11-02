@@ -9,6 +9,12 @@ import contextlib
 import unicodedata
 import colorsys
 
+# Try to use faster C-based YAML loader
+try:
+    from yaml import CSafeLoader as SafeLoader
+except ImportError:
+    from yaml import SafeLoader
+
 # 3rd party
 import wcwidth
 import tabulate
@@ -134,7 +140,7 @@ def load_terminal_detail_mixins():
         return {}
 
     with open(TERMINAL_DETAIL_MIXINS_PATH, 'r') as f:
-        data = yaml.safe_load(f)
+        data = yaml.load(f, Loader=SafeLoader)
 
     # Normalize keys to lowercase for case-insensitive matching
     terminals = data.get('terminals', {})
@@ -268,7 +274,7 @@ def make_score_table():
             if fname.endswith(".yaml") and os.path.isfile(os.path.join(DATA_PATH, fname))
             and fname != 'terminal_detail_mixins.yaml'
         ]:
-            data = yaml.safe_load(open(yaml_path, "r"))
+            data = yaml.load(open(yaml_path, "r"), Loader=SafeLoader)
 
             # determine score for 'WIDE',
             version_best_wide = data["test_results"]["unicode_wide_version"]
@@ -495,13 +501,13 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_vs15"
                 ),
-                "Mode\n2027": wrap_score_with_hyperlink(
+                "Mode 2027": wrap_score_with_hyperlink(
                     mode_2027_status,
                     mode_2027_score,
                     result["terminal_software_name"],
                     "_dec_modes"
                 ) if not math.isnan(mode_2027_score) else wrap_with_score_role("N/A", 0.0),
-                "DEC\nModes": wrap_score_with_hyperlink(
+                "DEC Modes": wrap_score_with_hyperlink(
                     dec_modes_display,
                     result["score_dec_modes_scaled"] if not math.isnan(result["score_dec_modes_scaled"]) else 0.0,
                     result["terminal_software_name"],

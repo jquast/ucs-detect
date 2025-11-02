@@ -1,3 +1,5 @@
 .wy-nav-content {
-    max-width: 1300px !important;
+    max-width: none !important;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
 }

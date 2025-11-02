@@ -4,7 +4,7 @@ Extraterm
 ---------
 
 
-Tested Software version 0.81.4\ on Darwin.
+Tested Software version 0.81.4 on Darwin.
 The homepage URL of this terminal is https://extraterm.org/.
 Full results available at ucs-detect_ repository path
 `data/macos-ExtratermQt-0.81.4.yaml <https://github.com/jquast/ucs-detect/blob/master/data/macos-ExtratermQt-0.81.4.yaml>`_.
