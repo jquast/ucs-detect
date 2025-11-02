@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *terminology*:
      5  :ref:`VS15 <terminologyvs15>`           0.00%        0.0%
      6  :ref:`Sixel <terminologysixel>`         no           0.0%
      7  :ref:`DEC Modes <terminologydecmodes>`  0            0.0%
-     8  :ref:`TIME <terminologytime>`           70.06s       87.4%
+     8  :ref:`TIME <terminologytime>`           70.06s       87.8%
    ===  ======================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 25.88%
+- Raw Final Score: 25.91%
   (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
@@ -110,12 +110,12 @@ Test execution time:
 - Elapsed time: 70.06 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 87.4%
+- Scaled result: 87.8%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 52.95%
 
@@ -315,9 +315,9 @@ support for the Sixel graphics protocol, which allows inline image rendering.
 Language Support
 ++++++++++++++++
 
-The following 73 languages were tested with 100% success:
+The following 52 languages were tested with 100% success:
 
-(Jinan), (Yeonbyeon), Aja, Amarakaeri, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Japanese, Japanese (Osaka), Japanese (Tokyo), Kabyle, Korean, Lamnso', Lingala (tones), Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Picard, Saint Lucian Creole French, Secoya, Shipibo-Conibo, Siona, South Azerbaijani, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yoruba, Éwé.
+Aja, Amarakaeri, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Mandarin (Simplified), Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Kabyle, Korean, Lamnso', Lingala (tones), Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mòoré, Nanai, Navajo, Orok, Otomi, Mezquital, Picard, Saint Lucian Creole French, Secoya, Shipibo-Conibo, Siona, South Azerbaijani, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Veps, Vietnamese, Waama, Yaneshaʼ, Yoruba, Éwé.
 
 The following 45 languages are not fully supported:
 

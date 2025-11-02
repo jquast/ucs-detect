@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *mlterm*:
      5  :ref:`VS15 <mltermvs15>`           0.00%        0.0%
      6  :ref:`Sixel <mltermsixel>`         yes          100.0%
      7  :ref:`DEC Modes <mltermdecmodes>`  34           51.5%
-     8  :ref:`TIME <mltermtime>`           87.98s       83.7%
+     8  :ref:`TIME <mltermtime>`           87.98s       84.2%
    ===  =================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,13 +44,13 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 51.69%
+- Raw Final Score: 51.73%
   (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
 
-- Final Scaled Score: 50.0%
+- Final Scaled Score: 50.1%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -110,12 +110,12 @@ Test execution time:
 - Elapsed time: 87.98 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 83.7%
+- Scaled result: 84.2%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 99.56%
 
@@ -315,9 +315,9 @@ support for the Sixel graphics protocol, which allows inline image rendering.
 Language Support
 ++++++++++++++++
 
-The following 103 languages were tested with 100% success:
+The following 82 languages were tested with 100% success:
 
-(Jinan), (Yeonbyeon), Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bhojpuri, Bora, Burmese, Catalan (2), Chakma, Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Japanese, Japanese (Osaka), Japanese (Tokyo), Javanese (Javanese), Khmer, Central, Khün, Korean, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mon, Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Shan, Shipibo-Conibo, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yoruba, Éwé.
+Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bhojpuri, Bora, Burmese, Catalan (2), Chakma, Chickasaw, Chinantec, Chiltepec, Chinese, Mandarin (Simplified), Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Javanese (Javanese), Khmer, Central, Khün, Korean, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mon, Mòoré, Nanai, Navajo, Orok, Otomi, Mezquital, Panjabi, Eastern, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Shan, Shipibo-Conibo, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Veps, Vietnamese, Waama, Yoruba, Éwé.
 
 The following 15 languages are not fully supported:
 

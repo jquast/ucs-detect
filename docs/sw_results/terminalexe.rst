@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *terminal.exe*:
      5  :ref:`VS15 <terminalexevs15>`           0.00%        0.0%
      6  :ref:`Sixel <terminalexesixel>`         yes          100.0%
      7  :ref:`DEC Modes <terminalexedecmodes>`  26           39.4%
-     8  :ref:`TIME <terminalexetime>`           1147.06s     41.8%
+     8  :ref:`TIME <terminalexetime>`           1147.06s     43.8%
    ===  ======================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,13 +44,13 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 70.40%
+- Raw Final Score: 70.53%
   (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
 
-- Final Scaled Score: 86.3%
+- Final Scaled Score: 86.5%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -110,12 +110,12 @@ Test execution time:
 - Elapsed time: 1147.06 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 41.8%
+- Scaled result: 43.8%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 69.96%
 
@@ -263,9 +263,9 @@ support for the Sixel graphics protocol, which allows inline image rendering.
 Language Support
 ++++++++++++++++
 
-The following 80 languages were tested with 100% success:
+The following 59 languages were tested with 100% success:
 
-(Jinan), (Yeonbyeon), Aja, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Japanese, Japanese (Osaka), Japanese (Tokyo), Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Panjabi, Western, Pashto, Northern, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Urdu (2), Veps, Vietnamese, Vietnamese (Han nom), Waama, Yiddish, Eastern, Yoruba, Éwé.
+Aja, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Mandarin (Simplified), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Orok, Panjabi, Western, Pashto, Northern, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Urdu (2), Veps, Vietnamese, Waama, Yiddish, Eastern, Yoruba, Éwé.
 
 The following 38 languages are not fully supported:
 

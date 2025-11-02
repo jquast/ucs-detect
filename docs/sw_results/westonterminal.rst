@@ -115,7 +115,7 @@ Test execution time:
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 46.21%
 
@@ -292,9 +292,9 @@ support for the Sixel graphics protocol, which allows inline image rendering.
 Language Support
 ++++++++++++++++
 
-The following 23 languages were tested with 100% success:
+The following 2 languages were tested with 100% success:
 
-(Jinan), (Yeonbyeon), Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Japanese, Japanese (Osaka), Japanese (Tokyo), Korean, Nuosu, Vietnamese (Han nom).
+Chinese, Mandarin (Simplified), Korean.
 
 The following 95 languages are not fully supported:
 

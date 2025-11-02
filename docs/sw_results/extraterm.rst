@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *Extraterm*:
      5  :ref:`VS15 <extratermvs15>`           0.00%        0.0%
      6  :ref:`Sixel <extratermsixel>`         no           0.0%
      7  :ref:`DEC Modes <extratermdecmodes>`  0            0.0%
-     8  :ref:`TIME <extratermtime>`           3775.78s     22.4%
+     8  :ref:`TIME <extratermtime>`           3775.78s     25.0%
    ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,13 +44,13 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 33.91%
+- Raw Final Score: 34.08%
   (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
 
-- Final Scaled Score: 15.6%
+- Final Scaled Score: 15.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -110,12 +110,12 @@ Test execution time:
 - Elapsed time: 3775.78 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 22.4%
+- Scaled result: 25.0%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 48.67%
 
@@ -292,9 +292,9 @@ support for the Sixel graphics protocol, which allows inline image rendering.
 Language Support
 ++++++++++++++++
 
-The following 23 languages were tested with 100% success:
+The following 2 languages were tested with 100% success:
 
-(Jinan), (Yeonbyeon), Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Japanese, Japanese (Osaka), Japanese (Tokyo), Korean, Nuosu, Vietnamese (Han nom).
+Chinese, Mandarin (Simplified), Korean.
 
 The following 95 languages are not fully supported:
 
