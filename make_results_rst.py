@@ -705,7 +705,7 @@ def display_tabulated_scores(score_table):
             }
         )
 
-    display_title("Unicode Testing Results", 1)
+    display_title("Results", 1)
 
     # Output role definitions for inline score coloring
     print(generate_score_roles())
