@@ -1,4 +1,10 @@
 /* Auto-generated score color classes */
+/* Common properties for all score classes */
+[class^="score-"], [class*=" score-"] {
+  display: block;
+  padding: 0.3em 0.5em;
+}
+
 .score-0 { background-color: rgb(242, 193, 193); }
 .score-1 { background-color: rgb(242, 194, 193); }
 .score-2 { background-color: rgb(242, 195, 193); }

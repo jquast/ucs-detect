@@ -17,8 +17,20 @@ release = "1.0.7"
 
 # export DARK=1 for old, tired eyes!
 import os
+extensions = [
+    "sphinxcontrib.jquery",
+    "sphinx_datatables",
+]
 if os.environ.get('DARK'):
-    extensions = ["sphinx_rtd_dark_mode"]
+    extensions.append("sphinx_rtd_dark_mode")
+
+# Configure DataTables: disable pagination, show all rows, no search
+# Custom sorting is handled by custom_table_sort.js per table type
+datatables_options = {
+    "paging": False,     # Disable pagination completely
+    "info": False,       # Hide "Showing X to Y of Z entries" text
+    "searching": False,  # Disable search box
+}
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
@@ -81,4 +93,5 @@ def setup(app):
 
     app.add_css_file("my_theme.css")
     app.add_css_file("score-colors.css")
+    app.add_js_file("custom_table_sort.js")
 

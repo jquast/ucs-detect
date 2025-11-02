@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# a bit of a mess, output is more important than the processing.
 import re
 import os
 import sys
@@ -112,6 +113,29 @@ def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
     return f':sref:`{text} <{link_target}> {score_value}`'
 
 
+def print_datatable(table_str, caption=None):
+    """
+    Print a table with sphinx-datatable class for sortable/searchable functionality.
+
+    Args:
+        table_str: The table string (RST format from tabulate)
+        caption: Optional caption for the table
+    """
+    if caption:
+        print(f".. table:: {caption}")
+    else:
+        print(".. table::")
+    print("   :class: sphinx-datatable")
+    print()
+    # Indent the table content
+    for line in table_str.split('\n'):
+        if line.strip():  # Only indent non-empty lines
+            print(f"   {line}")
+        else:
+            print()
+    print()
+
+
 def main():
     print(f'Generating score table... ', file=sys.stderr, end='', flush=True)
     score_table, all_successful_languages = make_score_table()
@@ -145,6 +169,7 @@ def main():
             show_vs_results(sw_name, entry, '15')
             show_language_results(sw_name, entry)
             show_dec_modes_results(sw_name, entry)
+            show_reproduce_command(sw_name, entry)
             show_time_elapsed_results(sw_name, entry)
             display_common_hyperlinks()
         print('ok', file=sys.stderr)
@@ -171,6 +196,7 @@ def display_common_hyperlinks():
     print(".. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html")
     print(".. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html")
     print(".. _`ucs-detect`: https://github.com/jquast/ucs-detect")
+    print(".. _`DEC Private Modes`: https://blessed.readthedocs.io/en/latest/dec_modes.html")
 
 def make_link(text):
     return re.sub(LINK_REGEX, '', text)
@@ -331,15 +357,46 @@ def format_score_pct(score):
     return f'{score*100:0.1f}%'
 
 
+def format_score_int(score):
+    """Format a score as an integer 0-100, handling NaN values."""
+    if math.isnan(score):
+        return "N/A"
+    return f'{int(score*100)}'
+
+
 def display_tabulated_scores(score_table):
     tabulated_scores = []
 
     for result in score_table:
         # Get the total number of changeable DEC modes for display
         dec_modes_count = 0
+        mode_2027_status = "N/A"
         if not math.isnan(result["score_dec_modes"]):
             modes = result["data"]["terminal_results"]["modes"]
             dec_modes_count = sum(1 for mode_data in modes.values() if mode_data.get("changeable", False))
+
+            # Check Mode 2027 (GRAPHEME_CLUSTERING) status
+            if 2027 in modes:
+                mode_2027_data = modes[2027]
+                is_supported = mode_2027_data.get("supported", False)
+                is_enabled = mode_2027_data.get("enabled", False)
+                is_changeable = mode_2027_data.get("changeable", False)
+
+                # Determine status and score based on support, enabled state, and changeability
+                if is_supported and is_enabled:
+                    mode_2027_status = "enabled"
+                    mode_2027_score = 1.0
+                elif is_supported and not is_enabled and is_changeable:
+                    mode_2027_status = "may enable"
+                    mode_2027_score = 0.5
+                else:
+                    mode_2027_status = "no"
+                    mode_2027_score = 0.0
+            else:
+                mode_2027_status = "no"
+                mode_2027_score = 0.0
+        else:
+            mode_2027_score = float('NaN')
 
         # Create DEC modes display text (just the number, hyperlink will be added by wrap_score_with_hyperlink)
         dec_modes_display = f"{dec_modes_count}" if not math.isnan(result["score_dec_modes"]) else "N/A"
@@ -359,7 +416,7 @@ def display_tabulated_scores(score_table):
                 "OS System": result["os_system"],
 
                 "FINAL": wrap_score_with_hyperlink(
-                    format_score_pct(result["score_final_scaled"]),
+                    format_score_int(result["score_final_scaled"]),
                     result["score_final_scaled"],
                     result["terminal_software_name"],
                     "_scores"
@@ -371,29 +428,35 @@ def display_tabulated_scores(score_table):
                     "_wide"
                 ),
                 "LANG": wrap_score_with_hyperlink(
-                    format_score_pct(result["score_language_scaled"]),
+                    format_score_int(result["score_language_scaled"]),
                     result["score_language_scaled"],
                     result["terminal_software_name"],
                     "_lang"
                 ),
                 "ZWJ": wrap_score_with_hyperlink(
-                    format_score_pct(result["score_zwj_scaled"]),
+                    format_score_int(result["score_zwj_scaled"]),
                     result["score_zwj_scaled"],
                     result["terminal_software_name"],
                     "_zwj"
                 ),
                 "VS16": wrap_score_with_hyperlink(
-                    format_score_pct(result["score_emoji_vs16_scaled"]),
+                    format_score_int(result["score_emoji_vs16_scaled"]),
                     result["score_emoji_vs16_scaled"],
                     result["terminal_software_name"],
                     "_vs16"
                 ),
                 "VS15": wrap_score_with_hyperlink(
-                    format_score_pct(result["score_emoji_vs15_scaled"]),
+                    format_score_int(result["score_emoji_vs15_scaled"]),
                     result["score_emoji_vs15_scaled"],
                     result["terminal_software_name"],
                     "_vs15"
                 ),
+                "Mode 2027": wrap_score_with_hyperlink(
+                    mode_2027_status,
+                    mode_2027_score,
+                    result["terminal_software_name"],
+                    "_dec_modes"
+                ) if not math.isnan(mode_2027_score) else wrap_with_score_role("N/A", 0.0),
                 "DEC Modes": wrap_score_with_hyperlink(
                     dec_modes_display,
                     result["score_dec_modes_scaled"],
@@ -409,19 +472,25 @@ def display_tabulated_scores(score_table):
             }
         )
 
-    display_title("Testing Results", 1)
+    display_title("Unicode Testing Results", 1)
 
     # Output role definitions for inline score coloring
     print(generate_score_roles())
 
     # Generate and print table with inline role-colored scores
     table_str = tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst")
-    print(table_str)
-    print()
+    print_datatable(table_str)
 
 
 def display_table_definitions():
     print("Definitions:\n")
+    print(
+        "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
+        "  the average of all feature scores (WIDE, LANG, ZWJ, VS16, VS15, and DEC Modes),\n"
+        "  then scaled (normalized 0-100%) relative to all terminals tested. Higher scores\n"
+        "  indicate better overall Unicode and terminal feature support. This score excludes\n"
+        "  TIME performance metrics to focus purely on feature completeness."
+    )
     print(
         "- *WIDE score*: Shows the Unicode version specification most closely\n"
         "  matching in compatibility (highest version with 90% match or greater),\n"
@@ -445,6 +514,12 @@ def display_table_definitions():
     print(
         "- *VS15 score*: Determined by the number of Emoji using Variation\n"
         "  Selector-15 supported as narrow characters, scaled."
+    )
+    print(
+        "- *Mode 2027*: DEC Mode 2027 (GRAPHEME_CLUSTERING) support. Shows 'enabled'\n"
+        "  if the mode is currently enabled, 'may enable' if the mode is supported but\n"
+        "  not enabled and can be changed to enabled, or 'no' if not supported.\n"
+        "  This mode enables grapheme clustering behavior in the terminal."
     )
     print(
         "- *DEC Modes score*: Determined by the number of DEC private modes\n"
@@ -559,16 +634,17 @@ def show_wchar(wchar):
     wchar_raw = bytes(wchar, "utf8").decode("unicode-escape")
     wchar_records = [
         {
+            "#": idx + 1,  # Index column for proper default sorting
             "Codepoint": make_unicode_codepoint(_wchar),
             "Python": repr(_wchar.encode("unicode-escape").decode()),
             "Category": unicodedata.category(_wchar),
             "wcwidth": wcwidth.wcwidth(_wchar),
             "Name": unicodedata.name(_wchar, "na"),
         }
-        for _wchar in wchar_raw
+        for idx, _wchar in enumerate(wchar_raw)
     ]
-    print(tabulate.tabulate(wchar_records, headers="keys", tablefmt="rst"))
-    print()
+    table_str = tabulate.tabulate(wchar_records, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
     print("Total codepoints:", len(wchar_raw))
     print()
 
@@ -588,12 +664,11 @@ def display_dec_modes_feature_table(score_table):
     """
     Display a feature comparison table for DEC Private Modes.
 
-    Shows which terminals can change which DEC modes as a yes/no matrix,
-    limited to the union set of modes that at least one terminal can change.
+    Shows a compact table with changeable/supported counts and a list of supported modes.
     """
     # Collect all DEC modes across all terminals
-    all_modes = {}  # mode_num -> mode_info (name, description)
-    terminal_modes = {}  # terminal_name -> {mode_num -> changeable}
+    terminal_modes = {}  # terminal_name -> {mode_num -> (supported, changeable)}
+    terminal_entries = {}  # terminal_name -> entry
 
     for entry in score_table:
         terminal_name = entry["terminal_software_name"]
@@ -605,84 +680,73 @@ def display_dec_modes_feature_table(score_table):
 
         modes = entry["data"]["terminal_results"]["modes"]
         terminal_modes[terminal_name] = {}
+        terminal_entries[terminal_name] = entry
 
         for mode_num, mode_data in modes.items():
-            # Track all modes and their metadata
-            if mode_num not in all_modes:
-                all_modes[mode_num] = {
-                    "name": mode_data.get("mode_name", "N/A"),
-                    "description": mode_data.get("mode_description", "N/A")
-                }
+            supported = mode_data.get("supported", False)
+            changeable = mode_data.get("changeable", False)
+            terminal_modes[terminal_name][mode_num] = (supported, changeable)
 
-            # Track whether this terminal can change this mode
-            terminal_modes[terminal_name][mode_num] = mode_data.get("changeable", False)
-
-    # Find union set of changeable modes (modes that at least one terminal can change)
-    changeable_modes = set()
-    for terminal_name, modes in terminal_modes.items():
-        for mode_num, is_changeable in modes.items():
-            if is_changeable:
-                changeable_modes.add(mode_num)
-
-    if not changeable_modes:
-        # No DEC modes are changeable by any terminal
+    if not terminal_modes:
+        # No DEC modes data available
         return
 
-    # Sort modes numerically
-    sorted_modes = sorted(changeable_modes, key=int)
-
     display_title("DEC Private Modes Feature Comparison", 2)
-    print("This table shows which DEC Private Modes are changeable by each terminal.")
-    print("Only modes changeable by at least one terminal are shown.")
+    print("This table shows DEC Private Modes support for each terminal.")
+    print("Terminals are sorted by number of changeable modes (most first).")
     print()
 
-    # Build the table data
+    # Build the table data with counts and mode lists
     table_data = []
-    for entry in score_table:
-        terminal_name = entry["terminal_software_name"]
+    for terminal_name in terminal_modes:
+        entry = terminal_entries[terminal_name]
+        modes = terminal_modes[terminal_name]
 
-        # Skip terminals without DEC modes data
-        if terminal_name not in terminal_modes:
-            continue
+        # Count supported and changeable modes
+        changeable_count = sum(1 for supported, changeable in modes.values() if changeable)
+        supported_count = sum(1 for supported, changeable in modes.values() if supported)
 
-        row = {"Terminal": make_outbound_hyperlink(terminal_name, terminal_name + "_dec_modes")}
+        # Get list of supported mode numbers, sorted
+        supported_modes = sorted([int(mode_num) for mode_num, (supported, changeable) in modes.items() if supported], key=int)
 
-        for mode_num in sorted_modes:
-            mode_info = all_modes[mode_num]
-            # Split long mode names at underscores for better column width
-            mode_name = mode_info['name']
-            # For names longer than 15 chars, try to split at underscores
-            if len(mode_name) > 15 and '_' in mode_name:
-                # Split into chunks at underscores, recombine with newlines
-                parts = mode_name.split('_')
-                # Group parts to avoid too many lines
-                if len(parts) > 2:
-                    # Put first part on one line, rest on another
-                    mode_name = parts[0] + '\n' + '_'.join(parts[1:])
-            mode_label = f"{mode_num}\n{mode_name}"
-
-            # Check if terminal can change this mode
-            is_changeable = terminal_modes[terminal_name].get(mode_num, False)
-
-            # Use score-100 for Yes (green) and score-0 for No (red)
-            # Link "Yes" to the specific mode in the terminal's detail page
-            if is_changeable:
+        # Create list of mode numbers - only link changeable modes (they have anchors)
+        mode_strs = []
+        for mode_num in supported_modes:
+            supported, changeable = modes[mode_num]
+            if changeable:
+                # Changeable modes get hyperlinks
                 mode_anchor = make_link(f"{terminal_name}_decmode_{mode_num}")
-                cell_value = f':sref:`Yes <{mode_anchor}> 100`'
+                mode_strs.append(f':ref:`{mode_num} <{mode_anchor}>`')
             else:
-                cell_value = wrap_with_score_role("No", 0.0)   # score-0
+                # Non-changeable modes shown as plain text
+                mode_strs.append(str(mode_num))
 
-            row[mode_label] = cell_value
+        # Join mode strings with commas
+        supported_modes_str = ", ".join(mode_strs) if mode_strs else "None"
 
-        table_data.append(row)
+        row = {
+            "Terminal": make_outbound_hyperlink(terminal_name, terminal_name + "_dec_modes"),
+            "Changeable": str(changeable_count),
+            "Supported": str(supported_count),
+            "Supported Modes": supported_modes_str
+        }
 
-    if table_data:
-        print(tabulate.tabulate(table_data, headers="keys", tablefmt="rst"))
-        print()
+        table_data.append((changeable_count, row))
+
+    # Sort by changeable count (descending)
+    table_data.sort(key=lambda x: x[0], reverse=True)
+
+    # Extract just the row dictionaries
+    sorted_rows = [row for count, row in table_data]
+
+    if sorted_rows:
+        table_str = tabulate.tabulate(sorted_rows, headers="keys", tablefmt="rst")
+        print_datatable(table_str)
         print("**Legend:**")
         print()
-        print("- Each column header shows the mode number and its name")
-        print("- Click on the terminal name to see detailed DEC modes results")
+        print("- **Changeable**: Number of modes that can be enabled/disabled by the terminal")
+        print("- **Supported**: Number of modes that are recognized and supported")
+        print("- **Supported Modes**: List of all supported mode numbers (click to see details)")
         print()
     else:
         print("No DEC Private Modes data available for any terminal.")
@@ -743,8 +807,8 @@ def show_score_breakdown(sw_name, entry):
             "Calculation": f'1 - ((elapsed - min) / (max - min)) [inverse]',
         },
     ]
-    print(tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst"))
-    print()
+    table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
     print(f"**Final Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
@@ -787,8 +851,8 @@ def show_wide_character_support(sw_name, entry):
         for version, result in sorted(entry["data"]["test_results"]["unicode_wide_results"].items(),
                                       key=lambda x: wcwidth._wcversion_value(x[0]))
     ]
-    print(tabulate.tabulate(tabulated_wide_results, headers="keys", tablefmt="rst"))
-    print()
+    table_str = tabulate.tabulate(tabulated_wide_results, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
 
     unicode_versions = list(entry["data"]["test_results"]["unicode_wide_results"].keys())
     show_failed_version = find_failed_version(
@@ -830,8 +894,8 @@ def show_emoji_zwj_results(sw_name, entry):
         for version, result in sorted(entry["data"]["test_results"]["emoji_zwj_results"].items(),
                                       key=lambda x: wcwidth._wcversion_value(x[0]))
     ]
-    print(tabulate.tabulate(tabulated_emoji_zwj_results, headers="keys", tablefmt="rst"))
-    print()
+    table_str = tabulate.tabulate(tabulated_emoji_zwj_results, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
 
     emoji_zwj_versions = list(entry["data"]["test_results"]["emoji_zwj_results"].keys())
     show_failed_version = find_failed_version(
@@ -891,10 +955,15 @@ def show_language_results(sw_name, entry):
         for lang in entry["data"]["test_results"]["language_results"]
         if entry["data"]["test_results"]["language_results"][lang]["n_errors"] == 0
     ]
-    print(f"The following {len(languages_successful)} languages were tested with 100% success:")
-    print()
-    print(", ".join(sorted(languages_successful)) + ".")
-    print()
+
+    if len(languages_successful) > 0:
+        print(f"The following {len(languages_successful)} languages were tested with 100% success:")
+        print()
+        print(", ".join(sorted(languages_successful)) + ".")
+        print()
+    else:
+        print("No languages were tested with 100% success.")
+        print()
 
     languages_failed = [
         lang
@@ -916,8 +985,8 @@ def show_language_results(sw_name, entry):
 
     print(f"The following {len(languages_failed)} languages are not fully supported:")
     print()
-    print(tabulate.tabulate(tabulated_failed_language_results, headers="keys", tablefmt="rst"))
-    print()
+    table_str = tabulate.tabulate(tabulated_failed_language_results, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
     for failed_lang in languages_failed:
         fail_record = entry["data"]["test_results"]["language_results"][failed_lang]["failed"][0]
         display_inbound_hyperlink(sw_name + "_lang_" + failed_lang)
@@ -933,7 +1002,7 @@ def show_dec_modes_results(sw_name, entry):
     display_title("DEC Private Modes Support", 3)
 
     if "terminal_results" not in entry["data"] or "modes" not in entry["data"]["terminal_results"]:
-        print(f"DEC private modes results for *{sw_name}* are not available.")
+        print(f"This Terminal does not appear capable of reporting about any DEC Private modes.")
         print()
         return
 
@@ -941,7 +1010,7 @@ def show_dec_modes_results(sw_name, entry):
     total_modes = len(modes)
 
     if total_modes == 0:
-        print(f"DEC private modes results for *{sw_name}* are not available.")
+        print(f"This Terminal does not appear capable of reporting about any DEC Private modes.")
         print()
         return
 
@@ -954,6 +1023,14 @@ def show_dec_modes_results(sw_name, entry):
           f"({(supported_modes/total_modes*100):0.1f}% support, "
           f"{(changeable_modes/total_modes*100):0.1f}% changeable).")
     print()
+
+    # Check if terminal reports supporting all modes tested (likely an error)
+    if supported_modes == total_modes and total_modes == 159:
+        print(".. warning::")
+        print()
+        print(f"   This terminal reports to support all {total_modes} modes tested, but this")
+        print(f"   is probably an error.")
+        print()
 
     # Create detailed table of all modes with reference anchors
     print("Complete list of DEC private modes tested:")
@@ -971,7 +1048,7 @@ def show_dec_modes_results(sw_name, entry):
             display_inbound_hyperlink(mode_anchor)
 
         tabulated_modes.append({
-            "Mode": f"DEC Mode {mode_num}",
+            "Mode": mode_num,  # Just the number for proper numeric sorting
             "Name": mode_data.get("mode_name", "N/A"),
             "Description": mode_data.get("mode_description", "N/A"),
             "Supported": "Yes" if mode_data.get("supported", False) else "No",
@@ -979,11 +1056,52 @@ def show_dec_modes_results(sw_name, entry):
             "Enabled": "Yes" if mode_data.get("enabled", False) else "No",
         })
 
-    print(tabulate.tabulate(tabulated_modes, headers="keys", tablefmt="rst"))
-    print()
+    table_str = tabulate.tabulate(tabulated_modes, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
 
     # Show summary of changeable vs unchangeable modes
     print(f"**Summary**: {changeable_modes} changeable, {unchangeable_modes} not changeable.")
+    print()
+
+
+def show_reproduce_command(sw_name, entry):
+    """
+    Display command to reproduce the test results.
+    """
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_reproduce")
+    display_title("Reproduction", 3)
+
+    # Get session arguments to reconstruct the command
+    session_args = entry["data"].get("session_arguments", {})
+    fname = entry["fname"]
+
+    print(f"To reproduce these results for *{sw_name}*, install and run ucs-detect_")
+    print(f"with the following commands::")
+    print()
+    print(f"    pip install ucs-detect")
+
+    # Build the command with available parameters
+    cmd_parts = [f"ucs-detect --save-yaml={fname}"]
+
+    # Add limit parameters if they exist
+    if "limit_codepoints" in session_args:
+        cmd_parts.append(f"--limit-codepoints={session_args['limit_codepoints']}")
+    if "limit_words" in session_args:
+        cmd_parts.append(f"--limit-words={session_args['limit_words']}")
+    if "limit_errors" in session_args:
+        cmd_parts.append(f"--limit-errors={session_args['limit_errors']}")
+    if session_args.get("quick"):
+        cmd_parts.append("--quick")
+
+    # Join command parts with line continuation for readability
+    if len(cmd_parts) > 1:
+        print(f"    {cmd_parts[0]} \\")
+        for part in cmd_parts[1:-1]:
+            print(f"        {part} \\")
+        print(f"        {cmd_parts[-1]}")
+    else:
+        print(f"    {cmd_parts[0]}")
+
     print()
 
 

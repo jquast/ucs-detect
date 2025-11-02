@@ -9,7 +9,7 @@ session_arguments:
   quick: false
   stream: stderr
 software_name: WezTerm
-software_version: 20251025-070338-b6e75fd7
+software_version: 20251025
 system: Linux
 terminal_results:
   cell_height: 22
