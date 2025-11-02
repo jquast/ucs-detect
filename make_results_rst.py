@@ -8,7 +8,6 @@ import yaml
 import contextlib
 import unicodedata
 import colorsys
-import textwrap
 
 # 3rd party
 import wcwidth
@@ -154,7 +153,7 @@ def main():
         display_table_definitions()
         display_common_languages(all_successful_languages)
         display_dec_modes_feature_table(score_table)
-        display_results_toc()
+        display_results_toc(score_table)
         display_common_hyperlinks()
     print('ok', file=sys.stderr)
     for entry in score_table:
@@ -184,12 +183,14 @@ def make_unicode_codepoint(wchar):
     return f"`{u_str} <https://codepoints.net/{u_str}>`_"
 
 
-def display_results_toc():
+def display_results_toc(score_table):
     display_title("Detailed Reports", 2)
     print(".. toctree::")
-    print("   :glob:")
+    print("   :maxdepth: 1")
     print()
-    print("   sw_results/*")
+    for entry in score_table:
+        sw_name = make_link(entry["terminal_software_name"])
+        print(f"   sw_results/{sw_name}")
     print()
 
 
@@ -504,9 +505,8 @@ def display_table_definitions():
     print(
         "- *WIDE score*: Shows the Unicode version specification most closely\n"
         "  matching in compatibility (highest version with 90% match or greater).\n"
-        "  The version number is displayed (e.g., 16 or 15.1), with color indicating\n"
-        "  the scaled percentage score (determined by version release level\n"
-        "  multiplied by the pct of wide codepoints supported at that version)."
+        "  Determined by version release level multiplied by the pct of wide\n"
+        "  codepoints supported at that version, scaled."
     )
     print(
         "- *LANG score*: Calculated using the geometric mean of success percentages\n"
@@ -520,11 +520,11 @@ def display_table_definitions():
     )
     print(
         "- *VS16 score*: Determined by the number of Emoji using Variation\n"
-        "  Selector-16 supported as wide characters, scaled."
+        "  Selector-16 supported as wide characters."
     )
     print(
         "- *VS15 score*: Determined by the number of Emoji using Variation\n"
-        "  Selector-15 supported as narrow characters, scaled."
+        "  Selector-15 supported as narrow characters."
     )
     print(
         "- *Mode 2027*: DEC Mode 2027 (GRAPHEME_CLUSTERING) support. Shows 'enabled'\n"
@@ -534,13 +534,11 @@ def display_table_definitions():
     )
     print(
         "- *DEC Modes*: Determined by the number of DEC private modes\n"
-        "  that are changeable by the terminal, scaled. The number shows\n"
-        "  the total count of changeable modes, with a link to detailed results."
+        "  that are changeable by the terminal, scaled."
     )
     print(
-        "- *Elapsed Time*: Determined by test execution time in seconds, scaled\n"
-        "  inversely (lower time is better). The value shows elapsed seconds\n"
-        "  during the test run, with a link to detailed timing information."
+        "- *Elapsed Time*: Test execution time in seconds, scaled inversely\n"
+        "  (lower time is better)."
     )
     print()
 
@@ -549,6 +547,11 @@ def scale_scores(score_table, entry, key):
     my_score = entry[key]
     if math.isnan(my_score):
         return float('NaN')
+
+    # VS16, VS15, and DEC Modes are not scaled - return raw score
+    if key in ('score_emoji_vs16', 'score_emoji_vs15', 'score_dec_modes'):
+        return my_score
+
     valid_scores = [_entry[key] for _entry in score_table if not math.isnan(_entry[key])]
     if not valid_scores:
         return float('NaN')
@@ -736,33 +739,19 @@ def display_dec_modes_feature_table(score_table):
         changeable_count = sum(1 for supported, changeable in modes.values() if changeable)
         supported_count = sum(1 for supported, changeable in modes.values() if supported)
 
-        # Get list of supported mode numbers, sorted
-        supported_modes = sorted([int(mode_num) for mode_num, (supported, changeable) in modes.items() if supported], key=int)
-
-        # Create list of mode numbers - only link changeable modes (they have anchors)
-        mode_strs = []
-        for mode_num in supported_modes:
-            supported, changeable = modes[mode_num]
-            if changeable:
-                # Changeable modes get hyperlinks
-                mode_anchor = make_link(f"{terminal_name}_decmode_{mode_num}")
-                mode_strs.append(f':ref:`{mode_num} <{mode_anchor}>`')
-            else:
-                # Non-changeable modes shown as plain text
-                mode_strs.append(str(mode_num))
-
-        # Join mode strings with commas and wrap at ~50 characters
-        if mode_strs:
-            full_str = ", ".join(mode_strs)
-            supported_modes_str = "\n".join(textwrap.wrap(full_str, width=50))
+        # Create a simple link to the terminal's DEC modes section
+        if supported_count > 0:
+            supported_str = make_outbound_hyperlink(
+                str(supported_count),
+                terminal_name + "_dec_modes"
+            )
         else:
-            supported_modes_str = "None"
+            supported_str = "0"
 
         row = {
             "Terminal": make_outbound_hyperlink(terminal_name, terminal_name + "_dec_modes"),
             "Changeable": str(changeable_count),
-            "Supported": str(supported_count),
-            "Supported Modes": supported_modes_str
+            "Supported": supported_str
         }
 
         table_data.append((changeable_count, row))
@@ -776,12 +765,6 @@ def display_dec_modes_feature_table(score_table):
     if sorted_rows:
         table_str = tabulate.tabulate(sorted_rows, headers="keys", tablefmt="rst")
         print_datatable(table_str)
-        print("**Legend:**")
-        print()
-        print("- **Changeable**: Number of modes that can be enabled/disabled by the terminal")
-        print("- **Supported**: Number of modes that are recognized and supported")
-        print("- **Supported Modes**: List of all supported mode numbers (click to see details)")
-        print()
     else:
         print("No DEC Private Modes data available for any terminal.")
         print()
@@ -844,40 +827,6 @@ def show_score_breakdown(sw_name, entry):
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
     print_datatable(table_str)
 
-    #Add detailed LANG score breakdown
-    print(f"**LANG Score Details (Geometric Mean):**")
-    print()
-    lang_results = entry["data"]["test_results"]["language_results"]
-    if lang_results:
-        lang_percentages = [(lang, data["pct_success"]) for lang, data in lang_results.items()]
-        lang_percentages.sort(key=lambda x: x[1])  # Sort by percentage
-
-        print(f"Language success percentages for *{sw_name}*:")
-        print()
-        # Show first few and last few languages
-        if len(lang_percentages) <= 10:
-            for lang, pct in lang_percentages:
-                print(f"- {lang}: {pct:.1f}%")
-        else:
-            for lang, pct in lang_percentages[:5]:
-                print(f"- {lang}: {pct:.1f}%")
-            print(f"- ... ({len(lang_percentages) - 10} more languages)")
-            for lang, pct in lang_percentages[-5:]:
-                print(f"- {lang}: {pct:.1f}%")
-        print()
-
-        # Calculate and show geometric mean formula
-        n = len(lang_percentages)
-        percentages_as_fractions = [pct/100 for _, pct in lang_percentages]
-        geo_mean = entry["score_language"]
-
-        print(f"Geometric mean calculation:")
-        print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} languages")
-        print(f"- This fairly balances all languages: one 0% doesn't make score 0,")
-        print(f"  and many 99%s aren't penalized as harshly as with arithmetic mean")
-        print(f"- Result: {geo_mean*100:.2f}%")
-        print()
-
     print(f"**Final Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
@@ -889,6 +838,20 @@ def show_score_breakdown(sw_name, entry):
     print(f"  (normalized across all terminals tested, including TIME performance).")
     print(f"  *Scaled scores* are normalized (0-100%) relative to all terminals tested")
     print()
+
+    # Add detailed LANG score breakdown
+    print(f"**LANG Score Details (Geometric Mean):**")
+    print()
+    lang_results = entry["data"]["test_results"]["language_results"]
+    if lang_results:
+        n = len(lang_results)
+        geo_mean = entry["score_language"]
+
+        print(f"Geometric mean calculation:")
+        print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} languages")
+        print(f"- This fairly balances all languages: one 0% doesn't make score 0, and many 99%s aren't penalized as harshly as with arithmetic mean")
+        print(f"- Result: {geo_mean*100:.2f}%")
+        print()
 
 def show_software_header(entry, sw_name):
     display_inbound_hyperlink(entry["terminal_software_name"])
@@ -1087,6 +1050,14 @@ def show_dec_modes_results(sw_name, entry):
     supported_modes = sum(1 for mode_data in modes.values() if mode_data.get("supported", False))
     unchangeable_modes = total_modes - changeable_modes
 
+    # Count modes that are supported but neither enabled nor changeable
+    supported_but_inactive = sum(
+        1 for mode_data in modes.values()
+        if mode_data.get("supported", False)
+        and not mode_data.get("enabled", False)
+        and not mode_data.get("changeable", False)
+    )
+
     print(f"DEC private modes results for *{sw_name}*: {changeable_modes} changeable modes")
     print(f"of {supported_modes} supported out of {total_modes} total modes tested "
           f"({(supported_modes/total_modes*100):0.1f}% support, "
@@ -1101,20 +1072,23 @@ def show_dec_modes_results(sw_name, entry):
         print(f"   is probably an error.")
         print()
 
+    # Check if many modes are supported but not enabled or changeable
+    if supported_but_inactive > 50:
+        print(".. note::")
+        print()
+        print(f"   This terminal reports {supported_but_inactive} modes as supported, but these modes")
+        print(f"   are neither enabled nor changeable. This may sometimes be interpreted as")
+        print(f"   not truly supporting these modes, as they cannot be toggled or utilized.")
+        print()
+
     # Create detailed table of all modes with reference anchors
     print("Complete list of DEC private modes tested:")
     print()
 
-    # We need to manually create the table with anchors for each changeable mode
-    # First, create the table data
+    # Create the table data
     tabulated_modes = []
     for mode_num in sorted(modes.keys(), key=int):
         mode_data = modes[mode_num]
-
-        # Add anchor for changeable modes
-        if mode_data.get("changeable", False):
-            mode_anchor = make_link(f"{sw_name}_decmode_{mode_num}")
-            display_inbound_hyperlink(mode_anchor)
 
         tabulated_modes.append({
             "Mode": mode_num,  # Just the number for proper numeric sorting
