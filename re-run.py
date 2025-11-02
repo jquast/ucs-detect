@@ -1,29 +1,21 @@
 #!/usr/bin/env python3
 """Re-run ucs-detect with arguments from a saved YAML file."""
-
+import os
+import shlex
 import argparse
 import subprocess
 import sys
-from pathlib import Path
 
 import yaml
 
 
-def build_command_from_yaml(yaml_file: Path) -> list[str]:
-    """Build ucs-detect command from YAML file.
-
-    Args:
-        yaml_file: Path to YAML file containing session_arguments
-
-    Returns:
-        Command line arguments as list of strings
-    """
+def build_command_from_yaml(yaml_file):
     with open(yaml_file) as f:
         data = yaml.safe_load(f)
 
     session_args = data.get('session_arguments', {})
 
-    cmd = ['ucs-detect']
+    cmd = ['ucs-detect', '--save-yaml', str(yaml_file)]
 
     # Map YAML keys to CLI arguments
     arg_mapping = {
@@ -57,51 +49,24 @@ def build_command_from_yaml(yaml_file: Path) -> list[str]:
         if session_args.get(yaml_key):
             cmd.append(cli_flag)
 
-    # Always add --save-yaml with the original file path
-    cmd.extend(['--save-yaml', str(yaml_file)])
-
     return cmd
 
 
 def main():
-    """Parse arguments and re-run ucs-detect."""
     parser = argparse.ArgumentParser(
-        description='Re-run ucs-detect with arguments from a saved YAML file.'
-    )
-    parser.add_argument(
-        'yaml_file',
-        type=Path,
-        help='Path to YAML file (e.g., data/linux-6.14.0-33-fbdev.yaml)'
-    )
-    parser.add_argument(
-        '--dry-run',
-        action='store_true',
-        help='Print command without executing'
-    )
-
+        description='Re-run ucs-detect with arguments from a saved YAML file.')
+    parser.add_argument('yaml_file')
     args = parser.parse_args()
 
-    if not args.yaml_file.exists():
+    if not os.path.exists(args.yaml_file):
         print(f"Error: File not found: {args.yaml_file}", file=sys.stderr)
         sys.exit(1)
 
     cmd = build_command_from_yaml(args.yaml_file)
 
-    print(f"Running: {' '.join(cmd)}")
+    print(f"Running: {shlex.join(cmd)}")
 
-    if args.dry_run:
-        return 0
-
-    try:
-        result = subprocess.run(cmd, check=False)
-        return result.returncode
-    except KeyboardInterrupt:
-        print("\nInterrupted by user", file=sys.stderr)
-        return 130
-    except Exception as e:
-        print(f"Error running command: {e}", file=sys.stderr)
-        return 1
-
+    subprocess.check_call(cmd)
 
 if __name__ == '__main__':
     sys.exit(main())
