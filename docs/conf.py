@@ -49,6 +49,7 @@ def score_ref_role(name, rawtext, text, lineno, inliner, options={}, content=[])
 
     Usage: :sref:`link_text <target> score_number`
     Example: :sref:`100.0% <footvs16> 100`
+    Or with separate sort value: :sref:`32s <terminal_time> 75:32`
     """
     from docutils import nodes
     from sphinx import addnodes
@@ -65,6 +66,13 @@ def score_ref_role(name, rawtext, text, lineno, inliner, options={}, content=[])
 
     ref_text, score = parts
 
+    # Check if score contains a colon (format: color_score:sort_value)
+    if ':' in score:
+        color_score, sort_value = score.split(':', 1)
+    else:
+        color_score = score
+        sort_value = None
+
     # Parse the reference part (may have explicit title)
     has_explicit_title, title, target = split_explicit_title(ref_text)
 
@@ -77,8 +85,12 @@ def score_ref_role(name, rawtext, text, lineno, inliner, options={}, content=[])
         refexplicit=has_explicit_title,
     )
 
-    # Add the score class
-    refnode['classes'].append(f'score-{score}')
+    # Add the score class for coloring
+    refnode['classes'].append(f'score-{color_score}')
+
+    # Add data-sort attribute if we have a separate sort value
+    if sort_value is not None:
+        refnode['data-sort'] = sort_value
 
     # Create the link text
     innernode = nodes.inline(title, title)

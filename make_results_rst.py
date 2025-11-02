@@ -113,6 +113,17 @@ def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
     return f':sref:`{text} <{link_target}> {score_value}`'
 
 
+def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, section_suffix):
+    """
+    Wrap elapsed time text with hyperlink and score styling, using actual seconds for sorting.
+    """
+    score_value_for_color = int(score * 100) if not math.isnan(score) else 'na'
+    sort_value = int(elapsed_seconds) if not math.isnan(elapsed_seconds) else 'na'
+    link_target = make_link(terminal_name + section_suffix)
+    # Use score for color (inverted - faster is better), but elapsed_seconds for sorting
+    return f':sref:`{text} <{link_target}> {score_value_for_color}:{sort_value}`'
+
+
 def print_datatable(table_str, caption=None):
     """
     Print a table with sphinx-datatable class for sortable/searchable functionality.
@@ -474,9 +485,10 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_dec_modes"
                 ),
-                "Elapsed\nTime": wrap_score_with_hyperlink(
+                "Elapsed\nTime": wrap_time_with_hyperlink(
                     elapsed_display,
                     result["score_elapsed_scaled"],
+                    result["elapsed_seconds"],
                     result["terminal_software_name"],
                     "_time"
                 ),
