@@ -134,12 +134,12 @@ github commit status should be reported by readthedocs.org, and, clicking
 Problem Analysis
 ----------------
 
-Use the CLI argument, --stop-at-error to interactively investigate discrepencies
-as they are detected. For example::
+Use the CLI argument, ``--stop-at-error=`` to interactively investigate
+discrepancies as they are detected. For example::
 
     $ ucs-detect --stop-at-error 'Hindi'
 
-This presents output when an error occurs during Chinese language testing::
+This presents output when an error occurs during ``Hindi`` language testing::
 
     ucs-detect: testing language support: Hindi
     मानव
