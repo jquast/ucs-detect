@@ -612,6 +612,13 @@ def display_tabulated_scores(score_table):
     print("   of terminal emulator quality or a recommendation. Many factors beyond Unicode")
     print("   support contribute to terminal quality.")
     print()
+    print(".. note::")
+    print()
+    print("   Some terminals may optionally support features and modes not represented here.")
+    print("   This data represents only automatic responses received when launched in their")
+    print("   default configurations and packaged build options.")
+    print()
+
 
     display_title("General Tabulated Summary", 2)
     tabulated_scores = []
