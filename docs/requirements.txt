@@ -1,4 +1,5 @@
 PyYAML
+wcwidth
 sphinx
 sphinx-rtd-theme
 sphinx-rtd-dark-mode
