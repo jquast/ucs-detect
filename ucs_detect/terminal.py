@@ -271,7 +271,7 @@ def maybe_determine_pixel_size(term, writer):
         return {"pixels_height": pixel_height, "pixels_width": pixel_width}
     return {}
 
-def maybe_determine_screen_ratio(attrs):    
+def maybe_determine_screen_ratio(attrs):
     # uses only pixel-width and height when available, because font size is not
     # reliably known, though we could also provide some kind of textual aspect
     # ratio, which is already a bit difficult to grok in any common terms,
@@ -284,6 +284,31 @@ def maybe_determine_screen_ratio(attrs):
         return {'screen_ratio': screen_ratio, 'screen_ratio_name': screen_ratio_name}
     return {}
 
+def maybe_determine_colors(term, writer):
+    """
+    Query terminal foreground and background colors.
+
+    Uses blessed Terminal.get_fgcolor() and get_bgcolor() to determine the
+    terminal's default foreground and background colors.
+
+    Returns dictionary with color information as RGB lists and hex strings.
+    """
+    result = {}
+
+    # Get foreground color
+    r, g, b = term.get_fgcolor()
+    if (r, g, b) != (-1, -1, -1):
+        result['foreground_color_rgb'] = [r, g, b]
+        result['foreground_color_hex'] = f"#{r:04x}{g:04x}{b:04x}"
+
+    # Get background color
+    r, g, b = term.get_bgcolor()
+    if (r, g, b) != (-1, -1, -1):
+        result['background_color_rgb'] = [r, g, b]
+        result['background_color_hex'] = f"#{r:04x}{g:04x}{b:04x}"
+
+    return result
+
 def do_terminal_detection(all_modes=False):
     writer = functools.partial(print, end="", flush=True, file=sys.stderr)
     term = blessed.Terminal()
@@ -295,6 +320,7 @@ def do_terminal_detection(all_modes=False):
     attrs.update(maybe_determine_cell_size(term, writer))
     attrs.update(maybe_determine_pixel_size(term, writer))
     attrs.update(maybe_determine_screen_ratio(attrs))
+    attrs.update(maybe_determine_colors(term, writer))
     return attrs
 
 if __name__ == '__main__':

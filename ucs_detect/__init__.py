@@ -434,6 +434,21 @@ def display_terminal_results(term, writer, results):
         sixel_status = 'Yes' if results['sixel'] else 'No'
         writer(f"\n{'Sixel Graphics':>24s}: {sixel_status}")
 
+    # Color information
+    if results.get('foreground_color_rgb'):
+        fg = results['foreground_color_rgb']
+        fg_hex = results.get('foreground_color_hex', '')
+        writer(f"\n{'Foreground Color':>24s}: RGB({fg[0]}, {fg[1]}, {fg[2]})")
+        if fg_hex:
+            writer(f"\n{'':>24s}  {fg_hex}")
+
+    if results.get('background_color_rgb'):
+        bg = results['background_color_rgb']
+        bg_hex = results.get('background_color_hex', '')
+        writer(f"\n{'Background Color':>24s}: RGB({bg[0]}, {bg[1]}, {bg[2]})")
+        if bg_hex:
+            writer(f"\n{'':>24s}  {bg_hex}")
+
     # Device attributes
     if results.get('device_attributes'):
         da = results['device_attributes']
