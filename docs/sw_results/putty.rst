@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *PuTTY*:
    ===  ================================  ===========  ====================
      1  :ref:`WIDE <puttywide>`           94.45%       94.3%
      2  :ref:`ZWJ <puttyzwj>`             0.69%        0.7%
-     3  :ref:`LANG <puttylang>`           74.00%       51.8%
+     3  :ref:`LANG <puttylang>`           74.00%       57.2%
      4  :ref:`VS16 <puttyvs16>`           0.00%        0.0%
      5  :ref:`VS15 <puttyvs15>`           0.00%        0.0%
      6  :ref:`Sixel <puttysixel>`         no           0.0%

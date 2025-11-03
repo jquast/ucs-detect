@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *terminator*:
    ===  =====================================  ===========  ====================
      1  :ref:`WIDE <terminatorwide>`           92.48%       92.3%
      2  :ref:`ZWJ <terminatorzwj>`             0.24%        0.2%
-     3  :ref:`LANG <terminatorlang>`           71.44%       47.0%
+     3  :ref:`LANG <terminatorlang>`           71.44%       53.0%
      4  :ref:`VS16 <terminatorvs16>`           0.00%        0.0%
      5  :ref:`VS15 <terminatorvs15>`           0.00%        0.0%
      6  :ref:`Sixel <terminatorsixel>`         no           0.0%

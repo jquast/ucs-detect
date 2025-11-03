@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *screen*:
    ===  =================================  ===========  ====================
      1  :ref:`WIDE <screenwide>`           95.77%       95.7%
      2  :ref:`ZWJ <screenzwj>`             0.69%        0.7%
-     3  :ref:`LANG <screenlang>`           68.86%       42.2%
+     3  :ref:`LANG <screenlang>`           68.86%       48.7%
      4  :ref:`VS16 <screenvs16>`           0.00%        0.0%
      5  :ref:`VS15 <screenvs15>`           0.00%        0.0%
      6  :ref:`Sixel <screensixel>`         no           0.0%

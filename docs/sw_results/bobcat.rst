@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
    ===  =================================  ===========  ====================
      1  :ref:`WIDE <bobcatwide>`           97.72%       97.7%
      2  :ref:`ZWJ <bobcatzwj>`             0.69%        0.7%
-     3  :ref:`LANG <bobcatlang>`           74.00%       51.8%
+     3  :ref:`LANG <bobcatlang>`           74.00%       57.2%
      4  :ref:`VS16 <bobcatvs16>`           0.00%        0.0%
      5  :ref:`VS15 <bobcatvs15>`           0.00%        0.0%
      6  :ref:`Sixel <bobcatsixel>`         no           0.0%

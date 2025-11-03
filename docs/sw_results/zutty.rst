@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *zutty*:
    ===  ================================  ===========  ====================
      1  :ref:`WIDE <zuttywide>`           95.77%       95.7%
      2  :ref:`ZWJ <zuttyzwj>`             0.69%        0.7%
-     3  :ref:`LANG <zuttylang>`           74.00%       51.8%
+     3  :ref:`LANG <zuttylang>`           74.00%       57.2%
      4  :ref:`VS16 <zuttyvs16>`           0.00%        0.0%
      5  :ref:`VS15 <zuttyvs15>`           0.00%        0.0%
      6  :ref:`Sixel <zuttysixel>`         no           0.0%

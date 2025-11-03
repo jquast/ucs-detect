@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *ghostty*:
    ===  ==================================  ===========  ====================
      1  :ref:`WIDE <ghosttywide>`           94.77%       94.6%
      2  :ref:`ZWJ <ghosttyzwj>`             100.00%      100.0%
-     3  :ref:`LANG <ghosttylang>`           94.37%       89.7%
+     3  :ref:`LANG <ghosttylang>`           94.37%       90.9%
      4  :ref:`VS16 <ghosttyvs16>`           94.37%       94.4%
      5  :ref:`VS15 <ghosttyvs15>`           100.00%      100.0%
      6  :ref:`Sixel <ghosttysixel>`         no           0.0%

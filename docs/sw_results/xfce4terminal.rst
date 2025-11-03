@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *xfce4-terminal*:
    ===  ========================================  ===========  ====================
      1  :ref:`WIDE <xfce4terminalwide>`           94.77%       94.6%
      2  :ref:`ZWJ <xfce4terminalzwj>`             0.69%        0.7%
-     3  :ref:`LANG <xfce4terminallang>`           74.00%       51.8%
+     3  :ref:`LANG <xfce4terminallang>`           74.00%       57.2%
      4  :ref:`VS16 <xfce4terminalvs16>`           0.00%        0.0%
      5  :ref:`VS15 <xfce4terminalvs15>`           0.00%        0.0%
      6  :ref:`Sixel <xfce4terminalsixel>`         no           0.0%

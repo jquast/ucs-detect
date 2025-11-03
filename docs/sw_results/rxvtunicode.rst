@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *rxvt-unicode*:
    ===  ======================================  ===========  ====================
      1  :ref:`WIDE <rxvtunicodewide>`           95.77%       95.7%
      2  :ref:`ZWJ <rxvtunicodezwj>`             0.69%        0.7%
-     3  :ref:`LANG <rxvtunicodelang>`           74.00%       51.8%
+     3  :ref:`LANG <rxvtunicodelang>`           74.00%       57.2%
      4  :ref:`VS16 <rxvtunicodevs16>`           0.00%        0.0%
      5  :ref:`VS15 <rxvtunicodevs15>`           0.00%        0.0%
      6  :ref:`Sixel <rxvtunicodesixel>`         no           0.0%

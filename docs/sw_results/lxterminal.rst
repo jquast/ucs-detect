@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *LXTerminal*:
    ===  =====================================  ===========  ====================
      1  :ref:`WIDE <lxterminalwide>`           92.48%       92.3%
      2  :ref:`ZWJ <lxterminalzwj>`             0.24%        0.2%
-     3  :ref:`LANG <lxterminallang>`           71.44%       47.0%
+     3  :ref:`LANG <lxterminallang>`           71.44%       53.0%
      4  :ref:`VS16 <lxterminalvs16>`           0.00%        0.0%
      5  :ref:`VS15 <lxterminalvs15>`           0.00%        0.0%
      6  :ref:`Sixel <lxterminalsixel>`         no           0.0%

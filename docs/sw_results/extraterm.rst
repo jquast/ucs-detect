@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *Extraterm*:
    ===  ====================================  ===========  ====================
      1  :ref:`WIDE <extratermwide>`           94.45%       94.3%
      2  :ref:`ZWJ <extratermzwj>`             0.00%        0.0%
-     3  :ref:`LANG <extratermlang>`           48.67%       4.6%
+     3  :ref:`LANG <extratermlang>`           48.67%       15.3%
      4  :ref:`VS16 <extratermvs16>`           100.00%      100.0%
      5  :ref:`VS15 <extratermvs15>`           0.00%        0.0%
      6  :ref:`Sixel <extratermsixel>`         no           0.0%

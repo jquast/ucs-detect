@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *st*:
    ===  =============================  ===========  ====================
      1  :ref:`WIDE <stwide>`           95.77%       95.7%
      2  :ref:`ZWJ <stzwj>`             0.69%        0.7%
-     3  :ref:`LANG <stlang>`           74.00%       51.8%
+     3  :ref:`LANG <stlang>`           74.00%       57.2%
      4  :ref:`VS16 <stvs16>`           0.00%        0.0%
      5  :ref:`VS15 <stvs15>`           0.00%        0.0%
      6  :ref:`Sixel <stsixel>`         no           0.0%

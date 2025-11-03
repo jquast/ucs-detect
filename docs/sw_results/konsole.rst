@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *Konsole*:
    ===  ==================================  ===========  ====================
      1  :ref:`WIDE <konsolewide>`           94.77%       94.6%
      2  :ref:`ZWJ <konsolezwj>`             95.99%       96.0%
-     3  :ref:`LANG <konsolelang>`           75.98%       55.5%
+     3  :ref:`LANG <konsolelang>`           75.98%       60.5%
      4  :ref:`VS16 <konsolevs16>`           100.00%      100.0%
      5  :ref:`VS15 <konsolevs15>`           0.00%        0.0%
      6  :ref:`Sixel <konsolesixel>`         yes          100.0%

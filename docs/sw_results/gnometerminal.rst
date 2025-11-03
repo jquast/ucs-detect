@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *GNOME Terminal*:
    ===  ========================================  ===========  ====================
      1  :ref:`WIDE <gnometerminalwide>`           92.48%       92.3%
      2  :ref:`ZWJ <gnometerminalzwj>`             0.24%        0.2%
-     3  :ref:`LANG <gnometerminallang>`           71.44%       47.0%
+     3  :ref:`LANG <gnometerminallang>`           71.44%       53.0%
      4  :ref:`VS16 <gnometerminalvs16>`           0.00%        0.0%
      5  :ref:`VS15 <gnometerminalvs15>`           0.00%        0.0%
      6  :ref:`Sixel <gnometerminalsixel>`         no           0.0%

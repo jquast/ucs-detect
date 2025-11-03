@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *WezTerm*:
    ===  ==================================  ===========  ====================
      1  :ref:`WIDE <weztermwide>`           97.72%       97.7%
      2  :ref:`ZWJ <weztermzwj>`             100.00%      100.0%
-     3  :ref:`LANG <weztermlang>`           99.58%       99.4%
+     3  :ref:`LANG <weztermlang>`           99.58%       99.5%
      4  :ref:`VS16 <weztermvs16>`           0.00%        0.0%
      5  :ref:`VS15 <weztermvs15>`           0.00%        0.0%
      6  :ref:`Sixel <weztermsixel>`         yes          100.0%

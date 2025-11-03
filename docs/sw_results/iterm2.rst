@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
    ===  =================================  ===========  ====================
      1  :ref:`WIDE <iterm2wide>`           94.55%       94.4%
      2  :ref:`ZWJ <iterm2zwj>`             99.31%       99.3%
-     3  :ref:`LANG <iterm2lang>`           75.80%       55.1%
+     3  :ref:`LANG <iterm2lang>`           75.80%       60.2%
      4  :ref:`VS16 <iterm2vs16>`           94.37%       94.4%
      5  :ref:`VS15 <iterm2vs15>`           0.00%        0.0%
      6  :ref:`Sixel <iterm2sixel>`         yes          100.0%

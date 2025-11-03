@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *foot*:
    ===  ===============================  ===========  ====================
      1  :ref:`WIDE <footwide>`           95.77%       95.7%
      2  :ref:`ZWJ <footzwj>`             95.99%       96.0%
-     3  :ref:`LANG <footlang>`           75.75%       55.0%
+     3  :ref:`LANG <footlang>`           75.75%       60.1%
      4  :ref:`VS16 <footvs16>`           100.00%      100.0%
      5  :ref:`VS15 <footvs15>`           0.00%        0.0%
      6  :ref:`Sixel <footsixel>`         yes          100.0%

@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *terminology*:
    ===  ======================================  ===========  ====================
      1  :ref:`WIDE <terminologywide>`           96.77%       96.7%
      2  :ref:`ZWJ <terminologyzwj>`             0.69%        0.7%
-     3  :ref:`LANG <terminologylang>`           52.95%       12.5%
+     3  :ref:`LANG <terminologylang>`           52.95%       22.4%
      4  :ref:`VS16 <terminologyvs16>`           0.00%        0.0%
      5  :ref:`VS15 <terminologyvs15>`           0.00%        0.0%
      6  :ref:`Sixel <terminologysixel>`         no           0.0%

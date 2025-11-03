@@ -4,7 +4,7 @@ terminal.exe
 ------------
 
 
-Tested Software version 1.23.12811.0 on Linux.
+Tested Software version 1.23.12811.0 on Windows.
 The homepage URL of this terminal is https://learn.microsoft.com/en-us/windows/terminal/.
 Full results available at ucs-detect_ repository path
 `data/terminalexe.yaml <https://github.com/jquast/ucs-detect/blob/master/data/terminalexe.yaml>`_.
@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *terminal.exe*:
    ===  ======================================  ===========  ====================
      1  :ref:`WIDE <terminalexewide>`           97.72%       97.7%
      2  :ref:`ZWJ <terminalexezwj>`             100.00%      100.0%
-     3  :ref:`LANG <terminalexelang>`           69.96%       44.3%
+     3  :ref:`LANG <terminalexelang>`           69.96%       50.5%
      4  :ref:`VS16 <terminalexevs16>`           100.00%      100.0%
      5  :ref:`VS15 <terminalexevs15>`           0.00%        0.0%
      6  :ref:`Sixel <terminalexesixel>`         yes          100.0%

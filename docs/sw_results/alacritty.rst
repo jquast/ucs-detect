@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *alacritty*:
    ===  ====================================  ===========  ====================
      1  :ref:`WIDE <alacrittywide>`           100.00%      100.0%
      2  :ref:`ZWJ <alacrittyzwj>`             0.69%        0.7%
-     3  :ref:`LANG <alacrittylang>`           76.33%       56.1%
+     3  :ref:`LANG <alacrittylang>`           76.33%       61.1%
      4  :ref:`VS16 <alacrittyvs16>`           0.00%        0.0%
      5  :ref:`VS15 <alacrittyvs15>`           0.00%        0.0%
      6  :ref:`Sixel <alacrittysixel>`         no           0.0%

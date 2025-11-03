@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *linux fbdev*:
    ===  =====================================  ===========  ====================
      1  :ref:`WIDE <linuxfbdevwide>`           2.74%        0.0%
      2  :ref:`ZWJ <linuxfbdevzwj>`             5.40%        5.4%
-     3  :ref:`LANG <linuxfbdevlang>`           48.72%       4.7%
+     3  :ref:`LANG <linuxfbdevlang>`           48.72%       15.4%
      4  :ref:`VS16 <linuxfbdevvs16>`           100.00%      100.0%
      5  :ref:`VS15 <linuxfbdevvs15>`           0.00%        0.0%
      6  :ref:`Sixel <linuxfbdevsixel>`         no           0.0%

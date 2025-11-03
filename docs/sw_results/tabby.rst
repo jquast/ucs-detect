@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *tabby*:
    ===  ================================  ===========  ====================
      1  :ref:`WIDE <tabbywide>`           85.64%       85.2%
      2  :ref:`ZWJ <tabbyzwj>`             0.69%        0.7%
-     3  :ref:`LANG <tabbylang>`           73.95%       51.7%
+     3  :ref:`LANG <tabbylang>`           73.95%       57.1%
      4  :ref:`VS16 <tabbyvs16>`           0.00%        0.0%
      5  :ref:`VS15 <tabbyvs15>`           0.00%        0.0%
      6  :ref:`Sixel <tabbysixel>`         yes          100.0%

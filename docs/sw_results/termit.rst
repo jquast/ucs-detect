@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *termit*:
    ===  =================================  ===========  ====================
      1  :ref:`WIDE <termitwide>`           94.77%       94.6%
      2  :ref:`ZWJ <termitzwj>`             0.69%        0.7%
-     3  :ref:`LANG <termitlang>`           74.00%       51.8%
+     3  :ref:`LANG <termitlang>`           74.00%       57.2%
      4  :ref:`VS16 <termitvs16>`           0.00%        0.0%
      5  :ref:`VS15 <termitvs15>`           0.00%        0.0%
      6  :ref:`Sixel <termitsixel>`         no           0.0%

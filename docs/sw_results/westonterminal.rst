@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *weston-terminal*:
    ===  =========================================  ===========  ====================
      1  :ref:`WIDE <westonterminalwide>`           92.83%       92.6%
      2  :ref:`ZWJ <westonterminalzwj>`             0.00%        0.0%
-     3  :ref:`LANG <westonterminallang>`           46.21%       0.0%
+     3  :ref:`LANG <westonterminallang>`           46.21%       11.3%
      4  :ref:`VS16 <westonterminalvs16>`           100.00%      100.0%
      5  :ref:`VS15 <westonterminalvs15>`           0.00%        0.0%
      6  :ref:`Sixel <westonterminalsixel>`         no           0.0%

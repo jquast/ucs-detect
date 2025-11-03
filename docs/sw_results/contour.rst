@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *contour*:
    ===  ==================================  ===========  ====================
      1  :ref:`WIDE <contourwide>`           97.72%       97.7%
      2  :ref:`ZWJ <contourzwj>`             96.26%       96.3%
-     3  :ref:`LANG <contourlang>`           94.25%       89.5%
+     3  :ref:`LANG <contourlang>`           94.25%       90.7%
      4  :ref:`VS16 <contourvs16>`           0.00%        0.0%
      5  :ref:`VS15 <contourvs15>`           0.00%        0.0%
      6  :ref:`Sixel <contoursixel>`         yes          100.0%

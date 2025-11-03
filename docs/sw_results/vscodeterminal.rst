@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *vscode terminal*:
    ===  =========================================  ===========  ====================
      1  :ref:`WIDE <vscodeterminalwide>`           85.64%       85.2%
      2  :ref:`ZWJ <vscodeterminalzwj>`             0.69%        0.7%
-     3  :ref:`LANG <vscodeterminallang>`           73.95%       51.7%
+     3  :ref:`LANG <vscodeterminallang>`           73.95%       57.1%
      4  :ref:`VS16 <vscodeterminalvs16>`           0.00%        0.0%
      5  :ref:`VS15 <vscodeterminalvs15>`           0.00%        0.0%
      6  :ref:`Sixel <vscodeterminalsixel>`         no           0.0%

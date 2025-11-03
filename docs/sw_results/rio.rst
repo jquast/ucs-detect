@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *rio*:
    ===  ==============================  ===========  ====================
      1  :ref:`WIDE <riowide>`           97.72%       97.7%
      2  :ref:`ZWJ <riozwj>`             0.69%        0.7%
-     3  :ref:`LANG <riolang>`           74.00%       51.8%
+     3  :ref:`LANG <riolang>`           74.00%       57.2%
      4  :ref:`VS16 <riovs16>`           0.00%        0.0%
      5  :ref:`VS15 <riovs15>`           0.00%        0.0%
      6  :ref:`Sixel <riosixel>`         yes          100.0%

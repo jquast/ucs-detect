@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *Terminal.app*:
    ===  ======================================  ===========  ====================
      1  :ref:`WIDE <terminalappwide>`           97.72%       97.7%
      2  :ref:`ZWJ <terminalappzwj>`             0.00%        0.0%
-     3  :ref:`LANG <terminalapplang>`           73.64%       51.1%
+     3  :ref:`LANG <terminalapplang>`           73.64%       56.6%
      4  :ref:`VS16 <terminalappvs16>`           0.00%        0.0%
      5  :ref:`VS15 <terminalappvs15>`           0.00%        0.0%
      6  :ref:`Sixel <terminalappsixel>`         no           0.0%

@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *mlterm*:
    ===  =================================  ===========  ====================
      1  :ref:`WIDE <mltermwide>`           94.77%       94.6%
      2  :ref:`ZWJ <mltermzwj>`             0.00%        0.0%
-     3  :ref:`LANG <mltermlang>`           99.56%       99.4%
+     3  :ref:`LANG <mltermlang>`           99.56%       99.5%
      4  :ref:`VS16 <mltermvs16>`           0.00%        0.0%
      5  :ref:`VS15 <mltermvs15>`           0.00%        0.0%
      6  :ref:`Sixel <mltermsixel>`         yes          100.0%

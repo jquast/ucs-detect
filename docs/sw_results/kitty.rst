@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *kitty*:
    ===  ================================  ===========  ====================
      1  :ref:`WIDE <kittywide>`           97.72%       97.7%
      2  :ref:`ZWJ <kittyzwj>`             100.00%      100.0%
-     3  :ref:`LANG <kittylang>`           94.36%       89.7%
+     3  :ref:`LANG <kittylang>`           94.36%       90.9%
      4  :ref:`VS16 <kittyvs16>`           100.00%      100.0%
      5  :ref:`VS15 <kittyvs15>`           100.00%      100.0%
      6  :ref:`Sixel <kittysixel>`         no           0.0%

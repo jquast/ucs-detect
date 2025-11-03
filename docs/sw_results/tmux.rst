@@ -24,7 +24,7 @@ Detailed breakdown of how scores are calculated for *tmux*:
    ===  ===============================  ===========  ====================
      1  :ref:`WIDE <tmuxwide>`           95.77%       95.7%
      2  :ref:`ZWJ <tmuxzwj>`             80.62%       80.6%
-     3  :ref:`LANG <tmuxlang>`           74.05%       51.9%
+     3  :ref:`LANG <tmuxlang>`           74.05%       57.3%
      4  :ref:`VS16 <tmuxvs16>`           100.00%      100.0%
      5  :ref:`VS15 <tmuxvs15>`           0.00%        0.0%
      6  :ref:`Sixel <tmuxsixel>`         yes          100.0%
