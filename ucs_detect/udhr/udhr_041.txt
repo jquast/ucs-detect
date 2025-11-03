@@ -1,0 +1,220 @@
+Universal Declaration of Human Rights - Latvian (2)
+
+This plain text version prepared by the "UDHR in XML" project,
+http://efele.net/udhr.
+
+-----
+
+Vispārējā cilvēktiesību deklarācija
+Pieņemta un pasludināta ar Ģenerālās Asamblejas 1948. gada 10. decembra 217. A (III) rezolūciju
+
+PREAMBULA
+Ņemot vērā to, ka visiem cilvēku sabiedrības locekļiem piemītošās pašcieņas un viņu vienlīdzīgo un neatņemamo tiesību atzīšana ir brīvības, taisnīguma un miera pamats pasaulē;
+ņemot vērā to, ka cilvēktiesību neievērošanas un noniecināšanas dēļ ir notikuši barbariski akti, kas ir smags pārkāpums pret cilvēces sirdsapziņu, un cilvēku viskarstākā vēlme ir radīt tādu pasauli, kurā valdītu vārda un domas brīvība un kurā cilvēki būtu brīvi no bailēm un trūkuma;
+ņemot vērā to, ka, lai cilvēki nebūtu spiesti kā pēdējo līdzekli izmantot sacelšanos pret tirāniju un apspiestību, ir svarīgi, lai cilvēktiesības aizsargātu likuma spēks;
+ņemot vērā to, ka ir svarīgi veicināt tautu draudzību;
+ņemot vērā to, ka Apvienoto Nāciju tautas Statūtos ir apliecinājušas ticību cilvēka pamattiesībām, cieņai un cilvēka personas vērtībai un vīriešu un sieviešu līdztiesībai, kā arī apņēmušās sekmēt sociālo progresu un dzīves apstākļu uzlabošanos lielākas brīvības apstākļos;
+ņemot vērā to, ka dalībvalstis ir apņēmušās sadarbībā ar Apvienoto Nāciju Organizāciju veicināt vispārēju cieņu pret cilvēktiesībām un pamatbrīvībām, kā arī to ievērošanu;
+ņemot vērā to, ka ir ārkārtīgi svarīgi panākt šo tiesību un brīvību vienotu izpratni, lai varētu pilnīgi īstenot šo apņemšanos,
+Ģenerālā Asambleja pasludina šo Vispārējo cilvēktiesību deklarāciju par kopīgu uzdevumu, kuru jātiecas pildīt visām tautām un visām valstīm, lai katrs cilvēks un katrs sabiedrības loceklis, pastāvīgi paturot prātā šo deklarāciju, ar izskaidrošanu un izglītošanu censtos veicināt šo tiesību un brīvību respektēšanu un, veicot valsts līmeņa un starptautiskus progresīvus pasākumus, nodrošinātu šo tiesību un brīvību vispārēju un faktisku atzīšanu un ievērošanu gan Organizācijas dalībvalstīs, gan arī to jurisdikcijā esošajās teritorijās.
+
+1. pants
+Visi cilvēki piedzimst brīvi un vienlīdzīgi cieņā un tiesībās. Viņiem ir dots saprāts un sirdsapziņa, un viņiem citam pret citu jāizturas brālības garā.
+
+2. pants
+Katram cilvēkam pienākas visas tiesības un brīvības, kas pasludinātas šajā deklarācijā, neatkarīgi no viņa rases, ādas krāsas, dzimuma, valodas, reliģiskās, politiskās vai citas pārliecības, nacionālās vai sociālās izcelsmes, mantiskā stāvokļa, kārtas vai cita stāvokļa.
+Turklāt nav pieļaujamas nekādas atšķirības tās valsts vai teritorijas politiskā, tiesiskā vai starptautiskā stāvokļa dēļ, pie kuras cilvēks pieder, neatkarīgi no tā, vai šī teritorija ir neatkarīga, aizbildnībā, bez pašpārvaldes vai kā citādi ierobežota savā suverenitātē.
+
+3. pants
+Katram cilvēkam ir tiesības uz dzīvību, brīvību un personas neaizskaramību.
+
+4. pants
+Nevienu nedrīkst turēt verdzībā vai piespiedu kalpībā; jebkāda verdzība un vergu tirdzniecība ir aizliegta.
+
+5. pants
+Nevienu nedrīkst pakļaut spīdzināšanai vai nežēlīgai, necilvēcīgai vai pazemojošai attieksmei vai sodiem.
+
+6. pants
+Katram cilvēkam, lai kur viņš atrastos, ir tiesības tikt atzītam par personu likuma priekšā.
+
+7. pants
+Visi cilvēki ir vienlīdzīgi likuma priekšā, un viņiem ir tiesības uz vienādu likuma aizsardzību bez jebkādas diskriminācijas. Visiem ir tiesības uz vienādu aizsardzību pret jebkādu diskrimināciju, kura pārkāpj šo deklarāciju, un pret jebkuru kūdīšanu uz tādu diskrimināciju.
+
+8. pants
+Katram cilvēkam ir tiesības uz efektīviem tiesiskās aizsardzības līdzekļiem kompetentā valsts tiesā gadījumos, kad pārkāptas viņa pamattiesības, kas noteiktas konstitūcijā vai likumā.
+
+9. pants
+Nevienu nedrīkst patvaļīgi arestēt, aizturēt vai izraidīt.
+
+10. pants
+Visiem cilvēkiem ir pilnīgi vienlīdzīgas tiesības uz to, lai viņu tiesības un pienākumi, kā arī viņiem izvirzītās kriminālapsūdzības pamatotība tiktu noskaidrota taisnīgā un atklātā procesā neatkarīgā un objektīvā tiesā.
+
+11. pants
+
+
+Katram cilvēkam, kuram inkriminēts noziedzīgs nodarījums, ir tiesības tikt uzskatītam par nevainīgu, kamēr viņa vaina saskaņā ar likumu nav pierādīta atklātā tiesas procesā, kurā viņam tiek nodrošinātas visas iespējas saņemt aizstāvību.
+
+
+Nevienu nedrīkst atzīt par vainīgu noziedzīgā nodarījumā tādas darbības vai bezdarbības dēļ, kas saskaņā ar izdarīšanas brīdī spēkā bijušajiem valsts likumiem vai starptautiskajām tiesībām nav ticis uzskatīts par noziedzīgu nodarījumu. Tāpat nedrīkst piespriest bargāku sodu kā tas, kas bijis jāpiemēro laikā, kad ticis izdarīts attiecīgais noziedzīgais nodarījums.
+
+
+
+12. pants
+Nedrīkst patvaļīgi pārkāpt neviena cilvēka privātās dzīves, ģimenes, mājokļa un korespondences neaizskaramību, ne arī apdraudēt viņa godu un reputāciju. Katram cilvēkam ir tiesības uz likuma aizsardzību pret šādiem pārkāpumiem vai apdraudējumiem.
+
+13. pants
+
+
+Katram cilvēkam ikvienas valsts teritorijā ir tiesības brīvi pārvietoties un izvēlēties dzīvesvietu.
+
+
+Katram cilvēkam ir tiesības atstāt jebkuru, arī savu valsti, un atgriezties savā valstī.
+
+
+
+14. pants
+
+
+Katram cilvēkam ir tiesības meklēt patvērumu no vajāšanas citās valstīs un izmantot šo patvērumu.
+
+
+Šīs tiesības nevar izmantot tad, ja vajāšana faktiski saistīta ar nepolitisku noziegumu vai darbību, kas ir pretrunā Apvienoto Nāciju Organizācijas mērķiem un principiem.
+
+
+
+15. pants
+
+
+Katram cilvēkam ir tiesības uz pilsonību.
+
+
+Nevienam cilvēkam nedrīkst patvaļīgi atņemt pilsonību vai liegt tiesības mainīt pilsonību.
+
+
+
+16. pants
+
+
+Vīriešiem un sievietēm, kas sasnieguši pilngadību, ir tiesības bez jebkādiem ar rasi, tautību vai reliģisko pārliecību saistītiem ierobežojumiem stāties laulībā un dibināt ģimeni. Viņiem ir vienlīdzīgas tiesības, stājoties laulībā, laulības laikā un šķirot laulību.
+
+
+Laulību var slēgt tikai ar abu nākamo laulāto brīvu un pilnīgu piekrišanu.
+
+
+Ģimene ir dabiska sabiedrības pamatšūniņa, un tai ir tiesības uz sabiedrības un valsts aizsardzību.
+
+
+
+17. pants
+
+
+Katram cilvēkam ir tiesības uz īpašumu, kas var piederēt gan viņam vienam, gan kopā ar citiem.
+
+
+Nevienam nedrīkst patvaļīgi atņemt viņa īpašumu.
+
+
+
+18. pants
+Katram cilvēkam ir tiesības uz domas, apziņas un reliģiskās pārliecības brīvību, un šīs tiesības ietver brīvību mainīt savu reliģisko pārliecību vai uzskatus, kā arī brīvību gan vienatnē, gan arī kopā ar citiem publiski vai privāti paust savu reliģisko pārliecību vai uzskatus, sludinot tos, piedaloties reliģiskās ceremonijās un rituālos.
+
+19. pants
+Katram cilvēkam ir tiesības uz pārliecības brīvību un tiesības brīvi paust savus uzskatus; šīs tiesības ietver brīvību netraucēti palikt pie saviem uzskatiem un brīvību meklēt, saņemt un izplatīt informāciju un idejas ar jebkuriem līdzekļiem neatkarīgi no valstu robežām.
+
+20. pants
+
+
+Katram cilvēkam ir tiesības uz miermīlīgas pulcēšanās un biedrošanās brīvību.
+
+
+Nevienu nedrīkst piespiest kļūt par dalībnieku kādā apvienībā.
+
+
+
+21. pants
+
+
+Katram cilvēkam ir tiesības piedalīties savas valsts pārvaldē tieši vai ar brīvi izraudzītu pārstāvju starpniecību.
+
+
+Visiem cilvēkiem ir vienlīdzīgas tiesības savā valstī pildīt valsts dienestu.
+
+
+Tautas  gribai ir jābūt valdības varas pamatam; šai gribai ir jābūt izteiktai periodiskās un godīgās vēlēšanās, kam jābūt vispārējām un vienlīdzīgām un kurās jāizmanto aizklāta balsošana vai citas līdzvērtīgas procedūras, kas nodrošina vēlētāju brīvas gribas izpausmi.
+
+
+
+22. pants
+Katram cilvēkam kā sabiedrības loceklim ir tiesības uz sociālo drošību un viņa pašcieņas uzturēšanai un personības brīvai attīstībai nepieciešamo tiesību īstenošanu ekonomiskajā, sociālajā un kultūras jomā, izmantojot valsts līmeņa pasākumus un starptautisku sadarbību un atbilstoši katras valsts iekārtai un resursiem.
+
+23. pants
+
+
+Katram cilvēkam ir tiesības uz darbu, uz brīvu darbavietas izvēli, uz taisnīgiem un labvēlīgiem darba apstākļiem, kā arī uz aizsardzību pret bezdarbu.
+
+
+Katram cilvēkam bez jebkādas diskriminācijas ir tiesības uz vienādu atlīdzību par līdzvērtīgu darbu.
+
+
+Katram, kas strādā, ir tiesības uz taisnīgu un apmierinošu atlīdzību par darbu, kas nodrošina cilvēka cienīgu dzīvi viņam un viņa ģimenei un ko vajadzības gadījumā papildina citi sociālās aizsardzības līdzekļi.
+
+
+Katram cilvēkam ir tiesības dibināt arodbiedrības un iestāties arodbiedrībās savu interešu aizsardzībai.
+
+
+
+24. pants
+Katram cilvēkam ir tiesības uz atpūtu un brīvo laiku, ieskaitot tiesības uz saprātīgu darbadienas ilguma ierobežojumu un uz apmaksātu periodisku atvaļinājumu.
+
+25. pants
+
+
+Katram cilvēkam ir tiesības uz tādu dzīves līmeni, tostarp uzturu, apģērbu, mājokli, medicīnisko aprūpi un sociālajiem pakalpojumiem, kas nepieciešami viņa un viņa ģimenes veselībai un labklājībai, kā arī tiesības uz nodrošinājumu saistībā ar bezdarbu, slimību, invaliditāti, atraitnību, vecuma iestāšanos vai citos eksistences līdzekļu zaudējuma gadījumos, kas radušies no viņa neatkarīgu apstākļu dēļ.
+
+
+Mātēm un bērniem ir tiesības uz īpašu aizsardzību un palīdzību. Visiem bērniem, gan laulībā, gan ārlaulībā dzimušajiem, ir jāsaņem vienāda sociālā aizsardzība.
+
+
+
+26. pants
+
+
+Katram cilvēkam ir tiesības uz izglītību. Izglītībai, vismaz sākumizglītībai un pamatizglītībai, ir jābūt bez maksas. Sākumizglītībai ir jābūt obligātai. Tehniskajai un profesionālajai izglītībai ir jābūt vispārpieejamai, un augstākai izglītībai jābūt vienlīdz pieejamai visiem, ņemot vērā katra spējas.
+
+
+Izglītībai jābūt vērstai uz pilnīgu personības attīstību, un tai jāstiprina cilvēktiesību un pamatbrīvību ievērošana. Izglītībai ir jāveicina savstarpējā saprašanās, iecietība un draudzība starp visām tautām, rasu un reliģiskajām grupām un jāveicina Apvienoto Nāciju Organizācijas darbība miera uzturēšanā.
+
+
+Vecākiem ir pirmtiesības izvēlēties, kāda veida izglītību iegūs viņu bērni.
+
+
+
+27. pants
+
+
+Katram cilvēkam ir tiesības brīvi piedalīties sabiedrības kultūras dzīvē, baudīt mākslu, darboties zinātnes progresa labā un izmantot tā sasniegumus.
+
+
+Katram cilvēkam ir tiesības uz morālo un materiālo interešu aizsardzību saistībā ar zinātniskajiem, literārajiem vai mākslas darbiem, kuru autors viņš ir.
+
+
+
+28. pants
+Katram cilvēkam ir tiesības uz sabiedrisko un starptautisko kārtību, kurā ir iespējams pilnīgi īstenot šajā deklarācijā izklāstītās tiesības un brīvības.
+
+29. pants
+
+
+Katram cilvēkam ir pienākumi pret sabiedrību, jo tikai tajā ir iespējama viņa personības brīva un pilnīga attīstība.
+
+
+Īstenojot savas tiesības un brīvības, katram cilvēkam ir jāpakļaujas tikai tiem ierobežojumiem, kas noteikti likumā un kuru vienīgais mērķis ir pienācīgi atzīt un cienīt citu cilvēku tiesības un brīvības, kā arī apmierināt morāles, sabiedriskās kārtības un vispārējas labklājības taisnīgās prasības demokrātiskā sabiedrībā.
+
+
+Šo tiesību un brīvību īstenošana nekādā ziņa nedrīkst būt pretrunā Apvienoto Nāciju Organizācijas mērķiem un principiem.
+
+
+
+30. pants
+Neko šajā deklarācijā nedrīkst interpretēt tādējādi, lai kādai valstij, personu grupai vai atsevišķām personām būtu tiesības īstenot tādu darbību vai rīcību, kuras mērķis ir iznīcināt šajā deklarācijā izklāstītās tiesības un brīvības.
+

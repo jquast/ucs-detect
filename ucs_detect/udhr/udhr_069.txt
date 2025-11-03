@@ -1,0 +1,217 @@
+Universal Declaration of Human Rights - Maori (2)
+
+This plain text version prepared by the "UDHR in XML" project,
+http://efele.net/udhr.
+
+-----
+
+WHAKAPUAKITANGA WHANUI O NGA MANA O TE TANGATA - 1948
+I runga i te mōhio ko te whakapūmau i te mana o ngā tāngata katoa o te ao, i te ōritetanga hoki o ō rātau tika e kore e taea te wewete, koia ko te tūāpapa o te noho herekore i roto i te ture me te maungarongo i te ao,
+I runga i te mōhio nā te aro kore me te whakaparahako i ngā tika tangata ka hua mai ai he tino mahi tūkino e oho kino nei te mauri tangata, ā, kua huaina mai e te iwi whānui ko te tino whāinga ko te putanga mai o tētahi ao e taea ana e te tangata te kōrero herekore, te whakapono herekore, ā, e wātea ana i te mataku me te korekai,
+I runga i te mōhio me āta tiaki i ngā tika tangata ki roto i te ture e kore ai te tangata e mate ki te huri ki te whawhai i ngā mahi takahī mana, takahī tāngata,
+I runga i te mōhio me āta whakatairanga te whakawhanaungatanga ki waenga i ngā whenua o te ao,
+I runga i te mōhio kua oti i ngā iwi o Te Kotahitanga o Te Ao, ki roto i tōna kaupapa, te whakapūmau i tō rātau whakapono ki ngā tika taketake o te tangata, ki te mana me te tapu o te tangata, ki te ōritetanga o te mana tāne me te mana wahine, ā, kua whakatau rātau ki te whai kia whakapikia ngā āhuatanga oranga ki roto i te whānuitanga o te noho herekore,
+I runga i te mōhio kua kī taurangi ngā Mana Whenua o Te Kotahitanga o te Ao ka whāia e rātau te kaupapa whakanui, whakatinana hoki i ngā tika tangata me ngā herekoretanga taketake, i runga i te mahi tahi ki Te Kotahitanga o Te Ao,
+I runga i te mōhio ko te mea tino nui rawa atu e tino tutuki ai tēnei kī taurangi, ko te mōhiotanga ki ēnei tika me ēnei herekoretanga,
+Nā konei, ka whakatau Te Rūnanga Nui ko tēnei WHAKAPUAKITANGA WHĀNUI O NGĀ TIKA TANGATA te taumata hei whakatutuki mō ngā iwi me ngā whenua katoa, e taea ai e ia tangata me ia rōpū o te hapori, i runga i te whai whakaaro ki tēnei Whakapuakitanga i ngā wā katoa, te whakatairanga i te whakaaro nui ki ēnei tika me ēnei herekoretanga mā te whakaako me te tuku mātauranga, ā, mā ngā huarahi kōkiri ki roto i te whenua, ki waenga hoki i ngā whenua o te ao, e mana ai te whakapūmautanga me te whakatinanatanga ki waenga i ngā iwi o ngā Mana Whenua me ngā iwi o ngā rohe kei raro i ō rātau maru.
+
+Rarangi 1
+I te whānautanga mai o te tangata, kāhore ōna here, e ōrite ana tōna mana me ōna tika ki te katoa. Ka whakatōkia ki roto i te tangata he wairua,
+he hinengaro hoki, ā, me mahi tahi ia ki ngā tāngata o te ao i runga i te āhua o te tuakana me te teina.
+
+Rarangi 2
+E āhei ana ia tangata ki ngā tika me ngā herekoretanga e rārangi mai nei ki tēnei Whakapuakitanga, kāhore nei he rerekētanga ā-iwi, ā-kiri, ā-ira, ā-reo, ā-whakapono, ā- tōrangapū, ā-whenua, ā-whai rawa, ā-whānautanga, ā-aha nei. Hei āpiti atu, kāhore nei he rerekētanga e pā ki te tangata nā runga i te āhua tōrangapū o te whenua e noho nei ia, i te āhua ā-ture rānei, i te tūranga rānei o taua whenua ki waenga i ngā whenua o te ao, ahakoa he whenua tū motuhake, he whenua e tiakina ana e tētahi atu, he whenua rānei e herea nei tōna rangatiratanga.
+
+Rarangi 3
+E whai tika ana ia tangata ki te ora, ki te noho herekore, ki te haumarutanga o te tinana.
+
+Rarangi 4
+Kia kaua te tangata e pupuritia hei taurekareka, hei pononga mā tētahi, ā, me aukati ngā āhuatanga katoa o te whakataurekareka i te tangata, o te hoko rānei i te tangata hei taurekareka.
+
+Rarangi 5
+Kia kaua te tangata e tukuna kia tūkinotia, kia whiua rānei ki te mahi whakawiri, whakāhawea rānei i a ia.
+
+Rarangi 6
+E whai tika ana ia tangata kia mōhiotia hei tangata ki mua i te aroaro o te ture.
+
+Rarangi 7
+He ōrite ngā tāngata katoa ki mua i te aroaro o te ture, ā, e āhei ana ngā haumarutanga katoa o te ture ki a rātau i runga i te kore rerekētanga ki ētahi atu. E whai tika ana ngā tāngata katoa kia haumarutia rātau i ngā mahi whakatoihara e takahī nei i tēnei Whakapuakitanga, i ngā mahi rānei e akiaki ana kia pērā te whakatoihara.
+
+Rarangi 8
+E whai tika ana ia tangata ki ngā huarahi whakatikatika hapa ki mua i ngā taraipiunara tōtika o te whenua e noho nei ia mō ngā mahi e takahī ana i ngā tika taketake nā te ture i tuku.
+
+Rarangi 9
+Kia kaua te tangata e hopukina pokanoatia, e mauheretia pokanoatia rānei, e panaia pokanoatia rānei i te whenua.
+
+Rarangi 10
+E whai tika ana ia tangata kia whakawākia ōna tika me ōna kawenga, me ngā whakawhiu ā- ture e whiua nei ki a ia, ki mua i tētahi taraipiunara tū motuhake, matatika e tika ana āna whakahaere ki mua i te iwi whānui.
+
+Rarangi 11
+
+
+E whai tika ana ia tangata e whiua ana ki te ture kia kīia he harakore, kia oti rā anō te āta whakatau e hara ana ia ki roto i tētahi whakawākanga e puare ana, ā, kua whakawhiwhia te tangata e whakapaetia ana ki ngā momo āwhina katoa e tika ana ki a ia.
+
+
+Kia kaua tētahi tangata e kīia kei te noho hara ia mō tētahi mahi, mō te kore mahi rānei, mehemea ehara tērā āhuatanga i te mahi hara i te wā i mahia ai te mahi, i kore ai rānei i mahia. Kia kaua hoki e utaina ki te tangata he whakawhiu e taimaha ake ana i tērā e mana ana i te wā o te mahi hara.
+
+
+
+Rarangi 12
+Kia kaua e whakararurarua pokanoa te noho motuhake a te tangata, tōna whanau, tōna kāinga me āna tuhinga, kia kaua hoki e takahia tōna mana me tōna ingoa pai. E whai tika ana ia tangata ki te haumarutanga o te ture i ngā momo karawhiu nei.
+
+Rarangi 13
+
+
+E whai tika ana ia tangata kia herekore ai te hāereere me te noho ki roto i ngā roherohenga o ia whenua.
+
+
+E whai tika ana ia tangata kia puta ki waho o tētahi whenua, ahakoa ko tōna ake, ā, ki te hoki anō ki tōna whenua ake.
+
+
+
+Rarangi 14
+
+
+E whai tika ana ia tangata ki te rapu whakaāhuru ki whenua kē i te pēhitanga i tōna ake whenua, ā, ki te noho pai ki taua whenua kē.
+
+
+Kāhore e taea tēnei tika te whakamahi mehemea e whiua ana te tangata ki tētahi whiu ehara i te kaupapa tōrangapū, ehara rānei i te takahanga o ngā whāinga me ngā mātāpono o Te Kotahitanga o te Ao.
+
+
+
+Rarangi 15
+
+
+E whai tika ana ia tangata ki tētahi karangatanga whenua.
+
+
+Kia kaua tētahi tangata e āraitia pokanoatia i tōna karangatanga whenua, e āraitia rānei i te tika ki te whakarerekē i tōna karangatanga whenua.
+
+
+
+Rarangi 16
+
+
+E whai tika ana ngā tāne me ngā wāhine kua eke nei ki te pakeketanga ki te mārena, ki te whakatipu whānau, ā, kāhore nei he herenga ā-iwi, ā-karangatanga whenua, ā- whakapono rānei. He ōrite te whai tika mō te mārena, ki roto i te mārenatanga, i te whakakorenga hoki o te mārena.
+
+
+Me whakaae mārika te tokorua kia mārena rāua i runga i te whakaaro herekore.
+
+
+Ko te whānau te hanga tūturu o te hapori whānui, ā, e whai tika ana kia tiakina e te hapori me te Mana Whenua hoki.
+
+
+
+Rarangi 17
+
+
+E whai tika ana ia tangata ki te pupuri whenua, taonga hoki, tangata kotahi nei, ā-rōpū anō hoki.
+
+
+Kia kaua e tangohia takekoretia ngā whenua me ngā taonga a te tangata.
+
+
+
+Rarangi 18
+E whai tika ana ia tangata kia herekore ai ngā whakaaro, te hinengaro me te whakapono; kei roto i tēnei tika ko te āhei herekore a te tangata kia tahuri i ōna e whakapono ana me te āhei herekore ki te whai me te whakatinana i ngā whakapono nei mā te whakaako, mā te mahi, mā te karakia i tōna kotahi, i roto rānei i te rōpū, ki te wāhi tūmataiti, ki te wāhi tūmatanui rānei.
+
+Rarangi 19
+E whai tika ana ia tangata kia herekore ai ōna whakaaro me āna putanga korero, kei roto i tēnei tika ko te herekoretanga a te tangata ki te pupuri i ōna whakaaro me te kore raweke mai a tētahi atu, ko te herekoretanga hoki ki te rapu, ki te whiwhi, ki te tuku pārongo, whakaaro hoki mā ngā momo pāhotanga, ā, ahakoa ngā roherohenga.
+
+Rarangi 20
+
+
+E whai tika ana ia tangata kia herekore ai āna huihuinga me ōna hononga.
+
+
+Kia kaua tētahi e ākina kia uru ki tētahi rōpū.
+
+
+
+Rarangi 21
+
+
+E whai tika ana ia tangata kia whai wāhi ki ngā whakahaere kāwanatanga o tōna whenua, hāngai tonu atu, mā te whai wāhi rānei ki ngā māngai kua oti nei te whakatū herekore nei.
+
+
+E whai tika ana ia tangata kia ōrite te whai wāhi ki ngā ratonga kāwanatanga o tōna whenua.
+
+
+Ko tā te iwi i whakatau ai koina te pūtake o te mana o te kāwanantanga, kia mōhiotia ai te mana o te iwi, ka whakatūria he pooti i ētahi wā i runga i te kaupapa whakaōrite mana pooti ki te katoa, ā, me pooti huna, me whakahaere rānei he kaupapa pooti e rite nei te herekoretanga.
+
+
+
+Rarangi 22
+E whai tika ana ia tangata, ki roto i ō rātau hapori, kia whakawhiwhia ki te āwhina ā-hapori, ā, me āhei te tangata ki te whakatinana i ōna tika ohanga, hapori, ahurea hoki e hāngai pū ana ki tōna mana me te whakatipuranga herekore o tōna rangatiratanga, mā runga i ngā mahi o tōna whenua me ngā mahi ngātahi o ngā whenua o te ao, ki runga anō i te āhua me ngā rawa o tōna whenua.
+
+Rarangi 23
+
+
+E whai tika ana ia tangata ki te whai mahi, ki te whai herekore i te momo mahi e pīrangitia ana, kia tika, kia pai hoki ngā āhuatanga o te mahi, ā, kia tiakina i te kore mahi.
+
+
+E whai tika ana ia tangata, me te kore whakatoihara, kia utua ki te utu taurite mō te mahi taurite.
+
+
+E whai tika ana ia tangata e mahi ana kia utua rātau ki tētahi utu e tika ana, e pai ana e tū tangata ai rātau me ō rātau whānau, ā, me tāpiri atu he momo āwhina ā-hapori memehea e hiahiatia ana.
+
+
+E whai tika ana ia tangata ki te whakatū, ki te whakauru atu rānei ki tētahi rōpū kaimahi, e tiakina ai ō rātau take.
+
+
+
+Rarangi 24
+E whai tika ana ia tangata ki te whakatā, ki te whakangahau hoki, me whakarite ngā hāora mahi kia pēnei, me whakawhiwhi hoki he wā hararei e utua ana.
+
+Rarangi 25
+
+
+E whai tika ana ia tangata ki tētahi taumata oranga e rite ana mō te hauora o te tangata me tōna whanau, arā kia whai kai, kia whai kākahu, kia whai whare, kia whai rongoā, kia whai ratonga hapori hoki, me te tika hoki kia haumarutia inā ka pāngia e te kore mahi, e te māuiui, e te hauā, e te pouwarutanga, e te kaumātuatanga,ete korengarāneiewhaiorangamāhuarahikēekoreetaeate pēhea.
+
+
+E whai tika ana ki te āta manaaki te ūkaipōtanga me te tamarikitanga. Ko ngā tamariki katoa, ahakoa i whānau mai ki roto i te mārena, kahore rānei , ka tiaki ngātahi.
+
+
+
+Rarangi 26
+
+
+E whai tika ana ia tangata ki te mātauranga. Me kore utu te mātauranga, ki roto i ngā kura tuatahi me ngā pūtaketanga o te ako. Me uru te katoa o ngā tamariki ki te kura tuatahi. Me whānui te whakarato i te mātauranga hangarau me te mātauranga ngaio, ā, me āhei ngā whare wānanga ki ngā tāngata katoa ki runga i te āhua o ō rātau pūkenga.
+
+
+Ko te aronga matua o ngā mahi mātauranga, he whakatipu i te wairua o te tangata, ko te whakapiki i te whakaaro nui o te tangata ki ngā tika tangata me ngā herekoretanga taketake. Mā ngā mahi mātauranga nei, me whakatairanga ko te māramatanga o tētahi ki tētahi, ko te aroha, ko te whakahoatanga ki waenga i ngā whenua, i ngā iwi, i ngā whakapono, me tautoko hoki i ngā mahi a Te Kotahitanga o te Ao e mau ai te rongo.
+
+
+E whai tika ana ngā mātua ki te whiriwhiri i te momo mātauranga me whakawhiwhi ki ā rātau tamariki.
+
+
+
+Rarangi 27
+
+
+E whai tika ana ia tangata kia whai wāhi herekore nei ki te ao ahurea o te hapori, kia whai ngahau i ngā mahi toi, kia whai wāhi hoki ki ngā mahi pūtaiao me āna hua.
+
+
+E whai tika ana ia tangata kia tiakina ngā take ā-hinengaro, ā-tinana e hua ake ana i ngā mahi pūtaiao, tuhituhi, mahi toi e mahia ana e te tangata.
+
+
+
+Rarangi 28
+E whai tika ana ia tangata ki tētahi punaha hapori i tōna whenua me te ao whānui e mana katoa ai ngā tika me ngā herekoretanga kei tēnei Whakapuakitanga e rārangi ana.
+
+Rarangi 29
+
+
+E whai kawenga ana ia tangata ki roto i te hapori kei konā ka taea te whakatipuranga herekore o te wairua o te tangata ki ōna taumata e hiahiatia ana.
+
+
+I te tangata e whai ana i ōna tika me ōna herekoretanga, ka herea ia ki ngā tikanga anake o te ture e mau ai, e mana ai ngā tika me ngā herekoretanga o tāngata kē, e tutuki ai ngā āhuatanga o te matatika, o te nahanaha o te hapori, o te painga whānui o te hapori manapori.
+
+
+Kia kaua rawa e whāia ēnei tika me ēnei herekoretanga mehemea ka takahia nei ngā mātāpono o Te Kotahitanga o Te Ao.
+
+
+
+Rarangi 30
+Kāhore he kōrero i tēnei Whakapuakitanga ka taea te kī māna e whai tika ai te Mana Whenua, te rōpū, te tangata rānei ki te mahi i tētahi mahi e korehāhātia ai ngā tika me ngā herekoretanga e rārangi ake nei.
+

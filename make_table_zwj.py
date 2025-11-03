@@ -9,8 +9,7 @@ import wcwidth
 
 URL_EMOJI_ZWJ_SEQUENCES = "https://unicode.org/Public/emoji/{version}/emoji-zwj-sequences.txt"
 FETCH_BLOCKSIZE = 3096
-PATH_UP = os.path.relpath(os.path.join(os.path.dirname(__file__), os.path.pardir))
-PATH_DATA = os.path.join(PATH_UP, "data")
+PATH_DATA = os.path.relpath(os.path.join(os.path.dirname(__file__), "data"))
 
 
 def do_retrieve(url: str, fname: str) -> None:

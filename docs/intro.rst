@@ -42,8 +42,13 @@ their results have been collected into this repository and a detailed
 summary is published at URL https://ucs-detect.readthedocs.io/results.html
 
 An article describing the development of ucs-detect and summarizing the results
-for the 1.0.4 release of ucs-detect (November 2023) is published at
+for the 1.0.4 release of ucs-detect, November 2023 is published at
 https://www.jeffquast.com/post/ucs-detect-test-results/
+
+A follow-up November 2025 article discussing the results of another round of
+testing, including DEC Private Modes support, for release of ucs-detect 
+1.0.8 is published at
+https://www.jeffquast.com/post/state-of-terminal-emulation-2025/
 
 Individual yaml data file reports for these terminals may also be inspected at
 the repository folder ``data``,
@@ -104,31 +109,78 @@ are not capable of communicating by signal or forwarding by environment value,
 such as over a serial line. `resize(1)` simply moves to (999, 999) then asks,
 "where is my cursor?" and the response is understood to be the terminal size.
 
-UNICODE_VERSION (legacy)
-------------------------
+Updating Results
+----------------
 
-.. note:: This feature is planned for deprecation, see https://github.com/jquast/wcwidth/issues/104
+Use the ``re-run.py`` script to update the results for a new version of a
+terminal that is already tracked, for example::
 
-Versions of *ucs-detect* prior to 1.0 served only a single purpose, to export an
-sh_-compatible line for export of ``UNICODE_VERSION``. To continue this purpose,
-use ``--shell --quick``, for example::
+    $ python re-run.py data/contour.yaml
 
-    $ ucs-detect --shell --quick
-    UNICODE_VERSION=15.0.0; export UNICODE_VERSION
+This will re-execute ``ucs-detect`` with the test with the same parameters as
+the previous test.  The new results will overwrite the existing. 
 
-It is designed to be used interactively::
+Or, to submit results for a new terminal not previously tracked::
 
-    $ eval "$(ucs-detect --quick --shell)"
-    $ echo $UNICODE_VERSION
-    15.0.0
+    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-codepoints=5000 --limit-words=5000 --limit-errors=1000
 
-The environment variable, ``UNICODE_VERSION`` is currently used by the python
-wcwidth_ library, which contains every past unicode table version, to determine
-how dependent python programs, such as IPython_ render wide and zero-width
-characters.
+Conditionally you may reduce the test size for slow terminals like those using
+libvte_ which require more than 5 hours to complete.
+
+Create a pull draft pull request to this repository with your change and a
+github commit status should be reported by readthedocs.org, and, clicking
+"Details" should show the html preview.
+
+Problem Analysis
+----------------
+
+Use the CLI argument, --stop-at-error to interactively investigate discrepencies
+as they are detected. For example::
+
+    $ ucs-detect --stop-at-error 'Hindi'
+
+This presents output when an error occurs during Chinese language testing::
+
+    ucs-detect: testing language support: Hindi
+    मानव
+
+    Failure in language 'Hindi':
+    +----------------------------+
+    |            मानव             |
+    +----------------------------+
+
+    measured by terminal: 4
+    measured by wcwidth:  3
+
+    printf '\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5\n'
+    from blessed import Terminal
+    term = Terminal()
+    y1, x1 = term.get_location(); print('मानव', end='', flush=True); y2, x2 = term.get_location()
+    assert x2 - x1 == 3
+
+UDHR Data
+=========
+
+The Universal Declaration of Human Rights (UDHR) dataset contains translations into
+500+ languages, providing a practical multilingual test corpus for evaluating terminal
+emulator support of zero-width characters (category Mn - Nonspacing Mark), combining
+characters (category Mc - Spacing Mark), and language-specific scripts. The 532 UDHR
+text files in ``ucs_detect/udhr/`` are sourced from https://github.com/eric-muller/udhr/
+
+Although there is no fully complete test suite of all zero-width and combining
+characters across all possible Unicode codepoints, the UDHR provides practical
+coverage of the vast majority of the world's languages. By exhaustive interactive
+testing of this dataset (testing hundreds of languages with real-world text), the
+quality of language testing results serves as a suitable indicator of a terminal's
+quality of support for combining marks across diverse scripts, complex grapheme
+clusters, and script-specific rendering requirements.
 
 History
 =======
+
+- 1.0.8 (2025-11-02) : Added detection of DEC Private Modes, testing
+  of Variation Selector 15, Sixel graphics and pixel size, and 
+  automatic software version (XTVERSION and ^E answerback).
 
 - 1.0.7 (2024-01-06): Add python 3.10 compatibility for yaml file save and
   update wcwidth requirement to 0.2.13.
@@ -156,3 +208,4 @@ History
 .. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
 .. _Specification: https://wcwidth.readthedocs.io/en/latest/specs.html
 .. _`Terminal.exe`: https://ucs-detect.readthedocs.io/sw_results/Terminalexe.html#terminalexe
+.. _`libvte`: 

@@ -3,7 +3,7 @@ import collections
 
 
 def fetch_vs16_data():
-    "List new WIDE characters at each unicode version."
+    "List VS16 sequences."
     table = wcwidth.VS16_NARROW_TO_WIDE
     versions = list(table.keys())
     assert (
@@ -13,7 +13,7 @@ def fetch_vs16_data():
     assert version == "9.0.0"
     results = []
     for value_pair in table[version]:
-        for value in range(value_pair[0], value_pair[1]):
+        for value in range(value_pair[0], value_pair[1] + 1):
             results.append((value, ord("\uFE0F")))  # append VS16
 
     return [(version, results)]

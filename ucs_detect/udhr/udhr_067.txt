@@ -1,0 +1,220 @@
+Universal Declaration of Human Rights - Finnish (2)
+
+This plain text version prepared by the "UDHR in XML" project,
+http://efele.net/udhr.
+
+-----
+
+Ihmisoikeuksien yleismaailmallinen julistus
+Johdanto
+Ihmiskunnan kaikkien jäsenten synnynnäisen arvon ja heidän yhtäläisten ja luovuttamattomien oikeuksiensa tunnustaminen luo perustan vapaudelle, oikeudenmukaisuudelle ja rauhalle maailmassa,
+piittaamattomuus ihmisoikeuksista ja niiden väheksyminen ovat johtaneet raakuuksiin, jotka ovat järkyttäneet ihmiskunnan omaatuntoa, ja kansojen korkeimmaksi päämääräksi on julistettu sellaisen maailman luominen, jossa ihmisillä on sanan- ja uskonvapaus ja he ovat vapaita pelosta ja puutteesta,
+jotta ihminen ei joutuisi viimeisenä keinonaan turvautumaan kapinaan pakkovaltaa ja sortoa vastaan, ihmisoikeudet on turvattava oikeusvaltioperiaatteen avulla,
+olennaisen tärkeää on edistää ystävällisten suhteiden kehittymistä kansakuntien välille,
+Yhdistyneiden kansakuntien kansat ovat peruskirjassa uudelleen vahvistaneet uskovansa ihmisen perusoikeuksiin, ihmisyksilön arvoon ja merkitykseen ja miesten ja naisten yhtäläisiin oikeuksiin sekä päättäneet edistää sosiaalista kehitystä ja parempia elämisen ehtoja vapaammissa oloissa,
+jäsenvaltiot ovat sitoutuneet edistämään yhteistoiminnassa Yhdistyneiden kansakuntien kanssa ihmisoikeuksien ja perusvapauksien yleismaailmallista kunnioittamista ja noudattamista, ja
+yhteinen käsitys näistä oikeuksista ja vapauksista on ensiarvoisen tärkeää tämän sitoumuksen toteuttamiselle kaikilta osin.
+Sen vuoksi
+yleiskokous
+antaa tämän ihmisoikeuksien yleismaailmallisen julistuksen kaikkien kansojen ja kaikkien kansakuntien tavoiteltavaksi yhteiseksi ohjeeksi, jotta kukin yksilö ja kukin yhteiskunnan elin, pitäen tämän julistuksen jatkuvasti mielessään, pyrkisi valistamalla ja opettamalla edistämään näiden oikeuksien ja vapauksien kunnioittamista sekä jatkuvilla kansallisilla ja kansainvälisillä toimenpiteillä turvaamaan niiden yleismaailmallisen ja tosiasiallisen tunnustamisen ja noudattamisen sekä itse jäsenvaltioiden kansojen että niiden lainkäyttövaltaan kuuluvien alueiden kansojen keskuudessa.
+
+1 artikla
+Kaikki ihmiset syntyvät vapaina ja yhdenvertaisina arvoltaan ja oikeuksiltaan. Heille on annettu järki ja omatunto, ja heidän on toimittava toisiaan kohtaan veljeyden hengessä.
+
+2 artikla
+Jokainen on oikeutettu kaikkiin tässä julistuksessa mainittuihin oikeuksiin ja vapauksiin ilman minkäänlaista esimerkiksi rotuun, ihonväriin, sukupuoleen, kieleen, uskontoon, poliittiseen tai muuhun mielipiteeseen, kansalliseen tai yhteiskunnalliseen alkuperään, varallisuuteen, syntyperään tai muuhun asemaan perustuvaa erottelua.
+Mitään erottelua ei myöskään saa tehdä sen maan tai alueen poliittisen, oikeudellisen tai kansainvälisen aseman perusteella, johon henkilö kuuluu, olipa tämä maa tai alue itsenäinen, huoltohallinnossa, itsehallintoa vailla tai muun täysivaltaisuuden rajoituksen alainen.
+
+3 artikla
+Jokaisella on oikeus elämään, vapauteen ja henkilökohtaiseen turvallisuuteen.
+
+4 artikla
+Ketään ei saa pitää orjuudessa tai orjuuden kaltaisessa pakkotyössä, ja kaikki orjuuden ja orjakaupan muodot ovat kiellettyjä.
+
+5 artikla
+Ketään ei saa kiduttaa eikä kohdella tai rangaista julmasti, epäinhimillisesti tai halventavasti.
+
+6 artikla
+Jokaisella on oikeus tulla kaikkialla tunnustetuksi henkilönä lain edessä.
+
+7 artikla
+Kaikki ovat yhdenvertaisia lain edessä ja oikeutettuja yhtäläiseen lain suojaan ilman syrjintää. Kaikilla on oikeus yhdenvertaiseen suojeluun tämän julistuksen vastaiselta syrjinnältä sekä kaikelta yllyttämiseltä sellaiseen syrjintään.
+
+8 artikla
+Jokaisella on oikeus tehokkaaseen oikeussuojakeinoon toimivaltaisessa kansallisessa tuomioistuimessa sellaisia tekoja vastaan, jotka loukkaavat hänelle valtiosäännöllä tai muulla lailla turvattuja perusoikeuksia.
+
+9 artikla
+Ketään ei saa mielivaltaisesti pidättää, vangita tai karkottaa maasta.
+
+10 artikla
+Jokaisella on täysin yhdenvertaisesti oikeus oikeudenmukaiseen ja julkiseen oikeudenkäyntiin riippumattomassa ja puolueettomassa tuomioistuimessa silloin, kun päätetään hänen oikeuksistaan ja velvollisuuksistaan tai häntä vastaan nostetusta rikossyytteestä.
+
+11 artikla
+
+
+Jokaista rikoksesta syytettyä on pidettävä syyttömänä, kunnes hänen syyllisyytensä on laillisesti näytetty toteen julkisessa oikeudenkäynnissä, jossa hänelle on turvattu kaikki hänen puolustustaan varten tarpeelliset takeet.
+
+
+Ketään ei saa tuomita teoista tai laiminlyönneistä, jotka eivät kansallisen tai kansainvälisen oikeuden mukaan ole olleet rikoksia niiden tekoaikana. Ketään ei myöskään saa tuomita ankarampaan rangaistukseen kuin siihen, joka oli sovellettavissa rikoksen tekoaikana.
+
+
+
+12 artikla
+Kenenkään yksityiselämään, perheeseen, kotiin tai kirjeenvaihtoon ei saa puuttua mielivaltaisesti, eikä kenenkään kunniaa ja mainetta saa loukata. Jokaisella on oikeus lain suojaan sellaista puuttumista tai loukkaamista vastaan.
+
+13 artikla
+
+
+Jokaisella on oikeus liikkua vapaasti ja valita asuinpaikkansa kunkin valtion alueella.
+
+
+Jokaisella on oikeus lähteä maasta, myös omasta maastaan, ja palata maahansa.
+
+
+
+14 artikla
+
+
+Jokaisella on oikeus hakea ja nauttia turvapaikkaa vainolta muissa maissa.
+
+
+Tähän oikeuteen ei saa vedota, kun on kyse tosiasiallisesti epäpoliittisiin rikoksiin perustuvista syytteistä tai Yhdistyneiden kansakuntien päämäärien ja periaatteiden vastaisista teoista.
+
+
+
+15 artikla
+
+
+Jokaisella on oikeus kansalaisuuteen.
+
+
+Keneltäkään ei saa mielivaltaisesti riistää kansalaisuutta eikä evätä oikeutta kansalaisuuden vaihtamiseen.
+
+
+
+16 artikla
+
+
+Täysi-ikäisillä miehillä ja naisilla on oikeus solmia avioliitto ja perustaa perhe ilman minkäänlaisia rotuun, kansalaisuuteen tai uskontoon perustuvia rajoituksia. Heillä on yhtäläiset avioliittoon liittyvät oikeudet sekä avioliiton aikana, että sen purkauduttua.
+
+
+Avioliittoa ei saa solmia ilman avioliittoon aikovien puolisoiden vapaata ja täyttä suostumusta.
+
+
+Perhe on yhteiskunnan luonnollinen perusyksikkö, ja sillä on oikeus yhteiskunnan ja valtion antamaan suojeluun.
+
+
+
+17 artikla
+
+
+Jokaisella on oikeus omistaa omaisuutta yksin ja yhdessä toisten kanssa.
+
+
+Keneltäkään ei saa mielivaltaisesti riistää hänen omaisuuttaan.
+
+
+
+18 artikla
+Jokaisella on oikeus ajatuksen-, omantunnon- ja uskonnonvapauteen. Tämä oikeus sisältää vapauden vaihtaa uskontoaan tai uskoaan sekä vapauden tunnustaa uskontoaan tai uskoaan yksin tai yhdessä toisten kanssa, sekä julkisesti että yksityisesti, opettamalla, hartaudenharjoituksissa, jumalanpalveluksissa ja uskonnollisin menoin.
+
+19 artikla
+Jokaisella on oikeus mielipiteen- ja sananvapauteen. Tämä oikeus sisältää vapauden pitää mielipiteitä kenenkään niihin puuttumatta sekä hankkia, vastaanottaa ja levittää tietoja ja ajatuksia minkä tahansa viestimen avulla alueellisista rajoista riippumatta.
+
+20 artikla
+
+
+Jokaisella on oikeus vapauteen kokoontua rauhanomaisesti ja oikeus yhdistymisvapauteen.
+
+
+Ketään ei saa pakottaa kuulumaan yhdistykseen.
+
+
+
+21 artikla
+
+
+Jokaisella on oikeus osallistua maansa julkisten asioiden hoitamiseen joko välittömästi tai vapaasti valittujen edustajien välityksellä.
+
+
+Jokaisella on oikeus yhtäläisiin mahdollisuuksiin päästä maansa julkisiin virkoihin.
+
+
+Julkisen vallan perustana on kansan tahto. Tämä tahto on ilmaistava määräaikaisissa ja aidoissa vaaleissa, joissa jokaisella on yleinen ja yhtäläinen äänioikeus ja jotka toimitetaan salaisella äänestyksellä tai vastaavalla vaalivapauden turvaavalla menettelyllä.
+
+
+
+22 artikla
+Jokaisella on yhteiskunnan jäsenenä oikeus sosiaaliturvaan, ja jokainen on oikeutettu ihmisarvolleen ja persoonallisuutensa vapaalle kehittymiselle välttämättömien taloudellisten, sosiaalisten ja sivistyksellisten oikeuksien toteutumiseen kansallisten toimenpiteiden ja kansainvälisen yhteistyön avulla, kunkin valtion järjestelmä ja voimavarat huomioon ottaen.
+
+23 artikla
+
+
+Jokaisella on oikeus työhön, työn vapaaseen valitsemiseen, oikeudenmukaisiin ja suotuisiin työoloihin sekä suojeluun työttömyydeltä.
+
+
+Jokaisella on oikeus samaan palkkaan samasta työstä ilman minkäänlaista syrjintää.
+
+
+Jokaisella työtä tekevällä on oikeus oikeudenmukaiseen ja suotuisaan korvaukseen, joka turvaa hänelle ja hänen perheelleen ihmisarvoisen elämän ja jota tarvittaessa täydennetään muilla sosiaalisen suojelun keinoilla.
+
+
+Jokaisella on oikeus muodostaa ammattiyhdistyksiä ja liittyä niihin etujensa suojelemiseksi.
+
+
+
+24 artikla
+Jokaisella on oikeus lepoon ja vapaa-aikaan, mihin sisältyvät työajan kohtuullinen rajoittaminen sekä kausittaiset palkalliset lomat.
+
+25 artikla
+
+
+Jokaisella on oikeus elintasoon, joka riittää turvaamaan hänen ja hänen perheensä terveyden ja hyvinvoinnin ja käsittää muun muassa ravinnon, vaatetuksen, asunnon, terveydenhuollon ja välttämättömät sosiaalipalvelut, sekä oikeus turvaan työttömyyden, sairauden, vammaisuuden, leskeyden, vanhuuden tai muun hänestä riippumattoman syyn aiheuttaman toimeentulon menetyksen varalta.
+
+
+Äideillä ja lapsilla on oikeus erityiseen huolenpitoon ja apuun. Kaikki lapset nauttivat samaa sosiaalista suojelua riippumatta siitä, ovatko he syntyneet avioliitossa vai avioliiton ulkopuolella.
+
+
+
+26 artikla
+
+
+Jokaisella on oikeus saada opetusta. Ainakin alkeis- ja perusopetuksen on oltava maksutonta. Alkeisopetuksen on oltava pakollista. Teknistä ja ammatillista opetusta on oltava yleisesti saatavilla, ja kaikilla on oltava yhdenvertaiset mahdollisuudet saada korkeakoulutusta kyvykkyyden perusteella.
+
+
+Opetuksessa on pyrittävä ihmisen persoonallisuuden kehittymiseen täyteen mittaansa sekä vahvistamaan ihmisoikeuksien ja perusvapauksien kunnioittamista. Sen tulee lisätä ymmärrystä, suvaitsevaisuutta ja ystävyyttä kaikkien kansakuntien ja kaikkien rodullisten ja uskonnollisten ryhmien kesken sekä edistää Yhdistyneiden kansakuntien toimintaa rauhan säilyttämiseksi.
+
+
+Vanhemmilla on ensisijainen oikeus valita, minkälaista opetusta heidän lapsilleen annetaan.
+
+
+
+27 artikla
+
+
+Jokaisella on oikeus vapaasti osallistua yhteiskunnan kulttuurielämään, nauttia taiteista sekä päästä osalliseksi tieteen edistyksestä ja sen mukanaan tuomista eduista.
+
+
+Jokaisella on oikeus sellaisten aineettomien ja aineellisten etujen suojeluun, jotka johtuvat hänen luomastaan tieteellisestä, kirjallisesta tai taiteellisesta tuotannosta.
+
+
+
+28 artikla
+Jokaisella on oikeus sellaiseen yhteiskunnalliseen ja kansainväliseen järjestykseen, jossa tässä julistuksessa mainitut oikeudet ja vapaudet voivat toteutua täysimittaisesti.
+
+29 artikla
+
+
+Jokaisella on velvollisuuksia yhteiskuntaa kohtaan, koska vain yhteiskunnassa hänen persoonallisuutensa voi kehittyä vapaasti ja täysimittaisesti.
+
+
+Kehenkään ei saa hänen käyttäessään oikeuksiaan ja vapauksiaan kohdistaa muita kuin sellaisia lailla säädettyjä rajoituksia, joiden yksinomaisena tarkoituksena on turvata toisten ihmisten oikeuksien ja vapauksien tunnustaminen ja kunnioittaminen sekä moraalin, yleisen järjestyksen ja yleisen hyvinvoinnin oikeutetut vaatimukset demokraattisessa yhteiskunnassa.
+
+
+Näitä oikeuksia ja vapauksia ei missään tapauksessa saa käyttää vastoin Yhdistyneiden kansakuntien päämääriä ja periaatteita.
+
+
+
+30 artikla
+Minkään tässä julistuksessa ei saa tulkita merkitsevän valtion, ryhmän tai henkilön oikeutta sellaiseen toimintaan tai tekoon, jonka tarkoituksena on tehdä tyhjäksi tässä julistuksessa mainittuja oikeuksia ja vapauksia.
+

@@ -1,3 +1,18 @@
 .wy-nav-content {
-    max-width: 1300px !important;
+    max-width: none !important;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+}
+
+/* Prevent tables from stretching to fill the screen */
+table.sphinx-datatable {
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+table.sphinx-datatable.dataTable {
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
