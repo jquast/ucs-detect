@@ -10,7 +10,7 @@ session_arguments:
   stream: stderr
 software_name: terminal.exe
 software_version: 1.23.12811.0
-system: Linux
+system: Windows
 terminal_results:
   cell_height: 20
   cell_width: 10
