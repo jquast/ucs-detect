@@ -4,7 +4,7 @@ Konsole
 -------
 
 
-Tested Software version 23.08.5 on Linux.
+Tested Software version 25.08.2 on Linux.
 The homepage URL of this terminal is https://apps.kde.org/konsole/.
 Full results available at ucs-detect_ repository path
 `data/konsole.yaml <https://github.com/jquast/ucs-detect/blob/master/data/konsole.yaml>`_.
@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *Konsole*:
    ===  ==================================  ===========  ====================
      #  Score Type                          Raw Score    Final Scaled Score
    ===  ==================================  ===========  ====================
-     1  :ref:`WIDE <konsolewide>`           94.77%       94.6%
+     1  :ref:`WIDE <konsolewide>`           95.70%       95.6%
      2  :ref:`ZWJ <konsolezwj>`             95.99%       96.0%
      3  :ref:`LANG <konsolelang>`           75.98%       60.5%
      4  :ref:`VS16 <konsolevs16>`           100.00%      100.0%
      5  :ref:`VS15 <konsolevs15>`           0.00%        0.0%
      6  :ref:`Sixel <konsolesixel>`         yes          100.0%
      7  :ref:`DEC Modes <konsoledecmodes>`  0            0.0%
-     8  :ref:`TIME <konsoletime>`           75.93s       86.5%
+     8  :ref:`TIME <konsoletime>`           86.45s       84.5%
    ===  ==================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 68.00%
+- Raw Final Score: 67.99%
   (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
@@ -57,11 +57,11 @@ The following plot shows how this terminal's scores compare to all other termina
 **WIDE Score Details:**
 
 Wide character support calculation:
-- Total successful codepoints: 6522
+- Total successful codepoints: 6586
 - Total codepoints tested: 6882
 - Best matching Unicode version: 15.0.0
-- Formula: 6522 / 6882
-- Result: 94.77%
+- Formula: 6586 / 6882
+- Result: 95.70%
 
 **ZWJ Score Details:**
 
@@ -107,10 +107,10 @@ DEC Private Modes support calculation:
 **TIME Score Details:**
 
 Test execution time:
-- Elapsed time: 75.93 seconds
+- Elapsed time: 86.45 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 86.5%
+- Scaled result: 84.5%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -144,7 +144,7 @@ results:
    '14.0.0'            0         54  100.0%
    '15.0.0'            0         22  100.0%
    '15.1.0'            5          5  0.0%
-   '16.0.0'          198        198  0.0%
+   '16.0.0'          134        198  32.3%
    '17.0.0'          157        157  0.0%
    =========  ==========  =========  =============
 
@@ -1304,7 +1304,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **75.93 seconds** (75s).
+The test suite completed in **86.45 seconds** (86s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
