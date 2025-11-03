@@ -106,13 +106,12 @@ def maybe_grapheme_clustering_mode(term):
     return term.dec_modes_enabled(term.DecPrivateMode.GRAPHEME_CLUSTERING, timeout=1)
 
 
-def _get_all_dec_private_mode_numbers():
+def _get_all_dec_private_mode_numbers(term):
     """Extract all uppercase DEC Private Mode constants from blessed.DecPrivateMode."""
-    from blessed.dec_modes import DecPrivateMode
     return sorted([
-        getattr(DecPrivateMode, attr)
-        for attr in dir(DecPrivateMode)
-        if attr.isupper() and isinstance(getattr(DecPrivateMode, attr), int) and getattr(DecPrivateMode, attr) > 0
+        getattr(term.DecPrivateMode, attr)
+        for attr in dir(term.DecPrivateMode)
+        if attr.isupper() and isinstance(getattr(term.DecPrivateMode, attr), int) and getattr(term.DecPrivateMode, attr) > 0
         ])
 
 
@@ -149,7 +148,7 @@ def maybe_determine_dec_modes(term):
     # Query all modes with a 1-second timeout; note that 1-second timeout is
     # only incurred for first query, all remaining are in error/unsupported
     # state
-    modes_to_query = list(_get_all_dec_private_mode_numbers())
+    modes_to_query = list(_get_all_dec_private_mode_numbers(term))
     result = {'modes': {}}
     for mode_num in modes_to_query:
         response = term.get_dec_mode(mode_num, timeout=1.0)
