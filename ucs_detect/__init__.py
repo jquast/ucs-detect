@@ -78,6 +78,43 @@ def determine_best_match(
     return best_match[2] if best_match[0] > lbound_pct else None
 
 
+def merge_results(base_results, additional_results):
+    """
+    Merge two test result dictionaries.
+
+    Combines test results by adding n_total, n_errors, and recalculating pct_success,
+    combines failed_codepoints lists and averages the combined timing metrics.
+    """
+    merged = {}
+    all_versions = set(base_results.keys()) | set(additional_results.keys())
+
+    for ver in all_versions:
+        base = base_results.get(ver, {})
+        additional = additional_results.get(ver, {})
+
+        n_total = base.get('n_total', 0) + additional.get('n_total', 0)
+        n_errors = base.get('n_errors', 0) + additional.get('n_errors', 0)
+
+        # Combine failed codepoints
+        failed_codepoints = (
+            base.get('failed_codepoints', []) + additional.get('failed_codepoints', [])
+        )
+
+        # Calculate combined timing (weighted average)
+        base_time = base.get('seconds_elapsed', 0.0)
+        additional_time = additional.get('seconds_elapsed', 0.0)
+        total_time = base_time + additional_time
+
+        merged[ver] = {
+            'n_total': n_total,
+            'n_errors': n_errors,
+            'pct_success': ((n_total - n_errors) / n_total * 100) if n_total else 0,
+            'seconds_elapsed': total_time,
+            'codepoints_per_second': (n_total / total_time) if total_time > 0 else 0.0,
+            'failed_codepoints': failed_codepoints,
+        }
+
+    return merged
 
 
 def init_term(stream, quick):
@@ -212,23 +249,43 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         emoji_zwj_results, lbound_pct=90, report_lbound=2
     )
 
-    # Test "recommended" Variation-16 emoji sequences
+    # Test "recommended" Variation-16 emoji sequences and narrow base characters
+    # This addresses issue #15 where characters like U+2665 (♥) should be narrow
     writer(f"\nucs-detect: VS16 testing")
-    emoji_vs16_results = measure.test_support(
-        table=VS16_NARROW_TO_WIDE,
-        term=term,
-        writer=writer,
-        timeout=timeout,
-        quick=quick,
-        limit_codepoints=limit_codepoints,
-        limit_errors=limit_errors,
-        expected_width=2,
-        largest_xpos=5,
-        report_lbound=2,
-        shell=shell,
-        emit_osc1337=not no_emit_osc1337,
-        stop_at_error=error_matcher,
-        test_type="vs16",
+    emoji_vs16_results = merge_results(
+        measure.test_support(
+            table=VS16_NARROW_TO_WIDE,
+            term=term,
+            writer=writer,
+            timeout=timeout,
+            quick=quick,
+            limit_codepoints=limit_codepoints,
+            limit_errors=limit_errors,
+            expected_width=2,
+            largest_xpos=5,
+            report_lbound=2,
+            shell=shell,
+            emit_osc1337=not no_emit_osc1337,
+            stop_at_error=error_matcher,
+            test_type="vs16",
+        ),
+        measure.test_support(
+            table=tuple((ver, tuple(seq[0] for seq in sequences))
+                        for ver, sequences in VS16_NARROW_TO_WIDE),
+            term=term,
+            writer=writer,
+            timeout=timeout,
+            quick=quick,
+            limit_codepoints=limit_codepoints,
+            limit_errors=limit_errors,
+            expected_width=1,
+            largest_xpos=5,
+            report_lbound=2,
+            shell=shell,
+            emit_osc1337=not no_emit_osc1337,
+            stop_at_error=error_matcher,
+            test_type="vs16n",
+        ),
     )
 
     # Variation-15 emoji sequences
@@ -276,7 +333,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     )
 
     writer(
-        f'\nDisplaying results of {term.bold("Variation Selector-16")} sequence support and their success rate'
+        f'\nDisplaying results of {term.bold("Variation Selector-16")} and {term.bold("narrow emoji")} support'
     )
     display_results_by_version(
         term=term,
@@ -552,7 +609,7 @@ def parse_args():
         default=None,
         help=(
             "Interactively stop and display details when matching errors occur. "
-            "Values: 'zwj', 'wide', 'vs16', 'vs15', 'lang' (all languages), "
+            "Values: 'zwj', 'wide', 'vs16', 'vs16n', 'vs15', 'lang' (all languages), "
             "or specific language name (e.g., 'english', 'korean', 'chinese')"
         )
     )
