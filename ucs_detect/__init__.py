@@ -21,6 +21,8 @@ using :meth:`blessed.Terminal.get_location`.
 import os
 import sys
 import time
+import codecs
+import collections
 import locale
 import argparse
 import functools
@@ -120,7 +122,37 @@ def merge_results(base_results, additional_results):
 def init_term(stream, quick):
     # set locale support for '{:n}' formatter, https://stackoverflow.com/a/3909907
     locale.setlocale(locale.LC_ALL, "")
-    term = blessed.Terminal(stream=sys.__stderr__ if stream == "stderr" else None)
+
+    # Determine the stream to use for terminal I/O
+    writer_file = None  # File for writer (text output)
+    term_stream = None  # Stream for blessed.Terminal (control sequences)
+
+    if stream.isdigit():
+        # Numeric file descriptor
+        fd = int(stream)
+        if fd == 1:
+            # Map fd 1 to stdout - blessed needs the actual sys.__stdout__ object
+            term_stream = sys.__stdout__
+            writer_file = None  # None means stdout
+        elif fd == 2:
+            # Map fd 2 to stderr - blessed needs the actual sys.__stderr__ object
+            term_stream = sys.__stderr__
+            writer_file = sys.__stderr__
+        else:
+            # For other fds (like Contour's STDOUT_FASTPIPE on fd 3):
+            # - Terminal control sequences must go to stderr (the actual TTY)
+            # - Text output can go to the fast pipe for performance
+            writer_file = os.fdopen(fd, 'w')
+            term_stream = sys.__stderr__  # Control sequences to actual terminal
+    elif stream == "stderr":
+        term_stream = sys.__stderr__
+        writer_file = sys.__stderr__
+    else:
+        # "stdout" or None defaults to stdout
+        term_stream = None
+        writer_file = None
+
+    term = blessed.Terminal(stream=term_stream)
     if not quick:
         # require a normally sized terminal for language testing, some languages
         # have very long words and its not worth fighting about it.
@@ -133,7 +165,7 @@ def init_term(stream, quick):
             term.width,
         )
     writer = functools.partial(
-        print, end="", flush=True, file=sys.stderr if stream == "stderr" else None
+        print, end="", flush=True, file=writer_file
     )
     return term, writer
 
@@ -530,8 +562,7 @@ def parse_args():
     args.add_argument(
         "--stream",
         default="stderr",
-        choices=("stderr", "stdout"),
-        help="file descriptor to interact with during testing",
+        help="file descriptor to interact with during testing (stderr, stdout, or numeric fd like 1, 2, 3)",
     )
     args.add_argument(
         "--limit-codepoints",
@@ -619,7 +650,7 @@ def parse_args():
         results["limit_errors"] = results["limit_errors"] or 5
     if results["shell"]:
         assert not results["save_yaml"], "Cannot use --shell with --save-yaml"
-        assert results["stream"] == "stderr", "Cannot use --shell with --stream=stdout"
+        assert results["stream"] in ("stderr", "2"), "Cannot use --shell with --stream=stdout"
         assert not results["unicode_version"], "Do not use with --shell"
         results["no_terminal_test"] = True
     if results["save_yaml"]:
