@@ -14,7 +14,7 @@ class ErrorMatcher:
             return False
 
         # Match specific test types
-        if self.filter_value in ('zwj', 'wide', 'vs16', 'vs15'):
+        if self.filter_value in ('zwj', 'wide', 'vs16', 'vs16n', 'vs15'):
             return test_type == self.filter_value
 
         return False
