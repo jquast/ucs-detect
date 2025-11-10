@@ -4,7 +4,7 @@ Bobcat
 ------
 
 
-Tested Software version 0.9.7 (r348) on Linux.
+Tested Software version 0.9.7 (r351) on Linux.
 The homepage URL of this terminal is https://github.com/ismail-yilmaz/Bobcat.
 Full results available at ucs-detect_ repository path
 `data/bobcat.yaml <https://github.com/jquast/ucs-detect/blob/master/data/bobcat.yaml>`_.
@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
    ===  =================================  ===========  ====================
      #  Score Type                         Raw Score    Final Scaled Score
    ===  =================================  ===========  ====================
-     1  :ref:`WIDE <bobcatwide>`           97.72%       97.7%
-     2  :ref:`ZWJ <bobcatzwj>`             0.69%        0.7%
+     1  :ref:`WIDE <bobcatwide>`           100.00%      100.0%
+     2  :ref:`ZWJ <bobcatzwj>`             0.00%        0.0%
      3  :ref:`LANG <bobcatlang>`           74.00%       57.2%
-     4  :ref:`VS16 <bobcatvs16>`           0.00%        0.0%
+     4  :ref:`VS16 <bobcatvs16>`           93.43%       93.4%
      5  :ref:`VS15 <bobcatvs15>`           0.00%        0.0%
-     6  :ref:`Sixel <bobcatsixel>`         no           0.0%
+     6  :ref:`Sixel <bobcatsixel>`         yes          100.0%
      7  :ref:`DEC Modes <bobcatdecmodes>`  29           43.9%
-     8  :ref:`TIME <bobcattime>`           70.28s       87.8%
+     8  :ref:`TIME <bobcattime>`           103.51s      81.7%
    ===  =================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,41 +44,42 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 34.70%
-  (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)
+- Raw Final Score: 54.18%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
+  **Sixel support is NOT included in the final score** - it is tracked separately.
 
-- Final Scaled Score: 17.0%
+- Final Scaled Score: 40.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
 Wide character support calculation:
-- Total successful codepoints: 6725
+- Total successful codepoints: 6882
 - Total codepoints tested: 6882
-- Best matching Unicode version: 16.0.0
-- Formula: 6725 / 6882
-- Result: 97.72%
+- Best matching Unicode version: 17.0.0
+- Formula: 6882 / 6882
+- Result: 100.00%
 
 **ZWJ Score Details:**
 
 Emoji ZWJ (Zero-Width Joiner) support calculation:
-- Total successful sequences: 10
+- Total successful sequences: 0
 - Total sequences tested: 1445
 - Best matching Emoji version: None
-- Formula: 10 / 1445
-- Result: 0.69%
+- Formula: 0 / 1445
+- Result: 0.00%
 
 **VS16 Score Details:**
 
 Variation Selector-16 support calculation:
-- Errors: 213 of 213 codepoints tested
-- Success rate: 0.0%
-- Formula: 0.0 / 100
-- Result: 0.00%
+- Errors: 14 of 213 codepoints tested
+- Success rate: 93.4%
+- Formula: 93.4 / 100
+- Result: 93.43%
 
 **VS15 Score Details:**
 
@@ -90,7 +91,7 @@ Variation Selector-15 support calculation:
 
 **Sixel Score Details:**
 
-Sixel graphics support: **no**
+Sixel graphics support: **yes**
 
 Sixel support is determined by the terminal's response to the Device Attributes
 (DA1) query. Terminals that include '4' in their DA1 extensions response support
@@ -107,10 +108,10 @@ DEC Private Modes support calculation:
 **TIME Score Details:**
 
 Test execution time:
-- Elapsed time: 70.28 seconds
+- Elapsed time: 103.51 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 87.8%
+- Scaled result: 81.7%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -125,7 +126,7 @@ Wide character support
 ++++++++++++++++++++++
 
 The best wide unicode table version for Bobcat appears to be 
-**16.0.0**, this is from a summary of the following
+**17.0.0**, this is from a summary of the following
 results:
 
 
@@ -145,31 +146,8 @@ results:
    '15.0.0'            0         22  100.0%
    '15.1.0'            0          5  100.0%
    '16.0.0'            0        198  100.0%
-   '17.0.0'          157        157  0.0%
+   '17.0.0'            0        157  100.0%
    =========  ==========  =========  =============
-
-Sequence of a WIDE character from Unicode Version 17.0.0, from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =================================================  =============  ==========  =========  ======
-     #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ======
-     1  `U+00018DAB <https://codepoints.net/U+00018DAB>`_  '\\U00018dab'  Cn                  2  na
-   ===  =================================================  =============  ==========  =========  ======
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x98\xb6\xab|\\n12|\\n"
-        𘶫|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *Bobcat* measures width 1.
 
 .. _bobcatzwj:
 
@@ -187,13 +165,13 @@ results:
    =========  ==========  =========  =============
    version      n_errors    n_total  pct_success
    =========  ==========  =========  =============
-   '2.0'              21         22  4.5%
-   '4.0'             571        579  1.4%
+   '2.0'              22         22  0.0%
+   '4.0'             579        579  0.0%
    '5.0'             100        100  0.0%
    '11.0'             73         73  0.0%
    '12.0'            112        112  0.0%
    '12.1'            165        165  0.0%
-   '13.0'             50         51  2.0%
+   '13.0'             51         51  0.0%
    '13.1'             83         83  0.0%
    '14.0'             20         20  0.0%
    '15.0'              1          1  0.0%
@@ -228,15 +206,15 @@ Total codepoints: 7
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Bobcat* measures width 9.
+  while *Bobcat* measures width 10.
 
 .. _bobcatvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *Bobcat* is 213 errors
-out of 213 total codepoints tested, 0.0% success.
+Emoji VS-16 results for *Bobcat* is 14 errors
+out of 213 total codepoints tested, 93.4% success.
 Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
 .. table::
@@ -245,7 +223,7 @@ Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint o
    ===  =========================================  =========  ==========  =========  =====================
      #  Codepoint                                  Python     Category      wcwidth  Name
    ===  =========================================  =========  ==========  =========  =====================
-     1  `U+2733 <https://codepoints.net/U+2733>`_  '\\u2733'  So                  1  EIGHT SPOKED ASTERISK
+     1  `U+0035 <https://codepoints.net/U+0035>`_  '5'        Nd                  1  DIGIT FIVE
      2  `U+FE0F <https://codepoints.net/U+FE0F>`_  '\\ufe0f'  Mn                  0  VARIATION SELECTOR-16
    ===  =========================================  =========  ==========  =========  =====================
 
@@ -254,8 +232,8 @@ Total codepoints: 2
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe2\x9c\xb3\xef\xb8\x8f|\\n12|\\n"
-        ✳️|
+        $ printf "5\xef\xb8\x8f|\\n12|\\n"
+        5️|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -299,16 +277,32 @@ Total codepoints: 2
 Sixel Graphics Support
 ++++++++++++++++++++++
 
-*Bobcat* **does not support Sixel graphics protocol**.
+*Bobcat* reports to **support Sixel graphics** by automatic sequence response.
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
-support for the Sixel graphics protocol, which allows inline image rendering.
+**Sixel Support Categories:**
+
+- **yes**: This terminal reports to support Sixel graphics by automatic sequence response.
+- **no**: This terminal is not known to support Sixel graphics by automatic sequence response.
+- **maybe**: This terminal does not report to support Sixel graphics in its default
+  configuration by automatic sequence response.
+
+**Detection Method:**
+
+Sixel_ support is determined by the terminal's response to the Device Attributes (DA1)
+query sequence ``CSI c`` (``\x1b[c``). The terminal responds with:
+
+``CSI ? Psc ; Ps1 ; Ps2 ; ... ; Psn c``
+
+Where ``Psc`` is the service class and ``Ps1`` through ``Psn`` are extension codes.
+Terminals that include extension code ``4`` in their response indicate support for
+the Sixel_ graphics, a complex legacy inline image rendering protocol.
 
 **Device Attributes Response:**
 
-- Extensions reported: 1, 6, 8, 9, 15, 17, 21, 22, 28
-- Sixel indicator ('4'): not present
+- Extensions reported: 1, 4, 6, 8, 9, 15, 17, 21, 22, 28, 52, 444, 1337
+- Sixel_ indicator (``4``): present
+
+.. _Sixel: https://en.wikipedia.org/wiki/Sixel
 
 .. _bobcatlang:
 
@@ -1499,7 +1493,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **70.28 seconds** (70s).
+The test suite completed in **103.51 seconds** (103s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

@@ -504,6 +504,7 @@ def make_score_table():
 
         # Calculate final score using normalized values with weighted average
         # Time is weighted at 0.5 (half as powerful as other metrics)
+        # Sixel is NOT included in final score - it's tracked separately
         TIME_WEIGHT = 0.5
         scores_with_weights = [
             (entry["score_language"], 1.0),
@@ -511,7 +512,6 @@ def make_score_table():
             (entry["score_emoji_vs15"], 1.0),
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
-            (entry["score_sixel"], 1.0),
             (entry["score_dec_modes_norm"], 1.0),
             (entry["score_elapsed_norm"], TIME_WEIGHT)
         ]
@@ -596,6 +596,36 @@ def format_score_int(score):
     return f'{round(score*100)}'
 
 
+def _format_sixel_status(result, terminal_mixins):
+    """
+    Format sixel support status as yes/no/maybe with hyperlink to sixel section.
+
+    Returns "yes" if supported, "maybe" if terminal has sixel_support_notes,
+    otherwise "no". All values hyperlink to the terminal's sixel section.
+    """
+    sw_name_lower = result["terminal_software_name"].lower()
+    has_notes = (sw_name_lower in terminal_mixins and
+                 'sixel_support_notes' in terminal_mixins[sw_name_lower])
+    sixel_support = result.get("sixel_support", False)
+
+    if sixel_support:
+        status = "yes"
+        score = 1.0
+    elif has_notes:
+        status = "maybe"
+        score = 0.5
+    else:
+        status = "no"
+        score = 0.0
+
+    return wrap_score_with_hyperlink(
+        status,
+        score,
+        result["terminal_software_name"],
+        "_sixel"
+    )
+
+
 def display_tabulated_scores(score_table):
     display_title("Results", 1)
 
@@ -621,6 +651,10 @@ def display_tabulated_scores(score_table):
 
 
     display_title("General Tabulated Summary", 2)
+
+    # Load terminal mixins for checking sixel support notes
+    terminal_mixins = load_terminal_detail_mixins()
+
     tabulated_scores = []
 
     for rank, result in enumerate(score_table, start=1):
@@ -729,7 +763,7 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_dec_modes"
                 ),
-                "Sixel": wrap_with_score_role("yes", 1.0) if result.get("sixel_support", False) else wrap_with_score_role("no", 0.0),
+                "Sixel": _format_sixel_status(result, terminal_mixins),
                 "Elapsed(s)": wrap_score_with_hyperlink(
                     elapsed_display,
                     result["score_elapsed_scaled"],
@@ -1160,10 +1194,11 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print(f"**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print(f"  (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)")
+    print(f"  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)")
     print(f"  the categorized 'average' absolute support level of this terminal")
     print(f"  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.")
     print(f"  TIME is weighted at 0.5 (half as powerful as other metrics).")
+    print(f"  **Sixel support is NOT included in the final score** - it is tracked separately.")
     print()
     print(f"- Final Scaled Score: {format_score_pct(entry['score_final_scaled'])}")
     print(f"  (normalized across all terminals tested).")
@@ -1445,17 +1480,50 @@ def show_sixel_results(sw_name, entry):
     display_inbound_hyperlink(entry["terminal_software_name"] + "_sixel")
     display_title("Sixel Graphics Support", 3)
 
+    # Load terminal mixins to check for notes
+    terminal_mixins = load_terminal_detail_mixins()
+    sw_name_lower = entry["terminal_software_name"].lower()
+    has_notes = (sw_name_lower in terminal_mixins and
+                 'sixel_support_notes' in terminal_mixins[sw_name_lower])
     sixel_supported = entry.get("sixel_support", False)
 
+    # Determine category
     if sixel_supported:
-        print(f"*{sw_name}* **supports Sixel graphics protocol**.")
+        category = "yes"
+        print(f"*{sw_name}* reports to **support Sixel graphics** by automatic sequence response.")
+    elif has_notes:
+        category = "maybe"
+        print(f"*{sw_name}* does **not report to support Sixel graphics** in its default configuration")
+        print(f"by automatic sequence response.")
     else:
-        print(f"*{sw_name}* **does not support Sixel graphics protocol**.")
+        category = "no"
+        print(f"*{sw_name}* is **not known to support Sixel graphics** by automatic sequence response.")
     print()
 
-    print(f"Sixel support is determined by the terminal's response to the Device Attributes")
-    print(f"(DA1) query. Terminals that include '4' in their DA1 extensions response indicate")
-    print(f"support for the Sixel graphics protocol, which allows inline image rendering.")
+    # Show notes for "maybe" terminals
+    if has_notes:
+        notes = terminal_mixins[sw_name_lower]['sixel_support_notes']
+        print(f"**Note:** {notes}")
+        print()
+
+    print(f"**Sixel Support Categories:**")
+    print()
+    print(f"- **yes**: This terminal reports to support Sixel graphics by automatic sequence response.")
+    print(f"- **no**: This terminal is not known to support Sixel graphics by automatic sequence response.")
+    print(f"- **maybe**: This terminal does not report to support Sixel graphics in its default")
+    print(f"  configuration by automatic sequence response.")
+    print()
+
+    print(f"**Detection Method:**")
+    print()
+    print(f"Sixel_ support is determined by the terminal's response to the Device Attributes (DA1)")
+    print(f"query sequence ``CSI c`` (``\\x1b[c``). The terminal responds with:")
+    print()
+    print(f"``CSI ? Psc ; Ps1 ; Ps2 ; ... ; Psn c``")
+    print()
+    print(f"Where ``Psc`` is the service class and ``Ps1`` through ``Psn`` are extension codes.")
+    print(f"Terminals that include extension code ``4`` in their response indicate support for")
+    print(f"the Sixel_ graphics, a complex legacy inline image rendering protocol.")
     print()
 
     # Show DA1 response if available
@@ -1466,8 +1534,11 @@ def show_sixel_results(sw_name, entry):
         print(f"**Device Attributes Response:**")
         print()
         print(f"- Extensions reported: {', '.join(map(str, extensions)) if extensions else 'none'}")
-        print(f"- Sixel indicator ('4'): {'present' if '4' in str(extensions) or 4 in extensions else 'not present'}")
+        print(f"- Sixel_ indicator (``4``): {'present' if 4 in extensions else 'not present'}")
         print()
+
+    print('.. _Sixel: https://en.wikipedia.org/wiki/Sixel')
+    print()
 
 
 def display_title(text, depth):

@@ -44,13 +44,14 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 71.92%
-  (weighted average of all raw scores: WIDE + ZWJ + LANG + VS16 + VS15 + Sixel + DEC Modes + 0.5*TIME)
+- Raw Final Score: 82.99%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
+  **Sixel support is NOT included in the final score** - it is tracked separately.
 
-- Final Scaled Score: 89.2%
+- Final Scaled Score: 89.1%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -224,11 +225,27 @@ All codepoint combinations with Variation Selector-15 tested were successful.
 Sixel Graphics Support
 ++++++++++++++++++++++
 
-*kitty* **does not support Sixel graphics protocol**.
+*kitty* is **not known to support Sixel graphics** by automatic sequence response.
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response indicate
-support for the Sixel graphics protocol, which allows inline image rendering.
+**Sixel Support Categories:**
+
+- **yes**: This terminal reports to support Sixel graphics by automatic sequence response.
+- **no**: This terminal is not known to support Sixel graphics by automatic sequence response.
+- **maybe**: This terminal does not report to support Sixel graphics in its default
+  configuration by automatic sequence response.
+
+**Detection Method:**
+
+Sixel_ support is determined by the terminal's response to the Device Attributes (DA1)
+query sequence ``CSI c`` (``\x1b[c``). The terminal responds with:
+
+``CSI ? Psc ; Ps1 ; Ps2 ; ... ; Psn c``
+
+Where ``Psc`` is the service class and ``Ps1`` through ``Psn`` are extension codes.
+Terminals that include extension code ``4`` in their response indicate support for
+the Sixel_ graphics, a complex legacy inline image rendering protocol.
+
+.. _Sixel: https://en.wikipedia.org/wiki/Sixel
 
 .. _kittylang:
 

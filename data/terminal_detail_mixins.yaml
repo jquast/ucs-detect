@@ -64,6 +64,7 @@ terminals:
 
   st:
     homepage: https://st.suckless.org/
+    sixel_support_notes: "Patches are available to add sixel support."
 
   tabby:
     homepage: https://tabby.sh/
@@ -85,9 +86,11 @@ terminals:
 
   tmux:
     homepage: https://github.com/tmux/tmux
+    sixel_support_notes: "Must be compiled with sixel support. Check support and enablement with command: ``(tmux show-options -g;tmux show-window-options)|grep -i sixel``"
 
   vscode terminal:
     homepage: https://code.visualstudio.com/docs/terminal/basics
+    sixel_support_notes: "Must be enabled with ``\"terminal.integrated.enableImages\": true``."
 
   weston-terminal:
     homepage: https://gitlab.freedesktop.org/wayland/weston
@@ -100,6 +103,7 @@ terminals:
 
   xterm:
     homepage: https://invisible-island.net/xterm/
+    sixel_support_notes: "Sixel support can be enabled with argument ``-ti 340``."
 
   zutty:
     homepage: https://tomscii.sig7.se/zutty/
