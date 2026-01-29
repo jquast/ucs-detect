@@ -178,10 +178,9 @@ clusters, and script-specific rendering requirements.
 History
 =======
 
-- 1.1.0 (2026-01-29): Simplified to test compliance against latest Unicode
-  version only (no longer guesses terminal Unicode version).
+- 1.1.0 (2026-01-29): Test only the latest Unicode Version (17.0 at this time).
   Added ``--set-software-name`` and ``--set-software-version`` CLI options.
-  Removed ``--unicode-version`` CLI option.
+  Removed ``--unicode-version``, ``--shell``, and ``--no-emit-osc1337``.
 
 - 1.0.8 (2025-11-02): Added detection of DEC Private Modes, testing
   of Variation Selector 15, Sixel graphics and pixel size, and 

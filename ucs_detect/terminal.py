@@ -1,13 +1,8 @@
 import time
 import functools
 import sys
-import uuid
-import contextlib
 
 import blessed
-import wcwidth
-import ucs_detect
-import ucs_detect.table_wide
 
 
 # Get all DEC Private Mode constants from blessed for querying
@@ -16,90 +11,6 @@ DEFAULT_FONT_WIDTH = 640 // 80
 DEFAULT_FONT_HEIGHT = 400 // 25
 
 
-def get_latest_unicode_version():
-    """
-    Get the highest non-dotted Unicode version number available in wcwidth.
-
-    For example, if wcwidth supports up to 17.0.0, this returns 17.
-    """
-    from ucs_detect.table_wide import WIDE_CHARACTERS
-    all_versions = [ver for ver, _ in WIDE_CHARACTERS]
-    if not all_versions:
-        return 9
-    # Get the highest version and extract major version number
-    latest = max(all_versions, key=lambda v: wcwidth._wcversion_value(v))
-    major_version = int(latest.split('.')[0])
-    return major_version
-
-
-def emit_osc_1337_unicode_version(writer, version):
-    """
-    Emit OSC 1337 escape sequence to set terminal Unicode version.
-
-    This attempts to switch the terminal's Unicode version dynamically using
-    the iTerm2/WezTerm proprietary escape sequence. Terminals that don't support
-    this will simply ignore it.
-    """
-    writer(f"\x1b]1337;UnicodeVersion={version}\x07")
-
-
-def emit_osc_1337_push(writer, label):
-    """
-    Push the current Unicode version onto the stack with a label.
-
-    This allows restoring the terminal's Unicode version later using pop.
-    """
-    writer(f"\x1b]1337;UnicodeVersion=push {label}\x07")
-
-
-def emit_osc_1337_pop(writer, label):
-    """
-    Pop Unicode version from stack until the specified label is found.
-
-    This restores the terminal to a previously pushed Unicode version.
-    """
-    writer(f"\x1b]1337;UnicodeVersion=pop {label}\x07")
-
-
-class osc_1337_unicode_version_context:
-    """
-    Context manager for OSC 1337 Unicode version push/pop.
-
-    Pushes current Unicode version on entry and pops it on exit.
-    """
-    def __init__(self, writer):
-        self.writer = writer
-        self.label = str(uuid.uuid4())
-
-    def __enter__(self):
-        emit_osc_1337_push(self.writer, self.label)
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        emit_osc_1337_pop(self.writer, self.label)
-        return False
-
-
-
-
-@contextlib.contextmanager
-def osc_1337_for_version(writer, version_str, enabled):
-    """
-    Context manager that pushes, sets Unicode version, then pops on exit.
-
-    For each Unicode version being tested, this pushes the current terminal
-    Unicode version, sets it to the test version, yields for testing,
-    then pops back to the previous version.
-    """
-    if enabled:
-        label = str(uuid.uuid4())
-        emit_osc_1337_push(writer, label)
-        ver_major = int(version_str.split('.')[0]) if '.' in version_str else int(version_str)
-        emit_osc_1337_unicode_version(writer, ver_major)
-        yield
-        emit_osc_1337_pop(writer, label)
-    else:
-        yield
 
 
 def maybe_grapheme_clustering_mode(term):

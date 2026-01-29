@@ -29,7 +29,6 @@ def build_command_from_yaml(yaml_file):
         'limit_codepoints': '--limit-codepoints',
         'limit_words': '--limit-words',
         'limit_errors': '--limit-errors',
-        'unicode_version': '--unicode-version',
         'timeout': '--timeout',
         'stop_at_error': '--stop-at-error',
     }
@@ -37,10 +36,8 @@ def build_command_from_yaml(yaml_file):
     # Boolean flags (only add if True)
     bool_flags = {
         'quick': '--quick',
-        'shell': '--shell',
         'no_terminal_test': '--no-terminal-test',
         'no_languages_test': '--no-languages-test',
-        'no_emit_osc1337': '--no-emit-osc1337',
     }
 
     # Add arguments with values

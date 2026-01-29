@@ -482,7 +482,6 @@ def do_languages_test(
         orig_xpos=orig_xpos,
         top=top,
         bottom=bottom,
-        unicode_version=None,  # TODO: remove parameter
         # ensure up to ~half the screen is available, for really long language "words"
         # eg. 'རྒྱལ་ཡོངས་དང་རྒྱལ་སྤྱིའི་ཉེས་འགེལ་ཁྲིམས་ཀྱི་གྲངས་སུ་ཐོ་བཀོད་འབད་དེ་མེད་པ་ཅིན་'
         largest_xpos=max(40, term.width // 2),
@@ -502,7 +501,7 @@ def make_success_pct(n_errors, n_total):
     return ((n_total - n_errors) / n_total if n_total else 0) * 100
 
 
-def parse_udhr(unicode_version="auto"):
+def parse_udhr():
     path_udhr = os.path.join(os.path.dirname(__file__), 'udhr')
     for fname in sorted(os.listdir(path_udhr)):
         if not fname.lower().endswith('.txt'):
@@ -532,7 +531,7 @@ def parse_udhr(unicode_version="auto"):
                     break
                 stripped = line.strip()
                 if stripped:
-                    wcs_width = wcwidth.wcswidth(stripped, unicode_version=unicode_version)
+                    wcs_width = wcwidth.wcswidth(stripped)
                     if wcs_width == -1 or wcs_width != len(stripped):
                         is_interesting = True
                         break  # Found interesting line, stop scanning
