@@ -560,28 +560,6 @@ def make_score_table():
     return result, all_successful_languages
 
 
-def find_failed_version(entry, version_keys, results_key, best_match_version):
-    """
-    Find best version candidate among failure records for display
-    """
-    if (
-        best_match_version is None
-        or not entry["data"]["test_results"][results_key][best_match_version]["n_errors"]
-    ):
-        # find another version with errors, to show
-        sorted_by_version_errors = sorted(
-            [
-                (wcwidth._wcversion_value(v), v)
-                for v in version_keys
-                if entry["data"]["test_results"][results_key][v]["n_errors"] > 0
-            ],
-            reverse=True,
-        )
-        if sorted_by_version_errors:
-            return sorted_by_version_errors[0][1]
-    return best_match_version
-
-
 def format_score_pct(score):
     """Format a score as a percentage, handling NaN values."""
     if math.isnan(score):
@@ -694,20 +672,6 @@ def display_tabulated_scores(score_table):
         # Create elapsed time display text (integer seconds, no suffix)
         elapsed_display = f"{int(result['elapsed_seconds'])}" if not math.isnan(result['elapsed_seconds']) else "N/A"
 
-        # Create WIDE display text showing only version (e.g., "16" instead of "16.0.0")
-        wide_version = result["version_best_wide"] or "na"
-        # Remove trailing .0's from version
-        if wide_version != "na":
-            wide_version = wide_version.rstrip('.0')
-            # Ensure we don't remove all digits after decimal if it's something like "15.1.0"
-            if not '.' in wide_version:
-                # If we stripped everything, it was like "16.0.0", keep just "16"
-                pass
-            elif wide_version.endswith('.'):
-                # If it ends with '.', remove it (was like "16.0.")
-                wide_version = wide_version.rstrip('.')
-        wide_display = wide_version
-
         tabulated_scores.append(
             {
                 "Rank": rank,
@@ -722,7 +686,7 @@ def display_tabulated_scores(score_table):
                     "_scores"
                 ),
                 "WIDE": wrap_score_with_hyperlink(
-                    wide_display,
+                    format_score_int(result["score_wide_scaled"]),
                     result["score_wide_scaled"],
                     result["terminal_software_name"],
                     "_wide"
@@ -792,8 +756,8 @@ def display_table_definitions():
         "  powerful as other metrics) to reduce its impact on the final score."
     )
     print(
-        "- *WIDE score*: Overall percentage of wide character codepoints correctly\n"
-        "  displayed across all Unicode versions tested. Calculated as the total\n"
+        "- *WIDE score*: Percentage of wide character codepoints correctly\n"
+        "  displayed for the latest Unicode version. Calculated as the total\n"
         "  number of successful codepoints divided by total codepoints tested, scaled."
     )
     print(
@@ -802,9 +766,9 @@ def display_table_definitions():
         "  support (e.g., 99%, 98%) without letting one low score dominate, scaled."
     )
     print(
-        "- *ZWJ score*: Overall percentage of emoji ZWJ (Zero-Width Joiner) sequences\n"
-        "  correctly displayed across all emoji versions tested. Calculated as the total\n"
-        "  number of successful sequences divided by total sequences tested, scaled."
+        "- *ZWJ score*: Percentage of emoji ZWJ (Zero-Width Joiner) sequences\n"
+        "  correctly displayed for the latest Unicode Emoji version. Calculated as the\n"
+        "  total number of successful sequences divided by total sequences tested, scaled."
     )
     print(
         "- *VS16 score*: Determined by the number of Emoji using Variation\n"
@@ -1221,7 +1185,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"Wide character support calculation:")
         print(f"- Total successful codepoints: {total_success}")
         print(f"- Total codepoints tested: {total_tested}")
-        print(f"- Best matching Unicode version: {entry['version_best_wide']}")
+        print(f"- Unicode version tested: {entry['version_best_wide']}")
         print(f"- Formula: {total_success} / {total_tested}")
         print(f"- Result: {entry['score_wide']*100:.2f}%")
     else:
@@ -1244,7 +1208,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"Emoji ZWJ (Zero-Width Joiner) support calculation:")
         print(f"- Total successful sequences: {total_success}")
         print(f"- Total sequences tested: {total_tested}")
-        print(f"- Best matching Emoji version: {entry['version_best_zwj']}")
+        print(f"- Unicode Emoji version tested: {entry['version_best_zwj']}")
         print(f"- Formula: {total_success} / {total_tested}")
         print(f"- Result: {entry['score_zwj']*100:.2f}%")
     else:
@@ -1364,83 +1328,47 @@ def show_software_header(entry, sw_name, terminal_mixins):
 def show_wide_character_support(sw_name, entry):
     display_inbound_hyperlink(entry["terminal_software_name"] + "_wide")
     display_title("Wide character support", 3)
-    print(
-        f"The best wide unicode table version for {sw_name} appears to be \n"
-        f'**{entry["version_best_wide"]}**, this is from a summary of the following\n'
-        f"results:"
-    )
-    print()
-    print("")
-    tabulated_wide_results = [
-        {
-            "version": repr(version),
-            "n_errors": result["n_errors"],
-            "n_total": result["n_total"],
-            "pct_success": f'{result["pct_success"]:0.1f}%',
-        }
-        for version, result in sorted(entry["data"]["test_results"]["unicode_wide_results"].items(),
-                                      key=lambda x: wcwidth._wcversion_value(x[0]))
-    ]
-    table_str = tabulate.tabulate(tabulated_wide_results, headers="keys", tablefmt="rst")
-    print_datatable(table_str)
-
-    unicode_versions = list(entry["data"]["test_results"]["unicode_wide_results"].keys())
-    show_failed_version = find_failed_version(
-        entry,
-        version_keys=unicode_versions,
-        results_key="unicode_wide_results",
-        best_match_version=entry["version_best_wide"],
-    )
-
-    # conditionally show one example record failure
-    if entry["data"]["test_results"]["unicode_wide_results"][show_failed_version]["n_errors"] > 0:
-        fail_record = find_best_failure(
-            entry["data"]["test_results"]["unicode_wide_results"][show_failed_version][
-                "failed_codepoints"
-            ]
+    wide_results = entry["data"]["test_results"]["unicode_wide_results"]
+    unicode_version = entry["version_best_wide"]
+    if unicode_version and unicode_version in wide_results:
+        result = wide_results[unicode_version]
+        pct = result["pct_success"]
+        print(
+            f"Compatibility of *{sw_name}* with Unicode {unicode_version} Wide character "
+            f"table is **{pct:0.1f}%** ({result['n_errors']} errors "
+            f"of {result['n_total']} codepoints tested)."
         )
-        show_record_failure(
-            sw_name, f"of a WIDE character from Unicode Version {show_failed_version},", fail_record
-        )
+        print()
+        if result["n_errors"] > 0:
+            fail_record = find_best_failure(result["failed_codepoints"])
+            show_record_failure(
+                sw_name, f"of a WIDE character from Unicode {unicode_version},", fail_record
+            )
+    else:
+        print(f"Wide character results for *{sw_name}* are not available.")
+        print()
 
 
 def show_emoji_zwj_results(sw_name, entry):
     display_inbound_hyperlink(entry["terminal_software_name"] + "_zwj")
     display_title("Emoji ZWJ support", 3)
+    zwj_results = entry["data"]["test_results"]["emoji_zwj_results"]
+    # aggregate across all emoji versions tested
+    total_errors = sum(r["n_errors"] for r in zwj_results.values())
+    total_tested = sum(r["n_total"] for r in zwj_results.values())
+    pct = ((total_tested - total_errors) / total_tested * 100) if total_tested else 0
     print(
-        f"The best Emoji ZWJ table version for *{sw_name}* appears to be \n"
-        f'**{entry["version_best_zwj"]}**, this is from a summary of the following\n'
-        f"results:"
+        f"Compatibility of *{sw_name}* with the Unicode Emoji ZWJ sequence "
+        f"table is **{pct:0.1f}%** ({total_errors} errors "
+        f"of {total_tested} sequences tested)."
     )
     print()
-    print("")
-    tabulated_emoji_zwj_results = [
-        {
-            "version": repr(version),
-            "n_errors": result["n_errors"],
-            "n_total": result["n_total"],
-            "pct_success": f'{result["pct_success"]:0.1f}%',
-        }
-        for version, result in sorted(entry["data"]["test_results"]["emoji_zwj_results"].items(),
-                                      key=lambda x: wcwidth._wcversion_value(x[0]))
-    ]
-    table_str = tabulate.tabulate(tabulated_emoji_zwj_results, headers="keys", tablefmt="rst")
-    print_datatable(table_str)
-
-    emoji_zwj_versions = list(entry["data"]["test_results"]["emoji_zwj_results"].keys())
-    show_failed_version = find_failed_version(
-        entry,
-        version_keys=emoji_zwj_versions,
-        results_key="emoji_zwj_results",
-        best_match_version=entry["version_best_zwj"],
-    )
-
-    # conditionally show one example record failure
-    records = entry["data"]["test_results"]["emoji_zwj_results"][show_failed_version]
-    if records["n_errors"] > 0:
-        fail_record = find_best_failure(records["failed_codepoints"])
-        whatis = f"of an Emoji ZWJ Sequence from Emoji Version {show_failed_version},"
-        show_record_failure(sw_name, whatis, fail_record)
+    # show one example failure from the version with most errors
+    for ver in zwj_results:
+        if zwj_results[ver]["n_errors"] > 0:
+            fail_record = find_best_failure(zwj_results[ver]["failed_codepoints"])
+            show_record_failure(sw_name, "of an Emoji ZWJ Sequence,", fail_record)
+            break
 
 
 def show_vs_results(sw_name, entry, variation_str):

@@ -26,7 +26,6 @@ import argparse
 import functools
 import platform
 import datetime
-from typing import Optional
 
 # 3rd party
 import blessed
@@ -40,42 +39,6 @@ from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
 from ucs_detect import measure, terminal
 from ucs_detect.error_matcher import ErrorMatcher
-
-
-def determine_best_match(
-    wide_results: dict, lbound_pct: float, report_lbound: int
-) -> Optional[float]:
-    # Iterate through results of test_wide_support(), determine their success pct
-    # as n_errors / n_total, create descending sorted list of [success_pct, unicode_version],
-    # and chose the 'best' version above lbound_pct, after sorted order of
-    # (pct_success, value_version).
-    #
-    # This is for the case of mixed 95-100% support rates, at time of this writing,
-    # iTerm2 supports 100% of wmoji zwj 12.1, 97% in 13.1, *0%* 14.0, and 99% of 15.1,
-    # it just has a gap of support for the ZWJ sequence released in version 14, strange,
-    # but in this case it is best to suggest a total version of 15.1.
-    #
-    # do not consider test results from unicode tables with very few changes,
-    # such as wide table 12.1.0 release has just 1 change, and
-    # emoji table 1.0 has just 1 change, by argument 'report_lbound'
-    results = []
-    for ver, result in wide_results.items():
-        if not report_lbound or result["n_total"] >= report_lbound:
-            try:
-                results.append(
-                    (result["pct_success"], wcwidth._wcversion_value(ver), ver)
-                )
-            except ZeroDivisionError:
-                results.append((0, wcwidth._wcversion_value(ver), ver))
-    if not results:
-        return None
-    results.sort(reverse=True)
-
-    best_match = results[0]
-    for pct_success, value_version, str_version in results:
-        if pct_success >= lbound_pct and value_version > best_match[1]:
-            best_match = (pct_success, value_version, str_version)
-    return best_match[2] if best_match[0] > lbound_pct else None
 
 
 def merge_results(base_results, additional_results):
@@ -138,7 +101,7 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, no_languages_test, timeout, no_emit_osc1337, stop_at_error, set_software_name, set_software_version):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, no_terminal_test, no_languages_test, timeout, no_emit_osc1337, stop_at_error, set_software_name, set_software_version):
     """Program entry point."""
     term, writer = init_term(stream, quick)
 
@@ -215,21 +178,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         stop_at_error=error_matcher,
         test_type="wide",
     )
-    if unicode_version:
-        # match by CLI argument, '--unicode-version'
-        unicode_version = wcwidth._wcmatch_version(unicode_version)
-    else:
-        # match version by results of wide character test
-        unicode_version = determine_best_match(wide_results, lbound_pct=90, report_lbound=2)
+    # wcwidth now only publishes the latest Unicode version
+    unicode_version = wcwidth.list_versions()[-1]
     if shell:
-        # when using --shell, this program's only purpose is to make a best
-        # estimate of exporting UNICODE_VERSION for use with wcwidth library and
-        # exit quickly.
-        if not unicode_version:
-            print(
-                "ucs-detect: Unicode Version could not be determined!", file=sys.stderr
-            )
-            sys.exit(1)
         print(f"UNICODE_VERSION={unicode_version}; export UNICODE_VERSION")
         sys.exit(0)
 
@@ -251,9 +202,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         stop_at_error=error_matcher,
         test_type="zwj",
     )
-    emoji_zwj_version = determine_best_match(
-        emoji_zwj_results, lbound_pct=90, report_lbound=2
-    )
+    emoji_zwj_version = list(emoji_zwj_results.keys())[0] if emoji_zwj_results else None
 
     # Test "recommended" Variation-16 emoji sequences and narrow base characters
     # This addresses issue #15 where characters like U+2665 (♥) should be narrow
@@ -323,39 +272,22 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     writer(
         f'\nDisplaying results of {term.bold("WIDE")} character support as success rate'
     )
-    display_results_by_version(
-        term=term, writer=writer, results=wide_results, best_match=unicode_version
-    )
+    display_results_by_version(term=term, writer=writer, results=wide_results)
 
     writer(
         f'\nDisplaying results {term.bold("ZWJ")} sequence support as success rate'
     )
-    display_results_by_version(
-        term=term,
-        writer=writer,
-        results=emoji_zwj_results,
-        best_match=emoji_zwj_version,
-    )
+    display_results_by_version(term=term, writer=writer, results=emoji_zwj_results)
 
     writer(
         f'\nDisplaying results of {term.bold("Variation Selector-16")} and {term.bold("narrow emoji")} support'
     )
-    display_results_by_version(
-        term=term,
-        writer=writer,
-        results=emoji_vs16_results,
-        best_match=list(emoji_vs16_results.keys())[0],
-    )
+    display_results_by_version(term=term, writer=writer, results=emoji_vs16_results)
 
     writer(
         f'\nDisplaying results of {term.bold("Variation Selector-15")} sequence support'
     )
-    display_results_by_version(
-        term=term,
-        writer=writer,
-        results=emoji_vs15_results,
-        best_match=list(emoji_vs15_results.keys())[0],
-    )
+    display_results_by_version(term=term, writer=writer, results=emoji_vs15_results)
 
     if language_results:
         writer(
@@ -398,11 +330,10 @@ def display_args(arguments):
     return ", ".join(f"{k}={v}" for k, v in arguments.items())
 
 
-def display_results_by_version(term, writer, results, best_match):
-    writer(f'\n{"Unicode Version":>16s}: {"Total":>6s}, Success Pct')
+def display_results_by_version(term, writer, results):
+    writer(f'\n{"Version":>16s}: {"Total":>6s}, Success Pct')
     for ver in results.keys():
-        _ver = "*" + ver if ver == best_match else ver
-        label_s = f"{_ver:>16s}"
+        label_s = f"{ver:>16s}"
         total_s = f"{results[ver]['n_total']:>6n}"
         pct_val = results[ver]["pct_success"]
         term_style = (
@@ -418,10 +349,6 @@ def display_results_by_version(term, writer, results, best_match):
         )
         pct_s_colored = term_style(term.rjust(f"{pct_val:0.1f}", 6))
         writer(f"\n{label_s}: {total_s}, {pct_s_colored} %")
-    maybe_match = ''
-    if len(results) > 1:
-        maybe_match = "* Best Match" if best_match else "* No Match !"
-    writer(f"\n{maybe_match:>16s}")
 
 
 def display_results_by_language(term, writer, results):
@@ -567,9 +494,9 @@ def parse_args():
         action="store_true",
         default=False,
         help=(
-            "Stop test early at the first version that matches 100%%. "
-            "also sets --limit-codepoints=50, --limit-errors=5 when "
-            "unspecified."
+            "Stop test early when 100%% match is found. "
+            "Also sets --limit-codepoints=50, --limit-errors=5 when "
+            "unspecified. Skips language testing."
         ),
     )
     args.add_argument(
@@ -585,11 +512,6 @@ def parse_args():
         "--save-yaml",
         default=None,
         help="Save test results to given filepath as yaml, will prompt for software name & version",
-    )
-    args.add_argument(
-        "--unicode-version",
-        help=("Override unicode version for language testing, otherwise best match by wide character "
-              "testing is used")
     )
     args.add_argument(
         "--no-terminal-test",
@@ -641,7 +563,6 @@ def parse_args():
     if results["shell"]:
         assert not results["save_yaml"], "Cannot use --shell with --save-yaml"
         assert results["stream"] == "stderr", "Cannot use --shell with --stream=stdout"
-        assert not results["unicode_version"], "Do not use with --shell"
         results["no_terminal_test"] = True
     if results["save_yaml"]:
         results["save_yaml"] = os.path.expanduser(results["save_yaml"])

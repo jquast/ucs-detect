@@ -89,9 +89,9 @@ Solution
 The most important factor is to determine whether the Terminal Emulator complies
 with the Specification_ published by the python wcwidth_ library.
 
-This program, ``ucs-detect``, is able to **automatically detect** the version
-and feature level support of unicode that the connecting Terminal supports for
-WIDE, ZERO, ZWJ, and VS-16 characters.
+This program, ``ucs-detect``, measures the compliance of a terminal emulator with
+the latest Unicode specification for codepoints in sequence with WIDE, ZERO, ZWJ,
+VS-16, and VS-15.
 
 How it works
 ------------
@@ -178,7 +178,10 @@ clusters, and script-specific rendering requirements.
 History
 =======
 
-- 1.0.9 (2026-01-29): Added ``--set-software-name`` and ``--set-software-version``.
+- 1.1.0 (2026-01-29): Simplified to test compliance against latest Unicode
+  version only (no longer guesses terminal Unicode version).
+  Added ``--set-software-name`` and ``--set-software-version`` CLI options.
+  Removed ``--unicode-version`` CLI option.
 
 - 1.0.8 (2025-11-02): Added detection of DEC Private Modes, testing
   of Variation Selector 15, Sixel graphics and pixel size, and 
