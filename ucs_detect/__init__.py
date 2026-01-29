@@ -101,7 +101,7 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, no_terminal_test, no_languages_test, timeout, no_emit_osc1337, stop_at_error, set_software_name, set_software_version):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, no_terminal_test, no_languages_test, timeout, stop_at_error, set_software_name, set_software_version):
     """Program entry point."""
     term, writer = init_term(stream, quick)
 
@@ -114,22 +114,19 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         k: local_vars[k]
         for k in ("stream", "quick", "limit_codepoints", "limit_errors", "limit_words")
     }
-    if not shell:
-        writer(f"ucs-detect: {display_args(session_arguments)})")
+    writer(f"ucs-detect: {display_args(session_arguments)})")
 
     if measure.get_location_with_retry(term, timeout) == (-1, -1):
         raise RuntimeError(f"Not a terminal or Timeout exceeded ({timeout:.1f}s)!")
 
     # Use a very long timeout, some terminals have slowdown difficulties with
     # combining characters during language testing
-    if not shell:
-        writer(f"\nucs-detect: Interactive terminal detected !")
+    writer(f"\nucs-detect: Interactive terminal detected !")
 
     terminal_results = {}
     if not no_terminal_test:
         terminal_results = terminal.do_terminal_detection()
-        if not shell:
-            display_terminal_results(term, writer, terminal_results)
+        display_terminal_results(term, writer, terminal_results)
 
     if save_yaml:
         print()
@@ -158,10 +155,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     start_time = time.monotonic()
 
     # test full-wide unicode table
-    if not shell:
-        msg_do_not = "Testing in progress. DO NOT TYPE. DO NOT RESIZE WINDOW."
-        writer(f"\nucs-detect: " + term.reverse(msg_do_not))
-        writer(f"\nucs-detect: WIDE testing")
+    msg_do_not = "Testing in progress. DO NOT TYPE. DO NOT RESIZE WINDOW."
+    writer(f"\nucs-detect: " + term.reverse(msg_do_not))
+    writer(f"\nucs-detect: WIDE testing")
     wide_results = measure.test_support(
         table=WIDE_CHARACTERS,
         term=term,
@@ -173,16 +169,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         expected_width=2,
         largest_xpos=4,
         report_lbound=2,
-        shell=shell,
-        emit_osc1337=not no_emit_osc1337,
         stop_at_error=error_matcher,
         test_type="wide",
     )
-    # wcwidth now only publishes the latest Unicode version
-    unicode_version = wcwidth.list_versions()[-1]
-    if shell:
-        print(f"UNICODE_VERSION={unicode_version}; export UNICODE_VERSION")
-        sys.exit(0)
 
     # Test zero-width joiner with "recommended" emoji sequences
     writer(f"\nucs-detect: ZWJ testing")
@@ -197,13 +186,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         expected_width=2,
         largest_xpos=20,
         report_lbound=2,
-        shell=shell,
-        emit_osc1337=not no_emit_osc1337,
         stop_at_error=error_matcher,
         test_type="zwj",
     )
-    emoji_zwj_version = list(emoji_zwj_results.keys())[0] if emoji_zwj_results else None
-
     # Test "recommended" Variation-16 emoji sequences and narrow base characters
     # This addresses issue #15 where characters like U+2665 (♥) should be narrow
     writer(f"\nucs-detect: VS16 testing")
@@ -219,8 +204,6 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
             expected_width=2,
             largest_xpos=5,
             report_lbound=2,
-            shell=shell,
-            emit_osc1337=not no_emit_osc1337,
             stop_at_error=error_matcher,
             test_type="vs16",
         ),
@@ -236,8 +219,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
             expected_width=1,
             largest_xpos=5,
             report_lbound=2,
-            shell=True,  # Suppress output from second test - results will be merged
-            emit_osc1337=not no_emit_osc1337,
+            suppress_output=True,
             stop_at_error=error_matcher,
             test_type="vs16n",
         ),
@@ -255,8 +237,6 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
         expected_width=1,
         largest_xpos=5,
         report_lbound=2,
-        shell=shell,
-        emit_osc1337=not no_emit_osc1337,
         stop_at_error=error_matcher,
         test_type="vs15",
     )
@@ -265,7 +245,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
     language_results = None
     if not quick and not no_languages_test:
         language_results = measure.do_languages_test(
-            term, writer, timeout, unicode_version, limit_words, limit_errors, error_matcher
+            term, writer, timeout, limit_words, limit_errors, error_matcher
         )
 
     # display results
@@ -313,9 +293,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
             datetime=date_now,
             wcwidth_version=wcwidth.__version__,
             test_results=dict(
-                unicode_wide_version=unicode_version,
                 unicode_wide_results=wide_results,
-                emoji_zwj_version=emoji_zwj_version,
                 emoji_zwj_results=emoji_zwj_results,
                 emoji_vs16_results=emoji_vs16_results,
                 emoji_vs15_results=emoji_vs15_results,
@@ -500,15 +478,6 @@ def parse_args():
         ),
     )
     args.add_argument(
-        "--shell",
-        action="store_true",
-        default=False,
-        help=(
-            "Determine and display only UNICODE_VERSION shell variable for export to stdout."
-            " stream is also set to stderr. Fe, `eval $(ucs-detect --shell)`"
-        ),
-    )
-    args.add_argument(
         "--save-yaml",
         default=None,
         help="Save test results to given filepath as yaml, will prompt for software name & version",
@@ -530,12 +499,6 @@ def parse_args():
         type=float,
         default=10.0,
         help="Timeout in seconds for terminal cursor position testing",
-    )
-    args.add_argument(
-        "--no-emit-osc1337",
-        action="store_true",
-        default=False,
-        help="Do not emit OSC 1337 escape sequence to set Unicode version"
     )
     args.add_argument(
         "--stop-at-error",
@@ -560,10 +523,6 @@ def parse_args():
     if results["quick"]:
         results["limit_codepoints"] = results["limit_codepoints"] or 50
         results["limit_errors"] = results["limit_errors"] or 5
-    if results["shell"]:
-        assert not results["save_yaml"], "Cannot use --shell with --save-yaml"
-        assert results["stream"] == "stderr", "Cannot use --shell with --stream=stdout"
-        results["no_terminal_test"] = True
     if results["save_yaml"]:
         results["save_yaml"] = os.path.expanduser(results["save_yaml"])
     return results
