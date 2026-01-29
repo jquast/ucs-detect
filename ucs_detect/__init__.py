@@ -167,10 +167,10 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
         limit_codepoints=limit_codepoints,
         limit_errors=limit_errors,
         expected_width=2,
-        largest_xpos=4,
         report_lbound=2,
         stop_at_error=error_matcher,
         test_type="wide",
+        grapheme_delay_ms=grapheme_delay_ms,
     )
 
     # Test zero-width joiner with "recommended" emoji sequences
@@ -184,10 +184,10 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
         limit_codepoints=limit_codepoints,
         limit_errors=limit_errors,
         expected_width=2,
-        largest_xpos=20,
         report_lbound=2,
         stop_at_error=error_matcher,
         test_type="zwj",
+        grapheme_delay_ms=grapheme_delay_ms,
     )
     # Test "recommended" Variation-16 emoji sequences and narrow base characters
     # This addresses issue #15 where characters like U+2665 (♥) should be narrow
@@ -202,10 +202,10 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
             limit_codepoints=limit_codepoints,
             limit_errors=limit_errors,
             expected_width=2,
-            largest_xpos=5,
             report_lbound=2,
             stop_at_error=error_matcher,
             test_type="vs16",
+            grapheme_delay_ms=grapheme_delay_ms,
         ),
         measure.test_support(
             table=tuple((ver, tuple(seq[0] for seq in sequences))
@@ -217,11 +217,11 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
             limit_codepoints=limit_codepoints,
             limit_errors=limit_errors,
             expected_width=1,
-            largest_xpos=5,
             report_lbound=2,
             suppress_output=True,
             stop_at_error=error_matcher,
             test_type="vs16n",
+            grapheme_delay_ms=grapheme_delay_ms,
         ),
     )
     # Variation-15 emoji sequences
@@ -235,10 +235,10 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
         limit_codepoints=limit_codepoints,
         limit_errors=limit_errors,
         expected_width=1,
-        largest_xpos=5,
         report_lbound=2,
         stop_at_error=error_matcher,
         test_type="vs15",
+        grapheme_delay_ms=grapheme_delay_ms,
     )
 
     # test language support
