@@ -101,7 +101,7 @@ sequence, which asks, *"where is the cursor?"*. This is a hidden sequence that a
 Terminal Emulator automatically responds to.
 
 By use of this sequence, and the data tables of the wcwidth_ library,
-we can test for compliance of the python wcwidth_ library Specification_.
+we can test for compliance of the python wcwidth library Specification_.
 
 The use of `Query Cursor Position`_  is inspired by the `resize(1)`_ program
 distributed with X11, which determines the terminal size over transports that
@@ -178,7 +178,9 @@ clusters, and script-specific rendering requirements.
 History
 =======
 
-- 1.0.8 (2025-11-02) : Added detection of DEC Private Modes, testing
+- 1.0.9 (2026-01-29): Added ``--set-software-name`` and ``--set-software-version``.
+
+- 1.0.8 (2025-11-02): Added detection of DEC Private Modes, testing
   of Variation Selector 15, Sixel graphics and pixel size, and 
   automatic software version (XTVERSION and ^E answerback).
 
@@ -189,7 +191,7 @@ History
   through 3.11. *ucs-detect* Welcomes `@GalaxySnail
   <https://github.com/GalaxySnail/>`_ as a new project contributor.
 
-- 1.0.5 (2023-11-13): Set minimum wcwidth_ release version requirement.
+- 1.0.5 (2023-11-13): Set minimum wcwidth release version requirement.
 
 - 1.0.4 (2023-11-13): Add support for Emoji with VS-16 and more complete testing.
   Published test results.

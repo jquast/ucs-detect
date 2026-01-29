@@ -138,7 +138,7 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, no_languages_test, timeout, no_emit_osc1337, stop_at_error):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, shell, unicode_version, no_terminal_test, no_languages_test, timeout, no_emit_osc1337, stop_at_error, set_software_name, set_software_version):
     """Program entry point."""
     term, writer = init_term(stream, quick)
 
@@ -170,15 +170,21 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
 
     if save_yaml:
         print()
-        if terminal_results.get("software_name"):
+        # Use --set-software-name if provided, otherwise prompt
+        if set_software_name:
+            terminal_software = set_software_name
+        elif terminal_results.get("software_name"):
             default_software = terminal_results["software_name"]
             terminal_software = input(f'Enter "Terminal Software" (press return for "{default_software}"): ')
             if not terminal_software.strip():
                 terminal_software = default_software
         else:
-            # TODO: fallback environment variable for automation
             terminal_software = input('Enter "Terminal Software": ')
-        if terminal_results.get("software_version"):
+
+        # Use --set-software-version if provided, otherwise prompt
+        if set_software_version:
+            terminal_version = set_software_version
+        elif terminal_results.get("software_version"):
             default_software_version = terminal_results["software_version"]
             terminal_version = input(f'Enter "Software Version" (press return for "{default_software_version}"): ')
             if not terminal_version.strip():
@@ -281,13 +287,12 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, s
             expected_width=1,
             largest_xpos=5,
             report_lbound=2,
-            shell=shell,
+            shell=True,  # Suppress output from second test - results will be merged
             emit_osc1337=not no_emit_osc1337,
             stop_at_error=error_matcher,
             test_type="vs16n",
         ),
     )
-
     # Variation-15 emoji sequences
     writer(f"\nucs-detect: VS15 testing")
     emoji_vs15_results = measure.test_support(
@@ -521,8 +526,14 @@ def display_terminal_results(term, writer, results):
         writer(f"\n{'DEC Modes Detected':>24s}: {modes_count:n}")
 
 
-def do_save_yaml( save_yaml, **kwargs):
-    yaml.safe_dump(kwargs, open(save_yaml, "w"), sort_keys=True)
+def do_save_yaml(save_yaml, **kwargs):
+    yaml.safe_dump(
+        kwargs,
+        open(save_yaml, "w", encoding='utf-8'),
+        sort_keys=True,
+        allow_unicode=True,
+        default_flow_style=False
+    )
 
 
 def parse_args():
@@ -557,8 +568,8 @@ def parse_args():
         default=False,
         help=(
             "Stop test early at the first version that matches 100%%. "
-            "also sets --limit-codepoints=50, --limit-errors=5 if not "
-            "other specified."
+            "also sets --limit-codepoints=50, --limit-errors=5 when "
+            "unspecified."
         ),
     )
     args.add_argument(
@@ -612,6 +623,16 @@ def parse_args():
             "Values: 'zwj', 'wide', 'vs16', 'vs16n', 'vs15', 'lang' (all languages), "
             "or specific language name (e.g., 'english', 'korean', 'chinese')"
         )
+    )
+    args.add_argument(
+        "--set-software-name",
+        default=None,
+        help="Set software name for YAML output (skips interactive prompt)"
+    )
+    args.add_argument(
+        "--set-software-version",
+        default=None,
+        help="Set software version for YAML output (skips interactive prompt)"
     )
     results = vars(args.parse_args())
     if results["quick"]:

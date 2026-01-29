@@ -17,6 +17,12 @@ def build_command_from_yaml(yaml_file):
 
     cmd = ['ucs-detect', '--save-yaml', str(yaml_file)]
 
+    # Add software name and version from YAML to avoid prompting
+    if data.get('software_name'):
+        cmd.extend(['--set-software-name', data['software_name']])
+    if data.get('software_version'):
+        cmd.extend(['--set-software-version', data['software_version']])
+
     # Map YAML keys to CLI arguments
     arg_mapping = {
         'stream': '--stream',
@@ -54,8 +60,10 @@ def build_command_from_yaml(yaml_file):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Re-run ucs-detect with arguments from a saved YAML file.')
+        description='Re-run ucs-detect with arguments from a saved YAML file.',
+        epilog='Any additional arguments after yaml_file are passed to ucs-detect')
     parser.add_argument('yaml_file')
+    parser.add_argument('extra_args', nargs='*', help='Additional arguments to pass to ucs-detect')
     args = parser.parse_args()
 
     if not os.path.exists(args.yaml_file):
@@ -63,6 +71,10 @@ def main():
         sys.exit(1)
 
     cmd = build_command_from_yaml(args.yaml_file)
+
+    # Append any extra arguments provided on command line
+    if args.extra_args:
+        cmd.extend(args.extra_args)
 
     print(f"Running: {shlex.join(cmd)}")
 

@@ -505,6 +505,7 @@ def make_success_pct(n_errors, n_total):
     # protect from divide-by-zero and convert decimal to whole percentage points
     return ((n_total - n_errors) / n_total if n_total else 0) * 100
 
+
 def parse_udhr(unicode_version="auto"):
     path_udhr = os.path.join(os.path.dirname(__file__), 'udhr')
     for fname in sorted(os.listdir(path_udhr)):

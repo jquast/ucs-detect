@@ -785,11 +785,11 @@ def display_table_definitions():
     print("Definitions:\n")
     print(
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
-        "  the weighted average of all feature scores (WIDE, LANG, ZWJ, VS16, VS15, DEC Modes, and TIME),\n"
-        "  then scaled (normalized 0-100%) relative to all terminals tested. Higher scores\n"
-        "  indicate better overall Unicode and terminal feature support. DEC Modes and TIME\n"
-        "  are normalized to 0-1 range before averaging. TIME is weighted at 0.5 (half as powerful\n"
-        "  as other metrics) to reduce its impact on the final score."
+        "  the weighted average of all feature scores (WIDE, LANG, ZWJ, VS16, VS15,\n"
+        "  DEC Modes, and TIME), then scaled (normalized 0-100%) relative to all terminals tested.\n"
+        "  Higher scores indicate better overall Unicode and terminal feature support. DEC Modes and\n"
+        "  TIME are normalized to 0-1 range before averaging. TIME is weighted at 0.5 (half as\n"
+        "  powerful as other metrics) to reduce its impact on the final score."
     )
     print(
         "- *WIDE score*: Overall percentage of wide character codepoints correctly\n"
@@ -968,7 +968,6 @@ def score_elapsed_time(data):
     if elapsed is None or math.isnan(elapsed):
         return float('NaN')
     return elapsed
-
 
 
 def show_wchar(wchar):
