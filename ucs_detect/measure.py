@@ -169,7 +169,6 @@ def test_language_support(
     orig_xpos,
     top,
     bottom,
-    unicode_version,
     largest_xpos,
     limit_words,
     limit_errors,
@@ -187,7 +186,7 @@ def test_language_support(
     failure_report = collections.defaultdict(list)
     time_report = {}
     start_time = time.monotonic()
-    for lang, multiline_text in parse_udhr(unicode_version=unicode_version or 'auto'):
+    for lang, multiline_text in parse_udhr():
         lang_start_time = time.monotonic()
         writer(term.move_yx(top - 1, orig_xpos))
         writer(f"{lang}" + term.clear_eos)
@@ -204,10 +203,8 @@ def test_language_support(
                     or len(failure_report[lang]) >= limit_errors
                 ):
                     break
-                expected_width = wcwidth.wcswidth(
-                    wchars, unicode_version=(unicode_version or "auto")
-                )
-                assert expected_width != -1, (wchars, lang, unicode_version)
+                expected_width = wcwidth.wcswidth(wchars)
+                assert expected_width != -1, (wchars, lang)
                 if expected_width >= term.width:
                     # filter: do not test long phrases that span margin
                     continue
@@ -324,13 +321,10 @@ def test_support(
     expected_width,
     largest_xpos,
     report_lbound,
-    shell,
-    emit_osc1337=True,
+    suppress_output=False,
     stop_at_error=None,
     test_type=None,
 ):
-    # Enable grapheme clustering mode if terminal supports it (queries with DECRQM first).
-    # OSC 1337 Unicode version is set per-version within the test loop.
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
     time_report = {}
@@ -343,86 +337,87 @@ def test_support(
     with terminal.maybe_grapheme_clustering_mode(term):
         for ver, wchars in table:
             ver_start_time = time.monotonic()
-            with terminal.osc_1337_for_version(writer, ver, emit_osc1337):
-                maybe_str = f", version={ver}: " if not shell else ""
-                writer(term.move_yx(outer_ypos, outer_xpos) + maybe_str + term.clear_eol)
-                orig_start_ypos, orig_start_xpos = get_location_with_retry(term, timeout)
-                if (-1, -1) == (orig_start_ypos, orig_start_xpos):
-                    exit_and_display_timeout_error(term, writer, timeout, orig_xpos=outer_xpos, top=term.height)
+            if not suppress_output:
+                writer(term.move_yx(outer_ypos, outer_xpos))
+                writer(f", version={ver}: " + term.clear_eol)
+            else:
+                writer(term.move_yx(outer_ypos, outer_xpos) + term.clear_eol)
+            orig_start_ypos, orig_start_xpos = get_location_with_retry(term, timeout)
+            if (-1, -1) == (orig_start_ypos, orig_start_xpos):
+                exit_and_display_timeout_error(
+                    term, writer, timeout, orig_xpos=outer_xpos, top=term.height
+                )
 
-                start_ypos, start_xpos = orig_start_ypos, orig_start_xpos
-                end_ypos, end_xpos = 0, 0
-                for wchar in wchars[: limit_codepoints if limit_codepoints else None]:
-                    wchars_str = (
-                        chr(wchar)
-                        if isinstance(wchar, int)
-                        else "".join(chr(_wc) for _wc in wchar)
+            start_ypos, start_xpos = orig_start_ypos, orig_start_xpos
+            end_ypos, end_xpos = 0, 0
+            for wchar in wchars[: limit_codepoints if limit_codepoints else None]:
+                wchars_str = (
+                    chr(wchar)
+                    if isinstance(wchar, int)
+                    else "".join(chr(_wc) for _wc in wchar)
+                )
+                writer(wchars_str)
+
+                end_ypos, end_xpos = get_location_with_retry(term, timeout)
+                if (-1, -1) == (end_ypos, end_xpos):
+                    writer(term.move_yx(outer_ypos, outer_xpos))
+                    writer(term.reverse_red(f"Timeout Exceeded ({timeout:.2f}s)"))
+                    if quick:
+                        break
+                    term.inkey(timeout=1)
+                delta_xpos = end_xpos - start_xpos
+                delta_ypos = end_ypos - start_ypos
+                if (delta_ypos, delta_xpos) == (0, expected_width):
+                    success_report[ver] += 1
+                else:
+                    failure_report[ver].append(
+                        ({"wchar": unicode_escape_string(wchars_str)})
                     )
-                    writer(wchars_str)
+                    if delta_ypos != 0:
+                        failure_report[ver][-1]["delta_ypos"] = delta_ypos
+                    if delta_xpos != expected_width:
+                        failure_report[ver][-1]["measured_by_wcwidth"] = expected_width
+                        failure_report[ver][-1]["measured_by_terminal"] = delta_xpos
 
-                    end_ypos, end_xpos = get_location_with_retry(term, timeout)
-                    if (-1, -1) == (end_ypos, end_xpos):
-                        writer(term.move_yx(outer_ypos, outer_xpos))
-                        writer(term.reverse_red(f"Timeout Exceeded ({timeout:.2f}s)"))
-                        if quick or shell:
-                            break
-                        term.inkey(timeout=1)
-                    delta_xpos = end_xpos - start_xpos
-                    delta_ypos = end_ypos - start_ypos
-                    if (delta_ypos, delta_xpos) == (0, expected_width):
-                        success_report[ver] += 1
-                    else:
-                        failure_report[ver].append(
-                            ({"wchar": unicode_escape_string(wchars_str)})
+                    # Check if we should stop at this error
+                    if stop_at_error and test_type and stop_at_error.matches_test_type(test_type):
+                        should_continue = display_error_and_prompt(
+                            term=term,
+                            writer=writer,
+                            context_name=f"{test_type.upper()} test (version {ver})",
+                            wchars_display=wchars_str,
+                            measured_by_terminal=delta_xpos,
+                            measured_by_wcwidth=expected_width,
                         )
-                        if delta_ypos != 0:
-                            failure_report[ver][-1]["delta_ypos"] = delta_ypos
-                        if delta_xpos != expected_width:
-                            failure_report[ver][-1]["measured_by_wcwidth"] = expected_width
-                            failure_report[ver][-1]["measured_by_terminal"] = delta_xpos
+                        if not should_continue:
+                            stop_at_error.disable()
 
-                        # Check if we should stop at this error
-                        if stop_at_error and test_type and stop_at_error.matches_test_type(test_type):
-                            should_continue = display_error_and_prompt(
-                                term=term,
-                                writer=writer,
-                                context_name=f"{test_type.upper()} test (version {ver})",
-                                wchars_display=wchars_str,
-                                measured_by_terminal=delta_xpos,
-                                measured_by_wcwidth=expected_width,
-                            )
-                            if not should_continue:
-                                stop_at_error.disable()
-
-                        if limit_errors and len(failure_report[ver]) >= limit_errors:
-                            break
-
-                    start_ypos, start_xpos = end_ypos, end_xpos
-                    maybe_clear_eol = ""
-                    if end_xpos > (term.width - largest_xpos) or delta_ypos != 0:
-                        start_ypos, start_xpos = orig_start_ypos, orig_start_xpos
-                        maybe_clear_eol = term.clear_eol
-                    writer(term.move_yx(start_ypos, start_xpos) + maybe_clear_eol)
-
-                if quick:
-                    if (
-                        wchars
-                        and not failure_report[ver]
-                        and success_report[ver] >= report_lbound
-                    ):
+                    if limit_errors and len(failure_report[ver]) >= limit_errors:
                         break
-                    if (-1, -1) == (end_ypos, end_xpos):
-                        break
+
+                start_ypos, start_xpos = end_ypos, end_xpos
+                maybe_clear_eol = ""
+                if end_xpos > (term.width - largest_xpos) or delta_ypos != 0:
+                    start_ypos, start_xpos = orig_start_ypos, orig_start_xpos
+                    maybe_clear_eol = term.clear_eol
+                writer(term.move_yx(start_ypos, start_xpos) + maybe_clear_eol)
+
+            if quick:
+                if (
+                    wchars
+                    and not failure_report[ver]
+                    and success_report[ver] >= report_lbound
+                ):
+                    break
+                if (-1, -1) == (end_ypos, end_xpos):
+                    break
 
             # Record elapsed time for this version
             time_report[ver] = time.monotonic() - ver_start_time
 
     writer(term.move_yx(outer_ypos, outer_xpos))
-    if shell:
-        writer(term.normal + term.clear_eol)
 
-    # create sorted list of versions that have any results, to determine
-    # primary key of returned result
+    # create sorted list of versions that have any results
     report_versions = [
         v
         for _, v in sorted(
@@ -438,9 +433,10 @@ def test_support(
     test_total_sum = sum(success_report.values()) + sum(
         [len(v) for v in failure_report.values()]
     )
-    if not shell:
+    if not suppress_output:
         writer(
-            f": {test_total_sum:n} wchars total, {time.monotonic() - start_time:.2f}s elapsed."
+            f": {test_total_sum:n} wchars total, "
+            f"{time.monotonic() - start_time:.2f}s elapsed."
         )
         writer(term.clear_eol)
 
@@ -464,7 +460,7 @@ def test_support(
     }
 
 def do_languages_test(
-    term, writer, timeout, unicode_version, limit_words, limit_errors, stop_at_error=None
+    term, writer, timeout, limit_words, limit_errors, stop_at_error=None
 ):
     writer(f"\nucs-detect: testing language support: ")
     orig_ypos, orig_xpos = get_location_with_retry(term, timeout)
@@ -486,7 +482,7 @@ def do_languages_test(
         orig_xpos=orig_xpos,
         top=top,
         bottom=bottom,
-        unicode_version=unicode_version,
+        unicode_version=None,  # TODO: remove parameter
         # ensure up to ~half the screen is available, for really long language "words"
         # eg. 'རྒྱལ་ཡོངས་དང་རྒྱལ་སྤྱིའི་ཉེས་འགེལ་ཁྲིམས་ཀྱི་གྲངས་སུ་ཐོ་བཀོད་འབད་དེ་མེད་པ་ཅིན་'
         largest_xpos=max(40, term.width // 2),
