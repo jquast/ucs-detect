@@ -2,14 +2,48 @@
 import os
 import sys
 import time
+import bisect
 import codecs
 import collections
+import unicodedata
 
 # 3rd party
 import wcwidth
 
 # local
 from ucs_detect import terminal
+
+# Unicode ranges where most fonts lack glyphs, causing slow fallback lookups
+# and replacement character rendering. Sorted by start for bisect lookup.
+UNCOMMON_WIDE_RANGES = (
+    (0x17000, 0x18CD5),   # Tangut
+    (0x18D00, 0x18D7F),   # Tangut Supplement
+    (0x1B000, 0x1B2FF),   # Kana Supplement/Extended
+    (0x20000, 0x2A6DF),   # CJK Extension B
+    (0x2A700, 0x2B73F),   # CJK Extension C
+    (0x2B740, 0x2B81F),   # CJK Extension D
+    (0x2B820, 0x2CEAF),   # CJK Extension E
+    (0x2CEB0, 0x2EBEF),   # CJK Extension F
+    (0x2EBF0, 0x2F7FF),   # CJK Extension I
+    (0x30000, 0x3134F),   # CJK Extension G
+    (0x31350, 0x323AF),   # CJK Extension H
+    (0x323B0, 0x3FFFD),   # Future CJK extensions (reserved)
+)
+
+_UNCOMMON_STARTS = tuple(s for s, _ in UNCOMMON_WIDE_RANGES)
+
+
+def _is_uncommon(codepoint):
+    """Return True if codepoint is in an uncommon wide range.
+
+    :param int codepoint: Unicode codepoint value.
+    :rtype: bool
+    """
+    idx = bisect.bisect_right(_UNCOMMON_STARTS, codepoint) - 1
+    if idx < 0:
+        return False
+    start, end = UNCOMMON_WIDE_RANGES[idx]
+    return start <= codepoint <= end
 
 
 def extract_unique_graphemes(text):
@@ -101,6 +135,46 @@ def make_printf_hex(wchar):
     return repr(wchar.encode("utf8"))[2:-1]
 
 
+def _make_codepoint_table(wchars_display):
+    """Build a prettytable showing codepoint breakdown of a character sequence.
+
+    :param str wchars_display: The Unicode character(s) to decompose.
+    :rtype: prettytable.colortable.ColorTable
+    """
+    from prettytable.colortable import ColorTable, Theme
+    theme = Theme(
+        default_color="\x1b[36m",
+        vertical_color="\x1b[35m",
+        horizontal_color="\x1b[35m",
+        junction_color="\x1b[35m",
+    )
+    table = ColorTable(theme=theme)
+    table.field_names = ["#", "Codepoint", "Python", "Category", "wcwidth", "Name"]
+    table.align["#"] = "r"
+    table.align["Codepoint"] = "l"
+    table.align["Python"] = "l"
+    table.align["Category"] = "l"
+    table.align["wcwidth"] = "r"
+    table.align["Name"] = "l"
+    for idx, char in enumerate(wchars_display):
+        codepoint_val = ord(char)
+        if codepoint_val > 0xFFFF:
+            cp_str = f"U+{codepoint_val:08X}"
+            py_str = f"\\U{codepoint_val:08x}"
+        else:
+            cp_str = f"U+{codepoint_val:04X}"
+            py_str = f"\\u{codepoint_val:04x}"
+        table.add_row([
+            idx + 1,
+            cp_str,
+            py_str,
+            unicodedata.category(char),
+            wcwidth.wcwidth(char),
+            unicodedata.name(char, "(unknown)"),
+        ])
+    return table
+
+
 def display_error_and_prompt(
     term, writer, context_name, wchars_display, measured_by_terminal, measured_by_wcwidth
 ):
@@ -115,15 +189,10 @@ def display_error_and_prompt(
     :param measured_by_wcwidth: Width measured by wcwidth
     :return: True to continue stopping, False to disable stopping
     """
-    # Save current cursor position
-    saved_ypos, saved_xpos = get_location_with_retry(term, 1.0)
+    writer(f"\n{term.bold(f'Failure in {context_name}:')}\n")
 
-    # Move to current y position (column 0) and clear to end of screen
-    if saved_ypos != -1:
-        writer(term.move_yx(saved_ypos+1, 0) + term.clear_eos)
-
-    # Display error information
-    writer(term.bold(f"Failure in {context_name}:\n"))
+    # Codepoint breakdown table
+    writer(str(_make_codepoint_table(wchars_display)) + "\n")
 
     # Create a tight box around the failing character(s)
     interior = wcwidth.width(wchars_display) + 2
@@ -142,27 +211,13 @@ def display_error_and_prompt(
     writer(f"\nPython\n------\n")
     writer(f'python -c "print(\'{unicode_escaped}\')"\n')
 
-    writer(f"\n{term.bold('press return for next error, or')} {term.bold_red('n')} {term.bold('for non-stop:')}")
+    writer(f"\n{term.bold('press return for next error, or')} "
+           f"{term.bold_red('n')} {term.bold('for non-stop:')}")
 
-    # Wait for user input
     key = term.inkey()
+    writer("\n")
 
-    # Check if user wants to disable stopping
-    should_continue_stopping = key.lower() != 'n'
-
-    # Check if screen scrolled by getting current position
-    current_ypos, current_xpos = get_location_with_retry(term, 1.0)
-
-    # If we're near the bottom or position seems invalid, just clear screen
-    # Otherwise try to restore to saved position
-    if current_ypos == -1 or current_ypos >= term.height - 2 or saved_ypos == -1:
-        # Screen likely scrolled or position invalid - clear everything
-        writer(term.home + term.clear)
-    else:
-        # Safe to restore - no scrolling occurred
-        writer(term.move_yx(saved_ypos, saved_xpos) + term.clear_eos)
-
-    return should_continue_stopping
+    return key.lower() != 'n'
 
 
 
@@ -172,14 +227,12 @@ def test_language_support(
     term,
     writer,
     timeout,
-    orig_xpos,
-    top,
-    bottom,
     largest_xpos,
     limit_words,
     limit_errors,
     stop_at_error=None,
     grapheme_delay_ms=0,
+    **_kwargs,
 ):
     # This is more of a "Test zero-width support" exercise,
     # many languages include zero-width characters, at least:
@@ -194,15 +247,9 @@ def test_language_support(
     time_report = {}
     tested_graphemes = {}  # grapheme -> (lang_tested_by, success)
     start_time = time.monotonic()
-    usable_width = int(term.width * 2 / 3)
 
     for lang, multiline_text in parse_udhr():
         lang_start_time = time.monotonic()
-        # reset display area for each language
-        writer(term.move_yx(top - 1, orig_xpos))
-        writer(f"{lang}" + term.clear_eos)
-        writer(term.move_yx(top, 0))
-
         graphemes_by_width = extract_unique_graphemes(multiline_text)
         grapheme_count = 0
         error_count = 0
@@ -232,57 +279,56 @@ def test_language_support(
             if not novel:
                 continue
 
-            # cell_width: | <grapheme> |·
-            cell_width = 1 + 1 + expected_width + 1 + 1 + 1
-            num_columns = max(1, usable_width // cell_width)
+            # row layout: | X · X · X |
+            # row_width = 2 + N*(expected_width + 3) - 2 + 1
+            #           = N*(expected_width + 3) + 1
+            cell_inner = expected_width + 3  # "X · "
+            num_columns = max(1, (term.width - 1) // cell_inner)
 
             n_inherited = inherited_ok + inherited_fail
             if n_inherited:
                 inherited_msg = f", {n_inherited} shared"
             else:
                 inherited_msg = ""
-            header = (
-                f"{lang} w={expected_width}"
-                f" ({len(novel)} novel{inherited_msg})"
+            header_text = (
+                f"[ {lang} w={expected_width}"
+                f" ({len(novel)} novel{inherited_msg}) ]"
             )
-            writer(header + "\n")
-
-            # sync actual cursor position after header
-            cur_ypos, _ = get_location_with_retry(term, timeout)
-            if (-1, -1) == (cur_ypos, _):
-                exit_and_display_timeout_error(
-                    term, writer, timeout, orig_xpos, top
-                )
+            text_width = wcwidth.wcswidth(header_text)
+            pad_total = max(0, term.width - text_width)
+            pad_left = pad_total // 2
+            pad_right = pad_total - pad_left
+            dashes_l = term.bold_black('-' * pad_left)
+            dashes_r = term.bold_black('-' * pad_right)
+            writer("\n" + dashes_l + header_text + dashes_r + "\n")
 
             col = 0
-            last_ypos = cur_ypos
             for idx, grapheme in enumerate(novel):
-                if grapheme_count >= limit_words or error_count >= limit_errors:
+                if limit_words and grapheme_count >= limit_words:
+                    break
+                if limit_errors and error_count >= limit_errors:
                     break
 
                 grapheme_id = f"{lang}-{expected_width}-{idx:02x}"
 
-                # write opening pipe + pad space, then measure before/after grapheme
-                writer(term.magenta("|") + " ")
+                # row layout: | X · X · X |
+                if col == 0:
+                    writer(term.magenta("| "))
+                else:
+                    writer(term.magenta(" \u00b7 "))
+
                 start_ypos, start_xpos = get_location_with_retry(
                     term, timeout
                 )
                 if (-1, -1) == (start_ypos, start_xpos):
-                    exit_and_display_timeout_error(
-                        term, writer, timeout, orig_xpos, top
-                    )
+                    exit_and_display_timeout_error(term, writer, timeout)
 
                 writer(term.cyan(grapheme))
                 if grapheme_delay_ms:
                     time.sleep(grapheme_delay_ms / 1000.0)
                 end_ypos, end_xpos = get_location_with_retry(term, timeout)
                 if (-1, -1) == (end_ypos, end_xpos):
-                    exit_and_display_timeout_error(
-                        term, writer, timeout, orig_xpos, top
-                    )
-
-                # write right pad, closing pipe, and dot separator
-                writer(" " + term.magenta("|") + "\u00b7")
+                    exit_and_display_timeout_error(term, writer, timeout)
 
                 delta_ypos = end_ypos - start_ypos
                 delta_xpos = end_xpos - start_xpos
@@ -322,19 +368,12 @@ def test_language_support(
                 col += 1
 
                 if col >= num_columns:
-                    writer("\n")
+                    writer(term.magenta(" |") + "\n")
                     col = 0
-                    last_ypos += 1
-                    if last_ypos >= bottom - 2:
-                        # overflow: clear display area, keep at top
-                        writer(term.move_yx(top - 1, orig_xpos))
-                        writer(f"{lang}" + term.clear_eos)
-                        writer(term.move_yx(top, 0))
-                        last_ypos = top
 
-            # finish incomplete row with a newline
+            # close incomplete row
             if col > 0:
-                writer("\n")
+                writer(term.magenta(" |") + "\n")
 
         # Record elapsed time for this language
         time_report[lang] = time.monotonic() - lang_start_time
@@ -344,15 +383,6 @@ def test_language_support(
         for language in set(list(failure_report.keys()) + list(success_report.keys()))
         if len(failure_report[language]) or success_report[language]
     ]
-    test_total_sum = sum(success_report.values()) + sum(
-        [len(v) for v in failure_report.values()]
-    )
-
-    writer(term.move_yx(top - 1, 0) + term.clear_eos)
-    writer(
-        f"ucs-detect Languages testing completed {test_total_sum:n} wchars in total, "
-    )
-    writer(f"{time.monotonic() - start_time:.2f}s elapsed.")
 
     return {
         lang: {
@@ -382,9 +412,8 @@ def wchar_to_str(wchar):
     return "".join(chr(cp) for cp in wchar)
 
 
-def exit_and_display_timeout_error(term, writer, timeout, orig_xpos, top):
-    writer(term.move_yx(top - 1, orig_xpos) + term.clear_eos)
-    writer(term.reverse_red(f"Timeout Exceeded ({timeout:.1f}s)"))
+def exit_and_display_timeout_error(term, writer, timeout, **_kwargs):
+    writer("\n" + term.reverse_red(f"Timeout Exceeded ({timeout:.1f}s)") + "\n")
     sys.exit(1)
 
 
@@ -400,70 +429,54 @@ def test_support(
     stop_at_error=None,
     test_type=None,
     grapheme_delay_ms=0,
+    limit_pct=0,
+    include_uncommon=True,
 ):
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
     time_report = {}
 
     start_time = time.monotonic()
-    outer_ypos, outer_xpos = get_location_with_retry(term, timeout)
-    if (-1, -1) == (outer_ypos, outer_xpos):
-        exit_and_display_timeout_error(
-            term, writer, timeout, orig_xpos=1, top=term.height
-        )
 
     if suppress_output:
-        # suppress_output path: single-line overwrite, no grid
-        top = outer_ypos
-        bottom = outer_ypos
-    else:
-        # reserve 20-line display area below status line
-        writer("\n" * 20)
-        if outer_ypos != term.height - 1:
-            next_ypos, _ = get_location_with_retry(term, timeout)
-            if (-1, -1) == (next_ypos, _):
-                exit_and_display_timeout_error(
-                    term, writer, timeout, orig_xpos=1, top=term.height
-                )
-            top = max(0, next_ypos - 19)
-        else:
-            top = max(0, term.height - 20)
-        bottom = min(top + 20, term.height - 1)
-        writer(term.move_yx(top, 0) + term.clear_eos)
+        outer_ypos, outer_xpos = get_location_with_retry(term, timeout)
+        if (-1, -1) == (outer_ypos, outer_xpos):
+            exit_and_display_timeout_error(term, writer, timeout)
 
-    usable_width = int(term.width * 2 / 3)
-    # cell_width: | <grapheme> |·
-    cell_width = 1 + 1 + expected_width + 1 + 1 + 1
-    num_columns = max(1, usable_width // cell_width)
+    # row layout: | X · X · X |
+    cell_inner = expected_width + 3  # "X · "
+    num_columns = max(1, (term.width - 1) // cell_inner)
 
     with terminal.maybe_grapheme_clustering_mode(term):
         for ver, wchars in table:
             ver_start_time = time.monotonic()
+            if not include_uncommon:
+                wchars = tuple(
+                    w for w in wchars
+                    if not _is_uncommon(w if isinstance(w, int) else w[0])
+                )
             n_wchars = len(wchars)
-            wchars_slice = wchars[
-                : limit_codepoints if limit_codepoints else None
-            ]
+            if limit_codepoints:
+                wchars_slice = wchars[:limit_codepoints]
+            elif limit_pct and 0 < limit_pct < 100:
+                # stride-based sampling: take 1-of-every-N evenly across
+                step = max(1, round(100 / limit_pct))
+                wchars_slice = wchars[::step]
+            else:
+                wchars_slice = wchars
 
             if suppress_output:
                 writer(term.move_yx(outer_ypos, outer_xpos) + term.clear_eol)
             else:
-                # reset display area for this version
-                writer(term.move_yx(top - 1, outer_xpos))
                 label = test_type.upper() if test_type else "test"
-                writer(f"{label} v={ver}" + term.clear_eos)
-                writer(term.move_yx(top, 0))
-                header = f"{label} v={ver} ({len(wchars_slice)}/{n_wchars})"
+                pct_note = ""
+                if limit_pct and 0 < limit_pct < 100 and not limit_codepoints:
+                    pct_note = f", {limit_pct}% sampled"
+                header = (f"{label} v={ver}"
+                          f" ({len(wchars_slice)}/{n_wchars}{pct_note})")
                 writer(header + "\n")
-                # sync cursor after header
-                cur_ypos, _ = get_location_with_retry(term, timeout)
-                if (-1, -1) == (cur_ypos, _):
-                    exit_and_display_timeout_error(
-                        term, writer, timeout,
-                        orig_xpos=outer_xpos, top=top,
-                    )
 
             col = 0
-            last_ypos = top if not suppress_output else outer_ypos
             end_ypos, end_xpos = 0, 0
 
             for wchar in wchars_slice:
@@ -491,16 +504,18 @@ def test_support(
                         term.move_yx(outer_ypos, outer_xpos) + term.clear_eol
                     )
                 else:
-                    # grid display: | grapheme |·
-                    writer(term.magenta("|") + " ")
+                    # row layout: | X · X · X |
+                    if col == 0:
+                        writer(term.magenta("| "))
+                    else:
+                        writer(term.magenta(" \u00b7 "))
+
                     start_ypos, start_xpos = get_location_with_retry(
                         term, timeout
                     )
                     if (-1, -1) == (start_ypos, start_xpos):
                         exit_and_display_timeout_error(
-                            term, writer, timeout,
-                            orig_xpos=outer_xpos, top=top,
-                        )
+                            term, writer, timeout)
 
                     writer(term.cyan(wchars_str))
                     if grapheme_delay_ms:
@@ -510,11 +525,8 @@ def test_support(
                     )
                     if (-1, -1) == (end_ypos, end_xpos):
                         exit_and_display_timeout_error(
-                            term, writer, timeout,
-                            orig_xpos=outer_xpos, top=top,
-                        )
+                            term, writer, timeout)
 
-                    writer(" " + term.magenta("|") + "\u00b7")
                     delta_ypos = end_ypos - start_ypos
                     delta_xpos = end_xpos - start_xpos
 
@@ -555,26 +567,15 @@ def test_support(
                 if not suppress_output:
                     col += 1
                     if col >= num_columns:
-                        writer("\n")
+                        writer(term.magenta(" |") + "\n")
                         col = 0
-                        last_ypos += 1
-                        if last_ypos >= bottom - 2:
-                            label = test_type.upper() if test_type else "test"
-                            writer(term.move_yx(top - 1, outer_xpos))
-                            writer(f"{label} v={ver}" + term.clear_eos)
-                            writer(term.move_yx(top, 0))
-                            last_ypos = top
 
-            # finish incomplete row
+            # close incomplete row
             if not suppress_output and col > 0:
-                writer("\n")
+                writer(term.magenta(" |") + "\n")
 
             # Record elapsed time for this version
             time_report[ver] = time.monotonic() - ver_start_time
-
-    if not suppress_output:
-        writer(term.move_yx(top - 1, 0) + term.clear_eos)
-    writer(term.move_yx(outer_ypos, outer_xpos))
 
     # create sorted list of versions that have any results
     report_versions = [
@@ -589,16 +590,6 @@ def test_support(
             ]
         )
     ]
-    test_total_sum = sum(success_report.values()) + sum(
-        [len(v) for v in failure_report.values()]
-    )
-    if not suppress_output:
-        writer(
-            f": {test_total_sum:n} wchars total, "
-            f"{time.monotonic() - start_time:.2f}s elapsed."
-        )
-        writer(term.clear_eol)
-
     return {
         ver: {
             "n_errors": len(failure_report[ver]),
@@ -623,40 +614,16 @@ def do_languages_test(
     term, writer, timeout, limit_words, limit_errors, stop_at_error=None,
     grapheme_delay_ms=0,
 ):
-    writer(f"\nucs-detect: testing language support: ")
-    orig_ypos, orig_xpos = get_location_with_retry(term, timeout)
-    if (-1, -1) == (orig_ypos, orig_xpos):
-        exit_and_display_timeout_error(term, writer, timeout, orig_xpos=1, top=term.height-1)
-    writer("\n" * 20)
-    if orig_ypos != term.height - 1:
-        next_ypos, _ = get_location_with_retry(term, timeout)
-        top = max(0, next_ypos - 19)
-    else:
-        top = max(0, term.height - 20)
-    bottom = min(top + 20, term.height - 1)
-    start_time = time.monotonic()
-    writer(term.move_yx(top, 0) + term.clear_eos)
-    language_results = test_language_support(
+    return test_language_support(
         term=term,
         writer=writer,
         timeout=timeout,
-        orig_xpos=orig_xpos,
-        top=top,
-        bottom=bottom,
-        # ensure up to ~half the screen is available, for really long language "words"
-        # eg. 'རྒྱལ་ཡོངས་དང་རྒྱལ་སྤྱིའི་ཉེས་འགེལ་ཁྲིམས་ཀྱི་གྲངས་སུ་ཐོ་བཀོད་འབད་དེ་མེད་པ་ཅིན་'
         largest_xpos=max(40, term.width // 2),
         limit_words=limit_words,
         limit_errors=limit_errors,
         stop_at_error=stop_at_error,
         grapheme_delay_ms=grapheme_delay_ms,
     )
-
-    writer(term.move_yx(top, 0) + term.clear_eos)
-    writer(term.move_yx(top - 1, orig_xpos))
-    writer(f"{len(language_results):n} total, ")
-    writer(f"{time.monotonic() - start_time:.2f}s elapsed.")
-    return language_results
 
 def make_success_pct(n_errors, n_total):
     # protect from divide-by-zero and convert decimal to whole percentage points

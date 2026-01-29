@@ -37,6 +37,7 @@ def build_command_from_yaml(yaml_file):
     bool_flags = {
         'no_terminal_test': '--no-terminal-test',
         'no_languages_test': '--no-languages-test',
+        'no_fullscreen': '--no-fullscreen',
     }
 
     # Add arguments with values
