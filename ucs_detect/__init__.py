@@ -101,7 +101,7 @@ def init_term(stream, quick):
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, no_terminal_test, no_languages_test, timeout, stop_at_error, set_software_name, set_software_version):
+def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, no_terminal_test, no_languages_test, timeout, stop_at_error, set_software_name, set_software_version, grapheme_delay_ms=0):
     """Program entry point."""
     term, writer = init_term(stream, quick)
 
@@ -245,7 +245,8 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
     language_results = None
     if not quick and not no_languages_test:
         language_results = measure.do_languages_test(
-            term, writer, timeout, limit_words, limit_errors, error_matcher
+            term, writer, timeout, limit_words, limit_errors, error_matcher,
+            grapheme_delay_ms=grapheme_delay_ms,
         )
 
     # display results
@@ -508,6 +509,12 @@ def parse_args():
             "Values: 'zwj', 'wide', 'vs16', 'vs16n', 'vs15', 'lang' (all languages), "
             "or specific language name (e.g., 'english', 'korean', 'chinese')"
         )
+    )
+    args.add_argument(
+        "--grapheme-delay-ms",
+        type=int,
+        default=0,
+        help="Delay in milliseconds after writing each grapheme before measuring cursor position",
     )
     args.add_argument(
         "--set-software-name",

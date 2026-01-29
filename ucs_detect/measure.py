@@ -1,6 +1,5 @@
 # std
 import os
-import re
 import sys
 import time
 import codecs
@@ -12,10 +11,26 @@ import wcwidth
 # local
 from ucs_detect import terminal
 
-# to accommodate varying screen sizes, we measure by each word,
-# but some languages do not use ASCII space, we make some
-# effort to use any their word boundaries.
-WORD_SPLIT_DELIMITERS = (" ", "，", "、", ",", "\u200b", "。", "\uA9C0", "\u0f0b")
+
+def extract_unique_graphemes(text):
+    """
+    Extract unique grapheme clusters from text, grouped by display width.
+
+    :param text: Unicode text to extract graphemes from.
+    :return: dict mapping display width to sorted list of unique graphemes.
+    """
+    from wcwidth import iter_graphemes
+
+    seen = set()
+    by_width = collections.defaultdict(list)
+    for grapheme in iter_graphemes(text):
+        if grapheme.isspace() or grapheme in seen:
+            continue
+        seen.add(grapheme)
+        w = wcwidth.wcswidth(grapheme)
+        if w > 0:
+            by_width[w].append(grapheme)
+    return {w: sorted(gs) for w, gs in sorted(by_width.items())}
 
 
 def get_location_with_retry(term, timeout, max_retries=3):
@@ -88,36 +103,22 @@ def display_error_and_prompt(
     # Display error information
     writer(term.bold(f"Failure in {context_name}:\n"))
 
-    # Create a box around the failing character(s)
-    # Use wcwidth to get the actual display width
-    display_width = wcwidth.wcswidth(wchars_display)
-    string_length = len(wchars_display)
-
-    # For complex scripts with many combining characters, use string length as a safety margin
-    box_width = max(30, display_width + 4, measured_by_wcwidth + 4, string_length + 4)
-    top_line = "+" + "-" * (box_width - 2) + "+"
-    bottom_line = "+" + "-" * (box_width - 2) + "+"
-
-    # For centering, we need to account for the display width vs string length difference
-    padding_total = box_width - 2 - display_width
-    padding_left = padding_total // 2
-    padding_right = padding_total - padding_left
-
-    writer(f"{top_line}\n")
-    writer(f"|{' ' * padding_left}{wchars_display}{' ' * padding_right}|\n")
-    writer(f"{bottom_line}\n")
+    # Create a tight box around the failing character(s)
+    interior = wcwidth.width(wchars_display) + 2
+    border = "+" + "-" * interior + "+"
+    writer(f"{border}\n|{wcwidth.center(wchars_display, interior)}|\n{border}\n")
 
     writer(f"\nmeasured by terminal: {measured_by_terminal}\n")
     writer(f"measured by wcwidth:  {measured_by_wcwidth}\n")
 
-    # Display printf statement
+    unicode_escaped = unicode_escape_string(wchars_display)
     printf_hex = make_printf_hex(wchars_display)
-    writer(f"\nprintf '{printf_hex}\\n'\n")
 
-    # Display Python blessed test snippet
-    writer(f"from blessed import Terminal;term = Terminal()\n")
-    writer(f"y1, x1 = term.get_location(); print({wchars_display!r}, end='', flush=True); y2, x2 = term.get_location()\n")
-    writer(f"assert x2 - x1 == {measured_by_wcwidth}, " + '(f"{x2}-{x1}={x2-x1}", "expected:", ' + str(measured_by_wcwidth) + ')')
+    writer(f"\nShell\n-----\n")
+    writer(f"printf '{printf_hex}\\n'\n")
+
+    writer(f"\nPython\n------\n")
+    writer(f'python -c "print(\'{unicode_escaped}\')"\n')
 
     writer(f"\n{term.bold('press return for next error, or')} {term.bold_red('n')} {term.bold('for non-stop:')}")
 
@@ -142,23 +143,6 @@ def display_error_and_prompt(
     return should_continue_stopping
 
 
-def word_splitter(line):
-    """
-    A version of re.split that also includes the delimiters in the result
-    """
-    result = []
-    last_end = 0
-    sep = rf"[\s{''.join(WORD_SPLIT_DELIMITERS[1:])}]"
-    for match in re.finditer(sep, line):
-        start, end = match.start(), match.end()
-        if start > last_end:
-            result.append(line[last_end:start])
-        result.append(line[start:end])
-        last_end = end
-    if last_end < len(line):
-        result.append(line[last_end:])
-    return result
-
 
 
 
@@ -173,6 +157,7 @@ def test_language_support(
     limit_words,
     limit_errors,
     stop_at_error=None,
+    grapheme_delay_ms=0,
 ):
     # This is more of a "Test zero-width support" exercise,
     # many languages include zero-width characters, at least:
@@ -181,92 +166,149 @@ def test_language_support(
     # Tibetan, Lao, Sinhala, Javanese, Thai, Chakma, Devanagari, Malayalam,
     # Khmer, Bengali ..
     #
-    # begin test, successgroup-by language
+    # begin test, success group-by language
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
     time_report = {}
+    tested_graphemes = {}  # grapheme -> (lang_tested_by, success)
     start_time = time.monotonic()
+    usable_width = int(term.width * 2 / 3)
+
     for lang, multiline_text in parse_udhr():
         lang_start_time = time.monotonic()
+        # reset display area for each language
         writer(term.move_yx(top - 1, orig_xpos))
         writer(f"{lang}" + term.clear_eos)
         writer(term.move_yx(top, 0))
-        last_ypos = top
-        for line in [
-            _line.strip() for _line in multiline_text.splitlines() if _line.strip()
-        ]:
-            estimated_xpos = 0
-            words = word_splitter(line)
-            for wchars in words:
-                if (
-                    success_report[lang] >= limit_words
-                    or len(failure_report[lang]) >= limit_errors
-                ):
+
+        graphemes_by_width = extract_unique_graphemes(multiline_text)
+        grapheme_count = 0
+        error_count = 0
+
+        for expected_width, graphemes in graphemes_by_width.items():
+            # skip graphemes already tested by a previous language
+            novel = [g for g in graphemes if g not in tested_graphemes]
+            inherited_ok = sum(
+                1 for g in graphemes
+                if g in tested_graphemes and tested_graphemes[g][1]
+            )
+            inherited_fail = sum(
+                1 for g in graphemes
+                if g in tested_graphemes and not tested_graphemes[g][1]
+            )
+            # credit this language with results from prior testing
+            success_report[lang] += inherited_ok
+            for g in graphemes:
+                if g in tested_graphemes and not tested_graphemes[g][1]:
+                    prior_lang = tested_graphemes[g][0]
+                    failure_report[lang].append(
+                        {"wchars": unicode_escape_string(g),
+                         "measured_by_wcwidth": expected_width,
+                         "inherited_from": prior_lang}
+                    )
+
+            if not novel:
+                continue
+
+            # cell_width: | <grapheme> |·
+            cell_width = 1 + 1 + expected_width + 1 + 1 + 1
+            num_columns = max(1, usable_width // cell_width)
+
+            n_inherited = inherited_ok + inherited_fail
+            if n_inherited:
+                inherited_msg = f", {n_inherited} shared"
+            else:
+                inherited_msg = ""
+            header = (
+                f"{lang} w={expected_width}"
+                f" ({len(novel)} novel{inherited_msg})"
+            )
+            writer(header + "\n")
+
+            # sync actual cursor position after header
+            cur_ypos, _ = get_location_with_retry(term, timeout)
+            if (-1, -1) == (cur_ypos, _):
+                exit_and_display_timeout_error(
+                    term, writer, timeout, orig_xpos, top
+                )
+
+            col = 0
+            last_ypos = cur_ypos
+            for idx, grapheme in enumerate(novel):
+                if grapheme_count >= limit_words or error_count >= limit_errors:
                     break
-                expected_width = wcwidth.wcswidth(wchars)
-                assert expected_width != -1, (wchars, lang)
-                if expected_width >= term.width:
-                    # filter: do not test long phrases that span margin
-                    continue
 
-                # next word goes beyond "safety margin", which is ~1/2 of screen
-                if expected_width + estimated_xpos > (term.width - largest_xpos):
-                    writer("\n")
-                    estimated_xpos = 0
-                    last_ypos = min(last_ypos + 1, bottom)
+                grapheme_id = f"{lang}-{expected_width}-{idx:02x}"
 
-                writer(wchars)
-                start_xpos = estimated_xpos
-                estimated_xpos += expected_width
+                # write opening pipe + pad space, then measure before/after grapheme
+                writer(term.magenta("|") + " ")
+                start_ypos, start_xpos = get_location_with_retry(
+                    term, timeout
+                )
+                if (-1, -1) == (start_ypos, start_xpos):
+                    exit_and_display_timeout_error(
+                        term, writer, timeout, orig_xpos, top
+                    )
 
-                # fetch cursor position (always, even for delimiters, to keep estimated_xpos in sync)
+                writer(term.cyan(grapheme))
+                if grapheme_delay_ms:
+                    time.sleep(grapheme_delay_ms / 1000.0)
                 end_ypos, end_xpos = get_location_with_retry(term, timeout)
                 if (-1, -1) == (end_ypos, end_xpos):
-                    exit_and_display_timeout_error(term, writer, timeout, orig_xpos, top)
+                    exit_and_display_timeout_error(
+                        term, writer, timeout, orig_xpos, top
+                    )
 
-                if wchars in WORD_SPLIT_DELIMITERS:
-                    # Skip measurement for delimiters, but sync position
-                    estimated_xpos = end_xpos
-                    last_ypos = end_ypos
-                    continue
+                # write right pad, closing pipe, and dot separator
+                writer(" " + term.magenta("|") + "\u00b7")
 
-                # measure distance
+                delta_ypos = end_ypos - start_ypos
                 delta_xpos = end_xpos - start_xpos
-                delta_ypos = end_ypos - last_ypos
-                if (0, expected_width) == (delta_ypos, delta_xpos):
+
+                if (delta_ypos, delta_xpos) == (0, expected_width):
                     success_report[lang] += 1
+                    tested_graphemes[grapheme] = (lang, True)
                 else:
-                    # add failure_report record, conditionally add delta_ypos and
-                    # delta_xpos when unexepcted values,
                     failure_report[lang].append(
-                        ({"wchars": unicode_escape_string(wchars)})
+                        {"grapheme_id": grapheme_id,
+                         "wchars": unicode_escape_string(grapheme)}
                     )
                     if delta_ypos != 0:
                         failure_report[lang][-1]["delta_ypos"] = delta_ypos
-                    failure_report[lang][-1]["measured_by_wcwidth"] = expected_width
-                    failure_report[lang][-1]["measured_by_terminal"] = delta_xpos
+                    failure_report[lang][-1][
+                        "measured_by_wcwidth"
+                    ] = expected_width
+                    failure_report[lang][-1][
+                        "measured_by_terminal"
+                    ] = delta_xpos
+                    error_count += 1
+                    tested_graphemes[grapheme] = (lang, False)
 
-                    # Check if we should stop at this error
                     if stop_at_error and stop_at_error.matches_language(lang):
                         should_continue = display_error_and_prompt(
                             term=term,
                             writer=writer,
-                            context_name=f"language '{lang}'",
-                            wchars_display=wchars,
+                            context_name=f"language '{lang}' ({grapheme_id})",
+                            wchars_display=grapheme,
                             measured_by_terminal=delta_xpos,
                             measured_by_wcwidth=expected_width,
                         )
                         if not should_continue:
                             stop_at_error.disable()
 
-                # reset estimates to actual
-                estimated_xpos = end_xpos
-                last_ypos = end_ypos
-                if end_ypos >= bottom - 2:
-                    last_ypos = top
-                    writer(term.move_yx(top - 1, orig_xpos))
-                    writer(f"{lang}" + term.clear_eos)
-                    writer(term.move_yx(top, 0))
+                grapheme_count += 1
+                col += 1
+
+                if col >= num_columns:
+                    writer("\n")
+                    col = 0
+                    last_ypos += 1
+                    if last_ypos >= bottom - 2:
+                        # overflow: clear display area, keep at top
+                        writer(term.move_yx(top - 1, orig_xpos))
+                        writer(f"{lang}" + term.clear_eos)
+                        writer(term.move_yx(top, 0))
+                        last_ypos = top
 
         # Record elapsed time for this language
         time_report[lang] = time.monotonic() - lang_start_time
@@ -281,7 +323,9 @@ def test_language_support(
     )
 
     writer(term.move_yx(top - 1, 0) + term.clear_eos)
-    writer(f"ucs-detect Languages testing completed {test_total_sum:n} wchars in total, ")
+    writer(
+        f"ucs-detect Languages testing completed {test_total_sum:n} wchars in total, "
+    )
     writer(f"{time.monotonic() - start_time:.2f}s elapsed.")
 
     return {
@@ -294,7 +338,8 @@ def test_language_support(
             ),
             "seconds_elapsed": time_report.get(lang, 0.0),
             "codepoints_per_second": (
-                (len(failure_report[lang]) + success_report[lang]) / time_report.get(lang, 1.0)
+                (len(failure_report[lang]) + success_report[lang])
+                / time_report.get(lang, 1.0)
                 if time_report.get(lang, 0.0) > 0
                 else 0.0
             ),
@@ -460,7 +505,8 @@ def test_support(
     }
 
 def do_languages_test(
-    term, writer, timeout, limit_words, limit_errors, stop_at_error=None
+    term, writer, timeout, limit_words, limit_errors, stop_at_error=None,
+    grapheme_delay_ms=0,
 ):
     writer(f"\nucs-detect: testing language support: ")
     orig_ypos, orig_xpos = get_location_with_retry(term, timeout)
@@ -488,6 +534,7 @@ def do_languages_test(
         limit_words=limit_words,
         limit_errors=limit_errors,
         stop_at_error=stop_at_error,
+        grapheme_delay_ms=grapheme_delay_ms,
     )
 
     writer(term.move_yx(top, 0) + term.clear_eos)
