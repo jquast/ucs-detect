@@ -80,30 +80,19 @@ def merge_results(base_results, additional_results):
     return merged
 
 
-def init_term(stream, quick):
+def init_term(stream):
     # set locale support for '{:n}' formatter, https://stackoverflow.com/a/3909907
     locale.setlocale(locale.LC_ALL, "")
     term = blessed.Terminal(stream=sys.__stderr__ if stream == "stderr" else None)
-    if not quick:
-        # require a normally sized terminal for language testing, some languages
-        # have very long words and its not worth fighting about it.
-        assert term.width > 79, (
-            "Terminal must be at least 80 columns wide",
-            term.width,
-        )
-        assert term.height > 23, (
-            "Terminal height must be at least 23 lines",
-            term.width,
-        )
     writer = functools.partial(
         print, end="", flush=True, file=sys.stderr if stream == "stderr" else None
     )
     return term, writer
 
 
-def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, no_terminal_test, no_languages_test, timeout, stop_at_error, set_software_name, set_software_version, grapheme_delay_ms=0):
+def run(stream, limit_codepoints, limit_errors, limit_words, save_yaml, no_terminal_test, no_languages_test, timeout, stop_at_error, set_software_name, set_software_version, grapheme_delay_ms=0):
     """Program entry point."""
-    term, writer = init_term(stream, quick)
+    term, writer = init_term(stream)
 
     # Create error matcher for interactive debugging
     error_matcher = ErrorMatcher(stop_at_error)
@@ -112,16 +101,33 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
     local_vars = locals().copy()
     session_arguments = {
         k: local_vars[k]
-        for k in ("stream", "quick", "limit_codepoints", "limit_errors", "limit_words")
+        for k in ("stream", "limit_codepoints", "limit_errors", "limit_words")
     }
     writer(f"ucs-detect: {display_args(session_arguments)})")
 
     if measure.get_location_with_retry(term, timeout) == (-1, -1):
         raise RuntimeError(f"Not a terminal or Timeout exceeded ({timeout:.1f}s)!")
 
-    # Use a very long timeout, some terminals have slowdown difficulties with
-    # combining characters during language testing
-    writer(f"\nucs-detect: Interactive terminal detected !")
+    writer(f"\nucs-detect: Interactive terminal detected!")
+
+    # Quick unicode sanity check — measure a known wide character (U+231A WATCH)
+    unicode_width = measure.measure_width(term, writer, '\u231A', timeout)
+    if unicode_width != 2:
+        writer(f"\nucs-detect: " + term.bold_red(
+            "This terminal does not appear to support Unicode wide characters."
+        ))
+        writer(f"\nucs-detect: measured width of U+231A WATCH: {unicode_width}\n")
+        return {}
+
+    # Detect ambiguous width (1=narrow, 2=wide, -1=unknown)
+    ambiguous_width = term.detect_ambiguous_width(timeout=timeout, fallback=-1)
+    if ambiguous_width == -1:
+        ambig_label = "unknown"
+    elif ambiguous_width == 2:
+        ambig_label = "wide (2)"
+    else:
+        ambig_label = "narrow (1)"
+    writer(f"\nucs-detect: Ambiguous width: {ambig_label}")
 
     terminal_results = {}
     if not no_terminal_test:
@@ -163,11 +169,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
         term=term,
         writer=writer,
         timeout=timeout,
-        quick=quick,
         limit_codepoints=limit_codepoints,
         limit_errors=limit_errors,
         expected_width=2,
-        report_lbound=2,
         stop_at_error=error_matcher,
         test_type="wide",
         grapheme_delay_ms=grapheme_delay_ms,
@@ -180,11 +184,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
         term=term,
         writer=writer,
         timeout=timeout,
-        quick=quick,
         limit_codepoints=limit_codepoints,
         limit_errors=limit_errors,
         expected_width=2,
-        report_lbound=2,
         stop_at_error=error_matcher,
         test_type="zwj",
         grapheme_delay_ms=grapheme_delay_ms,
@@ -198,12 +200,10 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
             term=term,
             writer=writer,
             timeout=timeout,
-            quick=quick,
-            limit_codepoints=limit_codepoints,
+                limit_codepoints=limit_codepoints,
             limit_errors=limit_errors,
             expected_width=2,
-            report_lbound=2,
-            stop_at_error=error_matcher,
+                stop_at_error=error_matcher,
             test_type="vs16",
             grapheme_delay_ms=grapheme_delay_ms,
         ),
@@ -213,12 +213,10 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
             term=term,
             writer=writer,
             timeout=timeout,
-            quick=quick,
-            limit_codepoints=limit_codepoints,
+                limit_codepoints=limit_codepoints,
             limit_errors=limit_errors,
             expected_width=1,
-            report_lbound=2,
-            suppress_output=True,
+                suppress_output=True,
             stop_at_error=error_matcher,
             test_type="vs16n",
             grapheme_delay_ms=grapheme_delay_ms,
@@ -231,11 +229,9 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
         term=term,
         writer=writer,
         timeout=timeout,
-        quick=quick,
         limit_codepoints=limit_codepoints,
         limit_errors=limit_errors,
         expected_width=1,
-        report_lbound=2,
         stop_at_error=error_matcher,
         test_type="vs15",
         grapheme_delay_ms=grapheme_delay_ms,
@@ -243,7 +239,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
 
     # test language support
     language_results = None
-    if not quick and not no_languages_test:
+    if not no_languages_test:
         language_results = measure.do_languages_test(
             term, writer, timeout, limit_words, limit_errors, error_matcher,
             grapheme_delay_ms=grapheme_delay_ms,
@@ -289,6 +285,7 @@ def run(stream, quick, limit_codepoints, limit_errors, limit_words, save_yaml, n
             seconds_elapsed=time.monotonic() - start_time,
             width=term.width,
             height=term.height,
+            ambiguous_width=ambiguous_width,
             python_version=platform.python_version(),
             system=platform.system(),
             datetime=date_now,
@@ -469,16 +466,6 @@ def parse_args():
         help="limit the total number of errors for each tested version or language",
     )
     args.add_argument(
-        "--quick",
-        action="store_true",
-        default=False,
-        help=(
-            "Stop test early when 100%% match is found. "
-            "Also sets --limit-codepoints=50, --limit-errors=5 when "
-            "unspecified. Skips language testing."
-        ),
-    )
-    args.add_argument(
         "--save-yaml",
         default=None,
         help="Save test results to given filepath as yaml, will prompt for software name & version",
@@ -527,9 +514,6 @@ def parse_args():
         help="Set software version for YAML output (skips interactive prompt)"
     )
     results = vars(args.parse_args())
-    if results["quick"]:
-        results["limit_codepoints"] = results["limit_codepoints"] or 50
-        results["limit_errors"] = results["limit_errors"] or 5
     if results["save_yaml"]:
         results["save_yaml"] = os.path.expanduser(results["save_yaml"])
     return results

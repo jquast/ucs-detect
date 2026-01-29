@@ -70,6 +70,28 @@ def get_location_with_retry(term, timeout, max_retries=3):
     return (-1, -1)
 
 
+def measure_width(term, writer, text, timeout):
+    """
+    Measure actual rendered width of text using cursor position reports.
+
+    :param term: blessed.Terminal instance.
+    :param writer: Output writer function.
+    :param text: Text string to measure.
+    :param timeout: CPR timeout in seconds.
+    :return: Measured width in columns, or None on timeout.
+    """
+    _, x1 = get_location_with_retry(term, timeout)
+    if x1 == -1:
+        return None
+    writer(text)
+    _, x2 = get_location_with_retry(term, timeout)
+    if x2 == -1:
+        return None
+    # erase the test character
+    writer(term.move_x(x1) + ' ' * (x2 - x1) + term.move_x(x1))
+    return x2 - x1
+
+
 def make_printf_hex(wchar):
     """
     Convert a Unicode string to printf hex escape format.
@@ -371,11 +393,9 @@ def test_support(
     term,
     writer,
     timeout,
-    quick,
     limit_codepoints,
     limit_errors,
     expected_width,
-    report_lbound,
     suppress_output=False,
     stop_at_error=None,
     test_type=None,
@@ -464,9 +484,7 @@ def test_support(
                                 f"Timeout Exceeded ({timeout:.2f}s)"
                             )
                         )
-                        if quick:
-                            break
-                        term.inkey(timeout=1)
+                        break
                     delta_xpos = end_xpos - outer_xpos
                     delta_ypos = end_ypos - outer_ypos
                     writer(
@@ -550,16 +568,6 @@ def test_support(
             # finish incomplete row
             if not suppress_output and col > 0:
                 writer("\n")
-
-            if quick:
-                if (
-                    wchars
-                    and not failure_report[ver]
-                    and success_report[ver] >= report_lbound
-                ):
-                    break
-                if (-1, -1) == (end_ypos, end_xpos):
-                    break
 
             # Record elapsed time for this version
             time_report[ver] = time.monotonic() - ver_start_time

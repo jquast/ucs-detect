@@ -1627,8 +1627,6 @@ def show_reproduce_command(sw_name, entry):
         cmd_parts.append(f"--limit-words={session_args['limit_words']}")
     if "limit_errors" in session_args:
         cmd_parts.append(f"--limit-errors={session_args['limit_errors']}")
-    if session_args.get("quick"):
-        cmd_parts.append("--quick")
 
     # Join command parts with line continuation for readability
     if len(cmd_parts) > 1:

@@ -35,7 +35,6 @@ def build_command_from_yaml(yaml_file):
 
     # Boolean flags (only add if True)
     bool_flags = {
-        'quick': '--quick',
         'no_terminal_test': '--no-terminal-test',
         'no_languages_test': '--no-languages-test',
     }
