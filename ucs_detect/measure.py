@@ -261,18 +261,12 @@ def test_language_support(
                 else:
                     writer(term.magenta(" \u00b7 "))
 
-                start_ypos, start_xpos = get_location_with_retry(
-                    term, timeout
-                )
-                if (-1, -1) == (start_ypos, start_xpos):
-                    exit_and_display_timeout_error(term, writer, timeout)
+                start_ypos, start_xpos = _get_pos_or_exit(term, writer, timeout)
 
                 writer(term.cyan(grapheme))
                 if cursor_report_delay_ms:
                     time.sleep(cursor_report_delay_ms / 1000.0)
-                end_ypos, end_xpos = get_location_with_retry(term, timeout)
-                if (-1, -1) == (end_ypos, end_xpos):
-                    exit_and_display_timeout_error(term, writer, timeout)
+                end_ypos, end_xpos = _get_pos_or_exit(term, writer, timeout)
 
                 delta_ypos = end_ypos - start_ypos
                 delta_xpos = end_xpos - start_xpos
@@ -336,22 +330,12 @@ def test_language_support(
     ]
 
     return {
-        lang: {
-            "n_errors": len(failure_report[lang]),
-            "n_total": len(failure_report[lang]) + success_report[lang],
-            "pct_success": make_success_pct(
-                n_errors=len(failure_report[lang]),
-                n_total=len(failure_report[lang]) + success_report[lang],
-            ),
-            "seconds_elapsed": time_report.get(lang, 0.0),
-            "codepoints_per_second": (
-                (len(failure_report[lang]) + success_report[lang])
-                / time_report.get(lang, 1.0)
-                if time_report.get(lang, 0.0) > 0
-                else 0.0
-            ),
-            "failed": failure_report[lang],
-        }
+        lang: _make_result_entry(
+            n_errors=len(failure_report[lang]),
+            n_total=len(failure_report[lang]) + success_report[lang],
+            elapsed=time_report.get(lang, 0.0),
+            extra={"failed": failure_report[lang]},
+        )
         for lang in report_languages
     }
 
@@ -366,6 +350,28 @@ def wchar_to_str(wchar):
 def exit_and_display_timeout_error(term, writer, timeout, **_kwargs):
     writer("\n" + term.reverse_red(f"Timeout Exceeded ({timeout:.1f}s)") + "\n")
     sys.exit(1)
+
+
+def _get_pos_or_exit(term, writer, timeout):
+    """Get cursor position, exiting on timeout."""
+    ypos, xpos = get_location_with_retry(term, timeout)
+    if (ypos, xpos) == (-1, -1):
+        exit_and_display_timeout_error(term, writer, timeout)
+    return ypos, xpos
+
+
+def _make_result_entry(n_errors, n_total, elapsed, extra=None):
+    """Build a standard result dict for test reporting."""
+    entry = {
+        "n_errors": n_errors,
+        "n_total": n_total,
+        "pct_success": make_success_pct(n_errors, n_total),
+        "seconds_elapsed": elapsed,
+        "codepoints_per_second": (n_total / elapsed) if elapsed > 0 else 0.0,
+    }
+    if extra:
+        entry.update(extra)
+    return entry
 
 
 def test_support(
@@ -389,9 +395,7 @@ def test_support(
     time_report = {}
 
     if suppress_output:
-        outer_ypos, outer_xpos = get_location_with_retry(term, timeout)
-        if (-1, -1) == (outer_ypos, outer_xpos):
-            exit_and_display_timeout_error(term, writer, timeout)
+        outer_ypos, outer_xpos = _get_pos_or_exit(term, writer, timeout)
 
     cell_inner = expected_width + 3
     num_columns = max(1, (term.width - 1) // cell_inner)
@@ -456,22 +460,14 @@ def test_support(
                     else:
                         writer(term.magenta(" \u00b7 "))
 
-                    start_ypos, start_xpos = get_location_with_retry(
-                        term, timeout
-                    )
-                    if (-1, -1) == (start_ypos, start_xpos):
-                        exit_and_display_timeout_error(
-                            term, writer, timeout)
+                    start_ypos, start_xpos = _get_pos_or_exit(
+                        term, writer, timeout)
 
                     writer(term.cyan(wchars_str))
                     if cursor_report_delay_ms:
                         time.sleep(cursor_report_delay_ms / 1000.0)
-                    end_ypos, end_xpos = get_location_with_retry(
-                        term, timeout
-                    )
-                    if (-1, -1) == (end_ypos, end_xpos):
-                        exit_and_display_timeout_error(
-                            term, writer, timeout)
+                    end_ypos, end_xpos = _get_pos_or_exit(
+                        term, writer, timeout)
 
                     delta_ypos = end_ypos - start_ypos
                     delta_xpos = end_xpos - start_xpos
@@ -539,39 +535,14 @@ def test_support(
         )
     ]
     return {
-        ver: {
-            "n_errors": len(failure_report[ver]),
-            "n_total": len(failure_report[ver]) + success_report[ver],
-            "pct_success": make_success_pct(
-                n_errors=len(failure_report[ver]),
-                n_total=len(failure_report[ver]) + success_report[ver],
-            ),
-            "seconds_elapsed": time_report.get(ver, 0.0),
-            "codepoints_per_second": (
-                (len(failure_report[ver]) + success_report[ver])
-                / time_report.get(ver, 1.0)
-                if time_report.get(ver, 0.0) > 0
-                else 0.0
-            ),
-            "failed_codepoints": failure_report[ver],
-        }
+        ver: _make_result_entry(
+            n_errors=len(failure_report[ver]),
+            n_total=len(failure_report[ver]) + success_report[ver],
+            elapsed=time_report.get(ver, 0.0),
+            extra={"failed_codepoints": failure_report[ver]},
+        )
         for ver in report_versions
     }
-
-def do_languages_test(
-    lang_graphemes, term, writer, timeout, limit_words, limit_errors,
-    stop_at_error=None, cursor_report_delay_ms=0,
-):
-    return test_language_support(
-        lang_graphemes=lang_graphemes,
-        term=term,
-        writer=writer,
-        timeout=timeout,
-        limit_words=limit_words,
-        limit_errors=limit_errors,
-        stop_at_error=stop_at_error,
-        cursor_report_delay_ms=cursor_report_delay_ms,
-    )
 
 def make_success_pct(n_errors, n_total):
     return ((n_total - n_errors) / n_total if n_total else 0) * 100

@@ -1,0 +1,80 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = [ "hatchling" ]
+
+[project]
+name = "ucs-detect"
+version = "2.0.0"
+description = "Detects Unicode support of an interactive terminal"
+readme = "README.rst"
+keywords = [
+  "cjk",
+  "combining",
+  "console",
+  "eastasian",
+  "emoji",
+  "emulator",
+  "terminal",
+  "udhr",
+  "unicode",
+  "vs15",
+  "vs16",
+  "wcswidth",
+  "wcwidth",
+  "xterm",
+  "zwj",
+]
+license = "MIT"
+license-files = [ "LICENSE" ]
+authors = [
+  { name = "Jeff Quast", email = "contact@jeffquast.com" },
+]
+requires-python = ">=3.8"
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Software Development :: Internationalization",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Localization",
+  "Topic :: Terminals",
+  "Topic :: Text Processing :: General",
+]
+dependencies = [
+  "blessed>=1.28,<2",
+  "prettytable",
+  "pyyaml<7",
+  "requests",
+  "wcwidth>=0.5.3,<1",
+]
+
+[project.scripts]
+ucs-detect = "ucs_detect:main"
+ucs-browser = "ucs_detect.browser:main"
+
+[project.urls]
+Homepage = "https://github.com/jquast/ucs-detect"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/ucs_detect/**",
+  "/data/**",
+  "/docs/**",
+  "/tests/*.py",
+  "/README.rst",
+  "/LICENSE",
+  "/tox.ini",
+  "/.gitignore",
+  "/.pylintrc",
+]

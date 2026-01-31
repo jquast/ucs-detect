@@ -25,8 +25,8 @@ def _status(writer, term, label, bg_rgb=None):
 
 
 
-def maybe_grapheme_clustering_mode(term):
-    return term.dec_modes_enabled(term.DecPrivateMode.GRAPHEME_CLUSTERING, timeout=1)
+def maybe_grapheme_clustering_mode(term, timeout=1.0):
+    return term.dec_modes_enabled(term.DecPrivateMode.GRAPHEME_CLUSTERING, timeout=timeout)
 
 
 def _get_all_dec_private_mode_numbers(term):
@@ -62,7 +62,7 @@ NOTABLE_DEC_MODES = [
 ]
 
 
-def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None):
+def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None, timeout=1.0):
     """Query DEC private modes (notable only, or all when *all_modes* is set)."""
     if all_modes:
         modes_to_query = list(_get_all_dec_private_mode_numbers(term))
@@ -73,7 +73,7 @@ def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None):
     result = {'modes': {}}
     for mode_num in modes_to_query:
         writer(f'\rucs-detect: DEC mode {mode_num} ..{term.clear_eol}{hide}')
-        response = term.get_dec_mode(mode_num, timeout=1.0)
+        response = term.get_dec_mode(mode_num, timeout=timeout)
 
         if not response.failed:
             result['modes'][mode_num] = {
@@ -89,16 +89,16 @@ def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None):
     writer(f'\r{term.clear_eol}')
     return result
 
-def maybe_determine_da_and_sixel(term):
+def maybe_determine_da_and_sixel(term, timeout=1.0):
     result = {}
-    da = term.get_device_attributes(timeout=1.0)
+    da = term.get_device_attributes(timeout=timeout)
 
     if da is not None:
         result['device_attributes'] = {
                 'service_class': da.service_class,
                 'extensions': sorted(da.extensions),
                 }
-    result['sixel'] = term.does_sixel(timeout=1.0)
+    result['sixel'] = term.does_sixel(timeout=timeout)
     return result
 
 def _read_dcs_or_plain_response(term, timeout=0.5):
@@ -119,9 +119,9 @@ def _read_dcs_or_plain_response(term, timeout=0.5):
 
     return response.strip()
 
-def maybe_determine_software(term, writer):
+def maybe_determine_software(term, writer, timeout=1.0):
     result = {}
-    sv = term.get_software_version(timeout=1.0)
+    sv = term.get_software_version(timeout=timeout)
     if sv is not None:
         result['software_name'] = sv.name
         if sv.version:
@@ -152,14 +152,14 @@ def maybe_determine_software(term, writer):
 
     return result
 
-def maybe_determine_cell_size(term, writer):
-    cell_height, cell_width = term.get_cell_height_and_width(timeout=1.0)
+def maybe_determine_cell_size(term, writer, timeout=1.0):
+    cell_height, cell_width = term.get_cell_height_and_width(timeout=timeout)
     if cell_height != -1 and cell_width != -1:
         return {"cell_height": cell_height, "cell_width": cell_width}
     return {}
 
-def maybe_determine_pixel_size(term, writer):
-    pixel_height, pixel_width = term.get_sixel_height_and_width(timeout=1.0)
+def maybe_determine_pixel_size(term, writer, timeout=1.0):
+    pixel_height, pixel_width = term.get_sixel_height_and_width(timeout=timeout)
     if pixel_height > 0 and pixel_width > 0:
         return {"pixels_height": pixel_height, "pixels_width": pixel_width}
     return {}
@@ -188,10 +188,10 @@ def maybe_determine_colors(term, writer):
 
     return result
 
-def maybe_determine_kitty_keyboard(term):
+def maybe_determine_kitty_keyboard(term, timeout=1.0):
     """Query Kitty keyboard protocol support."""
     result = {}
-    kb_state = term.get_kitty_keyboard_state(timeout=1.0)
+    kb_state = term.get_kitty_keyboard_state(timeout=timeout)
     if kb_state is not None:
         result['kitty_keyboard'] = {
             'disambiguate': kb_state.disambiguate,
@@ -438,33 +438,35 @@ def maybe_determine_kitty_pointer_shapes(term, timeout=1.0, cursor_report_delay_
     return {'kitty_pointer_shapes': False}
 
 
-def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0):
+def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0, timeout=1.0):
     writer = functools.partial(print, end="", flush=True, file=sys.stderr)
     term = blessed.Terminal()
     attrs = {'ttype': term.kind, 'number_of_colors': term.number_of_colors}
     attrs.update(get_tty_size(term, writer))
 
     # detect background color first so we can hide test artifacts
-    attrs.update(maybe_determine_colors(term, writer))
-    bg_rgb = None
-    if attrs.get('background_color_rgb'):
-        bg = attrs['background_color_rgb']
-        bg_rgb = (bg[0] >> 8, bg[1] >> 8, bg[2] >> 8)
+    with _status(writer, term, "Background Color", bg_rgb):
+        attrs.update(maybe_determine_colors(term, writer))
+        bg_rgb = None
+        if attrs.get('background_color_rgb'):
+            bg = attrs['background_color_rgb']
+            bg_rgb = (bg[0] >> 8, bg[1] >> 8, bg[2] >> 8)
 
-    attrs.update(maybe_determine_dec_modes(term, writer, all_modes=all_modes, bg_rgb=bg_rgb))
+    attrs.update(maybe_determine_dec_modes(
+        term, writer, all_modes=all_modes, bg_rgb=bg_rgb, timeout=timeout))
     with _status(writer, term, "Device Attributes", bg_rgb):
-        attrs.update(maybe_determine_da_and_sixel(term))
+        attrs.update(maybe_determine_da_and_sixel(term, timeout=timeout))
     with _status(writer, term, "Software Version", bg_rgb):
-        attrs.update(maybe_determine_software(term, writer))
+        attrs.update(maybe_determine_software(term, writer, timeout=timeout))
     with _status(writer, term, "Cell Size", bg_rgb):
-        attrs.update(maybe_determine_cell_size(term, writer))
+        attrs.update(maybe_determine_cell_size(term, writer, timeout=timeout))
     with _status(writer, term, "Pixel Size", bg_rgb):
-        attrs.update(maybe_determine_pixel_size(term, writer))
+        attrs.update(maybe_determine_pixel_size(term, writer, timeout=timeout))
     attrs.update(maybe_determine_screen_ratio(attrs))
     with _status(writer, term, "Kitty Keyboard", bg_rgb):
-        attrs.update(maybe_determine_kitty_keyboard(term))
+        attrs.update(maybe_determine_kitty_keyboard(term, timeout=timeout))
 
-    delay_kw = dict(cursor_report_delay_ms=cursor_report_delay_ms)
+    delay_kw = dict(timeout=timeout, cursor_report_delay_ms=cursor_report_delay_ms)
     with term.cbreak():
         with _status(writer, term, "XTGETTCAP", bg_rgb):
             attrs.update(maybe_determine_xtgettcap(term, **delay_kw))
@@ -473,9 +475,9 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0):
         with _status(writer, term, "iTerm2 Features", bg_rgb):
             attrs.update(maybe_determine_iterm2_features(term, **delay_kw))
         with _status(writer, term, "Text Sizing", bg_rgb):
-            attrs.update(maybe_determine_text_sizing(term))
+            attrs.update(maybe_determine_text_sizing(term, timeout=timeout))
         with _status(writer, term, "Tab Stop Width", bg_rgb):
-            attrs.update(maybe_determine_tab_stop_width(term))
+            attrs.update(maybe_determine_tab_stop_width(term, timeout=timeout))
         with _status(writer, term, "Kitty Notifications", bg_rgb):
             attrs.update(maybe_determine_kitty_notifications(term, **delay_kw))
         with _status(writer, term, "Kitty Clipboard", bg_rgb):
