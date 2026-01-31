@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# a bit of a mess, output is more important than the processing.
 import re
 import os
 import sys

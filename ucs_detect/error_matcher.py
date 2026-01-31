@@ -1,7 +1,6 @@
-"""
-Error matching and filtering for interactive debugging.
-"""
+"""Error matching and filtering for interactive debugging."""
 from typing import Optional
+
 
 class ErrorMatcher:
     def __init__(self, filter_value: Optional[str] = None):
@@ -9,8 +8,12 @@ class ErrorMatcher:
         self.enabled = bool(filter_value)
         self.user_disabled = False
 
+    @property
+    def active(self) -> bool:
+        return self.enabled and not self.user_disabled
+
     def matches_test_type(self, test_type: str) -> bool:
-        if not self.enabled or self.user_disabled:
+        if not self.active:
             return False
         if self.filter_value == 'all':
             return True
@@ -19,7 +22,7 @@ class ErrorMatcher:
         return False
 
     def matches_language(self, language: str) -> bool:
-        if not self.enabled or self.user_disabled:
+        if not self.active:
             return False
         if self.filter_value in ('all', 'lang'):
             return True

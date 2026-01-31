@@ -37,17 +37,15 @@ from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_wide import WIDE_CHARACTERS
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
+from ucs_detect.table_lang import LANG_GRAPHEMES
 from ucs_detect import measure, terminal
 from ucs_detect.error_matcher import ErrorMatcher
 
+UNICODE_PERFECT_PCT = 99.0
+
 
 def merge_results(base_results, additional_results):
-    """
-    Merge two test result dictionaries.
-
-    Combines test results by adding n_total, n_errors, and recalculating pct_success,
-    combines failed_codepoints lists and averages the combined timing metrics.
-    """
+    """Merge two test result dictionaries."""
     merged = {}
     all_versions = set(base_results.keys()) | set(additional_results.keys())
 
@@ -58,12 +56,10 @@ def merge_results(base_results, additional_results):
         n_total = base.get('n_total', 0) + additional.get('n_total', 0)
         n_errors = base.get('n_errors', 0) + additional.get('n_errors', 0)
 
-        # Combine failed codepoints
         failed_codepoints = (
             base.get('failed_codepoints', []) + additional.get('failed_codepoints', [])
         )
 
-        # Calculate combined timing (weighted average)
         base_time = base.get('seconds_elapsed', 0.0)
         additional_time = additional.get('seconds_elapsed', 0.0)
         total_time = base_time + additional_time
@@ -81,7 +77,6 @@ def merge_results(base_results, additional_results):
 
 
 def init_term(stream):
-    # set locale support for '{:n}' formatter, https://stackoverflow.com/a/3909907
     locale.setlocale(locale.LC_ALL, "")
     term = blessed.Terminal(stream=sys.__stderr__ if stream == "stderr" else None)
     writer = functools.partial(
@@ -90,14 +85,16 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, no_terminal_test, no_languages_test, timeout, stop_at_error, set_software_name, set_software_version, grapheme_delay_ms=0, **_kwargs):
+def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, no_terminal_test, no_languages_test, timeout, stop_at_error, set_software_name, set_software_version, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", **_kwargs):
     """Program entry point."""
+
+    def _should_run(*categories):
+        return test_only == "all" or test_only in categories
+
     term, writer = init_term(stream)
 
-    # Create error matcher for interactive debugging
     error_matcher = ErrorMatcher(stop_at_error)
 
-    # record and display program arguments
     local_vars = locals().copy()
     session_arguments = {
         k: local_vars[k]
@@ -108,34 +105,38 @@ def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wi
     if measure.get_location_with_retry(term, timeout) == (-1, -1):
         raise RuntimeError(f"Not a terminal or Timeout exceeded ({timeout:.1f}s)!")
 
-    writer(f"\nucs-detect: Interactive terminal detected!")
+    writer("\nucs-detect: Interactive terminal detected!")
 
-    # Quick unicode sanity check — measure a known wide character (U+231A WATCH)
     unicode_width = measure.measure_width(term, writer, '\u231A', timeout)
-    if unicode_width != 2:
-        writer(f"\nucs-detect: " + term.bold_red(
+    has_unicode = (unicode_width == 2)
+    if not has_unicode:
+        writer("\nucs-detect: " + term.bold_red(
             "This terminal does not appear to support Unicode wide characters."
         ))
-        writer(f"\nucs-detect: measured width of U+231A WATCH: {unicode_width}\n")
-        return {}
+        writer(f"\nucs-detect: measured width of U+231A WATCH: {unicode_width}")
 
-    # Detect ambiguous width (1=narrow, 2=wide, -1=unknown)
-    ambiguous_width = term.detect_ambiguous_width(timeout=timeout, fallback=-1)
-    if ambiguous_width == -1:
-        ambig_label = "unknown"
-    elif ambiguous_width == 2:
-        ambig_label = "wide (2)"
-    else:
-        ambig_label = "narrow (1)"
-    writer(f"\nucs-detect: Ambiguous width: {ambig_label}")
+    ambig_label = None
+    ambiguous_width = -1
+    if has_unicode:
+        ambiguous_width = term.detect_ambiguous_width(timeout=timeout, fallback=-1)
+        if ambiguous_width == -1:
+            ambig_label = "unknown"
+        elif ambiguous_width == 2:
+            ambig_label = "wide (2)"
+        else:
+            ambig_label = "narrow (1)"
+        writer(f"\nucs-detect: Ambiguous width: {ambig_label}")
 
     terminal_results = {}
-    if not no_terminal_test:
-        terminal_results = terminal.do_terminal_detection()
+    if _should_run("terminal"):
+        if not no_terminal_test or test_only == "terminal":
+            terminal_results = terminal.do_terminal_detection(
+                all_modes=detect_all_dec_modes,
+                cursor_report_delay_ms=cursor_report_delay_ms,
+            )
 
     if save_yaml:
         print()
-        # Use --set-software-name if provided, otherwise prompt
         if set_software_name:
             terminal_software = set_software_name
         elif terminal_results.get("software_name"):
@@ -146,7 +147,6 @@ def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wi
         else:
             terminal_software = input('Enter "Terminal Software": ')
 
-        # Use --set-software-version if provided, otherwise prompt
         if set_software_version:
             terminal_version = set_software_version
         elif terminal_results.get("software_version"):
@@ -159,62 +159,67 @@ def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wi
 
     start_time = time.monotonic()
 
-    # run all tests
-    test_kwargs = dict(
-        term=term, writer=writer, timeout=timeout,
-        limit_codepoints=limit_codepoints, limit_errors=limit_errors,
-        stop_at_error=error_matcher, grapheme_delay_ms=grapheme_delay_ms,
-    )
+    wide_results = {}
+    emoji_zwj_results = {}
+    emoji_vs16_results = {}
+    emoji_vs15_results = {}
+    language_results = None
 
-    with term.cbreak():
-
-        def _status(label):
-            header = f"[ Testing {label} ]"
-            writer("\n" + term.magenta(header.center(term.width, '-')) + "\n")
-
-        _status("WIDE")
-        wide_results = measure.test_support(
-            table=WIDE_CHARACTERS, expected_width=2,
-            test_type="wide", limit_pct=limit_codepoints_wide_pct,
-            include_uncommon=include_uncommon_codepoints,
-            **test_kwargs,
+    if has_unicode:
+        test_kwargs = dict(
+            term=term, writer=writer, timeout=timeout,
+            limit_codepoints=limit_codepoints, limit_errors=limit_errors,
+            stop_at_error=error_matcher, cursor_report_delay_ms=cursor_report_delay_ms,
         )
 
-        _status("ZWJ")
-        emoji_zwj_results = measure.test_support(
-            table=EMOJI_ZWJ_SEQUENCES, expected_width=2,
-            test_type="zwj", **test_kwargs,
-        )
+        with term.cbreak():
 
-        _status("VS16")
-        emoji_vs16_results = merge_results(
-            measure.test_support(
-                table=VS16_NARROW_TO_WIDE, expected_width=2,
-                test_type="vs16", **test_kwargs,
-            ),
-            measure.test_support(
-                table=tuple((ver, tuple(seq[0] for seq in sequences))
-                            for ver, sequences in VS16_NARROW_TO_WIDE),
-                expected_width=1, suppress_output=True,
-                test_type="vs16n", **test_kwargs,
-            ),
-        )
+            if _should_run("unicode", "wide"):
+                wide_results = measure.test_support(
+                    table=WIDE_CHARACTERS, expected_width=2,
+                    test_type="wide", label="WIDE",
+                    limit_pct=limit_codepoints_wide_pct,
+                    include_uncommon=include_uncommon_codepoints,
+                    **test_kwargs,
+                )
 
-        _status("VS15")
-        emoji_vs15_results = measure.test_support(
-            table=VS15_WIDE_TO_NARROW, expected_width=1,
-            test_type="vs15", **test_kwargs,
-        )
+            if _should_run("unicode", "zwj"):
+                emoji_zwj_results = measure.test_support(
+                    table=EMOJI_ZWJ_SEQUENCES, expected_width=2,
+                    test_type="zwj", label="ZWJ", **test_kwargs,
+                )
 
-        language_results = None
-        if not no_languages_test:
-            _status("Languages")
-            language_results = measure.do_languages_test(
-                term, writer, timeout, limit_words, limit_errors,
-                error_matcher, grapheme_delay_ms=grapheme_delay_ms,
-            )
+            if _should_run("unicode", "vs16"):
+                emoji_vs16_results = merge_results(
+                    measure.test_support(
+                        table=VS16_NARROW_TO_WIDE, expected_width=2,
+                        test_type="vs16", label="Variation Selector-16",
+                        **test_kwargs,
+                    ),
+                    measure.test_support(
+                        table=tuple((ver, tuple(seq[0] for seq in sequences))
+                                    for ver, sequences in VS16_NARROW_TO_WIDE),
+                        expected_width=1, suppress_output=True,
+                        test_type="vs16n", **test_kwargs,
+                    ),
+                )
 
-    # display final results
+            if _should_run("unicode", "vs15"):
+                emoji_vs15_results = measure.test_support(
+                    table=VS15_WIDE_TO_NARROW, expected_width=1,
+                    test_type="vs15", label="Variation Selector-15",
+                    **test_kwargs,
+                )
+
+            if _should_run("lang") and not no_languages_test:
+                language_results = measure.do_languages_test(
+                    LANG_GRAPHEMES, term, writer, timeout, limit_words,
+                    limit_errors, error_matcher,
+                    cursor_report_delay_ms=cursor_report_delay_ms,
+                )
+
+    elapsed = time.monotonic() - start_time
+
     display_results(
         term, writer, ambig_label,
         terminal_results=terminal_results,
@@ -223,6 +228,8 @@ def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wi
         emoji_vs16_results=emoji_vs16_results,
         emoji_vs15_results=emoji_vs15_results,
         language_results=language_results,
+        elapsed=elapsed,
+        has_unicode=has_unicode,
     )
 
     if save_yaml:
@@ -268,27 +275,57 @@ def color_pct(term, pct_val):
         else term.greenyellow if pct_val < 99
         else term.green2
     )
-    return term_style(f"{pct_val:0.1f} %")
+    result = term_style(f"{pct_val:0.1f} %")
+    if pct_val >= 100.0:
+        result += " (Perfect!)"
+    return result
 
 
-def _make_theme():
-    """Create magenta/cyan ColorTable theme."""
-    from prettytable.colortable import Theme
-    return Theme(
-        default_color="\x1b[36m",
-        vertical_color="\x1b[35m",
-        horizontal_color="\x1b[35m",
-        junction_color="\x1b[35m",
-    )
+def _use_color_table(term):
+    """Return True if terminal supports enough colors for ColorTable."""
+    return term.does_styling and term.number_of_colors >= 16
 
 
+def _make_table(term):
+    """Create a ColorTable with cyan theme, or plain PrettyTable for basic terminals."""
+    if _use_color_table(term):
+        from prettytable.colortable import ColorTable, Theme
+        return ColorTable(theme=Theme(
+            default_color=term.cyan,
+            vertical_color="",
+            horizontal_color="",
+            junction_color="",
+        ))
+    from prettytable import PrettyTable
+    return PrettyTable()
 
-def _build_terminal_kv_pairs(results):
-    """Build list of (key, value) tuples from terminal detection results.
 
-    :param dict results: Terminal detection results dictionary.
-    :rtype: list[tuple[str, str]]
-    """
+def _set_double_border(table, has_unicode=True):
+    """Apply CP437 double-line border characters, or ASCII fallback."""
+    if not has_unicode:
+        return
+    table.horizontal_char = '═'
+    table.vertical_char = '║'
+    table.junction_char = '╬'
+    table.top_junction_char = '╦'
+    table.bottom_junction_char = '╩'
+    table.left_junction_char = '╠'
+    table.right_junction_char = '╣'
+    table.top_left_junction_char = '╔'
+    table.top_right_junction_char = '╗'
+    table.bottom_left_junction_char = '╚'
+    table.bottom_right_junction_char = '╝'
+
+
+def _color_yes_no(term, value):
+    """Apply green/red coloring to boolean-like values."""
+    if value:
+        return term.green2("Yes")
+    return term.firebrick1("No")
+
+
+def _build_terminal_kv_pairs(term, results):
+    """Build (key, value) tuples for terminal dimensions and graphics."""
     pairs = []
     if not results:
         return pairs
@@ -300,10 +337,20 @@ def _build_terminal_kv_pairs(results):
         software = results['software_name']
         if results.get('software_version'):
             software += f" {results['software_version']}"
+        max_val_width = term.width - 30
+        if max_val_width > 10 and len(software) > max_val_width:
+            software = software[:max_val_width - 1] + '…'
         pairs.append(("Software", software))
 
     if results.get('number_of_colors') is not None:
-        pairs.append(("Colors", f"{results['number_of_colors']:n}"))
+        n_colors = results['number_of_colors']
+        if n_colors >= 16777216:
+            color_str = term.green2("24-bit")
+        elif n_colors <= 256:
+            color_str = term.firebrick1(f"{n_colors:n}")
+        else:
+            color_str = term.yellow(f"{n_colors:n}")
+        pairs.append(("Colors", color_str))
 
     if results.get('width') and results.get('height'):
         pairs.append(("Size (cells)", f"{results['width']} x {results['height']}"))
@@ -322,44 +369,208 @@ def _build_terminal_kv_pairs(results):
             ratio_info += f" ({results['screen_ratio_name']})"
         pairs.append(("Aspect Ratio", ratio_info))
 
-    if results.get('sixel') is not None:
-        pairs.append(("Sixel Graphics", 'Yes' if results['sixel'] else 'No'))
+    if results.get('tab_stop_width') is not None:
+        pairs.append(("Tab Stop Width", str(results['tab_stop_width'])))
 
     if results.get('foreground_color_rgb'):
         fg = results['foreground_color_rgb']
-        # normalize 16-bit RGB to 8-bit
         r8, g8, b8 = (fg[0] >> 8, fg[1] >> 8, fg[2] >> 8)
+        swatch = term.color_rgb(r8, g8, b8)('█')
         pairs.append(("Foreground",
-                       f"({r8:>3}, {g8:>3}, {b8:>3}) #{r8:02x}{g8:02x}{b8:02x}"))
+                       f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
 
     if results.get('background_color_rgb'):
         bg = results['background_color_rgb']
         r8, g8, b8 = (bg[0] >> 8, bg[1] >> 8, bg[2] >> 8)
+        swatch = term.color_rgb(r8, g8, b8)('█')
         pairs.append(("Background",
-                       f"({r8:>3}, {g8:>3}, {b8:>3}) #{r8:02x}{g8:02x}{b8:02x}"))
+                       f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
+
+    has_kitty_gfx = results.get('kitty_graphics', False)
+    has_iterm2_gfx = results.get('iterm2_features', {}).get('supported', False)
+    has_sixel = results.get('sixel', False)
+    if has_kitty_gfx or has_iterm2_gfx:
+        protocols = []
+        if has_kitty_gfx:
+            protocols.append("Kitty")
+        if has_iterm2_gfx:
+            protocols.append("iTerm2")
+        if has_sixel:
+            protocols.append("Sixel")
+        pairs.append(("Graphics", term.green2(", ".join(protocols))))
+    elif has_sixel:
+        pairs.append(("Graphics", term.yellow("Sixel")))
+    elif any(k in results for k in ('sixel', 'kitty_graphics', 'iterm2_features')):
+        pairs.append(("Graphics", term.firebrick1("No")))
 
     if results.get('device_attributes'):
         da = results['device_attributes']
         if da.get('service_class') is not None:
-            pairs.append(("Device Class", str(da['service_class'])))
+            service_class_names = {
+                1: "VT100",
+                2: "VT200",
+                18: "VT330",
+                41: "VT420",
+                61: "VT500",
+                62: "VT500",
+                64: "VT500",
+                65: "VT500",
+            }
+            sc = da['service_class']
+            label = service_class_names.get(sc, f"Class {sc}")
+            pairs.append(("Device Class", label))
         if da.get('extensions'):
-            pairs.append(("Device Extensions",
-                           f"{len(da['extensions'])} supported"))
-
-    if results.get('modes'):
-        pairs.append(("DEC Modes", f"{len(results['modes']):n}"))
+            extension_desc = {
+                1: "132 columns",
+                2: "Printer port",
+                3: "ReGIS graphics",
+                4: "Sixel graphics",
+                6: "Selective erase",
+                7: "DRCS (soft character set)",
+                8: "UDK (user-defined keys)",
+                9: "NRCS (national replacement)",
+                12: "SCS extension",
+                15: "Technical character set",
+                16: "Locator port",
+                17: "Terminal state interrogation",
+                18: "Windowing",
+                19: "Sessions",
+                21: "Horizontal scrolling",
+                23: "Greek extension",
+                24: "Turkish extension",
+                28: "Rectangular editing",
+                29: "ANSI text locator",
+                42: "ISO Latin-2",
+                44: "PCTerm",
+                45: "Soft key map",
+                46: "ASCII emulation",
+            }
+            for ext in sorted(da['extensions']):
+                if ext in (22, 52):
+                    continue
+                desc = extension_desc.get(ext, f"Extension {ext}")
+                pairs.append((desc, term.green2(str(ext))))
 
     return pairs
 
 
-def _build_test_kv_pairs(term, ambig_label, **result_sets):
-    """Build list of (key, value) tuples from test results and versions.
-
-    :param term: Blessed terminal instance.
-    :param str ambig_label: Ambiguous width label string.
-    :rtype: list[tuple[str, str]]
-    """
+def _build_capabilities_kv_pairs(term, results):
+    """Build (key, value) tuples for terminal capabilities."""
     pairs = []
+    if not results:
+        return pairs
+
+    if results.get('modes'):
+        modes = results['modes']
+        notable_modes = [
+            (2004, "Bracketed Paste"),
+            (2026, "Synchronized Output"),
+            (2027, "Grapheme Clustering"),
+            (1004, "Focus Events"),
+            (1006, "Mouse SGR"),
+        ]
+        for mode_num, mode_label in notable_modes:
+            mode_key = str(mode_num) if str(mode_num) in modes else mode_num
+            if mode_key in modes:
+                m = modes[mode_key]
+                pairs.append((mode_label,
+                               _color_yes_no(term, m.get('supported'))))
+            else:
+                pairs.append((mode_label, _color_yes_no(term, False)))
+        n_notable = len(notable_modes)
+        if len(modes) > n_notable:
+            n_supported = sum(1 for m in modes.values() if m.get('supported'))
+            ratio = n_supported / len(modes) if modes else 0
+            summary = f"{n_supported} of {len(modes)} supported"
+            if ratio >= 0.5:
+                summary = term.green2(summary)
+            elif ratio > 0:
+                summary = term.yellow(summary)
+            else:
+                summary = term.firebrick1(summary)
+            pairs.append(("DEC Modes", summary))
+
+    if results.get('kitty_keyboard') is not None:
+        pairs.append(("Kitty Keyboard", _color_yes_no(term, True)))
+    elif results.get('modes'):
+        pairs.append(("Kitty Keyboard", _color_yes_no(term, False)))
+
+    iterm2 = results.get('iterm2_features', {})
+    if iterm2.get('supported'):
+        features = iterm2.get('features', {})
+        feature_list = ', '.join(sorted(features.keys()))
+        pairs.append(("iTerm2 Features",
+                       term.green2(f"{len(features)} detected")
+                       + f" ({feature_list})"))
+    elif 'iterm2_features' in results:
+        pairs.append(("iTerm2 Features", _color_yes_no(term, False)))
+
+    ts = results.get('text_sizing', {})
+    if ts.get('width') or ts.get('scale'):
+        parts = []
+        if ts.get('width'):
+            parts.append('width')
+        if ts.get('scale'):
+            parts.append('scale')
+        pairs.append(("Text Sizing", term.green2('+'.join(parts))))
+    elif 'text_sizing' in results:
+        pairs.append(("Text Sizing", _color_yes_no(term, False)))
+
+    xtgettcap = results.get('xtgettcap', {})
+    if xtgettcap.get('supported'):
+        n_caps = len(xtgettcap.get('capabilities', {}))
+        pairs.append(("XTGETTCAP",
+                       term.green2(f"{n_caps} capabilities reported")))
+    elif 'xtgettcap' in results:
+        pairs.append(("XTGETTCAP", _color_yes_no(term, False)))
+
+    notif = results.get('kitty_notifications')
+    if isinstance(notif, dict) and notif.get('supported'):
+        pairs.append(("Kitty Notifications", _color_yes_no(term, True)))
+    elif 'kitty_notifications' in results:
+        pairs.append(("Kitty Notifications", _color_yes_no(term, False)))
+
+    if 'kitty_clipboard_protocol' in results:
+        pairs.append(("Kitty Clipboard",
+                       _color_yes_no(term, results['kitty_clipboard_protocol'])))
+
+    da = results.get('da', {})
+    da_extensions = da.get('extensions', [])
+    pairs.append(("OSC 52 Clipboard", _color_yes_no(term, 52 in da_extensions)))
+
+    pointer = results.get('kitty_pointer_shapes')
+    if isinstance(pointer, dict) and pointer.get('supported'):
+        current = pointer.get('current', '')
+        label = term.green2("Yes")
+        if current:
+            label += f" ({current})"
+        pairs.append(("Kitty Pointer Shapes", label))
+    elif 'kitty_pointer_shapes' in results:
+        pairs.append(("Kitty Pointer Shapes", _color_yes_no(term, False)))
+
+    return pairs
+
+
+def _unicode_support_label(term, all_pcts):
+    """Compute an overall Unicode support label from test percentages."""
+    if not all_pcts:
+        return term.firebrick1("No")
+    avg = sum(all_pcts) / len(all_pcts)
+    if avg >= UNICODE_PERFECT_PCT:
+        return term.green2(f"{avg:0.1f} %") + " (Perfect!)"
+    if avg >= 90:
+        return term.greenyellow("Yes")
+    if avg > 0:
+        return term.yellow("Partial")
+    return term.firebrick1("No")
+
+
+def _build_test_kv_pairs(term, ambig_label, **result_sets):
+    """Build (key, value) tuples from test results."""
+    has_unicode = result_sets.get("has_unicode", True)
+    pairs = []
+    all_pcts = []
+
     wide = result_sets.get("wide_results", {})
     zwj = result_sets.get("emoji_zwj_results", {})
     vs16 = result_sets.get("emoji_vs16_results", {})
@@ -368,33 +579,156 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
     for name, data in [("WIDE", wide), ("ZWJ", zwj), ("VS16", vs16), ("VS15", vs15)]:
         if data:
             for label, d in data.items():
-                pairs.append((name, color_pct(term, d["pct_success"])))
+                pct_val = d["pct_success"]
+                all_pcts.append(pct_val)
+                pct = color_pct(term, pct_val)
+                n = d.get("n_total", 0)
+                cps = d.get("codepoints_per_second", 0)
+                stats = f"  ({n:n} tested, {cps:,.0f}/sec)"
+                pairs.append((name, pct + stats))
 
-    pairs.append(("Ambiguous Width", ambig_label))
-    pairs.append(("Unicode Version", wcwidth.list_versions()[-1]))
+    langs = result_sets.get("language_results")
+    if langs:
+        n_langs = len(langs)
+        n_pass = sum(1 for l in langs if langs[l]["pct_success"] == 100.0)
+        lang_pct = n_pass / n_langs * 100 if n_langs else 0
+        all_pcts.append(lang_pct)
+        pairs.append(("Languages",
+                      color_pct(term, lang_pct)
+                      + f"  ({n_pass} of {n_langs} passed)"))
+
+    if has_unicode:
+        pairs.append(("Unicode Support", _unicode_support_label(term, all_pcts)))
+    else:
+        pairs.append(("Unicode Support", term.firebrick1("No")))
+
+    if ambig_label is not None:
+        pairs.append(("Ambiguous Width", ambig_label))
+
+    elapsed = result_sets.get("elapsed")
+    if elapsed is not None:
+        pairs.append(("Elapsed", f"{elapsed:.1f} seconds"))
+
     return pairs
 
 
-def _make_kv_table(title, pairs):
-    """Build a ColorTable from a list of (key, value) tuples.
-
-    :param str title: Table title.
-    :param list pairs: List of (key, value) tuples.
-    :rtype: prettytable.colortable.ColorTable
-    """
+def _make_kv_table(term, title, pairs, has_unicode=True):
+    """Build a ColorTable from (key, value) tuples."""
     from prettytable.colortable import ColorTable
-    table = ColorTable(theme=_make_theme())
-    table.title = title
+    table = ColorTable(theme=_make_theme(term))
+    _set_double_border(table, has_unicode)
+    table.title = term.magenta(title)
     table.field_names = ["Attribute", "Value"]
     table.align["Attribute"] = "r"
     table.align["Value"] = "l"
     table.header = False
+    table.max_table_width = max(40, term.width - 1)
     for key, value in pairs:
         table.add_row([key, value])
     return table
 
 
-def make_language_table(term, results):
+def _truncate_value(val_str, max_len=25):
+    """Truncate a string with ellipsis if it exceeds max_len."""
+    if len(val_str) > max_len:
+        return val_str[:max_len - 1] + '…'
+    return val_str
+
+
+def make_xtgettcap_lines(term, capabilities, has_unicode=True):
+    """Build multi-column XTGETTCAP output lines that tile to fit terminal width."""
+    import math
+    from prettytable.colortable import ColorTable
+    from ucs_detect.table_xtgettcap import XTGETTCAP_CAPABILITIES
+
+    cap_info = {name: desc for name, desc in XTGETTCAP_CAPABILITIES}
+    sorted_caps = [(name, capabilities[name]) for name in sorted(capabilities)]
+    n_caps = len(sorted_caps)
+
+    if n_caps == 0:
+        return []
+
+    # build one full table to get consistent column widths
+    full_table = ColorTable(theme=_make_theme(term))
+    _set_double_border(full_table, has_unicode)
+    full_table.title = term.magenta(f"XTGETTCAP ({n_caps} capabilities)")
+    full_table.field_names = [
+        term.magenta("Cap"),
+        term.magenta("Description"),
+        term.magenta("Value"),
+    ]
+    full_table.align["Cap"] = "l"
+    full_table.align["Description"] = "l"
+    full_table.align["Value"] = "l"
+    full_table.max_table_width = max(40, term.width - 1)
+    for capname, value in sorted_caps:
+        desc = cap_info.get(capname, capname)
+        full_table.add_row([capname, desc, _truncate_value(repr(value))])
+
+    # render and split into lines
+    all_rendered = str(full_table).split("\n")
+    # all_rendered: [top_border, title, title_border, header, header_border,
+    #                row0, row1, ..., bottom_border]
+    # find where data rows start (after header separator)
+    tbl_width = len(all_rendered[0])
+    n_columns = max(1, (term.width - 1) // (tbl_width + 1))
+
+    if n_columns <= 1:
+        return all_rendered
+
+    # split: title+header lines, data rows, bottom border
+    header_lines = all_rendered[:5]
+    data_lines = all_rendered[5:-1]
+    bottom_border = all_rendered[-1]
+
+    rows_per_col = math.ceil(len(data_lines) / n_columns)
+    chunks = []
+    for i in range(n_columns):
+        chunk = data_lines[i * rows_per_col:(i + 1) * rows_per_col]
+        if not chunk:
+            break
+        chunks.append(chunk)
+
+    # pad shorter chunks with empty rows
+    max_rows = len(chunks[0])
+    vbar = "║" if has_unicode else "|"
+    empty_row = vbar + " " * (tbl_width - 2) + vbar
+    for chunk in chunks:
+        while len(chunk) < max_rows:
+            chunk.append(empty_row)
+
+    # first chunk gets title+header, others get header padded to same height
+    # header_lines: [top_border, title, title_sep, header, header_sep]
+    # header_no_title needs blank spacers for title rows
+    blank_spacer = " " * tbl_width
+    header_no_title = [
+        blank_spacer,                # align with top_border (title row 1)
+        blank_spacer,                # align with title row
+        header_lines[0],             # top border
+        header_lines[3],             # header
+        header_lines[4],             # header separator
+    ]
+    output = []
+
+    # title+header for first, padded header for rest
+    for row_idx in range(len(header_lines)):
+        parts = [header_lines[row_idx]]
+        for chunk_idx in range(1, len(chunks)):
+            parts.append(header_no_title[row_idx])
+        output.append(" ".join(parts))
+
+    # data rows side by side
+    for row_idx in range(max_rows):
+        parts = [chunks[i][row_idx] for i in range(len(chunks))]
+        output.append(" ".join(parts))
+
+    # bottom border
+    output.append(" ".join([bottom_border] * len(chunks)))
+
+    return output
+
+
+def make_language_table(term, results, has_unicode=True):
     """Build a ColorTable for language test results."""
     from prettytable.colortable import ColorTable
     success_langs = [
@@ -403,14 +737,23 @@ def make_language_table(term, results):
     failed_langs = [
         lang for lang in results if results[lang]["pct_success"] < 100.0
     ]
-    table = ColorTable(theme=_make_theme())
+    table = ColorTable(theme=_make_theme(term))
+    _set_double_border(table, has_unicode)
     n_langs = len(success_langs) + len(failed_langs)
-    table.title = f"Language Support ({len(success_langs)} of {n_langs} passed)"
-    table.field_names = ["Language", "Total", "Failures", "Success"]
+    table.title = term.magenta(
+        f"Language Support ({len(success_langs)} of {n_langs} passed)"
+    )
+    table.field_names = [
+        term.magenta("Language"),
+        term.magenta("Total"),
+        term.magenta("Failures"),
+        term.magenta("Success"),
+    ]
     table.align["Language"] = "l"
     table.align["Total"] = "r"
     table.align["Failures"] = "r"
     table.align["Success"] = "r"
+    table.max_table_width = max(40, term.width - 1)
     for lang in sorted(failed_langs):
         data = results[lang]
         table.add_row([
@@ -422,29 +765,119 @@ def make_language_table(term, results):
     return table
 
 
-def display_results(term, writer, ambig_label, terminal_results=None,
-                    **result_sets):
-    """Display all test results as prettytable key-value tables.
 
-    :param term: Blessed terminal instance.
-    :param writer: Output writer function.
-    :param str ambig_label: Ambiguous width label.
-    :param dict terminal_results: Terminal detection results.
-    """
-    terminal_pairs = _build_terminal_kv_pairs(terminal_results or {})
+def _collect_side_by_side_lines(term, table_strings):
+    """Collect side-by-side table output as a list of lines."""
+    tables = [s for s in table_strings if s]
+    if not tables:
+        return []
+    all_lines = []
+    row = []
+    row_width = 0
+    for tbl in tables:
+        lines = tbl.split("\n")
+        tbl_width = len(lines[0])
+        needed = (row_width + 1 + tbl_width) if row else tbl_width
+        if row and needed >= term.width:
+            all_lines.extend(_collect_table_row_lines(row))
+            row = []
+            row_width = 0
+        row.append((lines, tbl_width))
+        row_width = (row_width + 1 + tbl_width) if len(row) > 1 else tbl_width
+    if row:
+        all_lines.extend(_collect_table_row_lines(row))
+    return all_lines
+
+
+def _collect_table_row_lines(row):
+    """Collect one horizontal row of side-by-side tables as lines."""
+    result = []
+    max_height = max(len(lines) for lines, _ in row)
+    for i in range(max_height):
+        parts = []
+        for lines, width in row:
+            line = lines[i] if i < len(lines) else ""
+            parts.append(f"{line:<{width}}")
+        result.append(" ".join(parts))
+    result.append("")
+    return result
+
+
+def _write_line(term, writer, line):
+    """Write a line, truncating to terminal width and omitting trailing newline when needed."""
+    if term.width and term.length(line) >= term.width:
+        line = term.truncate(line, term.width - 1)
+    writer(line)
+    writer("\n")
+
+
+def _paginated_write(term, writer, all_lines):
+    """Write lines with pagination when terminal is too short."""
+    if not term.does_styling or not term.height:
+        writer("\n")
+        for line in all_lines:
+            writer(line + "\n")
+        return
+
+    page_height = term.height - 2
+    written = 0
+    writer("\n")
+    for line in all_lines:
+        _write_line(term, writer, line)
+        written += 1
+        if written >= page_height:
+            with term.cbreak():
+                for countdown in (3, 2, 1):
+                    prompt = f"[c]ontinue in {countdown}.."
+                    writer(term.magenta(prompt))
+                    key = term.inkey(timeout=1)
+                    writer("\r" + " " * len(prompt) + "\r")
+                    if key:
+                        break
+            written = 0
+
+
+def display_results(term, writer, ambig_label, terminal_results=None,
+                    elapsed=None, has_unicode=True, **result_sets):
+    """Display all test results as prettytable key-value tables."""
+    result_sets["elapsed"] = elapsed
+    result_sets["has_unicode"] = has_unicode
+    results = terminal_results or {}
+    terminal_pairs = _build_terminal_kv_pairs(term, results)
+    caps_pairs = _build_capabilities_kv_pairs(term, results)
     test_pairs = _build_test_kv_pairs(term, ambig_label, **result_sets)
 
-    writer("\n")
+    all_lines = []
+
+    xtgettcap = (results.get('xtgettcap') or {}).get('capabilities', {})
+    if xtgettcap:
+        all_lines.extend(make_xtgettcap_lines(term, xtgettcap, has_unicode))
+        all_lines.append("")
+
+    table_strings = []
     if terminal_pairs:
-        writer(str(_make_kv_table("Terminal", terminal_pairs)) + "\n\n")
+        table_strings.append(
+            str(_make_kv_table(term, "Terminal", terminal_pairs, has_unicode)))
+    if caps_pairs:
+        table_strings.append(
+            str(_make_kv_table(term, "Capabilities", caps_pairs, has_unicode)))
     if test_pairs:
-        writer(str(_make_kv_table("Unicode", test_pairs)) + "\n\n")
+        table_strings.append(
+            str(_make_kv_table(term, "Unicode", test_pairs, has_unicode)))
+
+    all_lines.extend(_collect_side_by_side_lines(term, table_strings))
 
     langs = result_sets.get("language_results")
     if langs:
         failed = [l for l in langs if langs[l]["pct_success"] < 100.0]
         if failed:
-            writer(str(make_language_table(term, langs)) + "\n")
+            for line in str(
+                make_language_table(term, langs, has_unicode)
+            ).split("\n"):
+                all_lines.append(line)
+            all_lines.append("")
+
+    _paginated_write(term, writer, all_lines)
 
 
 def do_save_yaml(save_yaml, **kwargs):
@@ -497,12 +930,7 @@ def parse_args():
         "--include-uncommon-codepoints",
         action="store_true",
         default=False,
-        help=(
-            "Include uncommon codepoints in WIDE testing that most fonts lack "
-            "glyphs for, such as CJK Extensions B-I and Tangut. These cause "
-            "slow font fallback lookups and render as replacement characters "
-            "in most terminals."
-        ),
+        help=("Include uncommon codepoints in WIDE testing."),
     )
     args.add_argument(
         "--save-yaml",
@@ -537,10 +965,22 @@ def parse_args():
         )
     )
     args.add_argument(
-        "--grapheme-delay-ms",
+        "--test-only",
+        default="all",
+        choices=("all", "unicode", "terminal", "wide", "zwj", "vs16", "vs15", "lang"),
+        help="Run only the specified test category",
+    )
+    args.add_argument(
+        "--cursor-report-delay-ms",
         type=int,
         default=0,
-        help="Delay in milliseconds after writing each grapheme before measuring cursor position",
+        help="Delay in milliseconds before reading cursor position report",
+    )
+    args.add_argument(
+        "--detect-all-dec-modes",
+        action="store_true",
+        default=False,
+        help="Query all known DEC private modes (slow, default queries only notable modes)",
     )
     args.add_argument(
         "--set-software-name",
