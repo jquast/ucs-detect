@@ -26,6 +26,7 @@ Interactive Keys:
     7                 Switch to VS-16 mode (emoji style)
     c                 Toggle combining character mode
     g                 Toggle grapheme cluster mode
+    z                 Toggle ZWJ emoji mode
     U                 Toggle uncommon CJK extensions
     w                 Toggle with/without variation selector (VS mode only)
     [                 Decrease grapheme width (grapheme mode only)
@@ -40,8 +41,8 @@ Interactive Keys:
     q, Q              Quit browser
 
 Note:
-  Only one of --combining, --vs15, --vs16, --vs16-space-kludge, or --graphemes
-  can be used at a time.
+  Only one of --combining, --vs15, --vs16, --vs16-space-kludge, --graphemes,
+  or --zwj can be used at a time.
   The --without-vs option only applies when using --vs15 or --vs16.
 
   In VS mode, the display shows:
@@ -70,6 +71,7 @@ import urllib3.util
 from wcwidth import ZERO_WIDTH, wcwidth, list_versions, _wcmatch_version
 from ucs_detect.measure import _is_uncommon
 from ucs_detect.table_lang import LANG_GRAPHEMES
+from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 
 #: print function alias, does not end with line terminator.
 echo = functools.partial(print, end='')
@@ -433,6 +435,32 @@ class WcGraphemeGenerator:
         return result
 
 
+class WcZwjGenerator:
+    """Generator yields ZWJ emoji sequences from EMOJI_ZWJ_SEQUENCES."""
+
+    def __init__(self):
+        """Class constructor."""
+        self.sequences = []
+        for _version, seqs in EMOJI_ZWJ_SEQUENCES:
+            for seq in seqs:
+                ucs = ''.join(chr(cp) for cp in seq)
+                name = unicodedata.name(chr(seq[0]), f'U+{seq[0]:04X}')
+                self.sequences.append((ucs, name))
+        self._idx = 0
+
+    def __iter__(self):
+        """Special method called by iter()."""
+        return self
+
+    def __next__(self):
+        """Special method called by next()."""
+        if self._idx >= len(self.sequences):
+            raise StopIteration
+        result = self.sequences[self._idx]
+        self._idx += 1
+        return result
+
+
 class Style:
     """Styling decorator class instance for terminal output."""
 
@@ -578,6 +606,7 @@ class Pager:
         self.include_uncommon = include_uncommon
         self.grapheme_mode = False
         self.grapheme_width = 1
+        self.zwj_mode = False
         self.base_width_filter = screen.wide
         self.unicode_version = 'auto'
         self.dirty = self.STATE_REFRESH
@@ -618,7 +647,9 @@ class Pager:
         if self.term.is_a_tty:
             self.display_initialize()
 
-        if self.grapheme_mode:
+        if self.zwj_mode:
+            self.character_generator = WcZwjGenerator()
+        elif self.grapheme_mode:
             self.character_generator = WcGraphemeGenerator(self.grapheme_width)
         elif self.variation_selector == 'SPACE_KLUDGE':
             self.character_generator = WcSpaceKludgeGenerator(
@@ -737,7 +768,9 @@ class Pager:
 
     def _process_keystroke_commands(self, inp):
         """Process keystrokes that issue commands (side effects)."""
-        if inp in ('1', '2'):
+        if inp in ('1', '2', '5', '6', '7') and (self.grapheme_mode or self.zwj_mode):
+            return
+        elif inp in ('1', '2'):
             new_width = int(inp)
             if self.variation_selector:
                 if self.base_width_filter != new_width:
@@ -750,9 +783,10 @@ class Pager:
                     self.screen.wide = new_width
                     self._reinitialize()
         elif inp == '0':
-            if self.variation_selector or self.grapheme_mode:
+            if self.variation_selector or self.grapheme_mode or self.zwj_mode:
                 self.variation_selector = None
                 self.grapheme_mode = False
+                self.zwj_mode = False
                 self._reinitialize()
         elif inp == '5':
             if self.variation_selector != 'VS15':
@@ -791,8 +825,18 @@ class Pager:
         elif inp == 'g':
             self.grapheme_mode = not self.grapheme_mode
             if self.grapheme_mode:
+                self.zwj_mode = False
                 self.variation_selector = None
                 self.screen.wide = self.grapheme_width
+            else:
+                self.screen.wide = self.base_width_filter
+            self._reinitialize()
+        elif inp == 'z':
+            self.zwj_mode = not self.zwj_mode
+            if self.zwj_mode:
+                self.grapheme_mode = False
+                self.variation_selector = None
+                self.screen.wide = 2
             else:
                 self.screen.wide = self.base_width_filter
             self._reinitialize()
@@ -921,7 +965,9 @@ class Pager:
         :return: Mode label string.
         :rtype: str
         """
-        if self.grapheme_mode:
+        if self.zwj_mode:
+            label = "ZWJ"
+        elif self.grapheme_mode:
             label = f"GRAPHEME w={self.grapheme_width}"
         elif self.variation_selector == 'SPACE_KLUDGE':
             label = "VS16-SPACE-KLUDGE"
@@ -962,7 +1008,7 @@ class Pager:
                    .format(idx=style.attr_minor(f'{idx}'),
                            last_end=style.attr_major(last_end),
                            mode=style.attr_major(mode),
-                           keyset=style.attr_major('kjfbvc012567gwU[]-='),
+                           keyset=style.attr_major('kjfbvc012567gzwU[]-='),
                            q=style.attr_minor('q')))
             writer(self.term.center(txt).rstrip())
 
@@ -1004,6 +1050,21 @@ class Pager:
         :rtype: unicode
         """
         style = self.screen.style
+        delimiter = style.attr_minor(style.delimiter)
+        multi_cp = (self.zwj_mode or self.grapheme_mode
+                     or (len(ucs) > 1 and self.variation_selector))
+
+        if multi_cp:
+            disp_ucs = style.attr_major(ucs)
+            hex_label = '+'.join(f'{ord(c):04X}' for c in ucs)
+            total_len = UCS_PRINTLEN + 2 + 1 + style.name_len
+            if len(hex_label) > total_len:
+                hex_label = hex_label[:total_len - 1] + '…'
+            hex_label = f'{hex_label:<{total_len}s}'
+            if style.alignment == 'right':
+                return f'{hex_label} {delimiter}{disp_ucs}{delimiter}'
+            return f'{delimiter}{disp_ucs}{delimiter} {hex_label}'
+
         if len(name) > style.name_len:
             idx = max(0, style.name_len - len(style.continuation))
             name = ''.join((name[:idx],
@@ -1017,23 +1078,8 @@ class Pager:
             fmt = ' '.join(('{delimiter}{ucs}{delimiter}',
                             '0x{val:0>{ucs_printlen}x}',
                             '{name:<{name_len}s}'))
-        delimiter = style.attr_minor(style.delimiter)
-        if self.grapheme_mode:
-            val = ord(ucs[0])
-            disp_ucs = style.attr_major(ucs)
-        elif len(ucs) != 1:
-            if (self.variation_selector
-                    and not self.show_variation_selector):
-                val = ord(ucs[0])
-                disp_ucs = style.attr_major(ucs[0])
-            else:
-                val = ord(ucs[1])
-                disp_ucs = style.attr_major(ucs[0:2])
-                if len(ucs) > 2:
-                    disp_ucs += ucs[2]
-        else:
-            val = ord(ucs)
-            disp_ucs = style.attr_major(ucs)
+        val = ord(ucs)
+        disp_ucs = style.attr_major(ucs)
 
         return fmt.format(name_len=style.name_len,
                           ucs_printlen=UCS_PRINTLEN,
@@ -1088,6 +1134,9 @@ def validate_args(opts):
     elif opts.get('--graphemes'):
         opts['grapheme_mode'] = True
         opts['display_width'] = 1
+    elif opts.get('--zwj'):
+        opts['zwj_mode'] = True
+        opts['display_width'] = 2
 
     return opts
 
@@ -1116,6 +1165,8 @@ def main_browser(opts):
         pager.base_width_filter = opts['base_width_filter']
     if opts.get('grapheme_mode'):
         pager.grapheme_mode = True
+    if opts.get('zwj_mode'):
+        pager.zwj_mode = True
 
     with term.location(), term.cbreak(), \
             term.fullscreen(), term.hidden_cursor():
@@ -1151,6 +1202,7 @@ Interactive Keys:
     7                 Switch to VS-16 mode (emoji style)
     c                 Toggle combining character mode
     g                 Toggle grapheme cluster mode
+    z                 Toggle ZWJ emoji mode
     U                 Toggle uncommon CJK extensions
     w                 Toggle with/without variation selector (VS mode only)
     [                 Decrease grapheme width (grapheme mode only)
@@ -1165,8 +1217,8 @@ Interactive Keys:
     q, Q              Quit browser
 
 Notes:
-  Only one of --combining, --vs15, --vs16, --vs16-space-kludge, or --graphemes
-  can be used at a time.
+  Only one of --combining, --vs15, --vs16, --vs16-space-kludge, --graphemes,
+  or --zwj can be used at a time.
   The --without-vs option only applies when using --vs15 or --vs16.
 
   In VS mode, the display shows:
@@ -1197,6 +1249,9 @@ Notes:
     mode_group.add_argument(
         '--graphemes', action='store_true',
         help='Browse language grapheme clusters (use [ and ] to change width).')
+    mode_group.add_argument(
+        '--zwj', action='store_true',
+        help='Browse emoji ZWJ (Zero-Width Joiner) sequences.')
 
     parser.add_argument(
         '--without-vs', action='store_true',
@@ -1219,6 +1274,7 @@ Notes:
         '--vs16': args.vs16,
         '--vs16-space-kludge': args.vs16_space_kludge,
         '--graphemes': args.graphemes,
+        '--zwj': args.zwj,
         '--without-vs': args.without_vs,
         '--include-uncommon': args.include_uncommon,
         '--refresh-unicode': args.refresh_unicode,

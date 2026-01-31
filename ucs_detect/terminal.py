@@ -445,7 +445,7 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0, timeout=1.0
     attrs.update(get_tty_size(term, writer))
 
     # detect background color first so we can hide test artifacts
-    with _status(writer, term, "Background Color", bg_rgb):
+    with _status(writer, term, "Background Color"):
         attrs.update(maybe_determine_colors(term, writer))
         bg_rgb = None
         if attrs.get('background_color_rgb'):

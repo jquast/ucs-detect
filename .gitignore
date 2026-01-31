@@ -130,3 +130,5 @@ dmypy.json
 
 .DS_Store
 *.bak
+
+data/emoji-zwj-sequences-latest.txt

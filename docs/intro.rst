@@ -1,16 +1,13 @@
 ucs-detect
 ==========
 
-Without any arguments,
-
 ::
 
     $ ucs-detect
 
-``ucs-detect`` automatically tests the Unicode version and support level of a
-terminal emulator for Wide character, Emoji Zero Width Joiner (ZWJ) sequences,
-Emoji Variation Selector-16 (VS-16) sequences, and Zero-Width or combining
-characters by supported Language.  A brief report is then printed to stdout.
+``ucs-detect`` tests a terminal emulator's Unicode support for Wide characters,
+Emoji Zero Width Joiner (ZWJ) sequences, Variation Selector-16 (VS-16) and
+VS-15 sequences, and zero-width combining characters across 500+ languages.
 
 .. figure:: https://dxtz6bzwq9sxx.cloudfront.net/ucs-detect.gif
    :alt: video demonstration of running ucs-detect
@@ -18,128 +15,184 @@ characters by supported Language.  A brief report is then printed to stdout.
 Installation & Usage
 --------------------
 
-To install or upgrade:
-
-::
+To install or upgrade::
 
    $ pip install -U ucs-detect
 
-
-To use::
+Run a default test::
 
    $ ucs-detect
 
-
-To run a detailed test and store a yaml report to disk::
+Run a detailed test and save a YAML report::
 
    $ ucs-detect --save-yaml=data/my-terminal.yaml --limit-codepoints=5000 --limit-words=5000 --limit-errors=500
+
+CLI Options
+-----------
+
+``--save-yaml=<path>``
+  Save results as YAML.
+
+``--rerun <yaml-file>``
+  Re-test a terminal using parameters from a previous YAML report.
+
+``--test-only <category>``
+  Test a single category: ``wide``, ``zwj``, ``vs16``, ``vs15``, ``lang``,
+  ``unicode``, ``terminal``, or ``all`` (default).
+
+``--limit-codepoints <n>``
+  Limit total codepoints tested per category.
+
+``--limit-codepoints-wide-pct <n>``
+  Percentage of wide characters to test (default: 20). Set to ``0`` for a
+  complete test.
+
+``--limit-errors <n>``
+  Stop testing a category after *n* errors.
+
+``--stop-at-error <pattern>``
+  Pause on errors matching *pattern* for interactive investigation.
+
+``--set-software-name <name>`` / ``--set-software-version <version>``
+  Set terminal name and version for YAML output (skips interactive prompt).
+
+``--detect-all-dec-modes``
+  Test all DEC Private Modes.
+
+``--include-uncommon-codepoints``
+  Include uncommon CJK extension blocks.
+
+``--timeout-cps <seconds>``
+  Timeout per codepoint test (default: 1.0).
+
+``--timeout-query <seconds>``
+  Timeout for cursor position query (default: 0.2).
+
+``--cursor-report-delay-ms <ms>``
+  Additional delay before reading cursor position report.
+
+``--no-terminal-test`` / ``--no-languages-test``
+  Skip terminal feature detection or language testing.
+
+ucs-browser
+-----------
+
+``ucs-browser`` is an interactive terminal browser for visually inspecting
+unicode character width rendering. It displays characters with pipe (``|``)
+alignment markers that should align correctly in any terminal with proper
+Unicode support.
+
+::
+
+   $ ucs-browser
+
+Modes are toggled with keyboard shortcuts:
+
+- ``1`` / ``2``: Narrow (1-cell) or Wide (2-cell) characters
+- ``c``: Combining characters
+- ``g``: Grapheme clusters (``[`` / ``]`` to adjust width)
+- ``z``: Emoji ZWJ sequences
+- ``5``: VS-15 (text style)
+- ``7``: VS-16 (emoji style)
+- ``U``: Toggle uncommon CJK extensions
+- ``v``: Select Unicode version
+
+Navigation follows less(1) conventions: ``j``/``k`` for lines, ``f``/``b`` for
+pages, ``q`` to quit.
+
+CLI options::
+
+   $ ucs-browser --wide 2
+   $ ucs-browser --combining
+   $ ucs-browser --vs16
+   $ ucs-browser --zwj
+   $ ucs-browser --graphemes
 
 Test Results
 ------------
 
-More than twenty modern terminals for Windows, Linux, and Mac were tested,
-their results have been collected into this repository and a detailed
-summary is published at URL https://ucs-detect.readthedocs.io/results.html
+Results for 20+ terminals on Windows, Linux, and Mac are published at
+https://ucs-detect.readthedocs.io/results.html
 
-An article describing the development of ucs-detect and summarizing the results
-for the 1.0.4 release of ucs-detect, November 2023 is published at
-https://www.jeffquast.com/post/ucs-detect-test-results/
-
-A follow-up November 2025 article discussing the results of another round of
-testing, including DEC Private Modes support, for release of ucs-detect 
-1.0.8 is published at
-https://www.jeffquast.com/post/state-of-terminal-emulation-2025/
-
-Individual yaml data file reports for these terminals may also be inspected at
-the repository folder ``data``,
+Individual YAML reports are in the ``data`` folder:
 https://github.com/jquast/ucs-detect/tree/master/data
 
-Please note that results will be shared with Terminal Emulator projects and this
-information may become out of date as they improve their support for Unicode.
-Please do not expect the maintainers of ucs-detect to update these data files. If
-you wish for this report to be corrected for any given Terminal, please feel free
-to submit a pull request with an update to the yaml data files.
+Related articles:
+
+- `ucs-detect test results`_ (November 2023, release 1.0.4)
+- `State of Terminal Emulation 2025`_ (November 2025, release 1.0.8)
+
+Results are shared with terminal emulator projects and may become outdated as
+they improve Unicode support. Submit a pull request to update YAML data files.
 
 Problem
 -------
 
-Many East Asian languages contain Wide (W) or Fullwidth (F) characters, meaning
-that each character occupies 2 cells instead of 1. Further, many languages
-contain special combining characters that are "zero width", meaning they do not
-occupy any cells, only modifying the previous one as a "combining" character.
-Finally, there are "Zero Width Joiner" and "Variation Selector-16" characters
-that are used in sequence for Emoji characters.
+East Asian languages use Wide (W) or Fullwidth (F) characters that occupy 2
+cells. Many scripts use zero-width combining characters that modify adjacent
+characters. Emoji sequences use Zero Width Joiner and Variation Selector-16
+characters.
 
-A terminal application that displays these characters may have trouble
-determining how it will be displayed to the end-user.  This problem
-happens often, because the Unicode Consortium releases new versions
-of the Unicode Standard periodically, but the source code of libraries
-and applications are not updated at the same time, or at all!
+Terminal applications must determine the display width of these characters, but
+the Unicode Standard is updated periodically while libraries and applications
+lag behind — or never update.
 
-Finally, a terminal emulator may have varying levels of support. For example, at
-time of this writing, Microsoft's `Terminal.exe`_ supports up to Unicode 15.0 for
-Wide characters, is missing support for 27 characters of Unicode 13.0, has no
-support for Emoji ZWJ, fully supports all VS-16 sequences, but fails to
-correctly categorize many Zero-Width for 88 or more of the world's languages. 
-
+Support also varies within a terminal. For example, Microsoft's `Terminal.exe`_
+supports Unicode 15.0 Wide characters (missing 27 from 13.0), has no Emoji ZWJ
+support, fully supports VS-16, yet fails on zero-width characters for 88+
+languages.
 
 Solution
 --------
 
-The most important factor is to determine whether the Terminal Emulator complies
-with the Specification_ published by the python wcwidth_ library.
-
-This program, ``ucs-detect``, measures the compliance of a terminal emulator with
-the latest Unicode specification for codepoints in sequence with WIDE, ZERO, ZWJ,
-VS-16, and VS-15.
+``ucs-detect`` measures terminal compliance with the Specification_ of the
+wcwidth_ library for the latest Unicode version across WIDE, ZERO, ZWJ, VS-16,
+and VS-15 codepoint sequences.
 
 How it works
 ------------
 
-The solution in this program is the use of the `Query Cursor Position`_ terminal
-sequence, which asks, *"where is the cursor?"*. This is a hidden sequence that a
-Terminal Emulator automatically responds to.
+``ucs-detect`` uses the `Query Cursor Position`_ terminal sequence to ask
+*"where is the cursor?"* after printing test characters. By comparing the
+reported cursor position against the wcwidth_ expected width, compliance is
+measured.
 
-By use of this sequence, and the data tables of the wcwidth_ library,
-we can test for compliance of the python wcwidth library Specification_.
-
-The use of `Query Cursor Position`_  is inspired by the `resize(1)`_ program
-distributed with X11, which determines the terminal size over transports that
-are not capable of communicating by signal or forwarding by environment value,
-such as over a serial line. `resize(1)` simply moves to (999, 999) then asks,
-"where is my cursor?" and the response is understood to be the terminal size.
+This technique is inspired by `resize(1)`_, which determines terminal
+dimensions over transports like serial lines by moving to (999, 999) and
+querying cursor position.
 
 Updating Results
 ----------------
 
-Use the ``re-run.py`` script to update the results for a new version of a
-terminal that is already tracked, for example::
+Re-test an existing terminal::
 
-    $ python re-run.py data/contour.yaml
+    $ ucs-detect --rerun data/contour.yaml
 
-This will re-execute ``ucs-detect`` with the test with the same parameters as
-the previous test.  The new results will overwrite the existing. 
+This re-executes with the same parameters, overwriting the existing YAML file.
 
-Or, to submit results for a new terminal not previously tracked::
+Submit results for a new terminal::
 
-    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-codepoints=5000 --limit-words=5000 --limit-errors=1000
+    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-errors=1000
 
-Conditionally you may reduce the test size for slow terminals like those using
-libvte_ which require more than 5 hours to complete.
+For slow terminals (e.g. libvte_, which may require 5+ hours), reduce the wide
+character test size::
 
-Create a pull draft pull request to this repository with your change and a
-github commit status should be reported by readthedocs.org, and, clicking
-"Details" should show the html preview.
+    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-errors=1000 --limit-codepoints-wide-pct 2
+
+The default ``--limit-codepoints-wide-pct`` is 20. Set to ``0`` for a complete
+test of all wide characters.
+
+Create a draft pull request with your changes. A readthedocs.org build status
+will appear — click "Details" for an HTML preview.
 
 Problem Analysis
 ----------------
 
-Use the CLI argument, ``--stop-at-error=`` to interactively investigate
-discrepancies as they are detected. For example::
+Use ``--stop-at-error`` to investigate discrepancies interactively::
 
     $ ucs-detect --stop-at-error 'Hindi'
 
-This presents output when an error occurs during ``Hindi`` language testing::
+Example output::
 
     ucs-detect: testing language support: Hindi
     मानव
@@ -159,31 +212,35 @@ This presents output when an error occurs during ``Hindi`` language testing::
     assert x2 - x1 == 3
 
 UDHR Data
-=========
+---------
 
-The Universal Declaration of Human Rights (UDHR) dataset contains translations into
-500+ languages, providing a practical multilingual test corpus for evaluating terminal
-emulator support of zero-width characters (category Mn - Nonspacing Mark), combining
-characters (category Mc - Spacing Mark), and language-specific scripts. The 532 UDHR
-text files in ``ucs_detect/udhr/`` are sourced from https://github.com/eric-muller/udhr/
+Language testing uses the `Universal Declaration of Human Rights`_ (UDHR)
+dataset, translated into 500+ languages, as a test corpus for zero-width
+characters (Mn — Nonspacing Mark), combining characters (Mc — Spacing Mark),
+and language-specific scripts.
 
-Although there is no fully complete test suite of all zero-width and combining
-characters across all possible Unicode codepoints, the UDHR provides practical
-coverage of the vast majority of the world's languages. By exhaustive interactive
-testing of this dataset (testing hundreds of languages with real-world text), the
-quality of language testing results serves as a suitable indicator of a terminal's
-quality of support for combining marks across diverse scripts, complex grapheme
-clusters, and script-specific rendering requirements.
+Source data: https://github.com/eric-muller/udhr/
+
+The UDHR provides practical coverage of complex grapheme clusters across the
+world's languages, serving as an indicator of a terminal's support for combining
+marks across diverse scripts.
 
 History
-=======
+-------
 
-- 1.1.0 (2026-01-29): Test only the latest Unicode Version (17.0 at this time).
-  Added ``--set-software-name`` and ``--set-software-version`` CLI options.
-  Removed ``--unicode-version``, ``--shell``, and ``--no-emit-osc1337``.
+- 1.1.0 (2026-01-29): Test *only* the latest Unicode Version (17.0 at this time).
+  Added ``ucs-browser`` interactive terminal browser for inspecting unicode
+  character width. Replaced bundled UDHR text files with pre-computed language
+  grapheme table for faster and more reliable language testing. Added
+  prettytable_ for formatted output. Added ``--set-software-name``,
+  ``--set-software-version``, ``--test-only``, ``--detect-all-dec-modes``,
+  ``--cursor-report-delay-ms``, ``--timeout-cps``, ``--timeout-query``,
+  ``--include-uncommon-codepoints``, and ``--limit-codepoints-wide-pct`` CLI
+  options. Removed ``--unicode-version``, ``--shell``, ``--quick``, and
+  ``--no-emit-osc1337``.
 
 - 1.0.8 (2025-11-02): Added detection of DEC Private Modes, testing
-  of Variation Selector 15, Sixel graphics and pixel size, and 
+  of Variation Selector 15, Sixel graphics and pixel size, and
   automatic software version (XTVERSION and ^E answerback).
 
 - 1.0.7 (2024-01-06): Add python 3.10 compatibility for yaml file save and
@@ -204,12 +261,13 @@ History
 
 - 0.0.4 (2020-06-20): Initial releases and bugfixes
 
-.. _IPython: https://ipython.org/
-.. _python-prompt-toolkit: https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/PROJECTS.rst#projects-using-prompt_toolkit
-.. _sh: https://en.wikipedia.org/wiki/Bourne_shell
 .. _wcwidth: https://github.com/jquast/wcwidth
 .. _`Query Cursor Position`: https://blessed.readthedocs.io/en/latest/location.html#finding-the-cursor
 .. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
 .. _Specification: https://wcwidth.readthedocs.io/en/latest/specs.html
 .. _`Terminal.exe`: https://ucs-detect.readthedocs.io/sw_results/Terminalexe.html#terminalexe
-.. _`libvte`: 
+.. _`ucs-detect test results`: https://www.jeffquast.com/post/ucs-detect-test-results/
+.. _`State of Terminal Emulation 2025`: https://www.jeffquast.com/post/state-of-terminal-emulation-2025/
+.. _`Universal Declaration of Human Rights`: https://en.wikipedia.org/wiki/Universal_Declaration_of_Human_Rights
+.. _libvte: https://wiki.gnome.org/Projects/VTE
+.. _prettytable: https://github.com/jazzband/prettytable

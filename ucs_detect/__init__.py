@@ -84,7 +84,7 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", **_kwargs):
+def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", **_kwargs):
     """Program entry point."""
 
     def _should_run(*categories):
@@ -97,7 +97,8 @@ def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wi
     local_vars = locals().copy()
     session_arguments = {
         k: local_vars[k]
-        for k in ("stream", "limit_codepoints", "limit_errors", "limit_words")
+        for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
+                  "limit_category_time")
     }
     writer(f"ucs-detect: {display_args(session_arguments)})")
 
@@ -169,6 +170,7 @@ def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wi
         test_kwargs = dict(
             term=term, writer=writer, timeout=timeout_cps,
             limit_codepoints=limit_codepoints, limit_errors=limit_errors,
+            limit_category_time=limit_category_time,
             stop_at_error=error_matcher, cursor_report_delay_ms=cursor_report_delay_ms,
         )
 
@@ -190,17 +192,19 @@ def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wi
                 )
 
             if _should_run("unicode", "vs16"):
+                vs16_time = limit_category_time / 2 if limit_category_time else 0
                 emoji_vs16_results = merge_results(
                     measure.test_support(
                         table=VS16_NARROW_TO_WIDE, expected_width=2,
                         test_type="vs16", label="Variation Selector-16",
-                        **test_kwargs,
+                        **{**test_kwargs, 'limit_category_time': vs16_time},
                     ),
                     measure.test_support(
                         table=tuple((ver, tuple(seq[0] for seq in sequences))
                                     for ver, sequences in VS16_NARROW_TO_WIDE),
                         expected_width=1, suppress_output=True,
-                        test_type="vs16n", **test_kwargs,
+                        test_type="vs16n",
+                        **{**test_kwargs, 'limit_category_time': vs16_time},
                     ),
                 )
 
@@ -213,8 +217,8 @@ def run(stream, limit_codepoints, limit_errors, limit_words, limit_codepoints_wi
 
             if _should_run("lang") and not no_languages_test:
                 language_results = measure.test_language_support(
-                    LANG_GRAPHEMES, term, writer, timeout_cps, limit_words,
-                    limit_errors, error_matcher,
+                    LANG_GRAPHEMES, term, writer, timeout_cps, limit_graphemes,
+                    limit_errors, error_matcher, limit_category_time=limit_category_time,
                     cursor_report_delay_ms=cursor_report_delay_ms,
                 )
 
@@ -333,9 +337,8 @@ def _build_terminal_kv_pairs(term, results):
     if software := results.get('software_name'):
         if ver := results.get('software_version'):
             software += f" {ver}"
-        max_val_width = term.width - 30
-        if max_val_width > 10 and len(software) > max_val_width:
-            software = software[:max_val_width - 1] + '…'
+        if len(software) > 15:
+            software = software[:14] + '…'
         pairs.append(("Software", software))
 
     if (n_colors := results.get('number_of_colors')) is not None:
@@ -776,29 +779,14 @@ def _write_line(term, writer, line):
 
 
 def _paginated_write(term, writer, all_lines):
-    """Write lines with pagination when terminal is too short."""
+    """Write lines to terminal."""
+    writer("\n")
     if not term.does_styling or not term.height:
-        writer("\n")
         for line in all_lines:
             writer(line + "\n")
-        return
-
-    page_height = term.height - 2
-    written = 0
-    writer("\n")
-    for line in all_lines:
-        _write_line(term, writer, line)
-        written += 1
-        if written >= page_height:
-            with term.cbreak():
-                for countdown in (3, 2, 1):
-                    prompt = f"[c]ontinue in {countdown}.."
-                    writer(term.magenta(prompt))
-                    key = term.inkey(timeout=1)
-                    writer("\r" + " " * len(prompt) + "\r")
-                    if key:
-                        break
-            written = 0
+    else:
+        for line in all_lines:
+            _write_line(term, writer, line)
 
 
 def display_results(term, writer, ambig_label, terminal_results=None,
@@ -867,19 +855,26 @@ def parse_args():
         "--limit-codepoints",
         type=int,
         default=0,
-        help="limit the total number of codepoints of each version (0=unlimited)",
+        help="limit the total number of codepoints per category (0=unlimited)",
     )
     args.add_argument(
-        "--limit-words",
+        "--limit-graphemes",
         type=int,
         default=0,
-        help="limit the total number of 'words' tested for each language (0=unlimited)",
+        dest="limit_graphemes",
+        help="limit the total number of graphemes tested for each language (0=unlimited)",
     )
     args.add_argument(
         "--limit-errors",
         type=int,
         default=0,
         help="limit the total number of errors for each tested version or language (0=unlimited)",
+    )
+    args.add_argument(
+        "--limit-category-time",
+        type=float,
+        default=0,
+        help="time budget in seconds per test category, auto-adjusts sampling (0=unlimited)",
     )
     args.add_argument(
         "--limit-codepoints-wide-pct",
@@ -963,9 +958,56 @@ def parse_args():
         default=None,
         help="Set software version for YAML output (skips interactive prompt)"
     )
+    args.add_argument(
+        "--rerun",
+        default=None,
+        metavar="YAML_FILE",
+        help="Re-run ucs-detect using arguments from a saved YAML file"
+    )
     results = vars(args.parse_args())
+    if results["rerun"]:
+        results = _apply_rerun_yaml(results)
     if results["save_yaml"]:
         results["save_yaml"] = os.path.expanduser(results["save_yaml"])
+    return results
+
+
+def _apply_rerun_yaml(results):
+    """Merge session arguments from a saved YAML file into *results*."""
+    yaml_path = os.path.expanduser(results["rerun"])
+    with open(yaml_path, encoding='utf-8') as fin:
+        data = yaml.safe_load(fin)
+
+    session_args = data.get('session_arguments', {})
+    yaml_to_cli = {
+        'stream': 'stream',
+        'limit_codepoints': 'limit_codepoints',
+        'limit_graphemes': 'limit_graphemes',
+        'limit_words': 'limit_graphemes',
+        'limit_errors': 'limit_errors',
+        'limit_category_time': 'limit_category_time',
+        'timeout': 'timeout_cps',
+        'stop_at_error': 'stop_at_error',
+    }
+    yaml_bool_flags = {
+        'no_terminal_test': 'no_terminal_test',
+        'no_languages_test': 'no_languages_test',
+    }
+
+    for yaml_key, cli_key in yaml_to_cli.items():
+        if yaml_key in session_args and session_args[yaml_key] is not None:
+            results[cli_key] = session_args[yaml_key]
+    for yaml_key, cli_key in yaml_bool_flags.items():
+        if session_args.get(yaml_key):
+            results[cli_key] = True
+
+    if not results.get('save_yaml'):
+        results['save_yaml'] = yaml_path
+    if not results.get('set_software_name') and data.get('software_name'):
+        results['set_software_name'] = data['software_name']
+    if not results.get('set_software_version') and data.get('software_version'):
+        results['set_software_version'] = data['software_version']
+
     return results
 
 

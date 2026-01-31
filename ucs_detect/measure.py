@@ -192,10 +192,11 @@ def test_language_support(
     term,
     writer,
     timeout,
-    limit_words,
+    limit_graphemes,
     limit_errors,
     stop_at_error=None,
     cursor_report_delay_ms=0,
+    limit_category_time=0,
     **_kwargs,
 ):
     success_report = collections.defaultdict(int)
@@ -203,9 +204,18 @@ def test_language_support(
     time_report = {}
     tested_graphemes = {}
     lang_start_times = {}
+    category_start = time.monotonic()
+    category_tested = 0
+    category_budget_exceeded = False
 
     for expected_width, lang_entries in lang_graphemes:
+        if category_budget_exceeded:
+            break
         for lang, graphemes in lang_entries:
+            if (limit_category_time and category_tested >= 20
+                    and time.monotonic() - category_start >= limit_category_time):
+                category_budget_exceeded = True
+                break
             if lang not in lang_start_times:
                 lang_start_times[lang] = time.monotonic()
 
@@ -245,11 +255,23 @@ def test_language_support(
             )
             writer("\n" + status_header(term, label) + "\n")
 
+            effective_limit = limit_graphemes
+            if limit_category_time and category_tested >= 20:
+                elapsed = time.monotonic() - category_start
+                remaining = limit_category_time - elapsed
+                if remaining > 0:
+                    cps = category_tested / elapsed
+                    estimated = int(remaining * cps)
+                    if effective_limit:
+                        effective_limit = min(effective_limit, estimated)
+                    else:
+                        effective_limit = estimated
+
             grapheme_count = 0
             error_count = 0
             col = 0
             for idx, grapheme in enumerate(novel):
-                if limit_words and grapheme_count >= limit_words:
+                if effective_limit and grapheme_count >= effective_limit:
                     break
                 if limit_errors and error_count >= limit_errors:
                     break
@@ -308,9 +330,11 @@ def test_language_support(
                             stop_at_error.disable()
 
                     grapheme_count += 1
+                    category_tested += 1
                     continue
 
                 grapheme_count += 1
+                category_tested += 1
                 col += 1
 
                 if col >= num_columns:
@@ -389,6 +413,7 @@ def test_support(
     cursor_report_delay_ms=0,
     limit_pct=0,
     include_uncommon=True,
+    limit_category_time=0,
 ):
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
@@ -400,8 +425,18 @@ def test_support(
     cell_inner = expected_width + 3
     num_columns = max(1, (term.width - 1) // cell_inner)
 
+    category_start = time.monotonic()
+    category_tested = 0
+    time_limited = False
+
     with terminal.maybe_grapheme_clustering_mode(term):
         for ver, wchars in table:
+            if limit_category_time and category_tested >= 20:
+                elapsed = time.monotonic() - category_start
+                remaining = limit_category_time - elapsed
+                if remaining <= 0:
+                    break
+
             ver_start_time = time.monotonic()
             if not include_uncommon:
                 wchars = tuple(
@@ -417,6 +452,16 @@ def test_support(
             else:
                 wchars_slice = wchars
 
+            if limit_category_time and category_tested >= 20:
+                elapsed = time.monotonic() - category_start
+                remaining = limit_category_time - elapsed
+                if remaining > 0:
+                    cps = category_tested / elapsed
+                    max_items = int(remaining * cps)
+                    if max_items < len(wchars_slice):
+                        wchars_slice = wchars_slice[:max_items]
+                        time_limited = True
+
             if suppress_output:
                 writer(term.move_yx(outer_ypos, outer_xpos) + term.clear_eol)
             else:
@@ -424,6 +469,8 @@ def test_support(
                 pct_note = ""
                 if limit_pct and 0 < limit_pct < 100 and not limit_codepoints:
                     pct_note = f", {limit_pct}% sampled"
+                if time_limited:
+                    pct_note += ", time-limited"
                 header = (f"Testing {hdr_label} v={ver}"
                           f" ({len(wchars_slice)}/{n_wchars}{pct_note})")
                 writer("\n" + status_header(term, header) + "\n")
@@ -432,6 +479,10 @@ def test_support(
             end_ypos, end_xpos = 0, 0
 
             for wchar in wchars_slice:
+                category_tested += 1
+                if (limit_category_time and category_tested % 50 == 0
+                        and time.monotonic() - category_start >= limit_category_time):
+                    break
                 wchars_str = wchar_to_str(wchar)
 
                 if suppress_output:
@@ -523,6 +574,9 @@ def test_support(
                 writer(term.magenta(" ║") + "\n")
 
             time_report[ver] = time.monotonic() - ver_start_time
+            if (limit_category_time
+                    and time.monotonic() - category_start >= limit_category_time):
+                break
 
     report_versions = [
         v
