@@ -228,7 +228,7 @@ marks across diverse scripts.
 History
 -------
 
-- 1.1.0 (2026-01-29): Test *only* the latest Unicode Version (17.0 at this time).
+- 2.0.0 (2026-02-01): Test *only* the latest Unicode Version (17.0 at this time).
   Added ``ucs-browser`` interactive terminal browser for inspecting unicode
   character width. Replaced bundled UDHR text files with pre-computed language
   grapheme table for faster and more reliable language testing. Added

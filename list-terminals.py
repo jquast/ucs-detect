@@ -32,7 +32,7 @@ def list_terminals():
 
     # Print sorted alphabetically by name
     for term in sorted(terminals, key=lambda x: x['name'].lower()):
-        print(f"python re-run.py data/{term['file']} #  {term['name']} {term['version']} ({term['system']})")
+        print(f"ucs-detect --rerun data/{term['file']} #  {term['name']} {term['version']} ({term['system']})")
 
     # Print summary
     print(f"\nTotal: {len(terminals)} terminals")
