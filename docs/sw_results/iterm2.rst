@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
    ===  =================================  ===========  ====================
      #  Score Type                         Raw Score    Final Scaled Score
    ===  =================================  ===========  ====================
-     1  :ref:`WIDE <iterm2wide>`           94.55%       94.4%
-     2  :ref:`ZWJ <iterm2zwj>`             99.31%       99.3%
-     3  :ref:`LANG <iterm2lang>`           75.80%       60.2%
+     1  :ref:`WIDE <iterm2wide>`           100.00%      100.0%
+     2  :ref:`ZWJ <iterm2zwj>`             100.00%      100.0%
+     3  :ref:`LANG <iterm2lang>`           75.80%       75.8%
      4  :ref:`VS16 <iterm2vs16>`           94.37%       94.4%
      5  :ref:`VS15 <iterm2vs15>`           0.00%        0.0%
-     6  :ref:`Sixel <iterm2sixel>`         yes          100.0%
-     7  :ref:`DEC Modes <iterm2decmodes>`  34           51.5%
-     8  :ref:`TIME <iterm2time>`           4367.06s     22.7%
+     6  :ref:`Sixel <iterm2graphics>`      yes          100.0%
+     7  :ref:`DEC Modes <iterm2decmodes>`  34           100.0%
+     8  :ref:`TIME <iterm2time>`           4367.06s     9.9%
    ===  =================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,34 +44,32 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 65.68%
+- Raw Final Score: 73.09%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
   **Sixel support is NOT included in the final score** - it is tracked separately.
 
-- Final Scaled Score: 60.1%
+- Final Scaled Score: 89.4%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
 Wide character support calculation:
-- Total successful codepoints: 2725
-- Total codepoints tested: 2882
-- Best matching Unicode version: 16.0.0
-- Formula: 2725 / 2882
-- Result: 94.55%
+- Total successful codepoints: 745
+- Total codepoints tested: 745
+- Formula: 745 / 745
+- Result: 100.00%
 
 **ZWJ Score Details:**
 
 Emoji ZWJ (Zero-Width Joiner) support calculation:
-- Total successful sequences: 1435
-- Total sequences tested: 1445
-- Best matching Emoji version: 17.0
-- Formula: 1435 / 1445
-- Result: 99.31%
+- Total successful sequences: 73
+- Total sequences tested: 73
+- Formula: 73 / 73
+- Result: 100.00%
 
 **VS16 Score Details:**
 
@@ -111,12 +109,12 @@ Test execution time:
 - Elapsed time: 4367.06 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 22.7%
+- Scaled result: 9.9%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 75.80%
 
@@ -125,109 +123,14 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for iTerm2 appears to be 
-**16.0.0**, this is from a summary of the following
-results:
-
-
-.. table::
-   :class: sphinx-datatable
-
-   =========  ==========  =========  =============
-   version      n_errors    n_total  pct_success
-   =========  ==========  =========  =============
-   '9.0.0'             0       1000  100.0%
-   '10.0.0'            0        745  100.0%
-   '11.0.0'            0         72  100.0%
-   '12.0.0'            0         76  100.0%
-   '12.1.0'            0          1  100.0%
-   '13.0.0'            0        552  100.0%
-   '14.0.0'            0         54  100.0%
-   '15.0.0'            0         22  100.0%
-   '15.1.0'            0          5  100.0%
-   '16.0.0'            0        198  100.0%
-   '17.0.0'          157        157  0.0%
-   =========  ==========  =========  =============
-
-Sequence of a WIDE character from Unicode Version 17.0.0, from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =================================================  =============  ==========  =========  ======
-     #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ======
-     1  `U+00018DAB <https://codepoints.net/U+00018DAB>`_  '\\U00018dab'  Cn                  2  na
-   ===  =================================================  =============  ==========  =========  ======
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x98\xb6\xab|\\n12|\\n"
-        𘶫|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *iTerm2* measures width 1.
+Wide character support of *iTerm2* is **100.0%** (0 errors of 745 codepoints tested).
 
 .. _iterm2zwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *iTerm2* appears to be 
-**17.0**, this is from a summary of the following
-results:
-
-
-.. table::
-   :class: sphinx-datatable
-
-   =========  ==========  =========  =============
-   version      n_errors    n_total  pct_success
-   =========  ==========  =========  =============
-   '2.0'               0         22  100.0%
-   '4.0'              10        579  98.3%
-   '5.0'               0        100  100.0%
-   '11.0'              0         73  100.0%
-   '12.0'              0        112  100.0%
-   '12.1'              0        165  100.0%
-   '13.0'              0         51  100.0%
-   '13.1'              0         83  100.0%
-   '14.0'              0         20  100.0%
-   '15.0'              0          1  100.0%
-   '15.1'              0        109  100.0%
-   '17.0'              0        130  100.0%
-   =========  ==========  =========  =============
-
-Sequence of an Emoji ZWJ Sequence from Emoji Version 4.0, from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =================================================  =============  ==========  =========  =================================
-     #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  =================================
-     1  `U+26F9 <https://codepoints.net/U+26F9>`_          '\\u26f9'      So                  1  PERSON WITH BALL
-     2  `U+0001F3FD <https://codepoints.net/U+0001F3FD>`_  '\\U0001f3fd'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-4
-     3  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
-     4  `U+2642 <https://codepoints.net/U+2642>`_          '\\u2642'      So                  1  MALE SIGN
-     5  `U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
-   ===  =================================================  =============  ==========  =========  =================================
-
-Total codepoints: 5
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe2\x9b\xb9\xf0\x9f\x8f\xbd\xe2\x80\x8d\xe2\x99\x82\xef\xb8\x8f|\\n12|\\n"
-        ⛹🏽‍♂️|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *iTerm2* measures width 5.
+Compatibility of *iTerm2* with the Unicode Emoji ZWJ sequence table is **100.0%** (0 errors of 73 sequences tested).
 
 .. _iterm2vs16:
 
@@ -293,46 +196,42 @@ Total codepoints: 2
   while *iTerm2* measures width 2.
 
 
-.. _iterm2sixel:
+.. _iterm2graphics:
 
-Sixel Graphics Support
-++++++++++++++++++++++
+Graphics Protocol Support
++++++++++++++++++++++++++
 
-*iTerm2* reports to **support Sixel graphics** by automatic sequence response.
+*iTerm2* supports the following graphics protocols: Sixel_.
 
-**Sixel Support Categories:**
+**Detection Methods:**
 
-- **yes**: This terminal reports to support Sixel graphics by automatic sequence response.
-- **no**: This terminal is not known to support Sixel graphics by automatic sequence response.
-- **maybe**: This terminal does not report to support Sixel graphics in its default
-  configuration by automatic sequence response.
-
-**Detection Method:**
-
-Sixel_ support is determined by the terminal's response to the Device Attributes (DA1)
-query sequence ``CSI c`` (``\x1b[c``). The terminal responds with:
-
-``CSI ? Psc ; Ps1 ; Ps2 ; ... ; Psn c``
-
-Where ``Psc`` is the service class and ``Ps1`` through ``Psn`` are extension codes.
-Terminals that include extension code ``4`` in their response indicate support for
-the Sixel_ graphics, a complex legacy inline image rendering protocol.
+- **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query
+  ``CSI c`` (``\x1b[c``). Extension code ``4`` indicates Sixel_ support,
+  extension code ``3`` indicates ReGIS_ support.
+- **Kitty graphics**: Detected by sending a Kitty graphics query and
+  checking for an ``OK`` response.
+- **iTerm2 inline images**: Detected via the iTerm2 capabilities query
+  ``OSC 1337 ; Capabilities``.
 
 **Device Attributes Response:**
 
 - Extensions reported: 1, 2, 4, 6, 17, 18, 21, 22
 - Sixel_ indicator (``4``): present
+- ReGIS_ indicator (``3``): not present
 
 .. _Sixel: https://en.wikipedia.org/wiki/Sixel
+.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS
+.. _`iTerm2 inline images`: https://iterm2.com/documentation-images.html
+.. _`Kitty graphics protocol`: https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
 .. _iterm2lang:
 
 Language Support
 ++++++++++++++++
 
-The following 71 languages were tested with 100% success:
+The following 92 languages were tested with 100% success:
 
-Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chakma, Chickasaw, Chinantec, Chiltepec, Chinese, Mandarin (Simplified), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Sanskrit (Grantha), Secoya, Seraiki, Shipibo-Conibo, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Veps, Vietnamese, Waama, Yiddish, Eastern, Yoruba, Éwé.
+(Jinan), (Yeonbyeon), Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chakma, Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Japanese, Japanese (Osaka), Japanese (Tokyo), Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Sanskrit (Grantha), Secoya, Seraiki, Shipibo-Conibo, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yiddish, Eastern, Yoruba, Éwé.
 
 The following 26 languages are not fully supported:
 
@@ -1279,7 +1178,7 @@ Sequence of language *Urdu* from midpoint of alignment failure records:
    ===  =========================================  =========  ==========  =========  =================================
      #  Codepoint                                  Python     Category      wcwidth  Name
    ===  =========================================  =========  ==========  =========  =================================
-     1  `U+0601 <https://codepoints.net/U+0601>`_  '\\u0601'  Cf                  0  ARABIC SIGN SANAH
+     1  `U+0601 <https://codepoints.net/U+0601>`_  '\\u0601'  Cf                  1  ARABIC SIGN SANAH
      2  `U+06F1 <https://codepoints.net/U+06F1>`_  '\\u06f1'  Nd                  1  EXTENDED ARABIC-INDIC DIGIT ONE
      3  `U+06F9 <https://codepoints.net/U+06F9>`_  '\\u06f9'  Nd                  1  EXTENDED ARABIC-INDIC DIGIT NINE
      4  `U+06F4 <https://codepoints.net/U+06F4>`_  '\\u06f4'  Nd                  1  EXTENDED ARABIC-INDIC DIGIT FOUR
@@ -1312,7 +1211,7 @@ Sequence of language *Urdu (2)* from midpoint of alignment failure records:
    ===  =========================================  =========  ==========  =========  =================================
      #  Codepoint                                  Python     Category      wcwidth  Name
    ===  =========================================  =========  ==========  =========  =================================
-     1  `U+0601 <https://codepoints.net/U+0601>`_  '\\u0601'  Cf                  0  ARABIC SIGN SANAH
+     1  `U+0601 <https://codepoints.net/U+0601>`_  '\\u0601'  Cf                  1  ARABIC SIGN SANAH
      2  `U+06F1 <https://codepoints.net/U+06F1>`_  '\\u06f1'  Nd                  1  EXTENDED ARABIC-INDIC DIGIT ONE
      3  `U+06F9 <https://codepoints.net/U+06F9>`_  '\\u06f9'  Nd                  1  EXTENDED ARABIC-INDIC DIGIT NINE
      4  `U+06F4 <https://codepoints.net/U+06F4>`_  '\\u06f4'  Nd                  1  EXTENDED ARABIC-INDIC DIGIT FOUR
@@ -1522,6 +1421,22 @@ Complete list of DEC private modes tested:
 
 **Summary**: 34 changeable, 125 not changeable.
 
+.. _iterm2kittykbd:
+
+Kitty Keyboard Protocol
++++++++++++++++++++++++
+
+*iTerm2* does not support the `Kitty keyboard protocol`_.
+
+.. _`Kitty keyboard protocol`: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
+
+.. _iterm2xtgettcap:
+
+XTGETTCAP (Terminfo Capabilities)
++++++++++++++++++++++++++++++++++
+
+*iTerm2* does not support the ``XTGETTCAP`` sequence.
+
 .. _iterm2reproduce:
 
 Reproduction
@@ -1531,10 +1446,7 @@ To reproduce these results for *iTerm2*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=iterm2.yaml \
-        --limit-codepoints=1000 \
-        --limit-words=1000 \
-        --limit-errors=500
+    ucs-detect --rerun data/iterm2.yaml
 
 .. _iterm2time:
 

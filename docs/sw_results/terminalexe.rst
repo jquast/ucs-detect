@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *terminal.exe*:
    ===  ======================================  ===========  ====================
      #  Score Type                              Raw Score    Final Scaled Score
    ===  ======================================  ===========  ====================
-     1  :ref:`WIDE <terminalexewide>`           97.72%       97.7%
+     1  :ref:`WIDE <terminalexewide>`           100.00%      100.0%
      2  :ref:`ZWJ <terminalexezwj>`             100.00%      100.0%
-     3  :ref:`LANG <terminalexelang>`           69.96%       50.5%
+     3  :ref:`LANG <terminalexelang>`           69.96%       70.0%
      4  :ref:`VS16 <terminalexevs16>`           100.00%      100.0%
      5  :ref:`VS15 <terminalexevs15>`           0.00%        0.0%
-     6  :ref:`Sixel <terminalexesixel>`         yes          100.0%
-     7  :ref:`DEC Modes <terminalexedecmodes>`  26           39.4%
-     8  :ref:`TIME <terminalexetime>`           1147.06s     43.8%
+     6  :ref:`Sixel <terminalexegraphics>`      yes          100.0%
+     7  :ref:`DEC Modes <terminalexedecmodes>`  26           76.5%
+     8  :ref:`TIME <terminalexetime>`           1147.06s     19.1%
    ===  ======================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,33 +44,31 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 65.99%
+- Raw Final Score: 70.15%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
   **Sixel support is NOT included in the final score** - it is tracked separately.
 
-- Final Scaled Score: 60.6%
+- Final Scaled Score: 85.2%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
 Wide character support calculation:
-- Total successful codepoints: 6725
-- Total codepoints tested: 6882
-- Best matching Unicode version: 16.0.0
-- Formula: 6725 / 6882
-- Result: 97.72%
+- Total successful codepoints: 745
+- Total codepoints tested: 745
+- Formula: 745 / 745
+- Result: 100.00%
 
 **ZWJ Score Details:**
 
 Emoji ZWJ (Zero-Width Joiner) support calculation:
-- Total successful sequences: 1445
-- Total sequences tested: 1445
-- Best matching Emoji version: 17.0
-- Formula: 1445 / 1445
+- Total successful sequences: 73
+- Total sequences tested: 73
+- Formula: 73 / 73
 - Result: 100.00%
 
 **VS16 Score Details:**
@@ -111,12 +109,12 @@ Test execution time:
 - Elapsed time: 1147.06 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 43.8%
+- Scaled result: 19.1%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 69.96%
 
@@ -125,82 +123,14 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for terminal.exe appears to be 
-**16.0.0**, this is from a summary of the following
-results:
-
-
-.. table::
-   :class: sphinx-datatable
-
-   =========  ==========  =========  =============
-   version      n_errors    n_total  pct_success
-   =========  ==========  =========  =============
-   '9.0.0'             0       5000  100.0%
-   '10.0.0'            0        745  100.0%
-   '11.0.0'            0         72  100.0%
-   '12.0.0'            0         76  100.0%
-   '12.1.0'            0          1  100.0%
-   '13.0.0'            0        552  100.0%
-   '14.0.0'            0         54  100.0%
-   '15.0.0'            0         22  100.0%
-   '15.1.0'            0          5  100.0%
-   '16.0.0'            0        198  100.0%
-   '17.0.0'          157        157  0.0%
-   =========  ==========  =========  =============
-
-Sequence of a WIDE character from Unicode Version 17.0.0, from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =================================================  =============  ==========  =========  ======
-     #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ======
-     1  `U+00018DAB <https://codepoints.net/U+00018DAB>`_  '\\U00018dab'  Cn                  2  na
-   ===  =================================================  =============  ==========  =========  ======
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x98\xb6\xab|\\n12|\\n"
-        𘶫|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *terminal.exe* measures width 1.
+Wide character support of *terminal.exe* is **100.0%** (0 errors of 745 codepoints tested).
 
 .. _terminalexezwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *terminal.exe* appears to be 
-**17.0**, this is from a summary of the following
-results:
-
-
-.. table::
-   :class: sphinx-datatable
-
-   =========  ==========  =========  =============
-   version      n_errors    n_total  pct_success
-   =========  ==========  =========  =============
-   '2.0'               0         22  100.0%
-   '4.0'               0        579  100.0%
-   '5.0'               0        100  100.0%
-   '11.0'              0         73  100.0%
-   '12.0'              0        112  100.0%
-   '12.1'              0        165  100.0%
-   '13.0'              0         51  100.0%
-   '13.1'              0         83  100.0%
-   '14.0'              0         20  100.0%
-   '15.0'              0          1  100.0%
-   '15.1'              0        109  100.0%
-   '17.0'              0        130  100.0%
-   =========  ==========  =========  =============
+Compatibility of *terminal.exe* with the Unicode Emoji ZWJ sequence table is **100.0%** (0 errors of 73 sequences tested).
 
 .. _terminalexevs16:
 
@@ -243,46 +173,42 @@ Total codepoints: 2
   while *terminal.exe* measures width 2.
 
 
-.. _terminalexesixel:
+.. _terminalexegraphics:
 
-Sixel Graphics Support
-++++++++++++++++++++++
+Graphics Protocol Support
++++++++++++++++++++++++++
 
-*terminal.exe* reports to **support Sixel graphics** by automatic sequence response.
+*terminal.exe* supports the following graphics protocols: Sixel_.
 
-**Sixel Support Categories:**
+**Detection Methods:**
 
-- **yes**: This terminal reports to support Sixel graphics by automatic sequence response.
-- **no**: This terminal is not known to support Sixel graphics by automatic sequence response.
-- **maybe**: This terminal does not report to support Sixel graphics in its default
-  configuration by automatic sequence response.
-
-**Detection Method:**
-
-Sixel_ support is determined by the terminal's response to the Device Attributes (DA1)
-query sequence ``CSI c`` (``\x1b[c``). The terminal responds with:
-
-``CSI ? Psc ; Ps1 ; Ps2 ; ... ; Psn c``
-
-Where ``Psc`` is the service class and ``Ps1`` through ``Psn`` are extension codes.
-Terminals that include extension code ``4`` in their response indicate support for
-the Sixel_ graphics, a complex legacy inline image rendering protocol.
+- **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query
+  ``CSI c`` (``\x1b[c``). Extension code ``4`` indicates Sixel_ support,
+  extension code ``3`` indicates ReGIS_ support.
+- **Kitty graphics**: Detected by sending a Kitty graphics query and
+  checking for an ``OK`` response.
+- **iTerm2 inline images**: Detected via the iTerm2 capabilities query
+  ``OSC 1337 ; Capabilities``.
 
 **Device Attributes Response:**
 
 - Extensions reported: 4, 6, 7, 14, 21, 22, 23, 24, 28, 32, 42, 52
 - Sixel_ indicator (``4``): present
+- ReGIS_ indicator (``3``): not present
 
 .. _Sixel: https://en.wikipedia.org/wiki/Sixel
+.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS
+.. _`iTerm2 inline images`: https://iterm2.com/documentation-images.html
+.. _`Kitty graphics protocol`: https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
 .. _terminalexelang:
 
 Language Support
 ++++++++++++++++
 
-The following 59 languages were tested with 100% success:
+The following 80 languages were tested with 100% success:
 
-Aja, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Mandarin (Simplified), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Orok, Panjabi, Western, Pashto, Northern, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Urdu (2), Veps, Vietnamese, Waama, Yiddish, Eastern, Yoruba, Éwé.
+(Jinan), (Yeonbyeon), Aja, Assyrian Neo-Aramaic, Baatonum, Bamun, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Japanese, Japanese (Osaka), Japanese (Tokyo), Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Panjabi, Western, Pashto, Northern, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Urdu (2), Veps, Vietnamese, Vietnamese (Han nom), Waama, Yiddish, Eastern, Yoruba, Éwé.
 
 The following 38 languages are not fully supported:
 
@@ -1928,6 +1854,22 @@ Complete list of DEC private modes tested:
 
 **Summary**: 26 changeable, 131 not changeable.
 
+.. _terminalexekittykbd:
+
+Kitty Keyboard Protocol
++++++++++++++++++++++++
+
+*terminal.exe* does not support the `Kitty keyboard protocol`_.
+
+.. _`Kitty keyboard protocol`: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
+
+.. _terminalexextgettcap:
+
+XTGETTCAP (Terminfo Capabilities)
++++++++++++++++++++++++++++++++++
+
+*terminal.exe* does not support the ``XTGETTCAP`` sequence.
+
 .. _terminalexereproduce:
 
 Reproduction
@@ -1937,10 +1879,7 @@ To reproduce these results for *terminal.exe*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=terminalexe.yaml \
-        --limit-codepoints=5000 \
-        --limit-words=5000 \
-        --limit-errors=1000
+    ucs-detect --rerun data/terminalexe.yaml
 
 .. _terminalexetime:
 

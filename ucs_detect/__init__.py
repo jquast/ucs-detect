@@ -515,10 +515,6 @@ def _build_capabilities_kv_pairs(term, results):
         pairs.append(("Kitty Clipboard?",
                        _color_yes_no(term, results['kitty_clipboard_protocol'])))
 
-    da = results.get('da', {})
-    da_extensions = da.get('extensions', [])
-    pairs.append(("OSC 52 Clipboard?", _color_yes_no(term, 52 in da_extensions)))
-
     pointer = results.get('kitty_pointer_shapes')
     if isinstance(pointer, dict) and pointer.get('supported'):
         current = pointer.get('current', '')

@@ -4,7 +4,7 @@ cool-retro-term
 ---------------
 
 
-Tested Software version 1.2.0 on Darwin.
+Tested Software version 1.2.0 on Linux.
 The homepage URL of this terminal is https://github.com/Swordfish90/cool-retro-term.
 Full results available at ucs-detect_ repository path
 `data/coolretroterm.yaml <https://github.com/jquast/ucs-detect/blob/master/data/coolretroterm.yaml>`_.
@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *cool-retro-term*:
    ===  ========================================  ===========  ====================
      #  Score Type                                Raw Score    Final Scaled Score
    ===  ========================================  ===========  ====================
-     1  :ref:`WIDE <coolretrotermwide>`           94.77%       94.6%
+     1  :ref:`WIDE <coolretrotermwide>`           99.52%       99.5%
      2  :ref:`ZWJ <coolretrotermzwj>`             0.69%        0.7%
-     3  :ref:`LANG <coolretrotermlang>`           99.88%       100.0%
-     4  :ref:`VS16 <coolretrotermvs16>`           0.00%        0.0%
+     3  :ref:`LANG <coolretrotermlang>`           97.51%       97.5%
+     4  :ref:`VS16 <coolretrotermvs16>`           50.00%       50.0%
      5  :ref:`VS15 <coolretrotermvs15>`           0.00%        0.0%
-     6  :ref:`Sixel <coolretrotermsixel>`         no           0.0%
+     6  :ref:`Sixel <coolretrotermgraphics>`      no           0.0%
      7  :ref:`DEC Modes <coolretrotermdecmodes>`  0            0.0%
-     8  :ref:`TIME <coolretrotermtime>`           157.79s      75.0%
+     8  :ref:`TIME <coolretrotermtime>`           6.89s        54.3%
    ===  ========================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,42 +44,40 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 35.82%
+- Raw Final Score: 42.28%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
   **Sixel support is NOT included in the final score** - it is tracked separately.
 
-- Final Scaled Score: 9.9%
+- Final Scaled Score: 46.0%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
 Wide character support calculation:
-- Total successful codepoints: 6522
-- Total codepoints tested: 6882
-- Best matching Unicode version: 15.0.0
-- Formula: 6522 / 6882
-- Result: 94.77%
+- Total successful codepoints: 4339
+- Total codepoints tested: 4360
+- Formula: 4339 / 4360
+- Result: 99.52%
 
 **ZWJ Score Details:**
 
 Emoji ZWJ (Zero-Width Joiner) support calculation:
 - Total successful sequences: 10
 - Total sequences tested: 1445
-- Best matching Emoji version: None
 - Formula: 10 / 1445
 - Result: 0.69%
 
 **VS16 Score Details:**
 
 Variation Selector-16 support calculation:
-- Errors: 213 of 213 codepoints tested
-- Success rate: 0.0%
-- Formula: 0.0 / 100
-- Result: 0.00%
+- Errors: 213 of 426 codepoints tested
+- Success rate: 50.0%
+- Formula: 50.0 / 100
+- Result: 50.00%
 
 **VS15 Score Details:**
 
@@ -108,101 +106,56 @@ DEC Private Modes support calculation:
 **TIME Score Details:**
 
 Test execution time:
-- Elapsed time: 157.79 seconds
+- Elapsed time: 6.89 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 75.0%
+- Scaled result: 54.3%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
-- Result: 99.88%
+- Result: 97.51%
 
 .. _coolretrotermwide:
 
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for cool-retro-term appears to be 
-**15.0.0**, this is from a summary of the following
-results:
+Wide character support of *cool-retro-term* is **99.5%** (21 errors of 4360 codepoints tested).
 
-
-.. table::
-   :class: sphinx-datatable
-
-   =========  ==========  =========  =============
-   version      n_errors    n_total  pct_success
-   =========  ==========  =========  =============
-   '9.0.0'             0       5000  100.0%
-   '10.0.0'            0        745  100.0%
-   '11.0.0'            0         72  100.0%
-   '12.0.0'            0         76  100.0%
-   '12.1.0'            0          1  100.0%
-   '13.0.0'            0        552  100.0%
-   '14.0.0'            0         54  100.0%
-   '15.0.0'            0         22  100.0%
-   '15.1.0'            5          5  0.0%
-   '16.0.0'          198        198  0.0%
-   '17.0.0'          157        157  0.0%
-   =========  ==========  =========  =============
-
-Sequence of a WIDE character from Unicode Version 17.0.0, from midpoint of alignment failure records:
+Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  ======
+   ===  =================================================  =============  ==========  =========  ======================
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ======
-     1  `U+00018DAB <https://codepoints.net/U+00018DAB>`_  '\\U00018dab'  Cn                  2  na
-   ===  =================================================  =============  ==========  =========  ======
+   ===  =================================================  =============  ==========  =========  ======================
+     1  `U+0001D33A <https://codepoints.net/U+0001D33A>`_  '\\U0001d33a'  So                  2  TETRAGRAM FOR ETERNITY
+   ===  =================================================  =============  ==========  =========  ======================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x98\xb6\xab|\\n12|\\n"
-        𘶫|
+        $ printf "\xf0\x9d\x8c\xba|\\n12|\\n"
+        𝌺|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *cool-retro-term* measures width 0.
+  while *cool-retro-term* measures width 1.
 
 .. _coolretrotermzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *cool-retro-term* appears to be 
-**None**, this is from a summary of the following
-results:
+Compatibility of *cool-retro-term* with the Unicode Emoji ZWJ sequence table is **0.7%** (1435 errors of 1445 sequences tested).
 
-
-.. table::
-   :class: sphinx-datatable
-
-   =========  ==========  =========  =============
-   version      n_errors    n_total  pct_success
-   =========  ==========  =========  =============
-   '2.0'              21         22  4.5%
-   '4.0'             571        579  1.4%
-   '5.0'             100        100  0.0%
-   '11.0'             73         73  0.0%
-   '12.0'            112        112  0.0%
-   '12.1'            165        165  0.0%
-   '13.0'             50         51  2.0%
-   '13.1'             83         83  0.0%
-   '14.0'             20         20  0.0%
-   '15.0'              1          1  0.0%
-   '15.1'            109        109  0.0%
-   '17.0'            130        130  0.0%
-   =========  ==========  =========  =============
-
-Sequence of an Emoji ZWJ Sequence from Emoji Version 17.0, from midpoint of alignment failure records:
+Sequence of an Emoji ZWJ Sequence, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
@@ -210,26 +163,27 @@ Sequence of an Emoji ZWJ Sequence from Emoji Version 17.0, from midpoint of alig
    ===  =================================================  =============  ==========  =========  =================================
      #  Codepoint                                          Python         Category      wcwidth  Name
    ===  =================================================  =============  ==========  =========  =================================
-     1  `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
-     2  `U+0001F3FE <https://codepoints.net/U+0001F3FE>`_  '\\U0001f3fe'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-5
+     1  `U+0001F3C3 <https://codepoints.net/U+0001F3C3>`_  '\\U0001f3c3'  So                  2  RUNNER
+     2  `U+0001F3FE <https://codepoints.net/U+0001F3FE>`_  '\\U0001f3fe'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-5
      3  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
-     4  `U+0001FAEF <https://codepoints.net/U+0001FAEF>`_  '\\U0001faef'  Cn                  2  na
-     5  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
-     6  `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
-     7  `U+0001F3FF <https://codepoints.net/U+0001F3FF>`_  '\\U0001f3ff'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-6
+     4  `U+2640 <https://codepoints.net/U+2640>`_          '\\u2640'      So                  1  FEMALE SIGN
+     5  `U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
+     6  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
+     7  `U+27A1 <https://codepoints.net/U+27A1>`_          '\\u27a1'      So                  1  BLACK RIGHTWARDS ARROW
+     8  `U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
    ===  =================================================  =============  ==========  =========  =================================
 
-Total codepoints: 7
+Total codepoints: 8
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\x91\xa9\xf0\x9f\x8f\xbe\xe2\x80\x8d\xf0\x9f\xab\xaf\xe2\x80\x8d\xf0\x9f\x91\xa9\xf0\x9f\x8f\xbf|\\n12|\\n"
-        👩🏾‍🫯‍👩🏿|
+        $ printf "\xf0\x9f\x8f\x83\xf0\x9f\x8f\xbe\xe2\x80\x8d\xe2\x99\x80\xef\xb8\x8f\xe2\x80\x8d\xe2\x9e\xa1\xef\xb8\x8f|\\n12|\\n"
+        🏃🏾‍♀️‍➡️|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *cool-retro-term* measures width 8.
+  while *cool-retro-term* measures width 6.
 
 .. _coolretrotermvs16:
 
@@ -237,7 +191,7 @@ Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
 Emoji VS-16 results for *cool-retro-term* is 213 errors
-out of 213 total codepoints tested, 0.0% success.
+out of 426 total codepoints tested, 50.0% success.
 Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
 
 .. table::
@@ -295,61 +249,100 @@ Total codepoints: 2
   while *cool-retro-term* measures width 2.
 
 
-.. _coolretrotermsixel:
+.. _coolretrotermgraphics:
 
-Sixel Graphics Support
-++++++++++++++++++++++
+Graphics Protocol Support
++++++++++++++++++++++++++
 
-*cool-retro-term* is **not known to support Sixel graphics** by automatic sequence response.
+*cool-retro-term* does not report support for any graphics protocols.
 
-**Sixel Support Categories:**
+**Detection Methods:**
 
-- **yes**: This terminal reports to support Sixel graphics by automatic sequence response.
-- **no**: This terminal is not known to support Sixel graphics by automatic sequence response.
-- **maybe**: This terminal does not report to support Sixel graphics in its default
-  configuration by automatic sequence response.
-
-**Detection Method:**
-
-Sixel_ support is determined by the terminal's response to the Device Attributes (DA1)
-query sequence ``CSI c`` (``\x1b[c``). The terminal responds with:
-
-``CSI ? Psc ; Ps1 ; Ps2 ; ... ; Psn c``
-
-Where ``Psc`` is the service class and ``Ps1`` through ``Psn`` are extension codes.
-Terminals that include extension code ``4`` in their response indicate support for
-the Sixel_ graphics, a complex legacy inline image rendering protocol.
+- **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query
+  ``CSI c`` (``\x1b[c``). Extension code ``4`` indicates Sixel_ support,
+  extension code ``3`` indicates ReGIS_ support.
+- **Kitty graphics**: Detected by sending a Kitty graphics query and
+  checking for an ``OK`` response.
+- **iTerm2 inline images**: Detected via the iTerm2 capabilities query
+  ``OSC 1337 ; Capabilities``.
 
 **Device Attributes Response:**
 
 - Extensions reported: 2
 - Sixel_ indicator (``4``): not present
+- ReGIS_ indicator (``3``): not present
 
 .. _Sixel: https://en.wikipedia.org/wiki/Sixel
+.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS
+.. _`iTerm2 inline images`: https://iterm2.com/documentation-images.html
+.. _`Kitty graphics protocol`: https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
 .. _coolretrotermlang:
 
 Language Support
 ++++++++++++++++
 
-The following 92 languages were tested with 100% success:
+The following 99 languages were tested with 100% success:
 
-Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bhojpuri, Bora, Burmese, Catalan (2), Chakma, Chickasaw, Chinantec, Chiltepec, Chinese, Mandarin (Simplified), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gujarati, Gumuz, Hindi, Javanese (Javanese), Kabyle, Kannada, Khmer, Central, Khün, Korean, Lamnso', Lao, Lingala (tones), Magahi, Maithili, Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mon, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Sanskrit, Sanskrit (Grantha), Secoya, Seraiki, Shan, Shipibo-Conibo, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamang, Eastern, Tamazight, Central Atlas, Tamil, Tamil (Sri Lanka), Telugu, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Veps, Vietnamese, Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Éwé.
+(Jinan), (Yeonbyeon), Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chakma, Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Japanese, Japanese (Osaka), Japanese (Tokyo), Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Shan, Shipibo-Conibo, Sinhala, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamil, Tamil (Sri Lanka), Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Éwé.
 
-The following 5 languages are not fully supported:
+The following 19 languages are not fully supported:
 
 .. table::
    :class: sphinx-datatable
 
-   =============================================  ==========  =========  =============
-   lang                                             n_errors    n_total  pct_success
-   =============================================  ==========  =========  =============
-   :ref:`Malayalam <coolretrotermlangmalayalam>`         109       1630  93.3%
-   :ref:`Sinhala <coolretrotermlangsinhala>`             107       1655  93.5%
-   :ref:`Marathi <coolretrotermlangmarathi>`               5       1614  99.7%
-   :ref:`Nepali <coolretrotermlangnepali>`                 3       1385  99.8%
-   :ref:`Bengali <coolretrotermlangbengali>`               3       1413  99.8%
-   =============================================  ==========  =========  =============
+   ==============================================================  ==========  =========  =============
+   lang                                                              n_errors    n_total  pct_success
+   ==============================================================  ==========  =========  =============
+   :ref:`Sanskrit <coolretrotermlangsanskrit>`                            145        493  70.6%
+   :ref:`Malayalam <coolretrotermlangmalayalam>`                          246        845  70.9%
+   :ref:`Bengali <coolretrotermlangbengali>`                               96        385  75.1%
+   :ref:`Marathi <coolretrotermlangmarathi>`                               86        391  78.0%
+   :ref:`Hindi <coolretrotermlanghindi>`                                   82        390  79.0%
+   :ref:`Maithili <coolretrotermlangmaithili>`                             71        357  80.1%
+   :ref:`Nepali <coolretrotermlangnepali>`                                 69        352  80.4%
+   :ref:`Tamang, Eastern <coolretrotermlangtamangeastern>`                 11         70  84.3%
+   :ref:`Gujarati <coolretrotermlanggujarati>`                             50        343  85.4%
+   :ref:`Magahi <coolretrotermlangmagahi>`                                 43        314  86.3%
+   :ref:`Sanskrit (Grantha) <coolretrotermlangsanskritgrantha>`            39        293  86.7%
+   :ref:`Bhojpuri <coolretrotermlangbhojpuri>`                             41        313  86.9%
+   :ref:`Telugu <coolretrotermlangtelugu>`                                 42        384  89.1%
+   :ref:`Javanese (Javanese) <coolretrotermlangjavanesejavanese>`          43        530  91.9%
+   :ref:`Kannada <coolretrotermlangkannada>`                               14        287  95.1%
+   :ref:`Burmese <coolretrotermlangburmese>`                               10        268  96.3%
+   :ref:`Khmer, Central <coolretrotermlangkhmercentral>`                    8        443  98.2%
+   :ref:`Mon <coolretrotermlangmon>`                                        3        332  99.1%
+   :ref:`Khün <coolretrotermlangkhn>`                                       1        396  99.7%
+   ==============================================================  ==========  =========  =============
+
+.. _coolretrotermlangsanskrit:
+
+Sanskrit
+^^^^^^^^
+
+Sequence of language *Sanskrit* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =======================
+     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
+     2  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     3  `U+0924 <https://codepoints.net/U+0924>`_  '\\u0924'  Lo                  1  DEVANAGARI LETTER TA
+     4  `U+093F <https://codepoints.net/U+093F>`_  '\\u093f'  Mc                  0  DEVANAGARI VOWEL SIGN I
+   ===  =========================================  =========  ==========  =========  =======================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa4\xe0\xa4\xbf|\\n12|\\n"
+        क्ति|
+        12|
+
 
 .. _coolretrotermlangmalayalam:
 
@@ -364,148 +357,23 @@ Sequence of language *Malayalam* from midpoint of alignment failure records:
    ===  =========================================  =========  ==========  =========  =======================
      #  Codepoint                                  Python     Category      wcwidth  Name
    ===  =========================================  =========  ==========  =========  =======================
-     1  `U+0D38 <https://codepoints.net/U+0D38>`_  '\\u0d38'  Lo                  1  MALAYALAM LETTER SA
-     2  `U+0D30 <https://codepoints.net/U+0D30>`_  '\\u0d30'  Lo                  1  MALAYALAM LETTER RA
-     3  `U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
-     4  `U+200D <https://codepoints.net/U+200D>`_  '\\u200d'  Cf                  0  ZERO WIDTH JOINER
-     5  `U+0D35 <https://codepoints.net/U+0D35>`_  '\\u0d35'  Lo                  1  MALAYALAM LETTER VA
-     6  `U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
-     7  `U+0D35 <https://codepoints.net/U+0D35>`_  '\\u0d35'  Lo                  1  MALAYALAM LETTER VA
-     8  `U+0D24 <https://codepoints.net/U+0D24>`_  '\\u0d24'  Lo                  1  MALAYALAM LETTER TA
-     9  `U+0D4B <https://codepoints.net/U+0D4B>`_  '\\u0d4b'  Mc                  0  MALAYALAM VOWEL SIGN OO
-    10  `U+0D28 <https://codepoints.net/U+0D28>`_  '\\u0d28'  Lo                  1  MALAYALAM LETTER NA
-    11  `U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
-    12  `U+0D2E <https://codepoints.net/U+0D2E>`_  '\\u0d2e'  Lo                  1  MALAYALAM LETTER MA
-    13  `U+0D41 <https://codepoints.net/U+0D41>`_  '\\u0d41'  Mn                  0  MALAYALAM VOWEL SIGN U
-    14  `U+0D16 <https://codepoints.net/U+0D16>`_  '\\u0d16'  Lo                  1  MALAYALAM LETTER KHA
-    15  `U+0D2E <https://codepoints.net/U+0D2E>`_  '\\u0d2e'  Lo                  1  MALAYALAM LETTER MA
-    16  `U+0D3E <https://codepoints.net/U+0D3E>`_  '\\u0d3e'  Mc                  0  MALAYALAM VOWEL SIGN AA
-    17  `U+0D2F <https://codepoints.net/U+0D2F>`_  '\\u0d2f'  Lo                  1  MALAYALAM LETTER YA
+     1  `U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
+     2  `U+0D4D <https://codepoints.net/U+0D4D>`_  '\\u0d4d'  Mn                  0  MALAYALAM SIGN VIRAMA
+     3  `U+0D15 <https://codepoints.net/U+0D15>`_  '\\u0d15'  Lo                  1  MALAYALAM LETTER KA
+     4  `U+0D3E <https://codepoints.net/U+0D3E>`_  '\\u0d3e'  Mc                  0  MALAYALAM VOWEL SIGN AA
    ===  =========================================  =========  ==========  =========  =======================
 
-Total codepoints: 17
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe0\xb4\xb8\xe0\xb4\xb0\xe0\xb5\x8d\xe2\x80\x8d\xe0\xb4\xb5\xe0\xb5\x8d\xe0\xb4\xb5\xe0\xb4\xa4\xe0\xb5\x8b\xe0\xb4\xa8\xe0\xb5\x8d\xe0\xb4\xae\xe0\xb5\x81\xe0\xb4\x96\xe0\xb4\xae\xe0\xb4\xbe\xe0\xb4\xaf|\\n123456789|\\n"
-        സര്‍വ്വതോന്മുഖമായ|
-        123456789|
+        $ printf "\xe0\xb4\x95\xe0\xb5\x8d\xe0\xb4\x95\xe0\xb4\xbe|\\n12|\\n"
+        ക്കാ|
+        12|
 
-- python `wcwidth.wcswidth()`_ measures width 9,
-  while *cool-retro-term* measures width 10.
-
-.. _coolretrotermlangsinhala:
-
-Sinhala
-^^^^^^^
-
-Sequence of language *Sinhala* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  =================================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  =================================
-     1  `U+0DB4 <https://codepoints.net/U+0DB4>`_  '\\u0db4'  Lo                  1  SINHALA LETTER ALPAPRAANA PAYANNA
-     2  `U+0DCA <https://codepoints.net/U+0DCA>`_  '\\u0dca'  Mn                  0  SINHALA SIGN AL-LAKUNA
-     3  `U+200D <https://codepoints.net/U+200D>`_  '\\u200d'  Cf                  0  ZERO WIDTH JOINER
-     4  `U+0DBB <https://codepoints.net/U+0DBB>`_  '\\u0dbb'  Lo                  1  SINHALA LETTER RAYANNA
-     5  `U+0D9A <https://codepoints.net/U+0D9A>`_  '\\u0d9a'  Lo                  1  SINHALA LETTER ALPAPRAANA KAYANNA
-     6  `U+0DCF <https://codepoints.net/U+0DCF>`_  '\\u0dcf'  Mc                  0  SINHALA VOWEL SIGN AELA-PILLA
-     7  `U+0DC1 <https://codepoints.net/U+0DC1>`_  '\\u0dc1'  Lo                  1  SINHALA LETTER TAALUJA SAYANNA
-     8  `U+0DB1 <https://codepoints.net/U+0DB1>`_  '\\u0db1'  Lo                  1  SINHALA LETTER DANTAJA NAYANNA
-     9  `U+0DBA <https://codepoints.net/U+0DBA>`_  '\\u0dba'  Lo                  1  SINHALA LETTER YAYANNA
-   ===  =========================================  =========  ==========  =========  =================================
-
-Total codepoints: 9
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xb6\xb4\xe0\xb7\x8a\xe2\x80\x8d\xe0\xb6\xbb\xe0\xb6\x9a\xe0\xb7\x8f\xe0\xb7\x81\xe0\xb6\xb1\xe0\xb6\xba|\\n12345|\\n"
-        ප්‍රකාශනය|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *cool-retro-term* measures width 6.
-
-.. _coolretrotermlangmarathi:
-
-Marathi
-^^^^^^^
-
-Sequence of language *Marathi* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ========================
-     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
-     2  `U+0930 <https://codepoints.net/U+0930>`_  '\\u0930'  Lo                  1  DEVANAGARI LETTER RA
-     3  `U+0923 <https://codepoints.net/U+0923>`_  '\\u0923'  Lo                  1  DEVANAGARI LETTER NNA
-     4  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
-     5  `U+092F <https://codepoints.net/U+092F>`_  '\\u092f'  Lo                  1  DEVANAGARI LETTER YA
-     6  `U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
-     7  `U+0930 <https://codepoints.net/U+0930>`_  '\\u0930'  Lo                  1  DEVANAGARI LETTER RA
-     8  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
-     9  `U+200D <https://codepoints.net/U+200D>`_  '\\u200d'  Cf                  0  ZERO WIDTH JOINER
-    10  `U+092F <https://codepoints.net/U+092F>`_  '\\u092f'  Lo                  1  DEVANAGARI LETTER YA
-    11  `U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
-   ===  =========================================  =========  ==========  =========  ========================
-
-Total codepoints: 11
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xa4\x95\xe0\xa4\xb0\xe0\xa4\xa3\xe0\xa5\x8d\xe0\xa4\xaf\xe0\xa4\xbe\xe0\xa4\xb0\xe0\xa5\x8d\xe2\x80\x8d\xe0\xa4\xaf\xe0\xa4\xbe|\\n12345|\\n"
-        करण्यार्‍या|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *cool-retro-term* measures width 6.
-
-.. _coolretrotermlangnepali:
-
-Nepali
-^^^^^^
-
-Sequence of language *Nepali* from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =========================================  =========  ==========  =========  ========================
-     #  Codepoint                                  Python     Category      wcwidth  Name
-   ===  =========================================  =========  ==========  =========  ========================
-     1  `U+092A <https://codepoints.net/U+092A>`_  '\\u092a'  Lo                  1  DEVANAGARI LETTER PA
-     2  `U+0941 <https://codepoints.net/U+0941>`_  '\\u0941'  Mn                  0  DEVANAGARI VOWEL SIGN U
-     3  `U+0930 <https://codepoints.net/U+0930>`_  '\\u0930'  Lo                  1  DEVANAGARI LETTER RA
-     4  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
-     5  `U+200D <https://codepoints.net/U+200D>`_  '\\u200d'  Cf                  0  ZERO WIDTH JOINER
-     6  `U+092F <https://codepoints.net/U+092F>`_  '\\u092f'  Lo                  1  DEVANAGARI LETTER YA
-     7  `U+093E <https://codepoints.net/U+093E>`_  '\\u093e'  Mc                  0  DEVANAGARI VOWEL SIGN AA
-     8  `U+0907 <https://codepoints.net/U+0907>`_  '\\u0907'  Lo                  1  DEVANAGARI LETTER I
-     9  `U+090F <https://codepoints.net/U+090F>`_  '\\u090f'  Lo                  1  DEVANAGARI LETTER E
-    10  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
-    11  `U+094B <https://codepoints.net/U+094B>`_  '\\u094b'  Mc                  0  DEVANAGARI VOWEL SIGN O
-   ===  =========================================  =========  ==========  =========  ========================
-
-Total codepoints: 11
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xe0\xa4\xaa\xe0\xa5\x81\xe0\xa4\xb0\xe0\xa5\x8d\xe2\x80\x8d\xe0\xa4\xaf\xe0\xa4\xbe\xe0\xa4\x87\xe0\xa4\x8f\xe0\xa4\x95\xe0\xa5\x8b|\\n12345|\\n"
-        पुर्‍याइएको|
-        12345|
-
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *cool-retro-term* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
 
 .. _coolretrotermlangbengali:
 
@@ -520,30 +388,506 @@ Sequence of language *Bengali* from midpoint of alignment failure records:
    ===  =========================================  =========  ==========  =========  =====================
      #  Codepoint                                  Python     Category      wcwidth  Name
    ===  =========================================  =========  ==========  =========  =====================
-     1  `U+0989 <https://codepoints.net/U+0989>`_  '\\u0989'  Lo                  1  BENGALI LETTER U
-     2  `U+09A4 <https://codepoints.net/U+09A4>`_  '\\u09a4'  Lo                  1  BENGALI LETTER TA
-     3  `U+09CD <https://codepoints.net/U+09CD>`_  '\\u09cd'  Mn                  0  BENGALI SIGN VIRAMA
-     4  `U+200D <https://codepoints.net/U+200D>`_  '\\u200d'  Cf                  0  ZERO WIDTH JOINER
-     5  `U+09AA <https://codepoints.net/U+09AA>`_  '\\u09aa'  Lo                  1  BENGALI LETTER PA
-     6  `U+09C0 <https://codepoints.net/U+09C0>`_  '\\u09c0'  Mc                  0  BENGALI VOWEL SIGN II
-     7  `U+09A1 <https://codepoints.net/U+09A1>`_  '\\u09a1'  Lo                  1  BENGALI LETTER DDA
-     8  `U+09BC <https://codepoints.net/U+09BC>`_  '\\u09bc'  Mn                  0  BENGALI SIGN NUKTA
-     9  `U+09A8 <https://codepoints.net/U+09A8>`_  '\\u09a8'  Lo                  1  BENGALI LETTER NA
-    10  `U+09C7 <https://codepoints.net/U+09C7>`_  '\\u09c7'  Mc                  0  BENGALI VOWEL SIGN E
-    11  `U+09B0 <https://codepoints.net/U+09B0>`_  '\\u09b0'  Lo                  1  BENGALI LETTER RA
+     1  `U+0995 <https://codepoints.net/U+0995>`_  '\\u0995'  Lo                  1  BENGALI LETTER KA
+     2  `U+09BF <https://codepoints.net/U+09BF>`_  '\\u09bf'  Mc                  0  BENGALI VOWEL SIGN I
+     3  `U+0982 <https://codepoints.net/U+0982>`_  '\\u0982'  Mc                  0  BENGALI SIGN ANUSVARA
    ===  =========================================  =========  ==========  =========  =====================
 
-Total codepoints: 11
+Total codepoints: 3
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xe0\xa6\x89\xe0\xa6\xa4\xe0\xa7\x8d\xe2\x80\x8d\xe0\xa6\xaa\xe0\xa7\x80\xe0\xa6\xa1\xe0\xa6\xbc\xe0\xa6\xa8\xe0\xa7\x87\xe0\xa6\xb0|\\n12345|\\n"
-        উত্‍পীড়নের|
-        12345|
+        $ printf "\xe0\xa6\x95\xe0\xa6\xbf\xe0\xa6\x82|\\n12|\\n"
+        কিং|
+        12|
 
-- python `wcwidth.wcswidth()`_ measures width 5,
-  while *cool-retro-term* measures width 6.
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
+
+.. _coolretrotermlangmarathi:
+
+Marathi
+^^^^^^^
+
+Sequence of language *Marathi* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =======================
+     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
+     2  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     3  `U+0924 <https://codepoints.net/U+0924>`_  '\\u0924'  Lo                  1  DEVANAGARI LETTER TA
+     4  `U+093F <https://codepoints.net/U+093F>`_  '\\u093f'  Mc                  0  DEVANAGARI VOWEL SIGN I
+   ===  =========================================  =========  ==========  =========  =======================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa4\xe0\xa4\xbf|\\n12|\\n"
+        क्ति|
+        12|
+
+
+.. _coolretrotermlanghindi:
+
+Hindi
+^^^^^
+
+Sequence of language *Hindi* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =======================
+     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
+     2  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     3  `U+0924 <https://codepoints.net/U+0924>`_  '\\u0924'  Lo                  1  DEVANAGARI LETTER TA
+     4  `U+093F <https://codepoints.net/U+093F>`_  '\\u093f'  Mc                  0  DEVANAGARI VOWEL SIGN I
+   ===  =========================================  =========  ==========  =========  =======================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa4\xe0\xa4\xbf|\\n12|\\n"
+        क्ति|
+        12|
+
+
+.. _coolretrotermlangmaithili:
+
+Maithili
+^^^^^^^^
+
+Sequence of language *Maithili* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =======================
+     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
+     2  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     3  `U+0924 <https://codepoints.net/U+0924>`_  '\\u0924'  Lo                  1  DEVANAGARI LETTER TA
+     4  `U+093F <https://codepoints.net/U+093F>`_  '\\u093f'  Mc                  0  DEVANAGARI VOWEL SIGN I
+   ===  =========================================  =========  ==========  =========  =======================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa4\xe0\xa4\xbf|\\n12|\\n"
+        क्ति|
+        12|
+
+
+.. _coolretrotermlangnepali:
+
+Nepali
+^^^^^^
+
+Sequence of language *Nepali* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =======================
+     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
+     2  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     3  `U+0924 <https://codepoints.net/U+0924>`_  '\\u0924'  Lo                  1  DEVANAGARI LETTER TA
+     4  `U+093F <https://codepoints.net/U+093F>`_  '\\u093f'  Mc                  0  DEVANAGARI VOWEL SIGN I
+   ===  =========================================  =========  ==========  =========  =======================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa4\xe0\xa4\xbf|\\n12|\\n"
+        क्ति|
+        12|
+
+
+.. _coolretrotermlangtamangeastern:
+
+Tamang, Eastern
+^^^^^^^^^^^^^^^
+
+Sequence of language *Tamang, Eastern* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =======================
+     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
+     2  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     3  `U+0924 <https://codepoints.net/U+0924>`_  '\\u0924'  Lo                  1  DEVANAGARI LETTER TA
+     4  `U+093F <https://codepoints.net/U+093F>`_  '\\u093f'  Mc                  0  DEVANAGARI VOWEL SIGN I
+   ===  =========================================  =========  ==========  =========  =======================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa4\xe0\xa4\xbf|\\n12|\\n"
+        क्ति|
+        12|
+
+
+.. _coolretrotermlanggujarati:
+
+Gujarati
+^^^^^^^^
+
+Sequence of language *Gujarati* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ======================
+     1  `U+0A95 <https://codepoints.net/U+0A95>`_  '\\u0a95'  Lo                  1  GUJARATI LETTER KA
+     2  `U+0ACD <https://codepoints.net/U+0ACD>`_  '\\u0acd'  Mn                  0  GUJARATI SIGN VIRAMA
+     3  `U+0A95 <https://codepoints.net/U+0A95>`_  '\\u0a95'  Lo                  1  GUJARATI LETTER KA
+     4  `U+0ABE <https://codepoints.net/U+0ABE>`_  '\\u0abe'  Mc                  0  GUJARATI VOWEL SIGN AA
+   ===  =========================================  =========  ==========  =========  ======================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xaa\x95\xe0\xab\x8d\xe0\xaa\x95\xe0\xaa\xbe|\\n12|\\n"
+        ક્કા|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
+
+.. _coolretrotermlangmagahi:
+
+Magahi
+^^^^^^
+
+Sequence of language *Magahi* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =======================
+     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
+     2  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     3  `U+0924 <https://codepoints.net/U+0924>`_  '\\u0924'  Lo                  1  DEVANAGARI LETTER TA
+     4  `U+093F <https://codepoints.net/U+093F>`_  '\\u093f'  Mc                  0  DEVANAGARI VOWEL SIGN I
+   ===  =========================================  =========  ==========  =========  =======================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa4\xe0\xa4\xbf|\\n12|\\n"
+        क्ति|
+        12|
+
+
+.. _coolretrotermlangsanskritgrantha:
+
+Sanskrit (Grantha)
+^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Sanskrit (Grantha)* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =================================================  =============  ==========  =========  =====================
+     #  Codepoint                                          Python         Category      wcwidth  Name
+   ===  =================================================  =============  ==========  =========  =====================
+     1  `U+00011315 <https://codepoints.net/U+00011315>`_  '\\U00011315'  Lo                  1  GRANTHA LETTER KA
+     2  `U+0001133E <https://codepoints.net/U+0001133E>`_  '\\U0001133e'  Mc                  0  GRANTHA VOWEL SIGN AA
+     3  `U+00011302 <https://codepoints.net/U+00011302>`_  '\\U00011302'  Mc                  0  GRANTHA SIGN ANUSVARA
+   ===  =================================================  =============  ==========  =========  =====================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x91\x8c\x95\xf0\x91\x8c\xbe\xf0\x91\x8c\x82|\\n12|\\n"
+        𑌕𑌾𑌂|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
+
+.. _coolretrotermlangbhojpuri:
+
+Bhojpuri
+^^^^^^^^
+
+Sequence of language *Bhojpuri* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =======================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =======================
+     1  `U+0915 <https://codepoints.net/U+0915>`_  '\\u0915'  Lo                  1  DEVANAGARI LETTER KA
+     2  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     3  `U+0918 <https://codepoints.net/U+0918>`_  '\\u0918'  Lo                  1  DEVANAGARI LETTER GHA
+     4  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+     5  `U+0918 <https://codepoints.net/U+0918>`_  '\\u0918'  Lo                  1  DEVANAGARI LETTER GHA
+     6  `U+093F <https://codepoints.net/U+093F>`_  '\\u093f'  Mc                  0  DEVANAGARI VOWEL SIGN I
+     7  `U+094D <https://codepoints.net/U+094D>`_  '\\u094d'  Mn                  0  DEVANAGARI SIGN VIRAMA
+   ===  =========================================  =========  ==========  =========  =======================
+
+Total codepoints: 7
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\x98\xe0\xa5\x8d\xe0\xa4\x98\xe0\xa4\xbf\xe0\xa5\x8d|\\n12|\\n"
+        क्घ्घि्|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangtelugu:
+
+Telugu
+^^^^^^
+
+Sequence of language *Telugu* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ====================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ====================
+     1  `U+0C15 <https://codepoints.net/U+0C15>`_  '\\u0c15'  Lo                  1  TELUGU LETTER KA
+     2  `U+0C41 <https://codepoints.net/U+0C41>`_  '\\u0c41'  Mc                  0  TELUGU VOWEL SIGN U
+     3  `U+0C02 <https://codepoints.net/U+0C02>`_  '\\u0c02'  Mc                  0  TELUGU SIGN ANUSVARA
+   ===  =========================================  =========  ==========  =========  ====================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xb0\x95\xe0\xb1\x81\xe0\xb0\x82|\\n12|\\n"
+        కుం|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
+
+.. _coolretrotermlangjavanesejavanese:
+
+Javanese (Javanese)
+^^^^^^^^^^^^^^^^^^^
+
+Sequence of language *Javanese (Javanese)* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ==========================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ==========================
+     1  `U+A98F <https://codepoints.net/U+A98F>`_  '\\ua98f'  Lo                  1  JAVANESE LETTER KA
+     2  `U+A9C0 <https://codepoints.net/U+A9C0>`_  '\\ua9c0'  Mc                  0  JAVANESE PANGKON
+     3  `U+A9B2 <https://codepoints.net/U+A9B2>`_  '\\ua9b2'  Lo                  1  JAVANESE LETTER HA
+     4  `U+A9BA <https://codepoints.net/U+A9BA>`_  '\\ua9ba'  Mc                  0  JAVANESE VOWEL SIGN TALING
+     5  `U+A9B4 <https://codepoints.net/U+A9B4>`_  '\\ua9b4'  Mc                  0  JAVANESE VOWEL SIGN TARUNG
+   ===  =========================================  =========  ==========  =========  ==========================
+
+Total codepoints: 5
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xea\xa6\x8f\xea\xa7\x80\xea\xa6\xb2\xea\xa6\xba\xea\xa6\xb4|\\n1234|\\n"
+        ꦏ꧀ꦲꦺꦴ|
+        1234|
+
+- python `wcwidth.wcswidth()`_ measures width 4,
+  while *cool-retro-term* measures width 5.
+
+.. _coolretrotermlangkannada:
+
+Kannada
+^^^^^^^
+
+Sequence of language *Kannada* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =====================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =====================
+     1  `U+0C95 <https://codepoints.net/U+0C95>`_  '\\u0c95'  Lo                  1  KANNADA LETTER KA
+     2  `U+0CBE <https://codepoints.net/U+0CBE>`_  '\\u0cbe'  Mc                  0  KANNADA VOWEL SIGN AA
+     3  `U+0C82 <https://codepoints.net/U+0C82>`_  '\\u0c82'  Mc                  0  KANNADA SIGN ANUSVARA
+   ===  =========================================  =========  ==========  =========  =====================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe0\xb2\x95\xe0\xb2\xbe\xe0\xb2\x82|\\n12|\\n"
+        ಕಾಂ|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
+
+.. _coolretrotermlangburmese:
+
+Burmese
+^^^^^^^
+
+Sequence of language *Burmese* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ================================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ================================
+     1  `U+1000 <https://codepoints.net/U+1000>`_  '\\u1000'  Lo                  1  MYANMAR LETTER KA
+     2  `U+103B <https://codepoints.net/U+103B>`_  '\\u103b'  Mc                  0  MYANMAR CONSONANT SIGN MEDIAL YA
+     3  `U+1031 <https://codepoints.net/U+1031>`_  '\\u1031'  Mc                  0  MYANMAR VOWEL SIGN E
+   ===  =========================================  =========  ==========  =========  ================================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe1\x80\x80\xe1\x80\xbb\xe1\x80\xb1|\\n12|\\n"
+        ကျေ|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
+
+.. _coolretrotermlangkhmercentral:
+
+Khmer, Central
+^^^^^^^^^^^^^^
+
+Sequence of language *Khmer, Central* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ===================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ===================
+     1  `U+1788 <https://codepoints.net/U+1788>`_  '\\u1788'  Lo                  1  KHMER LETTER CHO
+     2  `U+17D2 <https://codepoints.net/U+17D2>`_  '\\u17d2'  Mn                  0  KHMER SIGN COENG
+     3  `U+1798 <https://codepoints.net/U+1798>`_  '\\u1798'  Lo                  1  KHMER LETTER MO
+     4  `U+17C4 <https://codepoints.net/U+17C4>`_  '\\u17c4'  Mc                  0  KHMER VOWEL SIGN OO
+     5  `U+17C7 <https://codepoints.net/U+17C7>`_  '\\u17c7'  Mc                  0  KHMER SIGN REAHMUK
+   ===  =========================================  =========  ==========  =========  ===================
+
+Total codepoints: 5
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe1\x9e\x88\xe1\x9f\x92\xe1\x9e\x98\xe1\x9f\x84\xe1\x9f\x87|\\n123|\\n"
+        ឈ្មោះ|
+        123|
+
+- python `wcwidth.wcswidth()`_ measures width 3,
+  while *cool-retro-term* measures width 4.
+
+.. _coolretrotermlangmon:
+
+Mon
+^^^
+
+Sequence of language *Mon* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ================================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ================================
+     1  `U+1007 <https://codepoints.net/U+1007>`_  '\\u1007'  Lo                  1  MYANMAR LETTER JA
+     2  `U+103C <https://codepoints.net/U+103C>`_  '\\u103c'  Mc                  0  MYANMAR CONSONANT SIGN MEDIAL RA
+     3  `U+1031 <https://codepoints.net/U+1031>`_  '\\u1031'  Mc                  0  MYANMAR VOWEL SIGN E
+   ===  =========================================  =========  ==========  =========  ================================
+
+Total codepoints: 3
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe1\x80\x87\xe1\x80\xbc\xe1\x80\xb1|\\n12|\\n"
+        ဇြေ|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
+
+.. _coolretrotermlangkhn:
+
+Khün
+^^^^
+
+Sequence of language *Khün* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =================================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =================================
+     1  `U+1A23 <https://codepoints.net/U+1A23>`_  '\\u1a23'  Lo                  1  TAI THAM LETTER LOW KA
+     2  `U+1A55 <https://codepoints.net/U+1A55>`_  '\\u1a55'  Mc                  0  TAI THAM CONSONANT SIGN MEDIAL RA
+     3  `U+1A6E <https://codepoints.net/U+1A6E>`_  '\\u1a6e'  Mc                  0  TAI THAM VOWEL SIGN E
+     4  `U+1A60 <https://codepoints.net/U+1A60>`_  '\\u1a60'  Mn                  0  TAI THAM SIGN SAKOT
+   ===  =========================================  =========  ==========  =========  =================================
+
+Total codepoints: 4
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe1\xa8\xa3\xe1\xa9\x95\xe1\xa9\xae\xe1\xa9\xa0|\\n12|\\n"
+        ᨣᩕᩮ᩠|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *cool-retro-term* measures width 3.
 
 .. _coolretrotermdecmodes:
 
@@ -551,6 +895,22 @@ DEC Private Modes Support
 +++++++++++++++++++++++++
 
 This Terminal does not appear capable of reporting about any DEC Private modes.
+
+.. _coolretrotermkittykbd:
+
+Kitty Keyboard Protocol
++++++++++++++++++++++++
+
+*cool-retro-term* does not support the `Kitty keyboard protocol`_.
+
+.. _`Kitty keyboard protocol`: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
+
+.. _coolretrotermxtgettcap:
+
+XTGETTCAP (Terminfo Capabilities)
++++++++++++++++++++++++++++++++++
+
+*cool-retro-term* does not support the ``XTGETTCAP`` sequence.
 
 .. _coolretrotermreproduce:
 
@@ -561,17 +921,14 @@ To reproduce these results for *cool-retro-term*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=coolretroterm.yaml \
-        --limit-codepoints=5000 \
-        --limit-words=5000 \
-        --limit-errors=1000
+    ucs-detect --rerun data/coolretroterm.yaml
 
 .. _coolretrotermtime:
 
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **157.79 seconds** (157s).
+The test suite completed in **6.89 seconds** (6s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

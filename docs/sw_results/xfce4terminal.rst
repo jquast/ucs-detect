@@ -22,13 +22,13 @@ Detailed breakdown of how scores are calculated for *xfce4-terminal*:
    ===  ========================================  ===========  ====================
      #  Score Type                                Raw Score    Final Scaled Score
    ===  ========================================  ===========  ====================
-     1  :ref:`WIDE <xfce4terminalwide>`           94.77%       94.6%
-     2  :ref:`ZWJ <xfce4terminalzwj>`             0.69%        0.7%
-     3  :ref:`LANG <xfce4terminallang>`           74.00%       57.2%
+     1  :ref:`WIDE <xfce4terminalwide>`           100.00%      100.0%
+     2  :ref:`ZWJ <xfce4terminalzwj>`             0.00%        0.0%
+     3  :ref:`LANG <xfce4terminallang>`           74.00%       74.0%
      4  :ref:`VS16 <xfce4terminalvs16>`           0.00%        0.0%
      5  :ref:`VS15 <xfce4terminalvs15>`           0.00%        0.0%
-     6  :ref:`Sixel <xfce4terminalsixel>`         no           0.0%
-     7  :ref:`DEC Modes <xfce4terminaldecmodes>`  28           42.4%
+     6  :ref:`Sixel <xfce4terminalgraphics>`      no           0.0%
+     7  :ref:`DEC Modes <xfce4terminaldecmodes>`  28           82.4%
      8  :ref:`TIME <xfce4terminaltime>`           18449.55s    0.0%
    ===  ========================================  ===========  ====================
 
@@ -44,34 +44,32 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 32.60%
+- Raw Final Score: 39.44%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
   **Sixel support is NOT included in the final score** - it is tracked separately.
 
-- Final Scaled Score: 4.5%
+- Final Scaled Score: 42.0%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
 Wide character support calculation:
-- Total successful codepoints: 6522
-- Total codepoints tested: 6882
-- Best matching Unicode version: 15.0.0
-- Formula: 6522 / 6882
-- Result: 94.77%
+- Total successful codepoints: 745
+- Total codepoints tested: 745
+- Formula: 745 / 745
+- Result: 100.00%
 
 **ZWJ Score Details:**
 
 Emoji ZWJ (Zero-Width Joiner) support calculation:
-- Total successful sequences: 10
-- Total sequences tested: 1445
-- Best matching Emoji version: None
-- Formula: 10 / 1445
-- Result: 0.69%
+- Total successful sequences: 0
+- Total sequences tested: 73
+- Formula: 0 / 73
+- Result: 0.00%
 
 **VS16 Score Details:**
 
@@ -116,7 +114,7 @@ Test execution time:
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 97 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 74.00%
 
@@ -125,84 +123,16 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-The best wide unicode table version for xfce4-terminal appears to be 
-**15.0.0**, this is from a summary of the following
-results:
-
-
-.. table::
-   :class: sphinx-datatable
-
-   =========  ==========  =========  =============
-   version      n_errors    n_total  pct_success
-   =========  ==========  =========  =============
-   '9.0.0'             0       5000  100.0%
-   '10.0.0'            0        745  100.0%
-   '11.0.0'            0         72  100.0%
-   '12.0.0'            0         76  100.0%
-   '12.1.0'            0          1  100.0%
-   '13.0.0'            0        552  100.0%
-   '14.0.0'            0         54  100.0%
-   '15.0.0'            0         22  100.0%
-   '15.1.0'            5          5  0.0%
-   '16.0.0'          198        198  0.0%
-   '17.0.0'          157        157  0.0%
-   =========  ==========  =========  =============
-
-Sequence of a WIDE character from Unicode Version 17.0.0, from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =================================================  =============  ==========  =========  ======
-     #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ======
-     1  `U+00018DAB <https://codepoints.net/U+00018DAB>`_  '\\U00018dab'  Cn                  2  na
-   ===  =================================================  =============  ==========  =========  ======
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x98\xb6\xab|\\n12|\\n"
-        𘶫|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width 1.
+Wide character support of *xfce4-terminal* is **100.0%** (0 errors of 745 codepoints tested).
 
 .. _xfce4terminalzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-The best Emoji ZWJ table version for *xfce4-terminal* appears to be 
-**None**, this is from a summary of the following
-results:
+Compatibility of *xfce4-terminal* with the Unicode Emoji ZWJ sequence table is **0.0%** (73 errors of 73 sequences tested).
 
-
-.. table::
-   :class: sphinx-datatable
-
-   =========  ==========  =========  =============
-   version      n_errors    n_total  pct_success
-   =========  ==========  =========  =============
-   '2.0'              21         22  4.5%
-   '4.0'             571        579  1.4%
-   '5.0'             100        100  0.0%
-   '11.0'             73         73  0.0%
-   '12.0'            112        112  0.0%
-   '12.1'            165        165  0.0%
-   '13.0'             50         51  2.0%
-   '13.1'             83         83  0.0%
-   '14.0'             20         20  0.0%
-   '15.0'              1          1  0.0%
-   '15.1'            109        109  0.0%
-   '17.0'            130        130  0.0%
-   =========  ==========  =========  =============
-
-Sequence of an Emoji ZWJ Sequence from Emoji Version 17.0, from midpoint of alignment failure records:
+Sequence of an Emoji ZWJ Sequence, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
@@ -210,26 +140,23 @@ Sequence of an Emoji ZWJ Sequence from Emoji Version 17.0, from midpoint of alig
    ===  =================================================  =============  ==========  =========  =================================
      #  Codepoint                                          Python         Category      wcwidth  Name
    ===  =================================================  =============  ==========  =========  =================================
-     1  `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
-     2  `U+0001F3FE <https://codepoints.net/U+0001F3FE>`_  '\\U0001f3fe'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-5
+     1  `U+0001F468 <https://codepoints.net/U+0001F468>`_  '\\U0001f468'  So                  2  MAN
+     2  `U+0001F3FD <https://codepoints.net/U+0001F3FD>`_  '\\U0001f3fd'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-4
      3  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
-     4  `U+0001FAEF <https://codepoints.net/U+0001FAEF>`_  '\\U0001faef'  Cn                  2  na
-     5  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
-     6  `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
-     7  `U+0001F3FF <https://codepoints.net/U+0001F3FF>`_  '\\U0001f3ff'  Sk                  0  EMOJI MODIFIER FITZPATRICK TYPE-6
+     4  `U+0001F9B0 <https://codepoints.net/U+0001F9B0>`_  '\\U0001f9b0'  So                  2  EMOJI COMPONENT RED HAIR
    ===  =================================================  =============  ==========  =========  =================================
 
-Total codepoints: 7
+Total codepoints: 4
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\x91\xa9\xf0\x9f\x8f\xbe\xe2\x80\x8d\xf0\x9f\xab\xaf\xe2\x80\x8d\xf0\x9f\x91\xa9\xf0\x9f\x8f\xbf|\\n12|\\n"
-        👩🏾‍🫯‍👩🏿|
+        $ printf "\xf0\x9f\x91\xa8\xf0\x9f\x8f\xbd\xe2\x80\x8d\xf0\x9f\xa6\xb0|\\n12|\\n"
+        👨🏽‍🦰|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *xfce4-terminal* measures width 9.
+  while *xfce4-terminal* measures width 6.
 
 .. _xfce4terminalvs16:
 
@@ -295,46 +222,42 @@ Total codepoints: 2
   while *xfce4-terminal* measures width 2.
 
 
-.. _xfce4terminalsixel:
+.. _xfce4terminalgraphics:
 
-Sixel Graphics Support
-++++++++++++++++++++++
+Graphics Protocol Support
++++++++++++++++++++++++++
 
-*xfce4-terminal* is **not known to support Sixel graphics** by automatic sequence response.
+*xfce4-terminal* does not report support for any graphics protocols.
 
-**Sixel Support Categories:**
+**Detection Methods:**
 
-- **yes**: This terminal reports to support Sixel graphics by automatic sequence response.
-- **no**: This terminal is not known to support Sixel graphics by automatic sequence response.
-- **maybe**: This terminal does not report to support Sixel graphics in its default
-  configuration by automatic sequence response.
-
-**Detection Method:**
-
-Sixel_ support is determined by the terminal's response to the Device Attributes (DA1)
-query sequence ``CSI c`` (``\x1b[c``). The terminal responds with:
-
-``CSI ? Psc ; Ps1 ; Ps2 ; ... ; Psn c``
-
-Where ``Psc`` is the service class and ``Ps1`` through ``Psn`` are extension codes.
-Terminals that include extension code ``4`` in their response indicate support for
-the Sixel_ graphics, a complex legacy inline image rendering protocol.
+- **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query
+  ``CSI c`` (``\x1b[c``). Extension code ``4`` indicates Sixel_ support,
+  extension code ``3`` indicates ReGIS_ support.
+- **Kitty graphics**: Detected by sending a Kitty graphics query and
+  checking for an ``OK`` response.
+- **iTerm2 inline images**: Detected via the iTerm2 capabilities query
+  ``OSC 1337 ; Capabilities``.
 
 **Device Attributes Response:**
 
 - Extensions reported: 1, 21, 22
 - Sixel_ indicator (``4``): not present
+- ReGIS_ indicator (``3``): not present
 
 .. _Sixel: https://en.wikipedia.org/wiki/Sixel
+.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS
+.. _`iTerm2 inline images`: https://iterm2.com/documentation-images.html
+.. _`Kitty graphics protocol`: https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
 .. _xfce4terminallang:
 
 Language Support
 ++++++++++++++++
 
-The following 72 languages were tested with 100% success:
+The following 93 languages were tested with 100% success:
 
-Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Mandarin (Simplified), Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Shipibo-Conibo, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Veps, Vietnamese, Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Éwé.
+(Jinan), (Yeonbyeon), Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Japanese, Japanese (Osaka), Japanese (Tokyo), Kabyle, Korean, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Shipibo-Conibo, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Éwé.
 
 The following 25 languages are not fully supported:
 
@@ -1501,6 +1424,22 @@ Complete list of DEC private modes tested:
 
 **Summary**: 28 changeable, 129 not changeable.
 
+.. _xfce4terminalkittykbd:
+
+Kitty Keyboard Protocol
++++++++++++++++++++++++
+
+*xfce4-terminal* does not support the `Kitty keyboard protocol`_.
+
+.. _`Kitty keyboard protocol`: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
+
+.. _xfce4terminalxtgettcap:
+
+XTGETTCAP (Terminfo Capabilities)
++++++++++++++++++++++++++++++++++
+
+*xfce4-terminal* does not support the ``XTGETTCAP`` sequence.
+
 .. _xfce4terminalreproduce:
 
 Reproduction
@@ -1510,10 +1449,7 @@ To reproduce these results for *xfce4-terminal*, install and run ucs-detect_
 with the following commands::
 
     pip install ucs-detect
-    ucs-detect --save-yaml=xfce4terminal.yaml \
-        --limit-codepoints=5000 \
-        --limit-words=5000 \
-        --limit-errors=1000
+    ucs-detect --rerun data/xfce4terminal.yaml
 
 .. _xfce4terminaltime:
 

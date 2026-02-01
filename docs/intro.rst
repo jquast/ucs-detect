@@ -228,16 +228,16 @@ marks across diverse scripts.
 History
 -------
 
-- 2.0.0 (2026-02-01): Test *only* the latest Unicode Version (17.0 at this time).
-  Added ``ucs-browser`` interactive terminal browser for inspecting unicode
-  character width. Replaced bundled UDHR text files with pre-computed language
-  grapheme table for faster and more reliable language testing. Added
-  prettytable_ for formatted output. Added ``--set-software-name``,
-  ``--set-software-version``, ``--test-only``, ``--detect-all-dec-modes``,
-  ``--cursor-report-delay-ms``, ``--timeout-cps``, ``--timeout-query``,
-  ``--include-uncommon-codepoints``, and ``--limit-codepoints-wide-pct`` CLI
-  options. Removed ``--unicode-version``, ``--shell``, ``--quick``, and
-  ``--no-emit-osc1337``.
+- 2.0.0 (2026-02-01): We now test *only* the latest Unicode Version.
+  Added ``ucs-browser`` interactive terminal browser for inspecting unicode character width.
+  Replaced bundled UDHR text files with pre-computed language grapheme table for faster and more
+  reliable language testing. Added ``--set-software-name``, ``--set-software-version``,
+  ``--test-only``, ``--detect-all-dec-modes``, ``--cursor-report-delay-ms``, ``--timeout-cps``,
+  ``--timeout-query``, ``--include-uncommon-codepoints``, and ``--limit-codepoints-wide-pct`` CLI
+  options. Removed ``--unicode-version``, ``--shell``, ``--quick``, and ``--no-emit-osc1337``. Added
+  adaptive time-budget argument ``--limit-category-time``.  Added "narrow stays narrow" VS-16 test
+  (``vs16n``) to verify base codepoints without VS-16 remain narrow. Migrated project from
+  ``setup.py`` to ``pyproject.toml``, requires Python 3.8 or newer.
 
 - 1.0.8 (2025-11-02): Added detection of DEC Private Modes, testing
   of Variation Selector 15, Sixel graphics and pixel size, and
