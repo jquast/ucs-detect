@@ -12,6 +12,11 @@ VS-15 sequences, and zero-width combining characters across 500+ languages.
 .. figure:: https://dxtz6bzwq9sxx.cloudfront.net/ucs-detect.gif
    :alt: video demonstration of running ucs-detect
 
+Further, popular special terminal capabilities that may be automatically detected
+are also reported: `Bracketed Paste`_, `Synchronized Output`_, `Mouse SGR`_,
+`Grapheme Clustering`_, `Kitty Keyboard protocol`_, `Sixel`_, `ReGIS`_,
+`Kitty`_ or `iTerm2 image protocol`_, and `XTGETTCAP`_ support.
+
 Installation & Usage
 --------------------
 
@@ -172,18 +177,14 @@ This re-executes with the same parameters, overwriting the existing YAML file.
 
 Submit results for a new terminal::
 
-    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-errors=1000
+    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-category-time=900
 
-For slow terminals (e.g. libvte_, which may require 5+ hours), reduce the wide
-character test size::
+The ``--limit-category-time`` argument is used to automatically reduce test size to attempt to
+complete each category under a reasonable time. This automatically adjusts the
+``--limit-codepoints-wide-pct`` parameter as low as 1%.
 
-    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-errors=1000 --limit-codepoints-wide-pct 2
-
-The default ``--limit-codepoints-wide-pct`` is 20. Set to ``0`` for a complete
-test of all wide characters.
-
-Create a draft pull request with your changes. A readthedocs.org build status
-will appear — click "Details" for an HTML preview.
+To preview documentation changes, create a *draft pull request*. A readthedocs.org build status will
+appear — click "Details" for an HTML preview.
 
 Problem Analysis
 ----------------
@@ -269,5 +270,15 @@ History
 .. _`ucs-detect test results`: https://www.jeffquast.com/post/ucs-detect-test-results/
 .. _`State of Terminal Emulation 2025`: https://www.jeffquast.com/post/state-of-terminal-emulation-2025/
 .. _`Universal Declaration of Human Rights`: https://en.wikipedia.org/wiki/Universal_Declaration_of_Human_Rights
+.. _`Bracketed Paste`: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h2-Bracketed-Paste-Mode
+.. _`Synchronized Output`: https://github.com/contour-terminal/vt-extensions/blob/8a555bd24d8616c595e6c934a33555b62bd4dcd1/synchronized-output.md
+.. _`Mouse SGR`: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Extended-coordinates
+.. _`Grapheme Clustering`: https://github.com/contour-terminal/terminal-unicode-core
+.. _`Kitty Keyboard protocol`: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
+.. _Sixel: https://en.wikipedia.org/wiki/Sixel
+.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS
+.. _Kitty: https://sw.kovidgoyal.net/kitty/graphics-protocol/
+.. _`iTerm2 image protocol`: https://iterm2.com/documentation-images.html
+.. _XTGETTCAP: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Operating-System-Commands
 .. _libvte: https://wiki.gnome.org/Projects/VTE
 .. _prettytable: https://github.com/jazzband/prettytable

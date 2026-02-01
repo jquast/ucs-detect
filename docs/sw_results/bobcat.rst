@@ -19,18 +19,18 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================  ===========  ====================
-     #  Score Type                         Raw Score    Final Scaled Score
-   ===  =================================  ===========  ====================
-     1  :ref:`WIDE <bobcatwide>`           99.96%       100.0%
-     2  :ref:`ZWJ <bobcatzwj>`             0.00%        0.0%
-     3  :ref:`LANG <bobcatlang>`           97.51%       97.5%
-     4  :ref:`VS16 <bobcatvs16>`           100.00%      100.0%
-     5  :ref:`VS15 <bobcatvs15>`           0.00%        0.0%
-     6  :ref:`Sixel <bobcatgraphics>`      yes          100.0%
-     7  :ref:`DEC Modes <bobcatdecmodes>`  3            8.8%
-     8  :ref:`TIME <bobcattime>`           11.00s       51.0%
-   ===  =================================  ===========  ====================
+   ===  ====================================  ===========  ====================
+     #  Score Type                            Raw Score    Final Scaled Score
+   ===  ====================================  ===========  ====================
+     1  :ref:`WIDE <bobcatwide>`              99.96%       100.0%
+     2  :ref:`ZWJ <bobcatzwj>`                0.00%        0.0%
+     3  :ref:`LANG <bobcatlang>`              97.51%       97.5%
+     4  :ref:`VS16 <bobcatvs16>`              100.00%      100.0%
+     5  :ref:`VS15 <bobcatvs15>`              0.00%        0.0%
+     6  :ref:`Capabilities <bobcatdecmodes>`  71.43%       71.4%
+     7  :ref:`Graphics <bobcatgraphics>`      50%          50.0%
+     8  :ref:`TIME <bobcattime>`              11.00s       51.0%
+   ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
 
@@ -44,14 +44,17 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 51.05%
-  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
+- Raw Final Score: 59.26%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
-  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
+  Note: TIME is normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
-  **Sixel support is NOT included in the final score** - it is tracked separately.
+  CAP (Capabilities) is the fraction of 7 notable capabilities supported.
+  GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),
+  50% for legacy only (Sixel, ReGIS), 0% for none.
+  Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 58.3%
+- Final Scaled Score: 59.3%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -87,21 +90,30 @@ Variation Selector-15 support calculation:
 - Formula: 0.0 / 100
 - Result: 0.00%
 
-**Sixel Score Details:**
+**Capabilities Score Details:**
 
-Sixel graphics support: **yes**
+Notable terminal capabilities (5 / 7):
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response support
-Sixel graphics protocol.
+- Bracketed Paste (2004): **yes**
+- Synced Output (2026): **yes**
+- Focus Events (1004): **yes**
+- Mouse SGR (1006): **yes**
+- Graphemes (2027): **yes**
+- Kitty Keyboard: **no**
+- XTGETTCAP: **no**
 
-**DEC Modes Score Details:**
+Raw score: 71.43%
 
-DEC Private Modes support calculation:
-- Changeable modes: 3
-- Total modes tested: 5
-- Raw score: 3 modes
-- Scaled: normalized against max changeable modes across all terminals
+**Graphics Score Details:**
+
+Graphics protocol support (50%):
+
+- Sixel: **yes**
+- ReGIS: **no**
+- iTerm2: **no**
+- Kitty: **no**
+
+Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none
 
 **TIME Score Details:**
 

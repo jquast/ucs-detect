@@ -19,18 +19,18 @@ Detailed breakdown of how scores are calculated for *terminal.exe*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ======================================  ===========  ====================
-     #  Score Type                              Raw Score    Final Scaled Score
-   ===  ======================================  ===========  ====================
-     1  :ref:`WIDE <terminalexewide>`           100.00%      100.0%
-     2  :ref:`ZWJ <terminalexezwj>`             100.00%      100.0%
-     3  :ref:`LANG <terminalexelang>`           69.96%       70.0%
-     4  :ref:`VS16 <terminalexevs16>`           100.00%      100.0%
-     5  :ref:`VS15 <terminalexevs15>`           0.00%        0.0%
-     6  :ref:`Sixel <terminalexegraphics>`      yes          100.0%
-     7  :ref:`DEC Modes <terminalexedecmodes>`  26           76.5%
-     8  :ref:`TIME <terminalexetime>`           1147.06s     19.1%
-   ===  ======================================  ===========  ====================
+   ===  =========================================  ===========  ====================
+     #  Score Type                                 Raw Score    Final Scaled Score
+   ===  =========================================  ===========  ====================
+     1  :ref:`WIDE <terminalexewide>`              100.00%      100.0%
+     2  :ref:`ZWJ <terminalexezwj>`                100.00%      100.0%
+     3  :ref:`LANG <terminalexelang>`              69.96%       70.0%
+     4  :ref:`VS16 <terminalexevs16>`              100.00%      100.0%
+     5  :ref:`VS15 <terminalexevs15>`              0.00%        0.0%
+     6  :ref:`Capabilities <terminalexedecmodes>`  57.14%       57.1%
+     7  :ref:`Graphics <terminalexegraphics>`      50%          50.0%
+     8  :ref:`TIME <terminalexetime>`              1147.06s     19.1%
+   ===  =========================================  ===========  ====================
 
 **Score Comparison Plot:**
 
@@ -44,14 +44,17 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 70.15%
-  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
+- Raw Final Score: 64.89%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
-  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
+  Note: TIME is normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
-  **Sixel support is NOT included in the final score** - it is tracked separately.
+  CAP (Capabilities) is the fraction of 7 notable capabilities supported.
+  GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),
+  50% for legacy only (Sixel, ReGIS), 0% for none.
+  Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 85.2%
+- Final Scaled Score: 65.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -87,21 +90,30 @@ Variation Selector-15 support calculation:
 - Formula: 0.0 / 100
 - Result: 0.00%
 
-**Sixel Score Details:**
+**Capabilities Score Details:**
 
-Sixel graphics support: **yes**
+Notable terminal capabilities (4 / 7):
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response support
-Sixel graphics protocol.
+- Bracketed Paste (2004): **yes**
+- Synced Output (2026): **no**
+- Focus Events (1004): **yes**
+- Mouse SGR (1006): **yes**
+- Graphemes (2027): **yes**
+- Kitty Keyboard: **no**
+- XTGETTCAP: **no**
 
-**DEC Modes Score Details:**
+Raw score: 57.14%
 
-DEC Private Modes support calculation:
-- Changeable modes: 26
-- Total modes tested: 157
-- Raw score: 26 modes
-- Scaled: normalized against max changeable modes across all terminals
+**Graphics Score Details:**
+
+Graphics protocol support (50%):
+
+- Sixel: **yes**
+- ReGIS: **no**
+- iTerm2: **no**
+- Kitty: **no**
+
+Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none
 
 **TIME Score Details:**
 

@@ -190,7 +190,7 @@ def create_score_plots(sw_name, entry, score_table):
         List of all score entries for comparison
     """
     # Collect all scores for comparison
-    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'VS15', 'Sixel', 'DEC', 'TIME']
+    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'VS15', 'CAP', 'GFX', 'TIME']
     terminal_scores_scaled = {}
     all_scores_scaled = {}
 
@@ -201,8 +201,8 @@ def create_score_plots(sw_name, entry, score_table):
         'LANG': 'score_language',
         'VS16': 'score_emoji_vs16',
         'VS15': 'score_emoji_vs15',
-        'Sixel': 'score_sixel',
-        'DEC': 'score_dec_modes',
+        'CAP': 'score_capabilities',
+        'GFX': 'score_graphics',
         'TIME': 'score_elapsed',
     }
 
@@ -221,6 +221,14 @@ def create_score_plots(sw_name, entry, score_table):
                               plot_path_scaled, use_scaled=True)
 
     return plot_filename_scaled
+
+
+def _percentile_to_color(pct):
+    """Interpolate HSV shortest path from red (0%) to green (100%)."""
+    # hue 0.0 = red, hue 0.333 = green, interpolate by percentile
+    h = (pct / 100.0) * (1.0 / 3.0)
+    r, g, b = colorsys.hsv_to_rgb(h, 0.7, 0.9)
+    return '#{:02x}{:02x}{:02x}'.format(int(r * 255), int(g * 255), int(b * 255))
 
 
 def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
@@ -262,8 +270,7 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
     fig, ax = plt.subplots(figsize=(8, 4))
 
     x_pos = np.arange(len(metrics))
-    colors = ['#FF6B6B' if p < 33 else '#4ECDC4' if p < 66 else '#95E1D3'
-              for p in percentiles]
+    colors = [_percentile_to_color(p) for p in percentiles]
 
     bars = ax.bar(x_pos, values, color=colors, alpha=0.7, edgecolor='black', linewidth=1.5)
 
@@ -275,6 +282,12 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
             mean_val = np.mean(valid)
             ax.hlines(mean_val, i - 0.4, i + 0.4, colors='red',
                      linestyles='dashed', linewidth=2, label='Mean' if i == 0 else '')
+
+    # Add value labels above all bars, drawn on top of mean lines
+    for i, val in enumerate(values):
+        y_pos = max(val, 2)
+        ax.text(i, y_pos + 1, f'{val:.0f}%', ha='center', va='bottom',
+                fontsize=9, fontweight='bold', color='black')
 
     ylabel = 'Final Scaled Score' if use_scaled else 'RAW Score'
     ax.set_ylabel(ylabel, fontsize=12)
@@ -418,16 +431,16 @@ def make_score_table():
             if _vs16_base and "9.0.0" in _vs16_base:
                 score_emoji_vs16 = _vs16_base["9.0.0"]["pct_success"] / 100
             else:
-                score_emoji_vs16 = float('NaN')
+                score_emoji_vs16 = 0.0
 
             # 'EMOJI VS-15',
             # Support both new (emoji_vs15_results) and old (emoji_vs15_type_a_results) formats
             _vs15_base = data["test_results"].get("emoji_vs15_results",
                                                    data["test_results"].get("emoji_vs15_type_a_results"))
-            if _vs15_base:
+            if _vs15_base and "9.0.0" in _vs15_base:
                 score_emoji_vs15 = _vs15_base["9.0.0"]["pct_success"] / 100
             else:
-                score_emoji_vs15 = float('NaN')
+                score_emoji_vs15 = 0.0
 
             # Language Support,
             score_language = score_lang(data)
@@ -442,6 +455,12 @@ def make_score_table():
             # Sixel support - binary score based on DA1 device attributes response
             _sixel_support = data.get("terminal_results", {}).get("sixel", False)
             _score_sixel = 1.0 if _sixel_support else 0.0
+
+            # Capabilities score - fraction of notable capabilities supported
+            _score_capabilities = score_capabilities(data)
+
+            # Graphics protocol score - 1.0 modern, 0.5 legacy, 0.0 none
+            _score_graphics = score_graphics(data)
 
             score_table.append(
                 dict(
@@ -458,6 +477,8 @@ def make_score_table():
                     score_zwj=_score_zwj,
                     score_sixel=_score_sixel,
                     sixel_support=_sixel_support,
+                    score_capabilities=_score_capabilities,
+                    score_graphics=_score_graphics,
                     data=data,
                     fname=os.path.basename(yaml_path),
                 )
@@ -466,26 +487,28 @@ def make_score_table():
         print(f"Error in yaml_path={yaml_path}", file=sys.stderr)
         raise
 
-    # Normalize DEC modes and elapsed time scores to 0-1 range
-    # Get valid dec_modes scores
-    valid_dec_modes = [e["score_dec_modes"] for e in score_table if not math.isnan(e["score_dec_modes"])]
-    max_dec_modes = max(valid_dec_modes) if valid_dec_modes else 1.0
-    min_dec_modes = min(valid_dec_modes) if valid_dec_modes else 0.0
-
+    # Normalize elapsed time scores to 0-1 range
     # Get valid elapsed scores
     valid_elapsed = [e["score_elapsed"] for e in score_table if not math.isnan(e["score_elapsed"])]
     max_elapsed = max(valid_elapsed) if valid_elapsed else 1.0
     min_elapsed = min(valid_elapsed) if valid_elapsed else 0.0
 
+    # Normalize DEC modes for display (not used in final score)
+    valid_dec_modes = [e["score_dec_modes"] for e in score_table
+                       if not math.isnan(e["score_dec_modes"])]
+    max_dec_modes = max(valid_dec_modes) if valid_dec_modes else 1.0
+    min_dec_modes = min(valid_dec_modes) if valid_dec_modes else 0.0
+
     # Normalize and calculate final scores
     for entry in score_table:
-        # Normalize DEC modes to 0-1
+        # Normalize DEC modes to 0-1 (for display only)
         if not math.isnan(entry["score_dec_modes"]):
             if max_dec_modes == min_dec_modes:
                 entry["score_dec_modes_norm"] = 1.0
             else:
                 entry["score_dec_modes_norm"] = (
-                    (entry["score_dec_modes"] - min_dec_modes) / (max_dec_modes - min_dec_modes)
+                    (entry["score_dec_modes"] - min_dec_modes)
+                    / (max_dec_modes - min_dec_modes)
                 )
         else:
             entry["score_dec_modes_norm"] = float('NaN')
@@ -499,13 +522,14 @@ def make_score_table():
                 log_elapsed = math.log10(entry["score_elapsed"])
                 log_min = math.log10(min_elapsed)
                 log_max = math.log10(max_elapsed)
-                entry["score_elapsed_norm"] = 1.0 - ((log_elapsed - log_min) / (log_max - log_min))
+                entry["score_elapsed_norm"] = 1.0 - (
+                    (log_elapsed - log_min) / (log_max - log_min))
         else:
             entry["score_elapsed_norm"] = float('NaN')
 
-        # Calculate final score using normalized values with weighted average
+        # Calculate final score using weighted average
         # Time is weighted at 0.5 (half as powerful as other metrics)
-        # Sixel is NOT included in final score - it's tracked separately
+        # Graphics (GFX) scores: 1.0 modern (iTerm2/Kitty), 0.5 legacy (Sixel/ReGIS), 0.0 none
         TIME_WEIGHT = 0.5
         scores_with_weights = [
             (entry["score_language"], 1.0),
@@ -513,7 +537,8 @@ def make_score_table():
             (entry["score_emoji_vs15"], 1.0),
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
-            (entry["score_dec_modes_norm"], 1.0),
+            (entry["score_capabilities"], 1.0),
+            (entry["score_graphics"], 1.0),
             (entry["score_elapsed_norm"], TIME_WEIGHT)
         ]
         valid_scores_with_weights = [(s, w) for s, w in scores_with_weights if not math.isnan(s)]
@@ -799,8 +824,9 @@ def scale_scores(score_table, entry, key):
     if math.isnan(my_score):
         return float('NaN')
 
-    # VS16, VS15, and Sixel are not scaled - return raw score (binary 0/1)
-    if key in ('score_emoji_vs16', 'score_emoji_vs15', 'score_sixel'):
+    # VS16, VS15, Sixel, and Graphics are not scaled - return raw score
+    if key in ('score_emoji_vs16', 'score_emoji_vs15', 'score_sixel',
+               'score_graphics'):
         return my_score
 
     valid_scores = [_entry[key] for _entry in score_table if not math.isnan(_entry[key])]
@@ -890,6 +916,67 @@ def score_dec_modes(data):
     )
 
     return changeable_modes
+
+
+def score_capabilities(data):
+    """
+    Calculate score as fraction of notable terminal capabilities supported.
+
+    Checks 7 capabilities: Bracketed Paste (mode 2004), Synced Output (mode 2026),
+    Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
+    Kitty Keyboard, and XTGETTCAP.
+
+    :rtype: float
+    :returns: fraction 0.0-1.0 of capabilities supported
+    """
+    tr = data.get("terminal_results") or {}
+    if not tr:
+        return float('NaN')
+
+    modes = tr.get("modes") or {}
+    count = 0
+    total = 7
+
+    for mode_num in (2004, 2026, 1004, 1006, 2027):
+        mode_key = str(mode_num) if str(mode_num) in modes else mode_num
+        if mode_key in modes and modes[mode_key].get("supported", False):
+            count += 1
+
+    if tr.get("kitty_keyboard") is not None:
+        count += 1
+
+    xtgettcap = tr.get("xtgettcap", {})
+    if xtgettcap.get("supported", False) and bool(xtgettcap.get("capabilities")):
+        count += 1
+
+    return count / total
+
+
+def score_graphics(data):
+    """
+    Calculate graphics protocol support score.
+
+    :rtype: float
+    :returns: 1.0 for modern (iTerm2/Kitty), 0.5 for legacy only (Sixel/ReGIS), 0.0 for none
+    """
+    tr = data.get("terminal_results") or {}
+    if not tr:
+        return 0.0
+
+    has_any = False
+    if tr.get("sixel", False):
+        has_any = True
+    da_ext = tr.get("device_attributes", {}).get("extensions", [])
+    if 3 in da_ext:
+        has_any = True
+
+    iterm2 = tr.get("iterm2_features", {})
+    if iterm2.get("supported", False):
+        return 1.0
+    if tr.get("kitty_graphics", False):
+        return 1.0
+
+    return 0.5 if has_any else 0.0
 
 
 def score_elapsed_time(data):
@@ -1065,15 +1152,15 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         },
         {
             "#": 6,
-            "Score Type": make_outbound_hyperlink("Sixel", sw_name + "_graphics"),
-            "Raw Score": "yes" if entry.get("sixel_support", False) else "no",
-            "Final Scaled Score": format_score_pct(entry["score_sixel_scaled"]),
+            "Score Type": make_outbound_hyperlink("Capabilities", sw_name + "_dec_modes"),
+            "Raw Score": format_raw_score(entry["score_capabilities"]),
+            "Final Scaled Score": format_score_pct(entry["score_capabilities_scaled"]),
         },
         {
             "#": 7,
-            "Score Type": make_outbound_hyperlink("DEC Modes", sw_name + "_dec_modes"),
-            "Raw Score": f"{int(entry['score_dec_modes'])}" if not math.isnan(entry['score_dec_modes']) else "N/A",
-            "Final Scaled Score": format_score_pct(entry["score_dec_modes_scaled"]),
+            "Score Type": make_outbound_hyperlink("Graphics", sw_name + "_graphics"),
+            "Raw Score": f"{entry['score_graphics']*100:.0f}%",
+            "Final Scaled Score": format_score_pct(entry["score_graphics_scaled"]),
         },
         {
             "#": 8,
@@ -1101,11 +1188,14 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print(f"**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print(f"  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)")
+    print(f"  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)")
     print(f"  the categorized 'average' absolute support level of this terminal")
-    print(f"  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.")
+    print(f"  Note: TIME is normalized to 0-1 range before averaging.")
     print(f"  TIME is weighted at 0.5 (half as powerful as other metrics).")
-    print(f"  **Sixel support is NOT included in the final score** - it is tracked separately.")
+    print(f"  CAP (Capabilities) is the fraction of 7 notable capabilities supported.")
+    print(f"  GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),")
+    print(f"  50% for legacy only (Sixel, ReGIS), 0% for none.")
+    print(f"  Sixel/ReGIS support contributes to the GFX score at 50%.")
     print()
     print(f"- Final Scaled Score: {format_score_pct(entry['score_final_scaled'])}")
     print(f"  (normalized across all terminals tested).")
@@ -1121,6 +1211,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         n_total = result["n_total"]
         n_success = n_total - result["n_errors"]
         print(f"Wide character support calculation:")
+        print()
         print(f"- Total successful codepoints: {n_success}")
         print(f"- Total codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
@@ -1137,6 +1228,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         n_total = result["n_total"]
         n_success = n_total - result["n_errors"]
         print(f"Emoji ZWJ (Zero-Width Joiner) support calculation:")
+        print()
         print(f"- Total successful sequences: {n_success}")
         print(f"- Total sequences tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
@@ -1154,6 +1246,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         pct_success = vs16_results["pct_success"]
 
         print(f"Variation Selector-16 support calculation:")
+        print()
         print(f"- Errors: {n_errors} of {n_total} codepoints tested")
         print(f"- Success rate: {pct_success:.1f}%")
         print(f"- Formula: {pct_success:.1f} / 100")
@@ -1174,6 +1267,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             pct_success = vs15_results["pct_success"]
 
             print(f"Variation Selector-15 support calculation:")
+            print()
             print(f"- Errors: {n_errors} of {n_total} codepoints tested")
             print(f"- Success rate: {pct_success:.1f}%")
             print(f"- Formula: {pct_success:.1f} / 100")
@@ -1184,30 +1278,55 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"VS15 results not available.")
     print()
 
-    print(f"**Sixel Score Details:**")
+    print(f"**Capabilities Score Details:**")
     print()
-    sixel_status = "yes" if entry.get("sixel_support", False) else "no"
-    print(f"Sixel graphics support: **{sixel_status}**")
-    print()
-    print(f"Sixel support is determined by the terminal's response to the Device Attributes")
-    print(f"(DA1) query. Terminals that include '4' in their DA1 extensions response support")
-    print(f"Sixel graphics protocol.")
-    print()
-
-    print(f"**DEC Modes Score Details:**")
-    print()
-    if not math.isnan(entry["score_dec_modes"]):
-        modes = entry["data"]["terminal_results"]["modes"]
-        total_modes = len(modes)
-        changeable_modes = sum(1 for mode_data in modes.values() if mode_data.get("changeable", False))
-
-        print(f"DEC Private Modes support calculation:")
-        print(f"- Changeable modes: {changeable_modes}")
-        print(f"- Total modes tested: {total_modes}")
-        print(f"- Raw score: {int(entry['score_dec_modes'])} modes")
-        print(f"- Scaled: normalized against max changeable modes across all terminals")
+    if not math.isnan(entry["score_capabilities"]):
+        tr = entry["data"].get("terminal_results") or {}
+        modes = tr.get("modes") or {}
+        cap_checks = [
+            ("Bracketed Paste (2004)", _get_dec_mode_supported(modes, 2004)),
+            ("Synced Output (2026)", _get_dec_mode_supported(modes, 2026)),
+            ("Focus Events (1004)", _get_dec_mode_supported(modes, 1004)),
+            ("Mouse SGR (1006)", _get_dec_mode_supported(modes, 1006)),
+            ("Graphemes (2027)", _get_dec_mode_supported(modes, 2027)),
+            ("Kitty Keyboard", tr.get("kitty_keyboard") is not None),
+            ("XTGETTCAP", (tr.get("xtgettcap", {}).get("supported", False)
+                           and bool(tr.get("xtgettcap", {}).get("capabilities")))),
+        ]
+        cap_count = sum(1 for _, v in cap_checks if v)
+        print(f"Notable terminal capabilities ({cap_count} / {len(cap_checks)}):")
+        print()
+        for name, supported in cap_checks:
+            status = "yes" if supported else "no"
+            print(f"- {name}: **{status}**")
+        print()
+        print(f"Raw score: {entry['score_capabilities']*100:.2f}%")
     else:
-        print(f"DEC Modes results not available.")
+        print(f"Capabilities results not available.")
+    print()
+
+    print(f"**Graphics Score Details:**")
+    print()
+    tr = entry["data"].get("terminal_results") or {}
+    gfx_score = entry["score_graphics"]
+    gfx_protocols = []
+    if tr.get("sixel", False):
+        gfx_protocols.append(("Sixel", True))
+    else:
+        gfx_protocols.append(("Sixel", False))
+    da_ext = tr.get("device_attributes", {}).get("extensions", [])
+    gfx_protocols.append(("ReGIS", 3 in da_ext))
+    iterm2 = tr.get("iterm2_features", {})
+    gfx_protocols.append(("iTerm2", iterm2.get("supported", False)))
+    gfx_protocols.append(("Kitty", tr.get("kitty_graphics", False)))
+    supported = [name for name, v in gfx_protocols if v]
+    print(f"Graphics protocol support ({int(gfx_score * 100)}%):")
+    print()
+    for name, detected in gfx_protocols:
+        status = "yes" if detected else "no"
+        print(f"- {name}: **{status}**")
+    print()
+    print(f"Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none")
     print()
 
     print(f"**TIME Score Details:**")
@@ -1216,6 +1335,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         elapsed = entry["elapsed_seconds"]
 
         print(f"Test execution time:")
+        print()
         print(f"- Elapsed time: {elapsed:.2f} seconds")
         print(f"- Note: This is a raw measurement; lower is better")
         print(f"- Scaled score uses inverse log10 scaling across all terminals")
@@ -1232,6 +1352,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         geo_mean = entry["score_language"]
 
         print(f"Geometric mean calculation:")
+        print()
         print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} languages")
         print(f"- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_")
         print(f"- Result: {geo_mean*100:.2f}%")
@@ -1373,7 +1494,7 @@ def show_graphics_results(sw_name, entry):
     print()
     print("- **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query")
     print("  ``CSI c`` (``\\x1b[c``). Extension code ``4`` indicates Sixel_ support,")
-    print("  extension code ``3`` indicates ReGIS_ support.")
+    print("  ``3`` ReGIS_.")
     print("- **Kitty graphics**: Detected by sending a Kitty graphics query and")
     print("  checking for an ``OK`` response.")
     print("- **iTerm2 inline images**: Detected via the iTerm2 capabilities query")
@@ -1618,7 +1739,7 @@ def show_xtgettcap_results(sw_name, entry):
         tabulated_caps.append({
             "#": idx,
             "Capability": f"``{key}``",
-            "Value": f"``{display_value}``",
+            "Value": f"``{display_value}``" if display_value else "*(empty)*",
         })
 
     table_str = tabulate.tabulate(tabulated_caps, headers="keys", tablefmt="rst")

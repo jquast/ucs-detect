@@ -19,18 +19,18 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================  ===========  ====================
-     #  Score Type                         Raw Score    Final Scaled Score
-   ===  =================================  ===========  ====================
-     1  :ref:`WIDE <iterm2wide>`           100.00%      100.0%
-     2  :ref:`ZWJ <iterm2zwj>`             100.00%      100.0%
-     3  :ref:`LANG <iterm2lang>`           75.80%       75.8%
-     4  :ref:`VS16 <iterm2vs16>`           94.37%       94.4%
-     5  :ref:`VS15 <iterm2vs15>`           0.00%        0.0%
-     6  :ref:`Sixel <iterm2graphics>`      yes          100.0%
-     7  :ref:`DEC Modes <iterm2decmodes>`  34           100.0%
-     8  :ref:`TIME <iterm2time>`           4367.06s     9.9%
-   ===  =================================  ===========  ====================
+   ===  ====================================  ===========  ====================
+     #  Score Type                            Raw Score    Final Scaled Score
+   ===  ====================================  ===========  ====================
+     1  :ref:`WIDE <iterm2wide>`              100.00%      100.0%
+     2  :ref:`ZWJ <iterm2zwj>`                100.00%      100.0%
+     3  :ref:`LANG <iterm2lang>`              75.80%       75.8%
+     4  :ref:`VS16 <iterm2vs16>`              94.37%       94.4%
+     5  :ref:`VS15 <iterm2vs15>`              0.00%        0.0%
+     6  :ref:`Capabilities <iterm2decmodes>`  71.43%       71.4%
+     7  :ref:`Graphics <iterm2graphics>`      50%          50.0%
+     8  :ref:`TIME <iterm2time>`              4367.06s     9.9%
+   ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
 
@@ -44,14 +44,17 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 73.09%
-  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
+- Raw Final Score: 66.21%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
-  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
+  Note: TIME is normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
-  **Sixel support is NOT included in the final score** - it is tracked separately.
+  CAP (Capabilities) is the fraction of 7 notable capabilities supported.
+  GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),
+  50% for legacy only (Sixel, ReGIS), 0% for none.
+  Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 89.4%
+- Final Scaled Score: 67.3%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -87,21 +90,30 @@ Variation Selector-15 support calculation:
 - Formula: 0.0 / 100
 - Result: 0.00%
 
-**Sixel Score Details:**
+**Capabilities Score Details:**
 
-Sixel graphics support: **yes**
+Notable terminal capabilities (5 / 7):
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response support
-Sixel graphics protocol.
+- Bracketed Paste (2004): **yes**
+- Synced Output (2026): **yes**
+- Focus Events (1004): **yes**
+- Mouse SGR (1006): **yes**
+- Graphemes (2027): **yes**
+- Kitty Keyboard: **no**
+- XTGETTCAP: **no**
 
-**DEC Modes Score Details:**
+Raw score: 71.43%
 
-DEC Private Modes support calculation:
-- Changeable modes: 34
-- Total modes tested: 159
-- Raw score: 34 modes
-- Scaled: normalized against max changeable modes across all terminals
+**Graphics Score Details:**
+
+Graphics protocol support (50%):
+
+- Sixel: **yes**
+- ReGIS: **no**
+- iTerm2: **no**
+- Kitty: **no**
+
+Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none
 
 **TIME Score Details:**
 

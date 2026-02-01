@@ -19,18 +19,18 @@ Detailed breakdown of how scores are calculated for *ghostty*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ==================================  ===========  ====================
-     #  Score Type                          Raw Score    Final Scaled Score
-   ===  ==================================  ===========  ====================
-     1  :ref:`WIDE <ghosttywide>`           99.52%       99.5%
-     2  :ref:`ZWJ <ghosttyzwj>`             100.00%      100.0%
-     3  :ref:`LANG <ghosttylang>`           89.83%       89.8%
-     4  :ref:`VS16 <ghosttyvs16>`           97.18%       97.2%
-     5  :ref:`VS15 <ghosttyvs15>`           100.00%      100.0%
-     6  :ref:`Sixel <ghosttygraphics>`      no           0.0%
-     7  :ref:`DEC Modes <ghosttydecmodes>`  5            14.7%
-     8  :ref:`TIME <ghosttytime>`           23.31s       45.9%
-   ===  ==================================  ===========  ====================
+   ===  =====================================  ===========  ====================
+     #  Score Type                             Raw Score    Final Scaled Score
+   ===  =====================================  ===========  ====================
+     1  :ref:`WIDE <ghosttywide>`              99.52%       99.5%
+     2  :ref:`ZWJ <ghosttyzwj>`                100.00%      100.0%
+     3  :ref:`LANG <ghosttylang>`              89.83%       89.8%
+     4  :ref:`VS16 <ghosttyvs16>`              97.18%       97.2%
+     5  :ref:`VS15 <ghosttyvs15>`              100.00%      100.0%
+     6  :ref:`Capabilities <ghosttydecmodes>`  100.00%      100.0%
+     7  :ref:`Graphics <ghosttygraphics>`      100%         100.0%
+     8  :ref:`TIME <ghosttytime>`              23.31s       45.9%
+   ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
 
@@ -44,12 +44,15 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 80.64%
-  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
+- Raw Final Score: 94.60%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
-  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
+  Note: TIME is normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
-  **Sixel support is NOT included in the final score** - it is tracked separately.
+  CAP (Capabilities) is the fraction of 7 notable capabilities supported.
+  GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),
+  50% for legacy only (Sixel, ReGIS), 0% for none.
+  Sixel/ReGIS support contributes to the GFX score at 50%.
 
 - Final Scaled Score: 100.0%
   (normalized across all terminals tested).
@@ -87,21 +90,30 @@ Variation Selector-15 support calculation:
 - Formula: 100.0 / 100
 - Result: 100.00%
 
-**Sixel Score Details:**
+**Capabilities Score Details:**
 
-Sixel graphics support: **no**
+Notable terminal capabilities (7 / 7):
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response support
-Sixel graphics protocol.
+- Bracketed Paste (2004): **yes**
+- Synced Output (2026): **yes**
+- Focus Events (1004): **yes**
+- Mouse SGR (1006): **yes**
+- Graphemes (2027): **yes**
+- Kitty Keyboard: **yes**
+- XTGETTCAP: **yes**
 
-**DEC Modes Score Details:**
+Raw score: 100.00%
 
-DEC Private Modes support calculation:
-- Changeable modes: 5
-- Total modes tested: 5
-- Raw score: 5 modes
-- Scaled: normalized against max changeable modes across all terminals
+**Graphics Score Details:**
+
+Graphics protocol support (100%):
+
+- Sixel: **no**
+- ReGIS: **no**
+- iTerm2: **no**
+- Kitty: **yes**
+
+Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none
 
 **TIME Score Details:**
 

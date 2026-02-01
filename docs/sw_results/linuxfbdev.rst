@@ -19,18 +19,18 @@ Detailed breakdown of how scores are calculated for *linux fbdev*:
 .. table::
    :class: sphinx-datatable
 
-   ===  =====================================  ===========  ====================
-     #  Score Type                             Raw Score    Final Scaled Score
-   ===  =====================================  ===========  ====================
-     1  :ref:`WIDE <linuxfbdevwide>`           0.00%        0.0%
-     2  :ref:`ZWJ <linuxfbdevzwj>`             0.00%        0.0%
-     3  :ref:`LANG <linuxfbdevlang>`           0.00%        0.0%
-     4  :ref:`VS16 <linuxfbdevvs16>`           N/A          N/A
-     5  :ref:`VS15 <linuxfbdevvs15>`           N/A          N/A
-     6  :ref:`Sixel <linuxfbdevgraphics>`      no           0.0%
-     7  :ref:`DEC Modes <linuxfbdevdecmodes>`  0            0.0%
-     8  :ref:`TIME <linuxfbdevtime>`           0.01s        100.0%
-   ===  =====================================  ===========  ====================
+   ===  ========================================  ===========  ====================
+     #  Score Type                                Raw Score    Final Scaled Score
+   ===  ========================================  ===========  ====================
+     1  :ref:`WIDE <linuxfbdevwide>`              0.00%        0.0%
+     2  :ref:`ZWJ <linuxfbdevzwj>`                0.00%        0.0%
+     3  :ref:`LANG <linuxfbdevlang>`              0.00%        0.0%
+     4  :ref:`VS16 <linuxfbdevvs16>`              N/A          N/A
+     5  :ref:`VS15 <linuxfbdevvs15>`              N/A          N/A
+     6  :ref:`Capabilities <linuxfbdevdecmodes>`  0.00%        0.0%
+     7  :ref:`Graphics <linuxfbdevgraphics>`      0%           0.0%
+     8  :ref:`TIME <linuxfbdevtime>`              0.01s        100.0%
+   ===  ========================================  ===========  ====================
 
 **Score Comparison Plot:**
 
@@ -44,14 +44,17 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 11.11%
-  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
+- Raw Final Score: 9.09%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
-  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
+  Note: TIME is normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
-  **Sixel support is NOT included in the final score** - it is tracked separately.
+  CAP (Capabilities) is the fraction of 7 notable capabilities supported.
+  GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),
+  50% for legacy only (Sixel, ReGIS), 0% for none.
+  Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 2.1%
+- Final Scaled Score: 1.4%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -71,21 +74,30 @@ VS16 results not available.
 
 VS15 results not available.
 
-**Sixel Score Details:**
+**Capabilities Score Details:**
 
-Sixel graphics support: **no**
+Notable terminal capabilities (0 / 7):
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response support
-Sixel graphics protocol.
+- Bracketed Paste (2004): **no**
+- Synced Output (2026): **no**
+- Focus Events (1004): **no**
+- Mouse SGR (1006): **no**
+- Graphemes (2027): **no**
+- Kitty Keyboard: **no**
+- XTGETTCAP: **no**
 
-**DEC Modes Score Details:**
+Raw score: 0.00%
 
-DEC Private Modes support calculation:
-- Changeable modes: 0
-- Total modes tested: 0
-- Raw score: 0 modes
-- Scaled: normalized against max changeable modes across all terminals
+**Graphics Score Details:**
+
+Graphics protocol support (0%):
+
+- Sixel: **no**
+- ReGIS: **no**
+- iTerm2: **no**
+- Kitty: **no**
+
+Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none
 
 **TIME Score Details:**
 

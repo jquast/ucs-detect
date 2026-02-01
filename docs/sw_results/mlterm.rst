@@ -19,18 +19,18 @@ Detailed breakdown of how scores are calculated for *mlterm*:
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================  ===========  ====================
-     #  Score Type                         Raw Score    Final Scaled Score
-   ===  =================================  ===========  ====================
-     1  :ref:`WIDE <mltermwide>`           99.49%       99.5%
-     2  :ref:`ZWJ <mltermzwj>`             0.00%        0.0%
-     3  :ref:`LANG <mltermlang>`           89.69%       89.7%
-     4  :ref:`VS16 <mltermvs16>`           50.00%       50.0%
-     5  :ref:`VS15 <mltermvs15>`           0.00%        0.0%
-     6  :ref:`Sixel <mltermgraphics>`      yes          100.0%
-     7  :ref:`DEC Modes <mltermdecmodes>`  3            8.8%
-     8  :ref:`TIME <mltermtime>`           8.37s        52.9%
-   ===  =================================  ===========  ====================
+   ===  ====================================  ===========  ====================
+     #  Score Type                            Raw Score    Final Scaled Score
+   ===  ====================================  ===========  ====================
+     1  :ref:`WIDE <mltermwide>`              99.49%       99.5%
+     2  :ref:`ZWJ <mltermzwj>`                0.00%        0.0%
+     3  :ref:`LANG <mltermlang>`              89.69%       89.7%
+     4  :ref:`VS16 <mltermvs16>`              50.00%       50.0%
+     5  :ref:`VS15 <mltermvs15>`              0.00%        0.0%
+     6  :ref:`Capabilities <mltermdecmodes>`  57.14%       57.1%
+     7  :ref:`Graphics <mltermgraphics>`      50%          50.0%
+     8  :ref:`TIME <mltermtime>`              8.37s        52.9%
+   ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
 
@@ -44,14 +44,17 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 42.23%
-  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
+- Raw Final Score: 49.71%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
-  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
+  Note: TIME is normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
-  **Sixel support is NOT included in the final score** - it is tracked separately.
+  CAP (Capabilities) is the fraction of 7 notable capabilities supported.
+  GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),
+  50% for legacy only (Sixel, ReGIS), 0% for none.
+  Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 45.9%
+- Final Scaled Score: 48.2%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -87,21 +90,30 @@ Variation Selector-15 support calculation:
 - Formula: 0.0 / 100
 - Result: 0.00%
 
-**Sixel Score Details:**
+**Capabilities Score Details:**
 
-Sixel graphics support: **yes**
+Notable terminal capabilities (4 / 7):
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response support
-Sixel graphics protocol.
+- Bracketed Paste (2004): **yes**
+- Synced Output (2026): **no**
+- Focus Events (1004): **yes**
+- Mouse SGR (1006): **yes**
+- Graphemes (2027): **no**
+- Kitty Keyboard: **no**
+- XTGETTCAP: **yes**
 
-**DEC Modes Score Details:**
+Raw score: 57.14%
 
-DEC Private Modes support calculation:
-- Changeable modes: 3
-- Total modes tested: 5
-- Raw score: 3 modes
-- Scaled: normalized against max changeable modes across all terminals
+**Graphics Score Details:**
+
+Graphics protocol support (50%):
+
+- Sixel: **yes**
+- ReGIS: **yes**
+- iTerm2: **no**
+- Kitty: **no**
+
+Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none
 
 **TIME Score Details:**
 

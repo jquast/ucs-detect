@@ -19,18 +19,18 @@ Detailed breakdown of how scores are calculated for *Rio*:
 .. table::
    :class: sphinx-datatable
 
-   ===  ==============================  ===========  ====================
-     #  Score Type                      Raw Score    Final Scaled Score
-   ===  ==============================  ===========  ====================
-     1  :ref:`WIDE <riowide>`           99.92%       99.9%
-     2  :ref:`ZWJ <riozwj>`             0.69%        0.7%
-     3  :ref:`LANG <riolang>`           97.49%       97.5%
-     4  :ref:`VS16 <riovs16>`           50.00%       50.0%
-     5  :ref:`VS15 <riovs15>`           0.00%        0.0%
-     6  :ref:`Sixel <riographics>`      yes          100.0%
-     7  :ref:`DEC Modes <riodecmodes>`  4            11.8%
-     8  :ref:`TIME <riotime>`           24.10s       45.7%
-   ===  ==============================  ===========  ====================
+   ===  =================================  ===========  ====================
+     #  Score Type                         Raw Score    Final Scaled Score
+   ===  =================================  ===========  ====================
+     1  :ref:`WIDE <riowide>`              99.92%       99.9%
+     2  :ref:`ZWJ <riozwj>`                0.69%        0.7%
+     3  :ref:`LANG <riolang>`              97.49%       97.5%
+     4  :ref:`VS16 <riovs16>`              50.00%       50.0%
+     5  :ref:`VS15 <riovs15>`              0.00%        0.0%
+     6  :ref:`Capabilities <riodecmodes>`  85.71%       85.7%
+     7  :ref:`Graphics <riographics>`      50%          50.0%
+     8  :ref:`TIME <riotime>`              24.10s       45.7%
+   ===  =================================  ===========  ====================
 
 **Score Comparison Plot:**
 
@@ -44,14 +44,17 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 43.49%
-  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + DEC Modes + 0.5*TIME)
+- Raw Final Score: 54.22%
+  (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
-  Note: DEC Modes and TIME are normalized to 0-1 range before averaging.
+  Note: TIME is normalized to 0-1 range before averaging.
   TIME is weighted at 0.5 (half as powerful as other metrics).
-  **Sixel support is NOT included in the final score** - it is tracked separately.
+  CAP (Capabilities) is the fraction of 7 notable capabilities supported.
+  GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),
+  50% for legacy only (Sixel, ReGIS), 0% for none.
+  Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 47.7%
+- Final Scaled Score: 53.5%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -87,21 +90,30 @@ Variation Selector-15 support calculation:
 - Formula: 0.0 / 100
 - Result: 0.00%
 
-**Sixel Score Details:**
+**Capabilities Score Details:**
 
-Sixel graphics support: **yes**
+Notable terminal capabilities (6 / 7):
 
-Sixel support is determined by the terminal's response to the Device Attributes
-(DA1) query. Terminals that include '4' in their DA1 extensions response support
-Sixel graphics protocol.
+- Bracketed Paste (2004): **yes**
+- Synced Output (2026): **yes**
+- Focus Events (1004): **yes**
+- Mouse SGR (1006): **yes**
+- Graphemes (2027): **no**
+- Kitty Keyboard: **yes**
+- XTGETTCAP: **yes**
 
-**DEC Modes Score Details:**
+Raw score: 85.71%
 
-DEC Private Modes support calculation:
-- Changeable modes: 4
-- Total modes tested: 5
-- Raw score: 4 modes
-- Scaled: normalized against max changeable modes across all terminals
+**Graphics Score Details:**
+
+Graphics protocol support (50%):
+
+- Sixel: **yes**
+- ReGIS: **no**
+- iTerm2: **no**
+- Kitty: **no**
+
+Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none
 
 **TIME Score Details:**
 
@@ -1015,12 +1027,12 @@ XTGETTCAP (Terminfo Capabilities)
      2  ``RGB``       ``8/8/8``
      3  ``TN``        ``rio``
      4  ``acsc``      ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
-     5  ``bce``       ````
-     6  ``ccc``       ````
+     5  ``bce``       *(empty)*
+     6  ``ccc``       *(empty)*
      7  ``colors``    ``256``
      8  ``is2``       ``\E[!p\E[?3;4l\E[4l\E>``
      9  ``kmous``     ``\E[M``
-    10  ``npc``       ````
+    10  ``npc``       *(empty)*
     11  ``pairs``     ``32767``
     12  ``rmcup``     ``\E[?1049l\E[23;0;0t``
     13  ``rs1``       ``\Ec\E]104\007``
@@ -1033,7 +1045,7 @@ XTGETTCAP (Terminfo Capabilities)
     20  ``u7``        ``\E[6n``
     21  ``u8``        ``\E[?%[;0123456789]c``
     22  ``u9``        ``\E[c``
-    23  ``xenl``      ````
+    23  ``xenl``      *(empty)*
    ===  ============  ================================================================
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
