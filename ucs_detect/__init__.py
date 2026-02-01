@@ -84,7 +84,7 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", **_kwargs):
+def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", **_kwargs):
     """Program entry point."""
 
     def _should_run(*categories):
@@ -98,27 +98,43 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_codepoint
     session_arguments = {
         k: local_vars[k]
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
-                  "limit_category_time")
+                  "limit_graphemes_pct", "limit_category_time")
     }
     writer(f"ucs-detect: {display_args(session_arguments)})")
 
-    if measure.get_location_with_retry(term, timeout_cps) == (-1, -1):
-        raise RuntimeError(f"Not a terminal or Timeout exceeded ({timeout_cps:.1f}s)!")
+    cps_tracker = measure.CPSTracker()
+
+    with cps_tracker.timing() as done_ok:
+        if measure.get_location_with_retry(term, timeout_cps) == (-1, -1):
+            raise RuntimeError(
+                f"Not a terminal or Timeout exceeded"
+                f" ({timeout_cps:.1f}s)!")
+        done_ok()
 
     writer("\nucs-detect: Interactive terminal detected!")
 
-    unicode_width = measure.measure_width(term, writer, '\u231A', timeout_cps)
+    with cps_tracker.timing(2) as done_ok:
+        unicode_width = measure.measure_width(
+            term, writer, '\u231A', timeout_cps)
+        if unicode_width is not None:
+            done_ok()
     has_unicode = (unicode_width == 2)
     if not has_unicode:
         writer("\nucs-detect: " + term.bold_red(
-            "This terminal does not appear to support Unicode wide characters."
+            "This terminal does not appear to support"
+            " Unicode wide characters."
         ))
-        writer(f"\nucs-detect: measured width of U+231A WATCH: {unicode_width}")
+        writer(f"\nucs-detect: measured width of"
+               f" U+231A WATCH: {unicode_width}")
 
     ambig_label = None
     ambiguous_width = -1
     if has_unicode:
-        ambiguous_width = term.detect_ambiguous_width(timeout=timeout_cps, fallback=-1)
+        with cps_tracker.timing() as done_ok:
+            ambiguous_width = term.detect_ambiguous_width(
+                timeout=timeout_cps, fallback=-1)
+            if ambiguous_width != -1:
+                done_ok()
         if ambiguous_width == -1:
             ambig_label = "unknown"
         elif ambiguous_width == 2:
@@ -134,14 +150,15 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_codepoint
                 all_modes=detect_all_dec_modes,
                 cursor_report_delay_ms=cursor_report_delay_ms,
                 timeout=timeout_query,
+                cps_tracker=cps_tracker,
             )
 
     if save_yaml:
         print()
         if set_software_name:
             terminal_software = set_software_name
-        elif terminal_results.get("software_name"):
-            default_software = terminal_results["software_name"]
+        elif terminal_results.get("software_name", "").strip():
+            default_software = terminal_results["software_name"].strip()
             terminal_software = input(f'Enter "Terminal Software" (press return for "{default_software}"): ')
             if not terminal_software.strip():
                 terminal_software = default_software
@@ -150,8 +167,8 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_codepoint
 
         if set_software_version:
             terminal_version = set_software_version
-        elif terminal_results.get("software_version"):
-            default_software_version = terminal_results["software_version"]
+        elif terminal_results.get("software_version", "").strip():
+            default_software_version = terminal_results["software_version"].strip()
             terminal_version = input(f'Enter "Software Version" (press return for "{default_software_version}"): ')
             if not terminal_version.strip():
                 terminal_version = default_software_version
@@ -171,7 +188,9 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_codepoint
             term=term, writer=writer, timeout=timeout_cps,
             limit_codepoints=limit_codepoints, limit_errors=limit_errors,
             limit_category_time=limit_category_time,
-            stop_at_error=error_matcher, cursor_report_delay_ms=cursor_report_delay_ms,
+            stop_at_error=error_matcher,
+            cursor_report_delay_ms=cursor_report_delay_ms,
+            cps_tracker=cps_tracker,
         )
 
         with term.cbreak():
@@ -192,37 +211,53 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_codepoint
                 )
 
             if _should_run("unicode", "vs16"):
-                vs16_time = limit_category_time / 2 if limit_category_time else 0
+                vs16_time = (limit_category_time / 2
+                             if limit_category_time else 0)
                 emoji_vs16_results = merge_results(
                     measure.test_support(
                         table=VS16_NARROW_TO_WIDE, expected_width=2,
-                        test_type="vs16", label="Variation Selector-16",
-                        **{**test_kwargs, 'limit_category_time': vs16_time},
+                        test_type="vs16",
+                        label="Variation Selector-16",
+                        **{**test_kwargs,
+                           'limit_category_time': vs16_time},
                     ),
                     measure.test_support(
-                        table=tuple((ver, tuple(seq[0] for seq in sequences))
-                                    for ver, sequences in VS16_NARROW_TO_WIDE),
+                        table=tuple(
+                            (ver, tuple(seq[0] for seq in sequences))
+                            for ver, sequences in VS16_NARROW_TO_WIDE),
                         expected_width=1, suppress_output=True,
                         test_type="vs16n",
-                        **{**test_kwargs, 'limit_category_time': vs16_time},
+                        **{**test_kwargs,
+                           'limit_category_time': vs16_time},
                     ),
                 )
 
             if _should_run("unicode", "vs15"):
                 emoji_vs15_results = measure.test_support(
                     table=VS15_WIDE_TO_NARROW, expected_width=1,
-                    test_type="vs15", label="Variation Selector-15",
+                    test_type="vs15",
+                    label="Variation Selector-15",
                     **test_kwargs,
                 )
 
             if _should_run("lang") and not no_languages_test:
                 language_results = measure.test_language_support(
-                    LANG_GRAPHEMES, term, writer, timeout_cps, limit_graphemes,
-                    limit_errors, error_matcher, limit_category_time=limit_category_time,
+                    LANG_GRAPHEMES, term, writer, timeout_cps,
+                    limit_graphemes, limit_errors, error_matcher,
+                    limit_category_time=limit_category_time,
+                    limit_graphemes_pct=limit_graphemes_pct,
+                    cps_tracker=cps_tracker,
                     cursor_report_delay_ms=cursor_report_delay_ms,
                 )
 
     elapsed = time.monotonic() - start_time
+
+    # prefer user-entered software name/version over automatic detection
+    if save_yaml:
+        if terminal_software:
+            terminal_results['software_name'] = terminal_software
+        if terminal_version:
+            terminal_results['software_version'] = terminal_version
 
     display_results(
         term, writer, ambig_label,
@@ -457,7 +492,6 @@ def _build_capabilities_kv_pairs(term, results):
         notable_modes = [
             (2004, "Bracketed Paste?"),
             (2026, "Synchronized Output?"),
-            (2027, "Grapheme Clustering?"),
             (1004, "Focus Events?"),
             (1006, "Mouse SGR?"),
         ]
@@ -468,7 +502,7 @@ def _build_capabilities_kv_pairs(term, results):
                 pairs.append((mode_label,
                                _color_yes_no(term, m.get('supported'))))
             else:
-                pairs.append((mode_label, _color_yes_no(term, False)))
+                pairs.append((mode_label, term.yellow("N/A")))
         n_notable = len(notable_modes)
         if len(modes) > n_notable:
             n_supported = sum(1 for m in modes.values() if m.get('supported'))
@@ -560,6 +594,8 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
                 n_errors = d.get("n_errors", 0)
                 n_pass = n_total - n_errors
                 stats = f" - {n_pass:n} / {n_total:n}"
+                if sp := d.get("sampled_pct"):
+                    stats += f" ({sp}% sampled)"
                 pairs.append((name, pct + stats))
 
     langs = result_sets.get("language_results")
@@ -567,12 +603,24 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
         n_langs = len(langs)
         n_pass = sum(1 for l in langs if langs[l]["pct_success"] == 100.0)
         lang_pct = n_pass / n_langs * 100 if n_langs else 0
+        lang_note = f"  ({n_pass} of {n_langs} passed)"
+        # show sampled_pct if any language was sampled
+        first_lang = next(iter(langs.values()), {})
+        if sp := first_lang.get("sampled_pct"):
+            lang_note += f" ({sp}% sampled)"
         pairs.append(("Languages",
-                      color_pct(term, lang_pct)
-                      + f"  ({n_pass} of {n_langs} passed)"))
+                      color_pct(term, lang_pct) + lang_note))
 
     if ambig_label is not None:
         pairs.insert(0, ("Ambiguous Width", ambig_label))
+
+    modes = result_sets.get("modes", {})
+    mode_2027 = modes.get(2027, modes.get("2027"))
+    if mode_2027 is not None:
+        gc_value = _color_yes_no(term, mode_2027.get('supported'))
+        pairs.insert(1, ("Mode 2027 (graphemes)", gc_value))
+    elif modes:
+        pairs.insert(1, ("Mode 2027 (graphemes)", term.yellow("N/A")))
 
     elapsed = result_sets.get("elapsed")
     if elapsed is not None:
@@ -592,7 +640,10 @@ def _make_kv_table(term, title, pairs, has_unicode=True):
     table.header = False
     table.max_table_width = max(40, term.width - 1)
     for key, value in pairs:
-        table.add_row([key, value])
+        if key is None:
+            table.add_row(["", value])
+        else:
+            table.add_row([key, value])
     return table
 
 
@@ -695,20 +746,11 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
     return output
 
 
-def make_language_table(term, results, has_unicode=True):
-    """Build a table for language test results."""
-    success_langs = [
-        lang for lang in results if results[lang]["pct_success"] == 100.0
-    ]
-    failed_langs = [
-        lang for lang in results if results[lang]["pct_success"] < 100.0
-    ]
+def _make_one_language_table(term, title, failed_langs, results, has_unicode):
+    """Build a single language table from a list of failed language names."""
     table = _make_table(term)
     _set_double_border(table, has_unicode)
-    n_langs = len(success_langs) + len(failed_langs)
-    table.title = term.magenta(
-        f"Language Support ({len(success_langs)} of {n_langs} passed)"
-    )
+    table.title = term.magenta(title)
     table.field_names = [
         term.magenta("Language"),
         term.magenta("Total"),
@@ -719,8 +761,7 @@ def make_language_table(term, results, has_unicode=True):
     table.align["Total"] = "r"
     table.align["Failures"] = "r"
     table.align["Success"] = "r"
-    table.max_table_width = max(40, term.width - 1)
-    for lang in sorted(failed_langs):
+    for lang in failed_langs:
         data = results[lang]
         table.add_row([
             lang,
@@ -729,6 +770,46 @@ def make_language_table(term, results, has_unicode=True):
             color_pct(term, data["pct_success"]),
         ])
     return table
+
+
+def make_language_tables(term, results, has_unicode=True):
+    """Build language table string(s), splitting into columns when >12 failures."""
+    import math
+    success_langs = [
+        lang for lang in results if results[lang]["pct_success"] == 100.0
+    ]
+    failed_langs = sorted(
+        lang for lang in results if results[lang]["pct_success"] < 100.0
+    )
+    n_langs = len(success_langs) + len(failed_langs)
+    title = f"Language Support ({len(success_langs)} of {n_langs} passed)"
+    n_failed = len(failed_langs)
+    max_w = max(40, term.width - 1)
+
+    if n_failed <= 12:
+        tbl = _make_one_language_table(
+            term, title, failed_langs, results, has_unicode)
+        tbl.max_table_width = max_w
+        return [str(tbl)]
+
+    # build one table to measure its width, then determine column count
+    probe = _make_one_language_table(
+        term, title, failed_langs, results, has_unicode)
+    probe.max_table_width = max_w
+    probe_width = len(str(probe).split("\n")[0])
+    n_cols = max(1, (term.width - 1) // (probe_width + 1))
+    rows_per_col = math.ceil(n_failed / n_cols)
+    table_strings = []
+    for i in range(n_cols):
+        chunk = failed_langs[i * rows_per_col:(i + 1) * rows_per_col]
+        if not chunk:
+            break
+        col_title = title if i == 0 else f"({i + 1})"
+        tbl = _make_one_language_table(
+            term, col_title, chunk, results, has_unicode)
+        tbl.max_table_width = max_w
+        table_strings.append(str(tbl))
+    return table_strings
 
 
 
@@ -797,6 +878,7 @@ def display_results(term, writer, ambig_label, terminal_results=None,
     results = terminal_results or {}
     terminal_pairs = _build_terminal_kv_pairs(term, results)
     caps_pairs = _build_capabilities_kv_pairs(term, results)
+    result_sets["modes"] = results.get("modes", {})
     test_pairs = _build_test_kv_pairs(term, ambig_label, **result_sets)
 
     all_lines = []
@@ -806,16 +888,24 @@ def display_results(term, writer, ambig_label, terminal_results=None,
         all_lines.extend(make_xtgettcap_lines(term, xtgettcap, has_unicode))
         all_lines.append("")
 
-    table_strings = []
+    all_pairs = []
     if terminal_pairs:
-        table_strings.append(
-            str(_make_kv_table(term, "Terminal", terminal_pairs, has_unicode)))
+        all_pairs.extend(terminal_pairs)
     if caps_pairs:
-        table_strings.append(
-            str(_make_kv_table(term, "Capabilities", caps_pairs, has_unicode)))
+        all_pairs.append((None, term.magenta("Capabilities")))
+        all_pairs.extend(caps_pairs)
     if test_pairs:
+        all_pairs.append((None, term.magenta("Unicode")))
+        all_pairs.extend(test_pairs)
+
+    table_strings = []
+    if all_pairs:
+        mid = (len(all_pairs) + 1) // 2
         table_strings.append(
-            str(_make_kv_table(term, "Unicode", test_pairs, has_unicode)))
+            str(_make_kv_table(term, "Terminal", all_pairs[:mid], has_unicode)))
+        if all_pairs[mid:]:
+            table_strings.append(
+                str(_make_kv_table(term, "Capabilities", all_pairs[mid:], has_unicode)))
 
     all_lines.extend(_collect_side_by_side_lines(term, table_strings))
 
@@ -823,11 +913,9 @@ def display_results(term, writer, ambig_label, terminal_results=None,
     if langs:
         failed = [l for l in langs if langs[l]["pct_success"] < 100.0]
         if failed:
-            for line in str(
-                make_language_table(term, langs, has_unicode)
-            ).split("\n"):
-                all_lines.append(line)
-            all_lines.append("")
+            lang_table_strings = make_language_tables(term, langs, has_unicode)
+            all_lines.extend(
+                _collect_side_by_side_lines(term, lang_table_strings))
 
     _paginated_write(term, writer, all_lines)
     writer(term.normal)
@@ -863,6 +951,15 @@ def parse_args():
         default=0,
         dest="limit_graphemes",
         help="limit the total number of graphemes tested for each language (0=unlimited)",
+    )
+    args.add_argument(
+        "--limit-graphemes-pct",
+        type=int,
+        default=0,
+        help=(
+            "sample percentage of graphemes to test per language (1-100, 0=unlimited). "
+            "A stride-based sample of 1-in-every-N is tested"
+        ),
     )
     args.add_argument(
         "--limit-errors",
@@ -983,6 +1080,7 @@ def _apply_rerun_yaml(results):
         'stream': 'stream',
         'limit_codepoints': 'limit_codepoints',
         'limit_graphemes': 'limit_graphemes',
+        'limit_graphemes_pct': 'limit_graphemes_pct',
         'limit_words': 'limit_graphemes',
         'limit_errors': 'limit_errors',
         'limit_category_time': 'limit_category_time',

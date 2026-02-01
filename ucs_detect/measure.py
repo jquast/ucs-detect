@@ -6,6 +6,7 @@ import time
 import bisect
 import codecs
 import collections
+import contextlib
 import unicodedata
 
 # 3rd party
@@ -43,6 +44,46 @@ def _is_uncommon(codepoint):
     return start <= codepoint <= end
 
 
+class CPSTracker:
+    """Track average codepoints-per-second across test categories."""
+
+    def __init__(self):
+        self._total_items = 0
+        self._total_elapsed = 0.0
+
+    def update(self, items: int, elapsed: float):
+        """Record items tested and time elapsed."""
+        self._total_items += items
+        self._total_elapsed += elapsed
+
+    @contextlib.contextmanager
+    def timing(self, n_items: int = 1):
+        """Context manager that records elapsed time on success.
+
+        Yields a ``done_ok`` callable. Invoke ``done_ok()`` to record
+        *n_items* and elapsed time. If ``done_ok()`` is never called
+        (e.g. on timeout/failure), nothing is recorded.
+        """
+        t0 = time.monotonic()
+        recorded = False
+
+        def done_ok(items: int = 0):
+            nonlocal recorded
+            if not recorded:
+                recorded = True
+                self.update(items or n_items,
+                            time.monotonic() - t0)
+
+        yield done_ok
+
+    @property
+    def cps(self) -> float:
+        """Return average codepoints per second, or 0.0 if no data."""
+        if self._total_elapsed > 0:
+            return self._total_items / self._total_elapsed
+        return 0.0
+
+
 def status_header(term, label):
     """Return a centered status header with magenta-colorized numbers."""
     colored_label = re.sub(r'\d+', lambda m: term.magenta(m.group()), label)
@@ -55,6 +96,13 @@ def status_header(term, label):
     return ('═' * pad_left
             + header_text
             + '═' * pad_right)
+
+
+def _write_final_sampling_rate(writer, term, final_pct, initial_pct):
+    """Display final sampling rate message when time-budget reduced it."""
+    if final_pct != initial_pct and final_pct > 0:
+        msg = f"Final sampling rate was {final_pct}% due to category time limit"
+        writer("\n" + status_header(term, msg) + "\n")
 
 
 def extract_unique_graphemes(text):
@@ -197,6 +245,8 @@ def test_language_support(
     stop_at_error=None,
     cursor_report_delay_ms=0,
     limit_category_time=0,
+    limit_graphemes_pct=0,
+    cps_tracker=None,
     **_kwargs,
 ):
     success_report = collections.defaultdict(int)
@@ -206,16 +256,29 @@ def test_language_support(
     lang_start_times = {}
     category_start = time.monotonic()
     category_tested = 0
-    category_budget_exceeded = False
+    category_seen = 0
+    final_pct = limit_graphemes_pct
+    global_step = 0
+    if limit_graphemes_pct and 0 < limit_graphemes_pct < 100:
+        global_step = max(1, round(100 / limit_graphemes_pct))
+
+    # pre-compute global step from CPS tracker if we have a time budget
+    prior_cps = cps_tracker.cps if cps_tracker else 0
+    if limit_category_time and prior_cps > 0:
+        total_graphemes = sum(
+            len(gs) for _, le in lang_graphemes for _, gs in le
+        )
+        max_items = int(limit_category_time * prior_cps)
+        sampled = total_graphemes // global_step if global_step else total_graphemes
+        max_items = max(1, max_items)
+        if total_graphemes > 0 and max_items < sampled:
+            min_step = global_step or 1
+            global_step = min(100, max(
+                min_step, round(total_graphemes / max_items)))
+            final_pct = max(1, round(100 / global_step))
 
     for expected_width, lang_entries in lang_graphemes:
-        if category_budget_exceeded:
-            break
         for lang, graphemes in lang_entries:
-            if (limit_category_time and category_tested >= 20
-                    and time.monotonic() - category_start >= limit_category_time):
-                category_budget_exceeded = True
-                break
             if lang not in lang_start_times:
                 lang_start_times[lang] = time.monotonic()
 
@@ -241,6 +304,29 @@ def test_language_support(
             if not novel:
                 continue
 
+            # recalculate global step from time budget
+            if limit_category_time and category_tested >= 20:
+                elapsed = time.monotonic() - category_start
+                remaining = max(0, limit_category_time - elapsed)
+                cps = (cps_tracker.cps if cps_tracker
+                       and cps_tracker.cps > 0
+                       else (category_tested / elapsed
+                             if elapsed > 0 else 0))
+                max_items = max(1, int(remaining * cps)) if remaining > 0 else 1
+                # compute step that would produce max_items from remaining
+                # graphemes — but we don't know the total remaining, so use
+                # a ratio: if we can do max_items and current step produces
+                # too many, increase the step
+                if max_items < 10 and global_step < 100:
+                    global_step = 100
+                    final_pct = 1
+                elif cps > 0 and remaining > 0:
+                    desired_step = max(1, int(category_tested / (remaining * cps))
+                                       ) if remaining * cps > 0 else 100
+                    if desired_step > global_step:
+                        global_step = min(100, desired_step)
+                        final_pct = max(1, round(100 / global_step))
+
             cell_inner = expected_width + 3
             num_columns = max(1, (term.width - 1) // cell_inner)
 
@@ -249,32 +335,41 @@ def test_language_support(
                 inherited_msg = f", {n_inherited} shared"
             else:
                 inherited_msg = ""
+            pct_note = ""
+            effective_pct = max(1, round(100 / global_step)) if global_step > 1 else 0
+            if effective_pct and 0 < effective_pct < 100:
+                pct_note = f", {effective_pct}% sampled"
+            if final_pct != limit_graphemes_pct:
+                pct_note += ", time-limited"
+            n_novel = len(novel)
+            n_to_test = len(novel)
+            if global_step > 1:
+                n_to_test = max(1, n_novel // global_step)
+            if limit_graphemes and limit_graphemes < n_to_test:
+                n_to_test = limit_graphemes
             label = (
                 f"Testing {lang} w={expected_width}"
-                f" ({len(novel)} novel{inherited_msg})"
+                f" ({n_to_test}/{n_novel} novel{inherited_msg}{pct_note})"
             )
             writer("\n" + status_header(term, label) + "\n")
-
-            effective_limit = limit_graphemes
-            if limit_category_time and category_tested >= 20:
-                elapsed = time.monotonic() - category_start
-                remaining = limit_category_time - elapsed
-                if remaining > 0:
-                    cps = category_tested / elapsed
-                    estimated = int(remaining * cps)
-                    if effective_limit:
-                        effective_limit = min(effective_limit, estimated)
-                    else:
-                        effective_limit = estimated
 
             grapheme_count = 0
             error_count = 0
             col = 0
             for idx, grapheme in enumerate(novel):
-                if effective_limit and grapheme_count >= effective_limit:
+                if limit_graphemes and grapheme_count >= limit_graphemes:
                     break
                 if limit_errors and error_count >= limit_errors:
                     break
+                # global stride: skip unless this grapheme lands on the step,
+                # but always test the first grapheme of each language/width
+                first_for_lang = (idx == 0)
+                if (global_step > 1
+                        and category_seen % global_step != 0
+                        and not first_for_lang):
+                    category_seen += 1
+                    continue
+                category_seen += 1
 
                 grapheme_id = f"{lang}-{expected_width}-{idx:02x}"
 
@@ -297,18 +392,13 @@ def test_language_support(
                     success_report[lang] += 1
                     tested_graphemes[grapheme] = (lang, True)
                 else:
-                    failure_report[lang].append(
-                        {"grapheme_id": grapheme_id,
-                         "wchars": unicode_escape_string(grapheme)}
-                    )
+                    entry = {"grapheme_id": grapheme_id,
+                             "wchars": unicode_escape_string(grapheme),
+                             "measured_by_wcwidth": expected_width,
+                             "measured_by_terminal": delta_xpos}
                     if delta_ypos != 0:
-                        failure_report[lang][-1]["delta_ypos"] = delta_ypos
-                    failure_report[lang][-1][
-                        "measured_by_wcwidth"
-                    ] = expected_width
-                    failure_report[lang][-1][
-                        "measured_by_terminal"
-                    ] = delta_xpos
+                        entry["delta_ypos"] = delta_ypos
+                    failure_report[lang].append(entry)
                     error_count += 1
                     tested_graphemes[grapheme] = (lang, False)
 
@@ -344,6 +434,13 @@ def test_language_support(
             if col > 0:
                 writer(term.magenta(" ║") + "\n")
 
+    _write_final_sampling_rate(writer, term, final_pct, limit_graphemes_pct)
+
+    # update tracker with total language testing results
+    category_elapsed = time.monotonic() - category_start
+    if cps_tracker and category_tested > 0:
+        cps_tracker.update(category_tested, category_elapsed)
+
     for lang, start_time in lang_start_times.items():
         time_report[lang] = time.monotonic() - start_time
 
@@ -353,12 +450,15 @@ def test_language_support(
         if failure_report[language] or success_report[language]
     ]
 
+    result_pct = (final_pct if final_pct != limit_graphemes_pct
+                  else None)
     return {
         lang: _make_result_entry(
             n_errors=len(failure_report[lang]),
             n_total=len(failure_report[lang]) + success_report[lang],
             elapsed=time_report.get(lang, 0.0),
             extra={"failed": failure_report[lang]},
+            sampled_pct=result_pct,
         )
         for lang in report_languages
     }
@@ -384,7 +484,8 @@ def _get_pos_or_exit(term, writer, timeout):
     return ypos, xpos
 
 
-def _make_result_entry(n_errors, n_total, elapsed, extra=None):
+def _make_result_entry(n_errors, n_total, elapsed, extra=None,
+                       sampled_pct=None):
     """Build a standard result dict for test reporting."""
     entry = {
         "n_errors": n_errors,
@@ -393,6 +494,8 @@ def _make_result_entry(n_errors, n_total, elapsed, extra=None):
         "seconds_elapsed": elapsed,
         "codepoints_per_second": (n_total / elapsed) if elapsed > 0 else 0.0,
     }
+    if sampled_pct is not None and sampled_pct < 100:
+        entry["sampled_pct"] = sampled_pct
     if extra:
         entry.update(extra)
     return entry
@@ -414,6 +517,7 @@ def test_support(
     limit_pct=0,
     include_uncommon=True,
     limit_category_time=0,
+    cps_tracker=None,
 ):
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
@@ -428,6 +532,22 @@ def test_support(
     category_start = time.monotonic()
     category_tested = 0
     time_limited = False
+    final_pct = limit_pct
+
+    # pre-compute sampling rate from prior CPS if available
+    if (limit_category_time and not limit_codepoints
+            and cps_tracker and cps_tracker.cps > 0):
+        total_items = sum(len(wc) for _, wc in table)
+        max_items = int(limit_category_time * cps_tracker.cps)
+        sampled = total_items
+        if limit_pct and 0 < limit_pct < 100:
+            step = max(1, round(100 / limit_pct))
+            sampled = total_items // step
+        if max_items < sampled and total_items > 0:
+            new_pct = max(1, int(100 * max_items / total_items))
+            if not limit_pct or new_pct < limit_pct:
+                final_pct = new_pct
+                time_limited = True
 
     with terminal.maybe_grapheme_clustering_mode(term):
         for ver, wchars in table:
@@ -444,10 +564,12 @@ def test_support(
                     if not _is_uncommon(w if isinstance(w, int) else w[0])
                 )
             n_wchars = len(wchars)
+            effective_pct = final_pct if time_limited else limit_pct
+
             if limit_codepoints:
                 wchars_slice = wchars[:limit_codepoints]
-            elif limit_pct and 0 < limit_pct < 100:
-                step = max(1, round(100 / limit_pct))
+            elif effective_pct and 0 < effective_pct < 100:
+                step = max(1, round(100 / effective_pct))
                 wchars_slice = wchars[::step]
             else:
                 wchars_slice = wchars
@@ -456,10 +578,21 @@ def test_support(
                 elapsed = time.monotonic() - category_start
                 remaining = limit_category_time - elapsed
                 if remaining > 0:
-                    cps = category_tested / elapsed
+                    cps = (cps_tracker.cps if cps_tracker
+                           and cps_tracker.cps > 0
+                           else (category_tested / elapsed
+                                 if elapsed > 0 else 0))
                     max_items = int(remaining * cps)
                     if max_items < len(wchars_slice):
-                        wchars_slice = wchars_slice[:max_items]
+                        if not limit_codepoints and n_wchars > 0:
+                            # re-stride to maintain breadth, minimum 1%
+                            new_pct = max(1, int(100 * max_items / n_wchars))
+                            new_step = max(1, round(100 / new_pct))
+                            wchars_slice = wchars[::new_step]
+                            effective_pct = new_pct
+                            final_pct = new_pct
+                        else:
+                            wchars_slice = wchars_slice[:max(1, max_items)]
                         time_limited = True
 
             if suppress_output:
@@ -467,8 +600,8 @@ def test_support(
             else:
                 hdr_label = label or (test_type.upper() if test_type else "test")
                 pct_note = ""
-                if limit_pct and 0 < limit_pct < 100 and not limit_codepoints:
-                    pct_note = f", {limit_pct}% sampled"
+                if effective_pct and 0 < effective_pct < 100 and not limit_codepoints:
+                    pct_note = f", {effective_pct}% sampled"
                 if time_limited:
                     pct_note += ", time-limited"
                 header = (f"Testing {hdr_label} v={ver}"
@@ -476,13 +609,9 @@ def test_support(
                 writer("\n" + status_header(term, header) + "\n")
 
             col = 0
-            end_ypos, end_xpos = 0, 0
 
             for wchar in wchars_slice:
                 category_tested += 1
-                if (limit_category_time and category_tested % 50 == 0
-                        and time.monotonic() - category_start >= limit_category_time):
-                    break
                 wchars_str = wchar_to_str(wchar)
 
                 if suppress_output:
@@ -526,18 +655,13 @@ def test_support(
                 if (delta_ypos, delta_xpos) == (0, expected_width):
                     success_report[ver] += 1
                 else:
-                    failure_report[ver].append(
-                        {"wchar": unicode_escape_string(wchars_str)}
-                    )
+                    entry = {"wchar": unicode_escape_string(wchars_str)}
                     if delta_ypos != 0:
-                        failure_report[ver][-1]["delta_ypos"] = delta_ypos
+                        entry["delta_ypos"] = delta_ypos
                     if delta_xpos != expected_width:
-                        failure_report[ver][-1][
-                            "measured_by_wcwidth"
-                        ] = expected_width
-                        failure_report[ver][-1][
-                            "measured_by_terminal"
-                        ] = delta_xpos
+                        entry["measured_by_wcwidth"] = expected_width
+                        entry["measured_by_terminal"] = delta_xpos
+                    failure_report[ver].append(entry)
 
                     if not suppress_output:
                         writer(term.move_yx(start_ypos, start_xpos))
@@ -573,10 +697,18 @@ def test_support(
             if not suppress_output and col > 0:
                 writer(term.magenta(" ║") + "\n")
 
-            time_report[ver] = time.monotonic() - ver_start_time
+            ver_elapsed = time.monotonic() - ver_start_time
+            time_report[ver] = ver_elapsed
+            if cps_tracker:
+                n_ver = len(failure_report[ver]) + success_report[ver]
+                cps_tracker.update(n_ver, ver_elapsed)
             if (limit_category_time
-                    and time.monotonic() - category_start >= limit_category_time):
+                    and time.monotonic() - category_start
+                    >= limit_category_time):
                 break
+
+    if time_limited and not suppress_output:
+        _write_final_sampling_rate(writer, term, final_pct, limit_pct)
 
     report_versions = [
         v
@@ -588,12 +720,14 @@ def test_support(
             ]
         )
     ]
+    result_pct = final_pct if time_limited else None
     return {
         ver: _make_result_entry(
             n_errors=len(failure_report[ver]),
             n_total=len(failure_report[ver]) + success_report[ver],
             elapsed=time_report.get(ver, 0.0),
             extra={"failed_codepoints": failure_report[ver]},
+            sampled_pct=result_pct,
         )
         for ver in report_versions
     }

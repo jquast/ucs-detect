@@ -62,7 +62,8 @@ NOTABLE_DEC_MODES = [
 ]
 
 
-def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None, timeout=1.0):
+def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None,
+                              timeout=1.0, cps_tracker=None):
     """Query DEC private modes (notable only, or all when *all_modes* is set)."""
     if all_modes:
         modes_to_query = list(_get_all_dec_private_mode_numbers(term))
@@ -71,11 +72,16 @@ def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None, timeou
     hide = term.color_rgb(*bg_rgb) if bg_rgb is not None else ''
     unhide = term.normal if bg_rgb is not None else ''
     result = {'modes': {}}
+    n_ok = 0
+    ok_elapsed = 0.0
     for mode_num in modes_to_query:
         writer(f'\rucs-detect: DEC mode {mode_num} ..{term.clear_eol}{hide}')
+        t0 = time.monotonic()
         response = term.get_dec_mode(mode_num, timeout=timeout)
-
+        elapsed = time.monotonic() - t0
         if not response.failed:
+            n_ok += 1
+            ok_elapsed += elapsed
             result['modes'][mode_num] = {
                     'value': response.value,
                     'value_description': str(response),
@@ -86,6 +92,8 @@ def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None, timeou
                     'changeable': response.changeable,
                     }
         writer(unhide)
+    if cps_tracker and n_ok:
+        cps_tracker.update(n_ok, ok_elapsed)
     writer(f'\r{term.clear_eol}')
     return result
 
@@ -119,13 +127,63 @@ def _read_dcs_or_plain_response(term, timeout=0.5):
 
     return response.strip()
 
+def _try_decode_da3_name(name):
+    """Decode DA3-style semicolon-separated ASCII values to a string.
+
+    SyncTERM's CTerm engine is the only known terminal to identify itself
+    this way, encoding its name and version as decimal ASCII codepoints
+    in a DA3-format response (e.g. ``CSI = 67;84;101;114;109;1;323 c``
+    decodes to "CTerm" version "1.323").
+
+    :rtype: tuple of (name, version) or None
+    """
+    if not name or ';' not in name:
+        return None
+    # strip CSI prefix (ESC[= or ESC[) and trailing 'c'
+    raw = name
+    for prefix in ('\x1b[=', '\x1b['):
+        if raw.startswith(prefix):
+            raw = raw[len(prefix):]
+            break
+    raw = raw.rstrip('c').strip()
+    parts = raw.split(';')
+    try:
+        values = [int(p) for p in parts]
+    except ValueError:
+        return None
+    # split into printable ASCII name codepoints and remaining version params
+    name_chars = []
+    version_parts = []
+    for i, v in enumerate(values):
+        if 32 <= v < 127:
+            name_chars.append(chr(v))
+        else:
+            version_parts = values[i:]
+            break
+    if not name_chars:
+        return None
+    decoded_name = ''.join(name_chars)
+    decoded_version = '.'.join(str(v) for v in version_parts) if version_parts else ''
+    return decoded_name, decoded_version
+
+
 def maybe_determine_software(term, writer, timeout=1.0):
     result = {}
     sv = term.get_software_version(timeout=timeout)
     if sv is not None:
-        result['software_name'] = sv.name
-        if sv.version:
-            result['software_version'] = sv.version
+        name = sv.name
+        # decode DA3-style ASCII-encoded name (only SyncTERM/CTerm is
+        # known to respond this way)
+        decoded = _try_decode_da3_name(name)
+        if decoded:
+            name, version = decoded
+            result['software_name'] = name
+            if version:
+                result['software_version'] = version
+        else:
+            result['software_name'] = name
+            if sv.version:
+                result['software_version'] = sv.version
     else:
         # XTVERSION failed, try ENQ (answerback) as fallback
         if term.stream:
@@ -141,14 +199,22 @@ def maybe_determine_software(term, writer, timeout=1.0):
         if response:
             if response.startswith('>|'):
                 response = response[2:]
-            result['software_name'] = response
 
-            parts = response.split()
-            if len(parts) >= 2:
-                last_part = parts[-1]
-                if any(c.isdigit() for c in last_part):
-                    result['software_name'] = ' '.join(parts[:-1])
-                    result['software_version'] = last_part
+            # check for DA3-style ASCII-encoded name (only SyncTERM/CTerm
+            # is known to respond this way)
+            decoded = _try_decode_da3_name(response)
+            if decoded:
+                result['software_name'] = decoded[0]
+                if decoded[1]:
+                    result['software_version'] = decoded[1]
+            else:
+                result['software_name'] = response
+                parts = response.split()
+                if len(parts) >= 2:
+                    last_part = parts[-1]
+                    if any(c.isdigit() for c in last_part):
+                        result['software_name'] = ' '.join(parts[:-1])
+                        result['software_version'] = last_part
 
     return result
 
@@ -438,52 +504,88 @@ def maybe_determine_kitty_pointer_shapes(term, timeout=1.0, cursor_report_delay_
     return {'kitty_pointer_shapes': False}
 
 
-def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0, timeout=1.0):
+def _timed_detect(func, *args, cps_tracker=None, **kwargs):
+    """Call a detection function, updating cps_tracker on success.
+
+    A result is considered successful if the returned dict contains
+    any truthy values beyond default empty/False entries.
+    """
+    if cps_tracker is None:
+        return func(*args, **kwargs)
+    with cps_tracker.timing() as done_ok:
+        result = func(*args, **kwargs)
+        if result:
+            n_items = sum(1 for v in result.values()
+                          if v and v is not False)
+            if n_items > 0:
+                done_ok(n_items)
+    return result
+
+
+def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
+                          timeout=1.0, cps_tracker=None):
     writer = functools.partial(print, end="", flush=True, file=sys.stderr)
     term = blessed.Terminal()
     attrs = {'ttype': term.kind, 'number_of_colors': term.number_of_colors}
     attrs.update(get_tty_size(term, writer))
 
+    td = functools.partial(_timed_detect, cps_tracker=cps_tracker)
+
     # detect background color first so we can hide test artifacts
     with _status(writer, term, "Background Color"):
-        attrs.update(maybe_determine_colors(term, writer))
+        attrs.update(td(maybe_determine_colors, term, writer))
         bg_rgb = None
         if attrs.get('background_color_rgb'):
             bg = attrs['background_color_rgb']
             bg_rgb = (bg[0] >> 8, bg[1] >> 8, bg[2] >> 8)
 
     attrs.update(maybe_determine_dec_modes(
-        term, writer, all_modes=all_modes, bg_rgb=bg_rgb, timeout=timeout))
+        term, writer, all_modes=all_modes, bg_rgb=bg_rgb,
+        timeout=timeout, cps_tracker=cps_tracker))
     with _status(writer, term, "Device Attributes", bg_rgb):
-        attrs.update(maybe_determine_da_and_sixel(term, timeout=timeout))
+        attrs.update(td(maybe_determine_da_and_sixel, term,
+                        timeout=timeout))
     with _status(writer, term, "Software Version", bg_rgb):
-        attrs.update(maybe_determine_software(term, writer, timeout=timeout))
+        attrs.update(td(maybe_determine_software, term, writer,
+                        timeout=timeout))
     with _status(writer, term, "Cell Size", bg_rgb):
-        attrs.update(maybe_determine_cell_size(term, writer, timeout=timeout))
+        attrs.update(td(maybe_determine_cell_size, term, writer,
+                        timeout=timeout))
     with _status(writer, term, "Pixel Size", bg_rgb):
-        attrs.update(maybe_determine_pixel_size(term, writer, timeout=timeout))
+        attrs.update(td(maybe_determine_pixel_size, term, writer,
+                        timeout=timeout))
     attrs.update(maybe_determine_screen_ratio(attrs))
     with _status(writer, term, "Kitty Keyboard", bg_rgb):
-        attrs.update(maybe_determine_kitty_keyboard(term, timeout=timeout))
+        attrs.update(td(maybe_determine_kitty_keyboard, term,
+                        timeout=timeout))
 
-    delay_kw = dict(timeout=timeout, cursor_report_delay_ms=cursor_report_delay_ms)
+    delay_kw = dict(timeout=timeout,
+                    cursor_report_delay_ms=cursor_report_delay_ms)
     with term.cbreak():
         with _status(writer, term, "XTGETTCAP", bg_rgb):
-            attrs.update(maybe_determine_xtgettcap(term, **delay_kw))
+            attrs.update(td(maybe_determine_xtgettcap, term,
+                            **delay_kw))
         with _status(writer, term, "Kitty Graphics", bg_rgb):
-            attrs.update(maybe_determine_kitty_graphics(term, **delay_kw))
+            attrs.update(td(maybe_determine_kitty_graphics, term,
+                            **delay_kw))
         with _status(writer, term, "iTerm2 Features", bg_rgb):
-            attrs.update(maybe_determine_iterm2_features(term, **delay_kw))
+            attrs.update(td(maybe_determine_iterm2_features, term,
+                            **delay_kw))
         with _status(writer, term, "Text Sizing", bg_rgb):
-            attrs.update(maybe_determine_text_sizing(term, timeout=timeout))
+            attrs.update(td(maybe_determine_text_sizing, term,
+                            timeout=timeout))
         with _status(writer, term, "Tab Stop Width", bg_rgb):
-            attrs.update(maybe_determine_tab_stop_width(term, timeout=timeout))
+            attrs.update(td(maybe_determine_tab_stop_width, term,
+                            timeout=timeout))
         with _status(writer, term, "Kitty Notifications", bg_rgb):
-            attrs.update(maybe_determine_kitty_notifications(term, **delay_kw))
+            attrs.update(td(maybe_determine_kitty_notifications,
+                            term, **delay_kw))
         with _status(writer, term, "Kitty Clipboard", bg_rgb):
-            attrs.update(maybe_determine_kitty_clipboard(term, **delay_kw))
+            attrs.update(td(maybe_determine_kitty_clipboard, term,
+                            **delay_kw))
         with _status(writer, term, "Kitty Pointer Shapes", bg_rgb):
-            attrs.update(maybe_determine_kitty_pointer_shapes(term, **delay_kw))
+            attrs.update(td(maybe_determine_kitty_pointer_shapes,
+                            term, **delay_kw))
     return attrs
 
 if __name__ == '__main__':
