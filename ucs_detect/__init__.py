@@ -447,37 +447,6 @@ def _build_terminal_kv_pairs(term, results):
             }
             label = service_class_names.get(sc, f"Class {sc}")
             pairs.append(("Device Class", label))
-        if extensions := da.get('extensions'):
-            extension_desc = {
-                1: "132 columns",
-                2: "Printer port",
-                3: "ReGIS graphics",
-                4: "Sixel graphics",
-                6: "Selective erase",
-                7: "DRCS (soft character set)",
-                8: "UDK (user-defined keys)",
-                9: "NRCS (national replacement)",
-                12: "SCS extension",
-                15: "Technical character set",
-                16: "Locator port",
-                17: "Terminal state interrogation",
-                18: "Windowing",
-                19: "Sessions",
-                21: "Horizontal scrolling",
-                23: "Greek extension",
-                24: "Turkish extension",
-                28: "Rectangular editing",
-                29: "ANSI text locator",
-                42: "ISO Latin-2",
-                44: "PCTerm",
-                45: "Soft key map",
-                46: "ASCII emulation",
-            }
-            for ext in sorted(extensions):
-                if ext in (22, 52):
-                    continue
-                desc = extension_desc.get(ext, f"Extension {ext}")
-                pairs.append((desc, term.green2(str(ext))))
 
     return pairs
 
@@ -503,18 +472,6 @@ def _build_capabilities_kv_pairs(term, results):
                                _color_yes_no(term, m.get('supported'))))
             else:
                 pairs.append((mode_label, term.yellow("N/A")))
-        n_notable = len(notable_modes)
-        if len(modes) > n_notable:
-            n_supported = sum(1 for m in modes.values() if m.get('supported'))
-            ratio = n_supported / len(modes) if modes else 0
-            summary = f"{n_supported} of {len(modes)} supported"
-            if ratio >= 0.5:
-                summary = term.green2(summary)
-            elif ratio > 0:
-                summary = term.yellow(summary)
-            else:
-                summary = term.firebrick1(summary)
-            pairs.append(("DEC Modes", summary))
 
     if results.get('kitty_keyboard') is not None:
         pairs.append(("Kitty Keyboard?", _color_yes_no(term, True)))
@@ -976,7 +933,7 @@ def parse_args():
     args.add_argument(
         "--limit-codepoints-wide-pct",
         type=int,
-        default=20,
+        default=0,
         help=(
             "sample percentage of WIDE codepoints to test (1-100, 0=unlimited). "
             "Due to the large number of WIDE codepoints (~183k), a stride-based "
