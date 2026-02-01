@@ -3,11 +3,25 @@ import re
 import time
 import functools
 import sys
+import warnings
 
 import blessed
 
 
 SCREEN_RATIOS = [(4, 3), (16, 9), (16, 10), (21, 9), (32, 9)]
+
+
+def make_terminal(fallback_kind="xterm", **kwargs):
+    """Create a :class:`blessed.Terminal`, falling back to *fallback_kind*
+    when ``curses.setupterm()`` fails for the current ``$TERM``."""
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        term = blessed.Terminal(**kwargs)
+    if any("setupterm" in str(w.message) for w in caught):
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            term = blessed.Terminal(kind=fallback_kind, **kwargs)
+    return term
 
 
 @contextlib.contextmanager
@@ -525,7 +539,7 @@ def _timed_detect(func, *args, cps_tracker=None, **kwargs):
 def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
                           timeout=1.0, cps_tracker=None):
     writer = functools.partial(print, end="", flush=True, file=sys.stderr)
-    term = blessed.Terminal()
+    term = make_terminal()
     attrs = {'ttype': term.kind, 'number_of_colors': term.number_of_colors}
     attrs.update(get_tty_size(term, writer))
 

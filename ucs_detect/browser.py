@@ -1146,7 +1146,8 @@ def main_browser(opts):
     global REFRESH_UNICODE
     REFRESH_UNICODE = opts.get('--refresh-unicode', False)
 
-    term = blessed.Terminal()
+    from ucs_detect.terminal import make_terminal
+    term = make_terminal()
     style = Style()
 
     if term.number_of_colors:

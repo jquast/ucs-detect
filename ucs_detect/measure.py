@@ -323,8 +323,8 @@ def test_language_support(
                 elif cps > 0 and remaining > 0:
                     desired_step = max(1, int(category_tested / (remaining * cps))
                                        ) if remaining * cps > 0 else 100
-                    if desired_step > global_step:
-                        global_step = min(100, desired_step)
+                    if desired_step != global_step:
+                        global_step = max(1, min(100, desired_step))
                         final_pct = max(1, round(100 / global_step))
 
             cell_inner = expected_width + 3
@@ -594,6 +594,18 @@ def test_support(
                         else:
                             wchars_slice = wchars_slice[:max(1, max_items)]
                         time_limited = True
+                    elif time_limited and not limit_codepoints and n_wchars > 0:
+                        # ahead of schedule — increase sampling rate
+                        new_pct = min(100, max(final_pct,
+                                               int(100 * max_items / n_wchars)))
+                        if new_pct > effective_pct:
+                            if new_pct >= 100:
+                                wchars_slice = wchars
+                            else:
+                                new_step = max(1, round(100 / new_pct))
+                                wchars_slice = wchars[::new_step]
+                            effective_pct = new_pct
+                            final_pct = new_pct
 
             if suppress_output:
                 writer(term.move_yx(outer_ypos, outer_xpos) + term.clear_eol)

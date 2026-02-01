@@ -77,7 +77,9 @@ def merge_results(base_results, additional_results):
 
 def init_term(stream):
     locale.setlocale(locale.LC_ALL, "")
-    term = blessed.Terminal(stream=sys.__stderr__ if stream == "stderr" else None)
+    from ucs_detect.terminal import make_terminal
+    stream_arg = sys.__stderr__ if stream == "stderr" else None
+    term = make_terminal(stream=stream_arg)
     writer = functools.partial(
         print, end="", flush=True, file=sys.stderr if stream == "stderr" else None
     )
