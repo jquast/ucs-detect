@@ -599,6 +599,43 @@ def format_score_int(score):
     return f'{round(score*100)}'
 
 
+def _format_capabilities_summary(entry):
+    """
+    Format detected capabilities as a comma-joined list of hyperlinked names.
+
+    Uses the same hyperlink targets as the capabilities table.
+    """
+    sw_name = entry["terminal_software_name"]
+    tr = entry["data"].get("terminal_results") or {}
+    if not tr:
+        return wrap_score_with_hyperlink("none", 0.0, sw_name, "_dec_modes")
+
+    modes = tr.get("modes") or {}
+    found = []
+    cap_checks = [
+        (2004, "Bracketed Paste", "_dec_modes"),
+        (2026, "Synced Output", "_dec_modes"),
+        (1004, "Focus Events", "_dec_modes"),
+        (1006, "Mouse SGR", "_dec_modes"),
+        (2027, "Graphemes", "_dec_modes"),
+    ]
+    for mode_num, label, suffix in cap_checks:
+        if _get_dec_mode_supported(modes, mode_num):
+            found.append(make_outbound_hyperlink(label, sw_name + suffix))
+
+    if tr.get("kitty_keyboard") is not None:
+        found.append(make_outbound_hyperlink("Kitty Kbd", sw_name + "_kitty_kbd"))
+
+    xtgettcap = tr.get("xtgettcap", {})
+    if xtgettcap.get("supported", False) and bool(xtgettcap.get("capabilities")):
+        found.append(make_outbound_hyperlink("XTGETTCAP", sw_name + "_xtgettcap"))
+
+    if not found:
+        return "none"
+
+    return ", ".join(found)
+
+
 def _format_graphics_protocols(entry, sw_name):
     """
     Format detected graphics protocols as a comma-joined list with color scoring.
@@ -643,15 +680,13 @@ def display_tabulated_scores(score_table):
     print()
     print("   These test results are provided as-is and we do not guarantee their correctness.")
     print("   The scores and ratings presented here are objective measurements of Unicode and")
-    print("   terminal feature support, and should not be interpreted as an overall assessment")
-    print("   of terminal emulator quality or a recommendation. Many factors beyond Unicode")
-    print("   support contribute to terminal quality.")
-    print()
-    print(".. note::")
-    print()
+    print("   terminal feature support by analysis of automatic response, and should not be")
+    print("   interpreted as an overall assessment of terminal emulator quality or a")
+    print("   recommendation. Many factors beyond Unicode support contribute to terminal quality.")
     print("   Some terminals may optionally support features and modes not represented here.")
     print("   This data represents only automatic responses received when launched in their")
-    print("   default configurations and packaged build options.")
+    print("   default configurations and packaged build options. Some languages and emoji")
+    print("   tests may also pass 'accidentally'!")
     print()
 
 
@@ -660,41 +695,11 @@ def display_tabulated_scores(score_table):
     tabulated_scores = []
 
     for rank, result in enumerate(score_table, start=1):
-        # Get the total number of changeable DEC modes for display
-        dec_modes_count = 0
-        mode_2027_status = "N/A"
-        if not math.isnan(result["score_dec_modes"]):
-            modes = result["data"]["terminal_results"]["modes"]
-            dec_modes_count = sum(1 for mode_data in modes.values() if mode_data.get("changeable", False))
-
-            # Check Mode 2027 (GRAPHEME_CLUSTERING) status
-            if 2027 in modes:
-                mode_2027_data = modes[2027]
-                is_supported = mode_2027_data.get("supported", False)
-                is_enabled = mode_2027_data.get("enabled", False)
-                is_changeable = mode_2027_data.get("changeable", False)
-
-                # Determine status and score based on support, enabled state, and changeability
-                if is_supported and is_enabled:
-                    mode_2027_status = "enabled"
-                    mode_2027_score = 1.0
-                elif is_supported and not is_enabled and is_changeable:
-                    mode_2027_status = "may enable"
-                    mode_2027_score = 0.75
-                else:
-                    mode_2027_status = "no"
-                    mode_2027_score = 0.5
-            else:
-                mode_2027_status = "no"
-                mode_2027_score = 0.5
-        else:
-            mode_2027_score = float('NaN')
-
-        # Create DEC modes display text (just the number, hyperlink will be added by wrap_score_with_hyperlink)
-        dec_modes_display = f"{dec_modes_count}" if not math.isnan(result["score_dec_modes"]) else "0"
-
         # Create elapsed time display text (integer seconds, no suffix)
         elapsed_display = f"{int(result['elapsed_seconds'])}" if not math.isnan(result['elapsed_seconds']) else "N/A"
+
+        # Build capabilities summary list
+        capabilities_list = _format_capabilities_summary(result)
 
         tabulated_scores.append(
             {
@@ -739,18 +744,7 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_vs15"
                 ),
-                "Mode 2027": wrap_score_with_hyperlink(
-                    mode_2027_status,
-                    mode_2027_score,
-                    result["terminal_software_name"],
-                    "_dec_modes"
-                ) if not math.isnan(mode_2027_score) else wrap_with_score_role("N/A", 0.0),
-                "DEC Modes": wrap_score_with_hyperlink(
-                    dec_modes_display,
-                    result["score_dec_modes_scaled"] if not math.isnan(result["score_dec_modes_scaled"]) else 0.0,
-                    result["terminal_software_name"],
-                    "_dec_modes"
-                ),
+                "Capabilities": capabilities_list,
                 "Graphics": _format_graphics_protocols(result, result["terminal_software_name"]),
                 "Elapsed(s)": wrap_score_with_hyperlink(
                     elapsed_display,
