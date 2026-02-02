@@ -1,158 +1,39 @@
 ucs-detect
 ==========
 
-::
+This package provides two command-line tools for testing and inspecting Unicode
+support in terminal emulators.
 
-    $ ucs-detect
-
-``ucs-detect`` tests a terminal emulator's Unicode support for Wide characters,
-Emoji Zero Width Joiner (ZWJ) sequences, Variation Selector-16 (VS-16) and
-VS-15 sequences, and zero-width combining characters across 500+ languages.
-
-.. figure:: https://dxtz6bzwq9sxx.cloudfront.net/ucs-detect.gif
-   :alt: video demonstration of running ucs-detect
-
-Further, popular special terminal capabilities that may be automatically detected
-are also reported: `Bracketed Paste`_, `Synchronized Output`_, `Mouse SGR`_,
-`Grapheme Clustering`_, `Kitty Keyboard protocol`_, `Sixel`_, `ReGIS`_,
-`Kitty`_ or `iTerm2 image protocol`_, and `XTGETTCAP`_ support.
-
-Installation & Usage
---------------------
+Installation
+------------
 
 To install or upgrade::
 
    $ pip install -U ucs-detect
-
-Run a default test::
-
-   $ ucs-detect
-
-Run a detailed test and save a YAML report::
-
-   $ ucs-detect --save-yaml=data/my-terminal.yaml --limit-codepoints=5000 --limit-words=5000 --limit-errors=500
-
-CLI Options
------------
-
-``--save-yaml=<path>``
-  Save results as YAML.
-
-``--rerun <yaml-file>``
-  Re-test a terminal using parameters from a previous YAML report.
-
-``--test-only <category>``
-  Test a single category: ``wide``, ``zwj``, ``vs16``, ``vs15``, ``lang``,
-  ``unicode``, ``terminal``, or ``all`` (default).
-
-``--limit-codepoints <n>``
-  Limit total codepoints tested per category.
-
-``--limit-codepoints-wide-pct <n>``
-  Percentage of wide characters to test (default: 20). Set to ``0`` for a
-  complete test.
-
-``--limit-errors <n>``
-  Stop testing a category after *n* errors.
-
-``--stop-at-error <pattern>``
-  Pause on errors matching *pattern* for interactive investigation.
-
-``--set-software-name <name>`` / ``--set-software-version <version>``
-  Set terminal name and version for YAML output (skips interactive prompt).
-
-``--detect-all-dec-modes``
-  Test all DEC Private Modes.
-
-``--include-uncommon-codepoints``
-  Include uncommon CJK extension blocks.
-
-``--timeout-cps <seconds>``
-  Timeout per codepoint test (default: 1.0).
-
-``--timeout-query <seconds>``
-  Timeout for cursor position query (default: 0.2).
-
-``--cursor-report-delay-ms <ms>``
-  Additional delay before reading cursor position report.
-
-``--no-terminal-test`` / ``--no-languages-test``
-  Skip terminal feature detection or language testing.
-
-ucs-browser
------------
-
-``ucs-browser`` is an interactive terminal browser for visually inspecting
-unicode character width rendering. It displays characters with pipe (``|``)
-alignment markers that should align correctly in any terminal with proper
-Unicode support.
-
-::
-
-   $ ucs-browser
-
-Modes are toggled with keyboard shortcuts:
-
-- ``1`` / ``2``: Narrow (1-cell) or Wide (2-cell) characters
-- ``c``: Combining characters
-- ``g``: Grapheme clusters (``[`` / ``]`` to adjust width)
-- ``z``: Emoji ZWJ sequences
-- ``5``: VS-15 (text style)
-- ``7``: VS-16 (emoji style)
-- ``U``: Toggle uncommon CJK extensions
-- ``v``: Select Unicode version
-
-Navigation follows less(1) conventions: ``j``/``k`` for lines, ``f``/``b`` for
-pages, ``q`` to quit.
-
-CLI options::
-
-   $ ucs-browser --wide 2
-   $ ucs-browser --combining
-   $ ucs-browser --vs16
-   $ ucs-browser --zwj
-   $ ucs-browser --graphemes
-
-Test Results
-------------
-
-Results for 20+ terminals on Windows, Linux, and Mac are published at
-https://ucs-detect.readthedocs.io/results.html
-
-Individual YAML reports are in the ``data`` folder:
-https://github.com/jquast/ucs-detect/tree/master/data
-
-Related articles:
-
-- `ucs-detect test results`_ (November 2023, release 1.0.4)
-- `State of Terminal Emulation 2025`_ (November 2025, release 1.0.8)
-
-Results are shared with terminal emulator projects and may become outdated as
-they improve Unicode support. Submit a pull request to update YAML data files.
 
 Problem
 -------
 
 East Asian languages use Wide (W) or Fullwidth (F) characters that occupy 2
 cells. Many scripts use zero-width combining characters that modify adjacent
-characters. Emoji sequences use Zero Width Joiner and Variation Selector-16
-characters.
+characters. Emoji sequences using Zero Width Joiner and Variation Selector-16
+characters. Complex advancing rules with Brahmic scripts.
 
 Terminal applications must determine the display width of these characters, but
 the Unicode Standard is updated periodically while libraries and applications
 lag behind — or never update.
 
-Support also varies within a terminal. For example, Microsoft's `Terminal.exe`_
-supports Unicode 15.0 Wide characters (missing 27 from 13.0), has no Emoji ZWJ
-support, fully supports VS-16, yet fails on zero-width characters for 88+
-languages.
+Support also varies within a terminal.
 
 Solution
 --------
 
-``ucs-detect`` measures terminal compliance with the Specification_ of the
-wcwidth_ library for the latest Unicode version across WIDE, ZERO, ZWJ, VS-16,
-and VS-15 codepoint sequences.
+ucs-detect_ measures terminal compliance with the Specification_ of the
+python wcwidth_ library, for the latest Unicode versions across WIDE, ZERO, ZWJ, VS-16, and VS-15
+unicode sequences.
+
+ucs-browser_ allows to interactive browsing of each kind of category with an interactive terminal
+browsing program.
 
 How it works
 ------------
@@ -166,8 +47,108 @@ This technique is inspired by `resize(1)`_, which determines terminal
 dimensions over transports like serial lines by moving to (999, 999) and
 querying cursor position.
 
+ucs-detect
+----------
+
+.. figure:: https://dxtz6bzwq9sxx.cloudfront.net/ucs-detect2.gif
+   :alt: video demonstration of running ucs-detect
+
+``ucs-detect`` is the primary testing tool. It tests a terminal emulator's
+Unicode support for Wide characters, Emoji Zero Width Joiner (ZWJ) sequences,
+Regional Indicators and flags, Variation Selector-16 (VS-16) and VS-15 sequences,
+and zero-width combining characters across hundreds of languages.
+
+Terminal capabilities that may be automatically detected are also reported:
+`Bracketed Paste`_, `Synchronized Output`_, `Mouse SGR`_, `Grapheme
+Clustering`_, `Kitty Keyboard protocol`_, `Sixel`_, `ReGIS`_, `Kitty`_ or
+`iTerm2 image protocol`_, and `XTGETTCAP`_ support.
+
+Run a default test::
+
+   $ ucs-detect
+
+Run a detailed test and save a YAML report::
+
+   $ ucs-detect --save-yaml=data/my-terminal.yaml
+
+Notable CLI options:
+
+``--rerun <yaml-file>``
+  Re-test a terminal using parameters from a previous YAML report.
+
+``--test-only <category>``
+  Test a single category: ``wide``, ``zwj``, ``vs16``, ``vs15``, ``lang``,
+  ``unicode``, ``terminal``, or ``all`` (default).
+
+``--limit-category-time <seconds>``
+  Time budget per test category, auto-adjusts sampling (0=unlimited).
+
+``--stop-at-error <pattern>``
+  Pause on errors matching *pattern* for interactive investigation. Values:
+  ``all``, ``zwj``, ``wide``, ``vs16``, ``vs16n``, ``vs15``, ``lang``, or a
+  specific language name (e.g., ``Hindi``).
+
+``--no-terminal-test``
+  Skip terminal feature detection.
+
+``--no-languages-test``
+  Skip language support testing.
+
+ucs-browser
+-----------
+
+.. figure:: https://dxtz6bzwq9sxx.cloudfront.net/ucs-browser.gif
+   :alt: video demonstration of running ucs-detect
+
+
+``ucs-browser`` is an interactive terminal browser for visually inspecting
+unicode character width rendering. It displays characters with pipe (``|``)
+alignment markers that should align correctly in any terminal with proper
+Unicode support.
+
+::
+
+   $ ucs-browser
+
+Modes are toggled with keyboard shortcuts:
+
+- ``0``: Reset to default (wide characters)
+- ``1`` / ``2``: Narrow (1-cell) or Wide (2-cell) characters
+- ``c``: Combining characters
+- ``g``: Grapheme clusters (``[`` / ``]`` to adjust width)
+- ``z``: Emoji ZWJ sequences
+- ``5``: VS-15 (text style)
+- ``6``: VS-16 space kludge
+- ``7``: VS-16 (emoji style)
+- ``w``: Toggle with/without variation selector
+- ``U``: Toggle uncommon CJK extensions
+- ``v``: Select Unicode version
+- ``-`` / ``+``: Adjust name column width
+
+Modes may also be directly entered by CLI options (see ``ucs-browser --help``)
+
+Navigation follows less(1) conventions: ``j``/``k`` for lines, ``f``/``b`` for
+pages, ``q`` to quit.
+
+Test Results
+------------
+
+Results for over 30 terminals on Linux, Mac, and Windows are published at
+https://ucs-detect.readthedocs.io/results.html
+
+Individual YAML reports are in the ``data`` folder:
+https://github.com/jquast/ucs-detect/tree/master/data
+
+Related articles:
+
+- `ucs-detect test results`_ (November 2023, release 1.0.4)
+- `State of Terminal Emulation 2025`_ (November 2025, release 1.0.8)
+
 Updating Results
 ----------------
+
+Results are shared with terminal emulator projects and may become outdated as
+they improve Unicode support. Submit a pull request to update YAML data files.
 
 Re-test an existing terminal::
 
@@ -195,22 +176,33 @@ Use ``--stop-at-error`` to investigate discrepancies interactively::
 
 Example output::
 
-    ucs-detect: testing language support: Hindi
-    मानव
+    Failure in language 'Hindi' (Hindi-2-01):
+    +---+-----------+--------+----------+---------+-------------------------+
+    | # | Codepoint | Python | Category | wcwidth |           Name          |
+    +---+-----------+--------+----------+---------+-------------------------+
+    | 1 |   U+0915  | \u0915 |    Lo    |    1    |   DEVANAGARI LETTER KA  |
+    | 2 |   U+094D  | \u094d |    Mn    |    0    |  DEVANAGARI SIGN VIRAMA |
+    | 3 |   U+0928  | \u0928 |    Lo    |    1    |   DEVANAGARI LETTER NA  |
+    | 4 |   U+093F  | \u093f |    Mc    |    0    | DEVANAGARI VOWEL SIGN I |
+    +---+-----------+--------+----------+---------+-------------------------+
+    +----+
+    | क्नि |
+    +----+
 
-    Failure in language 'Hindi':
-    +----------------------------+
-    |            मानव             |
-    +----------------------------+
+    measured by terminal: 3
+    measured by wcwidth:  2
 
-    measured by terminal: 4
-    measured by wcwidth:  3
+    Shell
+    -----
+    printf '\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa8\xe0\xa4\xbf\n'
 
-    printf '\xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xa8\xe0\xa4\xb5\n'
-    from blessed import Terminal
-    term = Terminal()
-    y1, x1 = term.get_location(); print('मानव', end='', flush=True); y2, x2 = term.get_location()
-    assert x2 - x1 == 3
+    Python
+    ------
+    python -c "print('\u0915\u094d\u0928\u093f')"
+
+    press return for next error, or n for non-stop:
+
+
 
 UDHR Data
 ---------
@@ -222,23 +214,17 @@ and language-specific scripts.
 
 Source data: https://github.com/eric-muller/udhr/
 
-The UDHR provides practical coverage of complex grapheme clusters across the
+The UDHR provides practical coverage of common complex grapheme clusters across the
 world's languages, serving as an indicator of a terminal's support for combining
 marks across diverse scripts.
 
 History
 -------
 
-- 2.0.0 (2026-02-01): We now test *only* the latest Unicode Version.
-  Added ``ucs-browser`` interactive terminal browser for inspecting unicode character width.
-  Replaced bundled UDHR text files with pre-computed language grapheme table for faster and more
-  reliable language testing. Added ``--set-software-name``, ``--set-software-version``,
-  ``--test-only``, ``--detect-all-dec-modes``, ``--cursor-report-delay-ms``, ``--timeout-cps``,
-  ``--timeout-query``, ``--include-uncommon-codepoints``, and ``--limit-codepoints-wide-pct`` CLI
-  options. Removed ``--unicode-version``, ``--shell``, ``--quick``, and ``--no-emit-osc1337``. Added
-  adaptive time-budget argument ``--limit-category-time``.  Added "narrow stays narrow" VS-16 test
-  (``vs16n``) to verify base codepoints without VS-16 remain narrow. Migrated project from
-  ``setup.py`` to ``pyproject.toml``, requires Python 3.8 or newer.
+- 2.0.0 (2026-02-01):  More correct results with up-to-date wcwidth_, loads of new CLI options like
+  ``--rerun``, ``--limit-category-time`` and remove CLI arguments ``--unicode-version``,
+  ``--shell``, ``--quick``, and ``--no-emit-osc1337``. The wcwidth-browser_ program has been
+  migrated from wcwidth_, and setup.py was migrated to pyproject.toml. Requires Python 3.8.
 
 - 1.0.8 (2025-11-02): Added detection of DEC Private Modes, testing
   of Variation Selector 15, Sixel graphics and pixel size, and
