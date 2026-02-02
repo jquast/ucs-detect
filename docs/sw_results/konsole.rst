@@ -54,13 +54,14 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 70.8%
+- Final Scaled Score: 71.4%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
 **WIDE Score Details:**
 
 Wide character support calculation:
+
 - Total successful codepoints: 7233
 - Total codepoints tested: 7266
 - Formula: 7233 / 7266
@@ -69,6 +70,7 @@ Wide character support calculation:
 **ZWJ Score Details:**
 
 Emoji ZWJ (Zero-Width Joiner) support calculation:
+
 - Total successful sequences: 1387
 - Total sequences tested: 1445
 - Formula: 1387 / 1445
@@ -77,6 +79,7 @@ Emoji ZWJ (Zero-Width Joiner) support calculation:
 **VS16 Score Details:**
 
 Variation Selector-16 support calculation:
+
 - Errors: 0 of 426 codepoints tested
 - Success rate: 100.0%
 - Formula: 100.0 / 100
@@ -85,6 +88,7 @@ Variation Selector-16 support calculation:
 **VS15 Score Details:**
 
 Variation Selector-15 support calculation:
+
 - Errors: 158 of 158 codepoints tested
 - Success rate: 0.0%
 - Formula: 0.0 / 100
@@ -118,6 +122,7 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 **TIME Score Details:**
 
 Test execution time:
+
 - Elapsed time: 9.28 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
@@ -126,6 +131,7 @@ Test execution time:
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
+
 - Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 97.58%
@@ -248,7 +254,7 @@ Graphics Protocol Support
 
 - **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query
   ``CSI c`` (``\x1b[c``). Extension code ``4`` indicates Sixel_ support,
-  extension code ``3`` indicates ReGIS_ support.
+  ``3`` ReGIS_.
 - **Kitty graphics**: Detected by sending a Kitty graphics query and
   checking for an ``OK`` response.
 - **iTerm2 inline images**: Detected via the iTerm2 capabilities query

@@ -25,8 +25,8 @@ Detailed breakdown of how scores are calculated for *linux fbdev*:
      1  :ref:`WIDE <linuxfbdevwide>`              0.00%        0.0%
      2  :ref:`ZWJ <linuxfbdevzwj>`                0.00%        0.0%
      3  :ref:`LANG <linuxfbdevlang>`              0.00%        0.0%
-     4  :ref:`VS16 <linuxfbdevvs16>`              N/A          N/A
-     5  :ref:`VS15 <linuxfbdevvs15>`              N/A          N/A
+     4  :ref:`VS16 <linuxfbdevvs16>`              0.00%        0.0%
+     5  :ref:`VS15 <linuxfbdevvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <linuxfbdevdecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <linuxfbdevgraphics>`      0%           0.0%
      8  :ref:`TIME <linuxfbdevtime>`              0.01s        100.0%
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 9.09%
+- Raw Final Score: 6.67%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 1.4%
+- Final Scaled Score: 1.0%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -102,6 +102,7 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 **TIME Score Details:**
 
 Test execution time:
+
 - Elapsed time: 0.01 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
@@ -149,7 +150,7 @@ Graphics Protocol Support
 
 - **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query
   ``CSI c`` (``\x1b[c``). Extension code ``4`` indicates Sixel_ support,
-  extension code ``3`` indicates ReGIS_ support.
+  ``3`` ReGIS_.
 - **Kitty graphics**: Detected by sending a Kitty graphics query and
   checking for an ``OK`` response.
 - **iTerm2 inline images**: Detected via the iTerm2 capabilities query

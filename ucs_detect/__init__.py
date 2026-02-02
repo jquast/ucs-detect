@@ -877,6 +877,10 @@ def display_results(term, writer, ambig_label, terminal_results=None,
 
 
 def do_save_yaml(save_yaml, **kwargs):
+    # Ensure software_version is always stored as a string in YAML,
+    # otherwise yaml.safe_dump serializes "3.5" as a float.
+    if 'software_version' in kwargs:
+        kwargs['software_version'] = str(kwargs['software_version'])
     with open(save_yaml, "w", encoding='utf-8') as fout:
         yaml.safe_dump(
             kwargs, fout,

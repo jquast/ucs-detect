@@ -599,6 +599,14 @@ def format_score_int(score):
     return f'{round(score*100)}'
 
 
+def _truncate_version(version):
+    """Truncate version string at first '-', appending ellipsis if truncated."""
+    version = str(version) if version is not None else ""
+    if '-' in version:
+        return version.split('-', 1)[0] + '\u2026'
+    return version
+
+
 def _format_capabilities_summary(entry):
     """
     Format detected capabilities as a comma-joined list of hyperlinked names.
@@ -705,10 +713,10 @@ def display_tabulated_scores(score_table):
             {
                 "Rank": rank,
                 "Terminal Software": make_outbound_hyperlink(result["terminal_software_name"]),
-                "Software Version": result["terminal_software_version"],
+                "Software Version": _truncate_version(result["terminal_software_version"]),
                 "OS System": result["os_system"],
 
-                "Final Scaled Score": wrap_score_with_hyperlink(
+                "Score": wrap_score_with_hyperlink(
                     format_score_int(result["score_final_scaled"]),
                     result["score_final_scaled"],
                     result["terminal_software_name"],
@@ -1233,8 +1241,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print(f"**VS16 Score Details:**")
     print()
-    if not math.isnan(entry["score_emoji_vs16"]):
-        vs16_results = entry["data"]["test_results"]["emoji_vs16_results"]["9.0.0"]
+    _vs16_base = entry["data"]["test_results"].get("emoji_vs16_results", {})
+    if _vs16_base and "9.0.0" in _vs16_base:
+        vs16_results = _vs16_base["9.0.0"]
         n_errors = vs16_results["n_errors"]
         n_total = vs16_results["n_total"]
         pct_success = vs16_results["pct_success"]
@@ -1251,23 +1260,20 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print(f"**VS15 Score Details:**")
     print()
-    if not math.isnan(entry["score_emoji_vs15"]):
-        vs15_base = entry["data"]["test_results"].get("emoji_vs15_results",
-                                                       entry["data"]["test_results"].get("emoji_vs15_type_a_results"))
-        if vs15_base:
-            vs15_results = vs15_base["9.0.0"]
-            n_errors = vs15_results["n_errors"]
-            n_total = vs15_results["n_total"]
-            pct_success = vs15_results["pct_success"]
+    vs15_base = entry["data"]["test_results"].get("emoji_vs15_results",
+                                                   entry["data"]["test_results"].get("emoji_vs15_type_a_results"))
+    if vs15_base and "9.0.0" in vs15_base:
+        vs15_results = vs15_base["9.0.0"]
+        n_errors = vs15_results["n_errors"]
+        n_total = vs15_results["n_total"]
+        pct_success = vs15_results["pct_success"]
 
-            print(f"Variation Selector-15 support calculation:")
-            print()
-            print(f"- Errors: {n_errors} of {n_total} codepoints tested")
-            print(f"- Success rate: {pct_success:.1f}%")
-            print(f"- Formula: {pct_success:.1f} / 100")
-            print(f"- Result: {entry['score_emoji_vs15']*100:.2f}%")
-        else:
-            print(f"VS15 results not available.")
+        print(f"Variation Selector-15 support calculation:")
+        print()
+        print(f"- Errors: {n_errors} of {n_total} codepoints tested")
+        print(f"- Success rate: {pct_success:.1f}%")
+        print(f"- Formula: {pct_success:.1f} / 100")
+        print(f"- Result: {entry['score_emoji_vs15']*100:.2f}%")
     else:
         print(f"VS15 results not available.")
     print()

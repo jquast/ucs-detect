@@ -24,8 +24,8 @@ Detailed breakdown of how scores are calculated for *SyncTERM*:
      1  :ref:`WIDE <synctermwide>`              0.00%        0.0%
      2  :ref:`ZWJ <synctermzwj>`                0.00%        0.0%
      3  :ref:`LANG <synctermlang>`              0.00%        0.0%
-     4  :ref:`VS16 <synctermvs16>`              N/A          N/A
-     5  :ref:`VS15 <synctermvs15>`              N/A          N/A
+     4  :ref:`VS16 <synctermvs16>`              0.00%        0.0%
+     5  :ref:`VS15 <synctermvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <synctermdecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <synctermgraphics>`      0%           0.0%
      8  :ref:`TIME <synctermtime>`              0.06s        86.4%
@@ -43,7 +43,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 7.85%
+- Raw Final Score: 5.76%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -101,6 +101,7 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 **TIME Score Details:**
 
 Test execution time:
+
 - Elapsed time: 0.06 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
@@ -148,7 +149,7 @@ Graphics Protocol Support
 
 - **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query
   ``CSI c`` (``\x1b[c``). Extension code ``4`` indicates Sixel_ support,
-  extension code ``3`` indicates ReGIS_ support.
+  ``3`` ReGIS_.
 - **Kitty graphics**: Detected by sending a Kitty graphics query and
   checking for an ``OK`` response.
 - **iTerm2 inline images**: Detected via the iTerm2 capabilities query
