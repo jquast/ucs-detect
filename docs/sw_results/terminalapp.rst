@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *Terminal.app*:
      5  :ref:`VS15 <terminalappvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <terminalappdecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <terminalappgraphics>`      0%           0.0%
-     8  :ref:`TIME <terminalapptime>`              118.55s      34.7%
+     8  :ref:`TIME <terminalapptime>`              118.55s      27.5%
    ===  =========================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 25.46%
+- Raw Final Score: 24.99%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 22.2%
+- Final Scaled Score: 21.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -126,7 +126,7 @@ Test execution time:
 - Elapsed time: 118.55 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 34.7%
+- Scaled result: 27.5%
 
 **LANG Score Details (Geometric Mean):**
 

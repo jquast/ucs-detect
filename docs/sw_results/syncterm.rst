@@ -28,7 +28,7 @@ Detailed breakdown of how scores are calculated for *SyncTERM*:
      5  :ref:`VS15 <synctermvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <synctermdecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <synctermgraphics>`      0%           0.0%
-     8  :ref:`TIME <synctermtime>`              0.06s        86.4%
+     8  :ref:`TIME <synctermtime>`              0.06s        84.9%
    ===  ======================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -43,7 +43,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 5.76%
+- Raw Final Score: 5.66%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -105,7 +105,7 @@ Test execution time:
 - Elapsed time: 0.06 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 86.4%
+- Scaled result: 84.9%
 
 **LANG Score Details (Geometric Mean):**
 

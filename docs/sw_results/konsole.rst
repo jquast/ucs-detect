@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *Konsole*:
      5  :ref:`VS15 <konsolevs15>`              0.00%        0.0%
      6  :ref:`Capabilities <konsoledecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <konsolegraphics>`      100%         100.0%
-     8  :ref:`TIME <konsoletime>`              9.28s        52.2%
+     8  :ref:`TIME <konsoletime>`              9.28s        47.0%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 69.23%
+- Raw Final Score: 68.88%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -126,7 +126,7 @@ Test execution time:
 - Elapsed time: 9.28 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 52.2%
+- Scaled result: 47.0%
 
 **LANG Score Details (Geometric Mean):**
 

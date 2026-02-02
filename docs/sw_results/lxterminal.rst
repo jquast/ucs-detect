@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *LXTerminal*:
      5  :ref:`VS15 <lxterminalvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <lxterminaldecmodes>`  57.14%       57.1%
      7  :ref:`Graphics <lxterminalgraphics>`      0%           0.0%
-     8  :ref:`TIME <lxterminaltime>`              1109.08s     19.3%
+     8  :ref:`TIME <lxterminaltime>`              1109.08s     10.5%
    ===  ========================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 41.93%
+- Raw Final Score: 41.34%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 40.7%
+- Final Scaled Score: 40.3%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -126,7 +126,7 @@ Test execution time:
 - Elapsed time: 1109.08 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 19.3%
+- Scaled result: 10.5%
 
 **LANG Score Details (Geometric Mean):**
 

@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
      5  :ref:`VS15 <iterm2vs15>`              0.00%        0.0%
      6  :ref:`Capabilities <iterm2decmodes>`  71.43%       71.4%
      7  :ref:`Graphics <iterm2graphics>`      50%          50.0%
-     8  :ref:`TIME <iterm2time>`              4367.06s     9.9%
+     8  :ref:`TIME <iterm2time>`              4367.06s     0.0%
    ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 66.21%
+- Raw Final Score: 65.55%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 68.0%
+- Final Scaled Score: 67.6%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -126,7 +126,7 @@ Test execution time:
 - Elapsed time: 4367.06 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 9.9%
+- Scaled result: 0.0%
 
 **LANG Score Details (Geometric Mean):**
 

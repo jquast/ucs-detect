@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *ghostty*:
      5  :ref:`VS15 <ghosttyvs15>`              100.00%      100.0%
      6  :ref:`Capabilities <ghosttydecmodes>`  100.00%      100.0%
      7  :ref:`Graphics <ghosttygraphics>`      100%         100.0%
-     8  :ref:`TIME <ghosttytime>`              23.31s       45.9%
+     8  :ref:`TIME <ghosttytime>`              23.31s       39.9%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 94.60%
+- Raw Final Score: 94.20%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -126,7 +126,7 @@ Test execution time:
 - Elapsed time: 23.31 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 45.9%
+- Scaled result: 39.9%
 
 **LANG Score Details (Geometric Mean):**
 

@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *weston-terminal*:
      5  :ref:`VS15 <westonterminalvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <westonterminaldecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <westonterminalgraphics>`      0%           0.0%
-     8  :ref:`TIME <westonterminaltime>`              8.71s        52.6%
+     8  :ref:`TIME <westonterminaltime>`              8.71s        47.4%
    ===  ============================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 39.46%
+- Raw Final Score: 39.12%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 37.9%
+- Final Scaled Score: 37.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -126,7 +126,7 @@ Test execution time:
 - Elapsed time: 8.71 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 52.6%
+- Scaled result: 47.4%
 
 **LANG Score Details (Geometric Mean):**
 

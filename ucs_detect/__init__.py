@@ -355,10 +355,10 @@ def _set_double_border(table, has_unicode=True):
     table.bottom_right_junction_char = '╝'
 
 
-def _color_yes_no(term, value):
+def _color_yes_no(term, value, suffix=""):
     """Apply green/red coloring to boolean-like values."""
     if value:
-        return term.green2("Yes")
+        return term.green2("Yes") + suffix
     return term.firebrick1("No")
 
 
@@ -483,10 +483,8 @@ def _build_capabilities_kv_pairs(term, results):
     iterm2 = results.get('iterm2_features', {})
     if iterm2.get('supported'):
         features = iterm2.get('features', {})
-        feature_list = ', '.join(sorted(features.keys()))
         pairs.append(("iTerm2 Features?",
-                       term.green2(f"{len(features)} detected")
-                       + f" ({feature_list})"))
+                       _color_yes_no(term, True, f" ({len(features)})")))
     elif 'iterm2_features' in results:
         pairs.append(("iTerm2 Features?", _color_yes_no(term, False)))
 
@@ -545,26 +543,20 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
             for label, d in data.items():
                 pct_val = d["pct_success"]
                 pct = color_pct(term, pct_val)
-                n_total = d.get("n_total", 0)
-                n_errors = d.get("n_errors", 0)
-                n_pass = n_total - n_errors
-                stats = f" - {n_pass:n} / {n_total:n}"
                 if sp := d.get("sampled_pct"):
-                    stats += f" ({sp}% sampled)"
-                pairs.append((name, pct + stats))
+                    pct += f" ({sp}% sampled)"
+                pairs.append((name, pct))
 
     langs = result_sets.get("language_results")
     if langs:
         n_langs = len(langs)
         n_pass = sum(1 for l in langs if langs[l]["pct_success"] == 100.0)
         lang_pct = n_pass / n_langs * 100 if n_langs else 0
-        lang_note = f"  ({n_pass} of {n_langs} passed)"
-        # show sampled_pct if any language was sampled
+        lang_val = color_pct(term, lang_pct)
         first_lang = next(iter(langs.values()), {})
         if sp := first_lang.get("sampled_pct"):
-            lang_note += f" ({sp}% sampled)"
-        pairs.append(("Languages",
-                      color_pct(term, lang_pct) + lang_note))
+            lang_val += f" ({sp}% sampled)"
+        pairs.append(("Languages", lang_val))
 
     if ambig_label is not None:
         pairs.insert(0, ("Ambiguous Width", ambig_label))
@@ -577,9 +569,6 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
     elif modes:
         pairs.insert(1, ("Mode 2027 (graphemes)", term.yellow("N/A")))
 
-    elapsed = result_sets.get("elapsed")
-    if elapsed is not None:
-        pairs.append(("Time Elapsed", f"{elapsed:.1f} seconds"))
 
     return pairs
 
@@ -843,24 +832,36 @@ def display_results(term, writer, ambig_label, terminal_results=None,
         all_lines.extend(make_xtgettcap_lines(term, xtgettcap, has_unicode))
         all_lines.append("")
 
-    all_pairs = []
+    maxwidth = max(40, term.width - 1) // 2
+
+    # primary table: terminal info + unicode tests, with a capability count
+    primary_pairs = []
     if terminal_pairs:
-        all_pairs.extend(terminal_pairs)
+        primary_pairs.extend(terminal_pairs)
     if caps_pairs:
-        all_pairs.append((None, term.magenta("Capabilities")))
-        all_pairs.extend(caps_pairs)
+        n_yes = sum(1 for _, v in caps_pairs if 'Yes' in v)
+        n_total = len(caps_pairs)
+        cap_summary = term.green2(f"{n_yes}") + f" of {n_total}"
+        primary_pairs.append(("Capabilities", cap_summary))
     if test_pairs:
-        all_pairs.append((None, term.magenta("Unicode")))
-        all_pairs.extend(test_pairs)
+        primary_pairs.append((None, wcwidth.center(
+            term.magenta("Unicode"), maxwidth, '-')))
+        primary_pairs.extend(test_pairs)
+
+    # secondary table: detailed capabilities
+    secondary_pairs = []
+    if caps_pairs:
+        secondary_pairs.extend(caps_pairs)
 
     table_strings = []
-    if all_pairs:
-        mid = (len(all_pairs) + 1) // 2
+    if primary_pairs:
         table_strings.append(
-            str(_make_kv_table(term, "Terminal", all_pairs[:mid], has_unicode)))
-        if all_pairs[mid:]:
-            table_strings.append(
-                str(_make_kv_table(term, "Capabilities", all_pairs[mid:], has_unicode)))
+            str(_make_kv_table(term, "Terminal Capabilities",
+                               primary_pairs, has_unicode)))
+    if secondary_pairs:
+        table_strings.append(
+            str(_make_kv_table(term, "Terminal Capabilities (2)",
+                               secondary_pairs, has_unicode)))
 
     all_lines.extend(_collect_side_by_side_lines(term, table_strings))
 

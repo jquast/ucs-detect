@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *foot*:
      5  :ref:`VS15 <footvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <footdecmodes>`  100.00%      100.0%
      7  :ref:`Graphics <footgraphics>`      50%          50.0%
-     8  :ref:`TIME <foottime>`              12.82s       50.0%
+     8  :ref:`TIME <foottime>`              12.82s       44.5%
    ===  ==================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 76.07%
+- Raw Final Score: 75.70%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -126,7 +126,7 @@ Test execution time:
 - Elapsed time: 12.82 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 50.0%
+- Scaled result: 44.5%
 
 **LANG Score Details (Geometric Mean):**
 
