@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *terminology*:
    ===  =========================================  ===========  ====================
      #  Score Type                                 Raw Score    Final Scaled Score
    ===  =========================================  ===========  ====================
-     1  :ref:`WIDE <terminologywide>`              99.36%       99.4%
+     1  :ref:`WIDE <terminologywide>`              99.36%       29.3%
      2  :ref:`ZWJ <terminologyzwj>`                0.69%        0.7%
-     3  :ref:`LANG <terminologylang>`              73.54%       73.5%
+     3  :ref:`LANG <terminologylang>`              73.54%       11.3%
      4  :ref:`VS16 <terminologyvs16>`              50.00%       50.0%
      5  :ref:`VS15 <terminologyvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <terminologydecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <terminologygraphics>`      0%           0.0%
-     8  :ref:`TIME <terminologytime>`              8.40s        47.7%
+     8  :ref:`TIME <terminologytime>`              8.40s        94.3%
    ===  =========================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 32.99%
+- Raw Final Score: 36.10%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 30.9%
+- Final Scaled Score: 1.4%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -126,13 +126,13 @@ Test execution time:
 - Elapsed time: 8.40 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 47.7%
+- Scaled result: 94.3%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
 
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 94 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 73.54%
 
@@ -300,9 +300,9 @@ Graphics Protocol Support
 Language Support
 ++++++++++++++++
 
-The following 74 languages were tested with 100% success:
+The following 50 languages were tested with 100% success:
 
-(Jinan), (Yeonbyeon), Aja, Amarakaeri, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Japanese, Japanese (Osaka), Japanese (Tokyo), Kabyle, Korean, Lamnso', Lingala (tones), Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mongolian, Halh (Mongolian), Mòoré, Nanai, Navajo, Nuosu, Orok, Otomi, Mezquital, Picard, Saint Lucian Creole French, Secoya, Shipibo-Conibo, Siona, South Azerbaijani, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Veps, Vietnamese, Vietnamese (Han nom), Waama, Yaneshaʼ, Yoruba, Éwé.
+Aja, Amarakaeri, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dendi, Dinka, Northeastern, Ditammari, Evenki, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Kabyle, Lamnso', Lingala (tones), Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mòoré, Nanai, Navajo, Orok, Otomi, Mezquital, Picard, Saint Lucian Creole French, Secoya, Shipibo-Conibo, Siona, South Azerbaijani, Tamazight, Central Atlas, Tem, Ticuna, Uduk, Veps, Vietnamese, Waama, Yaneshaʼ, Yoruba, Éwé.
 
 The following 44 languages are not fully supported:
 

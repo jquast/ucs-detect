@@ -300,7 +300,9 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
     ax.legend()
 
     plt.tight_layout()
-    plt.savefig(output_path, dpi=100, bbox_inches='tight')
+    plt.savefig(output_path, dpi=100, bbox_inches='tight',
+                # 'None' CreationDate is used so the git hash's don't unnecessarily update
+                metadata={'CreationDate': None})
     plt.close()
 
 
@@ -415,8 +417,9 @@ def make_score_table():
         for yaml_path in [
             os.path.join(DATA_PATH, fname)
             for fname in os.listdir(DATA_PATH)
-            if fname.endswith(".yaml") and os.path.isfile(os.path.join(DATA_PATH, fname))
-            and fname != 'terminal_detail_mixins.yaml'
+            if fname.endswith(".yaml") and not fname.startswith("_")
+            and fname != "terminal_detail_mixins.yaml"
+            and os.path.isfile(os.path.join(DATA_PATH, fname))
         ]:
             data = yaml.load(open(yaml_path, "r"), Loader=SafeLoader)
 
@@ -607,41 +610,41 @@ def _truncate_version(version):
     return version
 
 
-def _format_capabilities_summary(entry):
-    """
-    Format detected capabilities as a comma-joined list of hyperlinked names.
-
-    Uses the same hyperlink targets as the capabilities table.
-    """
-    sw_name = entry["terminal_software_name"]
+def _count_capabilities(entry):
+    """Count supported and total notable capabilities for a terminal."""
     tr = entry["data"].get("terminal_results") or {}
     if not tr:
-        return wrap_score_with_hyperlink("none", 0.0, sw_name, "_dec_modes")
+        return 0, 0
 
     modes = tr.get("modes") or {}
-    found = []
-    cap_checks = [
-        (2004, "Bracketed Paste", "_dec_modes"),
-        (2026, "Synced Output", "_dec_modes"),
-        (1004, "Focus Events", "_dec_modes"),
-        (1006, "Mouse SGR", "_dec_modes"),
-        (2027, "Graphemes", "_dec_modes"),
-    ]
-    for mode_num, label, suffix in cap_checks:
+    n_found = 0
+    n_total = 0
+    for mode_num in (2004, 2026, 1004, 1006, 2027):
+        n_total += 1
         if _get_dec_mode_supported(modes, mode_num):
-            found.append(make_outbound_hyperlink(label, sw_name + suffix))
-
+            n_found += 1
     if tr.get("kitty_keyboard") is not None:
-        found.append(make_outbound_hyperlink("Kitty Kbd", sw_name + "_kitty_kbd"))
-
+        n_total += 1
+        n_found += 1
+    elif tr.get("modes"):
+        n_total += 1
     xtgettcap = tr.get("xtgettcap", {})
     if xtgettcap.get("supported", False) and bool(xtgettcap.get("capabilities")):
-        found.append(make_outbound_hyperlink("XTGETTCAP", sw_name + "_xtgettcap"))
+        n_total += 1
+        n_found += 1
+    elif "xtgettcap" in tr:
+        n_total += 1
+    return n_found, n_total
 
-    if not found:
-        return "none"
 
-    return ", ".join(found)
+def _format_capabilities_summary(entry, max_caps):
+    """Format detected capabilities as a count with scored hyperlink."""
+    sw_name = entry["terminal_software_name"]
+    n_found, _n_total = _count_capabilities(entry)
+    score = n_found / max_caps if max_caps else 0.0
+    return wrap_score_with_hyperlink(
+        str(n_found), score, sw_name, "_dec_modes"
+    )
 
 
 def _format_graphics_protocols(entry, sw_name):
@@ -680,7 +683,9 @@ def display_tabulated_scores(score_table):
     display_title("Results", 1)
 
     # Introduction and disclaimer
-    print("This is a volunteer-maintained analysis created by and for terminal emulator developers.")
+    print("This is a volunteer-maintained analysis created by and for terminal emulator and ")
+    print("developers and TUI/CLI library developers. ")
+    print()
     print("We welcome productive contributions and corrections to improve the accuracy and")
     print("completeness of these measurements.")
     print()
@@ -702,12 +707,12 @@ def display_tabulated_scores(score_table):
 
     tabulated_scores = []
 
-    for rank, result in enumerate(score_table, start=1):
-        # Create elapsed time display text (integer seconds, no suffix)
-        elapsed_display = f"{int(result['elapsed_seconds'])}" if not math.isnan(result['elapsed_seconds']) else "N/A"
+    # determine max capabilities across all terminals for scaling
+    max_caps = max((_count_capabilities(r)[0] for r in score_table), default=1)
 
-        # Build capabilities summary list
-        capabilities_list = _format_capabilities_summary(result)
+    for rank, result in enumerate(score_table, start=1):
+        # Build capabilities summary count
+        capabilities_list = _format_capabilities_summary(result, max_caps)
 
         tabulated_scores.append(
             {
@@ -754,12 +759,6 @@ def display_tabulated_scores(score_table):
                 ),
                 "Capabilities": capabilities_list,
                 "Graphics": _format_graphics_protocols(result, result["terminal_software_name"]),
-                "Elapsed(s)": wrap_score_with_hyperlink(
-                    elapsed_display,
-                    result["score_elapsed_scaled"],
-                    result["terminal_software_name"],
-                    "_time"
-                ),
             }
         )
 

@@ -307,16 +307,20 @@ def display_args(arguments):
     return ", ".join(f"{k}={v}" for k, v in arguments.items())
 
 
-def color_pct(term, pct_val):
-    """Apply color to a percentage value based on success thresholds."""
-    term_style = (
+def _pct_style(term, pct_val):
+    """Return terminal style callable for a percentage value."""
+    return (
         term.firebrick1 if pct_val < 33
         else term.darkorange1 if pct_val < 50
         else term.yellow if pct_val < 66
         else term.greenyellow if pct_val < 99
         else term.green2
     )
-    return term_style(f"{pct_val:0.1f} %")
+
+
+def color_pct(term, pct_val):
+    """Apply color to a percentage value based on success thresholds."""
+    return _pct_style(term, pct_val)(f"{pct_val:0.1f} %")
 
 
 def _use_color_table(term):
@@ -841,7 +845,9 @@ def display_results(term, writer, ambig_label, terminal_results=None,
     if caps_pairs:
         n_yes = sum(1 for _, v in caps_pairs if 'Yes' in v)
         n_total = len(caps_pairs)
-        cap_summary = term.green2(f"{n_yes}") + f" of {n_total}"
+        pct = (n_yes / n_total * 100) if n_total else 0
+        colored = _pct_style(term, pct)(f"{n_yes} of {n_total}")
+        cap_summary = term.link('#capabilities', colored)
         primary_pairs.append(("Capabilities", cap_summary))
     if test_pairs:
         primary_pairs.append((None, wcwidth.center(

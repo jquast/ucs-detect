@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *weston-terminal*:
    ===  ============================================  ===========  ====================
      #  Score Type                                    Raw Score    Final Scaled Score
    ===  ============================================  ===========  ====================
-     1  :ref:`WIDE <westonterminalwide>`              99.50%       99.5%
+     1  :ref:`WIDE <westonterminalwide>`              99.50%       45.5%
      2  :ref:`ZWJ <westonterminalzwj>`                0.00%        0.0%
-     3  :ref:`LANG <westonterminallang>`              70.15%       70.2%
+     3  :ref:`LANG <westonterminallang>`              70.15%       0.0%
      4  :ref:`VS16 <westonterminalvs16>`              100.00%      100.0%
      5  :ref:`VS15 <westonterminalvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <westonterminaldecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <westonterminalgraphics>`      0%           0.0%
-     8  :ref:`TIME <westonterminaltime>`              8.71s        47.4%
+     8  :ref:`TIME <westonterminaltime>`              8.71s        93.7%
    ===  ============================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 39.12%
+- Raw Final Score: 42.20%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 37.8%
+- Final Scaled Score: 11.3%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -126,13 +126,13 @@ Test execution time:
 - Elapsed time: 8.71 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 47.4%
+- Scaled result: 93.7%
 
 **LANG Score Details (Geometric Mean):**
 
 Geometric mean calculation:
 
-- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 118 languages
+- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 94 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
 - Result: 70.15%
 
@@ -274,9 +274,7 @@ Graphics Protocol Support
 Language Support
 ++++++++++++++++
 
-The following 24 languages were tested with 100% success:
-
-(Jinan), (Yeonbyeon), Chinese, Gan, Chinese, Hakka, Chinese, Jinyu, Chinese, Mandarin (Beijing), Chinese, Mandarin (Guiyang), Chinese, Mandarin (Harbin), Chinese, Mandarin (Nanjing), Chinese, Mandarin (Simplified), Chinese, Mandarin (Tianjin), Chinese, Mandarin (Traditional), Chinese, Min Nan, Chinese, Wu, Chinese, Xiang, Chinese, Yue, Colorado, Japanese, Japanese (Osaka), Japanese (Tokyo), Korean, Mongolian, Halh (Mongolian), Nuosu, Vietnamese (Han nom).
+No languages were tested with 100% success.
 
 The following 94 languages are not fully supported:
 
