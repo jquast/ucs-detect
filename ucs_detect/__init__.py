@@ -217,7 +217,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
         if set_software_name:
             terminal_software = set_software_name
-        elif silent or (auto_detected and not verify_software_name_and_version):
+        elif silent or not verify_software_name_and_version:
             terminal_software = auto_name
         elif auto_name:
             terminal_software = input(f'Enter "Terminal Software" (press return for "{auto_name}"): ')
@@ -228,7 +228,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
         if set_software_version:
             terminal_version = set_software_version
-        elif auto_detected and not verify_software_name_and_version:
+        elif silent or not verify_software_name_and_version:
             terminal_version = auto_version
         elif auto_version:
             terminal_version = input(f'Enter "Software Version" (press return for "{auto_version}"): ')
