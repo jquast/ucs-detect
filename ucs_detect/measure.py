@@ -50,11 +50,26 @@ class CPSTracker:
     def __init__(self):
         self._total_items = 0
         self._total_elapsed = 0.0
+        self._min_response_time = float('inf')
+        self._max_response_time = 0.0
+        self._sum_response_times = 0.0
+        self._sum_sq_response_times = 0.0
+        self._query_count = 0
 
     def update(self, items: int, elapsed: float):
         """Record items tested and time elapsed."""
         self._total_items += items
         self._total_elapsed += elapsed
+
+    def record_response_time(self, elapsed: float):
+        """Record a single query response time."""
+        self._query_count += 1
+        self._sum_response_times += elapsed
+        self._sum_sq_response_times += elapsed * elapsed
+        if elapsed < self._min_response_time:
+            self._min_response_time = elapsed
+        if elapsed > self._max_response_time:
+            self._max_response_time = elapsed
 
     @contextlib.contextmanager
     def timing(self, n_items: int = 1):
@@ -71,8 +86,9 @@ class CPSTracker:
             nonlocal recorded
             if not recorded:
                 recorded = True
-                self.update(items or n_items,
-                            time.monotonic() - t0)
+                elapsed = time.monotonic() - t0
+                self.update(items or n_items, elapsed)
+                self.record_response_time(elapsed)
 
         yield done_ok
 
@@ -82,6 +98,62 @@ class CPSTracker:
         if self._total_elapsed > 0:
             return self._total_items / self._total_elapsed
         return 0.0
+
+    @property
+    def max_response_time(self) -> float:
+        """Return maximum response time seen, or 0.0 if no data."""
+        return self._max_response_time
+
+    @property
+    def min_response_time(self) -> float:
+        """Return minimum response time seen, or 0.0 if no data."""
+        if self._query_count == 0:
+            return 0.0
+        return self._min_response_time
+
+    @property
+    def avg_response_time(self) -> float:
+        """Return average response time, or 0.0 if no data."""
+        if self._query_count == 0:
+            return 0.0
+        return self._sum_response_times / self._query_count
+
+    @property
+    def mdev_response_time(self) -> float:
+        """Return standard deviation of response times, or 0.0 if no data."""
+        if self._query_count < 2:
+            return 0.0
+        mean = self._sum_response_times / self._query_count
+        variance = (self._sum_sq_response_times / self._query_count
+                     - mean * mean)
+        return max(0.0, variance) ** 0.5
+
+    @property
+    def query_count(self) -> int:
+        """Return total number of queries recorded."""
+        return self._query_count
+
+    def summary(self) -> dict:
+        """Return ping-style rtt summary: min/avg/max/mdev in milliseconds."""
+        return {
+            'rtt_min_ms': round(self.min_response_time * 1000, 3),
+            'rtt_avg_ms': round(self.avg_response_time * 1000, 3),
+            'rtt_max_ms': round(self.max_response_time * 1000, 3),
+            'rtt_mdev_ms': round(self.mdev_response_time * 1000, 3),
+            'queries': self._query_count,
+            'codepoints_per_second': round(self.cps, 1),
+        }
+
+    def auto_timeout(self, multiplier: float = 1.1, minimum: float = 0.05) -> float:
+        """Return auto-calculated timeout based on max response time.
+
+        :param multiplier: Scale factor applied to max response time.
+        :param minimum: Minimum timeout to return if no data or very fast responses.
+        :return: Timeout value in seconds.
+        """
+        if self._max_response_time > 0:
+            return max(minimum, self._max_response_time * multiplier)
+        return minimum
 
 
 def status_header(term, label):
@@ -160,14 +232,8 @@ def make_printf_hex(wchar):
 
 def _make_codepoint_table(term, wchars_display):
     """Build a prettytable showing codepoint breakdown of a character sequence."""
-    from prettytable.colortable import ColorTable, Theme
-    theme = Theme(
-        default_color=term.cyan,
-        vertical_color=term.bold_black,
-        horizontal_color=term.bold_black,
-        junction_color=term.bold_black,
-    )
-    table = ColorTable(theme=theme)
+    from prettytable import PrettyTable
+    table = PrettyTable()
     table.field_names = [
         term.magenta("#"),
         term.magenta("Codepoint"),
@@ -247,6 +313,8 @@ def test_language_support(
     limit_category_time=0,
     limit_graphemes_pct=0,
     cps_tracker=None,
+    silent=False,
+    bg_rgb=None,
     **_kwargs,
 ):
     success_report = collections.defaultdict(int)
@@ -351,7 +419,12 @@ def test_language_support(
                 f"Testing {lang} w={expected_width}"
                 f" ({n_to_test}/{n_novel} novel{inherited_msg}{pct_note})"
             )
-            writer("\n" + status_header(term, label) + "\n")
+            if not silent:
+                writer("\n" + status_header(term, label) + "\n")
+
+            # Get initial position for silent mode
+            if silent:
+                outer_ypos, outer_xpos = _get_pos_or_exit(term, writer, timeout)
 
             grapheme_count = 0
             error_count = 0
@@ -373,20 +446,39 @@ def test_language_support(
 
                 grapheme_id = f"{lang}-{expected_width}-{idx:02x}"
 
-                if col == 0:
-                    writer(term.magenta("║ "))
+                if silent:
+                    # Write grapheme with invisible foreground color
+                    fg = term.color_rgb(*bg_rgb) if bg_rgb else term.black
+                    writer(f'\r{fg}{grapheme}')
+                    if cursor_report_delay_ms:
+                        time.sleep(cursor_report_delay_ms / 1000.0)
+                    end_ypos, end_xpos = get_location_with_retry(term, timeout)
+                    if (-1, -1) == (end_ypos, end_xpos):
+                        writer(f'{term.normal}\r{term.clear_eol}')
+                        writer(
+                            term.reverse_red(
+                                f"Timeout Exceeded ({timeout:.2f}s)"
+                            )
+                        )
+                        break
+                    delta_xpos = end_xpos - outer_xpos
+                    delta_ypos = end_ypos - outer_ypos
+                    writer(f'{term.normal}\r{term.clear_eol}')
                 else:
-                    writer(term.magenta(" \u00b7 "))
+                    if col == 0:
+                        writer(term.magenta("║ "))
+                    else:
+                        writer(term.magenta(" \u00b7 "))
 
-                start_ypos, start_xpos = _get_pos_or_exit(term, writer, timeout)
+                    start_ypos, start_xpos = _get_pos_or_exit(term, writer, timeout)
 
-                writer(term.cyan(grapheme))
-                if cursor_report_delay_ms:
-                    time.sleep(cursor_report_delay_ms / 1000.0)
-                end_ypos, end_xpos = _get_pos_or_exit(term, writer, timeout)
+                    writer(term.cyan(grapheme))
+                    if cursor_report_delay_ms:
+                        time.sleep(cursor_report_delay_ms / 1000.0)
+                    end_ypos, end_xpos = _get_pos_or_exit(term, writer, timeout)
 
-                delta_ypos = end_ypos - start_ypos
-                delta_xpos = end_xpos - start_xpos
+                    delta_ypos = end_ypos - start_ypos
+                    delta_xpos = end_xpos - start_xpos
 
                 if (delta_ypos, delta_xpos) == (0, expected_width):
                     success_report[lang] += 1
@@ -402,10 +494,11 @@ def test_language_support(
                     error_count += 1
                     tested_graphemes[grapheme] = (lang, False)
 
-                    writer(term.move_yx(start_ypos, start_xpos))
-                    writer(term.red(grapheme))
-                    writer(term.magenta(" ║") + "\n")
-                    col = 0
+                    if not silent:
+                        writer(term.move_yx(start_ypos, start_xpos))
+                        writer(term.red(grapheme))
+                        writer(term.magenta(" ║") + "\n")
+                        col = 0
 
                     if stop_at_error and stop_at_error.matches_language(lang):
                         should_continue = display_error_and_prompt(
@@ -425,16 +518,18 @@ def test_language_support(
 
                 grapheme_count += 1
                 category_tested += 1
-                col += 1
+                if not silent:
+                    col += 1
 
-                if col >= num_columns:
-                    writer(term.magenta(" ║") + "\n")
-                    col = 0
+                    if col >= num_columns:
+                        writer(term.magenta(" ║") + "\n")
+                        col = 0
 
-            if col > 0:
+            if not silent and col > 0:
                 writer(term.magenta(" ║") + "\n")
 
-    _write_final_sampling_rate(writer, term, final_pct, limit_graphemes_pct)
+    if not silent:
+        _write_final_sampling_rate(writer, term, final_pct, limit_graphemes_pct)
 
     # update tracker with total language testing results
     category_elapsed = time.monotonic() - category_start
@@ -518,12 +613,14 @@ def test_support(
     include_uncommon=True,
     limit_category_time=0,
     cps_tracker=None,
+    silent=False,
+    bg_rgb=None,
 ):
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
     time_report = {}
 
-    if suppress_output:
+    if suppress_output or silent:
         outer_ypos, outer_xpos = _get_pos_or_exit(term, writer, timeout)
 
     cell_inner = expected_width + 3
@@ -607,7 +704,7 @@ def test_support(
                             effective_pct = new_pct
                             final_pct = new_pct
 
-            if suppress_output:
+            if suppress_output or silent:
                 writer(term.move_yx(outer_ypos, outer_xpos) + term.clear_eol)
             else:
                 hdr_label = label or (test_type.upper() if test_type else "test")
@@ -646,6 +743,26 @@ def test_support(
                     writer(
                         term.move_yx(outer_ypos, outer_xpos) + term.clear_eol
                     )
+                elif silent:
+                    # Write character with invisible foreground color
+                    fg = term.color_rgb(*bg_rgb) if bg_rgb else term.black
+                    writer(f'\r{fg}{wchars_str}')
+                    if cursor_report_delay_ms:
+                        time.sleep(cursor_report_delay_ms / 1000.0)
+                    end_ypos, end_xpos = get_location_with_retry(
+                        term, timeout
+                    )
+                    if (-1, -1) == (end_ypos, end_xpos):
+                        writer(f'{term.normal}\r{term.clear_eol}')
+                        writer(
+                            term.reverse_red(
+                                f"Timeout Exceeded ({timeout:.2f}s)"
+                            )
+                        )
+                        break
+                    delta_xpos = end_xpos - outer_xpos
+                    delta_ypos = end_ypos - outer_ypos
+                    writer(f'{term.normal}\r{term.clear_eol}')
                 else:
                     if col == 0:
                         writer(term.magenta("║ "))
@@ -675,7 +792,7 @@ def test_support(
                         entry["measured_by_terminal"] = delta_xpos
                     failure_report[ver].append(entry)
 
-                    if not suppress_output:
+                    if not suppress_output and not silent:
                         writer(term.move_yx(start_ypos, start_xpos))
                         writer(term.red(wchars_str))
                         writer(term.magenta(" ║") + "\n")
@@ -700,13 +817,13 @@ def test_support(
                         break
                     continue
 
-                if not suppress_output:
+                if not suppress_output and not silent:
                     col += 1
                     if col >= num_columns:
                         writer(term.magenta(" ║") + "\n")
                         col = 0
 
-            if not suppress_output and col > 0:
+            if not suppress_output and not silent and col > 0:
                 writer(term.magenta(" ║") + "\n")
 
             ver_elapsed = time.monotonic() - ver_start_time
@@ -719,7 +836,7 @@ def test_support(
                     >= limit_category_time):
                 break
 
-    if time_limited and not suppress_output:
+    if time_limited and not suppress_output and not silent:
         _write_final_sampling_rate(writer, term, final_pct, limit_pct)
 
     report_versions = [
