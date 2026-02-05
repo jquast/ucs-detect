@@ -20,29 +20,29 @@ using :meth:`blessed.Terminal.get_location`.
 # std imports
 import os
 import sys
+import json
 import time
 import locale
 import argparse
-import functools
-import json
-import platform
 import datetime
+import platform
+import functools
 import contextlib
 
 # 3rd party
+import yaml
 import blessed
 import wcwidth
-import yaml
+import prettytable
 
 # local
-from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
-from ucs_detect.table_wide import WIDE_CHARACTERS
-from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
-from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
-from ucs_detect.table_lang import LANG_GRAPHEMES
 from ucs_detect import measure, terminal
+from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
+from ucs_detect.table_lang import LANG_GRAPHEMES
+from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
+from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
+from ucs_detect.table_wide import WIDE_CHARACTERS
 from ucs_detect.error_matcher import ErrorMatcher
-
 
 
 def _utcnow_str():
@@ -87,6 +87,7 @@ def merge_results(base_results, additional_results):
 
 def init_term(stream):
     locale.setlocale(locale.LC_ALL, "")
+    # local
     from ucs_detect.terminal import make_terminal
     stream_arg = sys.__stderr__ if stream == "stderr" else None
     term = make_terminal(stream=stream_arg)
@@ -389,12 +390,6 @@ def color_pct(term, pct_val):
     return _pct_style(term, pct_val)(f"{pct_val:0.1f} %")
 
 
-def _make_table(term):
-    """Create a :class:`~prettytable.PrettyTable`."""
-    from prettytable import PrettyTable
-    return PrettyTable()
-
-
 def _set_double_border(table, has_unicode=True):
     """Apply CP437 double-line border characters, or ASCII fallback."""
     if not has_unicode:
@@ -449,11 +444,11 @@ def _build_terminal_kv_pairs(term, results):
 
     if results.get('pixels_width') and results.get('pixels_height'):
         pairs.append(("Size (pixels)",
-                       f"{results['pixels_width']} x {results['pixels_height']}"))
+                      f"{results['pixels_width']} x {results['pixels_height']}"))
 
     if results.get('cell_width') and results.get('cell_height'):
         pairs.append(("Cell Size (pixels)",
-                       f"{results['cell_width']} x {results['cell_height']}"))
+                      f"{results['cell_width']} x {results['cell_height']}"))
 
     if ratio_info := results.get('screen_ratio'):
         if ratio_name := results.get('screen_ratio_name'):
@@ -467,13 +462,13 @@ def _build_terminal_kv_pairs(term, results):
         r8, g8, b8 = (fg[0] >> 8, fg[1] >> 8, fg[2] >> 8)
         swatch = term.color_rgb(r8, g8, b8)('█')
         pairs.append(("Foreground",
-                       f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
+                      f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
 
     if bg := results.get('background_color_rgb'):
         r8, g8, b8 = (bg[0] >> 8, bg[1] >> 8, bg[2] >> 8)
         swatch = term.color_rgb(r8, g8, b8)('█')
         pairs.append(("Background",
-                       f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
+                      f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
 
     has_kitty_gfx = results.get('kitty_graphics', False)
     has_iterm2_gfx = results.get('iterm2_features') or {}.get('supported', False)
@@ -530,7 +525,7 @@ def _build_capabilities_kv_pairs(term, results):
             if mode_key in modes:
                 m = modes[mode_key]
                 pairs.append((mode_label,
-                               _color_yes_no(term, m.get('supported'))))
+                              _color_yes_no(term, m.get('supported'))))
             else:
                 pairs.append((mode_label, term.yellow("N/A")))
 
@@ -543,7 +538,7 @@ def _build_capabilities_kv_pairs(term, results):
     if iterm2.get('supported'):
         features = iterm2.get('features', {})
         pairs.append(("iTerm2 Features?",
-                       _color_yes_no(term, True, f" ({len(features)})")))
+                      _color_yes_no(term, True, f" ({len(features)})")))
     elif 'iterm2_features' in results:
         pairs.append(("iTerm2 Features?", _color_yes_no(term, False)))
 
@@ -570,7 +565,7 @@ def _build_capabilities_kv_pairs(term, results):
 
     if 'kitty_clipboard_protocol' in results:
         pairs.append(("Kitty Clipboard?",
-                       _color_yes_no(term, results['kitty_clipboard_protocol'])))
+                      _color_yes_no(term, results['kitty_clipboard_protocol'])))
 
     pointer = results.get('kitty_pointer_shapes')
     if isinstance(pointer, dict) and pointer.get('supported'):
@@ -586,10 +581,8 @@ def _build_capabilities_kv_pairs(term, results):
     return pairs
 
 
-
 def _build_test_kv_pairs(term, ambig_label, **result_sets):
     """Build (key, value) tuples from test results."""
-    has_unicode = result_sets.get("has_unicode", True)
     pairs = []
 
     wide = result_sets.get("wide_results", {})
@@ -609,7 +602,7 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
     langs = result_sets.get("language_results")
     if langs:
         n_langs = len(langs)
-        n_pass = sum(1 for l in langs if langs[l]["pct_success"] == 100.0)
+        n_pass = sum(1 for _lang in langs if langs[_lang]["pct_success"] == 100.0)
         lang_pct = n_pass / n_langs * 100 if n_langs else 0
         lang_val = color_pct(term, lang_pct)
         first_lang = next(iter(langs.values()), {})
@@ -628,13 +621,12 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
     elif modes:
         pairs.insert(1, ("Graphemes(2027)", term.yellow("N/A")))
 
-
     return pairs
 
 
 def _make_kv_table(term, title, pairs, has_unicode=True):
     """Build a table from (key, value) tuples."""
-    table = _make_table(term)
+    table = prettytable.PrettyTable()
     _set_double_border(table, has_unicode)
     table.title = term.magenta(title)
     table.field_names = ["Attribute", "Value"]
@@ -659,7 +651,10 @@ def _truncate_value(val_str, max_len=25):
 
 def make_xtgettcap_lines(term, capabilities, has_unicode=True):
     """Build multi-column XTGETTCAP output lines that tile to fit terminal width."""
+    # std imports
     import math
+
+    # local
     from ucs_detect.table_xtgettcap import XTGETTCAP_CAPABILITIES
 
     cap_info = {name: desc for name, desc in XTGETTCAP_CAPABILITIES}
@@ -670,7 +665,7 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
         return []
 
     # build one full table to get consistent column widths
-    full_table = _make_table(term)
+    full_table = prettytable.PrettyTable()
     _set_double_border(full_table, has_unicode)
     full_table.title = term.magenta(f"XTGETTCAP ({n_caps} capabilities)")
     full_table.field_names = [
@@ -751,7 +746,7 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
 
 def _make_one_language_table(term, title, failed_langs, results, has_unicode):
     """Build a single language table from a list of failed language names."""
-    table = _make_table(term)
+    table = prettytable.PrettyTable()
     _set_double_border(table, has_unicode)
     table.title = term.magenta(title)
     table.field_names = [
@@ -777,6 +772,7 @@ def _make_one_language_table(term, title, failed_langs, results, has_unicode):
 
 def make_language_tables(term, results, has_unicode=True):
     """Build language table string(s), splitting into columns when >12 failures."""
+    # std imports
     import math
     success_langs = [
         lang for lang in results if results[lang]["pct_success"] == 100.0
@@ -813,7 +809,6 @@ def make_language_tables(term, results, has_unicode=True):
         tbl.max_table_width = max_w
         table_strings.append(str(tbl))
     return table_strings
-
 
 
 def _collect_side_by_side_lines(term, table_strings):
@@ -918,7 +913,7 @@ def display_results(term, writer, ambig_label, terminal_results=None,
 
     langs = result_sets.get("language_results")
     if langs:
-        failed = [l for l in langs if langs[l]["pct_success"] < 100.0]
+        failed = [_lang for _lang in langs if langs[_lang]["pct_success"] < 100.0]
         if failed:
             lang_table_strings = make_language_tables(term, langs, has_unicode)
             all_lines.extend(

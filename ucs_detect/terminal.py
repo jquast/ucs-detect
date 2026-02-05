@@ -1,20 +1,22 @@
-import contextlib
+# std imports
 import os
 import re
-import time
-import functools
 import sys
+import time
 import warnings
+import functools
+import contextlib
 
+# 3rd party
 import blessed
-
 
 SCREEN_RATIOS = [(4, 3), (16, 9), (16, 10), (21, 9), (32, 9)]
 
 
 def make_terminal(fallback_kind="ansi", **kwargs):
-    """Create a :class:`blessed.Terminal`, falling back to *fallback_kind*
-    when ``curses.setupterm()`` fails for the current ``$TERM``.
+    """
+    Create a :class:`blessed.Terminal`, falling back to *fallback_kind* when ``curses.setupterm()``
+    fails for the current ``$TERM``.
 
     The ``syncterm`` termcap is also overridden to *fallback_kind* --
     syncterm termcap has trouble with blessed+curses even when installed,
@@ -51,7 +53,6 @@ def _status(writer, term, label, bg_rgb=None, silent=False):
             writer(f'\r{term.clear_eol}')
 
 
-
 def maybe_grapheme_clustering_mode(term, timeout=1.0):
     return term.dec_modes_enabled(term.DecPrivateMode.GRAPHEME_CLUSTERING, timeout=timeout)
 
@@ -62,7 +63,7 @@ def _get_all_dec_private_mode_numbers(term):
         getattr(term.DecPrivateMode, attr)
         for attr in dir(term.DecPrivateMode)
         if attr.isupper() and isinstance(getattr(term.DecPrivateMode, attr), int) and getattr(term.DecPrivateMode, attr) > 0
-        ])
+    ])
 
 
 def _nearest_fraction(numerator: int, denominator: int, fractions: list[tuple[int, int]]):
@@ -73,11 +74,11 @@ def _nearest_fraction(numerator: int, denominator: int, fractions: list[tuple[in
 
 def get_tty_size(term, writer):
     return {
-            'width': term.width,
-            'height': term.height,
-            'pixels_width': term.pixel_width,
-            'pixels_height': term.pixel_height,
-            }
+        'width': term.width,
+        'height': term.height,
+        'pixels_width': term.pixel_width,
+        'pixels_height': term.pixel_height,
+    }
 
 
 NOTABLE_DEC_MODES = [
@@ -113,14 +114,14 @@ def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None,
             n_ok += 1
             ok_elapsed += elapsed
             result['modes'][mode_num] = {
-                    'value': response.value,
-                    'value_description': str(response),
-                    'mode_description': response.description,
-                    'mode_name': response.mode.name,
-                    'supported': response.supported,
-                    'enabled': response.enabled,
-                    'changeable': response.changeable,
-                    }
+                'value': response.value,
+                'value_description': str(response),
+                'mode_description': response.description,
+                'mode_name': response.mode.name,
+                'supported': response.supported,
+                'enabled': response.enabled,
+                'changeable': response.changeable,
+            }
         if not silent:
             writer(unhide)
     if cps_tracker and n_ok:
@@ -129,17 +130,19 @@ def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None,
         writer(f'\r{term.clear_eol}')
     return result
 
+
 def maybe_determine_da_and_sixel(term, timeout=1.0):
     result = {}
     da = term.get_device_attributes(timeout=timeout)
 
     if da is not None:
         result['device_attributes'] = {
-                'service_class': da.service_class,
-                'extensions': sorted(da.extensions),
-                }
+            'service_class': da.service_class,
+            'extensions': sorted(da.extensions),
+        }
     result['sixel'] = term.does_sixel(timeout=timeout)
     return result
+
 
 def _read_dcs_or_plain_response(term, timeout=0.5):
     """Read a response, stripping any DCS wrapper."""
@@ -159,8 +162,10 @@ def _read_dcs_or_plain_response(term, timeout=0.5):
 
     return response.strip()
 
+
 def _try_decode_da3_name(name):
-    """Decode DA3-style semicolon-separated ASCII values to a string.
+    """
+    Decode DA3-style semicolon-separated ASCII values to a string.
 
     SyncTERM's CTerm engine is the only known terminal to identify itself
     this way, encoding its name and version as decimal ASCII codepoints
@@ -252,17 +257,20 @@ def maybe_determine_software(term, writer, timeout=1.0):
 
     return result
 
+
 def maybe_determine_cell_size(term, writer, timeout=1.0):
     cell_height, cell_width = term.get_cell_height_and_width(timeout=timeout)
     if cell_height != -1 and cell_width != -1:
         return {"cell_height": cell_height, "cell_width": cell_width}
     return {}
 
+
 def maybe_determine_pixel_size(term, writer, timeout=1.0):
     pixel_height, pixel_width = term.get_sixel_height_and_width(timeout=timeout)
     if pixel_height > 0 and pixel_width > 0:
         return {"pixels_height": pixel_height, "pixels_width": pixel_width}
     return {}
+
 
 def maybe_determine_screen_ratio(attrs):
     MATCHING_SCREEN_RATIOS = {'4:3': 'VGA', '16:9': 'HD', '16:10': 'WSXGA', '21:9': 'UWHD', '32:9': 'WQHD'}
@@ -271,6 +279,7 @@ def maybe_determine_screen_ratio(attrs):
         screen_ratio_name = MATCHING_SCREEN_RATIOS[screen_ratio]
         return {'screen_ratio': screen_ratio, 'screen_ratio_name': screen_ratio_name}
     return {}
+
 
 def maybe_determine_colors(term, writer, timeout=1.0):
     """Query terminal foreground and background colors."""
@@ -287,6 +296,7 @@ def maybe_determine_colors(term, writer, timeout=1.0):
         result['background_color_hex'] = f"#{r:04x}{g:04x}{b:04x}"
 
     return result
+
 
 def maybe_determine_kitty_keyboard(term, timeout=1.0):
     """Query Kitty keyboard protocol support."""
@@ -339,12 +349,13 @@ def _parse_xtgettcap_responses(raw, result):
 
 
 def maybe_determine_xtgettcap(term, timeout=1.0, cursor_report_delay_ms=0):
-    """Query terminal capabilities via XTGETTCAP (DCS+q).
-
-    Probes with a single capability first to avoid flooding the screen
-    with garbage on terminals that do not support XTGETTCAP (e.g. PuTTY
-    renders the raw DCS sequence as visible text).
     """
+    Query terminal capabilities via XTGETTCAP (DCS+q).
+
+    Probes with a single capability first to avoid flooding the screen with garbage on terminals
+    that do not support XTGETTCAP (e.g. PuTTY renders the raw DCS sequence as visible text).
+    """
+    # local
     from ucs_detect.table_xtgettcap import XTGETTCAP_CAPABILITIES
 
     result = {'xtgettcap': {'supported': False, 'capabilities': {}}}
@@ -390,11 +401,11 @@ def maybe_determine_kitty_graphics(term, timeout=1.0, cursor_report_delay_ms=0):
 
 
 def _probe_iterm2_cell_size(term, timeout=1.0, cursor_report_delay_ms=0):
-    """Probe for iTerm2 image support via OSC 1337;ReportCellSize.
+    """
+    Probe for iTerm2 image support via OSC 1337;ReportCellSize.
 
-    Terminals that support the iTerm2 inline image protocol generally
-    respond to this query, even if they don't implement the Capabilities
-    query. A response indicates iTerm2 image protocol support.
+    Terminals that support the iTerm2 inline image protocol generally respond to this query, even if
+    they don't implement the Capabilities query. A response indicates iTerm2 image protocol support.
     """
     echo(term, '\x1b]1337;ReportCellSize\x07')
     if cursor_report_delay_ms:
@@ -406,7 +417,8 @@ def _probe_iterm2_cell_size(term, timeout=1.0, cursor_report_delay_ms=0):
 
 
 def maybe_determine_iterm2_features(term, timeout=1.0, cursor_report_delay_ms=0):
-    """Query iTerm2 feature reporting protocol.
+    """
+    Query iTerm2 feature reporting protocol.
 
     First attempts the official ``OSC 1337;Capabilities`` query. If that
     fails, falls back to ``OSC 1337;ReportCellSize`` as a probe — terminals
@@ -482,6 +494,7 @@ def _parse_iterm2_capabilities(result, feature_str):
 
 def maybe_determine_text_sizing(term, timeout=1.0):
     """Detect Kitty text sizing protocol support via CPR."""
+    # local
     from ucs_detect.measure import get_location_with_retry
 
     result = {'text_sizing': {'width': False, 'scale': False}}
@@ -514,6 +527,7 @@ def maybe_determine_text_sizing(term, timeout=1.0):
 
 def maybe_determine_tab_stop_width(term, timeout=1.0):
     """Detect tab stop width via CPR measurement."""
+    # local
     from ucs_detect.measure import get_location_with_retry
 
     echo(term, '\r')
@@ -592,10 +606,11 @@ def maybe_determine_kitty_pointer_shapes(term, timeout=1.0, cursor_report_delay_
 
 
 def _timed_detect(func, *args, cps_tracker=None, **kwargs):
-    """Call a detection function, updating cps_tracker on success.
+    """
+    Call a detection function, updating cps_tracker on success.
 
-    A result is considered successful if the returned dict contains
-    any truthy values beyond default empty/False entries.
+    A result is considered successful if the returned dict contains any truthy values beyond default
+    empty/False entries.
     """
     if cps_tracker is None:
         return func(*args, **kwargs)
@@ -689,7 +704,9 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
                             term, **delay_kw))
     return attrs
 
+
 if __name__ == '__main__':
     result = do_terminal_detection()
+    # std imports
     import json
     json.dump(result, sys.stdout, indent=4, sort_keys=True)

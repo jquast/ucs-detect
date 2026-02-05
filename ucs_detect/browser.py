@@ -66,12 +66,12 @@ import unicodedata
 import blessed
 import requests
 import urllib3.util
+from wcwidth import ZERO_WIDTH, wcwidth, list_versions, _wcmatch_version
 
 # local
-from wcwidth import ZERO_WIDTH, wcwidth, list_versions, _wcmatch_version
 from ucs_detect.measure import _is_uncommon
-from ucs_detect.table_lang import LANG_GRAPHEMES
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
+from ucs_detect.table_lang import LANG_GRAPHEMES
 
 #: print function alias, does not end with line terminator.
 echo = functools.partial(print, end='')
@@ -487,8 +487,7 @@ class Style:
         """
         Class constructor.
 
-        Any given keyword arguments are assigned to the class attribute
-        of the same name.
+        Any given keyword arguments are assigned to the class attribute of the same name.
         """
         for key, val in kwargs.items():
             setattr(self, key, val)
@@ -1052,7 +1051,7 @@ class Pager:
         style = self.screen.style
         delimiter = style.attr_minor(style.delimiter)
         multi_cp = (self.zwj_mode or self.grapheme_mode
-                     or (len(ucs) > 1 and self.variation_selector))
+                    or (len(ucs) > 1 and self.variation_selector))
 
         if multi_cp:
             disp_ucs = style.attr_major(ucs)
@@ -1146,6 +1145,7 @@ def main_browser(opts):
     global REFRESH_UNICODE
     REFRESH_UNICODE = opts.get('--refresh-unicode', False)
 
+    # local
     from ucs_detect.terminal import make_terminal
     term = make_terminal()
     style = Style()

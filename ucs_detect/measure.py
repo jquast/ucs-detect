@@ -1,12 +1,13 @@
 # std
+# std imports
 import os
 import re
 import sys
 import time
 import bisect
 import codecs
-import collections
 import contextlib
+import collections
 import unicodedata
 
 # 3rd party
@@ -73,7 +74,8 @@ class CPSTracker:
 
     @contextlib.contextmanager
     def timing(self, n_items: int = 1):
-        """Context manager that records elapsed time on success.
+        """
+        Context manager that records elapsed time on success.
 
         Yields a ``done_ok`` callable. Invoke ``done_ok()`` to record
         *n_items* and elapsed time. If ``done_ok()`` is never called
@@ -125,7 +127,7 @@ class CPSTracker:
             return 0.0
         mean = self._sum_response_times / self._query_count
         variance = (self._sum_sq_response_times / self._query_count
-                     - mean * mean)
+                    - mean * mean)
         return max(0.0, variance) ** 0.5
 
     @property
@@ -145,7 +147,8 @@ class CPSTracker:
         }
 
     def auto_timeout(self, multiplier: float = 1.1, minimum: float = 0.05) -> float:
-        """Return auto-calculated timeout based on max response time.
+        """
+        Return auto-calculated timeout based on max response time.
 
         :param multiplier: Scale factor applied to max response time.
         :param minimum: Minimum timeout to return if no data or very fast responses.
@@ -179,6 +182,7 @@ def _write_final_sampling_rate(writer, term, final_pct, initial_pct):
 
 def extract_unique_graphemes(text):
     """Extract unique grapheme clusters from text, grouped by display width."""
+    # 3rd party
     from wcwidth import iter_graphemes
 
     seen = set()
@@ -232,6 +236,7 @@ def make_printf_hex(wchar):
 
 def _make_codepoint_table(term, wchars_display):
     """Build a prettytable showing codepoint breakdown of a character sequence."""
+    # 3rd party
     from prettytable import PrettyTable
     table = PrettyTable()
     table.field_names = [
@@ -298,7 +303,6 @@ def display_error_and_prompt(
     writer("\n")
 
     return key.lower() != 'n'
-
 
 
 def test_language_support(
@@ -861,6 +865,7 @@ def test_support(
         for ver in report_versions
     }
 
+
 def make_success_pct(n_errors, n_total):
     return ((n_total - n_errors) / n_total if n_total else 0) * 100
 
@@ -911,7 +916,6 @@ def parse_udhr():
                     break
                 text_parts += line.strip().split() if line.strip() else ""
             yield language, ' '.join(text_parts)
-
 
 
 def unicode_escape_string(input_str):
