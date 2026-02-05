@@ -217,7 +217,7 @@ def maybe_determine_software(term, writer, timeout=1.0):
             if sv.version:
                 result['software_version'] = sv.version
     else:
-        # XTVERSION failed, try ENQ (answerback) as fallback
+        # Try ENQ (answerback) as fallback.
         if term.stream:
             term.stream.write('\x05')
             term.stream.flush()
@@ -226,8 +226,7 @@ def maybe_determine_software(term, writer, timeout=1.0):
             sys.stderr.write('\x05')
             sys.stderr.flush()
 
-        time.sleep(0.1)
-        response = _read_dcs_or_plain_response(term, timeout=0.5)
+        response = _read_dcs_or_plain_response(term, timeout=timeout)
         # Clean up: some terminals (e.g. SyncTERM) display ENQ as a
         # visible CP437 glyph (♣).  Overwrite it with a space.
         writer('\r' + ' ' * (term.width - 1) + '\r')
@@ -273,16 +272,16 @@ def maybe_determine_screen_ratio(attrs):
         return {'screen_ratio': screen_ratio, 'screen_ratio_name': screen_ratio_name}
     return {}
 
-def maybe_determine_colors(term, writer):
+def maybe_determine_colors(term, writer, timeout=1.0):
     """Query terminal foreground and background colors."""
     result = {}
 
-    r, g, b = term.get_fgcolor()
+    r, g, b = term.get_fgcolor(timeout=timeout)
     if (r, g, b) != (-1, -1, -1):
         result['foreground_color_rgb'] = [r, g, b]
         result['foreground_color_hex'] = f"#{r:04x}{g:04x}{b:04x}"
 
-    r, g, b = term.get_bgcolor()
+    r, g, b = term.get_bgcolor(timeout=timeout)
     if (r, g, b) != (-1, -1, -1):
         result['background_color_rgb'] = [r, g, b]
         result['background_color_hex'] = f"#{r:04x}{g:04x}{b:04x}"
@@ -622,7 +621,8 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
 
     # detect background color first so we can hide test artifacts
     with _status(writer, term, "Background Color", silent=silent):
-        attrs.update(td(maybe_determine_colors, term, writer))
+        attrs.update(td(maybe_determine_colors, term, writer,
+                        timeout=timeout))
         bg_rgb = None
         if attrs.get('background_color_rgb'):
             bg = attrs['background_color_rgb']
