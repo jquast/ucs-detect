@@ -323,25 +323,11 @@ def _hex_decode(hex_str):
         return hex_str
 
 
-def maybe_determine_xtgettcap(term, timeout=1.0, cursor_report_delay_ms=0):
-    """Query terminal capabilities via XTGETTCAP (DCS+q)."""
-    from ucs_detect.table_xtgettcap import XTGETTCAP_CAPABILITIES
-
-    result = {'xtgettcap': {'supported': False, 'capabilities': {}}}
-
-    for capname, _desc in XTGETTCAP_CAPABILITIES:
-        hex_name = _hex_encode(capname)
-        echo(term, f'\x1bP+q{hex_name}\x1b\\')
-
-    if cursor_report_delay_ms:
-        time.sleep(cursor_report_delay_ms / 1000.0)
-    raw = term.flushinp(timeout=timeout)
-    if not raw:
-        return result
-
-    result['xtgettcap']['supported'] = True
-
-    for match in re.finditer(r'\x1bP([01])\+r([0-9a-fA-F]+)(?:=([0-9a-fA-F]*))?\x1b\\', raw):
+def _parse_xtgettcap_responses(raw, result):
+    """Parse DCS+r responses from XTGETTCAP into *result* dict."""
+    for match in re.finditer(
+        r'\x1bP([01])\+r([0-9a-fA-F]+)(?:=([0-9a-fA-F]*))?\x1b\\', raw
+    ):
         success = match.group(1) == '1'
         cap_hex = match.group(2)
         val_hex = match.group(3)
@@ -351,6 +337,45 @@ def maybe_determine_xtgettcap(term, timeout=1.0, cursor_report_delay_ms=0):
             result['xtgettcap']['capabilities'][cap_name] = _hex_decode(val_hex)
         elif success:
             result['xtgettcap']['capabilities'][cap_name] = True
+
+
+def maybe_determine_xtgettcap(term, timeout=1.0, cursor_report_delay_ms=0):
+    """Query terminal capabilities via XTGETTCAP (DCS+q).
+
+    Probes with a single capability first to avoid flooding the screen
+    with garbage on terminals that do not support XTGETTCAP (e.g. PuTTY
+    renders the raw DCS sequence as visible text).
+    """
+    from ucs_detect.table_xtgettcap import XTGETTCAP_CAPABILITIES
+
+    result = {'xtgettcap': {'supported': False, 'capabilities': {}}}
+
+    # Probe with the first capability only.
+    probe_cap = XTGETTCAP_CAPABILITIES[0][0]
+    echo(term, f'\x1bP+q{_hex_encode(probe_cap)}\x1b\\')
+
+    if cursor_report_delay_ms:
+        time.sleep(cursor_report_delay_ms / 1000.0)
+    probe_raw = term.flushinp(timeout=timeout)
+
+    if not probe_raw or not re.search(r'\x1bP[01]\+r', probe_raw):
+        # Not supported -- erase any visible garbage the terminal may
+        # have rendered from the unrecognised DCS sequence.
+        echo(term, f'\r{term.clear_eol}')
+        return result
+
+    result['xtgettcap']['supported'] = True
+    _parse_xtgettcap_responses(probe_raw, result)
+
+    # Probe succeeded -- query remaining capabilities.
+    for capname, _desc in XTGETTCAP_CAPABILITIES[1:]:
+        echo(term, f'\x1bP+q{_hex_encode(capname)}\x1b\\')
+
+    if cursor_report_delay_ms:
+        time.sleep(cursor_report_delay_ms / 1000.0)
+    raw = term.flushinp(timeout=timeout)
+    if raw:
+        _parse_xtgettcap_responses(raw, result)
 
     return result
 
