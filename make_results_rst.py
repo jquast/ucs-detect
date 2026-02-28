@@ -15,8 +15,17 @@ except ImportError:
     from yaml import SafeLoader
 
 # 3rd party
+import blessed
 import wcwidth
 import tabulate
+
+_DPM = blessed.Terminal.DecPrivateMode
+
+
+def _fmt_mode(mode_num):
+    """Format a DEC private mode as ``'description (number)'``."""
+    return f"{_DPM(mode_num).long_description} ({mode_num})"
+
 
 # Plotting support
 import matplotlib
@@ -619,9 +628,9 @@ def _count_capabilities(entry):
     modes = tr.get("modes") or {}
     n_found = 0
     n_total = 0
-    # TODO: add 2048 (In-Band Resize) and 5522 (Bracketed Paste MIME)
-    # once data has been re-collected for all terminals
-    for mode_num in (2004, 2026, 1004, 1006, 2027):
+    for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
+                     _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
+                     _DPM.GRAPHEME_CLUSTERING, _DPM.BRACKETED_PASTE_MIME):
         n_total += 1
         if _get_dec_mode_supported(modes, mode_num):
             n_found += 1
@@ -925,27 +934,25 @@ def score_capabilities(data):
     """
     Calculate score as fraction of notable terminal capabilities supported.
 
-    Checks 7 capabilities: Bracketed Paste (mode 2004), Synced Output (mode 2026),
+    Checks 12 capabilities: Bracketed Paste (mode 2004), Synced Output (mode 2026),
     Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
-    Kitty Keyboard, and XTGETTCAP.
+    Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
+    Kitty Clipboard, Kitty Pointer Shapes, and Kitty Notifications.
 
     :rtype: float
     :returns: fraction 0.0-1.0 of capabilities supported
     """
-    # todo: Add In-Band Resize (2048) and Bracketed Paste MIME (5522)
-    # once data has been re-collected for all terminals.
-
     tr = data.get("terminal_results") or {}
     if not tr:
         return float('NaN')
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 7
+    total = 12
 
-    # TODO: add 2048 (In-Band Resize) and 5522 (Bracketed Paste MIME)
-    # once data has been re-collected for all terminals
-    for mode_num in (2004, 2026, 1004, 1006, 2027):
+    for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
+                     _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
+                     _DPM.GRAPHEME_CLUSTERING, _DPM.BRACKETED_PASTE_MIME):
         mode_key = str(mode_num) if str(mode_num) in modes else mode_num
         if mode_key in modes and modes[mode_key].get("supported", False):
             count += 1
@@ -955,6 +962,21 @@ def score_capabilities(data):
 
     xtgettcap = tr.get("xtgettcap", {})
     if xtgettcap.get("supported", False) and bool(xtgettcap.get("capabilities")):
+        count += 1
+
+    text_sizing = tr.get("text_sizing", {})
+    if text_sizing.get("width") or text_sizing.get("scale"):
+        count += 1
+
+    if tr.get("kitty_clipboard_protocol", False):
+        count += 1
+
+    kitty_ptr = tr.get("kitty_pointer_shapes")
+    if isinstance(kitty_ptr, dict) and kitty_ptr.get("supported", False):
+        count += 1
+
+    kitty_notif = tr.get("kitty_notifications")
+    if isinstance(kitty_notif, dict) and kitty_notif.get("supported", False):
         count += 1
 
     return count / total
@@ -1074,30 +1096,23 @@ def display_capabilities_table(score_table):
 
         # Notable DEC modes (same as CLI)
         row["Bracketed Paste"] = _capability_yes_no(
-            _get_dec_mode_supported(modes, 2004) if tested else None,
+            _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE) if tested else None,
             sw_name, suffix)
         row["Synced Output"] = _capability_yes_no(
-            _get_dec_mode_supported(modes, 2026) if tested else None,
+            _get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT) if tested else None,
             sw_name, suffix)
-        # TODO: add once data has been re-collected for all terminals
-        # row["In-Band Resize"] = _capability_yes_no(
-        #     _get_dec_mode_supported(modes, 2048) if tested else None,
-        #     sw_name, suffix)
         row["Focus Events"] = _capability_yes_no(
-            _get_dec_mode_supported(modes, 1004) if tested else None,
+            _get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS) if tested else None,
             sw_name, suffix)
         row["Mouse SGR"] = _capability_yes_no(
-            _get_dec_mode_supported(modes, 1006) if tested else None,
+            _get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR) if tested else None,
             sw_name, suffix)
-
-        # Mode 2027 grapheme clustering
         row["Graphemes"] = _capability_yes_no(
-            _get_dec_mode_supported(modes, 2027) if tested else None,
+            _get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING) if tested else None,
             sw_name, suffix)
-        # TODO: add once data has been re-collected for all terminals
-        # row["BP MIME"] = _capability_yes_no(
-        #     _get_dec_mode_supported(modes, 5522) if tested else None,
-        #     sw_name, suffix)
+        row["BP MIME"] = _capability_yes_no(
+            _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME) if tested else None,
+            sw_name, suffix)
 
         # Kitty keyboard
         kitty_kb = tr.get('kitty_keyboard')
@@ -1114,6 +1129,32 @@ def display_capabilities_table(score_table):
             (xtgettcap.get('supported', False)
              and bool(xtgettcap.get('capabilities'))) if tested else None,
             sw_name, "_xtgettcap")
+
+        # Text Sizing (OSC 66)
+        text_sizing = tr.get('text_sizing', {})
+        row["Text Size"] = _capability_yes_no(
+            (text_sizing.get('width') or text_sizing.get('scale'))
+            if tested else None,
+            sw_name, suffix)
+
+        # Kitty Clipboard Protocol
+        row["Kitty Clip"] = _capability_yes_no(
+            tr.get('kitty_clipboard_protocol', False) if tested else None,
+            sw_name, suffix)
+
+        # Kitty Pointer Shapes (OSC 22)
+        kitty_ptr = tr.get('kitty_pointer_shapes')
+        row["Kitty Ptr"] = _capability_yes_no(
+            (isinstance(kitty_ptr, dict) and kitty_ptr.get('supported', False))
+            if tested else None,
+            sw_name, suffix)
+
+        # Kitty Notifications (OSC 99)
+        kitty_notif = tr.get('kitty_notifications')
+        row["Kitty Notif"] = _capability_yes_no(
+            (isinstance(kitty_notif, dict) and kitty_notif.get('supported', False))
+            if tested else None,
+            sw_name, suffix)
 
         table_data.append(row)
 
@@ -1298,17 +1339,26 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         tr = entry["data"].get("terminal_results") or {}
         modes = tr.get("modes") or {}
         cap_checks = [
-            ("Bracketed Paste (2004)", _get_dec_mode_supported(modes, 2004)),
-            ("Synced Output (2026)", _get_dec_mode_supported(modes, 2026)),
-            # TODO: add once data has been re-collected for all terminals
-            # ("In-Band Resize (2048)", _get_dec_mode_supported(modes, 2048)),
-            ("Focus Events (1004)", _get_dec_mode_supported(modes, 1004)),
-            ("Mouse SGR (1006)", _get_dec_mode_supported(modes, 1006)),
-            ("Graphemes (2027)", _get_dec_mode_supported(modes, 2027)),
-            # ("Bracketed Paste MIME (5522)", _get_dec_mode_supported(modes, 5522)),
+            (_fmt_mode(_DPM.BRACKETED_PASTE), _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE)),
+            (_fmt_mode(_DPM.SYNCHRONIZED_OUTPUT), _get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT)),
+            (_fmt_mode(_DPM.FOCUS_IN_OUT_EVENTS), _get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS)),
+            (_fmt_mode(_DPM.MOUSE_EXTENDED_SGR), _get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR)),
+            (_fmt_mode(_DPM.GRAPHEME_CLUSTERING), _get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING)),
+            (_fmt_mode(_DPM.BRACKETED_PASTE_MIME), _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME)),
             ("Kitty Keyboard", tr.get("kitty_keyboard") is not None),
             ("XTGETTCAP", (tr.get("xtgettcap", {}).get("supported", False)
                            and bool(tr.get("xtgettcap", {}).get("capabilities")))),
+            ("Text Sizing (OSC 66)",
+             (tr.get("text_sizing", {}).get("width")
+              or tr.get("text_sizing", {}).get("scale"))),
+            ("Kitty Clipboard Protocol",
+             tr.get("kitty_clipboard_protocol", False)),
+            ("Kitty Pointer Shapes (OSC 22)",
+             isinstance(tr.get("kitty_pointer_shapes"), dict)
+             and tr.get("kitty_pointer_shapes", {}).get("supported", False)),
+            ("Kitty Notifications (OSC 99)",
+             isinstance(tr.get("kitty_notifications"), dict)
+             and tr.get("kitty_notifications", {}).get("supported", False)),
         ]
         cap_count = sum(1 for _, v in cap_checks if v)
         print(f"Notable terminal capabilities ({cap_count} / {len(cap_checks)}):")
@@ -1748,6 +1798,9 @@ def show_xtgettcap_results(sw_name, entry):
           f"**{len(capabilities)}** terminfo capabilities.")
     print()
 
+    from blessed._capabilities import XTGETTCAP_CAPABILITIES
+    cap_descriptions = dict(XTGETTCAP_CAPABILITIES)
+
     tabulated_caps = []
     for idx, (key, value) in enumerate(sorted(capabilities.items()), start=1):
         display_value = str(value)
@@ -1755,7 +1808,8 @@ def show_xtgettcap_results(sw_name, entry):
             display_value = display_value[:57] + "..."
         tabulated_caps.append({
             "#": idx,
-            "Capability": f"``{key}``",
+            "Capability": key,
+            "Description": cap_descriptions.get(key, ""),
             "Value": f"``{display_value}``" if display_value else "*(empty)*",
         })
 

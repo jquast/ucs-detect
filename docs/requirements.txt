@@ -1,9 +1,7 @@
 PyYAML
 wcwidth
 sphinx
-sphinx-rtd-theme
-sphinx-rtd-dark-mode
-sphinxcontrib.jquery
+furo
 sphinx-datatables
 tabulate
 matplotlib
