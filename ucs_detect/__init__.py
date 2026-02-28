@@ -512,15 +512,17 @@ def _build_capabilities_kv_pairs(term, results):
         return pairs
 
     if modes := results.get('modes'):
+        DPM = blessed.Terminal.DecPrivateMode
         notable_modes = [
-            (2004, "Bracketed Paste?"),
-            (2026, "Synchronized Output?"),
-            (2048, "In-Band Resize?"),
-            (1004, "Focus Events?"),
-            (1006, "Mouse SGR?"),
-            (5522, "Bracketed Paste MIME?"),
+            DPM.BRACKETED_PASTE,
+            DPM.SYNCHRONIZED_OUTPUT,
+            DPM.IN_BAND_WINDOW_RESIZE,
+            DPM.FOCUS_IN_OUT_EVENTS,
+            DPM.MOUSE_EXTENDED_SGR,
+            DPM.BRACKETED_PASTE_MIME,
         ]
-        for mode_num, mode_label in notable_modes:
+        for mode_num in notable_modes:
+            mode_label = f"{DPM(mode_num).long_description}?"
             mode_key = str(mode_num) if str(mode_num) in modes else mode_num
             if mode_key in modes:
                 m = modes[mode_key]

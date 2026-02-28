@@ -1,6 +1,5 @@
 # std imports
 import os
-import re
 import sys
 import time
 import warnings
@@ -81,14 +80,15 @@ def get_tty_size(term, writer):
     }
 
 
+_DPM = blessed.Terminal.DecPrivateMode
 NOTABLE_DEC_MODES = [
-    2004,  # Bracketed Paste
-    2026,  # Synchronized Output
-    2027,  # Grapheme Clustering
-    2048,  # In-Band Resize Notifications
-    1004,  # Focus Events
-    1006,  # Mouse SGR
-    5522,  # Bracketed Paste MIME
+    _DPM.BRACKETED_PASTE,
+    _DPM.SYNCHRONIZED_OUTPUT,
+    _DPM.GRAPHEME_CLUSTERING,
+    _DPM.IN_BAND_WINDOW_RESIZE,
+    _DPM.FOCUS_IN_OUT_EVENTS,
+    _DPM.MOUSE_EXTENDED_SGR,
+    _DPM.BRACKETED_PASTE_MIME,
 ]
 
 
@@ -113,15 +113,7 @@ def maybe_determine_dec_modes(term, writer, all_modes=False, bg_rgb=None,
         if not response.failed:
             n_ok += 1
             ok_elapsed += elapsed
-            result['modes'][mode_num] = {
-                'value': response.value,
-                'value_description': str(response),
-                'mode_description': response.description,
-                'mode_name': response.mode.name,
-                'supported': response.supported,
-                'enabled': response.enabled,
-                'changeable': response.changeable,
-            }
+            result['modes'][mode_num] = response.to_dict()
         if not silent:
             writer(unhide)
     if cps_tracker and n_ok:
@@ -288,12 +280,12 @@ def maybe_determine_colors(term, writer, timeout=1.0):
     r, g, b = term.get_fgcolor(timeout=timeout)
     if (r, g, b) != (-1, -1, -1):
         result['foreground_color_rgb'] = [r, g, b]
-        result['foreground_color_hex'] = f"#{r:04x}{g:04x}{b:04x}"
+        result['foreground_color_hex'] = term.get_fgcolor_hex(timeout=timeout)
 
     r, g, b = term.get_bgcolor(timeout=timeout)
     if (r, g, b) != (-1, -1, -1):
         result['background_color_rgb'] = [r, g, b]
-        result['background_color_hex'] = f"#{r:04x}{g:04x}{b:04x}"
+        result['background_color_hex'] = term.get_bgcolor_hex(timeout=timeout)
 
     return result
 
@@ -347,36 +339,10 @@ def maybe_determine_iterm2_features(term, timeout=1.0, **_kw):
 
 
 def maybe_determine_text_sizing(term, timeout=1.0):
-    """Detect Kitty text sizing protocol support via CPR."""
-    # local
-    from ucs_detect.measure import get_location_with_retry
-
-    result = {'text_sizing': {'width': False, 'scale': False}}
-
-    echo(term, '\r')
-    _, col0 = get_location_with_retry(term, timeout)
-    if col0 == -1:
-        return result
-
-    echo(term, '\x1b]66;w=2; \x07')
-    _, col1 = get_location_with_retry(term, timeout)
-    if col1 == -1:
-        echo(term, '\r' + ' ' * 10 + '\r')
-        return result
-
-    echo(term, '\x1b]66;s=2; \x07')
-    _, col2 = get_location_with_retry(term, timeout)
-    if col2 == -1:
-        echo(term, '\r' + ' ' * 10 + '\r')
-        return result
-
-    if col1 - col0 == 2:
-        result['text_sizing']['width'] = True
-    if col2 - col1 == 2:
-        result['text_sizing']['scale'] = True
-
-    echo(term, '\r' + ' ' * max(0, col2 - col0 + 2) + '\r')
-    return result
+    """Detect Kitty text sizing protocol support, delegating to blessed."""
+    echo(term, term.move_x(0))
+    result = term.does_text_sizing(timeout=timeout)
+    return {'text_sizing': {'width': result.width, 'scale': result.scale}}
 
 
 def maybe_determine_tab_stop_width(term, timeout=1.0):
@@ -406,29 +372,17 @@ def maybe_determine_kitty_notifications(term, timeout=1.0, **_kw):
     return {'kitty_notifications': False}
 
 
-_RE_KITTY_CLIPBOARD = re.compile(r'\x1b\[\?5522;(\d+)\$y')
-
-
 def maybe_determine_kitty_clipboard(term, timeout=1.0, **_kw):
-    """Detect Kitty clipboard protocol via DECRQM for mode 5522."""
-    match = term._query_response('\x1b[?5522$p', _RE_KITTY_CLIPBOARD, timeout)
-    if match:
-        ps = int(match.group(1))
-        if ps not in (0, 4):
-            return {'kitty_clipboard_protocol': True}
+    """Detect Kitty clipboard protocol, delegating to blessed."""
+    if term.does_kitty_clipboard(timeout=timeout):
+        return {'kitty_clipboard_protocol': True}
     return {'kitty_clipboard_protocol': False}
 
 
-_RE_KITTY_POINTER = re.compile(r'\x1b\]22;([^\x07\x1b]+)[\x07\x1b]')
-
-
 def maybe_determine_kitty_pointer_shapes(term, timeout=1.0, **_kw):
-    """Detect Kitty mouse pointer shapes (OSC 22) support."""
-    match = term._query_response(
-        '\x1b]22;?__current__\x1b\\', _RE_KITTY_POINTER, timeout
-    )
-    if match:
-        shape = match.group(1)
+    """Detect Kitty mouse pointer shapes (OSC 22) support, delegating to blessed."""
+    shape = term.does_kitty_pointer_shapes(timeout=timeout)
+    if shape is not None:
         return {'kitty_pointer_shapes': {'supported': True, 'current': shape}}
     return {'kitty_pointer_shapes': False}
 
