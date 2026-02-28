@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
    ===  ====================================  ===========  ====================
      #  Score Type                            Raw Score    Final Scaled Score
    ===  ====================================  ===========  ====================
-     1  :ref:`WIDE <iterm2wide>`              100.00%      100.0%
+     1  :ref:`WIDE <iterm2wide>`              99.94%       92.9%
      2  :ref:`ZWJ <iterm2zwj>`                99.31%       99.3%
      3  :ref:`LANG <iterm2lang>`              96.32%       87.7%
      4  :ref:`VS16 <iterm2vs16>`              97.18%       97.2%
      5  :ref:`VS15 <iterm2vs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <iterm2decmodes>`  58.33%       63.6%
+     6  :ref:`Capabilities <iterm2decmodes>`  66.67%       72.7%
      7  :ref:`Graphics <iterm2graphics>`      100%         100.0%
-     8  :ref:`TIME <iterm2time>`              723.46s      18.6%
+     8  :ref:`TIME <iterm2time>`              672.82s      19.8%
    ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 74.73%
+- Raw Final Score: 75.91%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 68.8%
+- Final Scaled Score: 70.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 4360
-- Total codepoints tested: 4360
-- Formula: 4360 / 4360
-- Result: 100.00%
+- Total successful codepoints: 3112
+- Total codepoints tested: 3114
+- Formula: 3112 / 3114
+- Result: 99.94%
 
 **ZWJ Score Details:**
 
@@ -96,14 +96,14 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (7 / 12):
+Notable terminal capabilities (8 / 12):
 
 - Set bracketed paste mode (2004): **yes**
 - Synchronized Output (2026): **yes**
 - Send FocusIn/FocusOut events (1004): **yes**
 - Enable SGR Mouse Mode (1006): **yes**
 - Grapheme Clustering (2027): **yes**
-- Bracketed Paste MIME (5522): **no**
+- Bracketed Paste MIME (5522): **yes**
 - Kitty Keyboard: **yes**
 - XTGETTCAP: **yes**
 - Text Sizing (OSC 66): **no**
@@ -111,7 +111,7 @@ Notable terminal capabilities (7 / 12):
 - Kitty Pointer Shapes (OSC 22): **no**
 - Kitty Notifications (OSC 99): **no**
 
-Raw score: 58.33%
+Raw score: 66.67%
 
 **Graphics Score Details:**
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 723.46 seconds
+- Elapsed time: 672.82 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 18.6%
+- Scaled result: 19.8%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,7 +146,30 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *iTerm2* is **100.0%** (0 errors of 4360 codepoints tested).
+Wide character support of *iTerm2* is **99.9%** (2 errors of 3114 codepoints tested).
+
+Sequence of a WIDE character, from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =================================================  =============  ==========  =========  ===========
+     #  Codepoint                                          Python         Category      wcwidth  Name
+   ===  =================================================  =============  ==========  =========  ===========
+     1  `U+0001FAEF <https://codepoints.net/U+0001FAEF>`_  '\\U0001faef'  So                  2  FIGHT CLOUD
+   ===  =================================================  =============  ==========  =========  ===========
+
+Total codepoints: 1
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xf0\x9f\xab\xaf|\\n12|\\n"
+        🫯|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *iTerm2* measures width 1.
 
 .. _iterm2zwj:
 
@@ -922,25 +945,27 @@ Total codepoints: 4
 DEC Private Modes Support
 +++++++++++++++++++++++++
 
-DEC private modes results for *iTerm2*: 4 changeable modes
-of 5 supported out of 5 total modes tested (100.0% support, 80.0% changeable).
+DEC private modes results for *iTerm2*: 5 changeable modes
+of 7 supported out of 7 total modes tested (100.0% support, 71.4% changeable).
 
 Complete list of DEC private modes tested:
 
 .. table::
    :class: sphinx-datatable
 
-   ======  ===================  ============================  ===========  ============  =========
-     Mode  Name                 Description                   Supported    Changeable    Enabled
-   ======  ===================  ============================  ===========  ============  =========
-     1004  FOCUS_IN_OUT_EVENTS  Send FocusIn/FocusOut events  Yes          Yes           No
-     1006  MOUSE_EXTENDED_SGR   Enable SGR Mouse Mode         Yes          Yes           No
-     2004  BRACKETED_PASTE      Set bracketed paste mode      Yes          Yes           No
-     2026  SYNCHRONIZED_OUTPUT  Synchronized Output           Yes          Yes           No
-     2027  GRAPHEME_CLUSTERING  Grapheme Clustering           Yes          No            No
-   ======  ===================  ============================  ===========  ============  =========
+   ======  =====================  ===================================  ===========  ============  =========
+     Mode  Name                   Description                          Supported    Changeable    Enabled
+   ======  =====================  ===================================  ===========  ============  =========
+     1004  FOCUS_IN_OUT_EVENTS    Send FocusIn/FocusOut events         Yes          Yes           No
+     1006  MOUSE_EXTENDED_SGR     Enable SGR Mouse Mode                Yes          Yes           No
+     2004  BRACKETED_PASTE        Set bracketed paste mode             Yes          Yes           No
+     2026  SYNCHRONIZED_OUTPUT    Synchronized Output                  Yes          Yes           No
+     2027  GRAPHEME_CLUSTERING    Grapheme Clustering                  Yes          No            No
+     2048  IN_BAND_WINDOW_RESIZE  In-Band Window Resize Notifications  Yes          Yes           No
+     5522  BRACKETED_PASTE_MIME   Bracketed Paste MIME                 Yes          No            No
+   ======  =====================  ===================================  ===========  ============  =========
 
-**Summary**: 4 changeable, 1 not changeable.
+**Summary**: 5 changeable, 2 not changeable.
 
 .. _iterm2kittykbd:
 
@@ -973,38 +998,81 @@ responds with the active flags value.
 XTGETTCAP (Terminfo Capabilities)
 +++++++++++++++++++++++++++++++++
 
-*iTerm2* supports the ``XTGETTCAP`` sequence and reports **23** terminfo capabilities.
+*iTerm2* supports the ``XTGETTCAP`` sequence and reports **63** terminfo capabilities.
 
 .. table::
    :class: sphinx-datatable
 
-   ===  ============  ====================  ========================================================
-     #  Capability    Description           Value
-   ===  ============  ====================  ========================================================
-     1  Co            Number of colors      ``256``
-     2  RGB                                 ``8``
-     3  TN            Terminal name         ``xterm-256color``
-     4  acsc                                ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
-     5  bce                                 ``1``
-     6  ccc                                 ``1``
-     7  colors        Max colors            ``256``
-     8  is2                                 ``[!p[?3;4l[4l>``
-     9  kmous                               ``[M``
-    10  npc                                 ``1``
-    11  pairs                               ``32767``
-    12  rmcup         Exit alt screen       ``[?1049l``
-    13  rs1                                 ``c``
-    14  setab         Set background color  ``[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p...``
-    15  setaf         Set foreground color  ``[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1...``
-    16  sgr                                 ``%?%p9%t(0%e(B%;[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%?%p...``
-    17  sitm          Enter italics mode    ``[3m``
-    18  smcup         Enter alt screen      ``[?1049h``
-    19  u6            CPR response format   ``[%i%d;%dR``
-    20  u7            CPR request           ``[6n``
-    21  u8            DA response format    ``[?1;2c``
-    22  u9            DA request            ``[c``
-    23  xenl                                ``1``
-   ===  ============  ====================  ========================================================
+   ===  ============  ======================  ==================
+     #  Capability    Description             Value
+   ===  ============  ======================  ==================
+     1  Co            Number of colors        ``256``
+     2  TN            Terminal name           ``xterm-256color``
+     3  bel           Bell                    ````
+     4  blink         Enter blink mode        ``[5m``
+     5  bold          Enter bold mode         ``[1m``
+     6  civis         Hide cursor             ``[?25l``
+     7  clear         Clear screen            ``[H[2J``
+     8  cnorm         Normal cursor           ``[?12l[?25h``
+     9  colors        Max colors              ``256``
+    10  cr            Carriage return         ``
+                                              ``
+    11  csr           Change scroll region    ``[%i%p1%d;%p2%dr``
+    12  cub           Cursor left n           ``[%p1%dD``
+    13  cub1          Cursor left             ````
+    14  cud           Cursor down n           ``[%p1%dB``
+    15  cud1          Cursor down             ``
+                                              ``
+    16  cuf           Cursor right n          ``[%p1%dC``
+    17  cuf1          Cursor right            ``[C``
+    18  cup           Cursor address          ``[%i%p1%d;%p2%dH``
+    19  cuu           Cursor up n             ``[%p1%dA``
+    20  cuu1          Cursor up               ``[A``
+    21  cvvis         Very visible cursor     ``[?12;25h``
+    22  dch           Delete n characters     ``[%p1%dP``
+    23  dch1          Delete character        ``[P``
+    24  dim           Enter dim mode          ``[2m``
+    25  dl            Delete n lines          ``[%p1%dM``
+    26  dl1           Delete line             ``[M``
+    27  ech           Erase characters        ``[%p1%dX``
+    28  ed            Clear to end of screen  ``[J``
+    29  el            Clear to end of line    ``[K``
+    30  el1           Clear to start of line  ``[1K``
+    31  flash         Flash screen            ``[?5h$<100/>[?5l``
+    32  home          Cursor home             ``[H``
+    33  hpa           Horizontal position     ``[%i%p1%dG``
+    34  ich           Insert n characters     ``[%p1%d@``
+    35  il            Insert n lines          ``[%p1%dL``
+    36  il1           Insert line             ``[L``
+    37  ind           Scroll forward          ``
+                                              ``
+    38  indn          Scroll forward n        ``[%p1%dS``
+    39  op            Original pair           ``[39;49m``
+    40  rc            Restore cursor          ``8``
+    41  rev           Enter reverse mode      ``[7m``
+    42  rin           Scroll reverse n        ``[%p1%dT``
+    43  ritm          Exit italics mode       ``[23m``
+    44  rmam          Disable line wrap       ``[?7l``
+    45  rmcup         Exit alt screen         ``[?1049l``
+    46  rmkx          Keypad local mode       ``[?1l>``
+    47  rmso          Exit standout mode      ``[27m``
+    48  rmul          Exit underline mode     ``[24m``
+    49  sc            Save cursor             ``7``
+    50  setab         Set background color    ``[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p...``
+    51  setaf         Set foreground color    ``[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1...``
+    52  sgr0          Reset attributes        ``(B[m``
+    53  sitm          Enter italics mode      ``[3m``
+    54  smam          Enable line wrap        ``[?7h``
+    55  smcup         Enter alt screen        ``[?1049h``
+    56  smkx          Keypad transmit mode    ``[?1h=``
+    57  smso          Enter standout mode     ``[7m``
+    58  smul          Enter underline mode    ``[4m``
+    59  u6            CPR response format     ``[%i%d;%dR``
+    60  u7            CPR request             ``[6n``
+    61  u8            DA response format      ``[?1;2c``
+    62  u9            DA request              ``[c``
+    63  vpa           Vertical position       ``[%i%p1%dd``
+   ===  ============  ======================  ==================
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
 terminfo capabilities directly from the terminal emulator, rather than relying
@@ -1026,7 +1094,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **723.46 seconds** (723s).
+The test suite completed in **672.82 seconds** (672s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

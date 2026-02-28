@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *XTerm*:
    ===  ===================================  ===========  ====================
      #  Score Type                           Raw Score    Final Scaled Score
    ===  ===================================  ===========  ====================
-     1  :ref:`WIDE <xtermwide>`              99.52%       47.5%
+     1  :ref:`WIDE <xtermwide>`              99.50%       45.5%
      2  :ref:`ZWJ <xtermzwj>`                0.69%        0.7%
      3  :ref:`LANG <xtermlang>`              97.51%       91.6%
      4  :ref:`VS16 <xtermvs16>`              50.00%       50.0%
      5  :ref:`VS15 <xtermvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <xtermdecmodes>`  33.33%       36.4%
      7  :ref:`Graphics <xtermgraphics>`      0%           0.0%
-     8  :ref:`TIME <xtermtime>`              9.08s        92.5%
+     8  :ref:`TIME <xtermtime>`              6.55s        98.0%
    ===  ===================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 43.64%
+- Raw Final Score: 44.01%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 15.4%
+- Final Scaled Score: 16.0%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 10846
-- Total codepoints tested: 10898
-- Formula: 10846 / 10898
-- Result: 99.52%
+- Total successful codepoints: 5422
+- Total codepoints tested: 5449
+- Formula: 5422 / 5449
+- Result: 99.50%
 
 **ZWJ Score Details:**
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 9.08 seconds
+- Elapsed time: 6.55 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 92.5%
+- Scaled result: 98.0%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,26 +146,26 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *XTerm* is **99.5%** (52 errors of 10898 codepoints tested).
+Wide character support of *XTerm* is **99.5%** (27 errors of 5449 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  =====================
+   ===  =================================================  =============  ==========  =========  ========================
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  =====================
-     1  `U+0001D334 <https://codepoints.net/U+0001D334>`_  '\\U0001d334'  So                  2  TETRAGRAM FOR PATTERN
-   ===  =================================================  =============  ==========  =========  =====================
+   ===  =================================================  =============  ==========  =========  ========================
+     1  `U+0001D330 <https://codepoints.net/U+0001D330>`_  '\\U0001d330'  So                  2  TETRAGRAM FOR ENCOUNTERS
+   ===  =================================================  =============  ==========  =========  ========================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9d\x8c\xb4|\\n12|\\n"
-        𝌴|
+        $ printf "\xf0\x9d\x8c\xb0|\\n12|\\n"
+        𝌰|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -920,24 +920,26 @@ DEC Private Modes Support
 +++++++++++++++++++++++++
 
 DEC private modes results for *XTerm*: 3 changeable modes
-of 3 supported out of 5 total modes tested (60.0% support, 60.0% changeable).
+of 3 supported out of 7 total modes tested (42.9% support, 42.9% changeable).
 
 Complete list of DEC private modes tested:
 
 .. table::
    :class: sphinx-datatable
 
-   ======  ===================  ============================  ===========  ============  =========
-     Mode  Name                 Description                   Supported    Changeable    Enabled
-   ======  ===================  ============================  ===========  ============  =========
-     1004  FOCUS_IN_OUT_EVENTS  Send FocusIn/FocusOut events  Yes          Yes           No
-     1006  MOUSE_EXTENDED_SGR   Enable SGR Mouse Mode         Yes          Yes           No
-     2004  BRACKETED_PASTE      Set bracketed paste mode      Yes          Yes           No
-     2026  SYNCHRONIZED_OUTPUT  Synchronized Output           No           No            No
-     2027  GRAPHEME_CLUSTERING  Grapheme Clustering           No           No            No
-   ======  ===================  ============================  ===========  ============  =========
+   ======  =====================  ===================================  ===========  ============  =========
+     Mode  Name                   Description                          Supported    Changeable    Enabled
+   ======  =====================  ===================================  ===========  ============  =========
+     1004  FOCUS_IN_OUT_EVENTS    Send FocusIn/FocusOut events         Yes          Yes           No
+     1006  MOUSE_EXTENDED_SGR     Enable SGR Mouse Mode                Yes          Yes           No
+     2004  BRACKETED_PASTE        Set bracketed paste mode             Yes          Yes           No
+     2026  SYNCHRONIZED_OUTPUT    Synchronized Output                  No           No            No
+     2027  GRAPHEME_CLUSTERING    Grapheme Clustering                  No           No            No
+     2048  IN_BAND_WINDOW_RESIZE  In-Band Window Resize Notifications  No           No            No
+     5522  BRACKETED_PASTE_MIME   Bracketed Paste MIME                 No           No            No
+   ======  =====================  ===================================  ===========  ============  =========
 
-**Summary**: 3 changeable, 2 not changeable.
+**Summary**: 3 changeable, 4 not changeable.
 
 .. _xtermkittykbd:
 
@@ -953,7 +955,7 @@ Kitty Keyboard Protocol
 XTGETTCAP (Terminfo Capabilities)
 +++++++++++++++++++++++++++++++++
 
-*XTerm* supports the ``XTGETTCAP`` sequence and reports **4** terminfo capabilities.
+*XTerm* supports the ``XTGETTCAP`` sequence and reports **3** terminfo capabilities.
 
 .. table::
    :class: sphinx-datatable
@@ -962,9 +964,8 @@ XTGETTCAP (Terminfo Capabilities)
      #  Capability    Description       Value
    ===  ============  ================  =========
      1  Co            Number of colors  ``256``
-     2  RGB                             ``8``
-     3  TN            Terminal name     ``xterm``
-     4  colors        Max colors        ``256``
+     2  TN            Terminal name     ``xterm``
+     3  colors        Max colors        ``256``
    ===  ============  ================  =========
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
@@ -987,7 +988,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **9.08 seconds** (9s).
+The test suite completed in **6.55 seconds** (6s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

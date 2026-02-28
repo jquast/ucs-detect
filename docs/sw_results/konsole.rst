@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *Konsole*:
    ===  =====================================  ===========  ====================
      #  Score Type                             Raw Score    Final Scaled Score
    ===  =====================================  ===========  ====================
-     1  :ref:`WIDE <konsolewide>`              99.67%       63.4%
+     1  :ref:`WIDE <konsolewide>`              99.67%       63.1%
      2  :ref:`ZWJ <konsolezwj>`                95.99%       96.0%
      3  :ref:`LANG <konsolelang>`              97.58%       91.9%
      4  :ref:`VS16 <konsolevs16>`              100.00%      100.0%
      5  :ref:`VS15 <konsolevs15>`              0.00%        0.0%
      6  :ref:`Capabilities <konsoledecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <konsolegraphics>`      100%         100.0%
-     8  :ref:`TIME <konsoletime>`              28.63s       73.1%
+     8  :ref:`TIME <konsoletime>`              18.03s       80.9%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 70.64%
+- Raw Final Score: 71.16%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 61.8%
+- Final Scaled Score: 62.7%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,9 +62,9 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 43447
-- Total codepoints tested: 43592
-- Formula: 43447 / 43592
+- Total successful codepoints: 21723
+- Total codepoints tested: 21796
+- Formula: 21723 / 21796
 - Result: 99.67%
 
 **ZWJ Score Details:**
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 28.63 seconds
+- Elapsed time: 18.03 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 73.1%
+- Scaled result: 80.9%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,26 +146,26 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *Konsole* is **99.7%** (145 errors of 43592 codepoints tested).
+Wide character support of *Konsole* is **99.7%** (73 errors of 21796 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  =========================
+   ===  =================================================  =============  ==========  =========  =====================
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  =========================
-     1  `U+0001D333 <https://codepoints.net/U+0001D333>`_  '\\U0001d333'  So                  2  TETRAGRAM FOR ENLARGEMENT
-   ===  =================================================  =============  ==========  =========  =========================
+   ===  =================================================  =============  ==========  =========  =====================
+     1  `U+0001D334 <https://codepoints.net/U+0001D334>`_  '\\U0001d334'  So                  2  TETRAGRAM FOR PATTERN
+   ===  =================================================  =============  ==========  =========  =====================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9d\x8c\xb3|\\n12|\\n"
-        𝌳|
+        $ printf "\xf0\x9d\x8c\xb4|\\n12|\\n"
+        𝌴|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -985,7 +985,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **28.63 seconds** (28s).
+The test suite completed in **18.03 seconds** (18s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

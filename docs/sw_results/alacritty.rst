@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *alacritty*:
      5  :ref:`VS15 <alacrittyvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <alacrittydecmodes>`  41.67%       45.5%
      7  :ref:`Graphics <alacrittygraphics>`      0%           0.0%
-     8  :ref:`TIME <alacrittytime>`              8.80s        93.0%
+     8  :ref:`TIME <alacrittytime>`              7.83s        95.0%
    ===  =======================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 44.71%
+- Raw Final Score: 44.84%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 17.2%
+- Final Scaled Score: 17.4%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 8.80 seconds
+- Elapsed time: 7.83 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 93.0%
+- Scaled result: 95.0%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -975,24 +975,26 @@ DEC Private Modes Support
 +++++++++++++++++++++++++
 
 DEC private modes results for *alacritty*: 4 changeable modes
-of 4 supported out of 5 total modes tested (80.0% support, 80.0% changeable).
+of 4 supported out of 7 total modes tested (57.1% support, 57.1% changeable).
 
 Complete list of DEC private modes tested:
 
 .. table::
    :class: sphinx-datatable
 
-   ======  ===================  ============================  ===========  ============  =========
-     Mode  Name                 Description                   Supported    Changeable    Enabled
-   ======  ===================  ============================  ===========  ============  =========
-     1004  FOCUS_IN_OUT_EVENTS  Send FocusIn/FocusOut events  Yes          Yes           No
-     1006  MOUSE_EXTENDED_SGR   Enable SGR Mouse Mode         Yes          Yes           No
-     2004  BRACKETED_PASTE      Set bracketed paste mode      Yes          Yes           No
-     2026  SYNCHRONIZED_OUTPUT  Synchronized Output           Yes          Yes           No
-     2027  GRAPHEME_CLUSTERING  Grapheme Clustering           No           No            No
-   ======  ===================  ============================  ===========  ============  =========
+   ======  =====================  ===================================  ===========  ============  =========
+     Mode  Name                   Description                          Supported    Changeable    Enabled
+   ======  =====================  ===================================  ===========  ============  =========
+     1004  FOCUS_IN_OUT_EVENTS    Send FocusIn/FocusOut events         Yes          Yes           No
+     1006  MOUSE_EXTENDED_SGR     Enable SGR Mouse Mode                Yes          Yes           No
+     2004  BRACKETED_PASTE        Set bracketed paste mode             Yes          Yes           No
+     2026  SYNCHRONIZED_OUTPUT    Synchronized Output                  Yes          Yes           No
+     2027  GRAPHEME_CLUSTERING    Grapheme Clustering                  No           No            No
+     2048  IN_BAND_WINDOW_RESIZE  In-Band Window Resize Notifications  No           No            No
+     5522  BRACKETED_PASTE_MIME   Bracketed Paste MIME                 No           No            No
+   ======  =====================  ===================================  ===========  ============  =========
 
-**Summary**: 4 changeable, 1 not changeable.
+**Summary**: 4 changeable, 3 not changeable.
 
 .. _alacrittykittykbd:
 
@@ -1025,7 +1027,7 @@ responds with the active flags value.
 XTGETTCAP (Terminfo Capabilities)
 +++++++++++++++++++++++++++++++++
 
-*alacritty* supports the ``XTGETTCAP`` sequence but returned no capabilities.
+*alacritty* does not support the ``XTGETTCAP`` sequence.
 
 .. _alacrittyreproduce:
 
@@ -1043,7 +1045,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **8.80 seconds** (8s).
+The test suite completed in **7.83 seconds** (7s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

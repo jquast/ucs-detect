@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *Terminal.app*:
    ===  =========================================  ===========  ====================
      #  Score Type                                 Raw Score    Final Scaled Score
    ===  =========================================  ===========  ====================
-     1  :ref:`WIDE <terminalappwide>`              99.92%       90.9%
+     1  :ref:`WIDE <terminalappwide>`              99.92%       91.7%
      2  :ref:`ZWJ <terminalappzwj>`                0.00%        0.0%
      3  :ref:`LANG <terminalapplang>`              97.21%       90.7%
      4  :ref:`VS16 <terminalappvs16>`              50.00%       50.0%
      5  :ref:`VS15 <terminalappvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <terminalappdecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <terminalappgraphics>`      0%           0.0%
-     8  :ref:`TIME <terminalapptime>`              18.44s       80.6%
+     8  :ref:`TIME <terminalapptime>`              48.30s       64.3%
    ===  =========================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 38.32%
+- Raw Final Score: 37.24%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 6.2%
+- Final Scaled Score: 4.4%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,9 +62,9 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 7260
-- Total codepoints tested: 7266
-- Formula: 7260 / 7266
+- Total successful codepoints: 43559
+- Total codepoints tested: 43592
+- Formula: 43559 / 43592
 - Result: 99.92%
 
 **ZWJ Score Details:**
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 18.44 seconds
+- Elapsed time: 48.30 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 80.6%
+- Scaled result: 64.3%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,7 +146,7 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *Terminal.app* is **99.9%** (6 errors of 7266 codepoints tested).
+Wide character support of *Terminal.app* is **99.9%** (33 errors of 43592 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
@@ -156,7 +156,7 @@ Sequence of a WIDE character, from midpoint of alignment failure records:
    ===  =================================================  =============  ==========  =========  ==================================
      #  Codepoint                                          Python         Category      wcwidth  Name
    ===  =================================================  =============  ==========  =========  ==================================
-     1  `U+0001F1F9 <https://codepoints.net/U+0001F1F9>`_  '\\U0001f1f9'  So                  2  REGIONAL INDICATOR SYMBOL LETTER T
+     1  `U+0001F1F6 <https://codepoints.net/U+0001F1F6>`_  '\\U0001f1f6'  So                  2  REGIONAL INDICATOR SYMBOL LETTER Q
    ===  =================================================  =============  ==========  =========  ==================================
 
 Total codepoints: 1
@@ -164,8 +164,8 @@ Total codepoints: 1
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\x87\xb9|\\n12|\\n"
-        🇹|
+        $ printf "\xf0\x9f\x87\xb6|\\n12|\\n"
+        🇶|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -1067,7 +1067,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **18.44 seconds** (18s).
+The test suite completed in **48.30 seconds** (48s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *mlterm*:
    ===  ====================================  ===========  ====================
      #  Score Type                            Raw Score    Final Scaled Score
    ===  ====================================  ===========  ====================
-     1  :ref:`WIDE <mltermwide>`              99.49%       43.9%
+     1  :ref:`WIDE <mltermwide>`              99.44%       38.9%
      2  :ref:`ZWJ <mltermzwj>`                0.00%        0.0%
      3  :ref:`LANG <mltermlang>`              89.69%       65.5%
      4  :ref:`VS16 <mltermvs16>`              50.00%       50.0%
      5  :ref:`VS15 <mltermvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <mltermdecmodes>`  33.33%       36.4%
      7  :ref:`Graphics <mltermgraphics>`      50%          50.0%
-     8  :ref:`TIME <mltermtime>`              8.37s        93.9%
+     8  :ref:`TIME <mltermtime>`              6.53s        98.1%
    ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 49.26%
+- Raw Final Score: 49.54%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 25.0%
+- Final Scaled Score: 25.5%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 7229
-- Total codepoints tested: 7266
-- Formula: 7229 / 7266
-- Result: 99.49%
+- Total successful codepoints: 3941
+- Total codepoints tested: 3963
+- Formula: 3941 / 3963
+- Result: 99.44%
 
 **ZWJ Score Details:**
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 8.37 seconds
+- Elapsed time: 6.53 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 93.9%
+- Scaled result: 98.1%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,26 +146,26 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *mlterm* is **99.5%** (37 errors of 7266 codepoints tested).
+Wide character support of *mlterm* is **99.4%** (22 errors of 3963 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  =======================
+   ===  =================================================  =============  ==========  =========  ==========================
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  =======================
-     1  `U+0001D328 <https://codepoints.net/U+0001D328>`_  '\\U0001d328'  So                  2  TETRAGRAM FOR GATHERING
-   ===  =================================================  =============  ==========  =========  =======================
+   ===  =================================================  =============  ==========  =========  ==========================
+     1  `U+0001D322 <https://codepoints.net/U+0001D322>`_  '\\U0001d322'  So                  2  TETRAGRAM FOR DECISIVENESS
+   ===  =================================================  =============  ==========  =========  ==========================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9d\x8c\xa8|\\n12|\\n"
-        𝌨|
+        $ printf "\xf0\x9d\x8c\xa2|\\n12|\\n"
+        𝌢|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -1152,24 +1152,26 @@ DEC Private Modes Support
 +++++++++++++++++++++++++
 
 DEC private modes results for *mlterm*: 3 changeable modes
-of 3 supported out of 5 total modes tested (60.0% support, 60.0% changeable).
+of 3 supported out of 7 total modes tested (42.9% support, 42.9% changeable).
 
 Complete list of DEC private modes tested:
 
 .. table::
    :class: sphinx-datatable
 
-   ======  ===================  ============================  ===========  ============  =========
-     Mode  Name                 Description                   Supported    Changeable    Enabled
-   ======  ===================  ============================  ===========  ============  =========
-     1004  FOCUS_IN_OUT_EVENTS  Send FocusIn/FocusOut events  Yes          Yes           No
-     1006  MOUSE_EXTENDED_SGR   Enable SGR Mouse Mode         Yes          Yes           No
-     2004  BRACKETED_PASTE      Set bracketed paste mode      Yes          Yes           No
-     2026  SYNCHRONIZED_OUTPUT  Synchronized Output           No           No            No
-     2027  GRAPHEME_CLUSTERING  Grapheme Clustering           No           No            No
-   ======  ===================  ============================  ===========  ============  =========
+   ======  =====================  ===================================  ===========  ============  =========
+     Mode  Name                   Description                          Supported    Changeable    Enabled
+   ======  =====================  ===================================  ===========  ============  =========
+     1004  FOCUS_IN_OUT_EVENTS    Send FocusIn/FocusOut events         Yes          Yes           No
+     1006  MOUSE_EXTENDED_SGR     Enable SGR Mouse Mode                Yes          Yes           No
+     2004  BRACKETED_PASTE        Set bracketed paste mode             Yes          Yes           No
+     2026  SYNCHRONIZED_OUTPUT    Synchronized Output                  No           No            No
+     2027  GRAPHEME_CLUSTERING    Grapheme Clustering                  No           No            No
+     2048  IN_BAND_WINDOW_RESIZE  In-Band Window Resize Notifications  No           No            No
+     5522  BRACKETED_PASTE_MIME   Bracketed Paste MIME                 No           No            No
+   ======  =====================  ===================================  ===========  ============  =========
 
-**Summary**: 3 changeable, 2 not changeable.
+**Summary**: 3 changeable, 4 not changeable.
 
 .. _mltermkittykbd:
 
@@ -1218,7 +1220,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **8.37 seconds** (8s).
+The test suite completed in **6.53 seconds** (6s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

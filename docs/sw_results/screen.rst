@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *screen*:
      5  :ref:`VS15 <screenvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <screendecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <screengraphics>`      0%           0.0%
-     8  :ref:`TIME <screentime>`              17.90s       81.1%
+     8  :ref:`TIME <screentime>`              18.97s       80.1%
    ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 37.71%
+- Raw Final Score: 37.64%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 5.2%
+- Final Scaled Score: 5.0%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 17.90 seconds
+- Elapsed time: 18.97 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 81.1%
+- Scaled result: 80.1%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -1131,7 +1131,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **17.90 seconds** (17s).
+The test suite completed in **18.97 seconds** (18s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

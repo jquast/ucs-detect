@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *tabby*:
    ===  ===================================  ===========  ====================
      #  Score Type                           Raw Score    Final Scaled Score
    ===  ===================================  ===========  ====================
-     1  :ref:`WIDE <tabbywide>`              99.16%       7.8%
+     1  :ref:`WIDE <tabbywide>`              99.11%       1.5%
      2  :ref:`ZWJ <tabbyzwj>`                0.69%        0.7%
      3  :ref:`LANG <tabbylang>`              97.51%       91.6%
      4  :ref:`VS16 <tabbyvs16>`              50.00%       50.0%
      5  :ref:`VS15 <tabbyvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <tabbydecmodes>`  25.00%       27.3%
      7  :ref:`Graphics <tabbygraphics>`      50%          50.0%
-     8  :ref:`TIME <tabbytime>`              77.29s       56.4%
+     8  :ref:`TIME <tabbytime>`              17.91s       81.1%
    ===  ===================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 46.74%
+- Raw Final Score: 48.38%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 20.7%
+- Final Scaled Score: 23.5%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 43227
-- Total codepoints tested: 43592
-- Formula: 43227 / 43592
-- Result: 99.16%
+- Total successful codepoints: 4321
+- Total codepoints tested: 4360
+- Formula: 4321 / 4360
+- Result: 99.11%
 
 **ZWJ Score Details:**
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 77.29 seconds
+- Elapsed time: 17.91 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 56.4%
+- Scaled result: 81.1%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,26 +146,26 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *tabby* is **99.2%** (365 errors of 43592 codepoints tested).
+Wide character support of *tabby* is **99.1%** (39 errors of 4360 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  =====================
+   ===  =================================================  =============  ==========  =========  =============================
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  =====================
-     1  `U+0001D34F <https://codepoints.net/U+0001D34F>`_  '\\U0001d34f'  So                  2  TETRAGRAM FOR CLOSURE
-   ===  =================================================  =============  ==========  =========  =====================
+   ===  =================================================  =============  ==========  =========  =============================
+     1  `U+0001D36B <https://codepoints.net/U+0001D36B>`_  '\\U0001d36b'  No                  2  COUNTING ROD TENS DIGIT THREE
+   ===  =================================================  =============  ==========  =========  =============================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9d\x8d\x8f|\\n12|\\n"
-        𝍏|
+        $ printf "\xf0\x9d\x8d\xab|\\n12|\\n"
+        𝍫|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -971,7 +971,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **77.29 seconds** (77s).
+The test suite completed in **17.91 seconds** (17s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

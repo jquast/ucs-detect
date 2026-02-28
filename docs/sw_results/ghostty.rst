@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *ghostty*:
      5  :ref:`VS15 <ghosttyvs15>`              100.00%      100.0%
      6  :ref:`Capabilities <ghosttydecmodes>`  58.33%       63.6%
      7  :ref:`Graphics <ghosttygraphics>`      100%         100.0%
-     8  :ref:`TIME <ghosttytime>`              21.80s       77.7%
+     8  :ref:`TIME <ghosttytime>`              21.05s       78.3%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 92.84%
+- Raw Final Score: 92.88%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 21.80 seconds
+- Elapsed time: 21.05 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 77.7%
+- Scaled result: 78.3%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -558,7 +558,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **21.80 seconds** (21s).
+The test suite completed in **21.05 seconds** (21s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

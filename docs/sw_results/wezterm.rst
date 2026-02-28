@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *WezTerm*:
    ===  =====================================  ===========  ====================
      #  Score Type                             Raw Score    Final Scaled Score
    ===  =====================================  ===========  ====================
-     1  :ref:`WIDE <weztermwide>`              99.92%       91.7%
+     1  :ref:`WIDE <weztermwide>`              99.94%       93.2%
      2  :ref:`ZWJ <weztermzwj>`                100.00%      100.0%
      3  :ref:`LANG <weztermlang>`              90.30%       67.5%
      4  :ref:`VS16 <weztermvs16>`              50.00%       50.0%
      5  :ref:`VS15 <weztermvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <weztermdecmodes>`  50.00%       54.5%
      7  :ref:`Graphics <weztermgraphics>`      100%         100.0%
-     8  :ref:`TIME <weztermtime>`              422.93s      27.7%
+     8  :ref:`TIME <weztermtime>`              112.73s      50.0%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 67.21%
+- Raw Final Score: 68.70%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 55.9%
+- Final Scaled Score: 58.4%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 43559
-- Total codepoints tested: 43592
-- Formula: 43559 / 43592
-- Result: 99.92%
+- Total successful codepoints: 4841
+- Total codepoints tested: 4844
+- Formula: 4841 / 4844
+- Result: 99.94%
 
 **ZWJ Score Details:**
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 422.93 seconds
+- Elapsed time: 112.73 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 27.7%
+- Scaled result: 50.0%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,7 +146,7 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *WezTerm* is **99.9%** (33 errors of 43592 codepoints tested).
+Wide character support of *WezTerm* is **99.9%** (3 errors of 4844 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
@@ -156,7 +156,7 @@ Sequence of a WIDE character, from midpoint of alignment failure records:
    ===  =================================================  =============  ==========  =========  ==================================
      #  Codepoint                                          Python         Category      wcwidth  Name
    ===  =================================================  =============  ==========  =========  ==================================
-     1  `U+0001F1F6 <https://codepoints.net/U+0001F1F6>`_  '\\U0001f1f6'  So                  2  REGIONAL INDICATOR SYMBOL LETTER Q
+     1  `U+0001F1F3 <https://codepoints.net/U+0001F1F3>`_  '\\U0001f1f3'  So                  2  REGIONAL INDICATOR SYMBOL LETTER N
    ===  =================================================  =============  ==========  =========  ==================================
 
 Total codepoints: 1
@@ -164,8 +164,8 @@ Total codepoints: 1
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\x87\xb6|\\n12|\\n"
-        🇶|
+        $ printf "\xf0\x9f\x87\xb3|\\n12|\\n"
+        🇳|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -1226,7 +1226,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **422.93 seconds** (422s).
+The test suite completed in **112.73 seconds** (112s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

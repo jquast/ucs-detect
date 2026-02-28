@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *kitty*:
    ===  ===================================  ===========  ====================
      #  Score Type                           Raw Score    Final Scaled Score
    ===  ===================================  ===========  ====================
-     1  :ref:`WIDE <kittywide>`              99.99%       98.7%
+     1  :ref:`WIDE <kittywide>`              100.00%      100.0%
      2  :ref:`ZWJ <kittyzwj>`                100.00%      100.0%
      3  :ref:`LANG <kittylang>`              82.28%       40.6%
      4  :ref:`VS16 <kittyvs16>`              97.89%       97.9%
      5  :ref:`VS15 <kittyvs15>`              100.00%      100.0%
      6  :ref:`Capabilities <kittydecmodes>`  91.67%       100.0%
      7  :ref:`Graphics <kittygraphics>`      100%         100.0%
-     8  :ref:`TIME <kittytime>`              688.12s      19.5%
+     8  :ref:`TIME <kittytime>`              482.57s      25.5%
    ===  ===================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 90.87%
+- Raw Final Score: 91.27%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 96.6%
+- Final Scaled Score: 97.2%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 8718
-- Total codepoints tested: 8719
-- Formula: 8718 / 8719
-- Result: 99.99%
+- Total successful codepoints: 2565
+- Total codepoints tested: 2565
+- Formula: 2565 / 2565
+- Result: 100.00%
 
 **ZWJ Score Details:**
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 688.12 seconds
+- Elapsed time: 482.57 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 19.5%
+- Scaled result: 25.5%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,30 +146,7 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *kitty* is **100.0%** (1 errors of 8719 codepoints tested).
-
-Sequence of a WIDE character, from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =================================================  =============  ==========  =========  =================================
-     #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  =================================
-     1  `U+0001F3FD <https://codepoints.net/U+0001F3FD>`_  '\\U0001f3fd'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-4
-   ===  =================================================  =============  ==========  =========  =================================
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x9f\x8f\xbd|\\n12|\\n"
-        🏽|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *kitty* measures width 0.
+Wide character support of *kitty* is **100.0%** (0 errors of 2565 codepoints tested).
 
 .. _kittyzwj:
 
@@ -1300,7 +1277,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **688.12 seconds** (688s).
+The test suite completed in **482.57 seconds** (482s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

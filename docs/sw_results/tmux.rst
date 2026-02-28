@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *tmux*:
      5  :ref:`VS15 <tmuxvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <tmuxdecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <tmuxgraphics>`      50%          50.0%
-     8  :ref:`TIME <tmuxtime>`              21.35s       78.1%
+     8  :ref:`TIME <tmuxtime>`              22.55s       77.2%
    ===  ==================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 61.96%
+- Raw Final Score: 61.89%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 46.9%
+- Final Scaled Score: 46.7%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 21.35 seconds
+- Elapsed time: 22.55 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 78.1%
+- Scaled result: 77.2%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -951,7 +951,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **21.35 seconds** (21s).
+The test suite completed in **22.55 seconds** (22s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

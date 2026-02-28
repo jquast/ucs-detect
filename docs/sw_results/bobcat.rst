@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *Bobcat*:
    ===  ====================================  ===========  ====================
      #  Score Type                            Raw Score    Final Scaled Score
    ===  ====================================  ===========  ====================
-     1  :ref:`WIDE <bobcatwide>`              99.96%       96.0%
-     2  :ref:`ZWJ <bobcatzwj>`                0.00%        0.0%
-     3  :ref:`LANG <bobcatlang>`              97.51%       91.6%
-     4  :ref:`VS16 <bobcatvs16>`              100.00%      100.0%
+     1  :ref:`WIDE <bobcatwide>`              99.93%       91.9%
+     2  :ref:`ZWJ <bobcatzwj>`                0.69%        0.7%
+     3  :ref:`LANG <bobcatlang>`              97.49%       91.6%
+     4  :ref:`VS16 <bobcatvs16>`              50.00%       50.0%
      5  :ref:`VS15 <bobcatvs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <bobcatdecmodes>`  41.67%       45.5%
+     6  :ref:`Capabilities <bobcatdecmodes>`  50.00%       54.5%
      7  :ref:`Graphics <bobcatgraphics>`      50%          50.0%
-     8  :ref:`TIME <bobcattime>`              11.00s       89.3%
+     8  :ref:`TIME <bobcattime>`              34.27s       70.1%
    ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 57.84%
+- Raw Final Score: 51.09%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 39.8%
+- Final Scaled Score: 28.2%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,28 +62,28 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 10894
-- Total codepoints tested: 10898
-- Formula: 10894 / 10898
-- Result: 99.96%
+- Total successful codepoints: 5445
+- Total codepoints tested: 5449
+- Formula: 5445 / 5449
+- Result: 99.93%
 
 **ZWJ Score Details:**
 
 Emoji ZWJ (Zero-Width Joiner) support calculation:
 
-- Total successful sequences: 0
+- Total successful sequences: 10
 - Total sequences tested: 1445
-- Formula: 0 / 1445
-- Result: 0.00%
+- Formula: 10 / 1445
+- Result: 0.69%
 
 **VS16 Score Details:**
 
 Variation Selector-16 support calculation:
 
-- Errors: 0 of 426 codepoints tested
-- Success rate: 100.0%
-- Formula: 100.0 / 100
-- Result: 100.00%
+- Errors: 213 of 426 codepoints tested
+- Success rate: 50.0%
+- Formula: 50.0 / 100
+- Result: 50.00%
 
 **VS15 Score Details:**
 
@@ -96,22 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (5 / 12):
+Notable terminal capabilities (6 / 12):
 
 - Set bracketed paste mode (2004): **yes**
 - Synchronized Output (2026): **yes**
 - Send FocusIn/FocusOut events (1004): **yes**
 - Enable SGR Mouse Mode (1006): **yes**
-- Grapheme Clustering (2027): **yes**
+- Grapheme Clustering (2027): **no**
 - Bracketed Paste MIME (5522): **no**
-- Kitty Keyboard: **no**
-- XTGETTCAP: **no**
+- Kitty Keyboard: **yes**
+- XTGETTCAP: **yes**
 - Text Sizing (OSC 66): **no**
 - Kitty Clipboard Protocol: **no**
 - Kitty Pointer Shapes (OSC 22): **no**
 - Kitty Notifications (OSC 99): **no**
 
-Raw score: 41.67%
+Raw score: 50.00%
 
 **Graphics Score Details:**
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 11.00 seconds
+- Elapsed time: 34.27 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 89.3%
+- Scaled result: 70.1%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -139,44 +139,44 @@ Geometric mean calculation:
 
 - Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = 94 languages
 - About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_
-- Result: 97.51%
+- Result: 97.49%
 
 .. _bobcatwide:
 
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *Bobcat* is **100.0%** (4 errors of 10898 codepoints tested).
+Wide character support of *Bobcat* is **99.9%** (4 errors of 5449 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  ===================================
+   ===  =================================================  =============  ==========  =========  ==================================
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ===================================
-     1  `U+0001F3FB <https://codepoints.net/U+0001F3FB>`_  '\\U0001f3fb'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-1-2
-   ===  =================================================  =============  ==========  =========  ===================================
+   ===  =================================================  =============  ==========  =========  ==================================
+     1  `U+0001F1FB <https://codepoints.net/U+0001F1FB>`_  '\\U0001f1fb'  So                  2  REGIONAL INDICATOR SYMBOL LETTER V
+   ===  =================================================  =============  ==========  =========  ==================================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\x8f\xbb|\\n12|\\n"
-        🏻|
+        $ printf "\xf0\x9f\x87\xbb|\\n12|\\n"
+        🇻|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Bobcat* measures width 0.
+  while *Bobcat* measures width 1.
 
 .. _bobcatzwj:
 
 Emoji ZWJ support
 +++++++++++++++++
 
-Compatibility of *Bobcat* with the Unicode Emoji ZWJ sequence table is **0.0%** (1445 errors of 1445 sequences tested).
+Compatibility of *Bobcat* with the Unicode Emoji ZWJ sequence table is **0.7%** (1435 errors of 1445 sequences tested).
 
 Sequence of an Emoji ZWJ Sequence, from midpoint of alignment failure records:
 
@@ -187,32 +187,58 @@ Sequence of an Emoji ZWJ Sequence, from midpoint of alignment failure records:
      #  Codepoint                                          Python         Category      wcwidth  Name
    ===  =================================================  =============  ==========  =========  =================================
      1  `U+0001F3C3 <https://codepoints.net/U+0001F3C3>`_  '\\U0001f3c3'  So                  2  RUNNER
-     2  `U+0001F3FF <https://codepoints.net/U+0001F3FF>`_  '\\U0001f3ff'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-6
+     2  `U+0001F3FE <https://codepoints.net/U+0001F3FE>`_  '\\U0001f3fe'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-5
      3  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
      4  `U+2640 <https://codepoints.net/U+2640>`_          '\\u2640'      So                  1  FEMALE SIGN
      5  `U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
+     6  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
+     7  `U+27A1 <https://codepoints.net/U+27A1>`_          '\\u27a1'      So                  1  BLACK RIGHTWARDS ARROW
+     8  `U+FE0F <https://codepoints.net/U+FE0F>`_          '\\ufe0f'      Mn                  0  VARIATION SELECTOR-16
    ===  =================================================  =============  ==========  =========  =================================
 
-Total codepoints: 5
+Total codepoints: 8
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\x8f\x83\xf0\x9f\x8f\xbf\xe2\x80\x8d\xe2\x99\x80\xef\xb8\x8f|\\n12|\\n"
-        🏃🏿‍♀️|
+        $ printf "\xf0\x9f\x8f\x83\xf0\x9f\x8f\xbe\xe2\x80\x8d\xe2\x99\x80\xef\xb8\x8f\xe2\x80\x8d\xe2\x9e\xa1\xef\xb8\x8f|\\n12|\\n"
+        🏃🏾‍♀️‍➡️|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
-  while *Bobcat* measures width 4.
+  while *Bobcat* measures width 6.
 
 .. _bobcatvs16:
 
 Variation Selector-16 support
 +++++++++++++++++++++++++++++
 
-Emoji VS-16 results for *Bobcat* is 0 errors
-out of 426 total codepoints tested, 100.0% success.
-All codepoint combinations with Variation Selector-16 tested were successful.
+Emoji VS-16 results for *Bobcat* is 213 errors
+out of 426 total codepoints tested, 50.0% success.
+Sequence of a NARROW Emoji made WIDE by *Variation Selector-16*, from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  =====================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  =====================
+     1  `U+2733 <https://codepoints.net/U+2733>`_  '\\u2733'  So                  1  EIGHT SPOKED ASTERISK
+     2  `U+FE0F <https://codepoints.net/U+FE0F>`_  '\\ufe0f'  Mn                  0  VARIATION SELECTOR-16
+   ===  =========================================  =========  ==========  =========  =====================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xe2\x9c\xb3\xef\xb8\x8f|\\n12|\\n"
+        ✳️|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *Bobcat* measures width 1.
+
 
 .. _bobcatvs15:
 
@@ -243,7 +269,7 @@ Total codepoints: 2
         1|
 
 - python `wcwidth.wcswidth()`_ measures width 1,
-  while *Bobcat* measures width 3.
+  while *Bobcat* measures width 2.
 
 
 .. _bobcatgraphics:
@@ -265,7 +291,7 @@ Graphics Protocol Support
 
 **Device Attributes Response:**
 
-- Extensions reported: 1, 4, 6, 8, 9, 15, 17, 21, 22, 28, 444, 1337
+- Extensions reported: 4, 6, 22
 - Sixel_ indicator (``4``): present
 - ReGIS_ indicator (``3``): not present
 
@@ -279,11 +305,11 @@ Graphics Protocol Support
 Language Support
 ++++++++++++++++
 
-The following 75 languages were tested with 100% success:
+The following 73 languages were tested with 100% success:
 
-Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chakma, Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Kabyle, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mòoré, Nanai, Navajo, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Shan, Shipibo-Conibo, Sinhala, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamil, Tamil (Sri Lanka), Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Urdu, Urdu (2), Veps, Vietnamese, Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Éwé.
+Aja, Amarakaeri, Arabic, Standard, Assyrian Neo-Aramaic, Baatonum, Bamun, Belanda Viri, Bora, Catalan (2), Chakma, Chickasaw, Chinantec, Chiltepec, Dagaare, Southern, Dangme, Dari, Dendi, Dinka, Northeastern, Ditammari, Dzongkha, Evenki, Farsi, Western, Fon, French (Welche), Fur, Ga, Gen, Gilyak, Gumuz, Kabyle, Lamnso', Lao, Lingala (tones), Maldivian, Maori (2), Mazahua Central, Mirandese, Mixtec, Metlatónoc, Mòoré, Nanai, Navajo, Orok, Otomi, Mezquital, Panjabi, Eastern, Panjabi, Western, Pashto, Northern, Picard, Pular (Adlam), Saint Lucian Creole French, Secoya, Seraiki, Shan, Shipibo-Conibo, Sinhala, Siona, South Azerbaijani, Tagalog (Tagalog), Tai Dam, Tamazight, Central Atlas, Tamil, Tamil (Sri Lanka), Tem, Thai, Thai (2), Tibetan, Central, Ticuna, Uduk, Veps, Vietnamese, Waama, Yaneshaʼ, Yiddish, Eastern, Yoruba, Éwé.
 
-The following 19 languages are not fully supported:
+The following 21 languages are not fully supported:
 
 .. table::
    :class: sphinx-datatable
@@ -308,6 +334,8 @@ The following 19 languages are not fully supported:
    :ref:`Kannada <bobcatlangkannada>`                               14        287  95.1%
    :ref:`Burmese <bobcatlangburmese>`                               10        268  96.3%
    :ref:`Khmer, Central <bobcatlangkhmercentral>`                    8        443  98.2%
+   :ref:`Urdu (2) <bobcatlangurdu2>`                                 1         82  98.8%
+   :ref:`Urdu <bobcatlangurdu>`                                      1        110  99.1%
    :ref:`Mon <bobcatlangmon>`                                        3        332  99.1%
    :ref:`Khün <bobcatlangkhn>`                                       1        396  99.7%
    =======================================================  ==========  =========  =============
@@ -825,6 +853,62 @@ Total codepoints: 5
 - python `wcwidth.wcswidth()`_ measures width 3,
   while *Bobcat* measures width 4.
 
+.. _bobcatlangurdu2:
+
+Urdu (2)
+^^^^^^^^
+
+Sequence of language *Urdu (2)* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ===============================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ===============================
+     1  `U+0601 <https://codepoints.net/U+0601>`_  '\\u0601'  Cf                  1  ARABIC SIGN SANAH
+     2  `U+06F1 <https://codepoints.net/U+06F1>`_  '\\u06f1'  Nd                  1  EXTENDED ARABIC-INDIC DIGIT ONE
+   ===  =========================================  =========  ==========  =========  ===============================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xd8\x81\xdb\xb1|\\n12|\\n"
+        ؁۱|
+        12|
+
+
+.. _bobcatlangurdu:
+
+Urdu
+^^^^
+
+Sequence of language *Urdu* from midpoint of alignment failure records:
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  =========================================  =========  ==========  =========  ===============================
+     #  Codepoint                                  Python     Category      wcwidth  Name
+   ===  =========================================  =========  ==========  =========  ===============================
+     1  `U+0601 <https://codepoints.net/U+0601>`_  '\\u0601'  Cf                  1  ARABIC SIGN SANAH
+     2  `U+06F1 <https://codepoints.net/U+06F1>`_  '\\u06f1'  Nd                  1  EXTENDED ARABIC-INDIC DIGIT ONE
+   ===  =========================================  =========  ==========  =========  ===============================
+
+Total codepoints: 2
+
+
+- Shell test using `printf(1)`_, ``'|'`` should align in output::
+
+        $ printf "\xd8\x81\xdb\xb1|\\n12|\\n"
+        ؁۱|
+        12|
+
+- python `wcwidth.wcswidth()`_ measures width 2,
+  while *Bobcat* measures width 1.
+
 .. _bobcatlangmon:
 
 Mon
@@ -891,32 +975,51 @@ Total codepoints: 4
 DEC Private Modes Support
 +++++++++++++++++++++++++
 
-DEC private modes results for *Bobcat*: 3 changeable modes
-of 5 supported out of 5 total modes tested (100.0% support, 60.0% changeable).
+DEC private modes results for *Bobcat*: 4 changeable modes
+of 4 supported out of 7 total modes tested (57.1% support, 57.1% changeable).
 
 Complete list of DEC private modes tested:
 
 .. table::
    :class: sphinx-datatable
 
-   ======  ===================  ============================  ===========  ============  =========
-     Mode  Name                 Description                   Supported    Changeable    Enabled
-   ======  ===================  ============================  ===========  ============  =========
-     1004  FOCUS_IN_OUT_EVENTS  Send FocusIn/FocusOut events  Yes          Yes           No
-     1006  MOUSE_EXTENDED_SGR   Enable SGR Mouse Mode         Yes          Yes           No
-     2004  BRACKETED_PASTE      Set bracketed paste mode      Yes          Yes           No
-     2026  SYNCHRONIZED_OUTPUT  Synchronized Output           Yes          No            No
-     2027  GRAPHEME_CLUSTERING  Grapheme Clustering           Yes          No            No
-   ======  ===================  ============================  ===========  ============  =========
+   ======  =====================  ===================================  ===========  ============  =========
+     Mode  Name                   Description                          Supported    Changeable    Enabled
+   ======  =====================  ===================================  ===========  ============  =========
+     1004  FOCUS_IN_OUT_EVENTS    Send FocusIn/FocusOut events         Yes          Yes           No
+     1006  MOUSE_EXTENDED_SGR     Enable SGR Mouse Mode                Yes          Yes           No
+     2004  BRACKETED_PASTE        Set bracketed paste mode             Yes          Yes           No
+     2026  SYNCHRONIZED_OUTPUT    Synchronized Output                  Yes          Yes           No
+     2027  GRAPHEME_CLUSTERING    Grapheme Clustering                  No           No            No
+     2048  IN_BAND_WINDOW_RESIZE  In-Band Window Resize Notifications  No           No            No
+     5522  BRACKETED_PASTE_MIME   Bracketed Paste MIME                 No           No            No
+   ======  =====================  ===================================  ===========  ============  =========
 
-**Summary**: 3 changeable, 2 not changeable.
+**Summary**: 4 changeable, 3 not changeable.
 
 .. _bobcatkittykbd:
 
 Kitty Keyboard Protocol
 +++++++++++++++++++++++
 
-*Bobcat* does not support the `Kitty keyboard protocol`_.
+*Bobcat* supports the `Kitty keyboard protocol`_.
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  ===============================  =====================  =======
+     #  Flag                             Key                    State
+   ===  ===============================  =====================  =======
+     1  Disambiguate escape codes        ``disambiguate``       No
+     2  Report event types               ``report_events``      No
+     3  Report alternate keys            ``report_alternates``  No
+     4  Report all keys as escape codes  ``report_all_keys``    No
+     5  Report associated text           ``report_text``        No
+   ===  ===============================  =====================  =======
+
+Detection is performed by sending ``CSI ? u`` to query the current
+progressive enhancement flags. A terminal that supports this protocol
+responds with the active flags value.
 
 .. _`Kitty keyboard protocol`: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
 
@@ -925,7 +1028,82 @@ Kitty Keyboard Protocol
 XTGETTCAP (Terminfo Capabilities)
 +++++++++++++++++++++++++++++++++
 
-*Bobcat* does not support the ``XTGETTCAP`` sequence.
+*Bobcat* supports the ``XTGETTCAP`` sequence and reports **63** terminfo capabilities.
+
+.. table::
+   :class: sphinx-datatable
+
+   ===  ============  ======================  ================================================================
+     #  Capability    Description             Value
+   ===  ============  ======================  ================================================================
+     1  Co            Number of colors        ``256``
+     2  TN            Terminal name           ``rio``
+     3  bel           Bell                    ``^G``
+     4  blink         Enter blink mode        ``\E[5m``
+     5  bold          Enter bold mode         ``\E[1m``
+     6  civis         Hide cursor             ``\E[?25l``
+     7  clear         Clear screen            ``\E[H\E[2J``
+     8  cnorm         Normal cursor           ``\E[?12l\E[?25h``
+     9  colors        Max colors              ``256``
+    10  cr            Carriage return         ``\r``
+    11  csr           Change scroll region    ``\E[%i%p1%d;%p2%dr``
+    12  cub           Cursor left n           ``\E[%p1%dD``
+    13  cub1          Cursor left             ``^H``
+    14  cud           Cursor down n           ``\E[%p1%dB``
+    15  cud1          Cursor down             ``\n``
+    16  cuf           Cursor right n          ``\E[%p1%dC``
+    17  cuf1          Cursor right            ``\E[C``
+    18  cup           Cursor address          ``\E[%i%p1%d;%p2%dH``
+    19  cuu           Cursor up n             ``\E[%p1%dA``
+    20  cuu1          Cursor up               ``\E[A``
+    21  cvvis         Very visible cursor     ``\E[?12;25h``
+    22  dch           Delete n characters     ``\E[%p1%dP``
+    23  dch1          Delete character        ``\E[P``
+    24  dim           Enter dim mode          ``\E[2m``
+    25  dl            Delete n lines          ``\E[%p1%dM``
+    26  dl1           Delete line             ``\E[M``
+    27  ech           Erase characters        ``\E[%p1%dX``
+    28  ed            Clear to end of screen  ``\E[J``
+    29  el            Clear to end of line    ``\E[K``
+    30  el1           Clear to start of line  ``\E[1K``
+    31  flash         Flash screen            ``\E[?5h$<100/>\E[?5l``
+    32  home          Cursor home             ``\E[H``
+    33  hpa           Horizontal position     ``\E[%i%p1%dG``
+    34  ich           Insert n characters     ``\E[%p1%d@``
+    35  il            Insert n lines          ``\E[%p1%dL``
+    36  il1           Insert line             ``\E[L``
+    37  ind           Scroll forward          ``\n``
+    38  indn          Scroll forward n        ``\E[%p1%dS``
+    39  op            Original pair           ``\E[39;49m``
+    40  rc            Restore cursor          ``\E8``
+    41  rev           Enter reverse mode      ``\E[7m``
+    42  rin           Scroll reverse n        ``\E[%p1%dT``
+    43  ritm          Exit italics mode       ``\E[23m``
+    44  rmam          Disable line wrap       ``\E[?7l``
+    45  rmcup         Exit alt screen         ``\E[?1049l\E[23;0;0t``
+    46  rmkx          Keypad local mode       ``\E[?1l\E>``
+    47  rmso          Exit standout mode      ``\E[27m``
+    48  rmul          Exit underline mode     ``\E[24m``
+    49  sc            Save cursor             ``\E7``
+    50  setab         Set background color    ``\E[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%...``
+    51  setaf         Set foreground color    ``\E[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p...``
+    52  sgr0          Reset attributes        ``\E(B\E[m``
+    53  sitm          Enter italics mode      ``\E[3m``
+    54  smam          Enable line wrap        ``\E[?7h``
+    55  smcup         Enter alt screen        ``\E[?1049h\E[22;0;0t``
+    56  smkx          Keypad transmit mode    ``\E[?1h\E=``
+    57  smso          Enter standout mode     ``\E[7m``
+    58  smul          Enter underline mode    ``\E[4m``
+    59  u6            CPR response format     ``\E[%i%d;%dR``
+    60  u7            CPR request             ``\E[6n``
+    61  u8            DA response format      ``\E[?%[;0123456789]c``
+    62  u9            DA request              ``\E[c``
+    63  vpa           Vertical position       ``\E[%i%p1%dd``
+   ===  ============  ======================  ================================================================
+
+The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
+terminfo capabilities directly from the terminal emulator, rather than relying
+on the system terminfo database.
 
 .. _bobcatreproduce:
 
@@ -943,7 +1121,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **11.00 seconds** (10s).
+The test suite completed in **34.27 seconds** (34s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

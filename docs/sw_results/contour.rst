@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *contour*:
    ===  =====================================  ===========  ====================
      #  Score Type                             Raw Score    Final Scaled Score
    ===  =====================================  ===========  ====================
-     1  :ref:`WIDE <contourwide>`              99.98%       98.2%
+     1  :ref:`WIDE <contourwide>`              100.00%      100.0%
      2  :ref:`ZWJ <contourzwj>`                96.26%       96.3%
      3  :ref:`LANG <contourlang>`              89.83%       65.9%
      4  :ref:`VS16 <contourvs16>`              50.00%       50.0%
      5  :ref:`VS15 <contourvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <contourdecmodes>`  58.33%       63.6%
      7  :ref:`Graphics <contourgraphics>`      50%          50.0%
-     8  :ref:`TIME <contourtime>`              45.46s       65.3%
+     8  :ref:`TIME <contourtime>`              28.04s       73.5%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 63.61%
+- Raw Final Score: 64.16%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 49.7%
+- Final Scaled Score: 50.6%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 43585
-- Total codepoints tested: 43592
-- Formula: 43585 / 43592
-- Result: 99.98%
+- Total successful codepoints: 4844
+- Total codepoints tested: 4844
+- Formula: 4844 / 4844
+- Result: 100.00%
 
 **ZWJ Score Details:**
 
@@ -128,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 45.46 seconds
+- Elapsed time: 28.04 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 65.3%
+- Scaled result: 73.5%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -146,30 +146,7 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *contour* is **100.0%** (7 errors of 43592 codepoints tested).
-
-Sequence of a WIDE character, from midpoint of alignment failure records:
-
-.. table::
-   :class: sphinx-datatable
-
-   ===  =================================================  =============  ==========  =========  ==============
-     #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ==============
-     1  `U+0001FAC8 <https://codepoints.net/U+0001FAC8>`_  '\\U0001fac8'  So                  2  HAIRY CREATURE
-   ===  =================================================  =============  ==========  =========  ==============
-
-Total codepoints: 1
-
-
-- Shell test using `printf(1)`_, ``'|'`` should align in output::
-
-        $ printf "\xf0\x9f\xab\x88|\\n12|\\n"
-        🫈|
-        12|
-
-- python `wcwidth.wcswidth()`_ measures width 2,
-  while *contour* measures width 1.
+Wide character support of *contour* is **100.0%** (0 errors of 4844 codepoints tested).
 
 .. _contourzwj:
 
@@ -1350,7 +1327,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **45.46 seconds** (45s).
+The test suite completed in **28.04 seconds** (28s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
