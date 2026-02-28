@@ -27,9 +27,9 @@ Detailed breakdown of how scores are calculated for *foot*:
      3  :ref:`LANG <footlang>`              100.00%      100.0%
      4  :ref:`VS16 <footvs16>`              100.00%      100.0%
      5  :ref:`VS15 <footvs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <footdecmodes>`  100.00%      100.0%
+     6  :ref:`Capabilities <footdecmodes>`  58.33%       63.6%
      7  :ref:`Graphics <footgraphics>`      50%          50.0%
-     8  :ref:`TIME <foottime>`              12.82s       86.5%
+     8  :ref:`TIME <foottime>`              12.82s       86.7%
    ===  ==================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 78.50%
+- Raw Final Score: 72.96%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 70.7%
+- Final Scaled Score: 65.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -96,17 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (7 / 7):
+Notable terminal capabilities (7 / 12):
 
-- Bracketed Paste (2004): **yes**
-- Synced Output (2026): **yes**
-- Focus Events (1004): **yes**
-- Mouse SGR (1006): **yes**
-- Graphemes (2027): **yes**
+- Set bracketed paste mode (2004): **yes**
+- Synchronized Output (2026): **yes**
+- Send FocusIn/FocusOut events (1004): **yes**
+- Enable SGR Mouse Mode (1006): **yes**
+- Grapheme Clustering (2027): **yes**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **yes**
 - XTGETTCAP: **yes**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
-Raw score: 100.00%
+Raw score: 58.33%
 
 **Graphics Score Details:**
 
@@ -126,7 +131,7 @@ Test execution time:
 - Elapsed time: 12.82 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 86.5%
+- Scaled result: 86.7%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -184,7 +189,7 @@ Sequence of an Emoji ZWJ Sequence, from midpoint of alignment failure records:
      1  `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
      2  `U+0001F3FD <https://codepoints.net/U+0001F3FD>`_  '\\U0001f3fd'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-4
      3  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
-     4  `U+0001FAEF <https://codepoints.net/U+0001FAEF>`_  '\\U0001faef'  Cn                  2  na
+     4  `U+0001FAEF <https://codepoints.net/U+0001FAEF>`_  '\\U0001faef'  So                  2  FIGHT CLOUD
      5  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
      6  `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
      7  `U+0001F3FC <https://codepoints.net/U+0001F3FC>`_  '\\U0001f3fc'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-3
@@ -343,33 +348,33 @@ XTGETTCAP (Terminfo Capabilities)
 .. table::
    :class: sphinx-datatable
 
-   ===  ============  ================================================================
-     #  Capability    Value
-   ===  ============  ================================================================
-     1  ``Co``        ``256``
-     2  ``RGB``       ``8``
-     3  ``TN``        ``foot``
-     4  ``acsc``      ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
-     5  ``bce``       ``True``
-     6  ``ccc``       ``True``
-     7  ``colors``    ``256``
-     8  ``is2``       ``[!p[4l>``
-     9  ``kmous``     ``[<``
-    10  ``npc``       ``True``
-    11  ``pairs``     ``65536``
-    12  ``rmcup``     ``[?1049l[23;0;0t``
-    13  ``rs1``       ``c``
-    14  ``setab``     ``\E[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48\:5\...``
-    15  ``setaf``     ``\E[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38\:5\:...``
-    16  ``sgr``       ``%?%p9%t\E(0%e\E(B%;\E[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%...``
-    17  ``sitm``      ``[3m``
-    18  ``smcup``     ``[?1049h[22;0;0t``
-    19  ``u6``        ``\E[%i%d;%dR``
-    20  ``u7``        ``[6n``
-    21  ``u8``        ``\E[?%[;0123456789]c``
-    22  ``u9``        ``[c``
-    23  ``xenl``      ``True``
-   ===  ============  ================================================================
+   ===  ============  ====================  ================================================================
+     #  Capability    Description           Value
+   ===  ============  ====================  ================================================================
+     1  Co            Number of colors      ``256``
+     2  RGB                                 ``8``
+     3  TN            Terminal name         ``foot``
+     4  acsc                                ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
+     5  bce                                 ``True``
+     6  ccc                                 ``True``
+     7  colors        Max colors            ``256``
+     8  is2                                 ``[!p[4l>``
+     9  kmous                               ``[<``
+    10  npc                                 ``True``
+    11  pairs                               ``65536``
+    12  rmcup         Exit alt screen       ``[?1049l[23;0;0t``
+    13  rs1                                 ``c``
+    14  setab         Set background color  ``\E[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48\:5\...``
+    15  setaf         Set foreground color  ``\E[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38\:5\:...``
+    16  sgr                                 ``%?%p9%t\E(0%e\E(B%;\E[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%...``
+    17  sitm          Enter italics mode    ``[3m``
+    18  smcup         Enter alt screen      ``[?1049h[22;0;0t``
+    19  u6            CPR response format   ``\E[%i%d;%dR``
+    20  u7            CPR request           ``[6n``
+    21  u8            DA response format    ``\E[?%[;0123456789]c``
+    22  u9            DA request            ``[c``
+    23  xenl                                ``True``
+   ===  ============  ====================  ================================================================
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
 terminfo capabilities directly from the terminal emulator, rather than relying

@@ -95,15 +95,20 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (0 / 7):
+Notable terminal capabilities (0 / 12):
 
-- Bracketed Paste (2004): **no**
-- Synced Output (2026): **no**
-- Focus Events (1004): **no**
-- Mouse SGR (1006): **no**
-- Graphemes (2027): **no**
+- Set bracketed paste mode (2004): **no**
+- Synchronized Output (2026): **no**
+- Send FocusIn/FocusOut events (1004): **no**
+- Enable SGR Mouse Mode (1006): **no**
+- Grapheme Clustering (2027): **no**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **no**
 - XTGETTCAP: **no**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
 Raw score: 0.00%
 

@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *contour*:
    ===  =====================================  ===========  ====================
      #  Score Type                             Raw Score    Final Scaled Score
    ===  =====================================  ===========  ====================
-     1  :ref:`WIDE <contourwide>`              99.99%       99.0%
+     1  :ref:`WIDE <contourwide>`              99.98%       98.2%
      2  :ref:`ZWJ <contourzwj>`                96.26%       96.3%
      3  :ref:`LANG <contourlang>`              89.83%       65.9%
      4  :ref:`VS16 <contourvs16>`              50.00%       50.0%
      5  :ref:`VS15 <contourvs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <contourdecmodes>`  100.00%      100.0%
+     6  :ref:`Capabilities <contourdecmodes>`  58.33%       63.6%
      7  :ref:`Graphics <contourgraphics>`      50%          50.0%
-     8  :ref:`TIME <contourtime>`              15.35s       83.5%
+     8  :ref:`TIME <contourtime>`              45.46s       65.3%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 70.37%
+- Raw Final Score: 63.61%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 57.6%
+- Final Scaled Score: 49.7%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 10897
-- Total codepoints tested: 10898
-- Formula: 10897 / 10898
-- Result: 99.99%
+- Total successful codepoints: 43585
+- Total codepoints tested: 43592
+- Formula: 43585 / 43592
+- Result: 99.98%
 
 **ZWJ Score Details:**
 
@@ -96,17 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (7 / 7):
+Notable terminal capabilities (7 / 12):
 
-- Bracketed Paste (2004): **yes**
-- Synced Output (2026): **yes**
-- Focus Events (1004): **yes**
-- Mouse SGR (1006): **yes**
-- Graphemes (2027): **yes**
+- Set bracketed paste mode (2004): **yes**
+- Synchronized Output (2026): **yes**
+- Send FocusIn/FocusOut events (1004): **yes**
+- Enable SGR Mouse Mode (1006): **yes**
+- Grapheme Clustering (2027): **yes**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **yes**
 - XTGETTCAP: **yes**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
-Raw score: 100.00%
+Raw score: 58.33%
 
 **Graphics Score Details:**
 
@@ -123,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 15.35 seconds
+- Elapsed time: 45.46 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 83.5%
+- Scaled result: 65.3%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -141,26 +146,26 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *contour* is **100.0%** (1 errors of 10898 codepoints tested).
+Wide character support of *contour* is **100.0%** (7 errors of 43592 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  ======
+   ===  =================================================  =============  ==========  =========  ==============
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ======
-     1  `U+0001FA8E <https://codepoints.net/U+0001FA8E>`_  '\\U0001fa8e'  Cn                  2  na
-   ===  =================================================  =============  ==========  =========  ======
+   ===  =================================================  =============  ==========  =========  ==============
+     1  `U+0001FAC8 <https://codepoints.net/U+0001FAC8>`_  '\\U0001fac8'  So                  2  HAIRY CREATURE
+   ===  =================================================  =============  ==========  =========  ==============
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\xaa\x8e|\\n12|\\n"
-        🪎|
+        $ printf "\xf0\x9f\xab\x88|\\n12|\\n"
+        🫈|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -1205,24 +1210,26 @@ DEC Private Modes Support
 +++++++++++++++++++++++++
 
 DEC private modes results for *contour*: 5 changeable modes
-of 5 supported out of 5 total modes tested (100.0% support, 100.0% changeable).
+of 5 supported out of 7 total modes tested (71.4% support, 71.4% changeable).
 
 Complete list of DEC private modes tested:
 
 .. table::
    :class: sphinx-datatable
 
-   ======  ===================  ============================  ===========  ============  =========
-     Mode  Name                 Description                   Supported    Changeable    Enabled
-   ======  ===================  ============================  ===========  ============  =========
-     1004  FOCUS_IN_OUT_EVENTS  Send FocusIn/FocusOut events  Yes          Yes           No
-     1006  MOUSE_EXTENDED_SGR   Enable SGR Mouse Mode         Yes          Yes           No
-     2004  BRACKETED_PASTE      Set bracketed paste mode      Yes          Yes           No
-     2026  SYNCHRONIZED_OUTPUT  Synchronized Output           Yes          Yes           No
-     2027  GRAPHEME_CLUSTERING  Grapheme Clustering           Yes          Yes           Yes
-   ======  ===================  ============================  ===========  ============  =========
+   ======  =====================  ===================================  ===========  ============  =========
+     Mode  Name                   Description                          Supported    Changeable    Enabled
+   ======  =====================  ===================================  ===========  ============  =========
+     1004  FOCUS_IN_OUT_EVENTS    Send FocusIn/FocusOut events         Yes          Yes           No
+     1006  MOUSE_EXTENDED_SGR     Enable SGR Mouse Mode                Yes          Yes           No
+     2004  BRACKETED_PASTE        Set bracketed paste mode             Yes          Yes           No
+     2026  SYNCHRONIZED_OUTPUT    Synchronized Output                  Yes          Yes           No
+     2027  GRAPHEME_CLUSTERING    Grapheme Clustering                  Yes          Yes           Yes
+     2048  IN_BAND_WINDOW_RESIZE  In-Band Window Resize Notifications  No           No            No
+     5522  BRACKETED_PASTE_MIME   Bracketed Paste MIME                 No           No            No
+   ======  =====================  ===================================  ===========  ============  =========
 
-**Summary**: 5 changeable, 0 not changeable.
+**Summary**: 5 changeable, 2 not changeable.
 
 .. _contourkittykbd:
 
@@ -1255,33 +1262,73 @@ responds with the active flags value.
 XTGETTCAP (Terminfo Capabilities)
 +++++++++++++++++++++++++++++++++
 
-*contour* supports the ``XTGETTCAP`` sequence and reports **18** terminfo capabilities.
+*contour* supports the ``XTGETTCAP`` sequence and reports **58** terminfo capabilities.
 
 .. table::
    :class: sphinx-datatable
 
-   ===  ============  ========================================================
-     #  Capability    Value
-   ===  ============  ========================================================
-     1  ``Co``        ``�``
-     2  ``RGB``       ``8/8/8``
-     3  ``TN``        ``xterm-256color``
-     4  ``acsc``      ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
-     5  ``bce``       ``True``
-     6  ``ccc``       ``True``
-     7  ``colors``    ``�``
-     8  ``kmous``     ``[M``
-     9  ``npc``       ``True``
-    10  ``pairs``     ``�``
-    11  ``rmcup``     ``[?1049l``
-    12  ``rs1``       ``]\c``
-    13  ``setab``     ``[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p...``
-    14  ``setaf``     ``[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1...``
-    15  ``sgr``       ``%?%p9%t(0%e(B%;[0%?%p6%t;1%;%?%p2%t;4%;%?%p1%p3%|%t;7%...``
-    16  ``sitm``      ``[3m``
-    17  ``smcup``     ``[?1049h``
-    18  ``xenl``      ``True``
-   ===  ============  ========================================================
+   ===  ============  ======================  ==================
+     #  Capability    Description             Value
+   ===  ============  ======================  ==================
+     1  Co            Number of colors        *(empty)*
+     2  TN            Terminal name           ``xterm-256color``
+     3  bel           Bell                    ``^G``
+     4  bold          Enter bold mode         ``[1m``
+     5  civis         Hide cursor             ``[?25l``
+     6  clear         Clear screen            ``[H[2J``
+     7  cnorm         Normal cursor           ``[?12l[?25h``
+     8  colors        Max colors              *(empty)*
+     9  cr            Carriage return         ``^M``
+    10  csr           Change scroll region    ``[%i%p1%d;%p2%dr``
+    11  cub           Cursor left n           ``[%p1%dD``
+    12  cub1          Cursor left             ``^H``
+    13  cud           Cursor down n           ``[%p1%dB``
+    14  cud1          Cursor down             ``^J``
+    15  cuf           Cursor right n          ``[%p1%dC``
+    16  cuf1          Cursor right            ``[C``
+    17  cup           Cursor address          ``[%i%p1%d;%p2%dH``
+    18  cuu           Cursor up n             ``[%p1%dA``
+    19  cuu1          Cursor up               ``[A``
+    20  cvvis         Very visible cursor     ``[?12;25h``
+    21  dch           Delete n characters     ``[%p1%dP``
+    22  dch1          Delete character        ``[P``
+    23  dim           Enter dim mode          ``[2m``
+    24  dl            Delete n lines          ``[%p1%dM``
+    25  dl1           Delete line             ``[M``
+    26  ech           Erase characters        ``[%p1%dX``
+    27  ed            Clear to end of screen  ``[J``
+    28  el            Clear to end of line    ``[K``
+    29  el1           Clear to start of line  ``[1K``
+    30  flash         Flash screen            ``[?5h$<100/>[?5l``
+    31  home          Cursor home             ``[H``
+    32  hpa           Horizontal position     ``[%i%p1%dG``
+    33  ich           Insert n characters     ``[%p1%d@``
+    34  il            Insert n lines          ``[%p1%dL``
+    35  il1           Insert line             ``[L``
+    36  ind           Scroll forward          ``^J``
+    37  indn          Scroll forward n        ``[%p1%dS``
+    38  op            Original pair           ``[39;49m``
+    39  rc            Restore cursor          ``8``
+    40  rev           Enter reverse mode      ``[7m``
+    41  rin           Scroll reverse n        ``[%p1%dT``
+    42  ritm          Exit italics mode       ``[23m``
+    43  rmam          Disable line wrap       ``[?7l``
+    44  rmcup         Exit alt screen         ``[?1049l``
+    45  rmkx          Keypad local mode       ``[?1l``
+    46  rmso          Exit standout mode      ``[27m``
+    47  rmul          Exit underline mode     ``[24m``
+    48  sc            Save cursor             ``7``
+    49  setab         Set background color    ``[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p...``
+    50  setaf         Set foreground color    ``[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1...``
+    51  sgr0          Reset attributes        ``(B[m``
+    52  sitm          Enter italics mode      ``[3m``
+    53  smam          Enable line wrap        ``[?7h``
+    54  smcup         Enter alt screen        ``[?1049h``
+    55  smkx          Keypad transmit mode    ``[?1h``
+    56  smso          Enter standout mode     ``[7m``
+    57  smul          Enter underline mode    ``[4m``
+    58  vpa           Vertical position       ``[%i%p1%dd``
+   ===  ============  ======================  ==================
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
 terminfo capabilities directly from the terminal emulator, rather than relying
@@ -1303,7 +1350,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **15.35 seconds** (15s).
+The test suite completed in **45.46 seconds** (45s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

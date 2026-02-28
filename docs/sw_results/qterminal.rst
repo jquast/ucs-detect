@@ -29,7 +29,7 @@ Detailed breakdown of how scores are calculated for *QTerminal*:
      5  :ref:`VS15 <qterminalvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <qterminaldecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <qterminalgraphics>`      0%           0.0%
-     8  :ref:`TIME <qterminaltime>`              7.88s        94.7%
+     8  :ref:`TIME <qterminaltime>`              7.88s        94.9%
    ===  =======================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 38.26%
+- Raw Final Score: 38.28%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 5.7%
+- Final Scaled Score: 6.1%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -96,15 +96,20 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (0 / 7):
+Notable terminal capabilities (0 / 12):
 
-- Bracketed Paste (2004): **no**
-- Synced Output (2026): **no**
-- Focus Events (1004): **no**
-- Mouse SGR (1006): **no**
-- Graphemes (2027): **no**
+- Set bracketed paste mode (2004): **no**
+- Synchronized Output (2026): **no**
+- Send FocusIn/FocusOut events (1004): **no**
+- Enable SGR Mouse Mode (1006): **no**
+- Grapheme Clustering (2027): **no**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **no**
 - XTGETTCAP: **no**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
 Raw score: 0.00%
 
@@ -126,7 +131,7 @@ Test execution time:
 - Elapsed time: 7.88 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 94.7%
+- Scaled result: 94.9%
 
 **LANG Score Details (Geometric Mean):**
 

@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *screen*:
    ===  ====================================  ===========  ====================
      #  Score Type                            Raw Score    Final Scaled Score
    ===  ====================================  ===========  ====================
-     1  :ref:`WIDE <screenwide>`              99.54%       49.5%
+     1  :ref:`WIDE <screenwide>`              99.53%       48.0%
      2  :ref:`ZWJ <screenzwj>`                0.69%        0.7%
      3  :ref:`LANG <screenlang>`              92.05%       73.4%
      4  :ref:`VS16 <screenvs16>`              50.00%       50.0%
      5  :ref:`VS15 <screenvs15>`              0.00%        0.0%
      6  :ref:`Capabilities <screendecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <screengraphics>`      0%           0.0%
-     8  :ref:`TIME <screentime>`              5.75s        100.0%
+     8  :ref:`TIME <screentime>`              17.90s       81.1%
    ===  ====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 38.97%
+- Raw Final Score: 37.71%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 6.9%
+- Final Scaled Score: 5.2%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 1736
-- Total codepoints tested: 1744
-- Formula: 1736 / 1744
-- Result: 99.54%
+- Total successful codepoints: 43386
+- Total codepoints tested: 43592
+- Formula: 43386 / 43592
+- Result: 99.53%
 
 **ZWJ Score Details:**
 
@@ -96,15 +96,20 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (0 / 7):
+Notable terminal capabilities (0 / 12):
 
-- Bracketed Paste (2004): **no**
-- Synced Output (2026): **no**
-- Focus Events (1004): **no**
-- Mouse SGR (1006): **no**
-- Graphemes (2027): **no**
+- Set bracketed paste mode (2004): **no**
+- Synchronized Output (2026): **no**
+- Send FocusIn/FocusOut events (1004): **no**
+- Enable SGR Mouse Mode (1006): **no**
+- Grapheme Clustering (2027): **no**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **no**
 - XTGETTCAP: **no**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
 Raw score: 0.00%
 
@@ -123,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 5.75 seconds
+- Elapsed time: 17.90 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 100.0%
+- Scaled result: 81.1%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -141,26 +146,26 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *screen* is **99.5%** (8 errors of 1744 codepoints tested).
+Wide character support of *screen* is **99.5%** (206 errors of 43592 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  ====================
+   ===  =================================================  =============  ==========  =========  ===========================
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  ====================
-     1  `U+0001D335 <https://codepoints.net/U+0001D335>`_  '\\U0001d335'  So                  2  TETRAGRAM FOR RITUAL
-   ===  =================================================  =============  ==========  =========  ====================
+   ===  =================================================  =============  ==========  =========  ===========================
+     1  `U+0001D32F <https://codepoints.net/U+0001D32F>`_  '\\U0001d32f'  So                  2  TETRAGRAM FOR GOING TO MEET
+   ===  =================================================  =============  ==========  =========  ===========================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9d\x8c\xb5|\\n12|\\n"
-        𝌵|
+        $ printf "\xf0\x9d\x8c\xaf|\\n12|\\n"
+        𝌯|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -1126,7 +1131,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **5.75 seconds** (5s).
+The test suite completed in **17.90 seconds** (17s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

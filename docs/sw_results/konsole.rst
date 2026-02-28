@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *Konsole*:
    ===  =====================================  ===========  ====================
      #  Score Type                             Raw Score    Final Scaled Score
    ===  =====================================  ===========  ====================
-     1  :ref:`WIDE <konsolewide>`              99.68%       65.2%
+     1  :ref:`WIDE <konsolewide>`              99.67%       63.4%
      2  :ref:`ZWJ <konsolezwj>`                95.99%       96.0%
      3  :ref:`LANG <konsolelang>`              97.58%       91.9%
      4  :ref:`VS16 <konsolevs16>`              100.00%      100.0%
      5  :ref:`VS15 <konsolevs15>`              0.00%        0.0%
      6  :ref:`Capabilities <konsoledecmodes>`  0.00%        0.0%
      7  :ref:`Graphics <konsolegraphics>`      100%         100.0%
-     8  :ref:`TIME <konsoletime>`              11.69s       88.0%
+     8  :ref:`TIME <konsoletime>`              28.63s       73.1%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 71.64%
+- Raw Final Score: 70.64%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 59.6%
+- Final Scaled Score: 61.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,10 +62,10 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 7243
-- Total codepoints tested: 7266
-- Formula: 7243 / 7266
-- Result: 99.68%
+- Total successful codepoints: 43447
+- Total codepoints tested: 43592
+- Formula: 43447 / 43592
+- Result: 99.67%
 
 **ZWJ Score Details:**
 
@@ -96,15 +96,20 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (0 / 7):
+Notable terminal capabilities (0 / 12):
 
-- Bracketed Paste (2004): **no**
-- Synced Output (2026): **no**
-- Focus Events (1004): **no**
-- Mouse SGR (1006): **no**
-- Graphemes (2027): **no**
+- Set bracketed paste mode (2004): **no**
+- Synchronized Output (2026): **no**
+- Send FocusIn/FocusOut events (1004): **no**
+- Enable SGR Mouse Mode (1006): **no**
+- Grapheme Clustering (2027): **no**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **no**
 - XTGETTCAP: **no**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
 Raw score: 0.00%
 
@@ -123,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 11.69 seconds
+- Elapsed time: 28.63 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 88.0%
+- Scaled result: 73.1%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -141,26 +146,26 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *Konsole* is **99.7%** (23 errors of 7266 codepoints tested).
+Wide character support of *Konsole* is **99.7%** (145 errors of 43592 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
 .. table::
    :class: sphinx-datatable
 
-   ===  =================================================  =============  ==========  =========  =====================
+   ===  =================================================  =============  ==========  =========  =========================
      #  Codepoint                                          Python         Category      wcwidth  Name
-   ===  =================================================  =============  ==========  =========  =====================
-     1  `U+0001D334 <https://codepoints.net/U+0001D334>`_  '\\U0001d334'  So                  2  TETRAGRAM FOR PATTERN
-   ===  =================================================  =============  ==========  =========  =====================
+   ===  =================================================  =============  ==========  =========  =========================
+     1  `U+0001D333 <https://codepoints.net/U+0001D333>`_  '\\U0001d333'  So                  2  TETRAGRAM FOR ENLARGEMENT
+   ===  =================================================  =============  ==========  =========  =========================
 
 Total codepoints: 1
 
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9d\x8c\xb4|\\n12|\\n"
-        𝌴|
+        $ printf "\xf0\x9d\x8c\xb3|\\n12|\\n"
+        𝌳|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -184,7 +189,7 @@ Sequence of an Emoji ZWJ Sequence, from midpoint of alignment failure records:
      1  `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
      2  `U+0001F3FD <https://codepoints.net/U+0001F3FD>`_  '\\U0001f3fd'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-4
      3  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
-     4  `U+0001FAEF <https://codepoints.net/U+0001FAEF>`_  '\\U0001faef'  Cn                  2  na
+     4  `U+0001FAEF <https://codepoints.net/U+0001FAEF>`_  '\\U0001faef'  So                  2  FIGHT CLOUD
      5  `U+200D <https://codepoints.net/U+200D>`_          '\\u200d'      Cf                  0  ZERO WIDTH JOINER
      6  `U+0001F469 <https://codepoints.net/U+0001F469>`_  '\\U0001f469'  So                  2  WOMAN
      7  `U+0001F3FC <https://codepoints.net/U+0001F3FC>`_  '\\U0001f3fc'  Sk                  2  EMOJI MODIFIER FITZPATRICK TYPE-3
@@ -980,7 +985,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **11.69 seconds** (11s).
+The test suite completed in **28.63 seconds** (28s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation

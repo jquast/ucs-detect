@@ -27,9 +27,9 @@ Detailed breakdown of how scores are calculated for *Rio*:
      3  :ref:`LANG <riolang>`              97.49%       91.6%
      4  :ref:`VS16 <riovs16>`              50.00%       50.0%
      5  :ref:`VS15 <riovs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <riodecmodes>`  85.71%       85.7%
+     6  :ref:`Capabilities <riodecmodes>`  50.00%       54.5%
      7  :ref:`Graphics <riographics>`      50%          50.0%
-     8  :ref:`TIME <riotime>`              24.10s       75.9%
+     8  :ref:`TIME <riotime>`              24.10s       76.0%
    ===  =================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 56.23%
+- Raw Final Score: 51.48%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 34.8%
+- Final Scaled Score: 28.9%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -96,17 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (6 / 7):
+Notable terminal capabilities (6 / 12):
 
-- Bracketed Paste (2004): **yes**
-- Synced Output (2026): **yes**
-- Focus Events (1004): **yes**
-- Mouse SGR (1006): **yes**
-- Graphemes (2027): **no**
+- Set bracketed paste mode (2004): **yes**
+- Synchronized Output (2026): **yes**
+- Send FocusIn/FocusOut events (1004): **yes**
+- Enable SGR Mouse Mode (1006): **yes**
+- Grapheme Clustering (2027): **no**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **yes**
 - XTGETTCAP: **yes**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
-Raw score: 85.71%
+Raw score: 50.00%
 
 **Graphics Score Details:**
 
@@ -126,7 +131,7 @@ Test execution time:
 - Elapsed time: 24.10 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 75.9%
+- Scaled result: 76.0%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -1026,33 +1031,33 @@ XTGETTCAP (Terminfo Capabilities)
 .. table::
    :class: sphinx-datatable
 
-   ===  ============  ================================================================
-     #  Capability    Value
-   ===  ============  ================================================================
-     1  ``Co``        ``256``
-     2  ``RGB``       ``8/8/8``
-     3  ``TN``        ``rio``
-     4  ``acsc``      ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
-     5  ``bce``       *(empty)*
-     6  ``ccc``       *(empty)*
-     7  ``colors``    ``256``
-     8  ``is2``       ``\E[!p\E[?3;4l\E[4l\E>``
-     9  ``kmous``     ``\E[M``
-    10  ``npc``       *(empty)*
-    11  ``pairs``     ``32767``
-    12  ``rmcup``     ``\E[?1049l\E[23;0;0t``
-    13  ``rs1``       ``\Ec\E]104\007``
-    14  ``setab``     ``\E[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%...``
-    15  ``setaf``     ``\E[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p...``
-    16  ``sgr``       ``%?%p9%t\E(0%e\E(B%;\E[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%...``
-    17  ``sitm``      ``\E[3m``
-    18  ``smcup``     ``\E[?1049h\E[22;0;0t``
-    19  ``u6``        ``\E[%i%d;%dR``
-    20  ``u7``        ``\E[6n``
-    21  ``u8``        ``\E[?%[;0123456789]c``
-    22  ``u9``        ``\E[c``
-    23  ``xenl``      *(empty)*
-   ===  ============  ================================================================
+   ===  ============  ====================  ================================================================
+     #  Capability    Description           Value
+   ===  ============  ====================  ================================================================
+     1  Co            Number of colors      ``256``
+     2  RGB                                 ``8/8/8``
+     3  TN            Terminal name         ``rio``
+     4  acsc                                ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
+     5  bce                                 *(empty)*
+     6  ccc                                 *(empty)*
+     7  colors        Max colors            ``256``
+     8  is2                                 ``\E[!p\E[?3;4l\E[4l\E>``
+     9  kmous                               ``\E[M``
+    10  npc                                 *(empty)*
+    11  pairs                               ``32767``
+    12  rmcup         Exit alt screen       ``\E[?1049l\E[23;0;0t``
+    13  rs1                                 ``\Ec\E]104\007``
+    14  setab         Set background color  ``\E[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%...``
+    15  setaf         Set foreground color  ``\E[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p...``
+    16  sgr                                 ``%?%p9%t\E(0%e\E(B%;\E[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%...``
+    17  sitm          Enter italics mode    ``\E[3m``
+    18  smcup         Enter alt screen      ``\E[?1049h\E[22;0;0t``
+    19  u6            CPR response format   ``\E[%i%d;%dR``
+    20  u7            CPR request           ``\E[6n``
+    21  u8            DA response format    ``\E[?%[;0123456789]c``
+    22  u9            DA request            ``\E[c``
+    23  xenl                                *(empty)*
+   ===  ============  ====================  ================================================================
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
 terminfo capabilities directly from the terminal emulator, rather than relying

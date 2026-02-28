@@ -27,7 +27,7 @@ Detailed breakdown of how scores are calculated for *iTerm2*:
      3  :ref:`LANG <iterm2lang>`              96.32%       87.7%
      4  :ref:`VS16 <iterm2vs16>`              97.18%       97.2%
      5  :ref:`VS15 <iterm2vs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <iterm2decmodes>`  100.00%      100.0%
+     6  :ref:`Capabilities <iterm2decmodes>`  58.33%       63.6%
      7  :ref:`Graphics <iterm2graphics>`      100%         100.0%
      8  :ref:`TIME <iterm2time>`              723.46s      18.6%
    ===  ====================================  ===========  ====================
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 80.28%
+- Raw Final Score: 74.73%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 73.6%
+- Final Scaled Score: 68.8%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -96,17 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (7 / 7):
+Notable terminal capabilities (7 / 12):
 
-- Bracketed Paste (2004): **yes**
-- Synced Output (2026): **yes**
-- Focus Events (1004): **yes**
-- Mouse SGR (1006): **yes**
-- Graphemes (2027): **yes**
+- Set bracketed paste mode (2004): **yes**
+- Synchronized Output (2026): **yes**
+- Send FocusIn/FocusOut events (1004): **yes**
+- Enable SGR Mouse Mode (1006): **yes**
+- Grapheme Clustering (2027): **yes**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **yes**
 - XTGETTCAP: **yes**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
-Raw score: 100.00%
+Raw score: 58.33%
 
 **Graphics Score Details:**
 
@@ -973,33 +978,33 @@ XTGETTCAP (Terminfo Capabilities)
 .. table::
    :class: sphinx-datatable
 
-   ===  ============  ========================================================
-     #  Capability    Value
-   ===  ============  ========================================================
-     1  ``Co``        ``256``
-     2  ``RGB``       ``8``
-     3  ``TN``        ``xterm-256color``
-     4  ``acsc``      ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
-     5  ``bce``       ``1``
-     6  ``ccc``       ``1``
-     7  ``colors``    ``256``
-     8  ``is2``       ``[!p[?3;4l[4l>``
-     9  ``kmous``     ``[M``
-    10  ``npc``       ``1``
-    11  ``pairs``     ``32767``
-    12  ``rmcup``     ``[?1049l``
-    13  ``rs1``       ``c``
-    14  ``setab``     ``[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p...``
-    15  ``setaf``     ``[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1...``
-    16  ``sgr``       ``%?%p9%t(0%e(B%;[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%?%p...``
-    17  ``sitm``      ``[3m``
-    18  ``smcup``     ``[?1049h``
-    19  ``u6``        ``[%i%d;%dR``
-    20  ``u7``        ``[6n``
-    21  ``u8``        ``[?1;2c``
-    22  ``u9``        ``[c``
-    23  ``xenl``      ``1``
-   ===  ============  ========================================================
+   ===  ============  ====================  ========================================================
+     #  Capability    Description           Value
+   ===  ============  ====================  ========================================================
+     1  Co            Number of colors      ``256``
+     2  RGB                                 ``8``
+     3  TN            Terminal name         ``xterm-256color``
+     4  acsc                                ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
+     5  bce                                 ``1``
+     6  ccc                                 ``1``
+     7  colors        Max colors            ``256``
+     8  is2                                 ``[!p[?3;4l[4l>``
+     9  kmous                               ``[M``
+    10  npc                                 ``1``
+    11  pairs                               ``32767``
+    12  rmcup         Exit alt screen       ``[?1049l``
+    13  rs1                                 ``c``
+    14  setab         Set background color  ``[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p...``
+    15  setaf         Set foreground color  ``[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1...``
+    16  sgr                                 ``%?%p9%t(0%e(B%;[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%?%p...``
+    17  sitm          Enter italics mode    ``[3m``
+    18  smcup         Enter alt screen      ``[?1049h``
+    19  u6            CPR response format   ``[%i%d;%dR``
+    20  u7            CPR request           ``[6n``
+    21  u8            DA response format    ``[?1;2c``
+    22  u9            DA request            ``[c``
+    23  xenl                                ``1``
+   ===  ============  ====================  ========================================================
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
 terminfo capabilities directly from the terminal emulator, rather than relying

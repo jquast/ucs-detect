@@ -27,9 +27,9 @@ Detailed breakdown of how scores are calculated for *rxvt-unicode*:
      3  :ref:`LANG <rxvtunicodelang>`              97.51%       91.6%
      4  :ref:`VS16 <rxvtunicodevs16>`              50.00%       50.0%
      5  :ref:`VS15 <rxvtunicodevs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <rxvtunicodedecmodes>`  42.86%       42.9%
+     6  :ref:`Capabilities <rxvtunicodedecmodes>`  25.00%       27.3%
      7  :ref:`Graphics <rxvtunicodegraphics>`      0%           0.0%
-     8  :ref:`TIME <rxvtunicodetime>`              8.22s        94.0%
+     8  :ref:`TIME <rxvtunicodetime>`              8.22s        94.2%
    ===  =========================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 45.01%
+- Raw Final Score: 42.64%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 16.6%
+- Final Scaled Score: 13.7%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -96,17 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (3 / 7):
+Notable terminal capabilities (3 / 12):
 
-- Bracketed Paste (2004): **yes**
-- Synced Output (2026): **no**
-- Focus Events (1004): **yes**
-- Mouse SGR (1006): **yes**
-- Graphemes (2027): **no**
+- Set bracketed paste mode (2004): **yes**
+- Synchronized Output (2026): **no**
+- Send FocusIn/FocusOut events (1004): **yes**
+- Enable SGR Mouse Mode (1006): **yes**
+- Grapheme Clustering (2027): **no**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **no**
 - XTGETTCAP: **no**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
-Raw score: 42.86%
+Raw score: 25.00%
 
 **Graphics Score Details:**
 
@@ -126,7 +131,7 @@ Test execution time:
 - Elapsed time: 8.22 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 94.0%
+- Scaled result: 94.2%
 
 **LANG Score Details (Geometric Mean):**
 

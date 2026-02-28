@@ -333,8 +333,6 @@ def maybe_determine_iterm2_features(term, timeout=1.0, **_kw):
     if cap is not None and cap.supported:
         result['iterm2_features']['supported'] = True
         result['iterm2_features']['features'] = dict(cap.features)
-        if cap.detection != 'Capabilities':
-            result['iterm2_features']['detection'] = cap.detection
     return result
 
 

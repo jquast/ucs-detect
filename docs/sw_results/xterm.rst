@@ -27,9 +27,9 @@ Detailed breakdown of how scores are calculated for *XTerm*:
      3  :ref:`LANG <xtermlang>`              97.51%       91.6%
      4  :ref:`VS16 <xtermvs16>`              50.00%       50.0%
      5  :ref:`VS15 <xtermvs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <xtermdecmodes>`  57.14%       57.1%
+     6  :ref:`Capabilities <xtermdecmodes>`  33.33%       36.4%
      7  :ref:`Graphics <xtermgraphics>`      0%           0.0%
-     8  :ref:`TIME <xtermtime>`              9.08s        92.3%
+     8  :ref:`TIME <xtermtime>`              9.08s        92.5%
    ===  ===================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 46.80%
+- Raw Final Score: 43.64%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 19.5%
+- Final Scaled Score: 15.4%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -96,17 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (4 / 7):
+Notable terminal capabilities (4 / 12):
 
-- Bracketed Paste (2004): **yes**
-- Synced Output (2026): **no**
-- Focus Events (1004): **yes**
-- Mouse SGR (1006): **yes**
-- Graphemes (2027): **no**
+- Set bracketed paste mode (2004): **yes**
+- Synchronized Output (2026): **no**
+- Send FocusIn/FocusOut events (1004): **yes**
+- Enable SGR Mouse Mode (1006): **yes**
+- Grapheme Clustering (2027): **no**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **no**
 - XTGETTCAP: **yes**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
-Raw score: 57.14%
+Raw score: 33.33%
 
 **Graphics Score Details:**
 
@@ -126,7 +131,7 @@ Test execution time:
 - Elapsed time: 9.08 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 92.3%
+- Scaled result: 92.5%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -953,14 +958,14 @@ XTGETTCAP (Terminfo Capabilities)
 .. table::
    :class: sphinx-datatable
 
-   ===  ============  =========
-     #  Capability    Value
-   ===  ============  =========
-     1  ``Co``        ``256``
-     2  ``RGB``       ``8``
-     3  ``TN``        ``xterm``
-     4  ``colors``    ``256``
-   ===  ============  =========
+   ===  ============  ================  =========
+     #  Capability    Description       Value
+   ===  ============  ================  =========
+     1  Co            Number of colors  ``256``
+     2  RGB                             ``8``
+     3  TN            Terminal name     ``xterm``
+     4  colors        Max colors        ``256``
+   ===  ============  ================  =========
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
 terminfo capabilities directly from the terminal emulator, rather than relying

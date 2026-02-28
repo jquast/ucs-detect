@@ -27,7 +27,7 @@ Detailed breakdown of how scores are calculated for *terminator*:
      3  :ref:`LANG <terminatorlang>`              96.70%       88.9%
      4  :ref:`VS16 <terminatorvs16>`              50.00%       50.0%
      5  :ref:`VS15 <terminatorvs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <terminatordecmodes>`  57.14%       57.1%
+     6  :ref:`Capabilities <terminatordecmodes>`  33.33%       36.4%
      7  :ref:`Graphics <terminatorgraphics>`      0%           0.0%
      8  :ref:`TIME <terminatortime>`              1509.64s     6.2%
    ===  ========================================  ===========  ====================
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 40.95%
+- Raw Final Score: 37.77%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 10.1%
+- Final Scaled Score: 5.3%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -96,17 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (4 / 7):
+Notable terminal capabilities (4 / 12):
 
-- Bracketed Paste (2004): **yes**
-- Synced Output (2026): **yes**
-- Focus Events (1004): **yes**
-- Mouse SGR (1006): **yes**
-- Graphemes (2027): **no**
+- Set bracketed paste mode (2004): **yes**
+- Synchronized Output (2026): **yes**
+- Send FocusIn/FocusOut events (1004): **yes**
+- Enable SGR Mouse Mode (1006): **yes**
+- Grapheme Clustering (2027): **no**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **no**
 - XTGETTCAP: **no**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
-Raw score: 57.14%
+Raw score: 33.33%
 
 **Graphics Score Details:**
 

@@ -101,8 +101,8 @@ terminal_results:
     5522:
       changeable: false
       enabled: false
-      mode_description: Unknown mode
-      mode_name: UNKNOWN
+      mode_description: Bracketed Paste MIME
+      mode_name: BRACKETED_PASTE_MIME
       supported: false
       value: 0
       value_description: NOT_RECOGNIZED

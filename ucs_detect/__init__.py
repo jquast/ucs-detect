@@ -194,7 +194,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         if not no_terminal_test or test_only == "terminal":
             # Resolve 'auto' timeout from measured response times
             if timeout_query == "auto":
-                resolved_timeout = cps_tracker.auto_timeout(multiplier=1.5, minimum=0.05)
+                resolved_timeout = cps_tracker.auto_timeout(multiplier=1.5, minimum=1.0)
                 if not silent:
                     writer(f"\nucs-detect: Auto timeout: {resolved_timeout:.3f}s "
                            f"(max response: {cps_tracker.max_response_time:.3f}s)")

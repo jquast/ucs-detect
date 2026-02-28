@@ -22,14 +22,14 @@ Detailed breakdown of how scores are calculated for *WezTerm*:
    ===  =====================================  ===========  ====================
      #  Score Type                             Raw Score    Final Scaled Score
    ===  =====================================  ===========  ====================
-     1  :ref:`WIDE <weztermwide>`              99.92%       90.9%
+     1  :ref:`WIDE <weztermwide>`              99.92%       91.7%
      2  :ref:`ZWJ <weztermzwj>`                100.00%      100.0%
      3  :ref:`LANG <weztermlang>`              90.30%       67.5%
      4  :ref:`VS16 <weztermvs16>`              50.00%       50.0%
      5  :ref:`VS15 <weztermvs15>`              0.00%        0.0%
-     6  :ref:`Capabilities <weztermdecmodes>`  85.71%       85.7%
+     6  :ref:`Capabilities <weztermdecmodes>`  50.00%       54.5%
      7  :ref:`Graphics <weztermgraphics>`      100%         100.0%
-     8  :ref:`TIME <weztermtime>`              130.98s      47.4%
+     8  :ref:`TIME <weztermtime>`              422.93s      27.7%
    ===  =====================================  ===========  ====================
 
 **Score Comparison Plot:**
@@ -44,7 +44,7 @@ The following plot shows how this terminal's scores compare to all other termina
 
 **Final Scaled Score Calculation:**
 
-- Raw Final Score: 73.28%
+- Raw Final Score: 67.21%
   (weighted average: WIDE + ZWJ + LANG + VS16 + VS15 + CAP + GFX + 0.5*TIME)
   the categorized 'average' absolute support level of this terminal
   Note: TIME is normalized to 0-1 range before averaging.
@@ -54,7 +54,7 @@ The following plot shows how this terminal's scores compare to all other termina
   50% for legacy only (Sixel, ReGIS), 0% for none.
   Sixel/ReGIS support contributes to the GFX score at 50%.
 
-- Final Scaled Score: 62.3%
+- Final Scaled Score: 55.9%
   (normalized across all terminals tested).
   *Final Scaled scores* are normalized (0-100%) relative to all terminals tested
 
@@ -62,9 +62,9 @@ The following plot shows how this terminal's scores compare to all other termina
 
 Wide character support calculation:
 
-- Total successful codepoints: 7260
-- Total codepoints tested: 7266
-- Formula: 7260 / 7266
+- Total successful codepoints: 43559
+- Total codepoints tested: 43592
+- Formula: 43559 / 43592
 - Result: 99.92%
 
 **ZWJ Score Details:**
@@ -96,17 +96,22 @@ Variation Selector-15 support calculation:
 
 **Capabilities Score Details:**
 
-Notable terminal capabilities (6 / 7):
+Notable terminal capabilities (6 / 12):
 
-- Bracketed Paste (2004): **yes**
-- Synced Output (2026): **yes**
-- Focus Events (1004): **yes**
-- Mouse SGR (1006): **yes**
-- Graphemes (2027): **yes**
+- Set bracketed paste mode (2004): **yes**
+- Synchronized Output (2026): **yes**
+- Send FocusIn/FocusOut events (1004): **yes**
+- Enable SGR Mouse Mode (1006): **yes**
+- Grapheme Clustering (2027): **yes**
+- Bracketed Paste MIME (5522): **no**
 - Kitty Keyboard: **no**
 - XTGETTCAP: **yes**
+- Text Sizing (OSC 66): **no**
+- Kitty Clipboard Protocol: **no**
+- Kitty Pointer Shapes (OSC 22): **no**
+- Kitty Notifications (OSC 99): **no**
 
-Raw score: 85.71%
+Raw score: 50.00%
 
 **Graphics Score Details:**
 
@@ -123,10 +128,10 @@ Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% f
 
 Test execution time:
 
-- Elapsed time: 130.98 seconds
+- Elapsed time: 422.93 seconds
 - Note: This is a raw measurement; lower is better
 - Scaled score uses inverse log10 scaling across all terminals
-- Scaled result: 47.4%
+- Scaled result: 27.7%
 
 **LANG Score Details (Geometric Mean):**
 
@@ -141,7 +146,7 @@ Geometric mean calculation:
 Wide character support
 ++++++++++++++++++++++
 
-Wide character support of *WezTerm* is **99.9%** (6 errors of 7266 codepoints tested).
+Wide character support of *WezTerm* is **99.9%** (33 errors of 43592 codepoints tested).
 
 Sequence of a WIDE character, from midpoint of alignment failure records:
 
@@ -151,7 +156,7 @@ Sequence of a WIDE character, from midpoint of alignment failure records:
    ===  =================================================  =============  ==========  =========  ==================================
      #  Codepoint                                          Python         Category      wcwidth  Name
    ===  =================================================  =============  ==========  =========  ==================================
-     1  `U+0001F1F9 <https://codepoints.net/U+0001F1F9>`_  '\\U0001f1f9'  So                  2  REGIONAL INDICATOR SYMBOL LETTER T
+     1  `U+0001F1F6 <https://codepoints.net/U+0001F1F6>`_  '\\U0001f1f6'  So                  2  REGIONAL INDICATOR SYMBOL LETTER Q
    ===  =================================================  =============  ==========  =========  ==================================
 
 Total codepoints: 1
@@ -159,8 +164,8 @@ Total codepoints: 1
 
 - Shell test using `printf(1)`_, ``'|'`` should align in output::
 
-        $ printf "\xf0\x9f\x87\xb9|\\n12|\\n"
-        🇹|
+        $ printf "\xf0\x9f\x87\xb6|\\n12|\\n"
+        🇶|
         12|
 
 - python `wcwidth.wcswidth()`_ measures width 2,
@@ -1090,24 +1095,26 @@ DEC Private Modes Support
 +++++++++++++++++++++++++
 
 DEC private modes results for *WezTerm*: 4 changeable modes
-of 5 supported out of 5 total modes tested (100.0% support, 80.0% changeable).
+of 5 supported out of 7 total modes tested (71.4% support, 57.1% changeable).
 
 Complete list of DEC private modes tested:
 
 .. table::
    :class: sphinx-datatable
 
-   ======  ===================  ============================  ===========  ============  =========
-     Mode  Name                 Description                   Supported    Changeable    Enabled
-   ======  ===================  ============================  ===========  ============  =========
-     1004  FOCUS_IN_OUT_EVENTS  Send FocusIn/FocusOut events  Yes          Yes           No
-     1006  MOUSE_EXTENDED_SGR   Enable SGR Mouse Mode         Yes          Yes           No
-     2004  BRACKETED_PASTE      Set bracketed paste mode      Yes          Yes           No
-     2026  SYNCHRONIZED_OUTPUT  Synchronized Output           Yes          Yes           No
-     2027  GRAPHEME_CLUSTERING  Grapheme Clustering           Yes          No            Yes
-   ======  ===================  ============================  ===========  ============  =========
+   ======  =====================  ===================================  ===========  ============  =========
+     Mode  Name                   Description                          Supported    Changeable    Enabled
+   ======  =====================  ===================================  ===========  ============  =========
+     1004  FOCUS_IN_OUT_EVENTS    Send FocusIn/FocusOut events         Yes          Yes           No
+     1006  MOUSE_EXTENDED_SGR     Enable SGR Mouse Mode                Yes          Yes           No
+     2004  BRACKETED_PASTE        Set bracketed paste mode             Yes          Yes           No
+     2026  SYNCHRONIZED_OUTPUT    Synchronized Output                  Yes          Yes           No
+     2027  GRAPHEME_CLUSTERING    Grapheme Clustering                  Yes          No            Yes
+     2048  IN_BAND_WINDOW_RESIZE  In-Band Window Resize Notifications  No           No            No
+     5522  BRACKETED_PASTE_MIME   Bracketed Paste MIME                 No           No            No
+   ======  =====================  ===================================  ===========  ============  =========
 
-**Summary**: 4 changeable, 1 not changeable.
+**Summary**: 4 changeable, 3 not changeable.
 
 .. _weztermkittykbd:
 
@@ -1123,38 +1130,81 @@ Kitty Keyboard Protocol
 XTGETTCAP (Terminfo Capabilities)
 +++++++++++++++++++++++++++++++++
 
-*WezTerm* supports the ``XTGETTCAP`` sequence and reports **23** terminfo capabilities.
+*WezTerm* supports the ``XTGETTCAP`` sequence and reports **63** terminfo capabilities.
 
 .. table::
    :class: sphinx-datatable
 
-   ===  ============  ========================================================
-     #  Capability    Value
-   ===  ============  ========================================================
-     1  ``Co``        ``256``
-     2  ``RGB``       ``8/8/8``
-     3  ``TN``        ``WezTerm``
-     4  ``acsc``      ````aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~``
-     5  ``bce``       ``1``
-     6  ``ccc``       ``1``
-     7  ``colors``    ``256``
-     8  ``is2``       ``[!p[?3;4l[4l>``
-     9  ``kmous``     ``[<``
-    10  ``npc``       ``1``
-    11  ``pairs``     ``32767``
-    12  ``rmcup``     ``[?1049l[23;0;0t``
-    13  ``rs1``       ``c]104``
-    14  ``setab``     ``[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p...``
-    15  ``setaf``     ``[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1...``
-    16  ``sgr``       ``%?%p9%t(0%e(B%;[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%?%p...``
-    17  ``sitm``      ``[3m``
-    18  ``smcup``     ``[?1049h[22;0;0t``
-    19  ``u6``        ``[%i%d;%dR``
-    20  ``u7``        ``[6n``
-    21  ``u8``        ``[?%[;0123456789]c``
-    22  ``u9``        ``[c``
-    23  ``xenl``      ``1``
-   ===  ============  ========================================================
+   ===  ============  ======================  =================
+     #  Capability    Description             Value
+   ===  ============  ======================  =================
+     1  Co            Number of colors        ``256``
+     2  TN            Terminal name           ``WezTerm``
+     3  bel           Bell                    ````
+     4  blink         Enter blink mode        ``[5m``
+     5  bold          Enter bold mode         ``[1m``
+     6  civis         Hide cursor             ``[?25l``
+     7  clear         Clear screen            ``[H[2J``
+     8  cnorm         Normal cursor           ``[?12l[?25h``
+     9  colors        Max colors              ``256``
+    10  cr            Carriage return         ``
+                                              ``
+    11  csr           Change scroll region    ``[%i%p1%d;%p2%dr``
+    12  cub           Cursor left n           ``[%p1%dD``
+    13  cub1          Cursor left             ````
+    14  cud           Cursor down n           ``[%p1%dB``
+    15  cud1          Cursor down             ``
+                                              ``
+    16  cuf           Cursor right n          ``[%p1%dC``
+    17  cuf1          Cursor right            ``[C``
+    18  cup           Cursor address          ``[%i%p1%d;%p2%dH``
+    19  cuu           Cursor up n             ``[%p1%dA``
+    20  cuu1          Cursor up               ``[A``
+    21  cvvis         Very visible cursor     ``[?12;25h``
+    22  dch           Delete n characters     ``[%p1%dP``
+    23  dch1          Delete character        ``[P``
+    24  dim           Enter dim mode          ``[2m``
+    25  dl            Delete n lines          ``[%p1%dM``
+    26  dl1           Delete line             ``[M``
+    27  ech           Erase characters        ``[%p1%dX``
+    28  ed            Clear to end of screen  ``[J``
+    29  el            Clear to end of line    ``[K``
+    30  el1           Clear to start of line  ``[1K``
+    31  flash         Flash screen            ``[?5h$<100/>[?5l``
+    32  home          Cursor home             ``[H``
+    33  hpa           Horizontal position     ``[%i%p1%dG``
+    34  ich           Insert n characters     ``[%p1%d@``
+    35  il            Insert n lines          ``[%p1%dL``
+    36  il1           Insert line             ``[L``
+    37  ind           Scroll forward          ``
+                                              ``
+    38  indn          Scroll forward n        ``[%p1%dS``
+    39  op            Original pair           ``[39;49m``
+    40  rc            Restore cursor          ``8``
+    41  rev           Enter reverse mode      ``[7m``
+    42  rin           Scroll reverse n        ``[%p1%dT``
+    43  ritm          Exit italics mode       ``[23m``
+    44  rmam          Disable line wrap       ``[?7l``
+    45  rmcup         Exit alt screen         ``[?1049l[23;0;0t``
+    46  rmkx          Keypad local mode       ``[?1l>``
+    47  rmso          Exit standout mode      ``[27m``
+    48  rmul          Exit underline mode     ``[24m``
+    49  sc            Save cursor             ``7``
+    50  setab         Set background color    ``[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p...``
+    51  setaf         Set foreground color    ``[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1...``
+    52  sgr0          Reset attributes        ``(B[m``
+    53  sitm          Enter italics mode      ``[3m``
+    54  smam          Enable line wrap        ``[?7h``
+    55  smcup         Enter alt screen        ``[?1049h[22;0;0t``
+    56  smkx          Keypad transmit mode    ``[?1h=``
+    57  smso          Enter standout mode     ``[7m``
+    58  smul          Enter underline mode    ``[4m``
+    59  u6            CPR response format     ``[%i%d;%dR``
+    60  u7            CPR request             ``[6n``
+    61  u8            DA response format      ``[?%[;0123456789]c``
+    62  u9            DA request              ``[c``
+    63  vpa           Vertical position       ``[%i%p1%dd``
+   ===  ============  ======================  =================
 
 The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query
 terminfo capabilities directly from the terminal emulator, rather than relying
@@ -1176,7 +1226,7 @@ with the following commands::
 Test Execution Time
 +++++++++++++++++++
 
-The test suite completed in **130.98 seconds** (130s).
+The test suite completed in **422.93 seconds** (422s).
 
 This time measurement represents the total duration of the test execution,
 including all Unicode wide character tests, emoji ZWJ sequences, variation
