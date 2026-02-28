@@ -18,7 +18,7 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
 software_name: ghostty
-software_version: 1.2.3
+software_version: 1.3.0-main+4b7a55a50
 system: Linux
 terminal_results:
   background_color_hex: '#111111'
@@ -116,7 +116,7 @@ terminal_results:
   screen_ratio_name: UWHD
   sixel: false
   software_name: ghostty
-  software_version: 1.2.3
+  software_version: 1.3.0-main+4b7a55a50
   tab_stop_width: 8
   text_sizing:
     scale: false
