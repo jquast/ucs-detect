@@ -20,8 +20,11 @@ release = "1.0.7"
 
 import os
 extensions = [
+    "sphinxcontrib.jquery",
     "sphinx_datatables",
 ]
+if os.environ.get('DARK'):
+    extensions.append("sphinx_rtd_dark_mode")
 
 # Configure DataTables: disable pagination, show all rows, no search
 # Custom sorting is handled by custom_table_sort.js per table type
@@ -38,8 +41,9 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "furo"
+html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
+default_dark_mode = True
 
 
 def score_ref_role(name, rawtext, text, lineno, inliner, options={}, content=[]):

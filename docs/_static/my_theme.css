@@ -1,5 +1,7 @@
-:root {
-    --content-width: 100%;
+.wy-nav-content {
+    max-width: none !important;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
 }
 
 /* Prevent tables from stretching to fill the screen */
