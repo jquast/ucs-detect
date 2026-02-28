@@ -226,6 +226,10 @@ marks across diverse scripts.
 History
 -------
 
+- 2.0.2 (2026-02-28): Some timing bugfixes caused features to sometimes report "No" support,
+  and provide major speed enhancement to terminal test with integration of latest blessed
+  release.
+
 - 2.0.1 (2026-02-05): Add ``--silent`` mode, ``--save-json``, time measurements with RTT and
   ping-like statistics, and telnetlib3 shell support for testing over telnet. Bugfix iTerm2 image
   feature detection.
