@@ -4,7 +4,7 @@ ghostty
 -------
 
 
-Tested Software version 1.2.3 on Linux.
+Tested Software version 1.3.0-main+4b7a55a50 on Linux.
 The homepage URL of this terminal is https://ghostty.org/.
 Full results available at ucs-detect_ repository path
 `data/ghostty.yaml <https://github.com/jquast/ucs-detect/blob/master/data/ghostty.yaml>`_.
