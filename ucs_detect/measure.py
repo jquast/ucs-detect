@@ -46,6 +46,50 @@ def _is_uncommon(codepoint):
     return start <= codepoint <= end
 
 
+class _RTTAccumulator:
+    """Accumulate response-time statistics for a single category."""
+
+    def __init__(self):
+        self.min_rt = float('inf')
+        self.max_rt = 0.0
+        self.sum_rt = 0.0
+        self.sum_sq_rt = 0.0
+        self.count = 0
+
+    def record(self, elapsed: float):
+        self.count += 1
+        self.sum_rt += elapsed
+        self.sum_sq_rt += elapsed * elapsed
+        if elapsed < self.min_rt:
+            self.min_rt = elapsed
+        if elapsed > self.max_rt:
+            self.max_rt = elapsed
+
+    @property
+    def avg(self) -> float:
+        return self.sum_rt / self.count if self.count else 0.0
+
+    @property
+    def mdev(self) -> float:
+        if self.count < 2:
+            return 0.0
+        mean = self.sum_rt / self.count
+        variance = self.sum_sq_rt / self.count - mean * mean
+        return max(0.0, variance) ** 0.5
+
+    def summary_ms(self) -> dict:
+        """Return stats in milliseconds."""
+        if self.count == 0:
+            return {}
+        return {
+            'rtt_min_ms': round((self.min_rt if self.min_rt != float('inf') else 0) * 1000, 3),
+            'rtt_avg_ms': round(self.avg * 1000, 3),
+            'rtt_max_ms': round(self.max_rt * 1000, 3),
+            'rtt_mdev_ms': round(self.mdev * 1000, 3),
+            'queries': self.count,
+        }
+
+
 class CPSTracker:
     """Track average codepoints-per-second across test categories."""
 
@@ -53,31 +97,32 @@ class CPSTracker:
         """Initialize tracker with zero counts."""
         self._total_items = 0
         self._total_elapsed = 0.0
-        self._min_response_time = float('inf')
-        self._max_response_time = 0.0
-        self._sum_response_times = 0.0
-        self._sum_sq_response_times = 0.0
-        self._query_count = 0
+        self._all = _RTTAccumulator()
+        self._by_category = {}
+
+    def _get_category(self, category: str) -> _RTTAccumulator:
+        if category not in self._by_category:
+            self._by_category[category] = _RTTAccumulator()
+        return self._by_category[category]
 
     def update(self, items: int, elapsed: float):
         """Record items tested and time elapsed."""
         self._total_items += items
         self._total_elapsed += elapsed
 
-    def record_response_time(self, elapsed: float):
-        """Record a single query response time."""
-        self._query_count += 1
-        self._sum_response_times += elapsed
-        self._sum_sq_response_times += elapsed * elapsed
-        if elapsed < self._min_response_time:
-            self._min_response_time = elapsed
-        if elapsed > self._max_response_time:
-            self._max_response_time = elapsed
+    def record_response_time(self, elapsed: float, category: str = "cpr"):
+        """Record a single query response time, tagged by category."""
+        self._all.record(elapsed)
+        self._get_category(category).record(elapsed)
 
     @contextlib.contextmanager
-    def timing(self, n_items: int = 1):
+    def timing(self, n_items: int = 1, category: str = "cpr"):
         """
         Context manager that records elapsed time on success.
+
+        :param n_items: Number of items to record on success.
+        :param category: Category tag, ``"cpr"`` for codepoint measurement,
+            ``"capability"`` for terminal feature detection.
 
         Yields a ``done_ok`` callable. Invoke ``done_ok()`` to record
         *n_items* and elapsed time. If ``done_ok()`` is never called
@@ -92,7 +137,7 @@ class CPSTracker:
                 recorded = True
                 elapsed = time.monotonic() - t0
                 self.update(items or n_items, elapsed)
-                self.record_response_time(elapsed)
+                self.record_response_time(elapsed, category=category)
 
         yield done_ok
 
@@ -106,47 +151,46 @@ class CPSTracker:
     @property
     def max_response_time(self) -> float:
         """Return maximum response time seen, or 0.0 if no data."""
-        return self._max_response_time
+        return self._all.max_rt
 
     @property
     def min_response_time(self) -> float:
         """Return minimum response time seen, or 0.0 if no data."""
-        if self._query_count == 0:
+        if self._all.count == 0:
             return 0.0
-        return self._min_response_time
+        return self._all.min_rt
 
     @property
     def avg_response_time(self) -> float:
         """Return average response time, or 0.0 if no data."""
-        if self._query_count == 0:
-            return 0.0
-        return self._sum_response_times / self._query_count
+        return self._all.avg
 
     @property
     def mdev_response_time(self) -> float:
         """Return standard deviation of response times, or 0.0 if no data."""
-        if self._query_count < 2:
-            return 0.0
-        mean = self._sum_response_times / self._query_count
-        variance = (self._sum_sq_response_times / self._query_count
-                    - mean * mean)
-        return max(0.0, variance) ** 0.5
+        return self._all.mdev
 
     @property
     def query_count(self) -> int:
         """Return total number of queries recorded."""
-        return self._query_count
+        return self._all.count
 
     def summary(self) -> dict:
-        """Return ping-style rtt summary: min/avg/max/mdev in milliseconds."""
-        return {
+        """Return ping-style rtt summary with per-category breakdown."""
+        result = {
             'rtt_min_ms': round(self.min_response_time * 1000, 3),
             'rtt_avg_ms': round(self.avg_response_time * 1000, 3),
             'rtt_max_ms': round(self.max_response_time * 1000, 3),
             'rtt_mdev_ms': round(self.mdev_response_time * 1000, 3),
-            'queries': self._query_count,
+            'queries': self.query_count,
             'codepoints_per_second': round(self.cps, 1),
         }
+        # Per-category breakdown
+        for cat_name, acc in sorted(self._by_category.items()):
+            cat_summary = acc.summary_ms()
+            if cat_summary:
+                result[cat_name] = cat_summary
+        return result
 
     def auto_timeout(self, multiplier: float = 1.1, minimum: float = 0.05) -> float:
         """
@@ -156,8 +200,8 @@ class CPSTracker:
         :param minimum: Minimum timeout to return if no data or very fast responses.
         :return: Timeout value in seconds.
         """
-        if self._max_response_time > 0:
-            return max(minimum, self._max_response_time * multiplier)
+        if self._all.max_rt > 0:
+            return max(minimum, self._all.max_rt * multiplier)
         return minimum
 
 

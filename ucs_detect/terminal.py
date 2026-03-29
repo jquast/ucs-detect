@@ -420,7 +420,7 @@ def _timed_detect(func, *args, cps_tracker=None, **kwargs):
     """
     if cps_tracker is None:
         return func(*args, **kwargs)
-    with cps_tracker.timing() as done_ok:
+    with cps_tracker.timing(category="capability") as done_ok:
         result = func(*args, **kwargs)
         if result:
             n_items = sum(1 for v in result.values()
