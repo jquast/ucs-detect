@@ -516,6 +516,7 @@ def main():
             show_dec_modes_results(sw_name, entry)
             show_kitty_keyboard_results(sw_name, entry)
             show_xtgettcap_results(sw_name, entry)
+            show_text_sizing_results(sw_name, entry)
             show_reproduce_command(sw_name, entry)
             show_time_elapsed_results(sw_name, entry)
             display_common_hyperlinks()
@@ -1420,7 +1421,7 @@ def display_capabilities_table(score_table):
         row["Text Size"] = _capability_yes_no(
             (text_sizing.get('width') or text_sizing.get('scale'))
             if tested else None,
-            sw_name, suffix)
+            sw_name, "_text_sizing")
 
         # Kitty Clipboard Protocol
         row["Kitty Clip"] = _capability_yes_no(
@@ -2209,6 +2210,42 @@ def show_xtgettcap_results(sw_name, entry):
     print("The ``XTGETTCAP`` sequence (``DCS + q Pt ST``) allows applications to query")
     print("terminfo capabilities directly from the terminal emulator, rather than relying")
     print("on the system terminfo database.")
+    print()
+
+
+def show_text_sizing_results(sw_name, entry):
+    """Display Text Sizing protocol (OSC 66) detection results."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_text_sizing")
+    display_title("Text Sizing Protocol (OSC 66)", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+    text_sizing = tr.get("text_sizing", {})
+    has_width = text_sizing.get("width", False)
+    has_scale = text_sizing.get("scale", False)
+
+    if not has_width and not has_scale:
+        print(f"*{sw_name}* does not support the `Text Sizing protocol`_.")
+        print()
+        print('.. _`Text Sizing protocol`: '
+              'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
+        print()
+        return
+
+    features = []
+    if has_width:
+        features.append("explicit width (``w``)")
+    if has_scale:
+        features.append("scale (``s``)")
+    print(f"*{sw_name}* supports the `Text Sizing protocol`_: "
+          f"{', '.join(features)}.")
+    print()
+    print("The Text Sizing protocol (OSC 66) allows terminal programs to display text")
+    print("at different sizes and to explicitly specify the cell width of characters.")
+    print("Detection is performed by measuring cursor movement after sending")
+    print("``ESC ] 66 ; w=2 ; <space> BEL`` and ``ESC ] 66 ; s=2 ; <space> BEL``.")
+    print()
+    print('.. _`Text Sizing protocol`: '
+          'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
     print()
 
 

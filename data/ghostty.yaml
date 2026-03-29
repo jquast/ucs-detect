@@ -1,27 +1,27 @@
 ambiguous_width: 1
 cps_summary:
   capability:
-    queries: 11
-    rtt_avg_ms: 182.61
-    rtt_max_ms: 2002.84
-    rtt_mdev_ms: 575.607
-    rtt_min_ms: 0.013
-  codepoints_per_second: 2214.1
+    queries: 14
+    rtt_avg_ms: 147.229
+    rtt_max_ms: 2002.575
+    rtt_mdev_ms: 514.659
+    rtt_min_ms: 0.009
+  codepoints_per_second: 1705.2
   cpr:
     queries: 3
-    rtt_avg_ms: 1.01
-    rtt_max_ms: 1.666
-    rtt_mdev_ms: 0.501
-    rtt_min_ms: 0.45
-  queries: 14
-  rtt_avg_ms: 143.695
-  rtt_max_ms: 2002.84
-  rtt_mdev_ms: 515.634
-  rtt_min_ms: 0.013
-datetime: 2026-03-29 22:59:35 UTC
-height: 21
+    rtt_avg_ms: 0.933
+    rtt_max_ms: 1.761
+    rtt_mdev_ms: 0.588
+    rtt_min_ms: 0.448
+  queries: 17
+  rtt_avg_ms: 121.412
+  rtt_max_ms: 2002.575
+  rtt_mdev_ms: 470.363
+  rtt_min_ms: 0.009
+datetime: 2026-03-29 23:52:50 UTC
+height: 44
 python_version: 3.15.0a5
-seconds_elapsed: 23.235662170976866
+seconds_elapsed: 30.717118813976413
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -40,6 +40,9 @@ terminal_results:
   - 4369
   cell_height: 25
   cell_width: 11
+  color_scheme: light
+  colored_underlines: true
+  decrqss: true
   device_attributes:
     extensions:
     - 22
@@ -50,7 +53,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 21
+  height: 44
   iterm2_features:
     features: {}
     supported: false
@@ -64,6 +67,7 @@ terminal_results:
     report_text: false
   kitty_notifications: false
   kitty_pointer_shapes: false
+  kitty_query: false
   modes:
     1004:
       changeable: true
@@ -105,6 +109,14 @@ terminal_results:
       supported: true
       value: 1
       value_description: SET
+    2031:
+      changeable: true
+      enabled: false
+      mode_description: Color palette updates
+      mode_name: COLOR_PALETTE_UPDATES
+      supported: true
+      value: 2
+      value_description: RESET
     2048:
       changeable: true
       enabled: false
@@ -122,22 +134,26 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 525
-  pixels_width: 781
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
+  osc52_clipboard: false
+  pixels_height: 1100
+  pixels_width: 1595
+  screen_ratio: '4:3'
+  screen_ratio_name: VGA
   sixel: false
   software_name: ghostty
   software_version: 1.3.2-main+4903e2821
+  styled_underlines: true
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: xterm-ghostty
-  width: 71
+  width: 145
   xtgettcap:
     capabilities:
       Co: '256'
+      Setulc: \E[58:2::%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%d%;m
+      Smulx: \E[4:%p1%dm
       TN: xterm-ghostty
       bel: "\a"
       blink: "\e[5m"
@@ -206,129 +222,141 @@ terminal_results:
 test_results:
   emoji_vs15_results:
     9.0.0:
-      codepoints_per_second: 2069.700789082942
-      failed_codepoints: []
-      n_errors: 0
+      codepoints_per_second: 1518.7106257814232
+      failed_codepoints:
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26ea\ufe0e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f30f\ufe0e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f4df\ufe0e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f564\ufe0e
+      n_errors: 4
       n_total: 158
-      pct_success: 100.0
-      seconds_elapsed: 0.07633953701588325
+      pct_success: 97.46835443037975
+      seconds_elapsed: 0.1040356189769227
   emoji_vs16_results:
     9.0.0:
-      codepoints_per_second: 2751.8917639294436
+      codepoints_per_second: 2250.216726114947
       failed_codepoints: []
       n_errors: 0
       n_total: 426
       pct_success: 100.0
-      seconds_elapsed: 0.15480260000913404
+      seconds_elapsed: 0.18931509798858315
   emoji_zwj_results:
     '17.0':
-      codepoints_per_second: 2050.794684475034
+      codepoints_per_second: 1854.2636469253705
       failed_codepoints: []
       n_errors: 0
       n_total: 1445
       pct_success: 100.0
-      seconds_elapsed: 0.7046049080090597
+      seconds_elapsed: 0.7792850830010138
   language_results:
     (Jinan):
-      codepoints_per_second: 113.06842188723536
+      codepoints_per_second: 86.71863631676494
       failed: []
       n_errors: 0
       n_total: 501
       pct_success: 100.0
-      seconds_elapsed: 4.430945365980733
+      seconds_elapsed: 5.7773048710078
     (Yeonbyeon):
-      codepoints_per_second: 73.02321086887343
+      codepoints_per_second: 55.54117017143947
       failed: []
       n_errors: 0
       n_total: 307
       pct_success: 100.0
-      seconds_elapsed: 4.204142714996124
+      seconds_elapsed: 5.527431255992269
     Aja:
-      codepoints_per_second: 40.12213692490485
+      codepoints_per_second: 30.74050601459472
       failed: []
       n_errors: 0
       n_total: 79
       pct_success: 100.0
-      seconds_elapsed: 1.9689878469798714
+      seconds_elapsed: 2.5698991409735754
     Amarakaeri:
-      codepoints_per_second: 33.045342672895075
+      codepoints_per_second: 25.283240728799136
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 1.9367328289954457
+      seconds_elapsed: 2.5313210710010026
     Arabic, Standard:
-      codepoints_per_second: 31.084807964327737
+      codepoints_per_second: 23.78444813949825
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 1.9302033349813428
+      seconds_elapsed: 2.5226568070065696
     Assyrian Neo-Aramaic:
-      codepoints_per_second: 21.996305707873447
+      codepoints_per_second: 16.82114291165267
       failed: []
       n_errors: 0
       n_total: 42
       pct_success: 100.0
-      seconds_elapsed: 1.9094115420011804
+      seconds_elapsed: 2.496857688005548
     Baatonum:
-      codepoints_per_second: 31.10485168063385
+      codepoints_per_second: 23.80412692018064
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 1.896810202015331
+      seconds_elapsed: 2.4785618140012957
     Bamun:
-      codepoints_per_second: 39.54956281467571
+      codepoints_per_second: 30.265130350168775
       failed: []
       n_errors: 0
       n_total: 75
       pct_success: 100.0
-      seconds_elapsed: 1.8963547170278616
+      seconds_elapsed: 2.478099355008453
     Belanda Viri:
-      codepoints_per_second: 45.0082036955489
+      codepoints_per_second: 34.42389155929327
       failed: []
       n_errors: 0
       n_total: 85
       pct_success: 100.0
-      seconds_elapsed: 1.8885445990017615
+      seconds_elapsed: 2.4692153080250137
     Bengali:
-      codepoints_per_second: 94.64333177139115
+      codepoints_per_second: 71.5948980656003
       failed: []
       n_errors: 0
       n_total: 385
       pct_success: 100.0
-      seconds_elapsed: 4.067904127994552
+      seconds_elapsed: 5.377478150010575
     Bhojpuri:
-      codepoints_per_second: 79.81837845653207
+      codepoints_per_second: 60.08115033164939
       failed: []
       n_errors: 0
       n_total: 313
       pct_success: 100.0
-      seconds_elapsed: 3.9214026400004514
+      seconds_elapsed: 5.209620625973912
     Bora:
-      codepoints_per_second: 32.745880978979336
+      codepoints_per_second: 25.093348308285155
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 1.80175332701765
+      seconds_elapsed: 2.351220701006241
     Burmese:
-      codepoints_per_second: 69.77980053933945
+      codepoints_per_second: 52.563078438094536
       failed: []
       n_errors: 0
       n_total: 268
       pct_success: 100.0
-      seconds_elapsed: 3.840652995975688
+      seconds_elapsed: 5.098635923990514
     Catalan (2):
-      codepoints_per_second: 39.60499019520979
+      codepoints_per_second: 30.397593531902295
       failed: []
       n_errors: 0
       n_total: 68
       pct_success: 100.0
-      seconds_elapsed: 1.7169553549902048
+      seconds_elapsed: 2.2370191880036145
     Chakma:
-      codepoints_per_second: 57.85024358241552
+      codepoints_per_second: 44.6595547970307
       failed:
       - grapheme_id: Chakma-3-00
         measured_by_terminal: 2
@@ -385,275 +413,275 @@ test_results:
       n_errors: 13
       n_total: 267
       pct_success: 95.13108614232209
-      seconds_elapsed: 4.615365181991365
+      seconds_elapsed: 5.978563852986554
     Chickasaw:
-      codepoints_per_second: 37.354991726121256
+      codepoints_per_second: 28.848752821340554
       failed: []
       n_errors: 0
       n_total: 61
       pct_success: 100.0
-      seconds_elapsed: 1.632981221016962
+      seconds_elapsed: 2.1144761570030823
     Chinantec, Chiltepec:
-      codepoints_per_second: 47.82718431258191
+      codepoints_per_second: 36.94056994859638
       failed: []
       n_errors: 0
       n_total: 78
       pct_success: 100.0
-      seconds_elapsed: 1.630871671019122
+      seconds_elapsed: 2.111499635997461
     Chinese, Gan:
-      codepoints_per_second: 133.4721691904576
+      codepoints_per_second: 100.35703976121508
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 3.768575899011921
+      seconds_elapsed: 5.012104793015169
     Chinese, Hakka:
-      codepoints_per_second: 132.72062726087853
+      codepoints_per_second: 99.82652201159136
       failed: []
       n_errors: 0
       n_total: 498
       pct_success: 100.0
-      seconds_elapsed: 3.7522426639916375
+      seconds_elapsed: 4.988654216984287
     Chinese, Jinyu:
-      codepoints_per_second: 133.83918606800972
+      codepoints_per_second: 100.52278308824009
       failed: []
       n_errors: 0
       n_total: 500
       pct_success: 100.0
-      seconds_elapsed: 3.735826663993066
+      seconds_elapsed: 4.973996785993222
     Chinese, Mandarin (Beijing):
-      codepoints_per_second: 138.15683654840123
+      codepoints_per_second: 103.6635312096432
       failed: []
       n_errors: 0
       n_total: 514
       pct_success: 100.0
-      seconds_elapsed: 3.7204094479966443
+      seconds_elapsed: 4.958349324995652
     Chinese, Mandarin (Guiyang):
-      codepoints_per_second: 136.47880110648626
+      codepoints_per_second: 102.28855652350005
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 3.700208354013739
+      seconds_elapsed: 4.937013652001042
     Chinese, Mandarin (Harbin):
-      codepoints_per_second: 136.35643072353466
+      codepoints_per_second: 102.19301462720057
       failed: []
       n_errors: 0
       n_total: 504
       pct_success: 100.0
-      seconds_elapsed: 3.696195311989868
+      seconds_elapsed: 4.931843940983526
     Chinese, Mandarin (Nanjing):
-      codepoints_per_second: 136.0867220159374
+      codepoints_per_second: 102.02635015737172
       failed: []
       n_errors: 0
       n_total: 502
       pct_success: 100.0
-      seconds_elapsed: 3.6888242479762994
+      seconds_elapsed: 4.920297542994376
     Chinese, Mandarin (Simplified):
-      codepoints_per_second: 144.41721662620682
+      codepoints_per_second: 108.2556008316379
       failed: []
       n_errors: 0
       n_total: 532
       pct_success: 100.0
-      seconds_elapsed: 3.68377131500165
+      seconds_elapsed: 4.914295388996834
     Chinese, Mandarin (Tianjin):
-      codepoints_per_second: 139.2807674796095
+      codepoints_per_second: 104.39567773939675
       failed: []
       n_errors: 0
       n_total: 512
       pct_success: 100.0
-      seconds_elapsed: 3.676027991983574
+      seconds_elapsed: 4.90441760700196
     Chinese, Mandarin (Traditional):
-      codepoints_per_second: 137.86784117400163
+      codepoints_per_second: 103.51927053711422
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 3.6629281759960577
+      seconds_elapsed: 4.878318764996948
     Chinese, Min Nan:
-      codepoints_per_second: 140.13299078850577
+      codepoints_per_second: 104.86844830727257
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 3.5894474039960187
+      seconds_elapsed: 4.796485579019645
     Chinese, Wu:
-      codepoints_per_second: 141.56984680138876
+      codepoints_per_second: 105.86980529154671
       failed: []
       n_errors: 0
       n_total: 506
       pct_success: 100.0
-      seconds_elapsed: 3.5742074419977143
+      seconds_elapsed: 4.779455281008268
     Chinese, Xiang:
-      codepoints_per_second: 140.38114111923272
+      codepoints_per_second: 104.93957436401328
       failed: []
       n_errors: 0
       n_total: 501
       pct_success: 100.0
-      seconds_elapsed: 3.568855446006637
+      seconds_elapsed: 4.774176024977351
     Chinese, Yue:
-      codepoints_per_second: 141.48494216400746
+      codepoints_per_second: 105.63841882968703
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 3.5551486420154106
+      seconds_elapsed: 4.761525262991199
     Colorado:
-      codepoints_per_second: 33.851831392318076
+      codepoints_per_second: 26.136459745084842
       failed: []
       n_errors: 0
       n_total: 55
       pct_success: 100.0
-      seconds_elapsed: 1.6247274589841254
+      seconds_elapsed: 2.104340088000754
     Dagaare, Southern:
-      codepoints_per_second: 38.776209030889994
+      codepoints_per_second: 29.938770751435918
       failed: []
       n_errors: 0
       n_total: 63
       pct_success: 100.0
-      seconds_elapsed: 1.6247075610153843
+      seconds_elapsed: 2.1042948130052537
     Dangme:
-      codepoints_per_second: 35.734616819015564
+      codepoints_per_second: 27.603727208770902
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 1.6230760299949907
+      seconds_elapsed: 2.101165525993565
     Dari:
-      codepoints_per_second: 33.2704765720402
+      codepoints_per_second: 25.70053828809932
       failed: []
       n_errors: 0
       n_total: 54
       pct_success: 100.0
-      seconds_elapsed: 1.6230606099998113
+      seconds_elapsed: 2.101123307016678
     Dendi:
-      codepoints_per_second: 45.19768859432942
+      codepoints_per_second: 34.92747867416595
       failed: []
       n_errors: 0
       n_total: 73
       pct_success: 100.0
-      seconds_elapsed: 1.6151268410030752
+      seconds_elapsed: 2.090044937998755
     Dinka, Northeastern:
-      codepoints_per_second: 34.08940201509925
+      codepoints_per_second: 26.347786439662137
       failed: []
       n_errors: 0
       n_total: 55
       pct_success: 100.0
-      seconds_elapsed: 1.6134046580118593
+      seconds_elapsed: 2.087461887014797
     Ditammari:
-      codepoints_per_second: 37.226435766570724
+      codepoints_per_second: 28.76883702942494
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 1.6117578480043449
+      seconds_elapsed: 2.0855900410097092
     Dzongkha:
-      codepoints_per_second: 124.18126762565016
+      codepoints_per_second: 96.23235496148567
       failed: []
       n_errors: 0
       n_total: 200
       pct_success: 100.0
-      seconds_elapsed: 1.6105488679895643
+      seconds_elapsed: 2.0783030829916243
     Evenki:
-      codepoints_per_second: 51.033358706448
+      codepoints_per_second: 39.57145666510671
       failed: []
       n_errors: 0
       n_total: 77
       pct_success: 100.0
-      seconds_elapsed: 1.508817016001558
+      seconds_elapsed: 1.9458469940000214
     Farsi, Western:
-      codepoints_per_second: 33.0859227895832
+      codepoints_per_second: 25.658990989511967
       failed: []
       n_errors: 0
       n_total: 49
       pct_success: 100.0
-      seconds_elapsed: 1.4809923940047156
+      seconds_elapsed: 1.9096619980118703
     Fon:
-      codepoints_per_second: 59.488946925078444
+      codepoints_per_second: 46.11392015716172
       failed: []
       n_errors: 0
       n_total: 88
       pct_success: 100.0
-      seconds_elapsed: 1.4792663939879276
+      seconds_elapsed: 1.9083174820116255
     French (Welche):
-      codepoints_per_second: 40.66847275622089
+      codepoints_per_second: 31.495107904932677
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 1.4753443130175583
+      seconds_elapsed: 1.9050577690068167
     Fur:
-      codepoints_per_second: 61.05626383908119
+      codepoints_per_second: 47.26596895510192
       failed: []
       n_errors: 0
       n_total: 90
       pct_success: 100.0
-      seconds_elapsed: 1.4740502340137027
+      seconds_elapsed: 1.904118375008693
     Ga:
-      codepoints_per_second: 42.421952351999906
+      codepoints_per_second: 32.758713618373974
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 1.4615074640023522
+      seconds_elapsed: 1.8926262099994346
     Gen:
-      codepoints_per_second: 59.55045199529878
+      codepoints_per_second: 45.98155188810978
       failed: []
       n_errors: 0
       n_total: 87
       pct_success: 100.0
-      seconds_elapsed: 1.4609460899955593
+      seconds_elapsed: 1.8920631520159077
     Gilyak:
-      codepoints_per_second: 57.514118446018685
+      codepoints_per_second: 44.406008600602384
       failed: []
       n_errors: 0
       n_total: 84
       pct_success: 100.0
-      seconds_elapsed: 1.4605109539988916
+      seconds_elapsed: 1.891635898995446
     Gujarati:
-      codepoints_per_second: 96.67164353559897
+      codepoints_per_second: 72.15811344192076
       failed: []
       n_errors: 0
       n_total: 343
       pct_success: 100.0
-      seconds_elapsed: 3.54809318901971
+      seconds_elapsed: 4.753450217016507
     Gumuz:
-      codepoints_per_second: 38.727798530988686
+      codepoints_per_second: 29.98864927983444
       failed: []
       n_errors: 0
       n_total: 54
       pct_success: 100.0
-      seconds_elapsed: 1.3943472660030238
+      seconds_elapsed: 1.8006813009851612
     Hindi:
-      codepoints_per_second: 113.30335171504699
+      codepoints_per_second: 84.33510318935534
       failed: []
       n_errors: 0
       n_total: 390
       pct_success: 100.0
-      seconds_elapsed: 3.44208705300116
+      seconds_elapsed: 4.624408878997201
     Japanese:
-      codepoints_per_second: 149.2613241943275
+      codepoints_per_second: 110.86401135328293
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 3.383327882998856
+      seconds_elapsed: 4.555130143999122
     Japanese (Osaka):
-      codepoints_per_second: 150.26275160993427
+      codepoints_per_second: 111.47533867481545
       failed: []
       n_errors: 0
       n_total: 497
       pct_success: 100.0
-      seconds_elapsed: 3.3075395909836516
+      seconds_elapsed: 4.458385198988253
     Japanese (Tokyo):
-      codepoints_per_second: 150.93024676476216
+      codepoints_per_second: 111.9806797124514
       failed: []
       n_errors: 0
       n_total: 499
       pct_success: 100.0
-      seconds_elapsed: 3.3061630169977434
+      seconds_elapsed: 4.456125836004503
     Javanese (Javanese):
-      codepoints_per_second: 114.34783402147377
+      codepoints_per_second: 88.22456155067617
       failed:
       - grapheme_id: Javanese (Javanese)-5-00
         measured_by_terminal: 2
@@ -1766,23 +1794,23 @@ test_results:
       n_errors: 277
       n_total: 530
       pct_success: 47.735849056603776
-      seconds_elapsed: 4.634980666975025
+      seconds_elapsed: 6.00739738100674
     Kabyle:
-      codepoints_per_second: 47.56964486183237
+      codepoints_per_second: 37.16685805252918
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 1.303352173010353
+      seconds_elapsed: 1.6681528449989855
     Kannada:
-      codepoints_per_second: 88.01011297393661
+      codepoints_per_second: 65.22576636757647
       failed: []
       n_errors: 0
       n_total: 287
       pct_success: 100.0
-      seconds_elapsed: 3.2609888830047566
+      seconds_elapsed: 4.400101616018219
     Khmer, Central:
-      codepoints_per_second: 98.91406662766562
+      codepoints_per_second: 75.85327445180732
       failed:
       - grapheme_id: Khmer, Central-3-00
         measured_by_terminal: 2
@@ -2123,9 +2151,9 @@ test_results:
       n_errors: 84
       n_total: 443
       pct_success: 81.03837471783297
-      seconds_elapsed: 4.478634992003208
+      seconds_elapsed: 5.840222497994546
     Khün:
-      codepoints_per_second: 89.27079773762438
+      codepoints_per_second: 68.51309816849887
       failed:
       - grapheme_id: Khün-3-00
         measured_by_terminal: 2
@@ -2142,100 +2170,100 @@ test_results:
       n_errors: 3
       n_total: 396
       pct_success: 99.24242424242425
-      seconds_elapsed: 4.435941092000576
+      seconds_elapsed: 5.779916696017608
     Korean:
-      codepoints_per_second: 105.83929495436175
+      codepoints_per_second: 77.80355951425561
       failed: []
       n_errors: 0
       n_total: 315
       pct_success: 100.0
-      seconds_elapsed: 2.976210302003892
+      seconds_elapsed: 4.0486579530115705
     Lamnso':
-      codepoints_per_second: 67.63761628634099
+      codepoints_per_second: 52.758617345875244
       failed: []
       n_errors: 0
       n_total: 74
       pct_success: 100.0
-      seconds_elapsed: 1.0940657590108458
+      seconds_elapsed: 1.4026144679810386
     Lao:
-      codepoints_per_second: 94.21954832755915
+      codepoints_per_second: 69.01248960009767
       failed: []
       n_errors: 0
       n_total: 277
       pct_success: 100.0
-      seconds_elapsed: 2.9399419219989795
+      seconds_elapsed: 4.0137662270281
     Lingala (tones):
-      codepoints_per_second: 72.88978173575053
+      codepoints_per_second: 57.87380153319936
       failed: []
       n_errors: 0
       n_total: 71
       pct_success: 100.0
-      seconds_elapsed: 0.974073434015736
+      seconds_elapsed: 1.2268072619917803
     Magahi:
-      codepoints_per_second: 106.98428298685518
+      codepoints_per_second: 78.33154452744077
       failed: []
       n_errors: 0
       n_total: 314
       pct_success: 100.0
-      seconds_elapsed: 2.9350105570047162
+      seconds_elapsed: 4.0086021780152805
     Maithili:
-      codepoints_per_second: 122.02221548382023
+      codepoints_per_second: 89.29577705552221
       failed: []
       n_errors: 0
       n_total: 357
       pct_success: 100.0
-      seconds_elapsed: 2.9256967559922487
+      seconds_elapsed: 3.997949419019278
     Malayalam:
-      codepoints_per_second: 290.7516649245344
+      codepoints_per_second: 212.5988074088563
       failed: []
       n_errors: 0
       n_total: 845
       pct_success: 100.0
-      seconds_elapsed: 2.906260228017345
+      seconds_elapsed: 3.974622484005522
     Maldivian:
-      codepoints_per_second: 244.52525376555872
+      codepoints_per_second: 196.24538160282393
       failed: []
       n_errors: 0
       n_total: 226
       pct_success: 100.0
-      seconds_elapsed: 0.9242399159993511
+      seconds_elapsed: 1.1516194580181036
     Maori (2):
-      codepoints_per_second: 58.313971000782374
+      codepoints_per_second: 48.03858386934043
       failed: []
       n_errors: 0
       n_total: 48
       pct_success: 100.0
-      seconds_elapsed: 0.8231303609791212
+      seconds_elapsed: 0.9991968150134198
     Marathi:
-      codepoints_per_second: 141.95277861159636
+      codepoints_per_second: 104.86912032765514
       failed: []
       n_errors: 0
       n_total: 391
       pct_success: 100.0
-      seconds_elapsed: 2.7544371010153554
+      seconds_elapsed: 3.728456944983918
     Mazahua Central:
-      codepoints_per_second: 81.2823455551077
+      codepoints_per_second: 67.03685344925618
       failed: []
       n_errors: 0
       n_total: 66
       pct_success: 100.0
-      seconds_elapsed: 0.8119844419998117
+      seconds_elapsed: 0.9845330829848535
     Mirandese:
-      codepoints_per_second: 76.59844293343173
+      codepoints_per_second: 63.15838451996164
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 0.8094159309985116
+      seconds_elapsed: 0.981659053999465
     Mixtec, Metlatónoc:
-      codepoints_per_second: 80.3483043128837
+      codepoints_per_second: 66.25505337713115
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 0.8089778689900413
+      seconds_elapsed: 0.9810572429851163
     Mon:
-      codepoints_per_second: 74.88215967096058
+      codepoints_per_second: 57.45182819980947
       failed:
       - grapheme_id: Mon-3-00
         measured_by_terminal: 2
@@ -2256,356 +2284,356 @@ test_results:
       n_errors: 4
       n_total: 332
       pct_success: 98.79518072289156
-      seconds_elapsed: 4.4336328099889215
+      seconds_elapsed: 5.778754313010722
     Mongolian, Halh (Mongolian):
-      codepoints_per_second: 29.70035635815187
+      codepoints_per_second: 24.74109161743907
       failed: []
       n_errors: 0
       n_total: 22
       pct_success: 100.0
-      seconds_elapsed: 0.7407318530022167
+      seconds_elapsed: 0.8892089459986892
     Mòoré:
-      codepoints_per_second: 86.18751721502437
+      codepoints_per_second: 72.1018857309946
       failed: []
       n_errors: 0
       n_total: 63
       pct_success: 100.0
-      seconds_elapsed: 0.7309643210028298
+      seconds_elapsed: 0.8737635550205596
     Nanai:
-      codepoints_per_second: 89.1178934174263
+      codepoints_per_second: 74.6202380072398
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 0.7293709210061934
+      seconds_elapsed: 0.8710773609927855
     Navajo:
-      codepoints_per_second: 72.87650039826578
+      codepoints_per_second: 60.96965988440086
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 0.727257754013408
+      seconds_elapsed: 0.8692848229839001
     Nepali:
-      codepoints_per_second: 131.13941390640815
+      codepoints_per_second: 97.65004173161056
       failed: []
       n_errors: 0
       n_total: 352
       pct_success: 100.0
-      seconds_elapsed: 2.6841663350060116
+      seconds_elapsed: 3.604709160979837
     Nuosu:
-      codepoints_per_second: 126.35373126730747
+      codepoints_per_second: 94.18925677678209
       failed: []
       n_errors: 0
       n_total: 336
       pct_success: 100.0
-      seconds_elapsed: 2.6592012489854824
+      seconds_elapsed: 3.567285818979144
     Orok:
-      codepoints_per_second: 90.93918809217168
+      codepoints_per_second: 75.95352620534246
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 0.7147633639979176
+      seconds_elapsed: 0.8557864690083079
     Otomi, Mezquital:
-      codepoints_per_second: 101.15203556566539
+      codepoints_per_second: 84.42525202196752
       failed: []
       n_errors: 0
       n_total: 72
       pct_success: 100.0
-      seconds_elapsed: 0.7117998129979242
+      seconds_elapsed: 0.8528254079865292
     Panjabi, Eastern:
-      codepoints_per_second: 120.24860957277288
+      codepoints_per_second: 89.92834702877221
       failed: []
       n_errors: 0
       n_total: 302
       pct_success: 100.0
-      seconds_elapsed: 2.511463550996268
+      seconds_elapsed: 3.358229189994745
     Panjabi, Western:
-      codepoints_per_second: 98.50509478114044
+      codepoints_per_second: 83.41316275876052
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 0.6294090690207668
+      seconds_elapsed: 0.7432879649859387
     Pashto, Northern:
-      codepoints_per_second: 99.24958525313939
+      codepoints_per_second: 84.08032052875035
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 0.6246877489902545
+      seconds_elapsed: 0.737390148016857
     Picard:
-      codepoints_per_second: 85.96381053023774
+      codepoints_per_second: 72.54984929680663
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 0.6165385139756836
+      seconds_elapsed: 0.730532185989432
     Pular (Adlam):
-      codepoints_per_second: 151.2841676099793
+      codepoints_per_second: 127.64554134092303
       failed: []
       n_errors: 0
       n_total: 93
       pct_success: 100.0
-      seconds_elapsed: 0.6147371629776899
+      seconds_elapsed: 0.7285800900135655
     Saint Lucian Creole French:
-      codepoints_per_second: 102.13520856081065
+      codepoints_per_second: 84.65395423679468
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 0.5678746909834445
+      seconds_elapsed: 0.6851422420004383
     Sanskrit:
-      codepoints_per_second: 199.7634537329087
+      codepoints_per_second: 149.771146695632
       failed: []
       n_errors: 0
       n_total: 493
       pct_success: 100.0
-      seconds_elapsed: 2.467918884998653
+      seconds_elapsed: 3.2916887589963153
     Sanskrit (Grantha):
-      codepoints_per_second: 121.84996734185943
+      codepoints_per_second: 91.54196687907472
       failed: []
       n_errors: 0
       n_total: 293
       pct_success: 100.0
-      seconds_elapsed: 2.4045964590040967
+      seconds_elapsed: 3.2007177690102253
     Secoya:
-      codepoints_per_second: 98.84461573197072
+      codepoints_per_second: 81.42764277417388
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 0.536195113993017
+      seconds_elapsed: 0.650884616014082
     Seraiki:
-      codepoints_per_second: 119.56492081411453
+      codepoints_per_second: 98.47404481425036
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 0.5352740550006274
+      seconds_elapsed: 0.6499174490163568
     Shan:
-      codepoints_per_second: 78.45917315498001
+      codepoints_per_second: 59.70448048912704
       failed: []
       n_errors: 0
       n_total: 181
       pct_success: 100.0
-      seconds_elapsed: 2.3069322900264524
+      seconds_elapsed: 3.031598273984855
     Shipibo-Conibo:
-      codepoints_per_second: 132.75641792028827
+      codepoints_per_second: 110.80079750863857
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 0.48208592098671943
+      seconds_elapsed: 0.5776131710154004
     Sinhala:
-      codepoints_per_second: 112.06145046227374
+      codepoints_per_second: 85.26667885074183
       failed: []
       n_errors: 0
       n_total: 258
       pct_success: 100.0
-      seconds_elapsed: 2.302308232989162
+      seconds_elapsed: 3.0258009749813937
     Siona:
-      codepoints_per_second: 161.47372897354956
+      codepoints_per_second: 135.47637602641618
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 0.41492817702237517
+      seconds_elapsed: 0.49455116799799725
     South Azerbaijani:
-      codepoints_per_second: 161.64817989300042
+      codepoints_per_second: 135.67360528554653
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 0.4144803860108368
+      seconds_elapsed: 0.49383223699987866
     Tagalog (Tagalog):
-      codepoints_per_second: 82.56409339031946
+      codepoints_per_second: 69.33522221111045
       failed: []
       n_errors: 0
       n_total: 34
       pct_success: 100.0
-      seconds_elapsed: 0.41180128799169324
+      seconds_elapsed: 0.49037125598988496
     Tai Dam:
-      codepoints_per_second: 477.60951674758047
+      codepoints_per_second: 407.0369004743634
       failed: []
       n_errors: 0
       n_total: 189
       pct_success: 100.0
-      seconds_elapsed: 0.39572075800970197
+      seconds_elapsed: 0.4643313659762498
     Tamang, Eastern:
-      codepoints_per_second: 30.99781200057574
+      codepoints_per_second: 23.696344570939186
       failed: []
       n_errors: 0
       n_total: 70
       pct_success: 100.0
-      seconds_elapsed: 2.2582239029870834
+      seconds_elapsed: 2.9540421220008284
     Tamazight, Central Atlas:
-      codepoints_per_second: 221.05263134598772
+      codepoints_per_second: 188.64306394171277
       failed: []
       n_errors: 0
       n_total: 70
       pct_success: 100.0
-      seconds_elapsed: 0.3166666670003906
+      seconds_elapsed: 0.3710711570165586
     Tamil:
-      codepoints_per_second: 77.63460658937102
+      codepoints_per_second: 59.38897666953868
       failed: []
       n_errors: 0
       n_total: 175
       pct_success: 100.0
-      seconds_elapsed: 2.2541493760072626
+      seconds_elapsed: 2.946674784005154
     Tamil (Sri Lanka):
-      codepoints_per_second: 79.56177085584613
+      codepoints_per_second: 60.68970242838893
       failed: []
       n_errors: 0
       n_total: 175
       pct_success: 100.0
-      seconds_elapsed: 2.1995488300162833
+      seconds_elapsed: 2.8835204820206854
     Telugu:
-      codepoints_per_second: 174.58572075929712
+      codepoints_per_second: 133.1728365758843
       failed: []
       n_errors: 0
       n_total: 384
       pct_success: 100.0
-      seconds_elapsed: 2.1994925949838944
+      seconds_elapsed: 2.883470907981973
     Tem:
-      codepoints_per_second: 298.8737184639504
+      codepoints_per_second: 247.61578612504348
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 0.22417494701221585
+      seconds_elapsed: 0.2705804870056454
     Thai:
-      codepoints_per_second: 125.28446297614646
+      codepoints_per_second: 96.11350028296727
       failed: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
-      seconds_elapsed: 2.091240954992827
+      seconds_elapsed: 2.725943797995569
     Thai (2):
-      codepoints_per_second: 120.84204057290317
+      codepoints_per_second: 92.74100518914562
       failed: []
       n_errors: 0
       n_total: 252
       pct_success: 100.0
-      seconds_elapsed: 2.085366970015457
+      seconds_elapsed: 2.7172446479962673
     Tibetan, Central:
-      codepoints_per_second: 2155.3622581027143
+      codepoints_per_second: 1655.7636436984665
       failed: []
       n_errors: 0
       n_total: 214
       pct_success: 100.0
-      seconds_elapsed: 0.09928725400823168
+      seconds_elapsed: 0.12924549999297597
     Ticuna:
-      codepoints_per_second: 1166.0551123974672
+      codepoints_per_second: 860.4339050004421
       failed: []
       n_errors: 0
       n_total: 88
       pct_success: 100.0
-      seconds_elapsed: 0.075468131020898
+      seconds_elapsed: 0.10227398001006804
     Uduk:
-      codepoints_per_second: 822.6361289337135
+      codepoints_per_second: 607.9862968235209
       failed: []
       n_errors: 0
       n_total: 57
       pct_success: 100.0
-      seconds_elapsed: 0.06928944401443005
+      seconds_elapsed: 0.09375211299629882
     Urdu:
-      codepoints_per_second: 52.7607148359401
+      codepoints_per_second: 40.49490613921923
       failed: []
       n_errors: 0
       n_total: 110
       pct_success: 100.0
-      seconds_elapsed: 2.084884565003449
+      seconds_elapsed: 2.7163910350063816
     Urdu (2):
-      codepoints_per_second: 39.34016325447596
+      codepoints_per_second: 30.196506957875034
       failed: []
       n_errors: 0
       n_total: 82
       pct_success: 100.0
-      seconds_elapsed: 2.0843838260043412
+      seconds_elapsed: 2.7155458780180197
     Veps:
-      codepoints_per_second: 1083.454197804022
+      codepoints_per_second: 783.8131270480751
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 0.054455463017802685
+      seconds_elapsed: 0.07527304399991408
     Vietnamese:
-      codepoints_per_second: 2179.981549434709
+      codepoints_per_second: 1575.2548305101755
       failed: []
       n_errors: 0
       n_total: 117
       pct_success: 100.0
-      seconds_elapsed: 0.05367017901153304
+      seconds_elapsed: 0.07427369701326825
     Vietnamese (Han nom):
-      codepoints_per_second: 268.18511962107624
+      codepoints_per_second: 205.8522789463321
       failed: []
       n_errors: 0
       n_total: 559
       pct_success: 100.0
-      seconds_elapsed: 2.084381119988393
+      seconds_elapsed: 2.715539526019711
     Waama:
-      codepoints_per_second: 1738.1508086394124
+      codepoints_per_second: 1316.713184081062
       failed: []
       n_errors: 0
       n_total: 56
       pct_success: 100.0
-      seconds_elapsed: 0.03221814800053835
+      seconds_elapsed: 0.04253014299320057
     Yaneshaʼ:
-      codepoints_per_second: 2329.3032247613814
+      codepoints_per_second: 1764.6822978584844
       failed: []
       n_errors: 0
       n_total: 75
       pct_success: 100.0
-      seconds_elapsed: 0.03219846999854781
+      seconds_elapsed: 0.04250056800083257
     Yiddish, Eastern:
-      codepoints_per_second: 2053.5896245615054
+      codepoints_per_second: 1580.9221295639854
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 0.028243228007340804
+      seconds_elapsed: 0.036687448999146
     Yoruba:
-      codepoints_per_second: 7655.476694501461
+      codepoints_per_second: 6780.358094893443
       failed: []
       n_errors: 0
       n_total: 73
       pct_success: 100.0
-      seconds_elapsed: 0.009535657009109855
+      seconds_elapsed: 0.010766393010271713
     Éwé:
-      codepoints_per_second: 48038.45064555987
+      codepoints_per_second: 51988.93873626791
       failed: []
       n_errors: 0
       n_total: 79
       pct_success: 100.0
-      seconds_elapsed: 0.0016445159853901714
+      seconds_elapsed: 0.0015195540036074817
   ri_results:
     '17.0':
-      codepoints_per_second: 2204.7944722435454
+      codepoints_per_second: 1588.4534615997143
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
-      seconds_elapsed: 0.11883193798712455
+      seconds_elapsed: 0.16494030598551035
   sfz_results:
     17.0.0:
-      codepoints_per_second: 2519.9148766859703
+      codepoints_per_second: 1161.1979639353904
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
-      seconds_elapsed: 0.0019841940084006637
+      seconds_elapsed: 0.004305898008169606
   sri_results:
     17.0.0:
-      codepoints_per_second: 1526.860113116762
+      codepoints_per_second: 1962.1548620289395
       failed_codepoints: []
       n_errors: 0
       n_total: 26
       pct_success: 100.0
-      seconds_elapsed: 0.017028409987688065
+      seconds_elapsed: 0.013250738003989682
   unicode_wide_results:
     17.0.0:
-      codepoints_per_second: 2488.5100587685824
+      codepoints_per_second: 1859.3745432398136
       failed_codepoints:
       - measured_by_terminal: 0
         measured_by_wcwidth: 2
@@ -2613,6 +2641,6 @@ test_results:
       n_errors: 1
       n_total: 43592
       pct_success: 99.99770600110112
-      seconds_elapsed: 17.51730914102518
+      seconds_elapsed: 23.444442733976757
 wcwidth_version: 0.6.0
-width: 71
+width: 145
