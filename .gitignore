@@ -133,6 +133,6 @@ dmypy.json
 
 data/emoji-zwj-sequences-latest.txt
 data/emoji-test-latest.txt
-data/data/emoji-variation-sequences-latest.txt
+data/emoji-variation-sequences-latest.txt
 docs/_static/plots/*.png
 docs/sw_results/*.rst
