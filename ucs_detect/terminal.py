@@ -99,6 +99,7 @@ NOTABLE_DEC_MODES = [
     _DPM.FOCUS_IN_OUT_EVENTS,
     _DPM.MOUSE_EXTENDED_SGR,
     _DPM.BRACKETED_PASTE_MIME,
+    _DPM.COLOR_PALETTE_UPDATES,
 ]
 
 
@@ -411,6 +412,37 @@ def maybe_determine_kitty_pointer_shapes(term, timeout=1.0, **_kw):
     return {'kitty_pointer_shapes': False}
 
 
+def maybe_determine_styled_underlines(term, timeout=1.0, **_kw):
+    """Detect styled/colored underline support via XTGETTCAP, delegating to blessed."""
+    return {
+        'styled_underlines': term.does_styled_underlines(timeout=timeout),
+        'colored_underlines': term.does_colored_underlines(timeout=timeout),
+    }
+
+
+def maybe_determine_osc52_clipboard(term, timeout=1.0, **_kw):
+    """Detect OSC 52 clipboard support, delegating to blessed."""
+    return {'osc52_clipboard': term.does_osc52_clipboard(timeout=timeout)}
+
+
+def maybe_determine_color_scheme(term, timeout=1.0, **_kw):
+    """Query dark/light mode preference via CSI ? 996 n, delegating to blessed."""
+    scheme = term.get_color_scheme(timeout=timeout)
+    if scheme is not None:
+        return {'color_scheme': scheme}
+    return {'color_scheme': False}
+
+
+def maybe_determine_kitty_query(term, timeout=1.0, **_kw):
+    """Detect Kitty XTGETTCAP query extensions, delegating to blessed."""
+    return {'kitty_query': term.does_kitty_query(timeout=timeout)}
+
+
+def maybe_determine_decrqss(term, timeout=1.0, **_kw):
+    """Detect DECRQSS (Request Status String) support, delegating to blessed."""
+    return {'decrqss': term.does_decrqss(timeout=timeout)}
+
+
 def _timed_detect(func, *args, cps_tracker=None, **kwargs):
     """
     Call a detection function, updating cps_tracker on success.
@@ -508,6 +540,21 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
                         timeout=timeout))
     with _status(writer, term, "Kitty Pointer Shapes", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_kitty_pointer_shapes, term,
+                        timeout=timeout))
+    with _status(writer, term, "Styled Underlines", bg_rgb, silent=silent):
+        attrs.update(td(maybe_determine_styled_underlines, term,
+                        timeout=timeout))
+    with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
+        attrs.update(td(maybe_determine_osc52_clipboard, term,
+                        timeout=timeout))
+    with _status(writer, term, "Color Scheme", bg_rgb, silent=silent):
+        attrs.update(td(maybe_determine_color_scheme, term,
+                        timeout=timeout))
+    with _status(writer, term, "Kitty Query", bg_rgb, silent=silent):
+        attrs.update(td(maybe_determine_kitty_query, term,
+                        timeout=timeout))
+    with _status(writer, term, "DECRQSS", bg_rgb, silent=silent):
+        attrs.update(td(maybe_determine_decrqss, term,
                         timeout=timeout))
     return attrs
 
