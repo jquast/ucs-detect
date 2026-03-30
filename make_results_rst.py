@@ -743,7 +743,10 @@ def make_score_table():
         # Calculate final score using weighted average
         # Time is weighted at 0.5 (half as powerful as other metrics)
         # Graphics (GFX) scores: 1.0 modern (iTerm2/Kitty), 0.5 legacy (Sixel/ReGIS), 0.0 none
+        # SRI/SFZ are standalone (non-sequence) tests, weighted 1/3 as they
+        # cover uncommon edge cases
         TIME_WEIGHT = 0.5
+        STANDALONE_WEIGHT = 1.0 / 3.0
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
@@ -751,8 +754,8 @@ def make_score_table():
             # see https://github.com/jquast/wcwidth/issues/211
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
-            (entry["score_sri"], 1.0),
-            (entry["score_sfz"], 1.0),
+            (entry["score_sri"], STANDALONE_WEIGHT),
+            (entry["score_sfz"], STANDALONE_WEIGHT),
             (entry["score_ri"], 1.0),
             (entry["score_capabilities"], 1.0),
             (entry["score_graphics"], 1.0),
