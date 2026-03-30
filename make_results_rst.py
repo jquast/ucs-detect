@@ -1240,7 +1240,7 @@ def score_capabilities(data):
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
                      _DPM.GRAPHEME_CLUSTERING, _DPM.BRACKETED_PASTE_MIME):
         mode_key = str(mode_num) if str(mode_num) in modes else mode_num
-        if mode_key in modes and modes[mode_key].get("supported", False):
+        if mode_key in modes and _mode_is_usable(modes[mode_key]):
             count += 1
 
     if tr.get("kitty_keyboard") is not None:

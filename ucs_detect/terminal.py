@@ -420,22 +420,23 @@ def maybe_determine_styled_underlines(term, timeout=1.0, **_kw):
     }
 
 
-def maybe_determine_osc52_clipboard(term, timeout=1.0, da_supports=False,
-                                    force=False, **_kw):
+def maybe_determine_osc52_clipboard(term, timeout=60.0, **_kw):
     """Detect OSC 52 clipboard support, delegating to blessed.
+
+    Only called when DA1 extension 52 is present, indicating the terminal
+    advertises OSC 52 clipboard write support per the vt-extensions spec:
+    https://github.com/contour-terminal/vt-extensions/blob/master/clipboard-extension.md
 
     Returns a tri-state value:
 
     - ``True``: clipboard access is enabled (terminal responded)
-    - ``"supported"``: DA1 advertises extension 52, but the OSC 52 query
+    - ``"supported"``: DA1 advertises extension 52 but the OSC 52 query
       timed out (user may not have approved the permission prompt yet)
-    - ``False``: not supported
+    - ``False``: not supported (caller should not reach here)
     """
-    if term.does_osc52_clipboard(timeout=timeout, force=force):
+    if term.does_osc52_clipboard(timeout=timeout):
         return {'osc52_clipboard': True}
-    if da_supports:
-        return {'osc52_clipboard': 'supported'}
-    return {'osc52_clipboard': False}
+    return {'osc52_clipboard': 'supported'}
 
 
 def maybe_determine_color_scheme(term, timeout=1.0, **_kw):
@@ -522,13 +523,17 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     if not is_modern:
         return attrs
 
-    # Phase 1: fire OSC 52 query early so the user sees any clipboard
-    # permission prompt while the remaining detection work proceeds.
+    # OSC 52 Clipboard: only query when DA1 advertises extension 52.
+    # Tested early so the user sees any clipboard permission prompt while
+    # other detection proceeds, but with a long timeout (60s) so that a
+    # late response does not leak into subsequent queries.
+    # Spec: https://github.com/contour-terminal/vt-extensions/blob/master/clipboard-extension.md
     da_ext = attrs.get('device_attributes') or {}
     da_supports_osc52 = 52 in (da_ext.get('extensions') or [])
-    with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
-        attrs.update(td(maybe_determine_osc52_clipboard, term,
-                        timeout=timeout, da_supports=da_supports_osc52))
+    if da_supports_osc52:
+        with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
+            attrs.update(td(maybe_determine_osc52_clipboard, term,
+                            timeout=60.0))
 
     attrs.update(maybe_determine_dec_modes(
         term, writer, all_modes=all_modes, bg_rgb=bg_rgb,
@@ -574,16 +579,6 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     with _status(writer, term, "DECRQSS", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_decrqss, term,
                         timeout=timeout))
-
-    # Phase 2: if OSC 52 was "supported" (DA1 ext 52) but the query timed
-    # out earlier, retry now — the user may have approved the clipboard
-    # permission prompt while the other detection work was running.
-    if attrs.get('osc52_clipboard') == 'supported':
-        with _status(writer, term, "OSC 52 Clipboard (retry)",
-                     bg_rgb, silent=silent):
-            attrs.update(td(maybe_determine_osc52_clipboard, term,
-                            timeout=timeout, da_supports=True,
-                            force=True))
 
     return attrs
 
