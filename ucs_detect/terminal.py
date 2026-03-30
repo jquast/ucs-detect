@@ -488,14 +488,16 @@ _CPR_RE = re.compile(r"\x1b\[(\d+);(\d+)R")
 def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
     """Probe DECRQCRA (checksum rectangular area) support.
 
-    Writes 'A' to column 1 of the last row, sprays two DECRQCRA queries —
-    one for that populated cell (col 1) and one for an adjacent blank cell
-    (col 2) — with a CPR boundary fence.  If both checksums arrive and
-    differ, the terminal supports screen-scraping via DECRQCRA.
+    First discovers the current cursor row via CPR, then writes 'A' at
+    column 1 of that row and sprays two DECRQCRA queries — one for
+    the populated cell (col 1) and one for an adjacent blank cell
+    (col 2) — with a second CPR boundary fence.  If both checksums
+    arrive and differ, the terminal supports screen-scraping via
+    DECRQCRA.
 
-    Uses column 1 rather than the bottom-right corner to avoid
-    auto-margin scrolling.  See ``blessed/bin/screen-scrape.py`` for the
-    full screen-scrape tool.
+    Uses ``move_x(0)`` on the current row to avoid addressing the
+    bottom-right corner, which would cause auto-margin scrolling.
+    See ``blessed/bin/screen-scrape.py`` for the full screen-scrape tool.
 
     :returns: dict with ``decrqcra`` key: True or False
     """
@@ -504,17 +506,30 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
 
     from blessed.keyboard import _read_until
 
-    row = term.height
-
     ctx = None
     try:
         if term._line_buffered:
             ctx = term.cbreak()
             ctx.__enter__()
 
-        # spray: place 'A' at (row, 1), query that cell (pid=1) and
-        # (row, 2) which should be blank/different (pid=2),
-        # restore the cell, erase line, CPR fence
+        # step 1: discover current row via CPR
+        term.stream.write("\x1b[6n")
+        term.stream.flush()
+        cpr_match, data = _read_until(term=term,
+                                      pattern=_CPR_RE.pattern,
+                                      timeout=timeout)
+        if not cpr_match:
+            term.ungetch(data)
+            return {'decrqcra': False}
+
+        row = int(cpr_match.group(1))
+        # re-buffer any non-CPR data
+        data = data[:cpr_match.start()] + data[cpr_match.end():]
+        term.ungetch(data)
+
+        # step 2: move to col 1 of current row, write 'A', spray two
+        # DECRQCRA queries (populated cell pid=1, blank cell pid=2),
+        # erase line, CPR fence
         query = (
             f"\x1b[{row};1HA"
             + _DECRQCRA.format(pid=1, r=row, c=1)
@@ -536,7 +551,6 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
         checksums = {}
         for m in _DECCKSR_RE.finditer(data):
             checksums[int(m.group(1))] = int(m.group(2), 16)
-        # strip matched sequences before re-buffering
         data = _DECCKSR_RE.sub('', data)
         term.ungetch(data)
 
