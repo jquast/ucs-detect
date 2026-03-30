@@ -568,6 +568,90 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
     return {'decrqcra': supported}
 
 
+# -- CVE probes ported from https://github.com/dgl/vt-houdini --
+#
+# Each test sends a sequence containing a unique marker and checks whether
+# the terminal echoes the marker back, indicating a vulnerability.
+
+_CVE_PROBES = [
+    # Title echo-back: set title with marker, then query title
+    ('CVE-2003-0063',
+     '\x1b]0;cve20030063\a\x1b[21t',
+     'cve20030063'),
+    # DECRQSS echo-back (rxvt-unicode / xterm variants)
+    ('CVE-2008-2383',
+     '\x1bP$q;cve20082383\x1b\\',
+     'cve20082383'),
+    # Xterm.js XTGETTCAP injection
+    ('CVE-2019-0542',
+     '\x1bP+qfoo;\ncve20190542;aa\n\x1b\\',
+     'cve20190542'),
+    # rxvt-unicode graphics mode leak
+    ('CVE-2021-33477',
+     '\x1bG',
+     '\n'),
+    # xterm font OSC 50 echo-back
+    ('CVE-2022-45063',
+     '\x1b]50;cve202245063\a\x1b]50;?\a',
+     'cve202245063'),
+    # ConEmu title with embedded CR
+    ('CVE-2022-46387',
+     '\x1b]0;\rcve202246387\r\a\x1b[21t',
+     'cve202246387'),
+    # iTerm2 DECRQSS variant with newline
+    ('CVE-2022-45872',
+     '\x1bP$q;cve202245872\n\x1b\\\n\x1bP$qm\x1b\\',
+     'cve202245872'),
+]
+
+
+def maybe_determine_cve_probes(term, timeout=1.0, **_kw):
+    """Probe for known terminal escape sequence vulnerabilities.
+
+    Ported from vt-houdini.  Each test sends a crafted sequence
+    containing a unique marker and checks whether the terminal echoes
+    the marker back in its response, indicating a vulnerability.
+
+    :returns: dict with ``cve_results`` mapping CVE id to bool
+    """
+    if not term.is_a_tty or not term._does_styling:
+        return {'cve_results': {}}
+
+    from blessed.keyboard import _read_until
+
+    results = {}
+    ctx = None
+    try:
+        if term._line_buffered:
+            ctx = term.cbreak()
+            ctx.__enter__()
+
+        for cve_id, sequence, marker in _CVE_PROBES:
+            # send attack sequence + CPR boundary fence
+            term.stream.write(sequence + '\x1b[6n')
+            term.stream.flush()
+
+            # wait for CPR boundary
+            match, data = _read_until(term=term,
+                                      pattern=_CPR_RE.pattern,
+                                      timeout=timeout)
+            if match:
+                data = data[:match.start()] + data[match.end():]
+
+            vulnerable = marker in data
+            if vulnerable:
+                results[cve_id] = data.replace('\x1b', '\\e')
+            else:
+                results[cve_id] = False
+            term.ungetch(data)
+
+    finally:
+        if ctx is not None:
+            ctx.__exit__(None, None, None)
+
+    return {'cve_results': results}
+
+
 def _timed_detect(func, *args, cps_tracker=None, **kwargs):
     """
     Call a detection function, updating cps_tracker on success.
@@ -697,6 +781,9 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
                             timeout=timeout))
     with _status(writer, term, "DECRQCRA", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_decrqcra, term,
+                        timeout=timeout))
+    with _status(writer, term, "CVE Probes", bg_rgb, silent=silent):
+        attrs.update(td(maybe_determine_cve_probes, term,
                         timeout=timeout))
 
     return attrs
