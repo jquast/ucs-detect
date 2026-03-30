@@ -238,7 +238,10 @@ def maybe_determine_software(term, writer, timeout=1.0):
             if sv.version:
                 result['software_version'] = sv.version
     else:
-        # Try ENQ (answerback) as fallback.
+        # Try ENQ (answerback) as fallback — skip on Windows where
+        # flushinp() may hang on non-console handles (e.g. mintty PTY).
+        if sys.platform == 'win32':
+            return result
         if term.stream:
             term.stream.write('\x05')
             term.stream.flush()
