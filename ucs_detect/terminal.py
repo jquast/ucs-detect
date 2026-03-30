@@ -457,6 +457,100 @@ def maybe_determine_decrqss(term, timeout=1.0, **_kw):
     return {'decrqss': term.does_decrqss(timeout=timeout)}
 
 
+_RE_DECRQSS_RESPONSE = re.compile(r'\x1bP([01])\$r([^\x1b]*)\x1b\\')
+
+
+def maybe_determine_cursor_style_query(term, timeout=1.0, **_kw):
+    """Detect DECRQSS DECSCUSR (cursor style query) support.
+
+    Sends ``DCS $ q SP q ST`` with a CPR boundary fence.  A valid
+    response (``DCS 1 $ r ... q ST``) means the terminal supports
+    querying cursor style.  Most terminals do not respond to this
+    sub-query even when they support DECRQSS for SGR.
+    """
+    if not term.is_a_tty or not term._does_styling:
+        return {'decscusr_query': False}
+
+    match = term._query_with_boundary(
+        '\x1bP$q q\x1b\\', _RE_DECRQSS_RESPONSE, timeout)
+
+    supported = match is not None and match.group(1) == '1'
+    return {'decscusr_query': supported}
+
+
+# DECRQCRA -- https://vt100.net/docs/vt510-rm/DECRQCRA.html
+# Full screen-scrape tool: blessed/bin/screen-scrape.py
+_DECRQCRA = "\x1b[{pid};1;{r};{c};{r};{c}*y"
+_DECCKSR_RE = re.compile(r"\x1bP(\d+)!~([0-9A-Fa-f]{4})\x1b\\")
+_CPR_RE = re.compile(r"\x1b\[(\d+);(\d+)R")
+
+
+def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
+    """Probe DECRQCRA (checksum rectangular area) support.
+
+    Writes 'A' to column 1 of the last row, sprays two DECRQCRA queries —
+    one for that populated cell (col 1) and one for an adjacent blank cell
+    (col 2) — with a CPR boundary fence.  If both checksums arrive and
+    differ, the terminal supports screen-scraping via DECRQCRA.
+
+    Uses column 1 rather than the bottom-right corner to avoid
+    auto-margin scrolling.  See ``blessed/bin/screen-scrape.py`` for the
+    full screen-scrape tool.
+
+    :returns: dict with ``decrqcra`` key: True or False
+    """
+    if not term.is_a_tty or not term._does_styling:
+        return {'decrqcra': False}
+
+    from blessed.keyboard import _read_until
+
+    row = term.height
+
+    ctx = None
+    try:
+        if term._line_buffered:
+            ctx = term.cbreak()
+            ctx.__enter__()
+
+        # spray: place 'A' at (row, 1), query that cell (pid=1) and
+        # (row, 2) which should be blank/different (pid=2),
+        # restore the cell, erase line, CPR fence
+        query = (
+            f"\x1b[{row};1HA"
+            + _DECRQCRA.format(pid=1, r=row, c=1)
+            + _DECRQCRA.format(pid=2, r=row, c=2)
+            + f"\x1b[{row};1H\x1b[2K"
+            + "\x1b[6n"
+        )
+        term.stream.write(query)
+        term.stream.flush()
+
+        # wait for CPR boundary
+        match, data = _read_until(term=term,
+                                  pattern=_CPR_RE.pattern,
+                                  timeout=timeout)
+        if match:
+            data = data[:match.start()] + data[match.end():]
+
+        # collect DECCKSR responses keyed by pid
+        checksums = {}
+        for m in _DECCKSR_RE.finditer(data):
+            checksums[int(m.group(1))] = int(m.group(2), 16)
+        # strip matched sequences before re-buffering
+        data = _DECCKSR_RE.sub('', data)
+        term.ungetch(data)
+
+    finally:
+        if ctx is not None:
+            ctx.__exit__(None, None, None)
+
+    cksum_a = checksums.get(1)
+    cksum_b = checksums.get(2)
+    supported = (cksum_a is not None and cksum_b is not None
+                 and cksum_a != cksum_b)
+    return {'decrqcra': supported}
+
+
 def _timed_detect(func, *args, cps_tracker=None, **kwargs):
     """
     Call a detection function, updating cps_tracker on success.
@@ -578,6 +672,14 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
                         timeout=timeout))
     with _status(writer, term, "DECRQSS", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_decrqss, term,
+                        timeout=timeout))
+    if attrs.get('decrqss'):
+        with _status(writer, term, "DECSCUSR Query", bg_rgb,
+                     silent=silent):
+            attrs.update(td(maybe_determine_cursor_style_query, term,
+                            timeout=timeout))
+    with _status(writer, term, "DECRQCRA", bg_rgb, silent=silent):
+        attrs.update(td(maybe_determine_decrqcra, term,
                         timeout=timeout))
 
     return attrs
