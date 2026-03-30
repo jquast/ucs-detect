@@ -420,7 +420,7 @@ def maybe_determine_styled_underlines(term, timeout=1.0, **_kw):
     }
 
 
-def maybe_determine_osc52_clipboard(term, timeout=1.0, **_kw):
+def maybe_determine_osc52_clipboard(term, timeout=15.0, **_kw):
     """Detect OSC 52 clipboard support, delegating to blessed."""
     return {'osc52_clipboard': term.does_osc52_clipboard(timeout=timeout)}
 
@@ -546,7 +546,7 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
                         timeout=timeout))
     with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_osc52_clipboard, term,
-                        timeout=timeout))
+                        timeout=max(timeout, 15.0)))
     with _status(writer, term, "Color Scheme", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_color_scheme, term,
                         timeout=timeout))

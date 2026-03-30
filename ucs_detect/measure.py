@@ -111,8 +111,14 @@ class CPSTracker:
         self._total_elapsed += elapsed
 
     def record_response_time(self, elapsed: float, category: str = "cpr"):
-        """Record a single query response time, tagged by category."""
-        self._all.record(elapsed)
+        """Record a single query response time, tagged by category.
+
+        Capability tests are excluded from global RTT stats because feature
+        probes (e.g. OSC 52 clipboard) may block for many seconds waiting
+        for user interaction, which would skew auto-timeout and summary values.
+        """
+        if category != "capability":
+            self._all.record(elapsed)
         self._get_category(category).record(elapsed)
 
     @contextlib.contextmanager
@@ -136,7 +142,8 @@ class CPSTracker:
             if not recorded:
                 recorded = True
                 elapsed = time.monotonic() - t0
-                self.update(items or n_items, elapsed)
+                if category != "capability":
+                    self.update(items or n_items, elapsed)
                 self.record_response_time(elapsed, category=category)
 
         yield done_ok
