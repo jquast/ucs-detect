@@ -114,8 +114,8 @@ class CPSTracker:
         """Record a single query response time, tagged by category.
 
         Capability tests are excluded from global RTT stats because feature
-        probes (e.g. OSC 52 clipboard) may block for many seconds waiting
-        for user interaction, which would skew auto-timeout and summary values.
+        probes may have variable latency that would skew auto-timeout and
+        summary values.
         """
         if category != "capability":
             self._all.record(elapsed)

@@ -662,6 +662,17 @@ def _build_capabilities_kv_pairs(term, results):
                   _color_yes_no(term, results.get('kitty_clipboard_protocol',
                                                   False))))
 
+    # OSC 52 Clipboard: tri-state — True (enabled), "supported" (DA1 ext 52
+    # advertised but query timed out), or False (not supported).
+    osc52 = results.get('osc52_clipboard', False)
+    if osc52 is True:
+        pairs.append(("OSC 52 Clipboard?", term.green2("Yes")))
+    elif osc52 == 'supported':
+        pairs.append(("OSC 52 Clipboard?",
+                      term.yellow("Supported (DA1 ext 52)")))
+    else:
+        pairs.append(("OSC 52 Clipboard?", _color_yes_no(term, False)))
+
     pointer = results.get('kitty_pointer_shapes')
     if isinstance(pointer, dict) and pointer.get('supported'):
         current = pointer.get('current', '')

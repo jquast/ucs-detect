@@ -420,9 +420,22 @@ def maybe_determine_styled_underlines(term, timeout=1.0, **_kw):
     }
 
 
-def maybe_determine_osc52_clipboard(term, timeout=15.0, **_kw):
-    """Detect OSC 52 clipboard support, delegating to blessed."""
-    return {'osc52_clipboard': term.does_osc52_clipboard(timeout=timeout)}
+def maybe_determine_osc52_clipboard(term, timeout=1.0, da_supports=False,
+                                    force=False, **_kw):
+    """Detect OSC 52 clipboard support, delegating to blessed.
+
+    Returns a tri-state value:
+
+    - ``True``: clipboard access is enabled (terminal responded)
+    - ``"supported"``: DA1 advertises extension 52, but the OSC 52 query
+      timed out (user may not have approved the permission prompt yet)
+    - ``False``: not supported
+    """
+    if term.does_osc52_clipboard(timeout=timeout, force=force):
+        return {'osc52_clipboard': True}
+    if da_supports:
+        return {'osc52_clipboard': 'supported'}
+    return {'osc52_clipboard': False}
 
 
 def maybe_determine_color_scheme(term, timeout=1.0, **_kw):
@@ -509,6 +522,14 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     if not is_modern:
         return attrs
 
+    # Phase 1: fire OSC 52 query early so the user sees any clipboard
+    # permission prompt while the remaining detection work proceeds.
+    da_ext = attrs.get('device_attributes') or {}
+    da_supports_osc52 = 52 in (da_ext.get('extensions') or [])
+    with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
+        attrs.update(td(maybe_determine_osc52_clipboard, term,
+                        timeout=timeout, da_supports=da_supports_osc52))
+
     attrs.update(maybe_determine_dec_modes(
         term, writer, all_modes=all_modes, bg_rgb=bg_rgb,
         timeout=timeout, cps_tracker=cps_tracker, silent=silent))
@@ -544,9 +565,6 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     with _status(writer, term, "Styled Underlines", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_styled_underlines, term,
                         timeout=timeout))
-    with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
-        attrs.update(td(maybe_determine_osc52_clipboard, term,
-                        timeout=max(timeout, 15.0)))
     with _status(writer, term, "Color Scheme", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_color_scheme, term,
                         timeout=timeout))
@@ -556,6 +574,17 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     with _status(writer, term, "DECRQSS", bg_rgb, silent=silent):
         attrs.update(td(maybe_determine_decrqss, term,
                         timeout=timeout))
+
+    # Phase 2: if OSC 52 was "supported" (DA1 ext 52) but the query timed
+    # out earlier, retry now — the user may have approved the clipboard
+    # permission prompt while the other detection work was running.
+    if attrs.get('osc52_clipboard') == 'supported':
+        with _status(writer, term, "OSC 52 Clipboard (retry)",
+                     bg_rgb, silent=silent):
+            attrs.update(td(maybe_determine_osc52_clipboard, term,
+                            timeout=timeout, da_supports=True,
+                            force=True))
+
     return attrs
 
 
