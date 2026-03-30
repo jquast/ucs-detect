@@ -1351,11 +1351,27 @@ def _capability_yes_no(value, terminal_name, section_suffix):
         status, score, terminal_name, section_suffix)
 
 
+def _mode_is_usable(mode_data):
+    """Check if a DEC mode is usable (changeable or permanently enabled).
+
+    DECRPM value 4 (permanently reset) means the terminal acknowledges the
+    mode but it cannot be enabled — treat as unsupported.  Values 1 (set),
+    2 (reset), and 3 (permanently set) are usable.  Checks the raw ``value``
+    field for correctness with older data files, falling back to the
+    ``supported`` and ``changeable`` fields.
+    """
+    value = mode_data.get('value')
+    if value is not None:
+        return value in {1, 2, 3}
+    return (mode_data.get('changeable', False)
+            or mode_data.get('enabled', False))
+
+
 def _get_dec_mode_supported(modes, mode_num):
-    """Check if a DEC mode is supported, handling both int and str keys."""
+    """Check if a DEC mode is usable, handling both int and str keys."""
     mode_key = str(mode_num) if str(mode_num) in modes else mode_num
     if mode_key in modes:
-        return modes[mode_key].get('supported', False)
+        return _mode_is_usable(modes[mode_key])
     return False
 
 
