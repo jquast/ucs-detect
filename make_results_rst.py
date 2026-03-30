@@ -431,34 +431,6 @@ def create_time_summary_plot(score_table):
     return plot_filename
 
 
-def display_time_summary(score_table, plot_filename):
-    """Display the TIME Summary section in results.rst."""
-    display_title("TIME Summary", 2)
-
-    print("An interesting datapoint is whether there is any correlation between a")
-    print("terminal's final Score and the average round-trip time of Cursor Position Report")
-    print("(CPR) responses. This may give some insight into the event loop, CSI sequence")
-    print("matching and grapheme, emoji, or complex script processing and font performance")
-    print()
-
-    if plot_filename:
-        print()
-        print(f".. figure:: _static/plots/{plot_filename}")
-        print("   :align: center")
-        print("   :width: 800px")
-        print()
-        print("   Score vs CPR round-trip time across all terminals tested")
-        print()
-
-    print(".. note::")
-    print()
-    print("   This data reflects only the measured time of Cursor Position Report responses")
-    print("   and is **not** an indicator of the overall performance quality of any terminal's")
-    print("   code in regular use. Many factors influence CPR latency, including OS scheduling,")
-    print("   event queue architecture, IPC overhead, or rendering design. Terminals are not")
-    print("   expected to optimize for speedy CPR response. This is presented only as")
-    print("   an interesting observation.")
-    print()
 
 
 def main():
@@ -486,7 +458,7 @@ def main():
         # Definitions removed - not shown in individual terminal pages
         display_common_languages(all_successful_languages)
         display_capabilities_table(score_table)
-        display_time_summary(score_table, time_plot)
+        # display_time_summary removed: plot is still generated but not published
         display_results_toc(score_table)
         display_common_hyperlinks()
     print('ok', file=sys.stderr)
