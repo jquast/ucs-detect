@@ -90,14 +90,26 @@ def merge_results(base_results, additional_results):
 
 def init_term(stream):
     """Initialize terminal and writer."""
-    locale.setlocale(locale.LC_ALL, "")
+    try:
+        locale.setlocale(locale.LC_ALL, "")
+    except locale.Error:
+        pass
     # local
     from ucs_detect.terminal import make_terminal
     stream_arg = sys.__stderr__ if stream == "stderr" else None
     term = make_terminal(stream=stream_arg)
-    writer = functools.partial(
-        print, end="", flush=True, file=sys.stderr if stream == "stderr" else None
-    )
+    syslog_ident = os.environ.get("UCS_DETECT_SYSLOG")
+    if syslog_ident:
+        # When running as a network service, write probe characters to
+        # term.stream (the PTY/client) instead of stderr.  Status messages
+        # are suppressed (--probe-silently handles this).
+        writer = functools.partial(
+            print, end="", flush=True, file=term.stream
+        )
+    else:
+        writer = functools.partial(
+            print, end="", flush=True, file=sys.stderr if stream == "stderr" else None
+        )
     return term, writer
 
 
