@@ -645,7 +645,7 @@ def make_score_table():
             _score_graphics = score_graphics(data)
 
             _sw_name = data.get("software_name", data.get('software'))
-            assert _sw_name, f"empty software_name in {filepath}"
+            assert _sw_name, f"empty software_name in {yaml_path}"
 
             score_table.append(
                 dict(
