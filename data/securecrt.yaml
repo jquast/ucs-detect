@@ -29,7 +29,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-software_name: ''
+software_name: securecrt
 software_version: ''
 system: Linux
 terminal_results:

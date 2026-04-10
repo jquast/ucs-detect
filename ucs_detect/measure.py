@@ -57,6 +57,7 @@ class _RTTAccumulator:
         self.count = 0
 
     def record(self, elapsed: float):
+        """Record a single response time sample."""
         self.count += 1
         self.sum_rt += elapsed
         self.sum_sq_rt += elapsed * elapsed
@@ -67,10 +68,12 @@ class _RTTAccumulator:
 
     @property
     def avg(self) -> float:
+        """Mean response time."""
         return self.sum_rt / self.count if self.count else 0.0
 
     @property
     def mdev(self) -> float:
+        """Standard deviation of response times."""
         if self.count < 2:
             return 0.0
         mean = self.sum_rt / self.count
@@ -111,11 +114,11 @@ class CPSTracker:
         self._total_elapsed += elapsed
 
     def record_response_time(self, elapsed: float, category: str = "cpr"):
-        """Record a single query response time, tagged by category.
+        """
+        Record a single query response time, tagged by category.
 
-        Capability tests are excluded from global RTT stats because feature
-        probes may have variable latency that would skew auto-timeout and
-        summary values.
+        Capability tests are excluded from global RTT stats because feature probes may have variable
+        latency that would skew auto-timeout and summary values.
         """
         if category != "capability":
             self._all.record(elapsed)

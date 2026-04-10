@@ -424,7 +424,8 @@ def maybe_determine_styled_underlines(term, timeout=1.0, **_kw):
 
 
 def maybe_determine_osc52_clipboard(term, timeout=60.0, **_kw):
-    """Detect OSC 52 clipboard support, delegating to blessed.
+    """
+    Detect OSC 52 clipboard support, delegating to blessed.
 
     Only called when DA1 extension 52 is present, indicating the terminal
     advertises OSC 52 clipboard write support per the vt-extensions spec:
@@ -443,7 +444,7 @@ def maybe_determine_osc52_clipboard(term, timeout=60.0, **_kw):
 
 
 def maybe_determine_color_scheme(term, timeout=1.0, **_kw):
-    """Query dark/light mode preference via CSI ? 996 n, delegating to blessed."""
+    """Determine dark/light color scheme preference, delegating to blessed."""
     scheme = term.get_color_scheme(timeout=timeout)
     if scheme is not None:
         return {'color_scheme': scheme}
@@ -456,7 +457,8 @@ def maybe_determine_kitty_query(term, timeout=1.0, **_kw):
 
 
 def maybe_determine_decrqss(term, timeout=1.0, **_kw):
-    """Query terminal state via DECRQSS for all common settings.
+    """
+    Query terminal state via DECRQSS for all common settings.
 
     Queries each setting in ``blessed.Decrqss`` that is
     relevant to modern terminals and returns a dict of results.
@@ -498,7 +500,8 @@ _CPR_RE = re.compile(r"\x1b\[(\d+);(\d+)R")
 
 
 def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
-    """Probe DECRQCRA (checksum rectangular area) support.
+    """
+    Probe DECRQCRA (checksum rectangular area) support.
 
     First discovers the current cursor row via CPR, then writes 'A' at
     column 1 of that row and sprays two DECRQCRA queries — one for
@@ -516,13 +519,13 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
     if not term.is_a_tty or not term._does_styling:
         return {'decrqcra': False}
 
+    # 3rd party
     from blessed.keyboard import _read_until
 
-    ctx = None
+    stack = contextlib.ExitStack()
     try:
         if term._line_buffered:
-            ctx = term.cbreak()
-            ctx.__enter__()
+            stack.enter_context(term.cbreak())
 
         # step 1: discover current row via CPR
         term.stream.write("\x1b[6n")
@@ -567,8 +570,7 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
         term.ungetch(data)
 
     finally:
-        if ctx is not None:
-            ctx.__exit__(None, None, None)
+        stack.close()
 
     cksum_a = checksums.get(1)
     cksum_b = checksums.get(2)
