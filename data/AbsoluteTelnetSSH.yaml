@@ -17,9 +17,9 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-software_name: ''
-software_version: ''
-system: Linux
+software_name: 'AbsoluteTelnet/SSH'
+software_version: '13.16'
+system: Windows
 terminal_results:
   background_color_hex: '#16386b'
   background_color_rgb:
