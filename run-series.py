@@ -2,6 +2,7 @@
 """Run ucs-detect re-run.py for each terminal YAML of the current OS, in series or parallel."""
 import argparse
 import atexit
+import os
 import platform
 import re
 import shlex
@@ -10,7 +11,6 @@ import subprocess
 import sys
 import tempfile
 import time
-import uuid
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import threading
@@ -25,7 +25,7 @@ _RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
 _RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([\d.]+)', re.MULTILINE)
 _RE_PAUSE = re.compile(r'^\\p(\d+)$')
 
-_KEY_INJECT_LOCK = threading.Lock()
+_KEY_INJECT_LOCK = threading.RLock()
 _KEY_INJECT_PRE_DELAY = 0.5
 _KEY_INJECT_POST_DELAY = 1.5
 
@@ -45,13 +45,18 @@ def load_mixins():
 
 
 def discover_yamls(target_system):
-    """Yield (yaml_path, software_name, seconds_elapsed) for each data YAML matching
-    *target_system*."""
+    """Yield (yaml_path, software_name, seconds_elapsed, error_msg) for each data YAML
+    matching *target_system*.  *error_msg* is None for valid data files."""
     target_lower = target_system.lower()
     for yaml_path in sorted(DATA_DIR.glob("*.yaml")):
         if yaml_path.name == "terminal_detail_mixins.yaml":
             continue
         try:
+            file_size = yaml_path.stat().st_size
+            if file_size < 200:
+                yield yaml_path, yaml_path.stem, 0.0, (
+                    f"file too small ({file_size} bytes)")
+                continue
             with open(yaml_path) as f:
                 head = f.read(4096)
         except OSError:
@@ -67,7 +72,11 @@ def discover_yamls(target_system):
         m = _RE_SECONDS_ELAPSED.search(head)
         seconds_elapsed = float(m.group(1)) if m else 0.0
 
-        yield yaml_path, sw_name, seconds_elapsed
+        error_msg = None
+        if "\nerror:" in head and "\ntest_results: {}" in head:
+            error_msg = "previous run failed (empty test_results)"
+
+        yield yaml_path, sw_name, seconds_elapsed, error_msg
 
 
 def get_launch_config(sw_name, mixins):
@@ -227,6 +236,10 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
 
     Returns (proc, sentinel_path, stderr_path, error_msg) where error_msg is
     None on success.
+
+    Acquires ``_KEY_INJECT_LOCK`` around window creation (all terminals) and
+    key injection (key-inject terminals only) so that no other terminal can
+    steal X11 focus during injection.
     """
     safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
     script_path = temp_dir / f"run-{safe_name}.sh"
@@ -235,44 +248,54 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
     write_run_script(script_path, yaml_path, sentinel_path,
                      reuse_version=reuse_version)
 
+    post_delay = launch_cfg.get("post_launch_delay_ms", 0)
+    post_keys = launch_cfg.get("post_launch_keys", [])
+
     try:
-        if not launch_cfg["subterminal"]:
-            argv = build_launch_args(launch_cfg, script_path)
-        else:
-            argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
-                                                  script_path)
+        with _KEY_INJECT_LOCK:
+            if post_keys:
+                time.sleep(_KEY_INJECT_PRE_DELAY)
 
-        with open(stderr_path, "w") as stderr_file:
-            proc = subprocess.Popen(
-                argv,
-                stdout=subprocess.DEVNULL,
-                stderr=stderr_file,
-                stdin=subprocess.DEVNULL,
-            )
-
-        post_delay = launch_cfg.get("post_launch_delay_ms", 0)
-        post_keys = launch_cfg.get("post_launch_keys", [])
-        if post_keys:
-            time.sleep(post_delay / 1000.0)
-            window_cfg = host_launch_cfg if launch_cfg["subterminal"] else launch_cfg
-            window_id = find_window_for_command(window_cfg, proc.pid)
-            if window_id is not None:
-                script_str = str(script_path)
-                resolved_keys = [
-                    key.replace("${SCRIPT}", script_str) for key in post_keys
-                ]
-                text_keys = [k for k in resolved_keys
-                             if k != "\n" and not _RE_PAUSE.match(k)]
-                print(f"[{sw_name}] injecting: {''.join(text_keys)}", flush=True)
-                inject_keys(window_id, resolved_keys)
+            if not launch_cfg["subterminal"]:
+                argv = build_launch_args(launch_cfg, script_path)
             else:
-                proc.kill()
-                error_msg = (
-                    "key injection failed: could not find window "
-                    f"for {window_cfg['program']} (PID {proc.pid})"
+                argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
+                                                      script_path)
+
+            with open(stderr_path, "w") as stderr_file:
+                env = os.environ.copy()
+                env.pop("TERM_PROGRAM", None)
+                env.pop("TERM_PROGRAM_VERSION", None)
+                proc = subprocess.Popen(
+                    argv,
+                    env=env,
+                    stdout=subprocess.DEVNULL,
+                    stderr=stderr_file,
+                    stdin=subprocess.DEVNULL,
                 )
-                print(f"[{sw_name}] {error_msg}", flush=True)
-                return (None, sentinel_path, stderr_path, error_msg)
+
+            if post_keys:
+                time.sleep(post_delay / 1000.0)
+                window_cfg = host_launch_cfg if launch_cfg["subterminal"] else launch_cfg
+                window_id = find_window_for_command(window_cfg, proc.pid)
+                if window_id is not None:
+                    script_str = str(script_path)
+                    resolved_keys = [
+                        key.replace("${SCRIPT}", script_str) for key in post_keys
+                    ]
+                    text_keys = [k for k in resolved_keys
+                                 if k != "\n" and not _RE_PAUSE.match(k)]
+                    print(f"[{sw_name}] injecting: {''.join(text_keys)}", flush=True)
+                    inject_keys(window_id, resolved_keys)
+                else:
+                    proc.kill()
+                    error_msg = (
+                        "key injection failed: could not find window "
+                        f"for {window_cfg['program']} (PID {proc.pid})"
+                    )
+                    print(f"[{sw_name}] {error_msg}", flush=True)
+                    return (None, sentinel_path, stderr_path, error_msg)
+                time.sleep(_KEY_INJECT_POST_DELAY)
 
         return (proc, sentinel_path, stderr_path, None)
 
@@ -412,7 +435,12 @@ def main():
     # Build job list, applying skip rules.  Include seconds_elapsed for sorting.
     jobs = []
     skipped = []
-    for yaml_path, sw_name, seconds_elapsed in all_terminals:
+    for yaml_path, sw_name, seconds_elapsed, error_msg in all_terminals:
+
+        if error_msg:
+            skipped.append((sw_name, error_msg))
+            continue
+
         launch_cfg, is_explicit = get_launch_config(sw_name, mixins)
 
         if run_only:
@@ -481,19 +509,17 @@ def main():
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_map = {}
 
-        # Phase 1: launch key-injection terminals sequentially under lock;
-        # submit sentinel polling to the thread pool so tests run in parallel.
+        # Phase 1: launch key-injection terminals sequentially;
+        # _launch_and_inject holds the lock, serializing key injection.
+        # Sentinel polling runs in the thread pool so tests execute in parallel.
         if key_jobs:
             print("--- Key-injection terminals (sequential launch, parallel wait) ---")
         for yaml_path, sw_name, launch_cfg, _seconds_elapsed in key_jobs:
             print(f"[{sw_name}] launching ...", flush=True)
 
-            with _KEY_INJECT_LOCK:
-                time.sleep(_KEY_INJECT_PRE_DELAY)
-                proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
-                    yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                    temp_dir, reuse_version=args.reuse_version)
-                time.sleep(_KEY_INJECT_POST_DELAY)
+            proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
+                yaml_path, sw_name, launch_cfg, host_launch_cfg,
+                temp_dir, reuse_version=args.reuse_version)
 
             if launch_error:
                 results[sw_name] = (-4, launch_error)

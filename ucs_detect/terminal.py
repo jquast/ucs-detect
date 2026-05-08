@@ -1,4 +1,5 @@
 """Terminal detection and capability utilities."""
+
 # std imports
 import os
 import re
@@ -18,9 +19,8 @@ def make_terminal(fallback_kind="ansi", **kwargs):
     """
     Create a :class:`blessed.Terminal`, falling back to *fallback_kind*.
 
-    The ``syncterm`` termcap is also overridden to *fallback_kind* --
-    syncterm termcap has trouble with blessed+curses even when installed,
-    strange cyan colors everywhere.
+    The ``syncterm`` termcap is also overridden to *fallback_kind* -- syncterm termcap has trouble
+    with blessed+curses even when installed, strange cyan colors everywhere.
     """
     # syncterm termcap has trouble with blessed+curses even when installed,
     # strange cyan colors everywhere
@@ -459,10 +459,9 @@ def maybe_determine_decrqss(term, timeout=1.0, **_kw):
     """
     Query terminal state via DECRQSS for all common settings.
 
-    Queries each setting in ``blessed.Decrqss`` that is
-    relevant to modern terminals and returns a dict of results.
-    The ``decrqss`` key is True when at least one setting responded.
-    Individual setting values are stored under ``decrqss_settings``.
+    Queries each setting in ``blessed.Decrqss`` that is relevant to modern terminals and returns a
+    dict of results. The ``decrqss`` key is True when at least one setting responded. Individual
+    setting values are stored under ``decrqss_settings``.
     """
     S = blessed.Terminal.Decrqss
     settings = [
@@ -502,16 +501,14 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
     """
     Probe DECRQCRA (checksum rectangular area) support.
 
-    First discovers the current cursor row via CPR, then writes 'A' at
-    column 1 of that row and sprays two DECRQCRA queries, one for
-    the populated cell (col 1), and one for an adjacent blank cell
-    (col 2) with a second CPR boundary fence.  If both checksums
-    arrive and differ, the terminal supports screen-scraping via
-    DECRQCRA.
+    First discovers the current cursor row via CPR, then writes 'A' at column 1 of that row and
+    sprays two DECRQCRA queries, one for the populated cell (col 1), and one for an adjacent blank
+    cell (col 2) with a second CPR boundary fence.  If both checksums arrive and differ, the
+    terminal supports screen-scraping via DECRQCRA.
 
-    Uses ``move_x(0)`` on the current row to avoid addressing the
-    bottom-right corner, which would cause auto-margin scrolling.
-    See ``blessed/bin/screen-scrape.py`` for the full screen-scrape tool.
+    Uses ``move_x(0)`` on the current row to avoid addressing the bottom-right corner, which would
+    cause auto-margin scrolling. See ``blessed/bin/screen-scrape.py`` for the full screen-scrape
+    tool.
 
     :returns: dict with ``decrqcra`` key: True or False
     """
@@ -578,8 +575,6 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
     return {'decrqcra': supported}
 
 
-
-
 def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
                           timeout=1.0, has_unicode=True,
                           silent=False):
@@ -589,11 +584,10 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     attrs = {'ttype': term.kind, 'number_of_colors': term.number_of_colors}
     attrs.update(get_tty_size(term, writer))
 
-
     # detect background color first so we can hide test artifacts
     with _status(writer, term, "Background Color", silent=silent):
         attrs.update(maybe_determine_colors(term, writer,
-                        timeout=timeout))
+                                            timeout=timeout))
         bg_rgb = None
         if attrs.get('background_color_rgb'):
             bg = attrs['background_color_rgb']
@@ -604,17 +598,17 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     # VT100, etc.) ignore.  kitty responds to XTVERSION but not DA1.
     with _status(writer, term, "Device Attributes", bg_rgb, silent=silent):
         attrs.update(maybe_determine_da_and_sixel(term,
-                        timeout=timeout))
+                                                  timeout=timeout))
     with _status(writer, term, "Software Version", bg_rgb, silent=silent):
         attrs.update(maybe_determine_software(term, writer,
-                        timeout=timeout))
+                                              timeout=timeout))
 
     with _status(writer, term, "Cell Size", bg_rgb, silent=silent):
         attrs.update(maybe_determine_cell_size(term, writer,
-                        timeout=timeout))
+                                               timeout=timeout))
     with _status(writer, term, "Pixel Size", bg_rgb, silent=silent):
         attrs.update(maybe_determine_pixel_size(term, writer,
-                        timeout=timeout))
+                                                timeout=timeout))
     attrs.update(maybe_determine_screen_ratio(attrs))
 
     has_device_attrs = attrs.get('device_attributes') is not None
@@ -636,7 +630,7 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     if da_supports_osc52:
         with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
             attrs.update(maybe_determine_osc52_clipboard(term,
-                            timeout=60.0))
+                                                         timeout=60.0))
 
     attrs.update(maybe_determine_dec_modes(
         term, writer, all_modes=all_modes, bg_rgb=bg_rgb,
@@ -644,47 +638,47 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
 
     with _status(writer, term, "Kitty Keyboard", bg_rgb, silent=silent):
         attrs.update(maybe_determine_kitty_keyboard(term,
-                        timeout=timeout))
+                                                    timeout=timeout))
 
     with _status(writer, term, "XTGETTCAP", bg_rgb, silent=silent):
         attrs.update(maybe_determine_xtgettcap(term,
-                        timeout=timeout))
+                                               timeout=timeout))
     with _status(writer, term, "Kitty Graphics", bg_rgb, silent=silent):
         attrs.update(maybe_determine_kitty_graphics(term,
-                        timeout=timeout))
+                                                    timeout=timeout))
     with _status(writer, term, "iTerm2 Features", bg_rgb, silent=silent):
         attrs.update(maybe_determine_iterm2_features(term,
-                        timeout=timeout))
+                                                     timeout=timeout))
     with _status(writer, term, "Text Sizing", bg_rgb, silent=silent):
         attrs.update(maybe_determine_text_sizing(term,
-                        timeout=timeout))
+                                                 timeout=timeout))
     with _status(writer, term, "Tab Stop Width", bg_rgb, silent=silent):
         attrs.update(maybe_determine_tab_stop_width(term,
-                        timeout=timeout))
+                                                    timeout=timeout))
     with _status(writer, term, "Kitty Notifications", bg_rgb, silent=silent):
         attrs.update(maybe_determine_kitty_notifications(term,
-                        timeout=timeout))
+                                                         timeout=timeout))
     with _status(writer, term, "Kitty Clipboard", bg_rgb, silent=silent):
         attrs.update(maybe_determine_kitty_clipboard(term,
-                        timeout=timeout))
+                                                     timeout=timeout))
     with _status(writer, term, "Kitty Pointer Shapes", bg_rgb, silent=silent):
         attrs.update(maybe_determine_kitty_pointer_shapes(term,
-                        timeout=timeout))
+                                                          timeout=timeout))
     with _status(writer, term, "Styled Underlines", bg_rgb, silent=silent):
         attrs.update(maybe_determine_styled_underlines(term,
-                        timeout=timeout))
+                                                       timeout=timeout))
     with _status(writer, term, "Color Scheme", bg_rgb, silent=silent):
         attrs.update(maybe_determine_color_scheme(term,
-                        timeout=timeout))
+                                                  timeout=timeout))
     with _status(writer, term, "Kitty Query", bg_rgb, silent=silent):
         attrs.update(maybe_determine_kitty_query(term,
-                        timeout=timeout))
+                                                 timeout=timeout))
     with _status(writer, term, "DECRQSS", bg_rgb, silent=silent):
         attrs.update(maybe_determine_decrqss(term,
-                        timeout=timeout))
+                                             timeout=timeout))
     with _status(writer, term, "DECRQCRA", bg_rgb, silent=silent):
         attrs.update(maybe_determine_decrqcra(term,
-                        timeout=timeout))
+                                              timeout=timeout))
 
     return attrs
 

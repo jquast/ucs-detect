@@ -1015,8 +1015,7 @@ class Pager:
         """
         Generate text for the current unicode pageview.
 
-        :param list[(unicode, unicode)] data: current page data as
-            tuple of ``(ucs, name)``.
+        :param list[(unicode, unicode)] data: current page data as     tuple of ``(ucs, name)``.
         :returns: generator for full-page text for display
         """
         if self.term.is_a_tty:

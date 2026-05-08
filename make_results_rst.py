@@ -542,7 +542,7 @@ def display_inbound_hyperlink(link_text):
 
 
 def find_best_failure(records):
-    sorted_records = sorted(records, key=lambda record: record["measured_by_wcwidth"])
+    sorted_records = sorted(records, key=lambda record: record.get("measured_by_wcwidth", 0))
     return sorted_records[len(sorted_records) // 2]
 
 
@@ -1126,7 +1126,7 @@ def score_lang(data):
     This gives a fairer score than simple counting of 100% languages, as it considers
     partial support (e.g., 99%, 98%) and doesn't let one low score dominate the result.
     """
-    language_results = data["test_results"]["language_results"]
+    language_results = data.get("test_results", {}).get("language_results")
     if not language_results:
         return 0.0
 
@@ -1790,7 +1790,7 @@ def show_software_header(entry, sw_name, terminal_mixins):
 def show_wide_character_support(sw_name, entry):
     display_inbound_hyperlink(entry["terminal_software_name"] + "_wide")
     display_title("Wide character support", 3)
-    wide_results = entry["data"]["test_results"]["unicode_wide_results"]
+    wide_results = entry.get("data", {}).get("test_results", {}).get("unicode_wide_results") or {}
     if wide_results:
         result = next(iter(wide_results.values()))
         pct = result["pct_success"]
@@ -2338,8 +2338,8 @@ def show_time_elapsed_results(sw_name, entry):
     print()
 
 def show_record_failure(sw_name, whatis, fail_record, test_type=None):
-    num_bars = "1234567890" * ((fail_record["measured_by_wcwidth"] // 10) + 1)
-    ruler = num_bars[: fail_record["measured_by_wcwidth"]]
+    num_bars = "1234567890" * ((fail_record.get("measured_by_wcwidth", 0) // 10) + 1)
+    ruler = num_bars[: fail_record.get("measured_by_wcwidth", 0)]
     wchars = fail_record.get("wchar", fail_record.get("wchars"))
     assert wchars
     as_printf_hex = make_printf_hex(wchars)
@@ -2357,7 +2357,7 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None):
         print(f"- Cursor Y-Position moved {fail_record['delta_ypos']} rows"
               " where no movement is expected.")
     elif "measured_by_terminal" in fail_record and (
-            fail_record["measured_by_wcwidth"] != fail_record["measured_by_terminal"]):
+            fail_record.get("measured_by_wcwidth", 0) != fail_record["measured_by_terminal"]):
         if test_type == "vs15":
             print(f"- The expected width for VS-15 is"
                   f" {fail_record['measured_by_wcwidth']},"

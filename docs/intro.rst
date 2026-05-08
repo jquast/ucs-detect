@@ -170,7 +170,58 @@ complete each category under a reasonable time. This automatically adjusts the
 ``--limit-codepoints-wide-pct`` parameter as low as 1%.
 
 To preview documentation changes, create a *draft pull request*. A readthedocs.org build status will
-appear — click "Details" for an HTML preview.
+appear -- click "Details" for an HTML preview.
+
+Batch Testing with run-series.py
+--------------------------------
+
+Re-testing dozens of terminals one-by-one is tedious.  ``run-series.py``
+automates this by launching each terminal emulator, injecting keystrokes where
+needed (for terminals like Hyper, Bobcat, or screen that do not accept a
+command on the command line), and collecting results in parallel.
+
+Suggested command for a full re-test of all installed terminals::
+
+    $ python run-series.py --parallel 8
+
+Key options:
+
+``--parallel N``
+    Number of terminals to run simultaneously (default: 1).
+
+``--run-only a,b,c``
+    Test only the named terminals (match on software name or program basename,
+    case-insensitive). Useful for debugging a single terminal.
+
+``--host-terminal NAME``
+    Terminal used to host subterminals like screen or tmux (default: ghostty).
+
+``--timeout SECONDS``
+    Per-terminal timeout in seconds (default: 900).
+
+``--reuse-version``
+    Skip the interactive name/version prompt when re-running; reuse values from
+    the YAML file.
+
+``--continue-after-failure``
+    Do not abort the run when a single terminal fails.
+
+``--dry-run``
+    Print launch commands without executing.
+
+Limitations
+~~~~~~~~~~~
+
+- **Linux only** — relies on ``xdotool`` for window focus and keystroke
+  injection.
+- **Key injection is sequential** — terminals that need keystrokes (Hyper,
+  Bobcat, screen, tmux, SyncTERM) launch one at a time under a focus lock to
+  prevent X11 focus-stealing, but their test execution runs in parallel.
+- **``TERM_PROGRAM`` / ``TERM_PROGRAM_VERSION`` are cleared** from the
+  subprocess environment so the host terminal does not leak its identity into
+  launched terminals.
+- **Empty or broken data files are skipped** — YAML files under 200 bytes or
+  with an ``error:`` field and empty ``test_results`` are reported and skipped.
 
 Problem Analysis
 ----------------

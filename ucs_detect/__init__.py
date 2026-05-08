@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-ucs-detect: Test and report Unicode support level of a terminal emulator.
+Ucs-detect: Test and report Unicode support level of a terminal emulator.
 
 See also,
 - https://github.com/jquast/wcwidth
@@ -17,6 +17,7 @@ character is written to the terminal, using the `Cursor Position Report
 <https://vt100.net/docs/vt510-rm/CPR.html>`_ terminal escape sequence
 using :meth:`blessed.Terminal.get_location`.
 """
+
 # std imports
 import os
 import sys
@@ -168,7 +169,6 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     if not silent:
         writer("\nucs-detect: Interactive terminal detected!")
 
-
         unicode_width = measure.measure_width(
             term, writer, '\u231A', timeout_cps)
     has_unicode = (unicode_width == 2)
@@ -208,7 +208,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 all_modes=detect_all_dec_modes,
                 cursor_report_delay_ms=cursor_report_delay_ms,
                 timeout=resolved_timeout,
-                    has_unicode=has_unicode or terminal_full_probe,
+                has_unicode=has_unicode or terminal_full_probe,
                 silent=silent,
             )
 
@@ -275,7 +275,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     terminal_version = rerun_software_version or terminal_version
                 else:
                     # When "VTE" appears in either old or new values, prefer
-                    # the original (rerun) values as defaults — VTE is the
+                    # the original (rerun) values as defaults -- VTE is the
                     # underlying engine and the user typically wants to keep
                     # the terminal-specific name and version.
                     vte_involved = any(
@@ -398,7 +398,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     limit_graphemes, limit_errors, error_matcher,
                     limit_category_time=limit_category_time,
                     limit_graphemes_pct=limit_graphemes_pct,
-                            cursor_report_delay_ms=cursor_report_delay_ms,
+                    cursor_report_delay_ms=cursor_report_delay_ms,
                     silent=silent,
                     bg_rgb=bg_rgb,
                 )
@@ -663,7 +663,7 @@ def _build_capabilities_kv_pairs(term, results):
                   _color_yes_no(term, results.get('kitty_clipboard_protocol',
                                                   False))))
 
-    # OSC 52 Clipboard: tri-state — True (enabled), "supported" (DA1 ext 52
+    # OSC 52 Clipboard: tri-state -- True (enabled), "supported" (DA1 ext 52
     # advertised but query timed out), or False (not supported).
     osc52 = results.get('osc52_clipboard', False)
     if osc52 is True:

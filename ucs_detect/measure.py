@@ -1,4 +1,5 @@
 """Terminal Unicode width measurement utilities."""
+
 # std
 # std imports
 import os
@@ -104,13 +105,14 @@ def get_location_with_retry(term, timeout, max_retries=3):
 
 
 def _spray_collect_row(term, writer, wchars_strs, timeout):
-    """
-    Write an entire row of characters with embedded CPR sequences,
-    then collect all CPR responses via inkey(capture_cpr=True).
+    r"""
+    Write an entire row of characters with embedded CPR sequences.
+
+    Collects all CPR responses via inkey(capture_cpr=True).
 
     Row format::
 
-        ║ \x1b[6n<C1> · \x1b[6n<C2> · ... · \x1b[6n<Cn>\x1b[6n ║\n
+        \x1B[6n<C1> · \x1B[6n<C2> · ... · \x1B[6n<Cn>\x1B[6n
 
     :param wchars_strs: list of character strings for this row.
     :param timeout: maximum seconds to wait for CPR responses.
@@ -124,11 +126,11 @@ def _spray_collect_row(term, writer, wchars_strs, timeout):
 
     parts = [term.magenta('║ ')]
     for i, wchar_str in enumerate(wchars_strs):
-        parts.append('[6n')
+        parts.append('\x1B[6n')
         parts.append(term.cyan(wchar_str))
         if i < n_chars - 1:
             parts.append(term.magenta(' · '))
-    parts.append('[6n')
+    parts.append('\x1B[6n')
     parts.append(term.magenta(' ║\n'))
 
     spray = ''.join(parts)
@@ -161,13 +163,11 @@ def _validate_spray_positions(positions, expected_width):
     """
     Validate CPR positions from a spray-collected row.
 
-    :param positions: list of (y, x) tuples from CPR responses.
-        First *N* entries correspond to chars 1..N,
-        last entry is the boundary CPR.
+    :param positions: list of (y, x) tuples from CPR responses. First *N* entries correspond to
+        chars 1..N, last entry is the boundary CPR.
     :param expected_width: expected display width per character.
-    :returns: tuple of (results, has_anomaly) where *results* is a
-        list of (delta_y, delta_x) per character and *has_anomaly*
-        is True if any y-change or x-wrap was detected.
+    :returns: tuple of (results, has_anomaly) where *results* is a list of (delta_y, delta_x) per
+        character and *has_anomaly* is True if any y-change or x-wrap was detected.
     """
     n_chars = len(positions) - 1
     if n_chars <= 0:
@@ -312,8 +312,6 @@ def test_language_support(
     if limit_graphemes_pct and 0 < limit_graphemes_pct < 100:
         global_step = max(1, round(100 / limit_graphemes_pct))
 
-
-
     for expected_width, lang_entries in lang_graphemes:
         for lang, graphemes in lang_entries:
             if lang not in lang_start_times:
@@ -346,7 +344,7 @@ def test_language_support(
                 elapsed = time.monotonic() - category_start
                 remaining = max(0, limit_category_time - elapsed)
                 cps = (category_tested / elapsed
-                             if elapsed > 0 else 0)
+                       if elapsed > 0 else 0)
                 max_items = max(1, int(remaining * cps)) if remaining > 0 else 1
                 # compute step that would produce max_items from remaining
                 # graphemes, but we don't know the total remaining, so use
@@ -590,8 +588,6 @@ def test_language_support(
     if not silent:
         _write_final_sampling_rate(writer, term, final_pct, limit_graphemes_pct)
 
-
-
     for lang, start_time in lang_start_times.items():
         time_report[lang] = time.monotonic() - start_time
 
@@ -686,8 +682,6 @@ def test_support(
     category_tested = 0
     time_limited = False
     final_pct = limit_pct
-
-
 
     with terminal.maybe_grapheme_clustering_mode(term):
         for ver, wchars in table:
