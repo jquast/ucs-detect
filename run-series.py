@@ -146,6 +146,8 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
         inner_parts = [p.replace("{script}", script_str) for p in inner_parts]
 
     inner_cmd = " ".join(shlex.quote(a) for a in inner_parts)
+    # Clear host terminal identity so the inner terminal is detected as itself
+    inner_cmd = f"unset TERM_PROGRAM TERM_PROGRAM_VERSION; {inner_cmd}"
     argv = list(host_launch_cfg.get("wrapper", []))
     argv.append(host_launch_cfg["program"])
     argv.extend(host_launch_cfg.get("args", ["-e"]))

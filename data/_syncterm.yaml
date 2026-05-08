@@ -1,10 +1,10 @@
 ambiguous_width: -1
 cps_summary:
-  seconds_elapsed: 7.520138751715422e-07
-datetime: 2026-05-08 17:02:35 UTC
+  seconds_elapsed: 3.65698360837996e-06
+datetime: 2026-05-08 18:03:42 UTC
 height: 25
-python_version: 3.15.0a5
-seconds_elapsed: 0.0015547469956800342
+python_version: 3.14.4
+seconds_elapsed: 0.0024435980012640357
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -13,7 +13,7 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
 software_name: SyncTERM
-software_version: '1.326'
+software_version: 1.9rc2
 system: Linux
 terminal_results:
   height: 25
@@ -24,7 +24,7 @@ terminal_results:
   screen_ratio_name: WSXGA
   sixel: false
   software_name: SyncTERM
-  software_version: '1.326'
+  software_version: 1.9rc2
   ttype: ansi
   width: 80
 test_results:
