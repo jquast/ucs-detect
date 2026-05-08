@@ -75,5 +75,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # $ python make_ri_table.py > ucs_detect/table_ri.py
+    # $ python scripts/make_ri_table.py > ucs_detect/table_ri.py
     main()

@@ -70,5 +70,5 @@ def main():
 
 if __name__ == "__main__":
     # minimal emoji zwj parser, for use:
-    # $ python make_table_zwj.py > ucs_detect/table_zwj.py
+    # $ python scripts/make_table_zwj.py > ucs_detect/table_zwj.py
     main()

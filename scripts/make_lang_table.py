@@ -7,7 +7,7 @@ Output is sorted by (width descending, language name ascending).
 
 Usage::
 
-    python make_lang_table.py > ucs_detect/table_lang.py
+    python scripts/make_lang_table.py > ucs_detect/table_lang.py
 """
 import collections
 

@@ -26,5 +26,5 @@ def main():
 
 if __name__ == "__main__":
     # minimal wide table parser, for use:
-    # $ python make_wide_table.py > ucs_detect/table_wide.py
+    # $ python scripts/make_wide_table.py > ucs_detect/table_wide.py
     main()

@@ -21,5 +21,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # $ python make_sfz_table.py > ucs_detect/table_sfz.py
+    # $ python scripts/make_sfz_table.py > ucs_detect/table_sfz.py
     main()

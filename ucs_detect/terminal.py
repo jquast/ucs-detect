@@ -343,7 +343,7 @@ def echo(term, data):
 def maybe_determine_xtgettcap(term, timeout=1.0, **_kw):
     """Query terminal capabilities via XTGETTCAP (DCS+q), delegating to blessed."""
     result = {'xtgettcap': {'supported': False, 'capabilities': {}}}
-    tc = term.get_xtgettcap(timeout=timeout, all=True)
+    tc = term.get_xtgettcap(timeout=timeout)
     if tc is not None and tc.supported:
         result['xtgettcap']['supported'] = True
         result['xtgettcap']['capabilities'] = dict(tc.capabilities)

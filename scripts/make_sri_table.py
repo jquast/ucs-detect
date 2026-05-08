@@ -21,5 +21,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # $ python make_sri_table.py > ucs_detect/table_sri.py
+    # $ python scripts/make_sri_table.py > ucs_detect/table_sri.py
     main()

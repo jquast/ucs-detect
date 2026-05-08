@@ -128,5 +128,5 @@ def main():
 
 if __name__ == "__main__":
     # VS15 table generator, for use:
-    # $ python make_vs15_table.py > ucs_detect/table_vs15.py
+    # $ python scripts/make_vs15_table.py > ucs_detect/table_vs15.py
     main()

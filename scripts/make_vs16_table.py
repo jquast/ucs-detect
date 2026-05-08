@@ -33,5 +33,5 @@ def main():
 
 if __name__ == "__main__":
     # minimal vs16 table parser, for use:
-    # $ python make_vs16_table.py > ucs_detect/table_vs16.py
+    # $ python scripts/make_vs16_table.py > ucs_detect/table_vs16.py
     main()
