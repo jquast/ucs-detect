@@ -73,15 +73,10 @@ def merge_results(base_results, additional_results):
             base.get('failed_codepoints', []) + additional.get('failed_codepoints', [])
         )
 
-        base_time = base.get('seconds_elapsed', 0.0)
-        additional_time = additional.get('seconds_elapsed', 0.0)
-        total_time = base_time + additional_time
-
         merged[ver] = {
             'n_total': n_total,
             'n_errors': n_errors,
             'pct_success': ((n_total - n_errors) / n_total * 100) if n_total else 0,
-            'seconds_elapsed': total_time,
             'failed_codepoints': failed_codepoints,
         }
 
@@ -157,7 +152,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     python_version=platform.python_version(),
                     system=platform.system(),
                     wcwidth_version=wcwidth.__version__,
-                    cps_summary={"seconds_elapsed": 0},
+
                     test_results={},
                     terminal_results={},
                     error=error_msg,
@@ -445,7 +440,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             python_version=platform.python_version(),
             system=platform.system(),
             wcwidth_version=wcwidth.__version__,
-            cps_summary={"seconds_elapsed": elapsed},
+
             test_results=dict(
                 unicode_wide_results=wide_results,
                 sri_results=sri_results,

@@ -31,8 +31,8 @@ _KEY_INJECT_POST_DELAY = 1.5
 
 
 def load_mixins():
-    """Load terminal_detail_mixins.yaml, returning a dict keyed by lowercased software_name."""
-    mixins_path = DATA_DIR / "terminal_detail_mixins.yaml"
+    """Load terminals.yaml, returning a dict keyed by lowercased software_name."""
+    mixins_path = PROJECT_DIR / "terminals.yaml"
     if not mixins_path.exists():
         return {}
     with open(mixins_path) as f:
@@ -49,7 +49,7 @@ def discover_yamls(target_system):
     matching *target_system*.  *error_msg* is None for valid data files."""
     target_lower = target_system.lower()
     for yaml_path in sorted(DATA_DIR.glob("*.yaml")):
-        if yaml_path.name == "terminal_detail_mixins.yaml":
+        if yaml_path.name == "terminals.yaml":
             continue
         try:
             file_size = yaml_path.stat().st_size

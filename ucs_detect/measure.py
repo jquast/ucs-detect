@@ -639,7 +639,6 @@ def _make_result_entry(n_errors, n_total, elapsed, extra=None,
         "n_errors": n_errors,
         "n_total": n_total,
         "pct_success": make_success_pct(n_errors, n_total),
-        "seconds_elapsed": elapsed,
     }
     if sampled_pct is not None and sampled_pct < 100:
         entry["sampled_pct"] = sampled_pct

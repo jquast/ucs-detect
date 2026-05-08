@@ -35,7 +35,7 @@ import numpy as np
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
-TERMINAL_DETAIL_MIXINS_PATH = os.path.join(DATA_PATH, "terminal_detail_mixins.yaml")
+TERMINAL_DETAIL_MIXINS_PATH = os.path.join(os.path.dirname(__file__), "terminals.yaml")
 PLOTS_PATH = os.path.join(os.path.dirname(__file__), "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
@@ -562,7 +562,7 @@ def make_score_table():
             os.path.join(DATA_PATH, fname)
             for fname in os.listdir(DATA_PATH)
             if fname.endswith(".yaml") and not fname.startswith("_")
-            and fname != "terminal_detail_mixins.yaml"
+            and fname != "terminals.yaml"
             and os.path.isfile(os.path.join(DATA_PATH, fname))
         ]:
             data = yaml.load(open(yaml_path, "r"), Loader=SafeLoader)
