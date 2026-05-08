@@ -61,11 +61,11 @@ import string
 import argparse
 import functools
 import unicodedata
-import urllib3.util
 
 # 3rd party
 import blessed
 import requests
+import urllib3.util
 from wcwidth import ZERO_WIDTH, wcwidth, list_versions, _wcmatch_version
 
 # local

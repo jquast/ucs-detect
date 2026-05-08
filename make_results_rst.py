@@ -204,18 +204,7 @@ def print_datatable(table_str, caption=None):
 
 
 def create_score_plots(sw_name, entry, score_table):
-    """
-    Create matplotlib plot comparing terminal scores against all terminals.
-
-    Parameters
-    ----------
-    sw_name : str
-        Terminal software name
-    entry : dict
-        Score entry for this terminal
-    score_table : list
-        List of all score entries for comparison
-    """
+    """Create matplotlib plot comparing terminal scores against all terminals."""
     # Collect all scores for comparison
     metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'SRI', 'SFZ', 'RI', 'CAP', 'GFX', 'TIME']
     terminal_scores_scaled = {}
@@ -263,22 +252,7 @@ def _percentile_to_color(pct):
 
 def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
                                output_path, use_scaled=False):
-    """
-    Create a bar chart showing multiple metrics at once.
-
-    Parameters
-    ----------
-    terminal_name : str
-        Name of the terminal
-    scores_dict : dict
-        Dictionary of {metric_name: score_value}
-    all_scores_dict : dict
-        Dictionary of {metric_name: [list of all scores]}
-    output_path : str
-        Path to save the plot
-    use_scaled : bool
-        If True, use scaled scores, otherwise raw scores
-    """
+    """Create a bar chart showing multiple metrics at once."""
     metrics = list(scores_dict.keys())
     values = []
     percentiles = []
@@ -726,7 +700,7 @@ def make_score_table():
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
-            # VS-15 excluded from scoring — interpretation is contested,
+            # VS-15 excluded from scoring (interpretation is contested)
             # see https://github.com/jquast/wcwidth/issues/211
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
@@ -994,7 +968,7 @@ def display_table_definitions():
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
         "  the weighted average of all feature scores (WIDE, LANG, ZWJ, VS16, SRI, SFZ, RI,\n"
         "  DEC Modes, and TIME), then scaled (normalized 0-100%) relative to all terminals tested.\n"
-        "  Note: VS15 is excluded from the final score — its interpretation is contested.\n"
+        "  Note: VS15 is excluded from the final score (its interpretation is contested).\n"
         "  Higher scores indicate better overall Unicode and terminal feature support. DEC Modes and\n"
         "  TIME are normalized to 0-1 range before averaging. TIME and graphics is weighted at 0.5 (half as\n"
         "  powerful as other metrics), and standalone RI and Fitzpatrick are weighted at 0.3\n"
@@ -1022,7 +996,7 @@ def display_table_definitions():
     print(
         "- *VS15 score*: Determined by the number of Emoji using Variation\n"
         "  Selector-15 supported as narrow characters.\n"
-        "  **Excluded from final scoring** — this interpretation is contested.\n"
+        "  **Excluded from final scoring** (this interpretation is contested).\n"
         "  See `jquast/wcwidth#211 <https://github.com/jquast/wcwidth/issues/211>`_."
     )
     print(
@@ -1332,7 +1306,7 @@ def _mode_is_usable(mode_data):
     """Check if a DEC mode is usable (changeable or permanently enabled).
 
     DECRPM value 4 (permanently reset) means the terminal acknowledges the
-    mode but it cannot be enabled — treat as unsupported.  Values 1 (set),
+    mode but it cannot be enabled: treat as unsupported.  Values 1 (set),
     2 (reset), and 3 (permanently set) are usable.  Checks the raw ``value``
     field for correctness with older data files, falling back to the
     ``supported`` and ``changeable`` fields.
@@ -1405,7 +1379,7 @@ def display_capabilities_table(score_table):
         # Graphics protocols
         row["Graphics"] = _format_graphics_protocols(entry, sw_name)
 
-        # XTGETTCAP — require at least one capability returned
+        # XTGETTCAP: require at least one capability returned
         xtgettcap = tr.get('xtgettcap', {})
         row["XTGETTCAP"] = _capability_yes_no(
             (xtgettcap.get('supported', False)
@@ -2391,8 +2365,8 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None):
                   f" {fail_record['measured_by_terminal']}.")
             print(f"  python `wcwidth.wcswidth()`_ currently returns"
                   f" {fail_record['measured_by_terminal']}"
-                  f" for this sequence — there is"
-                  f" `ongoing discussion"
+                  f" for this sequence, "
+                  f" `it is contested"
                   f" <https://github.com/jquast/wcwidth/issues/211>`_"
                   f" about whether it should return"
                   f" {fail_record['measured_by_wcwidth']}.")

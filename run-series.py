@@ -1,0 +1,563 @@
+#!/usr/bin/env python3
+"""Run ucs-detect re-run.py for each terminal YAML of the current OS, in series or parallel."""
+import argparse
+import atexit
+import platform
+import re
+import shlex
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+import uuid
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+import threading
+
+import yaml
+
+PROJECT_DIR = Path(__file__).resolve().parent
+DATA_DIR = PROJECT_DIR / "data"
+
+_RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
+_RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
+_RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([\d.]+)', re.MULTILINE)
+_RE_PAUSE = re.compile(r'^\\p(\d+)$')
+
+_KEY_INJECT_LOCK = threading.Lock()
+_KEY_INJECT_PRE_DELAY = 0.5
+_KEY_INJECT_POST_DELAY = 1.5
+
+
+def load_mixins():
+    """Load terminal_detail_mixins.yaml, returning a dict keyed by lowercased software_name."""
+    mixins_path = DATA_DIR / "terminal_detail_mixins.yaml"
+    if not mixins_path.exists():
+        return {}
+    with open(mixins_path) as f:
+        data = yaml.safe_load(f) or {}
+    terminals = data.get("terminals", {})
+    result = {}
+    for key, value in terminals.items():
+        result[key.lower()] = value
+    return result
+
+
+def discover_yamls(target_system):
+    """Yield (yaml_path, software_name, seconds_elapsed) for each data YAML matching
+    *target_system*."""
+    target_lower = target_system.lower()
+    for yaml_path in sorted(DATA_DIR.glob("*.yaml")):
+        if yaml_path.name == "terminal_detail_mixins.yaml":
+            continue
+        try:
+            with open(yaml_path) as f:
+                head = f.read(4096)
+        except OSError:
+            continue
+
+        m = _RE_SYSTEM.search(head)
+        if not m or m.group(1).lower() != target_lower:
+            continue
+
+        m = _RE_SOFTWARE_NAME.search(head)
+        sw_name = m.group(1).strip() if m else yaml_path.stem
+
+        m = _RE_SECONDS_ELAPSED.search(head)
+        seconds_elapsed = float(m.group(1)) if m else 0.0
+
+        yield yaml_path, sw_name, seconds_elapsed
+
+
+def get_launch_config(sw_name, mixins):
+    """Return (launch_config, is_explicit) for *sw_name*."""
+    key = sw_name.lower()
+    raw_entry = mixins.get(key, {})
+    launch = raw_entry.get("launch", {}) if raw_entry else {}
+    is_explicit = bool(launch)
+
+    cfg = {
+        "program": launch.get("program", key),
+        "args": launch.get("args", ["-e"]),
+        "subterminal": launch.get("subterminal", False),
+        "wrapper": launch.get("wrapper", []),
+        "skip": launch.get("skip", False),
+        "skip_reason": raw_entry.get("skip_reason", ""),
+        "post_launch_delay_ms": launch.get("post_launch_delay_ms", 0),
+        "post_launch_keys": launch.get("post_launch_keys", []),
+    }
+    return cfg, is_explicit
+
+
+def write_run_script(script_path, yaml_path, sentinel_path,
+                       reuse_version=False):
+    """Write a shell script that runs re-run.py and records the exit code."""
+    yaml_rel = yaml_path.relative_to(PROJECT_DIR)
+    reuse_flag = " --reuse-version" if reuse_version else ""
+    script_path.write_text(
+        "#!/bin/sh\n"
+        f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1\n"
+        f"python re-run.py{reuse_flag} {shlex.quote(str(yaml_rel))}\n"
+        f"echo $? > {shlex.quote(str(sentinel_path))}\n"
+    )
+    script_path.chmod(0o755)
+
+
+def build_launch_args(launch_cfg, script_path):
+    """Build the full argv list for launching a terminal that executes *script_path*.
+
+    The token ``{script}`` in any *args* element is replaced with *script_path*.
+    If no ``{script}`` placeholder is found and no key injection is configured,
+    ``["sh", script_path]`` is appended.
+    """
+    argv = list(launch_cfg["wrapper"])
+    argv.append(launch_cfg["program"])
+    script_str = str(script_path)
+    has_placeholder = False
+    for arg in launch_cfg["args"]:
+        if "{script}" in arg:
+            has_placeholder = True
+            argv.append(arg.replace("{script}", script_str))
+        else:
+            argv.append(arg)
+    if not has_placeholder and not launch_cfg.get("post_launch_keys"):
+        argv.extend(["sh", script_str])
+    return argv
+
+
+def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
+    """Build launch args for a subterminal, wrapping inside a host terminal."""
+    script_str = str(script_path)
+    inner_parts = [launch_cfg["program"]] + launch_cfg["args"]
+    has_placeholder = any("{script}" in a for a in launch_cfg["args"])
+    if not has_placeholder and not launch_cfg.get("post_launch_keys"):
+        inner_parts.extend(["sh", script_str])
+    else:
+        inner_parts = [p.replace("{script}", script_str) for p in inner_parts]
+
+    inner_cmd = " ".join(shlex.quote(a) for a in inner_parts)
+    argv = list(host_launch_cfg.get("wrapper", []))
+    argv.append(host_launch_cfg["program"])
+    argv.extend(host_launch_cfg.get("args", ["-e"]))
+    argv.extend(["sh", "-c", inner_cmd])
+    return argv
+
+
+def find_window_for_command(launch_cfg, pid, timeout=8):
+    """Find X11 window ID for a launched process, by PID then by class name."""
+    deadline = time.monotonic() + min(timeout, 5)
+
+    # Strategy 1: search by PID (short timeout; forking apps skip to class)
+    while time.monotonic() < deadline:
+        try:
+            result = subprocess.run(
+                ["xdotool", "search", "--onlyvisible", "--pid", str(pid)],
+                capture_output=True, text=True, timeout=3,
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip().split("\n")[-1]
+        except (subprocess.TimeoutExpired, OSError):
+            pass
+        time.sleep(0.3)
+
+    # Strategy 2: search by class name
+    class_name = launch_cfg.get("program", "").lower()
+    deadline2 = time.monotonic() + 3
+    while time.monotonic() < deadline2:
+        try:
+            result = subprocess.run(
+                ["xdotool", "search", "--onlyvisible", "--class", class_name],
+                capture_output=True, text=True, timeout=3,
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip().split("\n")[-1]
+        except (subprocess.TimeoutExpired, OSError):
+            pass
+        time.sleep(0.3)
+
+    return None
+
+
+def inject_keys(window_id, keys):
+    """Send keystrokes to a window via xdotool.
+
+    Special tokens in *keys*:
+      ``\\n``       press Return
+      ``\\pNNN``    pause for NNN milliseconds (e.g. ``\\p500``)
+
+    Merges consecutive text keys into a single ``xdotool type`` call.
+    """
+    subprocess.run(
+        ["xdotool", "windowfocus", "--sync", str(window_id)],
+        capture_output=True, timeout=2,
+    )
+    time.sleep(0.3)
+    merged = []
+    for key in keys:
+        if key == "\n" or _RE_PAUSE.match(key):
+            if merged:
+                combined = "".join(merged)
+                subprocess.run(
+                    ["xdotool", "type", "--delay", "30", combined],
+                    capture_output=True, timeout=120,
+                )
+                merged = []
+            if key == "\n":
+                subprocess.run(
+                    ["xdotool", "key", "Return"],
+                    capture_output=True, timeout=5,
+                )
+            else:
+                ms = int(_RE_PAUSE.match(key).group(1))
+                time.sleep(ms / 1000.0)
+        else:
+            merged.append(key)
+    if merged:
+        combined = "".join(merged)
+        subprocess.run(
+            ["xdotool", "type", "--delay", "30", combined],
+            capture_output=True, timeout=120,
+        )
+
+
+def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
+                       temp_dir, reuse_version=False):
+    """Launch a terminal and inject keys. Does not wait for completion.
+
+    Returns (proc, sentinel_path, stderr_path, error_msg) where error_msg is
+    None on success.
+    """
+    safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
+    script_path = temp_dir / f"run-{safe_name}.sh"
+    sentinel_path = temp_dir / f"exit-{safe_name}.rc"
+    stderr_path = temp_dir / f"stderr-{safe_name}.log"
+    write_run_script(script_path, yaml_path, sentinel_path,
+                     reuse_version=reuse_version)
+
+    try:
+        if not launch_cfg["subterminal"]:
+            argv = build_launch_args(launch_cfg, script_path)
+        else:
+            argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
+                                                  script_path)
+
+        with open(stderr_path, "w") as stderr_file:
+            proc = subprocess.Popen(
+                argv,
+                stdout=subprocess.DEVNULL,
+                stderr=stderr_file,
+                stdin=subprocess.DEVNULL,
+            )
+
+        post_delay = launch_cfg.get("post_launch_delay_ms", 0)
+        post_keys = launch_cfg.get("post_launch_keys", [])
+        if post_keys:
+            time.sleep(post_delay / 1000.0)
+            window_cfg = host_launch_cfg if launch_cfg["subterminal"] else launch_cfg
+            window_id = find_window_for_command(window_cfg, proc.pid)
+            if window_id is not None:
+                script_str = str(script_path)
+                resolved_keys = [
+                    key.replace("${SCRIPT}", script_str) for key in post_keys
+                ]
+                text_keys = [k for k in resolved_keys
+                             if k != "\n" and not _RE_PAUSE.match(k)]
+                print(f"[{sw_name}] injecting: {''.join(text_keys)}", flush=True)
+                inject_keys(window_id, resolved_keys)
+            else:
+                proc.kill()
+                error_msg = (
+                    "key injection failed: could not find window "
+                    f"for {window_cfg['program']} (PID {proc.pid})"
+                )
+                print(f"[{sw_name}] {error_msg}", flush=True)
+                return (None, sentinel_path, stderr_path, error_msg)
+
+        return (proc, sentinel_path, stderr_path, None)
+
+    except FileNotFoundError:
+        return (None, None, None, f"executable not found: {launch_cfg['program']}")
+    except OSError as exc:
+        return (None, None, None, str(exc))
+
+
+def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout):
+    """Wait for sentinel file.  Returns (sw_name, exit_code, error_msg)."""
+    error_msg = None
+    exit_code = -99
+
+    deadline = time.monotonic() + timeout
+    proc_dead = False
+    while time.monotonic() < deadline:
+        if sentinel_path.exists():
+            try:
+                text = sentinel_path.read_text().strip()
+                exit_code = int(text)
+            except (ValueError, OSError):
+                exit_code = -2
+            break
+
+        if not proc_dead and proc.poll() is not None:
+            proc_dead = True
+            deadline = min(deadline, time.monotonic() + 30)
+
+        time.sleep(0.5)
+
+    if exit_code == -99:
+        if proc.poll() is not None:
+            exit_code = -3
+            error_msg = (
+                f"process exited with code {proc.returncode} "
+                f"but no sentinel file was written"
+            )
+        else:
+            exit_code = -1
+            error_msg = f"timeout after {timeout}s"
+            try:
+                proc.kill()
+            except OSError:
+                pass
+
+    if error_msg and stderr_path.exists():
+        try:
+            stderr_text = stderr_path.read_text().strip()
+            if stderr_text:
+                error_msg += f"\nstderr: {stderr_text}"
+        except OSError:
+            pass
+
+    return (sw_name, exit_code, error_msg)
+
+
+def run_one_terminal(yaml_path, sw_name, launch_cfg, host_launch_cfg,
+                     timeout, temp_dir, reuse_version=False):
+    """Launch a terminal, wait for sentinel, return (sw_name, exit_code, error_msg)."""
+    proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
+        yaml_path, sw_name, launch_cfg, host_launch_cfg,
+        temp_dir, reuse_version)
+    if launch_error:
+        return (sw_name, -4, launch_error)
+    return _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Run ucs-detect re-run.py for each terminal YAML of the current OS")
+    parser.add_argument(
+        "--parallel", "-p", type=int, default=1,
+        help="Number of terminals to run in parallel (default: 1)")
+    parser.add_argument(
+        "--timeout", "-t", type=float, default=900,
+        help="Timeout per terminal in seconds (default: 900)")
+    parser.add_argument(
+        "--continue-after-failure", "-c", action="store_true",
+        help="Continue running remaining terminals after a failure")
+    parser.add_argument(
+        "--host-terminal", default="ghostty",
+        help="Terminal used to host subterminals (screen, tmux, etc.) "
+             "(default: ghostty)")
+    parser.add_argument(
+        "--dry-run", "-n", action="store_true",
+        help="Print what would be executed without actually running")
+    parser.add_argument(
+        "--reuse-version", action="store_true",
+        help="Pass --reuse-version to re-run.py (skip name/version prompts)")
+    parser.add_argument(
+        "--keep-temp", action="store_true",
+        help="Keep temporary files on exit (for debugging)")
+    parser.add_argument(
+        "--run-only", type=str, default="",
+        help="Comma-separated list of terminal names (software_name or program) "
+             "to run; all others are skipped")
+    args = parser.parse_args()
+
+    system_name = platform.system()
+    if system_name.lower() not in ("linux",):
+        print(f"Error: unsupported OS '{system_name}'. Only Linux is supported.",
+              file=sys.stderr)
+        sys.exit(1)
+
+    if not shutil.which("xdotool"):
+        print("Warning: xdotool not found; keyboard injection will not work",
+              file=sys.stderr)
+
+    mixins = load_mixins()
+
+    # Build host terminal launch config
+    host_launch_cfg, _ = get_launch_config(args.host_terminal, mixins)
+    if host_launch_cfg["subterminal"]:
+        print(f"Error: --host-terminal '{args.host_terminal}' is a subterminal",
+              file=sys.stderr)
+        sys.exit(1)
+
+    # Session temp directory
+    temp_dir = Path(tempfile.mkdtemp(prefix="ucs-run-series-"))
+    if not args.keep_temp:
+        atexit.register(shutil.rmtree, str(temp_dir), ignore_errors=True)
+    else:
+        print(f"Temp directory: {temp_dir}")
+
+    # Discover terminals
+    all_terminals = list(discover_yamls(system_name))
+    if not all_terminals:
+        print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
+        sys.exit(0)
+
+    # Parse --run-only filter
+    run_only = set()
+    if args.run_only:
+        run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip())
+
+    # Build job list, applying skip rules.  Include seconds_elapsed for sorting.
+    jobs = []
+    skipped = []
+    for yaml_path, sw_name, seconds_elapsed in all_terminals:
+        launch_cfg, is_explicit = get_launch_config(sw_name, mixins)
+
+        if run_only:
+            name_lower = sw_name.lower()
+            prog_lower = launch_cfg.get("program", "").lower()
+            if name_lower not in run_only and prog_lower not in run_only:
+                skipped.append((sw_name, "not in --run-only"))
+                continue
+
+        if launch_cfg["skip"]:
+            reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
+            skipped.append((sw_name, reason))
+            continue
+
+        if launch_cfg["subterminal"]:
+            if not is_explicit:
+                skipped.append((sw_name, "subterminal, no launch config"))
+                continue
+            if host_launch_cfg is None:
+                skipped.append((sw_name, "subterminal, no host terminal available"))
+                continue
+
+        jobs.append((yaml_path, sw_name, launch_cfg, seconds_elapsed))
+
+    # Sort slowest-first so they get a head-start in the thread pool
+    jobs.sort(key=lambda j: j[3], reverse=True)
+
+    if skipped:
+        print(f"Skipping {len(skipped)} terminals:")
+        for name, reason in skipped:
+            print(f"  [{name}] {reason}")
+        print()
+
+    if not jobs:
+        print("No launchable terminals found.", file=sys.stderr)
+        sys.exit(0)
+
+    if args.dry_run:
+        print(f"Would run {len(jobs)} terminals with --parallel={args.parallel}:\n")
+        for yaml_path, sw_name, launch_cfg, _seconds_elapsed in jobs:
+            safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
+            script_path = temp_dir / f"run-{safe_name}.sh"
+            if not launch_cfg["subterminal"]:
+                argv = build_launch_args(launch_cfg, script_path)
+            else:
+                argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
+                                                      script_path)
+            print(f"  {sw_name}: {shlex.join(argv)}")
+        return
+
+    # Split jobs: key-injection terminals must run alone (focus-sensitive)
+    key_jobs = [j for j in jobs if j[2].get("post_launch_keys")]
+    direct_jobs = [j for j in jobs if not j[2].get("post_launch_keys")]
+
+    print(f"Running {len(key_jobs)} key-inject + {len(direct_jobs)} direct"
+          f" terminals (parallel={args.parallel}, timeout={args.timeout}s, "
+          f"host={args.host_terminal})")
+    print(f"Temp: {temp_dir}")
+    print()
+
+    results = {}
+    failures = []
+    t0 = time.monotonic()
+
+    max_workers = max(args.parallel, 1)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_map = {}
+
+        # Phase 1: launch key-injection terminals sequentially under lock;
+        # submit sentinel polling to the thread pool so tests run in parallel.
+        if key_jobs:
+            print("--- Key-injection terminals (sequential launch, parallel wait) ---")
+        for yaml_path, sw_name, launch_cfg, _seconds_elapsed in key_jobs:
+            print(f"[{sw_name}] launching ...", flush=True)
+
+            with _KEY_INJECT_LOCK:
+                time.sleep(_KEY_INJECT_PRE_DELAY)
+                proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
+                    yaml_path, sw_name, launch_cfg, host_launch_cfg,
+                    temp_dir, reuse_version=args.reuse_version)
+                time.sleep(_KEY_INJECT_POST_DELAY)
+
+            if launch_error:
+                results[sw_name] = (-4, launch_error)
+                print(f"[{sw_name}] FAILED: {launch_error}", flush=True)
+                failures.append((sw_name, -4, launch_error))
+                if not args.continue_after_failure:
+                    break
+                continue
+
+            future = executor.submit(
+                _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
+                args.timeout)
+            future_map[future] = sw_name
+
+        # Phase 2: launch direct terminals in the thread pool
+        if direct_jobs and not (failures and not args.continue_after_failure):
+            if key_jobs:
+                print("\n--- Direct-launch terminals (parallel) ---")
+            for yaml_path, sw_name, launch_cfg, _seconds_elapsed in direct_jobs:
+                future = executor.submit(
+                    run_one_terminal,
+                    yaml_path, sw_name, launch_cfg, host_launch_cfg,
+                    args.timeout, temp_dir,
+                    reuse_version=args.reuse_version)
+                future_map[future] = sw_name
+
+        # Phase 3: collect results as they complete
+        for future in as_completed(future_map):
+            sw_name = future_map[future]
+            try:
+                name, exit_code, error = future.result()
+            except Exception as exc:
+                results[sw_name] = (-99, str(exc))
+                print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)
+                failures.append((sw_name, -99, str(exc)))
+                if not args.continue_after_failure:
+                    for f in future_map:
+                        f.cancel()
+                    break
+                continue
+
+            results[name] = (exit_code, error)
+            if error or exit_code != 0:
+                status = error or f"exit code {exit_code}"
+                print(f"[{name}] FAILED: {status}", flush=True)
+                failures.append((name, exit_code, error))
+                if not args.continue_after_failure:
+                    for f in future_map:
+                        f.cancel()
+                    break
+            else:
+                print(f"[{name}] OK", flush=True)
+
+    elapsed = time.monotonic() - t0
+    n_ok = len(results) - len(failures)
+    print(f"\n--- Done in {elapsed:.1f}s: {n_ok} OK, {len(failures)} failed ---")
+
+    if failures:
+        print("\nFailures:")
+        for name, exit_code, error in failures:
+            msg = error or f"exit code {exit_code}"
+            print(f"  {name}: {msg}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

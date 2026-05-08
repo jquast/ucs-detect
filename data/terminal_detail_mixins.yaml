@@ -7,77 +7,171 @@
 terminals:
   alacritty:
     homepage: https://alacritty.org/
+    launch:
+      program: alacritty
+      args: [-e]
 
   bobcat:
     homepage: https://github.com/ismail-yilmaz/Bobcat
+    launch:
+      program: bobcat
+      args: []
+      post_launch_delay_ms: 300
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
   contour:
     homepage: https://contour-terminal.org/
+    launch:
+      program: contour
+      args: [terminal]
 
   cool-retro-term:
     homepage: https://github.com/Swordfish90/cool-retro-term
+    launch:
+      program: cool-retro-term
+      args: [-e]
 
   extraterm:
     homepage: https://extraterm.org/
+    launch:
+      skip: true
+    skip_reason: "GUI picker on launch, needs key-injection sequence"
 
   foot:
     homepage: https://codeberg.org/dnkl/foot
+    launch:
+      program: foot
+      args: []
+      wrapper: [cage, --]
 
   ghostty:
     homepage: https://ghostty.org/
+    launch:
+      program: ghostty
+      args: [-e]
 
   gnome terminal:
     homepage: https://help.gnome.org/users/gnome-terminal/stable/
+    launch:
+      program: gnome-terminal
+      args: [--]
 
   hyper:
     homepage: https://hyper.is/
+    launch:
+      program: hyper
+      args: []
+      post_launch_delay_ms: 90
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
   iterm2:
     homepage: https://iterm2.com/
 
   kitty:
     homepage: https://sw.kovidgoyal.net/kitty/
+    launch:
+      program: kitty
+      args: []
 
   konsole:
     homepage: https://apps.kde.org/konsole/
+    launch:
+      program: konsole
+      args: [-e]
 
   libvterm:
     homepage: https://www.leonerd.org.uk/code/libvterm/
     description: "libvterm tested is the one shipped with vIM when using command, ``:terminal``."
+    launch:
+      subterminal: true
+      skip: true
 
   linux fbdev:
     homepage: https://www.kernel.org/doc/Documentation/fb/fbcon.txt
+    launch:
+      subterminal: true
+      skip: true
 
   lxterminal:
     homepage: https://github.com/lxde/lxterminal
+    launch:
+      program: lxterminal
+      args: [-e]
 
   mintty:
     homepage: https://mintty.github.io/
 
   mlterm:
     homepage: https://mlterm.sourceforge.net/
+    launch:
+      program: mlterm
+      args: [-e]
 
   putty:
     homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/
+    launch:
+      program: pterm
+      args: [-e]
 
   qterminal:
     homepage: https://github.com/lxqt/qterminal
+    launch:
+      program: qterminal
+      args: [-e]
 
   rio:
     homepage: https://rioterm.com/
+    launch:
+      program: rio
+      args: [-e]
 
   rxvt-unicode:
     homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
+    launch:
+      program: urxvt
+      args: [-e]
 
   screen:
     homepage: https://www.gnu.org/software/screen/
+    launch:
+      subterminal: true
+      program: screen
+      args: [-q]
+      post_launch_delay_ms: 300
+      post_launch_keys: ["\n", '\p1000', "sh ", "${SCRIPT} && exit", "\n"]
+
+  securecrt:
+    homepage: https://www.vandyke.com/products/securecrt/
+    launch:
+      skip: true
+    skip_reason: "My evaluation license has expired"
 
   st:
     homepage: https://st.suckless.org/
     sixel_support_notes: "Patches are available to add sixel support."
+    launch:
+      program: st
+      args: [-e]
+
+  syncterm:
+    homepage: https://syncterm.bbsdev.net/
+    launch:
+      program: syncterm
+      args: [Local]
+      post_launch_delay_ms: 300
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
   tabby:
     homepage: https://tabby.sh/
+    launch:
+      program: tabby
+      args: [-e]
+
+  teraterm:
+    homepage: https://teratermproject.github.io/
+    launch:
+      skip: true
+    skip_reason: "Windows-only, not available on Linux"
 
   terminal.app:
     homepage: https://support.apple.com/guide/terminal/welcome/mac
@@ -87,34 +181,68 @@ terminals:
 
   terminator:
     homepage: https://gnome-terminator.org/
+    launch:
+      program: terminator
+      args: [-x, sh, "{script}"]
 
   terminology:
     homepage: https://www.enlightenment.org/about-terminology
+    launch:
+      program: terminology
+      args: [-e]
 
   termit:
     homepage: https://github.com/nonstop/termit
+    launch:
+      program: termit
+      args: [-e]
 
   tmux:
     homepage: https://github.com/tmux/tmux
     sixel_support_notes: "Must be compiled with sixel support. Check support and enablement with command: ``(tmux show-options -g;tmux show-window-options)|grep -i sixel``"
+    launch:
+      subterminal: true
+      program: tmux
+      args: [new-session]
+      post_launch_delay_ms: 300
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
   xterm.js:
     homepage: https://code.visualstudio.com/docs/terminal/basics
     description: "The xterm.js variant tested is the one shipped with Visual Studio Code's integrated terminal."
     sixel_support_notes: "Must be enabled with ``\"terminal.integrated.enableImages\": true``."
+    launch:
+      subterminal: true
+      skip: true
 
   weston-terminal:
     homepage: https://gitlab.freedesktop.org/wayland/weston
+    launch:
+      program: weston-terminal
+      args: [--shell, "sh {script}"]
+      wrapper: [cage, --]
 
   wezterm:
     homepage: https://wezfurlong.org/wezterm/
+    launch:
+      program: wezterm
+      args: [start, --]
 
   xfce4-terminal:
     homepage: https://docs.xfce.org/apps/terminal/start
+    launch:
+      program: xfce4-terminal
+      args: [-e, "sh {script}"]
 
   xterm:
     homepage: https://invisible-island.net/xterm/
     sixel_support_notes: "Sixel support can be enabled with argument ``-ti 340``."
+    launch:
+      program: xterm
+      args: [-e]
 
   zutty:
     homepage: https://tomscii.sig7.se/zutty/
+    launch:
+      program: zutty
+      args: [-e]
