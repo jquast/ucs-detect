@@ -1,10 +1,8 @@
 ambiguous_width: 1
-cps_summary:
-  seconds_elapsed: 3.7172088910010643
-datetime: 2026-05-08 01:17:13 UTC
-height: 16
-python_version: 3.15.0a5
-seconds_elapsed: 3.7210334860137664
+datetime: 2026-05-10 04:07:13 UTC
+height: 22
+python_version: 3.14.4
+seconds_elapsed: 6.409458759997506
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -38,7 +36,7 @@ terminal_results:
   - 45746
   - 45746
   - 45746
-  height: 16
+  height: 22
   iterm2_features:
     features: {}
     supported: false
@@ -49,10 +47,10 @@ terminal_results:
   kitty_query: false
   modes: {}
   number_of_colors: 16777216
-  pixels_height: 416
-  pixels_width: 1100
-  screen_ratio: '21:9'
-  screen_ratio_name: UWHD
+  pixels_height: 572
+  pixels_width: 1166
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: true
   software_name: Konsole
   software_version: 23.08.5
@@ -62,7 +60,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 100
+  width: 106
   xtgettcap:
     capabilities: {}
     supported: false
@@ -547,14 +545,12 @@ test_results:
       n_errors: 158
       n_total: 158
       pct_success: 0.0
-      seconds_elapsed: 0.056199238024419174
   emoji_vs16_results:
     9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 426
       pct_success: 100.0
-      seconds_elapsed: 0.10355085102492012
   emoji_zwj_results:
     '17.0':
       failed_codepoints:
@@ -735,62 +731,52 @@ test_results:
       n_errors: 58
       n_total: 1445
       pct_success: 95.98615916955018
-      seconds_elapsed: 0.20179782499326393
   language_results:
     (Jinan):
       failed: []
       n_errors: 0
       n_total: 501
       pct_success: 100.0
-      seconds_elapsed: 0.7848021489917301
     (Yeonbyeon):
       failed: []
       n_errors: 0
       n_total: 307
       pct_success: 100.0
-      seconds_elapsed: 0.7474487860163208
     Aja:
       failed: []
       n_errors: 0
       n_total: 79
       pct_success: 100.0
-      seconds_elapsed: 0.24160781997488812
     Amarakaeri:
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 0.2379257729917299
     Arabic, Standard:
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 0.23715319999610074
     Assyrian Neo-Aramaic:
       failed: []
       n_errors: 0
       n_total: 42
       pct_success: 100.0
-      seconds_elapsed: 0.23496955097652972
     Baatonum:
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 0.233165136014577
     Bamun:
       failed: []
       n_errors: 0
       n_total: 75
       pct_success: 100.0
-      seconds_elapsed: 0.2329401340102777
     Belanda Viri:
       failed: []
       n_errors: 0
       n_total: 85
       pct_success: 100.0
-      seconds_elapsed: 0.2318463459960185
     Bengali:
       failed:
       - grapheme_id: Bengali-2-09
@@ -841,6 +827,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0999\u09cd\u0997\u09c0
+      - grapheme_id: Bengali-2-25
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0999\u09cd\u0997\u09c7
       - grapheme_id: Bengali-2-2e
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -877,6 +867,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09a3\u09cd\u09a1\u09c7
+      - grapheme_id: Bengali-2-53
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u09a4\u09c7\u200c
       - grapheme_id: Bengali-2-55
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -897,6 +891,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09a4\u09cd\u09af\u09bf
+      - grapheme_id: Bengali-2-5e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u09a4\u09cd\u09af\u09c7
       - grapheme_id: Bengali-2-60
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -921,10 +919,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09a6\u09cd\u09a6\u09c7
-      - grapheme_id: Bengali-2-71
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u09a6\u09cd\u09a7
       - grapheme_id: Bengali-2-72
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -949,10 +943,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09a7\u09cd\u09af\u09c7
-      - grapheme_id: Bengali-2-84
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u09a8\u09c7
       - grapheme_id: Bengali-2-89
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -1161,10 +1151,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09b8\u09cd\u09a4\u09cd\u09b0
-      - grapheme_id: Bengali-2-11c
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u09b8\u09cd\u09a5
       - grapheme_id: Bengali-2-11d
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -1192,7 +1178,6 @@ test_results:
       n_errors: 99
       n_total: 385
       pct_success: 74.28571428571429
-      seconds_elapsed: 0.7340676310122944
     Bhojpuri:
       failed:
       - grapheme_id: Bhojpuri-2-06
@@ -1231,6 +1216,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0918\u094d\u0938\u094d\u091f
+      - grapheme_id: Bhojpuri-2-25
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u091a\u094d\u091a\u093e
       - grapheme_id: Bhojpuri-2-26
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -1275,10 +1264,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0935\u093e
-      - grapheme_id: Bhojpuri-2-4b
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0927\u093e
       - grapheme_id: Bhojpuri-2-55
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -1378,13 +1363,11 @@ test_results:
       n_errors: 45
       n_total: 313
       pct_success: 85.62300319488818
-      seconds_elapsed: 0.6903858130099252
     Bora:
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 0.21635163499740884
     Burmese:
       failed:
       - grapheme_id: Burmese-2-02
@@ -1438,211 +1421,176 @@ test_results:
       n_errors: 12
       n_total: 268
       pct_success: 95.52238805970148
-      seconds_elapsed: 0.6624661069945432
     Catalan (2):
       failed: []
       n_errors: 0
       n_total: 68
       pct_success: 100.0
-      seconds_elapsed: 0.20812592099537142
     Chakma:
       failed: []
       n_errors: 0
       n_total: 267
       pct_success: 100.0
-      seconds_elapsed: 0.8001378900080454
     Chickasaw:
       failed: []
       n_errors: 0
       n_total: 61
       pct_success: 100.0
-      seconds_elapsed: 0.19951157399918884
     Chinantec, Chiltepec:
       failed: []
       n_errors: 0
       n_total: 78
       pct_success: 100.0
-      seconds_elapsed: 0.1991989160014782
     Chinese, Gan:
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 0.6549925160070416
     Chinese, Hakka:
       failed: []
       n_errors: 0
       n_total: 498
       pct_success: 100.0
-      seconds_elapsed: 0.6531707590038422
     Chinese, Jinyu:
       failed: []
       n_errors: 0
       n_total: 500
       pct_success: 100.0
-      seconds_elapsed: 0.6516439359984361
     Chinese, Mandarin (Beijing):
       failed: []
       n_errors: 0
       n_total: 514
       pct_success: 100.0
-      seconds_elapsed: 0.6496701739961281
     Chinese, Mandarin (Guiyang):
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 0.6472075099882204
     Chinese, Mandarin (Harbin):
       failed: []
       n_errors: 0
       n_total: 504
       pct_success: 100.0
-      seconds_elapsed: 0.6465831650129985
     Chinese, Mandarin (Nanjing):
       failed: []
       n_errors: 0
       n_total: 502
       pct_success: 100.0
-      seconds_elapsed: 0.6455952669784892
     Chinese, Mandarin (Simplified):
       failed: []
       n_errors: 0
       n_total: 532
       pct_success: 100.0
-      seconds_elapsed: 0.6448824560211506
     Chinese, Mandarin (Tianjin):
       failed: []
       n_errors: 0
       n_total: 512
       pct_success: 100.0
-      seconds_elapsed: 0.6436308610136621
     Chinese, Mandarin (Traditional):
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 0.6419995030155405
     Chinese, Min Nan:
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 0.629939895006828
     Chinese, Wu:
       failed: []
       n_errors: 0
       n_total: 506
       pct_success: 100.0
-      seconds_elapsed: 0.628154314996209
     Chinese, Xiang:
       failed: []
       n_errors: 0
       n_total: 501
       pct_success: 100.0
-      seconds_elapsed: 0.6274642970238347
     Chinese, Yue:
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 0.6261673469853122
     Colorado:
       failed: []
       n_errors: 0
       n_total: 55
       pct_success: 100.0
-      seconds_elapsed: 0.19855790902511217
     Dagaare, Southern:
       failed: []
       n_errors: 0
       n_total: 63
       pct_success: 100.0
-      seconds_elapsed: 0.19854583698906936
     Dangme:
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 0.19829111799481325
     Dari:
       failed: []
       n_errors: 0
       n_total: 54
       pct_success: 100.0
-      seconds_elapsed: 0.19827829400310293
     Dendi:
       failed: []
       n_errors: 0
       n_total: 73
       pct_success: 100.0
-      seconds_elapsed: 0.1974795910064131
     Dinka, Northeastern:
       failed: []
       n_errors: 0
       n_total: 55
       pct_success: 100.0
-      seconds_elapsed: 0.1972117370169144
     Ditammari:
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 0.19698772599804215
     Dzongkha:
       failed: []
       n_errors: 0
       n_total: 200
       pct_success: 100.0
-      seconds_elapsed: 0.19680167600745335
     Evenki:
       failed: []
       n_errors: 0
       n_total: 77
       pct_success: 100.0
-      seconds_elapsed: 0.18765585901564918
     Farsi, Western:
       failed: []
       n_errors: 0
       n_total: 49
       pct_success: 100.0
-      seconds_elapsed: 0.1845408389926888
     Fon:
       failed: []
       n_errors: 0
       n_total: 88
       pct_success: 100.0
-      seconds_elapsed: 0.18419043000903912
     French (Welche):
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 0.18369073999929242
     Fur:
       failed: []
       n_errors: 0
       n_total: 90
       pct_success: 100.0
-      seconds_elapsed: 0.183454484998947
     Ga:
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 0.18218931497540325
     Gen:
       failed: []
       n_errors: 0
       n_total: 87
       pct_success: 100.0
-      seconds_elapsed: 0.18200656099361368
     Gilyak:
       failed: []
       n_errors: 0
       n_total: 84
       pct_success: 100.0
-      seconds_elapsed: 0.18173728499095887
     Gujarati:
       failed:
       - grapheme_id: Gujarati-2-07
@@ -1798,7 +1746,7 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u0ab7\u0acd\u0a9f\u0acd\u0ab0
       - grapheme_id: Gujarati-2-bd
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u0ab7\u0acd\u0a9f\u0acd\u0ab0\u0ac0
       - grapheme_id: Gujarati-2-be
@@ -1848,13 +1796,11 @@ test_results:
       n_errors: 50
       n_total: 343
       pct_success: 85.42274052478133
-      seconds_elapsed: 0.6253140020126011
     Gumuz:
       failed: []
       n_errors: 0
       n_total: 54
       pct_success: 100.0
-      seconds_elapsed: 0.1674047709966544
     Hindi:
       failed:
       - inherited_from: Bhojpuri
@@ -1863,6 +1809,9 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0915\u094d\u0937\u093e
+      - inherited_from: Bhojpuri
+        measured_by_wcwidth: 2
+        wchars: \u091a\u094d\u091a\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u091a\u094d\u091b\u093e
@@ -1881,9 +1830,6 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0935\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u0927\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0928\u094d\u092f\u093e
@@ -2166,25 +2112,21 @@ test_results:
       n_errors: 83
       n_total: 390
       pct_success: 78.71794871794872
-      seconds_elapsed: 0.5976337460160721
     Japanese:
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 0.5590284570062067
     Japanese (Osaka):
       failed: []
       n_errors: 0
       n_total: 497
       pct_success: 100.0
-      seconds_elapsed: 0.5511904930172022
     Japanese (Tokyo):
       failed: []
       n_errors: 0
       n_total: 499
       pct_success: 100.0
-      seconds_elapsed: 0.5508351839962415
     Javanese (Javanese):
       failed:
       - grapheme_id: Javanese (Javanese)-4-0b
@@ -2234,13 +2176,11 @@ test_results:
       n_errors: 11
       n_total: 530
       pct_success: 97.9245283018868
-      seconds_elapsed: 0.8025793140113819
     Kabyle:
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 0.15766330398037098
     Kannada:
       failed:
       - grapheme_id: Kannada-2-07
@@ -2290,7 +2230,6 @@ test_results:
       n_errors: 11
       n_total: 287
       pct_success: 96.16724738675958
-      seconds_elapsed: 0.5238383240066469
     Khmer, Central:
       failed:
       - grapheme_id: Khmer, Central-3-08
@@ -2328,7 +2267,6 @@ test_results:
       n_errors: 8
       n_total: 443
       pct_success: 98.1941309255079
-      seconds_elapsed: 0.7893600040115416
     Khün:
       failed:
       - grapheme_id: Khün-2-3f
@@ -2350,31 +2288,26 @@ test_results:
       n_errors: 4
       n_total: 396
       pct_success: 98.98989898989899
-      seconds_elapsed: 0.7855634320003446
     Korean:
       failed: []
       n_errors: 0
       n_total: 315
       pct_success: 100.0
-      seconds_elapsed: 0.49522928200894967
     Lamnso':
       failed: []
       n_errors: 0
       n_total: 74
       pct_success: 100.0
-      seconds_elapsed: 0.1358346980123315
     Lao:
       failed: []
       n_errors: 0
       n_total: 277
       pct_success: 100.0
-      seconds_elapsed: 0.4921850840037223
     Lingala (tones):
       failed: []
       n_errors: 0
       n_total: 71
       pct_success: 100.0
-      seconds_elapsed: 0.11897159297950566
     Magahi:
       failed:
       - inherited_from: Bhojpuri
@@ -2386,6 +2319,9 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0915\u094d\u0937\u093e
+      - inherited_from: Bhojpuri
+        measured_by_wcwidth: 2
+        wchars: \u091a\u094d\u091a\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u091a\u094d\u091b\u093e
@@ -2422,9 +2358,6 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0935\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u0927\u093e
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0927\u094d\u092f\u093e
@@ -2529,7 +2462,6 @@ test_results:
       n_errors: 47
       n_total: 314
       pct_success: 85.03184713375796
-      seconds_elapsed: 0.49167650801246054
     Maithili:
       failed:
       - inherited_from: Bhojpuri
@@ -2544,6 +2476,9 @@ test_results:
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0916\u094d\u092f\u093e
+      - inherited_from: Bhojpuri
+        measured_by_wcwidth: 2
+        wchars: \u091a\u094d\u091a\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u091a\u094d\u091b\u093e
@@ -2583,9 +2518,6 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0935\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u0927\u093e
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0927\u094d\u092f\u093e
@@ -2775,7 +2707,6 @@ test_results:
       n_errors: 73
       n_total: 357
       pct_success: 79.55182072829132
-      seconds_elapsed: 0.4907541529973969
     Malayalam:
       failed:
       - grapheme_id: Malayalam-2-08
@@ -2803,7 +2734,7 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u0d15\u0d4d\u0d24\u0d3f
       - grapheme_id: Malayalam-2-12
-        measured_by_terminal: 1
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0d15\u0d4d\u0d2f\u0d02
       - grapheme_id: Malayalam-2-16
@@ -3658,19 +3589,16 @@ test_results:
       n_errors: 246
       n_total: 845
       pct_success: 70.88757396449704
-      seconds_elapsed: 0.477998585003661
     Maldivian:
       failed: []
       n_errors: 0
       n_total: 226
       pct_success: 100.0
-      seconds_elapsed: 0.11167078799917363
     Maori (2):
       failed: []
       n_errors: 0
       n_total: 48
       pct_success: 100.0
-      seconds_elapsed: 0.10158295999281108
     Marathi:
       failed:
       - inherited_from: Bhojpuri
@@ -3685,6 +3613,9 @@ test_results:
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0916\u094d\u092f\u093e
+      - inherited_from: Bhojpuri
+        measured_by_wcwidth: 2
+        wchars: \u091a\u094d\u091a\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u091a\u094d\u091b\u093e
@@ -3721,9 +3652,6 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0935\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u0927\u093e
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0927\u094d\u092f\u093e
@@ -3903,7 +3831,7 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u0928\u094d\u0939\u094d\u092f\u093e\u0902
       - grapheme_id: Marathi-2-38
-        measured_by_terminal: 1
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0930\u094d\u091c\u093e
       - grapheme_id: Marathi-2-39
@@ -3977,25 +3905,21 @@ test_results:
       n_errors: 85
       n_total: 391
       pct_success: 78.26086956521739
-      seconds_elapsed: 0.3879588319978211
     Mazahua Central:
       failed: []
       n_errors: 0
       n_total: 66
       pct_success: 100.0
-      seconds_elapsed: 0.100076816015644
     Mirandese:
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 0.09969073999673128
     Mixtec, Metlatónoc:
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 0.09951834499952383
     Mon:
       failed:
       - grapheme_id: Mon-2-04
@@ -4061,31 +3985,26 @@ test_results:
       n_errors: 15
       n_total: 332
       pct_success: 95.48192771084338
-      seconds_elapsed: 0.7852778340165969
     Mongolian, Halh (Mongolian):
       failed: []
       n_errors: 0
       n_total: 22
       pct_success: 100.0
-      seconds_elapsed: 0.092886558995815
     Mòoré:
       failed: []
       n_errors: 0
       n_total: 63
       pct_success: 100.0
-      seconds_elapsed: 0.09187137900153175
     Nanai:
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 0.09156509197782725
     Navajo:
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 0.09128802100894973
     Nepali:
       failed:
       - inherited_from: Bhojpuri
@@ -4136,9 +4055,6 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0935\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u0927\u093e
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0928\u094d\u0924\u093f
@@ -4253,10 +4169,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0926\u093e
-      - grapheme_id: Nepali-2-12
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0926\u094d\u0935
       - grapheme_id: Nepali-2-15
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -4321,64 +4233,54 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0938\u094d\u0930\u094b
-      n_errors: 70
+      n_errors: 68
       n_total: 352
-      pct_success: 80.11363636363636
-      seconds_elapsed: 0.3663459320086986
+      pct_success: 80.68181818181817
     Nuosu:
       failed: []
       n_errors: 0
       n_total: 336
       pct_success: 100.0
-      seconds_elapsed: 0.35398380502010696
     Orok:
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 0.09014581301016733
     Otomi, Mezquital:
       failed: []
       n_errors: 0
       n_total: 72
       pct_success: 100.0
-      seconds_elapsed: 0.08977316098753363
     Panjabi, Eastern:
       failed: []
       n_errors: 0
       n_total: 302
       pct_success: 100.0
-      seconds_elapsed: 0.33868541300762445
     Panjabi, Western:
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 0.07510371299576946
     Pashto, Northern:
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 0.0745125710091088
     Picard:
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 0.0737700350000523
     Pular (Adlam):
       failed: []
       n_errors: 0
       n_total: 93
       pct_success: 100.0
-      seconds_elapsed: 0.07349314398015849
     Saint Lucian Creole French:
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 0.06988027598708868
     Sanskrit:
       failed:
       - inherited_from: Bhojpuri
@@ -4399,6 +4301,9 @@ test_results:
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0916\u094d\u092f\u093e
+      - inherited_from: Bhojpuri
+        measured_by_wcwidth: 2
+        wchars: \u091a\u094d\u091a\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u091a\u094d\u091b\u093e
@@ -4441,9 +4346,6 @@ test_results:
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u092d\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u0927\u093e
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0927\u094d\u092f\u093e
@@ -4747,7 +4649,7 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u0930\u094d\u0923\u0940
       - grapheme_id: Sanskrit-2-5e
-        measured_by_terminal: 1
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0930\u094d\u0924\u093f\u0903
       - grapheme_id: Sanskrit-2-60
@@ -4861,37 +4763,31 @@ test_results:
       n_errors: 135
       n_total: 493
       pct_success: 72.61663286004057
-      seconds_elapsed: 0.3332444679981563
     Sanskrit (Grantha):
       failed: []
       n_errors: 0
       n_total: 293
       pct_success: 100.0
-      seconds_elapsed: 0.2980364100076258
     Secoya:
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 0.06701246098964475
     Seraiki:
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 0.06681340700015426
     Shan:
       failed: []
       n_errors: 0
       n_total: 181
       pct_success: 100.0
-      seconds_elapsed: 0.28662491199793294
     Shipibo-Conibo:
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 0.06172524398425594
     Sinhala:
       failed:
       - grapheme_id: Sinhala-2-1f
@@ -4905,31 +4801,26 @@ test_results:
       n_errors: 2
       n_total: 258
       pct_success: 99.2248062015504
-      seconds_elapsed: 0.28598603000864387
     Siona:
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 0.05507656600093469
     South Azerbaijani:
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 0.05488845199579373
     Tagalog (Tagalog):
       failed: []
       n_errors: 0
       n_total: 34
       pct_success: 100.0
-      seconds_elapsed: 0.05446445400593802
     Tai Dam:
       failed: []
       n_errors: 0
       n_total: 189
       pct_success: 100.0
-      seconds_elapsed: 0.052871597988996655
     Tamang, Eastern:
       failed:
       - inherited_from: Bhojpuri
@@ -4974,25 +4865,21 @@ test_results:
       n_errors: 11
       n_total: 70
       pct_success: 84.28571428571429
-      seconds_elapsed: 0.28089219599496573
     Tamazight, Central Atlas:
       failed: []
       n_errors: 0
       n_total: 70
       pct_success: 100.0
-      seconds_elapsed: 0.04443058799370192
     Tamil:
       failed: []
       n_errors: 0
       n_total: 175
       pct_success: 100.0
-      seconds_elapsed: 0.28033475700067356
     Tamil (Sri Lanka):
       failed: []
       n_errors: 0
       n_total: 175
       pct_success: 100.0
-      seconds_elapsed: 0.27560134200030006
     Telugu:
       failed:
       - grapheme_id: Telugu-2-04
@@ -5067,6 +4954,10 @@ test_results:
         measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchars: \u0c26\u0c3f\u0c02
+      - grapheme_id: Telugu-2-53
+        measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchars: \u0c26\u0c41\u0c02
       - grapheme_id: Telugu-2-57
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -5203,46 +5094,39 @@ test_results:
         measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchars: \u0c39\u0c3f\u0c02
-      n_errors: 52
+      n_errors: 53
       n_total: 384
-      pct_success: 86.45833333333334
-      seconds_elapsed: 0.27557618598802947
+      pct_success: 86.19791666666666
     Tem:
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 0.023486755992053077
     Thai:
       failed: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
-      seconds_elapsed: 0.25358920099097304
     Thai (2):
       failed: []
       n_errors: 0
       n_total: 252
       pct_success: 100.0
-      seconds_elapsed: 0.2527977519785054
     Tibetan, Central:
       failed: []
       n_errors: 0
       n_total: 214
       pct_success: 100.0
-      seconds_elapsed: 0.01102485100273043
     Ticuna:
       failed: []
       n_errors: 0
       n_total: 88
       pct_success: 100.0
-      seconds_elapsed: 0.00815598398912698
     Uduk:
       failed: []
       n_errors: 0
       n_total: 57
       pct_success: 100.0
-      seconds_elapsed: 0.007064680015901104
     Urdu:
       failed:
       - grapheme_id: Urdu-2-00
@@ -5252,7 +5136,6 @@ test_results:
       n_errors: 1
       n_total: 110
       pct_success: 99.0909090909091
-      seconds_elapsed: 0.25256659599835984
     Urdu (2):
       failed:
       - inherited_from: Urdu
@@ -5261,76 +5144,64 @@ test_results:
       n_errors: 1
       n_total: 82
       pct_success: 98.78048780487805
-      seconds_elapsed: 0.25241913899662904
     Veps:
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 0.005532950017368421
     Vietnamese:
       failed: []
       n_errors: 0
       n_total: 117
       pct_success: 100.0
-      seconds_elapsed: 0.005357569985790178
     Vietnamese (Han nom):
       failed: []
       n_errors: 0
       n_total: 559
       pct_success: 100.0
-      seconds_elapsed: 0.2524160440079868
     Waama:
       failed: []
       n_errors: 0
       n_total: 56
       pct_success: 100.0
-      seconds_elapsed: 0.003335285000503063
     Yaneshaʼ:
       failed: []
       n_errors: 0
       n_total: 75
       pct_success: 100.0
-      seconds_elapsed: 0.0033222599886357784
     Yiddish, Eastern:
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 0.002797171997372061
     Yoruba:
       failed: []
       n_errors: 0
       n_total: 73
       pct_success: 100.0
-      seconds_elapsed: 0.0009965840145014226
     Éwé:
       failed: []
       n_errors: 0
       n_total: 79
       pct_success: 100.0
-      seconds_elapsed: 0.00027685100212693214
   ri_results:
     '17.0':
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
-      seconds_elapsed: 0.011568925023311749
   sfz_results:
     17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
-      seconds_elapsed: 0.00030160800088196993
   sri_results:
     17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 26
       pct_success: 100.0
-      seconds_elapsed: 0.0012837150134146214
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -5964,6 +5835,5 @@ test_results:
       n_errors: 209
       n_total: 43592
       pct_success: 99.52055423013397
-      seconds_elapsed: 2.5385053789941594
 wcwidth_version: 0.7.0
-width: 100
+width: 106

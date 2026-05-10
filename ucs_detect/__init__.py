@@ -164,8 +164,8 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     if not silent:
         writer("\nucs-detect: Interactive terminal detected!")
 
-        unicode_width = measure.measure_width(
-            term, writer, '\u231A', timeout_cps)
+    unicode_width = measure.measure_width(
+        term, writer, '\u231A', timeout_cps)
     has_unicode = (unicode_width == 2)
     if not has_unicode and not silent:
         writer("\nucs-detect: " + term.bold_red(

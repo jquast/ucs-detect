@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-08 18:11:42 UTC
+datetime: 2026-05-10 04:06:38 UTC
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 150.64518827499705
+seconds_elapsed: 151.16478706896305
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -137,6 +137,66 @@ terminal_results:
       RGB: '8'
       TN: xterm-256color
       colors: '256'
+      kDC: "\e[3~"
+      kDC3: "\e[3;2~"
+      kDC4: "\e[3;5~"
+      kDC5: "\e[3;6~"
+      kDC6: "\e[3;5~"
+      kDC7: "\e[3;6~"
+      kDN: "\e[1;2B"
+      kDN3: "\e[1;2B"
+      kDN4: "\e[1;5B"
+      kDN5: "\e[1;6B"
+      kDN6: "\e[1;5B"
+      kDN7: "\e[1;6B"
+      kEND: "\e[1;2F"
+      kEND3: "\e[1;2F"
+      kEND4: "\e[1;5F"
+      kEND5: "\e[1;6F"
+      kEND6: "\e[1;5F"
+      kEND7: "\e[1;6F"
+      kHOM: "\e[1;2H"
+      kHOM3: "\e[1;2H"
+      kHOM4: "\e[1;5H"
+      kHOM5: "\e[1;6H"
+      kHOM6: "\e[1;5H"
+      kHOM7: "\e[1;6H"
+      kIC: "\e[2~"
+      kIC3: "\e[2;2~"
+      kIC4: "\e[2;5~"
+      kIC5: "\e[2;6~"
+      kIC6: "\e[2;5~"
+      kIC7: "\e[2;6~"
+      kLFT: "\e[1;2D"
+      kLFT3: "\e[1;2D"
+      kLFT4: "\e[1;5D"
+      kLFT5: "\e[1;6D"
+      kLFT6: "\e[1;5D"
+      kLFT7: "\e[1;6D"
+      kNXT: "\e[6;2~"
+      kNXT3: "\e[6;2~"
+      kNXT4: "\e[6;5~"
+      kNXT5: "\e[6;6~"
+      kNXT6: "\e[6;5~"
+      kNXT7: "\e[6;6~"
+      kPRV: "\e[5;2~"
+      kPRV3: "\e[5;2~"
+      kPRV4: "\e[5;5~"
+      kPRV5: "\e[5;6~"
+      kPRV6: "\e[5;5~"
+      kPRV7: "\e[5;6~"
+      kRIT: "\e[1;2C"
+      kRIT3: "\e[1;2C"
+      kRIT4: "\e[1;5C"
+      kRIT5: "\e[1;6C"
+      kRIT6: "\e[1;5C"
+      kRIT7: "\e[1;6C"
+      kUP: "\e[1;2A"
+      kUP3: "\e[1;2A"
+      kUP4: "\e[1;5A"
+      kUP5: "\e[1;6A"
+      kUP6: "\e[1;5A"
+      kUP7: "\e[1;6A"
       ka1: "\e[H"
       ka3: "\e[5~"
       kbs: "\x7F"
@@ -149,6 +209,7 @@ terminal_results:
       kcuu1: "\e[A"
       kdch1: "\e[3~"
       kend: "\e[F"
+      kent: ''
       kf1: "\eOP"
       kf10: "\e[21~"
       kf11: "\e[23~"
@@ -163,8 +224,10 @@ terminal_results:
       kf9: "\e[20~"
       khome: "\e[H"
       kich1: "\e[2~"
+      kind: "\e[1;2B"
       knp: "\e[6~"
       kpp: "\e[5~"
+      kri: "\e[1;2A"
     supported: true
 test_results:
   emoji_vs15_results:
