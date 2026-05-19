@@ -1,17 +1,19 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:07:21 UTC
-height: 21
+datetime: 2026-05-19 14:21:02 UTC
+height: 31
 python_version: 3.14.4
-seconds_elapsed: 3.9469942880095914
+seconds_elapsed: 2.879948752000928
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: ghostty
-software_version: 1.3.2-main+4903e2821
+software_version: 1.3.2-main-+3706abab0
 system: Linux
 terminal_results:
   background_color_hex: '#111111111111'
@@ -19,15 +21,15 @@ terminal_results:
   - 4369
   - 4369
   - 4369
-  cell_height: 25
-  cell_width: 11
+  cell_height: 33
+  cell_width: 15
   color_scheme: light
   colored_underlines: true
   decrqcra: false
   decrqss: true
   decrqss_settings:
     decscusr: '1'
-    decstbm: 1;21
+    decstbm: 1;31
     sgr: 0;38:2::17:17:17
   device_attributes:
     extensions:
@@ -39,7 +41,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 21
+  height: 31
   iterm2_features:
     features: {}
     supported: false
@@ -121,135 +123,239 @@ terminal_results:
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
   osc52_clipboard: true
-  pixels_height: 525
-  pixels_width: 781
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
+  pixels_height: 1023
+  pixels_width: 1905
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: false
   software_name: ghostty
-  software_version: 1.3.2-main+4903e2821
+  software_version: 1.3.2-main-+3706abab0
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: xterm-ghostty
-  width: 71
+  width: 127
   xtgettcap:
     capabilities:
       AX: ''
       BD: "\e[?2004l"
       BE: "\e[?2004h"
-      Co: '256'
+      E3: "\e[3J"
       Ms: "\e]52;%p1%s;%p2%s\a"
       PE: "\e[201~"
+      PS: "\e[200~"
       RGB: '8'
-      Se: "\e[2 q"
+      RV: "\e[>c"
+      Se: "\e[0 q"
       Setulc: "\e[58:2::%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%d%;m"
       Smulx: "\e[4:%p1%dm"
+      Ss: "\e[%p1%d q"
+      Su: ''
       Sync: "\e[?2026%?%p1%{1}%-%tl%eh%;"
       TN: xterm-ghostty
       Tc: ''
+      XM: "\e[?1006;1000%?%p1%{1}%=%th%el%;"
+      XR: "\e[>0q"
+      XT: ''
+      acsc: ++\,\,--..00``aaffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~
+      am: ''
+      bce: ''
+      bel: "\a"
       blink: "\e[5m"
+      bold: "\e[1m"
       ccc: ''
+      civis: "\e[?25l"
+      clear: "\e[H\e[2J"
+      cnorm: "\e[?12l\e[?25h"
       colors: '256'
+      cols: '80'
+      cr: "\r"
       csr: "\e[%i%p1%d;%p2%dr"
+      cub: "\e[%p1%dD"
       cub1: "\b"
+      cud: "\e[%p1%dB"
       cud1: '
 
         '
+      cuf: "\e[%p1%dC"
+      cuf1: "\e[C"
       cup: "\e[%i%p1%d;%p2%dH"
       cuu: "\e[%p1%dA"
       cuu1: "\e[A"
       cvvis: "\e[?12;25h"
       dch: "\e[%p1%dP"
+      dch1: "\e[P"
       dim: "\e[2m"
+      dl: "\e[%p1%dM"
       dl1: "\e[M"
       dsl: "\e]2;\a"
       ech: "\e[%p1%dX"
+      ed: "\e[J"
       el: "\e[K"
       el1: "\e[1K"
       fd: "\e[?1004l"
+      fe: "\e[?1004h"
       flash: "\e[?5h$<100/>\e[?5l"
+      fsl: "\a"
       fullkbd: ''
+      home: "\e[H"
+      hpa: "\e[%i%p1%dG"
       hs: ''
       ht: "\t"
+      hts: "\eH"
+      ich: "\e[%p1%d@"
+      ich1: "\e[@"
       il: "\e[%p1%dL"
       il1: "\e[L"
       ind: '
 
         '
+      indn: "\e[%p1%dS"
       initc: "\e]4;%p1%d;rgb:%p2%{255}%*%{1000}%/%2.2X/%p3%{255}%*%{1000}%/%2.2X/%p4%{255}%*%{1000}%/%2.2X\e\
         \\"
       invis: "\e[8m"
       it: '8'
+      kDC: "\e[3;2~"
       kDC3: "\e[3;3~"
+      kDC4: "\e[3;4~"
+      kDC5: "\e[3;5~"
+      kDC6: "\e[3;6~"
+      kDC7: "\e[3;7~"
+      kDN: "\e[1;2B"
+      kDN3: "\e[1;3B"
       kDN4: "\e[1;4B"
       kDN5: "\e[1;5B"
       kDN6: "\e[1;6B"
+      kDN7: "\e[1;7B"
       kEND: "\e[1;2F"
       kEND3: "\e[1;3F"
+      kEND4: "\e[1;4F"
       kEND5: "\e[1;5F"
+      kEND6: "\e[1;6F"
       kEND7: "\e[1;7F"
       kHOM: "\e[1;2H"
       kHOM3: "\e[1;3H"
+      kHOM4: "\e[1;4H"
+      kHOM5: "\e[1;5H"
+      kHOM6: "\e[1;6H"
       kHOM7: "\e[1;7H"
       kIC: "\e[2;2~"
       kIC3: "\e[2;3~"
+      kIC4: "\e[2;4~"
+      kIC5: "\e[2;5~"
+      kIC6: "\e[2;6~"
       kIC7: "\e[2;7~"
       kLFT: "\e[1;2D"
+      kLFT3: "\e[1;3D"
+      kLFT4: "\e[1;4D"
+      kLFT5: "\e[1;5D"
       kLFT6: "\e[1;6D"
+      kLFT7: "\e[1;7D"
       kNXT: "\e[6;2~"
       kNXT3: "\e[6;3~"
       kNXT4: "\e[6;4~"
+      kNXT5: "\e[6;5~"
       kNXT6: "\e[6;6~"
+      kNXT7: "\e[6;7~"
       kPRV: "\e[5;2~"
+      kPRV3: "\e[5;3~"
       kPRV4: "\e[5;4~"
+      kPRV5: "\e[5;5~"
+      kPRV6: "\e[5;6~"
+      kPRV7: "\e[5;7~"
+      kRIT: "\e[1;2C"
+      kRIT3: "\e[1;3C"
+      kRIT4: "\e[1;4C"
       kRIT5: "\e[1;5C"
+      kRIT6: "\e[1;6C"
       kRIT7: "\e[1;7C"
+      kUP: "\e[1;2A"
       kUP3: "\e[1;3A"
       kUP4: "\e[1;4A"
       kUP5: "\e[1;5A"
       kUP6: "\e[1;6A"
+      kUP7: "\e[1;7A"
       kbs: "\x7F"
+      kcbt: "\e[Z"
       kcub1: "\eOD"
       kcud1: "\eOB"
+      kcuf1: "\eOC"
       kcuu1: "\eOA"
       kdch1: "\e[3~"
       kend: "\eOF"
+      kent: "\eOM"
+      kf1: "\eOP"
       kf10: "\e[21~"
       kf11: "\e[23~"
+      kf12: "\e[24~"
       kf2: "\eOQ"
+      kf3: "\eOR"
       kf4: "\eOS"
+      kf5: "\e[15~"
+      kf6: "\e[17~"
+      kf7: "\e[18~"
+      kf8: "\e[19~"
       kf9: "\e[20~"
       khome: "\eOH"
+      kich1: "\e[2~"
       kind: "\e[1;2B"
+      km: ''
       kmous: "\e[<"
       knp: "\e[6~"
       kpp: "\e[5~"
       kri: "\e[1;2A"
       kxIN: "\e[I"
+      kxOUT: "\e[O"
+      lines: '24'
+      mc5i: ''
       mir: ''
+      msgr: ''
+      npc: ''
       oc: "\e]104\a"
       op: "\e[39;49m"
+      pairs: '32767'
       rc: "\e8"
+      rep: "%p1%c\e[%p2%{1}%-%db"
       rev: "\e[7m"
+      ri: "\eM"
+      rin: "\e[%p1%dT"
       ritm: "\e[23m"
       rmacs: "\e(B"
+      rmam: "\e[?7l"
       rmcup: "\e[?1049l"
+      rmir: "\e[4l"
+      rmkx: "\e[?1l\e>"
       rmso: "\e[27m"
+      rmul: "\e[24m"
       rs1: "\e]\e\\\ec"
+      rv: "\e\\[[0-9]+;[0-9]+;[0-9]+c"
+      sc: "\e7"
+      setab: "\e[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p1%d%;m"
       setaf: "\e[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1%d%;m"
+      setrgbb: "\e[48:2:%p1%d:%p2%d:%p3%dm"
       setrgbf: "\e[38:2:%p1%d:%p2%d:%p3%dm"
+      sgr: "%?%p9%t\e(0%e\e(B%;\e[0%?%p6%t;1%;%?%p5%t;2%;%?%p2%t;4%;%?%p1%p3%|%t;7%;%?%p4%t;5%;%?%p7%t;8%;m"
       sgr0: "\e(B\e[m"
       sitm: "\e[3m"
       smacs: "\e(0"
       smam: "\e[?7h"
+      smcup: "\e[?1049h"
+      smir: "\e[4h"
       smkx: "\e[?1h\e="
       smso: "\e[7m"
+      smul: "\e[4m"
       tbc: "\e[3g"
+      tsl: "\e]2;"
       u6: "\e[%i%d;%dR"
+      u7: "\e[6n"
+      u8: "\e[?%[;0123456789]c"
+      u9: "\e[c"
       vpa: "\e[%i%p1%dd"
+      xenl: ''
+      xm: "\e[<%i%p3%d;%p1%d;%p2%d;%?%p4%tM%em%;"
+      xr: "\eP>\\|[ -~]+a\e\\"
     supported: true
 test_results:
   emoji_vs15_results:
@@ -2413,4 +2519,4 @@ test_results:
       n_total: 43592
       pct_success: 99.99770600110112
 wcwidth_version: 0.7.0
-width: 71
+width: 127
