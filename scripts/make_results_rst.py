@@ -1563,20 +1563,24 @@ def display_xtgettcap_comparison_table(score_table):
         for sw_name, caps in xtgettcap_data.items():
             value = caps.get(cap_name)
             value_display = _format_value(value)
+            if value_display == "(not reported)":
+                continue
             groups.setdefault(value_display, []).append(sw_name)
 
-        # Build  RST with one row per value group
-        first = True
+        # Skip capabilities that no terminal actually reports
+        if not groups:
+            continue
+
+        # RST: repeat cap name in every row (blank cells break table sorting)
         for value_display, terminals in sorted(groups.items()):
             terminal_links = ", ".join(
                 make_outbound_hyperlink(t, t + "_xtgettcap")
                 for t in sorted(terminals)
             )
             table_data.append({
-                "Capability": cap_name if first else "",
+                "Capability": cap_name,
                 "Terminals and Values": f"{terminal_links}: {value_display}",
             })
-            first = False
 
     if table_data:
         table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
