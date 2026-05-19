@@ -557,6 +557,7 @@ def make_score_table():
     # Suggest generating YAML files with something like:
     #     python ucs_detect/__init__.py --save-yaml data/output.yaml --limit-codepoints=1000 --limit-words=1000 --limit-errors=100
     #
+    yaml_path = None
     try:
         for yaml_path in [
             os.path.join(DATA_PATH, fname)
