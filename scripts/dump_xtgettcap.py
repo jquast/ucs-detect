@@ -1,9 +1,11 @@
 """Dump all XTGETTCAP capability names for each terminal in data/, by software name and version."""
-import yaml
 from pathlib import Path
+
+import yaml
 
 
 def main():
+    """Dump all XTGETTCAP terminfo capability names for each terminal."""
     data_dir = Path(__file__).resolve().parent / "data"
     yaml_files = sorted(data_dir.glob("*.yaml"))
 

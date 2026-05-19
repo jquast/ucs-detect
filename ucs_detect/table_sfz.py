@@ -1,3 +1,4 @@
+"""Standalone Fitzpatrick skin tone modifier test data."""
 STANDALONE_FITZPATRICK = (
     ('17.0.0', (
         127995, 127996, 127997, 127998, 127999

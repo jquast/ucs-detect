@@ -1,3 +1,5 @@
+# pylint: disable=duplicate-code
+"""Generate VS-15 (wide-to-narrow) variation selector table data for ucs_detect."""
 import os
 import sys
 
@@ -67,7 +69,7 @@ def do_retrieve(url, fname):
         os.makedirs(folder, exist_ok=True)
     if os.path.exists(fname):
         return
-    resp = requests.get(url, stream=True)
+    resp = requests.get(url, stream=True, timeout=30)
     with open(fname, "wb") as fout:
         for chunk in resp.iter_content(FETCH_BLOCKSIZE):
             fout.write(chunk)
@@ -106,6 +108,7 @@ def fetch_vs15_data():
 
 
 def main():
+    """Generate and write the VS-15 unicode table module."""
     version, all_sequences = fetch_vs15_data()
     cjk_count = sum(1 for cp, _ in all_sequences if is_cjk(cp))
 

@@ -1,5 +1,7 @@
-import wcwidth
+"""Generate VS-16 (narrow-to-wide) variation selector table data for ucs_detect."""
 import collections
+
+import wcwidth
 
 
 def fetch_vs16_data():
@@ -20,6 +22,7 @@ def fetch_vs16_data():
 
 
 def main():
+    """Generate and write the VS-16 unicode table module."""
     # create basic python code, skipping all that jinja stuff
     print("VS16_NARROW_TO_WIDE = (")
     for key, sequences in fetch_vs16_data():

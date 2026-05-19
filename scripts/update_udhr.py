@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Update UDHR (Universal Declaration of Human Rights) language data for ucs_detect."""
 # Script to update UDHR text files from the unicode-org/udhr XML repository.
 # Parses XML files from {tempdir}/udhr/data/udhr/ and generates plain text files
 # in ucs_detect/udhr/ matching the existing format.
@@ -11,6 +12,7 @@ import subprocess
 
 
 def parse_udhr_xml(xml_path):
+    """Parse UDHR XML data and extract language translations."""
     # Parse UDHR XML file and extract content
     # Returns dict with: language_name, content (list of lines)
     tree = ET.parse(xml_path)
@@ -57,7 +59,7 @@ def parse_udhr_xml(xml_path):
 
     # Process articles
     for article in root.findall('udhr:article', ns):
-        article_num = article.get('number', '')
+        article_num = article.get('number', '')  # noqa: F841
 
         # Article title
         article_title = article.find('udhr:title', ns)
@@ -92,6 +94,7 @@ def parse_udhr_xml(xml_path):
 
 
 def generate_text_file(xml_path, output_dir):
+    """Generate a text file from parsed UDHR language data."""
     # Generate a plain text file from a UDHR XML file
     # Returns path to generated file, or None if skipped
     xml_path = Path(xml_path)
@@ -120,6 +123,7 @@ def generate_text_file(xml_path, output_dir):
 
 
 def main():
+    """Fetch UDHR data and regenerate language table modules."""
     # Process all UDHR XML files
     xml_dir = Path(tempfile.gettempdir()) / 'udhr' / 'data' / 'udhr'
     output_dir = Path(__file__).parent / 'ucs_detect' / 'udhr'
@@ -157,7 +161,7 @@ def main():
 
     # Apply encoding fixes for known issues in upstream XML
     print("\nApplying encoding fixes...")
-    import fix_udhr_data
+    import fix_udhr_data  # pylint: disable=import-error
     fix_udhr_data.main()
 
     return errors

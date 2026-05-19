@@ -1,3 +1,4 @@
+"""Generate Standalone Regional Indicator table data for ucs_detect."""
 import wcwidth
 
 
@@ -9,6 +10,7 @@ def fetch_sri_data():
 
 
 def main():
+    """Generate and write the SRI unicode table module."""
     import textwrap
     print("STANDALONE_REGIONAL_INDICATORS = (")
     for key, codepoints in fetch_sri_data():

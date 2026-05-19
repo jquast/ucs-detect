@@ -1,3 +1,5 @@
+# pylint: disable=duplicate-code
+"""Generate Emoji ZWJ sequence table data for ucs_detect."""
 # This is a minified version of bin/update-tables.py from https://github.com/jquast/wcwidth/
 import os
 import re
@@ -18,7 +20,7 @@ def do_retrieve(url: str, fname: str) -> None:
         os.makedirs(folder, exist_ok=True)
     if os.path.exists(fname):
         return
-    resp = requests.get(url, stream=True)
+    resp = requests.get(url, stream=True, timeout=30)
     with open(fname, "wb") as fout:
         for chunk in resp.iter_content(FETCH_BLOCKSIZE):
             fout.write(chunk)
@@ -50,6 +52,7 @@ def fetch_zwj_data():
 
 
 def main():
+    """Generate and write the ZWJ unicode table module."""
     version, sequences = fetch_zwj_data()
     print("EMOJI_ZWJ_SEQUENCES = (")
     print(f"  ('{version}', (")
