@@ -296,6 +296,7 @@ def test_language_support(
     limit_graphemes_pct=0,
     silent=False,
     bg_rgb=None,
+    single_cpr=False,
     **_kwargs,
 ):
     """Test terminal support for language graphemes."""
@@ -397,6 +398,7 @@ def test_language_support(
             _spray_enabled = (
                 not silent
                 and cursor_report_delay_ms == 0
+                and not single_cpr
                 and term.stream is not None
             )
 
@@ -665,6 +667,7 @@ def test_support(
     limit_category_time=0,
     silent=False,
     bg_rgb=None,
+    single_cpr=False,
 ):
     """Test terminal support for a Unicode character table."""
     success_report = collections.defaultdict(int)
@@ -756,6 +759,7 @@ def test_support(
                 not suppress_output
                 and not silent
                 and cursor_report_delay_ms == 0
+                and not single_cpr
                 and term.stream is not None
             )
 

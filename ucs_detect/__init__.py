@@ -108,7 +108,7 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", verify_software_name_and_version=False, terminal_full_probe=False, silent=False, no_final_summary=False, reuse_version=False, rerun_software_name='', rerun_software_version='', **_kwargs):
+def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", verify_software_name_and_version=False, terminal_full_probe=False, silent=False, no_final_summary=False, reuse_version=False, rerun_software_name='', rerun_software_version='', single_cpr=False, **_kwargs):
     """Program entry point."""
 
     def _should_run(*categories):
@@ -131,7 +131,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     session_arguments = {
         k: local_vars[k]
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
-                  "limit_graphemes_pct", "limit_category_time")
+                  "limit_graphemes_pct", "limit_category_time", "single_cpr")
     }
     if not silent:
         writer(f"ucs-detect: {display_args(session_arguments)})")
@@ -310,6 +310,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             cursor_report_delay_ms=cursor_report_delay_ms,
             silent=silent,
             bg_rgb=bg_rgb,
+            single_cpr=single_cpr,
         )
 
         cursor_ctx = term.hidden_cursor() if silent else contextlib.nullcontext()
@@ -396,6 +397,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     cursor_report_delay_ms=cursor_report_delay_ms,
                     silent=silent,
                     bg_rgb=bg_rgb,
+                    single_cpr=single_cpr,
                 )
 
     elapsed = time.monotonic() - start_time
@@ -1185,6 +1187,12 @@ def parse_args():
         help="Delay in milliseconds before reading cursor position report",
     )
     args.add_argument(
+        "--single-cpr",
+        action="store_true",
+        default=False,
+        help="Measure one character at a time via CPR, disabling spray-and-collect batching",
+    )
+    args.add_argument(
         "--detect-all-dec-modes",
         action="store_true",
         default=False,
@@ -1271,6 +1279,7 @@ def _apply_rerun_yaml(results):
     yaml_bool_flags = {
         'no_terminal_test': 'no_terminal_test',
         'no_languages_test': 'no_languages_test',
+        'single_cpr': 'single_cpr',
     }
 
     for yaml_key, cli_key in yaml_to_cli.items():
