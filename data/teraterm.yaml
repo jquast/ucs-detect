@@ -10,8 +10,8 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-software_name: 0+r
-software_version: ''
+software_name: TeraTerm
+software_version: '5.6.1'
 system: Windows
 terminal_results:
   background_color_hex: '#000000000000'
