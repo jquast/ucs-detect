@@ -1,6 +1,6 @@
-# Terminal detail mixins for ucs-detect
-# This file provides additional metadata about terminals that cannot be
-# automatically detected or stored in the test result YAML files.
+# Terminal detail mixins for ucs-detect This file provides additional metadata about terminals that
+# cannot be automatically detected or stored in the test result YAML files. This also includes a
+# 'launch' group used by 'run-series.py'
 #
 # Keys are matched against software_name (case-insensitive after lowercasing)
 
@@ -246,3 +246,12 @@ terminals:
     launch:
       program: zutty
       args: [-e]
+
+  zellij:
+    homepage: https://github.com/zellij-org/zellij
+    launch:
+      subterminal: true
+      program: zellij
+      args: [-q]
+      post_launch_delay_ms: 300
+      post_launch_keys: ["\x1b", '\p1000', "sh ", "${SCRIPT} && exit", "\n"]
