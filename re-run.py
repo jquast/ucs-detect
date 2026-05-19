@@ -23,7 +23,7 @@ def build_command_from_yaml(yaml_file):
         'limit_codepoints': '--limit-codepoints',
         'limit_words': '--limit-words',
         'limit_errors': '--limit-errors',
-        'timeout': '--timeout',
+        'timeout_cps': '--timeout-cps',
         'stop_at_error': '--stop-at-error',
     }
 
@@ -75,6 +75,7 @@ def main():
     print(f"Running: {shlex.join(cmd)}")
 
     subprocess.check_call(cmd)
+
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -131,7 +131,8 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     session_arguments = {
         k: local_vars[k]
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
-                  "limit_graphemes_pct", "limit_category_time", "single_cpr")
+                  "limit_graphemes_pct", "limit_category_time", "single_cpr",
+                  "timeout_cps")
     }
     if not silent:
         writer(f"ucs-detect: {display_args(session_arguments)})")
