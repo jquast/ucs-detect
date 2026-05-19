@@ -804,7 +804,48 @@ def _truncate_version(version):
     return version
 
 
-def _count_capabilities(entry):
+def _classify_xtgettcap(data):
+    """Classify XTGETTCAP support as full, partial, or none.
+
+    Uses same logic as ttyscan ``has_meaningful_caps``: Full terminals
+    report capabilities beyond the bare-minimum TN/colors/RGB plus keyboard
+    keys.  Boolean caps (empty string), meaningful numeric caps (beyond
+    colors/Co), and output string caps (non-keyboard) all indicate Full.
+    Returns ``(label, score)`` where label is "full", "partial", or None,
+    and score is 1.0, 0.5, or 0.0.
+
+    ``data`` may be either a raw YAML-loaded dict or a score table entry
+    dict.
+    """
+    if "data" in data:
+        data = data["data"]
+    tr = data.get("terminal_results") or {}
+    xt = tr.get("xtgettcap", {})
+    if not xt.get("supported", False):
+        return (None, 0.0)
+    caps = xt.get("capabilities", {})
+    if not caps:
+        return (None, 0.0)
+
+    # ttyscan has_meaningful_caps: Full if anything beyond bare-minimum.
+    # Skip RGB (special: parsed int) and TN (every terminal reports it).
+    for name, value in caps.items():
+        if name in ("RGB",):
+            continue
+        if not value:
+            # Boolean cap (empty string) signals Full
+            return ("full", 1.0)
+        if value.isdigit() and name not in ("colors", "Co"):
+            # Meaningful numeric cap (beyond colors/Co)
+            return ("full", 1.0)
+        if not value.isdigit() and not name.startswith("k") and name != "TN":
+            # Output/screen string cap (not keyboard, not TN)
+            return ("full", 1.0)
+
+    return ("partial", 0.5)
+
+
+def _count_capabilities(entry):  # "features" in user-facing output
     """Count supported and total notable capabilities for a terminal."""
     tr = entry["data"].get("terminal_results") or {}
     if not tr:
@@ -824,10 +865,12 @@ def _count_capabilities(entry):
         n_found += 1
     elif tr.get("modes"):
         n_total += 1
-    xtgettcap = tr.get("xtgettcap", {})
-    if xtgettcap.get("supported", False) and bool(xtgettcap.get("capabilities")):
+    # XTGETTCAP: Full=1.0, Partial=0.5 contribution
+    xt = tr.get("xtgettcap", {})
+    if xt.get("supported", False) and bool(xt.get("capabilities")):
         n_total += 1
-        n_found += 1
+        _label, xt_score = _classify_xtgettcap(entry)
+        n_found += xt_score
     elif "xtgettcap" in tr:
         n_total += 1
     return n_found, n_total
@@ -973,7 +1016,7 @@ def display_tabulated_scores(score_table):
                     "_ri"
                 ) if not math.isnan(result["score_ri_scaled"])
                     else _wrap_untested(result["terminal_software_name"], "_ri")),
-                "Capabilities": capabilities_list,
+                "Features": capabilities_list,
                 "Graphics": _format_graphics_protocols(result, result["terminal_software_name"]),
             }
         )
@@ -1223,9 +1266,9 @@ def score_capabilities(data):
     if tr.get("kitty_keyboard") is not None:
         count += 1
 
-    xtgettcap = tr.get("xtgettcap", {})
-    if xtgettcap.get("supported", False) and bool(xtgettcap.get("capabilities")):
-        count += 1
+    _label, xt_score = _classify_xtgettcap(data)
+    if xt_score > 0:
+        count += xt_score
 
     text_sizing = tr.get("text_sizing", {})
     if text_sizing.get("width") or text_sizing.get("scale"):
@@ -1320,6 +1363,18 @@ def display_common_languages(all_successful_languages):
         print()
 
 
+def _format_xtgettcap_feature(entry, sw_name):
+    """Format XTGETTCAP as Yes (Full), Yes (Partial), No, or N/A with score."""
+    tr = entry["data"].get("terminal_results") or {}
+    if not tr:
+        return wrap_with_score_role("N/A", float("nan"))
+    label, score = _classify_xtgettcap(entry)
+    if label is None:
+        return _capability_yes_no(False, sw_name, "_xtgettcap")
+    text = "yes (Full)" if label == "full" else "yes (Partial)"
+    return wrap_score_with_hyperlink(text, score, sw_name, "_xtgettcap")
+
+
 def _capability_yes_no(value, terminal_name, section_suffix):
     """Format a boolean capability as a scored yes/no with hyperlink."""
     if value is None:
@@ -1407,12 +1462,8 @@ def display_capabilities_table(score_table):
         # Graphics protocols
         row["Graphics"] = _format_graphics_protocols(entry, sw_name)
 
-        # XTGETTCAP: require at least one capability returned
-        xtgettcap = tr.get('xtgettcap', {})
-        row["XTGETTCAP"] = _capability_yes_no(
-            (xtgettcap.get('supported', False)
-             and bool(xtgettcap.get('capabilities'))) if tested else None,
-            sw_name, "_xtgettcap")
+        # XTGETTCAP: classify as Full, Partial, or None
+        row["XTGETTCAP"] = _format_xtgettcap_feature(entry, sw_name)
 
         # Text Sizing (OSC 66)
         text_sizing = tr.get('text_sizing', {})
@@ -1459,43 +1510,34 @@ def display_capabilities_table(score_table):
 def display_xtgettcap_comparison_table(score_table):
     """Display an XTGETTCAP terminfo capability comparison table.
 
-    Shows the three primary capabilities (Co, TN, RGB) reported by each
-    terminal via XTGETTCAP, grouped by shared values so terminals with the
-    same capability value appear together.  Each terminal name links to its
-    detailed XTGETTCAP results page.
+    Shows all capabilities reported by each terminal via XTGETTCAP, grouped
+    by shared values so terminals with the same capability value appear
+    together.  Each terminal name links to its detailed XTGETTCAP results
+    page.
     """
+    from collections import OrderedDict
+
     display_title("Terminal Capabilities (XTGETTCAP)", 2)
     print("This table shows XTGETTCAP terminfo capability values reported by each terminal.")
-    print("Terminals are grouped by shared values for the three primary capabilities:")
-    print("colors (Co), terminal name (TN), and color depth (RGB).")
+    print("Terminals are grouped by shared values for each capability.")
     print()
 
     # Collect XTGETTCAP data from all terminals that support it
-    xtgettcap_data = []  # list of (sw_name, Co, colors, TN, RGB)
+    xtgettcap_data = OrderedDict()  # sw_name -> dict of all capabilities
+    all_cap_names = set()
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
         tr = entry["data"].get("terminal_results") or {}
         xt = tr.get("xtgettcap", {})
         if xt.get("supported") and xt.get("capabilities"):
             caps = xt["capabilities"]
-            xtgettcap_data.append((
-                sw_name,
-                caps.get("Co"),
-                caps.get("colors"),
-                caps.get("TN"),
-                caps.get("RGB"),
-            ))
+            xtgettcap_data[sw_name] = dict(caps)
+            all_cap_names.update(caps.keys())
 
     if not xtgettcap_data:
         print("No XTGETTCAP data available.")
         print()
         return
-
-    capabilities = [
-        ("Colors", "Co"),
-        ("TN", "TN"),
-        ("RGB", "RGB"),
-    ]
 
     def _format_value(value):
         """Format a capability value for display, using repr for non-printable chars."""
@@ -1505,32 +1547,36 @@ def display_xtgettcap_comparison_table(score_table):
             return repr(value)
         return str(value)
 
+    # Sort cap names: primary first, then alphabetical
+    primary_caps = ["TN", "colors", "Co", "RGB"]
+    sorted_caps = []
+    for cap in primary_caps:
+        if cap in all_cap_names:
+            sorted_caps.append(cap)
+            all_cap_names.discard(cap)
+    sorted_caps.extend(sorted(all_cap_names))
+
     table_data = []
-    for cap_label, cap_key in capabilities:
+    for cap_name in sorted_caps:
         # Group terminals by value
         groups = {}
-        for sw_name, co, colors, tn, rgb in xtgettcap_data:
-            if cap_key == "Co":
-                # Prefer "colors" over "Co" (blessed returns "colors" as primary key)
-                value = colors if (colors is not None and colors != "") else co
-            else:
-                value = {"TN": tn, "RGB": rgb}[cap_key]
+        for sw_name, caps in xtgettcap_data.items():
+            value = caps.get(cap_name)
             value_display = _format_value(value)
             groups.setdefault(value_display, []).append(sw_name)
 
-        # Build comma-separated terminal refs for each value group
-        parts = []
+        # Build  RST with one row per value group
+        first = True
         for value_display, terminals in sorted(groups.items()):
             terminal_links = ", ".join(
                 make_outbound_hyperlink(t, t + "_xtgettcap")
                 for t in sorted(terminals)
             )
-            parts.append(f"{terminal_links}: {value_display}")
-
-        table_data.append({
-            "Capability": cap_label,
-            "Terminals and Values": " ; ".join(parts),
-        })
+            table_data.append({
+                "Capability": cap_name if first else "",
+                "Terminals and Values": f"{terminal_links}: {value_display}",
+            })
+            first = False
 
     if table_data:
         table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
@@ -1605,7 +1651,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         },
         {
             "#": 9,
-            "Score Type": make_outbound_hyperlink("Capabilities", sw_name + "_dec_modes"),
+            "Score Type": make_outbound_hyperlink("FEAT", sw_name + "_dec_modes"),
             "Raw Score": format_raw_score(entry["score_capabilities"]),
             "Final Scaled Score": format_score_pct(entry["score_capabilities_scaled"]),
         },
@@ -1648,7 +1694,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print()
     print("     TIME is normalized to 0-1 range before averaging.")
     print("     TIME is weighted at 0.5 (half as powerful as other metrics).")
-    print("     CAP (Capabilities) is the fraction of notable capabilities supported.")
+    print("     FEAT (Features) is the fraction of notable features supported.")
     print("     GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),")
     print("     50% for legacy only (Sixel, ReGIS), 0% for none.")
     print()
@@ -1785,7 +1831,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f".. note:: {_UNTESTED_NOTE}")
     print()
 
-    print("**Capabilities Score Details:**")
+    print("**Features Score Details:**")
     print()
     if not math.isnan(entry["score_capabilities"]):
         tr = entry["data"].get("terminal_results") or {}
@@ -1798,8 +1844,10 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             (_fmt_mode(_DPM.GRAPHEME_CLUSTERING), _get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING)),
             (_fmt_mode(_DPM.BRACKETED_PASTE_MIME), _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME)),
             ("Kitty Keyboard", tr.get("kitty_keyboard") is not None),
-            ("XTGETTCAP", (tr.get("xtgettcap", {}).get("supported", False)
-                           and bool(tr.get("xtgettcap", {}).get("capabilities")))),
+            ("XTGETTCAP (Full)" if (_classify_xtgettcap(entry)[0] or "") == "full"
+             else "XTGETTCAP (Partial)" if _classify_xtgettcap(entry)[0]
+             else "XTGETTCAP",
+             _classify_xtgettcap(entry)[1] > 0),
             ("Text Sizing (OSC 66)",
              (tr.get("text_sizing", {}).get("width")
               or tr.get("text_sizing", {}).get("scale"))),
@@ -1815,7 +1863,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
              bool(tr.get("foreground_color_hex") or tr.get("background_color_hex"))),
         ]
         cap_count = sum(1 for _, v in cap_checks if v)
-        print(f"Notable terminal capabilities ({cap_count} / {len(cap_checks)}):")
+        print(f"Notable terminal features ({cap_count} / {len(cap_checks)}):")
         print()
         for name, supported in cap_checks:
             status = "yes" if supported else "no"
@@ -2276,8 +2324,10 @@ def show_xtgettcap_results(sw_name, entry):
         print()
         return
 
+    label, _score = _classify_xtgettcap(entry)
+    qualifier = " (Full)" if label == "full" else " (Partial)"
     print(f"*{sw_name}* supports the ``XTGETTCAP`` sequence and reports "
-          f"**{len(capabilities)}** terminfo capabilities.")
+          f"**{len(capabilities)}** terminfo capabilities{qualifier}.")
     print()
 
     from blessed._capabilities import XTGETTCAP_CAPABILITIES
