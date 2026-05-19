@@ -1471,7 +1471,7 @@ def display_xtgettcap_comparison_table(score_table):
     print()
 
     # Collect XTGETTCAP data from all terminals that support it
-    xtgettcap_data = []  # list of (sw_name, Co, TN, RGB)
+    xtgettcap_data = []  # list of (sw_name, Co, colors, TN, RGB)
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
         tr = entry["data"].get("terminal_results") or {}
@@ -1481,6 +1481,7 @@ def display_xtgettcap_comparison_table(score_table):
             xtgettcap_data.append((
                 sw_name,
                 caps.get("Co"),
+                caps.get("colors"),
                 caps.get("TN"),
                 caps.get("RGB"),
             ))
@@ -1491,21 +1492,30 @@ def display_xtgettcap_comparison_table(score_table):
         return
 
     capabilities = [
-        ("Colors (Co)", "Co"),
+        ("Colors", "Co"),
         ("TN", "TN"),
         ("RGB", "RGB"),
     ]
+
+    def _format_value(value):
+        """Format a capability value for display, using repr for non-printable chars."""
+        if value is None or value == "":
+            return "(not reported)"
+        if any(ord(ch) < 32 or ord(ch) > 126 for ch in str(value)):
+            return repr(value)
+        return str(value)
 
     table_data = []
     for cap_label, cap_key in capabilities:
         # Group terminals by value
         groups = {}
-        for sw_name, co, tn, rgb in xtgettcap_data:
-            value = {"Co": co, "TN": tn, "RGB": rgb}[cap_key]
-            if value is None or value == "":
-                value_display = "(not reported)"
+        for sw_name, co, colors, tn, rgb in xtgettcap_data:
+            if cap_key == "Co":
+                # Prefer "colors" over "Co" (blessed returns "colors" as primary key)
+                value = colors if (colors is not None and colors != "") else co
             else:
-                value_display = str(value)
+                value = {"TN": tn, "RGB": rgb}[cap_key]
+            value_display = _format_value(value)
             groups.setdefault(value_display, []).append(sw_name)
 
         # Build comma-separated terminal refs for each value group
