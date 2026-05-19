@@ -1889,7 +1889,7 @@ def show_graphics_results(sw_name, entry):
     da_ext = tr.get("device_attributes", {}).get("extensions", [])
     regis_supported = 3 in da_ext
     kitty_supported = tr.get("kitty_graphics", False)
-    iterm2_supported = tr.get("iterm2_features") or {}.get("supported", False)
+    iterm2_supported = (tr.get("iterm2_features") or {}).get("supported", False)
 
     protocols = []
     if sixel_supported:

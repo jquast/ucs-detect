@@ -558,7 +558,7 @@ def _build_terminal_kv_pairs(term, results):
                       f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
 
     has_kitty_gfx = results.get('kitty_graphics', False)
-    has_iterm2_gfx = results.get('iterm2_features') or {}.get('supported', False)
+    has_iterm2_gfx = (results.get('iterm2_features') or {}).get('supported', False)
     has_sixel = results.get('sixel', False)
     if has_kitty_gfx or has_iterm2_gfx:
         protocols = []
