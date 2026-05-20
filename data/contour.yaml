@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-19 16:55:23 UTC
-height: 41
+datetime: 2026-05-20 16:53:49 UTC
+height: 24
 python_version: 3.14.4
-seconds_elapsed: 47.36305724500562
+seconds_elapsed: 4.987689827001304
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -31,13 +31,13 @@ terminal_results:
     decsasd: '0'
     decsca: '2'
     decscl: 65;1
-    decscpp: 121|$
+    decscpp: 80|$
     decscusr: '6'
-    decslpp: '41'
-    decslrm: 1;120
-    decsnls: '41'
+    decslpp: '24'
+    decslrm: 1;79
+    decsnls: '24'
     decssdt: '1'
-    decstbm: 1;40
+    decstbm: 1;23
     sgr: 0;38;2;26;23;22;49
   device_attributes:
     extensions:
@@ -54,7 +54,7 @@ terminal_results:
   - 53456
   - 53456
   - 53456
-  height: 41
+  height: 24
   iterm2_features:
     features: {}
     supported: false
@@ -137,10 +137,10 @@ terminal_results:
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
   osc52_clipboard: true
-  pixels_height: 902
-  pixels_width: 1210
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  pixels_height: 528
+  pixels_width: 800
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: true
   software_name: contour
   software_version: 0.6.3.8249
@@ -150,7 +150,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 121
+  width: 80
   xtgettcap:
     capabilities:
       Cs: "\e]12;%p1%s\e\\"
@@ -21512,4 +21512,4 @@ test_results:
       n_total: 43592
       pct_success: 100.0
 wcwidth_version: 0.7.0
-width: 121
+width: 80
