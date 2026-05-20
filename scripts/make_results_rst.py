@@ -827,19 +827,21 @@ def _classify_xtgettcap(data):
     if not caps:
         return (None, 0.0)
 
-    # ttyscan has_meaningful_caps: Full if anything beyond bare-minimum.
+    # ttyscan has_meaningful_caps: Full if meaningful caps beyond bare-minimum.
     # Skip RGB (special: parsed int) and TN (every terminal reports it).
+    # Require at least 5 meaningful caps to be Full (filters out terminals
+    # that only report basic color strings like setab/setaf).
+    meaningful = 0
     for name, value in caps.items():
-        if name in ("RGB",):
+        if name in ("RGB", "TN"):
             continue
         if not value:
-            # Boolean cap (empty string) signals Full
-            return ("full", 1.0)
-        if value.isdigit() and name not in ("colors", "Co"):
-            # Meaningful numeric cap (beyond colors/Co)
-            return ("full", 1.0)
-        if not value.isdigit() and not name.startswith("k") and name != "TN":
-            # Output/screen string cap (not keyboard, not TN)
+            meaningful += 1  # Boolean cap
+        elif value.isdigit() and name not in ("colors", "Co"):
+            meaningful += 1  # Meaningful numeric cap
+        elif not value.isdigit() and not name.startswith("k"):
+            meaningful += 1  # Output/screen string cap
+        if meaningful >= 5:
             return ("full", 1.0)
 
     return ("partial", 0.5)
@@ -1543,9 +1545,12 @@ def display_xtgettcap_comparison_table(score_table):
         """Format a capability value for display, using repr for non-printable chars."""
         if value is None or value == "":
             return "(not reported)"
-        if any(ord(ch) < 32 or ord(ch) > 126 for ch in str(value)):
-            return repr(value)
-        return str(value)
+        raw = str(value)
+        if any(ord(ch) < 32 or ord(ch) > 126 for ch in raw):
+            return f"``{_escape_terminfo_value(raw)}``"
+        if not raw.isalnum():
+            return f"``{raw.replace('`', '\\\\`')}``"
+        return raw
 
     # Sort cap names: primary first, then alphabetical
     primary_caps = ["TN", "colors", "Co", "RGB"]
@@ -1571,16 +1576,18 @@ def display_xtgettcap_comparison_table(score_table):
         if not groups:
             continue
 
-        # RST: repeat cap name in every row (blank cells break table sorting)
+        # Build one cell per capability with RST line blocks for line breaks
+        lines = []
         for value_display, terminals in sorted(groups.items()):
             terminal_links = ", ".join(
                 make_outbound_hyperlink(t, t + "_xtgettcap")
                 for t in sorted(terminals)
             )
-            table_data.append({
-                "Capability": cap_name,
-                "Terminals and Values": f"{terminal_links}: {value_display}",
-            })
+            lines.append(f"| {terminal_links}: {value_display}")
+        table_data.append({
+            "Capability": cap_name,
+            "Terminals and Values": "\n".join(lines),
+        })
 
     if table_data:
         table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")

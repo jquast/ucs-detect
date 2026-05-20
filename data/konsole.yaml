@@ -10,6 +10,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
+  single_cpr: true
 software_name: Konsole
 software_version: 23.08.5
 system: Linux
