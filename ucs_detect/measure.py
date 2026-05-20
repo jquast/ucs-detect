@@ -95,6 +95,9 @@ def get_location_with_retry(term, timeout, max_retries=3):
         if (ypos, xpos) != (-1, -1):
             return (ypos, xpos)
 
+        # Drain stale CPR responses before retrying or giving up.
+        term.flushinp(timeout=0.05)
+
         if elapsed < (timeout * 0.1):
             timeout = timeout * 1.5
             continue
@@ -486,6 +489,7 @@ def test_language_support(
                                 break
                             col = 0
                             continue
+                    term.flushinp(timeout=0.05)
 
                 # Fallback: process row character by character
                 for _idx, _grapheme in _row_items:
@@ -622,6 +626,7 @@ def wchar_to_str(wchar):
 
 def exit_and_display_timeout_error(term, writer, timeout, **_kwargs):
     """Display timeout error and exit."""
+    term.flushinp(timeout=0.05)
     writer("\n" + term.reverse_red(f"Timeout Exceeded ({timeout:.1f}s)") + "\n")
     sys.exit(1)
 
@@ -830,6 +835,7 @@ def test_support(
                                 break
                             col = 0
                             continue
+                    term.flushinp(timeout=0.05)
 
                 # Fallback: process row character by character
                 for _wchar in _row_wchars:
