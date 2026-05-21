@@ -9,7 +9,6 @@ session_arguments:
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
-  single_cpr: false
   stream: stderr
   timeout_cps: 1.0
 software_name: WezTerm

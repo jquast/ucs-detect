@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-19 01:36:19 UTC
-height: 33
+datetime: 2026-05-21 01:51:56 UTC
+height: 20
 python_version: 3.14.4
-seconds_elapsed: 11.072739889998047
+seconds_elapsed: 9.515036429977044
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -26,8 +26,8 @@ terminal_results:
   decrqss_settings:
     decsca: '2'
     decscusr: '2'
-    decslrm: 1;146
-    decstbm: 1;33
+    decslrm: 1;71
+    decstbm: 1;20
     sgr: '38:2:0:0:0'
   device_attributes:
     extensions:
@@ -38,7 +38,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 33
+  height: 20
   iterm2_features:
     features: {}
     supported: false
@@ -119,10 +119,10 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 924
-  pixels_width: 1898
-  screen_ratio: '16:9'
-  screen_ratio_name: HD
+  pixels_height: 500
+  pixels_width: 781
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: false
   software_name: libvterm
   software_version: '0.3'
@@ -132,7 +132,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-ghostty
-  width: 146
+  width: 71
   xtgettcap:
     capabilities: {}
     supported: false
@@ -10139,7 +10139,7 @@ test_results:
         measured_by_wcwidth: 1
         wchars: \u0db4\u0dca\u200d
       - grapheme_id: Sinhala-1-74
-        measured_by_terminal: -136
+        measured_by_terminal: 7
         measured_by_wcwidth: 1
         wchars: \u0dc0\u0dca\u200d
       - grapheme_id: Sinhala-1-7b
@@ -11317,4 +11317,4 @@ test_results:
       n_total: 43592
       pct_success: 99.98394200770784
 wcwidth_version: 0.7.0
-width: 146
+width: 71

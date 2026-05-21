@@ -107,105 +107,6 @@ def get_location_with_retry(term, timeout, max_retries=3):
     return (-1, -1)
 
 
-def _spray_collect_row(term, writer, wchars_strs, timeout):
-    r"""
-    Write an entire row of characters with embedded CPR sequences.
-
-    Collects all CPR responses via inkey(capture_cpr=True).
-
-    Row format::
-
-        \x1B[6n<C1> · \x1B[6n<C2> · ... · \x1B[6n<Cn>\x1B[6n
-
-    :param wchars_strs: list of character strings for this row.
-    :param timeout: maximum seconds to wait for CPR responses.
-    :returns: list of (y, x) positions (0-indexed) from collected
-        CPR responses, ordered left-to-right.  Returns empty list on
-        timeout or if fewer than expected responses arrive.
-    """
-    n_chars = len(wchars_strs)
-    if n_chars == 0:
-        return []
-
-    parts = [term.magenta('║ ')]
-    for i, wchar_str in enumerate(wchars_strs):
-        parts.append('\x1B[6n')
-        parts.append(term.cyan(wchar_str))
-        if i < n_chars - 1:
-            parts.append(term.magenta(' · '))
-    parts.append('\x1B[6n')
-    parts.append(term.magenta(' ║\n'))
-
-    spray = ''.join(parts)
-
-    # Drain stale CPR responses before spraying to prevent contamination
-    # from prior operations (failed sprays, get_location calls, etc.).
-    # Small non-zero timeout catches in-flight stale responses.
-    term.flushinp(timeout=0.01)
-
-    if term.stream:
-        term.stream.write(spray)
-        term.stream.flush()
-    else:
-        writer(spray)
-
-    cpr_positions = []
-    expected_count = n_chars + 1
-    stime = time.monotonic()
-
-    while len(cpr_positions) < expected_count:
-        remaining = max(0, timeout - (time.monotonic() - stime))
-        if remaining <= 0:
-            break
-        inp = term.inkey(timeout=remaining, capture_cpr=True, esc_delay=0)
-        if inp and inp.name == 'CPR_RESPONSE':
-            y, x = inp.cpr_yx
-            cpr_positions.append((y, x))
-        elif inp:
-            term.ungetch(inp)
-
-    # Drain excess CPR responses that may have accumulated beyond
-    # expected_count, to prevent contaminating the next operation.
-    term.flushinp(timeout=0.01)
-
-    return cpr_positions
-
-
-def _validate_spray_positions(positions, expected_width):
-    """
-    Validate CPR positions from a spray-collected row.
-
-    :param positions: list of (y, x) tuples from CPR responses. First *N* entries correspond to
-        chars 1..N, last entry is the boundary CPR.
-    :param expected_width: expected display width per character.
-    :returns: tuple of (results, has_anomaly) where *results* is a list of (delta_y, delta_x) per
-        character and *has_anomaly* is True if any y-change or x-wrap was detected.
-    """
-    n_chars = len(positions) - 1
-    if n_chars <= 0:
-        return [], False
-
-    results = []
-    has_anomaly = False
-
-    for i in range(n_chars):
-        _y_before, x_before = positions[i]
-        y_after, x_after = positions[i + 1]
-
-        if i < n_chars - 1:
-            x_after -= 3
-
-        delta_y = y_after - _y_before
-        delta_x = x_after - x_before
-
-        if delta_y != 0 or delta_x < 0:
-            has_anomaly = True
-
-        results.append((delta_y, delta_x))
-
-    return results, has_anomaly
-
-
 def measure_width(term, writer, text, timeout):
     """Measure actual rendered width of text using cursor position reports."""
     _, x1 = get_location_with_retry(term, timeout)
@@ -308,7 +209,6 @@ def test_language_support(
     limit_graphemes_pct=0,
     silent=False,
     bg_rgb=None,
-    single_cpr=False,
     **_kwargs,
 ):
     """Test terminal support for language graphemes."""
@@ -407,15 +307,6 @@ def test_language_support(
             grapheme_count = 0
             error_count = 0
             col = 0
-            _spray_enabled = (
-                not silent
-                and cursor_report_delay_ms == 0
-                and not single_cpr
-                and term.stream is not None
-            )
-
-            # Build list of novel graphemes sliced by stride for this language
-            _sliced_graphemes = []
             for idx, grapheme in enumerate(novel):
                 if limit_graphemes and grapheme_count >= limit_graphemes:
                     break
@@ -428,174 +319,94 @@ def test_language_support(
                     category_seen += 1
                     continue
                 category_seen += 1
-                _sliced_graphemes.append((idx, grapheme))
 
-            # Group into rows
-            _rows = []
-            _current_row = []
-            for _item in _sliced_graphemes:
-                _current_row.append(_item)
-                if len(_current_row) >= num_columns:
-                    _rows.append(_current_row)
-                    _current_row = []
-            if _current_row:
-                _rows.append(_current_row)
+                grapheme_id = f"{lang}-{expected_width}-{idx:02x}"
 
-            for _row_items in _rows:
-                if _spray_enabled:
-                    _graphemes = [g for _, g in _row_items]
-                    _positions = _spray_collect_row(
-                        term, writer, _graphemes, timeout
+                if silent:
+                    fg = term.color_rgb(*bg_rgb) if bg_rgb else term.black
+                    writer(f'\r{fg}{grapheme}')
+                    if cursor_report_delay_ms:
+                        time.sleep(cursor_report_delay_ms / 1000.0)
+                    end_ypos, end_xpos = get_location_with_retry(
+                        term, timeout
                     )
-                    if len(_positions) == len(_graphemes) + 1:
-                        _results, _has_anomaly = _validate_spray_positions(
-                            _positions, expected_width
+                    if (-1, -1) == (end_ypos, end_xpos):
+                        writer(f'{term.normal}\r{term.clear_eol}')
+                        writer(
+                            term.reverse_red(
+                                f"Timeout Exceeded ({timeout:.2f}s)"
+                            )
                         )
-                        if not _has_anomaly and len(_results) == len(_graphemes):
-                            for _i, (_idx, _grapheme) in enumerate(_row_items):
-                                _dy, _dx = _results[_i]
-                                grapheme_id = f"{lang}-{expected_width}-{_idx:02x}"
-                                if (_dy, _dx) == (0, expected_width):
-                                    success_report[lang] += 1
-                                    tested_graphemes[_grapheme] = (lang, True)
-                                else:
-                                    entry = {
-                                        "grapheme_id": grapheme_id,
-                                        "wchars": unicode_escape_string(_grapheme),
-                                        "measured_by_wcwidth": expected_width,
-                                        "measured_by_terminal": _dx,
-                                    }
-                                    if _dy != 0:
-                                        entry["delta_ypos"] = _dy
-                                    failure_report[lang].append(entry)
-                                    error_count += 1
-                                    tested_graphemes[_grapheme] = (lang, False)
-
-                                    if (stop_at_error
-                                            and stop_at_error.matches_language(
-                                                lang)):
-                                        _should = display_error_and_prompt(
-                                            term=term,
-                                            writer=writer,
-                                            context_name=(
-                                                f"language '{lang}'"
-                                                f" ({grapheme_id})"
-                                            ),
-                                            wchars_display=_grapheme,
-                                            measured_by_terminal=_dx,
-                                            measured_by_wcwidth=expected_width,
-                                        )
-                                        if not _should:
-                                            stop_at_error.disable()
-
-                                    if (limit_errors
-                                            and error_count
-                                            >= limit_errors):
-                                        break
-                                grapheme_count += 1
-                                category_tested += 1
-                            if limit_errors and error_count >= limit_errors:
-                                break
-                            col = 0
-                            continue
-                    term.flushinp(timeout=0.05)
-
-                # Fallback: process row character by character
-                for _idx, _grapheme in _row_items:
-                    if limit_graphemes and grapheme_count >= limit_graphemes:
                         break
+                    delta_xpos = end_xpos - outer_xpos
+                    delta_ypos = end_ypos - outer_ypos
+                    writer(f'{term.normal}\r{term.clear_eol}')
+                else:
+                    if col == 0:
+                        writer(term.magenta("║ "))
+                    else:
+                        writer(term.magenta(" \u00b7 "))
+
+                    start_ypos, start_xpos = _get_pos_or_exit(
+                        term, writer, timeout)
+
+                    writer(term.cyan(grapheme))
+                    if cursor_report_delay_ms:
+                        time.sleep(cursor_report_delay_ms / 1000.0)
+                    end_ypos, end_xpos = _get_pos_or_exit(
+                        term, writer, timeout)
+
+                    delta_ypos = end_ypos - start_ypos
+                    delta_xpos = end_xpos - start_xpos
+
+                if (delta_ypos, delta_xpos) == (0, expected_width):
+                    success_report[lang] += 1
+                    tested_graphemes[grapheme] = (lang, True)
+                else:
+                    entry = {
+                        "grapheme_id": grapheme_id,
+                        "wchars": unicode_escape_string(grapheme),
+                        "measured_by_wcwidth": expected_width,
+                        "measured_by_terminal": delta_xpos,
+                    }
+                    if delta_ypos != 0:
+                        entry["delta_ypos"] = delta_ypos
+                    failure_report[lang].append(entry)
+                    error_count += 1
+                    tested_graphemes[grapheme] = (lang, False)
+
+                    if not silent:
+                        writer(term.move_yx(start_ypos, start_xpos))
+                        writer(term.red(grapheme))
+                        writer(term.magenta(" ║") + "\n")
+                        col = 0
+
+                    if (stop_at_error
+                            and stop_at_error.matches_language(lang)):
+                        should_continue = display_error_and_prompt(
+                            term=term,
+                            writer=writer,
+                            context_name=(
+                                f"language '{lang}' ({grapheme_id})"
+                            ),
+                            wchars_display=grapheme,
+                            measured_by_terminal=delta_xpos,
+                            measured_by_wcwidth=expected_width,
+                        )
+                        if not should_continue:
+                            stop_at_error.disable()
+
                     if limit_errors and error_count >= limit_errors:
                         break
-                    grapheme_id = f"{lang}-{expected_width}-{_idx:02x}"
+                    continue
 
-                    if silent:
-                        fg = term.color_rgb(*bg_rgb) if bg_rgb else term.black
-                        writer(f'\r{fg}{_grapheme}')
-                        if cursor_report_delay_ms:
-                            time.sleep(cursor_report_delay_ms / 1000.0)
-                        end_ypos, end_xpos = get_location_with_retry(
-                            term, timeout
-                        )
-                        if (-1, -1) == (end_ypos, end_xpos):
-                            writer(f'{term.normal}\r{term.clear_eol}')
-                            writer(
-                                term.reverse_red(
-                                    f"Timeout Exceeded ({timeout:.2f}s)"
-                                )
-                            )
-                            break
-                        delta_xpos = end_xpos - outer_xpos
-                        delta_ypos = end_ypos - outer_ypos
-                        writer(f'{term.normal}\r{term.clear_eol}')
-                    else:
-                        if col == 0:
-                            writer(term.magenta("║ "))
-                        else:
-                            writer(term.magenta(" \u00b7 "))
-
-                        start_ypos, start_xpos = _get_pos_or_exit(
-                            term, writer, timeout)
-
-                        writer(term.cyan(_grapheme))
-                        if cursor_report_delay_ms:
-                            time.sleep(cursor_report_delay_ms / 1000.0)
-                        end_ypos, end_xpos = _get_pos_or_exit(
-                            term, writer, timeout)
-
-                        delta_ypos = end_ypos - start_ypos
-                        delta_xpos = end_xpos - start_xpos
-
-                    if (delta_ypos, delta_xpos) == (0, expected_width):
-                        success_report[lang] += 1
-                        tested_graphemes[_grapheme] = (lang, True)
-                    else:
-                        entry = {
-                            "grapheme_id": grapheme_id,
-                            "wchars": unicode_escape_string(_grapheme),
-                            "measured_by_wcwidth": expected_width,
-                            "measured_by_terminal": delta_xpos,
-                        }
-                        if delta_ypos != 0:
-                            entry["delta_ypos"] = delta_ypos
-                        failure_report[lang].append(entry)
-                        error_count += 1
-                        tested_graphemes[_grapheme] = (lang, False)
-
-                        if not silent:
-                            writer(term.move_yx(start_ypos, start_xpos))
-                            writer(term.red(_grapheme))
-                            writer(term.magenta(" ║") + "\n")
-                            col = 0
-
-                        if (stop_at_error
-                                and stop_at_error.matches_language(lang)):
-                            should_continue = display_error_and_prompt(
-                                term=term,
-                                writer=writer,
-                                context_name=(
-                                    f"language '{lang}' ({grapheme_id})"
-                                ),
-                                wchars_display=_grapheme,
-                                measured_by_terminal=delta_xpos,
-                                measured_by_wcwidth=expected_width,
-                            )
-                            if not should_continue:
-                                stop_at_error.disable()
-
-                        grapheme_count += 1
-                        category_tested += 1
-                        continue
-
-                    grapheme_count += 1
-                    category_tested += 1
-                    if not silent:
-                        col += 1
-                        if col >= num_columns:
-                            writer(term.magenta(" ║") + "\n")
-                            col = 0
-
-                if limit_errors and error_count >= limit_errors:
-                    break
+                grapheme_count += 1
+                category_tested += 1
+                if not silent:
+                    col += 1
+                    if col >= num_columns:
+                        writer(term.magenta(" ║") + "\n")
+                        col = 0
 
             if not silent and col > 0:
                 writer(term.magenta(" ║") + "\n")
@@ -681,7 +492,6 @@ def test_support(
     limit_category_time=0,
     silent=False,
     bg_rgb=None,
-    single_cpr=False,
 ):
     """Test terminal support for a Unicode character table."""
     success_report = collections.defaultdict(int)
@@ -769,195 +579,109 @@ def test_support(
                 writer("\n" + status_header(term, header) + "\n")
 
             col = 0
-            _spray_enabled = (
-                not suppress_output
-                and not silent
-                and cursor_report_delay_ms == 0
-                and not single_cpr
-                and term.stream is not None
-            )
-
-            # Group characters into rows for spray-and-collect
-            _rows = []
-            _current_row = []
             for wchar in wchars_slice:
-                _current_row.append(wchar)
-                if len(_current_row) >= num_columns:
-                    _rows.append(_current_row)
-                    _current_row = []
-            if _current_row:
-                _rows.append(_current_row)
+                category_tested += 1
+                wchars_str = wchar_to_str(wchar)
 
-            for _row_wchars in _rows:
-                if _spray_enabled:
-                    # Try spray-and-collect for the entire row
-                    _wstrs = [wchar_to_str(w) for w in _row_wchars]
-                    _positions = _spray_collect_row(
-                        term, writer, _wstrs, timeout
+                if suppress_output:
+                    writer(wchars_str)
+                    if cursor_report_delay_ms:
+                        time.sleep(cursor_report_delay_ms / 1000.0)
+                    end_ypos, end_xpos = get_location_with_retry(
+                        term, timeout
                     )
-                    if len(_positions) == len(_wstrs) + 1:
-                        _results, _has_anomaly = _validate_spray_positions(
-                            _positions, expected_width
-                        )
-                        if not _has_anomaly and len(_results) == len(_wstrs):
-                            for _i, _wchar in enumerate(_row_wchars):
-                                category_tested += 1
-                                _dy, _dx = _results[_i]
-                                _wstr = _wstrs[_i]
-                                if (_dy, _dx) == (0, expected_width):
-                                    success_report[ver] += 1
-                                else:
-                                    _entry = {
-                                        "wchar": unicode_escape_string(_wstr)
-                                    }
-                                    if _dy != 0:
-                                        _entry["delta_ypos"] = _dy
-                                    if _dx != expected_width:
-                                        _entry["measured_by_wcwidth"] = expected_width
-                                        _entry["measured_by_terminal"] = _dx
-                                    failure_report[ver].append(_entry)
-
-                                    if (stop_at_error and test_type
-                                            and stop_at_error.matches_test_type(
-                                                test_type)):
-                                        _should = display_error_and_prompt(
-                                            term=term,
-                                            writer=writer,
-                                            context_name=(
-                                                f"{test_type.upper()} test"
-                                                f" (version {ver})"
-                                            ),
-                                            wchars_display=_wstr,
-                                            measured_by_terminal=_dx,
-                                            measured_by_wcwidth=expected_width,
-                                        )
-                                        if not _should:
-                                            stop_at_error.disable()
-
-                                    if (limit_errors
-                                            and len(failure_report[ver])
-                                            >= limit_errors):
-                                        break
-                            if (limit_errors
-                                    and len(failure_report[ver])
-                                    >= limit_errors):
-                                break
-                            col = 0
-                            continue
-                    term.flushinp(timeout=0.05)
-
-                # Fallback: process row character by character
-                for _wchar in _row_wchars:
-                    category_tested += 1
-                    _wstr = wchar_to_str(_wchar)
-
-                    if suppress_output:
-                        writer(_wstr)
-                        if cursor_report_delay_ms:
-                            time.sleep(cursor_report_delay_ms / 1000.0)
-                        end_ypos, end_xpos = get_location_with_retry(
-                            term, timeout
-                        )
-                        if (-1, -1) == (end_ypos, end_xpos):
-                            writer(term.move_yx(outer_ypos, outer_xpos))
-                            writer(
-                                term.reverse_red(
-                                    f"Timeout Exceeded ({timeout:.2f}s)"
-                                )
-                            )
-                            break
-                        delta_xpos = end_xpos - outer_xpos
-                        delta_ypos = end_ypos - outer_ypos
+                    if (-1, -1) == (end_ypos, end_xpos):
+                        writer(term.move_yx(outer_ypos, outer_xpos))
                         writer(
-                            term.move_yx(outer_ypos, outer_xpos)
-                            + term.clear_eol
-                        )
-                    elif silent:
-                        fg = term.color_rgb(*bg_rgb) if bg_rgb else term.black
-                        writer(f'\r{fg}{_wstr}')
-                        if cursor_report_delay_ms:
-                            time.sleep(cursor_report_delay_ms / 1000.0)
-                        end_ypos, end_xpos = get_location_with_retry(
-                            term, timeout
-                        )
-                        if (-1, -1) == (end_ypos, end_xpos):
-                            writer(f'{term.normal}\r{term.clear_eol}')
-                            writer(
-                                term.reverse_red(
-                                    f"Timeout Exceeded ({timeout:.2f}s)"
-                                )
+                            term.reverse_red(
+                                f"Timeout Exceeded ({timeout:.2f}s)"
                             )
-                            break
-                        delta_xpos = end_xpos - outer_xpos
-                        delta_ypos = end_ypos - outer_ypos
+                        )
+                        break
+                    delta_xpos = end_xpos - outer_xpos
+                    delta_ypos = end_ypos - outer_ypos
+                    writer(
+                        term.move_yx(outer_ypos, outer_xpos)
+                        + term.clear_eol
+                    )
+                elif silent:
+                    fg = term.color_rgb(*bg_rgb) if bg_rgb else term.black
+                    writer(f'\r{fg}{wchars_str}')
+                    if cursor_report_delay_ms:
+                        time.sleep(cursor_report_delay_ms / 1000.0)
+                    end_ypos, end_xpos = get_location_with_retry(
+                        term, timeout
+                    )
+                    if (-1, -1) == (end_ypos, end_xpos):
                         writer(f'{term.normal}\r{term.clear_eol}')
-                    else:
-                        if col == 0:
-                            writer(term.magenta("║ "))
-                        else:
-                            writer(term.magenta(" \u00b7 "))
-
-                        start_ypos, start_xpos = _get_pos_or_exit(
-                            term, writer, timeout)
-
-                        writer(term.cyan(_wstr))
-                        if cursor_report_delay_ms:
-                            time.sleep(cursor_report_delay_ms / 1000.0)
-                        end_ypos, end_xpos = _get_pos_or_exit(
-                            term, writer, timeout)
-
-                        delta_ypos = end_ypos - start_ypos
-                        delta_xpos = end_xpos - start_xpos
-
-                    if (delta_ypos, delta_xpos) == (0, expected_width):
-                        success_report[ver] += 1
-                    else:
-                        entry = {"wchar": unicode_escape_string(_wstr)}
-                        if delta_ypos != 0:
-                            entry["delta_ypos"] = delta_ypos
-                        if delta_xpos != expected_width:
-                            entry["measured_by_wcwidth"] = expected_width
-                            entry["measured_by_terminal"] = delta_xpos
-                        failure_report[ver].append(entry)
-
-                        if not suppress_output and not silent:
-                            writer(term.move_yx(start_ypos, start_xpos))
-                            writer(term.red(_wstr))
-                            writer(term.magenta(" ║") + "\n")
-                            col = 0
-
-                        if (stop_at_error and test_type
-                                and stop_at_error.matches_test_type(
-                                    test_type)):
-                            should_continue = display_error_and_prompt(
-                                term=term,
-                                writer=writer,
-                                context_name=(
-                                    f"{test_type.upper()} test"
-                                    f" (version {ver})"
-                                ),
-                                wchars_display=_wstr,
-                                measured_by_terminal=delta_xpos,
-                                measured_by_wcwidth=expected_width,
+                        writer(
+                            term.reverse_red(
+                                f"Timeout Exceeded ({timeout:.2f}s)"
                             )
-                            if not should_continue:
-                                stop_at_error.disable()
+                        )
+                        break
+                    delta_xpos = end_xpos - outer_xpos
+                    delta_ypos = end_ypos - outer_ypos
+                    writer(f'{term.normal}\r{term.clear_eol}')
+                else:
+                    if col == 0:
+                        writer(term.magenta("║ "))
+                    else:
+                        writer(term.magenta(" \u00b7 "))
 
-                        if (limit_errors
-                                and len(failure_report[ver])
-                                >= limit_errors):
-                            break
-                        continue
+                    start_ypos, start_xpos = _get_pos_or_exit(
+                        term, writer, timeout)
+
+                    writer(term.cyan(wchars_str))
+                    if cursor_report_delay_ms:
+                        time.sleep(cursor_report_delay_ms / 1000.0)
+                    end_ypos, end_xpos = _get_pos_or_exit(
+                        term, writer, timeout)
+
+                    delta_ypos = end_ypos - start_ypos
+                    delta_xpos = end_xpos - start_xpos
+
+                if (delta_ypos, delta_xpos) == (0, expected_width):
+                    success_report[ver] += 1
+                else:
+                    entry = {"wchar": unicode_escape_string(wchars_str)}
+                    if delta_ypos != 0:
+                        entry["delta_ypos"] = delta_ypos
+                    if delta_xpos != expected_width:
+                        entry["measured_by_wcwidth"] = expected_width
+                        entry["measured_by_terminal"] = delta_xpos
+                    failure_report[ver].append(entry)
 
                     if not suppress_output and not silent:
-                        col += 1
-                        if col >= num_columns:
-                            writer(term.magenta(" ║") + "\n")
-                            col = 0
+                        writer(term.move_yx(start_ypos, start_xpos))
+                        writer(term.red(wchars_str))
+                        writer(term.magenta(" ║") + "\n")
+                        col = 0
 
-                if (limit_errors
-                        and len(failure_report[ver]) >= limit_errors):
-                    break
+                    if (stop_at_error and test_type
+                            and stop_at_error.matches_test_type(test_type)):
+                        should_continue = display_error_and_prompt(
+                            term=term,
+                            writer=writer,
+                            context_name=(
+                                f"{test_type.upper()} test (version {ver})"
+                            ),
+                            wchars_display=wchars_str,
+                            measured_by_terminal=delta_xpos,
+                            measured_by_wcwidth=expected_width,
+                        )
+                        if not should_continue:
+                            stop_at_error.disable()
+
+                    if limit_errors and len(failure_report[ver]) >= limit_errors:
+                        break
+                    continue
+
+                if not suppress_output and not silent:
+                    col += 1
+                    if col >= num_columns:
+                        writer(term.magenta(" ║") + "\n")
+                        col = 0
 
             if not suppress_output and not silent and col > 0:
                 writer(term.magenta(" ║") + "\n")

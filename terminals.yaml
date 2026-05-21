@@ -84,7 +84,10 @@ terminals:
     description: "libvterm tested is the one shipped with vIM when using command, ``:terminal``."
     launch:
       subterminal: true
-      skip: true
+      program: vim
+      args: ['-c', ':terminal ++curwin']
+      post_launch_delay_ms: 300
+      post_launch_keys: ["sh ${SCRIPT} && exit\n"]
 
   linux fbdev:
     homepage: https://www.kernel.org/doc/Documentation/fb/fbcon.txt
