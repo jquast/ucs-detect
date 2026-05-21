@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:26:46 UTC
+datetime: 2026-05-21 02:02:45 UTC
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 11.7884943280078
+seconds_elapsed: 94.0203147889988
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: mlterm
 software_version: 3.9.4
 system: Linux
@@ -13458,10 +13457,6 @@ test_results:
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u0d28\u0d4d\u200d
-      - grapheme_id: Malayalam-1-25
-        measured_by_terminal: 0
-        measured_by_wcwidth: 1
-        wchars: \u0d2a
       - grapheme_id: Malayalam-1-38
         measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -13482,12 +13477,9 @@ test_results:
       - inherited_from: Malayalam
         measured_by_wcwidth: 1
         wchars: \u0d28\u0d4d\u200c
-      - inherited_from: Malayalam
-        measured_by_wcwidth: 1
-        wchars: \u0d2a
-      n_errors: 336
+      n_errors: 334
       n_total: 845
-      pct_success: 60.23668639053255
+      pct_success: 60.473372781065095
     Maldivian:
       failed: []
       n_errors: 0

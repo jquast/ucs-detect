@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:25:17 UTC
+datetime: 2026-05-21 02:05:02 UTC
 height: 28
 python_version: 3.14.4
-seconds_elapsed: 18.764274950997788
+seconds_elapsed: 354.1232069740072
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: WezTerm
 software_version: 20260330-223553-418897b7
 system: Linux

@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:26:33 UTC
+datetime: 2026-05-21 02:00:49 UTC
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 13.28963799700432
+seconds_elapsed: 15.37030992101063
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: PuTTY
 software_version: '0.81'
 system: Linux
@@ -6730,6 +6729,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0928\u094d\u092e\u093e
+      - grapheme_id: Hindi-2-4a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u092a\u094d\u0924\u093f
       - grapheme_id: Hindi-2-4d
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -6822,9 +6825,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u095e\u094d\u0924\u093e
-      n_errors: 81
+      n_errors: 82
       n_total: 390
-      pct_success: 79.23076923076923
+      pct_success: 78.97435897435898
     Japanese:
       failed: []
       n_errors: 0
@@ -6874,10 +6877,6 @@ test_results:
         measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9a4\ua9c0\ua9b2\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-4-20
-        measured_by_terminal: 3
-        measured_by_wcwidth: 4
-        wchars: \ua9a5\ua9c0\ua9a5\ua9ba
       - grapheme_id: Javanese (Javanese)-4-24
         measured_by_terminal: 5
         measured_by_wcwidth: 4
@@ -7018,9 +7017,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua9ba\ua9b4
-      n_errors: 44
+      n_errors: 43
       n_total: 530
-      pct_success: 91.69811320754717
+      pct_success: 91.88679245283019
     Kabyle:
       failed: []
       n_errors: 0
@@ -7200,6 +7199,9 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0928\u094d\u092f\u093e
+      - inherited_from: Hindi
+        measured_by_wcwidth: 2
+        wchars: \u092a\u094d\u0924\u093f
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u092a\u094d\u0930\u093e
@@ -7288,9 +7290,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0937\u094d\u0920\u093e
-      n_errors: 42
+      n_errors: 43
       n_total: 314
-      pct_success: 86.62420382165605
+      pct_success: 86.30573248407643
     Maithili:
       failed:
       - inherited_from: Bhojpuri
@@ -7359,6 +7361,9 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0928\u094d\u092f\u093e
+      - inherited_from: Hindi
+        measured_by_wcwidth: 2
+        wchars: \u092a\u094d\u0924\u093f
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u092a\u094d\u0930\u093e
@@ -7522,9 +7527,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0936\u094d\u092f\u093f
-      n_errors: 70
+      n_errors: 71
       n_total: 357
-      pct_success: 80.3921568627451
+      pct_success: 80.11204481792717
     Malayalam:
       failed:
       - grapheme_id: Malayalam-2-08
@@ -7547,6 +7552,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0d15\u0d4d\u0d15\u0d4a
+      - grapheme_id: Malayalam-2-0e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0d15\u0d4d\u0d15\u0d4b
       - grapheme_id: Malayalam-2-10
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -7783,10 +7792,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0d28\u0d4d\u200d\u0d2a\u0d3f
-      - grapheme_id: Malayalam-2-a4
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0d2a\u0d48
       - grapheme_id: Malayalam-2-a9
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -8092,6 +8097,9 @@ test_results:
         wchars: \u0d15\u0d4d\u0d15\u0d4a
       - inherited_from: Malayalam
         measured_by_wcwidth: 2
+        wchars: \u0d15\u0d4d\u0d15\u0d4b
+      - inherited_from: Malayalam
+        measured_by_wcwidth: 2
         wchars: \u0d15\u0d4d\u0d24\u0d3f
       - inherited_from: Malayalam
         measured_by_wcwidth: 2
@@ -8261,9 +8269,6 @@ test_results:
       - inherited_from: Malayalam
         measured_by_wcwidth: 2
         wchars: \u0d28\u0d4d\u0d2f\u0d4b
-      - inherited_from: Malayalam
-        measured_by_wcwidth: 2
-        wchars: \u0d2a\u0d48
       - inherited_from: Malayalam
         measured_by_wcwidth: 2
         wchars: \u0d2a\u0d4d\u0d2a\u0d3f
@@ -8961,6 +8966,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0928\u094d\u0926\u094b
+      - grapheme_id: Nepali-2-1d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u092b\u094d\u0928\u093e
       - grapheme_id: Nepali-2-1e
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -8985,10 +8994,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0930\u094d\u0928\u093f
-      - grapheme_id: Nepali-2-2c
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0930\u094d\u0928\u0942
       - grapheme_id: Nepali-2-2f
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -9965,6 +9970,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0c30\u0c4d\u0c25\u0c3f\u0c02
+      - grapheme_id: Telugu-2-a4
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0c30\u0c4d\u0c2c\u0c02
       - grapheme_id: Telugu-2-ad
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -10009,9 +10018,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0c38\u0c4d\u0c25\u0c4d\u0c2f
-      n_errors: 41
+      n_errors: 42
       n_total: 384
-      pct_success: 89.32291666666666
+      pct_success: 89.0625
     Tem:
       failed: []
       n_errors: 0

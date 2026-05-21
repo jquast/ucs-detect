@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:27:21 UTC
+datetime: 2026-05-21 02:02:46 UTC
 height: 21
 python_version: 3.14.4
-seconds_elapsed: 2.8470451629982563
+seconds_elapsed: 12.853977138991468
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: ghostty
 software_version: 1.3.2-main-+3706abab0
 system: Linux
@@ -138,113 +137,110 @@ terminal_results:
   width: 71
   xtgettcap:
     capabilities:
+      BE: "\e[?2004h"
       E3: "\e[3J"
       Ms: "\e]52;%p1%s;%p2%s\a"
+      PS: "\e[200~"
       RGB: '8'
       RV: "\e[>c"
       Se: "\e[0 q"
       Setulc: "\e[58:2::%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%d%;m"
       Smulx: "\e[4:%p1%dm"
+      Ss: "\e[%p1%d q"
       Sync: "\e[?2026%?%p1%{1}%-%tl%eh%;"
       TN: xterm-ghostty
-      XR: "\e[>0q"
-      XT: ''
-      am: ''
-      bel: "\a"
+      XM: "\e[?1006;1000%?%p1%{1}%=%th%el%;"
+      bce: ''
       blink: "\e[5m"
-      ccc: ''
       civis: "\e[?25l"
-      cnorm: "\e[?12l\e[?25h"
       colors: '256'
-      cols: '80'
+      cr: "\r"
       csr: "\e[%i%p1%d;%p2%dr"
       cub: "\e[%p1%dD"
       cud: "\e[%p1%dB"
       cud1: '
 
         '
-      cuu1: "\e[A"
+      cuf: "\e[%p1%dC"
+      cuu: "\e[%p1%dA"
       cvvis: "\e[?12;25h"
+      dch: "\e[%p1%dP"
+      dl: "\e[%p1%dM"
+      dsl: "\e]2;\a"
+      ed: "\e[J"
       el: "\e[K"
-      flash: "\e[?5h$<100/>\e[?5l"
+      el1: "\e[1K"
       fsl: "\a"
       fullkbd: ''
-      home: "\e[H"
-      hpa: "\e[%i%p1%dG"
-      hs: ''
       ht: "\t"
-      hts: "\eH"
-      ind: '
-
-        '
-      indn: "\e[%p1%dS"
+      il1: "\e[L"
       kDC: "\e[3;2~"
       kDN3: "\e[1;3B"
-      kDN4: "\e[1;4B"
+      kDN5: "\e[1;5B"
+      kEND: "\e[1;2F"
       kEND3: "\e[1;3F"
       kEND4: "\e[1;4F"
+      kEND5: "\e[1;5F"
       kEND6: "\e[1;6F"
       kEND7: "\e[1;7F"
       kHOM3: "\e[1;3H"
-      kHOM5: "\e[1;5H"
-      kIC5: "\e[2;5~"
-      kIC6: "\e[2;6~"
+      kHOM6: "\e[1;6H"
+      kHOM7: "\e[1;7H"
+      kIC: "\e[2;2~"
+      kIC4: "\e[2;4~"
+      kLFT: "\e[1;2D"
       kLFT3: "\e[1;3D"
-      kLFT4: "\e[1;4D"
       kLFT6: "\e[1;6D"
-      kNXT: "\e[6;2~"
+      kLFT7: "\e[1;7D"
       kNXT3: "\e[6;3~"
       kNXT4: "\e[6;4~"
-      kNXT5: "\e[6;5~"
-      kPRV6: "\e[5;6~"
+      kPRV: "\e[5;2~"
+      kPRV4: "\e[5;4~"
+      kPRV5: "\e[5;5~"
+      kPRV7: "\e[5;7~"
       kRIT3: "\e[1;3C"
+      kRIT4: "\e[1;4C"
+      kRIT6: "\e[1;6C"
       kUP: "\e[1;2A"
       kUP4: "\e[1;4A"
-      kUP7: "\e[1;7A"
+      kUP5: "\e[1;5A"
+      kbs: "\x7F"
       kcud1: "\eOB"
       kcuf1: "\eOC"
       kend: "\eOF"
       kf1: "\eOP"
       kf10: "\e[21~"
-      kf11: "\e[23~"
-      kf12: "\e[24~"
-      kf3: "\eOR"
       kf4: "\eOS"
       kf5: "\e[15~"
-      kf6: "\e[17~"
-      kf7: "\e[18~"
       kf8: "\e[19~"
       kf9: "\e[20~"
-      kich1: "\e[2~"
+      khome: "\eOH"
       kind: "\e[1;2B"
-      km: ''
-      kmous: "\e[<"
-      knp: "\e[6~"
       kpp: "\e[5~"
-      kri: "\e[1;2A"
-      kxOUT: "\e[O"
       lines: '24'
-      msgr: ''
-      npc: ''
       oc: "\e]104\a"
+      op: "\e[39;49m"
       pairs: '32767'
       rep: "%p1%c\e[%p2%{1}%-%db"
-      rev: "\e[7m"
       ri: "\eM"
-      rin: "\e[%p1%dT"
       ritm: "\e[23m"
-      rmcup: "\e[?1049l"
+      rmacs: "\e(B"
+      rmam: "\e[?7l"
       rmir: "\e[4l"
-      rmso: "\e[27m"
-      setrgbb: "\e[48:2:%p1%d:%p2%d:%p3%dm"
+      rmkx: "\e[?1l\e>"
+      rmul: "\e[24m"
+      rs1: "\e]\e\\\ec"
+      rv: "\e\\[[0-9]+;[0-9]+;[0-9]+c"
+      setaf: "\e[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1%d%;m"
+      sgr0: "\e(B\e[m"
       sitm: "\e[3m"
-      smam: "\e[?7h"
-      smkx: "\e[?1h\e="
+      smacs: "\e(0"
+      smul: "\e[4m"
       tsl: "\e]2;"
       u6: "\e[%i%d;%dR"
+      u8: "\e[?%[;0123456789]c"
       u9: "\e[c"
       vpa: "\e[%i%p1%dd"
-      xm: "\e[<%i%p3%d;%p1%d;%p2%d;%?%p4%tM%em%;"
     supported: true
 test_results:
   emoji_vs15_results:

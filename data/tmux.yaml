@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:19:32 UTC
+datetime: 2026-05-21 01:58:06 UTC
 height: 20
 python_version: 3.14.4
-seconds_elapsed: 16.097596923995297
+seconds_elapsed: 18.945994423993398
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: tmux
 software_version: '3.4'
 system: Linux

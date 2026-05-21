@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:19:38 UTC
+datetime: 2026-05-21 01:57:54 UTC
 height: 21
 python_version: 3.14.4
-seconds_elapsed: 22.64908143298817
+seconds_elapsed: 11.886976152018178
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: screen
 software_version: 5.0.1
 system: Linux

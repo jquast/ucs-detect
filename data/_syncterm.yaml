@@ -1,8 +1,8 @@
 ambiguous_width: -1
-datetime: 2026-05-20 17:19:25 UTC
+datetime: 2026-05-21 01:57:59 UTC
 height: 25
 python_version: 3.14.4
-seconds_elapsed: 0.0012643800000660121
+seconds_elapsed: 0.002542533999076113
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: SyncTERM
 software_version: 1.9rc2
 system: Linux

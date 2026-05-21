@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:26:30 UTC
+datetime: 2026-05-21 01:59:04 UTC
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 29.30508470800123
+seconds_elapsed: 16.716326072986703
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: terminology
 software_version: 1.13.0
 system: Linux
@@ -5886,10 +5885,6 @@ test_results:
         measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u09a7\u09cd\u09af\u09c7
-      - grapheme_id: Bengali-2-86
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u09a8\u09cb
       - grapheme_id: Bengali-2-87
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -6322,6 +6317,10 @@ test_results:
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u0996\u09c1
+      - grapheme_id: Bengali-1-12
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0997\u09c1
       - grapheme_id: Bengali-1-13
         measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -6620,7 +6619,7 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u092e\u094d\u092e\u0947
       - grapheme_id: Bhojpuri-2-68
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u092e\u094d\u092f\u093e
       - grapheme_id: Bhojpuri-2-6c
@@ -9617,7 +9616,7 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u0aa4\u0abe\u0a82
       - grapheme_id: Gujarati-2-3b
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u0aa4\u0acd\u0aa4\u0abe
       - grapheme_id: Gujarati-2-3c
@@ -11211,10 +11210,6 @@ test_results:
         measured_by_terminal: 6
         measured_by_wcwidth: 4
         wchars: \ua994\ua9c0\ua992\ua9bf\ua9bc\ua981
-      - grapheme_id: Javanese (Javanese)-4-0a
-        measured_by_terminal: 3
-        measured_by_wcwidth: 4
-        wchars: \ua9a0\ua9c0\ua9ad\ua9ba
       - grapheme_id: Javanese (Javanese)-4-0b
         measured_by_terminal: 5
         measured_by_wcwidth: 4
@@ -12531,9 +12526,9 @@ test_results:
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \ua9b2\ua9bc
-      n_errors: 333
+      n_errors: 332
       n_total: 530
-      pct_success: 37.16981132075471
+      pct_success: 37.35849056603773
     Kabyle:
       failed: []
       n_errors: 0
@@ -18422,10 +18417,6 @@ test_results:
         measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u0d35\u0d4d\u0d2f\u0d3e
-      - grapheme_id: Malayalam-2-12b
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0d36\u0d47
       - grapheme_id: Malayalam-2-12c
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -19009,9 +19000,6 @@ test_results:
         wchars: \u0d35\u0d4d\u0d2f\u0d3e
       - inherited_from: Malayalam
         measured_by_wcwidth: 2
-        wchars: \u0d36\u0d47
-      - inherited_from: Malayalam
-        measured_by_wcwidth: 2
         wchars: \u0d36\u0d4d\u0d2f
       - inherited_from: Malayalam
         measured_by_wcwidth: 2
@@ -19364,9 +19352,9 @@ test_results:
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u0d7b\u0d4d
-      n_errors: 481
+      n_errors: 479
       n_total: 845
-      pct_success: 43.07692307692308
+      pct_success: 43.31360946745562
     Maldivian:
       failed:
       - grapheme_id: Maldivian-1-01
@@ -22827,10 +22815,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0a17\u0a3f\u0a4d
-      - grapheme_id: Panjabi, Eastern-2-0e
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0a17\u0a40
       - grapheme_id: Panjabi, Eastern-2-11
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -22847,6 +22831,10 @@ test_results:
         measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u0a1c\u0a3f\u0a3c\u0a70
+      - grapheme_id: Panjabi, Eastern-2-1d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0a1f\u0a3f\u0a4d
       - grapheme_id: Panjabi, Eastern-2-22
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -22907,6 +22895,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0a38\u0a3e\u0a02
+      - grapheme_id: Panjabi, Eastern-2-59
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u0a38\u0a3f\u0a71
       - grapheme_id: Panjabi, Eastern-2-5c
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -23459,9 +23451,9 @@ test_results:
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u0a5e\u0a41
-      n_errors: 164
+      n_errors: 165
       n_total: 302
-      pct_success: 45.6953642384106
+      pct_success: 45.36423841059602
     Panjabi, Western:
       failed:
       - inherited_from: Dari

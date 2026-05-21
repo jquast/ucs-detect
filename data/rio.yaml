@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:23:55 UTC
+datetime: 2026-05-21 01:59:38 UTC
 height: 28
 python_version: 3.14.4
-seconds_elapsed: 29.88834542100085
+seconds_elapsed: 67.11243757398915
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -10,7 +10,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
 software_name: Rio
 software_version: 0.2.37
 system: Linux
@@ -5942,6 +5941,10 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09a4\u09cd\u09af\u09bf
+      - grapheme_id: Bengali-2-5e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u09a4\u09cd\u09af\u09c7
       - grapheme_id: Bengali-2-60
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -5966,10 +5969,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09a6\u09cd\u09a6\u09c7
-      - grapheme_id: Bengali-2-71
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u09a6\u09cd\u09a7
       - grapheme_id: Bengali-2-72
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -5994,10 +5993,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09a7\u09cd\u09af\u09c7
-      - grapheme_id: Bengali-2-84
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u09a8\u09c7
       - grapheme_id: Bengali-2-89
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -6218,9 +6213,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u09b8\u09cd\u09af\u09c7
-      n_errors: 97
+      n_errors: 96
       n_total: 385
-      pct_success: 74.8051948051948
+      pct_success: 75.06493506493507
     Bhojpuri:
       failed:
       - grapheme_id: Bhojpuri-2-06
@@ -6299,10 +6294,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u092a\u094d\u0930\u093e
-      - grapheme_id: Bhojpuri-2-5e
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u092d\u093e
       - grapheme_id: Bhojpuri-2-66
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -6391,9 +6382,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0938\u094d\u0938\u093e
-      n_errors: 42
+      n_errors: 41
       n_total: 313
-      pct_success: 86.5814696485623
+      pct_success: 86.90095846645367
     Bora:
       failed: []
       n_errors: 0
@@ -6769,7 +6760,7 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u0ab7\u0acd\u0a9f\u0acd\u0ab0
       - grapheme_id: Gujarati-2-bd
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u0ab7\u0acd\u0a9f\u0acd\u0ab0\u0ac0
       - grapheme_id: Gujarati-2-be
@@ -6861,9 +6852,6 @@ test_results:
         wchars: \u092a\u094d\u0930\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
-        wchars: \u092d\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
         wchars: \u092e\u094d\u092e\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -6931,10 +6919,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u091a\u094d\u091b\u093f
-      - grapheme_id: Hindi-2-12
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u091f\u094b\u0902
       - grapheme_id: Hindi-2-13
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -7135,9 +7119,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u095e\u094d\u0924\u093e
-      n_errors: 84
+      n_errors: 82
       n_total: 390
-      pct_success: 78.46153846153847
+      pct_success: 78.97435897435898
     Japanese:
       failed: []
       n_errors: 0
@@ -7175,10 +7159,6 @@ test_results:
         measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9a4\ua9c0\ua9a5\ua9b3\ua9ba\ua9b4\ua982
-      - grapheme_id: Javanese (Javanese)-4-1b
-        measured_by_terminal: 3
-        measured_by_wcwidth: 4
-        wchars: \ua9a4\ua9c0\ua9a7\ua9ba
       - grapheme_id: Javanese (Javanese)-4-1c
         measured_by_terminal: 5
         measured_by_wcwidth: 4
@@ -7331,9 +7311,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua9ba\ua9b4
-      n_errors: 44
+      n_errors: 43
       n_total: 530
-      pct_success: 91.69811320754717
+      pct_success: 91.88679245283019
     Kabyle:
       failed: []
       n_errors: 0
@@ -7521,9 +7501,6 @@ test_results:
         wchars: \u092a\u094d\u0930\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
-        wchars: \u092d\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
         wchars: \u092e\u094d\u092e\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -7607,9 +7584,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0937\u094d\u0920\u093e
-      n_errors: 44
+      n_errors: 43
       n_total: 314
-      pct_success: 85.98726114649682
+      pct_success: 86.30573248407643
     Maithili:
       failed:
       - inherited_from: Bhojpuri
@@ -7687,9 +7664,6 @@ test_results:
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u092b\u094d\u0930\u093e\u0902
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u092d\u093e
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u092e\u094d\u092d\u093f
@@ -7795,10 +7769,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0918\u094b
-      - grapheme_id: Maithili-2-12
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0928\u0903
       - grapheme_id: Maithili-2-13
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -7851,9 +7821,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0936\u094d\u092f\u093f
-      n_errors: 73
+      n_errors: 71
       n_total: 357
-      pct_success: 79.55182072829132
+      pct_success: 80.11204481792717
     Malayalam:
       failed:
       - grapheme_id: Malayalam-2-08
@@ -8813,9 +8783,6 @@ test_results:
         wchars: \u092a\u094d\u0930\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
-        wchars: \u092d\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
         wchars: \u092e\u094d\u092f\u093e
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -9055,9 +9022,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0939\u094d\u092f\u093e
-      n_errors: 87
+      n_errors: 86
       n_total: 391
-      pct_success: 77.74936061381074
+      pct_success: 78.00511508951406
     Mazahua Central:
       failed: []
       n_errors: 0
@@ -9160,9 +9127,6 @@ test_results:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0935\u093e
-      - inherited_from: Maithili
-        measured_by_wcwidth: 2
-        wchars: \u0928\u0903
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0928\u093f\u0903
@@ -9184,9 +9148,6 @@ test_results:
       - inherited_from: Maithili
         measured_by_wcwidth: 2
         wchars: \u092b\u094d\u0924\u093e
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u092d\u093e
       - inherited_from: Maithili
         measured_by_wcwidth: 2
         wchars: \u092d\u094d\u092f\u093e
@@ -9283,10 +9244,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0926\u094d\u0926\u093e
-      - grapheme_id: Nepali-2-12
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0926\u094d\u0935
       - grapheme_id: Nepali-2-15
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -9351,9 +9308,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0938\u094d\u0930\u094b
-      n_errors: 72
+      n_errors: 69
       n_total: 352
-      pct_success: 79.54545454545455
+      pct_success: 80.39772727272727
     Nuosu:
       failed: []
       n_errors: 0
@@ -9467,9 +9424,6 @@ test_results:
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0927\u094d\u092f\u093e
-      - inherited_from: Maithili
-        measured_by_wcwidth: 2
-        wchars: \u0928\u0903
       - inherited_from: Hindi
         measured_by_wcwidth: 2
         wchars: \u0928\u093f\u0903
@@ -9500,9 +9454,6 @@ test_results:
       - inherited_from: Maithili
         measured_by_wcwidth: 2
         wchars: \u092c\u094d\u0927\u093f
-      - inherited_from: Bhojpuri
-        measured_by_wcwidth: 2
-        wchars: \u092d\u093e
       - inherited_from: Maithili
         measured_by_wcwidth: 2
         wchars: \u092e\u094d\u092a\u094d\u0930
@@ -9923,9 +9874,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0938\u094d\u092f\u0941\u0903
-      n_errors: 147
+      n_errors: 145
       n_total: 493
-      pct_success: 70.18255578093306
+      pct_success: 70.58823529411765
     Sanskrit (Grantha):
       failed:
       - grapheme_id: Sanskrit (Grantha)-2-03
@@ -9980,10 +9931,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011325\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-4b
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \U00011326\U00011303
       - grapheme_id: Sanskrit (Grantha)-2-55
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -10088,9 +10035,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011339\U0001133e\U00011303
-      n_errors: 40
+      n_errors: 39
       n_total: 293
-      pct_success: 86.3481228668942
+      pct_success: 86.68941979522185
     Secoya:
       failed: []
       n_errors: 0
