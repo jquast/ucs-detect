@@ -95,21 +95,25 @@ def get_launch_config(sw_name, mixins):
         "skip_reason": raw_entry.get("skip_reason", ""),
         "post_launch_delay_ms": launch.get("post_launch_delay_ms", 0),
         "post_launch_keys": launch.get("post_launch_keys", []),
+        "wm_class": launch.get("wm_class", None),
     }
     return cfg, is_explicit
 
 
 def write_run_script(script_path, yaml_path, sentinel_path,
-                       reuse_version=False):
+                       reuse_version=False, pause_exit=False):
     """Write a shell script that runs re-run.py and records the exit code."""
     yaml_rel = yaml_path.relative_to(PROJECT_DIR)
     reuse_flag = " --reuse-version" if reuse_version else ""
-    script_path.write_text(
-        "#!/bin/sh\n"
-        f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1\n"
-        f"python re-run.py{reuse_flag} {shlex.quote(str(yaml_rel))}\n"
-        f"echo $? > {shlex.quote(str(sentinel_path))}\n"
-    )
+    parts = [
+        "#!/bin/sh",
+        f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
+        f"python re-run.py{reuse_flag} {shlex.quote(str(yaml_rel))}",
+        f"echo $? > {shlex.quote(str(sentinel_path))}",
+    ]
+    if pause_exit:
+        parts.append('read -p "Press enter to exit..." _')
+    script_path.write_text("\n".join(parts) + "\n")
     script_path.chmod(0o755)
 
 
@@ -157,10 +161,11 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
 
 def find_window_for_command(launch_cfg, pid, timeout=8):
     """Find X11 window ID for a launched process, by PID then by class name."""
-    deadline = time.monotonic() + min(timeout, 5)
+    deadline = time.monotonic() + timeout
 
-    # Strategy 1: search by PID (short timeout; forking apps skip to class)
-    while time.monotonic() < deadline:
+    # Strategy 1: search by PID (only for the first half of the deadline)
+    pid_deadline = time.monotonic() + min(timeout / 2, 5)
+    while time.monotonic() < pid_deadline:
         try:
             result = subprocess.run(
                 ["xdotool", "search", "--onlyvisible", "--pid", str(pid)],
@@ -172,19 +177,21 @@ def find_window_for_command(launch_cfg, pid, timeout=8):
             pass
         time.sleep(0.3)
 
-    # Strategy 2: search by class name
-    class_name = launch_cfg.get("program", "").lower()
-    deadline2 = time.monotonic() + 3
-    while time.monotonic() < deadline2:
-        try:
-            result = subprocess.run(
-                ["xdotool", "search", "--onlyvisible", "--class", class_name],
-                capture_output=True, text=True, timeout=3,
-            )
-            if result.returncode == 0 and result.stdout.strip():
-                return result.stdout.strip().split("\n")[-1]
-        except (subprocess.TimeoutExpired, OSError):
-            pass
+    # Strategy 2: search by class name and classname for the remaining time
+    wm_class = launch_cfg.get("wm_class") or os.path.basename(
+        launch_cfg.get("program", "")
+    ).lower()
+    while time.monotonic() < deadline:
+        for flag in ("--class", "--classname"):
+            try:
+                result = subprocess.run(
+                    ["xdotool", "search", "--onlyvisible", flag, wm_class],
+                    capture_output=True, text=True, timeout=3,
+                )
+                if result.returncode == 0 and result.stdout.strip():
+                    return result.stdout.strip().split("\n")[-1]
+            except (subprocess.TimeoutExpired, OSError):
+                pass
         time.sleep(0.3)
 
     return None
@@ -233,50 +240,48 @@ def inject_keys(window_id, keys):
 
 
 def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                       temp_dir, reuse_version=False):
+                       temp_dir, reuse_version=False, pause_exit=False):
     """Launch a terminal and inject keys. Does not wait for completion.
 
     Returns (proc, sentinel_path, stderr_path, error_msg) where error_msg is
     None on success.
 
-    Acquires ``_KEY_INJECT_LOCK`` around window creation (all terminals) and
-    key injection (key-inject terminals only) so that no other terminal can
-    steal X11 focus during injection.
+    Acquires ``_KEY_INJECT_LOCK`` only during key injection so that no other
+    terminal can steal X11 focus during injection.  Process launch does not
+    hold the lock so direct-launch terminals do not block key-inject jobs.
     """
     safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
     script_path = temp_dir / f"run-{safe_name}.sh"
     sentinel_path = temp_dir / f"exit-{safe_name}.rc"
     stderr_path = temp_dir / f"stderr-{safe_name}.log"
     write_run_script(script_path, yaml_path, sentinel_path,
-                     reuse_version=reuse_version)
+                     reuse_version=reuse_version, pause_exit=pause_exit)
 
     post_delay = launch_cfg.get("post_launch_delay_ms", 0)
     post_keys = launch_cfg.get("post_launch_keys", [])
 
     try:
-        with _KEY_INJECT_LOCK:
-            if post_keys:
+        if not launch_cfg["subterminal"]:
+            argv = build_launch_args(launch_cfg, script_path)
+        else:
+            argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
+                                                  script_path)
+
+        with open(stderr_path, "w") as stderr_file:
+            env = os.environ.copy()
+            env.pop("TERM_PROGRAM", None)
+            env.pop("TERM_PROGRAM_VERSION", None)
+            proc = subprocess.Popen(
+                argv,
+                env=env,
+                stdout=subprocess.DEVNULL,
+                stderr=stderr_file,
+                stdin=subprocess.DEVNULL,
+            )
+
+        if post_keys:
+            with _KEY_INJECT_LOCK:
                 time.sleep(_KEY_INJECT_PRE_DELAY)
-
-            if not launch_cfg["subterminal"]:
-                argv = build_launch_args(launch_cfg, script_path)
-            else:
-                argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
-                                                      script_path)
-
-            with open(stderr_path, "w") as stderr_file:
-                env = os.environ.copy()
-                env.pop("TERM_PROGRAM", None)
-                env.pop("TERM_PROGRAM_VERSION", None)
-                proc = subprocess.Popen(
-                    argv,
-                    env=env,
-                    stdout=subprocess.DEVNULL,
-                    stderr=stderr_file,
-                    stdin=subprocess.DEVNULL,
-                )
-
-            if post_keys:
                 time.sleep(post_delay / 1000.0)
                 window_cfg = host_launch_cfg if launch_cfg["subterminal"] else launch_cfg
                 window_id = find_window_for_command(window_cfg, proc.pid)
@@ -355,17 +360,6 @@ def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout):
     return (sw_name, exit_code, error_msg)
 
 
-def run_one_terminal(yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                     timeout, temp_dir, reuse_version=False):
-    """Launch a terminal, wait for sentinel, return (sw_name, exit_code, error_msg)."""
-    proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
-        yaml_path, sw_name, launch_cfg, host_launch_cfg,
-        temp_dir, reuse_version)
-    if launch_error:
-        return (sw_name, -4, launch_error)
-    return _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout)
-
-
 def main():
     parser = argparse.ArgumentParser(
         description="Run ucs-detect re-run.py for each terminal YAML of the current OS")
@@ -395,6 +389,9 @@ def main():
         "--run-only", type=str, default="",
         help="Comma-separated list of terminal names (software_name or program) "
              "to run; all others are skipped")
+    parser.add_argument(
+        "--pause-exit", action="store_true",
+        help="Append 'read' to run scripts so the terminal stays open on error")
     args = parser.parse_args()
 
     system_name = platform.system()
@@ -448,7 +445,10 @@ def main():
         if run_only:
             name_lower = sw_name.lower()
             prog_lower = launch_cfg.get("program", "").lower()
-            if name_lower not in run_only and prog_lower not in run_only:
+            file_lower = yaml_path.stem.lower()
+            if (name_lower not in run_only
+                    and prog_lower not in run_only
+                    and file_lower not in run_only):
                 skipped.append((sw_name, "not in --run-only"))
                 continue
 
@@ -521,7 +521,8 @@ def main():
 
             proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                 yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                temp_dir, reuse_version=args.reuse_version)
+                temp_dir, reuse_version=args.reuse_version,
+                pause_exit=args.pause_exit)
 
             if launch_error:
                 results[sw_name] = (-4, launch_error)
@@ -536,16 +537,28 @@ def main():
                 args.timeout)
             future_map[future] = sw_name
 
-        # Phase 2: launch direct terminals in the thread pool
+        # Phase 2: launch direct terminals from the main thread,
+        # submit only polling to the thread pool
         if direct_jobs and not (failures and not args.continue_after_failure):
             if key_jobs:
                 print("\n--- Direct-launch terminals (parallel) ---")
             for yaml_path, sw_name, launch_cfg, _seconds_elapsed in direct_jobs:
-                future = executor.submit(
-                    run_one_terminal,
+                proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                     yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                    args.timeout, temp_dir,
-                    reuse_version=args.reuse_version)
+                    temp_dir, reuse_version=args.reuse_version,
+                    pause_exit=args.pause_exit)
+
+                if launch_error:
+                    results[sw_name] = (-4, launch_error)
+                    print(f"[{sw_name}] FAILED: {launch_error}", flush=True)
+                    failures.append((sw_name, -4, launch_error))
+                    if not args.continue_after_failure:
+                        break
+                    continue
+
+                future = executor.submit(
+                    _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
+                    args.timeout)
                 future_map[future] = sw_name
 
         # Phase 3: collect results as they complete

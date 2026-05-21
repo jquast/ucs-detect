@@ -10,7 +10,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
+  timeout_cps: 3.0
 software_name: termit
 software_version: 3.1(VTE/8400)
 system: Linux

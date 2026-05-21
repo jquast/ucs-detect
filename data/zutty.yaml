@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-21 02:01:33 UTC
+datetime: 2026-05-21 14:20:50 UTC
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 10.29658571400796
+seconds_elapsed: 42.3924465609889
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -64,6 +64,7 @@ terminal_results:
   xtgettcap:
     capabilities: {}
     supported: false
+  xtgettcap-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

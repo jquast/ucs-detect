@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-21 02:12:35 UTC
+datetime: 2026-05-21 13:47:59 UTC
 height: 35
 python_version: 3.14.4
-seconds_elapsed: 419.79335822499706
+seconds_elapsed: 495.31421211900306
 session_arguments:
   limit_category_time: 600.0
   limit_codepoints: 0
@@ -35,7 +35,7 @@ terminal_results:
   - 56797
   - 56797
   - 56797
-  height: 54
+  height: 35
   iterm2_features:
     features: {}
     supported: false
@@ -119,8 +119,8 @@ terminal_results:
       value: 2
       value_description: RESET
   number_of_colors: 16777216
-  pixels_height: 1080
-  pixels_width: 1917
+  pixels_height: 700
+  pixels_width: 1269
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: false
@@ -132,7 +132,7 @@ terminal_results:
     scale: true
     width: true
   ttype: xterm-kitty
-  width: 213
+  width: 141
   xtgettcap:
     capabilities:
       BD: "\e[?2004l"
@@ -362,6 +362,7 @@ terminal_results:
       vpa: "\e[%i%p1%dd"
       xenl: ''
     supported: true
+  xtgettcap-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

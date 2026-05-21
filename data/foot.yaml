@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-21 02:01:52 UTC
+datetime: 2026-05-21 14:20:59 UTC
 height: 46
 python_version: 3.14.4
-seconds_elapsed: 16.36091712900088
+seconds_elapsed: 51.613580137025565
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -351,6 +351,7 @@ terminal_results:
       xm: "\e[<%i%p3%d;%p1%d;%p2%d;%?%p4%tM%em%;"
       xr: "\eP>\\|[ -~]+\e\\"
     supported: true
+  xtgettcap-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

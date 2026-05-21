@@ -34,8 +34,10 @@ terminals:
   extraterm:
     homepage: https://extraterm.org/
     launch:
-      skip: true
-    skip_reason: "GUI picker on launch, needs key-injection sequence"
+      program: /opt/extratermqt/extratermqt
+      wm_class: qode
+      post_launch_delay_ms: 300
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
   foot:
     homepage: https://codeberg.org/dnkl/foot
@@ -222,7 +224,7 @@ terminals:
     homepage: https://gitlab.freedesktop.org/wayland/weston
     launch:
       program: weston-terminal
-      args: [--shell, "sh {script}"]
+      args: [--shell, "{script}"]
       wrapper: [cage, --]
 
   wezterm:

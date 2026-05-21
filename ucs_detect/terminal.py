@@ -343,7 +343,18 @@ def echo(term, data):
 def maybe_determine_xtgettcap(term, timeout=1.0, **_kw):
     """Query terminal capabilities via XTGETTCAP (DCS+q), delegating to blessed."""
     result = {'xtgettcap': {'supported': False, 'capabilities': {}}}
-    tc = term.get_xtgettcap(timeout=timeout)
+
+    y_before, x_before = term.get_location(timeout=timeout)
+
+    tc = term.get_xtgettcap(force=True, timeout=timeout)
+
+    y_after, x_after = term.get_location(timeout=timeout)
+
+    if (y_before, x_before) != (-1, -1) and (y_after, x_after) != (-1, -1):
+        result['xtgettcap-bad-screenleak'] = (
+            (y_before, x_before) != (y_after, x_after)
+        )
+
     if tc is not None and tc.supported:
         result['xtgettcap']['supported'] = True
         result['xtgettcap']['capabilities'] = dict(tc.capabilities)
