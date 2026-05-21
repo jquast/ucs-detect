@@ -390,6 +390,9 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 )
 
             if _should_run("lang") and not no_languages_test:
+                # Drain stale CPR responses that may have accumulated
+                # from codepoint test sprays before starting language tests.
+                term.flushinp(timeout=0.01)
                 language_results = measure.test_language_support(
                     LANG_GRAPHEMES, term, writer, timeout_cps,
                     limit_graphemes, limit_errors, error_matcher,

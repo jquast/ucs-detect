@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:07:01 UTC
+datetime: 2026-05-20 17:25:17 UTC
 height: 28
 python_version: 3.14.4
-seconds_elapsed: 20.78426408098312
+seconds_elapsed: 18.764274950997788
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: WezTerm
 software_version: 20260330-223553-418897b7
 system: Linux
@@ -140,7 +142,6 @@ terminal_results:
   width: 120
   xtgettcap:
     capabilities:
-      Co: '256'
       Cr: "\e]112\a"
       Cs: "\e]12;%p1%s\a"
       Ms: "\e]52;%p1%s;%p2%s\a"

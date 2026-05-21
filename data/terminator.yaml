@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:06:38 UTC
+datetime: 2026-05-20 17:23:21 UTC
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 151.07750832702732
+seconds_elapsed: 195.96007490700867
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: terminator
 software_version: 2.1.3(VTE/8400)
 system: Linux
@@ -37,11 +39,11 @@ terminal_results:
     - 22
     - 28
     service_class: 61
-  foreground_color_hex: '#888888888888'
+  foreground_color_hex: '#aaaaaaaaaaaa'
   foreground_color_rgb:
-  - 34952
-  - 34952
-  - 34952
+  - 43690
+  - 43690
+  - 43690
   height: 24
   iterm2_features:
     features: {}
@@ -133,7 +135,6 @@ terminal_results:
   width: 80
   xtgettcap:
     capabilities:
-      Co: '256'
       RGB: '8'
       TN: xterm-256color
       colors: '256'
@@ -209,7 +210,7 @@ terminal_results:
       kcuu1: "\e[A"
       kdch1: "\e[3~"
       kend: "\e[F"
-      kent: "\r=,\x12"
+      kent: ''
       kf1: "\eOP"
       kf10: "\e[21~"
       kf11: "\e[23~"

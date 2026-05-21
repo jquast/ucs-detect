@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:06:37 UTC
+datetime: 2026-05-20 17:25:38 UTC
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 151.07085255999118
+seconds_elapsed: 163.3588272610068
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: GNOME Terminal
 software_version: 3.60.0(VTE/8400)
 system: Linux
@@ -133,7 +135,6 @@ terminal_results:
   width: 80
   xtgettcap:
     capabilities:
-      Co: '256'
       RGB: '8'
       TN: xterm-256color
       colors: '256'
@@ -209,7 +210,7 @@ terminal_results:
       kcuu1: "\e[A"
       kdch1: "\e[3~"
       kend: "\e[F"
-      kent: ''
+      kent: "\r2\x031\x18V"
       kf1: "\eOP"
       kf10: "\e[21~"
       kf11: "\e[23~"

@@ -252,6 +252,6 @@ terminals:
     launch:
       subterminal: true
       program: zellij
-      args: [-q]
+      args: []
       post_launch_delay_ms: 300
-      post_launch_keys: ["\x1b", '\p1000', "sh ", "${SCRIPT} && exit", "\n"]
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]

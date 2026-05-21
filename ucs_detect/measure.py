@@ -138,6 +138,11 @@ def _spray_collect_row(term, writer, wchars_strs, timeout):
 
     spray = ''.join(parts)
 
+    # Drain stale CPR responses before spraying to prevent contamination
+    # from prior operations (failed sprays, get_location calls, etc.).
+    # Small non-zero timeout catches in-flight stale responses.
+    term.flushinp(timeout=0.01)
+
     if term.stream:
         term.stream.write(spray)
         term.stream.flush()
@@ -158,6 +163,10 @@ def _spray_collect_row(term, writer, wchars_strs, timeout):
             cpr_positions.append((y, x))
         elif inp:
             term.ungetch(inp)
+
+    # Drain excess CPR responses that may have accumulated beyond
+    # expected_count, to prevent contaminating the next operation.
+    term.flushinp(timeout=0.01)
 
     return cpr_positions
 

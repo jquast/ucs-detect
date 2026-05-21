@@ -1,15 +1,15 @@
 ambiguous_width: 1
-datetime: 2026-05-20 12:54:28 UTC
-height: 35
+datetime: 2026-05-20 17:25:58 UTC
+height: 16
 python_version: 3.14.4
-seconds_elapsed: 517.1647497370141
+seconds_elapsed: 12.194702722001239
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
-  single_cpr: false
+  single_cpr: true
   stream: stderr
   timeout_cps: 1.0
 software_name: Konsole
@@ -21,8 +21,8 @@ terminal_results:
   - 0
   - 0
   - 0
-  cell_height: 19
-  cell_width: 10
+  cell_height: 26
+  cell_width: 11
   color_scheme: false
   colored_underlines: false
   decrqcra: false
@@ -33,12 +33,12 @@ terminal_results:
     - 1
     - 4
     service_class: 62
-  foreground_color_hex: '#fcfcfcfcfcfc'
+  foreground_color_hex: '#b2b2b2b2b2b2'
   foreground_color_rgb:
-  - 64764
-  - 64764
-  - 64764
-  height: 35
+  - 45746
+  - 45746
+  - 45746
+  height: 16
   iterm2_features:
     features: {}
     supported: false
@@ -49,10 +49,10 @@ terminal_results:
   kitty_query: false
   modes: {}
   number_of_colors: 16777216
-  pixels_height: 665
-  pixels_width: 1240
-  screen_ratio: '16:9'
-  screen_ratio_name: HD
+  pixels_height: 416
+  pixels_width: 1100
+  screen_ratio: '21:9'
+  screen_ratio_name: UWHD
   sixel: true
   software_name: Konsole
   software_version: 26.04.0
@@ -62,7 +62,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 124
+  width: 100
   xtgettcap:
     capabilities: {}
     supported: false
@@ -5264,6 +5264,198 @@ test_results:
         wchar: \u31ef
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u4dc0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dca
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dce
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dda
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dde
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dea
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4deb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dec
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ded
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dee
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4def
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfa
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfe
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dff
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d300
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -5634,8 +5826,8 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001faef
-      n_errors: 145
+      n_errors: 209
       n_total: 43592
-      pct_success: 99.66737015966233
+      pct_success: 99.52055423013397
 wcwidth_version: 0.7.0
-width: 124
+width: 100

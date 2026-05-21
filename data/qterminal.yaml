@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:07:27 UTC
+datetime: 2026-05-20 17:27:29 UTC
 height: 25
 python_version: 3.14.4
-seconds_elapsed: 1.6478004769887775
+seconds_elapsed: 2.8478595560009126
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000
   limit_errors: 500
   limit_graphemes: 5000
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: QTerminal
 software_version: 1.4.0
 system: Linux

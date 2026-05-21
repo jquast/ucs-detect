@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:07:02 UTC
+datetime: 2026-05-20 17:25:46 UTC
 height: 33
 python_version: 3.14.4
-seconds_elapsed: 19.148107387009077
+seconds_elapsed: 24.522190232004505
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: Tabby
 software_version: 1.0.230
 system: Linux

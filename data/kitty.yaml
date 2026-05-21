@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:06:12 UTC
+datetime: 2026-05-20 17:24:55 UTC
 height: 54
 python_version: 3.14.4
-seconds_elapsed: 35.75471378600923
+seconds_elapsed: 29.886551509000128
 session_arguments:
   limit_category_time: 600.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: kitty
 software_version: 0.46.2
 system: Linux
@@ -137,7 +139,6 @@ terminal_results:
     capabilities:
       BD: "\e[?2004l"
       BE: "\e[?2004h"
-      Co: '256'
       Cr: "\e]112\a"
       Cs: "\e]12;%p1%s\a"
       Ms: "\e]52;%p1%s;%p2%s\e\\"

@@ -1,15 +1,15 @@
 ambiguous_width: 1
-datetime: 2026-05-20 17:11:48 UTC
-height: 37
+datetime: 2026-05-21 01:16:59 UTC
+height: 24
 python_version: 3.14.4
-seconds_elapsed: 46.012481726007536
+seconds_elapsed: 193.9597619510023
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
-  single_cpr: true
+  single_cpr: false
   stream: stderr
   timeout_cps: 2.0
 software_name: contour
@@ -31,13 +31,13 @@ terminal_results:
     decsasd: '0'
     decsca: '2'
     decscl: 65;1
-    decscpp: 144|$
+    decscpp: 80|$
     decscusr: '6'
-    decslpp: '37'
-    decslrm: 1;143
-    decsnls: '37'
+    decslpp: '24'
+    decslrm: 1;79
+    decsnls: '24'
     decssdt: '1'
-    decstbm: 1;36
+    decstbm: 1;23
     sgr: 0;38;2;26;23;22;49
   device_attributes:
     extensions:
@@ -54,7 +54,7 @@ terminal_results:
   - 53456
   - 53456
   - 53456
-  height: 37
+  height: 24
   iterm2_features:
     features: {}
     supported: false
@@ -137,10 +137,10 @@ terminal_results:
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
   osc52_clipboard: true
-  pixels_height: 814
-  pixels_width: 1440
-  screen_ratio: '16:9'
-  screen_ratio_name: HD
+  pixels_height: 528
+  pixels_width: 800
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: true
   software_name: contour
   software_version: 0.6.3.8249
@@ -150,7 +150,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 144
+  width: 80
   xtgettcap:
     capabilities:
       Cs: "\e]12;%p1%s\e\\"
@@ -21512,4 +21512,4 @@ test_results:
       n_total: 43592
       pct_success: 100.0
 wcwidth_version: 0.7.0
-width: 144
+width: 80

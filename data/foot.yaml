@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:06:55 UTC
+datetime: 2026-05-20 17:25:58 UTC
 height: 46
 python_version: 3.14.4
-seconds_elapsed: 9.591725157981273
+seconds_elapsed: 8.600783615009277
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: foot
 software_version: 1.16.2
 system: Linux
@@ -139,7 +141,6 @@ terminal_results:
       AX: ''
       BD: "\e[?2004l"
       BE: "\e[?2004h"
-      Co: '256'
       Cr: "\e]112\e\\"
       Cs: "\e]12;%p1%s\e\\"
       E3: "\e[3J"

@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:06:37 UTC
+datetime: 2026-05-20 17:22:51 UTC
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 151.25606423104182
+seconds_elapsed: 196.33360772399465
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: termit
 software_version: 3.1(VTE/8400)
 system: Linux
@@ -133,7 +135,6 @@ terminal_results:
   width: 80
   xtgettcap:
     capabilities:
-      Co: '256'
       RGB: '8'
       TN: xterm-256color
       colors: '256'

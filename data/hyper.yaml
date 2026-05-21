@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:06:28 UTC
+datetime: 2026-05-20 17:32:12 UTC
 height: 47
 python_version: 3.14.4
-seconds_elapsed: 160.57655167300254
+seconds_elapsed: 176.39827309400425
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: Hyper
 software_version: 3.4.1
 system: Linux

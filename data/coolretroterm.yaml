@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-10 04:07:13 UTC
+datetime: 2026-05-20 17:26:16 UTC
 height: 20
 python_version: 3.14.4
-seconds_elapsed: 7.168231365038082
+seconds_elapsed: 13.930342603998724
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: cool-retro-term
 software_version: 1.2.0
 system: Linux

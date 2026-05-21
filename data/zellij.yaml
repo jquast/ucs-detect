@@ -1,15 +1,17 @@
 ambiguous_width: 1
-datetime: 2026-05-19 01:14:43 UTC
-height: 28
+datetime: 2026-05-20 17:34:40 UTC
+height: 17
 python_version: 3.14.4
-seconds_elapsed: 3.853960971995548
+seconds_elapsed: 13.925360967012239
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  single_cpr: false
   stream: stderr
+  timeout_cps: 1.0
 software_name: Zellij
 software_version: '4403'
 system: Linux
@@ -19,8 +21,8 @@ terminal_results:
   - 4369
   - 4369
   - 4369
-  cell_height: 32
-  cell_width: 14
+  cell_height: 25
+  cell_width: 11
   color_scheme: light
   colored_underlines: false
   decrqcra: false
@@ -36,7 +38,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 28
+  height: 17
   iterm2_features:
     features: {}
     supported: false
@@ -54,10 +56,10 @@ terminal_results:
   modes: {}
   number_of_colors: 16777216
   osc52_clipboard: true
-  pixels_height: 896
-  pixels_width: 1876
-  screen_ratio: '21:9'
-  screen_ratio_name: UWHD
+  pixels_height: 425
+  pixels_width: 759
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: true
   software_name: Zellij
   software_version: '4403'
@@ -67,7 +69,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-ghostty
-  width: 134
+  width: 69
   xtgettcap:
     capabilities: {}
     supported: false
@@ -10937,4 +10939,4 @@ test_results:
       n_total: 43592
       pct_success: 99.46091025876308
 wcwidth_version: 0.7.0
-width: 134
+width: 69
