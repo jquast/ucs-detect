@@ -4,7 +4,7 @@ requires = [ "hatchling" ]
 
 [project]
 name = "ucs-detect"
-version = "2.1.0"
+version = "2.2.0"
 description = "Detects Unicode support of an interactive terminal"
 readme = "README.rst"
 keywords = [
@@ -52,11 +52,11 @@ classifiers = [
   "Topic :: Text Processing :: General",
 ]
 dependencies = [
-  "blessed>=1.40,<2",
+  "blessed>=1.43,<2",
   "prettytable",
   "pyyaml<7",
   "requests",
-  "wcwidth>=0.6.0,<1",
+  "wcwidth>=0.7.0,<1",
 ]
 
 [project.scripts]
