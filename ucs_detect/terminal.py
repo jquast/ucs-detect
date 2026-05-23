@@ -343,6 +343,8 @@ def echo(term, data):
 def maybe_determine_xtgettcap(term, timeout=1.0, **_kw):
     """Query terminal capabilities via XTGETTCAP (DCS+q), delegating to blessed."""
     result = {'xtgettcap': {'supported': False, 'capabilities': {}}}
+    if getattr(term, 'kind', '') == 'ansicon':
+        return result
 
     y_before, x_before = term.get_location(timeout=timeout)
 

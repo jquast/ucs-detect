@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-18 23:59:29 UTC
-height: 35
+datetime: 2026-05-24 01:01:21 UTC
+height: 40
 python_version: 3.14.3
-seconds_elapsed: 162.31522150000092
+seconds_elapsed: 928.8184224
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -23,7 +23,7 @@ terminal_results:
     extensions:
     - 2
     service_class: 1
-  height: 35
+  height: 40
   iterm2_features:
     features: {}
     supported: false
@@ -34,8 +34,8 @@ terminal_results:
   kitty_query: false
   modes: {}
   number_of_colors: 16
-  pixels_height: 595
-  pixels_width: 944
+  pixels_height: 680
+  pixels_width: 1072
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: false
@@ -47,10 +47,11 @@ terminal_results:
     scale: false
     width: false
   ttype: ansicon
-  width: 118
+  width: 134
   xtgettcap:
     capabilities: {}
     supported: false
+  xtgettcap-bad-screenleak: true
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -32407,4 +32408,4 @@ test_results:
       n_total: 43592
       pct_success: 99.52055423013397
 wcwidth_version: 0.7.0
-width: 118
+width: 134

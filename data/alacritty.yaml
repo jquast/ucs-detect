@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-21 14:20:43 UTC
-height: 16
+datetime: 2026-05-23 23:49:29 UTC
+height: 33
 python_version: 3.14.4
-seconds_elapsed: 34.77812717400957
+seconds_elapsed: 5.465985049988376
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000
@@ -11,7 +11,7 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
 software_name: alacritty
-software_version: 0.18.0-dev (79adb086)
+software_version: 0.17.0
 system: Linux
 terminal_results:
   background_color_hex: '#181818181818'
@@ -32,7 +32,7 @@ terminal_results:
   - 55512
   - 55512
   - 55512
-  height: 16
+  height: 33
   iterm2_features:
     features: {}
     supported: false
@@ -113,20 +113,20 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 592
+  pixels_height: 594
   pixels_width: 800
   screen_ratio: '4:3'
   screen_ratio_name: VGA
   sixel: false
   software_name: alacritty
-  software_version: 0.18.0-dev (79adb086)
+  software_version: 0.17.0
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: alacritty
-  width: 50
+  width: 100
   xtgettcap:
     capabilities: {}
     supported: false
@@ -10541,4 +10541,4 @@ test_results:
       n_total: 5000
       pct_success: 100.0
 wcwidth_version: 0.7.0
-width: 50
+width: 100

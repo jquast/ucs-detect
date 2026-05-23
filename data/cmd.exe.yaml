@@ -1,8 +1,8 @@
 ambiguous_width: 1
-datetime: 2026-05-18 23:51:58 UTC
+datetime: 2026-05-24 00:46:50 UTC
 height: 30
 python_version: 3.14.3
-seconds_elapsed: 24.825781699997606
+seconds_elapsed: 101.41715980000004
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -140,11 +140,12 @@ terminal_results:
   text_sizing:
     scale: false
     width: false
-  ttype: ms-terminal
+  ttype: vtwin10
   width: 120
   xtgettcap:
     capabilities: {}
     supported: false
+  xtgettcap-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:
