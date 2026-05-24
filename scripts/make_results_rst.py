@@ -229,7 +229,7 @@ def create_score_plots(sw_name, entry, score_table):
         'SRI': 'score_sri',
         'SFZ': 'score_sfz',
         'RI': 'score_ri',
-        'CAP': 'score_capabilities',
+        'CAP': 'score_features',
         'GFX': 'score_graphics',
         'TIME': 'score_elapsed',
     }
@@ -439,7 +439,7 @@ def main():
         display_tabulated_scores(score_table)
         # Definitions removed - not shown in individual terminal pages
         display_common_languages(all_successful_languages)
-        display_capabilities_table(score_table)
+        display_features_table(score_table)
         display_xtgettcap_summary_bullets(score_table)
         display_xtgettcap_comparison_table(score_table)
         # display_time_summary removed: plot is still generated but not published
@@ -637,8 +637,8 @@ def make_score_table():
             _sixel_support = data.get("terminal_results", {}).get("sixel", False)
             _score_sixel = 1.0 if _sixel_support else 0.0
 
-            # Capabilities score - fraction of notable capabilities supported
-            _score_capabilities = score_capabilities(data)
+            # Features score - fraction of notable features supported
+            _score_features = score_features(data)
 
             # Graphics protocol score - 1.0 modern, 0.5 legacy, 0.0 none
             _score_graphics = score_graphics(data)
@@ -664,7 +664,7 @@ def make_score_table():
                     score_zwj=_score_zwj,
                     score_sixel=_score_sixel,
                     sixel_support=_sixel_support,
-                    score_capabilities=_score_capabilities,
+                    score_features=_score_features,
                     score_graphics=_score_graphics,
                     data=data,
                     fname=os.path.basename(yaml_path),
@@ -732,7 +732,7 @@ def make_score_table():
             (entry["score_sri"], STANDALONE_WEIGHT),
             (entry["score_sfz"], STANDALONE_WEIGHT),
             (entry["score_ri"], 1.0),
-            (entry["score_capabilities"], 1.0),
+            (entry["score_features"], 1.0),
             (entry["score_graphics"], GRAPHICS_WEIGHT),
             (entry["score_elapsed_norm"], TIME_WEIGHT)
         ]
@@ -849,8 +849,8 @@ def _classify_xtgettcap(data):
     return ("partial", 0.5)
 
 
-def _count_capabilities(entry):  # "features" in user-facing output
-    """Count supported and total notable capabilities for a terminal."""
+def _count_features(entry):  # "features" in user-facing output
+    """Count supported and total notable features for a terminal."""
     tr = entry["data"].get("terminal_results") or {}
     if not tr:
         return 0, 0
@@ -880,10 +880,10 @@ def _count_capabilities(entry):  # "features" in user-facing output
     return n_found, n_total
 
 
-def _format_capabilities_summary(entry, max_caps):
-    """Format detected capabilities as a count with scored hyperlink."""
+def _format_features_summary(entry, max_caps):
+    """Format detected features as a count with scored hyperlink."""
     sw_name = entry["terminal_software_name"]
-    n_found, _n_total = _count_capabilities(entry)
+    n_found, _n_total = _count_features(entry)
     score = n_found / max_caps if max_caps else 0.0
     return wrap_score_with_hyperlink(
         str(n_found), score, sw_name, "_dec_modes"
@@ -951,12 +951,12 @@ def display_tabulated_scores(score_table):
 
     tabulated_scores = []
 
-    # determine max capabilities across all terminals for scaling
-    max_caps = max((_count_capabilities(r)[0] for r in score_table), default=1)
+    # determine max features across all terminals for scaling
+    max_caps = max((_count_features(r)[0] for r in score_table), default=1)
 
     for rank, result in enumerate(score_table, start=1):
-        # Build capabilities summary count
-        capabilities_list = _format_capabilities_summary(result, max_caps)
+        # Build features summary count
+        features_list = _format_features_summary(result, max_caps)
 
         tabulated_scores.append(
             {
@@ -1020,7 +1020,7 @@ def display_tabulated_scores(score_table):
                     "_ri"
                 ) if not math.isnan(result["score_ri_scaled"])
                     else _wrap_untested(result["terminal_software_name"], "_ri")),
-                "Features": capabilities_list,
+                "Features": features_list,
                 "Graphics": _format_graphics_protocols(result, result["terminal_software_name"]),
             }
         )
@@ -1239,18 +1239,18 @@ def score_dec_modes(data):
     return changeable_modes
 
 
-def score_capabilities(data):
+def score_features(data):
     """
-    Calculate score as fraction of notable terminal capabilities supported.
+    Calculate score as fraction of notable terminal features supported.
 
-    Checks 13 capabilities: Bracketed Paste (mode 2004), Synced Output (mode 2026),
+    Checks 13 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
     Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
     Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
     Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications, and
     Color Report (OSC 10/11).
 
     :rtype: float
-    :returns: fraction 0.0-1.0 of capabilities supported
+    :returns: fraction 0.0-1.0 of features supported
     """
     tr = data.get("terminal_results") or {}
     if not tr:
@@ -1413,11 +1413,11 @@ def _get_dec_mode_supported(modes, mode_num):
     return False
 
 
-def display_capabilities_table(score_table):
-    """Display a capabilities comparison table with terminals as rows.
+def display_features_table(score_table):
+    """Display a features comparison table with terminals as rows.
 
-    Mirrors the notable capabilities shown by the ucs-detect CLI tool's
-    ``_build_capabilities_kv_pairs`` output.
+    Mirrors the notable features shown by the ucs-detect CLI tool's
+    ``_build_features_kv_pairs`` output.
     """
     display_title("Terminal Features", 2)
     print("This table shows notable terminal features for each terminal,")
@@ -1507,7 +1507,7 @@ def display_capabilities_table(score_table):
         table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
         print_datatable(table_str)
     else:
-        print("No terminal capability data available.")
+        print("No terminal feature data available.")
         print()
 
 
@@ -1608,7 +1608,8 @@ def display_xtgettcap_comparison_table(score_table):
         if any(ord(ch) < 32 or ord(ch) > 126 for ch in raw):
             return f"``{_escape_terminfo_value(raw)}``"
         if not raw.isalnum():
-            return f"``{raw.replace('`', '\\\\`')}``"
+            escaped = raw.replace('`', '\\\\`')
+            return f"``{escaped}``"
         return raw
 
     # Sort cap names: primary first, then alphabetical
@@ -1722,8 +1723,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         {
             "#": 9,
             "Score Type": make_outbound_hyperlink("FEAT", sw_name + "_dec_modes"),
-            "Raw Score": format_raw_score(entry["score_capabilities"]),
-            "Final Scaled Score": format_score_pct(entry["score_capabilities_scaled"]),
+            "Raw Score": format_raw_score(entry["score_features"]),
+            "Final Scaled Score": format_score_pct(entry["score_features_scaled"]),
         },
         {
             "#": 10,
@@ -1903,7 +1904,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print("**Features Score Details:**")
     print()
-    if not math.isnan(entry["score_capabilities"]):
+    if not math.isnan(entry["score_features"]):
         tr = entry["data"].get("terminal_results") or {}
         modes = tr.get("modes") or {}
         cap_checks = [
@@ -1939,9 +1940,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             status = "yes" if supported else "no"
             print(f"- {name}: **{status}**")
         print()
-        print(f"Raw score: {entry['score_capabilities']*100:.2f}%")  # noqa: E226
+        print(f"Raw score: {entry['score_features']*100:.2f}%")  # noqa: E226
     else:
-        print("Capabilities results not available.")
+        print("Features results not available.")
     print()
 
     print("**Graphics Score Details:**")

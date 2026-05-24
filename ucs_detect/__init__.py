@@ -595,8 +595,8 @@ def _build_terminal_kv_pairs(term, results):
     return pairs
 
 
-def _build_capabilities_kv_pairs(term, results):
-    """Build (key, value) tuples for terminal capabilities."""
+def _build_features_kv_pairs(term, results):
+    """Build (key, value) tuples for terminal features."""
     pairs = []
     if not results:
         return pairs
@@ -991,7 +991,7 @@ def display_results(term, writer, ambig_label, terminal_results=None,
     result_sets["has_unicode"] = has_unicode
     results = terminal_results or {}
     terminal_pairs = _build_terminal_kv_pairs(term, results)
-    caps_pairs = _build_capabilities_kv_pairs(term, results)
+    features_pairs = _build_features_kv_pairs(term, results)
     result_sets["modes"] = results.get("modes", {})
     test_pairs = _build_test_kv_pairs(term, ambig_label, **result_sets)
 
@@ -1009,19 +1009,19 @@ def display_results(term, writer, ambig_label, terminal_results=None,
     if test_pairs:
         primary_pairs.extend(test_pairs)
 
-    # secondary table: detailed capabilities
+    # secondary table: detailed features
     secondary_pairs = []
-    if caps_pairs:
-        secondary_pairs.extend(caps_pairs)
+    if features_pairs:
+        secondary_pairs.extend(features_pairs)
 
     table_strings = []
     if primary_pairs:
         table_strings.append(
-            str(_make_kv_table(term, "Terminal Capabilities",
+            str(_make_kv_table(term, "Terminal Features",
                                primary_pairs, has_unicode)))
     if secondary_pairs:
         table_strings.append(
-            str(_make_kv_table(term, "Terminal Capabilities (2)",
+            str(_make_kv_table(term, "Terminal Features (2)",
                                secondary_pairs, has_unicode)))
 
     all_lines.extend(_collect_side_by_side_lines(term, table_strings))
@@ -1161,7 +1161,7 @@ def parse_args():
     args.add_argument(
         "--timeout-query",
         default="auto",
-        help="Timeout in seconds for terminal capability queries, or 'auto' to "
+        help="Timeout in seconds for terminal feature queries, or 'auto' to "
              "scale from measured response times (default: auto)",
     )
     args.add_argument(

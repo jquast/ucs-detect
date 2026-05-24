@@ -591,7 +591,7 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
 def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
                           timeout=1.0, has_unicode=True,
                           silent=False):
-    """Detect terminal capabilities and return results as a dict."""
+    """Detect terminal features and return results as a dict."""
     writer = functools.partial(print, end="", flush=True, file=sys.stderr)
     term = make_terminal()
     attrs = {'ttype': term.kind, 'number_of_colors': term.number_of_colors}

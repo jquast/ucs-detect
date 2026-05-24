@@ -58,7 +58,7 @@ Unicode support for Wide characters, Emoji Zero Width Joiner (ZWJ) sequences,
 Regional Indicators and flags, Variation Selector-16 (VS-16) and VS-15 sequences,
 and zero-width combining characters across hundreds of languages.
 
-Terminal capabilities that may be automatically detected are also reported:
+Terminal features that may be automatically detected are also reported:
 `Bracketed Paste`_, `Synchronized Output`_, `Mouse SGR`_, `Grapheme
 Clustering`_, `Kitty Keyboard protocol`_, `Sixel`_, `ReGIS`_, `Kitty`_ or
 `iTerm2 image protocol`_, and `XTGETTCAP`_ support.
