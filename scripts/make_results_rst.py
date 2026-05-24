@@ -809,10 +809,6 @@ def _truncate_version(version):
 def _classify_xtgettcap(data):
     """Classify XTGETTCAP support as full, partial, or none.
 
-    Uses same logic as ttyscan ``has_meaningful_caps``: Full terminals
-    report capabilities beyond the bare-minimum TN/colors/RGB plus keyboard
-    keys.  Boolean caps (empty string), meaningful numeric caps (beyond
-    colors/Co), and output string caps (non-keyboard) all indicate Full.
     Returns ``(label, score)`` where label is "full", "partial", or None,
     and score is 1.0, 0.5, or 0.0.
 
@@ -1546,15 +1542,16 @@ def display_xtgettcap_summary_bullets(score_table):
 
     if full:
         _bullet("Full XTGETTCAP capability support", full,
-                ". ttyscan produces terminfo files for only these terminals. "
-                "ttyscan may also discover a preferred TERM from TN, "
-                "and COLORTERM=truecolor from RGB.")
+                ". A full terminfo(5) database can be reconstructed "
+                "from XTGETTCAP queries using ttyscan_. "
+                "A preferred TERM from TN, and COLORTERM=truecolor "
+                "from RGB may be derived.")
         print()
 
     if partial:
         _bullet("Partial XTGETTCAP capability support", partial,
-                ". ttyscan may only discover preferred TERM from TN, "
-                "and COLORTERM=truecolor from RGB.")
+                ". A preferred TERM from TN, and COLORTERM=truecolor "
+                "from RGB may be derived.")
         print()
 
     if nosupport:
@@ -1579,8 +1576,8 @@ def display_xtgettcap_comparison_table(score_table):
     from collections import OrderedDict
 
     print("This table shows XTGETTCAP terminfo capability values reported "
-          "by each terminal, as demonstrated by `ttyscan`_.")
-    print("Terminals are grouped by shared values for each capability.")
+          "by each terminal. Terminals are grouped by shared values for "
+          "each capability.")
     print()
 
     # Collect XTGETTCAP data from all terminals that support it
@@ -2038,7 +2035,8 @@ def show_wide_character_support(sw_name, entry):
         if result["n_errors"] > 0:
             fail_record = find_best_failure(result["failed_codepoints"])
             show_record_failure(
-                sw_name, "of a WIDE character,", fail_record
+                sw_name, "of a WIDE character,", fail_record,
+                category="wide",
             )
     else:
         print(f"Wide character results for *{sw_name}* are not available.")
@@ -2066,7 +2064,8 @@ def show_emoji_zwj_results(sw_name, entry):
     print()
     if n_errors > 0:
         fail_record = find_best_failure(result["failed_codepoints"])
-        show_record_failure(sw_name, "of an Emoji ZWJ Sequence,", fail_record)
+        show_record_failure(sw_name, "of an Emoji ZWJ Sequence,", fail_record,
+                            category="zwj")
 
 
 def show_vs_results(sw_name, entry, variation_str):
@@ -2096,7 +2095,8 @@ def show_vs_results(sw_name, entry, variation_str):
         description = 'NARROW Emoji made WIDE' if variation_str == '16' else 'WIDE Emoji made NARROW'
         whatis = f"of a {description} by *Variation Selector-{variation_str}*,"
         show_record_failure(sw_name, whatis, failure_record,
-                            test_type=f"vs{variation_str}")
+                            test_type=f"vs{variation_str}",
+                            category=f"vs{variation_str}")
     if variation_str == '15':
         print()
         print(".. note::")
@@ -2241,9 +2241,11 @@ def show_language_results(sw_name, entry):
     print_datatable(table_str)
     for failed_lang in languages_failed:
         fail_record = lang_results[failed_lang]["failed"][0]
+        safe_lang = "".join(c if c.isalnum() or c in "-_" else "_" for c in failed_lang)
         display_inbound_hyperlink(sw_name + "_lang_" + failed_lang)
         display_title(failed_lang, 4)
-        show_record_failure(sw_name, f"of language *{failed_lang}*", fail_record)
+        show_record_failure(sw_name, f"of language *{failed_lang}*", fail_record,
+                            category=f"lang_{safe_lang}")
 
 
 def show_dec_modes_results(sw_name, entry):
@@ -2488,7 +2490,8 @@ def show_sri_results(sw_name, entry):
     if n_errors > 0 and result.get("failed_codepoints"):
         fail_record = find_best_failure(result["failed_codepoints"])
         show_record_failure(
-            sw_name, "of a standalone Regional Indicator,", fail_record
+            sw_name, "of a standalone Regional Indicator,", fail_record,
+            category="sri",
         )
 
 
@@ -2514,7 +2517,8 @@ def show_sfz_results(sw_name, entry):
     if n_errors > 0 and result.get("failed_codepoints"):
         fail_record = find_best_failure(result["failed_codepoints"])
         show_record_failure(
-            sw_name, "of a standalone Fitzpatrick modifier,", fail_record
+            sw_name, "of a standalone Fitzpatrick modifier,", fail_record,
+            category="sfz",
         )
 
 
@@ -2540,7 +2544,8 @@ def show_ri_results(sw_name, entry):
     if n_errors > 0 and result.get("failed_codepoints"):
         fail_record = find_best_failure(result["failed_codepoints"])
         show_record_failure(
-            sw_name, "of a Regional Indicator flag sequence,", fail_record
+            sw_name, "of a Regional Indicator flag sequence,", fail_record,
+            category="ri",
         )
 
 
@@ -2585,7 +2590,7 @@ def show_time_elapsed_results(sw_name, entry):
     print()
 
 
-def show_record_failure(sw_name, whatis, fail_record, test_type=None):
+def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=None):
     """Display details of a test failure record for a terminal."""
     num_bars = "1234567890" * ((fail_record.get("measured_by_wcwidth", 0) // 10) + 1)
     ruler = num_bars[: fail_record.get("measured_by_wcwidth", 0)]
@@ -2602,6 +2607,21 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None):
     print(f'        {bytes(wchars, "utf8").decode("unicode-escape")}|')
     print(f"        {ruler}|")
     print()
+
+    # Screenshot reference
+    if category:
+        safe_sw = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
+        screenshot_path = f"../_static/screenshots/{safe_sw}/{category}.png"
+        abs_screenshot = os.path.join(_ROOT, "docs", "_static", "screenshots",
+                                      safe_sw, f"{category}.png")
+        if os.path.exists(abs_screenshot):
+            print()
+            print("Screenshot:")
+            print()
+            print(f".. image:: {screenshot_path}")
+            print("   :alt: Terminal screenshot of the rendering discrepancy")
+            print()
+
     if fail_record.get("delta_ypos", 0) != 0:
         print(f"- Cursor Y-Position moved {fail_record['delta_ypos']} rows"
               " where no movement is expected.")
