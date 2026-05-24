@@ -1514,6 +1514,8 @@ def display_capabilities_table(score_table):
 def display_xtgettcap_summary_bullets(score_table):
     """Display a bulleted list categorizing XTGETTCAP support levels."""
 
+    display_title("Terminal Capabilities (XTGETTCAP)", 2)
+
     def _link(name):
         return make_outbound_hyperlink(name, name + "_xtgettcap")
 
@@ -1576,7 +1578,6 @@ def display_xtgettcap_comparison_table(score_table):
     """
     from collections import OrderedDict
 
-    display_title("Terminal Capabilities (XTGETTCAP)", 2)
     print("This table shows XTGETTCAP terminfo capability values reported "
           "by each terminal, as demonstrated by `ttyscan`_.")
     print("Terminals are grouped by shared values for each capability.")
