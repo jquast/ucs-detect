@@ -10,7 +10,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-software_name: Apple_Terminal
+software_name: Terminal.app
 software_version: '465'
 system: Darwin
 terminal_results:
@@ -49,7 +49,7 @@ terminal_results:
   screen_ratio: '4:3'
   screen_ratio_name: VGA
   sixel: false
-  software_name: Apple_Terminal
+  software_name: Terminal.app
   software_version: '465'
   styled_underlines: false
   tab_stop_width: 8
