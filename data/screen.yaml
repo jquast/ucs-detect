@@ -1,8 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-21 13:39:52 UTC
+datetime: 2026-05-24 19:47:03 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: screen
 height: 21
 python_version: 3.14.4
-seconds_elapsed: 15.287536096002441
+seconds_elapsed: 16.83099270000821
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -14,6 +17,11 @@ software_name: screen
 software_version: 5.0.1
 system: Linux
 terminal_results:
+  background_color_hex: '#111111111111'
+  background_color_rgb:
+  - 4369
+  - 4369
+  - 4369
   color_scheme: false
   colored_underlines: false
   decrqcra: false

@@ -1,8 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-21 13:39:35 UTC
+datetime: 2026-05-24 19:46:58 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: xterm-ghostty
 height: 17
 python_version: 3.14.4
-seconds_elapsed: 16.939418905996718
+seconds_elapsed: 26.26758935599355
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -10,7 +13,6 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 3.0
 software_name: Zellij
 software_version: '4403'
 system: Linux

@@ -133,6 +133,11 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
                   "limit_graphemes_pct", "limit_category_time")
     }
+    environment = {
+        k: os.environ[k]
+        for k in ("TERM", "COLORTERM", "TERM_PROGRAM", "TERM_PROGRAM_VERSION")
+        if k in os.environ
+    }
     if not silent:
         writer(f"ucs-detect: {display_args(session_arguments)})")
         if measure.get_location_with_retry(term, timeout_cps) == (-1, -1):
@@ -152,6 +157,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     python_version=platform.python_version(),
                     system=platform.system(),
                     wcwidth_version=wcwidth.__version__,
+                    environment=environment,
 
                     test_results={},
                     terminal_results={},
@@ -443,6 +449,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             python_version=platform.python_version(),
             system=platform.system(),
             wcwidth_version=wcwidth.__version__,
+            environment=environment,
 
             test_results=dict(
                 unicode_wide_results=wide_results,
