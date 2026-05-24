@@ -2383,14 +2383,14 @@ def show_xtgettcap_results(sw_name, entry):
     tr = entry["data"].get("terminal_results") or {}
     xtgettcap = tr.get("xtgettcap", {})
 
-    if tr.get("xtgettcap-bad-screenleak"):
-        print("This terminal fails to parse VT100 Mode DCS Sequences at all, "
-              "and displays XTGETTCAP queries as screen output")
-        print()
-
     if not xtgettcap.get("supported", False):
         print(f"*{sw_name}* does not support the ``XTGETTCAP`` sequence.")
         print()
+        if tr.get("xtgettcap-bad-screenleak"):
+            print(".. warning::")
+            print("   This terminal fails to parse VT100 Mode DCS Sequences at"
+                  " all, and displays XTGETTCAP queries as screen output")
+            print()
         return
 
     capabilities = xtgettcap.get("capabilities", {})
