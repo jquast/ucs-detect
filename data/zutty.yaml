@@ -1,8 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-21 14:20:50 UTC
+datetime: 2026-05-24 22:04:26 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: xterm-256color
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 42.3924465609889
+seconds_elapsed: 75.23624225298408
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -65,6 +68,7 @@ terminal_results:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

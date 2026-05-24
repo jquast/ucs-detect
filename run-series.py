@@ -135,7 +135,7 @@ def build_launch_args(launch_cfg, script_path):
         else:
             argv.append(arg)
     if not has_placeholder and not launch_cfg.get("post_launch_keys"):
-        argv.extend(["sh", script_str])
+        argv.extend(["/bin/sh", script_str])
     return argv
 
 
@@ -145,7 +145,7 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
     inner_parts = [launch_cfg["program"]] + launch_cfg["args"]
     has_placeholder = any("{script}" in a for a in launch_cfg["args"])
     if not has_placeholder and not launch_cfg.get("post_launch_keys"):
-        inner_parts.extend(["sh", script_str])
+        inner_parts.extend(["/bin/sh", script_str])
     else:
         inner_parts = [p.replace("{script}", script_str) for p in inner_parts]
 

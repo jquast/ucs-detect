@@ -1,11 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-24 19:46:59 UTC
+datetime: 2026-05-24 22:04:14 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
 height: 20
 python_version: 3.14.4
-seconds_elapsed: 20.324941503989976
+seconds_elapsed: 80.04003862000536
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -127,6 +127,7 @@ terminal_results:
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: false
+  software_method: XTVERSION
   software_name: libvterm
   software_version: '0.3'
   styled_underlines: false
@@ -140,6 +141,7 @@ terminal_results:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

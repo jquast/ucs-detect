@@ -1,11 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-24 19:46:58 UTC
+datetime: 2026-05-24 22:04:09 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
 height: 17
 python_version: 3.14.4
-seconds_elapsed: 26.26758935599355
+seconds_elapsed: 82.94988808396738
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -62,6 +62,7 @@ terminal_results:
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
+  software_method: XTVERSION
   software_name: Zellij
   software_version: '4403'
   styled_underlines: false
@@ -75,6 +76,7 @@ terminal_results:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

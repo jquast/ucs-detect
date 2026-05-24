@@ -163,10 +163,12 @@ terminals:
   syncterm:
     homepage: https://syncterm.bbsdev.net/
     launch:
+      skip: true
       program: syncterm
       args: [Local]
       post_launch_delay_ms: 300
       post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
+    skip_reason: "Not very interesting"
 
   tabby:
     homepage: https://tabby.sh/

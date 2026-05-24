@@ -1,8 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-21 14:22:08 UTC
+datetime: 2026-05-24 22:05:31 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: xterm
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 118.03999055700842
+seconds_elapsed: 140.84805055899778
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -136,6 +139,7 @@ terminal_results:
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
+  software_method: XTVERSION
   software_name: mlterm
   software_version: 3.9.4
   styled_underlines: false
@@ -187,6 +191,7 @@ terminal_results:
       kri: "\e[1;2A"
     supported: true
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

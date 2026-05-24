@@ -1,8 +1,10 @@
 ambiguous_width: 1
-datetime: 2026-05-21 14:22:00 UTC
+datetime: 2026-05-24 22:05:33 UTC
+environment:
+  TERM: xterm
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 111.85423901400645
+seconds_elapsed: 143.7581886309781
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -19,8 +21,8 @@ terminal_results:
   - 0
   - 0
   - 0
-  cell_height: 13
-  cell_width: 6
+  cell_height: 22
+  cell_width: 11
   color_scheme: false
   colored_underlines: false
   decrqcra: false
@@ -129,11 +131,12 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 312
-  pixels_width: 480
+  pixels_height: 528
+  pixels_width: 880
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: false
+  software_method: XTVERSION
   software_name: XTerm
   software_version: '406'
   styled_underlines: false
@@ -241,6 +244,7 @@ terminal_results:
       kri: "\e[1;2A"
     supported: true
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

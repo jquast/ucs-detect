@@ -1,8 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-21 14:22:13 UTC
-height: 33
+datetime: 2026-05-24 22:06:07 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: xterm-256color
+  TERM_PROGRAM: Tabby
+height: 17
 python_version: 3.14.4
-seconds_elapsed: 122.3378116810054
+seconds_elapsed: 167.54636293003568
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -29,7 +33,7 @@ terminal_results:
     decsca: '0'
     decscl: 61;1
     decscusr: '1'
-    decstbm: 1;33
+    decstbm: 1;17
     sgr: '0'
   device_attributes:
     extensions:
@@ -42,7 +46,7 @@ terminal_results:
   - 51914
   - 51914
   - 51914
-  height: 33
+  height: 17
   iterm2_features:
     features: {}
     supported: false
@@ -117,11 +121,12 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 528
-  pixels_width: 760
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  pixels_height: 272
+  pixels_width: 496
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: true
+  software_method: TERM_PROGRAM
   software_name: Tabby
   software_version: 1.0.230
   styled_underlines: false
@@ -130,11 +135,12 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 95
+  width: 62
   xtgettcap:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -11384,4 +11390,4 @@ test_results:
       n_total: 43592
       pct_success: 99.1626904019086
 wcwidth_version: 0.7.0
-width: 95
+width: 62

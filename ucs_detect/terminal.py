@@ -218,60 +218,90 @@ def _try_decode_da3_name(name):
     return decoded_name, decoded_version
 
 
+_RE_XTVERSION_RESPONSE = re.compile(r'\x1bP>\|(.+?)\x1b\\')
+
+
 def maybe_determine_software(term, writer, timeout=1.0):
     """Query terminal software name and version."""
     result = {}
-    sv = term.get_software_version(timeout=timeout)
-    if sv is not None:
-        name = sv.name
+
+    # Step 1: Try XTVERSION directly (duplicated from blessed's
+    # get_software_version so we can track which method succeeded).
+    # CPR before/after detects screenleak (terminals echoing the
+    # query to screen, e.g. ConEmu/ansicon), same pattern as
+    # maybe_determine_xtgettcap.
+    y_before, x_before = term.get_location(timeout=timeout)
+
+    match = term._query_with_boundary(
+        '\x1b[>q', _RE_XTVERSION_RESPONSE, timeout,
+        requires_styling=False)
+
+    y_after, x_after = term.get_location(timeout=timeout)
+    if (y_before, x_before) != (-1, -1) and (y_after, x_after) != (-1, -1):
+        result['xtversion-bad-screenleak'] = (
+            (y_before, x_before) != (y_after, x_after)
+        )
+
+    if match is not None:
+        text = match.group(1)
+        name, version = blessed.keyboard.SoftwareVersion._parse_text(text)
         # decode DA3-style ASCII-encoded name (only SyncTERM/CTerm is
         # known to respond this way)
         decoded = _try_decode_da3_name(name)
         if decoded:
             name, version = decoded
-            result['software_name'] = name
-            if version:
-                result['software_version'] = version
-        else:
-            result['software_name'] = name
-            if sv.version:
-                result['software_version'] = sv.version
+        result['software_name'] = name
+        if version:
+            result['software_version'] = version
+        result['software_method'] = 'XTVERSION'
+        return result
+
+    # Step 2: Fallback to TERM_PROGRAM + TERM_PROGRAM_VERSION env vars
+    # (set by iTerm2, Apple Terminal, VS Code, WezTerm, Hyper, mintty, etc.)
+    term_program = os.environ.get('TERM_PROGRAM', '')
+    term_version = os.environ.get('TERM_PROGRAM_VERSION', '')
+    if term_program:
+        result['software_name'] = term_program
+        if term_version:
+            result['software_version'] = term_version
+        result['software_method'] = 'TERM_PROGRAM'
+        return result
+
+    # Step 3: Try ENQ (answerback) as fallback, skip on Windows where
+    # flushinp() may hang on non-console handles (e.g. mintty PTY).
+    if sys.platform == 'win32':
+        return result
+    if term.stream:
+        term.stream.write('\x05')
+        term.stream.flush()
     else:
-        # Try ENQ (answerback) as fallback, skip on Windows where
-        # flushinp() may hang on non-console handles (e.g. mintty PTY).
-        if sys.platform == 'win32':
-            return result
-        if term.stream:
-            term.stream.write('\x05')
-            term.stream.flush()
+        sys.stderr.write('\x05')
+        sys.stderr.flush()
+
+    response = _read_dcs_or_plain_response(term, timeout=timeout)
+    # Clean up: some terminals (e.g. SyncTERM) display ENQ as a
+    # visible CP437 glyph (♣).  Overwrite it with a space.
+    writer('\r' + ' ' * (term.width - 1) + '\r')
+    if response:
+        if response.startswith('>|'):
+            response = response[2:]
+
+        # check for DA3-style ASCII-encoded name (only SyncTERM/CTerm
+        # is known to respond this way)
+        decoded = _try_decode_da3_name(response)
+        if decoded:
+            result['software_name'] = decoded[0]
+            if decoded[1]:
+                result['software_version'] = decoded[1]
         else:
-            # Fallback to stderr if no stream
-            sys.stderr.write('\x05')
-            sys.stderr.flush()
-
-        response = _read_dcs_or_plain_response(term, timeout=timeout)
-        # Clean up: some terminals (e.g. SyncTERM) display ENQ as a
-        # visible CP437 glyph (♣).  Overwrite it with a space.
-        writer('\r' + ' ' * (term.width - 1) + '\r')
-        if response:
-            if response.startswith('>|'):
-                response = response[2:]
-
-            # check for DA3-style ASCII-encoded name (only SyncTERM/CTerm
-            # is known to respond this way)
-            decoded = _try_decode_da3_name(response)
-            if decoded:
-                result['software_name'] = decoded[0]
-                if decoded[1]:
-                    result['software_version'] = decoded[1]
-            else:
-                result['software_name'] = response
-                parts = response.split()
-                if len(parts) >= 2:
-                    last_part = parts[-1]
-                    if any(c.isdigit() for c in last_part):
-                        result['software_name'] = ' '.join(parts[:-1])
-                        result['software_version'] = last_part
+            result['software_name'] = response
+            parts = response.split()
+            if len(parts) >= 2:
+                last_part = parts[-1]
+                if any(c.isdigit() for c in last_part):
+                    result['software_name'] = ' '.join(parts[:-1])
+                    result['software_version'] = last_part
+        result['software_method'] = 'ENQ'
 
     return result
 

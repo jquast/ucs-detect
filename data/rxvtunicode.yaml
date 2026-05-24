@@ -1,8 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-21 14:23:42 UTC
+datetime: 2026-05-24 22:04:37 UTC
+environment:
+  COLORTERM: rxvt-xpm
+  TERM: rxvt-unicode-256color
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 10.638515660975827
+seconds_elapsed: 85.86951886600582
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -108,8 +111,8 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 256
-  pixels_height: 316
-  pixels_width: 496
+  pixels_height: 388
+  pixels_width: 644
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: false
@@ -126,6 +129,7 @@ terminal_results:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:
