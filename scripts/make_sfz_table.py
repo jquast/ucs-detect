@@ -1,3 +1,4 @@
+"""Generate Standalone Fitzpatrick modifier table data for ucs_detect."""
 import wcwidth
 
 
@@ -9,6 +10,7 @@ def fetch_sfz_data():
 
 
 def main():
+    """Generate and write the SFZ unicode table module."""
     import textwrap
     print("STANDALONE_FITZPATRICK = (")
     for key, codepoints in fetch_sfz_data():
@@ -21,5 +23,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # $ python make_sfz_table.py > ucs_detect/table_sfz.py
+    # $ python scripts/make_sfz_table.py > ucs_detect/table_sfz.py
     main()

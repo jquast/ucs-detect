@@ -1,3 +1,4 @@
+"""Generate wide character table data for ucs_detect."""
 import wcwidth
 
 
@@ -13,6 +14,7 @@ def fetch_wide_data():
 
 
 def main():
+    """Generate and write the WIDE unicode table module."""
     import textwrap
     print("WIDE_CHARACTERS = (")
     for key, codepoints in fetch_wide_data():
@@ -26,5 +28,5 @@ def main():
 
 if __name__ == "__main__":
     # minimal wide table parser, for use:
-    # $ python make_wide_table.py > ucs_detect/table_wide.py
+    # $ python scripts/make_wide_table.py > ucs_detect/table_wide.py
     main()

@@ -61,11 +61,11 @@ import string
 import argparse
 import functools
 import unicodedata
-import urllib3.util
 
 # 3rd party
 import blessed
 import requests
+import urllib3.util
 from wcwidth import ZERO_WIDTH, wcwidth, list_versions, _wcmatch_version
 
 # local
@@ -1015,8 +1015,7 @@ class Pager:
         """
         Generate text for the current unicode pageview.
 
-        :param list[(unicode, unicode)] data: current page data as
-            tuple of ``(ucs, name)``.
+        :param list[(unicode, unicode)] data: current page data as     tuple of ``(ucs, name)``.
         :returns: generator for full-page text for display
         """
         if self.term.is_a_tty:

@@ -1,27 +1,8 @@
 ambiguous_width: 1
-cps_summary:
-  capability:
-    queries: 8
-    rtt_avg_ms: 26.919
-    rtt_max_ms: 57.293
-    rtt_mdev_ms: 13.712
-    rtt_min_ms: 17.313
-  codepoints_per_second: 29.1
-  cpr:
-    queries: 3
-    rtt_avg_ms: 35.632
-    rtt_max_ms: 47.796
-    rtt_mdev_ms: 13.575
-    rtt_min_ms: 16.687
-  queries: 3
-  rtt_avg_ms: 35.632
-  rtt_max_ms: 47.796
-  rtt_mdev_ms: 13.575
-  rtt_min_ms: 16.687
-datetime: 2026-03-30 03:03:08 UTC
+datetime: 2026-05-21 14:11:08 UTC
 height: 47
-python_version: 3.15.0a5
-seconds_elapsed: 671.4150757949974
+python_version: 3.14.4
+seconds_elapsed: 1912.9864876689971
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -42,7 +23,12 @@ terminal_results:
   colored_underlines: false
   decrqcra: false
   decrqss: true
-  decscusr_query: true
+  decrqss_settings:
+    decsca: '0'
+    decscl: 61;1
+    decscusr: '2'
+    decstbm: 1;47
+    sgr: '0'
   device_attributes:
     extensions:
     - 2
@@ -78,10 +64,10 @@ terminal_results:
   xtgettcap:
     capabilities: {}
     supported: false
+  xtgettcap-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:
-      codepoints_per_second: 28.933773569122696
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -560,10 +546,8 @@ test_results:
       n_errors: 158
       n_total: 158
       pct_success: 0.0
-      seconds_elapsed: 5.460746404976817
   emoji_vs16_results:
     9.0.0:
-      codepoints_per_second: 38.5980156573413
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -1207,10 +1191,8 @@ test_results:
       n_errors: 213
       n_total: 426
       pct_success: 50.0
-      seconds_elapsed: 11.036836810002569
   emoji_zwj_results:
     '17.0':
-      codepoints_per_second: 28.80053394488718
       failed_codepoints:
       - measured_by_terminal: 5
         measured_by_wcwidth: 2
@@ -5520,73 +5502,53 @@ test_results:
       n_errors: 1435
       n_total: 1445
       pct_success: 0.6920415224913495
-      seconds_elapsed: 50.17268092199811
   language_results:
     (Jinan):
-      codepoints_per_second: 1.5152678793155745
       failed: []
       n_errors: 0
       n_total: 501
       pct_success: 100.0
-      seconds_elapsed: 330.63460714701796
     (Yeonbyeon):
-      codepoints_per_second: 0.9798514913065558
       failed: []
       n_errors: 0
       n_total: 307
       pct_success: 100.0
-      seconds_elapsed: 313.31278537999606
     Aja:
-      codepoints_per_second: 0.5443435586399787
       failed: []
       n_errors: 0
       n_total: 79
       pct_success: 100.0
-      seconds_elapsed: 145.12893327401252
     Amarakaeri:
-      codepoints_per_second: 0.44920094158418195
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 142.47521337398211
     Arabic, Standard:
-      codepoints_per_second: 0.4227632088981918
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 141.92341891900287
     Assyrian Neo-Aramaic:
-      codepoints_per_second: 0.29943058444767057
       failed: []
       n_errors: 0
       n_total: 42
       pct_success: 100.0
-      seconds_elapsed: 140.26623258099426
     Baatonum:
-      codepoints_per_second: 0.4238502284313449
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 139.20011372497538
     Bamun:
-      codepoints_per_second: 0.5389217758346699
       failed: []
       n_errors: 0
       n_total: 75
       pct_success: 100.0
-      seconds_elapsed: 139.16676475698478
     Belanda Viri:
-      codepoints_per_second: 0.6135092218290805
       failed: []
       n_errors: 0
       n_total: 85
       pct_success: 100.0
-      seconds_elapsed: 138.5472246799909
     Bengali:
-      codepoints_per_second: 1.2715423224327165
       failed:
       - grapheme_id: Bengali-2-04
         measured_by_terminal: 3
@@ -5975,9 +5937,7 @@ test_results:
       n_errors: 96
       n_total: 385
       pct_success: 75.06493506493507
-      seconds_elapsed: 302.7818997510185
     Bhojpuri:
-      codepoints_per_second: 1.070423026120418
       failed:
       - grapheme_id: Bhojpuri-2-06
         measured_by_terminal: 4
@@ -6146,16 +6106,12 @@ test_results:
       n_errors: 41
       n_total: 313
       pct_success: 86.90095846645367
-      seconds_elapsed: 292.40776063498924
     Bora:
-      codepoints_per_second: 0.44910528505451996
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 131.37231282601715
     Burmese:
-      codepoints_per_second: 0.9371303153072073
       failed:
       - grapheme_id: Burmese-2-06
         measured_by_terminal: 3
@@ -6200,247 +6156,177 @@ test_results:
       n_errors: 10
       n_total: 268
       pct_success: 96.26865671641791
-      seconds_elapsed: 285.9794370350137
     Catalan (2):
-      codepoints_per_second: 0.5439016466655501
       failed: []
       n_errors: 0
       n_total: 68
       pct_success: 100.0
-      seconds_elapsed: 125.02260365799884
     Chakma:
-      codepoints_per_second: 0.7805029623673632
       failed: []
       n_errors: 0
       n_total: 267
       pct_success: 100.0
-      seconds_elapsed: 342.0871064859966
     Chickasaw:
-      codepoints_per_second: 0.5145618890906304
       failed: []
       n_errors: 0
       n_total: 61
       pct_success: 100.0
-      seconds_elapsed: 118.54745035199448
     Chinantec, Chiltepec:
-      codepoints_per_second: 0.6589238229494053
       failed: []
       n_errors: 0
       n_total: 78
       pct_success: 100.0
-      seconds_elapsed: 118.37483679200523
     Chinese, Gan:
-      codepoints_per_second: 1.7935566857767036
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 280.44834266399266
     Chinese, Hakka:
-      codepoints_per_second: 1.7838508564255016
       failed: []
       n_errors: 0
       n_total: 498
       pct_success: 100.0
-      seconds_elapsed: 279.17132096900605
     Chinese, Jinyu:
-      codepoints_per_second: 1.7977179968755588
       failed: []
       n_errors: 0
       n_total: 500
       pct_success: 100.0
-      seconds_elapsed: 278.1303857829771
     Chinese, Mandarin (Beijing):
-      codepoints_per_second: 1.8554099578979586
       failed: []
       n_errors: 0
       n_total: 514
       pct_success: 100.0
-      seconds_elapsed: 277.0277252270025
     Chinese, Mandarin (Guiyang):
-      codepoints_per_second: 1.8338764144953363
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 275.3729727959726
     Chinese, Mandarin (Harbin):
-      codepoints_per_second: 1.832298757054745
       failed: []
       n_errors: 0
       n_total: 504
       pct_success: 100.0
-      seconds_elapsed: 275.0643136439903
     Chinese, Mandarin (Nanjing):
-      codepoints_per_second: 1.8291563664942807
       failed: []
       n_errors: 0
       n_total: 502
       pct_success: 100.0
-      seconds_elapsed: 274.4434588509903
     Chinese, Mandarin (Simplified):
-      codepoints_per_second: 1.9413904714696542
       failed: []
       n_errors: 0
       n_total: 532
       pct_success: 100.0
-      seconds_elapsed: 274.03039616098977
     Chinese, Mandarin (Tianjin):
-      codepoints_per_second: 1.8726426604350799
       failed: []
       n_errors: 0
       n_total: 512
       pct_success: 100.0
-      seconds_elapsed: 273.4104112960049
     Chinese, Mandarin (Traditional):
-      codepoints_per_second: 1.8545303207856019
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 272.3061436849821
     Chinese, Min Nan:
-      codepoints_per_second: 1.8863004706994033
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 266.6595316140156
     Chinese, Wu:
-      codepoints_per_second: 1.906470214179857
       failed: []
       n_errors: 0
       n_total: 506
       pct_success: 100.0
-      seconds_elapsed: 265.4119619789999
     Chinese, Xiang:
-      codepoints_per_second: 1.890611523059508
       failed: []
       n_errors: 0
       n_total: 501
       pct_success: 100.0
-      seconds_elapsed: 264.9936244910059
     Chinese, Yue:
-      codepoints_per_second: 1.9046677854023064
       failed: []
       n_errors: 0
       n_total: 503
       pct_success: 100.0
-      seconds_elapsed: 264.0880492939905
     Colorado:
-      codepoints_per_second: 0.4661229719357856
       failed: []
       n_errors: 0
       n_total: 55
       pct_success: 100.0
-      seconds_elapsed: 117.99461367799086
     Dagaare, Southern:
-      codepoints_per_second: 0.5339227539642237
       failed: []
       n_errors: 0
       n_total: 63
       pct_success: 100.0
-      seconds_elapsed: 117.99459665699396
     Dangme:
-      codepoints_per_second: 0.49212416424943756
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 117.85643586199149
     Dari:
-      codepoints_per_second: 0.4581846520177817
       failed: []
       n_errors: 0
       n_total: 54
       pct_success: 100.0
-      seconds_elapsed: 117.85641392000252
     Dendi:
-      codepoints_per_second: 0.6226726617735164
       failed: []
       n_errors: 0
       n_total: 73
       pct_success: 100.0
-      seconds_elapsed: 117.23655859899009
     Dinka, Northeastern:
-      codepoints_per_second: 0.46968973817516446
       failed: []
       n_errors: 0
       n_total: 55
       pct_success: 100.0
-      seconds_elapsed: 117.09857706000912
     Ditammari:
-      codepoints_per_second: 0.5128385660968408
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 116.9958812900004
     Dzongkha:
-      codepoints_per_second: 1.7104534811499974
       failed: []
       n_errors: 0
       n_total: 200
       pct_success: 100.0
-      seconds_elapsed: 116.92805574901286
     Evenki:
-      codepoints_per_second: 0.6999208249243328
       failed: []
       n_errors: 0
       n_total: 77
       pct_success: 100.0
-      seconds_elapsed: 110.01244320502155
     Farsi, Western:
-      codepoints_per_second: 0.45427148594493333
       failed: []
       n_errors: 0
       n_total: 49
       pct_success: 100.0
-      seconds_elapsed: 107.86501357899397
     Fon:
-      codepoints_per_second: 0.8166479846826198
       failed: []
       n_errors: 0
       n_total: 88
       pct_success: 100.0
-      seconds_elapsed: 107.7575670920196
     French (Welche):
-      codepoints_per_second: 0.5578623349940457
       failed: []
       n_errors: 0
       n_total: 60
       pct_success: 100.0
-      seconds_elapsed: 107.55341638298705
     Fur:
-      codepoints_per_second: 0.8373310460224195
       failed: []
       n_errors: 0
       n_total: 90
       pct_success: 100.0
-      seconds_elapsed: 107.48437004399602
     Ga:
-      codepoints_per_second: 0.5805622934911583
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 106.79301893198863
     Gen:
-      codepoints_per_second: 0.8149218143669638
       failed: []
       n_errors: 0
       n_total: 87
       pct_success: 100.0
-      seconds_elapsed: 106.7587079719815
     Gilyak:
-      codepoints_per_second: 0.7870761778859734
       failed: []
       n_errors: 0
       n_total: 84
       pct_success: 100.0
-      seconds_elapsed: 106.72410417199717
     Gujarati:
-      codepoints_per_second: 1.3016996354009287
       failed:
       - grapheme_id: Gujarati-2-07
         measured_by_terminal: 3
@@ -6645,16 +6531,12 @@ test_results:
       n_errors: 50
       n_total: 343
       pct_success: 85.42274052478133
-      seconds_elapsed: 263.5016486690147
     Gumuz:
-      codepoints_per_second: 0.5309668064109251
       failed: []
       n_errors: 0
       n_total: 54
       pct_success: 100.0
-      seconds_elapsed: 101.70127275001141
     Hindi:
-      codepoints_per_second: 1.5231251768519916
       failed:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -6961,30 +6843,22 @@ test_results:
       n_errors: 82
       n_total: 390
       pct_success: 78.97435897435898
-      seconds_elapsed: 256.052493864001
     Japanese:
-      codepoints_per_second: 2.0087426601466793
       failed: []
       n_errors: 0
       n_total: 505
       pct_success: 100.0
-      seconds_elapsed: 251.40104306000285
     Japanese (Osaka):
-      codepoints_per_second: 2.0237069756304034
       failed: []
       n_errors: 0
       n_total: 497
       pct_success: 100.0
-      seconds_elapsed: 245.58891479097656
     Japanese (Tokyo):
-      codepoints_per_second: 2.0327017977222903
       failed: []
       n_errors: 0
       n_total: 499
       pct_success: 100.0
-      seconds_elapsed: 245.48608190298546
     Javanese (Javanese):
-      codepoints_per_second: 1.5416685896582976
       failed:
       - grapheme_id: Javanese (Javanese)-4-07
         measured_by_terminal: 5
@@ -7161,16 +7035,12 @@ test_results:
       n_errors: 43
       n_total: 530
       pct_success: 91.88679245283019
-      seconds_elapsed: 343.78335496701766
     Kabyle:
-      codepoints_per_second: 0.6543320812740091
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 94.75311049900483
     Kannada:
-      codepoints_per_second: 1.1854032990789933
       failed:
       - grapheme_id: Kannada-2-06
         measured_by_terminal: 3
@@ -7231,9 +7101,7 @@ test_results:
       n_errors: 14
       n_total: 287
       pct_success: 95.1219512195122
-      seconds_elapsed: 242.1116933139856
     Khmer, Central:
-      codepoints_per_second: 1.3272119027852387
       failed:
       - grapheme_id: Khmer, Central-3-16
         measured_by_terminal: 4
@@ -7270,9 +7138,7 @@ test_results:
       n_errors: 8
       n_total: 443
       pct_success: 98.1941309255079
-      seconds_elapsed: 333.7824194240093
     Khün:
-      codepoints_per_second: 1.19681882076152
       failed:
       - grapheme_id: Khün-2-1f
         measured_by_terminal: 3
@@ -7281,37 +7147,27 @@ test_results:
       n_errors: 1
       n_total: 396
       pct_success: 99.74747474747475
-      seconds_elapsed: 330.8771495989931
     Korean:
-      codepoints_per_second: 1.4226969993743035
       failed: []
       n_errors: 0
       n_total: 315
       pct_success: 100.0
-      seconds_elapsed: 221.41046205800376
     Lamnso':
-      codepoints_per_second: 0.9287724067848466
       failed: []
       n_errors: 0
       n_total: 74
       pct_success: 100.0
-      seconds_elapsed: 79.67506297497312
     Lao:
-      codepoints_per_second: 1.2640601068392454
       failed: []
       n_errors: 0
       n_total: 277
       pct_success: 100.0
-      seconds_elapsed: 219.1351491129899
     Lingala (tones):
-      codepoints_per_second: 1.0019015751814755
       failed: []
       n_errors: 0
       n_total: 71
       pct_success: 100.0
-      seconds_elapsed: 70.86524441000074
     Magahi:
-      codepoints_per_second: 1.4351761408262154
       failed:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -7452,9 +7308,7 @@ test_results:
       n_errors: 43
       n_total: 314
       pct_success: 86.30573248407643
-      seconds_elapsed: 218.78847555202083
     Maithili:
-      codepoints_per_second: 1.6364200810477605
       failed:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -7691,9 +7545,7 @@ test_results:
       n_errors: 71
       n_total: 357
       pct_success: 80.11204481792717
-      seconds_elapsed: 218.15914149099262
     Malayalam:
-      codepoints_per_second: 3.902010659184214
       failed:
       - grapheme_id: Malayalam-2-08
         measured_by_terminal: 3
@@ -8575,23 +8427,17 @@ test_results:
       n_errors: 246
       n_total: 845
       pct_success: 70.88757396449704
-      seconds_elapsed: 216.55502093801624
     Maldivian:
-      codepoints_per_second: 3.374541358688332
       failed: []
       n_errors: 0
       n_total: 226
       pct_success: 100.0
-      seconds_elapsed: 66.97206404601457
     Maori (2):
-      codepoints_per_second: 0.8055045787610561
       failed: []
       n_errors: 0
       n_total: 48
       pct_success: 100.0
-      seconds_elapsed: 59.589977841998916
     Marathi:
-      codepoints_per_second: 1.911161759052547
       failed:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -8900,30 +8746,22 @@ test_results:
       n_errors: 86
       n_total: 391
       pct_success: 78.00511508951406
-      seconds_elapsed: 204.58760131002055
     Mazahua Central:
-      codepoints_per_second: 1.1245536705841217
       failed: []
       n_errors: 0
       n_total: 66
       pct_success: 100.0
-      seconds_elapsed: 58.68995115699363
     Mirandese:
-      codepoints_per_second: 1.0602008153670741
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 58.47948718897533
     Mixtec, Metlatónoc:
-      codepoints_per_second: 1.1121601821726288
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 58.44481850898592
     Mon:
-      codepoints_per_second: 1.00370949357171
       failed:
       - grapheme_id: Mon-2-0d
         measured_by_terminal: 3
@@ -8940,37 +8778,27 @@ test_results:
       n_errors: 3
       n_total: 332
       pct_success: 99.09638554216868
-      seconds_elapsed: 330.7729996839771
     Mongolian, Halh (Mongolian):
-      codepoints_per_second: 0.4121135807762354
       failed: []
       n_errors: 0
       n_total: 22
       pct_success: 100.0
-      seconds_elapsed: 53.38334145300905
     Mòoré:
-      codepoints_per_second: 1.1972797249568212
       failed: []
       n_errors: 0
       n_total: 63
       pct_success: 100.0
-      seconds_elapsed: 52.61928243399598
     Nanai:
-      codepoints_per_second: 1.238639975086611
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 52.4769112150243
     Navajo:
-      codepoints_per_second: 1.0126261281371371
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 52.339159070979804
     Nepali:
-      codepoints_per_second: 1.7651312130749157
       failed:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -9204,72 +9032,52 @@ test_results:
       n_errors: 69
       n_total: 352
       pct_success: 80.39772727272727
-      seconds_elapsed: 199.4186026469979
     Nuosu:
-      codepoints_per_second: 1.7020394289976835
       failed: []
       n_errors: 0
       n_total: 336
       pct_success: 100.0
-      seconds_elapsed: 197.41023285099072
     Orok:
-      codepoints_per_second: 1.2609592879433484
       failed: []
       n_errors: 0
       n_total: 65
       pct_success: 100.0
-      seconds_elapsed: 51.54805600902182
     Otomi, Mezquital:
-      codepoints_per_second: 1.4033412807685188
       failed: []
       n_errors: 0
       n_total: 72
       pct_success: 100.0
-      seconds_elapsed: 51.30612274198211
     Panjabi, Eastern:
-      codepoints_per_second: 1.6228732237300751
       failed: []
       n_errors: 0
       n_total: 302
       pct_success: 100.0
-      seconds_elapsed: 186.08970533500542
     Panjabi, Western:
-      codepoints_per_second: 1.370917253973965
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 45.225194897997426
     Pashto, Northern:
-      codepoints_per_second: 1.382545519027611
       failed: []
       n_errors: 0
       n_total: 62
       pct_success: 100.0
-      seconds_elapsed: 44.84481642500032
     Picard:
-      codepoints_per_second: 1.1966353199089148
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 44.29085379498429
     Pular (Adlam):
-      codepoints_per_second: 2.106252598315094
       failed: []
       n_errors: 0
       n_total: 93
       pct_success: 100.0
-      seconds_elapsed: 44.154248200997245
     Saint Lucian Creole French:
-      codepoints_per_second: 1.4032709855984504
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 41.332002581999404
     Sanskrit:
-      codepoints_per_second: 2.7008377168102955
       failed:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -9790,9 +9598,7 @@ test_results:
       n_errors: 145
       n_total: 493
       pct_success: 70.58823529411765
-      seconds_elapsed: 182.53595798500464
     Sanskrit (Grantha):
-      codepoints_per_second: 1.6509914587724528
       failed:
       - grapheme_id: Sanskrit (Grantha)-2-03
         measured_by_terminal: 3
@@ -9953,72 +9759,52 @@ test_results:
       n_errors: 39
       n_total: 293
       pct_success: 86.68941979522185
-      seconds_elapsed: 177.4691192029859
     Secoya:
-      codepoints_per_second: 1.349998620137421
       failed: []
       n_errors: 0
       n_total: 53
       pct_success: 100.0
-      seconds_elapsed: 39.25929938699119
     Seraiki:
-      codepoints_per_second: 1.633256415560142
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 39.18551881398889
     Shan:
-      codepoints_per_second: 1.065436768366041
       failed: []
       n_errors: 0
       n_total: 181
       pct_success: 100.0
-      seconds_elapsed: 169.88338057600777
     Shipibo-Conibo:
-      codepoints_per_second: 1.8137376865468402
       failed: []
       n_errors: 0
       n_total: 64
       pct_success: 100.0
-      seconds_elapsed: 35.286249205004424
     Sinhala:
-      codepoints_per_second: 1.522107168855797
       failed: []
       n_errors: 0
       n_total: 258
       pct_success: 100.0
-      seconds_elapsed: 169.50186247000238
     Siona:
-      codepoints_per_second: 2.210334507336711
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 30.312154009996448
     South Azerbaijani:
-      codepoints_per_second: 2.2128652365056327
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 30.277487709012348
     Tagalog (Tagalog):
-      codepoints_per_second: 1.1319937757455845
       failed: []
       n_errors: 0
       n_total: 34
       pct_success: 100.0
-      seconds_elapsed: 30.035500837984728
     Tai Dam:
-      codepoints_per_second: 6.549139179843629
       failed: []
       n_errors: 0
       n_total: 189
       pct_success: 100.0
-      seconds_elapsed: 28.8587545339833
     Tamang, Eastern:
-      codepoints_per_second: 0.42160375220416746
       failed:
       - inherited_from: Bhojpuri
         measured_by_wcwidth: 2
@@ -10062,30 +9848,22 @@ test_results:
       n_errors: 11
       n_total: 70
       pct_success: 84.28571428571429
-      seconds_elapsed: 166.03267792100087
     Tamazight, Central Atlas:
-      codepoints_per_second: 3.0270518413912986
       failed: []
       n_errors: 0
       n_total: 70
       pct_success: 100.0
-      seconds_elapsed: 23.124810431996593
     Tamil:
-      codepoints_per_second: 1.0562037126598212
       failed: []
       n_errors: 0
       n_total: 175
       pct_success: 100.0
-      seconds_elapsed: 165.68773419599165
     Tamil (Sri Lanka):
-      codepoints_per_second: 1.0799700958651839
       failed: []
       n_errors: 0
       n_total: 175
       pct_success: 100.0
-      seconds_elapsed: 162.0415238070127
     Telugu:
-      codepoints_per_second: 2.3697639239090345
       failed:
       - grapheme_id: Telugu-2-06
         measured_by_terminal: 3
@@ -10258,51 +10036,37 @@ test_results:
       n_errors: 42
       n_total: 384
       pct_success: 89.0625
-      seconds_elapsed: 162.04145743200206
     Tem:
-      codepoints_per_second: 4.113175278757481
       failed: []
       n_errors: 0
       n_total: 67
       pct_success: 100.0
-      seconds_elapsed: 16.289118615008192
     Thai:
-      codepoints_per_second: 1.700598138371568
       failed: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
-      seconds_elapsed: 154.06344043801073
     Thai (2):
-      codepoints_per_second: 1.6408268087502538
       failed: []
       n_errors: 0
       n_total: 252
       pct_success: 100.0
-      seconds_elapsed: 153.58110841200687
     Tibetan, Central:
-      codepoints_per_second: 28.68283879850251
       failed: []
       n_errors: 0
       n_total: 214
       pct_success: 100.0
-      seconds_elapsed: 7.4609072520106565
     Ticuna:
-      codepoints_per_second: 15.730999673872851
       failed: []
       n_errors: 0
       n_total: 88
       pct_success: 100.0
-      seconds_elapsed: 5.594050081010209
     Uduk:
-      codepoints_per_second: 11.227920232092817
       failed: []
       n_errors: 0
       n_total: 57
       pct_success: 100.0
-      seconds_elapsed: 5.076630294992356
     Urdu:
-      codepoints_per_second: 0.7163942083013676
       failed:
       - grapheme_id: Urdu-2-00
         measured_by_terminal: 1
@@ -10311,9 +10075,7 @@ test_results:
       n_errors: 1
       n_total: 110
       pct_success: 99.0909090909091
-      seconds_elapsed: 153.54674664500635
     Urdu (2):
-      codepoints_per_second: 0.5341586813048185
       failed:
       - inherited_from: Urdu
         measured_by_wcwidth: 2
@@ -10321,82 +10083,60 @@ test_results:
       n_errors: 1
       n_total: 82
       pct_success: 98.78048780487805
-      seconds_elapsed: 153.51243529299973
     Veps:
-      codepoints_per_second: 14.596734206867987
       failed: []
       n_errors: 0
       n_total: 59
       pct_success: 100.0
-      seconds_elapsed: 4.0420000230078585
     Vietnamese:
-      codepoints_per_second: 29.449284397055624
       failed: []
       n_errors: 0
       n_total: 117
       pct_success: 100.0
-      seconds_elapsed: 3.972931852011243
     Vietnamese (Han nom):
-      codepoints_per_second: 3.641399106382908
       failed: []
       n_errors: 0
       n_total: 559
       pct_success: 100.0
-      seconds_elapsed: 153.5124230189831
     Waama:
-      codepoints_per_second: 23.468360943975963
       failed: []
       n_errors: 0
       n_total: 56
       pct_success: 100.0
-      seconds_elapsed: 2.3861913549772
     Yaneshaʼ:
-      codepoints_per_second: 31.431215876027178
       failed: []
       n_errors: 0
       n_total: 75
       pct_success: 100.0
-      seconds_elapsed: 2.3861628610175103
     Yiddish, Eastern:
-      codepoints_per_second: 28.418557827055498
       failed: []
       n_errors: 0
       n_total: 58
       pct_success: 100.0
-      seconds_elapsed: 2.040919893013779
     Yoruba:
-      codepoints_per_second: 116.5468862666614
       failed: []
       n_errors: 0
       n_total: 73
       pct_success: 100.0
-      seconds_elapsed: 0.6263573600153904
     Éwé:
-      codepoints_per_second: 758.0822215858425
       failed: []
       n_errors: 0
       n_total: 79
       pct_success: 100.0
-      seconds_elapsed: 0.10421033200691454
   ri_results:
     '17.0':
-      codepoints_per_second: 29.165346045648285
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
-      seconds_elapsed: 8.983263890986564
   sfz_results:
     17.0.0:
-      codepoints_per_second: 29.223656326033467
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
-      seconds_elapsed: 0.17109426500974223
   sri_results:
     17.0.0:
-      codepoints_per_second: 28.911186962328472
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10479,195 +10219,1106 @@ test_results:
       n_errors: 26
       n_total: 26
       pct_success: 0.0
-      seconds_elapsed: 0.8993058650230523
   unicode_wide_results:
     17.0.0:
-      codepoints_per_second: 28.963986679249132
       failed_codepoints:
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2630
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2631
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2632
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2633
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \u2634
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u2635
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2636
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2637
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u268a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \u268b
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u268c
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u268d
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u268e
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u268f
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2ffc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2ffd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u2ffe
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \u2fff
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u31bb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31bc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \u31bd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31be
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31bf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31e4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31e5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u31ef
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc4
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \u4dc5
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u4dc6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dca
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \u4dcb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dce
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd0
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \u4dd1
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u4dd2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \u4dd7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dda
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddc
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \u4ddd
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u4dde
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \u4de3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de8
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \u4de9
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u4dea
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4deb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dec
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ded
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dee
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \u4def
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df4
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \u4df5
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u4df6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfa
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \u4dfb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfe
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dff
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff5
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001aff6
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001aff7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001aff9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001affa
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001affb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001affd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001affe
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d300
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d301
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d302
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d303
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d304
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d305
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d306
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d307
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d308
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d309
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d30a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d30b
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d30c
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d30d
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d30e
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d30f
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d310
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d311
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d312
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d313
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d314
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d315
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d316
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d317
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d318
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d319
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d31a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d31b
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d31c
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d31d
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d31e
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d31f
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d320
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d321
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d322
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d323
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d324
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d325
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d326
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d327
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d328
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d329
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d32a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d32b
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d32c
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d32d
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d32e
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d32f
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d330
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d331
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d332
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d333
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d334
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d335
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d336
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d337
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d338
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d339
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d33a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d33b
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d33c
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d33d
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d33e
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d33f
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d340
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d341
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d342
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d343
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d344
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d345
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d346
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d347
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d348
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d349
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d34a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d34b
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d34c
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d34d
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d34e
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d34f
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d350
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d351
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d352
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d353
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d354
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d355
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d356
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d360
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d361
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d362
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d363
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d364
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d365
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d366
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d367
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d368
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d369
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d36a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d36b
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d36c
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001d36d
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001d36e
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d36f
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d370
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d371
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d372
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d373
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d374
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d375
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001d376
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1e6
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001f1e7
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001f1e8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1e9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1ea
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1eb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1ec
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001f1ed
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1ee
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1ef
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1f0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1f1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1f2
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001f1f3
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001f1f4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1f5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1f6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1f7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1f8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001f1f9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1fa
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1fb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1fc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1fd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f1fe
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001f1ff
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001f6d6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001f6d7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6d8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6dc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6dd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6de
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6df
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6fb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6fc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f7f0
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001f90c
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001f972
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f977
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f978
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f979
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f9a3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001f9a4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f9ab
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f9ac
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f9ad
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f9cb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f9cc
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fa74
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001fa75
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa76
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa77
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa7b
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa7c
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001fa83
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa84
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa85
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa86
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa87
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa88
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fa89
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001fa8a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa8e
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa8f
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa96
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa97
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001fa98
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa99
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa9a
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa9b
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa9c
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fa9d
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fa9e
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001fa9f
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001faa4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faa9
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001faaa
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001faab
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faac
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faad
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faae
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faaf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001fab0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fab1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fab2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fab3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fab4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fab5
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fab6
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001fab7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fab8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fab9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faba
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fabb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001fabc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fabd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fabe
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fabf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fac0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fac1
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fac2
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001fac3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fac4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fac5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fac6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fac8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001facd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001face
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001facf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad2
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fad3
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001fad4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001fad9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fada
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fadb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fadc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fadf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae0
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fae1
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001fae2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001fae7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faea
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faef
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf0
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001faf1
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001faf2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001faf7
-      n_errors: 60
-      n_total: 7266
-      pct_success: 99.17423616845582
-      sampled_pct: 18
-      seconds_elapsed: 250.8632558240206
-wcwidth_version: 0.6.0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf8
+      n_errors: 365
+      n_total: 43592
+      pct_success: 99.1626904019086
+wcwidth_version: 0.7.0
 width: 129

@@ -1,3 +1,5 @@
+# pylint: disable=duplicate-code
+"""Generate Regional Indicator flag sequence table data for ucs_detect."""
 import os
 import re
 
@@ -16,7 +18,7 @@ def do_retrieve(url, fname):
         os.makedirs(folder, exist_ok=True)
     if os.path.exists(fname):
         return
-    resp = requests.get(url, stream=True)
+    resp = requests.get(url, stream=True, timeout=30)
     with open(fname, "wb") as fout:
         for chunk in resp.iter_content(FETCH_BLOCKSIZE):
             fout.write(chunk)
@@ -57,6 +59,7 @@ def fetch_ri_flag_data():
 
 
 def main():
+    """Generate and write the RI unicode table module."""
     version, sequences = fetch_ri_flag_data()
     print("REGIONAL_INDICATOR_FLAGS = (")
     print(f"    ('{version}', (")
@@ -75,5 +78,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # $ python make_ri_table.py > ucs_detect/table_ri.py
+    # $ python scripts/make_ri_table.py > ucs_detect/table_ri.py
     main()

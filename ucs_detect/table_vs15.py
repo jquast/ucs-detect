@@ -1,3 +1,4 @@
+"""VS-15 (wide-to-narrow) variation selector sequence test data."""
 VS15_WIDE_TO_NARROW = (
     ('9.0.0', (
         (8986, 65038),

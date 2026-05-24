@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-ucs-detect: Test and report Unicode support level of a terminal emulator.
+Ucs-detect: Test and report Unicode support level of a terminal emulator.
 
 See also,
 - https://github.com/jquast/wcwidth
@@ -17,6 +17,7 @@ character is written to the terminal, using the `Cursor Position Report
 <https://vt100.net/docs/vt510-rm/CPR.html>`_ terminal escape sequence
 using :meth:`blessed.Terminal.get_location`.
 """
+
 # std imports
 import os
 import sys
@@ -72,16 +73,10 @@ def merge_results(base_results, additional_results):
             base.get('failed_codepoints', []) + additional.get('failed_codepoints', [])
         )
 
-        base_time = base.get('seconds_elapsed', 0.0)
-        additional_time = additional.get('seconds_elapsed', 0.0)
-        total_time = base_time + additional_time
-
         merged[ver] = {
             'n_total': n_total,
             'n_errors': n_errors,
             'pct_success': ((n_total - n_errors) / n_total * 100) if n_total else 0,
-            'seconds_elapsed': total_time,
-            'codepoints_per_second': (n_total / total_time) if total_time > 0 else 0.0,
             'failed_codepoints': failed_codepoints,
         }
 
@@ -113,7 +108,7 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", verify_software_name_and_version=False, terminal_full_probe=False, silent=False, no_final_summary=False, rerun_software_name='', rerun_software_version='', **_kwargs):
+def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", verify_software_name_and_version=False, terminal_full_probe=False, silent=False, no_final_summary=False, reuse_version=False, rerun_software_name='', rerun_software_version='', **_kwargs):
     """Program entry point."""
 
     def _should_run(*categories):
@@ -140,10 +135,6 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     }
     if not silent:
         writer(f"ucs-detect: {display_args(session_arguments)})")
-
-    cps_tracker = measure.CPSTracker()
-
-    with cps_tracker.timing() as done_ok:
         if measure.get_location_with_retry(term, timeout_cps) == (-1, -1):
             error_msg = (f"Not a terminal or Timeout exceeded"
                          f" ({timeout_cps:.1f}s)")
@@ -161,7 +152,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     python_version=platform.python_version(),
                     system=platform.system(),
                     wcwidth_version=wcwidth.__version__,
-                    cps_summary=cps_tracker.summary(),
+
                     test_results={},
                     terminal_results={},
                     error=error_msg,
@@ -169,16 +160,12 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 writer(f"ucs-detect: error report saved to "
                        f"{save_yaml or save_json}\n")
             return 1
-        done_ok()
 
     if not silent:
         writer("\nucs-detect: Interactive terminal detected!")
 
-    with cps_tracker.timing(2) as done_ok:
-        unicode_width = measure.measure_width(
-            term, writer, '\u231A', timeout_cps)
-        if unicode_width is not None:
-            done_ok()
+    unicode_width = measure.measure_width(
+        term, writer, '\u231A', timeout_cps)
     has_unicode = (unicode_width == 2)
     if not has_unicode and not silent:
         writer("\nucs-detect: " + term.bold_red(
@@ -191,11 +178,8 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     ambig_label = None
     ambiguous_width = -1
     if has_unicode:
-        with cps_tracker.timing() as done_ok:
-            ambiguous_width = term.detect_ambiguous_width(
-                timeout=timeout_cps, fallback=-1)
-            if ambiguous_width != -1:
-                done_ok()
+        ambiguous_width = term.detect_ambiguous_width(
+            timeout=timeout_cps, fallback=-1)
         if ambiguous_width == -1:
             ambig_label = "unknown"
         elif ambiguous_width == 2:
@@ -210,17 +194,15 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         if not no_terminal_test or test_only == "terminal":
             # Resolve 'auto' timeout from measured response times
             if timeout_query == "auto":
-                resolved_timeout = cps_tracker.auto_timeout(multiplier=1.5, minimum=2.0)
+                resolved_timeout = 2.0
                 if not silent:
-                    writer(f"\nucs-detect: Auto timeout: {resolved_timeout:.3f}s "
-                           f"(max response: {cps_tracker.max_response_time:.3f}s)")
+                    writer(f"\nucs-detect: Auto timeout: {resolved_timeout:.3f}s")
             else:
                 resolved_timeout = float(timeout_query)
             terminal_results = terminal.do_terminal_detection(
                 all_modes=detect_all_dec_modes,
                 cursor_report_delay_ms=cursor_report_delay_ms,
                 timeout=resolved_timeout,
-                cps_tracker=cps_tracker,
                 has_unicode=has_unicode or terminal_full_probe,
                 silent=silent,
             )
@@ -283,26 +265,30 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                        f" \"{rerun_software_version}\""
                        f" => \"{terminal_version}\"\n")
             if rerun_changed and not silent:
-                # When "VTE" appears in either old or new values, prefer
-                # the original (rerun) values as defaults — VTE is the
-                # underlying engine and the user typically wants to keep
-                # the terminal-specific name and version.
-                vte_involved = any(
-                    'VTE' in (val or '')
-                    for val in (rerun_software_name, terminal_software,
-                                rerun_software_version, terminal_version))
-                if vte_involved:
-                    default_software = rerun_software_name or terminal_software
-                    default_version = rerun_software_version or terminal_version
+                if reuse_version:
+                    terminal_software = rerun_software_name or terminal_software
+                    terminal_version = rerun_software_version or terminal_version
                 else:
-                    default_software = terminal_software
-                    default_version = terminal_version
-                confirm = input('Continue with new values? '
-                                '(press return to accept, or enter new values)\n'
-                                f'  Terminal Software [{default_software}]: ')
-                terminal_software = confirm.strip() or default_software
-                confirm = input(f'  Software Version [{default_version}]: ')
-                terminal_version = confirm.strip() or default_version
+                    # When "VTE" appears in either old or new values, prefer
+                    # the original (rerun) values as defaults -- VTE is the
+                    # underlying engine and the user typically wants to keep
+                    # the terminal-specific name and version.
+                    vte_involved = any(
+                        'VTE' in str(val or '')
+                        for val in (rerun_software_name, terminal_software,
+                                    rerun_software_version, terminal_version))
+                    if vte_involved:
+                        default_software = rerun_software_name or terminal_software
+                        default_version = rerun_software_version or terminal_version
+                    else:
+                        default_software = terminal_software
+                        default_version = terminal_version
+                    confirm = input('Continue with new values? '
+                                    '(press return to accept, or enter new values)\n'
+                                    f'  Terminal Software [{default_software}]: ')
+                    terminal_software = confirm.strip() or default_software
+                    confirm = input(f'  Software Version [{default_version}]: ')
+                    terminal_version = confirm.strip() or default_version
 
     start_time = time.monotonic()
 
@@ -322,7 +308,6 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             limit_category_time=limit_category_time,
             stop_at_error=error_matcher,
             cursor_report_delay_ms=cursor_report_delay_ms,
-            cps_tracker=cps_tracker,
             silent=silent,
             bg_rgb=bg_rgb,
         )
@@ -403,12 +388,14 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 )
 
             if _should_run("lang") and not no_languages_test:
+                # Drain stale CPR responses that may have accumulated
+                # from codepoint test sprays before starting language tests.
+                term.flushinp(timeout=0.01)
                 language_results = measure.test_language_support(
                     LANG_GRAPHEMES, term, writer, timeout_cps,
                     limit_graphemes, limit_errors, error_matcher,
                     limit_category_time=limit_category_time,
                     limit_graphemes_pct=limit_graphemes_pct,
-                    cps_tracker=cps_tracker,
                     cursor_report_delay_ms=cursor_report_delay_ms,
                     silent=silent,
                     bg_rgb=bg_rgb,
@@ -456,7 +443,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             python_version=platform.python_version(),
             system=platform.system(),
             wcwidth_version=wcwidth.__version__,
-            cps_summary=cps_tracker.summary(),
+
             test_results=dict(
                 unicode_wide_results=wide_results,
                 sri_results=sri_results,
@@ -574,7 +561,7 @@ def _build_terminal_kv_pairs(term, results):
                       f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
 
     has_kitty_gfx = results.get('kitty_graphics', False)
-    has_iterm2_gfx = results.get('iterm2_features') or {}.get('supported', False)
+    has_iterm2_gfx = (results.get('iterm2_features') or {}).get('supported', False)
     has_sixel = results.get('sixel', False)
     if has_kitty_gfx or has_iterm2_gfx:
         protocols = []
@@ -608,8 +595,8 @@ def _build_terminal_kv_pairs(term, results):
     return pairs
 
 
-def _build_capabilities_kv_pairs(term, results):
-    """Build (key, value) tuples for terminal capabilities."""
+def _build_features_kv_pairs(term, results):
+    """Build (key, value) tuples for terminal features."""
     pairs = []
     if not results:
         return pairs
@@ -674,7 +661,7 @@ def _build_capabilities_kv_pairs(term, results):
                   _color_yes_no(term, results.get('kitty_clipboard_protocol',
                                                   False))))
 
-    # OSC 52 Clipboard: tri-state — True (enabled), "supported" (DA1 ext 52
+    # OSC 52 Clipboard: tri-state -- True (enabled), "supported" (DA1 ext 52
     # advertised but query timed out), or False (not supported).
     osc52 = results.get('osc52_clipboard', False)
     if osc52 is True:
@@ -1004,7 +991,7 @@ def display_results(term, writer, ambig_label, terminal_results=None,
     result_sets["has_unicode"] = has_unicode
     results = terminal_results or {}
     terminal_pairs = _build_terminal_kv_pairs(term, results)
-    caps_pairs = _build_capabilities_kv_pairs(term, results)
+    features_pairs = _build_features_kv_pairs(term, results)
     result_sets["modes"] = results.get("modes", {})
     test_pairs = _build_test_kv_pairs(term, ambig_label, **result_sets)
 
@@ -1022,19 +1009,19 @@ def display_results(term, writer, ambig_label, terminal_results=None,
     if test_pairs:
         primary_pairs.extend(test_pairs)
 
-    # secondary table: detailed capabilities
+    # secondary table: detailed features
     secondary_pairs = []
-    if caps_pairs:
-        secondary_pairs.extend(caps_pairs)
+    if features_pairs:
+        secondary_pairs.extend(features_pairs)
 
     table_strings = []
     if primary_pairs:
         table_strings.append(
-            str(_make_kv_table(term, "Terminal Capabilities",
+            str(_make_kv_table(term, "Terminal Features",
                                primary_pairs, has_unicode)))
     if secondary_pairs:
         table_strings.append(
-            str(_make_kv_table(term, "Terminal Capabilities (2)",
+            str(_make_kv_table(term, "Terminal Features (2)",
                                secondary_pairs, has_unicode)))
 
     all_lines.extend(_collect_side_by_side_lines(term, table_strings))
@@ -1174,7 +1161,7 @@ def parse_args():
     args.add_argument(
         "--timeout-query",
         default="auto",
-        help="Timeout in seconds for terminal capability queries, or 'auto' to "
+        help="Timeout in seconds for terminal feature queries, or 'auto' to "
              "scale from measured response times (default: auto)",
     )
     args.add_argument(
@@ -1221,6 +1208,12 @@ def parse_args():
         action="store_true",
         default=False,
         help="Prompt for confirmation even when terminal auto-detects name and version"
+    )
+    args.add_argument(
+        "--reuse-version",
+        action="store_true",
+        default=False,
+        help="When re-running, keep original name/version from YAML without prompting"
     )
     args.add_argument(
         "--terminal-full-probe",
@@ -1275,7 +1268,7 @@ def _apply_rerun_yaml(results):
         'limit_words': 'limit_graphemes',
         'limit_errors': 'limit_errors',
         'limit_category_time': 'limit_category_time',
-        'timeout': 'timeout_cps',
+        'timeout_cps': 'timeout_cps',
         'stop_at_error': 'stop_at_error',
     }
     yaml_bool_flags = {

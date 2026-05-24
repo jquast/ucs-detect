@@ -23,7 +23,7 @@ def build_command_from_yaml(yaml_file):
         'limit_codepoints': '--limit-codepoints',
         'limit_words': '--limit-words',
         'limit_errors': '--limit-errors',
-        'timeout': '--timeout',
+        'timeout_cps': '--timeout-cps',
         'stop_at_error': '--stop-at-error',
     }
 
@@ -54,6 +54,8 @@ def main():
         description='Re-run ucs-detect with arguments from a saved YAML file.',
         epilog='Any additional arguments after yaml_file are passed to ucs-detect')
     parser.add_argument('yaml_file')
+    parser.add_argument('--reuse-version', action='store_true',
+                        help='Pass --reuse-version to ucs-detect')
     parser.add_argument('extra_args', nargs='*', help='Additional arguments to pass to ucs-detect')
     args = parser.parse_args()
 
@@ -64,12 +66,15 @@ def main():
     cmd = build_command_from_yaml(args.yaml_file)
 
     # Append any extra arguments provided on command line
+    if args.reuse_version:
+        cmd.append('--reuse-version')
     if args.extra_args:
         cmd.extend(args.extra_args)
 
     print(f"Running: {shlex.join(cmd)}")
 
     subprocess.check_call(cmd)
+
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -58,7 +58,7 @@ Unicode support for Wide characters, Emoji Zero Width Joiner (ZWJ) sequences,
 Regional Indicators and flags, Variation Selector-16 (VS-16) and VS-15 sequences,
 and zero-width combining characters across hundreds of languages.
 
-Terminal capabilities that may be automatically detected are also reported:
+Terminal features that may be automatically detected are also reported:
 `Bracketed Paste`_, `Synchronized Output`_, `Mouse SGR`_, `Grapheme
 Clustering`_, `Kitty Keyboard protocol`_, `Sixel`_, `ReGIS`_, `Kitty`_ or
 `iTerm2 image protocol`_, and `XTGETTCAP`_ support.
@@ -170,7 +170,16 @@ complete each category under a reasonable time. This automatically adjusts the
 ``--limit-codepoints-wide-pct`` parameter as low as 1%.
 
 To preview documentation changes, create a *draft pull request*. A readthedocs.org build status will
-appear — click "Details" for an HTML preview.
+appear -- click "Details" for an HTML preview.
+
+Batch Testing
+-------------
+
+``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
+[arguments]`` is not supported, ucs-detect is executed by injecting keystrokes where needed. After
+keystroke injections are begun in series, remaining terminals are done in ``--parallel``::
+
+    $ python run-series.py --parallel 8
 
 Problem Analysis
 ----------------
@@ -206,7 +215,6 @@ Example output::
     python -c "print('\u0915\u094d\u0928\u093f')"
 
     press return for next error, or n for non-stop:
-
 
 
 UDHR Data

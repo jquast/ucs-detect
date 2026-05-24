@@ -1,4 +1,5 @@
 """Terminal Unicode width measurement utilities."""
+
 # std
 # std imports
 import os
@@ -44,175 +45,6 @@ def _is_uncommon(codepoint):
         return False
     start, end = UNCOMMON_WIDE_RANGES[idx]
     return start <= codepoint <= end
-
-
-class _RTTAccumulator:
-    """Accumulate response-time statistics for a single category."""
-
-    def __init__(self):
-        self.min_rt = float('inf')
-        self.max_rt = 0.0
-        self.sum_rt = 0.0
-        self.sum_sq_rt = 0.0
-        self.count = 0
-
-    def record(self, elapsed: float):
-        """Record a single response time sample."""
-        self.count += 1
-        self.sum_rt += elapsed
-        self.sum_sq_rt += elapsed * elapsed
-        if elapsed < self.min_rt:
-            self.min_rt = elapsed
-        if elapsed > self.max_rt:
-            self.max_rt = elapsed
-
-    @property
-    def avg(self) -> float:
-        """Mean response time."""
-        return self.sum_rt / self.count if self.count else 0.0
-
-    @property
-    def mdev(self) -> float:
-        """Standard deviation of response times."""
-        if self.count < 2:
-            return 0.0
-        mean = self.sum_rt / self.count
-        variance = self.sum_sq_rt / self.count - mean * mean
-        return max(0.0, variance) ** 0.5
-
-    def summary_ms(self) -> dict:
-        """Return stats in milliseconds."""
-        if self.count == 0:
-            return {}
-        return {
-            'rtt_min_ms': round((self.min_rt if self.min_rt != float('inf') else 0) * 1000, 3),
-            'rtt_avg_ms': round(self.avg * 1000, 3),
-            'rtt_max_ms': round(self.max_rt * 1000, 3),
-            'rtt_mdev_ms': round(self.mdev * 1000, 3),
-            'queries': self.count,
-        }
-
-
-class CPSTracker:
-    """Track average codepoints-per-second across test categories."""
-
-    def __init__(self):
-        """Initialize tracker with zero counts."""
-        self._total_items = 0
-        self._total_elapsed = 0.0
-        self._all = _RTTAccumulator()
-        self._by_category = {}
-
-    def _get_category(self, category: str) -> _RTTAccumulator:
-        if category not in self._by_category:
-            self._by_category[category] = _RTTAccumulator()
-        return self._by_category[category]
-
-    def update(self, items: int, elapsed: float):
-        """Record items tested and time elapsed."""
-        self._total_items += items
-        self._total_elapsed += elapsed
-
-    def record_response_time(self, elapsed: float, category: str = "cpr"):
-        """
-        Record a single query response time, tagged by category.
-
-        Capability tests are excluded from global RTT stats because feature probes may have variable
-        latency that would skew auto-timeout and summary values.
-        """
-        if category != "capability":
-            self._all.record(elapsed)
-        self._get_category(category).record(elapsed)
-
-    @contextlib.contextmanager
-    def timing(self, n_items: int = 1, category: str = "cpr"):
-        """
-        Context manager that records elapsed time on success.
-
-        :param n_items: Number of items to record on success.
-        :param category: Category tag, ``"cpr"`` for codepoint measurement,
-            ``"capability"`` for terminal feature detection.
-
-        Yields a ``done_ok`` callable. Invoke ``done_ok()`` to record
-        *n_items* and elapsed time. If ``done_ok()`` is never called
-        (e.g. on timeout/failure), nothing is recorded.
-        """
-        t0 = time.monotonic()
-        recorded = False
-
-        def done_ok(items: int = 0):
-            nonlocal recorded
-            if not recorded:
-                recorded = True
-                elapsed = time.monotonic() - t0
-                if category != "capability":
-                    self.update(items or n_items, elapsed)
-                self.record_response_time(elapsed, category=category)
-
-        yield done_ok
-
-    @property
-    def cps(self) -> float:
-        """Return average codepoints per second, or 0.0 if no data."""
-        if self._total_elapsed > 0:
-            return self._total_items / self._total_elapsed
-        return 0.0
-
-    @property
-    def max_response_time(self) -> float:
-        """Return maximum response time seen, or 0.0 if no data."""
-        return self._all.max_rt
-
-    @property
-    def min_response_time(self) -> float:
-        """Return minimum response time seen, or 0.0 if no data."""
-        if self._all.count == 0:
-            return 0.0
-        return self._all.min_rt
-
-    @property
-    def avg_response_time(self) -> float:
-        """Return average response time, or 0.0 if no data."""
-        return self._all.avg
-
-    @property
-    def mdev_response_time(self) -> float:
-        """Return standard deviation of response times, or 0.0 if no data."""
-        return self._all.mdev
-
-    @property
-    def query_count(self) -> int:
-        """Return total number of queries recorded."""
-        return self._all.count
-
-    def summary(self) -> dict:
-        """Return ping-style rtt summary with per-category breakdown."""
-        result = {
-            'rtt_min_ms': round(self.min_response_time * 1000, 3),
-            'rtt_avg_ms': round(self.avg_response_time * 1000, 3),
-            'rtt_max_ms': round(self.max_response_time * 1000, 3),
-            'rtt_mdev_ms': round(self.mdev_response_time * 1000, 3),
-            'queries': self.query_count,
-            'codepoints_per_second': round(self.cps, 1),
-        }
-        # Per-category breakdown
-        for cat_name, acc in sorted(self._by_category.items()):
-            cat_summary = acc.summary_ms()
-            if cat_summary:
-                result[cat_name] = cat_summary
-        return result
-
-    def auto_timeout(self, multiplier: float = 1.1, minimum: float = 0.05) -> float:
-        """
-        Return auto-calculated timeout based on max response time.
-
-        :param multiplier: Scale factor applied to max response time.
-        :param minimum: Minimum timeout to return if no data or very fast responses.
-        :return: Timeout value in seconds.
-        """
-        if self._all.max_rt > 0:
-            return max(minimum, self._all.max_rt * multiplier)
-        return minimum
 
 
 def status_header(term, label):
@@ -262,6 +94,9 @@ def get_location_with_retry(term, timeout, max_retries=3):
 
         if (ypos, xpos) != (-1, -1):
             return (ypos, xpos)
+
+        # Drain stale CPR responses before retrying or giving up.
+        term.flushinp(timeout=0.05)
 
         if elapsed < (timeout * 0.1):
             timeout = timeout * 1.5
@@ -372,7 +207,6 @@ def test_language_support(
     cursor_report_delay_ms=0,
     limit_category_time=0,
     limit_graphemes_pct=0,
-    cps_tracker=None,
     silent=False,
     bg_rgb=None,
     **_kwargs,
@@ -390,21 +224,6 @@ def test_language_support(
     global_step = 0
     if limit_graphemes_pct and 0 < limit_graphemes_pct < 100:
         global_step = max(1, round(100 / limit_graphemes_pct))
-
-    # pre-compute global step from CPS tracker if we have a time budget
-    prior_cps = cps_tracker.cps if cps_tracker else 0
-    if limit_category_time and prior_cps > 0:
-        total_graphemes = sum(
-            len(gs) for _, le in lang_graphemes for _, gs in le
-        )
-        max_items = int(limit_category_time * prior_cps)
-        sampled = total_graphemes // global_step if global_step else total_graphemes
-        max_items = max(1, max_items)
-        if total_graphemes > 0 and max_items < sampled:
-            min_step = global_step or 1
-            global_step = min(100, max(
-                min_step, round(total_graphemes / max_items)))
-            final_pct = max(1, round(100 / global_step))
 
     for expected_width, lang_entries in lang_graphemes:
         for lang, graphemes in lang_entries:
@@ -437,13 +256,11 @@ def test_language_support(
             if limit_category_time and category_tested >= 20:
                 elapsed = time.monotonic() - category_start
                 remaining = max(0, limit_category_time - elapsed)
-                cps = (cps_tracker.cps if cps_tracker
-                       and cps_tracker.cps > 0
-                       else (category_tested / elapsed
-                             if elapsed > 0 else 0))
+                cps = (category_tested / elapsed
+                       if elapsed > 0 else 0)
                 max_items = max(1, int(remaining * cps)) if remaining > 0 else 1
                 # compute step that would produce max_items from remaining
-                # graphemes — but we don't know the total remaining, so use
+                # graphemes, but we don't know the total remaining, so use
                 # a ratio: if we can do max_items and current step produces
                 # too many, increase the step
                 if max_items < 10 and global_step < 100:
@@ -495,8 +312,6 @@ def test_language_support(
                     break
                 if limit_errors and error_count >= limit_errors:
                     break
-                # global stride: skip unless this grapheme lands on the step,
-                # but always test the first grapheme of each language/width
                 first_for_lang = (idx == 0)
                 if (global_step > 1
                         and category_seen % global_step != 0
@@ -508,12 +323,13 @@ def test_language_support(
                 grapheme_id = f"{lang}-{expected_width}-{idx:02x}"
 
                 if silent:
-                    # Write grapheme with invisible foreground color
                     fg = term.color_rgb(*bg_rgb) if bg_rgb else term.black
                     writer(f'\r{fg}{grapheme}')
                     if cursor_report_delay_ms:
                         time.sleep(cursor_report_delay_ms / 1000.0)
-                    end_ypos, end_xpos = get_location_with_retry(term, timeout)
+                    end_ypos, end_xpos = get_location_with_retry(
+                        term, timeout
+                    )
                     if (-1, -1) == (end_ypos, end_xpos):
                         writer(f'{term.normal}\r{term.clear_eol}')
                         writer(
@@ -531,12 +347,14 @@ def test_language_support(
                     else:
                         writer(term.magenta(" \u00b7 "))
 
-                    start_ypos, start_xpos = _get_pos_or_exit(term, writer, timeout)
+                    start_ypos, start_xpos = _get_pos_or_exit(
+                        term, writer, timeout)
 
                     writer(term.cyan(grapheme))
                     if cursor_report_delay_ms:
                         time.sleep(cursor_report_delay_ms / 1000.0)
-                    end_ypos, end_xpos = _get_pos_or_exit(term, writer, timeout)
+                    end_ypos, end_xpos = _get_pos_or_exit(
+                        term, writer, timeout)
 
                     delta_ypos = end_ypos - start_ypos
                     delta_xpos = end_xpos - start_xpos
@@ -545,10 +363,12 @@ def test_language_support(
                     success_report[lang] += 1
                     tested_graphemes[grapheme] = (lang, True)
                 else:
-                    entry = {"grapheme_id": grapheme_id,
-                             "wchars": unicode_escape_string(grapheme),
-                             "measured_by_wcwidth": expected_width,
-                             "measured_by_terminal": delta_xpos}
+                    entry = {
+                        "grapheme_id": grapheme_id,
+                        "wchars": unicode_escape_string(grapheme),
+                        "measured_by_wcwidth": expected_width,
+                        "measured_by_terminal": delta_xpos,
+                    }
                     if delta_ypos != 0:
                         entry["delta_ypos"] = delta_ypos
                     failure_report[lang].append(entry)
@@ -561,11 +381,14 @@ def test_language_support(
                         writer(term.magenta(" ║") + "\n")
                         col = 0
 
-                    if stop_at_error and stop_at_error.matches_language(lang):
+                    if (stop_at_error
+                            and stop_at_error.matches_language(lang)):
                         should_continue = display_error_and_prompt(
                             term=term,
                             writer=writer,
-                            context_name=f"language '{lang}' ({grapheme_id})",
+                            context_name=(
+                                f"language '{lang}' ({grapheme_id})"
+                            ),
                             wchars_display=grapheme,
                             measured_by_terminal=delta_xpos,
                             measured_by_wcwidth=expected_width,
@@ -573,15 +396,14 @@ def test_language_support(
                         if not should_continue:
                             stop_at_error.disable()
 
-                    grapheme_count += 1
-                    category_tested += 1
+                    if limit_errors and error_count >= limit_errors:
+                        break
                     continue
 
                 grapheme_count += 1
                 category_tested += 1
                 if not silent:
                     col += 1
-
                     if col >= num_columns:
                         writer(term.magenta(" ║") + "\n")
                         col = 0
@@ -591,11 +413,6 @@ def test_language_support(
 
     if not silent:
         _write_final_sampling_rate(writer, term, final_pct, limit_graphemes_pct)
-
-    # update tracker with total language testing results
-    category_elapsed = time.monotonic() - category_start
-    if cps_tracker and category_tested > 0:
-        cps_tracker.update(category_tested, category_elapsed)
 
     for lang, start_time in lang_start_times.items():
         time_report[lang] = time.monotonic() - start_time
@@ -629,6 +446,7 @@ def wchar_to_str(wchar):
 
 def exit_and_display_timeout_error(term, writer, timeout, **_kwargs):
     """Display timeout error and exit."""
+    term.flushinp(timeout=0.05)
     writer("\n" + term.reverse_red(f"Timeout Exceeded ({timeout:.1f}s)") + "\n")
     sys.exit(1)
 
@@ -648,8 +466,6 @@ def _make_result_entry(n_errors, n_total, elapsed, extra=None,
         "n_errors": n_errors,
         "n_total": n_total,
         "pct_success": make_success_pct(n_errors, n_total),
-        "seconds_elapsed": elapsed,
-        "codepoints_per_second": (n_total / elapsed) if elapsed > 0 else 0.0,
     }
     if sampled_pct is not None and sampled_pct < 100:
         entry["sampled_pct"] = sampled_pct
@@ -674,7 +490,6 @@ def test_support(
     limit_pct=0,
     include_uncommon=True,
     limit_category_time=0,
-    cps_tracker=None,
     silent=False,
     bg_rgb=None,
 ):
@@ -693,21 +508,6 @@ def test_support(
     category_tested = 0
     time_limited = False
     final_pct = limit_pct
-
-    # pre-compute sampling rate from prior CPS if available
-    if (limit_category_time and not limit_codepoints
-            and cps_tracker and cps_tracker.cps > 0):
-        total_items = sum(len(wc) for _, wc in table)
-        max_items = int(limit_category_time * cps_tracker.cps)
-        sampled = total_items
-        if limit_pct and 0 < limit_pct < 100:
-            step = max(1, round(100 / limit_pct))
-            sampled = total_items // step
-        if max_items < sampled and total_items > 0:
-            new_pct = max(1, int(100 * max_items / total_items))
-            if not limit_pct or new_pct < limit_pct:
-                final_pct = new_pct
-                time_limited = True
 
     with terminal.maybe_grapheme_clustering_mode(term):
         for ver, wchars in table:
@@ -738,10 +538,8 @@ def test_support(
                 elapsed = time.monotonic() - category_start
                 remaining = limit_category_time - elapsed
                 if remaining > 0:
-                    cps = (cps_tracker.cps if cps_tracker
-                           and cps_tracker.cps > 0
-                           else (category_tested / elapsed
-                                 if elapsed > 0 else 0))
+                    cps = (category_tested / elapsed
+                           if elapsed > 0 else 0)
                     max_items = int(remaining * cps)
                     if max_items < len(wchars_slice):
                         if not limit_codepoints and n_wchars > 0:
@@ -755,7 +553,7 @@ def test_support(
                             wchars_slice = wchars_slice[:max(1, max_items)]
                         time_limited = True
                     elif time_limited and not limit_codepoints and n_wchars > 0:
-                        # ahead of schedule — increase sampling rate
+                        # ahead of schedule, increase sampling rate
                         new_pct = min(100, max(final_pct,
                                                int(100 * max_items / n_wchars)))
                         if new_pct > effective_pct:
@@ -781,7 +579,6 @@ def test_support(
                 writer("\n" + status_header(term, header) + "\n")
 
             col = 0
-
             for wchar in wchars_slice:
                 category_tested += 1
                 wchars_str = wchar_to_str(wchar)
@@ -804,10 +601,10 @@ def test_support(
                     delta_xpos = end_xpos - outer_xpos
                     delta_ypos = end_ypos - outer_ypos
                     writer(
-                        term.move_yx(outer_ypos, outer_xpos) + term.clear_eol
+                        term.move_yx(outer_ypos, outer_xpos)
+                        + term.clear_eol
                     )
                 elif silent:
-                    # Write character with invisible foreground color
                     fg = term.color_rgb(*bg_rgb) if bg_rgb else term.black
                     writer(f'\r{fg}{wchars_str}')
                     if cursor_report_delay_ms:
@@ -891,9 +688,7 @@ def test_support(
 
             ver_elapsed = time.monotonic() - ver_start_time
             time_report[ver] = ver_elapsed
-            if cps_tracker:
-                n_ver = len(failure_report[ver]) + success_report[ver]
-                cps_tracker.update(n_ver, ver_elapsed)
+
             if (limit_category_time
                     and time.monotonic() - category_start
                     >= limit_category_time):

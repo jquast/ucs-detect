@@ -7,7 +7,7 @@ Output is sorted by (width descending, language name ascending).
 
 Usage::
 
-    python make_lang_table.py > ucs_detect/table_lang.py
+    python scripts/make_lang_table.py > ucs_detect/table_lang.py
 """
 import collections
 
@@ -15,6 +15,7 @@ from ucs_detect.measure import extract_unique_graphemes, parse_udhr
 
 
 def main():
+    """Generate and write the language grapheme cluster table module."""
     # collect: {width: [(lang, (graphemes...)), ...]}
     by_width = collections.defaultdict(list)
     for lang, text in parse_udhr():
