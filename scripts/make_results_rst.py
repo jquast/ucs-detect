@@ -49,11 +49,96 @@ from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars
 from ucs_detect.measure import make_printf_hex
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
+GITHUB_EXAMPLE_BASE = 'https://github.com/jquast/ucs-detect/blob/master/docs/ucs_example_files'
+EXAMPLE_FILES_DIR = os.path.join(_ROOT, 'docs', 'ucs_example_files')
 DATA_PATH = os.path.join(_ROOT, "data")
 TERMINAL_DETAIL_MIXINS_PATH = os.path.join(_ROOT, "terminals.yaml")
 PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
+
+# Mapping from test category to example file basename.
+# Language failures use ucs_graphemes_{width}.txt, resolved at lookup time.
+CATEGORY_FILE_MAP = {
+    'wide': 'ucs_wide.txt',
+    'zwj': 'ucs_zwj.txt',
+    'vs16': 'ucs_vs16.txt',
+    'vs16n': 'ucs_vs16.txt',
+    'vs15': 'ucs_vs15.txt',
+    'sri': None,
+    'sfz': None,
+    'ri': None,
+}
+
+# Lazily populated cache: filepath -> {hex_key: 1-based line number}
+_example_index_cache = {}
+
+
+def _build_example_index(filepath):
+    """Parse an example file, returning ``{hex_key: 1_based_line_number}``."""
+    index = {}
+    with open(filepath, 'r', encoding='utf-8') as f:
+        for lineno, line in enumerate(f, start=1):
+            if '│' not in line:
+                continue
+            # left-aligned: │X│ 0x00020 Name   or   │XX│ 1F468+200D+...
+            after_bar = line.split('│ ', 1)
+            if len(after_bar) < 2:
+                continue
+            hex_word = after_bar[1].split()[0]
+            # strip '0x' prefix, leading zeros, uppercase.
+            if hex_word.startswith('0x'):
+                hex_word = hex_word[2:]
+            hex_word = hex_word.lstrip('0').upper() or '0'
+            index[hex_word] = lineno
+    return index
+
+
+def _get_example_index(category, measured_width=None):
+    """Return the ``{hex_key: line_number}`` index for *category*, building if needed.  """
+    if category.startswith('lang'):
+        if measured_width is None:
+            return None
+        basename = f'ucs_graphemes_{int(measured_width)}.txt'
+    else:
+        basename = CATEGORY_FILE_MAP.get(category)
+        if basename is None:
+            return None
+
+    filepath = os.path.join(EXAMPLE_FILES_DIR, basename)
+    if not os.path.exists(filepath):
+        return None
+    if filepath not in _example_index_cache:
+        _example_index_cache[filepath] = _build_example_index(filepath)
+    return _example_index_cache[filepath]
+
+
+def _example_file_link(wchar, category, measured_width=None):
+    """Return an RST hyperlink and line number for the example file at *wchar*.
+
+    :returns: ``(basename, lineno, url)`` tuple or ``None``.
+    """
+    def _wchar_to_hex(wchar):
+        cps = [f'{ord(c):X}' for c in wchar]
+        return '+'.join(cps)
+    if category.startswith('lang'):
+        basename = f'ucs_graphemes_{int(measured_width)}.txt' if measured_width else None
+    else:
+        basename = CATEGORY_FILE_MAP.get(category)
+    if basename is None:
+        return None
+
+    index = _get_example_index(category, measured_width)
+    if index is None:
+        return None
+
+    hex_key = _wchar_to_hex(wchar)
+    lineno = index.get(hex_key)
+    if lineno is None:
+        return None
+
+    url = f'{GITHUB_EXAMPLE_BASE}/{basename}#L{lineno}'
+    return basename, lineno, url
 
 
 def score_to_color(score):
@@ -126,31 +211,13 @@ def generate_score_roles():
 
 
 def wrap_with_score_role(text, score):
-    """Wrap text with a reStructuredText inline role based on the score.
-
-    :type text: str
-    :param text: The text content to wrap (e.g., "75.0%")
-    :type score: float
-    :param score: The score value (0.0 to 1.0) used to determine the role class
-    :returns: Text wrapped with inline RST role syntax for score coloring
-    """
+    """Wrap text with a reStructuredText inline role based on the score."""
     role_name = make_score_css_class(score)
     return f':{role_name}:`{text}`'
 
 
 def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
-    """Wrap score text with both a hyperlink and score styling using the :sref: role.
-
-    :type text: str
-    :param text: The text to display (e.g., "75.0%", "32s")
-    :type score: float
-    :param score: The score value (0.0 to 1.0) for styling
-    :type terminal_name: str
-    :param terminal_name: The terminal name for creating the link target
-    :type section_suffix: str
-    :param section_suffix: The section suffix (e.g., "_wide", "_lang", "_time")
-    :returns: Text wrapped with hyperlink and role
-    """
+    """Wrap score text with both a hyperlink and score styling using the :sref: role."""
     score_value = round(score * 100) if not math.isnan(score) else 'na'
     link_target = make_link(terminal_name + section_suffix)
     return f':sref:`{text} <{link_target}> {score_value}`'
@@ -196,13 +263,7 @@ def load_terminal_detail_mixins():
 
 
 def print_datatable(table_str, caption=None):
-    """Print a table with sphinx-datatable class for sortable/searchable functionality.
-
-    :type table_str: str
-    :param table_str: The table string (RST format from tabulate)
-    :type caption: str or None
-    :param caption: Optional caption for the table
-    """
+    """Print a table with sphinx-datatable class for sortable/searchable functionality."""
     if caption:
         print(f".. table:: {caption}")
     else:
@@ -2601,6 +2662,17 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
     print(f'        {bytes(wchars, "utf8").decode("unicode-escape")}|')
     print(f"        {ruler}|")
     print()
+
+    # Example file cross-reference
+    if category:
+        decoded = decode_wchars(wchars)
+        measured_width = fail_record.get('measured_by_wcwidth')
+        info = _example_file_link(decoded, category, measured_width)
+        if info:
+            basename, lineno, url = info
+            print()
+            print(f"- See Line {lineno} of `{basename} <{url}>`_"
+                  " for this sequence in the example file.")
 
     # Screenshot reference
     if category:
