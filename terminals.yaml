@@ -45,6 +45,8 @@ terminals:
       program: foot
       args: []
       wrapper: [cage, --]
+      skip: true
+    skip_reason: "cage wrapper"
 
   ghostty:
     homepage: https://ghostty.org/
@@ -78,8 +80,8 @@ terminals:
   konsole:
     homepage: https://apps.kde.org/konsole/
     launch:
-      program: konsole
-      args: [-e]
+      program: flatpak
+      args: [run, --command=konsole, org.kde.konsole, --, -e]
 
   libvterm:
     homepage: https://www.leonerd.org.uk/code/libvterm/
@@ -110,7 +112,7 @@ terminals:
     homepage: https://mlterm.sourceforge.net/
     launch:
       program: mlterm
-      args: [-e]
+      args: ["--sb=false", "-e"]
 
   putty:
     homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/
@@ -134,7 +136,7 @@ terminals:
     homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
     launch:
       program: urxvt
-      args: [-e]
+      args: ["+sb", "-fn", "xft:Unifont:pixelsize=16", "-e"]
 
   screen:
     homepage: https://www.gnu.org/software/screen/
@@ -156,7 +158,7 @@ terminals:
     sixel_support_notes: "Patches are available to add sixel support."
     launch:
       program: st
-      args: [-e]
+      args: ["-f", "Unifont:pixelsize=16", "-e"]
 
   syncterm:
     homepage: https://syncterm.bbsdev.net/
@@ -226,6 +228,8 @@ terminals:
       program: weston-terminal
       args: [--shell, "{script}"]
       wrapper: [cage, --]
+      skip: true
+    skip_reason: "cage wrapper"
 
   wezterm:
     homepage: https://wezfurlong.org/wezterm/
@@ -244,13 +248,13 @@ terminals:
     sixel_support_notes: "Sixel support can be enabled with argument ``-ti 340``."
     launch:
       program: xterm
-      args: [-e]
+      args: ["-fa", "Unifont", "-fs", "16", "-e"]
 
   zutty:
     homepage: https://tomscii.sig7.se/zutty/
     launch:
       program: zutty
-      args: [-e]
+      args: ["-font", "unifont", "-fontsize", "16", "-e"]
 
   zellij:
     homepage: https://github.com/zellij-org/zellij

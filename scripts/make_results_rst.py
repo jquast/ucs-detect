@@ -42,6 +42,12 @@ import matplotlib.pyplot as plt  # pylint: disable=wrong-import-position
 import numpy as np  # pylint: disable=wrong-import-position
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _ROOT not in sys.path:
+    sys.path.insert(0, _ROOT)
+
+from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars
+from ucs_detect.measure import make_printf_hex
+
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 DATA_PATH = os.path.join(_ROOT, "data")
 TERMINAL_DETAIL_MIXINS_PATH = os.path.join(_ROOT, "terminals.yaml")
@@ -559,18 +565,6 @@ def display_inbound_hyperlink(link_text):
     """Emit an RST hyperlink anchor target for cross-references."""
     print(f".. _{make_link(link_text)}:")
     print()
-
-
-def find_best_failure(records):
-    """Find the best (most interesting) failure result from a results dict."""
-    sorted_records = sorted(records, key=lambda record: record.get("measured_by_wcwidth", 0))
-    return sorted_records[len(sorted_records) // 2]
-
-
-def make_printf_hex(wchar):
-    """Format a string as a hexdump suitable for a printf(1) command."""
-    # python's b'\x12..' representation is compatible enough with printf(1)
-    return repr(bytes(wchar, "utf8").decode("unicode-escape").encode("utf8"))[2:-1]
 
 
 def make_score_table():
@@ -2241,7 +2235,7 @@ def show_language_results(sw_name, entry):
     print_datatable(table_str)
     for failed_lang in languages_failed:
         fail_record = lang_results[failed_lang]["failed"][0]
-        safe_lang = "".join(c if c.isalnum() or c in "-_" else "_" for c in failed_lang)
+        safe_lang = safe_name(failed_lang)
         display_inbound_hyperlink(sw_name + "_lang_" + failed_lang)
         display_title(failed_lang, 4)
         show_record_failure(sw_name, f"of language *{failed_lang}*", fail_record,
@@ -2596,7 +2590,7 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
     ruler = num_bars[: fail_record.get("measured_by_wcwidth", 0)]
     wchars = fail_record.get("wchar", fail_record.get("wchars"))
     assert wchars
-    as_printf_hex = make_printf_hex(wchars)
+    as_printf_hex = make_printf_hex(decode_wchars(wchars))
     print(f"Sequence {whatis} from midpoint of alignment failure records:")
     print()
     show_wchar(wchars)
@@ -2610,7 +2604,7 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
 
     # Screenshot reference
     if category:
-        safe_sw = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
+        safe_sw = safe_name(sw_name)
         screenshot_path = f"../_static/screenshots/{safe_sw}/{category}.png"
         abs_screenshot = os.path.join(_ROOT, "docs", "_static", "screenshots",
                                       safe_sw, f"{category}.png")

@@ -18,6 +18,44 @@ import wcwidth
 # local
 from ucs_detect import terminal
 
+_VS15 = '\uFE0E'
+
+
+def _wcswidth_vs15(text, ambiguous_width=1):
+    """Return :func:`wcwidth.wcswidth` of *text*, accounting for VS-15 contraction.
+
+    wcwidth does not handle VS-15 (U+FE0E) variation selectors.  VS-15 following
+    a wide (width=2) character makes the sequence narrow (width=1), but wcwidth
+    counts the base character as 2 and the VS-15 as 0.
+    """
+    width = wcwidth.wcswidth(text, ambiguous_width=ambiguous_width)
+    if width < 0:
+        return len(text)
+    i = 0
+    while True:
+        i = text.find(_VS15, i)
+        if i == -1:
+            break
+        if i > 0 and wcwidth.wcwidth(text[i - 1], ambiguous_width=ambiguous_width) == 2:
+            width -= 1
+        i += 1
+    return width
+
+
+def _center_vs15(text, dest_width, fillchar=' '):
+    """Center *text* in *dest_width* cells, accounting for VS-15.
+
+    Matches :func:`wcwidth.center` padding behaviour (Python str.center
+    eccentricity): when both ``total_padding`` and ``dest_width`` are odd,
+    the extra cell goes to the left side.
+    """
+    text_width = _wcswidth_vs15(text)
+    total_padding = max(0, dest_width - text_width)
+    left_pad = total_padding // 2 + (total_padding & dest_width & 1)
+    right_pad = total_padding - left_pad
+    return fillchar * left_pad + text + fillchar * right_pad
+
+
 # Unicode ranges where most fonts lack glyphs
 UNCOMMON_WIDE_RANGES = (
     (0x16FF0, 0x18CFF),   # Ideographic Symbols, Tangut, Khitan Small Script
@@ -171,9 +209,9 @@ def display_error_and_prompt(
 
     writer(str(_make_codepoint_table(term, wchars_display)) + "\n")
 
-    interior = wcwidth.width(wchars_display) + 2
+    interior = _wcswidth_vs15(wchars_display) + 2
     border = "+" + "-" * interior + "+"
-    writer(f"{border}\n|{wcwidth.center(wchars_display, interior)}|\n{border}\n")
+    writer(f"{border}\n|{_center_vs15(wchars_display, interior)}|\n{border}\n")
 
     writer(f"\nmeasured by terminal: {measured_by_terminal}\n")
     writer(f"measured by wcwidth:  {measured_by_wcwidth}\n")
