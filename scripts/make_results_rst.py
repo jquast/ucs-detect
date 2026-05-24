@@ -440,6 +440,7 @@ def main():
         # Definitions removed - not shown in individual terminal pages
         display_common_languages(all_successful_languages)
         display_capabilities_table(score_table)
+        display_xtgettcap_summary_bullets(score_table)
         display_xtgettcap_comparison_table(score_table)
         # display_time_summary removed: plot is still generated but not published
         display_results_toc(score_table)
@@ -538,6 +539,7 @@ def display_common_hyperlinks():
     print(".. _`printf(1)`: https://www.man7.org/linux/man-pages/man1/printf.1.html")
     print(".. _`wcwidth.wcswidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html")
     print(".. _`ucs-detect`: https://github.com/jquast/ucs-detect")
+    print(".. _`ttyscan`: https://github.com/jquast/ttyscan")
     print(".. _`DEC Private Modes`: https://blessed.readthedocs.io/en/latest/dec_modes.html")
 
 
@@ -1509,6 +1511,61 @@ def display_capabilities_table(score_table):
         print()
 
 
+def display_xtgettcap_summary_bullets(score_table):
+    """Display a bulleted list categorizing XTGETTCAP support levels."""
+
+    def _link(name):
+        return make_outbound_hyperlink(name, name + "_xtgettcap")
+
+    full = []
+    partial = []
+    nosupport = []
+    noncompliant = []
+
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        tr = entry["data"].get("terminal_results") or {}
+        label, _score = _classify_xtgettcap(entry)
+
+        if tr.get("xtgettcap-bad-screenleak"):
+            noncompliant.append(sw_name)
+        elif label == "full":
+            full.append(sw_name)
+        elif label == "partial":
+            partial.append(sw_name)
+        else:
+            nosupport.append(sw_name)
+
+    def _bullet(heading, terminals, extra=""):
+        if not terminals:
+            return
+        links = ", ".join(_link(t) for t in sorted(terminals))
+        print(f"* **{heading}:** {links}{extra}")
+
+    if full:
+        _bullet("Full XTGETTCAP capability support", full,
+                ". ttyscan produces terminfo files for only these terminals. "
+                "ttyscan may also discover a preferred TERM from TN, "
+                "and COLORTERM=truecolor from RGB.")
+        print()
+
+    if partial:
+        _bullet("Partial XTGETTCAP capability support", partial,
+                ". ttyscan may only discover preferred TERM from TN, "
+                "and COLORTERM=truecolor from RGB.")
+        print()
+
+    if nosupport:
+        _bullet("No Support", nosupport)
+        print()
+
+    if noncompliant:
+        _bullet("Non-compliant", noncompliant,
+                " -- failed to parse DCS queries, "
+                "displaying raw sequence output.")
+        print()
+
+
 def display_xtgettcap_comparison_table(score_table):
     """Display an XTGETTCAP terminfo capability comparison table.
 
@@ -1520,7 +1577,8 @@ def display_xtgettcap_comparison_table(score_table):
     from collections import OrderedDict
 
     display_title("Terminal Capabilities (XTGETTCAP)", 2)
-    print("This table shows XTGETTCAP terminfo capability values reported by each terminal.")
+    print("This table shows XTGETTCAP terminfo capability values reported "
+          "by each terminal, as demonstrated by `ttyscan`_.")
     print("Terminals are grouped by shared values for each capability.")
     print()
 
@@ -2323,6 +2381,11 @@ def show_xtgettcap_results(sw_name, entry):
 
     tr = entry["data"].get("terminal_results") or {}
     xtgettcap = tr.get("xtgettcap", {})
+
+    if tr.get("xtgettcap-bad-screenleak"):
+        print("This terminal fails to parse VT100 Mode DCS Sequences at all, "
+              "and displays XTGETTCAP queries as screen output")
+        print()
 
     if not xtgettcap.get("supported", False):
         print(f"*{sw_name}* does not support the ``XTGETTCAP`` sequence.")

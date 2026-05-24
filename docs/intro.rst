@@ -176,8 +176,8 @@ Batch Testing
 -------------
 
 ``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
-[arguments]`` is not supported, then by injecting keystrokes where needed. After keystroke
-injections are begun in series, remaining terminals are done in ``--parallel``::
+[arguments]`` is not supported, ucs-detect is executed by injecting keystrokes where needed. After
+keystroke injections are begun in series, remaining terminals are done in ``--parallel``::
 
     $ python run-series.py --parallel 8
 
@@ -215,7 +215,6 @@ Example output::
     python -c "print('\u0915\u094d\u0928\u093f')"
 
     press return for next error, or n for non-stop:
-
 
 
 UDHR Data
