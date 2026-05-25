@@ -507,6 +507,7 @@ def main():
         # Definitions removed - not shown in individual terminal pages
         display_common_languages(all_successful_languages)
         display_features_table(score_table)
+        display_truecolor_table(score_table)
         display_xtgettcap_summary_bullets(score_table)
         display_xtgettcap_comparison_table(score_table)
         # display_time_summary removed: plot is still generated but not published
@@ -540,6 +541,7 @@ def main():
             show_kitty_keyboard_results(sw_name, entry)
             show_xtgettcap_results(sw_name, entry)
             show_text_sizing_results(sw_name, entry)
+            show_truecolor_results(sw_name, entry)
             show_reproduce_command(sw_name, entry)
             show_time_elapsed_results(sw_name, entry)
             display_common_hyperlinks()
@@ -931,6 +933,12 @@ def _count_features(entry):  # "features" in user-facing output
     if tr.get("software_method") == "XTVERSION":
         n_total += 1
         n_found += 1
+    # Truecolor detection: 1.0 for any detection method
+    xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
+    if "xtgettcap" in tr or "decrqss" in tr or "environment" in entry["data"]:
+        n_total += 1
+        if xt_has or dq_has or ct_has:
+            n_found += 1
     return n_found, n_total
 
 
@@ -1297,11 +1305,11 @@ def score_features(data):
     """
     Calculate score as fraction of notable terminal features supported.
 
-    Checks 14 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
+    Checks 15 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
     Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
     Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
     Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications,
-    Color Report (OSC 10/11), and XTVERSION.
+    Color Report (OSC 10/11), XTVERSION, and Truecolor Detection.
 
     :rtype: float
     :returns: fraction 0.0-1.0 of features supported
@@ -1312,7 +1320,7 @@ def score_features(data):
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 14
+    total = 15
 
     for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
@@ -1347,6 +1355,10 @@ def score_features(data):
         count += 1
 
     if tr.get("software_method") == "XTVERSION":
+        count += 1
+
+    xt_has, dq_has, ct_has = _detect_truecolor_methods(data)
+    if xt_has or dq_has or ct_has:
         count += 1
 
     return count / total
@@ -1434,6 +1446,31 @@ def _format_xtgettcap_feature(entry, sw_name):
         return _capability_yes_no(False, sw_name, "_xtgettcap")
     text = "yes (Full)" if label == "full" else "yes (Partial)"
     return wrap_score_with_hyperlink(text, score, sw_name, "_xtgettcap")
+
+
+def _detect_truecolor_methods(data):
+    """Determine which methods detect 24-bit truecolor support.
+
+    Returns ``(xt, dq, ct)`` booleans for XTGETTCAP RGB, DECRQSS, and
+    COLORTERM respectively.
+
+    ``data`` may be either a raw YAML-loaded dict or a score table entry dict.
+    """
+    if "data" in data:
+        data = data["data"]
+    tr = data.get("terminal_results") or {}
+    env = data.get("environment") or {}
+
+    xt = tr.get("xtgettcap", {})
+    xt_has = xt.get("supported", False) and xt.get("capabilities", {}).get("RGB") in ("8", "8/8/8")
+
+    dq = tr.get("decrqss", False)
+    dq_sgr = (tr.get("decrqss_settings") or {}).get("sgr", "")
+    dq_has = dq and ("38:2" in str(dq_sgr) or "48:2" in str(dq_sgr))
+
+    ct_has = env.get("COLORTERM") == "truecolor"
+
+    return xt_has, dq_has, ct_has
 
 
 def _capability_yes_no(value, terminal_name, section_suffix):
@@ -1558,6 +1595,12 @@ def display_features_table(score_table):
             if tested else None,
             sw_name, suffix)
 
+        # Truecolor Detection
+        xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
+        row["Truecolor"] = _capability_yes_no(
+            (xt_has or dq_has or ct_has) if tested else None,
+            sw_name, "_truecolor")
+
         table_data.append(row)
 
     if table_data:
@@ -1565,6 +1608,65 @@ def display_features_table(score_table):
         print_datatable(table_str)
     else:
         print("No terminal feature data available.")
+        print()
+
+
+def _truecolor_cell(value, section_suffix, sw_name, has_any_yes):
+    """Format a truecolor detection cell as yes/no with context-aware coloring.
+
+    ``no`` is grey if any other method in the row detects truecolor,
+    red if no method detects it at all.
+    """
+    if value is None:
+        return ":score-na:`N/A`"
+    if value:
+        return wrap_score_with_hyperlink("yes", 1.0, sw_name, section_suffix)
+    if has_any_yes:
+        return ":score-contested:`no`"
+    return ":score-0:`no`"
+
+
+def display_truecolor_table(score_table):
+    """Display a truecolor detection methods comparison table.
+
+    Shows how 24-bit color support can be detected for each terminal
+    via XTGETTCAP (RGB), DECRQSS (SGR), and COLORTERM environment variable.
+    """
+    display_title("Truecolor Detection", 2)
+    print("This table shows which methods can be used to detect 24-bit")
+    print("truecolor support for each terminal emulator. ``no`` cells are")
+    print("grey when at least one other method succeeds, and red when no")
+    print("method can detect truecolor support.")
+    print()
+
+    table_data = []
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        tr = entry["data"].get("terminal_results") or {}
+        tested = bool(tr)
+
+        xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
+        has_any_yes = xt_has or dq_has or ct_has
+
+        row = {"Terminal": make_outbound_hyperlink(sw_name)}
+
+        row["XTGETTCAP (RGB)"] = (
+            _truecolor_cell(xt_has if tested else None,
+                            "_truecolor", sw_name, has_any_yes))
+        row["DECRQSS"] = (
+            _truecolor_cell(dq_has if tested else None,
+                            "_truecolor", sw_name, has_any_yes))
+        row["COLORTERM"] = (
+            _truecolor_cell(ct_has if tested else None,
+                            "_truecolor", sw_name, has_any_yes))
+
+        table_data.append(row)
+
+    if table_data:
+        table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+        print_datatable(table_str)
+    else:
+        print("No truecolor detection data available.")
         print()
 
 
@@ -1990,6 +2092,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
              and tr.get("kitty_notifications", {}).get("supported", False)),
             ("Color Report (OSC 10/11)",
              bool(tr.get("foreground_color_hex") or tr.get("background_color_hex"))),
+            ("Truecolor Detection",
+             _detect_truecolor_methods(entry) != (False, False, False)),
         ]
         cap_count = sum(1 for _, v in cap_checks if v)
         print(f"Notable terminal features ({cap_count} / {len(cap_checks)}):")
@@ -2526,6 +2630,59 @@ def show_text_sizing_results(sw_name, entry):
     print()
     print('.. _`Text Sizing protocol`: '
           'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
+    print()
+
+
+def show_truecolor_results(sw_name, entry):
+    """Display truecolor detection method results."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_truecolor")
+    display_title("Truecolor Support", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+    env = entry["data"].get("environment") or {}
+
+    xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
+    ncolors = tr.get("number_of_colors", 0)
+
+    methods = []
+    if xt_has:
+        methods.append("XTGETTCAP (RGB)")
+    if dq_has:
+        methods.append("DECRQSS (SGR)")
+    if ct_has:
+        methods.append("COLORTERM=truecolor")
+
+    if methods:
+        print(f"*{sw_name}* supports 24-bit truecolor, detectable via:")
+        print()
+        for method in methods:
+            print(f"- **{method}**")
+    elif ncolors == 16777216:
+        print(f"*{sw_name}* supports 24-bit truecolor")
+        print(f"({ncolors} colors), but is **not detectable** by")
+        print("XTGETTCAP, DECRQSS, or COLORTERM methods.")
+    else:
+        print(f"*{sw_name}* does not support 24-bit truecolor.")
+        print(f"(Reports {ncolors} colors.)")
+    print()
+
+    if tr:
+        print("Detection breakdown:")
+        print()
+        xt_status = "yes (RGB)" if xt_has else "no"
+        dq_status = "yes (SGR)" if dq_has else ("no" if tr.get("decrqss", False) else "N/A")
+        ct_status = "yes (truecolor)" if ct_has else (
+            env.get("COLORTERM", "unset") if "COLORTERM" in (env or {}) else "N/A")
+        print(f"- XTGETTCAP (RGB capability): **{xt_status}**")
+        if tr.get("decrqss", False) and not dq_has:
+            sgr_val = str(tr.get("decrqss_settings", {}).get("sgr", ""))
+            if sgr_val:
+                print(f"- DECRQSS: **no** (SGR value: ``{sgr_val}``)")
+            else:
+                print(f"- DECRQSS: **no** (SGR value not reported)")
+        else:
+            print(f"- DECRQSS: **{dq_status}**")
+        print(f"- COLORTERM: **{ct_status}**")
     print()
 
 
