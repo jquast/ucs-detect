@@ -694,6 +694,9 @@ def _build_features_kv_pairs(term, results):
     pairs.append(("Color Report (OSC 10/11)?",
                   _color_yes_no(term, has_color_report)))
 
+    has_xtversion = results.get('software_method') == 'XTVERSION'
+    pairs.append(("XTVERSION?", _color_yes_no(term, has_xtversion)))
+
     pairs.sort(key=lambda p: p[0].lower())
     return pairs
 

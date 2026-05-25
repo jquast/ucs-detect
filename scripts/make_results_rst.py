@@ -928,6 +928,9 @@ def _count_features(entry):  # "features" in user-facing output
         n_found += xt_score
     elif "xtgettcap" in tr:
         n_total += 1
+    if tr.get("software_method") == "XTVERSION":
+        n_total += 1
+        n_found += 1
     return n_found, n_total
 
 
@@ -1294,11 +1297,11 @@ def score_features(data):
     """
     Calculate score as fraction of notable terminal features supported.
 
-    Checks 13 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
+    Checks 14 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
     Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
     Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
-    Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications, and
-    Color Report (OSC 10/11).
+    Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications,
+    Color Report (OSC 10/11), and XTVERSION.
 
     :rtype: float
     :returns: fraction 0.0-1.0 of features supported
@@ -1309,7 +1312,7 @@ def score_features(data):
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 13
+    total = 14
 
     for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
@@ -1341,6 +1344,9 @@ def score_features(data):
         count += 1
 
     if tr.get("foreground_color_hex") or tr.get("background_color_hex"):
+        count += 1
+
+    if tr.get("software_method") == "XTVERSION":
         count += 1
 
     return count / total
