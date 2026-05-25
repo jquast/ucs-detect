@@ -183,6 +183,7 @@ def generate_score_css():
         class_name = make_score_css_class(score)
         css_lines.append(f'.{class_name} {{ background-color: rgb({r}, {g}, {b}); }}')
     css_lines.append('.score-contested { background-color: rgb(220, 220, 220); }')
+    css_lines.append('.score-warn { background-color: rgb(255, 255, 150); }')
     css_lines.append('.score-na { background-color: rgb(220, 220, 220); }')
     return '\n'.join(css_lines)
 
@@ -206,6 +207,10 @@ def generate_score_roles():
     # Add role for contested scores (light grey)
     lines.append('.. role:: score-contested')
     lines.append('   :class: score-contested')
+    lines.append('')
+    # Add role for warn scores (yellow, COLORTERM-only detection)
+    lines.append('.. role:: score-warn')
+    lines.append('   :class: score-warn')
     lines.append('')
     return '\n'.join(lines)
 
@@ -1311,6 +1316,10 @@ def score_features(data):
     Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications,
     Color Report (OSC 10/11), XTVERSION, and Truecolor Detection.
 
+    XTGETTCAP and Truecolor Detection each score 0.5 for partial support
+    (XTGETTCAP with fewer than 5 meaningful caps; Truecolor detectable only
+    via COLORTERM).
+
     :rtype: float
     :returns: fraction 0.0-1.0 of features supported
     """
@@ -1358,8 +1367,10 @@ def score_features(data):
         count += 1
 
     xt_has, dq_has, ct_has = _detect_truecolor_methods(data)
-    if xt_has or dq_has or ct_has:
-        count += 1
+    if xt_has or dq_has:
+        count += 1.0
+    elif ct_has:
+        count += 0.5
 
     return count / total
 
@@ -1529,6 +1540,7 @@ def display_features_table(score_table):
 
         row = {
             "Terminal": make_outbound_hyperlink(sw_name),
+            "FEAT Score": format_score_int(entry["score_features_scaled"]),
         }
 
         # Notable DEC modes (same as CLI)
@@ -1611,16 +1623,19 @@ def display_features_table(score_table):
         print()
 
 
-def _truecolor_cell(value, section_suffix, sw_name, has_any_yes):
+def _truecolor_cell(value, section_suffix, sw_name, has_any_yes, only_colorterm=False):
     """Format a truecolor detection cell as yes/no with context-aware coloring.
 
-    ``no`` is grey if any other method in the row detects truecolor,
+    ``no`` is yellow if only COLORTERM detects truecolor (warn the user about
+    unreliable detection), grey if any other method in the row detects truecolor,
     red if no method detects it at all.
     """
     if value is None:
         return ":score-na:`N/A`"
     if value:
         return wrap_score_with_hyperlink("yes", 1.0, sw_name, section_suffix)
+    if only_colorterm:
+        return ":score-warn:`no`"
     if has_any_yes:
         return ":score-contested:`no`"
     return ":score-0:`no`"
@@ -1647,18 +1662,19 @@ def display_truecolor_table(score_table):
 
         xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
         has_any_yes = xt_has or dq_has or ct_has
+        only_colorterm = ct_has and not xt_has and not dq_has
 
-        row = {"Terminal": make_outbound_hyperlink(sw_name)}
+        row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_truecolor")}
 
         row["XTGETTCAP (RGB)"] = (
             _truecolor_cell(xt_has if tested else None,
-                            "_truecolor", sw_name, has_any_yes))
+                            "_truecolor", sw_name, has_any_yes, only_colorterm))
         row["DECRQSS"] = (
             _truecolor_cell(dq_has if tested else None,
-                            "_truecolor", sw_name, has_any_yes))
+                            "_truecolor", sw_name, has_any_yes, only_colorterm))
         row["COLORTERM"] = (
             _truecolor_cell(ct_has if tested else None,
-                            "_truecolor", sw_name, has_any_yes))
+                            "_truecolor", sw_name, has_any_yes, only_colorterm))
 
         table_data.append(row)
 
@@ -2067,39 +2083,54 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     if not math.isnan(entry["score_features"]):
         tr = entry["data"].get("terminal_results") or {}
         modes = tr.get("modes") or {}
+        xt_label, xt_score = _classify_xtgettcap(entry)
+        xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
+        if xt_has or dq_has:
+            tc_score = 1.0
+        elif ct_has:
+            tc_score = 0.5
+        else:
+            tc_score = 0.0
+
         cap_checks = [
-            (_fmt_mode(_DPM.BRACKETED_PASTE), _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE)),
-            (_fmt_mode(_DPM.SYNCHRONIZED_OUTPUT), _get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT)),
-            (_fmt_mode(_DPM.FOCUS_IN_OUT_EVENTS), _get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS)),
-            (_fmt_mode(_DPM.MOUSE_EXTENDED_SGR), _get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR)),
-            (_fmt_mode(_DPM.GRAPHEME_CLUSTERING), _get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING)),
-            (_fmt_mode(_DPM.BRACKETED_PASTE_MIME), _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME)),
-            ("Kitty Keyboard", tr.get("kitty_keyboard") is not None),
-            ("XTGETTCAP (Full)" if (_classify_xtgettcap(entry)[0] or "") == "full"
-             else "XTGETTCAP (Partial)" if _classify_xtgettcap(entry)[0]
+            (_fmt_mode(_DPM.BRACKETED_PASTE), float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE))),
+            (_fmt_mode(_DPM.SYNCHRONIZED_OUTPUT), float(_get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT))),
+            (_fmt_mode(_DPM.FOCUS_IN_OUT_EVENTS), float(_get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS))),
+            (_fmt_mode(_DPM.MOUSE_EXTENDED_SGR), float(_get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR))),
+            (_fmt_mode(_DPM.GRAPHEME_CLUSTERING), float(_get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING))),
+            (_fmt_mode(_DPM.BRACKETED_PASTE_MIME), float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME))),
+            ("Kitty Keyboard", float(tr.get("kitty_keyboard") is not None)),
+            ("XTGETTCAP (Full)" if xt_label == "full"
+             else "XTGETTCAP (Partial)" if xt_label
              else "XTGETTCAP",
-             _classify_xtgettcap(entry)[1] > 0),
+             xt_score),
             ("Text Sizing (OSC 66)",
-             (tr.get("text_sizing", {}).get("width")
+             float(tr.get("text_sizing", {}).get("width")
               or tr.get("text_sizing", {}).get("scale"))),
             ("Kitty Clipboard Protocol",
-             tr.get("kitty_clipboard_protocol", False)),
+             float(tr.get("kitty_clipboard_protocol", False))),
             ("Kitty Pointer Shapes (OSC 22)",
-             isinstance(tr.get("kitty_pointer_shapes"), dict)
-             and tr.get("kitty_pointer_shapes", {}).get("supported", False)),
+             float(isinstance(tr.get("kitty_pointer_shapes"), dict)
+             and tr.get("kitty_pointer_shapes", {}).get("supported", False))),
             ("Kitty Notifications (OSC 99)",
-             isinstance(tr.get("kitty_notifications"), dict)
-             and tr.get("kitty_notifications", {}).get("supported", False)),
+             float(isinstance(tr.get("kitty_notifications"), dict)
+             and tr.get("kitty_notifications", {}).get("supported", False))),
             ("Color Report (OSC 10/11)",
-             bool(tr.get("foreground_color_hex") or tr.get("background_color_hex"))),
-            ("Truecolor Detection",
-             _detect_truecolor_methods(entry) != (False, False, False)),
+             float(bool(tr.get("foreground_color_hex") or tr.get("background_color_hex")))),
+            ("XTVERSION",
+             float(tr.get("software_method") == "XTVERSION")),
+            ("Truecolor Detection", tc_score),
         ]
-        cap_count = sum(1 for _, v in cap_checks if v)
+        cap_count = sum(v for _, v in cap_checks)
         print(f"Notable terminal features ({cap_count} / {len(cap_checks)}):")
         print()
-        for name, supported in cap_checks:
-            status = "yes" if supported else "no"
+        for name, score in cap_checks:
+            if score == 0.5:
+                status = "partial"
+            elif score:
+                status = "yes"
+            else:
+                status = "no"
             print(f"- {name}: **{status}**")
         print()
         print(f"Raw score: {entry['score_features']*100:.2f}%")  # noqa: E226
@@ -2644,19 +2675,8 @@ def show_truecolor_results(sw_name, entry):
     xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
     ncolors = tr.get("number_of_colors", 0)
 
-    methods = []
-    if xt_has:
-        methods.append("XTGETTCAP (RGB)")
-    if dq_has:
-        methods.append("DECRQSS (SGR)")
-    if ct_has:
-        methods.append("COLORTERM=truecolor")
-
-    if methods:
+    if xt_has or dq_has or ct_has:
         print(f"*{sw_name}* supports 24-bit truecolor, detectable via:")
-        print()
-        for method in methods:
-            print(f"- **{method}**")
     elif ncolors == 16777216:
         print(f"*{sw_name}* supports 24-bit truecolor")
         print(f"({ncolors} colors), but is **not detectable** by")
@@ -2667,8 +2687,6 @@ def show_truecolor_results(sw_name, entry):
     print()
 
     if tr:
-        print("Detection breakdown:")
-        print()
         xt_status = "yes (RGB)" if xt_has else "no"
         dq_status = "yes (SGR)" if dq_has else ("no" if tr.get("decrqss", False) else "N/A")
         ct_status = "yes (truecolor)" if ct_has else (
