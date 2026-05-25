@@ -234,6 +234,10 @@ marks across diverse scripts.
 History
 -------
 
+- 2.2.0 (2026-05-25): Terminal screenshot capture with ``make-screenshots.py``, expanded
+  XTGETTCAP detection and results table, record XTVERSION capture method and TERM_PROGRAM,
+  ``run-series.py`` batch testing with parallel execution (Linux/X11, only).
+
 - 2.1.0 (2026-04-17): Add more testing for standalone and flags (RI), kitty text sizing
   protocol, make ucs-browser compatible with older python versions, and some changes
   to allow ucs-detect to integrate as a network service (see ``telnet modem.xyz``)
