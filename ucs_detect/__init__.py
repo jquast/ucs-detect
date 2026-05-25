@@ -133,6 +133,11 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
                   "limit_graphemes_pct", "limit_category_time")
     }
+    environment = {
+        k: os.environ[k]
+        for k in ("TERM", "COLORTERM", "TERM_PROGRAM", "TERM_PROGRAM_VERSION")
+        if k in os.environ
+    }
     if not silent:
         writer(f"ucs-detect: {display_args(session_arguments)})")
         if measure.get_location_with_retry(term, timeout_cps) == (-1, -1):
@@ -152,6 +157,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     python_version=platform.python_version(),
                     system=platform.system(),
                     wcwidth_version=wcwidth.__version__,
+                    environment=environment,
 
                     test_results={},
                     terminal_results={},
@@ -443,6 +449,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             python_version=platform.python_version(),
             system=platform.system(),
             wcwidth_version=wcwidth.__version__,
+            environment=environment,
 
             test_results=dict(
                 unicode_wide_results=wide_results,
@@ -686,6 +693,9 @@ def _build_features_kv_pairs(term, results):
         results.get('foreground_color_hex') or results.get('background_color_hex'))
     pairs.append(("Color Report (OSC 10/11)?",
                   _color_yes_no(term, has_color_report)))
+
+    has_xtversion = results.get('software_method') == 'XTVERSION'
+    pairs.append(("XTVERSION?", _color_yes_no(term, has_xtversion)))
 
     pairs.sort(key=lambda p: p[0].lower())
     return pairs

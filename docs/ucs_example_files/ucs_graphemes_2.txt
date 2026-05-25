@@ -1,0 +1,5364 @@
+Delimiters (│) should align. [GRAPHEME w=2]
+│──│═══════════════════
+│、│ 0x03001 (Jinan)
+│。│ 0x03002 (Jinan)
+│一│ 0x04e00 (Jinan)
+│七│ 0x04e03 (Jinan)
+│三│ 0x04e09 (Jinan)
+│上│ 0x04e0a (Jinan)
+│下│ 0x04e0b (Jinan)
+│不│ 0x04e0d (Jinan)
+│与│ 0x04e0e (Jinan)
+│且│ 0x04e14 (Jinan)
+│世│ 0x04e16 (Jinan)
+│业│ 0x04e1a (Jinan)
+│两│ 0x04e24 (Jinan)
+│严│ 0x04e25 (Jinan)
+│丧│ 0x04e27 (Jinan)
+│个│ 0x04e2a (Jinan)
+│中│ 0x04e2d (Jinan)
+│临│ 0x04e34 (Jinan)
+│为│ 0x04e3a (Jinan)
+│主│ 0x04e3b (Jinan)
+│举│ 0x04e3e (Jinan)
+│乃│ 0x04e43 (Jinan)
+│义│ 0x04e49 (Jinan)
+│之│ 0x04e4b (Jinan)
+│乏│ 0x04e4f (Jinan)
+│九│ 0x04e5d (Jinan)
+│买│ 0x04e70 (Jinan)
+│予│ 0x04e88 (Jinan)
+│事│ 0x04e8b (Jinan)
+│二│ 0x04e8c (Jinan)
+│于│ 0x04e8e (Jinan)
+│五│ 0x04e94 (Jinan)
+│些│ 0x04e9b (Jinan)
+│亦│ 0x04ea6 (Jinan)
+│产│ 0x04ea7 (Jinan)
+│享│ 0x04eab (Jinan)
+│亲│ 0x04eb2 (Jinan)
+│人│ 0x04eba (Jinan)
+│介│ 0x04ecb (Jinan)
+│他│ 0x04ed6 (Jinan)
+│代│ 0x04ee3 (Jinan)
+│以│ 0x04ee5 (Jinan)
+│们│ 0x04eec (Jinan)
+│仰│ 0x04ef0 (Jinan)
+│件│ 0x04ef6 (Jinan)
+│价│ 0x04ef7 (Jinan)
+│任│ 0x04efb (Jinan)
+│休│ 0x04f11 (Jinan)
+│优│ 0x04f18 (Jinan)
+│会│ 0x04f1a (Jinan)
+│传│ 0x04f20 (Jinan)
+│位│ 0x04f4d (Jinan)
+│住│ 0x04f4f (Jinan)
+│体│ 0x04f53 (Jinan)
+│何│ 0x04f55 (Jinan)
+│作│ 0x04f5c (Jinan)
+│使│ 0x04f7f (Jinan)
+│侍│ 0x04f8d (Jinan)
+│依│ 0x04f9d (Jinan)
+│侮│ 0x04fae (Jinan)
+│侵│ 0x04fb5 (Jinan)
+│促│ 0x04fc3 (Jinan)
+│保│ 0x04fdd (Jinan)
+│信│ 0x04fe1 (Jinan)
+│倚│ 0x0501a (Jinan)
+│值│ 0x0503c (Jinan)
+│假│ 0x05047 (Jinan)
+│偏│ 0x0504f (Jinan)
+│健│ 0x05065 (Jinan)
+│儿│ 0x0513f (Jinan)
+│元│ 0x05143 (Jinan)
+│兄│ 0x05144 (Jinan)
+│充│ 0x05145 (Jinan)
+│先│ 0x05148 (Jinan)
+│免│ 0x0514d (Jinan)
+│全│ 0x05168 (Jinan)
+│八│ 0x0516b (Jinan)
+│公│ 0x0516c (Jinan)
+│六│ 0x0516d (Jinan)
+│共│ 0x05171 (Jinan)
+│关│ 0x05173 (Jinan)
+│其│ 0x05176 (Jinan)
+│具│ 0x05177 (Jinan)
+│内│ 0x05185 (Jinan)
+│决│ 0x051b3 (Jinan)
+│准│ 0x051c6 (Jinan)
+│凡│ 0x051e1 (Jinan)
+│出│ 0x051fa (Jinan)
+│击│ 0x051fb (Jinan)
+│分│ 0x05206 (Jinan)
+│切│ 0x05207 (Jinan)
+│刑│ 0x05211 (Jinan)
+│则│ 0x05219 (Jinan)
+│创│ 0x0521b (Jinan)
+│初│ 0x0521d (Jinan)
+│判│ 0x05224 (Jinan)
+│利│ 0x05229 (Jinan)
+│别│ 0x0522b (Jinan)
+│到│ 0x05230 (Jinan)
+│制│ 0x05236 (Jinan)
+│前│ 0x0524d (Jinan)
+│剥│ 0x05265 (Jinan)
+│力│ 0x0529b (Jinan)
+│加│ 0x052a0 (Jinan)
+│务│ 0x052a1 (Jinan)
+│动│ 0x052a8 (Jinan)
+│助│ 0x052a9 (Jinan)
+│劲│ 0x052b2 (Jinan)
+│包│ 0x05305 (Jinan)
+│化│ 0x05316 (Jinan)
+│匮│ 0x0532e (Jinan)
+│区│ 0x0533a (Jinan)
+│医│ 0x0533b (Jinan)
+│十│ 0x05341 (Jinan)
+│协│ 0x0534f (Jinan)
+│单│ 0x05355 (Jinan)
+│卖│ 0x05356 (Jinan)
+│压│ 0x0538b (Jinan)
+│原│ 0x0539f (Jinan)
+│参│ 0x053c2 (Jinan)
+│及│ 0x053ca (Jinan)
+│友│ 0x053cb (Jinan)
+│双│ 0x053cc (Jinan)
+│反│ 0x053cd (Jinan)
+│发│ 0x053d1 (Jinan)
+│受│ 0x053d7 (Jinan)
+│变│ 0x053d8 (Jinan)
+│叛│ 0x053db (Jinan)
+│只│ 0x053ea (Jinan)
+│可│ 0x053ef (Jinan)
+│吃│ 0x05403 (Jinan)
+│各│ 0x05404 (Jinan)
+│合│ 0x05408 (Jinan)
+│同│ 0x0540c (Jinan)
+│名│ 0x0540d (Jinan)
+│否│ 0x05426 (Jinan)
+│告│ 0x0544a (Jinan)
+│员│ 0x05458 (Jinan)
+│命│ 0x0547d (Jinan)
+│和│ 0x0548c (Jinan)
+│品│ 0x054c1 (Jinan)
+│唯│ 0x0552f (Jinan)
+│善│ 0x05584 (Jinan)
+│四│ 0x056db (Jinan)
+│回│ 0x056de (Jinan)
+│因│ 0x056e0 (Jinan)
+│团│ 0x056e2 (Jinan)
+│固│ 0x056fa (Jinan)
+│国│ 0x056fd (Jinan)
+│土│ 0x0571f (Jinan)
+│在│ 0x05728 (Jinan)
+│地│ 0x05730 (Jinan)
+│均│ 0x05747 (Jinan)
+│坏│ 0x0574f (Jinan)
+│基│ 0x057fa (Jinan)
+│境│ 0x05883 (Jinan)
+│处│ 0x05904 (Jinan)
+│大│ 0x05927 (Jinan)
+│天│ 0x05929 (Jinan)
+│失│ 0x05931 (Jinan)
+│头│ 0x05934 (Jinan)
+│夺│ 0x0593a (Jinan)
+│女│ 0x05973 (Jinan)
+│奴│ 0x05974 (Jinan)
+│如│ 0x05982 (Jinan)
+│姻│ 0x059fb (Jinan)
+│婚│ 0x05a5a (Jinan)
+│媒│ 0x05a92 (Jinan)
+│嫁│ 0x05ac1 (Jinan)
+│子│ 0x05b50 (Jinan)
+│学│ 0x05b66 (Jinan)
+│宅│ 0x05b85 (Jinan)
+│守│ 0x05b88 (Jinan)
+│安│ 0x05b89 (Jinan)
+│完│ 0x05b8c (Jinan)
+│宗│ 0x05b97 (Jinan)
+│定│ 0x05b9a (Jinan)
+│宜│ 0x05b9c (Jinan)
+│实│ 0x05b9e (Jinan)
+│审│ 0x05ba1 (Jinan)
+│宣│ 0x05ba3 (Jinan)
+│宪│ 0x05baa (Jinan)
+│害│ 0x05bb3 (Jinan)
+│家│ 0x05bb6 (Jinan)
+│容│ 0x05bb9 (Jinan)
+│密│ 0x05bc6 (Jinan)
+│寡│ 0x05be1 (Jinan)
+│对│ 0x05bf9 (Jinan)
+│尊│ 0x05c0a (Jinan)
+│少│ 0x05c11 (Jinan)
+│居│ 0x05c45 (Jinan)
+│展│ 0x05c55 (Jinan)
+│属│ 0x05c5e (Jinan)
+│工│ 0x05de5 (Jinan)
+│己│ 0x05df1 (Jinan)
+│已│ 0x05df2 (Jinan)
+│布│ 0x05e03 (Jinan)
+│干│ 0x05e72 (Jinan)
+│平│ 0x05e73 (Jinan)
+│年│ 0x05e74 (Jinan)
+│并│ 0x05e76 (Jinan)
+│庇│ 0x05e87 (Jinan)
+│序│ 0x05e8f (Jinan)
+│应│ 0x05e94 (Jinan)
+│底│ 0x05e95 (Jinan)
+│府│ 0x05e9c (Jinan)
+│废│ 0x05e9f (Jinan)
+│度│ 0x05ea6 (Jinan)
+│庭│ 0x05ead (Jinan)
+│康│ 0x05eb7 (Jinan)
+│开│ 0x05f00 (Jinan)
+│弄│ 0x05f04 (Jinan)
+│式│ 0x05f0f (Jinan)
+│弟│ 0x05f1f (Jinan)
+│张│ 0x05f20 (Jinan)
+│强│ 0x05f3a (Jinan)
+│当│ 0x05f53 (Jinan)
+│形│ 0x05f62 (Jinan)
+│役│ 0x05f79 (Jinan)
+│待│ 0x05f85 (Jinan)
+│律│ 0x05f8b (Jinan)
+│得│ 0x05f97 (Jinan)
+│徙│ 0x05f99 (Jinan)
+│德│ 0x05fb7 (Jinan)
+│心│ 0x05fc3 (Jinan)
+│必│ 0x05fc5 (Jinan)
+│忍│ 0x05fcd (Jinan)
+│志│ 0x05fd7 (Jinan)
+│念│ 0x05ff5 (Jinan)
+│思│ 0x0601d (Jinan)
+│性│ 0x06027 (Jinan)
+│息│ 0x0606f (Jinan)
+│情│ 0x060c5 (Jinan)
+│惊│ 0x060ca (Jinan)
+│想│ 0x060f3 (Jinan)
+│意│ 0x0610f (Jinan)
+│愿│ 0x0613f (Jinan)
+│成│ 0x06210 (Jinan)
+│戒│ 0x06212 (Jinan)
+│或│ 0x06216 (Jinan)
+│房│ 0x0623f (Jinan)
+│所│ 0x06240 (Jinan)
+│才│ 0x0624d (Jinan)
+│托│ 0x06258 (Jinan)
+│承│ 0x0627f (Jinan)
+│技│ 0x06280 (Jinan)
+│投│ 0x06295 (Jinan)
+│护│ 0x062a4 (Jinan)
+│报│ 0x062a5 (Jinan)
+│拘│ 0x062d8 (Jinan)
+│拜│ 0x062dc (Jinan)
+│择│ 0x062e9 (Jinan)
+│括│ 0x062ec (Jinan)
+│拾│ 0x062fe (Jinan)
+│持│ 0x06301 (Jinan)
+│指│ 0x06307 (Jinan)
+│捕│ 0x06355 (Jinan)
+│据│ 0x0636e (Jinan)
+│接│ 0x063a5 (Jinan)
+│控│ 0x063a7 (Jinan)
+│措│ 0x063aa (Jinan)
+│提│ 0x063d0 (Jinan)
+│援│ 0x063f4 (Jinan)
+│支│ 0x0652f (Jinan)
+│改│ 0x06539 (Jinan)
+│攻│ 0x0653b (Jinan)
+│放│ 0x0653e (Jinan)
+│政│ 0x0653f (Jinan)
+│效│ 0x06548 (Jinan)
+│救│ 0x06551 (Jinan)
+│教│ 0x06559 (Jinan)
+│文│ 0x06587 (Jinan)
+│方│ 0x065b9 (Jinan)
+│施│ 0x065bd (Jinan)
+│旁│ 0x065c1 (Jinan)
+│族│ 0x065cf (Jinan)
+│无│ 0x065e0 (Jinan)
+│旨│ 0x065e8 (Jinan)
+│时│ 0x065f6 (Jinan)
+│是│ 0x0662f (Jinan)
+│普│ 0x0666e (Jinan)
+│暇│ 0x06687 (Jinan)
+│暴│ 0x066b4 (Jinan)
+│最│ 0x06700 (Jinan)
+│有│ 0x06709 (Jinan)
+│服│ 0x0670d (Jinan)
+│望│ 0x0671b (Jinan)
+│期│ 0x0671f (Jinan)
+│未│ 0x0672a (Jinan)
+│本│ 0x0672c (Jinan)
+│术│ 0x0672f (Jinan)
+│机│ 0x0673a (Jinan)
+│权│ 0x06743 (Jinan)
+│条│ 0x06761 (Jinan)
+│来│ 0x06765 (Jinan)
+│构│ 0x06784 (Jinan)
+│某│ 0x067d0 (Jinan)
+│标│ 0x06807 (Jinan)
+│样│ 0x06837 (Jinan)
+│根│ 0x06839 (Jinan)
+│格│ 0x0683c (Jinan)
+│次│ 0x06b21 (Jinan)
+│止│ 0x06b62 (Jinan)
+│正│ 0x06b63 (Jinan)
+│此│ 0x06b64 (Jinan)
+│步│ 0x06b65 (Jinan)
+│歧│ 0x06b67 (Jinan)
+│死│ 0x06b7b (Jinan)
+│残│ 0x06b8b (Jinan)
+│段│ 0x06bb5 (Jinan)
+│母│ 0x06bcd (Jinan)
+│每│ 0x06bcf (Jinan)
+│民│ 0x06c11 (Jinan)
+│水│ 0x06c34 (Jinan)
+│求│ 0x06c42 (Jinan)
+│污│ 0x06c61 (Jinan)
+│治│ 0x06cbb (Jinan)
+│法│ 0x06cd5 (Jinan)
+│活│ 0x06d3b (Jinan)
+│济│ 0x06d4e (Jinan)
+│消│ 0x06d88 (Jinan)
+│涉│ 0x06d89 (Jinan)
+│渐│ 0x06e10 (Jinan)
+│源│ 0x06e90 (Jinan)
+│然│ 0x07136 (Jinan)
+│照│ 0x07167 (Jinan)
+│煽│ 0x0717d (Jinan)
+│父│ 0x07236 (Jinan)
+│物│ 0x07269 (Jinan)
+│特│ 0x07279 (Jinan)
+│犯│ 0x072af (Jinan)
+│独│ 0x072ec (Jinan)
+│现│ 0x073b0 (Jinan)
+│玷│ 0x073b7 (Jinan)
+│理│ 0x07406 (Jinan)
+│生│ 0x0751f (Jinan)
+│用│ 0x07528 (Jinan)
+│由│ 0x07531 (Jinan)
+│申│ 0x07533 (Jinan)
+│男│ 0x07537 (Jinan)
+│界│ 0x0754c (Jinan)
+│疗│ 0x07597 (Jinan)
+│疾│ 0x075be (Jinan)
+│病│ 0x075c5 (Jinan)
+│的│ 0x07684 (Jinan)
+│益│ 0x076ca (Jinan)
+│目│ 0x076ee (Jinan)
+│直│ 0x076f4 (Jinan)
+│相│ 0x076f8 (Jinan)
+│着│ 0x07740 (Jinan)
+│知│ 0x077e5 (Jinan)
+│破│ 0x07834 (Jinan)
+│础│ 0x07840 (Jinan)
+│确│ 0x0786e (Jinan)
+│示│ 0x0793a (Jinan)
+│礼│ 0x0793c (Jinan)
+│社│ 0x0793e (Jinan)
+│神│ 0x0795e (Jinan)
+│票│ 0x07968 (Jinan)
+│禁│ 0x07981 (Jinan)
+│福│ 0x0798f (Jinan)
+│离│ 0x079bb (Jinan)
+│私│ 0x079c1 (Jinan)
+│种│ 0x079cd (Jinan)
+│科│ 0x079d1 (Jinan)
+│秘│ 0x079d8 (Jinan)
+│秩│ 0x079e9 (Jinan)
+│移│ 0x079fb (Jinan)
+│程│ 0x07a0b (Jinan)
+│立│ 0x07acb (Jinan)
+│章│ 0x07ae0 (Jinan)
+│童│ 0x07ae5 (Jinan)
+│符│ 0x07b26 (Jinan)
+│第│ 0x07b2c (Jinan)
+│等│ 0x07b49 (Jinan)
+│管│ 0x07ba1 (Jinan)
+│籍│ 0x07c4d (Jinan)
+│类│ 0x07c7b (Jinan)
+│精│ 0x07cbe (Jinan)
+│系│ 0x07cfb (Jinan)
+│级│ 0x07ea7 (Jinan)
+│组│ 0x07ec4 (Jinan)
+│织│ 0x07ec7 (Jinan)
+│经│ 0x07ecf (Jinan)
+│结│ 0x07ed3 (Jinan)
+│给│ 0x07ed9 (Jinan)
+│绩│ 0x07ee9 (Jinan)
+│维│ 0x07ef4 (Jinan)
+│缔│ 0x07f14 (Jinan)
+│罚│ 0x07f5a (Jinan)
+│罪│ 0x07f6a (Jinan)
+│美│ 0x07f8e (Jinan)
+│翻│ 0x07ffb (Jinan)
+│老│ 0x08001 (Jinan)
+│者│ 0x08005 (Jinan)
+│而│ 0x0800c (Jinan)
+│职│ 0x0804c (Jinan)
+│联│ 0x08054 (Jinan)
+│肤│ 0x080a4 (Jinan)
+│育│ 0x080b2 (Jinan)
+│背│ 0x080cc (Jinan)
+│能│ 0x080fd (Jinan)
+│自│ 0x081ea (Jinan)
+│至│ 0x081f3 (Jinan)
+│致│ 0x081f4 (Jinan)
+│良│ 0x0826f (Jinan)
+│色│ 0x08272 (Jinan)
+│艺│ 0x0827a (Jinan)
+│荣│ 0x08363 (Jinan)
+│获│ 0x083b7 (Jinan)
+│蔑│ 0x08511 (Jinan)
+│薪│ 0x085aa (Jinan)
+│蛮│ 0x086ee (Jinan)
+│行│ 0x0884c (Jinan)
+│衣│ 0x08863 (Jinan)
+│补│ 0x08865 (Jinan)
+│表│ 0x08868 (Jinan)
+│衰│ 0x08870 (Jinan)
+│被│ 0x088ab (Jinan)
+│要│ 0x08981 (Jinan)
+│见│ 0x089c1 (Jinan)
+│规│ 0x089c4 (Jinan)
+│视│ 0x089c6 (Jinan)
+│解│ 0x089e3 (Jinan)
+│言│ 0x08a00 (Jinan)
+│誉│ 0x08a89 (Jinan)
+│誓│ 0x08a93 (Jinan)
+│认│ 0x08ba4 (Jinan)
+│讯│ 0x08baf (Jinan)
+│记│ 0x08bb0 (Jinan)
+│许│ 0x08bb8 (Jinan)
+│论│ 0x08bba (Jinan)
+│设│ 0x08bbe (Jinan)
+│证│ 0x08bc1 (Jinan)
+│诉│ 0x08bc9 (Jinan)
+│该│ 0x08be5 (Jinan)
+│语│ 0x08bed (Jinan)
+│诲│ 0x08bf2 (Jinan)
+│谊│ 0x08c0a (Jinan)
+│负│ 0x08d1f (Jinan)
+│财│ 0x08d22 (Jinan)
+│质│ 0x08d28 (Jinan)
+│费│ 0x08d39 (Jinan)
+│资│ 0x08d44 (Jinan)
+│赋│ 0x08d4b (Jinan)
+│走│ 0x08d70 (Jinan)
+│起│ 0x08d77 (Jinan)
+│践│ 0x08df5 (Jinan)
+│身│ 0x08eab (Jinan)
+│载│ 0x08f7d (Jinan)
+│较│ 0x08f83 (Jinan)
+│辅│ 0x08f85 (Jinan)
+│辖│ 0x08f96 (Jinan)
+│辩│ 0x08fa9 (Jinan)
+│辱│ 0x08fb1 (Jinan)
+│迁│ 0x08fc1 (Jinan)
+│过│ 0x08fc7 (Jinan)
+│返│ 0x08fd4 (Jinan)
+│这│ 0x08fd9 (Jinan)
+│进│ 0x08fdb (Jinan)
+│违│ 0x08fdd (Jinan)
+│迫│ 0x08feb (Jinan)
+│适│ 0x09002 (Jinan)
+│选│ 0x09009 (Jinan)
+│逐│ 0x09010 (Jinan)
+│递│ 0x09012 (Jinan)
+│通│ 0x0901a (Jinan)
+│逮│ 0x0902e (Jinan)
+│遇│ 0x09047 (Jinan)
+│遍│ 0x0904d (Jinan)
+│道│ 0x09053 (Jinan)
+│遭│ 0x0906d (Jinan)
+│遵│ 0x09075 (Jinan)
+│避│ 0x0907f (Jinan)
+│都│ 0x090fd (Jinan)
+│酬│ 0x0916c (Jinan)
+│酷│ 0x09177 (Jinan)
+│释│ 0x091ca (Jinan)
+│重│ 0x091cd (Jinan)
+│野│ 0x091ce (Jinan)
+│鉴│ 0x09274 (Jinan)
+│铤│ 0x094e4 (Jinan)
+│闲│ 0x095f2 (Jinan)
+│间│ 0x095f4 (Jinan)
+│阶│ 0x09636 (Jinan)
+│际│ 0x09645 (Jinan)
+│限│ 0x09650 (Jinan)
+│险│ 0x09669 (Jinan)
+│障│ 0x0969c (Jinan)
+│隶│ 0x096b6 (Jinan)
+│集│ 0x096c6 (Jinan)
+│需│ 0x09700 (Jinan)
+│非│ 0x0975e (Jinan)
+│面│ 0x09762 (Jinan)
+│项│ 0x09879 (Jinan)
+│领│ 0x09886 (Jinan)
+│饭│ 0x0996d (Jinan)
+│高│ 0x09ad8 (Jinan)
+│默│ 0x09ed8 (Jinan)
+│，│ 0x0ff0c (Jinan)
+│；│ 0x0ff1b (Jinan)
+│가│ 0x0ac00 (Yeonbye …
+│각│ 0x0ac01 (Yeonbye …
+│간│ 0x0ac04 (Yeonbye …
+│강│ 0x0ac15 (Yeonbye …
+│같│ 0x0ac19 (Yeonbye …
+│개│ 0x0ac1c (Yeonbye …
+│거│ 0x0ac70 (Yeonbye …
+│건│ 0x0ac74 (Yeonbye …
+│게│ 0x0ac8c (Yeonbye …
+│겠│ 0x0aca0 (Yeonbye …
+│격│ 0x0aca9 (Yeonbye …
+│견│ 0x0acac (Yeonbye …
+│결│ 0x0acb0 (Yeonbye …
+│경│ 0x0acbd (Yeonbye …
+│계│ 0x0acc4 (Yeonbye …
+│고│ 0x0ace0 (Yeonbye …
+│곤│ 0x0ace4 (Yeonbye …
+│곱│ 0x0acf1 (Yeonbye …
+│곳│ 0x0acf3 (Yeonbye …
+│공│ 0x0acf5 (Yeonbye …
+│과│ 0x0acfc (Yeonbye …
+│관│ 0x0ad00 (Yeonbye …
+│괴│ 0x0ad34 (Yeonbye …
+│교│ 0x0ad50 (Yeonbye …
+│구│ 0x0ad6c (Yeonbye …
+│국│ 0x0ad6d (Yeonbye …
+│권│ 0x0ad8c (Yeonbye …
+│규│ 0x0addc (Yeonbye …
+│그│ 0x0adf8 (Yeonbye …
+│극│ 0x0adf9 (Yeonbye …
+│근│ 0x0adfc (Yeonbye …
+│금│ 0x0ae08 (Yeonbye …
+│기│ 0x0ae30 (Yeonbye …
+│끝│ 0x0b05d (Yeonbye …
+│나│ 0x0b098 (Yeonbye …
+│남│ 0x0b0a8 (Yeonbye …
+│냥│ 0x0b0e5 (Yeonbye …
+│넷│ 0x0b137 (Yeonbye …
+│녀│ 0x0b140 (Yeonbye …
+│념│ 0x0b150 (Yeonbye …
+│노│ 0x0b178 (Yeonbye …
+│높│ 0x0b192 (Yeonbye …
+│눈│ 0x0b208 (Yeonbye …
+│는│ 0x0b294 (Yeonbye …
+│늘│ 0x0b298 (Yeonbye …
+│니│ 0x0b2c8 (Yeonbye …
+│다│ 0x0b2e4 (Yeonbye …
+│단│ 0x0b2e8 (Yeonbye …
+│대│ 0x0b300 (Yeonbye …
+│덕│ 0x0b355 (Yeonbye …
+│덟│ 0x0b35f (Yeonbye …
+│도│ 0x0b3c4 (Yeonbye …
+│독│ 0x0b3c5 (Yeonbye …
+│돈│ 0x0b3c8 (Yeonbye …
+│동│ 0x0b3d9 (Yeonbye …
+│되│ 0x0b418 (Yeonbye …
+│된│ 0x0b41c (Yeonbye …
+│두│ 0x0b450 (Yeonbye …
+│둘│ 0x0b458 (Yeonbye …
+│든│ 0x0b4e0 (Yeonbye …
+│들│ 0x0b4e4 (Yeonbye …
+│등│ 0x0b4f1 (Yeonbye …
+│땅│ 0x0b545 (Yeonbye …
+│떠│ 0x0b5a0 (Yeonbye …
+│또│ 0x0b610 (Yeonbye …
+│똘│ 0x0b618 (Yeonbye …
+│라│ 0x0b77c (Yeonbye …
+│락│ 0x0b77d (Yeonbye …
+│람│ 0x0b78c (Yeonbye …
+│러│ 0x0b7ec (Yeonbye …
+│려│ 0x0b824 (Yeonbye …
+│력│ 0x0b825 (Yeonbye …
+│련│ 0x0b828 (Yeonbye …
+│령│ 0x0b839 (Yeonbye …
+│로│ 0x0b85c (Yeonbye …
+│료│ 0x0b8cc (Yeonbye …
+│뤈│ 0x0b908 (Yeonbye …
+│류│ 0x0b958 (Yeonbye …
+│률│ 0x0b960 (Yeonbye …
+│르│ 0x0b974 (Yeonbye …
+│른│ 0x0b978 (Yeonbye …
+│를│ 0x0b97c (Yeonbye …
+│리│ 0x0b9ac (Yeonbye …
+│린│ 0x0b9b0 (Yeonbye …
+│립│ 0x0b9bd (Yeonbye …
+│만│ 0x0b9cc (Yeonbye …
+│말│ 0x0b9d0 (Yeonbye …
+│망│ 0x0b9dd (Yeonbye …
+│맞│ 0x0b9de (Yeonbye …
+│매│ 0x0b9e4 (Yeonbye …
+│맹│ 0x0b9f9 (Yeonbye …
+│머│ 0x0ba38 (Yeonbye …
+│먼│ 0x0ba3c (Yeonbye …
+│면│ 0x0ba74 (Yeonbye …
+│명│ 0x0ba85 (Yeonbye …
+│모│ 0x0baa8 (Yeonbye …
+│목│ 0x0baa9 (Yeonbye …
+│못│ 0x0babb (Yeonbye …
+│무│ 0x0bb34 (Yeonbye …
+│문│ 0x0bb38 (Yeonbye …
+│민│ 0x0bbfc (Yeonbye …
+│밀│ 0x0bc00 (Yeonbye …
+│박│ 0x0bc15 (Yeonbye …
+│반│ 0x0bc18 (Yeonbye …
+│받│ 0x0bc1b (Yeonbye …
+│발│ 0x0bc1c (Yeonbye …
+│밥│ 0x0bc25 (Yeonbye …
+│방│ 0x0bc29 (Yeonbye …
+│배│ 0x0bc30 (Yeonbye …
+│버│ 0x0bc84 (Yeonbye …
+│벌│ 0x0bc8c (Yeonbye …
+│범│ 0x0bc94 (Yeonbye …
+│법│ 0x0bc95 (Yeonbye …
+│변│ 0x0bcc0 (Yeonbye …
+│별│ 0x0bcc4 (Yeonbye …
+│병│ 0x0bcd1 (Yeonbye …
+│보│ 0x0bcf4 (Yeonbye …
+│복│ 0x0bcf5 (Yeonbye …
+│본│ 0x0bcf8 (Yeonbye …
+│부│ 0x0bd80 (Yeonbye …
+│북│ 0x0bd81 (Yeonbye …
+│분│ 0x0bd84 (Yeonbye …
+│비│ 0x0be44 (Yeonbye …
+│빈│ 0x0be48 (Yeonbye …
+│사│ 0x0c0ac (Yeonbye …
+│산│ 0x0c0b0 (Yeonbye …
+│살│ 0x0c0b4 (Yeonbye …
+│상│ 0x0c0c1 (Yeonbye …
+│색│ 0x0c0c9 (Yeonbye …
+│생│ 0x0c0dd (Yeonbye …
+│서│ 0x0c11c (Yeonbye …
+│선│ 0x0c120 (Yeonbye …
+│설│ 0x0c124 (Yeonbye …
+│섭│ 0x0c12d (Yeonbye …
+│섯│ 0x0c12f (Yeonbye …
+│성│ 0x0c131 (Yeonbye …
+│세│ 0x0c138 (Yeonbye …
+│셋│ 0x0c14b (Yeonbye …
+│소│ 0x0c18c (Yeonbye …
+│속│ 0x0c18d (Yeonbye …
+│수│ 0x0c218 (Yeonbye …
+│숙│ 0x0c219 (Yeonbye …
+│술│ 0x0c220 (Yeonbye …
+│쉬│ 0x0c26c (Yeonbye …
+│스│ 0x0c2a4 (Yeonbye …
+│습│ 0x0c2b5 (Yeonbye …
+│슷│ 0x0c2b7 (Yeonbye …
+│승│ 0x0c2b9 (Yeonbye …
+│시│ 0x0c2dc (Yeonbye …
+│식│ 0x0c2dd (Yeonbye …
+│신│ 0x0c2e0 (Yeonbye …
+│실│ 0x0c2e4 (Yeonbye …
+│심│ 0x0c2ec (Yeonbye …
+│쓰│ 0x0c4f0 (Yeonbye …
+│쓴│ 0x0c4f4 (Yeonbye …
+│아│ 0x0c544 (Yeonbye …
+│악│ 0x0c545 (Yeonbye …
+│안│ 0x0c548 (Yeonbye …
+│않│ 0x0c54a (Yeonbye …
+│알│ 0x0c54c (Yeonbye …
+│앓│ 0x0c553 (Yeonbye …
+│압│ 0x0c555 (Yeonbye …
+│앙│ 0x0c559 (Yeonbye …
+│애│ 0x0c560 (Yeonbye …
+│야│ 0x0c57c (Yeonbye …
+│양│ 0x0c591 (Yeonbye …
+│어│ 0x0c5b4 (Yeonbye …
+│억│ 0x0c5b5 (Yeonbye …
+│언│ 0x0c5b8 (Yeonbye …
+│얻│ 0x0c5bb (Yeonbye …
+│엄│ 0x0c5c4 (Yeonbye …
+│업│ 0x0c5c5 (Yeonbye …
+│없│ 0x0c5c6 (Yeonbye …
+│에│ 0x0c5d0 (Yeonbye …
+│여│ 0x0c5ec (Yeonbye …
+│역│ 0x0c5ed (Yeonbye …
+│연│ 0x0c5f0 (Yeonbye …
+│열│ 0x0c5f4 (Yeonbye …
+│염│ 0x0c5fc (Yeonbye …
+│였│ 0x0c600 (Yeonbye …
+│예│ 0x0c608 (Yeonbye …
+│오│ 0x0c624 (Yeonbye …
+│옴│ 0x0c634 (Yeonbye …
+│옷│ 0x0c637 (Yeonbye …
+│완│ 0x0c644 (Yeonbye …
+│외│ 0x0c678 (Yeonbye …
+│요│ 0x0c694 (Yeonbye …
+│욕│ 0x0c695 (Yeonbye …
+│욘│ 0x0c698 (Yeonbye …
+│용│ 0x0c6a9 (Yeonbye …
+│우│ 0x0c6b0 (Yeonbye …
+│운│ 0x0c6b4 (Yeonbye …
+│원│ 0x0c6d0 (Yeonbye …
+│위│ 0x0c704 (Yeonbye …
+│윌│ 0x0c70c (Yeonbye …
+│유│ 0x0c720 (Yeonbye …
+│육│ 0x0c721 (Yeonbye …
+│윤│ 0x0c724 (Yeonbye …
+│으│ 0x0c73c (Yeonbye …
+│은│ 0x0c740 (Yeonbye …
+│을│ 0x0c744 (Yeonbye …
+│음│ 0x0c74c (Yeonbye …
+│응│ 0x0c751 (Yeonbye …
+│의│ 0x0c758 (Yeonbye …
+│이│ 0x0c774 (Yeonbye …
+│인│ 0x0c778 (Yeonbye …
+│일│ 0x0c77c (Yeonbye …
+│잃│ 0x0c783 (Yeonbye …
+│임│ 0x0c784 (Yeonbye …
+│입│ 0x0c785 (Yeonbye …
+│있│ 0x0c788 (Yeonbye …
+│자│ 0x0c790 (Yeonbye …
+│작│ 0x0c791 (Yeonbye …
+│잔│ 0x0c794 (Yeonbye …
+│장│ 0x0c7a5 (Yeonbye …
+│재│ 0x0c7ac (Yeonbye …
+│저│ 0x0c800 (Yeonbye …
+│적│ 0x0c801 (Yeonbye …
+│전│ 0x0c804 (Yeonbye …
+│절│ 0x0c808 (Yeonbye …
+│점│ 0x0c810 (Yeonbye …
+│접│ 0x0c811 (Yeonbye …
+│정│ 0x0c815 (Yeonbye …
+│제│ 0x0c81c (Yeonbye …
+│조│ 0x0c870 (Yeonbye …
+│족│ 0x0c871 (Yeonbye …
+│존│ 0x0c874 (Yeonbye …
+│종│ 0x0c885 (Yeonbye …
+│좋│ 0x0c88b (Yeonbye …
+│죄│ 0x0c8c4 (Yeonbye …
+│주│ 0x0c8fc (Yeonbye …
+│준│ 0x0c900 (Yeonbye …
+│줌│ 0x0c90c (Yeonbye …
+│중│ 0x0c911 (Yeonbye …
+│증│ 0x0c99d (Yeonbye …
+│지│ 0x0c9c0 (Yeonbye …
+│직│ 0x0c9c1 (Yeonbye …
+│진│ 0x0c9c4 (Yeonbye …
+│질│ 0x0c9c8 (Yeonbye …
+│집│ 0x0c9d1 (Yeonbye …
+│째│ 0x0c9f8 (Yeonbye …
+│차│ 0x0cc28 (Yeonbye …
+│착│ 0x0cc29 (Yeonbye …
+│참│ 0x0cc38 (Yeonbye …
+│첫│ 0x0ccab (Yeonbye …
+│청│ 0x0ccad (Yeonbye …
+│체│ 0x0ccb4 (Yeonbye …
+│첸│ 0x0ccb8 (Yeonbye …
+│초│ 0x0cd08 (Yeonbye …
+│촉│ 0x0cd09 (Yeonbye …
+│최│ 0x0cd5c (Yeonbye …
+│추│ 0x0cd94 (Yeonbye …
+│출│ 0x0cd9c (Yeonbye …
+│충│ 0x0cda9 (Yeonbye …
+│춴│ 0x0cdb4 (Yeonbye …
+│치│ 0x0ce58 (Yeonbye …
+│칙│ 0x0ce59 (Yeonbye …
+│침│ 0x0ce68 (Yeonbye …
+│쿨│ 0x0cfe8 (Yeonbye …
+│크│ 0x0d06c (Yeonbye …
+│큰│ 0x0d070 (Yeonbye …
+│타│ 0x0d0c0 (Yeonbye …
+│탁│ 0x0d0c1 (Yeonbye …
+│탈│ 0x0d0c8 (Yeonbye …
+│탐│ 0x0d0d0 (Yeonbye …
+│터│ 0x0d130 (Yeonbye …
+│토│ 0x0d1a0 (Yeonbye …
+│통│ 0x0d1b5 (Yeonbye …
+│투│ 0x0d22c (Yeonbye …
+│특│ 0x0d2b9 (Yeonbye …
+│파│ 0x0d30c (Yeonbye …
+│판│ 0x0d310 (Yeonbye …
+│편│ 0x0d3b8 (Yeonbye …
+│평│ 0x0d3c9 (Yeonbye …
+│포│ 0x0d3ec (Yeonbye …
+│폭│ 0x0d3ed (Yeonbye …
+│표│ 0x0d45c (Yeonbye …
+│품│ 0x0d488 (Yeonbye …
+│피│ 0x0d53c (Yeonbye …
+│필│ 0x0d544 (Yeonbye …
+│하│ 0x0d558 (Yeonbye …
+│학│ 0x0d559 (Yeonbye …
+│한│ 0x0d55c (Yeonbye …
+│할│ 0x0d560 (Yeonbye …
+│함│ 0x0d568 (Yeonbye …
+│합│ 0x0d569 (Yeonbye …
+│해│ 0x0d574 (Yeonbye …
+│행│ 0x0d589 (Yeonbye …
+│향│ 0x0d5a5 (Yeonbye …
+│헌│ 0x0d5cc (Yeonbye …
+│험│ 0x0d5d8 (Yeonbye …
+│현│ 0x0d604 (Yeonbye …
+│협│ 0x0d611 (Yeonbye …
+│형│ 0x0d615 (Yeonbye …
+│호│ 0x0d638 (Yeonbye …
+│혹│ 0x0d639 (Yeonbye …
+│혼│ 0x0d63c (Yeonbye …
+│홉│ 0x0d649 (Yeonbye …
+│화│ 0x0d654 (Yeonbye …
+│확│ 0x0d655 (Yeonbye …
+│활│ 0x0d65c (Yeonbye …
+│황│ 0x0d669 (Yeonbye …
+│회│ 0x0d68c (Yeonbye …
+│효│ 0x0d6a8 (Yeonbye …
+│히│ 0x0d788 (Yeonbye …
+│অং│ 0985+0982
+│কা│ 0995+09BE
+│কা‌│ 0995+09BE+200C
+│কি│ 0995+09BF
+│কিং│ 0995+09BF+0982
+│কে│ 0995+09C7
+│কে‌│ 0995+09C7+200C
+│কো│ 0995+09CB
+│ক্ত│ 0995+09CD+09A4
+│ক্তি│ 0995+09CD+09A4+09BF
+│ক্য│ 0995+09CD+09AF
+│ক্র│ 0995+09CD+09B0
+│ক্রী│ 0995+09CD+09B0+09C0
+│ক্ষ│ 0995+09CD+09B7
+│ক্ষা│ 0995+09CD+09B7+09BE
+│ক্ষি│ 0995+09CD+09B7+09BF
+│ক্ষে│ 0995+09CD+09B7+09C7
+│ক্ষ্য│ 0995+09CD+09B7+09CD+09AF
+│ক্ষ্যে│ 0995+09CD+09B7+09CD+09AF+09C7
+│খা│ 0996+09BE
+│খি│ 0996+09BF
+│খে│ 0996+09C7
+│খ্যা│ 0996+09CD+09AF+09BE
+│গি│ 0997+09BF
+│গে│ 0997+09C7
+│গো│ 0997+09CB
+│গ্য│ 0997+09CD+09AF
+│গ্র│ 0997+09CD+09B0
+│গ্রা│ 0997+09CD+09B0+09BE
+│গ্রে│ 0997+09CD+09B0+09C7
+│ঘা│ 0998+09BE
+│ঘে│ 0998+09C7
+│ঘো│ 0998+09C7+09BE
+│ঘো│ 0998+09CB
+│ঙ্খা│ 0999+09CD+0996+09BE
+│ঙ্গ│ 0999+09CD+0997
+│ঙ্গী│ 0999+09CD+0997+09C0
+│ঙ্গে│ 0999+09CD+0997+09C7
+│ঙ্ঘ│ 0999+09CD+0998
+│চা│ 099A+09BE
+│চি│ 099A+09BF
+│চে│ 099A+09C7
+│চো│ 099A+09CB
+│চৌ│ 099A+09CC
+│চ্চ│ 099A+09CD+099A
+│চ্ছ│ 099A+09CD+099B
+│চ্ছা│ 099A+09CD+099B+09BE
+│চ্ছা‌│ 099A+09CD+099B+09BE+200C
+│চ্ছু│ 099A+09CD+099B+09C1
+│চ্ছে│ 099A+09CD+099B+09C7
+│ছা│ 099B+09BE
+│ছি│ 099B+09BF
+│ছে│ 099B+09C7
+│জা│ 099C+09BE
+│জি│ 099C+09BF
+│জী│ 099C+09C0
+│জে│ 099C+09C7
+│জে‌│ 099C+09C7+200C
+│জ্ঞ│ 099C+09CD+099E
+│জ্ঞা│ 099C+09CD+099E+09BE
+│জ্য│ 099C+09CD+09AF
+│ঝো│ 099D+09CB
+│ঞ্চি│ 099E+09CD+099A+09BF
+│ঞ্ছি│ 099E+09CD+099B+09BF
+│টা│ 099F+09BE
+│টি│ 099F+09BF
+│ট্রে│ 099F+09CD+09B0+09C7
+│ঠি│ 09A0+09BF
+│ড়া│ 09A1+09BC+09BE
+│ণা│ 09A3+09BE
+│ণি│ 09A3+09BF
+│ণে│ 09A3+09C7
+│ণ্ড│ 09A3+09CD+09A1
+│ণ্ডে│ 09A3+09CD+09A1+09C7
+│ণ্য│ 09A3+09CD+09AF
+│তঃ│ 09A4+0983
+│তা│ 09A4+09BE
+│তাঁ│ 09A4+09BE+0981
+│তা‌│ 09A4+09BE+200C
+│তি│ 09A4+09BF
+│তি‌│ 09A4+09BF+200C
+│তী│ 09A4+09C0
+│তে│ 09A4+09C7
+│তে‌│ 09A4+09C7+200C
+│ত্ত│ 09A4+09CD+09A4
+│ত্তা│ 09A4+09CD+09A4+09BE
+│ত্তি│ 09A4+09CD+09A4+09BF
+│ত্ন│ 09A4+09CD+09A8
+│ত্ব│ 09A4+09CD+09AC
+│ত্বে│ 09A4+09CD+09AC+09C7
+│ত্ম│ 09A4+09CD+09AE
+│ত্য│ 09A4+09CD+09AF
+│ত্যা│ 09A4+09CD+09AF+09BE
+│ত্যি│ 09A4+09CD+09AF+09BF
+│ত্যে│ 09A4+09CD+09AF+09C7
+│ত্র│ 09A4+09CD+09B0
+│ত্রা│ 09A4+09CD+09B0+09BE
+│ত্রে│ 09A4+09CD+09B0+09C7
+│ত্‍প│ 09A4+09CD+200D+09AA
+│ত্‍পী│ 09A4+09CD+200D+09AA+09C0
+│ত্‍সা│ 09A4+09CD+200D+09B8+09BE
+│থা│ 09A5+09BE
+│থি│ 09A5+09BF
+│থে│ 09A5+09C7
+│থ্য│ 09A5+09CD+09AF
+│দা│ 09A6+09BE
+│দি│ 09A6+09BF
+│দে│ 09A6+09C7
+│দে‌│ 09A6+09C7+200C
+│দৈ│ 09A6+09C8
+│দো│ 09A6+09CB
+│দ্দি│ 09A6+09CD+09A6+09BF
+│দ্দে│ 09A6+09CD+09A6+09C7
+│দ্ধ│ 09A6+09CD+09A7
+│দ্ধা│ 09A6+09CD+09A7+09BE
+│দ্ধি│ 09A6+09CD+09A7+09BF
+│দ্ধে│ 09A6+09CD+09A7+09C7
+│দ্বা│ 09A6+09CD+09AC+09BE
+│দ্ভ│ 09A6+09CD+09AD
+│দ্ভূ│ 09A6+09CD+09AD+09C2
+│দ্য│ 09A6+09CD+09AF
+│দ্রো│ 09A6+09CD+09B0+09CB
+│ধা│ 09A7+09BE
+│ধি│ 09A7+09BF
+│ধী│ 09A7+09C0
+│ধে│ 09A7+09C7
+│ধ্য│ 09A7+09CD+09AF
+│ধ্যে│ 09A7+09CD+09AF+09C7
+│না│ 09A8+09BE
+│না‌│ 09A8+09BE+200C
+│নি│ 09A8+09BF
+│নী│ 09A8+09C0
+│নে│ 09A8+09C7
+│নৈ│ 09A8+09C8
+│নো│ 09A8+09CB
+│ন্ড│ 09A8+09CD+09A1
+│ন্ত│ 09A8+09CD+09A4
+│ন্তা│ 09A8+09CD+09A4+09BE
+│ন্তি│ 09A8+09CD+09A4+09BF
+│ন্তে│ 09A8+09CD+09A4+09C7
+│ন্ত্রি│ 09A8+09CD+09A4+09CD+09B0+09BF
+│ন্ত্রে│ 09A8+09CD+09A4+09CD+09B0+09C7
+│ন্থী│ 09A8+09CD+09A5+09C0
+│ন্ধ│ 09A8+09CD+09A7
+│ন্ধা│ 09A8+09CD+09A7+09BE
+│ন্ধু│ 09A8+09CD+09A7+09C1
+│ন্ন│ 09A8+09CD+09A8
+│ন্ম│ 09A8+09CD+09AE
+│ন্মা│ 09A8+09CD+09AE+09BE
+│ন্মু│ 09A8+09CD+09AE+09C1
+│ন্য│ 09A8+09CD+09AF
+│ন্যা│ 09A8+09CD+09AF+09BE
+│ন্যে│ 09A8+09CD+09AF+09C7
+│পা│ 09AA+09BE
+│পা‌│ 09AA+09BE+200C
+│পি│ 09AA+09BF
+│পী│ 09AA+09C0
+│পে│ 09AA+09C7
+│পো│ 09AA+09CB
+│প্ত│ 09AA+09CD+09A4
+│প্তা│ 09AA+09CD+09A4+09BE
+│প্র│ 09AA+09CD+09B0
+│প্রা│ 09AA+09CD+09B0+09BE
+│ফে│ 09AB+09C7
+│ফৌ│ 09AB+09CC
+│বং│ 09AC+0982
+│বা│ 09AC+09BE
+│বা‌│ 09AC+09BE+200C
+│বি│ 09AC+09BF
+│বী│ 09AC+09C0
+│বে│ 09AC+09C7
+│বৈ│ 09AC+09C8
+│বো│ 09AC+09CB
+│ব্ধি│ 09AC+09CD+09A7+09BF
+│ব্য│ 09AC+09CD+09AF
+│ব্যা│ 09AC+09CD+09AF+09BE
+│ব্র│ 09AC+09CD+09B0
+│ভা│ 09AD+09BE
+│ভি│ 09AD+09BF
+│ভে│ 09AD+09C7
+│ভো│ 09AD+09CB
+│ভৌ│ 09AD+09CC
+│ভ্য│ 09AD+09CD+09AF
+│ভ্রা│ 09AD+09CD+09B0+09BE
+│মা│ 09AE+09BE
+│মা‌│ 09AE+09BE+200C
+│মি│ 09AE+09BF
+│মে│ 09AE+09C7
+│মৌ│ 09AE+09CC
+│ম্প│ 09AE+09CD+09AA
+│ম্পা│ 09AE+09CD+09AA+09BE
+│ম্ব│ 09AE+09CD+09AC
+│ম্ভ│ 09AE+09CD+09AD
+│ম্ম│ 09AE+09CD+09AE
+│ম্মা│ 09AE+09CD+09AE+09BE
+│ম্য│ 09AE+09CD+09AF
+│য়া│ 09AF+09BC+09BE
+│য়ি│ 09AF+09BC+09BF
+│য়ে│ 09AF+09BC+09C7
+│য়ো│ 09AF+09BC+09CB
+│যা│ 09AF+09BE
+│যে│ 09AF+09C7
+│যো│ 09AF+09CB
+│য্য│ 09AF+09CD+09AF
+│রা│ 09B0+09BE
+│রাং│ 09B0+09BE+0982
+│রি│ 09B0+09BF
+│রী│ 09B0+09C0
+│রে│ 09B0+09C7
+│রো│ 09B0+09CB
+│র্ক│ 09B0+09CD+0995
+│র্জ│ 09B0+09CD+099C
+│র্জা│ 09B0+09CD+099C+09BE
+│র্ণ│ 09B0+09CD+09A3
+│র্ত│ 09B0+09CD+09A4
+│র্থ│ 09B0+09CD+09A5
+│র্থে│ 09B0+09CD+09A5+09C7
+│র্দো│ 09B0+09CD+09A6+09CB
+│র্ধ│ 09B0+09CD+09A7
+│র্ধা│ 09B0+09CD+09A7+09BE
+│র্নী│ 09B0+09CD+09A8+09C0
+│র্ব│ 09B0+09CD+09AC
+│র্বা│ 09B0+09CD+09AC+09BE
+│র্বি│ 09B0+09CD+09AC+09BF
+│র্বো│ 09B0+09CD+09AC+09CB
+│র্ব্য│ 09B0+09CD+09AC+09CD+09AF
+│র্ভূ│ 09B0+09CD+09AD+09C2
+│র্ম│ 09B0+09CD+09AE
+│র্মে│ 09B0+09CD+09AE+09C7
+│র্য│ 09B0+09CD+09AF
+│র্যা│ 09B0+09CD+09AF+09BE
+│লা│ 09B2+09BE
+│লি│ 09B2+09BF
+│লী│ 09B2+09C0
+│লে│ 09B2+09C7
+│লে‌│ 09B2+09C7+200C
+│ল্প│ 09B2+09CD+09AA
+│ল্য│ 09B2+09CD+09AF
+│ল্যা│ 09B2+09CD+09AF+09BE
+│ল্যে│ 09B2+09CD+09AF+09C7
+│ল্লে│ 09B2+09CD+09B2+09C7
+│শং│ 09B6+0982
+│শা│ 09B6+09BE
+│শি│ 09B6+09BF
+│শী│ 09B6+09C0
+│শৃং│ 09B6+09C3+0982
+│শে│ 09B6+09C7
+│শৈ│ 09B6+09C8
+│শ্চ│ 09B6+09CD+099A
+│শ্চি│ 09B6+09CD+099A+09BF
+│শ্বা│ 09B6+09CD+09AC+09BE
+│শ্বে│ 09B6+09CD+09AC+09C7
+│শ্য│ 09B6+09CD+09AF
+│শ্যে│ 09B6+09CD+09AF+09C7
+│শ্র│ 09B6+09CD+09B0
+│শ্রা│ 09B6+09CD+09B0+09BE
+│ষা│ 09B7+09BE
+│ষি│ 09B7+09BF
+│ষী│ 09B7+09C0
+│ষে│ 09B7+09C7
+│ষ্ট│ 09B7+09CD+099F
+│ষ্টা│ 09B7+09CD+099F+09BE
+│ষ্টি│ 09B7+09CD+099F+09BF
+│ষ্ট্র│ 09B7+09CD+099F+09CD+09B0
+│ষ্ট্রী│ 09B7+09CD+099F+09CD+09B0+09C0
+│ষ্ট্রে│ 09B7+09CD+099F+09CD+09B0+09C7
+│ষ্ঠা│ 09B7+09CD+09A0+09BE
+│ষ্ঠি│ 09B7+09CD+09A0+09BF
+│ষ্ঠী│ 09B7+09CD+09A0+09C0
+│ষ্ঠু│ 09B7+09CD+09A0+09C1
+│ষ্ণু│ 09B7+09CD+09A3+09C1
+│সং│ 09B8+0982
+│সা│ 09B8+09BE
+│সাং│ 09B8+09BE+0982
+│সি│ 09B8+09BF
+│সী│ 09B8+09C0
+│সে│ 09B8+09C7
+│সে‌│ 09B8+09C7+200C
+│স্ক│ 09B8+09CD+0995
+│স্কৃ│ 09B8+09CD+0995+09C3
+│স্ত│ 09B8+09CD+09A4
+│স্তি│ 09B8+09CD+09A4+09BF
+│স্তি‌│ 09B8+09CD+09A4+09BF+200C
+│স্ত্র│ 09B8+09CD+09A4+09CD+09B0
+│স্থ│ 09B8+09CD+09A5
+│স্থা│ 09B8+09CD+09A5+09BE
+│স্থ্য│ 09B8+09CD+09A5+09CD+09AF
+│স্ব│ 09B8+09CD+09AC
+│স্বা│ 09B8+09CD+09AC+09BE
+│স্বী│ 09B8+09CD+09AC+09C0
+│স্য│ 09B8+09CD+09AF
+│স্যা│ 09B8+09CD+09AF+09BE
+│স্যে│ 09B8+09CD+09AF+09C7
+│হা│ 09B9+09BE
+│হি│ 09B9+09BF
+│হে│ 09B9+09C7
+│হো│ 09B9+09CB
+│হ্য│ 09B9+09CD+09AF
+│য়ে│ 09DF+09C7
+│का│ 0915+093E
+│कि│ 0915+093F
+│की│ 0915+0940
+│को│ 0915+094B
+│कौ│ 0915+094C
+│क्क│ 0915+094D+0915
+│क्घ्घि्│ 0915+094D+0918+094D+0918+093F+094D
+│क्त│ 0915+094D+0924
+│क्ति│ 0915+094D+0924+093F
+│क्ष│ 0915+094D+0937
+│क्षा│ 0915+094D+0937+093E
+│क्षे│ 0915+094D+0937+0947
+│खा│ 0916+093E
+│खि│ 0916+093F
+│खी│ 0916+0940
+│ख्त│ 0916+094D+0924
+│गा│ 0917+093E
+│गां│ 0917+093E+0902
+│गि│ 0917+093F
+│गी│ 0917+0940
+│गो│ 0917+094B
+│ग्य│ 0917+094D+092F
+│घि│ 0918+093F
+│घी│ 0918+0940
+│घेि│ 0918+0947+093F
+│घो│ 0918+094B
+│घ्ंत│ 0918+094D+0902+0924
+│घ्का│ 0918+094D+0915+093E
+│घ्त│ 0918+094D+0924
+│घ्र│ 0918+094D+0930
+│घ्र्व्य│ 0918+094D+0930+094D+0935+094D+092F
+│घ्लि│ 0918+094D+0932+093F
+│घ्श्य│ 0918+094D+0936+094D+092F
+│घ्स्ट│ 0918+094D+0938+094D+091F
+│चा│ 091A+093E
+│चि│ 091A+093F
+│च्च│ 091A+094D+091A
+│च्चा│ 091A+094D+091A+093E
+│च्छा│ 091A+094D+091B+093E
+│च्छे│ 091A+094D+091B+0947
+│छो│ 091B+094B
+│जा│ 091C+093E
+│जि│ 091C+093F
+│जिं│ 091C+093F+0902
+│जी│ 091C+0940
+│ज्ञा│ 091C+094D+091E+093E
+│ज्य│ 091C+094D+092F
+│टी│ 091F+0940
+│ठा│ 0920+093E
+│ठी│ 0920+0940
+│ड़ा│ 0921+093C+093E
+│ढ़ा│ 0922+093C+093E
+│ढ़ि│ 0922+093C+093F
+│णा│ 0923+093E
+│णि│ 0923+093F
+│णो│ 0923+094B
+│ता│ 0924+093E
+│तां│ 0924+093E+0902
+│ति│ 0924+093F
+│तो│ 0924+094B
+│तौ│ 0924+094C
+│त्ति│ 0924+094D+0924+093F
+│त्म│ 0924+094D+092E
+│त्यि│ 0924+094D+092F+093F
+│त्र│ 0924+094D+0930
+│त्रा│ 0924+094D+0930+093E
+│त्राा│ 0924+094D+0930+093E+093E
+│त्रि│ 0924+094D+0930+093F
+│था│ 0925+093E
+│थि│ 0925+093F
+│दा│ 0926+093E
+│दि│ 0926+093F
+│दी│ 0926+0940
+│दो│ 0926+094B
+│द्वा│ 0926+094D+0935+093E
+│धा│ 0927+093E
+│धि│ 0927+093F
+│ना│ 0928+093E
+│नि│ 0928+093F
+│नी│ 0928+0940
+│नो│ 0928+094B
+│नों│ 0928+094B+0902
+│न्त│ 0928+094D+0924
+│न्म│ 0928+094D+092E
+│न्य│ 0928+094D+092F
+│न्या│ 0928+094D+092F+093E
+│पा│ 092A+093E
+│प्त│ 092A+094D+0924
+│प्र│ 092A+094D+0930
+│प्रा│ 092A+094D+0930+093E
+│फा│ 092B+093E
+│बा│ 092C+093E
+│बि│ 092C+093F
+│बी│ 092C+0940
+│भा│ 092D+093E
+│भि│ 092D+093F
+│भी│ 092D+0940
+│भो│ 092D+094B
+│मा│ 092E+093E
+│मि│ 092E+093F
+│मी│ 092E+0940
+│मौ│ 092E+094C
+│म्मा│ 092E+094D+092E+093E
+│म्मे│ 092E+094D+092E+0947
+│म्या│ 092E+094D+092F+093E
+│या│ 092F+093E
+│यि│ 092F+093F
+│यो│ 092F+094B
+│यों│ 092F+094B+0902
+│रा│ 0930+093E
+│रि│ 0930+093F
+│री│ 0930+0940
+│रो│ 0930+094B
+│र्ग│ 0930+094D+0917
+│र्जि│ 0930+094D+091C+093F
+│र्जी│ 0930+094D+091C+0940
+│र्ट│ 0930+094D+091F
+│र्ण│ 0930+094D+0923
+│र्त│ 0930+094D+0924
+│र्ति│ 0930+094D+0924+093F
+│र्थि│ 0930+094D+0925+093F
+│र्दो│ 0930+094D+0926+094B
+│र्धा│ 0930+094D+0927+093E
+│र्फ│ 0930+094D+092B
+│र्ब│ 0930+094D+092C
+│र्भ│ 0930+094D+092D
+│र्म│ 0930+094D+092E
+│र्मि│ 0930+094D+092E+093F
+│र्य│ 0930+094D+092F
+│र्रा│ 0930+094D+0930+093E
+│र्व│ 0930+094D+0935
+│र्ष│ 0930+094D+0937
+│ला│ 0932+093E
+│लि│ 0932+093F
+│लिं│ 0932+093F+0902
+│ली│ 0932+0940
+│लीं│ 0932+0940+0902
+│लो│ 0932+094B
+│ल्प│ 0932+094D+092A
+│ल्या│ 0932+094D+092F+093E
+│ल्लं│ 0932+094D+0932+0902
+│वा│ 0935+093E
+│वां│ 0935+093E+0902
+│वि│ 0935+093F
+│वी│ 0935+0940
+│व्य│ 0935+094D+092F
+│व्या│ 0935+094D+092F+093E
+│शा│ 0936+093E
+│शां│ 0936+093E+0902
+│शि│ 0936+093F
+│शी│ 0936+0940
+│श्च│ 0936+094D+091A
+│श्य│ 0936+094D+092F
+│श्व│ 0936+094D+0935
+│श्वा│ 0936+094D+0935+093E
+│षा│ 0937+093E
+│षि│ 0937+093F
+│षी│ 0937+0940
+│ष्ट│ 0937+094D+091F
+│ष्ट्र│ 0937+094D+091F+094D+0930
+│ष्ट्री│ 0937+094D+091F+094D+0930+0940
+│ष्प│ 0937+094D+092A
+│सा│ 0938+093E
+│सां│ 0938+093E+0902
+│सि│ 0938+093F
+│सी│ 0938+0940
+│सो│ 0938+094B
+│स्कृ│ 0938+094D+0915+0943
+│स्त│ 0938+094D+0924
+│स्ती│ 0938+094D+0924+0940
+│स्थ│ 0938+094D+0925
+│स्था│ 0938+094D+0925+093E
+│स्थि│ 0938+094D+0925+093F
+│स्थी│ 0938+094D+0925+0940
+│स्थ्य│ 0938+094D+0925+094D+092F
+│स्य│ 0938+094D+092F
+│स्व│ 0938+094D+0935
+│स्वा│ 0938+094D+0935+093E
+│स्सा│ 0938+094D+0938+093E
+│हा│ 0939+093E
+│हि│ 0939+093F
+│हिं│ 0939+093F+0902
+│ही│ 0939+0940
+│हीं│ 0939+0940+0902
+│हो│ 0939+094B
+│हौ│ 0939+094C
+│ကေ│ 1000+1031
+│က္ခ│ 1000+1039+1001
+│က်ျ│ 1000+103A+103B
+│ကျ│ 1000+103B
+│ကျို│ 1000+103B+102D+102F
+│ကျူ│ 1000+103B+1030
+│ကျေ│ 1000+103B+1031
+│ကျွ│ 1000+103B+103D
+│ကြ│ 1000+103C
+│ကြို│ 1000+103C+102D+102F
+│ကြီ│ 1000+103C+102E
+│ကြု│ 1000+103C+102F
+│ကြေ│ 1000+103C+1031
+│ကြံ│ 1000+103C+1036
+│ကြွေ│ 1000+103C+103D+1031
+│ခေ│ 1001+1031
+│ချ│ 1001+103B
+│ချိ│ 1001+103B+102D
+│ချို│ 1001+103B+102D+102F
+│ချို့│ 1001+103B+102D+102F+1037
+│ချီ│ 1001+103B+102E
+│ချု│ 1001+103B+102F
+│ချေ│ 1001+103B+1031
+│ခြ│ 1001+103C
+│ခြုံ│ 1001+103C+102F+1036
+│ခြေ│ 1001+103C+1031
+│ဂ္ဂ│ 1002+1039+1002
+│ဂ္ဂို│ 1002+1039+1002+102D+102F
+│င်္ဂ│ 1004+103A+1039+1002
+│ငြ│ 1004+103C
+│ငြိ│ 1004+103C+102D
+│ငွေ│ 1004+103D+1031
+│စေ│ 1005+1031
+│စ္စ│ 1005+1039+1005
+│ဆေ│ 1006+1031
+│ဋ္ဌ│ 100B+1039+100C
+│တေ│ 1010+1031
+│တ္တ│ 1010+1039+1010
+│တွေ│ 1010+103D+1031
+│ထေ│ 1011+1031
+│ထွေ│ 1011+103D+1031
+│ဒေ│ 1012+1031
+│နေ│ 1014+1031
+│နေ့│ 1014+1031+1037
+│န္ဒ│ 1014+1039+1012
+│န္နိ│ 1014+1039+1014+102D
+│နှေ│ 1014+103E+1031
+│ပေ│ 1015+1031
+│ပ္ပ│ 1015+1039+1015
+│ပ္ပံ│ 1015+1039+1015+1036
+│ပျ│ 1015+103B
+│ပျေ│ 1015+103B+1031
+│ပြ│ 1015+103C
+│ပြီ│ 1015+103C+102E
+│ပြု│ 1015+103C+102F
+│ပြေ│ 1015+103C+1031
+│ဖေ│ 1016+1031
+│ဖျ│ 1016+103B
+│ဖြ│ 1016+103C
+│ဖြို│ 1016+103C+102D+102F
+│ဘေ│ 1018+1031
+│မေ│ 1019+1031
+│မ္ဘ│ 1019+1039+1018
+│မ္မ│ 1019+1039+1019
+│မျ│ 1019+103B
+│မျို│ 1019+103B+102D+102F
+│မျှ│ 1019+103B+103E
+│မြ│ 1019+103C
+│မြေ│ 1019+103C+1031
+│မြှ│ 1019+103C+103E
+│မွေ│ 1019+103D+1031
+│မွေ့│ 1019+103D+1031+1037
+│မှေ│ 1019+103E+1031
+│ယေ│ 101A+1031
+│ယျ│ 101A+103B
+│ရေ│ 101B+1031
+│ရွေ│ 101B+103D+1031
+│ရွှေ့│ 101B+103D+103E+1031+1037
+│ရှေ│ 101B+103E+1031
+│ရှေ့│ 101B+103E+1031+1037
+│လေ│ 101C+1031
+│လျ│ 101C+103B
+│လျေ│ 101C+103B+1031
+│လျှ│ 101C+103B+103E
+│လျှို့│ 101C+103B+103E+102D+102F+1037
+│လျှေ│ 101C+103B+103E+1031
+│ဝေ│ 101D+1031
+│သေ│ 101E+1031
+│အေ│ 1021+1031
+│𑄃𑄬│ 11103+1112C
+│𑄃𑄬𑄭│ 11103+1112C+1112D
+│𑄃𑄳𑄃│ 11103+11133+11103
+│𑄃𑄳𑄦𑄧│ 11103+11133+11126+11127
+│𑄃𑄳𑄦𑄨│ 11103+11133+11126+11128
+│𑄇𑄬│ 11107+1112C
+│𑄇𑄳𑄠│ 11107+11133+11120
+│𑄇𑄳𑄠𑄴│ 11107+11133+11120+11134
+│𑄇𑄳𑄢𑄨│ 11107+11133+11122+11128
+│𑄇𑄳𑄦𑄧│ 11107+11133+11126+11127
+│𑄇𑄳𑄦𑄴│ 11107+11133+11126+11134
+│𑄈𑄬│ 11108+1112C
+│𑄈𑄳𑄠│ 11108+11133+11120
+│𑄉𑄬│ 11109+1112C
+│𑄉𑄬𑄭│ 11109+1112C+1112D
+│𑄉𑄳𑄠│ 11109+11133+11120
+│𑄉𑄳𑄢𑄧│ 11109+11133+11122+11127
+│𑄊𑄬│ 1110A+1112C
+│𑄌𑄬│ 1110C+1112C
+│𑄌𑄳𑄠𑄴│ 1110C+11133+11120+11134
+│𑄎𑄬│ 1110E+1112C
+│𑄎𑄬𑄭│ 1110E+1112C+1112D
+│𑄎𑄳𑄠𑄧│ 1110E+11133+11120+11127
+│𑄏𑄬│ 1110F+1112C
+│𑄑𑄬│ 11111+1112C
+│𑄖𑄬│ 11116+1112C
+│𑄖𑄳𑄠𑄧│ 11116+11133+11120+11127
+│𑄖𑄳𑄠𑄴│ 11116+11133+11120+11134
+│𑄖𑄳𑄢𑄨│ 11116+11133+11122+11128
+│𑄖𑄳𑄦𑄴│ 11116+11133+11126+11134
+│𑄗𑄬│ 11117+1112C
+│𑄘𑄬│ 11118+1112C
+│𑄘𑄳𑄠𑄧│ 11118+11133+11120+11127
+│𑄙𑄬│ 11119+1112C
+│𑄙𑄳𑄠│ 11119+11133+11120
+│𑄙𑄳𑄠𑄧│ 11119+11133+11120+11127
+│𑄚𑄬│ 1111A+1112C
+│𑄚𑄬𑄭│ 1111A+1112C+1112D
+│𑄚𑄳𑄠𑄧│ 1111A+11133+11120+11127
+│𑄚𑄳𑄠𑄴│ 1111A+11133+11120+11134
+│𑄚𑄳𑄢𑄧𑄧│ 1111A+11133+11122+11127+11127
+│𑄚𑄳𑄦𑄧│ 1111A+11133+11126+11127
+│𑄚𑄳𑄦𑄨│ 1111A+11133+11126+11128
+│𑄚𑄳𑄦𑄴│ 1111A+11133+11126+11134
+│𑄛𑄬│ 1111B+1112C
+│𑄛𑄳𑄢│ 1111B+11133+11122
+│𑄛𑄳𑄢𑄧│ 1111B+11133+11122+11127
+│𑄛𑄳𑄦│ 1111B+11133+11126
+│𑄜𑄬│ 1111C+1112C
+│𑄝𑄬│ 1111D+1112C
+│𑄝𑄳𑄠│ 1111D+11133+11120
+│𑄝𑄳𑄢𑄨│ 1111D+11133+11122+11128
+│𑄞𑄬│ 1111E+1112C
+│𑄞𑄬𑄭│ 1111E+1112C+1112D
+│𑄟𑄬│ 1111F+1112C
+│𑄠𑄬│ 11120+1112C
+│𑄠𑄬𑄭│ 11120+1112C+1112D
+│𑄡𑄬│ 11121+1112C
+│𑄡𑄬𑄭│ 11121+1112C+1112D
+│𑄢𑄬│ 11122+1112C
+│𑄢𑄬𑄭│ 11122+1112C+1112D
+│𑄢𑄳𑄦𑄧𑄱𑄱│ 11122+11133+11126+11127+11131+11131
+│𑄣𑄬│ 11123+1112C
+│𑄣𑄬𑄭│ 11123+1112C+1112D
+│𑄣𑄳𑄦𑄴│ 11123+11133+11126+11134
+│𑄥𑄬│ 11125+1112C
+│𑄥𑄳𑄠│ 11125+11133+11120
+│𑄥𑄳𑄠𑄧│ 11125+11133+11120+11127
+│𑄥𑄳𑄢𑄧│ 11125+11133+11122+11127
+│𑄥𑄳𑄢𑄨𑄁│ 11125+11133+11122+11128+11101
+│𑄦𑄬│ 11126+1112C
+│也│ 0x04e5f Chinese, …
+│了│ 0x04e86 Chinese, …
+│伢│ 0x04f22 Chinese, …
+│似│ 0x04f3c Chinese, …
+│做│ 0x0505a Chinese, …
+│冒│ 0x05192 Chinese, …
+│况│ 0x051b5 Chinese, …
+│努│ 0x052aa Chinese, …
+│向│ 0x05411 Chinese, …
+│妻│ 0x059bb Chinese, …
+│寻│ 0x05bfb Chinese, …
+│小│ 0x05c0f Chinese, …
+│常│ 0x05e38 Chinese, …
+│彼│ 0x05f7c Chinese, …
+│恐│ 0x06050 Chinese, …
+│惧│ 0x060e7 Chinese, …
+│把│ 0x0628a Chinese, …
+│昧│ 0x06627 Chinese, …
+│查│ 0x067e5 Chinese, …
+│气│ 0x06c14 Chinese, …
+│渠│ 0x06e20 Chinese, …
+│真│ 0x0771f Chinese, …
+│笑│ 0x07b11 Chinese, …
+│简│ 0x07b80 Chinese, …
+│箇│ 0x07b87 Chinese, …
+│细│ 0x07ec6 Chinese, …
+│耻│ 0x0803b Chinese, …
+│舞│ 0x0821e Chinese, …
+│落│ 0x0843d Chinese, …
+│裳│ 0x088f3 Chinese, …
+│讲│ 0x08bb2 Chinese, …
+│谋│ 0x08c0b Chinese, …
+│贴│ 0x08d34 Chinese, …
+│跟│ 0x08ddf Chinese, …
+│送│ 0x09001 Chinese, …
+│问│ 0x095ee Chinese, …
+│食│ 0x098df Chinese, …
+│丁│ 0x04e01 Chinese, …
+│佢│ 0x04f62 Chinese, …
+│候│ 0x05019 Chinese, …
+│像│ 0x050cf Chinese, …
+│刺│ 0x0523a Chinese, …
+│办│ 0x0529e Chinese, …
+│叔│ 0x053d4 Chinese, …
+│唔│ 0x05514 Chinese, …
+│喜│ 0x0559c Chinese, …
+│墙│ 0x05899 Chinese, …
+│好│ 0x0597d Chinese, …
+│尾│ 0x05c3e Chinese, …
+│录│ 0x05f55 Chinese, …
+│打│ 0x06253 Chinese, …
+│扶│ 0x06276 Chinese, …
+│抓│ 0x06293 Chinese, …
+│收│ 0x06536 Chinese, …
+│欺│ 0x06b3a Chinese, …
+│比│ 0x06bd4 Chinese, …
+│爱│ 0x07231 Chinese, …
+│田│ 0x07530 Chinese, …
+│留│ 0x07559 Chinese, …
+│约│ 0x07ea6 Chinese, …
+│脉│ 0x08109 Chinese, …
+│脚│ 0x0811a Chinese, …
+│象│ 0x08c61 Chinese, …
+│转│ 0x08f6c Chinese, …
+│里│ 0x091cc Chinese, …
+│除│ 0x09664 Chinese, …
+│鬼│ 0x09b3c Chinese, …
+│今│ 0x04eca Chinese, …
+│伺│ 0x04f3a Chinese, …
+│低│ 0x04f4e Chinese, …
+│副│ 0x0526f Chinese, …
+│势│ 0x052bf Chinese, …
+│去│ 0x053bb Chinese, …
+│咧│ 0x054a7 Chinese, …
+│咾│ 0x054be Chinese, …
+│哪│ 0x054ea Chinese, …
+│唤│ 0x05524 Chinese, …
+│啦│ 0x05566 Chinese, …
+│妈│ 0x05988 Chinese, …
+│娃│ 0x05a03 Chinese, …
+│富│ 0x05bcc Chinese, …
+│将│ 0x05c06 Chinese, …
+│帮│ 0x05e2e Chinese, …
+│很│ 0x05f88 Chinese, …
+│慰│ 0x06170 Chinese, …
+│憷│ 0x061b7 Chinese, …
+│找│ 0x0627e Chinese, …
+│抚│ 0x0629a Chinese, …
+│抵│ 0x062b5 Chinese, …
+│敢│ 0x06562 Chinese, …
+│晓│ 0x06653 Chinese, …
+│没│ 0x06ca1 Chinese, …
+│甚│ 0x0751a Chinese, …
+│箍│ 0x07b8d Chinese, …
+│谁│ 0x08c01 Chinese, …
+│谱│ 0x08c31 Chinese, …
+│轰│ 0x08f70 Chinese, …
+│鄙│ 0x09119 Chinese, …
+│闺│ 0x095fa Chinese, …
+│乎│ 0x04e4e Chinese, …
+│倍│ 0x0500d Chinese, …
+│凉│ 0x051c9 Chinese, …
+│刬│ 0x0522c Chinese, …
+│剌│ 0x0524c Chinese, …
+│含│ 0x0542b Chinese, …
+│喝│ 0x0559d Chinese, …
+│堆│ 0x05806 Chinese, …
+│宾│ 0x05bbe Chinese, …
+│就│ 0x05c31 Chinese, …
+│差│ 0x05dee Chinese, …
+│巴│ 0x05df4 Chinese, …
+│座│ 0x05ea7 Chinese, …
+│庸│ 0x05eb8 Chinese, …
+│憋│ 0x0618b Chinese, …
+│手│ 0x0624b Chinese, …
+│扒│ 0x06252 Chinese, …
+│抱│ 0x062b1 Chinese, …
+│拉│ 0x062c9 Chinese, …
+│拔│ 0x062d4 Chinese, …
+│挨│ 0x06328 Chinese, …
+│掺│ 0x063ba Chinese, …
+│揽│ 0x063fd Chinese, …
+│摽│ 0x0647d Chinese, …
+│暗│ 0x06697 Chinese, …
+│杵│ 0x06775 Chinese, …
+│板│ 0x0677f Chinese, …
+│果│ 0x0679c Chinese, …
+│毁│ 0x06bc1 Chinese, …
+│淘│ 0x06dd8 Chinese, …
+│澄│ 0x06f84 Chinese, …
+│熬│ 0x071ac Chinese, …
+│甭│ 0x0752d Chinese, …
+│砸│ 0x07838 Chinese, …
+│碜│ 0x0789c Chinese, …
+│碴│ 0x078b4 Chinese, …
+│秉│ 0x079c9 Chinese, …
+│腌│ 0x0814c Chinese, …
+│臜│ 0x081dc Chinese, …
+│船│ 0x08239 Chinese, …
+│让│ 0x08ba9 Chinese, …
+│趁│ 0x08d81 Chinese, …
+│踩│ 0x08e29 Chinese, …
+│车│ 0x08f66 Chinese, …
+│边│ 0x08fb9 Chinese, …
+│铭│ 0x094ed Chinese, …
+│须│ 0x0987b Chinese, …
+│顾│ 0x0987e Chinese, …
+│互│ 0x04e92 Chinese, …
+│仲│ 0x04ef2 Chinese, …
+│写│ 0x05199 Chinese, …
+│外│ 0x05916 Chinese, …
+│希│ 0x05e0c Chinese, …
+│悄│ 0x06084 Chinese, …
+│点│ 0x070b9 Chinese, …
+│爹│ 0x07239 Chinese, …
+│话│ 0x08bdd Chinese, …
+│么│ 0x04e48 Chinese, …
+│仗│ 0x04ed7 Chinese, …
+│停│ 0x0505c Chinese, …
+│另│ 0x053e6 Chinese, …
+│哥│ 0x054e5 Chinese, …
+│啥│ 0x05565 Chinese, …
+│埋│ 0x057cb Chinese, …
+│孩│ 0x05b69 Chinese, …
+│恣│ 0x06063 Chinese, …
+│挤│ 0x06324 Chinese, …
+│挺│ 0x0633a Chinese, …
+│汰│ 0x06c70 Chinese, …
+│片│ 0x07247 Chinese, …
+│登│ 0x0767b Chinese, …
+│眼│ 0x0773c Chinese, …
+│索│ 0x07d22 Chinese, …
+│说│ 0x08bf4 Chinese, …
+│齐│ 0x09f50 Chinese, …
+│什│ 0x04ec0 Chinese, …
+│便│ 0x04fbf Chinese, …
+│兴│ 0x05174 Chinese, …
+│娘│ 0x05a18 Chinese, …
+│它│ 0x05b83 Chinese, …
+│拼│ 0x062fc Chinese, …
+│捉│ 0x06349 Chinese, …
+│派│ 0x06d3e Chinese, …
+│瞧│ 0x077a7 Chinese, …
+│诬│ 0x08bec Chinese, …
+│赶│ 0x08d76 Chinese, …
+│随│ 0x0968f Chinese, …
+│《│ 0x0300a Chinese, …
+│》│ 0x0300b Chinese, …
+│历│ 0x05386 Chinese, …
+│史│ 0x053f2 Chinese, …
+│号│ 0x053f7 Chinese, …
+│后│ 0x0540e Chinese, …
+│广│ 0x05e7f Chinese, …
+│播│ 0x064ad Chinese, …
+│日│ 0x065e5 Chinese, …
+│月│ 0x06708 Chinese, …
+│校│ 0x06821 Chinese, …
+│议│ 0x08bae Chinese, …
+│读│ 0x08bfb Chinese, …
+│述│ 0x08ff0 Chinese, …
+│阅│ 0x09605 Chinese, …
+│阐│ 0x09610 Chinese, …
+│颁│ 0x09881 Chinese, …
+│：│ 0x0ff1a Chinese, …
+│份│ 0x04efd Chinese, …
+│倒│ 0x05012 Chinese, …
+│刀│ 0x05200 Chinese, …
+│划│ 0x05212 Chinese, …
+│剜│ 0x0525c Chinese, …
+│口│ 0x053e3 Chinese, …
+│呲│ 0x05472 Chinese, …
+│嘛│ 0x0561b Chinese, …
+│夫│ 0x0592b Chinese, …
+│官│ 0x05b98 Chinese, …
+│抖│ 0x06296 Chinese, …
+│掸│ 0x063b8 Chinese, …
+│搂│ 0x06402 Chinese, …
+│散│ 0x06563 Chinese, …
+│断│ 0x065ad Chinese, …
+│歪│ 0x06b6a Chinese, …
+│歹│ 0x06b79 Chinese, …
+│爷│ 0x07237 Chinese, …
+│猴│ 0x07334 Chinese, …
+│白│ 0x0767d Chinese, …
+│码│ 0x07801 Chinese, …
+│碌│ 0x0788c Chinese, …
+│磨│ 0x078e8 Chinese, …
+│祸│ 0x07978 Chinese, …
+│胎│ 0x080ce Chinese, …
+│般│ 0x0822c Chinese, …
+│败│ 0x08d25 Chinese, …
+│赖│ 0x08d56 Chinese, …
+│达│ 0x08fbe Chinese, …
+│门│ 0x095e8 Chinese, …
+│顶│ 0x09876 Chinese, …
+│骨│ 0x09aa8 Chinese, …
+│並│ 0x04e26 Chinese, …
+│來│ 0x04f86 Chinese, …
+│係│ 0x04fc2 Chinese, …
+│個│ 0x0500b Chinese, …
+│們│ 0x05011 Chinese, …
+│傳│ 0x050b3 Chinese, …
+│價│ 0x050f9 Chinese, …
+│優│ 0x0512a Chinese, …
+│兒│ 0x05152 Chinese, …
+│內│ 0x05167 Chinese, …
+│別│ 0x05225 Chinese, …
+│則│ 0x05247 Chinese, …
+│剝│ 0x0525d Chinese, …
+│創│ 0x05275 Chinese, …
+│動│ 0x052d5 Chinese, …
+│務│ 0x052d9 Chinese, …
+│匱│ 0x05331 Chinese, …
+│區│ 0x05340 Chinese, …
+│協│ 0x05354 Chinese, …
+│參│ 0x053c3 Chinese, …
+│員│ 0x054e1 Chinese, …
+│喪│ 0x055aa Chinese, …
+│單│ 0x055ae Chinese, …
+│嚴│ 0x056b4 Chinese, …
+│國│ 0x0570b Chinese, …
+│團│ 0x05718 Chinese, …
+│報│ 0x05831 Chinese, …
+│壓│ 0x058d3 Chinese, …
+│壞│ 0x058de Chinese, …
+│奪│ 0x0596a Chinese, …
+│學│ 0x05b78 Chinese, …
+│實│ 0x05be6 Chinese, …
+│審│ 0x05be9 Chinese, …
+│尋│ 0x05c0b Chinese, …
+│對│ 0x05c0d Chinese, …
+│屬│ 0x05c6c Chinese, …
+│廢│ 0x05ee2 Chinese, …
+│張│ 0x05f35 Chinese, …
+│強│ 0x05f37 Chinese, …
+│憲│ 0x061b2 Chinese, …
+│應│ 0x061c9 Chinese, …
+│懼│ 0x061fc Chinese, …
+│撰│ 0x064b0 Chinese, …
+│擇│ 0x064c7 Chinese, …
+│擊│ 0x064ca Chinese, …
+│據│ 0x064da Chinese, …
+│於│ 0x065bc Chinese, …
+│時│ 0x06642 Chinese, …
+│會│ 0x06703 Chinese, …
+│條│ 0x0689d Chinese, …
+│業│ 0x0696d Chinese, …
+│榮│ 0x069ae Chinese, …
+│構│ 0x069cb Chinese, …
+│標│ 0x06a19 Chinese, …
+│樣│ 0x06a23 Chinese, …
+│機│ 0x06a5f Chinese, …
+│權│ 0x06b0a Chinese, …
+│殘│ 0x06b98 Chinese, …
+│沾│ 0x06cbe Chinese, …
+│況│ 0x06cc1 Chinese, …
+│準│ 0x06e96 Chinese, …
+│漸│ 0x06f38 Chinese, …
+│濟│ 0x06fdf Chinese, …
+│為│ 0x070ba Chinese, …
+│無│ 0x07121 Chinese, …
+│獨│ 0x07368 Chinese, …
+│獲│ 0x07372 Chinese, …
+│現│ 0x073fe Chinese, …
+│產│ 0x07522 Chinese, …
+│當│ 0x07576 Chinese, …
+│痩│ 0x075e9 Chinese, …
+│療│ 0x07642 Chinese, …
+│發│ 0x0767c Chinese, …
+│確│ 0x078ba Chinese, …
+│礎│ 0x0790e Chinese, …
+│禮│ 0x079ae Chinese, …
+│種│ 0x07a2e Chinese, …
+│約│ 0x07d04 Chinese, …
+│級│ 0x07d1a Chinese, …
+│組│ 0x07d44 Chinese, …
+│結│ 0x07d50 Chinese, …
+│給│ 0x07d66 Chinese, …
+│經│ 0x07d93 Chinese, …
+│維│ 0x07dad Chinese, …
+│締│ 0x07de0 Chinese, …
+│績│ 0x07e3e Chinese, …
+│織│ 0x07e54 Chinese, …
+│罰│ 0x07f70 Chinese, …
+│義│ 0x07fa9 Chinese, …
+│聯│ 0x0806f Chinese, …
+│職│ 0x08077 Chinese, …
+│膚│ 0x0819a Chinese, …
+│臨│ 0x081e8 Chinese, …
+│與│ 0x08207 Chinese, …
+│舉│ 0x08209 Chinese, …
+│藝│ 0x085dd Chinese, …
+│號│ 0x0865f Chinese, …
+│蠻│ 0x0883b Chinese, …
+│術│ 0x08853 Chinese, …
+│補│ 0x088dc Chinese, …
+│見│ 0x0898b Chinese, …
+│規│ 0x0898f Chinese, …
+│覑│ 0x08991 Chinese, …
+│視│ 0x08996 Chinese, …
+│親│ 0x089aa Chinese, …
+│訊│ 0x08a0a Chinese, …
+│記│ 0x08a18 Chinese, …
+│設│ 0x08a2d Chinese, …
+│許│ 0x08a31 Chinese, …
+│訴│ 0x08a34 Chinese, …
+│認│ 0x08a8d Chinese, …
+│語│ 0x08a9e Chinese, …
+│誨│ 0x08aa8 Chinese, …
+│誼│ 0x08abc Chinese, …
+│論│ 0x08ad6 Chinese, …
+│謀│ 0x08b00 Chinese, …
+│證│ 0x08b49 Chinese, …
+│議│ 0x08b70 Chinese, …
+│護│ 0x08b77 Chinese, …
+│譽│ 0x08b7d Chinese, …
+│變│ 0x08b8a Chinese, …
+│負│ 0x08ca0 Chinese, …
+│財│ 0x08ca1 Chinese, …
+│買│ 0x08cb7 Chinese, …
+│費│ 0x08cbb Chinese, …
+│資│ 0x08cc7 Chinese, …
+│賣│ 0x08ce3 Chinese, …
+│賦│ 0x08ce6 Chinese, …
+│質│ 0x08cea Chinese, …
+│踐│ 0x08e10 Chinese, …
+│較│ 0x08f03 Chinese, …
+│載│ 0x08f09 Chinese, …
+│輔│ 0x08f14 Chinese, …
+│轄│ 0x08f44 Chinese, …
+│辯│ 0x08faf Chinese, …
+│這│ 0x09019 Chinese, …
+│進│ 0x09032 Chinese, …
+│過│ 0x0904e Chinese, …
+│違│ 0x09055 Chinese, …
+│遞│ 0x0905e Chinese, …
+│適│ 0x09069 Chinese, …
+│遷│ 0x09077 Chinese, …
+│選│ 0x09078 Chinese, …
+│醫│ 0x091ab Chinese, …
+│釋│ 0x091cb Chinese, …
+│銘│ 0x09298 Chinese, …
+│鋌│ 0x092cc Chinese, …
+│鑑│ 0x09451 Chinese, …
+│開│ 0x0958b Chinese, …
+│閒│ 0x09592 Chinese, …
+│間│ 0x09593 Chinese, …
+│關│ 0x095dc Chinese, …
+│階│ 0x0968e Chinese, …
+│際│ 0x0969b Chinese, …
+│險│ 0x096aa Chinese, …
+│隸│ 0x096b8 Chinese, …
+│雙│ 0x096d9 Chinese, …
+│離│ 0x096e2 Chinese, …
+│項│ 0x09805 Chinese, …
+│領│ 0x09818 Chinese, …
+│願│ 0x09858 Chinese, …
+│類│ 0x0985e Chinese, …
+│體│ 0x09ad4 Chinese, …
+│丈│ 0x04e08 Chinese, …
+│仔│ 0x04ed4 Chinese, …
+│伊│ 0x04f0a Chinese, …
+│傍│ 0x0508d Chinese, …
+│兜│ 0x0515c Chinese, …
+│勿│ 0x052ff Chinese, …
+│即│ 0x05373 Chinese, …
+│厄│ 0x05384 Chinese, …
+│厝│ 0x0539d Chinese, …
+│咒│ 0x05492 Chinese, …
+│囝│ 0x056dd Chinese, …
+│尼│ 0x05c3c Chinese, …
+│带│ 0x05e26 Chinese, …
+│批│ 0x06279 Chinese, …
+│抑│ 0x06291 Chinese, …
+│拢│ 0x062e2 Chinese, …
+│搭│ 0x0642d Chinese, …
+│敨│ 0x06568 Chinese, …
+│斗│ 0x06597 Chinese, …
+│杀│ 0x06740 Chinese, …
+│枇│ 0x06787 Chinese, …
+│款│ 0x06b3e Chinese, …
+│爸│ 0x07238 Chinese, …
+│空│ 0x07a7a Chinese, …
+│置│ 0x07f6e Chinese, …
+│胃│ 0x080c3 Chinese, …
+│脱│ 0x08131 Chinese, …
+│脾│ 0x0813e Chinese, …
+│讨│ 0x08ba8 Chinese, …
+│赤│ 0x08d64 Chinese, …
+│路│ 0x08def Chinese, …
+│辄│ 0x08f84 Chinese, …
+│逆│ 0x09006 Chinese, …
+│配│ 0x0914d Chinese, …
+│闭│ 0x095ed Chinese, …
+│雄│ 0x096c4 Chinese, …
+│侪│ 0x04faa Chinese, …
+│光│ 0x05149 Chinese, …
+│囡│ 0x056e1 Chinese, …
+│场│ 0x0573a Chinese, …
+│弗│ 0x05f17 Chinese, …
+│排│ 0x06392 Chinese, …
+│掰│ 0x063b0 Chinese, …
+│歇│ 0x06b47 Chinese, …
+│葛│ 0x0845b Chinese, …
+│辰│ 0x08fb0 Chinese, …
+│量│ 0x091cf Chinese, …
+│钱│ 0x094b1 Chinese, …
+│冇│ 0x05187 Chinese, …
+│刮│ 0x0522e Chinese, …
+│刻│ 0x0523b Chinese, …
+│厚│ 0x0539a Chinese, …
+│司│ 0x053f8 Chinese, …
+│呼│ 0x0547c Chinese, …
+│咖│ 0x05496 Chinese, …
+│咯│ 0x054af Chinese, …
+│哒│ 0x054d2 Chinese, …
+│堂│ 0x05802 Chinese, …
+│奤│ 0x05964 Chinese, …
+│客│ 0x05ba2 Chinese, …
+│怯│ 0x0602f Chinese, …
+│招│ 0x062db Chinese, …
+│拱│ 0x062f1 Chinese, …
+│数│ 0x06570 Chinese, …
+│架│ 0x067b6 Chinese, …
+│毒│ 0x06bd2 Chinese, …
+│毛│ 0x06bdb Chinese, …
+│沕│ 0x06c95 Chinese, …
+│瓜│ 0x074dc Chinese, …
+│畏│ 0x0754f Chinese, …
+│盘│ 0x076d8 Chinese, …
+│紧│ 0x07d27 Chinese, …
+│莫│ 0x083ab Chinese, …
+│躲│ 0x08eb2 Chinese, …
+│俾│ 0x04ffe Chinese, …
+│兼│ 0x0517c Chinese, …
+│冚│ 0x0519a Chinese, …
+│呢│ 0x05462 Chinese, …
+│咁│ 0x05481 Chinese, …
+│咗│ 0x05497 Chinese, …
+│哋│ 0x054cb Chinese, …
+│啲│ 0x05572 Chinese, …
+│喺│ 0x055ba Chinese, …
+│嘅│ 0x05605 Chinese, …
+│嘢│ 0x05622 Chinese, …
+│嚟│ 0x0569f Chinese, …
+│够│ 0x0591f Chinese, …
+│孥│ 0x05b65 Chinese, …
+│穷│ 0x07a77 Chinese, …
+│谂│ 0x08c02 Chinese, …
+│阿│ 0x0963f Chinese, …
+│કઃ│ 0A95+0A83
+│કા│ 0A95+0ABE
+│કાં│ 0A95+0ABE+0A82
+│કિ│ 0A95+0ABF
+│કી│ 0A95+0AC0
+│કો│ 0A95+0ACB
+│ક્ક│ 0A95+0ACD+0A95
+│ક્કા│ 0A95+0ACD+0A95+0ABE
+│ક્કો│ 0A95+0ACD+0A95+0ACB
+│ક્તિ│ 0A95+0ACD+0AA4+0ABF
+│ક્ર│ 0A95+0ACD+0AB0
+│ક્ષ│ 0A95+0ACD+0AB7
+│ક્ષા│ 0A95+0ACD+0AB7+0ABE
+│ખા│ 0A96+0ABE
+│ખી│ 0A96+0AC0
+│ખો│ 0A96+0ACB
+│ખ્ત│ 0A96+0ACD+0AA4
+│ગા│ 0A97+0ABE
+│ગિ│ 0A97+0ABF
+│ગી│ 0A97+0AC0
+│ગો│ 0A97+0ACB
+│ગ્ન│ 0A97+0ACD+0AA8
+│ગ્ય│ 0A97+0ACD+0AAF
+│ઘા│ 0A98+0ABE
+│ઘો│ 0A98+0ACB
+│ચા│ 0A9A+0ABE
+│ચિ│ 0A9A+0ABF
+│ચી│ 0A9A+0AC0
+│ચ્ચ│ 0A9A+0ACD+0A9A
+│ચ્ચા│ 0A9A+0ACD+0A9A+0ABE
+│ચ્ચે│ 0A9A+0ACD+0A9A+0AC7
+│ચ્છા│ 0A9A+0ACD+0A9B+0ABE
+│ચ્છે│ 0A9A+0ACD+0A9B+0AC7
+│છા│ 0A9B+0ABE
+│છો│ 0A9B+0ACB
+│જા│ 0A9C+0ABE
+│જાં│ 0A9C+0ABE+0A82
+│જિ│ 0A9C+0ABF
+│જી│ 0A9C+0AC0
+│જો│ 0A9C+0ACB
+│જ્ઞા│ 0A9C+0ACD+0A9E+0ABE
+│જ્ય│ 0A9C+0ACD+0AAF
+│જ્યો│ 0A9C+0ACD+0AAF+0ACB
+│ટઃ│ 0A9F+0A83
+│ટ્ર│ 0A9F+0ACD+0AB0
+│ટ્રે│ 0A9F+0ACD+0AB0+0AC7
+│ડા│ 0AA1+0ABE
+│ડાં│ 0AA1+0ABE+0A82
+│ડી│ 0AA1+0AC0
+│ઢા│ 0AA2+0ABE
+│ઢિ│ 0AA2+0ABF
+│ણા│ 0AA3+0ABE
+│ણી│ 0AA3+0AC0
+│તઃ│ 0AA4+0A83
+│તા│ 0AA4+0ABE
+│તાં│ 0AA4+0ABE+0A82
+│તિ│ 0AA4+0ABF
+│તી│ 0AA4+0AC0
+│તો│ 0AA4+0ACB
+│ત્તા│ 0AA4+0ACD+0AA4+0ABE
+│ત્તિ│ 0AA4+0ACD+0AA4+0ABF
+│ત્ત્વ│ 0AA4+0ACD+0AA4+0ACD+0AB5
+│ત્ત્વા│ 0AA4+0ACD+0AA4+0ACD+0AB5+0ABE
+│ત્ન│ 0AA4+0ACD+0AA8
+│ત્મ│ 0AA4+0ACD+0AAE
+│ત્ય│ 0AA4+0ACD+0AAF
+│ત્યા│ 0AA4+0ACD+0AAF+0ABE
+│ત્યાં│ 0AA4+0ACD+0AAF+0ABE+0A82
+│ત્યિ│ 0AA4+0ACD+0AAF+0ABF
+│ત્યે│ 0AA4+0ACD+0AAF+0AC7
+│ત્યો│ 0AA4+0ACD+0AAF+0ACB
+│ત્ર│ 0AA4+0ACD+0AB0
+│ત્રી│ 0AA4+0ACD+0AB0+0AC0
+│ત્ર્ય│ 0AA4+0ACD+0AB0+0ACD+0AAF
+│ત્વ│ 0AA4+0ACD+0AB5
+│થા│ 0AA5+0ABE
+│થી│ 0AA5+0AC0
+│દા│ 0AA6+0ABE
+│દી│ 0AA6+0AC0
+│દો│ 0AA6+0ACB
+│દ્ધ│ 0AA6+0ACD+0AA7
+│દ્ધા│ 0AA6+0ACD+0AA7+0ABE
+│દ્ધાં│ 0AA6+0ACD+0AA7+0ABE+0A82
+│દ્ધિ│ 0AA6+0ACD+0AA7+0ABF
+│દ્ભ│ 0AA6+0ACD+0AAD
+│દ્વા│ 0AA6+0ACD+0AB5+0ABE
+│ધા│ 0AA7+0ABE
+│ધાં│ 0AA7+0ABE+0A82
+│ધિ│ 0AA7+0ABF
+│ધી│ 0AA7+0AC0
+│ધો│ 0AA7+0ACB
+│ધ્ય│ 0AA7+0ACD+0AAF
+│ધ્યા│ 0AA7+0ACD+0AAF+0ABE
+│નઃ│ 0AA8+0A83
+│ના│ 0AA8+0ABE
+│નાં│ 0AA8+0ABE+0A82
+│નિ│ 0AA8+0ABF
+│ની│ 0AA8+0AC0
+│નો│ 0AA8+0ACB
+│ન્ત│ 0AA8+0ACD+0AA4
+│ન્તો│ 0AA8+0ACD+0AA4+0ACB
+│ન્મ│ 0AA8+0ACD+0AAE
+│ન્મા│ 0AA8+0ACD+0AAE+0ABE
+│ન્મે│ 0AA8+0ACD+0AAE+0AC7
+│ન્ય│ 0AA8+0ACD+0AAF
+│ન્યા│ 0AA8+0ACD+0AAF+0ABE
+│ન્યૂં│ 0AA8+0ACD+0AAF+0AC2+0A82
+│પા│ 0AAA+0ABE
+│પિ│ 0AAA+0ABF
+│પી│ 0AAA+0AC0
+│પો│ 0AAA+0ACB
+│પ્ત│ 0AAA+0ACD+0AA4
+│પ્ર│ 0AAA+0ACD+0AB0
+│પ્રા│ 0AAA+0ACD+0AB0+0ABE
+│ફા│ 0AAB+0ABE
+│ફો│ 0AAB+0ACB
+│બા│ 0AAC+0ABE
+│બાં│ 0AAC+0ABE+0A82
+│બી│ 0AAC+0AC0
+│બ્ધ│ 0AAC+0ACD+0AA7
+│ભા│ 0AAD+0ABE
+│ભાં│ 0AAD+0ABE+0A82
+│ભિ│ 0AAD+0ABF
+│ભો│ 0AAD+0ACB
+│ભૌ│ 0AAD+0ACC
+│ભ્ય│ 0AAD+0ACD+0AAF
+│મઃ│ 0AAE+0A83
+│મા│ 0AAE+0ABE
+│માં│ 0AAE+0ABE+0A82
+│મિ│ 0AAE+0ABF
+│મી│ 0AAE+0AC0
+│મો│ 0AAE+0ACB
+│મ્ય│ 0AAE+0ACD+0AAF
+│મ્યાં│ 0AAE+0ACD+0AAF+0ABE+0A82
+│યા│ 0AAF+0ABE
+│યિ│ 0AAF+0ABF
+│યી│ 0AAF+0AC0
+│યો│ 0AAF+0ACB
+│રા│ 0AB0+0ABE
+│રિ│ 0AB0+0ABF
+│રી│ 0AB0+0AC0
+│રો│ 0AB0+0ACB
+│ર્જ│ 0AB0+0ACD+0A9C
+│ર્ણ│ 0AB0+0ACD+0AA3
+│ર્ત│ 0AB0+0ACD+0AA4
+│ર્તા│ 0AB0+0ACD+0AA4+0ABE
+│ર્થ│ 0AB0+0ACD+0AA5
+│ર્થિ│ 0AB0+0ACD+0AA5+0ABF
+│ર્દો│ 0AB0+0ACD+0AA6+0ACB
+│ર્મ│ 0AB0+0ACD+0AAE
+│ર્મિ│ 0AB0+0ACD+0AAE+0ABF
+│ર્મે│ 0AB0+0ACD+0AAE+0AC7
+│ર્ય│ 0AB0+0ACD+0AAF
+│ર્યા│ 0AB0+0ACD+0AAF+0ABE
+│ર્યો│ 0AB0+0ACD+0AAF+0ACB
+│ર્વ│ 0AB0+0ACD+0AB5
+│લા│ 0AB2+0ABE
+│લાં│ 0AB2+0ABE+0A82
+│લિ│ 0AB2+0ABF
+│લિં│ 0AB2+0ABF+0A82
+│લી│ 0AB2+0AC0
+│લો│ 0AB2+0ACB
+│લ્મ│ 0AB2+0ACD+0AAE
+│લ્ય│ 0AB2+0ACD+0AAF
+│ળા│ 0AB3+0ABE
+│ળી│ 0AB3+0AC0
+│વા│ 0AB5+0ABE
+│વાં│ 0AB5+0ABE+0A82
+│વિ│ 0AB5+0ABF
+│વી│ 0AB5+0AC0
+│વો│ 0AB5+0ACB
+│વ્ય│ 0AB5+0ACD+0AAF
+│વ્યા│ 0AB5+0ACD+0AAF+0ABE
+│વ્યો│ 0AB5+0ACD+0AAF+0ACB
+│શા│ 0AB6+0ABE
+│શાં│ 0AB6+0ABE+0A82
+│શિ│ 0AB6+0ABF
+│શી│ 0AB6+0AC0
+│શો│ 0AB6+0ACB
+│શ્કે│ 0AB6+0ACD+0A95+0AC7
+│શ્ચ│ 0AB6+0ACD+0A9A
+│શ્ય│ 0AB6+0ACD+0AAF
+│શ્ર│ 0AB6+0ACD+0AB0
+│શ્વ│ 0AB6+0ACD+0AB5
+│ષા│ 0AB7+0ABE
+│ષી│ 0AB7+0AC0
+│ષો│ 0AB7+0ACB
+│ષ્ટિ│ 0AB7+0ACD+0A9F+0ABF
+│ષ્ટ્ર│ 0AB7+0ACD+0A9F+0ACD+0AB0
+│ષ્ટ્રી│ 0AB7+0ACD+0A9F+0ACD+0AB0+0AC0
+│ષ્ટ્રો│ 0AB7+0ACD+0A9F+0ACD+0AB0+0ACB
+│ષ્ઠા│ 0AB7+0ACD+0AA0+0ABE
+│ષ્ણુ│ 0AB7+0ACD+0AA3+0AC1
+│ષ્પ│ 0AB7+0ACD+0AAA
+│સા│ 0AB8+0ABE
+│સાં│ 0AB8+0ABE+0A82
+│સિ│ 0AB8+0ABF
+│સી│ 0AB8+0AC0
+│સો│ 0AB8+0ACB
+│સ્કૃ│ 0AB8+0ACD+0A95+0AC3
+│સ્ટ│ 0AB8+0ACD+0A9F
+│સ્તિ│ 0AB8+0ACD+0AA4+0ABF
+│સ્તી│ 0AB8+0ACD+0AA4+0AC0
+│સ્ત્રી│ 0AB8+0ACD+0AA4+0ACD+0AB0+0AC0
+│સ્થા│ 0AB8+0ACD+0AA5+0ABE
+│સ્થિ│ 0AB8+0ACD+0AA5+0ABF
+│સ્પ│ 0AB8+0ACD+0AAA
+│સ્રી│ 0AB8+0ACD+0AB0+0AC0
+│સ્વ│ 0AB8+0ACD+0AB5
+│સ્વા│ 0AB8+0ACD+0AB5+0ABE
+│સ્વી│ 0AB8+0ACD+0AB5+0AC0
+│સ્સા│ 0AB8+0ACD+0AB8+0ABE
+│હા│ 0AB9+0ABE
+│હિ│ 0AB9+0ABF
+│હી│ 0AB9+0AC0
+│હો│ 0AB9+0ACB
+│कां│ 0915+093E+0902
+│क्नि│ 0915+094D+0928+093F
+│क्र│ 0915+094D+0930
+│क्रि│ 0915+094D+0930+093F
+│क्षि│ 0915+094D+0937+093F
+│ख्या│ 0916+094D+092F+093E
+│ग़ा│ 0917+093C+093E
+│गों│ 0917+094B+0902
+│गौ│ 0917+094C
+│ग्न│ 0917+094D+0928
+│ग्र│ 0917+094D+0930
+│ग्रे│ 0917+094D+0930+0947
+│घा│ 0918+093E
+│ची│ 091A+0940
+│च्चे│ 091A+094D+091A+0947
+│च्चों│ 091A+094D+091A+094B+0902
+│च्छि│ 091A+094D+091B+093F
+│जो│ 091C+094B
+│टों│ 091F+094B+0902
+│ट्टि│ 091F+094D+091F+093F
+│ढा│ 0922+093E
+│णों│ 0923+094B+0902
+│ण्ड│ 0923+094D+0921
+│तः│ 0924+0903
+│ती│ 0924+0940
+│तों│ 0924+094B+0902
+│त्का│ 0924+094D+0915+093E
+│त्त│ 0924+094D+0924
+│त्ता│ 0924+094D+0924+093E
+│त्न│ 0924+094D+0928
+│त्नों│ 0924+094D+0928+094B+0902
+│त्प│ 0924+094D+092A
+│त्पा│ 0924+094D+092A+093E
+│त्मा│ 0924+094D+092E+093E
+│त्य│ 0924+094D+092F
+│त्या│ 0924+094D+092F+093E
+│त्ये│ 0924+094D+092F+0947
+│त्री│ 0924+094D+0930+0940
+│त्व│ 0924+094D+0935
+│त्सा│ 0924+094D+0938+093E
+│द्घ│ 0926+094D+0918
+│द्घि│ 0926+094D+0918+093F
+│द्दे│ 0926+094D+0926+0947
+│द्ध│ 0926+094D+0927
+│द्धा│ 0926+094D+0927+093E
+│द्धि│ 0926+094D+0927+093F
+│द्भा│ 0926+094D+092D+093E
+│द्रो│ 0926+094D+0930+094B
+│धी│ 0927+0940
+│धों│ 0927+094B+0902
+│ध्य│ 0927+094D+092F
+│ध्या│ 0927+094D+092F+093E
+│निः│ 0928+093F+0903
+│नौ│ 0928+094C
+│न्ति│ 0928+094D+0924+093F
+│न्तों│ 0928+094D+0924+094B+0902
+│न्त्र│ 0928+094D+0924+094D+0930
+│न्त्रा│ 0928+094D+0924+094D+0930+093E
+│न्द│ 0928+094D+0926
+│न्दी│ 0928+094D+0926+0940
+│न्ध│ 0928+094D+0927
+│न्धि│ 0928+094D+0927+093F
+│न्धी│ 0928+094D+0927+0940
+│न्धों│ 0928+094D+0927+094B+0902
+│न्न│ 0928+094D+0928
+│न्नि│ 0928+094D+0928+093F
+│न्मा│ 0928+094D+092E+093E
+│न्वे│ 0928+094D+0935+0947
+│न्स│ 0928+094D+0938
+│न्हें│ 0928+094D+0939+0947+0902
+│पां│ 092A+093E+0902
+│पि│ 092A+093F
+│पी│ 092A+0940
+│पों│ 092A+094B+0902
+│प्ति│ 092A+094D+0924+093F
+│प्य│ 092A+094D+092F
+│फौ│ 092B+094C
+│फ्रां│ 092B+094D+0930+093E+0902
+│ब्ध│ 092C+094D+0927
+│भौ│ 092D+094C
+│मों│ 092E+094B+0902
+│म्प│ 092E+094D+092A
+│म्ब│ 092E+094D+092C
+│म्भि│ 092E+094D+092D+093F
+│म्म│ 092E+094D+092E
+│म्मि│ 092E+094D+092E+093F
+│यां│ 092F+093E+0902
+│रों│ 0930+094B+0902
+│र्ता│ 0930+094D+0924+093E
+│र्थ│ 0930+094D+0925
+│र्द│ 0930+094D+0926
+│र्या│ 0930+094D+092F+093E
+│र्यों│ 0930+094D+092F+094B+0902
+│र्वो│ 0930+094D+0935+094B
+│र्श│ 0930+094D+0936
+│लों│ 0932+094B+0902
+│ल्क│ 0932+094D+0915
+│ल्म│ 0932+094D+092E
+│ल्लि│ 0932+094D+0932+093F
+│वो│ 0935+094B
+│वों│ 0935+094B+0902
+│व्यों│ 0935+094D+092F+094B+0902
+│शों│ 0936+094B+0902
+│श्चि│ 0936+094D+091A+093F
+│श्यों│ 0936+094D+092F+094B+0902
+│श्र│ 0936+094D+0930
+│श्रा│ 0936+094D+0930+093E
+│षों│ 0937+094B+0902
+│ष्का│ 0937+094D+0915+093E
+│ष्टि│ 0937+094D+091F+093F
+│ष्ट्रों│ 0937+094D+091F+094D+0930+094B+0902
+│ष्ठों│ 0937+094D+0920+094B+0902
+│ष्णु│ 0937+094D+0923+0941
+│ष्य│ 0937+094D+092F
+│ष्यों│ 0937+094D+092F+094B+0902
+│स्कू│ 0938+094D+0915+0942
+│स्ता│ 0938+094D+0924+093E
+│स्त्र│ 0938+094D+0924+094D+0930
+│स्त्री│ 0938+094D+0924+094D+0930+0940
+│स्प│ 0938+094D+092A
+│स्पे│ 0938+094D+092A+0947
+│स्म│ 0938+094D+092E
+│स्यों│ 0938+094D+092F+094B+0902
+│स्वी│ 0938+094D+0935+0940
+│हां│ 0939+093E+0902
+│हैः│ 0939+0948+0903
+│हों│ 0939+094B+0902
+│क़ा│ 0958+093E
+│क़ि│ 0958+093F
+│ज़ा│ 095B+093E
+│ड़ा│ 095C+093E
+│ढ़ा│ 095D+093E
+│फ़ा│ 095E+093E
+│फ़्ता│ 095E+094D+0924+093E
+│々│ 0x03005 Japanese
+│〈│ 0x03008 Japanese
+│〉│ 0x03009 Japanese
+│『│ 0x0300e Japanese
+│』│ 0x0300f Japanese
+│あ│ 0x03042 Japanese
+│い│ 0x03044 Japanese
+│う│ 0x03046 Japanese
+│え│ 0x03048 Japanese
+│お│ 0x0304a Japanese
+│か│ 0x0304b Japanese
+│が│ 0x0304c Japanese
+│き│ 0x0304d Japanese
+│く│ 0x0304f Japanese
+│け│ 0x03051 Japanese
+│げ│ 0x03052 Japanese
+│こ│ 0x03053 Japanese
+│さ│ 0x03055 Japanese
+│し│ 0x03057 Japanese
+│じ│ 0x03058 Japanese
+│す│ 0x03059 Japanese
+│ず│ 0x0305a Japanese
+│せ│ 0x0305b Japanese
+│そ│ 0x0305d Japanese
+│た│ 0x0305f Japanese
+│ち│ 0x03061 Japanese
+│っ│ 0x03063 Japanese
+│つ│ 0x03064 Japanese
+│て│ 0x03066 Japanese
+│で│ 0x03067 Japanese
+│と│ 0x03068 Japanese
+│な│ 0x0306a Japanese
+│に│ 0x0306b Japanese
+│の│ 0x0306e Japanese
+│は│ 0x0306f Japanese
+│ば│ 0x03070 Japanese
+│ぱ│ 0x03071 Japanese
+│ひ│ 0x03072 Japanese
+│び│ 0x03073 Japanese
+│ふ│ 0x03075 Japanese
+│べ│ 0x03079 Japanese
+│ほ│ 0x0307b Japanese
+│ま│ 0x0307e Japanese
+│み│ 0x0307f Japanese
+│む│ 0x03080 Japanese
+│め│ 0x03081 Japanese
+│も│ 0x03082 Japanese
+│ゆ│ 0x03086 Japanese
+│よ│ 0x03088 Japanese
+│ら│ 0x03089 Japanese
+│り│ 0x0308a Japanese
+│る│ 0x0308b Japanese
+│れ│ 0x0308c Japanese
+│わ│ 0x0308f Japanese
+│を│ 0x03092 Japanese
+│ん│ 0x03093 Japanese
+│両│ 0x04e21 Japanese
+│亡│ 0x04ea1 Japanese
+│伝│ 0x04f1d Japanese
+│余│ 0x04f59 Japanese
+│価│ 0x04fa1 Japanese
+│値│ 0x05024 Japanese
+│偶│ 0x05076 Japanese
+│働│ 0x050cd Japanese
+│儀│ 0x05100 Japanese
+│償│ 0x0511f Japanese
+│児│ 0x05150 Japanese
+│入│ 0x05165 Japanese
+│再│ 0x0518d Japanese
+│労│ 0x052b4 Japanese
+│効│ 0x052b9 Japanese
+│単│ 0x05358 Japanese
+│厳│ 0x053b3 Japanese
+│又│ 0x053c8 Japanese
+│取│ 0x053d6 Japanese
+│問│ 0x0554f Japanese
+│団│ 0x056e3 Japanese
+│圧│ 0x05727 Japanese
+│域│ 0x057df Japanese
+│場│ 0x05834 Japanese
+│増│ 0x05897 Japanese
+│壊│ 0x058ca Japanese
+│売│ 0x058f2 Japanese
+│変│ 0x05909 Japanese
+│嫡│ 0x05ae1 Japanese
+│実│ 0x05b9f Japanese
+│寛│ 0x05bdb Japanese
+│対│ 0x05bfe Japanese
+│専│ 0x05c02 Japanese
+│導│ 0x05c0e Japanese
+│屈│ 0x05c48 Japanese
+│層│ 0x05c64 Japanese
+│帰│ 0x05e30 Japanese
+│弁│ 0x05f01 Japanese
+│後│ 0x05f8c Japanese
+│従│ 0x05f93 Japanese
+│徳│ 0x05fb3 Japanese
+│応│ 0x05fdc Japanese
+│怖│ 0x06016 Japanese
+│恩│ 0x06069 Japanese
+│恵│ 0x06075 Japanese
+│扱│ 0x06271 Japanese
+│抗│ 0x06297 Japanese
+│択│ 0x0629e Japanese
+│拝│ 0x062dd Japanese
+│拷│ 0x062f7 Japanese
+│挙│ 0x06319 Japanese
+│授│ 0x06388 Japanese
+│採│ 0x063a1 Japanese
+│推│ 0x063a8 Japanese
+│掲│ 0x063b2 Japanese
+│撃│ 0x06483 Japanese
+│明│ 0x0660e Japanese
+│更│ 0x066f4 Japanese
+│権│ 0x06a29 Japanese
+│欠│ 0x06b20 Japanese
+│歩│ 0x06b69 Japanese
+│決│ 0x06c7a Japanese
+│済│ 0x06e08 Japanese
+│渉│ 0x06e09 Japanese
+│満│ 0x06e80 Japanese
+│産│ 0x07523 Japanese
+│発│ 0x0767a Japanese
+│皮│ 0x076ae Japanese
+│盟│ 0x076df Japanese
+│祉│ 0x07949 Japanese
+│経│ 0x07d4c Japanese
+│統│ 0x07d71 Japanese
+│続│ 0x07d9a Japanese
+│総│ 0x07dcf Japanese
+│肝│ 0x0809d Japanese
+│胞│ 0x080de Japanese
+│芸│ 0x082b8 Japanese
+│苦│ 0x082e6 Japanese
+│虐│ 0x08650 Japanese
+│裁│ 0x088c1 Japanese
+│託│ 0x08a17 Japanese
+│証│ 0x08a3c Japanese
+│課│ 0x08ab2 Japanese
+│諸│ 0x08af8 Japanese
+│譲│ 0x08b72 Japanese
+│責│ 0x08cac Japanese
+│賞│ 0x08cde Japanese
+│越│ 0x08d8a Japanese
+│踏│ 0x08e0f Japanese
+│転│ 0x08ee2 Japanese
+│軽│ 0x08efd Japanese
+│追│ 0x08ffd Japanese
+│連│ 0x09023 Japanese
+│達│ 0x09054 Japanese
+│釈│ 0x091c8 Japanese
+│門│ 0x09580 Japanese
+│関│ 0x095a2 Japanese
+│隷│ 0x096b7 Japanese
+│難│ 0x096e3 Japanese
+│頭│ 0x0982d Japanese
+│齢│ 0x09f62 Japanese
+│（│ 0x0ff08 Japanese
+│）│ 0x0ff09 Japanese
+│１│ 0x0ff11 Japanese
+│２│ 0x0ff12 Japanese
+│３│ 0x0ff13 Japanese
+│４│ 0x0ff14 Japanese
+│５│ 0x0ff15 Japanese
+│６│ 0x0ff16 Japanese
+│７│ 0x0ff17 Japanese
+│８│ 0x0ff18 Japanese
+│９│ 0x0ff19 Japanese
+│へ│ 0x03078 Japanese …
+│ゃ│ 0x03083 Japanese …
+│や│ 0x03084 Japanese …
+│だ│ 0x03060 Japanese …
+│部│ 0x090e8 Japanese …
+│ꦏꦃ│ A98F+A983
+│ꦏꦺ│ A98F+A9BA
+│ꦏꦺꦴ│ A98F+A9BA+A9B4
+│ꦏꦿ│ A98F+A9BF
+│ꦏꦿꦁ│ A98F+A9BF+A981
+│ꦏꦿꦂ│ A98F+A9BF+A982
+│ꦏ꧀│ A98F+A9C0
+│ꦒꦸꦃ│ A992+A9B8+A983
+│ꦒꦺꦴ│ A992+A9BA+A9B4
+│ꦒꦿ│ A992+A9BF
+│ꦒꦿꦺ│ A992+A9BF+A9BA
+│ꦔꦃ│ A994+A983
+│ꦔꦺ│ A994+A9BA
+│ꦔꦺꦴ│ A994+A9BA+A9B4
+│ꦔꦿ│ A994+A9BF
+│ꦕꦃ│ A995+A983
+│ꦕꦺꦴ│ A995+A9BA+A9B4
+│ꦗꦃ│ A997+A983
+│ꦗꦺ│ A997+A9BA
+│ꦗꦿꦺꦴ│ A997+A9BF+A9BA+A9B4
+│ꦝꦃ│ A99D+A983
+│ꦝꦺ│ A99D+A9BA
+│ꦝꦺꦴ│ A99D+A9BA+A9B4
+│ꦝꦺꦴꦂ│ A99D+A9BA+A9B4+A982
+│ꦠꦸꦃ│ A9A0+A9B8+A983
+│ꦠꦺ│ A9A0+A9BA
+│ꦠꦺꦃ│ A9A0+A9BA+A983
+│ꦠꦺꦴ│ A9A0+A9BA+A9B4
+│ꦠꦾ│ A9A0+A9BE
+│ꦠꦿ│ A9A0+A9BF
+│ꦠꦿꦶ│ A9A0+A9BF+A9B6
+│ꦠ꧀│ A9A0+A9C0
+│ꦢꦃ│ A9A2+A983
+│ꦢꦺ│ A9A2+A9BA
+│ꦢꦺꦴ│ A9A2+A9BA+A9B4
+│ꦢꦾ│ A9A2+A9BE
+│ꦢꦿ│ A9A2+A9BF
+│ꦢ꧀│ A9A2+A9C0
+│ꦤꦺ│ A9A4+A9BA
+│ꦤꦺꦃ│ A9A4+A9BA+A983
+│ꦤꦺꦴ│ A9A4+A9BA+A9B4
+│ꦤ꧀│ A9A4+A9C0
+│ꦥꦃ│ A9A5+A983
+│ꦥ꦳꧀│ A9A5+A9B3+A9C0
+│ꦥꦺ│ A9A5+A9BA
+│ꦥꦺꦴ│ A9A5+A9BA+A9B4
+│ꦥꦿ│ A9A5+A9BF
+│ꦥꦿꦃ│ A9A5+A9BF+A983
+│ꦥꦿꦶ│ A9A5+A9BF+A9B6
+│ꦥꦿꦺꦴ│ A9A5+A9BF+A9BA+A9B4
+│ꦥ꧀│ A9A5+A9C0
+│ꦧꦺ│ A9A7+A9BA
+│ꦧꦺꦃ│ A9A7+A9BA+A983
+│ꦧꦺꦴ│ A9A7+A9BA+A9B4
+│ꦧꦿ│ A9A7+A9BF
+│ꦧ꧀│ A9A7+A9C0
+│ꦩꦃ│ A9A9+A983
+│ꦩꦺ│ A9A9+A9BA
+│ꦩꦺꦃ│ A9A9+A9BA+A983
+│ꦩꦺꦴ│ A9A9+A9BA+A9B4
+│ꦩꦿ│ A9A9+A9BF
+│ꦩꦿꦃ│ A9A9+A9BF+A983
+│ꦩꦿꦶꦃ│ A9A9+A9BF+A9B6+A983
+│ꦩ꧀│ A9A9+A9C0
+│ꦪꦃ│ A9AA+A983
+│ꦪꦸꦃ│ A9AA+A9B8+A983
+│ꦪꦺꦴ│ A9AA+A9BA+A9B4
+│ꦫꦶꦃ│ A9AB+A9B6+A983
+│ꦫꦺ│ A9AB+A9BA
+│ꦫꦺꦴ│ A9AB+A9BA+A9B4
+│ꦫꦾ│ A9AB+A9BE
+│ꦭꦃ│ A9AD+A983
+│ꦭꦶꦃ│ A9AD+A9B6+A983
+│ꦭꦺ│ A9AD+A9BA
+│ꦭꦺꦃ│ A9AD+A9BA+A983
+│ꦭꦺꦴ│ A9AD+A9BA+A9B4
+│ꦭꦺꦴꦁ│ A9AD+A9BA+A9B4+A981
+│ꦭ꧀│ A9AD+A9C0
+│ꦮꦃ│ A9AE+A983
+│ꦮꦶꦃ│ A9AE+A9B6+A983
+│ꦮꦸꦃ│ A9AE+A9B8+A983
+│ꦮꦺ│ A9AE+A9BA
+│ꦮꦺꦴ│ A9AE+A9BA+A9B4
+│ꦮꦺꦴꦁ│ A9AE+A9BA+A9B4+A981
+│ꦮꦺꦴꦃ│ A9AE+A9BA+A9B4+A983
+│ꦮꦿꦸꦃ│ A9AE+A9BF+A9B8+A983
+│ꦱꦶꦃ│ A9B1+A9B6+A983
+│ꦱꦺ│ A9B1+A9BA
+│ꦱꦺꦴ│ A9B1+A9BA+A9B4
+│ꦱꦾ│ A9B1+A9BE
+│ꦱꦿ│ A9B1+A9BF
+│ꦱꦿꦃ│ A9B1+A9BF+A983
+│ꦱ꧀│ A9B1+A9C0
+│ꦲꦺ│ A9B2+A9BA
+│ꦲꦺꦴ│ A9B2+A9BA+A9B4
+│ಅಂ│ 0C85+0C82
+│ಇಂ│ 0C87+0C82
+│ಉಂ│ 0C89+0C82
+│ಎಂ│ 0C8E+0C82
+│ಒಂ│ 0C92+0C82
+│ಕಾ│ 0C95+0CBE
+│ಕಾಂ│ 0C95+0CBE+0C82
+│ಕಿಂ│ 0C95+0CBF+0C82
+│ಕೀ│ 0C95+0CC0
+│ಕು│ 0C95+0CC1
+│ಕುಂ│ 0C95+0CC1+0C82
+│ಕೂ│ 0C95+0CC2
+│ಕೃ│ 0C95+0CC3
+│ಕೆಂ│ 0C95+0CC6+0C82
+│ಕೇ│ 0C95+0CC7
+│ಕೈ│ 0C95+0CC8
+│ಕೊ│ 0C95+0CCA
+│ಕೊಂ│ 0C95+0CCA+0C82
+│ಖಾಂ│ 0C96+0CBE+0C82
+│ಗಾ│ 0C97+0CBE
+│ಗಾಂ│ 0C97+0CBE+0C82
+│ಗೀ│ 0C97+0CC0
+│ಗು│ 0C97+0CC1
+│ಗೂ│ 0C97+0CC2
+│ಗೈ│ 0C97+0CC8
+│ಗೊ│ 0C97+0CCA
+│ಗೊಂ│ 0C97+0CCA+0C82
+│ಗೋ│ 0C97+0CCB
+│ಚಾ│ 0C9A+0CBE
+│ಚೀ│ 0C9A+0CC0
+│ಚು│ 0C9A+0CC1
+│ಛಾ│ 0C9B+0CBE
+│ಜಾ│ 0C9C+0CBE
+│ಜೀ│ 0C9C+0CC0
+│ಟು│ 0C9F+0CC1
+│ಟುಂ│ 0C9F+0CC1+0C82
+│ಟೇ│ 0C9F+0CC7
+│ಠಾ│ 0CA0+0CBE
+│ಡಾ│ 0CA1+0CBE
+│ಡು│ 0CA1+0CC1
+│ಡೂ│ 0CA1+0CC2
+│ಢೀ│ 0CA2+0CC0
+│ಣಂ│ 0CA3+0C82
+│ಣಾ│ 0CA3+0CBE
+│ಣು│ 0CA3+0CC1
+│ಣೈ│ 0CA3+0CC8
+│ತಂ│ 0CA4+0C82
+│ತಃ│ 0CA4+0C83
+│ತಾ│ 0CA4+0CBE
+│ತೀ│ 0CA4+0CC0
+│ತು│ 0CA4+0CC1
+│ತೃ│ 0CA4+0CC3
+│ತೊ│ 0CA4+0CCA
+│ತೋ│ 0CA4+0CCB
+│ಥಾ│ 0CA5+0CBE
+│ದಂ│ 0CA6+0C82
+│ದಾ│ 0CA6+0CBE
+│ದಿಂ│ 0CA6+0CBF+0C82
+│ದು│ 0CA6+0CC1
+│ದೂ│ 0CA6+0CC2
+│ದೃ│ 0CA6+0CC3
+│ದೇ│ 0CA6+0CC7
+│ದೊ│ 0CA6+0CCA
+│ದೋ│ 0CA6+0CCB
+│ಧಾ│ 0CA7+0CBE
+│ಧೀ│ 0CA7+0CC0
+│ಧೂ│ 0CA7+0CC2
+│ನಃ│ 0CA8+0C83
+│ನಾ│ 0CA8+0CBE
+│ನಾಂ│ 0CA8+0CBE+0C82
+│ನಿಂ│ 0CA8+0CBF+0C82
+│ನು│ 0CA8+0CC1
+│ನೂ│ 0CA8+0CC2
+│ನೇ│ 0CA8+0CC7
+│ನೈ│ 0CA8+0CC8
+│ನೊ│ 0CA8+0CCA
+│ಪಂ│ 0CAA+0C82
+│ಪಾ│ 0CAA+0CBE
+│ಪು│ 0CAA+0CC1
+│ಪೂ│ 0CAA+0CC2
+│ಪೇ│ 0CAA+0CC7
+│ಬಂ│ 0CAC+0C82
+│ಬಾ│ 0CAC+0CBE
+│ಬು│ 0CAC+0CC1
+│ಬೇ│ 0CAC+0CC7
+│ಬೋ│ 0CAC+0CCB
+│ಭಾ│ 0CAD+0CBE
+│ಭೀ│ 0CAD+0CC0
+│ಭು│ 0CAD+0CC1
+│ಭೇ│ 0CAD+0CC7
+│ಭೋ│ 0CAD+0CCB
+│ಮಾ│ 0CAE+0CBE
+│ಮೀ│ 0CAE+0CC0
+│ಮು│ 0CAE+0CC1
+│ಮೂ│ 0CAE+0CC2
+│ಮೇ│ 0CAE+0CC7
+│ಮೈ│ 0CAE+0CC8
+│ಯಂ│ 0CAF+0C82
+│ಯಾ│ 0CAF+0CBE
+│ಯಿಂ│ 0CAF+0CBF+0C82
+│ಯು│ 0CAF+0CC1
+│ಯುಂ│ 0CAF+0CC1+0C82
+│ಯೂ│ 0CAF+0CC2
+│ಯೆಂ│ 0CAF+0CC6+0C82
+│ಯೇ│ 0CAF+0CC7
+│ಯೊ│ 0CAF+0CCA
+│ಯೋ│ 0CAF+0CCB
+│ರಂ│ 0CB0+0C82
+│ರಾ│ 0CB0+0CBE
+│ರಾಂ│ 0CB0+0CBE+0C82
+│ರಿಂ│ 0CB0+0CBF+0C82
+│ರೀ│ 0CB0+0CC0
+│ರು│ 0CB0+0CC1
+│ರೂ│ 0CB0+0CC2
+│ರೆಂ│ 0CB0+0CC6+0C82
+│ರೊ│ 0CB0+0CCA
+│ರೋ│ 0CB0+0CCB
+│ಲಂ│ 0CB2+0C82
+│ಲಾ│ 0CB2+0CBE
+│ಲೀ│ 0CB2+0CC0
+│ಲು│ 0CB2+0CC1
+│ಲೂ│ 0CB2+0CC2
+│ಲೆಂ│ 0CB2+0CC6+0C82
+│ಲೇ│ 0CB2+0CC7
+│ಲೋ│ 0CB2+0CCB
+│ಳಾ│ 0CB3+0CBE
+│ಳಿಂ│ 0CB3+0CBF+0C82
+│ಳು│ 0CB3+0CC1
+│ಳೂ│ 0CB3+0CC2
+│ವಾ│ 0CB5+0CBE
+│ವೀ│ 0CB5+0CC0
+│ವು│ 0CB5+0CC1
+│ವುಂ│ 0CB5+0CC1+0C82
+│ವೂ│ 0CB5+0CC2
+│ವೃ│ 0CB5+0CC3
+│ವೆಂ│ 0CB5+0CC6+0C82
+│ವೇ│ 0CB5+0CC7
+│ವೈ│ 0CB5+0CC8
+│ವೋ│ 0CB5+0CCB
+│ಶಾ│ 0CB6+0CBE
+│ಶಾಂ│ 0CB6+0CBE+0C82
+│ಶೀ│ 0CB6+0CC0
+│ಶೇ│ 0CB6+0CC7
+│ಷಾ│ 0CB7+0CBE
+│ಷೇ│ 0CB7+0CC7
+│ಸಂ│ 0CB8+0C82
+│ಸಾ│ 0CB8+0CBE
+│ಸಾಂ│ 0CB8+0CBE+0C82
+│ಸು│ 0CB8+0CC1
+│ಸೂ│ 0CB8+0CC2
+│ಸೇ│ 0CB8+0CC7
+│ಹಾ│ 0CB9+0CBE
+│ಹು│ 0CB9+0CC1
+│ಹೇ│ 0CB9+0CC7
+│ಹೊ│ 0CB9+0CCA
+│ಹೊಂ│ 0CB9+0CCA+0C82
+│ಹೋ│ 0CB9+0CCB
+│កា│ 1780+17B6
+│កើ│ 1780+17BE
+│កេ│ 1780+17C1
+│កោ│ 1780+17C4
+│ក្ខ│ 1780+17D2+1781
+│ក្ដិ│ 1780+17D2+178A+17B7
+│ក្ដី│ 1780+17D2+178A+17B8
+│ក្នុ│ 1780+17D2+1793+17BB
+│ក្រ│ 1780+17D2+179A
+│ក្រុ│ 1780+17D2+179A+17BB
+│ក្ស│ 1780+17D2+179F
+│ខា│ 1781+17B6
+│ខែ│ 1781+17C2
+│ខ្ព│ 1781+17D2+1796
+│ខ្លួ│ 1781+17D2+179B+17BD
+│គា│ 1782+17B6
+│គាំ│ 1782+17B6+17C6
+│គេ│ 1782+17C1
+│គោ│ 1782+17C4
+│គ្គ│ 1782+17D2+1782
+│គ្រ│ 1782+17D2+179A
+│គ្រួ│ 1782+17D2+179A+17BD
+│ឃា│ 1783+17B6
+│ឃើ│ 1783+17BE
+│ឃោ│ 1783+17C4
+│ឃៅ│ 1783+17C5
+│ឃ្ន│ 1783+17D2+1793
+│ងា│ 1784+17B6
+│ង្ក│ 1784+17D2+1780
+│ង្ខិ│ 1784+17D2+1781+17B7
+│ង្ខំ│ 1784+17D2+1781+17C6
+│ង្គ│ 1784+17D2+1782
+│ង្រី│ 1784+17D2+179A+17B8
+│ង្រឹ│ 1784+17D2+179A+17B9
+│ង្អ│ 1784+17D2+17A2
+│ចា│ 1785+17B6
+│ចាំ│ 1785+17B6+17C6
+│ចេ│ 1785+17C1
+│ចែ│ 1785+17C2
+│ចោ│ 1785+17C4
+│ច្ច│ 1785+17D2+1785
+│ឆាំ│ 1786+17B6+17C6
+│ឆ្ល│ 1786+17D2+179B
+│ជា│ 1787+17B6
+│ជៀ│ 1787+17C0
+│ជ្ជ│ 1787+17D2+1787
+│ជ្យ│ 1787+17D2+1799
+│ជ្រ│ 1787+17D2+179A
+│ឈា│ 1788+17B6
+│ញុះ│ 1789+17BB+17C7
+│ញ្ចូ│ 1789+17D2+1785+17BC
+│ញ្ញ│ 1789+17D2+1789
+│ដា│ 178A+17B6
+│ដើ│ 178A+17BE
+│ដែ│ 178A+17C2
+│ដៃ│ 178A+17C3
+│ដោ│ 178A+17C4
+│ដៅ│ 178A+17C5
+│ដ្ឋ│ 178A+17D2+178B
+│ឋា│ 178B+17B6
+│ឌ្ឍ│ 178C+17D2+178D
+│ណា│ 178E+17B6
+│ណើ│ 178E+17BE
+│ណែ│ 178E+17C2
+│ណោ│ 178E+17C4
+│ណោះ│ 178E+17C4+17C7
+│ណៈ│ 178E+17C8
+│ណ្ឌ│ 178E+17D2+178C
+│តា│ 178F+17B6
+│តេ│ 178F+17C1
+│តែ│ 178F+17C2
+│ត្ដ│ 178F+17D2+178A
+│ត្ដិ│ 178F+17D2+178A+17B7
+│ត្ថ│ 178F+17D2+1790
+│ត្ថិ│ 178F+17D2+1790+17B7
+│ត្យ│ 178F+17D2+1799
+│ត្រ│ 178F+17D2+179A
+│ត្រឹ│ 178F+17D2+179A+17B9
+│ត្រូ│ 178F+17D2+179A+17BC
+│ត្ស│ 178F+17D2+179F
+│ថា│ 1790+17B6
+│ថែ│ 1790+17C2
+│ថ្នូ│ 1790+17D2+1793+17BC
+│ថ្មី│ 1790+17D2+1798+17B8
+│ទា│ 1791+17B6
+│ទាំ│ 1791+17B6+17C6
+│ទៀ│ 1791+17C0
+│ទេ│ 1791+17C1
+│ទៃ│ 1791+17C3
+│ទោ│ 1791+17C4
+│ទោះ│ 1791+17C4+17C7
+│ទៅ│ 1791+17C5
+│ទ្ធ│ 1791+17D2+1792
+│ទ្ធិ│ 1791+17D2+1792+17B7
+│ទ្រ│ 1791+17D2+179A
+│ធា│ 1792+17B6
+│ធ្ង│ 1792+17D2+1784
+│ធ្នូ│ 1792+17D2+1793+17BC
+│នា│ 1793+17B6
+│នាំ│ 1793+17B6+17C6
+│នឿ│ 1793+17BF
+│នេះ│ 1793+17C1+17C7
+│នៃ│ 1793+17C3
+│នោះ│ 1793+17C4+17C7
+│នៅ│ 1793+17C5
+│នៈ│ 1793+17C8
+│ន្ដ│ 1793+17D2+178A
+│ន្ដិ│ 1793+17D2+178A+17B7
+│ន្ធ│ 1793+17D2+1792
+│ន្និ│ 1793+17D2+1793+17B7
+│ន្ម│ 1793+17D2+1798
+│បា│ 1794+17B6
+│បើ│ 1794+17BE
+│បៀ│ 1794+17C0
+│បែ│ 1794+17C2
+│បោ│ 1794+17C4
+│បោះ│ 1794+17C4+17C7
+│បះ│ 1794+17C7
+│ប៉ះ│ 1794+17C9+17C7
+│ប្ដី│ 1794+17D2+178A+17B8
+│ប្ដូ│ 1794+17D2+178A+17BC
+│ប្ប│ 1794+17D2+1794
+│ប្បី│ 1794+17D2+1794+17B8
+│ប្រ│ 1794+17D2+179A
+│ប្រឹ│ 1794+17D2+179A+17B9
+│ប្រុ│ 1794+17D2+179A+17BB
+│ប្អូ│ 1794+17D2+17A2+17BC
+│ផ្ដ│ 1795+17D2+178A
+│ផ្ទុ│ 1795+17D2+1791+17BB
+│ផ្លិ│ 1795+17D2+179B+17B7
+│ផ្ស│ 1795+17D2+179F
+│ពា│ 1796+17B6
+│ពើ│ 1796+17BE
+│ពេ│ 1796+17C1
+│ពោះ│ 1796+17C4+17C7
+│ព្យ│ 1796+17D2+1799
+│ព្រ│ 1796+17D2+179A
+│ព្រឹ│ 1796+17D2+179A+17B9
+│ព្រំ│ 1796+17D2+179A+17C6
+│ព្វ│ 1796+17D2+179C
+│ភា│ 1797+17B6
+│ភេ│ 1797+17C1
+│មា│ 1798+17B6
+│មើ│ 1798+17BE
+│មេ│ 1798+17C1
+│មែ│ 1798+17C2
+│ម៉ា│ 1798+17C9+17B6
+│ម៉ោ│ 1798+17C9+17C4
+│ម្ប│ 1798+17D2+1794
+│ម្បី│ 1798+17D2+1794+17B8
+│ម្បុ│ 1798+17D2+1794+17BB
+│ម្ម│ 1798+17D2+1798
+│ម្រ│ 1798+17D2+179A
+│ម្រិ│ 1798+17D2+179A+17B7
+│ម្រូ│ 1798+17D2+179A+17BC
+│យា│ 1799+17B6
+│យោ│ 1799+17C4
+│យៈ│ 1799+17C8
+│យ៉ា│ 1799+17C9+17B6
+│យ្យ│ 1799+17D2+1799
+│រា│ 179A+17B6
+│រាំ│ 179A+17B6+17C6
+│រើ│ 179A+17BE
+│រឿ│ 179A+17BF
+│រៀ│ 179A+17C0
+│រះ│ 179A+17C7
+│រៈ│ 179A+17C8
+│រ្ដិ៍│ 179A+17D2+178A+17B7+17CD
+│លា│ 179B+17B6
+│លុះ│ 179B+17BB+17C7
+│លើ│ 179B+17BE
+│លេ│ 179B+17C1
+│លោ│ 179B+17C4
+│លៈ│ 179B+17C8
+│វា│ 179C+17B6
+│វេ│ 179C+17C1
+│វៈ│ 179C+17C8
+│សា│ 179F+17B6
+│សើ│ 179F+17BE
+│សេ│ 179F+17C1
+│សៈ│ 179F+17C8
+│ស្ដី│ 179F+17D2+178A+17B8
+│ស្ថិ│ 179F+17D2+1790+17B7
+│ស្ទួ│ 179F+17D2+1791+17BD
+│ស្រ│ 179F+17D2+179A
+│ស្រី│ 179F+17D2+179A+17B8
+│ស្រ័│ 179F+17D2+179A+17D0
+│ស្វ័│ 179F+17D2+179C+17D0
+│ស្ស│ 179F+17D2+179F
+│ហា│ 17A0+17B6
+│ហើ│ 17A0+17BE
+│ហេ│ 17A0+17C1
+│ហែ│ 17A0+17C2
+│ហោ│ 17A0+17C4
+│ហ្ម│ 17A0+17D2+1798
+│ឡា│ 17A1+17B6
+│ឡើ│ 17A1+17BE
+│អា│ 17A2+17B6
+│អើ│ 17A2+17BE
+│អៀ│ 17A2+17C0
+│អ្ន│ 17A2+17D2+1793
+│អ្វី│ 17A2+17D2+179C+17B8
+│ឱ្យ│ 17B1+17D2+1799
+│ᨠ᩠ᨠ│ 1A20+1A60+1A20
+│ᨠ᩠ᨦᩢᩢ│ 1A20+1A60+1A26+1A62+1A62
+│ᨠ᩠ᨦᩨ᩵│ 1A20+1A60+1A26+1A68+1A75
+│ᨠ᩠ᨭᩫ│ 1A20+1A60+1A2D+1A6B
+│ᨠ᩠ᨯᩢ│ 1A20+1A60+1A2F+1A62
+│ᨠ᩠ᨶᩢ│ 1A20+1A60+1A36+1A62
+│ᨠ᩠ᨶᩥ│ 1A20+1A60+1A36+1A65
+│ᨠ᩠ᩅ│ 1A20+1A60+1A45
+│ᨠ᩠ᩅᩢ│ 1A20+1A60+1A45+1A62
+│ᨠ᩠ᩅᩫ│ 1A20+1A60+1A45+1A6B
+│ᨠ᩠ᩋ᩵│ 1A20+1A60+1A4B+1A75
+│ᨠᩢ᩠ᨷ│ 1A20+1A62+1A60+1A37
+│ᨠᩮ᩠│ 1A20+1A6E+1A60
+│ᨠᩮᩢ᩵│ 1A20+1A6E+1A62+1A75
+│ᨠᩮ᩵│ 1A20+1A6E+1A75
+│ᨠᩯ᩠│ 1A20+1A6F+1A60
+│ᨠᩯ᩵│ 1A20+1A6F+1A75
+│ᨡ᩠ᨦᩢ│ 1A21+1A60+1A26+1A62
+│ᨡ᩠ᨯᩢ│ 1A21+1A60+1A2F+1A62
+│ᨡ᩠ᨶ│ 1A21+1A60+1A36
+│ᨡ᩠ᨶᩢ│ 1A21+1A60+1A36+1A62
+│ᨡ᩠ᨶᩨ᩶│ 1A21+1A60+1A36+1A68+1A76
+│ᨡ᩠ᩅ│ 1A21+1A60+1A45
+│ᨡ᩠ᩋ│ 1A21+1A60+1A4B
+│ᨡᩮ᩠│ 1A21+1A6E+1A60
+│ᨡᩮᩢ│ 1A21+1A6E+1A62
+│ᨡᩮᩢᩢ│ 1A21+1A6E+1A62+1A62
+│ᨡᩯ᩠│ 1A21+1A6F+1A60
+│ᨡᩱᩢ│ 1A21+1A71+1A62
+│ᨣᩕ│ 1A23+1A55
+│ᨣᩕ᩠│ 1A23+1A55+1A60
+│ᨣᩕᩮ᩠│ 1A23+1A55+1A6E+1A60
+│ᨣ᩠ᨣ│ 1A23+1A60+1A23
+│ᨣ᩠ᨯᩧ│ 1A23+1A60+1A2F+1A67
+│ᨣ᩠ᨶᩢ│ 1A23+1A60+1A36+1A62
+│ᨣ᩠ᨾᩫ│ 1A23+1A60+1A3E+1A6B
+│ᨣ᩠ᩅ│ 1A23+1A60+1A45
+│ᨣ᩠ᩋᩢ│ 1A23+1A60+1A4B+1A62
+│ᨣᩢ᩠ᨷ│ 1A23+1A62+1A60+1A37
+│ᨣᩭ│ 1A23+1A6D
+│ᨣᩮᩢᩢ│ 1A23+1A6E+1A62+1A62
+│ᨣᩯ᩠│ 1A23+1A6F+1A60
+│ᨤ᩠ᨯᩥ│ 1A24+1A60+1A2F+1A65
+│ᨤ᩠ᨶᩨ│ 1A24+1A60+1A36+1A68
+│ᨤ᩠ᨶᩫ│ 1A24+1A60+1A36+1A6B
+│ᨤ᩠ᩅᩫ│ 1A24+1A60+1A45+1A6B
+│ᨤ᩠ᩋ│ 1A24+1A60+1A4B
+│ᨤᩢ᩠ᨬ│ 1A24+1A62+1A60+1A2C
+│ᨤᩮᩢ│ 1A24+1A6E+1A62
+│ᨤᩱ᩵│ 1A24+1A71+1A75
+│ᨧ᩠ᨦᩥ᩵│ 1A27+1A60+1A26+1A65+1A75
+│ᨧ᩠ᨯᩢ│ 1A27+1A60+1A2F+1A62
+│ᨧᩮ│ 1A27+1A6E
+│ᨧᩮ᩠│ 1A27+1A6E+1A60
+│ᨧᩮᩢᩢ│ 1A27+1A6E+1A62+1A62
+│ᨧᩱ│ 1A27+1A71
+│ᨧᩱ᩠│ 1A27+1A71+1A60
+│ᨨ᩠ᨶᩢ│ 1A28+1A60+1A36+1A62
+│ᨩ᩠ᨶᩢᩢ│ 1A29+1A60+1A36+1A62+1A62
+│ᨩ᩠ᨶ᩼│ 1A29+1A60+1A36+1A7C
+│ᨩᩭ᩵│ 1A29+1A6D+1A75
+│ᨩᩮ᩠│ 1A29+1A6E+1A60
+│ᨩᩱᩢ│ 1A29+1A71+1A62
+│ᨩ᩵ᩭ│ 1A29+1A75+1A6D
+│ᨪ᩠ᨦᩨ᩵│ 1A2A+1A60+1A26+1A68+1A75
+│ᨪᩮᩢ│ 1A2A+1A6E+1A62
+│ᨬ᩠ᨬ│ 1A2C+1A60+1A2C
+│ᨯ᩠ᨦᩢ᩵│ 1A2F+1A60+1A26+1A62+1A75
+│ᨯ᩠ᨰ│ 1A2F+1A60+1A30
+│ᨯ᩠ᨶᩥ│ 1A2F+1A60+1A36+1A65
+│ᨯᩪᩯ│ 1A2F+1A6A+1A6F
+│ᨯᩯ᩠│ 1A2F+1A6F+1A60
+│ᨯᩰ᩠│ 1A2F+1A70+1A60
+│ᨯᩱ│ 1A2F+1A71
+│ᨯᩱᩢ│ 1A2F+1A71+1A62
+│ᨯᩴ᩠ᨿ│ 1A2F+1A74+1A60+1A3F
+│ᨱ᩠ᨱ│ 1A31+1A60+1A31
+│ᨲᩕ│ 1A32+1A55
+│ᨲᩕᩦ│ 1A32+1A55+1A66
+│ᨲᩕ᩼│ 1A32+1A55+1A7C
+│ᨲ᩠ᨠᩫ│ 1A32+1A60+1A20+1A6B
+│ᨲ᩠ᨦᩢᩢ│ 1A32+1A60+1A26+1A62+1A62
+│ᨲ᩠ᨯᩢ│ 1A32+1A60+1A2F+1A62
+│ᨲ᩠ᨲᩥ│ 1A32+1A60+1A32+1A65
+│ᨲ᩠ᨳᩩ│ 1A32+1A60+1A33+1A69
+│ᨲ᩠ᨶᩫ│ 1A32+1A60+1A36+1A6B
+│ᨲ᩠ᨶᩫᩢ│ 1A32+1A60+1A36+1A6B+1A62
+│ᨲ᩠ᩅᩫ│ 1A32+1A60+1A45+1A6B
+│ᨲ᩠ᩋᩢ│ 1A32+1A60+1A4B+1A62
+│ᨲᩮ᩠│ 1A32+1A6E+1A60
+│ᨲᩯ᩠│ 1A32+1A6F+1A60
+│ᨲᩯ᩵│ 1A32+1A6F+1A75
+│ᨲᩱ│ 1A32+1A71
+│ᨲᩱ᩠│ 1A32+1A71+1A60
+│ᨲᩱᩢ│ 1A32+1A71+1A62
+│ᨳ᩠ᨦᩨ│ 1A33+1A60+1A26+1A68
+│ᨳ᩠ᩅᩢ│ 1A33+1A60+1A45+1A62
+│ᨳᩫ᩠ᨷ│ 1A33+1A6B+1A60+1A37
+│ᨳᩮ᩠│ 1A33+1A6E+1A60
+│ᨳᩮᩢᩢ│ 1A33+1A6E+1A62+1A62
+│ᨳᩯ᩠│ 1A33+1A6F+1A60
+│ᨴ᩠ᨦᩢ│ 1A34+1A60+1A26+1A62
+│ᨴ᩠ᨦᩨ│ 1A34+1A60+1A26+1A68
+│ᨴ᩠ᨵᩥ│ 1A34+1A60+1A35+1A65
+│ᨴ᩠ᨿ│ 1A34+1A60+1A3F
+│ᨴ᩠ᨿ᩵│ 1A34+1A60+1A3F+1A75
+│ᨴ᩠ᩅᩢ│ 1A34+1A60+1A45+1A62
+│ᨴ᩠ᩅᩫ᩵│ 1A34+1A60+1A45+1A6B+1A75
+│ᨴᩮ᩠│ 1A34+1A6E+1A60
+│ᨴᩮᩢᩢ│ 1A34+1A6E+1A62+1A62
+│ᨴᩮᩢ᩵│ 1A34+1A6E+1A62+1A75
+│ᨴᩯ᩠│ 1A34+1A6F+1A60
+│ᨴᩯᩢ│ 1A34+1A6F+1A62
+│ᨴᩰ᩠│ 1A34+1A70+1A60
+│ᨶ᩠ᨲᩥ│ 1A36+1A60+1A32+1A65
+│ᨶ᩠ᨶᩢᩢ│ 1A36+1A60+1A36+1A62+1A62
+│ᨶ᩠ᨶᩥ│ 1A36+1A60+1A36+1A65
+│ᨶ᩠ᩋ│ 1A36+1A60+1A4B
+│ᨶ᩠ᩋᩢ│ 1A36+1A60+1A4B+1A62
+│ᨶᩢ᩠ᨷ│ 1A36+1A62+1A60+1A37
+│ᨶᩮ│ 1A36+1A6E
+│ᨶᩯ᩠│ 1A36+1A6F+1A60
+│ᨶᩱ│ 1A36+1A71
+│ᨷᩕ│ 1A37+1A55
+│ᨷ᩠ᨦᩢ│ 1A37+1A60+1A26+1A62
+│ᨷ᩠ᨯᩢ│ 1A37+1A60+1A2F+1A62
+│ᨷ᩠ᨲᩢ│ 1A37+1A60+1A32+1A62
+│ᨷ᩠ᨲᩥ│ 1A37+1A60+1A32+1A65
+│ᨷ᩠ᨴᩫ│ 1A37+1A60+1A34+1A6B
+│ᨷ᩠ᨿ│ 1A37+1A60+1A3F
+│ᨷ᩠ᩅᩫ│ 1A37+1A60+1A45+1A6B
+│ᨷ᩠ᩋ│ 1A37+1A60+1A4B
+│ᨷᩮ᩠│ 1A37+1A6E+1A60
+│ᨸ᩠ᨠᩫ│ 1A38+1A60+1A20+1A6B
+│ᨸ᩠ᨯᩨ│ 1A38+1A60+1A2F+1A68
+│ᨸ᩠ᨶᩢ│ 1A38+1A60+1A36+1A62
+│ᨸ᩠ᩋ│ 1A38+1A60+1A4B
+│ᨸᩮ᩠│ 1A38+1A6E+1A60
+│ᨸᩮᩢ᩵│ 1A38+1A6E+1A62+1A75
+│ᨸ᩠᩵ᨿ│ 1A38+1A75+1A60+1A3F
+│ᨹ᩠ᨯᩥ│ 1A39+1A60+1A2F+1A65
+│ᨹ᩠ᨿ᩵│ 1A39+1A60+1A3F+1A75
+│ᨹ᩠ᩅᩥ│ 1A39+1A60+1A45+1A65
+│ᨹᩪᩢᩱ│ 1A39+1A6A+1A62+1A71
+│ᨹᩫ᩠ᩃ│ 1A39+1A6B+1A60+1A43
+│ᨹᩮᩨ᩠│ 1A39+1A6E+1A68+1A60
+│ᨻᩕ᩠│ 1A3B+1A55+1A60
+│ᨻ᩠ᨦ│ 1A3B+1A60+1A26
+│ᨻ᩠ᨶᩨ᩶│ 1A3B+1A60+1A36+1A68+1A76
+│ᨻ᩠ᨶᩫ᩶│ 1A3B+1A60+1A36+1A6B+1A76
+│ᨻ᩠ᨿ│ 1A3B+1A60+1A3F
+│ᨻ᩠ᩋ│ 1A3B+1A60+1A4B
+│ᨻᩮ᩠│ 1A3B+1A6E+1A60
+│ᨻᩱ│ 1A3B+1A71
+│ᨽᩱ᩠│ 1A3D+1A71+1A60
+│ᨾ᩠ᨲᩥ│ 1A3E+1A60+1A32+1A65
+│ᨾ᩠ᨾ│ 1A3E+1A60+1A3E
+│ᨾ᩠ᨾ᩼│ 1A3E+1A60+1A3E+1A7C
+│ᨾ᩠ᩅ│ 1A3E+1A60+1A45
+│ᨾ᩠ᩅ᩵│ 1A3E+1A60+1A45+1A75
+│ᨾᩮ᩠│ 1A3E+1A6E+1A60
+│ᨾᩯ᩵│ 1A3E+1A6F+1A75
+│ᨾᩱ│ 1A3E+1A71
+│ᨿ᩠ᨦᩢ│ 1A3F+1A60+1A26+1A62
+│ᨿ᩠ᨦᩢᩢ│ 1A3F+1A60+1A26+1A62+1A62
+│ᨿ᩠ᨦᩥ│ 1A3F+1A60+1A26+1A65
+│ᨿ᩠ᨦᩥ᩵│ 1A3F+1A60+1A26+1A65+1A75
+│ᨿ᩠ᩋ│ 1A3F+1A60+1A4B
+│ᨿᩢ᩠ᨷ│ 1A3F+1A62+1A60+1A37
+│ᨿᩫ᩠ᩈ│ 1A3F+1A6B+1A60+1A48
+│ᨿᩮ᩠│ 1A3F+1A6E+1A60
+│ᨿᩰ│ 1A3F+1A70
+│ᩁ᩠ᨠᩢ│ 1A41+1A60+1A20+1A62
+│ᩁ᩠ᨮᩢ│ 1A41+1A60+1A2E+1A62
+│ᩁ᩠ᨾᩫ│ 1A41+1A60+1A3E+1A6B
+│ᩁ᩠ᨿ│ 1A41+1A60+1A3F
+│ᩁ᩠ᩅ│ 1A41+1A60+1A45
+│ᩁ᩠ᩅ᩵│ 1A41+1A60+1A45+1A75
+│ᩁ᩠ᩋ│ 1A41+1A60+1A4B
+│ᩁᩢ᩠ᨷ│ 1A41+1A62+1A60+1A37
+│ᩁᩢᩭ│ 1A41+1A62+1A6D
+│ᩁᩫ᩠ᨷ│ 1A41+1A6B+1A60+1A37
+│ᩁᩮ᩠│ 1A41+1A6E+1A60
+│ᩁᩮᩨ᩠│ 1A41+1A6E+1A68+1A60
+│ᩁᩯ᩠│ 1A41+1A6F+1A60
+│ᩃ᩠ᨦᩫ│ 1A43+1A60+1A26+1A6B
+│ᩃ᩠ᩅ᩵│ 1A43+1A60+1A45+1A75
+│ᩃᩢ᩠ᨿ│ 1A43+1A62+1A60+1A3F
+│ᩃᩨ᩠ᨷ│ 1A43+1A68+1A60+1A37
+│ᩃᩮ᩠│ 1A43+1A6E+1A60
+│ᩃᩯ│ 1A43+1A6F
+│ᩃᩰ᩠│ 1A43+1A70+1A60
+│ᩅ᩠ᨲᩥ│ 1A45+1A60+1A32+1A65
+│ᩅ᩠ᨶᩢ│ 1A45+1A60+1A36+1A62
+│ᩅ᩠ᨿ│ 1A45+1A60+1A3F
+│ᩅ᩠ᩅ᩵│ 1A45+1A60+1A45+1A75
+│ᩅᩮ│ 1A45+1A6E
+│ᩅᩮ᩠│ 1A45+1A6E+1A60
+│ᩅᩱᩢ│ 1A45+1A71+1A62
+│ᩈ᩠ᨠᩢ│ 1A48+1A60+1A20+1A62
+│ᩈ᩠ᨠᩧ│ 1A48+1A60+1A20+1A67
+│ᩈ᩠ᨦᩢ│ 1A48+1A60+1A26+1A62
+│ᩈ᩠ᨦᩥ᩵│ 1A48+1A60+1A26+1A65+1A75
+│ᩈ᩠ᨦᩫ│ 1A48+1A60+1A26+1A6B
+│ᩈ᩠ᨶᩫ│ 1A48+1A60+1A36+1A6B
+│ᩈ᩠ᨾᩫ│ 1A48+1A60+1A3E+1A6B
+│ᩈ᩠ᨿ│ 1A48+1A60+1A3F
+│ᩈ᩠ᩅ᩵│ 1A48+1A60+1A45+1A75
+│ᩈ᩠ᩋ│ 1A48+1A60+1A4B
+│ᩈᩢ᩠ᨿ│ 1A48+1A62+1A60+1A3F
+│ᩈᩫ᩠ᨾ│ 1A48+1A6B+1A60+1A3E
+│ᩈᩮ│ 1A48+1A6E
+│ᩈᩮ᩠│ 1A48+1A6E+1A60
+│ᩈᩯ᩠│ 1A48+1A6F+1A60
+│ᩈᩱ│ 1A48+1A71
+│ᩈᩱ᩠│ 1A48+1A71+1A60
+│ᩉᩕᩨ│ 1A49+1A55+1A68
+│ᩉ᩠ᨶᩢ│ 1A49+1A60+1A36+1A62
+│ᩉ᩠ᨶᩦ│ 1A49+1A60+1A36+1A66
+│ᩉ᩠ᨶᩧ│ 1A49+1A60+1A36+1A67
+│ᩉ᩠ᨶᩧ᩵│ 1A49+1A60+1A36+1A67+1A75
+│ᩉ᩠ᨶᩫ│ 1A49+1A60+1A36+1A6B
+│ᩉ᩠ᨾ│ 1A49+1A60+1A3E
+│ᩉ᩠ᨾᩢ│ 1A49+1A60+1A3E+1A62
+│ᩉ᩠ᨾᩢᩢ│ 1A49+1A60+1A3E+1A62+1A62
+│ᩉ᩠ᨾᩪ᩵│ 1A49+1A60+1A3E+1A6A+1A75
+│ᩉ᩠ᨾᩳ│ 1A49+1A60+1A3E+1A73
+│ᩉ᩠ᨿᩩ│ 1A49+1A60+1A3F+1A69
+│ᩉ᩠ᩅᩫ│ 1A49+1A60+1A45+1A6B
+│ᩉ᩠ᩅ᩵│ 1A49+1A60+1A45+1A75
+│ᩉᩮᩖᩨ│ 1A49+1A6E+1A56+1A68
+│ᩉᩮ᩠│ 1A49+1A6E+1A60
+│ᩉᩯ᩠│ 1A49+1A6F+1A60
+│ᩉᩯ᩵│ 1A49+1A6F+1A75
+│ᩉᩱ᩠│ 1A49+1A71+1A60
+│ᩋ᩠ᨶᩢ│ 1A4B+1A60+1A36+1A62
+│ᩋ᩠ᨶᩨ᩵│ 1A4B+1A60+1A36+1A68+1A75
+│ᩋ᩠ᩋ│ 1A4B+1A60+1A4B
+│ᩓ᩠ᩅᩢ│ 1A53+1A60+1A45+1A62
+│것│ 0x0ac83 Korean
+│굴│ 0x0ad74 Korean
+│급│ 0x0ae09 Korean
+│까│ 0x0ae4c Korean
+│난│ 0x0b09c Korean
+│날│ 0x0b0a0 Korean
+│내│ 0x0b0b4 Korean
+│냐│ 0x0b0d0 Korean
+│넓│ 0x0b113 Korean
+│녕│ 0x0b155 Korean
+│놓│ 0x0b193 Korean
+│누│ 0x0b204 Korean
+│느│ 0x0b290 Korean
+│능│ 0x0b2a5 Korean
+│달│ 0x0b2ec Korean
+│담│ 0x0b2f4 Korean
+│당│ 0x0b2f9 Korean
+│더│ 0x0b354 Korean
+│던│ 0x0b358 Korean
+│돌│ 0x0b3cc Korean
+│될│ 0x0b420 Korean
+│디│ 0x0b514 Korean
+│따│ 0x0b530 Korean
+│때│ 0x0b54c Korean
+│떤│ 0x0b5a4 Korean
+│란│ 0x0b780 Korean
+│래│ 0x0b798 Korean
+│런│ 0x0b7f0 Korean
+│록│ 0x0b85d Korean
+│론│ 0x0b860 Korean
+│롭│ 0x0b86d Korean
+│룰│ 0x0b8f0 Korean
+│릴│ 0x0b9b4 Korean
+│마│ 0x0b9c8 Korean
+│막│ 0x0b9c9 Korean
+│며│ 0x0ba70 Korean
+│멸│ 0x0ba78 Korean
+│물│ 0x0bb3c Korean
+│므│ 0x0bbc0 Korean
+│및│ 0x0bc0f Korean
+│불│ 0x0bd88 Korean
+│뿐│ 0x0bfd0 Korean
+│석│ 0x0c11d Korean
+│았│ 0x0c558 Korean
+│앞│ 0x0c55e Korean
+│약│ 0x0c57d Korean
+│었│ 0x0c5c8 Korean
+│영│ 0x0c601 Korean
+│올│ 0x0c62c Korean
+│와│ 0x0c640 Korean
+│왔│ 0x0c654 Korean
+│익│ 0x0c775 Korean
+│짐│ 0x0c9d0 Korean
+│창│ 0x0cc3d Korean
+│처│ 0x0cc98 Korean
+│천│ 0x0cc9c Korean
+│총│ 0x0cd1d Korean
+│취│ 0x0cde8 Korean
+│키│ 0x0d0a4 Korean
+│태│ 0x0d0dc Korean
+│택│ 0x0d0dd Korean
+│핍│ 0x0d54d Korean
+│항│ 0x0d56d Korean
+│혐│ 0x0d610 Korean
+│혜│ 0x0d61c Korean
+│휴│ 0x0d734 Korean
+│ກຳ│ 0E81+0EB3
+│ຄຳ│ 0E84+0EB3
+│ຈຳ│ 0E88+0EB3
+│ດຳ│ 0E94+0EB3
+│ຕຳ│ 0E95+0EB3
+│ທຳ│ 0E97+0EB3
+│ນຳ│ 0E99+0EB3
+│ລຳ│ 0EA5+0EB3
+│ສຳ│ 0EAA+0EB3
+│ອຳ│ 0EAD+0EB3
+│क्रू│ 0915+094D+0930+0942
+│क्ष्ण│ 0915+094D+0937+094D+0923
+│खो│ 0916+094B
+│ज्ज│ 091C+094D+091C
+│टि│ 091F+093F
+│ट्टी│ 091F+094D+091F+0940
+│ट्रा│ 091F+094D+0930+093E
+│ट्रे│ 091F+094D+0930+0947
+│ढ़ो│ 0922+093C+094B
+│त्राि│ 0924+094D+0930+093E+093F
+│दौ│ 0926+094C
+│द्धां│ 0926+094D+0927+093E+0902
+│फ्त│ 092B+094D+0924
+│ब्यू│ 092C+094D+092F+0942
+│र्त्त│ 0930+094D+0924+094D+0924
+│लौ│ 0932+094C
+│ष्ठा│ 0937+094D+0920+093E
+│हाँ│ 0939+093E+0901
+│किं│ 0915+093F+0902
+│केा│ 0915+0947+093E
+│क्ष्य│ 0915+094D+0937+094D+092F
+│ख्य│ 0916+094D+092F
+│गाँ│ 0917+093E+0901
+│घ्व│ 0918+094D+0935
+│च्छ│ 091A+094D+091B
+│च्छु│ 091A+094D+091B+0941
+│छि│ 091B+093F
+│छुी│ 091B+0941+0940
+│ट्र│ 091F+094D+0930
+│त्त्व│ 0924+094D+0924+094D+0935
+│त्नी│ 0924+094D+0928+0940
+│त्पी│ 0924+094D+092A+0940
+│त्र्त│ 0924+094D+0930+094D+0924
+│द्घो│ 0926+094D+0918+094B
+│द्भ│ 0926+094D+092D
+│द्य│ 0926+094D+092F
+│नः│ 0928+0903
+│न्तः│ 0928+094D+0924+0903
+│न्ता│ 0928+094D+0924+093E
+│न्त्रि│ 0928+094D+0924+094D+0930+093F
+│पाँ│ 092A+093E+0901
+│पो│ 092A+094B
+│फ्ता│ 092B+094D+0924+093E
+│बो│ 092C+094B
+│ब्धि│ 092C+094D+0927+093F
+│भ्य│ 092D+094D+092F
+│भ्या│ 092D+094D+092F+093E
+│भ्र│ 092D+094D+0930
+│म्न│ 092E+094D+0928
+│म्प्र│ 092E+094D+092A+094D+0930
+│र्कि│ 0930+094D+0915+093F
+│र्बा│ 0930+094D+092C+093E
+│र्मा│ 0930+094D+092E+093E
+│र्वा│ 0930+094D+0935+093E
+│ल्पि│ 0932+094D+092A+093F
+│ल्य│ 0932+094D+092F
+│ल्ह│ 0932+094D+0939
+│श्यि│ 0936+094D+092F+093F
+│सौ│ 0938+094C
+│स्क│ 0938+094D+0915
+│स्ट│ 0938+094D+091F
+│स्तु│ 0938+094D+0924+0941
+│स्ल│ 0938+094D+0932
+│स्वे│ 0938+094D+0935+0947
+│അം│ 0D05+0D02
+│കാ│ 0D15+0D3E
+│കി│ 0D15+0D3F
+│കെ│ 0D15+0D46
+│കൈ│ 0D15+0D48
+│കൊ│ 0D15+0D4A
+│കോ│ 0D15+0D4B
+│ക്ക│ 0D15+0D4D+0D15
+│ക്കാ│ 0D15+0D4D+0D15+0D3E
+│ക്കി│ 0D15+0D4D+0D15+0D3F
+│ക്കു│ 0D15+0D4D+0D15+0D41
+│ക്കും│ 0D15+0D4D+0D15+0D41+0D02
+│ക്കേ│ 0D15+0D4D+0D15+0D47
+│ക്കൊ│ 0D15+0D4D+0D15+0D4A
+│ക്കോ│ 0D15+0D4D+0D15+0D4B
+│ക്ക്‌│ 0D15+0D4D+0D15+0D4D+200C
+│ക്തി│ 0D15+0D4D+0D24+0D3F
+│ക്യ│ 0D15+0D4D+0D2F
+│ക്യം│ 0D15+0D4D+0D2F+0D02
+│ക്ര│ 0D15+0D4D+0D30
+│ക്രൂ│ 0D15+0D4D+0D30+0D42
+│ക്ഷ│ 0D15+0D4D+0D37
+│ക്ഷാ│ 0D15+0D4D+0D37+0D3E
+│ക്ഷി│ 0D15+0D4D+0D37+0D3F
+│ക്ഷേ│ 0D15+0D4D+0D37+0D47
+│ഖ്യാ│ 0D16+0D4D+0D2F+0D3E
+│ഗം│ 0D17+0D02
+│ഗി│ 0D17+0D3F
+│ഗീ│ 0D17+0D40
+│ഗ്ദാ│ 0D17+0D4D+0D26+0D3E
+│ഗ്യ│ 0D17+0D4D+0D2F
+│ഗ്യം│ 0D17+0D4D+0D2F+0D02
+│ഗ്ര│ 0D17+0D4D+0D30
+│ഘി│ 0D18+0D3F
+│ങ്കി│ 0D19+0D4D+0D15+0D3F
+│ങ്കെ│ 0D19+0D4D+0D15+0D46
+│ങ്കേ│ 0D19+0D4D+0D15+0D47
+│ങ്ങ│ 0D19+0D4D+0D19
+│ങ്ങി│ 0D19+0D4D+0D19+0D3F
+│ചാ│ 0D1A+0D3E
+│ചി│ 0D1A+0D3F
+│ചെ│ 0D1A+0D46
+│ചേ│ 0D1A+0D47
+│ചോ│ 0D1A+0D4B
+│ച്ച│ 0D1A+0D4D+0D1A
+│ച്ചി│ 0D1A+0D4D+0D1A+0D3F
+│ച്ചു│ 0D1A+0D4D+0D1A+0D41
+│ച്ചും│ 0D1A+0D4D+0D1A+0D41+0D02
+│ച്ചെ│ 0D1A+0D4D+0D1A+0D46
+│ച്ചേ│ 0D1A+0D4D+0D1A+0D47
+│ജാ│ 0D1C+0D3E
+│ജി│ 0D1C+0D3F
+│ജീ│ 0D1C+0D40
+│ജ്യ│ 0D1C+0D4D+0D2F
+│ജ്യാ│ 0D1C+0D4D+0D2F+0D3E
+│ഞ്ച│ 0D1E+0D4D+0D1A
+│ഞ്ഞ│ 0D1E+0D4D+0D1E
+│ഞ്ഞി│ 0D1E+0D4D+0D1E+0D3F
+│ഞ്ഞെ│ 0D1E+0D4D+0D1E+0D46
+│ടാ│ 0D1F+0D3E
+│ടി│ 0D1F+0D3F
+│ടും│ 0D1F+0D41+0D02
+│ടെ│ 0D1F+0D46
+│ടേ│ 0D1F+0D47
+│ട്ട│ 0D1F+0D4D+0D1F
+│ട്ടാ│ 0D1F+0D4D+0D1F+0D3E
+│ട്ടി│ 0D1F+0D4D+0D1F+0D3F
+│ട്ടു│ 0D1F+0D4D+0D1F+0D41
+│ട്ടോ│ 0D1F+0D4D+0D1F+0D4B
+│ഠി│ 0D20+0D3F
+│ണം│ 0D23+0D02
+│ണാ│ 0D23+0D3E
+│ണി│ 0D23+0D3F
+│ണെ│ 0D23+0D46
+│ണ്ട│ 0D23+0D4D+0D1F
+│ണ്ടാ│ 0D23+0D4D+0D1F+0D3E
+│ണ്ടി│ 0D23+0D4D+0D1F+0D3F
+│ണ്ടു│ 0D23+0D4D+0D1F+0D41
+│ണ്ടും│ 0D23+0D4D+0D1F+0D41+0D02
+│ണ്ടെ│ 0D23+0D4D+0D1F+0D46
+│ണ്ട്‌│ 0D23+0D4D+0D1F+0D4D+200C
+│ണ്ഡ│ 0D23+0D4D+0D21
+│തം│ 0D24+0D02
+│താ│ 0D24+0D3E
+│തി│ 0D24+0D3F
+│തീ│ 0D24+0D40
+│തും│ 0D24+0D41+0D02
+│തെ│ 0D24+0D46
+│തേ│ 0D24+0D47
+│തൊ│ 0D24+0D4A
+│തോ│ 0D24+0D4B
+│ത്ത│ 0D24+0D4D+0D24
+│ത്താ│ 0D24+0D4D+0D24+0D3E
+│ത്തി│ 0D24+0D4D+0D24+0D3F
+│ത്തു│ 0D24+0D4D+0D24+0D41
+│ത്തും│ 0D24+0D4D+0D24+0D41+0D02
+│ത്തെ│ 0D24+0D4D+0D24+0D46
+│ത്തേ│ 0D24+0D4D+0D24+0D47
+│ത്തോ│ 0D24+0D4D+0D24+0D4B
+│ത്ത്‌│ 0D24+0D4D+0D24+0D4D+200C
+│ത്ന│ 0D24+0D4D+0D28
+│ത്നം│ 0D24+0D4D+0D28+0D02
+│ത്നി│ 0D24+0D4D+0D28+0D3F
+│ത്യ│ 0D24+0D4D+0D2F
+│ത്യാ│ 0D24+0D4D+0D2F+0D3E
+│ത്യേ│ 0D24+0D4D+0D2F+0D47
+│ത്ര│ 0D24+0D4D+0D30
+│ത്വ│ 0D24+0D4D+0D35
+│ത്വം│ 0D24+0D4D+0D35+0D02
+│ദം│ 0D26+0D02
+│ദാ│ 0D26+0D3E
+│ദി│ 0D26+0D3F
+│ദേ│ 0D26+0D47
+│ദ്ധ│ 0D26+0D4D+0D27
+│ദ്ധി│ 0D26+0D4D+0D27+0D3F
+│ദ്യ│ 0D26+0D4D+0D2F
+│ദ്യാ│ 0D26+0D4D+0D2F+0D3E
+│ദ്ര│ 0D26+0D4D+0D30
+│ധാ│ 0D27+0D3E
+│ധി│ 0D27+0D3F
+│ധ്യ│ 0D27+0D4D+0D2F
+│നം│ 0D28+0D02
+│നാ│ 0D28+0D3E
+│നി│ 0D28+0D3F
+│നീ│ 0D28+0D40
+│നും│ 0D28+0D41+0D02
+│നെ│ 0D28+0D46
+│നേ│ 0D28+0D47
+│ന്ത│ 0D28+0D4D+0D24
+│ന്തം│ 0D28+0D4D+0D24+0D02
+│ന്തെ│ 0D28+0D4D+0D24+0D46
+│ന്ത്ര│ 0D28+0D4D+0D24+0D4D+0D30
+│ന്ത്ര്യ│ 0D28+0D4D+0D24+0D4D+0D30+0D4D+0D2F
+│ന്ത്ര്യം│ 0D28+0D4D+0D24+0D4D+0D30+0D4D+0D2F+0D02
+│ന്ഥ│ 0D28+0D4D+0D25
+│ന്ദ│ 0D28+0D4D+0D26
+│ന്ധ│ 0D28+0D4D+0D27
+│ന്ധി│ 0D28+0D4D+0D27+0D3F
+│ന്ന│ 0D28+0D4D+0D28
+│ന്നാ│ 0D28+0D4D+0D28+0D3E
+│ന്നി│ 0D28+0D4D+0D28+0D3F
+│ന്നീ│ 0D28+0D4D+0D28+0D40
+│ന്നു│ 0D28+0D4D+0D28+0D41
+│ന്നും│ 0D28+0D4D+0D28+0D41+0D02
+│ന്നെ│ 0D28+0D4D+0D28+0D46
+│ന്നേ│ 0D28+0D4D+0D28+0D47
+│ന്നോ│ 0D28+0D4D+0D28+0D4B
+│ന്ന്│ 0D28+0D4D+0D28+0D4D
+│ന്മ│ 0D28+0D4D+0D2E
+│ന്മാ│ 0D28+0D4D+0D2E+0D3E
+│ന്മു│ 0D28+0D4D+0D2E+0D41
+│ന്മൂ│ 0D28+0D4D+0D2E+0D42
+│ന്യ│ 0D28+0D4D+0D2F
+│ന്യം│ 0D28+0D4D+0D2F+0D02
+│ന്യാ│ 0D28+0D4D+0D2F+0D3E
+│ന്യേ│ 0D28+0D4D+0D2F+0D47
+│ന്യോ│ 0D28+0D4D+0D2F+0D4B
+│ന്റെ│ 0D28+0D4D+0D31+0D46
+│ന്‍കൂ│ 0D28+0D4D+200D+0D15+0D42
+│ന്‍പി│ 0D28+0D4D+200D+0D2A+0D3F
+│പാ│ 0D2A+0D3E
+│പി│ 0D2A+0D3F
+│പീ│ 0D2A+0D40
+│പെ│ 0D2A+0D46
+│പൈ│ 0D2A+0D48
+│പൊ│ 0D2A+0D4A
+│പോ│ 0D2A+0D4B
+│പൌ│ 0D2A+0D4C
+│പ്പ│ 0D2A+0D4D+0D2A
+│പ്പി│ 0D2A+0D4D+0D2A+0D3F
+│പ്പു│ 0D2A+0D4D+0D2A+0D41
+│പ്പെ│ 0D2A+0D4D+0D2A+0D46
+│പ്പോ│ 0D2A+0D4D+0D2A+0D4B
+│പ്പ്‌│ 0D2A+0D4D+0D2A+0D4D+200C
+│പ്ര│ 0D2A+0D4D+0D30
+│പ്രാ│ 0D2A+0D4D+0D30+0D3E
+│ബം│ 0D2C+0D02
+│ബാ│ 0D2C+0D3E
+│ബോ│ 0D2C+0D4B
+│ബ്ലി│ 0D2C+0D4D+0D32+0D3F
+│ഭാ│ 0D2D+0D3E
+│ഭി│ 0D2D+0D3F
+│ഭേ│ 0D2D+0D47
+│ഭൌ│ 0D2D+0D4C
+│ഭ്യാ│ 0D2D+0D4D+0D2F+0D3E
+│ഭ്രാ│ 0D2D+0D4D+0D30+0D3E
+│മം│ 0D2E+0D02
+│മാ│ 0D2E+0D3E
+│മി│ 0D2E+0D3F
+│മെ│ 0D2E+0D46
+│മേ│ 0D2E+0D47
+│മൊ│ 0D2E+0D4A
+│മോ│ 0D2E+0D4B
+│മൌ│ 0D2E+0D4C
+│മ്പ│ 0D2E+0D4D+0D2A
+│മ്പാ│ 0D2E+0D4D+0D2A+0D3E
+│മ്പ്ര│ 0D2E+0D4D+0D2A+0D4D+0D30
+│മ്മ│ 0D2E+0D4D+0D2E
+│മ്മി│ 0D2E+0D4D+0D2E+0D3F
+│യം│ 0D2F+0D02
+│യാ│ 0D2F+0D3E
+│യി│ 0D2F+0D3F
+│യും│ 0D2F+0D41+0D02
+│യെ│ 0D2F+0D46
+│യേ│ 0D2F+0D47
+│യോ│ 0D2F+0D4B
+│യ്ക്കു│ 0D2F+0D4D+0D15+0D4D+0D15+0D41
+│യ്തി│ 0D2F+0D4D+0D24+0D3F
+│യ്തു│ 0D2F+0D4D+0D24+0D41
+│യ്മ│ 0D2F+0D4D+0D2E
+│യ്യാ│ 0D2F+0D4D+0D2F+0D3E
+│യ്യി│ 0D2F+0D4D+0D2F+0D3F
+│രം│ 0D30+0D02
+│രാ│ 0D30+0D3E
+│രി│ 0D30+0D3F
+│രീ│ 0D30+0D40
+│രും│ 0D30+0D41+0D02
+│രെ│ 0D30+0D46
+│രേ│ 0D30+0D47
+│രോ│ 0D30+0D4B
+│ര്യ│ 0D30+0D4D+0D2F
+│ര്യം│ 0D30+0D4D+0D2F+0D02
+│ര്‍ക്കു│ 0D30+0D4D+200D+0D15+0D4D+0D15+0D41
+│ര്‍ക്കും│ 0D30+0D4D+200D+0D15+0D4D+0D15+0D41+0D02
+│ര്‍ക്ക്‌│ 0D30+0D4D+200D+0D15+0D4D+0D15+0D4D+200C
+│ര്‍ഗ്ഗം│ 0D30+0D4D+200D+0D17+0D4D+0D17+0D02
+│ര്‍ച്ച│ 0D30+0D4D+200D+0D1A+0D4D+0D1A
+│ര്‍ണ്ണ│ 0D30+0D4D+200D+0D23+0D4D+0D23
+│ര്‍ത്ത│ 0D30+0D4D+200D+0D24+0D4D+0D24
+│ര്‍ത്തി│ 0D30+0D4D+200D+0D24+0D4D+0D24+0D3F
+│ര്‍ത്തു│ 0D30+0D4D+200D+0D24+0D4D+0D24+0D41
+│ര്‍ത്തേ│ 0D30+0D4D+200D+0D24+0D4D+0D24+0D47
+│ര്‍ദേ│ 0D30+0D4D+200D+0D26+0D47
+│ര്‍ദ്ദ│ 0D30+0D4D+200D+0D26+0D4D+0D26
+│ര്‍പ്പെ│ 0D30+0D4D+200D+0D2A+0D4D+0D2A+0D46
+│ര്‍ബ│ 0D30+0D4D+200D+0D2C
+│ര്‍ഭ│ 0D30+0D4D+200D+0D2D
+│ര്‍മ്മി│ 0D30+0D4D+200D+0D2E+0D4D+0D2E+0D3F
+│ര്‍രാ│ 0D30+0D4D+200D+0D30+0D3E
+│ര്‍വ്വ│ 0D30+0D4D+200D+0D35+0D4D+0D35
+│ര്‍ഹ│ 0D30+0D4D+200D+0D39
+│ര്‍ഹി│ 0D30+0D4D+200D+0D39+0D3F
+│റം│ 0D31+0D02
+│റി│ 0D31+0D3F
+│റ്റ│ 0D31+0D4D+0D31
+│റ്റം│ 0D31+0D4D+0D31+0D02
+│റ്റു│ 0D31+0D4D+0D31+0D41
+│റ്റേ│ 0D31+0D4D+0D31+0D47
+│ലം│ 0D32+0D02
+│ലാ│ 0D32+0D3E
+│ലി│ 0D32+0D3F
+│ലും│ 0D32+0D41+0D02
+│ലെ│ 0D32+0D46
+│ലേ│ 0D32+0D47
+│ലോ│ 0D32+0D4B
+│ല്യ│ 0D32+0D4D+0D2F
+│ല്യാ│ 0D32+0D4D+0D2F+0D3E
+│ല്ല│ 0D32+0D4D+0D32
+│ല്ലാ│ 0D32+0D4D+0D32+0D3E
+│ല്ലാം│ 0D32+0D4D+0D32+0D3E+0D02
+│ല്ലെ│ 0D32+0D4D+0D32+0D46
+│ല്‍കി│ 0D32+0D4D+200D+0D15+0D3F
+│ല്‍കു│ 0D32+0D4D+200D+0D15+0D41
+│ല്‍കേ│ 0D32+0D4D+200D+0D15+0D47
+│ല്‍ത│ 0D32+0D4D+200D+0D24
+│ല്‍നി│ 0D32+0D4D+200D+0D28+0D3F
+│ല്‍പ്പ│ 0D32+0D4D+200D+0D2A+0D4D+0D2A
+│ളം│ 0D33+0D02
+│ളാ│ 0D33+0D3E
+│ളി│ 0D33+0D3F
+│ളും│ 0D33+0D41+0D02
+│ളെ│ 0D33+0D46
+│ളേ│ 0D33+0D47
+│ളോ│ 0D33+0D4B
+│ള്ള│ 0D33+0D4D+0D33
+│ള്ളാ│ 0D33+0D4D+0D33+0D3E
+│ള്ളി│ 0D33+0D4D+0D33+0D3F
+│ള്ളൂ│ 0D33+0D4D+0D33+0D42
+│ള്‍കൊ│ 0D33+0D4D+200D+0D15+0D4A
+│ള്‍ക്ക│ 0D33+0D4D+200D+0D15+0D4D+0D15
+│ള്‍ക്കി│ 0D33+0D4D+200D+0D15+0D4D+0D15+0D3F
+│ള്‍ക്കു│ 0D33+0D4D+200D+0D15+0D4D+0D15+0D41
+│ള്‍ക്കും│ 0D33+0D4D+200D+0D15+0D4D+0D15+0D41+0D02
+│ള്‍ക്കെ│ 0D33+0D4D+200D+0D15+0D4D+0D15+0D46
+│ള്‍ക്ക്‌│ 0D33+0D4D+200D+0D15+0D4D+0D15+0D4D+200C
+│ഴി│ 0D34+0D3F
+│വാ│ 0D35+0D3E
+│വി│ 0D35+0D3F
+│വും│ 0D35+0D41+0D02
+│വെ│ 0D35+0D46
+│വേ│ 0D35+0D47
+│വൈ│ 0D35+0D48
+│വോ│ 0D35+0D4B
+│വ്യ│ 0D35+0D4D+0D2F
+│വ്യം│ 0D35+0D4D+0D2F+0D02
+│വ്യാ│ 0D35+0D4D+0D2F+0D3E
+│ശാ│ 0D36+0D3E
+│ശി│ 0D36+0D3F
+│ശീ│ 0D36+0D40
+│ശേ│ 0D36+0D47
+│ശ്യ│ 0D36+0D4D+0D2F
+│ശ്ര│ 0D36+0D4D+0D30
+│ശ്വാ│ 0D36+0D4D+0D35+0D3E
+│ഷം│ 0D37+0D02
+│ഷി│ 0D37+0D3F
+│ഷ്ട│ 0D37+0D4D+0D1F
+│ഷ്ട്യാ│ 0D37+0D4D+0D1F+0D4D+0D2F+0D3E
+│ഷ്ട്ര│ 0D37+0D4D+0D1F+0D4D+0D30
+│ഷ്ട്രീ│ 0D37+0D4D+0D1F+0D4D+0D30+0D40
+│ഷ്ണു│ 0D37+0D4D+0D23+0D41
+│ഷ്യ│ 0D37+0D4D+0D2F
+│ഷ്യാ│ 0D37+0D4D+0D2F+0D3E
+│സം│ 0D38+0D02
+│സാ│ 0D38+0D3E
+│സാം│ 0D38+0D3E+0D02
+│സി│ 0D38+0D3F
+│സൌ│ 0D38+0D4C
+│സ്കാ│ 0D38+0D4D+0D15+0D3E
+│സ്തു│ 0D38+0D4D+0D24+0D41
+│സ്ത്രം│ 0D38+0D4D+0D24+0D4D+0D30+0D02
+│സ്ത്രീ│ 0D38+0D4D+0D24+0D4D+0D30+0D40
+│സ്ഥ│ 0D38+0D4D+0D25
+│സ്ഥാ│ 0D38+0D4D+0D25+0D3E
+│സ്ഥി│ 0D38+0D4D+0D25+0D3F
+│സ്യ│ 0D38+0D4D+0D2F
+│സ്റ്റ്‌│ 0D38+0D4D+0D31+0D4D+0D31+0D4D+200C
+│സ്വ│ 0D38+0D4D+0D35
+│സ്വാ│ 0D38+0D4D+0D35+0D3E
+│സ്വീ│ 0D38+0D4D+0D35+0D40
+│സ്സ│ 0D38+0D4D+0D38
+│സ്സാ│ 0D38+0D4D+0D38+0D3E
+│സ്സി│ 0D38+0D4D+0D38+0D3F
+│സ്സും│ 0D38+0D4D+0D38+0D41+0D02
+│സ്സോ│ 0D38+0D4D+0D38+0D4B
+│ഹം│ 0D39+0D02
+│ഹാ│ 0D39+0D3E
+│ഹി│ 0D39+0D3F
+│ഹിം│ 0D39+0D3F+0D02
+│കേ│ 0D15+0D47
+│ക്കെ│ 0D15+0D4D+0D15+0D46
+│ഗ്ഗം│ 0D17+0D4D+0D17+0D02
+│ണ്ണ│ 0D23+0D4D+0D23
+│ദ്ദ│ 0D26+0D4D+0D26
+│റെ│ 0D31+0D46
+│വ്വ│ 0D35+0D4D+0D35
+│क्कां│ 0915+094D+0915+093E+0902
+│क्ती│ 0915+094D+0924+0940
+│क्तीं│ 0915+094D+0924+0940+0902
+│क्य│ 0915+094D+092F
+│क्या│ 0915+094D+092F+093E
+│चां│ 091A+093E+0902
+│चौ│ 091A+094C
+│च्छं│ 091A+094D+091B+0902
+│च्या│ 091A+094D+092F+093E
+│च्यां│ 091A+094D+092F+093E+0902
+│ज्ञे│ 091C+094D+091E+0947
+│ज्या│ 091C+094D+092F+093E
+│ज्या‌│ 091C+094D+092F+093E+200C
+│झा│ 091D+093E
+│टा│ 091F+093E
+│टां│ 091F+093E+0902
+│ट्या│ 091F+094D+092F+093E
+│डी│ 0921+0940
+│डो│ 0921+094B
+│णी│ 0923+0940
+│ण्या│ 0923+094D+092F+093E
+│ण्यां│ 0923+094D+092F+093E+0902
+│त्ते│ 0924+094D+0924+0947
+│त्त्वा│ 0924+094D+0924+094D+0935+093E
+│त्त्वे│ 0924+094D+0924+094D+0935+0947
+│त्यं│ 0924+094D+092F+0902
+│त्यां│ 0924+094D+092F+093E+0902
+│त्र्य│ 0924+094D+0930+094D+092F
+│त्र्या│ 0924+094D+0930+094D+092F+093E
+│त्र्ये│ 0924+094D+0930+094D+092F+0947
+│त्वा│ 0924+094D+0935+093E
+│त्वां│ 0924+094D+0935+093E+0902
+│दां│ 0926+093E+0902
+│द्द│ 0926+094D+0926
+│द्दि│ 0926+094D+0926+093F
+│द्दी│ 0926+094D+0926+0940
+│द्धिं│ 0926+094D+0927+093F+0902
+│द्धी│ 0926+094D+0927+0940
+│द्धीं│ 0926+094D+0927+0940+0902
+│द्या│ 0926+094D+092F+093E
+│द्वि│ 0926+094D+0935+093F
+│द्वे│ 0926+094D+0935+0947
+│द्स│ 0926+094D+0938
+│धां│ 0927+093E+0902
+│ध्ये│ 0927+094D+092F+0947
+│ध्व│ 0927+094D+0935
+│नां│ 0928+093E+0902
+│ना‌│ 0928+093E+200C
+│न्हा│ 0928+094D+0939+093E
+│न्ह्यां│ 0928+094D+0939+094D+092F+093E+0902
+│मां│ 092E+093E+0902
+│मो│ 092E+094B
+│म्ह│ 092E+094D+0939
+│यी│ 092F+0940
+│य्य│ 092F+094D+092F
+│रां│ 0930+093E+0902
+│र्जा│ 0930+094D+091C+093E
+│र्ती│ 0930+094D+0924+0940
+│र्थी│ 0930+094D+0925+0940
+│र्ध│ 0930+094D+0927
+│र्बं│ 0930+094D+092C+0902
+│र्भा│ 0930+094D+092D+093E
+│र्यं│ 0930+094D+092F+0902
+│र्यां│ 0930+094D+092F+093E+0902
+│र्वां│ 0930+094D+0935+093E+0902
+│र्वे│ 0930+094D+0935+0947
+│र्‍या│ 0930+094D+200D+092F+093E
+│लां│ 0932+093E+0902
+│ल्यां│ 0932+094D+092F+093E+0902
+│ल्ला│ 0932+094D+0932+093E
+│ळा│ 0933+093E
+│ळी│ 0933+0940
+│व्ये│ 0935+094D+092F+0947
+│श्रां│ 0936+094D+0930+093E+0902
+│षां│ 0937+093E+0902
+│ष्टां│ 0937+094D+091F+093E+0902
+│ष्टी│ 0937+094D+091F+0940
+│ष्टीं│ 0937+094D+091F+0940+0902
+│ष्ट्रा│ 0937+094D+091F+094D+0930+093E
+│ष्ट्रां│ 0937+094D+091F+094D+0930+093E+0902
+│ष्ठे│ 0937+094D+0920+0947
+│स्त्रि│ 0938+094D+0924+094D+0930+093F
+│स्थे│ 0938+094D+0925+0947
+│स्या│ 0938+094D+092F+093E
+│ह्या│ 0939+094D+092F+093E
+│ကေု│ 1000+1031+102F
+│က္က│ 1000+1039+1000
+│က္ဍ│ 1000+1039+100D
+│က္ဍို│ 1000+1039+100D+102D+102F
+│ကၠေ│ 1000+1060+1031
+│ကၠေံ│ 1000+1060+1031+1036
+│ချဳ│ 1001+103B+1033
+│ဂျို│ 1002+103B+102D+102F
+│ဂၠေ│ 1002+1060+1031
+│စှ်ေ│ 1005+103E+103A+1031
+│စၞေ│ 1005+105E+1031
+│စၠေ│ 1005+1060+1031
+│ဇြ│ 1007+103C
+│ဇြေ│ 1007+103C+1031
+│ဇြဳ│ 1007+103C+1033
+│ဇၞေ│ 1007+105E+1031
+│ညေ│ 100A+1031
+│တေံ│ 1010+1031+1036
+│တ္ၚဲ│ 1010+1039+105A+1032
+│တြ│ 1010+103C
+│တြုံ│ 1010+103C+102F+1036
+│တှ်ေ│ 1010+103E+103A+1031
+│တၟေ│ 1010+105F+1031
+│ထ္ၜ│ 1011+1039+105C
+│ဒေံ│ 1012+1031+1036
+│ဒြ│ 1012+103C
+│ပေဲ│ 1015+1031+1032
+│ပ္ဍဲ│ 1015+1039+100D+1032
+│ပ္တံ│ 1015+1039+1010+1036
+│ပျဲ│ 1015+103B+1032
+│ပြဳ│ 1015+103C+1033
+│ပြံ│ 1015+103C+1036
+│ဖျု│ 1016+103B+102F
+│ဖျေံ│ 1016+103B+1031+1036
+│ဗျဵု│ 1017+103B+1035+102F
+│ဗြေ│ 1017+103C+1031
+│ဗြဴ│ 1017+103C+1034
+│ဗၠေ│ 1017+1060+1031
+│မ္ဂ│ 1019+1039+1002
+│မ္တီ│ 1019+1039+1010+102E
+│မ္ၚဵု│ 1019+1039+105A+1035+102F
+│မျီု│ 1019+103B+102E+102F
+│မၠေ│ 1019+1060+1031
+│ယျဵု│ 101A+103B+1035+102F
+│ယြဴ│ 101A+103C+1034
+│ရေံ│ 101B+1031+1036
+│ရှ်ေ│ 101B+103E+103A+1031
+│လ္ပ│ 101C+1039+1015
+│လ္ၚ│ 101C+1039+105A
+│လျို│ 101C+103B+102D+102F
+│လၟေ│ 101C+105F+1031
+│သ္က│ 101E+1039+1000
+│သ္ကံ│ 101E+1039+1000+1036
+│သ္ဂု│ 101E+1039+1002+102F
+│သ္ဇို│ 101E+1039+1007+102D+102F
+│သ္ဒ│ 101E+1039+1012
+│သ္ပ│ 101E+1039+1015
+│သ္ၚိ│ 101E+1039+105A+102D
+│သြ│ 101E+103C
+│သြို│ 101E+103C+102D+102F
+│သှ်ေ│ 101E+103E+103A+1031
+│သၞေ│ 101E+105E+1031
+│ဟေ│ 101F+1031
+│ၜေ│ 105C+1031
+│क्छ│ 0915+094D+091B
+│क्ता│ 0915+094D+0924+093E
+│क्ना│ 0915+094D+0928+093E
+│क्सा│ 0915+094D+0938+093E
+│ख्ने│ 0916+094D+0928+0947
+│ख्‍ने│ 0916+094D+200D+0928+0947
+│ग्ने│ 0917+094D+0928+0947
+│ङ्ग│ 0919+094D+0917
+│ङ्घ│ 0919+094D+0918
+│चो│ 091A+094B
+│ज्ने│ 091C+094D+0928+0947
+│ज्रा│ 091C+094D+0930+093E
+│ञ्चा│ 091E+094D+091A+093E
+│डा│ 0921+093E
+│ढाँ│ 0922+093E+0901
+│ढि│ 0922+093F
+│थ्य│ 0925+094D+092F
+│द्दा│ 0926+094D+0926+093E
+│द्व│ 0926+094D+0935
+│धो│ 0927+094B
+│निँ│ 0928+093F+0901
+│न्का│ 0928+094D+0915+093E
+│न्चि│ 0928+094D+091A+093F
+│न्जे│ 0928+094D+091C+0947
+│न्दा│ 0928+094D+0926+093E
+│न्दो│ 0928+094D+0926+094B
+│न्ने│ 0928+094D+0928+0947
+│न्मे│ 0928+094D+092E+0947
+│फाँ│ 092B+093E+0901
+│फ्ना│ 092B+094D+0928+093E
+│फ्नो│ 092B+094D+0928+094B
+│बाँ│ 092C+093E+0901
+│म्ति│ 092E+094D+0924+093F
+│म्पा│ 092E+094D+092A+093E
+│र्छ│ 0930+094D+091B
+│र्ज│ 0930+094D+091C
+│र्ढ│ 0930+094D+0922
+│र्दा│ 0930+094D+0926+093E
+│र्दे│ 0930+094D+0926+0947
+│र्दै│ 0930+094D+0926+0948
+│र्द्ध│ 0930+094D+0926+094D+0927
+│र्न│ 0930+094D+0928
+│र्नि│ 0930+094D+0928+093F
+│र्नु│ 0930+094D+0928+0941
+│र्नू│ 0930+094D+0928+0942
+│र्ने│ 0930+094D+0928+0947
+│र्स│ 0930+094D+0938
+│र्सा│ 0930+094D+0938+093E
+│ल्ने│ 0932+094D+0928+0947
+│ल्ल│ 0932+094D+0932
+│ल्ले│ 0932+094D+0932+0947
+│ष्ट्रि│ 0937+094D+091F+094D+0930+093F
+│साँ│ 0938+093E+0901
+│स्कु│ 0938+094D+0915+0941
+│स्ट्या│ 0938+094D+091F+094D+092F+093E
+│स्तै│ 0938+094D+0924+0948
+│स्तो│ 0938+094D+0924+094B
+│स्रो│ 0938+094D+0930+094B
+│ꀀ│ 0x0a000 Nuosu
+│ꀁ│ 0x0a001 Nuosu
+│ꀂ│ 0x0a002 Nuosu
+│ꀉ│ 0x0a009 Nuosu
+│ꀊ│ 0x0a00a Nuosu
+│ꀋ│ 0x0a00b Nuosu
+│ꀐ│ 0x0a010 Nuosu
+│ꀑ│ 0x0a011 Nuosu
+│ꀒ│ 0x0a012 Nuosu
+│ꀙ│ 0x0a019 Nuosu
+│ꀜ│ 0x0a01c Nuosu
+│ꀞ│ 0x0a01e Nuosu
+│ꀤ│ 0x0a024 Nuosu
+│ꀥ│ 0x0a025 Nuosu
+│ꀧ│ 0x0a027 Nuosu
+│ꀨ│ 0x0a028 Nuosu
+│ꀱ│ 0x0a031 Nuosu
+│ꀹ│ 0x0a039 Nuosu
+│ꀻ│ 0x0a03b Nuosu
+│ꀿ│ 0x0a03f Nuosu
+│ꁁ│ 0x0a041 Nuosu
+│ꁈ│ 0x0a048 Nuosu
+│ꁊ│ 0x0a04a Nuosu
+│ꁌ│ 0x0a04c Nuosu
+│ꁏ│ 0x0a04f Nuosu
+│ꁒ│ 0x0a052 Nuosu
+│ꁢ│ 0x0a062 Nuosu
+│ꁦ│ 0x0a066 Nuosu
+│ꁧ│ 0x0a067 Nuosu
+│ꁨ│ 0x0a068 Nuosu
+│ꁮ│ 0x0a06e Nuosu
+│ꁱ│ 0x0a071 Nuosu
+│ꁳ│ 0x0a073 Nuosu
+│ꁴ│ 0x0a074 Nuosu
+│ꁵ│ 0x0a075 Nuosu
+│ꂁ│ 0x0a081 Nuosu
+│ꂄ│ 0x0a084 Nuosu
+│ꂒ│ 0x0a092 Nuosu
+│ꂓ│ 0x0a093 Nuosu
+│ꂘ│ 0x0a098 Nuosu
+│ꂛ│ 0x0a09b Nuosu
+│ꂠ│ 0x0a0a0 Nuosu
+│ꂡ│ 0x0a0a1 Nuosu
+│ꂤ│ 0x0a0a4 Nuosu
+│ꂥ│ 0x0a0a5 Nuosu
+│ꂮ│ 0x0a0ae Nuosu
+│ꂯ│ 0x0a0af Nuosu
+│ꂱ│ 0x0a0b1 Nuosu
+│ꂲ│ 0x0a0b2 Nuosu
+│ꂴ│ 0x0a0b4 Nuosu
+│ꂶ│ 0x0a0b6 Nuosu
+│ꂷ│ 0x0a0b7 Nuosu
+│ꂻ│ 0x0a0bb Nuosu
+│ꂽ│ 0x0a0bd Nuosu
+│ꂿ│ 0x0a0bf Nuosu
+│ꃀ│ 0x0a0c0 Nuosu
+│ꃄ│ 0x0a0c4 Nuosu
+│ꃅ│ 0x0a0c5 Nuosu
+│ꃆ│ 0x0a0c6 Nuosu
+│ꃈ│ 0x0a0c8 Nuosu
+│ꃘ│ 0x0a0d8 Nuosu
+│ꃛ│ 0x0a0db Nuosu
+│ꃝ│ 0x0a0dd Nuosu
+│ꃢ│ 0x0a0e2 Nuosu
+│ꃤ│ 0x0a0e4 Nuosu
+│ꃪ│ 0x0a0ea Nuosu
+│ꃰ│ 0x0a0f0 Nuosu
+│ꃴ│ 0x0a0f4 Nuosu
+│ꃷ│ 0x0a0f7 Nuosu
+│ꃹ│ 0x0a0f9 Nuosu
+│ꃼ│ 0x0a0fc Nuosu
+│ꄀ│ 0x0a100 Nuosu
+│ꄂ│ 0x0a102 Nuosu
+│ꄇ│ 0x0a107 Nuosu
+│ꄉ│ 0x0a109 Nuosu
+│ꄎ│ 0x0a10e Nuosu
+│ꄐ│ 0x0a110 Nuosu
+│ꄓ│ 0x0a113 Nuosu
+│ꄙ│ 0x0a119 Nuosu
+│ꄚ│ 0x0a11a Nuosu
+│ꄜ│ 0x0a11c Nuosu
+│ꄟ│ 0x0a11f Nuosu
+│ꄡ│ 0x0a121 Nuosu
+│ꄮ│ 0x0a12e Nuosu
+│ꄯ│ 0x0a12f Nuosu
+│ꄷ│ 0x0a137 Nuosu
+│ꄸ│ 0x0a138 Nuosu
+│ꄹ│ 0x0a139 Nuosu
+│ꄺ│ 0x0a13a Nuosu
+│ꄻ│ 0x0a13b Nuosu
+│ꄿ│ 0x0a13f Nuosu
+│ꅀ│ 0x0a140 Nuosu
+│ꅇ│ 0x0a147 Nuosu
+│ꅉ│ 0x0a149 Nuosu
+│ꅊ│ 0x0a14a Nuosu
+│ꅍ│ 0x0a14d Nuosu
+│ꅐ│ 0x0a150 Nuosu
+│ꅑ│ 0x0a151 Nuosu
+│ꅓ│ 0x0a153 Nuosu
+│ꅔ│ 0x0a154 Nuosu
+│ꅜ│ 0x0a15c Nuosu
+│ꅝ│ 0x0a15d Nuosu
+│ꅠ│ 0x0a160 Nuosu
+│ꅢ│ 0x0a162 Nuosu
+│ꅪ│ 0x0a16a Nuosu
+│ꅫ│ 0x0a16b Nuosu
+│ꅮ│ 0x0a16e Nuosu
+│ꅲ│ 0x0a172 Nuosu
+│ꅷ│ 0x0a177 Nuosu
+│ꅹ│ 0x0a179 Nuosu
+│ꅿ│ 0x0a17f Nuosu
+│ꆀ│ 0x0a180 Nuosu
+│ꆄ│ 0x0a184 Nuosu
+│ꆅ│ 0x0a185 Nuosu
+│ꆈ│ 0x0a188 Nuosu
+│ꆉ│ 0x0a189 Nuosu
+│ꆍ│ 0x0a18d Nuosu
+│ꆏ│ 0x0a18f Nuosu
+│ꆐ│ 0x0a190 Nuosu
+│ꆜ│ 0x0a19c Nuosu
+│ꆠ│ 0x0a1a0 Nuosu
+│ꆧ│ 0x0a1a7 Nuosu
+│ꆷ│ 0x0a1b7 Nuosu
+│ꆹ│ 0x0a1b9 Nuosu
+│ꆼ│ 0x0a1bc Nuosu
+│ꆽ│ 0x0a1bd Nuosu
+│ꆿ│ 0x0a1bf Nuosu
+│ꇁ│ 0x0a1c1 Nuosu
+│ꇅ│ 0x0a1c5 Nuosu
+│ꇇ│ 0x0a1c7 Nuosu
+│ꇈ│ 0x0a1c8 Nuosu
+│ꇊ│ 0x0a1ca Nuosu
+│ꇋ│ 0x0a1cb Nuosu
+│ꇎ│ 0x0a1ce Nuosu
+│ꇏ│ 0x0a1cf Nuosu
+│ꇐ│ 0x0a1d0 Nuosu
+│ꇑ│ 0x0a1d1 Nuosu
+│ꇓ│ 0x0a1d3 Nuosu
+│ꇔ│ 0x0a1d4 Nuosu
+│ꇕ│ 0x0a1d5 Nuosu
+│ꇖ│ 0x0a1d6 Nuosu
+│ꇢ│ 0x0a1e2 Nuosu
+│ꇤ│ 0x0a1e4 Nuosu
+│ꇧ│ 0x0a1e7 Nuosu
+│ꇩ│ 0x0a1e9 Nuosu
+│ꇪ│ 0x0a1ea Nuosu
+│ꇫ│ 0x0a1eb Nuosu
+│ꇬ│ 0x0a1ec Nuosu
+│ꇭ│ 0x0a1ed Nuosu
+│ꇮ│ 0x0a1ee Nuosu
+│ꇯ│ 0x0a1ef Nuosu
+│ꇱ│ 0x0a1f1 Nuosu
+│ꇴ│ 0x0a1f4 Nuosu
+│ꇽ│ 0x0a1fd Nuosu
+│ꈀ│ 0x0a200 Nuosu
+│ꈁ│ 0x0a201 Nuosu
+│ꈂ│ 0x0a202 Nuosu
+│ꈆ│ 0x0a206 Nuosu
+│ꈉ│ 0x0a209 Nuosu
+│ꈋ│ 0x0a20b Nuosu
+│ꈌ│ 0x0a20c Nuosu
+│ꈍ│ 0x0a20d Nuosu
+│ꈐ│ 0x0a210 Nuosu
+│ꈓ│ 0x0a213 Nuosu
+│ꈚ│ 0x0a21a Nuosu
+│ꈜ│ 0x0a21c Nuosu
+│ꈢ│ 0x0a222 Nuosu
+│ꈧ│ 0x0a227 Nuosu
+│ꈨ│ 0x0a228 Nuosu
+│ꈬ│ 0x0a22c Nuosu
+│ꈲ│ 0x0a232 Nuosu
+│ꈴ│ 0x0a234 Nuosu
+│ꈹ│ 0x0a239 Nuosu
+│ꈽ│ 0x0a23d Nuosu
+│ꈾ│ 0x0a23e Nuosu
+│ꉂ│ 0x0a242 Nuosu
+│ꉆ│ 0x0a246 Nuosu
+│ꉈ│ 0x0a248 Nuosu
+│ꉉ│ 0x0a249 Nuosu
+│ꉌ│ 0x0a24c Nuosu
+│ꉐ│ 0x0a250 Nuosu
+│ꉗ│ 0x0a257 Nuosu
+│ꉙ│ 0x0a259 Nuosu
+│ꉚ│ 0x0a25a Nuosu
+│ꉜ│ 0x0a25c Nuosu
+│ꉪ│ 0x0a26a Nuosu
+│ꉬ│ 0x0a26c Nuosu
+│ꉭ│ 0x0a26d Nuosu
+│ꉮ│ 0x0a26e Nuosu
+│ꉹ│ 0x0a279 Nuosu
+│ꉺ│ 0x0a27a Nuosu
+│ꉻ│ 0x0a27b Nuosu
+│ꉼ│ 0x0a27c Nuosu
+│ꊂ│ 0x0a282 Nuosu
+│ꊇ│ 0x0a287 Nuosu
+│ꊋ│ 0x0a28b Nuosu
+│ꊌ│ 0x0a28c Nuosu
+│ꊎ│ 0x0a28e Nuosu
+│ꊏ│ 0x0a28f Nuosu
+│ꊐ│ 0x0a290 Nuosu
+│ꊒ│ 0x0a292 Nuosu
+│ꊢ│ 0x0a2a2 Nuosu
+│ꊥ│ 0x0a2a5 Nuosu
+│ꊧ│ 0x0a2a7 Nuosu
+│ꊨ│ 0x0a2a8 Nuosu
+│ꊪ│ 0x0a2aa Nuosu
+│ꊭ│ 0x0a2ad Nuosu
+│ꊯ│ 0x0a2af Nuosu
+│ꊰ│ 0x0a2b0 Nuosu
+│ꊼ│ 0x0a2bc Nuosu
+│ꊽ│ 0x0a2bd Nuosu
+│ꊾ│ 0x0a2be Nuosu
+│ꊿ│ 0x0a2bf Nuosu
+│ꋅ│ 0x0a2c5 Nuosu
+│ꋉ│ 0x0a2c9 Nuosu
+│ꋊ│ 0x0a2ca Nuosu
+│ꋋ│ 0x0a2cb Nuosu
+│ꋌ│ 0x0a2cc Nuosu
+│ꋍ│ 0x0a2cd Nuosu
+│ꋒ│ 0x0a2d2 Nuosu
+│ꋠ│ 0x0a2e0 Nuosu
+│ꋦ│ 0x0a2e6 Nuosu
+│ꋧ│ 0x0a2e7 Nuosu
+│ꋩ│ 0x0a2e9 Nuosu
+│ꋬ│ 0x0a2ec Nuosu
+│ꋭ│ 0x0a2ed Nuosu
+│ꋯ│ 0x0a2ef Nuosu
+│ꋰ│ 0x0a2f0 Nuosu
+│ꋽ│ 0x0a2fd Nuosu
+│ꌅ│ 0x0a305 Nuosu
+│ꌊ│ 0x0a30a Nuosu
+│ꌋ│ 0x0a30b Nuosu
+│ꌌ│ 0x0a30c Nuosu
+│ꌐ│ 0x0a310 Nuosu
+│ꌔ│ 0x0a314 Nuosu
+│ꌕ│ 0x0a315 Nuosu
+│ꌟ│ 0x0a31f Nuosu
+│ꌠ│ 0x0a320 Nuosu
+│ꌤ│ 0x0a324 Nuosu
+│ꌦ│ 0x0a326 Nuosu
+│ꌧ│ 0x0a327 Nuosu
+│ꌬ│ 0x0a32c Nuosu
+│ꌭ│ 0x0a32d Nuosu
+│ꌳ│ 0x0a333 Nuosu
+│ꌶ│ 0x0a336 Nuosu
+│ꌷ│ 0x0a337 Nuosu
+│ꌺ│ 0x0a33a Nuosu
+│ꍀ│ 0x0a340 Nuosu
+│ꍂ│ 0x0a342 Nuosu
+│ꍅ│ 0x0a345 Nuosu
+│ꍆ│ 0x0a346 Nuosu
+│ꍍ│ 0x0a34d Nuosu
+│ꍔ│ 0x0a354 Nuosu
+│ꍝ│ 0x0a35d Nuosu
+│ꍞ│ 0x0a35e Nuosu
+│ꍣ│ 0x0a363 Nuosu
+│ꍬ│ 0x0a36c Nuosu
+│ꍸ│ 0x0a378 Nuosu
+│ꍹ│ 0x0a379 Nuosu
+│ꎀ│ 0x0a380 Nuosu
+│ꎆ│ 0x0a386 Nuosu
+│ꎕ│ 0x0a395 Nuosu
+│ꎪ│ 0x0a3aa Nuosu
+│ꎭ│ 0x0a3ad Nuosu
+│ꎹ│ 0x0a3b9 Nuosu
+│ꎺ│ 0x0a3ba Nuosu
+│ꎻ│ 0x0a3bb Nuosu
+│ꏁ│ 0x0a3c1 Nuosu
+│ꏂ│ 0x0a3c2 Nuosu
+│ꏃ│ 0x0a3c3 Nuosu
+│ꏅ│ 0x0a3c5 Nuosu
+│ꏑ│ 0x0a3d1 Nuosu
+│ꏓ│ 0x0a3d3 Nuosu
+│ꏗ│ 0x0a3d7 Nuosu
+│ꏚ│ 0x0a3da Nuosu
+│ꏡ│ 0x0a3e1 Nuosu
+│ꏢ│ 0x0a3e2 Nuosu
+│ꏣ│ 0x0a3e3 Nuosu
+│ꏤ│ 0x0a3e4 Nuosu
+│ꏥ│ 0x0a3e5 Nuosu
+│ꏦ│ 0x0a3e6 Nuosu
+│ꏭ│ 0x0a3ed Nuosu
+│ꏯ│ 0x0a3ef Nuosu
+│ꏱ│ 0x0a3f1 Nuosu
+│ꏲ│ 0x0a3f2 Nuosu
+│ꏽ│ 0x0a3fd Nuosu
+│ꏾ│ 0x0a3fe Nuosu
+│ꐀ│ 0x0a400 Nuosu
+│ꐆ│ 0x0a406 Nuosu
+│ꐊ│ 0x0a40a Nuosu
+│ꐎ│ 0x0a40e Nuosu
+│ꐙ│ 0x0a419 Nuosu
+│ꐚ│ 0x0a41a Nuosu
+│ꐛ│ 0x0a41b Nuosu
+│ꐤ│ 0x0a424 Nuosu
+│ꐥ│ 0x0a425 Nuosu
+│ꐧ│ 0x0a427 Nuosu
+│ꐨ│ 0x0a428 Nuosu
+│ꐪ│ 0x0a42a Nuosu
+│ꐬ│ 0x0a42c Nuosu
+│ꐮ│ 0x0a42e Nuosu
+│ꐯ│ 0x0a42f Nuosu
+│ꐳ│ 0x0a433 Nuosu
+│ꐽ│ 0x0a43d Nuosu
+│ꑇ│ 0x0a447 Nuosu
+│ꑋ│ 0x0a44b Nuosu
+│ꑌ│ 0x0a44c Nuosu
+│ꑍ│ 0x0a44d Nuosu
+│ꑗ│ 0x0a457 Nuosu
+│ꑘ│ 0x0a458 Nuosu
+│ꑞ│ 0x0a45e Nuosu
+│ꑟ│ 0x0a45f Nuosu
+│ꑠ│ 0x0a460 Nuosu
+│ꑣ│ 0x0a463 Nuosu
+│ꑪ│ 0x0a46a Nuosu
+│ꑬ│ 0x0a46c Nuosu
+│ꑮ│ 0x0a46e Nuosu
+│ꑱ│ 0x0a471 Nuosu
+│ꑲ│ 0x0a472 Nuosu
+│ꑳ│ 0x0a473 Nuosu
+│ꑴ│ 0x0a474 Nuosu
+│ꑵ│ 0x0a475 Nuosu
+│ꑽ│ 0x0a47d Nuosu
+│ꑿ│ 0x0a47f Nuosu
+│ꒃ│ 0x0a483 Nuosu
+│ꒆ│ 0x0a486 Nuosu
+│ꒈ│ 0x0a488 Nuosu
+│ꒉ│ 0x0a489 Nuosu
+│ਕਾ│ 0A15+0A3E
+│ਕਾਂ│ 0A15+0A3E+0A02
+│ਕਿ│ 0A15+0A3F
+│ਕਿ੍│ 0A15+0A3F+0A4D
+│ਕਿੱ│ 0A15+0A3F+0A71
+│ਕੀ│ 0A15+0A40
+│ਖਾ│ 0A16+0A3E
+│ਖਾਂ│ 0A16+0A3E+0A02
+│ਖਿ│ 0A16+0A3F
+│ਖਿ਼│ 0A16+0A3F+0A3C
+│ਖੀ│ 0A16+0A40
+│ਗਾ│ 0A17+0A3E
+│ਗਿ│ 0A17+0A3F
+│ਗਿ੍│ 0A17+0A3F+0A4D
+│ਗੀ│ 0A17+0A40
+│ਚਾ│ 0A1A+0A3E
+│ਚਿ│ 0A1A+0A3F
+│ਚਿੱ│ 0A1A+0A3F+0A71
+│ਚੀ│ 0A1A+0A40
+│ਜਾ│ 0A1C+0A3E
+│ਜਾਂ│ 0A1C+0A3E+0A02
+│ਜਿ│ 0A1C+0A3F
+│ਜਿ਼│ 0A1C+0A3F+0A3C
+│ਜਿ਼ੰ│ 0A1C+0A3F+0A3C+0A70
+│ਜੀ│ 0A1C+0A40
+│ਝਿ│ 0A1D+0A3F
+│ਝੀ│ 0A1D+0A40
+│ਟਾ│ 0A1F+0A3E
+│ਟਿ│ 0A1F+0A3F
+│ਟਿ੍│ 0A1F+0A3F+0A4D
+│ਟੀ│ 0A1F+0A40
+│ਠੀ│ 0A20+0A40
+│ਡਾ│ 0A21+0A3E
+│ਣਾ│ 0A23+0A3E
+│ਣਾਂ│ 0A23+0A3E+0A02
+│ਣੀ│ 0A23+0A40
+│ਤਾ│ 0A24+0A3E
+│ਤਾਂ│ 0A24+0A3E+0A02
+│ਤਿ│ 0A24+0A3F
+│ਤੀ│ 0A24+0A40
+│ਦਾ│ 0A26+0A3E
+│ਦਾਂ│ 0A26+0A3E+0A02
+│ਦਿ│ 0A26+0A3F
+│ਦਿੱ│ 0A26+0A3F+0A71
+│ਦੀ│ 0A26+0A40
+│ਧਾ│ 0A27+0A3E
+│ਧਾਂ│ 0A27+0A3E+0A02
+│ਧਿ│ 0A27+0A3F
+│ਧੀ│ 0A27+0A40
+│ਨਾ│ 0A28+0A3E
+│ਨਾਂ│ 0A28+0A3E+0A02
+│ਨਿ│ 0A28+0A3F
+│ਨੀ│ 0A28+0A40
+│ਨੀਂ│ 0A28+0A40+0A02
+│ਪਾ│ 0A2A+0A3E
+│ਪਿ│ 0A2A+0A3F
+│ਪੀ│ 0A2A+0A40
+│ਫਿ│ 0A2B+0A3F
+│ਬਾ│ 0A2C+0A3E
+│ਬਿ│ 0A2C+0A3F
+│ਬੀ│ 0A2C+0A40
+│ਭਾ│ 0A2D+0A3E
+│ਭਿ│ 0A2D+0A3F
+│ਮਾ│ 0A2E+0A3E
+│ਮਾਂ│ 0A2E+0A3E+0A02
+│ਮਿ│ 0A2E+0A3F
+│ਮੀ│ 0A2E+0A40
+│ਯਾ│ 0A2F+0A3E
+│ਰਾ│ 0A30+0A3E
+│ਰਾਂ│ 0A30+0A3E+0A02
+│ਰਿ│ 0A30+0A3F
+│ਰੀ│ 0A30+0A40
+│ਲਾ│ 0A32+0A3E
+│ਲਾਂ│ 0A32+0A3E+0A02
+│ਲਿ│ 0A32+0A3F
+│ਲਿੰ│ 0A32+0A3F+0A70
+│ਲੀ│ 0A32+0A40
+│ਵਾ│ 0A35+0A3E
+│ਵਾਂ│ 0A35+0A3E+0A02
+│ਵਿ│ 0A35+0A3F
+│ਵਿੱ│ 0A35+0A3F+0A71
+│ਵੀ│ 0A35+0A40
+│ਸ਼ਾ│ 0A36+0A3E
+│ਸ਼ਾਂ│ 0A36+0A3E+0A02
+│ਸ਼ਿ│ 0A36+0A3F
+│ਸ਼ੀ│ 0A36+0A40
+│ਸਾ│ 0A38+0A3E
+│ਸਾਂ│ 0A38+0A3E+0A02
+│ਸਿ│ 0A38+0A3F
+│ਸਿੱ│ 0A38+0A3F+0A71
+│ਸੀ│ 0A38+0A40
+│ਹਾ│ 0A39+0A3E
+│ਹਾਂ│ 0A39+0A3E+0A02
+│ਹਿ│ 0A39+0A3F
+│ਹਿੰ│ 0A39+0A3F+0A70
+│ਹਿੱ│ 0A39+0A3F+0A71
+│ਹੀ│ 0A39+0A40
+│ਹੀਂ│ 0A39+0A40+0A02
+│ਜ਼ਾ│ 0A5B+0A3E
+│ਜ਼ੀ│ 0A5B+0A40
+│ੜਾ│ 0A5C+0A3E
+│ੜੀਂ│ 0A5C+0A40+0A02
+│ਫ਼ਾ│ 0A5E+0A3E
+│क्का│ 0915+094D+0915+093E
+│क्तुं│ 0915+094D+0924+0941+0902
+│क्तेः│ 0915+094D+0924+0947+0903
+│क्त्योः│ 0915+094D+0924+094D+092F+094B+0903
+│क्रा│ 0915+094D+0930+093E
+│क्षं│ 0915+094D+0937+0902
+│क्षां│ 0915+094D+0937+093E+0902
+│क्षाः│ 0915+094D+0937+093E+0903
+│क्षै│ 0915+094D+0937+0948
+│क्षो│ 0915+094D+0937+094B
+│क्ष्या│ 0915+094D+0937+094D+092F+093E
+│ख्यः│ 0916+094D+092F+0903
+│ग्ण│ 0917+094D+0923
+│ग्भे│ 0917+094D+092D+0947
+│ग्यैः│ 0917+094D+092F+0948+0903
+│ग्र्य│ 0917+094D+0930+094D+092F
+│ञ्च│ 091E+094D+091A
+│ञ्चि│ 091E+094D+091A+093F
+│ट्ज़│ 091F+094D+091C+093C
+│ठैः│ 0920+0948+0903
+│डि│ 0921+093F
+│ढ़ी│ 0922+093C+0940
+│णां│ 0923+093E+0902
+│ण्डं│ 0923+094D+0921+0902
+│ण्डः│ 0923+094D+0921+0903
+│ण्डि│ 0923+094D+0921+093F
+│ण्य│ 0923+094D+092F
+│ताः│ 0924+093E+0903
+│तिं│ 0924+093F+0902
+│त्त्थि│ 0924+094D+0924+094D+0925+093F
+│त्पू│ 0924+094D+092A+0942
+│त्यै│ 0924+094D+092F+0948
+│त्रे│ 0924+094D+0930+0947
+│त्वं│ 0924+094D+0935+0902
+│त्वे│ 0924+094D+0935+0947
+│त्सं│ 0924+094D+0938+0902
+│त्सो│ 0924+094D+0938+094B
+│त्स्वा│ 0924+094D+0938+094D+0935+093E
+│दः│ 0926+0903
+│द्धः│ 0926+094D+0927+0903
+│द्धैः│ 0926+094D+0927+0948+0903
+│द्र│ 0926+094D+0930
+│धाः│ 0927+093E+0903
+│धेः│ 0927+0947+0903
+│नाः│ 0928+093E+0903
+│नैः│ 0928+0948+0903
+│न्ञ्या│ 0928+094D+091E+094D+092F+093E
+│न्तं│ 0928+094D+0924+0902
+│न्तु│ 0928+094D+0924+0941
+│न्तुं│ 0928+094D+0924+0941+0902
+│न्ते│ 0928+094D+0924+0947
+│न्तो│ 0928+094D+0924+094B
+│न्त्राः│ 0928+094D+0924+094D+0930+093E+0903
+│न्त्री│ 0928+094D+0924+094D+0930+0940
+│न्त्र्य│ 0928+094D+0924+094D+0930+094D+092F
+│न्त्र्यं│ 0928+094D+0924+094D+0930+094D+092F+0902
+│न्त्र्या│ 0928+094D+0924+094D+0930+094D+092F+093E
+│न्त्र्ये│ 0928+094D+0924+094D+0930+094D+092F+0947
+│न्धा│ 0928+094D+0927+093E
+│न्धु│ 0928+094D+0927+0941
+│न्ना│ 0928+094D+0928+093E
+│न्नाः│ 0928+094D+0928+093E+0903
+│न्मु│ 0928+094D+092E+0941
+│न्ये│ 0928+094D+092F+0947
+│न्यै│ 0928+094D+092F+0948
+│न्यो│ 0928+094D+092F+094B
+│न्व│ 0928+094D+0935
+│प्तं│ 092A+094D+0924+0902
+│प्तुं│ 092A+094D+0924+0941+0902
+│प्तौ│ 092A+094D+0924+094C
+│प्यं│ 092A+094D+092F+0902
+│प्या│ 092A+094D+092F+093E
+│ब्द│ 092C+094D+0926
+│भिः│ 092D+093F+0903
+│भ्यः│ 092D+094D+092F+0903
+│भ्यां│ 092D+094D+092F+093E+0902
+│भ्यु│ 092D+094D+092F+0941
+│भ्यो│ 092D+094D+092F+094B
+│म्नि│ 092E+094D+0928+093F
+│यः│ 092F+0903
+│याः│ 092F+093E+0903
+│यैः│ 092F+0948+0903
+│य्यो│ 092F+094D+092F+094B
+│रः│ 0930+0903
+│राः│ 0930+093E+0903
+│रिं│ 0930+093F+0902
+│रौ│ 0930+094C
+│र्क│ 0930+094D+0915
+│र्गी│ 0930+094D+0917+0940
+│र्गे│ 0930+094D+0917+0947
+│र्चि│ 0930+094D+091A+093F
+│र्णं│ 0930+094D+0923+0902
+│र्णां│ 0930+094D+0923+093E+0902
+│र्णी│ 0930+094D+0923+0940
+│र्तिः│ 0930+094D+0924+093F+0903
+│र्तुं│ 0930+094D+0924+0941+0902
+│र्त्ति│ 0930+094D+0924+094D+0924+093F
+│र्थं│ 0930+094D+0925+0902
+│र्दि│ 0930+094D+0926+093F
+│र्दु│ 0930+094D+0926+0941
+│र्धि│ 0930+094D+0927+093F
+│र्मं│ 0930+094D+092E+0902
+│र्ये│ 0930+094D+092F+0947
+│र्वृ│ 0930+094D+0935+0943
+│र्षे│ 0930+094D+0937+0947
+│र्ह│ 0930+094D+0939
+│र्हाः│ 0930+094D+0939+093E+0903
+│र्हि│ 0930+094D+0939+093F
+│र्हो│ 0930+094D+0939+094B
+│लाः│ 0932+093E+0903
+│ल्का│ 0932+094D+0915+093E
+│ल्यं│ 0932+094D+092F+0902
+│ल्याः│ 0932+094D+092F+093E+0903
+│ल्ये│ 0932+094D+092F+0947
+│वः│ 0935+0903
+│वाः│ 0935+093E+0903
+│शः│ 0936+0903
+│शाः│ 0936+093E+0903
+│शो│ 0936+094B
+│श्या│ 0936+094D+092F+093E
+│श्रु│ 0936+094D+0930+0941
+│श्वि│ 0936+094D+0935+093F
+│षाः│ 0937+093E+0903
+│ष्टः│ 0937+094D+091F+0903
+│ष्टा│ 0937+094D+091F+093E
+│ष्टाः│ 0937+094D+091F+093E+0903
+│ष्ट्रे│ 0937+094D+091F+094D+0930+0947
+│ष्ट्रो│ 0937+094D+091F+094D+0930+094B
+│ष्प्र│ 0937+094D+092A+094D+0930
+│ष्यः│ 0937+094D+092F+0903
+│सः│ 0938+0903
+│स्का│ 0938+094D+0915+093E
+│स्काः│ 0938+094D+0915+093E+0903
+│स्ति│ 0938+094D+0924+093F
+│स्तुं│ 0938+094D+0924+0941+0902
+│स्त्रा│ 0938+094D+0924+094D+0930+093E
+│स्थां│ 0938+094D+0925+093E+0902
+│स्धी│ 0938+094D+0927+0940
+│स्मि│ 0938+094D+092E+093F
+│स्मिं│ 0938+094D+092E+093F+0902
+│स्मै│ 0938+094D+092E+0948
+│स्यां│ 0938+094D+092F+093E+0902
+│स्याः│ 0938+094D+092F+093E+0903
+│स्युः│ 0938+094D+092F+0941+0903
+│स्वं│ 0938+094D+0935+0902
+│स्स│ 0938+094D+0938
+│𑌅𑌂│ 11305+11302
+│𑌕𑌂│ 11315+11302
+│𑌕𑌾│ 11315+1133E
+│𑌕𑌾𑌂│ 11315+1133E+11302
+│𑌕𑌾𑌃│ 11315+1133E+11303
+│𑌕𑌿│ 11315+1133F
+│𑌕𑍂│ 11315+11342
+│𑌕𑍃│ 11315+11343
+│𑌕𑍇│ 11315+11347
+│𑌕𑍋│ 11315+1134B
+│𑌕𑍍│ 11315+1134D
+│𑌗𑌾│ 11317+1133E
+│𑌗𑌿│ 11317+1133F
+│𑌗𑍁│ 11317+11341
+│𑌗𑍃│ 11317+11343
+│𑌗𑍇│ 11317+11347
+│𑌗𑍌│ 11317+1134C
+│𑌗𑍍│ 11317+1134D
+│𑌘𑌾│ 11318+1133E
+│𑌘𑍇│ 11318+11347
+│𑌘𑍋│ 11318+1134B
+│𑌚𑌾│ 1131A+1133E
+│𑌚𑌿│ 1131A+1133F
+│𑌚𑍇│ 1131A+11347
+│𑌚𑍈│ 1131A+11348
+│𑌚𑍍│ 1131A+1134D
+│𑌛𑌾│ 1131B+1133E
+│𑌛𑍁│ 1131B+11341
+│𑌛𑍇│ 1131B+11347
+│𑌜𑌾│ 1131C+1133E
+│𑌜𑌿│ 1131C+1133F
+│𑌜𑍇│ 1131C+11347
+│𑌜𑍍│ 1131C+1134D
+│𑌞𑌾│ 1131E+1133E
+│𑌞𑍍│ 1131E+1134D
+│𑌟𑌃│ 1131F+11303
+│𑌟𑌾│ 1131F+1133E
+│𑌟𑌾𑌂│ 1131F+1133E+11302
+│𑌟𑌾𑌃│ 1131F+1133E+11303
+│𑌟𑍍│ 1131F+1134D
+│𑌠𑌾│ 11320+1133E
+│𑌠𑍇│ 11320+11347
+│𑌠𑍈𑌃│ 11320+11348+11303
+│𑌡𑌂│ 11321+11302
+│𑌡𑌃│ 11321+11303
+│𑌡𑌿│ 11321+1133F
+│𑌣𑌂│ 11323+11302
+│𑌣𑌾│ 11323+1133E
+│𑌣𑌾𑌂│ 11323+1133E+11302
+│𑌣𑌿│ 11323+1133F
+│𑌣𑍁│ 11323+11341
+│𑌣𑍇│ 11323+11347
+│𑌣𑍍│ 11323+1134D
+│𑌤𑌂│ 11324+11302
+│𑌤𑌃│ 11324+11303
+│𑌤𑌾│ 11324+1133E
+│𑌤𑌾𑌂│ 11324+1133E+11302
+│𑌤𑌾𑌃│ 11324+1133E+11303
+│𑌤𑌿│ 11324+1133F
+│𑌤𑌿𑌂│ 11324+1133F+11302
+│𑌤𑌿𑌃│ 11324+1133F+11303
+│𑌤𑍁│ 11324+11341
+│𑌤𑍁𑌂│ 11324+11341+11302
+│𑌤𑍃│ 11324+11343
+│𑌤𑍇│ 11324+11347
+│𑌤𑍇𑌃│ 11324+11347+11303
+│𑌤𑍈│ 11324+11348
+│𑌤𑍋│ 11324+1134B
+│𑌤𑍌│ 11324+1134C
+│𑌤𑍍│ 11324+1134D
+│𑌥𑌂│ 11325+11302
+│𑌥𑌾│ 11325+1133E
+│𑌥𑌾𑌂│ 11325+1133E+11302
+│𑌥𑌿│ 11325+1133F
+│𑌦𑌂│ 11326+11302
+│𑌦𑌃│ 11326+11303
+│𑌦𑌾│ 11326+1133E
+│𑌦𑌿│ 11326+1133F
+│𑌦𑍁│ 11326+11341
+│𑌦𑍃│ 11326+11343
+│𑌦𑍇│ 11326+11347
+│𑌦𑍋│ 11326+1134B
+│𑌦𑍍│ 11326+1134D
+│𑌧𑌃│ 11327+11303
+│𑌧𑌾│ 11327+1133E
+│𑌧𑌾𑌃│ 11327+1133E+11303
+│𑌧𑌿│ 11327+1133F
+│𑌧𑌿𑌂│ 11327+1133F+11302
+│𑌧𑍁│ 11327+11341
+│𑌧𑍃│ 11327+11343
+│𑌧𑍇│ 11327+11347
+│𑌧𑍇𑌃│ 11327+11347+11303
+│𑌧𑍈𑌃│ 11327+11348+11303
+│𑌧𑍍│ 11327+1134D
+│𑌨𑌂│ 11328+11302
+│𑌨𑌃│ 11328+11303
+│𑌨𑌾│ 11328+1133E
+│𑌨𑌾𑌂│ 11328+1133E+11302
+│𑌨𑌾𑌃│ 11328+1133E+11303
+│𑌨𑌿│ 11328+1133F
+│𑌨𑌿𑌃│ 11328+1133F+11303
+│𑌨𑍁│ 11328+11341
+│𑌨𑍂│ 11328+11342
+│𑌨𑍇│ 11328+11347
+│𑌨𑍈│ 11328+11348
+│𑌨𑍈𑌃│ 11328+11348+11303
+│𑌨𑍋│ 11328+1134B
+│𑌨𑍍│ 11328+1134D
+│𑌪𑌂│ 1132A+11302
+│𑌪𑌾│ 1132A+1133E
+│𑌪𑌿│ 1132A+1133F
+│𑌪𑍁│ 1132A+11341
+│𑌪𑍂│ 1132A+11342
+│𑌪𑍇│ 1132A+11347
+│𑌪𑍋│ 1132A+1134B
+│𑌪𑍍│ 1132A+1134D
+│𑌬𑌾│ 1132C+1133E
+│𑌬𑍃│ 1132C+11343
+│𑌬𑍍│ 1132C+1134D
+│𑌭𑌾│ 1132D+1133E
+│𑌭𑌿│ 1132D+1133F
+│𑌭𑌿𑌃│ 1132D+1133F+11303
+│𑌭𑍁│ 1132D+11341
+│𑌭𑍂│ 1132D+11342
+│𑌭𑍇│ 1132D+11347
+│𑌭𑍍│ 1132D+1134D
+│𑌮𑌂│ 1132E+11302
+│𑌮𑌾│ 1132E+1133E
+│𑌮𑌿│ 1132E+1133F
+│𑌮𑌿𑌂│ 1132E+1133F+11302
+│𑌮𑍁│ 1132E+11341
+│𑌮𑍂│ 1132E+11342
+│𑌮𑍇│ 1132E+11347
+│𑌮𑍈│ 1132E+11348
+│𑌮𑍋│ 1132E+1134B
+│𑌮𑍌│ 1132E+1134C
+│𑌮𑍍│ 1132E+1134D
+│𑌯𑌂│ 1132F+11302
+│𑌯𑌃│ 1132F+11303
+│𑌯𑌾│ 1132F+1133E
+│𑌯𑌾𑌂│ 1132F+1133E+11302
+│𑌯𑌾𑌃│ 1132F+1133E+11303
+│𑌯𑌿│ 1132F+1133F
+│𑌯𑍁│ 1132F+11341
+│𑌯𑍁𑌃│ 1132F+11341+11303
+│𑌯𑍇│ 1132F+11347
+│𑌯𑍈│ 1132F+11348
+│𑌯𑍈𑌃│ 1132F+11348+11303
+│𑌯𑍋│ 1132F+1134B
+│𑌯𑍋𑌃│ 1132F+1134B+11303
+│𑌯𑍍│ 1132F+1134D
+│𑌰𑌂│ 11330+11302
+│𑌰𑌃│ 11330+11303
+│𑌰𑌾│ 11330+1133E
+│𑌰𑌾𑌃│ 11330+1133E+11303
+│𑌰𑌿│ 11330+1133F
+│𑌰𑌿𑌂│ 11330+1133F+11302
+│𑌰𑍁│ 11330+11341
+│𑌰𑍂│ 11330+11342
+│𑌰𑍇│ 11330+11347
+│𑌰𑍋│ 11330+1134B
+│𑌰𑍌│ 11330+1134C
+│𑌰𑍍│ 11330+1134D
+│𑌲𑌂│ 11332+11302
+│𑌲𑌾│ 11332+1133E
+│𑌲𑌾𑌃│ 11332+1133E+11303
+│𑌲𑌿│ 11332+1133F
+│𑌲𑌿𑌂│ 11332+1133F+11302
+│𑌲𑍇│ 11332+11347
+│𑌲𑍈│ 11332+11348
+│𑌲𑍋│ 11332+1134B
+│𑌲𑍍│ 11332+1134D
+│𑌵𑌂│ 11335+11302
+│𑌵𑌃│ 11335+11303
+│𑌵𑌾│ 11335+1133E
+│𑌵𑌾𑌂│ 11335+1133E+11302
+│𑌵𑌾𑌃│ 11335+1133E+11303
+│𑌵𑌿│ 11335+1133F
+│𑌵𑍃│ 11335+11343
+│𑌵𑍇│ 11335+11347
+│𑌵𑍈│ 11335+11348
+│𑌵𑍋│ 11335+1134B
+│𑌵𑍍│ 11335+1134D
+│𑌶𑌂│ 11336+11302
+│𑌶𑌃│ 11336+11303
+│𑌶𑌾│ 11336+1133E
+│𑌶𑌾𑌃│ 11336+1133E+11303
+│𑌶𑌿│ 11336+1133F
+│𑌶𑍁│ 11336+11341
+│𑌶𑍂│ 11336+11342
+│𑌶𑍇│ 11336+11347
+│𑌶𑍋│ 11336+1134B
+│𑌶𑍍│ 11336+1134D
+│𑌷𑌂│ 11337+11302
+│𑌷𑌾│ 11337+1133E
+│𑌷𑌾𑌂│ 11337+1133E+11302
+│𑌷𑌾𑌃│ 11337+1133E+11303
+│𑌷𑌿│ 11337+1133F
+│𑌷𑍁│ 11337+11341
+│𑌷𑍇│ 11337+11347
+│𑌷𑍈│ 11337+11348
+│𑌷𑍋│ 11337+1134B
+│𑌷𑍍│ 11337+1134D
+│𑌸𑌂│ 11338+11302
+│𑌸𑌃│ 11338+11303
+│𑌸𑌾│ 11338+1133E
+│𑌸𑌾𑌂│ 11338+1133E+11302
+│𑌸𑌿│ 11338+1133F
+│𑌸𑍁│ 11338+11341
+│𑌸𑍂│ 11338+11342
+│𑌸𑍇│ 11338+11347
+│𑌸𑍋│ 11338+1134B
+│𑌸𑍌│ 11338+1134C
+│𑌸𑍍│ 11338+1134D
+│𑌹𑌾│ 11339+1133E
+│𑌹𑌾𑌃│ 11339+1133E+11303
+│𑌹𑌿│ 11339+1133F
+│𑌹𑍇│ 11339+11347
+│𑌹𑍋│ 11339+1134B
+│ငႄ│ 1004+1084
+│မႄ│ 1019+1084
+│လႄ│ 101C+1084
+│ၵေ│ 1075+1031
+│ၵႄ│ 1075+1084
+│ၶေ│ 1076+1031
+│ၼေ│ 107C+1031
+│ၼႄ│ 107C+1084
+│ၽႄ│ 107D+1084
+│ႁေ│ 1081+1031
+│ႁႄ│ 1081+1084
+│කා│ 0D9A+0DCF
+│කැ│ 0D9A+0DD0
+│කෘ│ 0D9A+0DD8
+│කෙ│ 0D9A+0DD9
+│කො│ 0D9A+0DDC
+│කෝ│ 0D9A+0DDD
+│කෲ│ 0D9A+0DF2
+│ගා│ 0D9C+0DCF
+│ගැ│ 0D9C+0DD0
+│ගෙ│ 0D9C+0DD9
+│ගේ│ 0D9C+0DDA
+│චා│ 0DA0+0DCF
+│චැ│ 0DA0+0DD0
+│චෝ│ 0DA0+0DDD
+│ජා│ 0DA2+0DCF
+│ඥා│ 0DA5+0DCF
+│ටා│ 0DA7+0DCF
+│ටේ│ 0DA7+0DDA
+│ඨා│ 0DA8+0DCF
+│ඩං│ 0DA9+0D82
+│ඩා│ 0DA9+0DCF
+│තා│ 0DAD+0DCF
+│තැ│ 0DAD+0DD0
+│තෘ│ 0DAD+0DD8
+│තෙ│ 0DAD+0DD9
+│තේ│ 0DAD+0DDA
+│තො│ 0DAD+0DDC
+│තෝ│ 0DAD+0DDD
+│ථා│ 0DAE+0DCF
+│දා│ 0DAF+0DCF
+│දැ│ 0DAF+0DD0
+│දිං│ 0DAF+0DD2+0D82
+│දෙ│ 0DAF+0DD9
+│දේ│ 0DAF+0DDA
+│දෝ│ 0DAF+0DDD
+│ධා│ 0DB0+0DCF
+│නා│ 0DB1+0DCF
+│නැ│ 0DB1+0DD0
+│නෑ│ 0DB1+0DD1
+│නෙ│ 0DB1+0DD9
+│නේ│ 0DB1+0DDA
+│නො│ 0DB1+0DDC
+│ඳා│ 0DB3+0DCF
+│පා│ 0DB4+0DCF
+│පැ│ 0DB4+0DD0
+│පෑ│ 0DB4+0DD1
+│පෙ│ 0DB4+0DD9
+│පේ│ 0DB4+0DDA
+│පො│ 0DB4+0DDC
+│පෞ│ 0DB4+0DDE
+│බා│ 0DB6+0DCF
+│බැ│ 0DB6+0DD0
+│බෙ│ 0DB6+0DD9
+│බේ│ 0DB6+0DDA
+│බෝ│ 0DB6+0DDD
+│භා│ 0DB7+0DCF
+│භෞ│ 0DB7+0DDE
+│මා│ 0DB8+0DCF
+│මැ│ 0DB8+0DD0
+│මෙ│ 0DB8+0DD9
+│මේ│ 0DB8+0DDA
+│යා│ 0DBA+0DCF
+│යෙ│ 0DBA+0DD9
+│යේ│ 0DBA+0DDA
+│යො│ 0DBA+0DDC
+│යෝ│ 0DBA+0DDD
+│රා│ 0DBB+0DCF
+│රැ│ 0DBB+0DD0
+│රෙ│ 0DBB+0DD9
+│රේ│ 0DBB+0DDA
+│රෝ│ 0DBB+0DDD
+│ලං│ 0DBD+0D82
+│ලා│ 0DBD+0DCF
+│ලැ│ 0DBD+0DD0
+│ලෙ│ 0DBD+0DD9
+│ලේ│ 0DBD+0DDA
+│ලෝ│ 0DBD+0DDD
+│වං│ 0DC0+0D82
+│වා│ 0DC0+0DCF
+│වැ│ 0DC0+0DD0
+│වෘ│ 0DC0+0DD8
+│වෙ│ 0DC0+0DD9
+│වේ│ 0DC0+0DDA
+│වෝ│ 0DC0+0DDD
+│ශේ│ 0DC1+0DDA
+│ෂා│ 0DC2+0DCF
+│සං│ 0DC3+0D82
+│සා│ 0DC3+0DCF
+│සැ│ 0DC3+0DD0
+│සෑ│ 0DC3+0DD1
+│සෙ│ 0DC3+0DD9
+│සේ│ 0DC3+0DDA
+│සෞ│ 0DC3+0DDE
+│හා│ 0DC4+0DCF
+│හැ│ 0DC4+0DD0
+│හිං│ 0DC4+0DD2+0D82
+│හෘ│ 0DC4+0DD8
+│හෙ│ 0DC4+0DD9
+│හො│ 0DC4+0DDC
+│හෝ│ 0DC4+0DDD
+│ළැ│ 0DC5+0DD0
+│क्को│ 0915+094D+0915+094B
+│ग्या│ 0917+094D+092F+093E
+│ग्ये│ 0917+094D+092F+0947
+│च्यो│ 091A+094D+092F+094B
+│न्छे│ 0928+094D+091B+0947
+│म्बु│ 092E+094D+092C+0941
+│म्से│ 092E+094D+0938+0947
+│म्ही│ 092E+094D+0939+0940
+│म्हो│ 092E+094D+0939+094B
+│ह्रा│ 0939+094D+0930+093E
+│கா│ 0B95+0BBE
+│கி│ 0B95+0BBF
+│கு│ 0B95+0BC1
+│கூ│ 0B95+0BC2
+│கெ│ 0B95+0BC6
+│கே│ 0B95+0BC7
+│கை│ 0B95+0BC8
+│கொ│ 0B95+0BCA
+│கோ│ 0B95+0BCB
+│சா│ 0B9A+0BBE
+│சி│ 0B9A+0BBF
+│சு│ 0B9A+0BC1
+│சூ│ 0B9A+0BC2
+│செ│ 0B9A+0BC6
+│சே│ 0B9A+0BC7
+│சை│ 0B9A+0BC8
+│சொ│ 0B9A+0BCA
+│டா│ 0B9F+0BBE
+│டி│ 0B9F+0BBF
+│டு│ 0B9F+0BC1
+│டெ│ 0B9F+0BC6
+│டை│ 0B9F+0BC8
+│ணா│ 0BA3+0BBE
+│ணி│ 0BA3+0BBF
+│ணு│ 0BA3+0BC1
+│ணை│ 0BA3+0BC8
+│தா│ 0BA4+0BBE
+│தி│ 0BA4+0BBF
+│து│ 0BA4+0BC1
+│தூ│ 0BA4+0BC2
+│தெ│ 0BA4+0BC6
+│தே│ 0BA4+0BC7
+│தை│ 0BA4+0BC8
+│தொ│ 0BA4+0BCA
+│தோ│ 0BA4+0BCB
+│நா│ 0BA8+0BBE
+│நி│ 0BA8+0BBF
+│நு│ 0BA8+0BC1
+│நெ│ 0BA8+0BC6
+│நே│ 0BA8+0BC7
+│நோ│ 0BA8+0BCB
+│னா│ 0BA9+0BBE
+│னி│ 0BA9+0BBF
+│னு│ 0BA9+0BC1
+│னே│ 0BA9+0BC7
+│னை│ 0BA9+0BC8
+│னொ│ 0BA9+0BCA
+│பா│ 0BAA+0BBE
+│பி│ 0BAA+0BBF
+│பு│ 0BAA+0BC1
+│பெ│ 0BAA+0BC6
+│பே│ 0BAA+0BC7
+│பை│ 0BAA+0BC8
+│பொ│ 0BAA+0BCA
+│போ│ 0BAA+0BCB
+│மா│ 0BAE+0BBE
+│மி│ 0BAE+0BBF
+│மு│ 0BAE+0BC1
+│மூ│ 0BAE+0BC2
+│மெ│ 0BAE+0BC6
+│மே│ 0BAE+0BC7
+│மை│ 0BAE+0BC8
+│மொ│ 0BAE+0BCA
+│மோ│ 0BAE+0BCB
+│யா│ 0BAF+0BBE
+│யி│ 0BAF+0BBF
+│யு│ 0BAF+0BC1
+│யே│ 0BAF+0BC7
+│யை│ 0BAF+0BC8
+│யோ│ 0BAF+0BCB
+│ரா│ 0BB0+0BBE
+│ரி│ 0BB0+0BBF
+│ரு│ 0BB0+0BC1
+│ரெ│ 0BB0+0BC6
+│ரை│ 0BB0+0BC8
+│றா│ 0BB1+0BBE
+│றி│ 0BB1+0BBF
+│று│ 0BB1+0BC1
+│றே│ 0BB1+0BC7
+│றை│ 0BB1+0BC8
+│றொ│ 0BB1+0BCA
+│றோ│ 0BB1+0BCB
+│லா│ 0BB2+0BBE
+│லி│ 0BB2+0BBF
+│லு│ 0BB2+0BC1
+│லெ│ 0BB2+0BC6
+│லே│ 0BB2+0BC7
+│லை│ 0BB2+0BC8
+│லோ│ 0BB2+0BCB
+│ளா│ 0BB3+0BBE
+│ளி│ 0BB3+0BBF
+│ளு│ 0BB3+0BC1
+│ளெ│ 0BB3+0BC6
+│ளை│ 0BB3+0BC8
+│ழி│ 0BB4+0BBF
+│ழு│ 0BB4+0BC1
+│ழை│ 0BB4+0BC8
+│வா│ 0BB5+0BBE
+│வி│ 0BB5+0BBF
+│வு│ 0BB5+0BC1
+│வூ│ 0BB5+0BC2
+│வெ│ 0BB5+0BC6
+│வே│ 0BB5+0BC7
+│வை│ 0BB5+0BC8
+│வொ│ 0BB5+0BCA
+│வோ│ 0BB5+0BCB
+│అం│ 0C05+0C02
+│ఆం│ 0C06+0C02
+│ఒం│ 0C12+0C02
+│కం│ 0C15+0C02
+│కాం│ 0C15+0C3E+0C02
+│కు│ 0C15+0C41
+│కుం│ 0C15+0C41+0C02
+│కూ│ 0C15+0C42
+│కృ│ 0C15+0C43
+│కెం│ 0C15+0C46+0C02
+│క్క│ 0C15+0C4D+0C15
+│క్కు│ 0C15+0C4D+0C15+0C41
+│క్త│ 0C15+0C4D+0C24
+│క్తి│ 0C15+0C4D+0C24+0C3F
+│క్తీ│ 0C15+0C4D+0C24+0C40
+│క్తు│ 0C15+0C4D+0C24+0C41
+│క్య│ 0C15+0C4D+0C2F
+│క్ర│ 0C15+0C4D+0C30
+│క్రాం│ 0C15+0C4D+0C30+0C3E+0C02
+│క్రి│ 0C15+0C4D+0C30+0C3F
+│క్రూ│ 0C15+0C4D+0C30+0C42
+│క్ష│ 0C15+0C4D+0C37
+│క్షా│ 0C15+0C4D+0C37+0C3E
+│క్షి│ 0C15+0C4D+0C37+0C3F
+│క్షిం│ 0C15+0C4D+0C37+0C3F+0C02
+│క్షే│ 0C15+0C4D+0C37+0C47
+│క్షో│ 0C15+0C4D+0C37+0C4B
+│క్స్వా│ 0C15+0C4D+0C38+0C4D+0C35+0C3E
+│ఖ్య│ 0C16+0C4D+0C2F
+│ఖ్యా│ 0C16+0C4D+0C2F+0C3E
+│గిం│ 0C17+0C3F+0C02
+│గు│ 0C17+0C41
+│గూ│ 0C17+0C42
+│గృ│ 0C17+0C43
+│గ్భా│ 0C17+0C4D+0C2D+0C3E
+│గ్మ│ 0C17+0C4D+0C2E
+│గ్య│ 0C17+0C4D+0C2F
+│గ్ర│ 0C17+0C4D+0C30
+│గ్రి│ 0C17+0C4D+0C30+0C3F
+│చు│ 0C1A+0C41
+│చెం│ 0C1A+0C46+0C02
+│చ్చు│ 0C1A+0C4D+0C1A+0C41
+│చ్ఛ│ 0C1A+0C4D+0C1B
+│చ్ఛా│ 0C1A+0C4D+0C1B+0C3E
+│చ్ఛే│ 0C1A+0C4D+0C1B+0C47
+│ఛ్ఛా│ 0C1B+0C4D+0C1B+0C3E
+│జ్ఞ│ 0C1C+0C4D+0C1E
+│జ్ఞా│ 0C1C+0C4D+0C1E+0C3E
+│జ్య│ 0C1C+0C4D+0C2F
+│టం│ 0C1F+0C02
+│టిం│ 0C1F+0C3F+0C02
+│టు│ 0C1F+0C41
+│టుం│ 0C1F+0C41+0C02
+│ట్టి│ 0C1F+0C4D+0C1F+0C3F
+│ట్లు│ 0C1F+0C4D+0C32+0C41
+│డు│ 0C21+0C41
+│డ్డ│ 0C21+0C4D+0C21
+│డ్రు│ 0C21+0C4D+0C30+0C41
+│ణిం│ 0C23+0C3F+0C02
+│తం│ 0C24+0C02
+│తః│ 0C24+0C03
+│తు│ 0C24+0C41
+│తృ│ 0C24+0C43
+│త్కా│ 0C24+0C4D+0C15+0C3E
+│త్త│ 0C24+0C4D+0C24
+│త్తి│ 0C24+0C4D+0C24+0C3F
+│త్తు│ 0C24+0C4D+0C24+0C41
+│త్న│ 0C24+0C4D+0C28
+│త్నిం│ 0C24+0C4D+0C28+0C3F+0C02
+│త్ప│ 0C24+0C4D+0C2A
+│త్ఫ│ 0C24+0C4D+0C2B
+│త్య│ 0C24+0C4D+0C2F
+│త్యం│ 0C24+0C4D+0C2F+0C02
+│త్యా│ 0C24+0C4D+0C2F+0C3E
+│త్ర│ 0C24+0C4D+0C30
+│త్రు│ 0C24+0C4D+0C30+0C41
+│త్ర్య│ 0C24+0C4D+0C30+0C4D+0C2F
+│త్వ│ 0C24+0C4D+0C35
+│త్వా│ 0C24+0C4D+0C35+0C3E
+│త్స│ 0C24+0C4D+0C38
+│దం│ 0C26+0C02
+│దిం│ 0C26+0C3F+0C02
+│దు│ 0C26+0C41
+│దుం│ 0C26+0C41+0C02
+│దృ│ 0C26+0C43
+│ద్ఘో│ 0C26+0C4D+0C18+0C4B
+│ద్ది│ 0C26+0C4D+0C26+0C3F
+│ద్దు│ 0C26+0C4D+0C26+0C41
+│ద్దే│ 0C26+0C4D+0C26+0C47
+│ద్ధ│ 0C26+0C4D+0C27
+│ద్ధి│ 0C26+0C4D+0C27+0C3F
+│ద్ధిం│ 0C26+0C4D+0C27+0C3F+0C02
+│ద్య│ 0C26+0C4D+0C2F
+│ద్యా│ 0C26+0C4D+0C2F+0C3E
+│ద్యో│ 0C26+0C4D+0C2F+0C4B
+│ద్ర్య│ 0C26+0C4D+0C30+0C4D+0C2F
+│ద్వా│ 0C26+0C4D+0C35+0C3E
+│ధిం│ 0C27+0C3F+0C02
+│ధు│ 0C27+0C41
+│ధ్య│ 0C27+0C4D+0C2F
+│నం│ 0C28+0C02
+│నః│ 0C28+0C03
+│నాం│ 0C28+0C3E+0C02
+│నిం│ 0C28+0C3F+0C02
+│ను│ 0C28+0C41
+│నుం│ 0C28+0C41+0C02
+│నొం│ 0C28+0C4A+0C02
+│న్ధ│ 0C28+0C4D+0C27
+│న్న│ 0C28+0C4D+0C28
+│న్నా│ 0C28+0C4D+0C28+0C3E
+│న్ని│ 0C28+0C4D+0C28+0C3F
+│న్ను│ 0C28+0C4D+0C28+0C41
+│న్మ│ 0C28+0C4D+0C2E
+│న్య│ 0C28+0C4D+0C2F
+│న్యా│ 0C28+0C4D+0C2F+0C3E
+│న్వే│ 0C28+0C4D+0C35+0C47
+│పం│ 0C2A+0C02
+│పిం│ 0C2A+0C3F+0C02
+│పు│ 0C2A+0C41
+│పూ│ 0C2A+0C42
+│పెం│ 0C2A+0C46+0C02
+│పొం│ 0C2A+0C4A+0C02
+│ప్త│ 0C2A+0C4D+0C24
+│ప్ర│ 0C2A+0C4D+0C30
+│ప్రా│ 0C2A+0C4D+0C30+0C3E
+│ప్రే│ 0C2A+0C4D+0C30+0C47
+│బం│ 0C2C+0C02
+│బ్ర│ 0C2C+0C4D+0C30
+│భం│ 0C2D+0C02
+│భు│ 0C2D+0C41
+│భ్య│ 0C2D+0C4D+0C2F
+│భ్యు│ 0C2D+0C4D+0C2F+0C41
+│భ్ర│ 0C2D+0C4D+0C30
+│భ్రా│ 0C2D+0C4D+0C30+0C3E
+│మిం│ 0C2E+0C3F+0C02
+│ము│ 0C2E+0C41
+│మూ│ 0C2E+0C42
+│మ్య│ 0C2E+0C4D+0C2F
+│యం│ 0C2F+0C02
+│యః│ 0C2F+0C03
+│యిం│ 0C2F+0C3F+0C02
+│యు│ 0C2F+0C41
+│యుం│ 0C2F+0C41+0C02
+│రం│ 0C30+0C02
+│రిం│ 0C30+0C3F+0C02
+│రు│ 0C30+0C41
+│రూ│ 0C30+0C42
+│ర్గ│ 0C30+0C4D+0C17
+│ర్చి│ 0C30+0C4D+0C1A+0C3F
+│ర్చు│ 0C30+0C4D+0C1A+0C41
+│ర్ణ│ 0C30+0C4D+0C23
+│ర్ణాం│ 0C30+0C4D+0C23+0C3E+0C02
+│ర్ణు│ 0C30+0C4D+0C23+0C41
+│ర్త│ 0C30+0C4D+0C24
+│ర్తి│ 0C30+0C4D+0C24+0C3F
+│ర్తిం│ 0C30+0C4D+0C24+0C3F+0C02
+│ర్తృ│ 0C30+0C4D+0C24+0C43
+│ర్థ│ 0C30+0C4D+0C25
+│ర్థి│ 0C30+0C4D+0C25+0C3F
+│ర్థిం│ 0C30+0C4D+0C25+0C3F+0C02
+│ర్ద│ 0C30+0C4D+0C26
+│ర్దో│ 0C30+0C4D+0C26+0C4B
+│ర్ధ│ 0C30+0C4D+0C27
+│ర్ప│ 0C30+0C4D+0C2A
+│ర్బం│ 0C30+0C4D+0C2C+0C02
+│ర్భ│ 0C30+0C4D+0C2D
+│ర్భా│ 0C30+0C4D+0C2D+0C3E
+│ర్య│ 0C30+0C4D+0C2F
+│ర్యా│ 0C30+0C4D+0C2F+0C3E
+│ర్రా│ 0C30+0C4D+0C30+0C3E
+│ర్వ│ 0C30+0C4D+0C35
+│ర్వా│ 0C30+0C4D+0C35+0C3E
+│ర్హ│ 0C30+0C4D+0C39
+│ర్హాం│ 0C30+0C4D+0C39+0C3E+0C02
+│ర్హు│ 0C30+0C4D+0C39+0C41
+│ఱు│ 0C31+0C41
+│లం│ 0C32+0C02
+│లిం│ 0C32+0C3F+0C02
+│లు│ 0C32+0C41
+│ల్క│ 0C32+0C4D+0C15
+│ల్గొ│ 0C32+0C4D+0C17+0C4A
+│ల్ప│ 0C32+0C4D+0C2A
+│ల్ల│ 0C32+0C4D+0C32
+│ల్లి│ 0C32+0C4D+0C32+0C3F
+│విం│ 0C35+0C3F+0C02
+│వు│ 0C35+0C41
+│వృ│ 0C35+0C43
+│వ్య│ 0C35+0C4D+0C2F
+│వ్యా│ 0C35+0C4D+0C2F+0C3E
+│వ్వ│ 0C35+0C4D+0C35
+│శాం│ 0C36+0C3E+0C02
+│శిం│ 0C36+0C3F+0C02
+│శు│ 0C36+0C41
+│శ్చ│ 0C36+0C4D+0C1A
+│శ్చి│ 0C36+0C4D+0C1A+0C3F
+│శ్య│ 0C36+0C4D+0C2F
+│శ్ర│ 0C36+0C4D+0C30
+│శ్రాం│ 0C36+0C4D+0C30+0C3E+0C02
+│శ్లే│ 0C36+0C4D+0C32+0C47
+│శ్వా│ 0C36+0C4D+0C35+0C3E
+│షిం│ 0C37+0C3F+0C02
+│షు│ 0C37+0C41
+│ష్ట│ 0C37+0C4D+0C1F
+│ష్టు│ 0C37+0C4D+0C1F+0C41
+│ష్ట్ర│ 0C37+0C4D+0C1F+0C4D+0C30
+│ష్ట్రీ│ 0C37+0C4D+0C1F+0C4D+0C30+0C40
+│ష్ఠ│ 0C37+0C4D+0C20
+│ష్ఠా│ 0C37+0C4D+0C20+0C3E
+│ష్ఠు│ 0C37+0C4D+0C20+0C41
+│ష్థ│ 0C37+0C4D+0C25
+│ష్ప│ 0C37+0C4D+0C2A
+│సం│ 0C38+0C02
+│సాం│ 0C38+0C3E+0C02
+│సు│ 0C38+0C41
+│సూ│ 0C38+0C42
+│స్కృ│ 0C38+0C4D+0C15+0C43
+│స్తా│ 0C38+0C4D+0C24+0C3E
+│స్తి│ 0C38+0C4D+0C24+0C3F
+│స్త్ర│ 0C38+0C4D+0C24+0C4D+0C30
+│స్త్రీ│ 0C38+0C4D+0C24+0C4D+0C30+0C40
+│స్థ│ 0C38+0C4D+0C25
+│స్థా│ 0C38+0C4D+0C25+0C3E
+│స్థి│ 0C38+0C4D+0C25+0C3F
+│స్థ్య│ 0C38+0C4D+0C25+0C4D+0C2F
+│స్ప│ 0C38+0C4D+0C2A
+│స్య│ 0C38+0C4D+0C2F
+│స్వ│ 0C38+0C4D+0C35
+│స్వా│ 0C38+0C4D+0C35+0C3E
+│స్వీ│ 0C38+0C4D+0C35+0C40
+│స్వే│ 0C38+0C4D+0C35+0C47
+│హిం│ 0C39+0C3F+0C02
+│กำ│ 0E01+0E33
+│คำ│ 0E04+0E33
+│จำ│ 0E08+0E33
+│ดำ│ 0E14+0E33
+│ต่ำ│ 0E15+0E48+0E33
+│ทำ│ 0E17+0E33
+│ธำ│ 0E18+0E33
+│นำ│ 0E19+0E33
+│บำ│ 0E1A+0E33
+│พำ│ 0E1E+0E33
+│รำ│ 0E23+0E33
+│ลำ│ 0E25+0E33
+│สำ│ 0E2A+0E33
+│อำ│ 0E2D+0E33
+│ย่ำ│ 0E22+0E48+0E33
+│؁۱│ 0601+06F1
+│㐌│ 0x0340c Vietname …
+│㛪│ 0x036ea Vietname …
+│㥋│ 0x0394b Vietname …
+│㫻│ 0x03afb Vietname …
+│㭲│ 0x03b72 Vietname …
+│㳻│ 0x03cfb Vietname …
+│䁛│ 0x0405b Vietname …
+│䏧│ 0x043e7 Vietname …
+│丕│ 0x04e15 Vietname …
+│亂│ 0x04e82 Vietname …
+│仍│ 0x04ecd Vietname …
+│併│ 0x04f75 Vietname …
+│儗│ 0x05117 Vietname …
+│兵│ 0x05175 Vietname …
+│刨│ 0x05228 Vietname …
+│刷│ 0x05237 Vietname …
+│削│ 0x0524a Vietname …
+│劍│ 0x0528d Vietname …
+│勞│ 0x052de Vietname …
+│勤│ 0x052e4 Vietname …
+│勸│ 0x052f8 Vietname …
+│卑│ 0x05351 Vietname …
+│卬│ 0x0536c Vietname …
+│卻│ 0x0537b Vietname …
+│吏│ 0x0540f Vietname …
+│吝│ 0x0541d Vietname …
+│吧│ 0x05427 Vietname …
+│吶│ 0x05436 Vietname …
+│咍│ 0x0548d Vietname …
+│咹│ 0x054b9 Vietname …
+│哴│ 0x054f4 Vietname …
+│哿│ 0x054ff Vietname …
+│嚮│ 0x056ae Vietname …
+│圍│ 0x0570d Vietname …
+│坦│ 0x05766 Vietname …
+│坭│ 0x0576d Vietname …
+│型│ 0x0578b Vietname …
+│埃│ 0x057c3 Vietname …
+│塊│ 0x0584a Vietname …
+│塞│ 0x0585e Vietname …
+│增│ 0x0589e Vietname …
+│奉│ 0x05949 Vietname …
+│奮│ 0x0596e Vietname …
+│妬│ 0x059ac Vietname …
+│姅│ 0x059c5 Vietname …
+│委│ 0x059d4 Vietname …
+│威│ 0x05a01 Vietname …
+│娶│ 0x05a36 Vietname …
+│婆│ 0x05a46 Vietname …
+│婦│ 0x05a66 Vietname …
+│媄│ 0x05a84 Vietname …
+│存│ 0x05b58 Vietname …
+│寔│ 0x05bd4 Vietname …
+│局│ 0x05c40 Vietname …
+│廛│ 0x05edb Vietname …
+│引│ 0x05f15 Vietname …
+│恪│ 0x0606a Vietname …
+│慬│ 0x0616c Vietname …
+│憑│ 0x06191 Vietname …
+│押│ 0x062bc Vietname …
+│拖│ 0x062d6 Vietname …
+│拧│ 0x062e7 Vietname …
+│拫│ 0x062eb Vietname …
+│挵│ 0x06335 Vietname …
+│掋│ 0x0638b Vietname …
+│搊│ 0x0640a Vietname …
+│搠│ 0x06420 Vietname …
+│撻│ 0x064bb Vietname …
+│擔│ 0x064d4 Vietname …
+│攄│ 0x06504 Vietname …
+│數│ 0x06578 Vietname …
+│斷│ 0x065b7 Vietname …
+│智│ 0x0667a Vietname …
+│曉│ 0x066c9 Vietname …
+│書│ 0x066f8 Vietname …
+│朋│ 0x0670b Vietname …
+│朱│ 0x06731 Vietname …
+│案│ 0x06848 Vietname …
+│梗│ 0x06897 Vietname …
+│極│ 0x06975 Vietname …
+│檢│ 0x06aa2 Vietname …
+│欣│ 0x06b23 Vietname …
+│歲│ 0x06b72 Vietname …
+│歸│ 0x06b78 Vietname …
+│沛│ 0x06c9b Vietname …
+│浽│ 0x06d7d Vietname …
+│添│ 0x06dfb Vietname …
+│渃│ 0x06e03 Vietname …
+│演│ 0x06f14 Vietname …
+│激│ 0x06fc0 Vietname …
+│爫│ 0x0722b Vietname …
+│爲│ 0x07232 Vietname …
+│版│ 0x07248 Vietname …
+│狀│ 0x072c0 Vietname …
+│猛│ 0x0731b Vietname …
+│環│ 0x074b0 Vietname …
+│甘│ 0x07518 Vietname …
+│畢│ 0x07562 Vietname …
+│瘖│ 0x07616 Vietname …
+│監│ 0x076e3 Vietname …
+│眾│ 0x0773e Vietname …
+│硶│ 0x07876 Vietname …
+│稱│ 0x07a31 Vietname …
+│積│ 0x07a4d Vietname …
+│窮│ 0x07aae Vietname …
+│答│ 0x07b54 Vietname …
+│節│ 0x07bc0 Vietname …
+│範│ 0x07bc4 Vietname …
+│糧│ 0x07ce7 Vietname …
+│素│ 0x07d20 Vietname …
+│終│ 0x07d42 Vietname …
+│續│ 0x07e8c Vietname …
+│羅│ 0x07f85 Vietname …
+│群│ 0x07fa4 Vietname …
+│肯│ 0x080af Vietname …
+│膮│ 0x081ae Vietname …
+│芇│ 0x08287 Vietname …
+│處│ 0x08655 Vietname …
+│衞│ 0x0885e Vietname …
+│褒│ 0x08912 Vietname …
+│觀│ 0x089c0 Vietname …
+│計│ 0x08a08 Vietname …
+│調│ 0x08abf Vietname …
+│謹│ 0x08b39 Vietname …
+│識│ 0x08b58 Vietname …
+│豫│ 0x08c6b Vietname …
+│踷│ 0x08e37 Vietname …
+│辦│ 0x08fa6 Vietname …
+│辭│ 0x08fad Vietname …
+│造│ 0x09020 Vietname …
+│逼│ 0x0903c Vietname …
+│遶│ 0x09076 Vietname …
+│邊│ 0x0908a Vietname …
+│閾│ 0x095be Vietname …
+│附│ 0x09644 Vietname …
+│順│ 0x09806 Vietname …
+│頒│ 0x09812 Vietname …
+│餒│ 0x09912 Vietname …
+│饒│ 0x09952 Vietname …
+│駭│ 0x099ed Vietname …
+│驅│ 0x09a45 Vietname …
+│鬥│ 0x09b25 Vietname …
+│點│ 0x09ede Vietname …
+│𠁀│ 0x20040 Vietname …
+│𠁑│ 0x20051 Vietname …
+│𠃣│ 0x200e3 Vietname …
+│𠄩│ 0x20129 Vietname …
+│𠉞│ 0x2025e Vietname …
+│𠊛│ 0x2029b Vietname …
+│𠊝│ 0x2029d Vietname …
+│𠍣│ 0x20363 Vietname …
+│𠓀│ 0x204c0 Vietname …
+│𠓨│ 0x204e8 Vietname …
+│𠚢│ 0x206a2 Vietname …
+│𠢞│ 0x2089e Vietname …
+│𠫆│ 0x20ac6 Vietname …
+│𠬃│ 0x20b03 Vietname …
+│𠬠│ 0x20b20 Vietname …
+│𠱊│ 0x20c4a Vietname …
+│𠱋│ 0x20c4b Vietname …
+│𠳒│ 0x20cd2 Vietname …
+│𠹾│ 0x20e7e Vietname …
+│𠽖│ 0x20f56 Vietname …
+│𡀮│ 0x2102e Vietname …
+│𡄰│ 0x21130 Vietname …
+│𡏦│ 0x213e6 Vietname …
+│𡖡│ 0x215a1 Vietname …
+│𡝃│ 0x21743 Vietname …
+│𡥵│ 0x21975 Vietname …
+│𡧲│ 0x219f2 Vietname …
+│𡱩│ 0x21c69 Vietname …
+│𡳳│ 0x21cf3 Vietname …
+│𢆥│ 0x221a5 Vietname …
+│𢖵│ 0x225b5 Vietname …
+│𢗖│ 0x225d6 Vietname …
+│𢚸│ 0x226b8 Vietname …
+│𢜝│ 0x2271d Vietname …
+│𢟙│ 0x227d9 Vietname …
+│𢣂│ 0x228c2 Vietname …
+│𢧚│ 0x229da Vietname …
+│𢩿│ 0x22a7f Vietname …
+│𢫈│ 0x22ac8 Vietname …
+│𢭲│ 0x22b72 Vietname …
+│𢱜│ 0x22c5c Vietname …
+│𢴐│ 0x22d10 Vietname …
+│𢵬│ 0x22d6c Vietname …
+│𢵻│ 0x22d7b Vietname …
+│𢶢│ 0x22da2 Vietname …
+│𢷮│ 0x22dee Vietname …
+│𢺺│ 0x22eba Vietname …
+│𣅶│ 0x23176 Vietname …
+│𣇞│ 0x231de Vietname …
+│𣈜│ 0x2321c Vietname …
+│𣎃│ 0x23383 Vietname …
+│𣎏│ 0x2338f Vietname …
+│𣗓│ 0x235d3 Vietname …
+│𣞪│ 0x237aa Vietname …
+│𣱆│ 0x23c46 Vietname …
+│𤍊│ 0x2434a Vietname …
+│𤕔│ 0x24554 Vietname …
+│𤯨│ 0x24be8 Vietname …
+│𤯩│ 0x24be9 Vietname …
+│𤴬│ 0x24d2c Vietname …
+│𥋳│ 0x252f3 Vietname …
+│𥗾│ 0x255fe Vietname …
+│𥘷│ 0x25637 Vietname …
+│𥚤│ 0x256a4 Vietname …
+│𥢆│ 0x25886 Vietname …
+│𥩯│ 0x25a6f Vietname …
+│𥪝│ 0x25a9d Vietname …
+│𥰊│ 0x25c0a Vietname …
+│𦄾│ 0x2613e Vietname …
+│𦓅│ 0x264c5 Vietname …
+│𦓡│ 0x264e1 Vietname …
+│𦤾│ 0x2693e Vietname …
+│𧗱│ 0x275f1 Vietname …
+│𧵑│ 0x27d51 Vietname …
+│𧶭│ 0x27dad Vietname …
+│𧿨│ 0x27fe8 Vietname …
+│𨁥│ 0x28065 Vietname …
+│𨉟│ 0x2825f Vietname …
+│𨕭│ 0x2856d Vietname …
+│𨸾│ 0x28e3e Vietname …
+│𩈘│ 0x29218 Vietname …
+│𪟽│ 0x2a7fd Vietname …
+│𪠞│ 0x2a81e Vietname …
+│𪦆│ 0x2a986 Vietname …
+│𪸝│ 0x2ae1d Vietname …
+│𫃚│ 0x2b0da Vietname …
+│𫅴│ 0x2b174 Vietname …
+│𫡔│ 0x2b854 Vietname …
+│𫡽│ 0x2b87d Vietname …
+│𫯳│ 0x2bbf3 Vietname …
+│𫼩│ 0x2bf29 Vietname …
+│𫼳│ 0x2bf33 Vietname …
+│𬜝│ 0x2c71d Vietname …
+│𬡶│ 0x2c876 Vietname …
+│𬥓│ 0x2c953 Vietname …
+│𬧐│ 0x2c9d0 Vietname …
+│𬨴│ 0x2ca34 Vietname …
+│𬩢│ 0x2ca62 Vietname …

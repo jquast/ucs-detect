@@ -1,8 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-19 00:20:44 UTC
+datetime: 2026-05-24 22:09:22 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: xterm-256color
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 148.61941572599608
+seconds_elapsed: 395.38633051502984
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -37,10 +40,11 @@ terminal_results:
   modes: {}
   number_of_colors: 16777216
   pixels_height: 264
-  pixels_width: 1880
+  pixels_width: 1040
   screen_ratio: '32:9'
   screen_ratio_name: WQHD
   sixel: false
+  software_method: ENQ
   software_name: Extraterm
   software_version: "0.81.4\e\\"
   styled_underlines: false
@@ -49,10 +53,12 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 94
+  width: 52
   xtgettcap:
     capabilities: {}
     supported: false
+  xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -31824,4 +31830,4 @@ test_results:
       n_total: 43592
       pct_success: 99.41503028078546
 wcwidth_version: 0.7.0
-width: 94
+width: 52

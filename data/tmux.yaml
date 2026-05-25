@@ -1,8 +1,13 @@
 ambiguous_width: 1
-datetime: 2026-05-21 13:39:48 UTC
+datetime: 2026-05-24 22:03:46 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: tmux-256color
+  TERM_PROGRAM: tmux
+  TERM_PROGRAM_VERSION: '3.4'
 height: 20
 python_version: 3.14.4
-seconds_elapsed: 19.608967076987028
+seconds_elapsed: 56.66851146501722
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -52,6 +57,7 @@ terminal_results:
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: true
+  software_method: XTVERSION
   software_name: tmux
   software_version: '3.4'
   styled_underlines: false
@@ -65,6 +71,7 @@ terminal_results:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

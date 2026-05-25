@@ -42,12 +42,103 @@ import matplotlib.pyplot as plt  # pylint: disable=wrong-import-position
 import numpy as np  # pylint: disable=wrong-import-position
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _ROOT not in sys.path:
+    sys.path.insert(0, _ROOT)
+
+from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars
+from ucs_detect.measure import make_printf_hex
+
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
+GITHUB_EXAMPLE_BASE = 'https://github.com/jquast/ucs-detect/blob/master/docs/ucs_example_files'
+EXAMPLE_FILES_DIR = os.path.join(_ROOT, 'docs', 'ucs_example_files')
 DATA_PATH = os.path.join(_ROOT, "data")
 TERMINAL_DETAIL_MIXINS_PATH = os.path.join(_ROOT, "terminals.yaml")
 PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
+
+# Mapping from test category to example file basename.
+# Language failures use ucs_graphemes_{width}.txt, resolved at lookup time.
+CATEGORY_FILE_MAP = {
+    'wide': 'ucs_wide.txt',
+    'zwj': 'ucs_zwj.txt',
+    'vs16': 'ucs_vs16.txt',
+    'vs16n': 'ucs_vs16.txt',
+    'vs15': 'ucs_vs15.txt',
+    'sri': None,
+    'sfz': None,
+    'ri': None,
+}
+
+# Lazily populated cache: filepath -> {hex_key: 1-based line number}
+_example_index_cache = {}
+
+
+def _build_example_index(filepath):
+    """Parse an example file, returning ``{hex_key: 1_based_line_number}``."""
+    index = {}
+    with open(filepath, 'r', encoding='utf-8') as f:
+        for lineno, line in enumerate(f, start=1):
+            if '│' not in line:
+                continue
+            # left-aligned: │X│ 0x00020 Name   or   │XX│ 1F468+200D+...
+            after_bar = line.split('│ ', 1)
+            if len(after_bar) < 2:
+                continue
+            hex_word = after_bar[1].split()[0]
+            # strip '0x' prefix, leading zeros, uppercase.
+            if hex_word.startswith('0x'):
+                hex_word = hex_word[2:]
+            hex_word = hex_word.lstrip('0').upper() or '0'
+            index[hex_word] = lineno
+    return index
+
+
+def _get_example_index(category, measured_width=None):
+    """Return the ``{hex_key: line_number}`` index for *category*, building if needed.  """
+    if category.startswith('lang'):
+        if measured_width is None:
+            return None
+        basename = f'ucs_graphemes_{int(measured_width)}.txt'
+    else:
+        basename = CATEGORY_FILE_MAP.get(category)
+        if basename is None:
+            return None
+
+    filepath = os.path.join(EXAMPLE_FILES_DIR, basename)
+    if not os.path.exists(filepath):
+        return None
+    if filepath not in _example_index_cache:
+        _example_index_cache[filepath] = _build_example_index(filepath)
+    return _example_index_cache[filepath]
+
+
+def _example_file_link(wchar, category, measured_width=None):
+    """Return an RST hyperlink and line number for the example file at *wchar*.
+
+    :returns: ``(basename, lineno, url)`` tuple or ``None``.
+    """
+    def _wchar_to_hex(wchar):
+        cps = [f'{ord(c):X}' for c in wchar]
+        return '+'.join(cps)
+    if category.startswith('lang'):
+        basename = f'ucs_graphemes_{int(measured_width)}.txt' if measured_width else None
+    else:
+        basename = CATEGORY_FILE_MAP.get(category)
+    if basename is None:
+        return None
+
+    index = _get_example_index(category, measured_width)
+    if index is None:
+        return None
+
+    hex_key = _wchar_to_hex(wchar)
+    lineno = index.get(hex_key)
+    if lineno is None:
+        return None
+
+    url = f'{GITHUB_EXAMPLE_BASE}/{basename}#L{lineno}'
+    return basename, lineno, url
 
 
 def score_to_color(score):
@@ -120,31 +211,13 @@ def generate_score_roles():
 
 
 def wrap_with_score_role(text, score):
-    """Wrap text with a reStructuredText inline role based on the score.
-
-    :type text: str
-    :param text: The text content to wrap (e.g., "75.0%")
-    :type score: float
-    :param score: The score value (0.0 to 1.0) used to determine the role class
-    :returns: Text wrapped with inline RST role syntax for score coloring
-    """
+    """Wrap text with a reStructuredText inline role based on the score."""
     role_name = make_score_css_class(score)
     return f':{role_name}:`{text}`'
 
 
 def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
-    """Wrap score text with both a hyperlink and score styling using the :sref: role.
-
-    :type text: str
-    :param text: The text to display (e.g., "75.0%", "32s")
-    :type score: float
-    :param score: The score value (0.0 to 1.0) for styling
-    :type terminal_name: str
-    :param terminal_name: The terminal name for creating the link target
-    :type section_suffix: str
-    :param section_suffix: The section suffix (e.g., "_wide", "_lang", "_time")
-    :returns: Text wrapped with hyperlink and role
-    """
+    """Wrap score text with both a hyperlink and score styling using the :sref: role."""
     score_value = round(score * 100) if not math.isnan(score) else 'na'
     link_target = make_link(terminal_name + section_suffix)
     return f':sref:`{text} <{link_target}> {score_value}`'
@@ -190,13 +263,7 @@ def load_terminal_detail_mixins():
 
 
 def print_datatable(table_str, caption=None):
-    """Print a table with sphinx-datatable class for sortable/searchable functionality.
-
-    :type table_str: str
-    :param table_str: The table string (RST format from tabulate)
-    :type caption: str or None
-    :param caption: Optional caption for the table
-    """
+    """Print a table with sphinx-datatable class for sortable/searchable functionality."""
     if caption:
         print(f".. table:: {caption}")
     else:
@@ -561,18 +628,6 @@ def display_inbound_hyperlink(link_text):
     print()
 
 
-def find_best_failure(records):
-    """Find the best (most interesting) failure result from a results dict."""
-    sorted_records = sorted(records, key=lambda record: record.get("measured_by_wcwidth", 0))
-    return sorted_records[len(sorted_records) // 2]
-
-
-def make_printf_hex(wchar):
-    """Format a string as a hexdump suitable for a printf(1) command."""
-    # python's b'\x12..' representation is compatible enough with printf(1)
-    return repr(bytes(wchar, "utf8").decode("unicode-escape").encode("utf8"))[2:-1]
-
-
 def make_score_table():
     """Read all YAML data files and compute normalized scores for each terminal."""
     score_table = []
@@ -809,10 +864,6 @@ def _truncate_version(version):
 def _classify_xtgettcap(data):
     """Classify XTGETTCAP support as full, partial, or none.
 
-    Uses same logic as ttyscan ``has_meaningful_caps``: Full terminals
-    report capabilities beyond the bare-minimum TN/colors/RGB plus keyboard
-    keys.  Boolean caps (empty string), meaningful numeric caps (beyond
-    colors/Co), and output string caps (non-keyboard) all indicate Full.
     Returns ``(label, score)`` where label is "full", "partial", or None,
     and score is 1.0, 0.5, or 0.0.
 
@@ -877,6 +928,9 @@ def _count_features(entry):  # "features" in user-facing output
         n_found += xt_score
     elif "xtgettcap" in tr:
         n_total += 1
+    if tr.get("software_method") == "XTVERSION":
+        n_total += 1
+        n_found += 1
     return n_found, n_total
 
 
@@ -1243,11 +1297,11 @@ def score_features(data):
     """
     Calculate score as fraction of notable terminal features supported.
 
-    Checks 13 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
+    Checks 14 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
     Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
     Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
-    Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications, and
-    Color Report (OSC 10/11).
+    Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications,
+    Color Report (OSC 10/11), and XTVERSION.
 
     :rtype: float
     :returns: fraction 0.0-1.0 of features supported
@@ -1258,7 +1312,7 @@ def score_features(data):
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 13
+    total = 14
 
     for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
@@ -1290,6 +1344,9 @@ def score_features(data):
         count += 1
 
     if tr.get("foreground_color_hex") or tr.get("background_color_hex"):
+        count += 1
+
+    if tr.get("software_method") == "XTVERSION":
         count += 1
 
     return count / total
@@ -1546,15 +1603,16 @@ def display_xtgettcap_summary_bullets(score_table):
 
     if full:
         _bullet("Full XTGETTCAP capability support", full,
-                ". ttyscan produces terminfo files for only these terminals. "
-                "ttyscan may also discover a preferred TERM from TN, "
-                "and COLORTERM=truecolor from RGB.")
+                ". A full terminfo(5) database can be reconstructed "
+                "from XTGETTCAP queries using ttyscan_. "
+                "A preferred TERM from TN, and COLORTERM=truecolor "
+                "from RGB may be derived.")
         print()
 
     if partial:
         _bullet("Partial XTGETTCAP capability support", partial,
-                ". ttyscan may only discover preferred TERM from TN, "
-                "and COLORTERM=truecolor from RGB.")
+                ". A preferred TERM from TN, and COLORTERM=truecolor "
+                "from RGB may be derived.")
         print()
 
     if nosupport:
@@ -1579,8 +1637,8 @@ def display_xtgettcap_comparison_table(score_table):
     from collections import OrderedDict
 
     print("This table shows XTGETTCAP terminfo capability values reported "
-          "by each terminal, as demonstrated by `ttyscan`_.")
-    print("Terminals are grouped by shared values for each capability.")
+          "by each terminal. Terminals are grouped by shared values for "
+          "each capability.")
     print()
 
     # Collect XTGETTCAP data from all terminals that support it
@@ -2038,7 +2096,8 @@ def show_wide_character_support(sw_name, entry):
         if result["n_errors"] > 0:
             fail_record = find_best_failure(result["failed_codepoints"])
             show_record_failure(
-                sw_name, "of a WIDE character,", fail_record
+                sw_name, "of a WIDE character,", fail_record,
+                category="wide",
             )
     else:
         print(f"Wide character results for *{sw_name}* are not available.")
@@ -2066,7 +2125,8 @@ def show_emoji_zwj_results(sw_name, entry):
     print()
     if n_errors > 0:
         fail_record = find_best_failure(result["failed_codepoints"])
-        show_record_failure(sw_name, "of an Emoji ZWJ Sequence,", fail_record)
+        show_record_failure(sw_name, "of an Emoji ZWJ Sequence,", fail_record,
+                            category="zwj")
 
 
 def show_vs_results(sw_name, entry, variation_str):
@@ -2096,7 +2156,8 @@ def show_vs_results(sw_name, entry, variation_str):
         description = 'NARROW Emoji made WIDE' if variation_str == '16' else 'WIDE Emoji made NARROW'
         whatis = f"of a {description} by *Variation Selector-{variation_str}*,"
         show_record_failure(sw_name, whatis, failure_record,
-                            test_type=f"vs{variation_str}")
+                            test_type=f"vs{variation_str}",
+                            category=f"vs{variation_str}")
     if variation_str == '15':
         print()
         print(".. note::")
@@ -2241,9 +2302,11 @@ def show_language_results(sw_name, entry):
     print_datatable(table_str)
     for failed_lang in languages_failed:
         fail_record = lang_results[failed_lang]["failed"][0]
+        safe_lang = safe_name(failed_lang)
         display_inbound_hyperlink(sw_name + "_lang_" + failed_lang)
         display_title(failed_lang, 4)
-        show_record_failure(sw_name, f"of language *{failed_lang}*", fail_record)
+        show_record_failure(sw_name, f"of language *{failed_lang}*", fail_record,
+                            category=f"lang_{safe_lang}")
 
 
 def show_dec_modes_results(sw_name, entry):
@@ -2488,7 +2551,8 @@ def show_sri_results(sw_name, entry):
     if n_errors > 0 and result.get("failed_codepoints"):
         fail_record = find_best_failure(result["failed_codepoints"])
         show_record_failure(
-            sw_name, "of a standalone Regional Indicator,", fail_record
+            sw_name, "of a standalone Regional Indicator,", fail_record,
+            category="sri",
         )
 
 
@@ -2514,7 +2578,8 @@ def show_sfz_results(sw_name, entry):
     if n_errors > 0 and result.get("failed_codepoints"):
         fail_record = find_best_failure(result["failed_codepoints"])
         show_record_failure(
-            sw_name, "of a standalone Fitzpatrick modifier,", fail_record
+            sw_name, "of a standalone Fitzpatrick modifier,", fail_record,
+            category="sfz",
         )
 
 
@@ -2540,7 +2605,8 @@ def show_ri_results(sw_name, entry):
     if n_errors > 0 and result.get("failed_codepoints"):
         fail_record = find_best_failure(result["failed_codepoints"])
         show_record_failure(
-            sw_name, "of a Regional Indicator flag sequence,", fail_record
+            sw_name, "of a Regional Indicator flag sequence,", fail_record,
+            category="ri",
         )
 
 
@@ -2585,13 +2651,13 @@ def show_time_elapsed_results(sw_name, entry):
     print()
 
 
-def show_record_failure(sw_name, whatis, fail_record, test_type=None):
+def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=None):
     """Display details of a test failure record for a terminal."""
     num_bars = "1234567890" * ((fail_record.get("measured_by_wcwidth", 0) // 10) + 1)
     ruler = num_bars[: fail_record.get("measured_by_wcwidth", 0)]
     wchars = fail_record.get("wchar", fail_record.get("wchars"))
     assert wchars
-    as_printf_hex = make_printf_hex(wchars)
+    as_printf_hex = make_printf_hex(decode_wchars(wchars))
     print(f"Sequence {whatis} from midpoint of alignment failure records:")
     print()
     show_wchar(wchars)
@@ -2602,6 +2668,32 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None):
     print(f'        {bytes(wchars, "utf8").decode("unicode-escape")}|')
     print(f"        {ruler}|")
     print()
+
+    # Example file cross-reference
+    if category:
+        decoded = decode_wchars(wchars)
+        measured_width = fail_record.get('measured_by_wcwidth')
+        info = _example_file_link(decoded, category, measured_width)
+        if info:
+            basename, lineno, url = info
+            print()
+            print(f"- See Line {lineno} of `{basename} <{url}>`_"
+                  " for this sequence in the example file.")
+
+    # Screenshot reference
+    if category:
+        safe_sw = safe_name(sw_name)
+        screenshot_path = f"../_static/screenshots/{safe_sw}/{category}.png"
+        abs_screenshot = os.path.join(_ROOT, "docs", "_static", "screenshots",
+                                      safe_sw, f"{category}.png")
+        if os.path.exists(abs_screenshot):
+            print()
+            print("Screenshot:")
+            print()
+            print(f".. image:: {screenshot_path}")
+            print("   :alt: Terminal screenshot of the rendering discrepancy")
+            print()
+
     if fail_record.get("delta_ypos", 0) != 0:
         print(f"- Cursor Y-Position moved {fail_record['delta_ypos']} rows"
               " where no movement is expected.")

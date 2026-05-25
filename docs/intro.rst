@@ -21,7 +21,7 @@ characters. Complex advancing rules with Brahmic scripts.
 
 Terminal applications must determine the display width of these characters, but
 the Unicode Standard is updated periodically while libraries and applications
-lag behind — or never update.
+lag behind, or never get updated at all.
 
 Support also varies within a terminal.
 

@@ -1,8 +1,13 @@
 ambiguous_width: 1
-datetime: 2026-05-21 14:20:59 UTC
+datetime: 2026-05-24 22:04:35 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: xterm-ghostty
+  TERM_PROGRAM: ghostty
+  TERM_PROGRAM_VERSION: 1.3.2-main-+3706abab0
 height: 21
 python_version: 3.14.4
-seconds_elapsed: 51.89566660000128
+seconds_elapsed: 84.00256490695756
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -126,6 +131,7 @@ terminal_results:
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: false
+  software_method: XTVERSION
   software_name: ghostty
   software_version: 1.3.2-main-+3706abab0
   styled_underlines: true
@@ -356,6 +362,7 @@ terminal_results:
       xr: "\eP>\\|[ -~]+a\e\\"
     supported: true
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:

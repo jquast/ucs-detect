@@ -1,8 +1,13 @@
 ambiguous_width: 1
-datetime: 2026-05-24 00:08:17 UTC
+datetime: 2026-05-25 00:10:10 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: xterm-256color
+  TERM_PROGRAM: Apple_Terminal
+  TERM_PROGRAM_VERSION: '465'
 height: 43
 python_version: 3.12.8
-seconds_elapsed: 38.47558783413842
+seconds_elapsed: 38.34860804211348
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -10,7 +15,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-software_name: Terminal.app
+software_name: Apple_Terminal
 software_version: '465'
 system: Darwin
 terminal_results:
@@ -49,7 +54,8 @@ terminal_results:
   screen_ratio: '4:3'
   screen_ratio_name: VGA
   sixel: false
-  software_name: Terminal.app
+  software_method: TERM_PROGRAM
+  software_name: Apple_Terminal
   software_version: '465'
   styled_underlines: false
   tab_stop_width: 8
@@ -62,6 +68,7 @@ terminal_results:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: true
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:
