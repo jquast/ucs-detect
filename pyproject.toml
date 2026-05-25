@@ -53,6 +53,7 @@ classifiers = [
 ]
 dependencies = [
   "blessed>=1.43,<2",
+  "pillow",
   "prettytable",
   "pyyaml<7",
   "requests",

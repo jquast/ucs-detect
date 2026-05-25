@@ -40,6 +40,7 @@ import matplotlib  # pylint: disable=wrong-import-position
 matplotlib.use('Agg')  # Non-interactive backend for ReadTheDocs
 import matplotlib.pyplot as plt  # pylint: disable=wrong-import-position
 import numpy as np  # pylint: disable=wrong-import-position
+from PIL import Image  # pylint: disable=wrong-import-position
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _ROOT not in sys.path:
@@ -1650,6 +1651,9 @@ def display_truecolor_table(score_table):
     display_title("Truecolor Detection", 2)
     print("This table shows which methods can be used to detect 24-bit")
     print("truecolor support for each terminal emulator. ``no`` cells are")
+    print("yellow when only COLORTERM detects support (COLORTERM is not")
+    print("forwarded over SSH without ``SendEnv`` / ``AcceptEnv``"
+          " configuration),")
     print("grey when at least one other method succeeds, and red when no")
     print("method can detect truecolor support.")
     print()
@@ -2703,6 +2707,15 @@ def show_truecolor_results(sw_name, entry):
         print(f"- COLORTERM: **{ct_status}**")
     print()
 
+    if ct_has and not xt_has and not dq_has:
+        print(".. warning::")
+        print()
+        print("   COLORTERM is an environment variable, not a terminal query."
+              " It is not forwarded over SSH without ``SendEnv`` / ``AcceptEnv``"
+              " configuration, so detection via COLORTERM alone may be unreliable"
+              " on remote hosts.")
+        print()
+
 
 def show_sri_results(sw_name, entry):
     """Display standalone Regional Indicator results."""
@@ -2867,6 +2880,9 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
             print()
             print(f".. image:: {screenshot_path}")
             print("   :alt: Terminal screenshot of the rendering discrepancy")
+            w, h = Image.open(abs_screenshot).size
+            print(f"   :width: {w}px")
+            print(f"   :height: {h}px")
             print()
 
     if fail_record.get("delta_ypos", 0) != 0:

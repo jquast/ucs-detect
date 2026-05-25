@@ -107,4 +107,5 @@
 .score-99 { background-color: rgb(194, 242, 193); }
 .score-100 { background-color: rgb(193, 242, 193); }
 .score-contested { background-color: rgb(220, 220, 220); }
+.score-warn { background-color: rgb(255, 255, 150); }
 .score-na { background-color: rgb(220, 220, 220); }
