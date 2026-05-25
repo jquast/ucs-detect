@@ -1,10 +1,15 @@
 ambiguous_width: 1
-datetime: 2026-05-24 01:55:08 UTC
-height: 43
+datetime: 2026-05-25 01:39:00 UTC
+environment:
+  COLORTERM: truecolor
+  TERM: xterm-256color
+  TERM_PROGRAM: iTerm.app
+  TERM_PROGRAM_VERSION: 3.6.10
+height: 25
 python_version: 3.12.8
-seconds_elapsed: 5704.621777208988
+seconds_elapsed: 3487.8931578749325
 session_arguments:
-  limit_category_time: 900.0
+  limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
@@ -27,7 +32,7 @@ terminal_results:
     decsca: '0'
     decscl: '65'
     decscusr: '1'
-    decslpp: '43'
+    decslpp: '25'
     decslrm: ''
     decstbm: ''
     sgr: 0;38:2:1:0:0:0
@@ -48,7 +53,7 @@ terminal_results:
   - 51185
   - 51185
   - 51185
-  height: 43
+  height: 25
   iterm2_features:
     features:
       bracketed_paste: true
@@ -115,7 +120,7 @@ terminal_results:
       enabled: false
       mode_description: Grapheme Clustering
       mode_name: GRAPHEME_CLUSTERING
-      supported: true
+      supported: false
       value: 4
       value_description: PERMANENTLY_RESET
     2031:
@@ -139,16 +144,17 @@ terminal_results:
       enabled: false
       mode_description: Bracketed Paste MIME
       mode_name: BRACKETED_PASTE_MIME
-      supported: true
+      supported: false
       value: 4
       value_description: PERMANENTLY_RESET
   number_of_colors: 16777216
   osc52_clipboard: true
-  pixels_height: 768
-  pixels_width: 1138
+  pixels_height: 737
+  pixels_width: 1130
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: true
+  software_method: XTVERSION
   software_name: iTerm2
   software_version: 3.6.10
   styled_underlines: false
@@ -157,7 +163,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 141
+  width: 80
   xtgettcap:
     capabilities:
       AX: '1'
@@ -364,6 +370,7 @@ terminal_results:
       xvpa: '0'
     supported: true
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -6526,4 +6533,4 @@ test_results:
       n_total: 43592
       pct_success: 99.98164800880896
 wcwidth_version: 0.7.0
-width: 141
+width: 80
