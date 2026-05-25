@@ -78,7 +78,7 @@ def capture_window(window_id, output_path):
                     continue
                 raise
         subprocess.run(
-            ["convert", tmp_xwd, "-trim", "+repage", output_path],
+            ["convert", tmp_xwd, "-trim", "+repage", "-strip", output_path],
             capture_output=True, check=True, timeout=10,
         )
     finally:
