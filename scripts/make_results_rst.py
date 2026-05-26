@@ -908,53 +908,12 @@ def _classify_xtgettcap(data):
     return ("partial", 0.5)
 
 
-def _count_features(entry):  # "features" in user-facing output
-    """Count supported and total notable features for a terminal."""
-    tr = entry["data"].get("terminal_results") or {}
-    if not tr:
-        return 0, 0
-
-    modes = tr.get("modes") or {}
-    n_found = 0
-    n_total = 0
-    for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
-                     _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
-                     _DPM.GRAPHEME_CLUSTERING, _DPM.BRACKETED_PASTE_MIME):
-        n_total += 1
-        if _get_dec_mode_supported(modes, mode_num):
-            n_found += 1
-    if tr.get("kitty_keyboard") is not None:
-        n_total += 1
-        n_found += 1
-    elif tr.get("modes"):
-        n_total += 1
-    # XTGETTCAP: Full=1.0, Partial=0.5 contribution
-    xt = tr.get("xtgettcap", {})
-    if xt.get("supported", False) and bool(xt.get("capabilities")):
-        n_total += 1
-        _label, xt_score = _classify_xtgettcap(entry)
-        n_found += xt_score
-    elif "xtgettcap" in tr:
-        n_total += 1
-    if tr.get("software_method") == "XTVERSION":
-        n_total += 1
-        n_found += 1
-    # Truecolor detection: 1.0 for any detection method
-    xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
-    if "xtgettcap" in tr or "decrqss" in tr or "environment" in entry["data"]:
-        n_total += 1
-        if xt_has or dq_has or ct_has:
-            n_found += 1
-    return n_found, n_total
-
-
-def _format_features_summary(entry, max_caps):
-    """Format detected features as a count with scored hyperlink."""
+def _format_features_summary(entry):
+    """Format detected features as scaled score with hyperlink to Score Breakdown."""
     sw_name = entry["terminal_software_name"]
-    n_found, _n_total = _count_features(entry)
-    score = n_found / max_caps if max_caps else 0.0
+    score = entry["score_features_scaled"]
     return wrap_score_with_hyperlink(
-        str(n_found), score, sw_name, "_dec_modes"
+        format_score_int(score), score, sw_name, "_scores"
     )
 
 
@@ -1019,12 +978,9 @@ def display_tabulated_scores(score_table):
 
     tabulated_scores = []
 
-    # determine max features across all terminals for scaling
-    max_caps = max((_count_features(r)[0] for r in score_table), default=1)
-
     for rank, result in enumerate(score_table, start=1):
-        # Build features summary count
-        features_list = _format_features_summary(result, max_caps)
+        # Build features summary (scaled score, links to Score Breakdown)
+        features_list = _format_features_summary(result)
 
         tabulated_scores.append(
             {
@@ -1534,8 +1490,11 @@ def display_features_table(score_table):
         tested = bool(tr)
 
         row = {
-            "Terminal": make_outbound_hyperlink(sw_name),
-            "FEAT Score": format_score_int(entry["score_features_scaled"]),
+            "Terminal": make_outbound_hyperlink(sw_name, sw_name + "_scores"),
+            "FEAT Score": wrap_score_with_hyperlink(
+                format_score_int(entry["score_features_scaled"]),
+                entry["score_features_scaled"],
+                sw_name, "_scores"),
         }
 
         # Notable DEC modes (same as CLI)
@@ -1702,34 +1661,31 @@ def display_xtgettcap_summary_bullets(score_table):
         else:
             nosupport.append(sw_name)
 
-    def _bullet(heading, terminals, extra=""):
+    def _bullet(heading, terminals, pct, extra=""):
         if not terminals:
             return
         links = ", ".join(_link(t) for t in sorted(terminals))
-        print(f"* **{heading}:** {links}{extra}")
+        print(f"* **{heading} ({pct:.1f}%):** {links}{extra}")
 
-    if full:
-        _bullet("Full XTGETTCAP capability support", full,
-                ". A full terminfo(5) database can be reconstructed "
-                "from XTGETTCAP queries using ttyscan_. "
-                "A preferred TERM from TN, and COLORTERM=truecolor "
-                "from RGB may be derived.")
-        print()
-
-    if partial:
-        _bullet("Partial XTGETTCAP capability support", partial,
-                ". A preferred TERM from TN, and COLORTERM=truecolor "
-                "from RGB may be derived.")
-        print()
-
-    if nosupport:
-        _bullet("No Support", nosupport)
-        print()
-
-    if noncompliant:
-        _bullet("Non-compliant", noncompliant,
-                " -- failed to parse DCS queries, "
-                "displaying raw sequence output.")
+    groups = [
+        ("Full XTGETTCAP capability support", full,
+         ". A full terminfo(5) database can be reconstructed "
+         "from XTGETTCAP queries using ttyscan_. "
+         "A preferred TERM from TN, and COLORTERM=truecolor "
+         "from RGB may be derived."),
+        ("Partial XTGETTCAP capability support", partial,
+         ". A preferred TERM from TN, and COLORTERM=truecolor "
+         "from RGB may be derived."),
+        ("No Support", nosupport, ""),
+        ("Non-compliant", noncompliant,
+         " -- failed to parse DCS queries, "
+         "displaying raw sequence output."),
+    ]
+    total = len(score_table)
+    for heading, terminals, extra in sorted(
+        (g for g in groups if g[1]),
+        key=lambda g: len(g[1]) / total, reverse=True):
+        _bullet(heading, terminals, len(terminals) / total * 100, extra)
         print()
 
 
@@ -1811,7 +1767,7 @@ def display_xtgettcap_comparison_table(score_table):
                 make_outbound_hyperlink(t, t + "_xtgettcap")
                 for t in sorted(terminals)
             )
-            lines.append(f" {terminal_links}: {value_display}")
+            lines.append(f"{terminal_links}\\: {value_display}")
         table_data.append({
             "Capability": cap_name,
             "Description": cap_descriptions.get(cap_name, ""),
@@ -1891,7 +1847,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         },
         {
             "#": 9,
-            "Score Type": make_outbound_hyperlink("FEAT", sw_name + "_dec_modes"),
+            "Score Type": make_outbound_hyperlink("FEAT", sw_name + "_features_details"),
             "Raw Score": format_raw_score(entry["score_features"]),
             "Final Scaled Score": format_score_pct(entry["score_features_scaled"]),
         },
@@ -2071,6 +2027,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f".. note:: {_UNTESTED_NOTE}")
     print()
 
+    display_inbound_hyperlink(sw_name + "_features_details")
     print("**Features Score Details:**")
     print()
     if not math.isnan(entry["score_features"]):
@@ -2086,45 +2043,67 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             tc_score = 0.0
 
         cap_checks = [
-            (_fmt_mode(_DPM.BRACKETED_PASTE), float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE))),
-            (_fmt_mode(_DPM.SYNCHRONIZED_OUTPUT), float(_get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT))),
-            (_fmt_mode(_DPM.FOCUS_IN_OUT_EVENTS), float(_get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS))),
-            (_fmt_mode(_DPM.MOUSE_EXTENDED_SGR), float(_get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR))),
-            (_fmt_mode(_DPM.GRAPHEME_CLUSTERING), float(_get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING))),
-            (_fmt_mode(_DPM.BRACKETED_PASTE_MIME), float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME))),
-            ("Kitty Keyboard", float(tr.get("kitty_keyboard") is not None)),
+            (_fmt_mode(_DPM.BRACKETED_PASTE),
+             float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.SYNCHRONIZED_OUTPUT),
+             float(_get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.FOCUS_IN_OUT_EVENTS),
+             float(_get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.MOUSE_EXTENDED_SGR),
+             float(_get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.GRAPHEME_CLUSTERING),
+             float(_get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.BRACKETED_PASTE_MIME),
+             float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME)),
+             "_dec_modes"),
+            ("Kitty Keyboard",
+             float(tr.get("kitty_keyboard") is not None),
+             "_kitty_kbd"),
             ("XTGETTCAP (Full)" if xt_label == "full"
              else "XTGETTCAP (Partial)" if xt_label
              else "XTGETTCAP",
-             xt_score),
+             xt_score,
+             "_xtgettcap"),
             ("Text Sizing (OSC 66)",
              float(tr.get("text_sizing", {}).get("width")
-              or tr.get("text_sizing", {}).get("scale"))),
+              or tr.get("text_sizing", {}).get("scale")),
+             "_text_sizing"),
             ("Kitty Clipboard Protocol",
-             float(tr.get("kitty_clipboard_protocol", False))),
+             float(tr.get("kitty_clipboard_protocol", False)),
+             "_dec_modes"),
             ("Kitty Pointer Shapes (OSC 22)",
              float(isinstance(tr.get("kitty_pointer_shapes"), dict)
-             and tr.get("kitty_pointer_shapes", {}).get("supported", False))),
+             and tr.get("kitty_pointer_shapes", {}).get("supported", False)),
+             "_dec_modes"),
             ("Kitty Notifications (OSC 99)",
              float(isinstance(tr.get("kitty_notifications"), dict)
-             and tr.get("kitty_notifications", {}).get("supported", False))),
+             and tr.get("kitty_notifications", {}).get("supported", False)),
+             "_dec_modes"),
             ("Color Report (OSC 10/11)",
-             float(bool(tr.get("foreground_color_hex") or tr.get("background_color_hex")))),
+             float(bool(tr.get("foreground_color_hex") or tr.get("background_color_hex"))),
+             "_dec_modes"),
             ("XTVERSION",
-             float(tr.get("software_method") == "XTVERSION")),
-            ("Truecolor Detection", tc_score),
+             float(tr.get("software_method") == "XTVERSION"),
+             "_dec_modes"),
+            ("Truecolor Detection", tc_score, "_truecolor"),
         ]
-        cap_count = sum(v for _, v in cap_checks)
+        cap_count = sum(v for _, v, _ in cap_checks)
         print(f"Notable terminal features ({cap_count} / {len(cap_checks)}):")
         print()
-        for name, score in cap_checks:
+        for name, score, section_suffix in cap_checks:
             if score == 0.5:
                 status = "partial"
             elif score:
                 status = "yes"
             else:
                 status = "no"
-            print(f"- {name}: **{status}**")
+            link_text = make_outbound_hyperlink(name, sw_name + section_suffix)
+            print(f"- {link_text}: **{status}**")
         print()
         print(f"Raw score: {entry['score_features']*100:.2f}%")  # noqa: E226
     else:
@@ -2863,17 +2842,19 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
         screenshot_path = f"../_static/screenshots/{safe_sw}/{category}.png"
         abs_screenshot = os.path.join(_ROOT, "docs", "_static", "screenshots",
                                       safe_sw, f"{category}.png")
-        assert os.path.exists(abs_screenshot), \
-            f"Screenshot missing: {abs_screenshot}"
-        print()
-        print("Screenshot:")
-        print()
-        print(f".. image:: {screenshot_path}")
-        print("   :alt: Terminal screenshot of the rendering discrepancy")
-        w, h = Image.open(abs_screenshot).size
-        print(f"   :width: {w}px")
-        print(f"   :height: {h}px")
-        print()
+        if not os.path.exists(abs_screenshot):
+            print(f"warning: Screenshot missing: {abs_screenshot}",
+                  file=sys.stderr)
+        else:
+            print()
+            print("Screenshot:")
+            print()
+            print(f".. image:: {screenshot_path}")
+            print("   :alt: Terminal screenshot of the rendering discrepancy")
+            w, h = Image.open(abs_screenshot).size
+            print(f"   :width: {w}px")
+            print(f"   :height: {h}px")
+            print()
 
     if fail_record.get("delta_ypos", 0) != 0:
         print(f"- Cursor Y-Position moved {fail_record['delta_ypos']} rows"
