@@ -1,0 +1,107 @@
+# ucs-detect terminal testing image
+# Arch Linux rolling release for latest terminal packages (libvte, foot, ghostty, etc.)
+FROM archlinux:latest
+
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+# bootstrap: update mirrors, install base deps
+RUN pacman -Syu --noconfirm --needed \
+    base-devel git sudo curl wget \
+    python python-pip \
+    && pacman -Scc --noconfirm
+
+# generate en_US.UTF-8 locale (required by LC_ALL)
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
+
+# X11 virtual framebuffer and automation tools
+RUN pacman -S --noconfirm --needed \
+    xorg-server-xvfb \
+    xdotool \
+    xorg-xwd \
+    fontconfig \
+    && pacman -Scc --noconfirm
+
+# unifont for consistent terminal font rendering
+# (not in Arch official repos, only AUR; download OTF directly from GNU)
+RUN mkdir -p /usr/share/fonts/OTF && \
+    curl -L -o /usr/share/fonts/OTF/unifont.otf \
+    "https://unifoundry.com/pub/unifont/unifont-16.0.02/font-builds/unifont-16.0.02.otf" && \
+    fc-cache -fv
+
+# create non-root user for AUR builds and running tests
+RUN useradd -m -s /bin/bash ucs && \
+    echo "ucs ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# install yay (AUR helper) as ucs user, then install AUR-only terminals
+RUN cd /tmp && \
+    sudo -u ucs git clone https://aur.archlinux.org/yay-bin.git && \
+    cd yay-bin && \
+    sudo -u ucs makepkg -si --noconfirm && \
+    cd / && rm -rf /tmp/yay-bin
+
+# configure makepkg to use all CPUs minus 2, and tolerate old K&R-style code
+RUN sed -i 's/^#\?MAKEFLAGS=.*/MAKEFLAGS="-j$(( $(nproc) > 2 ? $(nproc) - 2 : 1 ))"/' /etc/makepkg.conf && \
+    sed -i 's/^CFLAGS="\(.*\)"/CFLAGS="\1 -Wno-error=incompatible-pointer-types"/' /etc/makepkg.conf
+
+RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
+    mlterm-git \
+    st \
+    && pacman -Scc --noconfirm
+
+# all terminal emulators available in Arch official repos
+RUN pacman -S --noconfirm --needed \
+    foot \
+    ghostty \
+    kitty \
+    alacritty \
+    konsole \
+    xfce4-terminal \
+    gnome-terminal \
+    lxterminal \
+    qterminal \
+    rxvt-unicode \
+    xterm \
+    cool-retro-term \
+    terminology \
+    zutty \
+    wezterm \
+    contour \
+    rio \
+    tmux \
+    screen \
+    zellij \
+    vim \
+    && pacman -Scc --noconfirm
+
+# remove nvidia EGL vendor config -- nvidia-utils was pulled in by rio,
+# but without a real GPU its libEGL_nvidia.so crashes Xvfb at startup
+RUN rm -f /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+
+# python dependencies for ucs-detect
+RUN pacman -S --noconfirm --needed \
+    python-yaml \
+    python-blessed \
+    python-pillow \
+    python-prettytable \
+    python-requests \
+    python-wcwidth \
+    python-psutil \
+    python-matplotlib \
+    && pacman -Scc --noconfirm
+
+# create working directory mounted from host
+WORKDIR /app
+
+# install ucs-detect in editable mode
+COPY README.rst pyproject.toml setup.cfg ./
+COPY ucs_detect/ ./ucs_detect/
+RUN pip install -e . --break-system-packages
+
+# entrypoint: start Xvfb if DISPLAY is set, then exec command
+ENV LIBGL_ALWAYS_SOFTWARE=1
+COPY docker-entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["/bin/bash"]

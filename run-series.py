@@ -24,7 +24,7 @@ import yaml
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_DIR / "data"
 DOCKER_IMAGE = "ucs-detect:latest"
-DOCKERFILE = PROJECT_DIR / "docker-test" / "Dockerfile"
+DOCKERFILE = PROJECT_DIR / "Dockerfile"
 
 _RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
 _RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)

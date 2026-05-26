@@ -156,6 +156,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     ambiguous_width=-1,
                     python_version=platform.python_version(),
                     system=platform.system(),
+                    preferred_encoding=locale.getpreferredencoding(),
                     wcwidth_version=wcwidth.__version__,
                     environment=environment,
 
@@ -454,6 +455,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             ambiguous_width=ambiguous_width,
             python_version=platform.python_version(),
             system=platform.system(),
+            preferred_encoding=locale.getpreferredencoding(),
             wcwidth_version=wcwidth.__version__,
             environment=environment,
 
