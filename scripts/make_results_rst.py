@@ -1461,13 +1461,7 @@ def _format_xtgettcap_feature(entry, sw_name):
 
 
 def _detect_truecolor_methods(data):
-    """Determine which methods detect 24-bit truecolor support.
-
-    Returns ``(xt, dq, ct)`` booleans for XTGETTCAP RGB, DECRQSS, and
-    COLORTERM respectively.
-
-    ``data`` may be either a raw YAML-loaded dict or a score table entry dict.
-    """
+    """Determine which methods detect 24-bit truecolor support."""
     if "data" in data:
         data = data["data"]
     tr = data.get("terminal_results") or {}
@@ -1625,12 +1619,7 @@ def display_features_table(score_table):
 
 
 def _truecolor_cell(value, section_suffix, sw_name, has_any_yes, only_colorterm=False):
-    """Format a truecolor detection cell as yes/no with context-aware coloring.
-
-    ``no`` is yellow if only COLORTERM detects truecolor (warn the user about
-    unreliable detection), grey if any other method in the row detects truecolor,
-    red if no method detects it at all.
-    """
+    """Format a truecolor detection cell as yes/no with context-aware coloring."""
     if value is None:
         return ":score-na:`N/A`"
     if value:
@@ -1643,17 +1632,13 @@ def _truecolor_cell(value, section_suffix, sw_name, has_any_yes, only_colorterm=
 
 
 def display_truecolor_table(score_table):
-    """Display a truecolor detection methods comparison table.
-
-    Shows how 24-bit color support can be detected for each terminal
-    via XTGETTCAP (RGB), DECRQSS (SGR), and COLORTERM environment variable.
-    """
+    """Display a truecolor detection methods comparison table."""
     display_title("Truecolor Detection", 2)
     print("This table shows which methods can be used to detect 24-bit")
     print("truecolor support for each terminal emulator. ``no`` cells are")
-    print("yellow when only COLORTERM detects support (COLORTERM is not")
-    print("forwarded over SSH without ``SendEnv`` / ``AcceptEnv``"
-          " configuration),")
+    print("yellow when only COLORTERM detects support (COLORTERM environment")
+    print("variable is not forwarded over SSH without")
+    print("``SendEnv`` / ``AcceptEnv`` configuration),")
     print("grey when at least one other method succeeds, and red when no")
     print("method can detect truecolor support.")
     print()
@@ -1780,6 +1765,9 @@ def display_xtgettcap_comparison_table(score_table):
         print()
         return
 
+    from blessed._capabilities import XTGETTCAP_CAPABILITIES
+    cap_descriptions = dict(XTGETTCAP_CAPABILITIES)
+
     def _format_value(value):
         """Format a capability value for display, using repr for non-printable chars."""
         if value is None or value == "":
@@ -1823,9 +1811,10 @@ def display_xtgettcap_comparison_table(score_table):
                 make_outbound_hyperlink(t, t + "_xtgettcap")
                 for t in sorted(terminals)
             )
-            lines.append(f"| {terminal_links}: {value_display}")
+            lines.append(f" {terminal_links}: {value_display}")
         table_data.append({
             "Capability": cap_name,
+            "Description": cap_descriptions.get(cap_name, ""),
             "Terminals and Values": "\n".join(lines),
         })
 
@@ -2874,16 +2863,17 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
         screenshot_path = f"../_static/screenshots/{safe_sw}/{category}.png"
         abs_screenshot = os.path.join(_ROOT, "docs", "_static", "screenshots",
                                       safe_sw, f"{category}.png")
-        if os.path.exists(abs_screenshot):
-            print()
-            print("Screenshot:")
-            print()
-            print(f".. image:: {screenshot_path}")
-            print("   :alt: Terminal screenshot of the rendering discrepancy")
-            w, h = Image.open(abs_screenshot).size
-            print(f"   :width: {w}px")
-            print(f"   :height: {h}px")
-            print()
+        assert os.path.exists(abs_screenshot), \
+            f"Screenshot missing: {abs_screenshot}"
+        print()
+        print("Screenshot:")
+        print()
+        print(f".. image:: {screenshot_path}")
+        print("   :alt: Terminal screenshot of the rendering discrepancy")
+        w, h = Image.open(abs_screenshot).size
+        print(f"   :width: {w}px")
+        print(f"   :height: {h}px")
+        print()
 
     if fail_record.get("delta_ypos", 0) != 0:
         print(f"- Cursor Y-Position moved {fail_record['delta_ypos']} rows"
