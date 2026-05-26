@@ -533,6 +533,38 @@ def maybe_determine_decrqss(term, timeout=1.0, **_kw):
     }
 
 
+_TC_PROBE_RE = re.compile(r'48[:;]2[:;]*1[:;]2[:;]3')
+
+def maybe_determine_decrqss_truecolor(term, timeout=1.0, force=False, **_kw):
+    """Detect truecolor support via DECRQSS SGR set/query/restore.
+
+    Queries the current SGR to capture the original rendering state,
+    sets the background to a known truecolor value using
+    colon-delimited RGB, then queries SGR again to verify the color
+    was accepted.  Restores the original SGR afterward.
+
+    Returns ``decrqss_truecolor_probe: True`` when the probed
+    background color appears in the DECRQSS response, indicating
+    24-bit color support.  Returns ``decrqss_truecolor_probe: False``
+    when DECRQSS is not supported or the color was not accepted.
+    """
+    SGR = term.Decrqss.SGR
+    original = term.get_decrqss(SGR, timeout=timeout)
+    if original is None:
+        return {'decrqss_truecolor_probe': False}
+
+    probe_bg = '48:2:1:2:3'
+    term.stream.write(f'\x1b[{probe_bg}m')
+    term.stream.flush()
+    probed = term.get_decrqss(SGR, timeout=timeout)
+    term.stream.write(f'\x1b[{original}m')
+    term.stream.flush()
+
+    if probed is None:
+        return {'decrqss_truecolor_probe': False}
+    return {'decrqss_truecolor_probe': bool(_TC_PROBE_RE.search(probed))}
+
+
 # DECRQCRA -- https://vt100.net/docs/vt510-rm/DECRQCRA.html
 # Full screen-scrape tool: blessed/bin/screen-scrape.py
 _DECRQCRA = "\x1b[{pid};1;{r};{c};{r};{c}*y"
@@ -719,6 +751,9 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     with _status(writer, term, "DECRQSS", bg_rgb, silent=silent):
         attrs.update(maybe_determine_decrqss(term,
                                              timeout=timeout))
+    with _status(writer, term, "DECRQSS Truecolor", bg_rgb, silent=silent):
+        attrs.update(maybe_determine_decrqss_truecolor(term,
+                                                       timeout=timeout))
     with _status(writer, term, "DECRQCRA", bg_rgb, silent=silent):
         attrs.update(maybe_determine_decrqcra(term,
                                               timeout=timeout))

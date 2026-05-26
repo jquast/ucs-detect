@@ -1426,9 +1426,7 @@ def _detect_truecolor_methods(data):
     xt = tr.get("xtgettcap", {})
     xt_has = xt.get("supported", False) and xt.get("capabilities", {}).get("RGB") in ("8", "8/8/8")
 
-    dq = tr.get("decrqss", False)
-    dq_sgr = (tr.get("decrqss_settings") or {}).get("sgr", "")
-    dq_has = dq and ("38:2" in str(dq_sgr) or "48:2" in str(dq_sgr))
+    dq_has = tr.get("decrqss_truecolor_probe", False)
 
     ct_has = env.get("COLORTERM") == "truecolor"
 
@@ -2660,18 +2658,17 @@ def show_truecolor_results(sw_name, entry):
 
     if tr:
         xt_status = "yes (RGB)" if xt_has else "no"
-        dq_status = "yes (SGR)" if dq_has else ("no" if tr.get("decrqss", False) else "N/A")
+        dq_probe = tr.get("decrqss_truecolor_probe")
+        if dq_probe is True:
+            dq_status = "yes (probe)"
+        elif dq_probe is False:
+            dq_status = "no"
+        else:
+            dq_status = "N/A (untested)"
         ct_status = "yes (truecolor)" if ct_has else (
             env.get("COLORTERM", "unset") if "COLORTERM" in (env or {}) else "N/A")
         print(f"- XTGETTCAP (RGB capability): **{xt_status}**")
-        if tr.get("decrqss", False) and not dq_has:
-            sgr_val = str(tr.get("decrqss_settings", {}).get("sgr", ""))
-            if sgr_val:
-                print(f"- DECRQSS: **no** (SGR value: ``{sgr_val}``)")
-            else:
-                print(f"- DECRQSS: **no** (SGR value not reported)")
-        else:
-            print(f"- DECRQSS: **{dq_status}**")
+        print(f"- DECRQSS (truecolor probe): **{dq_status}**")
         print(f"- COLORTERM: **{ct_status}**")
     print()
 

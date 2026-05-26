@@ -658,6 +658,14 @@ def _build_features_kv_pairs(term, results):
     else:
         pairs.append(("XTGETTCAP?", _color_yes_no(term, False)))
 
+    dtp = results.get('decrqss_truecolor_probe')
+    if dtp is True:
+        pairs.append(("DECRQSS Truecolor?", _color_yes_no(term, True)))
+    elif dtp is False:
+        pairs.append(("DECRQSS Truecolor?", _color_yes_no(term, False)))
+    else:
+        pairs.append(("DECRQSS Truecolor?", term.yellow("N/A")))
+
     notif = results.get('kitty_notifications')
     if isinstance(notif, dict) and notif.get('supported'):
         pairs.append(("Kitty Notifications?", _color_yes_no(term, True)))
