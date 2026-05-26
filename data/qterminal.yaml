@@ -1,11 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-26 02:01:04 UTC
+datetime: 2026-05-26 06:09:45 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
-height: 12
-python_version: 3.14.4
-seconds_elapsed: 38.85312698199414
+height: 22
+preferred_encoding: UTF-8
+python_version: 3.14.5
+seconds_elapsed: 36.23307206299978
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000
@@ -14,7 +15,7 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
 software_name: QTerminal
-software_version: 2.2.1
+software_version: ' (/)'
 system: Linux
 terminal_results:
   color_scheme: false
@@ -27,7 +28,7 @@ terminal_results:
     extensions:
     - 2
     service_class: 1
-  height: 12
+  height: 22
   iterm2_features:
     features: {}
     supported: false
@@ -62,18 +63,20 @@ terminal_results:
       value: 2
       value_description: RESET
   number_of_colors: 16777216
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
   pixels_height: 0
   pixels_width: 0
   sixel: false
-  software_name: QTerminal
-  software_version: 2.2.1
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 49
+  width: 58
   xtgettcap:
     capabilities: {}
     supported: false
@@ -1304,16 +1307,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001faef\u200d\U0001f468\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001faef\u200d\U0001f468\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001faef\u200d\U0001f468\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001faef\u200d\U0001f468\U0001f3ff
       - measured_by_terminal: 9
@@ -1343,16 +1346,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001faef\u200d\U0001f468\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001faef\u200d\U0001f468\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001faef\u200d\U0001f468\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001faef\u200d\U0001f468\U0001f3ff
       - measured_by_terminal: 9
@@ -1397,16 +1400,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3ff
       - measured_by_terminal: 9
@@ -1439,16 +1442,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001faef\u200d\U0001f468\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001faef\u200d\U0001f468\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001faef\u200d\U0001f468\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001faef\u200d\U0001f468\U0001f3ff
       - measured_by_terminal: 9
@@ -1499,16 +1502,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001f91d\u200d\U0001f468\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001faef\u200d\U0001f468\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001faef\u200d\U0001f468\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001faef\u200d\U0001f468\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001faef\u200d\U0001f468\U0001f3fe
       - measured_by_terminal: 5
@@ -1610,16 +1613,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001f91d\u200d\U0001f469\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001faef\u200d\U0001f469\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001faef\u200d\U0001f469\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001faef\u200d\U0001f469\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001faef\u200d\U0001f469\U0001f3ff
       - measured_by_terminal: 9
@@ -1649,16 +1652,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001f91d\u200d\U0001f469\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3ff
       - measured_by_terminal: 9
@@ -1712,16 +1715,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001f91d\u200d\U0001f469\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001faef\u200d\U0001f469\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001faef\u200d\U0001f469\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001faef\u200d\U0001f469\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001faef\u200d\U0001f469\U0001f3ff
       - measured_by_terminal: 9
@@ -1754,16 +1757,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001f91d\u200d\U0001f469\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001faef\u200d\U0001f469\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001faef\u200d\U0001f469\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001faef\u200d\U0001f469\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001faef\u200d\U0001f469\U0001f3ff
       - measured_by_terminal: 9
@@ -1823,16 +1826,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001f91d\u200d\U0001f469\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001faef\u200d\U0001f469\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001faef\u200d\U0001f469\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001faef\u200d\U0001f469\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001faef\u200d\U0001f469\U0001f3fe
       - measured_by_terminal: 6
@@ -7423,57 +7426,9 @@ test_results:
       pct_success: 0.0
   unicode_wide_results:
     17.0.0:
-      failed_codepoints:
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u2630
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u2631
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u2632
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u2633
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u2634
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u2635
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u2636
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u2637
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u268a
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u268b
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u268c
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u268d
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u268e
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \u268f
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 2
-        wchar: \u31e4
-      - measured_by_terminal: 0
-        measured_by_wcwidth: 2
-        wchar: \u31e5
-      n_errors: 16
+      failed_codepoints: []
+      n_errors: 0
       n_total: 5000
-      pct_success: 99.68
+      pct_success: 100.0
 wcwidth_version: 0.7.0
-width: 49
+width: 58
