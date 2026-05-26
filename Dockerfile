@@ -8,7 +8,7 @@ ENV LC_ALL=en_US.UTF-8
 # bootstrap: update mirrors, install base deps
 RUN pacman -Syu --noconfirm --needed \
     base-devel git sudo curl wget \
-    python python-pip \
+    python python-pip dbus \
     && pacman -Scc --noconfirm
 
 # generate en_US.UTF-8 locale (required by LC_ALL)
@@ -79,6 +79,8 @@ RUN pacman -S --noconfirm --needed \
     putty \
     guake \
     yakuake \
+    vulkan-swrast \
+    xfconf \
     && pacman -Scc --noconfirm
 
 # remove nvidia EGL vendor config -- nvidia-utils was pulled in by rio,

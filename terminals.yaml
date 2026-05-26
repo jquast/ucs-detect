@@ -27,6 +27,9 @@ terminals:
 
   cool-retro-term:
     homepage: https://github.com/Swordfish90/cool-retro-term
+    display_name: "cool-retro-term"
+    version_template: "{release} ({xt_name}/{xt_version})"
+    version_release: ""
     launch:
       program: cool-retro-term
       args: [-e]
@@ -41,7 +44,7 @@ terminals:
     launch_docker:
       program: extraterm
       args: []
-      post_launch_delay_ms: 300
+      post_launch_delay_ms: 1000
       post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
   foot:
@@ -51,7 +54,8 @@ terminals:
       args: []
       wrapper: [cage, --]
     skip_system: true
-    skip_reason: "requires cage/Wayland on bare metal; runs on X11 under Xvfb"
+    skip_docker: true
+    skip_reason: "Wayland-only (requires cage)"
 
   ghostty:
     homepage: https://ghostty.org/
@@ -61,12 +65,18 @@ terminals:
 
   gnome terminal:
     homepage: https://help.gnome.org/users/gnome-terminal/stable/
+    display_name: "GNOME Terminal"
+    version_template: "{release} ({xt_name}/{xt_version})"
+    version_release: "3.60.0"
     launch:
       program: gnome-terminal
       args: [--]
 
   guake:
     homepage: https://github.com/Guake/guake
+    display_name: "Guake"
+    version_template: "{release} ({xt_name}/{xt_version})"
+    version_release: ""
     launch:
       program: guake
       args: [-e]
@@ -76,7 +86,7 @@ terminals:
     launch:
       program: hyper
       args: []
-      post_launch_delay_ms: 90
+      post_launch_delay_ms: 1500
       post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
   iterm2:
@@ -117,6 +127,9 @@ terminals:
 
   lxterminal:
     homepage: https://github.com/lxde/lxterminal
+    display_name: "LXTerminal"
+    version_template: "{release} ({xt_name}/{xt_version})"
+    version_release: ""
     launch:
       program: lxterminal
       args: [-e]
@@ -138,6 +151,9 @@ terminals:
 
   qterminal:
     homepage: https://github.com/lxqt/qterminal
+    display_name: "QTerminal"
+    version_template: "{release} ({xt_name}/{xt_version})"
+    version_release: ""
     launch:
       program: qterminal
       args: [-e]
@@ -178,6 +194,7 @@ terminals:
 
   st-luke:
     homepage: https://github.com/LukeSmithxyz/st
+    description: "This is based on Luke Smith xyz's fork of st"
     launch:
       program: st
       args: ["-f", "Unifont:pixelsize=16", "-e"]
@@ -215,6 +232,9 @@ terminals:
 
   terminator:
     homepage: https://gnome-terminator.org/
+    display_name: "Terminator"
+    version_template: "{release} ({xt_name}/{xt_version})"
+    version_release: ""
     launch:
       program: terminator
       args: [-x, sh, "{script}"]
@@ -223,14 +243,6 @@ terminals:
     homepage: https://www.enlightenment.org/about-terminology
     launch:
       program: terminology
-      args: [-e]
-
-  termit:
-    homepage: https://github.com/nonstop/termit
-    skip_docker: true
-    skip_reason: "not packaged for Arch Linux"
-    launch:
-      program: termit
       args: [-e]
 
   tmux:
@@ -270,6 +282,9 @@ terminals:
 
   xfce4-terminal:
     homepage: https://docs.xfce.org/apps/terminal/start
+    display_name: "XFCE Terminal"
+    version_template: "{release} ({xt_name}/{xt_version})"
+    version_release: ""
     launch:
       program: xfce4-terminal
       args: [-e, "sh {script}"]

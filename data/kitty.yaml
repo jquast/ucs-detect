@@ -1,11 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-24 22:14:03 UTC
+datetime: 2026-05-26 04:28:11 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-kitty
-height: 32
-python_version: 3.14.4
-seconds_elapsed: 645.5467533880146
+height: 26
+preferred_encoding: UTF-8
+python_version: 3.14.5
+seconds_elapsed: 426.25126595299935
 session_arguments:
   limit_category_time: 600.0
   limit_codepoints: 0
@@ -22,7 +23,7 @@ terminal_results:
   - 0
   - 0
   - 0
-  cell_height: 20
+  cell_height: 15
   cell_width: 9
   color_scheme: dark
   colored_underlines: true
@@ -31,14 +32,15 @@ terminal_results:
   decrqss_settings:
     decsace: '0'
     decscusr: '1'
-    decstbm: 1;32
+    decstbm: 1;26
     sgr: 0;38:2:0:0:0
+  decrqss_truecolor_probe: true
   foreground_color_hex: '#dddddddddddd'
   foreground_color_rgb:
   - 56797
   - 56797
   - 56797
-  height: 32
+  height: 26
   iterm2_features:
     features: {}
     supported: false
@@ -122,10 +124,14 @@ terminal_results:
       value: 2
       value_description: RESET
   number_of_colors: 16777216
-  pixels_height: 640
-  pixels_width: 855
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  osc52_clipboard: true
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: true
+  pixels_height: 390
+  pixels_width: 639
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: false
   software_method: XTVERSION
   software_name: kitty
@@ -136,7 +142,7 @@ terminal_results:
     scale: true
     width: true
   ttype: xterm-kitty
-  width: 95
+  width: 71
   xtgettcap:
     capabilities:
       BD: "\e[?2004l"
@@ -299,16 +305,16 @@ terminal_results:
       kitty-query-allow_hyperlinks: 'yes'
       kitty-query-background: '#000000'
       kitty-query-background_opacity: '1'
-      kitty-query-bold_font: NotoSansMono-Bold
-      kitty-query-bold_italic_font: NotoSansMono-Bold
+      kitty-query-bold_font: FreeMonoBold
+      kitty-query-bold_italic_font: FreeMonoBoldOblique
       kitty-query-clipboard_control: write-clipboard write-primary read-clipboard-ask
         read-primary-ask
       kitty-query-dpi_x: '96'
       kitty-query-dpi_y: '96'
-      kitty-query-font_family: NotoSansMono-Regular
+      kitty-query-font_family: FreeMono
       kitty-query-font_size: '11'
       kitty-query-foreground: '#dddddd'
-      kitty-query-italic_font: NotoSansMono-Regular
+      kitty-query-italic_font: FreeMonoOblique
       kitty-query-name: kitty
       kitty-query-os_name: linux
       kitty-query-version: 0.46.2
@@ -368,6 +374,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: kitty(0.46.2)
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -20311,4 +20318,4 @@ test_results:
       n_total: 43592
       pct_success: 99.9885300055056
 wcwidth_version: 0.7.0
-width: 95
+width: 71

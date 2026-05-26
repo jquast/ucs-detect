@@ -1,10 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-26 02:04:41 UTC
+datetime: 2026-05-26 06:19:24 UTC
 environment:
+  COLORTERM: truecolor
   TERM: xterm-256color
-height: 23
-python_version: 3.14.4
-seconds_elapsed: 257.13289791397983
+height: 28
+preferred_encoding: UTF-8
+python_version: 3.14.5
+seconds_elapsed: 81.5784044660013
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -13,16 +15,16 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
 software_name: Konsole
-software_version: 26.04.0
+software_version: 26.04.1
 system: Linux
 terminal_results:
-  background_color_hex: '#000000000000'
+  background_color_hex: '#232326262727'
   background_color_rgb:
-  - 0
-  - 0
-  - 0
-  cell_height: 19
-  cell_width: 10
+  - 8995
+  - 9766
+  - 10023
+  cell_height: 12
+  cell_width: 7
   color_scheme: false
   colored_underlines: false
   decrqcra: false
@@ -39,7 +41,7 @@ terminal_results:
   - 64764
   - 64764
   - 64764
-  height: 23
+  height: 28
   iterm2_features:
     features: {}
     supported: false
@@ -49,27 +51,32 @@ terminal_results:
   kitty_pointer_shapes: false
   kitty_query: false
   modes: {}
-  number_of_colors: 256
-  pixels_height: 437
-  pixels_width: 670
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
+  number_of_colors: 16777216
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 336
+  pixels_width: 770
+  screen_ratio: '21:9'
+  screen_ratio_name: UWHD
   sixel: true
   software_method: XTVERSION
   software_name: Konsole
-  software_version: 26.04.0
+  software_version: 26.04.1
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 67
+  width: 110
   xtgettcap:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: Konsole 26.04.1
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -5642,4 +5649,4 @@ test_results:
       n_total: 43592
       pct_success: 99.66737015966233
 wcwidth_version: 0.7.0
-width: 67
+width: 110

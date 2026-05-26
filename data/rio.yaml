@@ -1,13 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-05-25 15:53:26 UTC
+datetime: 2026-05-26 06:19:30 UTC
 environment:
   COLORTERM: truecolor
   TERM: rio
   TERM_PROGRAM: rio
   TERM_PROGRAM_VERSION: 0.4.5
-height: 33
-python_version: 3.14.4
-seconds_elapsed: 15.972008078999352
+height: 30
+preferred_encoding: UTF-8
+python_version: 3.14.5
+seconds_elapsed: 82.3525163129998
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -24,13 +25,14 @@ terminal_results:
   - 3855
   - 3341
   - 3598
-  cell_height: 25
-  cell_width: 12
+  cell_height: 16
+  cell_width: 8
   color_scheme: false
   colored_underlines: false
   decrqcra: false
   decrqss: false
   decrqss_settings: false
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 4
@@ -42,7 +44,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 33
+  height: 30
   iterm2_features:
     features: {}
     supported: false
@@ -123,8 +125,12 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 825
-  pixels_width: 1380
+  osc52_clipboard: true
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: true
+  pixels_height: 480
+  pixels_width: 792
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: true
@@ -137,7 +143,7 @@ terminal_results:
     scale: false
     width: false
   ttype: rio
-  width: 115
+  width: 99
   xtgettcap:
     capabilities:
       AX: ''
@@ -352,6 +358,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: Rio 0.4.5
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -9580,4 +9587,4 @@ test_results:
       n_total: 43592
       pct_success: 99.92429803633695
 wcwidth_version: 0.7.0
-width: 115
+width: 99

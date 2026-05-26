@@ -1,11 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-26 02:03:07 UTC
+datetime: 2026-05-26 06:19:18 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm
 height: 24
-python_version: 3.14.4
-seconds_elapsed: 160.83062227501068
+preferred_encoding: UTF-8
+python_version: 3.14.5
+seconds_elapsed: 71.88165181199838
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -22,8 +23,8 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  cell_height: 22
-  cell_width: 13
+  cell_height: 20
+  cell_width: 12
   color_scheme: false
   colored_underlines: false
   decrqcra: true
@@ -135,8 +136,12 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 528
-  pixels_width: 1040
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 480
+  pixels_width: 960
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
@@ -193,6 +198,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: mlterm(3.9.4)
 test_results:
   emoji_vs15_results:
     9.0.0:

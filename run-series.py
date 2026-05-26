@@ -95,6 +95,12 @@ def get_launch_config(sw_name, mixins):
     key = sw_name.lower()
     raw_entry = mixins.get(key, {})
     launch = raw_entry.get("launch", {}) if raw_entry else {}
+
+    if _IS_DOCKER and raw_entry.get("launch_docker"):
+        launch = raw_entry["launch_docker"]
+    elif not _IS_DOCKER and raw_entry.get("launch_system"):
+        launch = raw_entry["launch_system"]
+
     is_explicit = bool(launch)
 
     skip_system = raw_entry.get("skip_system", False) or launch.get("skip_system", False)
@@ -133,14 +139,13 @@ def _should_skip(launch_cfg):
 
 
 def write_run_script(script_path, yaml_path, sentinel_path,
-                     reuse_version=False, pause_exit=False):
+                     pause_exit=False):
     """Write a shell script that runs re-run.py and records the exit code."""
     yaml_rel = yaml_path.relative_to(PROJECT_DIR)
-    reuse_flag = " --reuse-version" if reuse_version else ""
     parts = [
         "#!/bin/sh",
         f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
-        f"python re-run.py{reuse_flag} {shlex.quote(str(yaml_rel))}",
+        f"python re-run.py {shlex.quote(str(yaml_rel))}",
         f"echo $? > {shlex.quote(str(sentinel_path))}",
     ]
     if pause_exit:
@@ -257,7 +262,7 @@ def inject_keys(window_id, keys):
 
 
 def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                       temp_dir, reuse_version=False, pause_exit=False):
+                       temp_dir, pause_exit=False):
     """Launch a terminal and inject keys. Does not wait for completion.
 
     Returns (proc, sentinel_path, stderr_path, error_msg).
@@ -267,7 +272,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
     sentinel_path = temp_dir / f"exit-{safe_name}.rc"
     stderr_path = temp_dir / f"stderr-{safe_name}.log"
     write_run_script(script_path, yaml_path, sentinel_path,
-                     reuse_version=reuse_version, pause_exit=pause_exit)
+                     pause_exit=pause_exit)
 
     post_delay = launch_cfg.get("post_launch_delay_ms", 0)
     post_keys = launch_cfg.get("post_launch_keys", [])
@@ -423,6 +428,73 @@ def _embed_profile_in_yaml(yaml_path, sw_name, session):
         pass
 
 
+def _fixup_yaml(yaml_path, sw_name, mixins, program):
+    """Fix up software_name in YAML from raw XTVERSION values to display names.
+
+    When ucs-detect runs without operator override, the auto-detected
+    ``software_name`` is the raw XTVERSION response (e.g. ``VTE`` for
+    VTE-based terminals).  This function reads the freshly-written YAML
+    and corrects ``software_name`` to the display name from
+    ``terminals.yaml``.  If a ``version_template`` is present, the
+    ``software_version`` is also composed.
+
+    When auto-detection yields no name at all, *program* (the launch
+    binary basename from ``terminals.yaml``) is used as the fallback.
+    """
+    key = sw_name.lower()
+    entry = mixins.get(key, {})
+    display_name = entry.get("display_name")
+    version_template = entry.get("version_template")
+
+    try:
+        with open(yaml_path) as f:
+            data = yaml.safe_load(f)
+    except (OSError, yaml.YAMLError):
+        return
+    if data is None:
+        return
+
+    current_name = data.get("software_name", "")
+    current_version = data.get("software_version", "")
+
+    if display_name:
+        data["software_name"] = display_name
+    elif not current_name:
+        data["software_name"] = os.path.basename(program) if program else sw_name
+
+    if version_template:
+        tr = data.get("terminal_results") or {}
+        raw_name = tr.get("software_name", "")
+        raw_version = tr.get("software_version", "")
+        raw_xtversion = tr.get("xtversion_raw", "")
+        if raw_xtversion:
+            parts = raw_xtversion.split(None, 1)
+            xt_name = parts[0] if parts else ""
+            xt_version = parts[1] if len(parts) > 1 else raw_version
+        else:
+            xt_name = raw_name
+            xt_version = raw_version
+        version_str = version_template.format(
+            sw_name=raw_name,
+            sw_version=raw_version,
+            xt_name=xt_name,
+            xt_version=xt_version,
+            xtversion_raw=raw_xtversion,
+            release=entry.get("version_release", ""),
+        )
+        data["software_version"] = version_str
+
+    version_manual = entry.get("version_manual")
+    if version_manual and not data.get("software_version"):
+        data["software_version"] = version_manual
+
+    try:
+        with open(yaml_path, "w") as f:
+            yaml.safe_dump(data, f, default_flow_style=False, allow_unicode=True)
+    except OSError:
+        pass
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run ucs-detect re-run.py for each terminal YAML of the current OS")
@@ -442,9 +514,6 @@ def main():
     parser.add_argument(
         "--dry-run", "-n", action="store_true",
         help="Print what would be executed without actually running")
-    parser.add_argument(
-        "--reuse-version", action="store_true",
-        help="Pass --reuse-version to re-run.py (skip name/version prompts)")
     parser.add_argument(
         "--keep-temp", action="store_true",
         help="Keep temporary files on exit (for debugging)")
@@ -486,7 +555,7 @@ def main():
     # default parallelism: max(2, min(n_cpus // 2 - 1, 16))
     if args.parallel is None:
         n_cpus = os.cpu_count() or 2
-        args.parallel = max(2, min(n_cpus // 2 - 1, 16))
+        args.parallel = max(1, min(n_cpus // 3, 8))
 
     mixins = load_mixins()
 
@@ -607,7 +676,7 @@ def main():
 
             proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                 yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                temp_dir, reuse_version=args.reuse_version,
+                temp_dir,
                 pause_exit=args.pause_exit)
 
             if launch_error:
@@ -626,7 +695,8 @@ def main():
             future = executor.submit(
                 _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
                 args.timeout)
-            future_map[future] = (sw_name, proc, profile, sentinel_path, yaml_path)
+            future_map[future] = (sw_name, proc, profile, sentinel_path, yaml_path,
+                                  launch_cfg.get("program", sw_name))
 
         if direct_jobs and not (failures and not args.continue_after_failure):
             if key_jobs:
@@ -634,7 +704,7 @@ def main():
             for yaml_path, sw_name, launch_cfg, _seconds_elapsed in direct_jobs:
                 proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                     yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                    temp_dir, reuse_version=args.reuse_version,
+                    temp_dir,
                     pause_exit=args.pause_exit)
 
                 if launch_error:
@@ -653,10 +723,11 @@ def main():
                 future = executor.submit(
                     _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
                     args.timeout)
-                future_map[future] = (sw_name, proc, profile, sentinel_path, yaml_path)
+                future_map[future] = (sw_name, proc, profile, sentinel_path, yaml_path,
+                                      launch_cfg.get("program", sw_name))
 
         for future in as_completed(future_map):
-            sw_name, proc, profile, sentinel_path, yaml_path = future_map[future]
+            sw_name, proc, profile, sentinel_path, yaml_path, program = future_map[future]
             try:
                 name, exit_code, error = future.result()
             except Exception as exc:
@@ -690,6 +761,7 @@ def main():
                     break
             else:
                 print(f"[{name}] OK", flush=True)
+                _fixup_yaml(yaml_path, name, mixins, program)
 
     if args.profile and profiler_sessions:
         try:

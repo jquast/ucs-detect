@@ -1,11 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-26 02:00:49 UTC
+datetime: 2026-05-26 06:17:58 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
-height: 20
-python_version: 3.14.4
-seconds_elapsed: 45.22622093901737
+height: 24
+preferred_encoding: UTF-8
+python_version: 3.14.5
+seconds_elapsed: 13.953232672000013
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -29,8 +30,8 @@ terminal_results:
   decrqss_settings:
     decsca: '2'
     decscusr: '2'
-    decslrm: 1;71
-    decstbm: 1;20
+    decslrm: 1;78
+    decstbm: 1;24
     sgr: '38:2:0:0:0'
   decrqss_truecolor_probe: true
   device_attributes:
@@ -42,7 +43,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 20
+  height: 24
   iterm2_features:
     features: {}
     supported: false
@@ -123,8 +124,12 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 500
-  pixels_width: 781
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 504
+  pixels_width: 780
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: false
@@ -137,12 +142,13 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-ghostty
-  width: 71
+  width: 78
   xtgettcap:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: libvterm(0.3)
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -11324,4 +11330,4 @@ test_results:
       n_total: 43592
       pct_success: 99.98394200770784
 wcwidth_version: 0.7.0
-width: 71
+width: 78

@@ -1,11 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-24 22:05:02 UTC
+datetime: 2026-05-26 06:20:04 UTC
 environment:
   COLORTERM: truecolor
   TERM: contour
 height: 24
-python_version: 3.14.4
-seconds_elapsed: 107.82048642804148
+preferred_encoding: UTF-8
+python_version: 3.14.5
+seconds_elapsed: 115.76842102400042
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -14,7 +15,7 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
 software_name: contour
-software_version: 0.6.3.8249
+software_version: 0.6.3-v0.6.3.8249-3aef6f72
 system: Linux
 terminal_results:
   background_color_hex: '#1a1a17171616'
@@ -22,7 +23,7 @@ terminal_results:
   - 6682
   - 5911
   - 5654
-  cell_height: 22
+  cell_height: 16
   cell_width: 10
   color_scheme: dark
   colored_underlines: true
@@ -40,6 +41,7 @@ terminal_results:
     decssdt: '1'
     decstbm: 1;23
     sgr: 0;38;2;26;23;22;49
+  decrqss_truecolor_probe: true
   device_attributes:
     extensions:
     - 1
@@ -138,14 +140,17 @@ terminal_results:
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
   osc52_clipboard: true
-  pixels_height: 528
+  osc52_detection:
+    da1_extension_52: true
+    xtgettcap_ms: false
+  pixels_height: 384
   pixels_width: 800
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
+  screen_ratio: '21:9'
+  screen_ratio_name: UWHD
   sixel: true
   software_method: XTVERSION
   software_name: contour
-  software_version: 0.6.3.8249
+  software_version: 0.6.3-v0.6.3.8249-3aef6f72
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
@@ -355,6 +360,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: contour 0.6.3-v0.6.3.8249-3aef6f72
 test_results:
   emoji_vs15_results:
     9.0.0:

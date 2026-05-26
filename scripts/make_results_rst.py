@@ -1529,28 +1529,28 @@ def display_features_table(score_table):
         }
 
         # Notable DEC modes (same as CLI)
-        row["Bracketed Paste"] = _capability_yes_no(
+        row["Bracketed Paste (2004)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE) if tested else None,
             sw_name, suffix)
-        row["Synced Output"] = _capability_yes_no(
+        row["Synced Output (2026)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT) if tested else None,
             sw_name, suffix)
-        row["Focus Events"] = _capability_yes_no(
+        row["Focus Events (1004)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS) if tested else None,
             sw_name, suffix)
-        row["Mouse SGR"] = _capability_yes_no(
+        row["Mouse SGR (1006)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR) if tested else None,
             sw_name, suffix)
-        row["Graphemes"] = _capability_yes_no(
+        row["Graphemes (2027)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING) if tested else None,
             sw_name, suffix)
-        row["BP MIME"] = _capability_yes_no(
+        row["Bracketed Paste MIME (5522)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME) if tested else None,
             sw_name, suffix)
 
         # Kitty keyboard
         kitty_kb = tr.get('kitty_keyboard')
-        row["Kitty Kbd"] = _capability_yes_no(
+        row["Kitty Keyboard"] = _capability_yes_no(
             (kitty_kb is not None) if tested else None,
             sw_name, "_kitty_kbd")
 
@@ -1562,38 +1562,38 @@ def display_features_table(score_table):
 
         # Text Sizing (OSC 66)
         text_sizing = tr.get('text_sizing', {})
-        row["Text Size"] = _capability_yes_no(
+        row["Text Size (OSC 66)"] = _capability_yes_no(
             (text_sizing.get('width') or text_sizing.get('scale'))
             if tested else None,
             sw_name, "_text_sizing")
 
         # Kitty Clipboard Protocol
-        row["Kitty Clip"] = _capability_yes_no(
+        row["Kitty Clipboard"] = _capability_yes_no(
             tr.get('kitty_clipboard_protocol', False) if tested else None,
             sw_name, suffix)
 
         # OSC 52 Clipboard (DA1 ext 52 or XTGETTCAP Ms)
         osc52 = tr.get('osc52_clipboard', False)
-        row["OSC 52"] = _capability_yes_no(
+        row["OSC 52 Clipboard"] = _capability_yes_no(
             osc52 if tested else None,
             sw_name, "_osc52")
 
         # Kitty Pointer Shapes (OSC 22)
         kitty_ptr = tr.get('kitty_pointer_shapes')
-        row["Kitty Ptr"] = _capability_yes_no(
+        row["Kitty Ptr (OSC 22)"] = _capability_yes_no(
             (isinstance(kitty_ptr, dict) and kitty_ptr.get('supported', False))
             if tested else None,
             sw_name, suffix)
 
         # Kitty Notifications (OSC 99)
         kitty_notif = tr.get('kitty_notifications')
-        row["Kitty Notif"] = _capability_yes_no(
+        row["Kitty Notif (OSC 99)"] = _capability_yes_no(
             (isinstance(kitty_notif, dict) and kitty_notif.get('supported', False))
             if tested else None,
             sw_name, suffix)
 
         # Color Report (OSC 10/11)
-        row["Color Report"] = _capability_yes_no(
+        row["Color Report (OSC 10/11)"] = _capability_yes_no(
             (bool(tr.get('foreground_color_hex') or tr.get('background_color_hex')))
             if tested else None,
             sw_name, suffix)
@@ -1606,7 +1606,7 @@ def display_features_table(score_table):
 
         # Terminal Identification (XTVERSION, TERM_PROGRAM, or TERM)
         id_xt, id_tp, id_term = _detect_id_methods(entry)
-        row["Term ID"] = _capability_yes_no(
+        row["Identification"] = _capability_yes_no(
             (id_xt or id_tp) if tested else None,
             sw_name, "_identification")
 
@@ -2849,9 +2849,8 @@ def show_id_results(sw_name, entry):
     env = entry["data"].get("environment") or {}
 
     xt_has, tp_has, term_has = _detect_id_methods(entry)
-    override = tr.get("operator_override", False)
-    sw_name_final = tr.get("software_name", "")
-    sw_version = tr.get("software_version", "")
+    sw_name_final = entry["data"].get("software_name", "")
+    sw_version = entry["data"].get("software_version", "")
     xtversion_raw = tr.get("xtversion_raw", "")
     term_program = env.get("TERM_PROGRAM", "")
     term = env.get("TERM", "")
@@ -2862,12 +2861,6 @@ def show_id_results(sw_name, entry):
         if sw_version:
             print(f"version **{sw_version}**")
         print(f"(detected via {method_label}).")
-        if override:
-            print()
-            print(".. note::")
-            print()
-            print("   The operator manually supplied the software name")
-            print("   or version, overriding the auto-detected values.")
     else:
         print(f"*{sw_name}* could not be identified via XTVERSION")
         print("or TERM_PROGRAM.")
@@ -2884,8 +2877,6 @@ def show_id_results(sw_name, entry):
         print(f"- TERM_PROGRAM: **{'yes' if tp_has else 'no'}**")
     print(f"- TERM: **{'yes' if term_has else 'no'}**"
           f"{f' ({term})' if term else ''}")
-    if override:
-        print("- Operator override: **yes**")
     print()
 
     if tp_has and not xt_has:
