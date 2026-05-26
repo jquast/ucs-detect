@@ -1,0 +1,83 @@
+name: terminal tests
+
+on:
+  push:
+    paths:
+      - Dockerfile
+      - docker-entrypoint.sh
+      - run-series.py
+      - re-run.py
+      - terminals.yaml
+      - ucs_detect/**
+      - .github/workflows/terminal-tests.yml
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build docker image
+        run: docker build -t ucs-detect .
+
+      - name: dry-run terminal discovery
+        run: >
+          docker run --rm
+          -v $PWD:/app
+          -e DISPLAY=:99
+          ucs-detect
+          python run-series.py --dry-run --parallel 1
+
+  matrix-list:
+    runs-on: ubuntu-latest
+    outputs:
+      terminals: ${{ steps.gen.outputs.terminals }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: install pyyaml
+        run: pip install pyyaml
+      - id: gen
+        name: generate terminal matrix
+        run: |
+          TERMINALS=$(python -c "
+          import yaml, json
+          with open('terminals.yaml') as f:
+              t = yaml.safe_load(f)['terminals']
+          names = [
+              k for k, v in t.items()
+              if not v.get('launch', {}).get('skip')
+              and not v.get('skip_docker')
+          ]
+          print(json.dumps(names))
+          ")
+          echo "terminals=$TERMINALS" >> $GITHUB_OUTPUT
+
+  test:
+    needs: [build, matrix-list]
+    strategy:
+      fail-fast: false
+      matrix:
+        terminal: ${{ fromJSON(needs.matrix-list.outputs.terminals) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build docker image
+        run: docker build -t ucs-detect .
+      - name: test ${{ matrix.terminal }}
+        run: >
+          docker run --rm
+          -v $PWD:/app
+          -e DISPLAY=:99
+          ucs-detect
+          python run-series.py --run-only="${{ matrix.terminal }}" --parallel 1 -t 300
+      - name: upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-${{ matrix.terminal }}
+          path: data/
+          retention-days: 30

@@ -38,6 +38,11 @@ terminals:
       wm_class: qode
       post_launch_delay_ms: 300
       post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
+    launch_docker:
+      program: extraterm
+      args: []
+      post_launch_delay_ms: 300
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
   foot:
     homepage: https://codeberg.org/dnkl/foot
@@ -59,6 +64,12 @@ terminals:
     launch:
       program: gnome-terminal
       args: [--]
+
+  guake:
+    homepage: https://github.com/Guake/guake
+    launch:
+      program: guake
+      args: [-e]
 
   hyper:
     homepage: https://hyper.is/
@@ -82,6 +93,9 @@ terminals:
     launch:
       program: flatpak
       args: [run, --command=konsole, org.kde.konsole, --, -e]
+    launch_docker:
+      program: konsole
+      args: [-e]
 
   libvterm:
     homepage: https://www.leonerd.org.uk/code/libvterm/
@@ -162,6 +176,12 @@ terminals:
       program: st
       args: ["-f", "Unifont:pixelsize=16", "-e"]
 
+  st-luke:
+    homepage: https://github.com/LukeSmithxyz/st
+    launch:
+      program: st
+      args: ["-f", "Unifont:pixelsize=16", "-e"]
+
   syncterm:
     homepage: https://syncterm.bbsdev.net/
     launch:
@@ -170,10 +190,12 @@ terminals:
       args: [Local]
       post_launch_delay_ms: 300
       post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
-    skip_reason: "Not very interesting"
+    skip_reason: "Not very interesting/too far outliar to join scaled score, like fbdev"
 
   tabby:
     homepage: https://tabby.sh/
+    skip_docker: true
+    skip_reason: "Electron app; not packaged for Arch"
     launch:
       program: tabby
       args: [-e]
@@ -205,6 +227,8 @@ terminals:
 
   termit:
     homepage: https://github.com/nonstop/termit
+    skip_docker: true
+    skip_reason: "not packaged for Arch Linux"
     launch:
       program: termit
       args: [-e]
@@ -229,6 +253,8 @@ terminals:
 
   weston-terminal:
     homepage: https://gitlab.freedesktop.org/wayland/weston
+    skip_docker: true
+    skip_reason: "requires cage/Wayland compositor"
     launch:
       program: weston-terminal
       args: [--shell, "{script}"]
@@ -254,6 +280,12 @@ terminals:
     launch:
       program: xterm
       args: ["-fa", "Unifont", "-fs", "16", "-e"]
+
+  yakuake:
+    homepage: https://apps.kde.org/yakuake/
+    launch:
+      program: yakuake
+      args: [-e]
 
   zutty:
     homepage: https://tomscii.sig7.se/zutty/

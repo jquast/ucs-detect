@@ -46,7 +46,11 @@ RUN sed -i 's/^#\?MAKEFLAGS=.*/MAKEFLAGS="-j$(( $(nproc) > 2 ? $(nproc) - 2 : 1 
 
 RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
     mlterm-git \
-    st \
+    st-luke-git \
+    extraterm-bin \
+    bobcat-terminal \
+    terminator-git \
+    hyper-bin \
     && pacman -Scc --noconfirm
 
 # all terminal emulators available in Arch official repos
@@ -72,6 +76,9 @@ RUN pacman -S --noconfirm --needed \
     screen \
     zellij \
     vim \
+    putty \
+    guake \
+    yakuake \
     && pacman -Scc --noconfirm
 
 # remove nvidia EGL vendor config -- nvidia-utils was pulled in by rio,
