@@ -1,12 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-24 22:06:07 UTC
+datetime: 2026-05-26 02:03:09 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: Tabby
 height: 17
 python_version: 3.14.4
-seconds_elapsed: 167.54636293003568
+seconds_elapsed: 156.0742971120053
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -35,6 +35,7 @@ terminal_results:
     decscusr: '1'
     decstbm: 1;17
     sgr: '0'
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 4

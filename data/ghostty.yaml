@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-24 22:04:35 UTC
+datetime: 2026-05-26 02:01:35 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
@@ -7,7 +7,7 @@ environment:
   TERM_PROGRAM_VERSION: 1.3.2-main-+3706abab0
 height: 21
 python_version: 3.14.4
-seconds_elapsed: 84.00256490695756
+seconds_elapsed: 70.44607721600914
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -34,6 +34,7 @@ terminal_results:
     decscusr: '1'
     decstbm: 1;21
     sgr: 0;38:2::17:17:17
+  decrqss_truecolor_probe: true
   device_attributes:
     extensions:
     - 22

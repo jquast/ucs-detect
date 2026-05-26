@@ -411,10 +411,16 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
     # prefer user-entered software name/version over automatic detection
     if save_yaml or save_json:
+        auto_name = terminal_results.get("software_name", "")
+        auto_version = terminal_results.get("software_version", "")
         if terminal_software:
             terminal_results['software_name'] = terminal_software
         if terminal_version:
             terminal_results['software_version'] = terminal_version
+        operator_changed_name = bool(terminal_software) and terminal_software != auto_name
+        operator_changed_version = bool(terminal_version) and terminal_version != auto_version
+        if operator_changed_name or operator_changed_version:
+            terminal_results['operator_override'] = True
 
     if not no_final_summary:
         if silent:
@@ -676,14 +682,17 @@ def _build_features_kv_pairs(term, results):
                   _color_yes_no(term, results.get('kitty_clipboard_protocol',
                                                   False))))
 
-    # OSC 52 Clipboard: tri-state -- True (enabled), "supported" (DA1 ext 52
-    # advertised but query timed out), or False (not supported).
+    # OSC 52 Clipboard: boolean, with detection method breakdown.
     osc52 = results.get('osc52_clipboard', False)
-    if osc52 is True:
-        pairs.append(("OSC 52 Clipboard?", term.green2("Yes")))
-    elif osc52 == 'supported':
-        pairs.append(("OSC 52 Clipboard?",
-                      term.yellow("Supported (DA1 ext 52)")))
+    osc52_methods = results.get('osc52_detection', {})
+    if osc52:
+        parts = []
+        if osc52_methods.get('da1_extension_52'):
+            parts.append("DA1 ext 52")
+        if osc52_methods.get('xtgettcap_ms'):
+            parts.append("XTGETTCAP Ms")
+        method_str = " (" + " + ".join(parts) + ")" if parts else ""
+        pairs.append(("OSC 52 Clipboard?", term.green2("Yes") + method_str))
     else:
         pairs.append(("OSC 52 Clipboard?", _color_yes_no(term, False)))
 

@@ -1,11 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-24 22:04:21 UTC
+datetime: 2026-05-26 02:01:21 UTC
 environment:
   COLORTERM: truecolor
   TERM: st-256color
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 70.16199376498116
+seconds_elapsed: 57.51298566500191
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -27,6 +27,7 @@ terminal_results:
   decrqcra: false
   decrqss: false
   decrqss_settings: false
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions: []
     service_class: 6

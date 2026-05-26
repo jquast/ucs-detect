@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Run ucs-detect re-run.py for each terminal YAML of the current OS, in series or parallel."""
+"""Run ucs-detect re-run.py for each terminal YAML of the current OS, in series or parallel.
+
+Default mode runs inside a Docker container (Arch Linux + Xvfb).
+Use --use-system to run directly on the host.
+"""
 import argparse
 import atexit
 import os
@@ -19,6 +23,8 @@ import yaml
 
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_DIR / "data"
+DOCKER_IMAGE = "ucs-detect:latest"
+DOCKERFILE = PROJECT_DIR / "docker-test" / "Dockerfile"
 
 _RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
 _RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
@@ -28,6 +34,8 @@ _RE_PAUSE = re.compile(r'^\\p(\d+)$')
 _KEY_INJECT_LOCK = threading.RLock()
 _KEY_INJECT_PRE_DELAY = 0.5
 _KEY_INJECT_POST_DELAY = 1.5
+
+_IS_DOCKER = os.path.exists("/.dockerenv")
 
 
 def load_mixins():
@@ -80,18 +88,31 @@ def discover_yamls(target_system):
 
 
 def get_launch_config(sw_name, mixins):
-    """Return (launch_config, is_explicit) for *sw_name*."""
+    """Return (launch_config, is_explicit) for *sw_name*.
+
+    In Docker mode, clears the wrapper for terminals marked ``skip_system``
+    (the wrapper was only needed for bare-metal X11 without a WM)."""
     key = sw_name.lower()
     raw_entry = mixins.get(key, {})
     launch = raw_entry.get("launch", {}) if raw_entry else {}
     is_explicit = bool(launch)
 
+    skip_system = raw_entry.get("skip_system", False) or launch.get("skip_system", False)
+    skip_docker = raw_entry.get("skip_docker", False) or launch.get("skip_docker", False)
+    skip_any = launch.get("skip", False)
+
+    wrapper = list(launch.get("wrapper", []))
+    if _IS_DOCKER and skip_system and wrapper:
+        wrapper = []
+
     cfg = {
         "program": launch.get("program", key),
         "args": launch.get("args", ["-e"]),
         "subterminal": launch.get("subterminal", False),
-        "wrapper": launch.get("wrapper", []),
-        "skip": launch.get("skip", False),
+        "wrapper": wrapper,
+        "skip": skip_any,
+        "skip_system": skip_system,
+        "skip_docker": skip_docker,
         "skip_reason": raw_entry.get("skip_reason", ""),
         "post_launch_delay_ms": launch.get("post_launch_delay_ms", 0),
         "post_launch_keys": launch.get("post_launch_keys", []),
@@ -100,8 +121,19 @@ def get_launch_config(sw_name, mixins):
     return cfg, is_explicit
 
 
+def _should_skip(launch_cfg):
+    """Return True if the config should be skipped in the current environment."""
+    if launch_cfg["skip"]:
+        return True
+    if _IS_DOCKER and launch_cfg["skip_docker"]:
+        return True
+    if not _IS_DOCKER and launch_cfg["skip_system"]:
+        return True
+    return False
+
+
 def write_run_script(script_path, yaml_path, sentinel_path,
-                       reuse_version=False, pause_exit=False):
+                     reuse_version=False, pause_exit=False):
     """Write a shell script that runs re-run.py and records the exit code."""
     yaml_rel = yaml_path.relative_to(PROJECT_DIR)
     reuse_flag = " --reuse-version" if reuse_version else ""
@@ -118,12 +150,7 @@ def write_run_script(script_path, yaml_path, sentinel_path,
 
 
 def build_launch_args(launch_cfg, script_path):
-    """Build the full argv list for launching a terminal that executes *script_path*.
-
-    The token ``{script}`` in any *args* element is replaced with *script_path*.
-    If no ``{script}`` placeholder is found and no key injection is configured,
-    ``["sh", script_path]`` is appended.
-    """
+    """Build the full argv list for launching a terminal that executes *script_path*."""
     argv = list(launch_cfg["wrapper"])
     argv.append(launch_cfg["program"])
     script_str = str(script_path)
@@ -150,7 +177,6 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
         inner_parts = [p.replace("{script}", script_str) for p in inner_parts]
 
     inner_cmd = " ".join(shlex.quote(a) for a in inner_parts)
-    # Clear host terminal identity so the inner terminal is detected as itself
     inner_cmd = f"unset TERM_PROGRAM TERM_PROGRAM_VERSION; {inner_cmd}"
     argv = list(host_launch_cfg.get("wrapper", []))
     argv.append(host_launch_cfg["program"])
@@ -163,7 +189,6 @@ def find_window_for_command(launch_cfg, pid, timeout=8):
     """Find X11 window ID for a launched process, by PID then by class name."""
     deadline = time.monotonic() + timeout
 
-    # Strategy 1: search by PID (only for the first half of the deadline)
     pid_deadline = time.monotonic() + min(timeout / 2, 5)
     while time.monotonic() < pid_deadline:
         try:
@@ -177,7 +202,6 @@ def find_window_for_command(launch_cfg, pid, timeout=8):
             pass
         time.sleep(0.3)
 
-    # Strategy 2: search by class name and classname for the remaining time
     wm_class = launch_cfg.get("wm_class") or os.path.basename(
         launch_cfg.get("program", "")
     ).lower()
@@ -198,14 +222,7 @@ def find_window_for_command(launch_cfg, pid, timeout=8):
 
 
 def inject_keys(window_id, keys):
-    """Send keystrokes to a window via xdotool.
-
-    Special tokens in *keys*:
-      ``\\n``       press Return
-      ``\\pNNN``    pause for NNN milliseconds (e.g. ``\\p500``)
-
-    Merges consecutive text keys into a single ``xdotool type`` call.
-    """
+    """Send keystrokes to a window via xdotool."""
     subprocess.run(
         ["xdotool", "windowfocus", "--sync", str(window_id)],
         capture_output=True, timeout=2,
@@ -243,12 +260,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                        temp_dir, reuse_version=False, pause_exit=False):
     """Launch a terminal and inject keys. Does not wait for completion.
 
-    Returns (proc, sentinel_path, stderr_path, error_msg) where error_msg is
-    None on success.
-
-    Acquires ``_KEY_INJECT_LOCK`` only during key injection so that no other
-    terminal can steal X11 focus during injection.  Process launch does not
-    hold the lock so direct-launch terminals do not block key-inject jobs.
+    Returns (proc, sentinel_path, stderr_path, error_msg).
     """
     safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
     script_path = temp_dir / f"run-{safe_name}.sh"
@@ -265,7 +277,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
             argv = build_launch_args(launch_cfg, script_path)
         else:
             argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
-                                                  script_path)
+                                                 script_path)
 
         with open(stderr_path, "w") as stderr_file:
             env = os.environ.copy()
@@ -360,12 +372,63 @@ def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout):
     return (sw_name, exit_code, error_msg)
 
 
+def _docker_image_exists():
+    """Check if the Docker image is already built."""
+    try:
+        result = subprocess.run(
+            ["docker", "images", "-q", DOCKER_IMAGE],
+            capture_output=True, text=True, timeout=10,
+        )
+        return bool(result.stdout.strip())
+    except (subprocess.TimeoutExpired, OSError, FileNotFoundError):
+        return False
+
+
+def _docker_build():
+    """Build the Docker image."""
+    print(f"Building Docker image {DOCKER_IMAGE} ...", flush=True)
+    subprocess.check_call(
+        ["docker", "build", "-f", str(DOCKERFILE), "-t", DOCKER_IMAGE,
+         str(PROJECT_DIR)],
+    )
+
+
+def _docker_self_run(argv):
+    """Re-execute run-series.py inside the Docker container."""
+    docker_args = [
+        "docker", "run", "--rm",
+        "-v", f"{PROJECT_DIR}:/app",
+        "-e", "DISPLAY=:99",
+        DOCKER_IMAGE,
+        "python", "run-series.py",
+    ]
+    docker_args.extend(argv)
+    sys.exit(subprocess.call(docker_args))
+
+
+def _embed_profile_in_yaml(yaml_path, sw_name, session):
+    """Append resource_profile data to the terminal's YAML file."""
+    try:
+        with open(yaml_path) as f:
+            data = yaml.safe_load(f)
+    except (OSError, yaml.YAMLError):
+        return
+    if data is None:
+        return
+    data["resource_profile"] = session.to_dict()
+    try:
+        with open(yaml_path, "w") as f:
+            yaml.safe_dump(data, f, default_flow_style=False, allow_unicode=True)
+    except OSError:
+        pass
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run ucs-detect re-run.py for each terminal YAML of the current OS")
     parser.add_argument(
-        "--parallel", "-p", type=int, default=1,
-        help="Number of terminals to run in parallel (default: 1)")
+        "--parallel", "-p", type=int, default=None,
+        help="Number of terminals to run in parallel (default: auto)")
     parser.add_argument(
         "--timeout", "-t", type=float, default=900,
         help="Timeout per terminal in seconds (default: 900)")
@@ -392,7 +455,23 @@ def main():
     parser.add_argument(
         "--pause-exit", action="store_true",
         help="Append 'read' to run scripts so the terminal stays open on error")
+    parser.add_argument(
+        "--use-system", action="store_true",
+        help="Run directly on the host system instead of inside Docker")
+    parser.add_argument(
+        "--profile", action="store_true",
+        help="Collect CPU and memory usage per terminal, generate graphs")
     args = parser.parse_args()
+
+    # --- Docker orchestration ---
+    if not args.use_system and not _IS_DOCKER:
+        if not _docker_image_exists():
+            _docker_build()
+        argv = sys.argv[1:]
+        argv = [a for a in argv if a != "--use-system"]
+        _docker_self_run(argv)
+
+    # --- we are either in Docker or --use-system ---
 
     system_name = platform.system()
     if system_name.lower() not in ("linux",):
@@ -404,34 +483,34 @@ def main():
         print("Warning: xdotool not found; keyboard injection will not work",
               file=sys.stderr)
 
+    # default parallelism: max(2, min(n_cpus // 2 - 1, 16))
+    if args.parallel is None:
+        n_cpus = os.cpu_count() or 2
+        args.parallel = max(2, min(n_cpus // 2 - 1, 16))
+
     mixins = load_mixins()
 
-    # Build host terminal launch config
     host_launch_cfg, _ = get_launch_config(args.host_terminal, mixins)
     if host_launch_cfg["subterminal"]:
         print(f"Error: --host-terminal '{args.host_terminal}' is a subterminal",
               file=sys.stderr)
         sys.exit(1)
 
-    # Session temp directory
     temp_dir = Path(tempfile.mkdtemp(prefix="ucs-run-series-"))
     if not args.keep_temp:
         atexit.register(shutil.rmtree, str(temp_dir), ignore_errors=True)
     else:
         print(f"Temp directory: {temp_dir}")
 
-    # Discover terminals
     all_terminals = list(discover_yamls(system_name))
     if not all_terminals:
         print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
         sys.exit(0)
 
-    # Parse --run-only filter
     run_only = set()
     if args.run_only:
         run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip())
 
-    # Build job list, applying skip rules.  Include seconds_elapsed for sorting.
     jobs = []
     skipped = []
     for yaml_path, sw_name, seconds_elapsed, error_msg in all_terminals:
@@ -449,10 +528,9 @@ def main():
             if (name_lower not in run_only
                     and prog_lower not in run_only
                     and file_lower not in run_only):
-                skipped.append((sw_name, "not in --run-only"))
                 continue
 
-        if launch_cfg["skip"]:
+        if _should_skip(launch_cfg):
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
             skipped.append((sw_name, reason))
             continue
@@ -467,7 +545,6 @@ def main():
 
         jobs.append((yaml_path, sw_name, launch_cfg, seconds_elapsed))
 
-    # Sort slowest-first so they get a head-start in the thread pool
     jobs.sort(key=lambda j: j[3], reverse=True)
 
     if skipped:
@@ -481,7 +558,9 @@ def main():
         sys.exit(0)
 
     if args.dry_run:
-        print(f"Would run {len(jobs)} terminals with --parallel={args.parallel}:\n")
+        mode = "Docker" if _IS_DOCKER else "system"
+        print(f"Would run {len(jobs)} terminals with --parallel={args.parallel}"
+              f" ({mode} mode):\n")
         for yaml_path, sw_name, launch_cfg, _seconds_elapsed in jobs:
             safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
             script_path = temp_dir / f"run-{safe_name}.sh"
@@ -489,17 +568,27 @@ def main():
                 argv = build_launch_args(launch_cfg, script_path)
             else:
                 argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
-                                                      script_path)
+                                                     script_path)
             print(f"  {sw_name}: {shlex.join(argv)}")
         return
 
-    # Split jobs: key-injection terminals must run alone (focus-sensitive)
+    # --- profiling support ---
+    profiler_sessions = {}
+    if args.profile:
+        try:
+            from ucs_detect.profiler import ProfileSession  # noqa: F811
+        except ImportError:
+            print("Warning: ucs_detect.profiler not available; --profile ignored",
+                  file=sys.stderr)
+            args.profile = False
+
     key_jobs = [j for j in jobs if j[2].get("post_launch_keys")]
     direct_jobs = [j for j in jobs if not j[2].get("post_launch_keys")]
 
+    mode = "Docker" if _IS_DOCKER else "system"
     print(f"Running {len(key_jobs)} key-inject + {len(direct_jobs)} direct"
           f" terminals (parallel={args.parallel}, timeout={args.timeout}s, "
-          f"host={args.host_terminal})")
+          f"host={args.host_terminal}, mode={mode})")
     print(f"Temp: {temp_dir}")
     print()
 
@@ -511,9 +600,6 @@ def main():
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_map = {}
 
-        # Phase 1: launch key-injection terminals sequentially;
-        # _launch_and_inject holds the lock, serializing key injection.
-        # Sentinel polling runs in the thread pool so tests execute in parallel.
         if key_jobs:
             print("--- Key-injection terminals (sequential launch, parallel wait) ---")
         for yaml_path, sw_name, launch_cfg, _seconds_elapsed in key_jobs:
@@ -532,13 +618,16 @@ def main():
                     break
                 continue
 
+            profile = None
+            if args.profile and proc is not None:
+                profile = ProfileSession(sw_name, proc.pid)
+                profile.start()
+
             future = executor.submit(
                 _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
                 args.timeout)
-            future_map[future] = sw_name
+            future_map[future] = (sw_name, proc, profile, sentinel_path, yaml_path)
 
-        # Phase 2: launch direct terminals from the main thread,
-        # submit only polling to the thread pool
         if direct_jobs and not (failures and not args.continue_after_failure):
             if key_jobs:
                 print("\n--- Direct-launch terminals (parallel) ---")
@@ -556,14 +645,18 @@ def main():
                         break
                     continue
 
+                profile = None
+                if args.profile and proc is not None:
+                    profile = ProfileSession(sw_name, proc.pid)
+                    profile.start()
+
                 future = executor.submit(
                     _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
                     args.timeout)
-                future_map[future] = sw_name
+                future_map[future] = (sw_name, proc, profile, sentinel_path, yaml_path)
 
-        # Phase 3: collect results as they complete
         for future in as_completed(future_map):
-            sw_name = future_map[future]
+            sw_name, proc, profile, sentinel_path, yaml_path = future_map[future]
             try:
                 name, exit_code, error = future.result()
             except Exception as exc:
@@ -574,7 +667,17 @@ def main():
                     for f in future_map:
                         f.cancel()
                     break
+                if profile is not None:
+                    profile.stop()
                 continue
+
+            if profile is not None:
+                profile.stop()
+                profiler_sessions[name] = profile
+                safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in name)
+                csv_path = DATA_DIR / f"{safe_name}_profile.csv"
+                profile.write_csv(csv_path)
+                _embed_profile_in_yaml(yaml_path, name, profile)
 
             results[name] = (exit_code, error)
             if error or exit_code != 0:
@@ -587,6 +690,14 @@ def main():
                     break
             else:
                 print(f"[{name}] OK", flush=True)
+
+    if args.profile and profiler_sessions:
+        try:
+            from ucs_detect.profiler import generate_graphs
+            print("\nGenerating resource profile graphs ...", flush=True)
+            generate_graphs(profiler_sessions, DATA_DIR)
+        except Exception as exc:
+            print(f"Warning: graph generation failed: {exc}", file=sys.stderr)
 
     elapsed = time.monotonic() - t0
     n_ok = len(results) - len(failures)

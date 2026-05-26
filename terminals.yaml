@@ -45,8 +45,8 @@ terminals:
       program: foot
       args: []
       wrapper: [cage, --]
-      skip: true
-    skip_reason: "cage wrapper"
+    skip_system: true
+    skip_reason: "requires cage/Wayland on bare metal; runs on X11 under Xvfb"
 
   ghostty:
     homepage: https://ghostty.org/
@@ -97,7 +97,9 @@ terminals:
     homepage: https://www.kernel.org/doc/Documentation/fb/fbcon.txt
     launch:
       subterminal: true
-      skip: true
+    skip_system: true
+    skip_docker: true
+    skip_reason: "requires bare Linux framebuffer console"
 
   lxterminal:
     homepage: https://github.com/lxde/lxterminal
@@ -179,7 +181,8 @@ terminals:
   teraterm:
     homepage: https://teratermproject.github.io/
     launch:
-      skip: true
+    skip_system: true
+    skip_docker: true
     skip_reason: "Windows-only, not available on Linux"
 
   terminal.app:
@@ -230,8 +233,8 @@ terminals:
       program: weston-terminal
       args: [--shell, "{script}"]
       wrapper: [cage, --]
-      skip: true
-    skip_reason: "cage wrapper"
+    skip_system: true
+    skip_reason: "requires cage/Wayland compositor"
 
   wezterm:
     homepage: https://wezfurlong.org/wezterm/

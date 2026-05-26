@@ -514,6 +514,8 @@ def main():
         display_common_languages(all_successful_languages)
         display_features_table(score_table)
         display_truecolor_table(score_table)
+        display_osc52_table(score_table)
+        display_id_table(score_table)
         display_xtgettcap_summary_bullets(score_table)
         display_xtgettcap_comparison_table(score_table)
         # display_time_summary removed: plot is still generated but not published
@@ -548,6 +550,8 @@ def main():
             show_xtgettcap_results(sw_name, entry)
             show_text_sizing_results(sw_name, entry)
             show_truecolor_results(sw_name, entry)
+            show_osc52_results(sw_name, entry)
+            show_id_results(sw_name, entry)
             show_reproduce_command(sw_name, entry)
             show_time_elapsed_results(sw_name, entry)
             display_common_hyperlinks()
@@ -1267,15 +1271,17 @@ def score_features(data):
     """
     Calculate score as fraction of notable terminal features supported.
 
-    Checks 15 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
+    Checks 16 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
     Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
     Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
-    Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications,
-    Color Report (OSC 10/11), XTVERSION, and Truecolor Detection.
+    Kitty Clipboard, OSC 52 Clipboard, Kitty Pointer Shapes, Kitty
+    Notifications, Color Report (OSC 10/11), Terminal Identification, and
+    Truecolor Detection.
 
-    XTGETTCAP and Truecolor Detection each score 0.5 for partial support
-    (XTGETTCAP with fewer than 5 meaningful caps; Truecolor detectable only
-    via COLORTERM).
+    XTGETTCAP, Truecolor Detection, and Terminal Identification each score
+    0.5 for partial support (XTGETTCAP with fewer than 5 meaningful caps;
+    Truecolor detectable only via COLORTERM; Terminal identified only via
+    TERM_PROGRAM environment variable).
 
     :rtype: float
     :returns: fraction 0.0-1.0 of features supported
@@ -1286,7 +1292,7 @@ def score_features(data):
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 15
+    total = 16
 
     for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
@@ -1309,6 +1315,9 @@ def score_features(data):
     if tr.get("kitty_clipboard_protocol", False):
         count += 1
 
+    if tr.get("osc52_clipboard", False):
+        count += 1
+
     kitty_ptr = tr.get("kitty_pointer_shapes")
     if isinstance(kitty_ptr, dict) and kitty_ptr.get("supported", False):
         count += 1
@@ -1321,7 +1330,9 @@ def score_features(data):
         count += 1
 
     if tr.get("software_method") == "XTVERSION":
-        count += 1
+        count += 1.0
+    elif tr.get("software_method") == "TERM_PROGRAM":
+        count += 0.5
 
     xt_has, dq_has, ct_has = _detect_truecolor_methods(data)
     if xt_has or dq_has:
@@ -1433,6 +1444,28 @@ def _detect_truecolor_methods(data):
     return xt_has, dq_has, ct_has
 
 
+def _detect_osc52_methods(data):
+    """Determine which methods detect OSC 52 clipboard support."""
+    if "data" in data:
+        data = data["data"]
+    tr = data.get("terminal_results") or {}
+    methods = tr.get("osc52_detection") or {}
+    return methods.get("da1_extension_52", False), methods.get("xtgettcap_ms", False)
+
+
+def _detect_id_methods(data):
+    """Determine which methods can identify the terminal software."""
+    if "data" in data:
+        data = data["data"]
+    tr = data.get("terminal_results") or {}
+    env = data.get("environment") or {}
+    sm = tr.get("software_method", "")
+    xt_has = sm == "XTVERSION"
+    tp_has = sm == "TERM_PROGRAM" or bool(env.get("TERM_PROGRAM"))
+    term_has = bool(env.get("TERM"))
+    return xt_has, tp_has, term_has
+
+
 def _capability_yes_no(value, terminal_name, section_suffix):
     """Format a boolean capability as a scored yes/no with hyperlink."""
     if value is None:
@@ -1539,6 +1572,12 @@ def display_features_table(score_table):
             tr.get('kitty_clipboard_protocol', False) if tested else None,
             sw_name, suffix)
 
+        # OSC 52 Clipboard (DA1 ext 52 or XTGETTCAP Ms)
+        osc52 = tr.get('osc52_clipboard', False)
+        row["OSC 52"] = _capability_yes_no(
+            osc52 if tested else None,
+            sw_name, "_osc52")
+
         # Kitty Pointer Shapes (OSC 22)
         kitty_ptr = tr.get('kitty_pointer_shapes')
         row["Kitty Ptr"] = _capability_yes_no(
@@ -1564,6 +1603,12 @@ def display_features_table(score_table):
         row["Truecolor"] = _capability_yes_no(
             (xt_has or dq_has or ct_has) if tested else None,
             sw_name, "_truecolor")
+
+        # Terminal Identification (XTVERSION, TERM_PROGRAM, or TERM)
+        id_xt, id_tp, id_term = _detect_id_methods(entry)
+        row["Term ID"] = _capability_yes_no(
+            (id_xt or id_tp) if tested else None,
+            sw_name, "_identification")
 
         table_data.append(row)
 
@@ -1629,6 +1674,78 @@ def display_truecolor_table(score_table):
         print_datatable(table_str)
     else:
         print("No truecolor detection data available.")
+        print()
+
+
+def display_osc52_table(score_table):
+    """Display an OSC 52 clipboard detection methods comparison table."""
+    display_title("OSC 52 Clipboard Detection", 2)
+    print("This table shows which methods can be used to detect OSC 52")
+    print("clipboard support for each terminal emulator.  DA1 extension 52")
+    print("is the mechanism defined by the vt-extensions spec; XTGETTCAP")
+    print("``Ms`` is an alternative capability query that may work on")
+    print("terminals not advertising the DA1 extension.")
+    print()
+
+    table_data = []
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        tr = entry["data"].get("terminal_results") or {}
+        tested = bool(tr)
+
+        da1_has, ms_has = _detect_osc52_methods(entry)
+
+        row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_osc52")}
+
+        row["DA1 ext 52"] = _capability_yes_no(
+            da1_has if tested else None, sw_name, "_osc52")
+        row["XTGETTCAP Ms"] = _capability_yes_no(
+            ms_has if tested else None, sw_name, "_osc52")
+
+        table_data.append(row)
+
+    if table_data:
+        table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+        print_datatable(table_str)
+    else:
+        print("No OSC 52 detection data available.")
+        print()
+
+
+def display_id_table(score_table):
+    """Display a terminal identification methods comparison table."""
+    display_title("Terminal Identification", 2)
+    print("This table shows which methods can be used to identify the")
+    print("terminal software name and version.  XTVERSION uses an active")
+    print("escape sequence query (works over SSH).  TERM_PROGRAM and")
+    print("TERM are environment variables; TERM_PROGRAM is not forwarded")
+    print("over SSH without ``SendEnv`` / ``AcceptEnv`` configuration.")
+    print()
+
+    table_data = []
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        tr = entry["data"].get("terminal_results") or {}
+        tested = bool(tr)
+
+        xt_has, tp_has, term_has = _detect_id_methods(entry)
+
+        row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_identification")}
+
+        row["XTVERSION"] = _capability_yes_no(
+            xt_has if tested else None, sw_name, "_identification")
+        row["TERM_PROGRAM"] = _capability_yes_no(
+            tp_has if tested else None, sw_name, "_identification")
+        row["TERM"] = _capability_yes_no(
+            term_has if tested else None, sw_name, "_identification")
+
+        table_data.append(row)
+
+    if table_data:
+        table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+        print_datatable(table_str)
+    else:
+        print("No terminal identification data available.")
         print()
 
 
@@ -2074,6 +2191,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             ("Kitty Clipboard Protocol",
              float(tr.get("kitty_clipboard_protocol", False)),
              "_dec_modes"),
+            ("OSC 52 Clipboard",
+             float(tr.get("osc52_clipboard", False)),
+             "_osc52"),
             ("Kitty Pointer Shapes (OSC 22)",
              float(isinstance(tr.get("kitty_pointer_shapes"), dict)
              and tr.get("kitty_pointer_shapes", {}).get("supported", False)),
@@ -2085,9 +2205,15 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             ("Color Report (OSC 10/11)",
              float(bool(tr.get("foreground_color_hex") or tr.get("background_color_hex"))),
              "_dec_modes"),
-            ("XTVERSION",
-             float(tr.get("software_method") == "XTVERSION"),
-             "_dec_modes"),
+            ("Terminal Identification (XTVERSION)"
+             if tr.get("software_method") == "XTVERSION"
+             else "Terminal Identification (TERM_PROGRAM)"
+             if tr.get("software_method") == "TERM_PROGRAM"
+             else "Terminal Identification",
+             (1.0 if tr.get("software_method") == "XTVERSION"
+              else 0.5 if tr.get("software_method") == "TERM_PROGRAM"
+              else 0.0),
+             "_identification"),
             ("Truecolor Detection", tc_score, "_truecolor"),
         ]
         cap_count = sum(v for _, v, _ in cap_checks)
@@ -2679,6 +2805,96 @@ def show_truecolor_results(sw_name, entry):
               " It is not forwarded over SSH without ``SendEnv`` / ``AcceptEnv``"
               " configuration, so detection via COLORTERM alone may be unreliable"
               " on remote hosts.")
+        print()
+
+
+def show_osc52_results(sw_name, entry):
+    """Display OSC 52 clipboard detection method results."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_osc52")
+    display_title("OSC 52 Clipboard Support", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+
+    osc52 = tr.get("osc52_clipboard", False)
+    methods = tr.get("osc52_detection") or {}
+    da1_has = methods.get("da1_extension_52", False)
+    ms_has = methods.get("xtgettcap_ms", False)
+
+    if osc52:
+        parts = []
+        if da1_has:
+            parts.append("DA1 extension 52")
+        if ms_has:
+            parts.append("XTGETTCAP Ms")
+        method_str = " + ".join(parts) if parts else "unknown method"
+        print(f"*{sw_name}* supports OSC 52 clipboard operations")
+        print(f"(detected via {method_str}).")
+    else:
+        print(f"*{sw_name}* does **not** advertise OSC 52 clipboard support")
+        print("via DA1 extension 52 or XTGETTCAP Ms.")
+    print()
+
+    if tr:
+        print(f"- DA1 extension 52: **{'yes' if da1_has else 'no'}**")
+        print(f"- XTGETTCAP Ms: **{'yes' if ms_has else 'no'}**")
+    print()
+
+
+def show_id_results(sw_name, entry):
+    """Display terminal identification method results with raw values."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_identification")
+    display_title("Terminal Identification", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+    env = entry["data"].get("environment") or {}
+
+    xt_has, tp_has, term_has = _detect_id_methods(entry)
+    override = tr.get("operator_override", False)
+    sw_name_final = tr.get("software_name", "")
+    sw_version = tr.get("software_version", "")
+    xtversion_raw = tr.get("xtversion_raw", "")
+    term_program = env.get("TERM_PROGRAM", "")
+    term = env.get("TERM", "")
+
+    if xt_has or tp_has:
+        method_label = ("XTVERSION" if xt_has else "TERM_PROGRAM")
+        print(f"*{sw_name}* is identified as **{sw_name_final}**")
+        if sw_version:
+            print(f"version **{sw_version}**")
+        print(f"(detected via {method_label}).")
+        if override:
+            print()
+            print(".. note::")
+            print()
+            print("   The operator manually supplied the software name")
+            print("   or version, overriding the auto-detected values.")
+    else:
+        print(f"*{sw_name}* could not be identified via XTVERSION")
+        print("or TERM_PROGRAM.")
+    print()
+
+    if xtversion_raw:
+        print(f"- XTVERSION (raw): **{xtversion_raw}**")
+    elif tr.get("software_method") == "XTVERSION":
+        print("- XTVERSION (raw): (not recorded for this run)")
+    print(f"- XTVERSION: **{'yes' if xt_has else 'no'}**")
+    if term_program:
+        print(f"- TERM_PROGRAM: **yes** ({term_program})")
+    else:
+        print(f"- TERM_PROGRAM: **{'yes' if tp_has else 'no'}**")
+    print(f"- TERM: **{'yes' if term_has else 'no'}**"
+          f"{f' ({term})' if term else ''}")
+    if override:
+        print("- Operator override: **yes**")
+    print()
+
+    if tp_has and not xt_has:
+        print(".. warning::")
+        print()
+        print("   TERM_PROGRAM is an environment variable, not a terminal"
+              " query. It is not forwarded over SSH without ``SendEnv`` /"
+              " ``AcceptEnv`` configuration, so identification via"
+              " TERM_PROGRAM alone may be unreliable on remote hosts.")
         print()
 
 

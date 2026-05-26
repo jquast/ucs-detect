@@ -244,6 +244,7 @@ def maybe_determine_software(term, writer, timeout=1.0):
 
     if match is not None:
         text = match.group(1)
+        result['xtversion_raw'] = text
         name, version = blessed.keyboard.SoftwareVersion._parse_text(text)
         # decode DA3-style ASCII-encoded name (only SyncTERM/CTerm is
         # known to respond this way)
@@ -465,24 +466,37 @@ def maybe_determine_styled_underlines(term, timeout=1.0, **_kw):
     }
 
 
-def maybe_determine_osc52_clipboard(term, timeout=60.0, **_kw):
+def maybe_determine_osc52_clipboard(term, timeout=1.0, **_kw):
     """
-    Detect OSC 52 clipboard support, delegating to blessed.
+    Detect OSC 52 clipboard support via two non-intrusive methods.
 
-    Only called when DA1 extension 52 is present, indicating the terminal
-    advertises OSC 52 clipboard write support per the vt-extensions spec:
-    https://github.com/contour-terminal/vt-extensions/blob/master/clipboard-extension.md
+    Checks both DA1 extension 52 and XTGETTCAP ``Ms`` capability,
+    recording which methods detected support.  Neither method triggers
+    a clipboard permission prompt.
 
-    Returns a tri-state value:
-
-    - ``True``: clipboard access is enabled (terminal responded)
-    - ``"supported"``: DA1 advertises extension 52 but the OSC 52 query
-      timed out (user may not have approved the permission prompt yet)
-    - ``False``: not supported (caller should not reach here)
+    Returns ``osc52_clipboard`` as a boolean and ``osc52_detection``
+    as a dict of per-method results.
     """
-    if term.does_osc52_clipboard(timeout=timeout):
-        return {'osc52_clipboard': True}
-    return {'osc52_clipboard': 'supported'}
+    da1_has_52 = False
+    ms_found = False
+
+    # Strategy 1: DA1 extension 52 (vt-extensions spec)
+    da = term.get_device_attributes(timeout=timeout)
+    if da is not None:
+        da1_has_52 = 52 in da.extensions
+
+    # Strategy 2: XTGETTCAP Ms capability
+    tcap = term.get_xtgettcap(timeout=timeout, caps=['Ms'])
+    if tcap is not None and 'Ms' in tcap.capabilities:
+        ms_found = True
+
+    return {
+        'osc52_clipboard': da1_has_52 or ms_found,
+        'osc52_detection': {
+            'da1_extension_52': da1_has_52,
+            'xtgettcap_ms': ms_found,
+        },
+    }
 
 
 def maybe_determine_color_scheme(term, timeout=1.0, **_kw):
@@ -695,17 +709,12 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     if not is_modern:
         return attrs
 
-    # OSC 52 Clipboard: only query when DA1 advertises extension 52.
-    # Tested early so the user sees any clipboard permission prompt while
-    # other detection proceeds, but with a long timeout (60s) so that a
-    # late response does not leak into subsequent queries.
-    # Spec: https://github.com/contour-terminal/vt-extensions/blob/master/clipboard-extension.md
-    da_ext = attrs.get('device_attributes') or {}
-    da_supports_osc52 = 52 in (da_ext.get('extensions') or [])
-    if da_supports_osc52:
-        with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
-            attrs.update(maybe_determine_osc52_clipboard(term,
-                                                         timeout=60.0))
+    # OSC 52 Clipboard: non-intrusive detection via DA1 extension 52
+    # and XTGETTCAP Ms capability.  Neither method triggers a clipboard
+    # permission prompt.
+    with _status(writer, term, "OSC 52 Clipboard", bg_rgb, silent=silent):
+        attrs.update(maybe_determine_osc52_clipboard(term,
+                                                     timeout=timeout))
 
     attrs.update(maybe_determine_dec_modes(
         term, writer, all_modes=all_modes, bg_rgb=bg_rgb,

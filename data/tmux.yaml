@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-24 22:03:46 UTC
+datetime: 2026-05-26 02:00:14 UTC
 environment:
   COLORTERM: truecolor
   TERM: tmux-256color
@@ -7,7 +7,7 @@ environment:
   TERM_PROGRAM_VERSION: '3.4'
 height: 20
 python_version: 3.14.4
-seconds_elapsed: 56.66851146501722
+seconds_elapsed: 14.578626142989378
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -31,6 +31,7 @@ terminal_results:
   decrqcra: false
   decrqss: false
   decrqss_settings: false
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 2

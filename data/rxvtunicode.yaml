@@ -1,11 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-24 22:04:37 UTC
+datetime: 2026-05-26 02:01:36 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
 height: 24
 python_version: 3.14.4
-seconds_elapsed: 85.86951886600582
+seconds_elapsed: 73.01560246100416
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -27,6 +27,7 @@ terminal_results:
   decrqcra: false
   decrqss: false
   decrqss_settings: false
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 2
