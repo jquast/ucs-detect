@@ -130,6 +130,7 @@ def get_launch_config(sw_name, mixins):
         "post_launch_keys": launch.get("post_launch_keys", []),
         "env": launch.get("env", {}),
         "profile_processes": raw_entry.get("profile_processes", []),
+        "timeout": raw_entry.get("timeout", None),
         "wm_class": launch.get("wm_class", None),
     }
     return cfg, is_explicit
@@ -350,6 +351,9 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 time.sleep(_KEY_INJECT_PRE_DELAY)
                 time.sleep(post_delay / 1000.0)
                 window_cfg = host_launch_cfg if launch_cfg["subterminal"] else launch_cfg
+                # In Docker, the host terminal is our xterm, not the host's TERM_PROGRAM
+                if _IS_DOCKER and launch_cfg["subterminal"]:
+                    window_cfg = dict(window_cfg, wm_class="XTerm")
                 window_id = find_window_for_command(window_cfg, proc.pid, pre_windows=snapshot_pre_windows)
                 if window_id is not None:
                     script_str = str(script_path)
@@ -526,6 +530,22 @@ def _fixup_yaml(yaml_path, sw_name, mixins, program):
         else:
             xt_name = raw_name
             xt_version = raw_version
+        # resolve {aur_version} from pacman if aur_package is configured
+        aur_version = ""
+        aur_pkg = entry.get("aur_package")
+        if aur_pkg:
+            try:
+                result = subprocess.run(
+                    ["pacman", "-Q", aur_pkg],
+                    capture_output=True, text=True, timeout=5,
+                )
+                if result.returncode == 0:
+                    # "aur_pkg 1.2.3-4" -> "1.2.3-4"
+                    parts = result.stdout.strip().split(None, 1)
+                    if len(parts) > 1:
+                        aur_version = parts[1]
+            except (subprocess.TimeoutExpired, OSError):
+                pass
         version_str = version_template.format(
             sw_name=raw_name,
             sw_version=raw_version,
@@ -533,6 +553,7 @@ def _fixup_yaml(yaml_path, sw_name, mixins, program):
             xt_version=xt_version,
             xtversion_raw=raw_xtversion,
             release=entry.get("version_release", ""),
+            aur_version=aur_version,
         )
         data["software_version"] = version_str
 
@@ -572,7 +593,7 @@ def _docker_per_terminal_run(args):
             continue
         if launch_cfg.get("subterminal") and not launch_cfg.get("program"):
             continue
-        jobs.append((d.software_name, d.seconds_elapsed))
+        jobs.append((d.software_name, d.seconds_elapsed, launch_cfg.get("timeout")))
 
     jobs.sort(key=lambda j: j[1], reverse=True)
 
@@ -584,7 +605,7 @@ def _docker_per_terminal_run(args):
 
     with ThreadPoolExecutor(max_workers=parallel) as executor:
         futures = {}
-        for sw_name, _prev_time in jobs:
+        for sw_name, _prev_time, term_timeout in jobs:
             cmd = [
                 "docker", "run", "--rm", "--cpus=2",
                 "-e", "DISPLAY=:99",
@@ -592,11 +613,11 @@ def _docker_per_terminal_run(args):
                 DOCKER_IMAGE,
                 "python", "run-series.py", "--use-system",
                 "--continue-after-failure",
-                "--timeout", str(args.timeout),
+                "--timeout", str(term_timeout or args.timeout),
                 "--run-only", sw_name,
             ]
             future = executor.submit(subprocess.run, cmd, capture_output=True,
-                                     text=True, timeout=args.timeout + 60)
+                                     text=True, timeout=(term_timeout or args.timeout) + 60)
             futures[future] = sw_name
 
         for future in as_completed(futures):

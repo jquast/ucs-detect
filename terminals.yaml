@@ -28,8 +28,8 @@ terminals:
   cool-retro-term:
     homepage: https://github.com/Swordfish90/cool-retro-term
     display_name: "cool-retro-term"
-    version_template: "{release}"
-    version_release: "2.0.0-beta1"
+    version_template: "{aur_version}"
+    aur_package: cool-retro-term
     launch:
       program: cool-retro-term
       args: [-e]
@@ -70,12 +70,13 @@ terminals:
   gnome terminal:
     homepage: https://help.gnome.org/users/gnome-terminal/stable/
     display_name: "GNOME Terminal"
-    version_template: "{release} ({xt_name}/{xt_version})"
-    version_release: "3.60.0"
+    version_template: "{aur_version}"
+    aur_package: gnome-terminal
     launch:
       program: gnome-terminal
       args: [--wait, --]
     profile_processes: [gnome-terminal-server]
+    timeout: 3600
 
   hyper:
     homepage: https://hyper.is/
@@ -126,11 +127,13 @@ terminals:
   lxterminal:
     homepage: https://github.com/lxde/lxterminal
     display_name: "LXTerminal"
-    version_template: "{release} ({xt_name}/{xt_version})"
-    version_release: ""
+    version_template: "{aur_version}"
+    aur_package: lxterminal
     launch:
       program: lxterminal
       args: [-e]
+    profile_processes: [gnome-terminal-server]
+    timeout: 3600
 
   mintty:
     homepage: https://mintty.github.io/
@@ -150,14 +153,16 @@ terminals:
   qterminal:
     homepage: https://github.com/lxqt/qterminal
     display_name: "QTerminal"
-    version_template: "{release}"
-    version_release: "2.4.0"
+    version_template: "{aur_version}"
+    aur_package: qterminal
     launch:
       program: qterminal
       args: [-e]
 
   rio:
     homepage: https://rioterm.com/
+    skip_docker: true
+    skip_reason: "exits 1 with software Vulkan (lavapipe); works on host with GPU"
     launch:
       program: rio
       args: [-e]
@@ -231,11 +236,13 @@ terminals:
   terminator:
     homepage: https://gnome-terminator.org/
     display_name: "Terminator"
-    version_template: "{release} ({xt_name}/{xt_version})"
-    version_release: ""
+    version_template: "{aur_version}"
+    aur_package: terminator
     launch:
       program: terminator
       args: [-x, sh, "{script}"]
+    profile_processes: [gnome-terminal-server]
+    timeout: 3600
 
   terminology:
     homepage: https://www.enlightenment.org/about-terminology
@@ -287,13 +294,15 @@ terminals:
   xfce4-terminal:
     homepage: https://docs.xfce.org/apps/terminal/start
     display_name: "XFCE Terminal"
-    version_template: "{release} ({xt_name}/{xt_version})"
-    version_release: ""
+    version_template: "{aur_version}"
+    aur_package: xfce4-terminal
     skip_docker: true
     skip_reason: "requires full Xfce session with xfconfd (exit=1)"
     launch:
       program: xfce4-terminal
       args: [-e, "sh {script}"]
+    profile_processes: [gnome-terminal-server]
+    timeout: 3600
 
   xterm:
     homepage: https://invisible-island.net/xterm/

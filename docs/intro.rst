@@ -175,15 +175,6 @@ appear -- click "Details" for an HTML preview.
 Batch Testing
 -------------
 
-``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
-[arguments]`` is not supported, ucs-detect is executed by injecting keystrokes where needed. After
-keystroke injections are begun in series, remaining terminals are done in ``--parallel``::
-
-    $ python run-series.py --parallel 8
-
-Docker
-------
-
 For reproducible isolated runs, the project provides a Docker image with Xvfb and all linux terminal
 emulators pre-installed.  All Docker operations are managed through ``tox`` targets:
 
@@ -209,6 +200,11 @@ emulators pre-installed.  All Docker operations are managed through ``tox`` targ
 
 The image includes ``weston`` (Wayland compositor) alongside ``Xvfb``, so Wayland-only terminals
 ``foot`` and ``weston-terminal`` are also testable.
+
+The script ``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
+[arguments]`` is not supported, ucs-detect is executed by injecting keystrokes where needed.
+This program and its supporting ``terminals.yaml`` supports execution outside of docker, when visual
+inspection is necessary.
 
 Problem Analysis
 ----------------
@@ -263,9 +259,10 @@ marks across diverse scripts.
 History
 -------
 
-- 2.2.0 (2026-05-25): Terminal screenshot capture with ``make-screenshots.py``, expanded
-  XTGETTCAP detection and results table, record XTVERSION capture method and TERM_PROGRAM,
-  ``run-series.py`` batch testing with parallel execution (Linux/X11, only).
+- 2.2.0 (2026-05-27): Terminal screenshot capture with ``make-screenshots.py``, expanded
+  XTGETTCAP detection and results table, record XTVERSION, TERM_PROGRAM directly. Record cpu and
+  memory resource usage, and introduce ``run-series.py``, used with or without docker for batch
+  testing with parallel execution (Linux only).
 
 - 2.1.0 (2026-04-17): Add more testing for standalone and flags (RI), kitty text sizing
   protocol, make ucs-browser compatible with older python versions, and some changes
