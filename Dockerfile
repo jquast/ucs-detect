@@ -5,14 +5,14 @@ FROM archlinux:latest
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
-# bootstrap: update mirrors, install base deps
+# bootstrap: update mirrors, install base deps, generate locale
 RUN pacman -Syu --noconfirm --needed \
     base-devel git sudo curl wget \
     python python-pip dbus \
-    && pacman -Scc --noconfirm
+    && pacman -Scc --noconfirm \
+    && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 
-# generate en_US.UTF-8 locale (required by LC_ALL)
-RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
+# install X11, openbox, window manager, and terminal emulator packages
 
 # X11 virtual framebuffer and automation tools
 RUN pacman -S --noconfirm --needed \
@@ -48,6 +48,13 @@ RUN cd /tmp && \
 # configure makepkg to use all CPUs minus 2, and tolerate old K&R-style code
 RUN sed -i 's/^#\?MAKEFLAGS=.*/MAKEFLAGS="-j$(( $(nproc) > 2 ? $(nproc) - 2 : 1 ))"/' /etc/makepkg.conf && \
     sed -i 's/^CFLAGS="\(.*\)"/CFLAGS="\1 -Wno-error=incompatible-pointer-types"/' /etc/makepkg.conf
+
+# pre-install build dependencies from official repos so yay doesn't
+# try to build them from AUR (e.g. gtk2 for mlterm-git)
+RUN pacman -S --noconfirm --needed \
+    gtk2 gtk3 vte3 vte-common cairo pango gdk-pixbuf2 \
+    harfbuzz freetype2 fontconfig fribidi glu mesa \
+    && pacman -Scc --noconfirm
 
 RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
     mlterm-git \
