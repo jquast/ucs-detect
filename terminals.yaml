@@ -198,6 +198,7 @@ terminals:
 
   st:
     homepage: https://st.suckless.org/
+    display_name: st
     sixel_support_notes: "Patches are available to add sixel support."
     launch:
       program: st
@@ -205,9 +206,10 @@ terminals:
 
   st-luke:
     homepage: https://github.com/LukeSmithxyz/st
+    display_name: st-luke
     description: "This is based on Luke Smith xyz's fork of st"
     launch:
-      program: st
+      program: /usr/local/bin/st-luke
       args: ["-f", "Unifont:pixelsize=16", "-e"]
 
   syncterm:
@@ -297,6 +299,7 @@ terminals:
     skip_reason: "GPU-accelerated; software rendering untested (same class as Rio)"
     launch:
       program: warp-terminal
+      wm_class: warp
       post_launch_delay_ms: 1500
       post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
@@ -307,9 +310,10 @@ terminals:
       args: [start, --]
     launch_docker:
       program: wezterm
-      args: [--config, "return {front_end='Software'}", start, --]
+      args: [--config, 'front_end="Software"', --config, 'enable_wayland=false', start, --]
       env:
         WAYLAND_DISPLAY: ""
+    timeout: 1800
 
   xfce4-terminal:
     homepage: https://docs.xfce.org/apps/terminal/start

@@ -25,6 +25,7 @@ RUN pacman -S --noconfirm --needed \
     imagemagick \
     weston \
     fontconfig \
+    xorg-fonts-misc \
     && pacman -Scc --noconfirm
 
 # unifont for consistent terminal font rendering
@@ -50,15 +51,29 @@ RUN sed -i 's/^#\?MAKEFLAGS=.*/MAKEFLAGS="-j$(( $(nproc) > 2 ? $(nproc) - 2 : 1 
     sed -i 's/^CFLAGS="\(.*\)"/CFLAGS="\1 -Wno-error=incompatible-pointer-types"/' /etc/makepkg.conf
 
 RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
-    domterm-git \
     mlterm-git \
-    st-luke-git \
+    domterm-git \
+    && pacman -Scc --noconfirm
+
+RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
     warp-terminal-bin \
+    && pacman -Scc --noconfirm
+
+RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
     extraterm-bin \
     bobcat-terminal \
     terminator-git \
     hyper-bin \
     && pacman -Scc --noconfirm
+
+# build st-luke alongside system st (st-luke-git overwrites /usr/bin/st)
+RUN cd /tmp && \
+    sudo -u ucs git clone https://aur.archlinux.org/st-luke-git.git && \
+    cd st-luke-git && \
+    sudo -u ucs makepkg -s --noconfirm && \
+    cp /tmp/st-luke-git/src/st/st /usr/local/bin/st-luke && \
+    rm -rf /tmp/st-luke-git && \
+    pacman -S --noconfirm --needed st
 
 # all terminal emulators available in Arch official repos
 RUN pacman -S --noconfirm --needed \

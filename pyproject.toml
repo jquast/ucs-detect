@@ -55,6 +55,7 @@ dependencies = [
   "blessed>=1.43,<2",
   "pillow",
   "prettytable",
+  "psutil",
   "pyyaml<7",
   "requests",
   "wcwidth>=0.7.0,<1",

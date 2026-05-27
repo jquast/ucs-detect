@@ -231,6 +231,12 @@ def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
     return f':sref:`{text} <{link_target}> {score_value}`'
 
 
+def _wrap_colorterm_warn(text, terminal_name):
+    """Wrap a capability value with warn (yellow) styling and hyperlink."""
+    link_target = make_link(terminal_name + "_identification")
+    return f':sref:`{text} <{link_target}> warn`'
+
+
 def _wrap_vs15_contested(text, terminal_name):
     """Wrap VS-15 score with contested (grey) styling and hyperlink."""
     link_target = make_link(terminal_name + "_vs15")
@@ -1542,10 +1548,19 @@ def _detect_id_methods(data):
     return xt_has, tp_has, term_has
 
 
-def _capability_yes_no(value, terminal_name, section_suffix):
-    """Format a boolean capability as a scored yes/no with hyperlink."""
+def _capability_yes_no(value, terminal_name, section_suffix, contested=False, warn=False):
+    """Format a boolean capability as a scored yes/no with hyperlink.
+
+    When *contested* is True and *value* is False, displays 'No' in
+    contested grey (another detection method returns Yes).
+    When *warn* is True and *value* is True, displays 'Yes' in
+    warning yellow (works locally but not over SSH)."""
     if value is None:
         return wrap_with_score_role("N/A", float('nan'))
+    if contested and not value:
+        return _wrap_vs15_contested("no", terminal_name)
+    if warn and value:
+        return _wrap_colorterm_warn("yes", terminal_name)
     status = "yes" if value else "no"
     score = 1.0 if value else 0.0
     return wrap_score_with_hyperlink(
@@ -1774,9 +1789,11 @@ def display_osc52_table(score_table):
         row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_osc52")}
 
         row["DA1 ext 52"] = _capability_yes_no(
-            da1_has if tested else None, sw_name, "_osc52")
+            da1_has if tested else None, sw_name, "_osc52",
+            contested=bool(ms_has and not da1_has))
         row["XTGETTCAP Ms"] = _capability_yes_no(
-            ms_has if tested else None, sw_name, "_osc52")
+            ms_has if tested else None, sw_name, "_osc52",
+            contested=bool(da1_has and not ms_has))
 
         table_data.append(row)
 
@@ -1810,10 +1827,22 @@ def display_id_table(score_table):
 
         row["XTVERSION"] = _capability_yes_no(
             xt_has if tested else None, sw_name, "_identification")
-        row["TERM_PROGRAM"] = _capability_yes_no(
-            tp_has if tested else None, sw_name, "_identification")
-        row["TERM"] = _capability_yes_no(
-            term_has if tested else None, sw_name, "_identification")
+        # when XTVERSION works, other No's are just contested alternatives
+        # when XTVERSION fails, other Yes's are warned (env-only, won't work over SSH)
+        if xt_has:
+            row["TERM_PROGRAM"] = _capability_yes_no(
+                tp_has if tested else None, sw_name, "_identification",
+                contested=not tp_has)
+            row["TERM"] = _capability_yes_no(
+                term_has if tested else None, sw_name, "_identification",
+                contested=not term_has)
+        else:
+            row["TERM_PROGRAM"] = _capability_yes_no(
+                tp_has if tested else None, sw_name, "_identification",
+                warn=tp_has)
+            row["TERM"] = _capability_yes_no(
+                term_has if tested else None, sw_name, "_identification",
+                warn=term_has)
 
         table_data.append(row)
 

@@ -1,11 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-26 02:06:32 UTC
+datetime: 2026-05-27 18:02:35 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
 height: 24
+preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 391.149300991965
+seconds_elapsed: 571.4175755319993
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -40,6 +41,10 @@ terminal_results:
   kitty_query: false
   modes: {}
   number_of_colors: 16777216
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
   pixels_height: 264
   pixels_width: 1040
   screen_ratio: '32:9'

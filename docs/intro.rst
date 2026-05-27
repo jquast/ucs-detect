@@ -184,7 +184,7 @@ The general workflow to gather results and create documentation is, in serial or
 
 .. code-block:: bash
 
-    tox -e docker_build,docker_verify,docker_run_series,system_run_series,docker_screenshots,system_screenshots,docs
+    tox -e docker_build,docker_verify,system_verify,docker_run_series,system_run_series,docker_screenshots,system_screenshots,docs
 
 For reproducible isolated runs, the project provides a Docker image with Xvfb and all linux terminal
 emulators pre-installed.  All Docker operations are managed through ``tox`` targets:
