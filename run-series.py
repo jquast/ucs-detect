@@ -595,7 +595,6 @@ def _docker_per_terminal_run(args):
                 "--timeout", str(args.timeout),
                 "--run-only", sw_name,
             ]
-            print(f"[{sw_name}] docker run ...", flush=True)
             future = executor.submit(subprocess.run, cmd, capture_output=True,
                                      text=True, timeout=args.timeout + 60)
             futures[future] = sw_name

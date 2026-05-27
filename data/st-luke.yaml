@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-26 06:56:26 UTC
+datetime: 2026-05-27 15:56:17 UTC
 environment:
   TERM: st-256color
 height: 24
@@ -10,55 +10,64 @@ resource_profile:
   - 0.0
   - 1.0
   - 0.0
-  - 1.0
-  - 22.0
-  - 25.0
+  - 0.0
+  - 19.0
   - 26.9
-  - 28.9
-  - 28.9
-  - 29.0
+  - 25.4
+  - 26.0
+  - 28.0
+  - 28.0
+  - 28.0
+  - 26.9
   - 30.9
-  - 30.9
-  - 31.9
-  - 32.0
-  - 24.0
-  - 24.9
+  - 29.9
+  - 36.9
+  - 27.9
+  - 21.0
+  - 23.0
   elapsed_s:
-  - 0.0014382310000655707
-  - 1.002574062000349
-  - 2.006129604999842
-  - 3.009299944000304
-  - 4.011341524000272
-  - 5.013534047000576
-  - 6.015221661000396
-  - 7.0170846130004065
-  - 8.019242348000262
-  - 9.021430139000586
-  - 10.023214494000058
-  - 11.025766538000425
-  - 12.027641751000374
-  - 13.02988633699988
-  - 14.031375364000269
-  - 15.033152302000417
+  - 0.001145784999607713
+  - 1.0023592529996677
+  - 2.00518828299937
+  - 3.007533534999311
+  - 4.010267195999404
+  - 5.0128001979992405
+  - 6.015246558999934
+  - 7.03864774899921
+  - 8.039805471000363
+  - 9.040802616000292
+  - 10.041746131000764
+  - 11.042963775000317
+  - 12.044856660999358
+  - 13.046668447999764
+  - 14.048999070000718
+  - 15.05270406300042
+  - 16.05410696599938
+  - 17.055691067000225
+  hardware:
+    cpu_count: 12
+    cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
+    ram_total_kb: 13961408
   rss_mb:
-  - 5.5625
-  - 90.83203125
-  - 90.83203125
-  - 90.8359375
-  - 91.8671875
-  - 92.43359375
-  - 92.99609375
-  - 93.55859375
-  - 94.05859375
-  - 94.62109375
-  - 94.9375
-  - 95.25
-  - 96.4609375
-  - 96.625
-  - 96.84375
-  - 96.875
-resource_score: 84.7
-seconds_elapsed: 14.97747547399922
+  - 13.11328125
+  - 95.734375
+  - 91.15625
+  - 91.15625
+  - 91.98828125
+  - 92.4296875
+  - 92.8671875
+  - 93.37109375
+  - 93.87109375
+  - 94.30859375
+  - 94.74609375
+  - 95.125
+  - 95.375
+  - 95.63671875
+  - 96.88671875
+  - 98.4453125
+  - 98.51953125
+  - 98.5390625
+seconds_elapsed: 14.384702956000183
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -66,7 +75,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-software_name: st-luke
+software_name: st
 software_version: ''
 system: Linux
 terminal_results:
@@ -5559,6 +5568,16 @@ test_results:
       n_total: 1445
       pct_success: 0.6920415224913495
   language_results:
+    (Jinan):
+      failed: []
+      n_errors: 0
+      n_total: 501
+      pct_success: 100.0
+    (Yeonbyeon):
+      failed: []
+      n_errors: 0
+      n_total: 307
+      pct_success: 100.0
     Aja:
       failed: []
       n_errors: 0
@@ -6222,6 +6241,81 @@ test_results:
       n_errors: 0
       n_total: 78
       pct_success: 100.0
+    Chinese, Gan:
+      failed: []
+      n_errors: 0
+      n_total: 503
+      pct_success: 100.0
+    Chinese, Hakka:
+      failed: []
+      n_errors: 0
+      n_total: 498
+      pct_success: 100.0
+    Chinese, Jinyu:
+      failed: []
+      n_errors: 0
+      n_total: 500
+      pct_success: 100.0
+    Chinese, Mandarin (Beijing):
+      failed: []
+      n_errors: 0
+      n_total: 514
+      pct_success: 100.0
+    Chinese, Mandarin (Guiyang):
+      failed: []
+      n_errors: 0
+      n_total: 505
+      pct_success: 100.0
+    Chinese, Mandarin (Harbin):
+      failed: []
+      n_errors: 0
+      n_total: 504
+      pct_success: 100.0
+    Chinese, Mandarin (Nanjing):
+      failed: []
+      n_errors: 0
+      n_total: 502
+      pct_success: 100.0
+    Chinese, Mandarin (Simplified):
+      failed: []
+      n_errors: 0
+      n_total: 532
+      pct_success: 100.0
+    Chinese, Mandarin (Tianjin):
+      failed: []
+      n_errors: 0
+      n_total: 512
+      pct_success: 100.0
+    Chinese, Mandarin (Traditional):
+      failed: []
+      n_errors: 0
+      n_total: 505
+      pct_success: 100.0
+    Chinese, Min Nan:
+      failed: []
+      n_errors: 0
+      n_total: 503
+      pct_success: 100.0
+    Chinese, Wu:
+      failed: []
+      n_errors: 0
+      n_total: 506
+      pct_success: 100.0
+    Chinese, Xiang:
+      failed: []
+      n_errors: 0
+      n_total: 501
+      pct_success: 100.0
+    Chinese, Yue:
+      failed: []
+      n_errors: 0
+      n_total: 503
+      pct_success: 100.0
+    Colorado:
+      failed: []
+      n_errors: 0
+      n_total: 55
+      pct_success: 100.0
     Dagaare, Southern:
       failed: []
       n_errors: 0
@@ -6814,6 +6908,21 @@ test_results:
       n_errors: 82
       n_total: 390
       pct_success: 78.97435897435898
+    Japanese:
+      failed: []
+      n_errors: 0
+      n_total: 505
+      pct_success: 100.0
+    Japanese (Osaka):
+      failed: []
+      n_errors: 0
+      n_total: 497
+      pct_success: 100.0
+    Japanese (Tokyo):
+      failed: []
+      n_errors: 0
+      n_total: 499
+      pct_success: 100.0
     Javanese (Javanese):
       failed:
       - grapheme_id: Javanese (Javanese)-4-07
@@ -7103,6 +7212,11 @@ test_results:
       n_errors: 1
       n_total: 396
       pct_success: 99.74747474747475
+    Korean:
+      failed: []
+      n_errors: 0
+      n_total: 315
+      pct_success: 100.0
     Lamnso':
       failed: []
       n_errors: 0
@@ -8729,6 +8843,11 @@ test_results:
       n_errors: 3
       n_total: 332
       pct_success: 99.09638554216868
+    Mongolian, Halh (Mongolian):
+      failed: []
+      n_errors: 0
+      n_total: 22
+      pct_success: 100.0
     Mòoré:
       failed: []
       n_errors: 0
@@ -8978,6 +9097,11 @@ test_results:
       n_errors: 69
       n_total: 352
       pct_success: 80.39772727272727
+    Nuosu:
+      failed: []
+      n_errors: 0
+      n_total: 336
+      pct_success: 100.0
     Orok:
       failed: []
       n_errors: 0
@@ -10026,6 +10150,11 @@ test_results:
       failed: []
       n_errors: 0
       n_total: 117
+      pct_success: 100.0
+    Vietnamese (Han nom):
+      failed: []
+      n_errors: 0
+      n_total: 559
       pct_success: 100.0
     Waama:
       failed: []

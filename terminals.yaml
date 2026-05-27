@@ -28,8 +28,8 @@ terminals:
   cool-retro-term:
     homepage: https://github.com/Swordfish90/cool-retro-term
     display_name: "cool-retro-term"
-    version_template: "{release} ({xt_name}/{xt_version})"
-    version_release: ""
+    version_template: "{release}"
+    version_release: "2.0.0-beta1"
     launch:
       program: cool-retro-term
       args: [-e]
@@ -150,8 +150,8 @@ terminals:
   qterminal:
     homepage: https://github.com/lxqt/qterminal
     display_name: "QTerminal"
-    version_template: "{release} ({xt_name}/{xt_version})"
-    version_release: ""
+    version_template: "{release}"
+    version_release: "2.4.0"
     launch:
       program: qterminal
       args: [-e]
@@ -280,7 +280,7 @@ terminals:
       args: [start, --]
     launch_docker:
       program: wezterm
-      args: [start, --]
+      args: [start, --config, 'return {front_end="Software"}', --]
       env:
         WAYLAND_DISPLAY: ""
 
