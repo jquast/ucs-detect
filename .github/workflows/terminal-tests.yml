@@ -55,7 +55,7 @@ jobs:
               t = yaml.safe_load(f)['terminals']
           names = [
               k for k, v in t.items()
-              if not v.get('launch', {}).get('skip')
+              if not (v.get('launch') or {}).get('skip')
               and not v.get('skip_docker')
           ]
           print(json.dumps(names))
