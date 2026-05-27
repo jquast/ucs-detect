@@ -14,26 +14,31 @@ To install or upgrade::
 Problem
 -------
 
-East Asian languages use Wide (W) or Fullwidth (F) characters that occupy 2
-cells. Many scripts use zero-width combining characters that modify adjacent
-characters. Emoji sequences using Zero Width Joiner and Variation Selector-16
-characters. Complex advancing rules with Brahmic scripts.
+Unicode contains East Asian languages which use Wide (W) or Fullwidth (F) characters that occupy 2
+cells. Many languages use zero-width or "combining" characters that modify adjacent characters with
+complex advancing rules.  Emoji sequences also use Zero Width Joiners to join multiple emojis, or
+with adjusting Fitzpatrick variations, and emoji flags are represented by regional indicators of a
+country code.  They may be also displayed without combined emoji and have a "standalone"
+representation.
 
-Terminal applications must determine the display width of these characters, but
-the Unicode Standard is updated periodically while libraries and applications
-lag behind, or never get updated at all.
+Terminal applications must determine the display width of these characters, the Unicode Standard is
+without specific definitions for terminals, many stand behind without any grapheme support at all,
+conforming to pre-emoji era POSIX standard definitions and sans-grapheme wcwidth(3) system
+libraries.
 
-Support also varies within a terminal.
+Further, even well-meaning terminals who report to support "Graphemes" DEC Private Mode 2027 have
+varying interpretations of Unicode Standards.
 
 Solution
 --------
 
-``ucs-detect`` measures terminal compliance with the Specification_ of the
-python wcwidth_ library, for the latest Unicode versions across WIDE, ZERO, ZWJ, VS-16, and VS-15
-unicode sequences.
+``ucs-detect`` measures terminal compliance with the Specification_ of the python wcwidth_ library,
+for the latest Unicode versions across WIDE, ZERO, ZWJ, VS-16, and VS-15 unicode sequences and
+grapheme width of over 500 languages.
 
 ``ucs-browser`` allows to interactive browsing of each kind of category with an interactive terminal
-browsing program.
+browsing program. This may also output to a non-tty, and is used to publish the example test files
+at https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files, 
 
 How it works
 ------------
