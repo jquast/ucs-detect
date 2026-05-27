@@ -75,6 +75,7 @@ terminals:
     launch:
       program: gnome-terminal
       args: [--wait, --]
+    profile_processes: [gnome-terminal-server]
 
   hyper:
     homepage: https://hyper.is/
@@ -277,6 +278,11 @@ terminals:
     launch:
       program: wezterm
       args: [start, --]
+    launch_docker:
+      program: wezterm
+      args: [start, --]
+      env:
+        WAYLAND_DISPLAY: ""
 
   xfce4-terminal:
     homepage: https://docs.xfce.org/apps/terminal/start

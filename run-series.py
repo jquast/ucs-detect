@@ -128,6 +128,8 @@ def get_launch_config(sw_name, mixins):
         "skip_reason": raw_entry.get("skip_reason", ""),
         "post_launch_delay_ms": launch.get("post_launch_delay_ms", 0),
         "post_launch_keys": launch.get("post_launch_keys", []),
+        "env": launch.get("env", {}),
+        "profile_processes": raw_entry.get("profile_processes", []),
         "wm_class": launch.get("wm_class", None),
     }
     return cfg, is_explicit
@@ -330,6 +332,11 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
             env = os.environ.copy()
             env.pop("TERM_PROGRAM", None)
             env.pop("TERM_PROGRAM_VERSION", None)
+            for key, value in launch_cfg.get("env", {}).items():
+                if value == "":
+                    env.pop(key, None)
+                else:
+                    env[key] = value
             proc = subprocess.Popen(
                 argv,
                 env=env,
@@ -463,6 +470,8 @@ def _embed_profile_in_yaml(yaml_path, sw_name, session):
     if data is None:
         return
     data["resource_profile"] = session.to_dict()
+    from ucs_detect.profiler import hardware_info
+    data["resource_profile"]["hardware"] = hardware_info()
     try:
         with open(yaml_path, "w") as f:
             yaml.safe_dump(data, f, default_flow_style=False,
@@ -795,7 +804,8 @@ def main():
             profile = None
             if ProfileSession is not None and proc is not None:
                 profile = ProfileSession(sw_name, proc.pid,
-                    program=launch_cfg["program"] if launch_cfg["subterminal"] else None)
+                    program=launch_cfg["program"] if launch_cfg["subterminal"] else None,
+                    extra_programs=launch_cfg.get("profile_processes") or None)
                 profile.start()
 
             future = executor.submit(
@@ -824,7 +834,8 @@ def main():
                 profile = None
                 if ProfileSession is not None and proc is not None:
                     profile = ProfileSession(sw_name, proc.pid,
-                    program=launch_cfg["program"] if launch_cfg["subterminal"] else None)
+                    program=launch_cfg["program"] if launch_cfg["subterminal"] else None,
+                    extra_programs=launch_cfg.get("profile_processes") or None)
                     profile.start()
 
                 future = executor.submit(

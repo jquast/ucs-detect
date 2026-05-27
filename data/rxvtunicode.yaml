@@ -49,7 +49,7 @@ resource_profile:
   - 104.99609375
   - 106.07421875
   - 107.04296875
-resource_score: 83.4
+resource_score: 85.4
 seconds_elapsed: 9.63772263499959
 session_arguments:
   limit_category_time: 900.0

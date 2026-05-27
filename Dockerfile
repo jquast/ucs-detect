@@ -49,13 +49,6 @@ RUN cd /tmp && \
 RUN sed -i 's/^#\?MAKEFLAGS=.*/MAKEFLAGS="-j$(( $(nproc) > 2 ? $(nproc) - 2 : 1 ))"/' /etc/makepkg.conf && \
     sed -i 's/^CFLAGS="\(.*\)"/CFLAGS="\1 -Wno-error=incompatible-pointer-types"/' /etc/makepkg.conf
 
-# pre-install build dependencies from official repos so yay doesn't
-# try to build them from AUR (e.g. gtk2 for mlterm-git)
-RUN pacman -S --noconfirm --needed \
-    gtk2 gtk3 vte3 vte-common cairo pango gdk-pixbuf2 \
-    harfbuzz freetype2 fontconfig fribidi glu mesa \
-    && pacman -Scc --noconfirm
-
 RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
     mlterm-git \
     st-luke-git \

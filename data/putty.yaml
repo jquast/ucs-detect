@@ -48,7 +48,7 @@ resource_profile:
   - 158.48046875
   - 160.171875
   - 162.6640625
-resource_score: 72.9
+resource_score: 74.6
 seconds_elapsed: 9.618250151999746
 session_arguments:
   limit_category_time: 900.0

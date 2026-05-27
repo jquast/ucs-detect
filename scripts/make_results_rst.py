@@ -49,7 +49,7 @@ if _ROOT not in sys.path:
 
 from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars
 from ucs_detect.measure import make_printf_hex
-from ucs_detect.profiler import ProfileSession, generate_graphs, compute_resource_scores
+from ucs_detect.profiler import ProfileSession, generate_graphs
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 GITHUB_EXAMPLE_BASE = 'https://github.com/jquast/ucs-detect/blob/master/docs/ucs_example_files'
@@ -516,6 +516,10 @@ def process_resource_data():
         rss = rp.get("rss_mb", [])
         if not elapsed or not cpu or not rss:
             continue
+        mean_cpu = sum(cpu) / len(cpu)
+        mean_rss = sum(rss) / len(rss)
+        if mean_cpu < 0.1 and mean_rss < 5.0:
+            continue  # profiling failed, process tree was never captured
         sw_name = data.get("software_name", fname.replace(".yaml", ""))
         session = ProfileSession(sw_name, 0)
         samples = list(zip(elapsed, cpu, rss))
@@ -530,24 +534,6 @@ def process_resource_data():
 
     profiles_dir = os.path.join(_ROOT, "docs", "_static", "profiles")
     generate_graphs(sessions, Path(profiles_dir))
-
-    scores = compute_resource_scores(sessions)
-    for sw_name, score in scores.items():
-        yaml_path = yaml_map.get(sw_name)
-        if not yaml_path:
-            continue
-        try:
-            with open(yaml_path) as f:
-                data = yaml.load(f, Loader=SafeLoader) or {}
-        except (OSError, yaml.YAMLError):
-            continue
-        data["resource_score"] = round(score, 1)
-        try:
-            with open(yaml_path, "w") as f:
-                yaml.dump(data, f, default_flow_style=False,
-                          allow_unicode=True, Dumper=yaml.Dumper)
-        except OSError:
-            pass
 
 
 def main():
@@ -707,6 +693,32 @@ def display_inbound_hyperlink(link_text):
     print()
 
 
+def resource_cost(data):
+    """Compute a raw resource cost from profile data (higher = worse).
+    
+    Returns NaN if no valid profile data is available.
+    """
+    rp = (data.get("resource_profile") or {})
+    elapsed = rp.get("elapsed_s", [])
+    cpu = rp.get("cpu_pct", [])
+    rss = rp.get("rss_mb", [])
+    if not elapsed or not cpu or not rss:
+        return float('NaN')
+    # strip trailing zeros
+    while elapsed and rss and rss[-1] <= 0.0:
+        elapsed.pop()
+        cpu.pop()
+        rss.pop()
+    if not elapsed:
+        return float('NaN')
+    mean_cpu = sum(cpu) / len(cpu)
+    mean_rss = sum(rss) / len(rss)
+    duration = elapsed[-1]
+    if mean_cpu < 0.1 and mean_rss < 5.0:
+        return float('NaN')
+    return mean_cpu * mean_rss * duration
+
+
 def make_score_table():
     """Read all YAML data files and compute normalized scores for each terminal."""
     score_table = []
@@ -763,8 +775,9 @@ def make_score_table():
             # DEC Modes Support,
             _score_dec_modes = score_dec_modes(data)
 
-            # Resource score (from profiler, 0-100 where 100=lightest/fastest)
-            _score_resources = data.get("resource_score", 50.0) / 100.0
+            # Resource score — negate raw cost so higher = better for scaling
+            _cost = resource_cost(data)
+            _score_resource = -_cost if not math.isnan(_cost) else float('NaN')
             _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
 
             # Sixel support - binary score based on DA1 device attributes response
@@ -791,7 +804,7 @@ def make_score_table():
                     score_sfz=_score_sfz,
                     score_ri=_score_ri,
                     score_dec_modes=_score_dec_modes,
-                    score_resource=_score_resources,
+                    score_resource=_score_resource,
                     elapsed_seconds=_elapsed_seconds,
                     score_language=score_language,
                     score_wide=_score_wide,
@@ -828,12 +841,24 @@ def make_score_table():
         else:
             entry["score_dec_modes_norm"] = float('NaN')
 
-        # Resource score is already 0-1 normalized
-        entry["score_resource_norm"] = entry["score_resource"]
+    valid_rc = [e["score_resource"] for e in score_table
+                if not math.isnan(e["score_resource"])]
+    if valid_rc:
+        rc_min, rc_max = min(valid_rc), max(valid_rc)
+        for entry in score_table:
+            if not math.isnan(entry["score_resource"]):
+                if rc_max == rc_min:
+                    entry["score_resource_norm"] = 1.0
+                else:
+                    entry["score_resource_norm"] = (
+                        (entry["score_resource"] - rc_min) / (rc_max - rc_min))
+            else:
+                entry["score_resource_norm"] = float('NaN')
 
-        RESOURCE_WEIGHT = 0.5
-        GRAPHICS_WEIGHT = 0.5
-        STANDALONE_WEIGHT = 1.0 / 3.0
+    RESOURCE_WEIGHT = 0.5
+    GRAPHICS_WEIGHT = 0.5
+    STANDALONE_WEIGHT = 1.0 / 3.0
+    for entry in score_table:
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
@@ -1190,8 +1215,7 @@ def scale_scores(score_table, entry, key):
 
     # VS16, VS15, SRI, SFZ, RI, Sixel, and Graphics are not scaled - return raw score
     if key in ('score_emoji_vs16', 'score_emoji_vs15', 'score_sri',
-               'score_sfz', 'score_ri', 'score_sixel', 'score_graphics',
-               'score_resource'):
+               'score_sfz', 'score_ri', 'score_sixel', 'score_graphics'):
         return my_score
 
     valid_scores = [_entry[key] for _entry in score_table if not math.isnan(_entry[key])]
@@ -1983,7 +2007,7 @@ def display_performance_section(score_table):
         duration = elapsed[-1]
         mean_cpu = sum(cpu) / len(cpu) if cpu else 0
         mean_rss = sum(rss) / len(rss) if rss else 0
-        score = e["score_resource"] * 100
+        score = int(e["score_resource_scaled"] * 100)
         rows.append([
             make_outbound_hyperlink(sw_name, sw_name + "_time"),
             wrap_score_with_hyperlink(
@@ -2086,7 +2110,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         {
             "#": 11,
             "Score Type": make_outbound_hyperlink("Resources", sw_name + "_resources"),
-            "Raw Score": f"{entry['score_resource']*100:.0f}/100" if not math.isnan(entry['score_resource']) else "N/A",
+            "Raw Score": format_score_pct(entry["score_resource_norm"]) if not math.isnan(entry["score_resource"]) else "N/A",
             "Final Scaled Score": format_score_pct(entry["score_resource_scaled"]),
         },
     ]
@@ -2384,7 +2408,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Duration: {duration:.1f}s")
         print(f"- Mean CPU: {mean_cpu:.1f}%")
         print(f"- Mean RSS: {mean_rss:.1f} MB")
-        print(f"- Resources Score: {entry['score_resource']*100:.0f}/100")
+        print(f"- Resources Score: {entry['score_resource_scaled']*100:.0f}/100")
         print("- Note: Composite score combining CPU + RSS + time")
         print(f"- Scaled result: {format_score_pct(entry['score_resource_scaled'])}")
     else:

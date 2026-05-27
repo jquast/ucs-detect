@@ -15,11 +15,13 @@ class ProfileSession:
     """Samples CPU% and RSS of a process tree during a terminal test."""
 
     def __init__(self, sw_name: str, pid: int, interval: float = 1.0,
-                 program: str | None = None):
+                 program: str | None = None,
+                 extra_programs: list[str] | None = None):
         self._sw_name = sw_name
         self._pid = pid
         self._interval = interval
         self._program = program  # if set, only profile processes matching this name
+        self._extra = extra_programs or []  # additional process names to capture
         self._stop_event = threading.Event()
         self._thread: threading.Thread | None = None
         self._samples: list[tuple[float, float, float]] = []
@@ -59,7 +61,8 @@ class ProfileSession:
                 name = proc.name()
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 continue
-            if self._program and name != self._program:
+            matched = (not self._program) or (name == self._program) or (name in self._extra)
+            if not matched:
                 continue
             try:
                 with proc.oneshot():
@@ -87,7 +90,8 @@ class ProfileSession:
                 continue
             if self._program:
                 try:
-                    if proc.name() != self._program:
+                    name = proc.name()
+                    if name != self._program and name not in self._extra:
                         continue
                 except (psutil.NoSuchProcess, psutil.AccessDenied):
                     continue
@@ -130,6 +134,35 @@ class ProfileSession:
             "cpu_pct": [s[1] for s in self._samples],
             "rss_mb": [s[2] for s in self._samples],
         }
+
+
+def hardware_info() -> dict:
+    """Return a dict describing the host hardware for resource profile context."""
+    import os as _os
+    info: dict = {}
+
+    info["cpu_count"] = _os.cpu_count()
+
+    try:
+        with open("/proc/cpuinfo") as f:
+            for line in f:
+                if line.startswith("model name"):
+                    info["cpu_model"] = line.split(":", 1)[1].strip()
+                    break
+    except OSError:
+        pass
+
+    try:
+        with open("/proc/meminfo") as f:
+            for line in f:
+                if line.startswith("MemTotal"):
+                    val = line.split(":", 1)[1].strip().split()[0]
+                    info["ram_total_kb"] = int(val)
+                    break
+    except OSError:
+        pass
+
+    return info
 
 
 def generate_graphs(
@@ -253,7 +286,8 @@ def generate_graphs(
             peak = max(vals)
             color = cmap(i % 20)
             ax.plot(elapsed, vals, color=color, linewidth=0.8)
-            ax.text(elapsed[-1] * 1.02, peak,
+            x_label = max(elapsed[-1] * 1.02, time_max * 0.001)
+            ax.text(x_label, peak,
                     f"{sw_name} ({peak:.0f}{'%' if label == 'cpu' else 'MB'})",
                     color=color, fontsize=6, va="center")
 
