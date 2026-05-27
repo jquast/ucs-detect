@@ -50,8 +50,10 @@ RUN sed -i 's/^#\?MAKEFLAGS=.*/MAKEFLAGS="-j$(( $(nproc) > 2 ? $(nproc) - 2 : 1 
     sed -i 's/^CFLAGS="\(.*\)"/CFLAGS="\1 -Wno-error=incompatible-pointer-types"/' /etc/makepkg.conf
 
 RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
+    domterm-git \
     mlterm-git \
     st-luke-git \
+    warp-terminal-bin \
     extraterm-bin \
     bobcat-terminal \
     terminator-git \

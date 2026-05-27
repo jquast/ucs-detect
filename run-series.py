@@ -136,15 +136,20 @@ def get_launch_config(sw_name, mixins):
     return cfg, is_explicit
 
 
-def _should_skip(launch_cfg, is_docker=None):
+def _should_skip(launch_cfg, is_docker=None, host_only=False):
     """Return True if the config should be skipped in the current environment.
 
-    If *is_docker* is None, uses the process environment (_IS_DOCKER)."""
+    If *is_docker* is None, uses the process environment (_IS_DOCKER).
+    When *host_only* is True, only terminals with skip_docker: true are
+    selected (everything else is skipped)."""
     if is_docker is None:
         is_docker = _IS_DOCKER
     if launch_cfg["skip"]:
         return True
-    if is_docker and launch_cfg["skip_docker"]:
+    if host_only:
+        if not launch_cfg["skip_docker"]:
+            return True
+    elif is_docker and launch_cfg["skip_docker"]:
         return True
     if not is_docker and launch_cfg["skip_system"]:
         return True
@@ -665,6 +670,9 @@ def main():
     parser.add_argument(
         "--use-docker", action="store_true",
         help="Launch each terminal in its own Docker container (--cpus=2)")
+    parser.add_argument(
+        "--host-only", action="store_true",
+        help="Only run terminals that Docker cannot run (skip_docker: true)")
     args = parser.parse_args()
 
     if args.use_docker and not _IS_DOCKER:
@@ -737,7 +745,7 @@ def main():
                     and file_lower not in run_only):
                 continue
 
-        if _should_skip(launch_cfg):
+        if _should_skip(launch_cfg, host_only=args.host_only):
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
             skipped.append((d.software_name, reason))
             continue

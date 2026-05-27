@@ -34,6 +34,14 @@ terminals:
       program: cool-retro-term
       args: [-e]
 
+  domterm:
+    homepage: https://domterm.org/
+    skip_docker: true
+    skip_reason: "Electron-based; likely no visible window in Xvfb (same class as Hyper)"
+    launch:
+      program: domterm
+      args: [-e]
+
   extraterm:
     homepage: https://extraterm.org/
     skip_docker: true
@@ -280,6 +288,18 @@ terminals:
     skip_system: true
     skip_reason: "requires cage/Wayland compositor"
 
+  warp:
+    homepage: https://github.com/warpdotdev/warp
+    display_name: "Warp"
+    version_template: "{aur_version}"
+    aur_package: warp-terminal-bin
+    skip_docker: true
+    skip_reason: "GPU-accelerated; software rendering untested (same class as Rio)"
+    launch:
+      program: warp-terminal
+      post_launch_delay_ms: 1500
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
+
   wezterm:
     homepage: https://wezfurlong.org/wezterm/
     launch:
@@ -287,7 +307,7 @@ terminals:
       args: [start, --]
     launch_docker:
       program: wezterm
-      args: [start, --config, 'return {front_end="Software"}', --]
+      args: [--config, "return {front_end='Software'}", start, --]
       env:
         WAYLAND_DISPLAY: ""
 

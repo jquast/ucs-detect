@@ -180,6 +180,12 @@ appear -- click "Details" for an HTML preview.
 Batch Testing
 -------------
 
+The general workflow to gather results and create documentation is, in serial order:
+
+.. code-block:: bash
+
+    tox -e docker_build,docker_verify,docker_run_series,system_run_series,docker_screenshots,system_screenshots,docs
+
 For reproducible isolated runs, the project provides a Docker image with Xvfb and all linux terminal
 emulators pre-installed.  All Docker operations are managed through ``tox`` targets:
 
@@ -191,14 +197,26 @@ emulators pre-installed.  All Docker operations are managed through ``tox`` targ
     # build the image (with cache)
     tox -e docker_build
 
-    # verify all terminals launch (--version check)
+    # verify all terminals installed (group --version check)
     tox -e docker_verify
 
     # run ucs-detect on all terminals
     tox -e docker_run_series
 
-    # docker_run_series accepts extra run-series.py arguments,
-    $ tox -e docker_run_series -- --timeout 600 --run-only "foot,kitty"
+    # this accepts extra 'run-series.py' arguments,
+    tox -e docker_run_series -- --timeout 600 --run-only "foot,kitty"
+
+    # generate screenshots
+    tox -e docker_screenshots
+
+However, some may not be tested in docker, some GPU-accelerated terminals like Rio, or node.js-based
+terminals for some reason.. use the 'system' targets to run those::
+
+    # verify all terminals installed (group --version check)
+    tox -e system_verify
+
+    # run ucs-detect on all terminals
+    tox -e system_run_series
 
     # generate screenshots
     tox -e docker_screenshots
