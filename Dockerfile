@@ -19,6 +19,11 @@ RUN pacman -S --noconfirm --needed \
     xorg-server-xvfb \
     xdotool \
     xorg-xwd \
+    xorg-xprop \
+    xorg-xwininfo \
+    openbox \
+    imagemagick \
+    weston \
     fontconfig \
     && pacman -Scc --noconfirm
 
@@ -77,8 +82,6 @@ RUN pacman -S --noconfirm --needed \
     zellij \
     vim \
     putty \
-    guake \
-    yakuake \
     vulkan-swrast \
     xfconf \
     && pacman -Scc --noconfirm

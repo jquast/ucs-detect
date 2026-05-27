@@ -18,7 +18,9 @@ import sys
 import tempfile
 import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from typing import NamedTuple
 import uuid
 
 import yaml
@@ -28,6 +30,15 @@ from ucs_detect.accessories import find_best_failure, safe_name
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_DIR / "data"
 SCREENSHOTS_DIR = PROJECT_DIR / "docs" / "_static" / "screenshots"
+DOCKER_IMAGE = "ucs-detect:latest"
+_IS_DOCKER = os.path.exists("/.dockerenv")
+
+
+class DiscoveredYAML(NamedTuple):
+    """A YAML data file discovered by discover_yamls."""
+    path: Path
+    software_name: str
+
 
 _RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
 _RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
@@ -84,7 +95,7 @@ def discover_yamls(target_system):
                    if (m := _RE_SOFTWARE_NAME.search(head))
                    else yaml_path.stem)
 
-        yield yaml_path, sw_name
+        yield DiscoveredYAML(yaml_path, sw_name)
 
 
 def get_launch_config(sw_name, mixins):
@@ -92,7 +103,15 @@ def get_launch_config(sw_name, mixins):
     key = sw_name.lower()
     raw_entry = mixins.get(key, {})
     launch = raw_entry.get("launch", {}) if raw_entry else {}
+
+    if _IS_DOCKER and raw_entry.get("launch_docker"):
+        launch = raw_entry["launch_docker"]
+    elif not _IS_DOCKER and raw_entry.get("launch_system"):
+        launch = raw_entry["launch_system"]
+
     is_explicit = bool(launch)
+
+    skip_docker = raw_entry.get("skip_docker", False)
 
     cfg = {
         "program": launch.get("program", key),
@@ -100,6 +119,7 @@ def get_launch_config(sw_name, mixins):
         "subterminal": launch.get("subterminal", False),
         "wrapper": launch.get("wrapper", []),
         "skip": launch.get("skip", False),
+        "skip_docker": skip_docker,
         "skip_reason": raw_entry.get("skip_reason", ""),
         "wm_class": launch.get("wm_class", None),
         "post_launch_delay_ms": launch.get("post_launch_delay_ms", 0),
@@ -289,6 +309,77 @@ def inject_keys(window_id, keys):
         )
 
 
+def _docker_image_exists():
+    try:
+        result = subprocess.run(
+            ["docker", "images", "-q", DOCKER_IMAGE],
+            capture_output=True, text=True, timeout=10,
+        )
+        return bool(result.stdout.strip())
+    except (subprocess.TimeoutExpired, OSError, FileNotFoundError):
+        return False
+
+
+def _docker_build():
+    print(f"Building Docker image {DOCKER_IMAGE} ...", flush=True)
+    subprocess.check_call(
+        ["docker", "build", "-f", str(PROJECT_DIR / "Dockerfile"),
+         "-t", DOCKER_IMAGE, str(PROJECT_DIR)],
+    )
+
+
+def _docker_per_terminal_run(args):
+    system_name = platform.system()
+    all_terminals = list(discover_yamls(system_name))
+    if not all_terminals:
+        print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
+        sys.exit(0)
+
+    mixins = load_mixins()
+    run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip()) if args.run_only else set()
+
+    jobs = []
+    for d in all_terminals:
+        launch_cfg, _ = get_launch_config(d.software_name, mixins)
+        if launch_cfg["skip"] or launch_cfg["skip_docker"]:
+            continue
+        if run_only:
+            if d.software_name.lower() not in run_only and launch_cfg.get("program", "").lower() not in run_only:
+                continue
+        jobs.append(d.software_name)
+
+    n_cpus = os.cpu_count() or 2
+    parallel = max(1, min(n_cpus * 3 // 8, 16))
+
+    print(f"Per-terminal Docker screenshots: {len(jobs)} terminals, {parallel} parallel")
+
+    with ThreadPoolExecutor(max_workers=parallel) as executor:
+        futures = {}
+        for sw_name in jobs:
+            cmd = [
+                "docker", "run", "--rm", "--cpus=2",
+                "-e", "DISPLAY=:99",
+                "-v", f"{PROJECT_DIR}:/app",
+                DOCKER_IMAGE,
+                "python", "make-screenshots.py", "--use-system",
+                "--timeout", str(args.timeout),
+                "--run-only", sw_name,
+            ]
+            print(f"[{sw_name}] docker run ...", flush=True)
+            future = executor.submit(subprocess.run, cmd, capture_output=True,
+                                     text=True, timeout=args.timeout + 60)
+            futures[future] = sw_name
+
+        for future in as_completed(futures):
+            sw_name = futures[future]
+            try:
+                result = future.result()
+                status = "OK" if result.returncode == 0 else f"exit={result.returncode}"
+                print(f"[{sw_name}] {status}", flush=True)
+            except Exception as exc:
+                print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Generate terminal screenshots of unicode width discrepancies")
@@ -312,7 +403,19 @@ def main():
         "--host-terminal", default="ghostty",
         help="Terminal used to host subterminals (screen, tmux, etc.) "
              "(default: ghostty)")
+    parser.add_argument(
+        "--use-docker", action="store_true",
+        help="Launch each terminal in its own Docker container (--cpus=2)")
+    parser.add_argument(
+        "--use-system", action="store_true",
+        help="Run directly on the host system instead of inside Docker")
     args = parser.parse_args()
+
+    if args.use_docker and not _IS_DOCKER:
+        if not _docker_image_exists():
+            _docker_build()
+        _docker_per_terminal_run(args)
+        return
 
     system_name = platform.system()
     if system_name.lower() not in ("linux",):
@@ -347,31 +450,36 @@ def main():
     terminal_jobs = {}  # sw_name -> (launch_cfg, list of failure dicts)
     skipped = []
 
-    for yaml_path, sw_name in all_terminals:
-        launch_cfg, is_explicit = get_launch_config(sw_name, mixins)
+    for d in all_terminals:
+        launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
 
         if run_only:
-            name_lower = sw_name.lower()
+            name_lower = d.software_name.lower()
             prog_lower = launch_cfg.get("program", "").lower()
             if (name_lower not in run_only and prog_lower not in run_only):
-                skipped.append((sw_name, "not in --run-only"))
+                skipped.append((d.software_name, "not in --run-only"))
                 continue
 
         if launch_cfg["skip"]:
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
-            skipped.append((sw_name, reason))
+            skipped.append((d.software_name, reason))
+            continue
+
+        if _IS_DOCKER and launch_cfg.get("skip_docker"):
+            reason = launch_cfg.get("skip_reason") or "marked skip_docker in mixins"
+            skipped.append((d.software_name, reason))
             continue
 
         if launch_cfg["subterminal"] and not is_explicit:
-            skipped.append((sw_name, "subterminal, no launch config"))
+            skipped.append((d.software_name, "subterminal, no launch config"))
             continue
 
-        failures = extract_failures(yaml_path)
+        failures = extract_failures(d.path)
         if not failures:
-            skipped.append((sw_name, "no width failures found"))
+            skipped.append((d.software_name, "no width failures found"))
             continue
 
-        safe = safe_name(sw_name)
+        safe = safe_name(d.software_name)
         unique_id = uuid.uuid4().hex[:8]
 
         records = []
@@ -386,7 +494,7 @@ def main():
                 "title": f"ucs-shot-{safe}-{category}-{unique_id}",
             })
 
-        terminal_jobs[sw_name] = (launch_cfg, records)
+        terminal_jobs[d.software_name] = (launch_cfg, records)
 
     if skipped:
         print(f"Skipping {len(skipped)} terminals:")
@@ -435,6 +543,14 @@ def main():
         safe = safe_name(sw_name)
         n_records = len(records)
         print(f"[{sw_name}] {n_records} screenshots ... ", end="", flush=True)
+
+        # Remove old screenshots for this terminal
+        out_dir = SCREENSHOTS_DIR / safe
+        if out_dir.exists():
+            for old_png in out_dir.glob("*.png"):
+                old_png.unlink()
+            for old_png in out_dir.glob("*.xwd"):
+                old_png.unlink()
 
         # Write batch JSON
         batch_json_path = temp_dir / f"batch-{safe}.json"

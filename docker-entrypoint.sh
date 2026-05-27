@@ -32,6 +32,25 @@ if [ -f /.dockerenv ] && [ -n "${DISPLAY:-}" ]; then
     chown ucs:ucs "$XDG_RUNTIME_DIR"
     chmod 700 "$XDG_RUNTIME_DIR"
 
+    # start a minimal window manager (needed by Electron apps for WM properties)
+    openbox --replace &
+    OPENBOX_PID=$!
+    sleep 0.5
+
+    # start Weston Wayland compositor as ucs (needed by foot)
+    rm -f "${XDG_RUNTIME_DIR}/wayland-0" "${XDG_RUNTIME_DIR}/wayland-0.lock" 2>/dev/null
+    sudo -u ucs XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR}" \
+        weston --backend=x11-backend.so --socket=wayland-0 2>/dev/null &
+    WESTON_PID=$!
+    # wait for weston socket
+    for _ in $(seq 1 30); do
+        if [ -S "${XDG_RUNTIME_DIR}/wayland-0" ]; then
+            break
+        fi
+        sleep 0.1
+    done
+    export WAYLAND_DISPLAY=wayland-0
+
     # start session D-Bus via dbus-launch (properly initializes the session)
     eval "$(sudo -u ucs XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR}" dbus-launch --sh-syntax)"
     DBUS_PID=$DBUS_SESSION_BUS_PID
@@ -52,11 +71,18 @@ if [ -f /.dockerenv ] && [ -n "${DISPLAY:-}" ]; then
         XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR}" \
         DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS}" \
         VK_ICD_FILENAMES="${VK_ICD_FILENAMES}" \
+        WAYLAND_DISPLAY="${WAYLAND_DISPLAY}" \
+        NO_AT_BRIDGE=1 \
+        GTK_MODULES= \
+        GSETTINGS_BACKEND=memory \
+        SESSION_MANAGER= \
         -- "$@"
     EXIT_CODE=$?
 
     kill "$XFCONFD_PID" 2>/dev/null || true
     kill "$DBUS_PID" 2>/dev/null || true
+    kill "$WESTON_PID" 2>/dev/null || true
+    kill "$OPENBOX_PID" 2>/dev/null || true
     kill "$XVFB_PID" 2>/dev/null || true
     wait "$XVFB_PID" 2>/dev/null || true
     exit $EXIT_CODE

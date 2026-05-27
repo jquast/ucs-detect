@@ -36,6 +36,8 @@ terminals:
 
   extraterm:
     homepage: https://extraterm.org/
+    skip_docker: true
+    skip_reason: "JS/Electron-like, no visible window in Xvfb"
     launch:
       program: /opt/extratermqt/extratermqt
       wm_class: qode
@@ -53,8 +55,10 @@ terminals:
       program: foot
       args: []
       wrapper: [cage, --]
+    launch_docker:
+      program: foot
+      args: []
     skip_system: true
-    skip_docker: true
     skip_reason: "Wayland-only (requires cage)"
 
   ghostty:
@@ -70,19 +74,12 @@ terminals:
     version_release: "3.60.0"
     launch:
       program: gnome-terminal
-      args: [--]
-
-  guake:
-    homepage: https://github.com/Guake/guake
-    display_name: "Guake"
-    version_template: "{release} ({xt_name}/{xt_version})"
-    version_release: ""
-    launch:
-      program: guake
-      args: [-e]
+      args: [--wait, --]
 
   hyper:
     homepage: https://hyper.is/
+    skip_docker: true
+    skip_reason: "Electron app creates no visible X11 windows in Xvfb/openbox"
     launch:
       program: hyper
       args: []
@@ -265,12 +262,13 @@ terminals:
 
   weston-terminal:
     homepage: https://gitlab.freedesktop.org/wayland/weston
-    skip_docker: true
-    skip_reason: "requires cage/Wayland compositor"
     launch:
       program: weston-terminal
       args: [--shell, "{script}"]
       wrapper: [cage, --]
+    launch_docker:
+      program: weston-terminal
+      args: [--shell, "{script}"]
     skip_system: true
     skip_reason: "requires cage/Wayland compositor"
 
@@ -285,6 +283,8 @@ terminals:
     display_name: "XFCE Terminal"
     version_template: "{release} ({xt_name}/{xt_version})"
     version_release: ""
+    skip_docker: true
+    skip_reason: "requires full Xfce session with xfconfd (exit=1)"
     launch:
       program: xfce4-terminal
       args: [-e, "sh {script}"]
@@ -295,12 +295,6 @@ terminals:
     launch:
       program: xterm
       args: ["-fa", "Unifont", "-fs", "16", "-e"]
-
-  yakuake:
-    homepage: https://apps.kde.org/yakuake/
-    launch:
-      program: yakuake
-      args: [-e]
 
   zutty:
     homepage: https://tomscii.sig7.se/zutty/

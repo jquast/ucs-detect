@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-26 06:18:23 UTC
+datetime: 2026-05-26 06:55:58 UTC
 environment:
   COLORTERM: truecolor
   TERM: tmux-256color
@@ -8,7 +8,81 @@ environment:
 height: 24
 preferred_encoding: UTF-8
 python_version: 3.14.5
-seconds_elapsed: 35.29266047800047
+resource_profile:
+  cpu_pct:
+  - 0.0
+  - 149.0
+  - 147.9
+  - 149.0
+  - 145.9
+  - 146.9
+  - 143.9
+  - 148.9
+  - 145.9
+  - 152.9
+  - 145.9
+  - 144.9
+  - 149.9
+  - 148.8
+  - 144.9
+  - 145.9
+  - 121.9
+  - 110.0
+  - 108.0
+  - 118.0
+  - 122.0
+  - 131.9
+  - 130.0
+  elapsed_s:
+  - 0.0016595699999015778
+  - 1.0018596299996716
+  - 2.002216533999672
+  - 3.0025107910005318
+  - 4.002821037000103
+  - 5.003323053999338
+  - 6.003911171999789
+  - 7.004416513000251
+  - 8.004941340999721
+  - 9.005519559999811
+  - 10.00595470999906
+  - 11.006484416000603
+  - 12.007173821999459
+  - 13.008436947000519
+  - 14.008937066999351
+  - 15.009441815000173
+  - 16.009945641999366
+  - 17.010403672000393
+  - 18.01081472399892
+  - 19.01110031999997
+  - 20.011416924000514
+  - 21.011970712999755
+  - 22.012264974999198
+  rss_mb:
+  - 249.99609375
+  - 259.98828125
+  - 260.24609375
+  - 262.29296875
+  - 262.57421875
+  - 262.76953125
+  - 277.27734375
+  - 290.75
+  - 290.953125
+  - 291.40625
+  - 291.71875
+  - 291.90625
+  - 291.94921875
+  - 292.12109375
+  - 299.4609375
+  - 299.6484375
+  - 299.8984375
+  - 300.1484375
+  - 300.4609375
+  - 314.75
+  - 314.75390625
+  - 314.9296875
+  - 315.29296875
+resource_score: 46.2
+seconds_elapsed: 22.74781354299921
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -1167,16 +1241,6 @@ test_results:
       n_total: 1445
       pct_success: 87.68166089965398
   language_results:
-    (Jinan):
-      failed: []
-      n_errors: 0
-      n_total: 501
-      pct_success: 100.0
-    (Yeonbyeon):
-      failed: []
-      n_errors: 0
-      n_total: 307
-      pct_success: 100.0
     Aja:
       failed: []
       n_errors: 0
@@ -1836,81 +1900,6 @@ test_results:
       n_errors: 0
       n_total: 78
       pct_success: 100.0
-    Chinese, Gan:
-      failed: []
-      n_errors: 0
-      n_total: 503
-      pct_success: 100.0
-    Chinese, Hakka:
-      failed: []
-      n_errors: 0
-      n_total: 498
-      pct_success: 100.0
-    Chinese, Jinyu:
-      failed: []
-      n_errors: 0
-      n_total: 500
-      pct_success: 100.0
-    Chinese, Mandarin (Beijing):
-      failed: []
-      n_errors: 0
-      n_total: 514
-      pct_success: 100.0
-    Chinese, Mandarin (Guiyang):
-      failed: []
-      n_errors: 0
-      n_total: 505
-      pct_success: 100.0
-    Chinese, Mandarin (Harbin):
-      failed: []
-      n_errors: 0
-      n_total: 504
-      pct_success: 100.0
-    Chinese, Mandarin (Nanjing):
-      failed: []
-      n_errors: 0
-      n_total: 502
-      pct_success: 100.0
-    Chinese, Mandarin (Simplified):
-      failed: []
-      n_errors: 0
-      n_total: 532
-      pct_success: 100.0
-    Chinese, Mandarin (Tianjin):
-      failed: []
-      n_errors: 0
-      n_total: 512
-      pct_success: 100.0
-    Chinese, Mandarin (Traditional):
-      failed: []
-      n_errors: 0
-      n_total: 505
-      pct_success: 100.0
-    Chinese, Min Nan:
-      failed: []
-      n_errors: 0
-      n_total: 503
-      pct_success: 100.0
-    Chinese, Wu:
-      failed: []
-      n_errors: 0
-      n_total: 506
-      pct_success: 100.0
-    Chinese, Xiang:
-      failed: []
-      n_errors: 0
-      n_total: 501
-      pct_success: 100.0
-    Chinese, Yue:
-      failed: []
-      n_errors: 0
-      n_total: 503
-      pct_success: 100.0
-    Colorado:
-      failed: []
-      n_errors: 0
-      n_total: 55
-      pct_success: 100.0
     Dagaare, Southern:
       failed: []
       n_errors: 0
@@ -2503,21 +2492,6 @@ test_results:
       n_errors: 82
       n_total: 390
       pct_success: 78.97435897435898
-    Japanese:
-      failed: []
-      n_errors: 0
-      n_total: 505
-      pct_success: 100.0
-    Japanese (Osaka):
-      failed: []
-      n_errors: 0
-      n_total: 497
-      pct_success: 100.0
-    Japanese (Tokyo):
-      failed: []
-      n_errors: 0
-      n_total: 499
-      pct_success: 100.0
     Javanese (Javanese):
       failed:
       - grapheme_id: Javanese (Javanese)-4-07
@@ -2807,11 +2781,6 @@ test_results:
       n_errors: 1
       n_total: 396
       pct_success: 99.74747474747475
-    Korean:
-      failed: []
-      n_errors: 0
-      n_total: 315
-      pct_success: 100.0
     Lamnso':
       failed: []
       n_errors: 0
@@ -4378,11 +4347,6 @@ test_results:
       n_errors: 3
       n_total: 332
       pct_success: 99.09638554216868
-    Mongolian, Halh (Mongolian):
-      failed: []
-      n_errors: 0
-      n_total: 22
-      pct_success: 100.0
     Mòoré:
       failed: []
       n_errors: 0
@@ -4633,11 +4597,6 @@ test_results:
       n_errors: 69
       n_total: 352
       pct_success: 80.39772727272727
-    Nuosu:
-      failed: []
-      n_errors: 0
-      n_total: 336
-      pct_success: 100.0
     Orok:
       failed: []
       n_errors: 0
@@ -5686,11 +5645,6 @@ test_results:
       failed: []
       n_errors: 0
       n_total: 117
-      pct_success: 100.0
-    Vietnamese (Han nom):
-      failed: []
-      n_errors: 0
-      n_total: 559
       pct_success: 100.0
     Waama:
       failed: []

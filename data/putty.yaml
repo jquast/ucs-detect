@@ -1,11 +1,55 @@
 ambiguous_width: 1
-datetime: 2026-05-26 06:19:33 UTC
+datetime: 2026-05-27 06:00:10 UTC
 environment:
   TERM: xterm
-height: 24
+height: 23
 preferred_encoding: UTF-8
 python_version: 3.14.5
-seconds_elapsed: 88.28545290500006
+resource_profile:
+  cpu_pct:
+  - 0.0
+  - 5.0
+  - 0.0
+  - 5.0
+  - 52.9
+  - 52.9
+  - 52.9
+  - 51.9
+  - 52.9
+  - 50.9
+  - 49.9
+  - 42.9
+  - 46.9
+  elapsed_s:
+  - 0.0013023950004935614
+  - 1.0022366070006683
+  - 2.0047044670000105
+  - 3.0073174500003006
+  - 4.008984486000372
+  - 5.010837441000149
+  - 6.012114555000153
+  - 7.0139446459998
+  - 8.01565446099994
+  - 9.017040818000169
+  - 10.018387099000392
+  - 11.019551246999981
+  - 12.020849137000369
+  rss_mb:
+  - 0.90234375
+  - 127.91796875
+  - 127.91796875
+  - 133.4921875
+  - 147.578125
+  - 152.921875
+  - 154.83984375
+  - 156.23828125
+  - 157.3828125
+  - 157.87890625
+  - 158.48046875
+  - 160.171875
+  - 162.6640625
+resource_score: 72.9
+seconds_elapsed: 9.618250151999746
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -26,7 +70,7 @@ terminal_results:
   device_attributes:
     extensions: []
     service_class: 6
-  height: 24
+  height: 23
   iterm2_features:
     features: {}
     supported: false
@@ -41,8 +85,8 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 410
-  pixels_width: 816
+  pixels_height: 495
+  pixels_width: 866
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: false
@@ -52,7 +96,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm
-  width: 80
+  width: 79
   xtgettcap:
     capabilities: {}
     supported: false
@@ -10318,4 +10362,4 @@ test_results:
       n_total: 43592
       pct_success: 99.92429803633695
 wcwidth_version: 0.7.0
-width: 80
+width: 79

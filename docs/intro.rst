@@ -181,6 +181,35 @@ keystroke injections are begun in series, remaining terminals are done in ``--pa
 
     $ python run-series.py --parallel 8
 
+Docker
+------
+
+For reproducible isolated runs, the project provides a Docker image with Xvfb and all linux terminal
+emulators pre-installed.  All Docker operations are managed through ``tox`` targets:
+
+.. code-block:: bash
+
+    # one-time buildx builder setup
+    tox -e docker_buildx_setup
+
+    # build the image (with cache)
+    tox -e docker_build
+
+    # verify all terminals launch (--version check)
+    tox -e docker_verify
+
+    # run ucs-detect on all terminals
+    tox -e docker_run_series
+
+    # docker_run_series accepts extra run-series.py arguments,
+    $ tox -e docker_run_series -- --timeout 600 --run-only "foot,kitty"
+
+    # generate screenshots
+    tox -e docker_screenshots
+
+The image includes ``weston`` (Wayland compositor) alongside ``Xvfb``, so Wayland-only terminals
+``foot`` and ``weston-terminal`` are also testable.
+
 Problem Analysis
 ----------------
 
@@ -297,3 +326,4 @@ History
 .. _XTGETTCAP: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Operating-System-Commands
 .. _libvte: https://wiki.gnome.org/Projects/VTE
 .. _prettytable: https://github.com/jazzband/prettytable
+.. _Arch Linux: https://archlinux.org/

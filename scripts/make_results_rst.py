@@ -10,6 +10,7 @@ import re
 import os
 import sys
 import math
+from pathlib import Path
 import contextlib
 import unicodedata
 import colorsys
@@ -48,6 +49,7 @@ if _ROOT not in sys.path:
 
 from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars
 from ucs_detect.measure import make_printf_hex
+from ucs_detect.profiler import ProfileSession, generate_graphs, compute_resource_scores
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 GITHUB_EXAMPLE_BASE = 'https://github.com/jquast/ucs-detect/blob/master/docs/ucs_example_files'
@@ -288,7 +290,7 @@ def print_datatable(table_str, caption=None):
 def create_score_plots(sw_name, entry, score_table):
     """Create matplotlib plot comparing terminal scores against all terminals."""
     # Collect all scores for comparison
-    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'SRI', 'SFZ', 'RI', 'CAP', 'GFX', 'TIME']
+    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'SRI', 'SFZ', 'RI', 'CAP', 'GFX', 'RSC']
     terminal_scores_scaled = {}
     all_scores_scaled = {}
 
@@ -304,7 +306,7 @@ def create_score_plots(sw_name, entry, score_table):
         'RI': 'score_ri',
         'CAP': 'score_features',
         'GFX': 'score_graphics',
-        'TIME': 'score_elapsed',
+        'RSC': 'score_resource',
     }
 
     for metric in metrics:
@@ -487,8 +489,73 @@ def create_time_summary_plot(score_table):
     return plot_filename
 
 
+def process_resource_data():
+    """Generate resource profile graphs and compute resource_score in YAML files.
+
+    Reads ``resource_profile`` data from all data YAML files, builds
+    per-terminal CPU/RSS/time graphs, computes 0-100 resource scores
+    across all terminals, and writes scores back to the data YAML files.
+    """
+    sessions: dict[str, ProfileSession] = {}
+    yaml_map: dict[str, str] = {}  # sw_name -> yaml file path
+
+    for fname in os.listdir(DATA_PATH):
+        if not fname.endswith(".yaml") or fname.startswith("_"):
+            continue
+        if fname == "terminals.yaml":
+            continue
+        yaml_path = os.path.join(DATA_PATH, fname)
+        try:
+            with open(yaml_path) as f:
+                data = yaml.load(f, Loader=SafeLoader) or {}
+        except (OSError, yaml.YAMLError):
+            continue
+        rp = data.get("resource_profile") or {}
+        elapsed = rp.get("elapsed_s", [])
+        cpu = rp.get("cpu_pct", [])
+        rss = rp.get("rss_mb", [])
+        if not elapsed or not cpu or not rss:
+            continue
+        sw_name = data.get("software_name", fname.replace(".yaml", ""))
+        session = ProfileSession(sw_name, 0)
+        samples = list(zip(elapsed, cpu, rss))
+        while samples and samples[-1][2] <= 0.0:
+            samples.pop()
+        session._samples = samples
+        sessions[sw_name] = session
+        yaml_map[sw_name] = yaml_path
+
+    if not sessions:
+        return
+
+    profiles_dir = os.path.join(_ROOT, "docs", "_static", "profiles")
+    generate_graphs(sessions, Path(profiles_dir))
+
+    scores = compute_resource_scores(sessions)
+    for sw_name, score in scores.items():
+        yaml_path = yaml_map.get(sw_name)
+        if not yaml_path:
+            continue
+        try:
+            with open(yaml_path) as f:
+                data = yaml.load(f, Loader=SafeLoader) or {}
+        except (OSError, yaml.YAMLError):
+            continue
+        data["resource_score"] = round(score, 1)
+        try:
+            with open(yaml_path, "w") as f:
+                yaml.dump(data, f, default_flow_style=False,
+                          allow_unicode=True, Dumper=yaml.Dumper)
+        except OSError:
+            pass
+
+
 def main():
     """Generate all RST documentation pages, CSS, and plots from YAML data files."""
+    print('Processing resource data... ', file=sys.stderr, end='', flush=True)
+    process_resource_data()
+    print('ok', file=sys.stderr)
+
     print('Generating score table... ', file=sys.stderr, end='', flush=True)
     score_table, all_successful_languages = make_score_table()
     print('ok', file=sys.stderr)
@@ -518,7 +585,7 @@ def main():
         display_id_table(score_table)
         display_xtgettcap_summary_bullets(score_table)
         display_xtgettcap_comparison_table(score_table)
-        # display_time_summary removed: plot is still generated but not published
+        display_performance_section(score_table)
         display_results_toc(score_table)
         display_common_hyperlinks()
     print('ok', file=sys.stderr)
@@ -696,8 +763,8 @@ def make_score_table():
             # DEC Modes Support,
             _score_dec_modes = score_dec_modes(data)
 
-            # Elapsed time (inverse score - lower is better)
-            _score_elapsed = score_elapsed_time(data)
+            # Resource score (from profiler, 0-100 where 100=lightest/fastest)
+            _score_resources = data.get("resource_score", 50.0) / 100.0
             _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
 
             # Sixel support - binary score based on DA1 device attributes response
@@ -724,7 +791,7 @@ def make_score_table():
                     score_sfz=_score_sfz,
                     score_ri=_score_ri,
                     score_dec_modes=_score_dec_modes,
-                    score_elapsed=_score_elapsed,
+                    score_resource=_score_resources,
                     elapsed_seconds=_elapsed_seconds,
                     score_language=score_language,
                     score_wide=_score_wide,
@@ -740,12 +807,6 @@ def make_score_table():
     except Exception:
         print(f"Error in yaml_path={yaml_path}", file=sys.stderr)
         raise
-
-    # Normalize elapsed time scores to 0-1 range
-    # Get valid elapsed scores
-    valid_elapsed = [e["score_elapsed"] for e in score_table if not math.isnan(e["score_elapsed"])]
-    max_elapsed = max(valid_elapsed) if valid_elapsed else 1.0
-    min_elapsed = min(valid_elapsed) if valid_elapsed else 0.0
 
     # Normalize DEC modes for display (not used in final score)
     valid_dec_modes = [e["score_dec_modes"] for e in score_table
@@ -767,33 +828,15 @@ def make_score_table():
         else:
             entry["score_dec_modes_norm"] = float('NaN')
 
-        # Normalize elapsed time to 0-1 (inverse - lower is better)
-        if not math.isnan(entry["score_elapsed"]):
-            if max_elapsed == min_elapsed:
-                entry["score_elapsed_norm"] = 1.0
-            else:
-                # Use log scale for time (inverse)
-                log_elapsed = math.log10(entry["score_elapsed"])
-                log_min = math.log10(min_elapsed)
-                log_max = math.log10(max_elapsed)
-                entry["score_elapsed_norm"] = 1.0 - (
-                    (log_elapsed - log_min) / (log_max - log_min))
-        else:
-            entry["score_elapsed_norm"] = float('NaN')
+        # Resource score is already 0-1 normalized
+        entry["score_resource_norm"] = entry["score_resource"]
 
-        # Calculate final score using weighted average
-        # Time and graphics are weighted at 0.5 (half as powerful as other metrics)
-        # Graphics (GFX) scores: 1.0 modern (iTerm2/Kitty), 0.5 legacy (Sixel/ReGIS), 0.0 none
-        # SRI/SFZ are standalone (non-sequence) tests, weighted 1/3 as they
-        # cover uncommon edge cases
-        TIME_WEIGHT = 0.5
+        RESOURCE_WEIGHT = 0.5
         GRAPHICS_WEIGHT = 0.5
         STANDALONE_WEIGHT = 1.0 / 3.0
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
-            # VS-15 excluded from scoring (interpretation is contested)
-            # see https://github.com/jquast/wcwidth/issues/211
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
             (entry["score_sri"], STANDALONE_WEIGHT),
@@ -801,7 +844,7 @@ def make_score_table():
             (entry["score_ri"], 1.0),
             (entry["score_features"], 1.0),
             (entry["score_graphics"], GRAPHICS_WEIGHT),
-            (entry["score_elapsed_norm"], TIME_WEIGHT)
+            (entry["score_resource_norm"], RESOURCE_WEIGHT)
         ]
         valid_scores_with_weights = [(s, w) for s, w in scores_with_weights if not math.isnan(s)]
         if valid_scores_with_weights:
@@ -1050,6 +1093,12 @@ def display_tabulated_scores(score_table):
                     else _wrap_untested(result["terminal_software_name"], "_ri")),
                 "Features": features_list,
                 "Graphics": _format_graphics_protocols(result, result["terminal_software_name"]),
+                "Resources": wrap_score_with_hyperlink(
+                    format_score_int(result["score_resource_scaled"]),
+                    result["score_resource_scaled"],
+                    result["terminal_software_name"],
+                    "_resources"
+                ),
             }
         )
 
@@ -1067,10 +1116,10 @@ def display_table_definitions():
     print(
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
         "  the weighted average of all feature scores (WIDE, LANG, ZWJ, VS16, SRI, SFZ, RI,\n"
-        "  DEC Modes, and TIME), then scaled (normalized 0-100%) relative to all terminals tested.\n"
+        "  DEC Modes, and RESOURCES), then scaled (normalized 0-100%) relative to all terminals tested.\n"
         "  Note: VS15 is excluded from the final score (its interpretation is contested).\n"
         "  Higher scores indicate better overall Unicode and terminal feature support. DEC Modes and\n"
-        "  TIME are normalized to 0-1 range before averaging. TIME and graphics is weighted at 0.5 (half as\n"
+        "  RESOURCES are normalized to 0-1 range before averaging. RESOURCES and graphics is weighted at 0.5 (half as\n"
         "  powerful as other metrics), and standalone RI and Fitzpatrick are weighted at 0.3\n"
         "  to reduce its impact on the final score."
     )
@@ -1125,8 +1174,10 @@ def display_table_definitions():
         "  that are changeable by the terminal, scaled."
     )
     print(
-        "- *Elapsed Time*: Test execution time in seconds, scaled inversely\n"
-        "  (lower time is better)."
+        "- *Resources*: Composite CPU, RSS memory, and run duration score (0-100),\n"
+        "  where the global mean maps to 50 and the lightest/fastest terminal scores 100.\n"
+        "  Computed by averaging sub-scores for mean CPU%, mean RSS (MB), and total\n"
+        "  seconds, each individually scaled so the global mean = 50, min = 100, max = 0."
     )
     print()
 
@@ -1139,7 +1190,8 @@ def scale_scores(score_table, entry, key):
 
     # VS16, VS15, SRI, SFZ, RI, Sixel, and Graphics are not scaled - return raw score
     if key in ('score_emoji_vs16', 'score_emoji_vs15', 'score_sri',
-               'score_sfz', 'score_ri', 'score_sixel', 'score_graphics'):
+               'score_sfz', 'score_ri', 'score_sixel', 'score_graphics',
+               'score_resource'):
         return my_score
 
     valid_scores = [_entry[key] for _entry in score_table if not math.isnan(_entry[key])]
@@ -1897,6 +1949,65 @@ def display_xtgettcap_comparison_table(score_table):
         print()
 
 
+def display_performance_section(score_table):
+    """Display the Test Performance section on the main results page."""
+    display_title("Performance", 2)
+
+    valid = [e for e in score_table
+             if "resource_score" in e.get("data", {})
+             and not math.isnan(e.get("score_resource", float('NaN')))]
+
+    if not valid:
+        print("No performance data available.")
+        print()
+        return
+
+    print("The Resources score combines CPU, memory, and runtime into a single "
+          "0-100 metric.  The mean across all terminals maps to 50; the "
+          "lightest/fastest terminal scores 100.")
+    print()
+
+    headers = ["Terminal", "Score", "CPU %", "RSS (MB)", "Time (s)"]
+    rows = []
+    valid_sorted = sorted(valid,
+                          key=lambda e: e["score_resource"],
+                          reverse=True)
+    for e in valid_sorted:
+        sw_name = e["terminal_software_name"]
+        rp = e["data"].get("resource_profile") or {}
+        elapsed = rp.get("elapsed_s", [])
+        cpu = rp.get("cpu_pct", [])
+        rss = rp.get("rss_mb", [])
+        if not elapsed:
+            continue
+        duration = elapsed[-1]
+        mean_cpu = sum(cpu) / len(cpu) if cpu else 0
+        mean_rss = sum(rss) / len(rss) if rss else 0
+        score = e["score_resource"] * 100
+        rows.append([
+            make_outbound_hyperlink(sw_name, sw_name + "_time"),
+            wrap_score_with_hyperlink(
+                f"{score:.0f}", e["score_resource_scaled"],
+                sw_name, "_resources"),
+            f"{mean_cpu:.1f}",
+            f"{mean_rss:.1f}",
+            f"{duration:.1f}",
+        ])
+
+    print_datatable(tabulate.tabulate(rows, headers=headers, tablefmt="rst"))
+    print()
+    print(".. figure:: _static/profiles/all_cpu.png")
+    print("   :alt: CPU usage across all terminals")
+    print()
+    print("   CPU usage during test execution, all terminals overlaid.")
+    print()
+    print(".. figure:: _static/profiles/all_rss.png")
+    print("   :alt: RSS memory usage across all terminals")
+    print()
+    print("   RSS memory usage during test execution, all terminals overlaid.")
+    print()
+
+
 def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     """Display the detailed score breakdown for a single terminal."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_scores")
@@ -1974,9 +2085,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         },
         {
             "#": 11,
-            "Score Type": make_outbound_hyperlink("TIME", sw_name + "_time"),
-            "Raw Score": f"{entry['elapsed_seconds']:.2f}s" if not math.isnan(entry['elapsed_seconds']) else "N/A",
-            "Final Scaled Score": format_score_pct(entry["score_elapsed_scaled"]),
+            "Score Type": make_outbound_hyperlink("Resources", sw_name + "_resources"),
+            "Raw Score": f"{entry['score_resource']*100:.0f}/100" if not math.isnan(entry['score_resource']) else "N/A",
+            "Final Scaled Score": format_score_pct(entry["score_resource_scaled"]),
         },
     ]
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
@@ -1998,13 +2109,13 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print("  (weighted average: WIDE + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX + 0.5 * TIME)")
+    print("  (weighted average: WIDE + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX + 0.5 * RSC)")
     print("  the categorized 'average' absolute support level of this terminal.")
     print()
     print("  .. note::")
     print()
-    print("     TIME is normalized to 0-1 range before averaging.")
-    print("     TIME is weighted at 0.5 (half as powerful as other metrics).")
+    print("     RSC (Resources) is a composite CPU, memory, and runtime score.")
+    print("     RSC is weighted at 0.5 (half as powerful as other metrics).")
     print("     FEAT (Features) is the fraction of notable features supported.")
     print("     GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),")
     print("     50% for legacy only (Sixel, ReGIS), 0% for none.")
@@ -2258,19 +2369,26 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none")
     print()
 
-    print("**TIME Score Details:**")
+    print("**Resource Score Details:**")
     print()
-    if not math.isnan(entry["elapsed_seconds"]):
-        elapsed = entry["elapsed_seconds"]
+    if not math.isnan(entry["score_resource"]):
+        rp = entry["data"].get("resource_profile") or {}
+        elapsed_data = rp.get("elapsed_s", [])
+        cpu_data = rp.get("cpu_pct", [])
+        rss_data = rp.get("rss_mb", [])
+        mean_cpu = sum(cpu_data) / len(cpu_data) if cpu_data else 0
+        mean_rss = sum(rss_data) / len(rss_data) if rss_data else 0
+        duration = elapsed_data[-1] if elapsed_data else 0
 
-        print("Test execution time:")
         print()
-        print(f"- Elapsed time: {elapsed:.2f} seconds")
-        print("- Note: This is a raw measurement; lower is better")
-        print("- Scaled score uses inverse log10 scaling across all terminals")
-        print(f"- Scaled result: {format_score_pct(entry['score_elapsed_scaled'])}")
+        print(f"- Duration: {duration:.1f}s")
+        print(f"- Mean CPU: {mean_cpu:.1f}%")
+        print(f"- Mean RSS: {mean_rss:.1f} MB")
+        print(f"- Resources Score: {entry['score_resource']*100:.0f}/100")
+        print("- Note: Composite score combining CPU + RSS + time")
+        print(f"- Scaled result: {format_score_pct(entry['score_resource_scaled'])}")
     else:
-        print("Time results not available.")
+        print("Resource profiling data not available.")
     print()
 
     print("**LANG Score Details (Geometric Mean):**")
@@ -2984,31 +3102,58 @@ def show_reproduce_command(sw_name, entry):
     print(f"To reproduce these results for *{sw_name}*, install and run ucs-detect_")
     print("with the following commands::")
     print()
-    print("    pip install ucs-detect")
-    print(f"    ucs-detect --rerun data/{fname}")
+    print(f"    uvx ucs-detect --rerun data/{fname}")
 
     print()
 
 
 def show_time_elapsed_results(sw_name, entry):
     """
-    Display test execution time results.
+    Display test performance results.
     """
     display_inbound_hyperlink(entry["terminal_software_name"] + "_time")
-    display_title("Test Execution Time", 3)
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_resources")
+    display_title("Test Performance", 3)
 
-    if math.isnan(entry["elapsed_seconds"]):
-        print(f"Test execution time for *{sw_name}* is not available.")
+    rp = (entry["data"].get("resource_profile") or {})
+    elapsed_data = rp.get("elapsed_s", [])
+    cpu_data = rp.get("cpu_pct", [])
+    rss_data = rp.get("rss_mb", [])
+
+    if not elapsed_data or not cpu_data or not rss_data:
+        print(f"Performance data for *{sw_name}* is not available.")
         print()
         return
 
-    elapsed = entry["elapsed_seconds"]
-    print(f"The test suite completed in **{elapsed:.2f} seconds** ({int(elapsed)}s).")
+    duration = elapsed_data[-1]
+    mean_cpu = sum(cpu_data) / len(cpu_data)
+    mean_rss = sum(rss_data) / len(rss_data)
+    resource_score = entry["data"].get("resource_score", None)
+
+    print(f"The test suite completed in **{duration:.2f} seconds** "
+          f"({int(duration)}s).")
     print()
-    print("This time measurement represents the total duration of the test execution,")
-    print("including all Unicode wide character tests, emoji ZWJ sequences, variation")
-    print("selectors, language support checks, and DEC mode detection.")
+    if resource_score is not None:
+        print(f"- **Resources Score**: {resource_score:.1f}/100")
+    print(f"- **Mean CPU**: {mean_cpu:.1f}%")
+    print(f"- **Mean RSS**: {mean_rss:.1f} MB")
+    print(f"- **Total time**: {duration:.1f}s")
+
+    safe = safe_name(sw_name)
+
+    cpu_graph = f"../_static/profiles/{safe}_cpu.png"
+    rss_graph = f"../_static/profiles/{safe}_rss.png"
+
     print()
+    print(f".. figure:: {cpu_graph}")
+    print("   :alt: CPU usage over time")
+    print()
+    print(f"   CPU usage during test execution for *{sw_name}*.")
+    print()
+    print(f".. figure:: {rss_graph}")
+    print("   :alt: RSS memory over time")
+    print()
+    print(f"   RSS memory usage during test execution for *{sw_name}*.")
 
 
 def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=None):

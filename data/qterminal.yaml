@@ -1,12 +1,38 @@
 ambiguous_width: 1
-datetime: 2026-05-26 06:18:35 UTC
+datetime: 2026-05-27 06:05:23 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
 height: 22
 preferred_encoding: UTF-8
 python_version: 3.14.5
-seconds_elapsed: 32.132655679999516
+resource_profile:
+  cpu_pct:
+  - 0.0
+  - 4.0
+  - 0.0
+  - 4.0
+  - 35.0
+  - 34.0
+  - 35.9
+  elapsed_s:
+  - 0.0018440519997966476
+  - 1.0024118609999277
+  - 2.0039979729999686
+  - 3.0054722679997212
+  - 4.0068463389998215
+  - 5.008001578999938
+  - 6.0094600689999425
+  rss_mb:
+  - 0.51953125
+  - 114.46875
+  - 114.46875
+  - 117.6328125
+  - 120.68359375
+  - 127.86328125
+  - 132.12890625
+resource_score: 83.7
+seconds_elapsed: 3.7592390480003814
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000

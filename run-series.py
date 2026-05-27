@@ -17,6 +17,7 @@ import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from typing import NamedTuple
 import threading
 
 import yaml
@@ -36,6 +37,14 @@ _KEY_INJECT_PRE_DELAY = 0.5
 _KEY_INJECT_POST_DELAY = 1.5
 
 _IS_DOCKER = os.path.exists("/.dockerenv")
+
+
+class DiscoveredYAML(NamedTuple):
+    """A YAML data file discovered by discover_yamls."""
+    path: Path
+    software_name: str
+    seconds_elapsed: float
+    error_msg: str | None
 
 
 def load_mixins():
@@ -62,29 +71,26 @@ def discover_yamls(target_system):
         try:
             file_size = yaml_path.stat().st_size
             if file_size < 200:
-                yield yaml_path, yaml_path.stem, 0.0, (
+                yield DiscoveredYAML(yaml_path, yaml_path.stem, 0.0,
                     f"file too small ({file_size} bytes)")
                 continue
             with open(yaml_path) as f:
-                head = f.read(4096)
-        except OSError:
+                data = yaml.safe_load(f) or {}
+        except (OSError, yaml.YAMLError):
             continue
 
-        m = _RE_SYSTEM.search(head)
-        if not m or m.group(1).lower() != target_lower:
+        system = data.get("system", "")
+        if system.lower() != target_lower:
             continue
 
-        m = _RE_SOFTWARE_NAME.search(head)
-        sw_name = m.group(1).strip() if m else yaml_path.stem
-
-        m = _RE_SECONDS_ELAPSED.search(head)
-        seconds_elapsed = float(m.group(1)) if m else 0.0
+        sw_name = data.get("software_name", yaml_path.stem)
+        seconds_elapsed = data.get("seconds_elapsed", 0.0)
 
         error_msg = None
-        if "\nerror:" in head and "\ntest_results: {}" in head:
+        if data.get("test_results") == {} and "error" in data:
             error_msg = "previous run failed (empty test_results)"
 
-        yield yaml_path, sw_name, seconds_elapsed, error_msg
+        yield DiscoveredYAML(yaml_path, sw_name, seconds_elapsed, error_msg)
 
 
 def get_launch_config(sw_name, mixins):
@@ -127,13 +133,17 @@ def get_launch_config(sw_name, mixins):
     return cfg, is_explicit
 
 
-def _should_skip(launch_cfg):
-    """Return True if the config should be skipped in the current environment."""
+def _should_skip(launch_cfg, is_docker=None):
+    """Return True if the config should be skipped in the current environment.
+
+    If *is_docker* is None, uses the process environment (_IS_DOCKER)."""
+    if is_docker is None:
+        is_docker = _IS_DOCKER
     if launch_cfg["skip"]:
         return True
-    if _IS_DOCKER and launch_cfg["skip_docker"]:
+    if is_docker and launch_cfg["skip_docker"]:
         return True
-    if not _IS_DOCKER and launch_cfg["skip_system"]:
+    if not is_docker and launch_cfg["skip_system"]:
         return True
     return False
 
@@ -190,8 +200,12 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
     return argv
 
 
-def find_window_for_command(launch_cfg, pid, timeout=8):
-    """Find X11 window ID for a launched process, by PID then by class name."""
+def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
+    """Find X11 window ID for a launched process, by PID then by class name.
+
+    If *pre_windows* is a set of window IDs that existed before the
+    process was launched, any new window (not in the set) is returned
+    as a last-resort fallback."""
     deadline = time.monotonic() + timeout
 
     pid_deadline = time.monotonic() + min(timeout / 2, 5)
@@ -222,6 +236,22 @@ def find_window_for_command(launch_cfg, pid, timeout=8):
             except (subprocess.TimeoutExpired, OSError):
                 pass
         time.sleep(0.3)
+
+    if pre_windows is not None:
+        while time.monotonic() < deadline:
+            try:
+                result = subprocess.run(
+                    ["xdotool", "search", "--onlyvisible", ""],
+                    capture_output=True, text=True, timeout=3,
+                )
+                if result.returncode == 0:
+                    current = set(result.stdout.strip().split("\n"))
+                    new = current - pre_windows
+                    if new:
+                        return max(new, key=int)
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+            time.sleep(0.3)
 
     return None
 
@@ -284,6 +314,18 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
             argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
                                                  script_path)
 
+        snapshot_pre_windows = None
+        if post_keys:
+            try:
+                result = subprocess.run(
+                    ["xdotool", "search", "--onlyvisible", ""],
+                    capture_output=True, text=True, timeout=3,
+                )
+                if result.returncode == 0:
+                    snapshot_pre_windows = set(result.stdout.strip().split("\n"))
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+
         with open(stderr_path, "w") as stderr_file:
             env = os.environ.copy()
             env.pop("TERM_PROGRAM", None)
@@ -301,7 +343,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 time.sleep(_KEY_INJECT_PRE_DELAY)
                 time.sleep(post_delay / 1000.0)
                 window_cfg = host_launch_cfg if launch_cfg["subterminal"] else launch_cfg
-                window_id = find_window_for_command(window_cfg, proc.pid)
+                window_id = find_window_for_command(window_cfg, proc.pid, pre_windows=snapshot_pre_windows)
                 if window_id is not None:
                     script_str = str(script_path)
                     resolved_keys = [
@@ -423,7 +465,8 @@ def _embed_profile_in_yaml(yaml_path, sw_name, session):
     data["resource_profile"] = session.to_dict()
     try:
         with open(yaml_path, "w") as f:
-            yaml.safe_dump(data, f, default_flow_style=False, allow_unicode=True)
+            yaml.safe_dump(data, f, default_flow_style=False,
+                           allow_unicode=True)
     except OSError:
         pass
 
@@ -495,6 +538,69 @@ def _fixup_yaml(yaml_path, sw_name, mixins, program):
         pass
 
 
+def _docker_per_terminal_run(args):
+    """Run each terminal in its own Docker container, with --cpus=2 each."""
+    system_name = platform.system()
+    all_terminals = list(discover_yamls(system_name))
+    if not all_terminals:
+        print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
+        sys.exit(0)
+
+    mixins = load_mixins()
+    run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip()) if args.run_only else set()
+
+    jobs = []
+    for d in all_terminals:
+        if d.error_msg:
+            continue
+        launch_cfg, _ = get_launch_config(d.software_name, mixins)
+        if run_only:
+            name_lower = d.software_name.lower()
+            prog_lower = launch_cfg.get("program", "").lower()
+            if name_lower not in run_only and prog_lower not in run_only:
+                continue
+        if _should_skip(launch_cfg, is_docker=True):
+            continue
+        if launch_cfg.get("subterminal") and not launch_cfg.get("program"):
+            continue
+        jobs.append((d.software_name, d.seconds_elapsed))
+
+    jobs.sort(key=lambda j: j[1], reverse=True)
+
+    n_cpus = os.cpu_count() or 2
+    parallel = max(1, min(n_cpus * 3 // 8, 16))
+
+    print(f"Per-terminal Docker: {len(jobs)} terminals, {parallel} parallel "
+          f"(cpus={n_cpus}, timeout={args.timeout}s)")
+
+    with ThreadPoolExecutor(max_workers=parallel) as executor:
+        futures = {}
+        for sw_name, _prev_time in jobs:
+            cmd = [
+                "docker", "run", "--rm", "--cpus=2",
+                "-e", "DISPLAY=:99",
+                "-v", f"{PROJECT_DIR}:/app",
+                DOCKER_IMAGE,
+                "python", "run-series.py", "--use-system",
+                "--continue-after-failure",
+                "--timeout", str(args.timeout),
+                "--run-only", sw_name,
+            ]
+            print(f"[{sw_name}] docker run ...", flush=True)
+            future = executor.submit(subprocess.run, cmd, capture_output=True,
+                                     text=True, timeout=args.timeout + 60)
+            futures[future] = sw_name
+
+        for future in as_completed(futures):
+            sw_name = futures[future]
+            try:
+                result = future.result()
+                status = "OK" if result.returncode == 0 else f"exit={result.returncode}"
+                print(f"[{sw_name}] {status}", flush=True)
+            except Exception as exc:
+                print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run ucs-detect re-run.py for each terminal YAML of the current OS")
@@ -528,19 +634,22 @@ def main():
         "--use-system", action="store_true",
         help="Run directly on the host system instead of inside Docker")
     parser.add_argument(
-        "--profile", action="store_true",
-        help="Collect CPU and memory usage per terminal, generate graphs")
+        "--use-docker", action="store_true",
+        help="Launch each terminal in its own Docker container (--cpus=2)")
     args = parser.parse_args()
 
-    # --- Docker orchestration ---
+    if args.use_docker and not _IS_DOCKER:
+        if not _docker_image_exists():
+            _docker_build()
+        _docker_per_terminal_run(args)
+        return
+
     if not args.use_system and not _IS_DOCKER:
         if not _docker_image_exists():
             _docker_build()
         argv = sys.argv[1:]
         argv = [a for a in argv if a != "--use-system"]
         _docker_self_run(argv)
-
-    # --- we are either in Docker or --use-system ---
 
     system_name = platform.system()
     if system_name.lower() not in ("linux",):
@@ -582,18 +691,18 @@ def main():
 
     jobs = []
     skipped = []
-    for yaml_path, sw_name, seconds_elapsed, error_msg in all_terminals:
+    for d in all_terminals:
 
-        if error_msg:
-            skipped.append((sw_name, error_msg))
+        if d.error_msg:
+            skipped.append((d.software_name, d.error_msg))
             continue
 
-        launch_cfg, is_explicit = get_launch_config(sw_name, mixins)
+        launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
 
         if run_only:
-            name_lower = sw_name.lower()
+            name_lower = d.software_name.lower()
             prog_lower = launch_cfg.get("program", "").lower()
-            file_lower = yaml_path.stem.lower()
+            file_lower = d.path.stem.lower()
             if (name_lower not in run_only
                     and prog_lower not in run_only
                     and file_lower not in run_only):
@@ -601,18 +710,18 @@ def main():
 
         if _should_skip(launch_cfg):
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
-            skipped.append((sw_name, reason))
+            skipped.append((d.software_name, reason))
             continue
 
         if launch_cfg["subterminal"]:
             if not is_explicit:
-                skipped.append((sw_name, "subterminal, no launch config"))
+                skipped.append((d.software_name, "subterminal, no launch config"))
                 continue
             if host_launch_cfg is None:
-                skipped.append((sw_name, "subterminal, no host terminal available"))
+                skipped.append((d.software_name, "subterminal, no host terminal available"))
                 continue
 
-        jobs.append((yaml_path, sw_name, launch_cfg, seconds_elapsed))
+        jobs.append((d.path, d.software_name, launch_cfg, d.seconds_elapsed))
 
     jobs.sort(key=lambda j: j[3], reverse=True)
 
@@ -641,15 +750,11 @@ def main():
             print(f"  {sw_name}: {shlex.join(argv)}")
         return
 
-    # --- profiling support ---
     profiler_sessions = {}
-    if args.profile:
-        try:
-            from ucs_detect.profiler import ProfileSession  # noqa: F811
-        except ImportError:
-            print("Warning: ucs_detect.profiler not available; --profile ignored",
-                  file=sys.stderr)
-            args.profile = False
+    try:
+        from ucs_detect.profiler import ProfileSession  # noqa: F811
+    except ImportError:
+        ProfileSession = None  # type: ignore[assignment]
 
     key_jobs = [j for j in jobs if j[2].get("post_launch_keys")]
     direct_jobs = [j for j in jobs if not j[2].get("post_launch_keys")]
@@ -688,8 +793,9 @@ def main():
                 continue
 
             profile = None
-            if args.profile and proc is not None:
-                profile = ProfileSession(sw_name, proc.pid)
+            if ProfileSession is not None and proc is not None:
+                profile = ProfileSession(sw_name, proc.pid,
+                    program=launch_cfg["program"] if launch_cfg["subterminal"] else None)
                 profile.start()
 
             future = executor.submit(
@@ -716,8 +822,9 @@ def main():
                     continue
 
                 profile = None
-                if args.profile and proc is not None:
-                    profile = ProfileSession(sw_name, proc.pid)
+                if ProfileSession is not None and proc is not None:
+                    profile = ProfileSession(sw_name, proc.pid,
+                    program=launch_cfg["program"] if launch_cfg["subterminal"] else None)
                     profile.start()
 
                 future = executor.submit(
@@ -745,9 +852,6 @@ def main():
             if profile is not None:
                 profile.stop()
                 profiler_sessions[name] = profile
-                safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in name)
-                csv_path = DATA_DIR / f"{safe_name}_profile.csv"
-                profile.write_csv(csv_path)
                 _embed_profile_in_yaml(yaml_path, name, profile)
 
             results[name] = (exit_code, error)
@@ -763,13 +867,8 @@ def main():
                 print(f"[{name}] OK", flush=True)
                 _fixup_yaml(yaml_path, name, mixins, program)
 
-    if args.profile and profiler_sessions:
-        try:
-            from ucs_detect.profiler import generate_graphs
-            print("\nGenerating resource profile graphs ...", flush=True)
-            generate_graphs(profiler_sessions, DATA_DIR)
-        except Exception as exc:
-            print(f"Warning: graph generation failed: {exc}", file=sys.stderr)
+    # Profile graphs and resource scores are generated by
+    # scripts/make_results_rst.py during docs generation.
 
     elapsed = time.monotonic() - t0
     n_ok = len(results) - len(failures)
