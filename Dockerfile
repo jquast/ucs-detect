@@ -96,7 +96,6 @@ RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
 RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
     --mount=type=cache,target=/home/ucs/.cache/yay,uid=1000,gid=1000 \
     --mount=type=cache,target=/var/cache/pacman/pkg \
-    sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake st && \
     cd /tmp && \
     sudo -u ucs git clone https://aur.archlinux.org/st-luke-git.git && \
     cd st-luke-git && \

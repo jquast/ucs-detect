@@ -211,16 +211,6 @@ terminals:
       skip: true
     skip_reason: "My evaluation license has expired"
 
-  st:
-    homepage: https://st.suckless.org/
-    display_name: st
-    sixel_support_notes: "Patches are available to add sixel support."
-    version_template: "{aur_version}"
-    aur_package: st
-    launch:
-      program: st
-      args: ["-f", "Unifont:pixelsize=16", "-e"]
-
   st-luke:
     homepage: https://github.com/LukeSmithxyz/st
     display_name: st-luke
