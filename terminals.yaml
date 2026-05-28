@@ -36,11 +36,11 @@ terminals:
 
   domterm:
     homepage: https://domterm.org/
-    skip_docker: true
-    skip_reason: "Electron-based; likely no visible window in Xvfb (same class as Hyper)"
     launch:
       program: domterm
       args: [-e]
+    skip_docker: true
+    skip_reason: "Massive dependencies require several hours to build in docker"
 
   extraterm:
     homepage: https://extraterm.org/
@@ -151,6 +151,8 @@ terminals:
     launch:
       program: mlterm
       args: ["--sb=false", "-e"]
+    skip_docker: true
+    skip_reason: "Legacy dependencies require several hours to build"
 
   putty:
     homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/

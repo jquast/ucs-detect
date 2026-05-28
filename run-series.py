@@ -17,123 +17,34 @@ import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import NamedTuple
 import threading
 
 import yaml
+
+from ucs_detect.accessories import (
+    DiscoveredYAML,
+    _RE_PAUSE,
+    build_launch_args,
+    build_subterminal_launch_args,
+    discover_yamls,
+    find_window_for_command,
+    get_launch_config,
+    inject_keys,
+    load_mixins,
+)
 
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_DIR / "data"
 DOCKER_IMAGE = "ucs-detect:latest"
 DOCKERFILE = PROJECT_DIR / "Dockerfile"
 
-_RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
-_RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
 _RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([\d.]+)', re.MULTILINE)
-_RE_PAUSE = re.compile(r'^\\p(\d+)$')
 
 _KEY_INJECT_LOCK = threading.RLock()
 _KEY_INJECT_PRE_DELAY = 0.5
 _KEY_INJECT_POST_DELAY = 1.5
 
 _IS_DOCKER = os.path.exists("/.dockerenv")
-
-
-class DiscoveredYAML(NamedTuple):
-    """A YAML data file discovered by discover_yamls."""
-    path: Path
-    software_name: str
-    seconds_elapsed: float
-    error_msg: str | None
-
-
-def load_mixins():
-    """Load terminals.yaml, returning a dict keyed by lowercased software_name."""
-    mixins_path = PROJECT_DIR / "terminals.yaml"
-    if not mixins_path.exists():
-        return {}
-    with open(mixins_path) as f:
-        data = yaml.safe_load(f) or {}
-    terminals = data.get("terminals", {})
-    result = {}
-    for key, value in terminals.items():
-        result[key.lower()] = value
-    return result
-
-
-def discover_yamls(target_system):
-    """Yield (yaml_path, software_name, seconds_elapsed, error_msg) for each data YAML
-    matching *target_system*.  *error_msg* is None for valid data files."""
-    target_lower = target_system.lower()
-    for yaml_path in sorted(DATA_DIR.glob("*.yaml")):
-        if yaml_path.name == "terminals.yaml":
-            continue
-        try:
-            file_size = yaml_path.stat().st_size
-            if file_size < 200:
-                yield DiscoveredYAML(yaml_path, yaml_path.stem, 0.0,
-                    f"file too small ({file_size} bytes)")
-                continue
-            with open(yaml_path) as f:
-                data = yaml.safe_load(f) or {}
-        except (OSError, yaml.YAMLError):
-            continue
-
-        system = data.get("system", "")
-        if system.lower() != target_lower:
-            continue
-
-        sw_name = data.get("software_name", yaml_path.stem)
-        seconds_elapsed = data.get("seconds_elapsed", 0.0)
-
-        error_msg = None
-        if data.get("test_results") == {} and "error" in data:
-            error_msg = "previous run failed (empty test_results)"
-
-        yield DiscoveredYAML(yaml_path, sw_name, seconds_elapsed, error_msg)
-
-
-def get_launch_config(sw_name, mixins):
-    """Return (launch_config, is_explicit) for *sw_name*.
-
-    In Docker mode, clears the wrapper for terminals marked ``skip_system``
-    (the wrapper was only needed for bare-metal X11 without a WM)."""
-    key = sw_name.lower()
-    raw_entry = mixins.get(key, {})
-    launch = raw_entry.get("launch", {}) if raw_entry else {}
-
-    if _IS_DOCKER and raw_entry.get("launch_docker"):
-        launch = raw_entry["launch_docker"]
-    elif not _IS_DOCKER and raw_entry.get("launch_system"):
-        launch = raw_entry["launch_system"]
-
-    is_explicit = bool(launch)
-
-    skip_system = raw_entry.get("skip_system", False) or launch.get("skip_system", False)
-    skip_docker = raw_entry.get("skip_docker", False) or launch.get("skip_docker", False)
-    skip_any = launch.get("skip", False)
-
-    wrapper = list(launch.get("wrapper", []))
-    if _IS_DOCKER and skip_system and wrapper:
-        wrapper = []
-
-    cfg = {
-        "program": launch.get("program", key),
-        "args": launch.get("args", ["-e"]),
-        "subterminal": launch.get("subterminal", False),
-        "wrapper": wrapper,
-        "skip": skip_any,
-        "skip_system": skip_system,
-        "skip_docker": skip_docker,
-        "skip_reason": raw_entry.get("skip_reason", ""),
-        "post_launch_delay_ms": launch.get("post_launch_delay_ms", 0),
-        "post_launch_keys": launch.get("post_launch_keys", []),
-        "env": launch.get("env", {}),
-        "profile_processes": raw_entry.get("profile_processes", []),
-        "timeout": raw_entry.get("timeout", None),
-        "wm_class": launch.get("wm_class", None),
-    }
-    return cfg, is_explicit
 
 
 def _should_skip(launch_cfg, is_docker=None, host_only=False):
@@ -170,133 +81,6 @@ def write_run_script(script_path, yaml_path, sentinel_path,
         parts.append('read -p "Press enter to exit..." _')
     script_path.write_text("\n".join(parts) + "\n")
     script_path.chmod(0o755)
-
-
-def build_launch_args(launch_cfg, script_path):
-    """Build the full argv list for launching a terminal that executes *script_path*."""
-    argv = list(launch_cfg["wrapper"])
-    argv.append(launch_cfg["program"])
-    script_str = str(script_path)
-    has_placeholder = False
-    for arg in launch_cfg["args"]:
-        if "{script}" in arg:
-            has_placeholder = True
-            argv.append(arg.replace("{script}", script_str))
-        else:
-            argv.append(arg)
-    if not has_placeholder and not launch_cfg.get("post_launch_keys"):
-        argv.extend(["/bin/sh", script_str])
-    return argv
-
-
-def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
-    """Build launch args for a subterminal, wrapping inside a host terminal."""
-    script_str = str(script_path)
-    inner_parts = [launch_cfg["program"]] + launch_cfg["args"]
-    has_placeholder = any("{script}" in a for a in launch_cfg["args"])
-    if not has_placeholder and not launch_cfg.get("post_launch_keys"):
-        inner_parts.extend(["/bin/sh", script_str])
-    else:
-        inner_parts = [p.replace("{script}", script_str) for p in inner_parts]
-
-    inner_cmd = " ".join(shlex.quote(a) for a in inner_parts)
-    inner_cmd = f"unset TERM_PROGRAM TERM_PROGRAM_VERSION; {inner_cmd}"
-    argv = list(host_launch_cfg.get("wrapper", []))
-    argv.append(host_launch_cfg["program"])
-    argv.extend(host_launch_cfg.get("args", ["-e"]))
-    argv.extend(["sh", "-c", inner_cmd])
-    return argv
-
-
-def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
-    """Find X11 window ID for a launched process, by PID then by class name.
-
-    If *pre_windows* is a set of window IDs that existed before the
-    process was launched, any new window (not in the set) is returned
-    as a last-resort fallback."""
-    deadline = time.monotonic() + timeout
-
-    pid_deadline = time.monotonic() + min(timeout / 2, 5)
-    while time.monotonic() < pid_deadline:
-        try:
-            result = subprocess.run(
-                ["xdotool", "search", "--onlyvisible", "--pid", str(pid)],
-                capture_output=True, text=True, timeout=3,
-            )
-            if result.returncode == 0 and result.stdout.strip():
-                return result.stdout.strip().split("\n")[-1]
-        except (subprocess.TimeoutExpired, OSError):
-            pass
-        time.sleep(0.3)
-
-    wm_class = launch_cfg.get("wm_class") or os.path.basename(
-        launch_cfg.get("program", "")
-    ).lower()
-    while time.monotonic() < deadline:
-        for flag in ("--class", "--classname"):
-            try:
-                result = subprocess.run(
-                    ["xdotool", "search", "--onlyvisible", flag, wm_class],
-                    capture_output=True, text=True, timeout=3,
-                )
-                if result.returncode == 0 and result.stdout.strip():
-                    return result.stdout.strip().split("\n")[-1]
-            except (subprocess.TimeoutExpired, OSError):
-                pass
-        time.sleep(0.3)
-
-    if pre_windows is not None:
-        while time.monotonic() < deadline:
-            try:
-                result = subprocess.run(
-                    ["xdotool", "search", "--onlyvisible", ""],
-                    capture_output=True, text=True, timeout=3,
-                )
-                if result.returncode == 0:
-                    current = set(result.stdout.strip().split("\n"))
-                    new = current - pre_windows
-                    if new:
-                        return max(new, key=int)
-            except (subprocess.TimeoutExpired, OSError):
-                pass
-            time.sleep(0.3)
-
-    return None
-
-
-def inject_keys(window_id, keys):
-    """Send keystrokes to a window via xdotool."""
-    subprocess.run(
-        ["xdotool", "windowfocus", "--sync", str(window_id)],
-        capture_output=True, timeout=2,
-    )
-    time.sleep(0.3)
-    merged = []
-    for key in keys:
-        if key == "\n" or _RE_PAUSE.match(key):
-            if merged:
-                combined = "".join(merged)
-                subprocess.run(
-                    ["xdotool", "type", "--delay", "30", combined],
-                    capture_output=True, timeout=120,
-                )
-                merged = []
-            if key == "\n":
-                subprocess.run(
-                    ["xdotool", "key", "Return"],
-                    capture_output=True, timeout=5,
-                )
-            else:
-                ms = int(_RE_PAUSE.match(key).group(1))
-                time.sleep(ms / 1000.0)
-        else:
-            merged.append(key)
-    if merged:
-        combined = "".join(merged)
-        subprocess.run(
-            ["xdotool", "type", "--delay", "30", combined],
-            capture_output=True, timeout=120,
-        )
 
 
 def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
@@ -450,9 +234,13 @@ def _docker_image_exists():
 def _docker_build():
     """Build the Docker image."""
     print(f"Building Docker image {DOCKER_IMAGE} ...", flush=True)
+    env = os.environ.copy()
+    # Use BuildKit for cache mounts (ccache); falls back gracefully if unavailable
+    env.setdefault("DOCKER_BUILDKIT", "1")
     subprocess.check_call(
         ["docker", "build", "-f", str(DOCKERFILE), "-t", DOCKER_IMAGE,
          str(PROJECT_DIR)],
+        env=env,
     )
 
 

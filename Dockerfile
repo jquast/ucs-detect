@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 # ucs-detect terminal testing image
 # Arch Linux rolling release for latest terminal packages (libvte, foot, ghostty, etc.)
 FROM archlinux:latest
@@ -6,8 +7,9 @@ ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
 # bootstrap: update mirrors, install base deps, generate locale
-RUN pacman -Syu --noconfirm --needed \
-    base-devel git sudo curl wget \
+RUN --mount=type=cache,target=/var/cache/pacman/pkg \
+    pacman -Syu --noconfirm --needed \
+    base-devel git sudo curl wget ccache \
     python python-pip dbus \
     && pacman -Scc --noconfirm \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
@@ -15,7 +17,8 @@ RUN pacman -Syu --noconfirm --needed \
 # install X11, openbox, window manager, and terminal emulator packages
 
 # X11 virtual framebuffer and automation tools
-RUN pacman -S --noconfirm --needed \
+RUN --mount=type=cache,target=/var/cache/pacman/pkg \
+    pacman -S --noconfirm --needed \
     xorg-server-xvfb \
     xdotool \
     xorg-xwd \
@@ -36,30 +39,52 @@ RUN mkdir -p /usr/share/fonts/OTF && \
     fc-cache -fv
 
 # create non-root user for AUR builds and running tests
-RUN useradd -m -s /bin/bash ucs && \
-    echo "ucs ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN useradd -m -s /bin/bash -u 1000 ucs && \
+    echo "ucs ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    mkdir -p /home/ucs/.ccache && chown -R ucs:ucs /home/ucs/.ccache
 
 # install yay (AUR helper) as ucs user, then install AUR-only terminals
-RUN cd /tmp && \
+RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
+    --mount=type=cache,target=/home/ucs/.cache/yay,uid=1000,gid=1000 \
+    --mount=type=cache,target=/var/cache/pacman/pkg \
+    cd /tmp && \
     sudo -u ucs git clone https://aur.archlinux.org/yay-bin.git && \
     cd yay-bin && \
     sudo -u ucs makepkg -si --noconfirm && \
     cd / && rm -rf /tmp/yay-bin
 
-# configure makepkg to use all CPUs minus 2, and tolerate old K&R-style code
+# configure makepkg to use all CPUs minus 2, enable ccache, and tolerate old K&R-style code
 RUN sed -i 's/^#\?MAKEFLAGS=.*/MAKEFLAGS="-j$(( $(nproc) > 2 ? $(nproc) - 2 : 1 ))"/' /etc/makepkg.conf && \
-    sed -i 's/^CFLAGS="\(.*\)"/CFLAGS="\1 -Wno-error=incompatible-pointer-types"/' /etc/makepkg.conf
+    sed -i 's/^CFLAGS="\(.*\)"/CFLAGS="\1 -Wno-error=incompatible-pointer-types"/' /etc/makepkg.conf && \
+    sed -i 's/^BUILDENV=(\(.*\)!ccache\(.*\))/BUILDENV=(\1ccache\2)/' /etc/makepkg.conf && \
+    echo 'export CCACHE_DIR=/home/ucs/.ccache' >> /home/ucs/.bashrc && \
+    echo 'export PATH=/usr/lib/ccache/bin:$PATH' >> /home/ucs/.bashrc
 
-RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
-    mlterm-git \
-    domterm-git \
-    && pacman -Scc --noconfirm
+ENV CCACHE_DIR=/home/ucs/.ccache
+ENV PATH=/usr/lib/ccache/bin:$PATH
 
-RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
+# mlterm and domterm require compiling dependencies like gtk2 from scratch, consuming
+# many several hours. We do not build for them, it is too much. They ask too much.
+#
+#RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
+#    --mount=type=cache,target=/home/ucs/.cache/yay,uid=1000,gid=1000 \
+#    --mount=type=cache,target=/var/cache/pacman/pkg \
+#    sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
+#    mlterm-git \
+#    domterm-git \
+#    && pacman -Scc --noconfirm
+
+RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
+    --mount=type=cache,target=/home/ucs/.cache/yay,uid=1000,gid=1000 \
+    --mount=type=cache,target=/var/cache/pacman/pkg \
+    sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
     warp-terminal-bin \
     && pacman -Scc --noconfirm
 
-RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
+RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
+    --mount=type=cache,target=/home/ucs/.cache/yay,uid=1000,gid=1000 \
+    --mount=type=cache,target=/var/cache/pacman/pkg \
+    sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
     extraterm-bin \
     bobcat-terminal \
     terminator-git \
@@ -67,16 +92,20 @@ RUN sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None 
     && pacman -Scc --noconfirm
 
 # build st-luke alongside system st (st-luke-git overwrites /usr/bin/st)
-RUN cd /tmp && \
+RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
+    --mount=type=cache,target=/home/ucs/.cache/yay,uid=1000,gid=1000 \
+    --mount=type=cache,target=/var/cache/pacman/pkg \
+    sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake st && \
+    cd /tmp && \
     sudo -u ucs git clone https://aur.archlinux.org/st-luke-git.git && \
     cd st-luke-git && \
     sudo -u ucs makepkg -s --noconfirm && \
-    cp /tmp/st-luke-git/src/st/st /usr/local/bin/st-luke && \
-    rm -rf /tmp/st-luke-git && \
-    pacman -S --noconfirm --needed st
+    cp /tmp/st-luke-git/src/st-luke/st /usr/local/bin/st-luke && \
+    rm -rf /tmp/st-luke-git
 
 # all terminal emulators available in Arch official repos
-RUN pacman -S --noconfirm --needed \
+RUN --mount=type=cache,target=/var/cache/pacman/pkg \
+    pacman -S --noconfirm --needed \
     foot \
     ghostty \
     kitty \
@@ -108,7 +137,8 @@ RUN pacman -S --noconfirm --needed \
 RUN rm -f /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
 # python dependencies for ucs-detect
-RUN pacman -S --noconfirm --needed \
+RUN --mount=type=cache,target=/var/cache/pacman/pkg \
+    pacman -S --noconfirm --needed \
     python-yaml \
     python-blessed \
     python-pillow \
