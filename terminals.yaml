@@ -1,16 +1,12 @@
-# Terminal detail mixins for ucs-detect This file provides additional metadata about terminals that
-# cannot be automatically detected or stored in the test result YAML files. This also includes a
-# 'launch' group used by 'run-series.py'
+# Terminal detail "mixins" for ucs-detect. This file provides additional metadata about terminals
+# used during document generation, and launch configurations for run-series.py
 #
-# Keys are matched against software_name (case-insensitive after lowercasing)
+# Keys are matched against software_name (case-insensitive after lower-casing)
 
 terminals:
 
   AbsoluteTelnetSSH:
     homepage: https://www.celestialsoftware.net
-    launch:
-      skip: true
-    skip_reason: "Windows-only, not available on Linux"
     
   alacritty:
     homepage: https://alacritty.org/
