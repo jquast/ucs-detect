@@ -5,6 +5,13 @@
 # Keys are matched against software_name (case-insensitive after lowercasing)
 
 terminals:
+
+  AbsoluteTelnetSSH:
+    homepage: https://www.celestialsoftware.net
+    launch:
+      skip: true
+    skip_reason: "Windows-only, not available on Linux"
+    
   alacritty:
     homepage: https://alacritty.org/
     launch:
