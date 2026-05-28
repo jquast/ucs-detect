@@ -189,6 +189,11 @@ def _docker_per_terminal_run(args):
                 result = future.result()
                 status = "OK" if result.returncode == 0 else f"exit={result.returncode}"
                 print(f"[{sw_name}] {status}", flush=True)
+                if result.returncode != 0:
+                    if result.stderr:
+                        print(f"[{sw_name}] stderr: {result.stderr.strip()}", flush=True)
+                    if result.stdout:
+                        print(f"[{sw_name}] stdout: {result.stdout.strip()}", flush=True)
             except Exception as exc:
                 print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)
 
@@ -430,7 +435,8 @@ def main():
                     except (subprocess.TimeoutExpired, OSError):
                         pass
                     window_id = find_window_for_command(
-                        window_cfg, proc.pid, pre_windows=snapshot_pre_windows)
+                        window_cfg, proc.pid,
+                        pre_windows=snapshot_pre_windows)
                     if window_id is not None:
                         script_str = str(script_path)
                         resolved_keys = [

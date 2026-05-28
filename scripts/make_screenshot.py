@@ -36,7 +36,7 @@ def set_window_title(title):
 
 
 def find_own_window(title, timeout=5):
-    """Find our containing terminal window by searching for *title*."""
+    """Find our containing terminal window."""
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         try:
@@ -50,26 +50,37 @@ def find_own_window(title, timeout=5):
             pass
         time.sleep(0.3)
 
-    # Fallback: search by parent PID (walk up to find terminal process)
+    # Fallback: walk parent PIDs, collecting process names for class search
     ppid = os.getppid()
+    parent_names = []
     for _ in range(4):
         try:
+            with open(f"/proc/{ppid}/stat") as f:
+                stat = f.read().split()
+                parent_names.append(stat[1].strip("()"))
             result = subprocess.run(
                 ["xdotool", "search", "--onlyvisible", "--pid", str(ppid)],
                 capture_output=True, text=True, timeout=3,
             )
             if result.returncode == 0 and result.stdout.strip():
                 return result.stdout.strip().split("\n")[-1]
-        except (subprocess.TimeoutExpired, OSError):
-            pass
-        # Walk up one level
-        try:
-            with open(f"/proc/{ppid}/stat") as f:
-                ppid = int(f.read().split()[3])
-        except (OSError, ValueError, IndexError):
+            ppid = int(stat[3])
+        except (OSError, ValueError, IndexError, subprocess.TimeoutExpired):
             break
 
-    # Last resort: getactivewindow
+    # Fallback: search by class name derived from parent process names
+    for name in parent_names:
+        for flag in ("--class", "--classname"):
+            try:
+                result = subprocess.run(
+                    ["xdotool", "search", "--onlyvisible", flag, name],
+                    capture_output=True, text=True, timeout=3,
+                )
+                if result.returncode == 0 and result.stdout.strip():
+                    return result.stdout.strip().split("\n")[-1]
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+
     try:
         result = subprocess.run(
             ["xdotool", "getactivewindow"],
@@ -140,11 +151,11 @@ def _crop_to_markers(src_path, dst_path):
     x1, y1 = points[0]
     x2, y2 = points[-1]
 
-    margin = 2
+    margin = 4
     x1 = max(0, x1 - margin)
     y1 = max(0, y1 - margin)
-    x2 = min(w, x2 + 1)
-    y2 = min(h, y2 + 1)
+    x2 = min(w, x2 + margin)
+    y2 = min(h, y2 + margin)
 
     cropped = img.crop((x1, y1, x2, y2))
     cropped.save(dst_path)
@@ -156,6 +167,8 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     hbar = "━"
     vbar = "┃"
     cross = "╋"
+
+    sys.stdout.write("\x1b[?25l")  # hide cursor
 
     text = decode_wchars(wchars)
     display_width = _wcswidth_vs15(text)
@@ -230,9 +243,19 @@ def display_and_capture(term, wchars, expected_width, measured_width,
         ["xdotool", "windowfocus", "--sync", str(window_id)],
         capture_output=True, timeout=2,
     )
-    time.sleep(0.05)
+    time.sleep(0.15)
+
+    # Second sync for slow compositors (weston, Xwayland)
+    try:
+        term.get_location(timeout=1)
+    except Exception:
+        pass
+    time.sleep(0.1)
 
     capture_window(window_id, output_path)
+
+    sys.stdout.write("\x1b[?25h")
+    sys.stdout.flush()
 
     # Post-capture settle: let the framebuffer finish swapping before the
     # next iteration writes new content.  Without this, the next CPR sync

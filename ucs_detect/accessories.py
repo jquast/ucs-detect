@@ -244,6 +244,19 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
                 pass
             time.sleep(0.3)
 
+    # Strategy 4: any visible window (Docker only)
+    if os.path.exists("/.dockerenv"):
+        try:
+            result = subprocess.run(
+                ["xdotool", "search", "--onlyvisible", ""],
+                capture_output=True, text=True, timeout=3,
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                windows = result.stdout.strip().split("\n")
+                return windows[-1]
+        except (subprocess.TimeoutExpired, OSError):
+            pass
+
     return None
 
 
@@ -288,8 +301,8 @@ def inject_keys(window_id, keys):
 
 
 def _atomic_yaml_dump(data, path, **dump_kwargs):
-    """Write *data* as YAML to *path* atomically via a tempfile rename."""
-    tmp_path = path + ".tmp"
+    """Write *data* as YAML to *path* atomically."""
+    tmp_path = str(path) + ".tmp"
     try:
         with open(tmp_path, "w", encoding="utf-8") as f:
             yaml.safe_dump(data, f, **dump_kwargs)

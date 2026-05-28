@@ -547,13 +547,7 @@ def generate_graphs(
 def compute_resource_scores(
     profiles: dict[str, ProfileSession],
 ) -> dict[str, float]:
-    """Return a 0--100 resource score for each terminal.
-
-    Each terminal's mean CPU%, mean RSS (MB), and total run duration are
-    scored individually so that the global minimum maps to 100, the global
-    mean to 50, and the global maximum to 0.  The three sub-scores are
-    averaged to produce a composite Resources score.
-    """
+    """Return a 0 to 100 resource score for each terminal."""
     if len(profiles) < 2:
         return {name: 50.0 for name in profiles}
 
