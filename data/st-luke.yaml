@@ -1,73 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-05-27 15:56:17 UTC
+datetime: 2026-05-28 01:08:49 UTC
 environment:
   TERM: st-256color
 height: 24
 preferred_encoding: UTF-8
 python_version: 3.14.5
-resource_profile:
-  cpu_pct:
-  - 0.0
-  - 1.0
-  - 0.0
-  - 0.0
-  - 19.0
-  - 26.9
-  - 25.4
-  - 26.0
-  - 28.0
-  - 28.0
-  - 28.0
-  - 26.9
-  - 30.9
-  - 29.9
-  - 36.9
-  - 27.9
-  - 21.0
-  - 23.0
-  elapsed_s:
-  - 0.001145784999607713
-  - 1.0023592529996677
-  - 2.00518828299937
-  - 3.007533534999311
-  - 4.010267195999404
-  - 5.0128001979992405
-  - 6.015246558999934
-  - 7.03864774899921
-  - 8.039805471000363
-  - 9.040802616000292
-  - 10.041746131000764
-  - 11.042963775000317
-  - 12.044856660999358
-  - 13.046668447999764
-  - 14.048999070000718
-  - 15.05270406300042
-  - 16.05410696599938
-  - 17.055691067000225
-  hardware:
-    cpu_count: 12
-    cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 13961408
-  rss_mb:
-  - 13.11328125
-  - 95.734375
-  - 91.15625
-  - 91.15625
-  - 91.98828125
-  - 92.4296875
-  - 92.8671875
-  - 93.37109375
-  - 93.87109375
-  - 94.30859375
-  - 94.74609375
-  - 95.125
-  - 95.375
-  - 95.63671875
-  - 96.88671875
-  - 98.4453125
-  - 98.51953125
-  - 98.5390625
-seconds_elapsed: 14.384702956000183
+seconds_elapsed: 12.0541727539985
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -75,15 +13,15 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-software_name: st
+software_name: ''
 software_version: ''
 system: Linux
 terminal_results:
-  background_color_hex: '#282828282828'
+  background_color_hex: '#000000000000'
   background_color_rgb:
-  - 10280
-  - 10280
-  - 10280
+  - 0
+  - 0
+  - 0
   color_scheme: false
   colored_underlines: false
   decrqcra: false
@@ -93,11 +31,11 @@ terminal_results:
   device_attributes:
     extensions: []
     service_class: 6
-  foreground_color_hex: '#ebebdbdbb2b2'
+  foreground_color_hex: '#e5e5e5e5e5e5'
   foreground_color_rgb:
-  - 60395
-  - 56283
-  - 45746
+  - 58853
+  - 58853
+  - 58853
   height: 24
   iterm2_features:
     features: {}
@@ -6715,7 +6653,7 @@ test_results:
         wchars: \u0924\u094d\u0915\u093e
       - grapheme_id: Hindi-2-1c
         measured_by_terminal: 3
-        measured_by_wcwidth: 2
+        measured_by_wcwidth: : 2
         wchars: \u0924\u094d\u0924\u093e
       - grapheme_id: Hindi-2-1e
         measured_by_terminal: 3

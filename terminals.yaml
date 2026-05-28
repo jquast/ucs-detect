@@ -37,10 +37,10 @@ terminals:
   domterm:
     homepage: https://domterm.org/
     launch:
-      program: domterm
+      program: DomTerm.AppImage
       args: [-e]
     skip_docker: true
-    skip_reason: "Massive dependencies require several hours to build in docker"
+    skip_reason: "Massive dependencies require several hours to build in docker!"
 
   extraterm:
     homepage: https://extraterm.org/
