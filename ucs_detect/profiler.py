@@ -31,6 +31,7 @@ class ProfileSession:
         self._thread: threading.Thread | None = None
         self._samples: list[tuple[float, float, float]] = []
         self._proc_cache: dict[int, object] = {}  # pid -> psutil.Process, for cpu_percent priming
+        self._extra_procs: list = []  # psutil.Process objects found by name, not in child tree
 
     @staticmethod
     def _find_process_by_name(name: str):
@@ -104,6 +105,9 @@ class ProfileSession:
             cached = self._get_or_prime_child(child)
             if cached is not None:
                 procs.append(cached)
+        for extra in self._extra_procs:
+            if extra not in procs:
+                procs.append(extra)
 
         for proc in procs:
             try:
@@ -120,6 +124,23 @@ class ProfileSession:
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 self._proc_cache.pop(proc.pid, None)
         return cpu_total, rss_total / (1024 * 1024)
+
+    def _discover_extra_processes(self) -> None:
+        """Try to find any still-undiscovered extra processes by name."""
+        import psutil  # type: ignore[import-untyped]
+        found_names = {p.name() for p in self._extra_procs
+                       if p.pid in self._proc_cache}
+        for name in self._extra:
+            if name in found_names:
+                continue
+            extra = self._find_process_by_name(name)
+            if extra is not None and extra.pid not in self._proc_cache:
+                try:
+                    extra.cpu_percent(interval=None)
+                    self._proc_cache[extra.pid] = extra
+                    self._extra_procs.append(extra)
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    pass
 
     def _sample_loop(self) -> None:
         import psutil  # type: ignore[import-untyped]
@@ -138,6 +159,7 @@ class ProfileSession:
                         self._proc_cache[proc.pid] = proc
                 except (psutil.NoSuchProcess, psutil.AccessDenied):
                     pass
+            self._discover_extra_processes()
 
         root = None
         try:
@@ -153,6 +175,8 @@ class ProfileSession:
 
         while not self._stop_event.is_set():
             elapsed = time.monotonic() - t0
+            if self._extra:
+                self._discover_extra_processes()
             try:
                 cpu, rss_mb = self._sample_process_tree(root)
             except (psutil.NoSuchProcess, psutil.AccessDenied):
@@ -168,10 +192,11 @@ class ProfileSession:
     def samples(self) -> list[tuple[float, float, float]]:
         """Return collected samples (elapsed_seconds, cpu_pct, rss_mb).
 
-        The first sample (initialization artifact) and trailing entries
-        with zero RSS (process-exit artifacts) are stripped."""
+        The first sample is dropped when it is a known initialization
+        artifact (0.0 CPU from cpu_percent priming). Trailing entries
+        with zero RSS (process-exit artifacts) are always stripped."""
         result = list(self._samples)
-        if result:
+        if result and result[0][1] == 0.0:
             result.pop(0)
         while result and result[-1][2] <= 0.0:
             result.pop()

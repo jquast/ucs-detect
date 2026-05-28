@@ -34,6 +34,33 @@ def find_best_failure(records):
     return sorted_records[len(sorted_records) // 2]
 
 
+def get_project_dir():
+    """Return the project root directory (parent of the ucs_detect package)."""
+    return Path(__file__).resolve().parent.parent
+
+
+def get_data_dir():
+    """Return the data directory under the project root."""
+    return get_project_dir() / "data"
+
+
+FETCH_BLOCKSIZE = 3096
+
+
+def do_retrieve(url, fname):
+    """Retrieve given url to target filepath fname."""
+    import requests
+    folder = os.path.dirname(fname)
+    if folder and not os.path.exists(folder):
+        os.makedirs(folder, exist_ok=True)
+    if os.path.exists(fname):
+        return
+    resp = requests.get(url, stream=True, timeout=30)
+    with open(fname, "wb") as fout:
+        for chunk in resp.iter_content(FETCH_BLOCKSIZE):
+            fout.write(chunk)
+
+
 def safe_name(name):
     """Return a filesystem-safe version of *name*."""
     return "".join(c if c.isalnum() or c in "-_" else "_" for c in name)
@@ -258,6 +285,23 @@ def inject_keys(window_id, keys):
             ["xdotool", "type", "--delay", "30", combined],
             capture_output=True, timeout=120,
         )
+
+
+def _atomic_yaml_dump(data, path, **dump_kwargs):
+    """Write *data* as YAML to *path* atomically via a tempfile rename."""
+    tmp_path = path + ".tmp"
+    try:
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            yaml.safe_dump(data, f, **dump_kwargs)
+            f.flush()
+            os.fsync(f.fileno())
+        os.rename(tmp_path, path)
+    except Exception:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+        raise
 
 
 _IS_DOCKER = os.path.exists("/.dockerenv")

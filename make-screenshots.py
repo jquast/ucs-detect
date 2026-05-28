@@ -42,10 +42,12 @@ from ucs_detect.accessories import (
     run_kill_command,
     safe_name,
     should_skip,
+    get_project_dir,
+    get_data_dir,
 )
 
-PROJECT_DIR = Path(__file__).resolve().parent
-DATA_DIR = PROJECT_DIR / "data"
+PROJECT_DIR = get_project_dir()
+DATA_DIR = get_data_dir()
 SCREENSHOTS_DIR = PROJECT_DIR / "docs" / "_static" / "screenshots"
 DOCKER_IMAGE = "ucs-detect:latest"
 

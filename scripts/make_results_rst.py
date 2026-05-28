@@ -47,7 +47,7 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
-from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars
+from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars, load_mixins
 from ucs_detect.measure import make_printf_hex
 from ucs_detect.profiler import ProfileSession, generate_graphs
 
@@ -55,7 +55,6 @@ GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname
 GITHUB_EXAMPLE_BASE = 'https://github.com/jquast/ucs-detect/blob/master/docs/ucs_example_files'
 EXAMPLE_FILES_DIR = os.path.join(_ROOT, 'docs', 'ucs_example_files')
 DATA_PATH = os.path.join(_ROOT, "data")
-TERMINAL_DETAIL_MIXINS_PATH = os.path.join(_ROOT, "terminals.yaml")
 PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
@@ -258,22 +257,6 @@ def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, sectio
     link_target = make_link(terminal_name + section_suffix)
     # Use score for color (inverted - faster is better), but elapsed_seconds for sorting
     return f':sref:`{text} <{link_target}> {score_value_for_color}:{sort_value}`'
-
-
-def load_terminal_detail_mixins():
-    """
-    Load terminal detail mixins from YAML file.
-    Returns a dictionary keyed by lowercase software_name.
-    """
-    if not os.path.exists(TERMINAL_DETAIL_MIXINS_PATH):
-        return {}
-
-    with open(TERMINAL_DETAIL_MIXINS_PATH, 'r') as f:
-        data = yaml.load(f, Loader=SafeLoader)
-
-    # Normalize keys to lowercase for case-insensitive matching
-    terminals = data.get('terminals', {})
-    return {key.lower(): value for key, value in terminals.items()}
 
 
 def print_datatable(table_str, caption=None):
@@ -553,7 +536,7 @@ def main():
     print('ok', file=sys.stderr)
 
     print('Loading terminal detail mixins... ', file=sys.stderr, end='', flush=True)
-    terminal_mixins = load_terminal_detail_mixins()
+    terminal_mixins = load_mixins()
     print('ok', file=sys.stderr)
 
     print('Writing docs/_static/score-colors.css ... ', file=sys.stderr, end='', flush=True)
@@ -2641,7 +2624,7 @@ def show_graphics_results(sw_name, entry):
     print()
 
     # Load terminal mixins for sixel notes
-    terminal_mixins = load_terminal_detail_mixins()
+    terminal_mixins = load_mixins()
     sw_name_lower = entry["terminal_software_name"].lower()
     has_notes = (sw_name_lower in terminal_mixins and
                  'sixel_support_notes' in terminal_mixins[sw_name_lower])

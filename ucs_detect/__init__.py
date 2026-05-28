@@ -998,17 +998,15 @@ def _save_results(save_yaml, save_json, **kwargs):
 
 def do_save_yaml(save_yaml, **kwargs):
     """Save results to a YAML file."""
-    # Ensure software_version is always stored as a string in YAML,
-    # otherwise yaml.safe_dump serializes "3.5" as a float.
+    from ucs_detect.accessories import _atomic_yaml_dump
     if 'software_version' in kwargs:
         kwargs['software_version'] = str(kwargs['software_version'])
-    with open(save_yaml, "w", encoding='utf-8') as fout:
-        yaml.safe_dump(
-            kwargs, fout,
-            sort_keys=True,
-            allow_unicode=True,
-            default_flow_style=False,
-        )
+    _atomic_yaml_dump(
+        kwargs, save_yaml,
+        sort_keys=True,
+        allow_unicode=True,
+        default_flow_style=False,
+    )
 
 
 def do_save_json(save_json, **kwargs):

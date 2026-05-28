@@ -39,11 +39,14 @@ from ucs_detect.accessories import (
     load_mixins,
     parse_run_only,
     run_kill_command,
+    safe_name,
     should_skip,
+    get_project_dir,
+    get_data_dir,
 )
 
-PROJECT_DIR = Path(__file__).resolve().parent
-DATA_DIR = PROJECT_DIR / "data"
+PROJECT_DIR = get_project_dir()
+DATA_DIR = get_data_dir()
 DOCKER_IMAGE = "ucs-detect:latest"
 DOCKERFILE = PROJECT_DIR / "Dockerfile"
 
@@ -72,10 +75,10 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
 
     Returns (proc, sentinel_path, stderr_path, error_msg).
     """
-    safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
-    script_path = temp_dir / f"run-{safe_name}.sh"
-    sentinel_path = temp_dir / f"exit-{safe_name}.rc"
-    stderr_path = temp_dir / f"stderr-{safe_name}.log"
+    safe = safe_name(sw_name)
+    script_path = temp_dir / f"run-{safe}.sh"
+    sentinel_path = temp_dir / f"exit-{safe}.rc"
+    stderr_path = temp_dir / f"stderr-{safe}.log"
     write_run_script(script_path, yaml_path, sentinel_path,
                      pause_exit=pause_exit)
 
@@ -235,11 +238,11 @@ def _embed_profile_in_yaml(yaml_path, sw_name, session):
         return
     data["resource_profile"] = session.to_dict()
     from ucs_detect.profiler import hardware_info
+    from ucs_detect.accessories import _atomic_yaml_dump
     data["resource_profile"]["hardware"] = hardware_info()
     try:
-        with open(yaml_path, "w") as f:
-            yaml.safe_dump(data, f, default_flow_style=False,
-                           allow_unicode=True)
+        _atomic_yaml_dump(data, yaml_path, default_flow_style=False,
+                          allow_unicode=True)
     except OSError:
         pass
 
@@ -322,8 +325,9 @@ def _fixup_yaml(yaml_path, sw_name, mixins, program):
         data["software_version"] = version_manual
 
     try:
-        with open(yaml_path, "w") as f:
-            yaml.safe_dump(data, f, default_flow_style=False, allow_unicode=True)
+        from ucs_detect.accessories import _atomic_yaml_dump
+        _atomic_yaml_dump(data, yaml_path, default_flow_style=False,
+                          allow_unicode=True)
     except OSError:
         pass
 
@@ -544,8 +548,8 @@ def main():
         print(f"Would run {len(jobs)} terminals with --parallel={args.parallel}"
               f" ({mode} mode):\n")
         for yaml_path, sw_name, launch_cfg, _seconds_elapsed in jobs:
-            safe_name = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
-            script_path = temp_dir / f"run-{safe_name}.sh"
+            safe = safe_name(sw_name)
+            script_path = temp_dir / f"run-{safe}.sh"
             if not launch_cfg["subterminal"]:
                 argv = build_launch_args(launch_cfg, script_path)
             else:
