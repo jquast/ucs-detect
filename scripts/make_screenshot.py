@@ -23,6 +23,11 @@ if _PROJECT_DIR not in sys.path:
 from ucs_detect.accessories import decode_wchars
 from ucs_detect.measure import _wcswidth_vs15
 
+# ANSI escape for bright magenta background — used as crop markers
+_MARKER_BG = "\x1b[48;5;13m"
+_MARKER_TOP = "▀▄"
+_MARKER_BOTTOM = "▄▀"
+
 
 def set_window_title(title):
     """Set the X11 window title via OSC escape sequence."""
@@ -45,7 +50,26 @@ def find_own_window(title, timeout=5):
             pass
         time.sleep(0.3)
 
-    # Fallback: try getactivewindow
+    # Fallback: search by parent PID (walk up to find terminal process)
+    ppid = os.getppid()
+    for _ in range(4):
+        try:
+            result = subprocess.run(
+                ["xdotool", "search", "--onlyvisible", "--pid", str(ppid)],
+                capture_output=True, text=True, timeout=3,
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip().split("\n")[-1]
+        except (subprocess.TimeoutExpired, OSError):
+            pass
+        # Walk up one level
+        try:
+            with open(f"/proc/{ppid}/stat") as f:
+                ppid = int(f.read().split()[3])
+        except (OSError, ValueError, IndexError):
+            break
+
+    # Last resort: getactivewindow
     try:
         result = subprocess.run(
             ["xdotool", "getactivewindow"],
@@ -60,11 +84,11 @@ def find_own_window(title, timeout=5):
 
 
 def capture_window(window_id, output_path):
-    """Capture *window_id* to *output_path* as a trimmed PNG."""
+    """Capture *window_id* to *output_path* as a marker-cropped PNG."""
     tmp_xwd = None
+    tmp_png = None
     try:
         tmp_xwd = tempfile.mktemp(suffix=".xwd")
-        # xwd may fail with BadMatch on window resize races; retry once.
         for attempt in range(2):
             try:
                 subprocess.run(
@@ -77,13 +101,53 @@ def capture_window(window_id, output_path):
                     time.sleep(0.5)
                     continue
                 raise
+        # Convert to PNG first (no -trim), then crop via marker detection
+        tmp_png = tempfile.mktemp(suffix=".png")
         subprocess.run(
-            ["convert", tmp_xwd, "-trim", "+repage", "-strip", output_path],
+            ["convert", tmp_xwd, "-strip", tmp_png],
             capture_output=True, check=True, timeout=10,
         )
+        _crop_to_markers(tmp_png, output_path)
     finally:
         if tmp_xwd and os.path.exists(tmp_xwd):
             os.unlink(tmp_xwd)
+        if tmp_png and os.path.exists(tmp_png):
+            os.unlink(tmp_png)
+
+
+def _crop_to_markers(src_path, dst_path):
+    """Crop *src_path* to the rectangle bounded by bright-magenta markers."""
+    from PIL import Image
+    img = Image.open(src_path)
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    w, h = img.size
+
+    points = []
+    for y in range(h):
+        for x in range(w):
+            px = img.getpixel((x, y))
+            r, g, b = px[0], px[1], px[2]
+            if r > 180 and g < 60 and b > 180:
+                points.append((x, y))
+
+    if len(points) < 4:
+        # Fallback: simple trim
+        img.save(dst_path)
+        return
+
+    points.sort(key=lambda p: p[0] + p[1])
+    x1, y1 = points[0]
+    x2, y2 = points[-1]
+
+    margin = 2
+    x1 = max(0, x1 - margin)
+    y1 = max(0, y1 - margin)
+    x2 = min(w, x2 + 1)
+    y2 = min(h, y2 + 1)
+
+    cropped = img.crop((x1, y1, x2, y2))
+    cropped.save(dst_path)
 
 
 def display_and_capture(term, wchars, expected_width, measured_width,
@@ -115,6 +179,12 @@ def display_and_capture(term, wchars, expected_width, measured_width,
 
     # Clear screen, position cursor
     sys.stdout.write("\x1b[H\x1b[2J")
+
+    # Top-left crop marker: bright magenta background, checkerboard blocks
+    sys.stdout.write(f"\x1b[1;1H{_MARKER_BG}{_MARKER_TOP}\x1b[0m")
+    sys.stdout.flush()
+
+    # Content box starting at row 2
     sys.stdout.write("\x1b[2;1H")
     sys.stdout.flush()
 
@@ -133,6 +203,11 @@ def display_and_capture(term, wchars, expected_width, measured_width,
         print(term.cyan(top))
         print(term.cyan(vbar) + sized_inner + term.cyan(vbar))
         print(term.cyan(bottom))
+
+    # Bottom-right crop marker: header/footer width + error overflow + margin
+    marker_row = 10 if has_text_sizing else 6
+    marker_col = interior + max(0, measured_width - expected_width) + 4
+    sys.stdout.write(f"\x1b[{marker_row};{marker_col}H{_MARKER_BG}{_MARKER_BOTTOM}\x1b[0m")
     sys.stdout.flush()
 
     # Drain stale input (e.g. from does_text_sizing probe) so the CPR

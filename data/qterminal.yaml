@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-28 01:35:26 UTC
+datetime: 2026-05-28 06:04:55 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -9,36 +9,30 @@ python_version: 3.14.5
 resource_profile:
   cpu_pct:
   - 0.0
-  - 6.0
+  - 4.0
   - 0.0
-  - 3.0
-  - 37.9
   - 36.0
-  - 36.0
-  - 37.9
+  - 113.69999999999999
+  - 114.9
   elapsed_s:
-  - 0.0005674669992004056
-  - 1.0011664019984892
-  - 2.0031998389986256
-  - 3.005166281998754
-  - 4.006283460999839
-  - 5.007684338999752
-  - 6.009034842998517
-  - 7.010336353998355
+  - 0.00046425199980149046
+  - 1.000944380000874
+  - 2.00278544899993
+  - 3.0045201770008134
+  - 4.005852266000147
+  - 5.00768536599935
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 2.953125
-  - 112.4375
-  - 112.4375
-  - 115.5625
-  - 118.703125
-  - 126.38671875
-  - 126.515625
-  - 128.453125
-seconds_elapsed: 3.9936076890007826
+  - 7.06640625
+  - 114.22265625
+  - 114.22265625
+  - 118.3046875
+  - 125.21875
+  - 127.66015625
+seconds_elapsed: 2.8345752070017625
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000
@@ -46,6 +40,7 @@ session_arguments:
   limit_graphemes: 5000
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 1.0
 software_name: QTerminal
 software_version: 2.4.0-1
 system: Linux

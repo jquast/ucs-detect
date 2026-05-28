@@ -17,20 +17,29 @@ import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-import threading
 
 import yaml
 
 from ucs_detect.accessories import (
     DiscoveredYAML,
+    _IS_DOCKER,
+    _KEY_INJECT_LOCK,
+    _KEY_INJECT_PRE_DELAY,
+    _KEY_INJECT_POST_DELAY,
     _RE_PAUSE,
     build_launch_args,
     build_subterminal_launch_args,
+    check_unmatched_run_only,
     discover_yamls,
+    docker_build,
+    docker_image_exists,
     find_window_for_command,
     get_launch_config,
     inject_keys,
     load_mixins,
+    parse_run_only,
+    run_kill_command,
+    should_skip,
 )
 
 PROJECT_DIR = Path(__file__).resolve().parent
@@ -39,32 +48,6 @@ DOCKER_IMAGE = "ucs-detect:latest"
 DOCKERFILE = PROJECT_DIR / "Dockerfile"
 
 _RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([\d.]+)', re.MULTILINE)
-
-_KEY_INJECT_LOCK = threading.RLock()
-_KEY_INJECT_PRE_DELAY = 0.5
-_KEY_INJECT_POST_DELAY = 1.5
-
-_IS_DOCKER = os.path.exists("/.dockerenv")
-
-
-def _should_skip(launch_cfg, is_docker=None, host_only=False):
-    """Return True if the config should be skipped in the current environment.
-
-    If *is_docker* is None, uses the process environment (_IS_DOCKER).
-    When *host_only* is True, only terminals with skip_docker: true are
-    selected (everything else is skipped)."""
-    if is_docker is None:
-        is_docker = _IS_DOCKER
-    if launch_cfg["skip"]:
-        return True
-    if host_only:
-        if not launch_cfg["skip_docker"]:
-            return True
-    elif is_docker and launch_cfg["skip_docker"]:
-        return True
-    if not is_docker and launch_cfg["skip_system"]:
-        return True
-    return False
 
 
 def write_run_script(script_path, yaml_path, sentinel_path,
@@ -105,6 +88,10 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
         else:
             argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
                                                  script_path)
+
+        if not _IS_DOCKER:
+            argv = ["systemd-run", "--user", "--scope",
+                    "-p", "CPUQuota=200%", "--"] + argv
 
         snapshot_pre_windows = None
         if post_keys:
@@ -171,8 +158,13 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
         return (None, None, None, str(exc))
 
 
-def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout):
-    """Wait for sentinel file.  Returns (sw_name, exit_code, error_msg)."""
+def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout,
+                   post_keys=None):
+    """Wait for sentinel file.  Returns (sw_name, exit_code, error_msg).
+
+    When *post_keys* is truthy, the deadline is not collapsed on process
+    exit because key-inject terminals (Hyper, Extraterm, Warp) fork/detach
+    and the launcher process exits immediately."""
     error_msg = None
     exit_code = -99
 
@@ -187,7 +179,7 @@ def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout):
                 exit_code = -2
             break
 
-        if not proc_dead and proc.poll() is not None:
+        if not post_keys and not proc_dead and proc.poll() is not None:
             proc_dead = True
             deadline = min(deadline, time.monotonic() + 30)
 
@@ -217,31 +209,6 @@ def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout):
             pass
 
     return (sw_name, exit_code, error_msg)
-
-
-def _docker_image_exists():
-    """Check if the Docker image is already built."""
-    try:
-        result = subprocess.run(
-            ["docker", "images", "-q", DOCKER_IMAGE],
-            capture_output=True, text=True, timeout=10,
-        )
-        return bool(result.stdout.strip())
-    except (subprocess.TimeoutExpired, OSError, FileNotFoundError):
-        return False
-
-
-def _docker_build():
-    """Build the Docker image."""
-    print(f"Building Docker image {DOCKER_IMAGE} ...", flush=True)
-    env = os.environ.copy()
-    # Use BuildKit for cache mounts (ccache); falls back gracefully if unavailable
-    env.setdefault("DOCKER_BUILDKIT", "1")
-    subprocess.check_call(
-        ["docker", "build", "-f", str(DOCKERFILE), "-t", DOCKER_IMAGE,
-         str(PROJECT_DIR)],
-        env=env,
-    )
 
 
 def _docker_self_run(argv):
@@ -370,7 +337,8 @@ def _docker_per_terminal_run(args):
         sys.exit(0)
 
     mixins = load_mixins()
-    run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip()) if args.run_only else set()
+    run_only = parse_run_only(args.run_only)
+    matched_run_only = set()
 
     jobs = []
     for d in all_terminals:
@@ -382,7 +350,10 @@ def _docker_per_terminal_run(args):
             prog_lower = launch_cfg.get("program", "").lower()
             if name_lower not in run_only and prog_lower not in run_only:
                 continue
-        if _should_skip(launch_cfg, is_docker=True):
+            for candidate in (name_lower, prog_lower):
+                if candidate in run_only:
+                    matched_run_only.add(candidate)
+        if should_skip(launch_cfg, is_docker=True):
             continue
         if launch_cfg.get("subterminal") and not launch_cfg.get("program"):
             continue
@@ -390,8 +361,11 @@ def _docker_per_terminal_run(args):
 
     jobs.sort(key=lambda j: j[1], reverse=True)
 
+    if run_only:
+        check_unmatched_run_only(run_only, matched_run_only)
+
     n_cpus = os.cpu_count() or 2
-    parallel = max(1, min(n_cpus * 3 // 8, 16))
+    parallel = max(1, min((n_cpus - 2) // 2, 16))
 
     print(f"Per-terminal Docker: {len(jobs)} terminals, {parallel} parallel "
           f"(cpus={n_cpus}, timeout={args.timeout}s)")
@@ -464,14 +438,14 @@ def main():
     args = parser.parse_args()
 
     if args.use_docker and not _IS_DOCKER:
-        if not _docker_image_exists():
-            _docker_build()
+        if not docker_image_exists():
+            docker_build(DOCKERFILE, PROJECT_DIR)
         _docker_per_terminal_run(args)
         return
 
     if not args.use_system and not _IS_DOCKER:
-        if not _docker_image_exists():
-            _docker_build()
+        if not docker_image_exists():
+            docker_build(DOCKERFILE, PROJECT_DIR)
         argv = sys.argv[1:]
         argv = [a for a in argv if a != "--use-system"]
         _docker_self_run(argv)
@@ -510,9 +484,8 @@ def main():
         print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
         sys.exit(0)
 
-    run_only = set()
-    if args.run_only:
-        run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip())
+    run_only = parse_run_only(args.run_only)
+    matched_run_only = set()
 
     jobs = []
     skipped = []
@@ -532,8 +505,11 @@ def main():
                     and prog_lower not in run_only
                     and file_lower not in run_only):
                 continue
+            for candidate in (name_lower, prog_lower, file_lower):
+                if candidate in run_only:
+                    matched_run_only.add(candidate)
 
-        if _should_skip(launch_cfg, host_only=args.host_only):
+        if should_skip(launch_cfg, host_only=args.host_only):
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
             skipped.append((d.software_name, reason))
             continue
@@ -549,6 +525,9 @@ def main():
         jobs.append((d.path, d.software_name, launch_cfg, d.seconds_elapsed))
 
     jobs.sort(key=lambda j: j[3], reverse=True)
+
+    if run_only:
+        check_unmatched_run_only(run_only, matched_run_only)
 
     if skipped:
         print(f"Skipping {len(skipped)} terminals:")
@@ -620,15 +599,18 @@ def main():
             profile = None
             if ProfileSession is not None and proc is not None:
                 profile = ProfileSession(sw_name, proc.pid,
-                    program=launch_cfg["program"] if launch_cfg["subterminal"] else None,
+                    program=launch_cfg["program"],
                     extra_programs=launch_cfg.get("profile_processes") or None)
                 profile.start()
 
+            term_timeout = launch_cfg.get("timeout") or args.timeout
+            post_keys = launch_cfg.get("post_launch_keys")
             future = executor.submit(
                 _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
-                args.timeout)
-            future_map[future] = (sw_name, proc, profile, sentinel_path, yaml_path,
-                                  launch_cfg.get("program", sw_name))
+                term_timeout, post_keys=post_keys)
+            future_map[future] = (
+                sw_name, proc, profile, sentinel_path, yaml_path,
+                launch_cfg.get("program", sw_name), launch_cfg)
 
         if direct_jobs and not (failures and not args.continue_after_failure):
             if key_jobs:
@@ -650,18 +632,21 @@ def main():
                 profile = None
                 if ProfileSession is not None and proc is not None:
                     profile = ProfileSession(sw_name, proc.pid,
-                    program=launch_cfg["program"] if launch_cfg["subterminal"] else None,
-                    extra_programs=launch_cfg.get("profile_processes") or None)
+                        program=launch_cfg["program"],
+                        extra_programs=launch_cfg.get("profile_processes") or None)
                     profile.start()
 
+                term_timeout = launch_cfg.get("timeout") or args.timeout
+                post_keys = launch_cfg.get("post_launch_keys")
                 future = executor.submit(
                     _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
-                    args.timeout)
-                future_map[future] = (sw_name, proc, profile, sentinel_path, yaml_path,
-                                      launch_cfg.get("program", sw_name))
+                    term_timeout, post_keys=post_keys)
+                future_map[future] = (
+                    sw_name, proc, profile, sentinel_path, yaml_path,
+                    launch_cfg.get("program", sw_name), launch_cfg)
 
         for future in as_completed(future_map):
-            sw_name, proc, profile, sentinel_path, yaml_path, program = future_map[future]
+            sw_name, proc, profile, sentinel_path, yaml_path, program, launch_cfg = future_map[future]
             try:
                 name, exit_code, error = future.result()
             except Exception as exc:
@@ -686,6 +671,7 @@ def main():
                 status = error or f"exit code {exit_code}"
                 print(f"[{name}] FAILED: {status}", flush=True)
                 failures.append((name, exit_code, error))
+                run_kill_command(launch_cfg)
                 if not args.continue_after_failure:
                     for f in future_map:
                         f.cancel()
@@ -693,6 +679,7 @@ def main():
             else:
                 print(f"[{name}] OK", flush=True)
                 _fixup_yaml(yaml_path, name, mixins, program)
+                run_kill_command(launch_cfg)
 
     # Profile graphs and resource scores are generated by
     # scripts/make_results_rst.py during docs generation.

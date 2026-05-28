@@ -5,6 +5,7 @@ FROM archlinux:latest
 
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
+ENV PYTHONDONTWRITEBYTECODE=1
 
 # bootstrap: update mirrors, install base deps, generate locale
 RUN --mount=type=cache,target=/var/cache/pacman/pkg \

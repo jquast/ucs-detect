@@ -616,6 +616,17 @@ def main():
             display_common_hyperlinks()
         print('ok', file=sys.stderr)
 
+    # Remove stale per-terminal RST files not in the current score table
+    expected = {f"{make_link(e['terminal_software_name'])}.rst" for e in score_table}
+    sw_dir = os.path.join(_ROOT, "docs", "sw_results")
+    if os.path.isdir(sw_dir):
+        for fname in os.listdir(sw_dir):
+            if fname.endswith(".rst") and fname not in expected:
+                stale = os.path.join(sw_dir, fname)
+                print(f'Removing stale {stale} ... ', file=sys.stderr, end='', flush=True)
+                os.unlink(stale)
+                print('ok', file=sys.stderr)
+
 
 def _fmt_ms(ms):
     """Format milliseconds with adaptive precision."""
@@ -722,7 +733,7 @@ def resource_cost(data):
     duration = elapsed[-1]
     if mean_cpu < 0.1 and mean_rss < 5.0:
         return float('NaN')
-    return mean_cpu * mean_rss * duration
+    return math.log(mean_cpu + 1) + math.log(mean_rss + 1) + math.log(duration + 1)
 
 
 def make_score_table():
@@ -1544,7 +1555,8 @@ def _detect_id_methods(data):
     sm = tr.get("software_method", "")
     xt_has = sm == "XTVERSION"
     tp_has = sm == "TERM_PROGRAM" or bool(env.get("TERM_PROGRAM"))
-    term_has = bool(env.get("TERM"))
+    term_val = env.get("TERM", "")
+    term_has = bool(term_val) and term_val not in ("xterm", "xterm-256color")
     return xt_has, tp_has, term_has
 
 
@@ -1603,7 +1615,11 @@ def display_features_table(score_table):
     print()
 
     table_data = []
-    for entry in score_table:
+    features_sorted = sorted(
+        score_table,
+        key=lambda e: (math.isnan(e.get("score_features_scaled", float('NaN'))),
+                       -e.get("score_features_scaled", 0) if not math.isnan(e.get("score_features_scaled", float('NaN'))) else 0))
+    for rank, entry in enumerate(features_sorted, start=1):
         sw_name = entry["terminal_software_name"]
         tr = entry["data"].get("terminal_results") or {}
         modes = tr.get("modes") or {}
@@ -1612,6 +1628,7 @@ def display_features_table(score_table):
         tested = bool(tr)
 
         row = {
+            "Rank": rank,
             "Terminal": make_outbound_hyperlink(sw_name, sw_name + "_scores"),
             "FEAT Score": wrap_score_with_hyperlink(
                 format_score_int(entry["score_features_scaled"]),
@@ -2007,8 +2024,7 @@ def display_performance_section(score_table):
     display_title("Performance", 2)
 
     valid = [e for e in score_table
-             if "resource_score" in e.get("data", {})
-             and not math.isnan(e.get("score_resource", float('NaN')))]
+             if not math.isnan(e.get("score_resource", float('NaN')))]
 
     if not valid:
         print("No performance data available.")
@@ -2016,8 +2032,7 @@ def display_performance_section(score_table):
         return
 
     print("The Resources score combines CPU, memory, and runtime into a single "
-          "0-100 metric.  The mean across all terminals maps to 50; the "
-          "lightest/fastest terminal scores 100.")
+          "0-100 metric.  See per-terminal pages for calculation details.")
     print()
 
     headers = ["Terminal", "Score", "CPU %", "RSS (MB)", "Time (s)"]
@@ -2051,13 +2066,30 @@ def display_performance_section(score_table):
     print()
     print(".. figure:: _static/profiles/all_cpu.png")
     print("   :alt: CPU usage across all terminals")
+    print("   :width: 800px")
     print()
     print("   CPU usage during test execution, all terminals overlaid.")
     print()
     print(".. figure:: _static/profiles/all_rss.png")
     print("   :alt: RSS memory usage across all terminals")
+    print("   :width: 800px")
     print()
     print("   RSS memory usage during test execution, all terminals overlaid.")
+    print()
+    print(".. figure:: _static/profiles/all_cpu_vs_time.png")
+    print("   :alt: CPU % vs Duration trade-off across all terminals")
+    print("   :width: 800px")
+    print()
+    print("   Trade-off between mean CPU % and total test duration. Dots near the")
+    print("   origin use less CPU and less time. Dashed contours show equal")
+    print("   CPU × time product (lower percentile = better).")
+    print()
+    print(".. figure:: _static/profiles/all_time.png")
+    print("   :alt: Duration across all terminals")
+    print("   :width: 800px")
+    print()
+    print("   Total test duration for each terminal, sorted fastest to slowest.")
+    print("   Log scale on the X axis.")
     print()
 
 
@@ -2438,7 +2470,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Mean CPU: {mean_cpu:.1f}%")
         print(f"- Mean RSS: {mean_rss:.1f} MB")
         print(f"- Resources Score: {entry['score_resource_scaled']*100:.0f}/100")
-        print("- Note: Composite score combining CPU + RSS + time")
+        print("- Note: log-scale composite cost = log(CPU+1) + log(RSS+1) + log(time+1)")
         print(f"- Scaled result: {format_score_pct(entry['score_resource_scaled'])}")
     else:
         print("Resource profiling data not available.")
@@ -3200,13 +3232,34 @@ def show_time_elapsed_results(sw_name, entry):
     print()
     print(f".. figure:: {cpu_graph}")
     print("   :alt: CPU usage over time")
+    print("   :width: 600px")
     print()
     print(f"   CPU usage during test execution for *{sw_name}*.")
     print()
     print(f".. figure:: {rss_graph}")
     print("   :alt: RSS memory over time")
+    print("   :width: 600px")
     print()
     print(f"   RSS memory usage during test execution for *{sw_name}*.")
+    print()
+
+    time_graph = f"../_static/profiles/{safe}_time.png"
+    cpu_vs_time_graph = f"../_static/profiles/{safe}_cpu_vs_time.png"
+
+    if os.path.exists(os.path.join(_ROOT, "docs", "_static", "profiles", f"{safe}_time.png")):
+        print(f".. figure:: {time_graph}")
+        print("   :alt: Duration comparison")
+        print("   :width: 600px")
+        print()
+        print(f"   Test duration for *{sw_name}* compared to all other terminals.")
+        print()
+    if os.path.exists(os.path.join(_ROOT, "docs", "_static", "profiles", f"{safe}_cpu_vs_time.png")):
+        print(f".. figure:: {cpu_vs_time_graph}")
+        print("   :alt: CPU % vs Duration")
+        print("   :width: 600px")
+        print()
+        print(f"   CPU % vs duration trade-off for *{sw_name}*.")
+        print()
 
 
 def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=None):

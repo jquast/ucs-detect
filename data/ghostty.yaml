@@ -1,82 +1,64 @@
 ambiguous_width: 1
-datetime: 2026-05-28 01:04:14 UTC
+datetime: 2026-05-28 15:07:09 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
   TERM_PROGRAM: ghostty
-  TERM_PROGRAM_VERSION: 1.3.1-arch2
-height: 26
+  TERM_PROGRAM_VERSION: 1.3.2-main-+3706abab0
+height: 21
 preferred_encoding: UTF-8
-python_version: 3.14.5
+python_version: 3.14.4
 resource_profile:
   cpu_pct:
   - 0.0
-  - 93.9
-  - 65.9
-  - 54.9
-  - 139.8
-  - 138.7
-  - 134.8
-  - 138.8
-  - 137.8
-  - 138.8
-  - 139.8
-  - 140.8
-  - 137.8
-  - 139.8
-  - 132.8
-  - 120.9
-  - 123.8
-  - 125.8
-  - 141.8
-  - 137.8
+  - 35.6
+  - 108.80000000000001
+  - 198.0
+  - 197.0
+  - 197.8
+  - 200.0
+  - 198.8
+  - 199.0
+  - 198.8
+  - 198.8
+  - 190.7
+  - 196.0
+  - 199.8
   elapsed_s:
-  - 0.00047515200094494503
-  - 1.0010117620004166
-  - 2.00217119700028
-  - 3.0040985499999806
-  - 4.005312761999448
-  - 5.006977504999668
-  - 6.0090741670010175
-  - 7.010409016000267
-  - 8.011978602000454
-  - 9.01350126699981
-  - 10.014683901999888
-  - 11.015959587000907
-  - 12.01727014500102
-  - 13.018815400000676
-  - 14.020073982999747
-  - 15.02147274699928
-  - 16.0227218050004
-  - 17.024319595000634
-  - 18.02556966799966
-  - 19.026832042000024
+  - 0.01040851900324924
+  - 1.0192659419990378
+  - 2.030909059001715
+  - 3.0420548750043963
+  - 4.052051284001209
+  - 5.062080738003715
+  - 6.073205491004046
+  - 7.083486562005419
+  - 8.094525309003075
+  - 9.104857461003121
+  - 10.115899848999106
+  - 11.127037297999777
+  - 12.139129884002614
+  - 13.149653696003952
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 9.81640625
-  - 239.55078125
-  - 329.56640625
-  - 332.4140625
-  - 344.875
-  - 345.29296875
-  - 347.39453125
-  - 347.75390625
-  - 375.625
-  - 375.9375
-  - 376.48046875
-  - 376.8359375
-  - 377.2578125
-  - 384.6015625
-  - 385.046875
-  - 385.546875
-  - 386.08203125
-  - 399.7265625
-  - 400.22265625
-  - 400.5546875
-seconds_elapsed: 17.11032140899988
+  - 0.5859375
+  - 221.63671875
+  - 233.21875
+  - 243.95703125
+  - 259.1484375
+  - 263.796875
+  - 265.140625
+  - 266.7578125
+  - 274.49609375
+  - 275.296875
+  - 275.9765625
+  - 333.76171875
+  - 334.48046875
+  - 335.04296875
+seconds_elapsed: 11.865514424003777
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -84,25 +66,26 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 1.0
 software_name: ghostty
-software_version: 1.3.1-arch2
+software_version: 1.3.2-main-+3706abab0
 system: Linux
 terminal_results:
-  background_color_hex: '#28282c2c3434'
+  background_color_hex: '#111111111111'
   background_color_rgb:
-  - 10280
-  - 11308
-  - 13364
-  cell_height: 21
-  cell_width: 10
+  - 4369
+  - 4369
+  - 4369
+  cell_height: 25
+  cell_width: 11
   color_scheme: light
   colored_underlines: true
   decrqcra: false
   decrqss: true
   decrqss_settings:
     decscusr: '1'
-    decstbm: 1;26
-    sgr: 0;38:2::40:44:52
+    decstbm: 1;21
+    sgr: 0;38:2::17:17:17
   decrqss_truecolor_probe: true
   device_attributes:
     extensions:
@@ -114,7 +97,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 26
+  height: 21
   iterm2_features:
     features: {}
     supported: false
@@ -199,21 +182,21 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: true
-  pixels_height: 546
-  pixels_width: 790
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  pixels_height: 525
+  pixels_width: 781
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: false
   software_method: XTVERSION
   software_name: ghostty
-  software_version: 1.3.1-arch2
+  software_version: 1.3.2-main-+3706abab0
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: xterm-ghostty
-  width: 79
+  width: 71
   xtgettcap:
     capabilities:
       AX: ''
@@ -225,7 +208,7 @@ terminal_results:
       PS: "\e[200~"
       RGB: '8'
       RV: "\e[>c"
-      Se: "\e[2 q"
+      Se: "\e[0 q"
       Setulc: "\e[58:2::%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%d%;m"
       Smulx: "\e[4:%p1%dm"
       Ss: "\e[%p1%d q"
@@ -436,7 +419,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: ghostty 1.3.1-arch2
+  xtversion_raw: ghostty 1.3.2-main-+3706abab0
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -2599,4 +2582,4 @@ test_results:
       n_total: 43592
       pct_success: 99.99770600110112
 wcwidth_version: 0.7.0
-width: 79
+width: 71

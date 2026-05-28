@@ -15,7 +15,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -25,25 +24,30 @@ import yaml
 
 from ucs_detect.accessories import (
     DiscoveredYAML,
+    _IS_DOCKER,
+    _KEY_INJECT_LOCK,
     _RE_PAUSE,
     build_launch_args,
     build_subterminal_launch_args,
+    check_unmatched_run_only,
     discover_yamls,
+    docker_build,
+    docker_image_exists,
     find_best_failure,
     find_window_for_command,
     get_launch_config,
     inject_keys,
     load_mixins,
+    parse_run_only,
+    run_kill_command,
     safe_name,
+    should_skip,
 )
 
 PROJECT_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_DIR / "data"
 SCREENSHOTS_DIR = PROJECT_DIR / "docs" / "_static" / "screenshots"
 DOCKER_IMAGE = "ucs-detect:latest"
-_IS_DOCKER = os.path.exists("/.dockerenv")
-
-_KEY_INJECT_LOCK = threading.RLock()
 
 # Categories that have failed_codepoints in their results
 _CATEGORY_YAML_KEYS = [
@@ -124,29 +128,6 @@ def build_batch_script(script_path, sentinel_path, batch_json_path):
     script_path.chmod(0o755)
 
 
-def _docker_image_exists():
-    try:
-        result = subprocess.run(
-            ["docker", "images", "-q", DOCKER_IMAGE],
-            capture_output=True, text=True, timeout=10,
-        )
-        return bool(result.stdout.strip())
-    except (subprocess.TimeoutExpired, OSError, FileNotFoundError):
-        return False
-
-
-def _docker_build():
-    print(f"Building Docker image {DOCKER_IMAGE} ...", flush=True)
-    env = os.environ.copy()
-    # Use BuildKit for cache mounts (ccache); falls back gracefully if unavailable
-    env.setdefault("DOCKER_BUILDKIT", "1")
-    subprocess.check_call(
-        ["docker", "build", "-f", str(PROJECT_DIR / "Dockerfile"),
-         "-t", DOCKER_IMAGE, str(PROJECT_DIR)],
-        env=env,
-    )
-
-
 def _docker_per_terminal_run(args):
     system_name = platform.system()
     all_terminals = list(discover_yamls(system_name))
@@ -155,7 +136,8 @@ def _docker_per_terminal_run(args):
         sys.exit(0)
 
     mixins = load_mixins()
-    run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip()) if args.run_only else set()
+    run_only = parse_run_only(args.run_only)
+    matched_run_only = set()
 
     jobs = []
     for d in all_terminals:
@@ -165,12 +147,20 @@ def _docker_per_terminal_run(args):
         if launch_cfg["skip"] or launch_cfg["skip_docker"]:
             continue
         if run_only:
-            if d.software_name.lower() not in run_only and launch_cfg.get("program", "").lower() not in run_only:
+            name_lower = d.software_name.lower()
+            prog_lower = launch_cfg.get("program", "").lower()
+            if name_lower not in run_only and prog_lower not in run_only:
                 continue
+            for candidate in (name_lower, prog_lower):
+                if candidate in run_only:
+                    matched_run_only.add(candidate)
         jobs.append(d.software_name)
 
+    if run_only:
+        check_unmatched_run_only(run_only, matched_run_only)
+
     n_cpus = os.cpu_count() or 2
-    parallel = max(1, min(n_cpus * 3 // 8, 16))
+    parallel = max(1, min((n_cpus - 2) // 2, 16))
 
     print(f"Per-terminal Docker screenshots: {len(jobs)} terminals, {parallel} parallel")
 
@@ -236,8 +226,8 @@ def main():
     args = parser.parse_args()
 
     if args.use_docker and not _IS_DOCKER:
-        if not _docker_image_exists():
-            _docker_build()
+        if not docker_image_exists():
+            docker_build(PROJECT_DIR / "Dockerfile", PROJECT_DIR)
         _docker_per_terminal_run(args)
         return
 
@@ -266,9 +256,8 @@ def main():
         print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
         sys.exit(0)
 
-    run_only = set()
-    if args.run_only:
-        run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip())
+    run_only = parse_run_only(args.run_only)
+    matched_run_only = set()
 
     # Group failures by terminal (one launch per terminal)
     terminal_jobs = {}  # sw_name -> (launch_cfg, list of failure dicts)
@@ -285,6 +274,9 @@ def main():
             if (name_lower not in run_only and prog_lower not in run_only):
                 skipped.append((d.software_name, "not in --run-only"))
                 continue
+            for candidate in (name_lower, prog_lower):
+                if candidate in run_only:
+                    matched_run_only.add(candidate)
 
         if launch_cfg["skip"]:
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
@@ -325,6 +317,9 @@ def main():
             })
 
         terminal_jobs[d.software_name] = (launch_cfg, records)
+
+    if run_only:
+        check_unmatched_run_only(run_only, matched_run_only)
 
     if skipped:
         print(f"Skipping {len(skipped)} terminals:")
@@ -482,6 +477,8 @@ def main():
                 print("TIMEOUT")
                 failures_list.append((sw_name, -1, "timeout"))
                 continue
+
+            run_kill_command(launch_cfg)
 
             if exit_code != 0:
                 stderr_text = ""

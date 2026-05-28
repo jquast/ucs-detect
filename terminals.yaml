@@ -24,6 +24,8 @@ terminals:
 
   contour:
     homepage: https://contour-terminal.org/
+    skip_docker: true
+    skip_reason: "does not respond to CPR (DSR) in Docker/Xvfb; works on host"
     launch:
       program: contour
       args: [terminal]
@@ -49,6 +51,7 @@ terminals:
     homepage: https://extraterm.org/
     skip_docker: true
     skip_reason: "JS/Electron-like, no visible window in Xvfb"
+    profile_processes: [qode]
     launch:
       program: /opt/extratermqt/extratermqt
       wm_class: qode
@@ -87,7 +90,7 @@ terminals:
       program: gnome-terminal
       args: [--wait, --]
     profile_processes: [gnome-terminal-server]
-    timeout: 3600
+    timeout: 14400
 
   hyper:
     homepage: https://hyper.is/
@@ -144,7 +147,7 @@ terminals:
       program: lxterminal
       args: [-e]
     profile_processes: [gnome-terminal-server]
-    timeout: 3600
+    timeout: 14400
 
   mintty:
     homepage: https://mintty.github.io/
@@ -159,6 +162,8 @@ terminals:
 
   putty:
     homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/
+    version_template: "{aur_version}"
+    aur_package: putty
     launch:
       program: pterm
       args: [-e]
@@ -182,12 +187,17 @@ terminals:
 
   rxvt-unicode:
     homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
+    version_template: "{aur_version}"
+    aur_package: rxvt-unicode
     launch:
       program: urxvt
       args: ["+sb", "-fn", "xft:Unifont:pixelsize=16", "-e"]
 
   screen:
     homepage: https://www.gnu.org/software/screen/
+    display_name: "GNU Screen"
+    version_template: "{aur_version}"
+    aur_package: screen
     launch:
       subterminal: true
       program: screen
@@ -205,6 +215,8 @@ terminals:
     homepage: https://st.suckless.org/
     display_name: st
     sixel_support_notes: "Patches are available to add sixel support."
+    version_template: "{aur_version}"
+    aur_package: st
     launch:
       program: st
       args: ["-f", "Unifont:pixelsize=16", "-e"]
@@ -213,6 +225,7 @@ terminals:
     homepage: https://github.com/LukeSmithxyz/st
     display_name: st-luke
     description: "This is based on Luke Smith xyz's fork of st"
+    version_manual: "0.8.5"
     launch:
       program: /usr/local/bin/st-luke
       args: ["-f", "Unifont:pixelsize=16", "-e"]
@@ -231,9 +244,13 @@ terminals:
     homepage: https://tabby.sh/
     skip_docker: true
     skip_reason: "Electron app; not packaged for Arch"
+    version_manual: "1.0.230"
     launch:
       program: tabby
-      args: [-e]
+      args: []
+      post_launch_delay_ms: 1500
+      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
+      kill_command: [pkill, tabby]
 
   teraterm:
     homepage: https://teratermproject.github.io/
@@ -257,7 +274,7 @@ terminals:
       program: terminator
       args: [-x, sh, "{script}"]
     profile_processes: [gnome-terminal-server]
-    timeout: 3600
+    timeout: 14400
 
   terminology:
     homepage: https://www.enlightenment.org/about-terminology
@@ -285,6 +302,8 @@ terminals:
 
   weston-terminal:
     homepage: https://gitlab.freedesktop.org/wayland/weston
+    version_template: "{aur_version}"
+    aur_package: weston
     launch:
       program: weston-terminal
       args: [--shell, "{script}"]
@@ -304,7 +323,7 @@ terminals:
     skip_reason: "GPU-accelerated; software rendering untested (same class as Rio)"
     launch:
       program: warp-terminal
-      wm_class: warp
+      wm_class: dev.warp.Warp
       post_launch_delay_ms: 1500
       post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
 
@@ -331,7 +350,7 @@ terminals:
       program: xfce4-terminal
       args: [-e, "sh {script}"]
     profile_processes: [gnome-terminal-server]
-    timeout: 3600
+    timeout: 14400
 
   xterm:
     homepage: https://invisible-island.net/xterm/
@@ -342,6 +361,8 @@ terminals:
 
   zutty:
     homepage: https://tomscii.sig7.se/zutty/
+    version_template: "{aur_version}"
+    aur_package: zutty
     launch:
       program: zutty
       args: ["-font", "unifont", "-fontsize", "16", "-e"]
@@ -353,4 +374,10 @@ terminals:
       program: zellij
       args: []
       post_launch_delay_ms: 300
-      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
+      post_launch_keys: ["sh ", "${SCRIPT} && pkill zellij", "\n"]
+    launch_docker:
+      subterminal: true
+      program: zellij
+      args: []
+      post_launch_delay_ms: 2000
+      post_launch_keys: ["sh ", "${SCRIPT} && pkill zellij", "\n"]

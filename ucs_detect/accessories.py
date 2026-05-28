@@ -4,6 +4,8 @@ import os
 import re
 import shlex
 import subprocess
+import sys
+import threading
 import time
 from pathlib import Path
 from typing import NamedTuple
@@ -67,12 +69,6 @@ def discover_yamls(target_system, data_dir=None):
         if yaml_path.name == "terminals.yaml":
             continue
         try:
-            file_size = yaml_path.stat().st_size
-            if file_size < 200:
-                yield DiscoveredYAML(
-                    yaml_path, yaml_path.stem, 0.0,
-                    f"file too small ({file_size} bytes)")
-                continue
             with open(yaml_path) as f:
                 data = yaml.safe_load(f) or {}
         except (OSError, yaml.YAMLError):
@@ -84,12 +80,7 @@ def discover_yamls(target_system, data_dir=None):
 
         sw_name = data.get("software_name", yaml_path.stem)
         seconds_elapsed = data.get("seconds_elapsed", 0.0)
-
-        error_msg = None
-        if data.get("test_results") == {} and "error" in data:
-            error_msg = "previous run failed (empty test_results)"
-
-        yield DiscoveredYAML(yaml_path, sw_name, seconds_elapsed, error_msg)
+        yield DiscoveredYAML(yaml_path, sw_name, seconds_elapsed, None)
 
 
 def get_launch_config(sw_name, mixins, is_docker=None):
@@ -267,3 +258,78 @@ def inject_keys(window_id, keys):
             ["xdotool", "type", "--delay", "30", combined],
             capture_output=True, timeout=120,
         )
+
+
+_IS_DOCKER = os.path.exists("/.dockerenv")
+
+_KEY_INJECT_LOCK = threading.RLock()
+_KEY_INJECT_PRE_DELAY = 0.5
+_KEY_INJECT_POST_DELAY = 1.5
+
+
+def should_skip(launch_cfg, host_only=False, is_docker=None):
+    """Return True if the config should be skipped in the current environment.
+
+    If *is_docker* is None, uses the process environment (_IS_DOCKER).
+    When *host_only* is True, only terminals with skip_docker: true are
+    selected (everything else is skipped)."""
+    if is_docker is None:
+        is_docker = _IS_DOCKER
+    if launch_cfg["skip"]:
+        return True
+    if host_only:
+        if not launch_cfg["skip_docker"]:
+            return True
+    elif is_docker and launch_cfg["skip_docker"]:
+        return True
+    if not is_docker and launch_cfg["skip_system"]:
+        return True
+    return False
+
+
+def run_kill_command(launch_cfg):
+    """Execute kill_command from launch config to clean up a terminal process."""
+    kill_cmd = launch_cfg.get("kill_command")
+    if not kill_cmd:
+        return
+    try:
+        subprocess.run(kill_cmd, timeout=5, capture_output=True)
+    except (subprocess.TimeoutExpired, OSError):
+        pass
+
+
+def docker_image_exists(image="ucs-detect:latest"):
+    """Check if the Docker image is already built."""
+    try:
+        result = subprocess.run(
+            ["docker", "images", "-q", image],
+            capture_output=True, text=True, timeout=10,
+        )
+        return bool(result.stdout.strip())
+    except (subprocess.TimeoutExpired, OSError, FileNotFoundError):
+        return False
+
+
+def docker_build(dockerfile, project_dir, image="ucs-detect:latest"):
+    """Build the Docker image."""
+    print(f"Building Docker image {image} ...", flush=True)
+    env = os.environ.copy()
+    env.setdefault("DOCKER_BUILDKIT", "1")
+    subprocess.check_call(
+        ["docker", "build", "-f", str(dockerfile), "-t", image, str(project_dir)],
+        env=env,
+    )
+
+
+def parse_run_only(raw):
+    """Parse --run-only comma-separated string into a set of lowercased names."""
+    return set(n.strip().lower() for n in raw.split(",") if n.strip()) if raw else set()
+
+
+def check_unmatched_run_only(run_only, matched):
+    """Exit with error if any *run_only* names were not matched."""
+    unmatched = run_only - matched
+    if unmatched:
+        print(f"Error: --run-only names not found: {', '.join(sorted(unmatched))}",
+              file=sys.stderr)
+        raise SystemExit(2)

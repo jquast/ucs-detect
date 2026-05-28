@@ -131,7 +131,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     session_arguments = {
         k: local_vars[k]
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
-                  "limit_graphemes_pct", "limit_category_time")
+                  "limit_graphemes_pct", "limit_category_time", "timeout_cps")
     }
     environment = {
         k: os.environ[k]
