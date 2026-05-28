@@ -92,7 +92,7 @@ RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
     hyper-bin \
     && pacman -Scc --noconfirm
 
-# build st-luke alongside system st (st-luke-git overwrites /usr/bin/st)
+# build st-luke from AUR source
 RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
     --mount=type=cache,target=/home/ucs/.cache/yay,uid=1000,gid=1000 \
     --mount=type=cache,target=/var/cache/pacman/pkg \
