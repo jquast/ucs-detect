@@ -128,8 +128,14 @@ class ProfileSession:
     def _discover_extra_processes(self) -> None:
         """Try to find any still-undiscovered extra processes by name."""
         import psutil  # type: ignore[import-untyped]
-        found_names = {p.name() for p in self._extra_procs
-                       if p.pid in self._proc_cache}
+        found_names = set()
+        for p in self._extra_procs:
+            if p.pid not in self._proc_cache:
+                continue
+            try:
+                found_names.add(p.name())
+            except psutil.NoSuchProcess:
+                pass
         for name in self._extra:
             if name in found_names:
                 continue

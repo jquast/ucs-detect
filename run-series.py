@@ -92,7 +92,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
             argv = build_subterminal_launch_args(launch_cfg, host_launch_cfg,
                                                  script_path)
 
-        if not _IS_DOCKER:
+        if not _IS_DOCKER and platform.system().lower() == "linux":
             argv = ["systemd-run", "--user", "--scope",
                     "-p", "CPUQuota=200%", "--"] + argv
 
