@@ -998,6 +998,7 @@ def _save_results(save_yaml, save_json, **kwargs):
 
 def do_save_yaml(save_yaml, **kwargs):
     """Save results to a YAML file."""
+    # local
     from ucs_detect.accessories import _atomic_yaml_dump
     if 'software_version' in kwargs:
         kwargs['software_version'] = str(kwargs['software_version'])

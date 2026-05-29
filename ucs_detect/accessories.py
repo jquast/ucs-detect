@@ -1,17 +1,19 @@
 """Shared utility functions used across scripts and the ucs_detect package."""
 
+# std imports
 import os
 import re
-import shlex
-import subprocess
 import sys
-import threading
 import time
+import shlex
+import threading
+import subprocess
 from pathlib import Path
+
 from typing import NamedTuple
 
+# 3rd party
 import yaml
-
 
 _RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
 _RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
@@ -20,6 +22,7 @@ _RE_PAUSE = re.compile(r'^\\p(\d+)$')
 
 class DiscoveredYAML(NamedTuple):
     """A YAML data file discovered by discover_yamls."""
+
     path: Path
     software_name: str
     seconds_elapsed: float = 0.0
@@ -49,6 +52,7 @@ FETCH_BLOCKSIZE = 3096
 
 def do_retrieve(url, fname):
     """Retrieve given url to target filepath fname."""
+    # 3rd party
     import requests
     folder = os.path.dirname(fname)
     if folder and not os.path.exists(folder):
@@ -193,11 +197,12 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
 
 
 def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
-    """Find X11 window ID for a launched process, by PID then by class name.
+    """
+    Find X11 window ID for a launched process, by PID then by class name.
 
-    If *pre_windows* is a set of window IDs that existed before the
-    process was launched, any new window (not in the set) is returned
-    as a last-resort fallback."""
+    If *pre_windows* is a set of window IDs that existed before the process was launched, any new
+    window (not in the set) is returned as a last-resort fallback.
+    """
     deadline = time.monotonic() + timeout
 
     # Strategy 1: search by PID
@@ -265,7 +270,8 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
 
 
 def inject_keys(window_id, keys):
-    """Send keystrokes to a window via xdotool.
+    """
+    Send keystrokes to a window via xdotool.
 
     Special tokens:
       ``\\n``       press Return
@@ -329,11 +335,13 @@ _KEY_INJECT_POST_DELAY = 1.5
 
 
 def should_skip(launch_cfg, is_docker=None):
-    """Return True if the config should be skipped in the current environment.
+    """
+    Return True if the config should be skipped in the current environment.
 
     If *is_docker* is None, uses the process environment (_IS_DOCKER).
     Docker runs terminals with skip_docker: false; system runs the rest
-    (skip_docker: true).  Both respect skip and skip_system."""
+    (skip_docker: true).  Both respect skip and skip_system.
+    """
     if is_docker is None:
         is_docker = _IS_DOCKER
     if launch_cfg["skip"]:

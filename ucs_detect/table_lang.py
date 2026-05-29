@@ -1,4 +1,5 @@
 """Language grapheme cluster test data generated from UDHR translations."""
+
 LANG_GRAPHEMES = (
     (5, (
         ('Javanese (Javanese)', (

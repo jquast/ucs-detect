@@ -470,12 +470,11 @@ def maybe_determine_osc52_clipboard(term, timeout=1.0, **_kw):
     """
     Detect OSC 52 clipboard support via two non-intrusive methods.
 
-    Checks both DA1 extension 52 and XTGETTCAP ``Ms`` capability,
-    recording which methods detected support.  Neither method triggers
-    a clipboard permission prompt.
+    Checks both DA1 extension 52 and XTGETTCAP ``Ms`` capability, recording which methods detected
+    support.  Neither method triggers a clipboard permission prompt.
 
-    Returns ``osc52_clipboard`` as a boolean and ``osc52_detection``
-    as a dict of per-method results.
+    Returns ``osc52_clipboard`` as a boolean and ``osc52_detection`` as a dict of per-method
+    results.
     """
     da1_has_52 = False
     ms_found = False
@@ -549,17 +548,17 @@ def maybe_determine_decrqss(term, timeout=1.0, **_kw):
 
 _TC_PROBE_RE = re.compile(r'48[:;]2[:;]*1[:;]2[:;]3')
 
+
 def maybe_determine_decrqss_truecolor(term, timeout=1.0, force=False, **_kw):
-    """Detect truecolor support via DECRQSS SGR set/query/restore.
+    """
+    Detect truecolor support via DECRQSS SGR set/query/restore.
 
-    Queries the current SGR to capture the original rendering state,
-    sets the background to a known truecolor value using
-    colon-delimited RGB, then queries SGR again to verify the color
-    was accepted.  Restores the original SGR afterward.
+    Queries the current SGR to capture the original rendering state, sets the background to a known
+    truecolor value using colon-delimited RGB, then queries SGR again to verify the color was
+    accepted.  Restores the original SGR afterward.
 
-    Returns ``decrqss_truecolor_probe: True`` when the probed
-    background color appears in the DECRQSS response, indicating
-    24-bit color support.  Returns ``decrqss_truecolor_probe: False``
+    Returns ``decrqss_truecolor_probe: True`` when the probed background color appears in the
+    DECRQSS response, indicating 24-bit color support.  Returns ``decrqss_truecolor_probe: False``
     when DECRQSS is not supported or the color was not accepted.
     """
     SGR = term.Decrqss.SGR

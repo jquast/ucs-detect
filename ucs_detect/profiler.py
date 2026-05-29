@@ -1,15 +1,18 @@
-"""Resource profiling for terminal test runs.
-
-Samples CPU% and RSS memory of a process tree at regular intervals,
-saves CSV data, and generates per-terminal matplotlib graphs.
 """
+Resource profiling for terminal test runs.
+
+Samples CPU% and RSS memory of a process tree at regular intervals, saves CSV data, and generates
+per-terminal matplotlib graphs.
+"""
+
 from __future__ import annotations
 
-import csv
-import colorsys
+# std imports
 import os
-import threading
+import csv
 import time
+import colorsys
+import threading
 from pathlib import Path
 
 
@@ -36,6 +39,7 @@ class ProfileSession:
     @staticmethod
     def _find_process_by_name(name: str):
         """Return the first process matching *name*, excluding the current process."""
+        # 3rd party
         import psutil  # type: ignore[import-untyped]
         my_pid = os.getpid()
         for proc in psutil.process_iter(["name", "pid"]):
@@ -47,7 +51,8 @@ class ProfileSession:
         return None
 
     def _find_process_by_candidates(self):
-        """Try to find the terminal process using program basename and extra names.
+        """
+        Try to find the terminal process using program basename and extra names.
 
         Returns (process, name_that_matched) or (None, None).
         """
@@ -74,6 +79,7 @@ class ProfileSession:
 
     def _get_or_prime_child(self, child):
         """Return a cached Process for *child*, priming cpu_percent if new."""
+        # 3rd party
         import psutil  # type: ignore[import-untyped]
         pid = child.pid
         if pid in self._proc_cache:
@@ -86,11 +92,13 @@ class ProfileSession:
         return child
 
     def _sample_process_tree(self, root) -> tuple[float, float]:
-        """Sum CPU% and RSS across *root* and all descendants.
+        """
+        Sum CPU% and RSS across *root* and all descendants.
 
-        Processes whose name or first argument matches ``_exclude_names``
-        (e.g. ``ucs-detect``, ``re-run.py``) are skipped so the test
-        harness CPU is not attributed to the terminal."""
+        Processes whose name or first argument matches ``_exclude_names`` (e.g. ``ucs-detect``,
+        ``re-run.py``) are skipped so the test harness CPU is not attributed to the terminal.
+        """
+        # 3rd party
         import psutil  # type: ignore[import-untyped]
         cpu_total = 0.0
         rss_total = 0.0
@@ -127,6 +135,7 @@ class ProfileSession:
 
     def _discover_extra_processes(self) -> None:
         """Try to find any still-undiscovered extra processes by name."""
+        # 3rd party
         import psutil  # type: ignore[import-untyped]
         found_names = set()
         for p in self._extra_procs:
@@ -149,6 +158,7 @@ class ProfileSession:
                     pass
 
     def _sample_loop(self) -> None:
+        # 3rd party
         import psutil  # type: ignore[import-untyped]
         t0 = time.monotonic()
 
@@ -196,11 +206,13 @@ class ProfileSession:
             self._stop_event.wait(self._interval)
 
     def samples(self) -> list[tuple[float, float, float]]:
-        """Return collected samples (elapsed_seconds, cpu_pct, rss_mb).
+        """
+        Return collected samples (elapsed_seconds, cpu_pct, rss_mb).
 
-        The first sample is dropped when it is a known initialization
-        artifact (0.0 CPU from cpu_percent priming). Trailing entries
-        with zero RSS (process-exit artifacts) are always stripped."""
+        The first sample is dropped when it is a known initialization artifact (0.0 CPU from
+        cpu_percent priming). Trailing entries with zero RSS (process-exit artifacts) are always
+        stripped.
+        """
         result = list(self._samples)
         if result and result[0][1] == 0.0:
             result.pop(0)
@@ -227,6 +239,7 @@ class ProfileSession:
 
 def hardware_info() -> dict:
     """Return a dict describing the host hardware for resource profile context."""
+    # std imports
     import os as _os
     info: dict = {}
 
@@ -258,18 +271,19 @@ def generate_graphs(
     profiles: dict[str, ProfileSession],
     output_dir: Path,
 ) -> None:
-    """Generate per-terminal CPU and memory graphs with shared log scales.
+    """
+    Generate per-terminal CPU and memory graphs with shared log scales.
 
-    Writes ``{safe}_cpu.png`` and ``{safe}_rss.png`` for each terminal,
-    plus aggregate ``all_cpu.png`` and ``all_rss.png`` showing all
-    terminals overlaid.  All graphs share the same Y-axis range (log
-    scale) and the same X-axis range (log scale, determined by the
-    slowest terminal).  A red crosshair marks the global mean of both
-    axes with a "---- mean average" label.
+    Writes ``{safe}_cpu.png`` and ``{safe}_rss.png`` for each terminal, plus aggregate
+    ``all_cpu.png`` and ``all_rss.png`` showing all terminals overlaid.  All graphs share the same
+    Y-axis range (log scale) and the same X-axis range (log scale, determined by the slowest
+    terminal).  A red crosshair marks the global mean of both axes with a "---- mean average" label.
     """
     try:
+        # 3rd party
         import matplotlib
         matplotlib.use("Agg")
+        # 3rd party
         import matplotlib.pyplot as plt  # type: ignore[import-untyped]
     except ImportError:
         return
