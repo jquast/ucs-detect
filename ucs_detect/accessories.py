@@ -202,20 +202,47 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
 
 
 def _find_window_darwin(pid, timeout=8):
-    """Find macOS window by owner PID via osascript."""
+    """Find macOS window by owner PID or process name via osascript."""
+    import psutil
+    # Collect the process name and all child PIDs
+    pids = {pid}
+    proc_name = None
+    try:
+        parent = psutil.Process(pid)
+        proc_name = parent.name()
+        for child in parent.children(recursive=True):
+            pids.add(child.pid)
+    except psutil.NoSuchProcess:
+        pass
+
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
-        try:
-            scpt = (f'tell application "System Events" to get id of '
-                    f'first window of (first process whose unix id is {pid})')
-            result = subprocess.run(
-                ["osascript", "-e", scpt],
-                capture_output=True, text=True, timeout=5,
-            )
-            if result.returncode == 0 and result.stdout.strip():
-                return result.stdout.strip()
-        except (subprocess.TimeoutExpired, OSError):
-            pass
+        # Try by PID first (most reliable)
+        for check_pid in pids:
+            try:
+                scpt = (f'tell application "System Events" to get id of '
+                        f'first window of (first process whose unix id is {check_pid})')
+                result = subprocess.run(
+                    ["osascript", "-e", scpt],
+                    capture_output=True, text=True, timeout=5,
+                )
+                if result.returncode == 0 and result.stdout.strip():
+                    return result.stdout.strip()
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+        # Fallback: try by process name
+        if proc_name:
+            try:
+                scpt = (f'tell application "System Events" to get id of '
+                        f'first window of process "{proc_name}"')
+                result = subprocess.run(
+                    ["osascript", "-e", scpt],
+                    capture_output=True, text=True, timeout=5,
+                )
+                if result.returncode == 0 and result.stdout.strip():
+                    return result.stdout.strip()
+            except (subprocess.TimeoutExpired, OSError):
+                pass
         time.sleep(0.3)
     return None
 

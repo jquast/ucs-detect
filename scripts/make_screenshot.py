@@ -50,14 +50,17 @@ def _find_own_window_darwin(timeout=5):
     """Find terminal window by walking parent PIDs and matching via osascript."""
     import psutil
     pids = {os.getpid()}
+    proc_names = set()
     try:
         proc = psutil.Process(os.getpid())
+        proc_names.add(proc.name())
         for _ in range(6):
             try:
                 proc = proc.parent()
                 if proc is None:
                     break
                 pids.add(proc.pid)
+                proc_names.add(proc.name())
             except psutil.NoSuchProcess:
                 break
     except psutil.NoSuchProcess:
@@ -68,6 +71,18 @@ def _find_own_window_darwin(timeout=5):
             try:
                 scpt = (f'tell application "System Events" to get id of '
                         f'first window of (first process whose unix id is {pid})')
+                result = subprocess.run(
+                    ["osascript", "-e", scpt],
+                    capture_output=True, text=True, timeout=5,
+                )
+                if result.returncode == 0 and result.stdout.strip():
+                    return result.stdout.strip()
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+        for name in proc_names:
+            try:
+                scpt = (f'tell application "System Events" to get id of '
+                        f'first window of process "{name}"')
                 result = subprocess.run(
                     ["osascript", "-e", scpt],
                     capture_output=True, text=True, timeout=5,
