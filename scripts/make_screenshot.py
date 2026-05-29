@@ -80,15 +80,17 @@ def find_own_window(title, timeout=5):
             except (subprocess.TimeoutExpired, OSError):
                 pass
 
-    try:
-        result = subprocess.run(
-            ["xdotool", "getactivewindow"],
-            capture_output=True, text=True, timeout=3,
-        )
-        if result.returncode == 0 and result.stdout.strip():
-            return result.stdout.strip()
-    except (subprocess.TimeoutExpired, OSError):
-        pass
+    # Docker-only fallback: with a single X11 window, getactivewindow is safe
+    if os.path.exists("/.dockerenv"):
+        try:
+            result = subprocess.run(
+                ["xdotool", "getactivewindow"],
+                capture_output=True, text=True, timeout=3,
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip()
+        except (subprocess.TimeoutExpired, OSError):
+            pass
 
     return None
 
@@ -324,6 +326,8 @@ def main():
         description="Display unicode characters and capture screenshots")
     parser.add_argument("--batch", required=True,
                         help="JSON file with array of failure records")
+    parser.add_argument("--window-id",
+                        help="X11 window ID to capture (skips find_own_window)")
     args = parser.parse_args()
 
     if not shutil.which("xdotool") or not shutil.which("xwd"):
@@ -335,10 +339,13 @@ def main():
         records = json.load(f)
 
     # Find window once using the first record's title
-    first_title = records[0].get("title", "ucs-detect-screenshot") if records else "ucs-detect-screenshot"
-    set_window_title(first_title)
-    time.sleep(0.5)
-    window_id = find_own_window(first_title)
+    if args.window_id:
+        window_id = args.window_id
+    else:
+        first_title = records[0].get("title", "ucs-detect-screenshot") if records else "ucs-detect-screenshot"
+        set_window_title(first_title)
+        time.sleep(0.5)
+        window_id = find_own_window(first_title)
     if window_id is None:
         print("Error: could not find terminal window", file=sys.stderr)
         sys.exit(1)

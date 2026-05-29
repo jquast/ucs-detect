@@ -111,15 +111,16 @@ def extract_failures(yaml_path):
     return failures
 
 
-def build_batch_script(script_path, sentinel_path, batch_json_path):
+def build_batch_script(script_path, sentinel_path, batch_json_path, window_id=None):
     """Write a shell script that runs make_screenshot.py batch mode."""
     script_rel = "scripts/make_screenshot.py"
+    wid_arg = f" --window-id {shlex.quote(str(window_id))}" if window_id else ""
     parts = [
         "#!/bin/sh",
         "export LANG=en_US.UTF-8",
         f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
         f"python {shlex.quote(script_rel)}"
-        f" --batch {shlex.quote(str(batch_json_path))}",
+        f" --batch {shlex.quote(str(batch_json_path))}{wid_arg}",
         "RC=$?",
         "echo $RC > " + shlex.quote(str(sentinel_path)),
         "if [ $RC -ne 0 ]; then",
@@ -393,6 +394,10 @@ def main():
         sentinel_path = temp_dir / f"exit-{safe}.rc"
         stderr_path = temp_dir / f"stderr-{safe}.log"
 
+        # Build batch script now so the file exists before launch.
+        # Direct-launch terminals (konsole, etc.) reference the script
+        # path in their argv.  Key-inject terminals inject the path
+        # later.  We'll rebuild with --window-id once we have one.
         build_batch_script(script_path, sentinel_path, batch_json_path)
 
         try:
@@ -417,28 +422,30 @@ def main():
                     stdin=subprocess.DEVNULL,
                 )
 
+            captured_wid = None
+            window_cfg = (host_launch_cfg
+                          if launch_cfg["subterminal"]
+                          else launch_cfg)
+            snapshot_pre_windows = None
+            try:
+                result = subprocess.run(
+                    ["xdotool", "search", "--onlyvisible", ""],
+                    capture_output=True, text=True, timeout=3,
+                )
+                if result.returncode == 0:
+                    snapshot_pre_windows = set(result.stdout.strip().split("\n"))
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+
             # Key injection for terminals that don't support -e
             if post_keys:
                 with _KEY_INJECT_LOCK:
                     time.sleep(0.5)
                     time.sleep(post_delay / 1000.0)
-                    window_cfg = (host_launch_cfg
-                                  if launch_cfg["subterminal"]
-                                  else launch_cfg)
-                    snapshot_pre_windows = None
-                    try:
-                        result = subprocess.run(
-                            ["xdotool", "search", "--onlyvisible", ""],
-                            capture_output=True, text=True, timeout=3,
-                        )
-                        if result.returncode == 0:
-                            snapshot_pre_windows = set(result.stdout.strip().split("\n"))
-                    except (subprocess.TimeoutExpired, OSError):
-                        pass
-                    window_id = find_window_for_command(
+                    captured_wid = find_window_for_command(
                         window_cfg, proc.pid,
                         pre_windows=snapshot_pre_windows)
-                    if window_id is not None:
+                    if captured_wid is not None:
                         script_str = str(script_path)
                         resolved_keys = [
                             key.replace("${SCRIPT}", script_str)
@@ -448,7 +455,7 @@ def main():
                                      if k != "\n" and not _RE_PAUSE.match(k)]
                         print(f"injecting: {''.join(text_keys)} ... ",
                               end="", flush=True)
-                        inject_keys(window_id, resolved_keys)
+                        inject_keys(captured_wid, resolved_keys)
                         time.sleep(1.5)
                     else:
                         proc.kill()
@@ -458,6 +465,21 @@ def main():
                         print(f"FAILED: {msg}")
                         failures_list.append((sw_name, -4, msg))
                         continue
+            else:
+                # Direct-launch: find window so we can pass --window-id to
+                # the batch script.  find_own_window inside the subprocess
+                # can fail for flatpak/sandboxed terminals.
+                captured_wid = find_window_for_command(
+                    window_cfg, proc.pid,
+                    pre_windows=snapshot_pre_windows)
+
+            # Build batch script now that we may have a window_id.
+            # Subterminals (libvterm, tmux, etc.) and sandboxed terminals
+            # (flatpak konsole) need the --window-id passed in because
+            # find_own_window cannot discover the X11 window from inside
+            # the subterminal/sandbox.
+            build_batch_script(script_path, sentinel_path, batch_json_path,
+                               captured_wid)
 
             # Wait for sentinel or timeout (scaled by screenshot count).
             # Key-inject terminals may fork/detach, so don't collapse the
