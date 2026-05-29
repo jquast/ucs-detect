@@ -148,6 +148,8 @@ def _docker_per_terminal_run(args):
             continue
         launch_cfg, _ = get_launch_config(d.software_name, mixins)
         if launch_cfg["skip"] or launch_cfg["skip_docker"]:
+            launch_cfg, _ = get_launch_config(d.path.stem, mixins)
+        if launch_cfg["skip"] or launch_cfg["skip_docker"]:
             continue
         if run_only:
             name_lower = d.software_name.lower()
@@ -272,6 +274,8 @@ def main():
         if d.error_msg:
             continue
         launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
+        if not is_explicit:
+            launch_cfg, is_explicit = get_launch_config(d.path.stem, mixins)
 
         if run_only:
             name_lower = d.software_name.lower()

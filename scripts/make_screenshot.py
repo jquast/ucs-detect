@@ -197,7 +197,6 @@ def _crop_to_markers(src_path, dst_path):
         if y2 is not None:
             break
 
-    y1 = max(0, y1 - 4)
     y2 = min(h, y2 + 4)
     img.crop((0, y1, w, y2)).save(dst_path)
 

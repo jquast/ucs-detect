@@ -84,8 +84,9 @@ terminals:
   gnome terminal:
     homepage: https://help.gnome.org/users/gnome-terminal/stable/
     display_name: GNOME Terminal
-    version_template: '{aur_version}'
-    aur_package: gnome-terminal
+    version_manual: 3.50.1
+    skip_docker: true
+    skip_reason: D-Bus architecture (gnome-terminal-server) fails in Docker/Xvfb
     launch:
       program: gnome-terminal
       args: [--wait, --]

@@ -497,6 +497,8 @@ def main():
             continue
 
         launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
+        if not is_explicit:
+            launch_cfg, is_explicit = get_launch_config(d.path.stem, mixins)
 
         if run_only:
             name_lower = d.software_name.lower()
