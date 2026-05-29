@@ -241,8 +241,8 @@ def main():
         return
 
     system_name = platform.system()
-    if system_name.lower() not in ("linux",):
-        print(f"Error: unsupported OS '{system_name}'. Only Linux is supported.",
+    if system_name.lower() not in ("linux", "darwin"):
+        print(f"Error: unsupported OS '{system_name}'. Only Linux and macOS are supported.",
               file=sys.stderr)
         sys.exit(1)
 
