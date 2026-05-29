@@ -17,7 +17,7 @@ from pathlib import Path
 
 
 class ProfileSession:
-    """Samples CPU% and RSS of a process tree during a terminal test."""
+    """Samples CPU% and RSS of a process tree during a terminal test."""  # pylint: disable=too-many-instance-attributes
 
     def __init__(self, sw_name: str, pid: int, interval: float = 1.0,
                  program: str | None = None,
@@ -240,11 +240,9 @@ class ProfileSession:
 
 def hardware_info() -> dict:
     """Return a dict describing the host hardware for resource profile context."""
-    # std imports
-    import os as _os
     info: dict = {}
 
-    info["cpu_count"] = _os.cpu_count()
+    info["cpu_count"] = os.cpu_count()
 
     try:
         with open("/proc/cpuinfo") as f:
@@ -395,8 +393,8 @@ def generate_graphs(
             yval = mean_cpu_val if label == "cpu" else peak_rss_val
             hue = (i / max(n_terminals - 1, 1) * 0.833) % 1.0
             r, g, b = colorsys.hsv_to_rgb(hue, 0.7, 0.9)
-            color = (r, g, b)
-            ax.scatter(i, yval, color=color, s=40, zorder=2,
+            rgb = (r, g, b)
+            ax.scatter(i, yval, color=rgb, s=40, zorder=2,
                        label=f"{sw_name} ({yval:.0f}{unit})")
             dy = 2 if i % 2 == 0 else -2
             va = "bottom" if i % 2 == 0 else "top"
@@ -475,9 +473,9 @@ def generate_graphs(
     for i, (sw_name, mean_cpu_val, duration_val) in enumerate(cpu_time_data):
         hue = (1 - i / max(n_ct - 1, 1)) * 0.333
         r, g, b = colorsys.hsv_to_rgb(hue, 0.7, 0.9)
-        color = (r, g, b)
+        rgb = (r, g, b)
         cpu_clamped = min(mean_cpu_val, 200)
-        ax.scatter(duration_val, cpu_clamped, color=color, s=60, zorder=2,
+        ax.scatter(duration_val, cpu_clamped, color=rgb, s=60, zorder=2,
                    label=f"{sw_name} ({cpu_clamped:.0f}%, {duration_val:.0f}s)")
         dy = 3 if i % 2 == 0 else -3
         va = "bottom" if i % 2 == 0 else "top"
@@ -541,8 +539,8 @@ def generate_graphs(
     for i, (sw_name, _mean_cpu_val, duration_val) in enumerate(time_data):
         hue = (1 - i / max(n_td - 1, 1)) * 0.333
         r, g, b = colorsys.hsv_to_rgb(hue, 0.7, 0.9)
-        color = (r, g, b)
-        ax.barh(i, duration_val, color=color, zorder=2, height=0.6,
+        rgb = (r, g, b)
+        ax.barh(i, duration_val, color=rgb, zorder=2, height=0.6,
                 label=f"{sw_name} ({duration_val:.0f}s)")
         ax.text(duration_val * 1.02, i, f"{duration_val:.0f}s",
                 color="black", fontsize=6, va="center", ha="left")

@@ -211,7 +211,7 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
         try:
             result = subprocess.run(
                 ["xdotool", "search", "--onlyvisible", "--pid", str(pid)],
-                capture_output=True, text=True, timeout=3,
+                capture_output=True, text=True, timeout=3, check=False,
             )
             if result.returncode == 0 and result.stdout.strip():
                 return result.stdout.strip().split("\n")[-1]
@@ -228,7 +228,7 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
             try:
                 result = subprocess.run(
                     ["xdotool", "search", "--onlyvisible", flag, wm_class],
-                    capture_output=True, text=True, timeout=3,
+                    capture_output=True, text=True, timeout=3, check=False,
                 )
                 if result.returncode == 0 and result.stdout.strip():
                     return result.stdout.strip().split("\n")[-1]
@@ -242,7 +242,7 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
             try:
                 result = subprocess.run(
                     ["xdotool", "search", "--onlyvisible", ""],
-                    capture_output=True, text=True, timeout=3,
+                    capture_output=True, text=True, timeout=3, check=False,
                 )
                 if result.returncode == 0:
                     current = set(result.stdout.strip().split("\n"))
@@ -258,7 +258,7 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
         try:
             result = subprocess.run(
                 ["xdotool", "search", "--onlyvisible", ""],
-                capture_output=True, text=True, timeout=3,
+                capture_output=True, text=True, timeout=3, check=False,
             )
             if result.returncode == 0 and result.stdout.strip():
                 windows = result.stdout.strip().split("\n")
@@ -279,7 +279,7 @@ def inject_keys(window_id, keys):
     """
     subprocess.run(
         ["xdotool", "windowfocus", "--sync", str(window_id)],
-        capture_output=True, timeout=2,
+        capture_output=True, timeout=2, check=False,
     )
     time.sleep(0.3)
     merged = []
@@ -289,13 +289,13 @@ def inject_keys(window_id, keys):
                 combined = "".join(merged)
                 subprocess.run(
                     ["xdotool", "type", "--delay", "30", combined],
-                    capture_output=True, timeout=120,
+                    capture_output=True, timeout=120, check=False,
                 )
                 merged = []
             if key in ("\n", "\\n"):
                 subprocess.run(
                     ["xdotool", "key", "Return"],
-                    capture_output=True, timeout=5,
+                    capture_output=True, timeout=5, check=False,
                 )
             else:
                 ms = int(_RE_PAUSE.match(key).group(1))
@@ -306,7 +306,7 @@ def inject_keys(window_id, keys):
         combined = "".join(merged)
         subprocess.run(
             ["xdotool", "type", "--delay", "30", combined],
-            capture_output=True, timeout=120,
+            capture_output=True, timeout=120, check=False,
         )
 
 
@@ -361,7 +361,7 @@ def run_kill_command(launch_cfg):
     if not kill_cmd:
         return
     try:
-        subprocess.run(kill_cmd, timeout=5, capture_output=True)
+        subprocess.run(kill_cmd, timeout=5, capture_output=True, check=False)
     except (subprocess.TimeoutExpired, OSError):
         pass
 
@@ -371,10 +371,10 @@ def docker_image_exists(image="ucs-detect:latest"):
     try:
         result = subprocess.run(
             ["docker", "images", "-q", image],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True, text=True, timeout=10, check=False,
         )
         return bool(result.stdout.strip())
-    except (subprocess.TimeoutExpired, OSError, FileNotFoundError):
+    except (subprocess.TimeoutExpired, OSError):
         return False
 
 
