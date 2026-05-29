@@ -17,9 +17,7 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
-      - '
-
-        '
+      - "\n"
   contour:
     homepage: https://contour-terminal.org/
     skip_docker: true
@@ -55,9 +53,7 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
-      - '
-
-        '
+      - "\n"
     launch_docker:
       program: extraterm
       args: []
@@ -65,9 +61,7 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
-      - '
-
-        '
+      - "\n"
   foot:
     homepage: https://codeberg.org/dnkl/foot
     launch:
@@ -109,9 +103,7 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
-      - '
-
-        '
+      - "\n"
   iterm2:
     homepage: https://iterm2.com/
     skip_docker: true
@@ -211,23 +203,19 @@ terminals:
     display_name: GNU Screen
     version_template: '{aur_version}'
     aur_package: screen
+    skip_docker: true
+    skip_reason: subterminal — tested on host via system_screenshots
     launch:
       subterminal: true
       program: screen
       args: [-q]
       post_launch_delay_ms: 300
       post_launch_keys:
-      - '
-
-        '
+      - "\n"
       - \p1000
       - 'sh '
       - ${SCRIPT} && exit
-      - '
-
-        '
-    skip_docker: false
-    description: Tested inside host terminal kitty.
+      - "\n"
   securecrt:
     homepage: https://www.vandyke.com/products/securecrt/
     launch:
@@ -251,9 +239,7 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
-      - '
-
-        '
+      - "\n"
     skip_reason: Not very interesting/too far outliar to join scaled score, like fbdev
   tabby:
     homepage: https://tabby.sh/
@@ -300,6 +286,8 @@ terminals:
       args: [--geometry, 80x24, --scale, '1.0', -e]
   tmux:
     homepage: https://github.com/tmux/tmux
+    skip_docker: true
+    skip_reason: subterminal — tested on host via system_screenshots
     sixel_support_notes: 'Must be compiled with sixel support. Check support and enablement
       with command: ``(tmux show-options -g;tmux show-window-options)|grep -i sixel``'
     launch:
@@ -310,11 +298,7 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
-      - '
-
-        '
-    skip_docker: false
-    description: Tested inside host terminal kitty.
+      - "\n"
   xterm.js:
     homepage: https://code.visualstudio.com/docs/terminal/basics
     description: The xterm.js variant tested is the one shipped with Visual Studio
@@ -355,9 +339,7 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
-      - '
-
-        '
+      - "\n"
   wezterm:
     homepage: https://wezfurlong.org/wezterm/
     launch:
@@ -397,6 +379,8 @@ terminals:
       args: [-font, unifont, -fontsize, '16', -e]
   zellij:
     homepage: https://github.com/zellij-org/zellij
+    skip_docker: true
+    skip_reason: subterminal — tested on host via system_screenshots
     launch:
       subterminal: true
       program: zellij
@@ -405,9 +389,7 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && pkill zellij
-      - '
-
-        '
+      - "\n"
     launch_docker:
       subterminal: true
       program: zellij
@@ -416,8 +398,5 @@ terminals:
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && pkill zellij
-      - '
-
-        '
-    skip_docker: false
+      - "\n"
     description: Tested inside host terminal kitty.

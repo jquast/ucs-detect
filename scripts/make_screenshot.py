@@ -161,8 +161,10 @@ def _crop_to_markers(src_path, dst_path):
         for x in range(w):
             px = img.getpixel((x, y))
             r, g, b = px[0], px[1], px[2]
-            # 24-bit magenta marker background (255,0,255)
-            if r > 250 and g < 5 and b > 250:
+            # Bright magenta marker background (ANSI 256-color 13: 255,0,255).
+            # Threshold excludes standard magenta (ANSI 5: ~170,0,170) used in
+            # content borders, while allowing subpixel rendering variation.
+            if r > 220 and g < 30 and b > 220:
                 points.append((x, y))
 
     if len(points) < 4:
@@ -191,6 +193,9 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     vbar = "┃"
     cross = "╋"
 
+    LEFT_PAD = 2
+    TOP_PAD = 1
+
     sys.stdout.write("\x1b[?25l")  # hide cursor
 
     text = decode_wchars(wchars)
@@ -218,17 +223,24 @@ def display_and_capture(term, wchars, expected_width, measured_width,
 
     marker_color = term.on_color_rgb(255, 0, 255)
 
-    # Top-left crop marker
-    sys.stdout.write(f"\x1b[1;1H{marker_color}{_MARKER_TOP}\x1b[0m")
+    # Top-left crop marker (padded: TOP_PAD blank rows, LEFT_PAD blank cols)
+    top_marker_row = TOP_PAD + 1
+    top_marker_col = LEFT_PAD + 1
+    sys.stdout.write(
+        f"\x1b[{top_marker_row};{top_marker_col}H{marker_color}{_MARKER_TOP}\x1b[0m")
     sys.stdout.flush()
 
-    # Content box starting at row 2
-    sys.stdout.write("\x1b[2;1H")
+    # Content box: blank row after marker, then content at column 1
+    # (LEFT_PAD is applied via prefix spaces on each line)
+    content_row = top_marker_row + 2
+    sys.stdout.write(f"\x1b[{content_row};1H")
     sys.stdout.flush()
 
-    print(term.cyan(top))
-    print(term.cyan(vbar) + inner + term.cyan(vbar))
-    print(term.cyan(bottom))
+    prefix = " " * LEFT_PAD
+
+    print(prefix + term.cyan(top))
+    print(prefix + term.cyan(vbar) + inner + term.cyan(vbar))
+    print(prefix + term.cyan(bottom))
 
     if has_text_sizing:
         sized_raw = term.text_sized(text, width=expected_width)
@@ -236,19 +248,20 @@ def display_and_capture(term, wchars, expected_width, measured_width,
         sized_inner = (term.magenta(sized_dots + f"•{vbar}") + term.normal + sized_raw
                        + term.magenta(f"{vbar}•" + sized_dots))
 
-        print()
-        print(term.normal + "This terminal supports kitty text sizing protocol:")
-        print(term.cyan(top))
-        print(term.cyan(vbar) + sized_inner + term.cyan(vbar))
-        print(term.cyan(bottom))
+        print(prefix)
+        print(prefix + term.normal + "This terminal supports kitty text sizing protocol:")
+        print(prefix + term.cyan(top))
+        print(prefix + term.cyan(vbar) + sized_inner + term.cyan(vbar))
+        print(prefix + term.cyan(bottom))
 
     # Bottom-right crop marker: max of content widths + margin
-    marker_col = interior + max(0, measured_width - expected_width) + 5
+    # Shifted right by LEFT_PAD, down by TOP_PAD + 1 blank row after top marker
+    marker_col = interior + max(0, measured_width - expected_width) + 5 + LEFT_PAD
     if has_text_sizing:
         sized_interior = _wcswidth_vs15(sized_raw) + padding * 2 + 4
         msg_width = len("This terminal supports kitty text sizing protocol:")
-        marker_col = max(marker_col, sized_interior + 5, msg_width + 3)
-    marker_row = 10 if has_text_sizing else 6
+        marker_col = max(marker_col, sized_interior + 5 + LEFT_PAD, msg_width + 3 + LEFT_PAD)
+    marker_row = (10 if has_text_sizing else 6) + TOP_PAD + 1  # +1 for blank row after top marker
     sys.stdout.write(f"\x1b[{marker_row};{marker_col}H{marker_color}{_MARKER_BOTTOM}\x1b[0m")
     sys.stdout.flush()
 

@@ -308,7 +308,8 @@ def main():
             skipped.append((d.software_name, "no width failures found"))
             continue
 
-        safe = safe_name(d.software_name)
+        sw_display = mixins.get(d.software_name.lower(), {}).get("display_name", d.software_name)
+        safe = safe_name(sw_display)
         unique_id = uuid.uuid4().hex[:8]
 
         records = []
@@ -323,7 +324,6 @@ def main():
                 "title": f"ucs-shot-{safe}-{category}-{unique_id}",
             })
 
-        sw_display = mixins.get(d.software_name.lower(), {}).get("display_name", d.software_name)
         terminal_jobs[sw_display] = (launch_cfg, records)
 
     if run_only:
