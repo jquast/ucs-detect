@@ -218,9 +218,9 @@ def main():
         "--keep-temp", action="store_true",
         help="Keep temporary files on exit (for debugging)")
     parser.add_argument(
-        "--host-terminal", default="ghostty",
+        "--host-terminal", default="kitty",
         help="Terminal used to host subterminals (screen, tmux, etc.) "
-             "(default: ghostty)")
+             "(default: kitty)")
     parser.add_argument(
         "--use-docker", action="store_true",
         help="Launch each terminal in its own Docker container (--cpus=2)")

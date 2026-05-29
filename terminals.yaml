@@ -142,7 +142,7 @@ terminals:
   konsole:
     homepage: https://apps.kde.org/konsole/
     skip_docker: true
-    skip_reason: "creates 1x1 cell windows in Docker"
+    skip_reason: creates 1x1 cell windows in Docker
     launch:
       program: flatpak
       args:
@@ -169,6 +169,7 @@ terminals:
       - 'sh ${SCRIPT} && exit
 
         '
+    skip_docker: false
   linux fbdev:
     homepage: https://www.kernel.org/doc/Documentation/fb/fbcon.txt
     launch:
@@ -223,6 +224,8 @@ terminals:
       - --geometry
       - 80x24
       - -e
+    skip_docker: true
+    skip_reason: Qt terminal hangs in Docker
   rio:
     homepage: https://rioterm.com/
     skip_docker: true
@@ -264,6 +267,8 @@ terminals:
       - '
 
         '
+    skip_docker: false
+    description: Tested inside host terminal kitty.
   securecrt:
     homepage: https://www.vandyke.com/products/securecrt/
     launch:
@@ -341,6 +346,8 @@ terminals:
     profile_processes:
     - gnome-terminal-server
     timeout: 14400
+    skip_docker: true
+    skip_reason: D-Bus spawns gnome-terminal-server, geometry doesn't apply
   terminology:
     homepage: https://www.enlightenment.org/about-terminology
     launch:
@@ -367,6 +374,8 @@ terminals:
       - '
 
         '
+    skip_docker: false
+    description: Tested inside host terminal kitty.
   xterm.js:
     homepage: https://code.visualstudio.com/docs/terminal/basics
     description: The xterm.js variant tested is the one shipped with Visual Studio
@@ -394,7 +403,8 @@ terminals:
       - --shell
       - '{script}'
     skip_system: true
-    skip_reason: requires cage/Wayland compositor
+    skip_reason: Wayland compositor nested in Xvfb creates tiny windows
+    skip_docker: true
   warp:
     homepage: https://github.com/warpdotdev/warp
     display_name: Warp
@@ -494,3 +504,5 @@ terminals:
       - '
 
         '
+    skip_docker: false
+    description: Tested inside host terminal kitty.

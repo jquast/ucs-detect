@@ -209,12 +209,15 @@ emulators pre-installed.  All Docker operations are managed through ``tox`` targ
     # generate screenshots
     tox -e docker_screenshots
 
-The image includes ``weston`` (Wayland compositor) alongside ``Xvfb``, so Wayland-only terminals
-``foot`` and ``weston-terminal`` are also testable.  Some terminals are not in docker:
+Unfortunately, many terminals have to be excluded from docker:
 
-- GPU-accelerated terminals like Rio,
-- packages with incredible sized build dependencies like domterm, mlterm
-- node.js (chromium?) terminals for some reason.
+- Not Linux or not X11 compatible (Wayland, framebuffer)
+- GPU-accelerated and not compatible with Xvfb,
+- massive number of build dependencies (domterm, mlterm)
+- JS/Electron stuff (chromium?) for some reason.
+- Cannot reliably set geometry (Konsole)
+
+This requires installing those terminals on the developer's host system.
 
 Use the 'system' targets to run these:
 
@@ -230,9 +233,8 @@ Use the 'system' targets to run these:
     tox -e docker_screenshots
 
 The script ``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
-[arguments]`` is not supported, ucs-detect is executed by injecting keystrokes where needed.
-This program and its supporting ``terminals.yaml`` supports execution outside of docker, when visual
-inspection is necessary.
+[arguments]`` or similar is not supported, keystrokes are injected into the target application to
+launch ``ucs-detect`` by configuration.
 
 Problem Analysis
 ----------------
