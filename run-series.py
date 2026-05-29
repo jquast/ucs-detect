@@ -60,7 +60,7 @@ def write_run_script(script_path, yaml_path, sentinel_path,
     parts = [
         "#!/bin/sh",
         f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
-        f"python re-run.py {shlex.quote(str(yaml_rel))}",
+        f"{shlex.quote(sys.executable)} re-run.py {shlex.quote(str(yaml_rel))}",
         f"echo $? > {shlex.quote(str(sentinel_path))}",
     ]
     if pause_exit:
