@@ -195,65 +195,9 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
 def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
     """Find X11 window ID for a launched process, by PID then by class name.
 
-    On macOS uses Quartz CGWindowList to match by owner PID."""
-    if sys.platform == "darwin":
-        return _find_window_darwin(pid, launch_cfg.get("program", ""), timeout)
-    return _find_window_linux(launch_cfg, pid, timeout, pre_windows)
-
-
-def _find_window_darwin(pid, prog_name, timeout=8):
-    """Find macOS window by owner PID or process name via osascript."""
-    import psutil
-    pids = {pid}
-    proc_name = None
-    try:
-        parent = psutil.Process(pid)
-        proc_name = parent.name()
-        for child in parent.children(recursive=True):
-            pids.add(child.pid)
-    except psutil.NoSuchProcess:
-        pass
-    # Fallback names: process name from psutil, then program basename
-    names = []
-    if proc_name:
-        names.append(proc_name)
-    if prog_name:
-        names.append(os.path.basename(prog_name))
-
-    deadline = time.monotonic() + timeout
-    while time.monotonic() < deadline:
-        # Try by process name first (macOS reuses running app instances)
-        for name in names:
-            try:
-                scpt = (f'tell application "System Events" to get id of '
-                        f'first window of process "{name}"')
-                result = subprocess.run(
-                    ["osascript", "-e", scpt],
-                    capture_output=True, text=True, timeout=5,
-                )
-                if result.returncode == 0 and result.stdout.strip():
-                    return result.stdout.strip()
-            except (subprocess.TimeoutExpired, OSError):
-                pass
-        # Then try by PID
-        for check_pid in pids:
-            try:
-                scpt = (f'tell application "System Events" to get id of '
-                        f'first window of (first process whose unix id is {check_pid})')
-                result = subprocess.run(
-                    ["osascript", "-e", scpt],
-                    capture_output=True, text=True, timeout=5,
-                )
-                if result.returncode == 0 and result.stdout.strip():
-                    return result.stdout.strip()
-            except (subprocess.TimeoutExpired, OSError):
-                pass
-        time.sleep(0.3)
-    return None
-
-
-def _find_window_linux(launch_cfg, pid, timeout=8, pre_windows=None):
-    """Find X11 window ID on Linux: by PID, class name, or pre_windows diff."""
+    If *pre_windows* is a set of window IDs that existed before the
+    process was launched, any new window (not in the set) is returned
+    as a last-resort fallback."""
     deadline = time.monotonic() + timeout
 
     # Strategy 1: search by PID

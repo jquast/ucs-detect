@@ -241,15 +241,14 @@ def main():
         return
 
     system_name = platform.system()
-    if system_name.lower() not in ("linux", "darwin"):
-        print(f"Error: unsupported OS '{system_name}'. Only Linux and macOS are supported.",
+    if system_name.lower() not in ("linux",):
+        print(f"Error: unsupported OS '{system_name}'. Only Linux is supported.",
               file=sys.stderr)
         sys.exit(1)
 
-    if system_name.lower() == "linux":
-        if not shutil.which("xdotool") or not shutil.which("xwd"):
-            print("Error: xdotool and xwd are required", file=sys.stderr)
-            sys.exit(1)
+    if not shutil.which("xdotool") or not shutil.which("xwd"):
+        print("Error: xdotool and xwd are required", file=sys.stderr)
+        sys.exit(1)
 
     mixins = load_mixins()
 
