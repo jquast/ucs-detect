@@ -793,6 +793,19 @@ def make_score_table():
             _sw_name = data.get("software_name", data.get('software'))
             assert _sw_name, f"empty software_name in {yaml_path}"
 
+            tr = data.get("terminal_results") or {}
+            ts = tr.get("text_sizing", {})
+            has_text_sizing = bool(ts.get("width") or ts.get("scale"))
+            if has_text_sizing:
+                score_language = 1.0
+                _score_wide = 1.0
+                _score_zwj = 1.0
+                score_emoji_vs16 = 1.0
+                score_emoji_vs15 = 1.0
+                _score_sri = 1.0
+                _score_sfz = 1.0
+                _score_ri = 1.0
+
             score_table.append(
                 dict(
                     terminal_software_name=_sw_name,
@@ -813,6 +826,7 @@ def make_score_table():
                     sixel_support=_sixel_support,
                     score_features=_score_features,
                     score_graphics=_score_graphics,
+                    has_text_sizing=has_text_sizing,
                     data=data,
                     fname=os.path.basename(yaml_path),
                 )
@@ -1068,49 +1082,57 @@ def display_tabulated_scores(score_table):
                     "_scores"
                 ),
                 "WIDE": wrap_score_with_hyperlink(
-                    format_score_int(result["score_wide_scaled"]),
+                    format_score_int(result["score_wide_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_wide_scaled"],
                     result["terminal_software_name"],
                     "_wide"
                 ),
                 "LANG": wrap_score_with_hyperlink(
-                    format_score_int(result["score_language_scaled"]),
+                    format_score_int(result["score_language_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_language_scaled"],
                     result["terminal_software_name"],
                     "_lang"
                 ),
                 "ZWJ": wrap_score_with_hyperlink(
-                    format_score_int(result["score_zwj_scaled"]),
+                    format_score_int(result["score_zwj_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_zwj_scaled"],
                     result["terminal_software_name"],
                     "_zwj"
                 ),
                 "VS16": wrap_score_with_hyperlink(
-                    format_score_int(result["score_emoji_vs16_scaled"]),
+                    format_score_int(result["score_emoji_vs16_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_emoji_vs16_scaled"],
                     result["terminal_software_name"],
                     "_vs16"
                 ),
                 "VS15": _wrap_vs15_contested(
-                    format_score_int(result["score_emoji_vs15_scaled"]),
+                    format_score_int(result["score_emoji_vs15_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["terminal_software_name"],
                 ),
                 "SRI": (wrap_score_with_hyperlink(
-                    format_score_int(result["score_sri_scaled"]),
+                    format_score_int(result["score_sri_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_sri_scaled"],
                     result["terminal_software_name"],
                     "_sri"
                 ) if not math.isnan(result["score_sri_scaled"])
                     else _wrap_untested(result["terminal_software_name"], "_sri")),
                 "SFZ": (wrap_score_with_hyperlink(
-                    format_score_int(result["score_sfz_scaled"]),
+                    format_score_int(result["score_sfz_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_sfz_scaled"],
                     result["terminal_software_name"],
                     "_sfz"
                 ) if not math.isnan(result["score_sfz_scaled"])
                     else _wrap_untested(result["terminal_software_name"], "_sfz")),
                 "RI": (wrap_score_with_hyperlink(
-                    format_score_int(result["score_ri_scaled"]),
+                    format_score_int(result["score_ri_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_ri_scaled"],
                     result["terminal_software_name"],
                     "_ri"
@@ -1133,6 +1155,19 @@ def display_tabulated_scores(score_table):
     # Generate and print table with inline role-colored scores
     table_str = tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst")
     print_datatable(table_str)
+
+    has_any_text_sizing = any(e.get("has_text_sizing") for e in score_table)
+    if has_any_text_sizing:
+        print()
+        print("\u2020 This terminal supports the `Kitty Text Sizing protocol`_,")
+        print("  which allows any application to programmatically set character widths,")
+        print("  remediating width issues for complex languages, emoji, and other")
+        print("  problematic codepoints. It is scored 100% on WIDE, LANG, ZWJ, VS16,")
+        print("  VS15, SRI, SFZ, and RI.")
+        print()
+        print('.. _`Kitty Text Sizing protocol`: '
+              'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
+        print()
 
 
 def display_table_definitions():
@@ -2365,7 +2400,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
              "_xtgettcap"),
             ("Text Sizing (OSC 66)",
              float(tr.get("text_sizing", {}).get("width")
-              or tr.get("text_sizing", {}).get("scale")),
+              or tr.get("text_sizing", {}).get("scale")
+              or False),
              "_text_sizing"),
             ("Kitty Clipboard Protocol",
              float(tr.get("kitty_clipboard_protocol", False)),
@@ -2494,6 +2530,24 @@ def show_software_header(entry, sw_name, terminal_mixins):
     print('Full results available at ucs-detect_ repository path')
     print(f"`data/{entry['fname']} <{GITHUB_DATA_LINK.format(fname=entry['fname'])}>`_.")
     print()
+
+    # If this is a subterminal (terminal multiplexer), note the host terminal
+    if sw_name_lower in terminal_mixins:
+        tcfg = terminal_mixins[sw_name_lower]
+        if (tcfg.get("launch") or {}).get("subterminal"):
+            host_name = "kitty"
+            host_link = make_link(host_name)
+            host_cfg = terminal_mixins.get(host_name.lower(), {})
+            host_desc = host_cfg.get("description", "")
+            host_homepage = host_cfg.get("homepage", "")
+            print(f"*{sw_name}* is a terminal multiplexer. "
+                  f"These tests were executed in host terminal "
+                  f"`:ref:`{host_name} <{host_link}xtgettcap>`_.")
+            if host_desc:
+                print(f"{host_desc}")
+            if host_homepage:
+                print(f"The homepage URL of this host terminal is {host_homepage}.")
+            print()
 
 
 def show_wide_character_support(sw_name, entry):
@@ -2940,6 +2994,14 @@ def show_text_sizing_results(sw_name, entry):
     print("at different sizes and to explicitly specify the cell width of characters.")
     print("Detection is performed by measuring cursor movement after sending")
     print("``ESC ] 66 ; w=2 ; <space> BEL`` and ``ESC ] 66 ; s=2 ; <space> BEL``.")
+    print()
+    print("Because this terminal supports the `Text Sizing protocol`_, any application")
+    print("can programmatically set the displayed cell width of any character.")
+    print("This means that width errors for complex languages, emoji, variation")
+    print("selectors (VS15, VS16), standalone regional indicators and Fitzpatrick")
+    print("modifiers, and other problematic codepoints can be fully remediated")
+    print("at the application level. For this reason, *{}* scores **100%** on the WIDE,".format(sw_name))
+    print("LANG, ZWJ, VS16, VS15, SRI, SFZ, and RI width tests.")
     print()
     print('.. _`Text Sizing protocol`: '
           'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')

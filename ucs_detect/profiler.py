@@ -525,6 +525,8 @@ def generate_graphs(
         color = (r, g, b)
         ax.barh(i, duration_val, color=color, zorder=2, height=0.6,
                 label=f"{sw_name} ({duration_val:.0f}s)")
+        ax.text(duration_val * 1.02, i, f"{duration_val:.0f}s",
+                color="black", fontsize=6, va="center", ha="left")
         names.append(sw_name)
 
     ax.set_yticks(range(n_td))

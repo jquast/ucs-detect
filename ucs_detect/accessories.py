@@ -274,7 +274,7 @@ def inject_keys(window_id, keys):
     time.sleep(0.3)
     merged = []
     for key in keys:
-        if key == "\n" or _RE_PAUSE.match(key):
+        if key in ("\n", "\\n") or _RE_PAUSE.match(key):
             if merged:
                 combined = "".join(merged)
                 subprocess.run(
@@ -282,7 +282,7 @@ def inject_keys(window_id, keys):
                     capture_output=True, timeout=120,
                 )
                 merged = []
-            if key == "\n":
+            if key in ("\n", "\\n"):
                 subprocess.run(
                     ["xdotool", "key", "Return"],
                     capture_output=True, timeout=5,

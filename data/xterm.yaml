@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-28 17:05:27 UTC
+datetime: 2026-05-29 19:01:03 UTC
 environment:
   TERM: xterm
 height: 24
@@ -9,44 +9,44 @@ resource_profile:
   cpu_pct:
   - 0.0
   - 2.0
-  - 30.0
-  - 36.9
-  - 40.9
-  - 42.9
-  - 41.9
-  - 45.9
-  - 45.9
   - 32.0
-  - 34.9
+  - 38.9
+  - 41.9
+  - 41.9
+  - 42.9
+  - 44.0
+  - 44.9
+  - 31.9
+  - 33.0
   elapsed_s:
-  - 0.0005306780076352879
-  - 1.0010526200057939
-  - 2.0026851169968722
-  - 3.0037508759996854
-  - 4.005197178994422
-  - 5.006648420006968
-  - 6.007994619998499
-  - 7.009652084001573
-  - 8.01138487800199
-  - 9.0124918930087
-  - 10.014015388995176
+  - 0.0019419049931457266
+  - 1.002509960992029
+  - 2.0044253450032556
+  - 3.0058326150028734
+  - 4.007362453994574
+  - 5.008538558991859
+  - 6.010325629002182
+  - 7.011509596995893
+  - 8.01261747200624
+  - 9.014690747993882
+  - 10.016569066996453
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 7.4375
-  - 20.2421875
-  - 21.92578125
-  - 23.40625
-  - 24.40234375
-  - 25.08984375
-  - 25.77734375
-  - 26.08984375
-  - 26.40234375
-  - 31.43359375
-  - 32.49609375
-seconds_elapsed: 9.30410312100139
+  - 1.65234375
+  - 20.51953125
+  - 22.10546875
+  - 23.44921875
+  - 24.6171875
+  - 25.2421875
+  - 25.9921875
+  - 26.3671875
+  - 26.6796875
+  - 31.75390625
+  - 32.44140625
+seconds_elapsed: 9.218734348003636
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -59,11 +59,11 @@ software_name: XTerm
 software_version: '410'
 system: Linux
 terminal_results:
-  background_color_hex: '#ffffffffffff'
+  background_color_hex: '#000000000000'
   background_color_rgb:
-  - 65535
-  - 65535
-  - 65535
+  - 0
+  - 0
+  - 0
   cell_height: 23
   cell_width: 12
   color_scheme: false
@@ -80,7 +80,7 @@ terminal_results:
     decslrm: 1;80
     decsnls: '24'
     decstbm: 1;24
-    sgr: 0;38:2::255:255:255
+    sgr: 0;38:2::0:0:0
   decrqss_truecolor_probe: true
   device_attributes:
     extensions:
@@ -95,11 +95,11 @@ terminal_results:
     - 22
     - 28
     service_class: 64
-  foreground_color_hex: '#000000000000'
+  foreground_color_hex: '#ffffffffffff'
   foreground_color_rgb:
-  - 0
-  - 0
-  - 0
+  - 65535
+  - 65535
+  - 65535
   height: 24
   iterm2_features:
     features: {}

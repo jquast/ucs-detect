@@ -218,9 +218,9 @@ def main():
         "--keep-temp", action="store_true",
         help="Keep temporary files on exit (for debugging)")
     parser.add_argument(
-        "--host-terminal", default="kitty",
+        "--host-terminal", default="ghostty",
         help="Terminal used to host subterminals (screen, tmux, etc.) "
-             "(default: kitty)")
+             "(default: ghostty)")
     parser.add_argument(
         "--use-docker", action="store_true",
         help="Launch each terminal in its own Docker container (--cpus=2)")
@@ -290,12 +290,8 @@ def main():
             skipped.append((d.software_name, reason))
             continue
 
-        if args.host_only:
-            if not launch_cfg.get("skip_docker"):
-                skipped.append((d.software_name, "not docker-excluded (--host-only)"))
-                continue
-        elif _IS_DOCKER and launch_cfg.get("skip_docker"):
-            reason = launch_cfg.get("skip_reason") or "marked skip_docker in mixins"
+        if should_skip(launch_cfg, host_only=args.host_only, is_docker=_IS_DOCKER):
+            reason = launch_cfg.get("skip_reason") or "excluded by should_skip"
             skipped.append((d.software_name, reason))
             continue
 

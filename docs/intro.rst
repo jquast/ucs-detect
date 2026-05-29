@@ -180,11 +180,14 @@ appear -- click "Details" for an HTML preview.
 Batch Testing
 -------------
 
-The general workflow to gather results and create documentation is, in serial order:
+The general workflow to gather results and create documentation is, in combined serial and parallel order:
 
 .. code-block:: bash
 
-    tox -e docker_build,docker_verify,system_verify,docker_run_series,system_run_series,docker_screenshots,system_screenshots,docs
+    tox -e docker_build,docker_verify,docker_run_series,docker_screenshots &
+    tox -e system_verify,system_run_series,system_screenshots
+    wait
+    tox -e docs
 
 For reproducible isolated runs, the project provides a Docker image with Xvfb and all linux terminal
 emulators pre-installed.  All Docker operations are managed through ``tox`` targets:

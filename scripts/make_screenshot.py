@@ -242,9 +242,13 @@ def display_and_capture(term, wchars, expected_width, measured_width,
         print(term.cyan(vbar) + sized_inner + term.cyan(vbar))
         print(term.cyan(bottom))
 
-    # Bottom-right crop marker: header/footer width + error overflow + margin
+    # Bottom-right crop marker: max of content widths + margin
+    marker_col = interior + max(0, measured_width - expected_width) + 5
+    if has_text_sizing:
+        sized_interior = _wcswidth_vs15(sized_raw) + padding * 2 + 4
+        msg_width = len("This terminal supports kitty text sizing protocol:")
+        marker_col = max(marker_col, sized_interior + 5, msg_width + 3)
     marker_row = 10 if has_text_sizing else 6
-    marker_col = interior + max(0, measured_width - expected_width) + 4
     sys.stdout.write(f"\x1b[{marker_row};{marker_col}H{marker_color}{_MARKER_BOTTOM}\x1b[0m")
     sys.stdout.flush()
 

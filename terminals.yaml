@@ -7,12 +7,7 @@ terminals:
     homepage: https://alacritty.org/
     launch:
       program: alacritty
-      args:
-      - -o
-      - window.dimensions.columns=80
-      - -o
-      - window.dimensions.lines=24
-      - -e
+      args: [-o, window.dimensions.columns=80, -o, window.dimensions.lines=24, -e]
   bobcat:
     homepage: https://github.com/ismail-yilmaz/Bobcat
     launch:
@@ -31,8 +26,7 @@ terminals:
     skip_reason: does not respond to CPR (DSR) in Docker/Xvfb; works on host
     launch:
       program: contour
-      args:
-      - terminal
+      args: [terminal]
   cool-retro-term:
     homepage: https://github.com/Swordfish90/cool-retro-term
     display_name: cool-retro-term
@@ -40,15 +34,12 @@ terminals:
     aur_package: cool-retro-term
     launch:
       program: cool-retro-term
-      args:
-      - --fullscreen
-      - -e
+      args: [--fullscreen, -e]
   domterm:
     homepage: https://domterm.org/
     launch:
       program: DomTerm.AppImage
-      args:
-      - -e
+      args: [-e]
     skip_docker: true
     skip_reason: Massive dependencies require several hours to build in docker!
   extraterm:
@@ -95,8 +86,7 @@ terminals:
     skip_docker: true
     launch:
       program: ghostty
-      args:
-      - -e
+      args: [-e]
   gnome terminal:
     homepage: https://help.gnome.org/users/gnome-terminal/stable/
     display_name: GNOME Terminal
@@ -104,9 +94,7 @@ terminals:
     aur_package: gnome-terminal
     launch:
       program: gnome-terminal
-      args:
-      - --wait
-      - --
+      args: [--wait, --]
     profile_processes:
     - gnome-terminal-server
     timeout: 14400
@@ -132,44 +120,32 @@ terminals:
     homepage: https://sw.kovidgoyal.net/kitty/
     launch:
       program: kitty
-      args:
-      - -o
-      - initial_window_width=80c
-      - -o
-      - initial_window_height=24c
-      - sh
-      - '{script}'
+      args: [-o, initial_window_width=80c, -o, initial_window_height=24c, sh, '{script}']
   konsole:
     homepage: https://apps.kde.org/konsole/
     skip_docker: true
     skip_reason: creates 1x1 cell windows in Docker
     launch:
       program: flatpak
-      args:
-      - run
-      - --command=konsole
-      - org.kde.konsole
-      - --
-      - -e
+      args: [run, --command=konsole, org.kde.konsole, --, -e]
+      wm_class: konsole
     launch_docker:
       program: konsole
-      args:
-      - -e
+      args: [-e]
   libvterm:
     homepage: https://www.leonerd.org.uk/code/libvterm/
     description: libvterm tested is the one shipped with vIM when using command, ``:terminal``.
     launch:
       subterminal: true
       program: vim
-      args:
-      - -c
-      - :terminal ++curwin
+      args: [-c, ':terminal ++curwin']
       post_launch_delay_ms: 300
       post_launch_keys:
       - 'sh ${SCRIPT} && exit
 
         '
-    skip_docker: false
+    skip_docker: true
+    skip_reason: subterminal — tested on host via system_screenshots
   linux fbdev:
     homepage: https://www.kernel.org/doc/Documentation/fb/fbcon.txt
     launch:
@@ -184,9 +160,7 @@ terminals:
     aur_package: lxterminal
     launch:
       program: lxterminal
-      args:
-      - --geometry=80x24
-      - -e
+      args: [--geometry=80x24, -e]
     profile_processes:
     - gnome-terminal-server
     timeout: 14400
@@ -198,9 +172,7 @@ terminals:
     homepage: https://mlterm.sourceforge.net/
     launch:
       program: mlterm
-      args:
-      - --sb=false
-      - -e
+      args: [--sb=false, -e]
     skip_docker: true
     skip_reason: Legacy dependencies require several hours to build
   putty:
@@ -209,10 +181,7 @@ terminals:
     aur_package: putty
     launch:
       program: pterm
-      args:
-      - -geometry
-      - 80x24
-      - -e
+      args: [-geometry, 80x24, -e]
   qterminal:
     homepage: https://github.com/lxqt/qterminal
     display_name: QTerminal
@@ -220,10 +189,7 @@ terminals:
     aur_package: qterminal
     launch:
       program: qterminal
-      args:
-      - --geometry
-      - 80x24
-      - -e
+      args: [--geometry, 960x540, -e]
     skip_docker: true
     skip_reason: Qt terminal hangs in Docker
   rio:
@@ -232,20 +198,14 @@ terminals:
     skip_reason: exits 1 with software Vulkan (lavapipe); works on host with GPU
     launch:
       program: rio
-      args:
-      - -e
+      args: [-e]
   rxvt-unicode:
     homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
     version_template: '{aur_version}'
     aur_package: rxvt-unicode
     launch:
       program: urxvt
-      args:
-      - +sb
-      - -fn
-      - xft:Unifont:pixelsize=16
-      - -rv
-      - -e
+      args: [+sb, -fn, xft:Unifont:pixelsize=16, -rv, -e]
   screen:
     homepage: https://www.gnu.org/software/screen/
     display_name: GNU Screen
@@ -254,8 +214,7 @@ terminals:
     launch:
       subterminal: true
       program: screen
-      args:
-      - -q
+      args: [-q]
       post_launch_delay_ms: 300
       post_launch_keys:
       - '
@@ -281,19 +240,13 @@ terminals:
     version_manual: 0.8.5
     launch:
       program: /usr/local/bin/st-luke
-      args:
-      - -f
-      - Unifont:pixelsize=16
-      - -g
-      - 80x24
-      - -e
+      args: [-f, Unifont:pixelsize=16, -g, 80x24, -e]
   syncterm:
     homepage: https://syncterm.bbsdev.net/
     launch:
       skip: true
       program: syncterm
-      args:
-      - Local
+      args: [Local]
       post_launch_delay_ms: 300
       post_launch_keys:
       - 'sh '
@@ -309,10 +262,7 @@ terminals:
     version_manual: 1.0.230
     launch:
       program: tabby
-      args:
-      - run
-      - sh
-      - '{script}'
+      args: [run, sh, '{script}']
       kill_command:
       - pkill
       - tabby
@@ -337,12 +287,7 @@ terminals:
     aur_package: terminator
     launch:
       program: terminator
-      args:
-      - --geometry
-      - 80x24
-      - -x
-      - sh
-      - '{script}'
+      args: [--geometry, 80x24, -x, sh, '{script}']
     profile_processes:
     - gnome-terminal-server
     timeout: 14400
@@ -352,12 +297,7 @@ terminals:
     homepage: https://www.enlightenment.org/about-terminology
     launch:
       program: terminology
-      args:
-      - --geometry
-      - 80x24
-      - --scale
-      - '1.0'
-      - -e
+      args: [--geometry, 80x24, --scale, '1.0', -e]
   tmux:
     homepage: https://github.com/tmux/tmux
     sixel_support_notes: 'Must be compiled with sixel support. Check support and enablement
@@ -365,8 +305,7 @@ terminals:
     launch:
       subterminal: true
       program: tmux
-      args:
-      - new-session
+      args: [new-session]
       post_launch_delay_ms: 300
       post_launch_keys:
       - 'sh '
@@ -391,17 +330,13 @@ terminals:
     aur_package: weston
     launch:
       program: weston-terminal
-      args:
-      - --shell
-      - '{script}'
+      args: [--shell, '{script}']
       wrapper:
       - cage
       - --
     launch_docker:
       program: weston-terminal
-      args:
-      - --shell
-      - '{script}'
+      args: [--shell, '{script}']
     skip_system: true
     skip_reason: Wayland compositor nested in Xvfb creates tiny windows
     skip_docker: true
@@ -411,6 +346,7 @@ terminals:
     version_template: '{aur_version}'
     aur_package: warp-terminal-bin
     skip_docker: true
+    skip_system: true
     skip_reason: GPU-accelerated; software rendering untested (same class as Rio)
     launch:
       program: warp-terminal
@@ -426,18 +362,10 @@ terminals:
     homepage: https://wezfurlong.org/wezterm/
     launch:
       program: wezterm
-      args:
-      - start
-      - --
+      args: [start, --]
     launch_docker:
       program: wezterm
-      args:
-      - --config
-      - front_end="Software"
-      - --config
-      - enable_wayland=false
-      - start
-      - --
+      args: [--config, front_end="Software", --config, enable_wayland=false, start, --]
       env:
         WAYLAND_DISPLAY: ''
     timeout: 1800
@@ -450,9 +378,7 @@ terminals:
     skip_reason: requires full Xfce session with xfconfd (exit=1)
     launch:
       program: xfce4-terminal
-      args:
-      - -e
-      - sh {script}
+      args: [-e, 'sh {script}']
     profile_processes:
     - gnome-terminal-server
     timeout: 14400
@@ -461,25 +387,14 @@ terminals:
     sixel_support_notes: Sixel support can be enabled with argument ``-ti 340``.
     launch:
       program: xterm
-      args:
-      - -fa
-      - Unifont
-      - -fs
-      - '16'
-      - -rv
-      - -e
+      args: [-fa, Unifont, -fs, '16', -rv, -e]
   zutty:
     homepage: https://tomscii.sig7.se/zutty/
     version_template: '{aur_version}'
     aur_package: zutty
     launch:
       program: zutty
-      args:
-      - -font
-      - unifont
-      - -fontsize
-      - '16'
-      - -e
+      args: [-font, unifont, -fontsize, '16', -e]
   zellij:
     homepage: https://github.com/zellij-org/zellij
     launch:

@@ -1,53 +1,47 @@
 ambiguous_width: 1
-datetime: 2026-05-28 17:07:21 UTC
+datetime: 2026-05-29 19:02:43 UTC
 environment:
   COLORTERM: truecolor
   TERM: alacritty
-height: 40
+height: 24
 preferred_encoding: UTF-8
 python_version: 3.14.5
 resource_profile:
   cpu_pct:
   - 0.0
-  - 16.0
+  - 15.0
   - 1.0
   - 0.0
-  - 102.8
-  - 113.8
-  - 117.8
-  - 127.8
-  - 125.8
-  - 140.7
-  - 141.8
+  - 76.9
+  - 95.3
+  - 114.8
+  - 111.9
+  - 107.9
   elapsed_s:
-  - 0.0005359269998734817
-  - 1.0011312779970467
-  - 2.0036369070003275
-  - 3.0056579939991934
-  - 4.008823609998217
-  - 5.010558555994066
-  - 6.012115997000365
-  - 7.01351160199556
-  - 8.015358452990768
-  - 9.017009253992
-  - 10.018957823995152
+  - 0.0006245019903872162
+  - 1.0014069379976718
+  - 2.003048355996725
+  - 3.0053562440007227
+  - 4.0073968989891
+  - 5.008913229990867
+  - 6.016726579997339
+  - 7.017865190995508
+  - 8.019164422992617
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 4.46875
-  - 126.26171875
-  - 126.35546875
-  - 126.35546875
-  - 131.875
-  - 186.12890625
-  - 211.87890625
-  - 216.6796875
-  - 205.125
-  - 219.34765625
-  - 245.53125
-seconds_elapsed: 7.105921333000879
+  - 4.359375
+  - 120.9375
+  - 121.0234375
+  - 121.0234375
+  - 129.6875
+  - 186.36328125
+  - 185.9921875
+  - 180.93359375
+  - 185.16796875
+seconds_elapsed: 4.760170818990446
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000
@@ -79,7 +73,7 @@ terminal_results:
   - 55512
   - 55512
   - 55512
-  height: 40
+  height: 24
   iterm2_features:
     features: {}
     supported: false
@@ -164,10 +158,10 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 600
-  pixels_width: 792
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  pixels_height: 360
+  pixels_width: 720
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: false
   styled_underlines: false
   tab_stop_width: 8
@@ -175,7 +169,7 @@ terminal_results:
     scale: false
     width: false
   ttype: alacritty
-  width: 88
+  width: 80
   xtgettcap:
     capabilities: {}
     supported: false
@@ -10591,4 +10585,4 @@ test_results:
       n_total: 5000
       pct_success: 100.0
 wcwidth_version: 0.7.0
-width: 88
+width: 80
