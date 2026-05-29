@@ -71,7 +71,7 @@ def safe_name(name):
 
 
 def decode_wchars(escaped):
-    """Decode a unicode-escape-encoded string like ``\\u0915`` to the actual unicode text."""
+    r"""Decode a unicode-escape-encoded string like ``\\u0915`` to the actual unicode text."""
     return bytes(escaped, "utf-8").decode("unicode-escape")
 
 
@@ -270,7 +270,7 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
 
 
 def inject_keys(window_id, keys):
-    """
+    r"""
     Send keystrokes to a window via xdotool.
 
     Special tokens:

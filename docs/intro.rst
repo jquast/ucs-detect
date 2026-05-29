@@ -38,8 +38,7 @@ grapheme width of over 500 languages.
 
 ``ucs-browser`` allows to interactive browsing of each kind of category with an interactive terminal
 browsing program. This may also output to a non-tty, and is used to publish the example test files
-at https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files, 
-
+at https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files,
 How it works
 ------------
 

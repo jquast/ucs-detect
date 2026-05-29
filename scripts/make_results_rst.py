@@ -775,19 +775,19 @@ def make_score_table():
             # DEC Modes Support,
             _score_dec_modes = score_dec_modes(data)
 
-            # Resource score — negate raw cost so higher = better for scaling
+            # Resource score, negate raw cost so higher = better for scaling
             _cost = resource_cost(data)
             _score_resource = -_cost if not math.isnan(_cost) else float('NaN')
             _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
 
-            # Sixel support - binary score based on DA1 device attributes response
+            # Sixel support, binary score based on DA1 device attributes response
             _sixel_support = data.get("terminal_results", {}).get("sixel", False)
             _score_sixel = 1.0 if _sixel_support else 0.0
 
-            # Features score - fraction of notable features supported
+            # Features score, fraction of notable features supported
             _score_features = score_features(data)
 
-            # Graphics protocol score - 1.0 modern, 0.5 legacy, 0.0 none
+            # Graphics protocol score, 1.0 modern, 0.5 legacy, 0.0 none
             _score_graphics = score_graphics(data)
 
             _sw_name = data.get("software_name", data.get('software'))

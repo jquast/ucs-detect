@@ -23,6 +23,7 @@ class ProfileSession:
                  program: str | None = None,
                  extra_programs: list[str] | None = None,
                  exclude_names: set[str] | None = None):
+        """Initialize a profile session for a process tree."""
         self._sw_name = sw_name
         self._pid = pid
         self._interval = interval
@@ -207,7 +208,7 @@ class ProfileSession:
 
     def samples(self) -> list[tuple[float, float, float]]:
         """
-        Return collected samples (elapsed_seconds, cpu_pct, rss_mb).
+        Return collected samples as (elapsed_seconds, cpu_pct, rss_mb) tuples.
 
         The first sample is dropped when it is a known initialization artifact (0.0 CPU from
         cpu_percent priming). Trailing entries with zero RSS (process-exit artifacts) are always
@@ -501,7 +502,6 @@ def generate_graphs(
     # Time-only horizontal bar charts: terminals sorted by duration
     time_data = sorted(cpu_time_data, key=lambda t: t[2])
     n_td = len(time_data)
-    max_dur_td = max(d[2] for d in time_data)
 
     # Per-terminal time bars
     for idx, (sw_name, _mean_cpu_val, duration_val) in enumerate(time_data):
@@ -514,7 +514,6 @@ def generate_graphs(
         for j, (other_name, _oc, other_dur) in enumerate(time_data):
             color = "#dc2626" if other_name == sw_name else "#cccccc"
             z = 2 if other_name == sw_name else 1
-            size = 60 if other_name == sw_name else 20
             ax.barh(j, other_dur, color=color, zorder=z, height=0.6)
             if other_name == sw_name:
                 ax.text(other_dur * 1.05, j, f"{sw_name} ({other_dur:.0f}s)",

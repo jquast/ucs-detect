@@ -86,7 +86,7 @@ def fetch_vs15_data():
                 continue
             cp_str = line.split("FE0E")[0].strip()
             cp = int(cp_str, 16)
-            # Only include characters that are wide by default —
+            # Only include characters that are wide by default
             # these transition from wide (2) to narrow (1) with VS15.
             if wcwidth.wcwidth(chr(cp)) == 2:
                 all_sequences.append((cp, 0xFE0E))

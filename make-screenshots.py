@@ -458,7 +458,7 @@ def main():
 
             # For key-inject terminals: rebuild script with --window-id
             # BEFORE injection so the injected shell command sees it.
-            # Direct-launch terminals must NOT be rebuilt — they are
+            # Direct-launch terminals must NOT be rebuilt, they are
             # already executing the first build.
             if post_keys and captured_wid is not None:
                 build_batch_script(script_path, sentinel_path,
