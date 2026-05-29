@@ -246,9 +246,10 @@ def main():
               file=sys.stderr)
         sys.exit(1)
 
-    if not shutil.which("xdotool") or not shutil.which("xwd"):
-        print("Error: xdotool and xwd are required", file=sys.stderr)
-        sys.exit(1)
+    if system_name.lower() == "linux":
+        if not shutil.which("xdotool") or not shutil.which("xwd"):
+            print("Error: xdotool and xwd are required", file=sys.stderr)
+            sys.exit(1)
 
     mixins = load_mixins()
 
