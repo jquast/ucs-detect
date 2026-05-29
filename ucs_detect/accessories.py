@@ -195,9 +195,33 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
 def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
     """Find X11 window ID for a launched process, by PID then by class name.
 
-    If *pre_windows* is a set of window IDs that existed before the
-    process was launched, any new window (not in the set) is returned
-    as a last-resort fallback."""
+    On macOS uses Quartz CGWindowList to match by owner PID."""
+    if sys.platform == "darwin":
+        return _find_window_darwin(pid, timeout)
+    return _find_window_linux(launch_cfg, pid, timeout, pre_windows)
+
+
+def _find_window_darwin(pid, timeout=8):
+    """Find macOS window by owner PID via osascript."""
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        try:
+            scpt = (f'tell application "System Events" to get id of '
+                    f'first window of (first process whose unix id is {pid})')
+            result = subprocess.run(
+                ["osascript", "-e", scpt],
+                capture_output=True, text=True, timeout=5,
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip()
+        except (subprocess.TimeoutExpired, OSError):
+            pass
+        time.sleep(0.3)
+    return None
+
+
+def _find_window_linux(launch_cfg, pid, timeout=8, pre_windows=None):
+    """Find X11 window ID on Linux: by PID, class name, or pre_windows diff."""
     deadline = time.monotonic() + timeout
 
     # Strategy 1: search by PID

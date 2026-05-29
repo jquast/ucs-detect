@@ -41,6 +41,47 @@ def set_window_title(title):
 
 def find_own_window(title, timeout=5):
     """Find our containing terminal window."""
+    if sys.platform == "darwin":
+        return _find_own_window_darwin(timeout)
+    return _find_own_window_linux(title, timeout)
+
+
+def _find_own_window_darwin(timeout=5):
+    """Find terminal window by walking parent PIDs and matching via osascript."""
+    import psutil
+    pids = {os.getpid()}
+    try:
+        proc = psutil.Process(os.getpid())
+        for _ in range(6):
+            try:
+                proc = proc.parent()
+                if proc is None:
+                    break
+                pids.add(proc.pid)
+            except psutil.NoSuchProcess:
+                break
+    except psutil.NoSuchProcess:
+        pass
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        for pid in pids:
+            try:
+                scpt = (f'tell application "System Events" to get id of '
+                        f'first window of (first process whose unix id is {pid})')
+                result = subprocess.run(
+                    ["osascript", "-e", scpt],
+                    capture_output=True, text=True, timeout=5,
+                )
+                if result.returncode == 0 and result.stdout.strip():
+                    return result.stdout.strip()
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+        time.sleep(0.3)
+    return None
+
+
+def _find_own_window_linux(title, timeout=5):
+    """Find our containing terminal window on Linux."""
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         try:
@@ -102,6 +143,28 @@ def find_own_window(title, timeout=5):
 
 def capture_window(window_id, output_path):
     """Capture *window_id* to *output_path* as a marker-cropped PNG."""
+    if sys.platform == "darwin":
+        _capture_darwin(window_id, output_path)
+    else:
+        _capture_linux(window_id, output_path)
+
+
+def _capture_darwin(window_id, output_path):
+    """Capture via screencapture (macOS)."""
+    tmp_png = tempfile.mktemp(suffix=".png")
+    try:
+        subprocess.run(
+            ["screencapture", "-l", str(window_id), "-x", "-t", "png", tmp_png],
+            capture_output=True, check=True, timeout=10,
+        )
+        _crop_to_markers(tmp_png, output_path)
+    finally:
+        if os.path.exists(tmp_png):
+            os.unlink(tmp_png)
+
+
+def _capture_linux(window_id, output_path):
+    """Capture via xwd + ImageMagick (Linux)."""
     tmp_xwd = None
     tmp_png = None
     try:
