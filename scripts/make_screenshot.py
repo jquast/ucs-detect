@@ -25,10 +25,11 @@ from ucs_detect.measure import _wcswidth_vs15
 
 
 def _marker_cells(term):
-    """Return (row1_str, row2_str) — a 2×2 checkerboard of magenta blocks."""
+    """Return (row1_str, row2_str) — a 2×2 checkerboard of magenta and yellow."""
     mc = term.on_color_rgb(255, 0, 255)
-    row1 = mc + "  " + term.normal
-    row2 = mc + "  " + term.normal
+    yc = term.on_color_rgb(255, 255, 0)
+    row1 = mc + " " + yc + " " + term.normal
+    row2 = yc + " " + mc + " " + term.normal
     return row1, row2
 
 
@@ -140,8 +141,14 @@ def _is_blank(path):
             img = img.convert("RGB")
         pixels = list(img.get_flattened_data())
         white = sum(1 for p in pixels if p[0] > 240 and p[1] > 240 and p[2] > 240)
-        black = sum(1 for p in pixels if p[0] < 15 and p[1] < 15 and p[2] < 15)
-        return (white / len(pixels) > 0.95) or (black / len(pixels) > 0.95)
+        if white / len(pixels) > 0.95:
+            return True
+        # All-black is only blank in Docker (Xvfb may produce black frames)
+        if os.path.exists("/.dockerenv"):
+            black = sum(1 for p in pixels if p[0] < 15 and p[1] < 15 and p[2] < 15)
+            if black / len(pixels) > 0.95:
+                return True
+        return False
     except Exception:
         return False
 
@@ -162,26 +169,36 @@ def _crop_to_markers(src_path, dst_path):
         img = img.convert("RGB")
     w, h = img.size
 
-    points = []
+    def _is_marker(px):
+        r, g, b = px[0], px[1], px[2]
+        return (r > 220 and g < 30 and b > 220) or (r > 220 and g > 220 and b < 30)
+
+    # Scan top-down for first marker row
+    y1 = None
     for y in range(h):
         for x in range(w):
-            px = img.getpixel((x, y))
-            r, g, b = px[0], px[1], px[2]
-            # Bright magenta marker background (ANSI 256-color 13: 255,0,255).
-            # Threshold excludes standard magenta (ANSI 5: ~170,0,170) used in
-            # content borders, while allowing subpixel rendering variation.
-            if r > 220 and g < 30 and b > 220:
-                points.append((x, y))
+            if _is_marker(img.getpixel((x, y))):
+                y1 = y
+                break
+        if y1 is not None:
+            break
 
-    if len(points) < 4:
-        # Fallback: ImageMagick trim + marker-based detection on retry
+    if y1 is None:
         _imagemagick_trim(src_path, dst_path)
         return
 
-    # Crop vertically to marker bounds; keep full horizontal width
-    y_coords = [p[1] for p in points]
-    y1 = max(0, min(y_coords) - 4)
-    y2 = min(h, max(y_coords) + 4)
+    # Scan bottom-up for last marker row
+    y2 = None
+    for y in range(h - 1, -1, -1):
+        for x in range(w):
+            if _is_marker(img.getpixel((x, y))):
+                y2 = y
+                break
+        if y2 is not None:
+            break
+
+    y1 = max(0, y1 - 4)
+    y2 = min(h, y2 + 4)
     img.crop((0, y1, w, y2)).save(dst_path)
 
 

@@ -337,6 +337,7 @@ terminals:
     skip_reason: GPU-accelerated; software rendering untested (same class as Rio)
     launch:
       program: warp-terminal
+      args: []
       wm_class: dev.warp.Warp
       post_launch_delay_ms: 1500
       post_launch_keys:

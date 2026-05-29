@@ -450,10 +450,11 @@ def main():
                     window_cfg, proc.pid,
                     pre_windows=snapshot_pre_windows)
 
-            # Rebuild script now that we have the window_id.  Must happen
-            # BEFORE key injection so the script is fully written when the
-            # injected shell command reads it.
-            if captured_wid is not None:
+            # For key-inject terminals: rebuild script with --window-id
+            # BEFORE injection so the injected shell command sees it.
+            # Direct-launch terminals must NOT be rebuilt — they are
+            # already executing the first build.
+            if post_keys and captured_wid is not None:
                 build_batch_script(script_path, sentinel_path,
                                    batch_json_path, captured_wid)
 
