@@ -410,10 +410,11 @@ def main():
                         help="X11 window ID to capture (skips find_own_window)")
     args = parser.parse_args()
 
-    if not shutil.which("xdotool") or not shutil.which("xwd"):
-        print("Error: xdotool and xwd are required for screenshot capture",
-              file=sys.stderr)
-        sys.exit(1)
+    if sys.platform != "darwin":
+        if not shutil.which("xdotool") or not shutil.which("xwd"):
+            print("Error: xdotool and xwd are required for screenshot capture",
+                  file=sys.stderr)
+            sys.exit(1)
 
     with open(args.batch) as f:
         records = json.load(f)
