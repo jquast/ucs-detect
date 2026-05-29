@@ -132,9 +132,17 @@ terminals:
     homepage: https://sw.kovidgoyal.net/kitty/
     launch:
       program: kitty
-      args: []
+      args:
+      - -o
+      - initial_window_width=80c
+      - -o
+      - initial_window_height=24c
+      - sh
+      - '{script}'
   konsole:
     homepage: https://apps.kde.org/konsole/
+    skip_docker: true
+    skip_reason: "creates 1x1 cell windows in Docker"
     launch:
       program: flatpak
       args:
@@ -296,14 +304,10 @@ terminals:
     version_manual: 1.0.230
     launch:
       program: tabby
-      args: []
-      post_launch_delay_ms: 1500
-      post_launch_keys:
-      - 'sh '
-      - ${SCRIPT} && exit
-      - '
-
-        '
+      args:
+      - run
+      - sh
+      - '{script}'
       kill_command:
       - pkill
       - tabby

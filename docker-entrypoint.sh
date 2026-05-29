@@ -40,7 +40,7 @@ if [ -f /.dockerenv ] && [ -n "${DISPLAY:-}" ]; then
     # start Weston Wayland compositor as ucs (needed by foot)
     rm -f "${XDG_RUNTIME_DIR}/wayland-0" "${XDG_RUNTIME_DIR}/wayland-0.lock" 2>/dev/null
     sudo -u ucs XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR}" \
-        weston --backend=x11-backend.so --socket=wayland-0 2>/dev/null &
+        weston --backend=x11-backend.so --socket=wayland-0 --width=1024 --height=768 2>/dev/null &
     WESTON_PID=$!
     # wait for weston socket
     for _ in $(seq 1 30); do
