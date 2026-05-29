@@ -264,6 +264,10 @@ def _fixup_yaml(yaml_path, sw_name, mixins, program):
     """
     key = sw_name.lower()
     entry = mixins.get(key, {})
+    if not entry:
+        stem_key = yaml_path.stem.lower()
+        if stem_key != key:
+            entry = mixins.get(stem_key, {})
     display_name = entry.get("display_name")
     version_template = entry.get("version_template")
 

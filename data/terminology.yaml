@@ -1,63 +1,966 @@
 ambiguous_width: 1
-datetime: 2026-05-29 18:52:21 UTC
+datetime: 2026-05-29 23:15:20 UTC
 environment:
   TERM: xterm-256color
   TERM_PROGRAM: terminology
-  TERM_PROGRAM_VERSION: 1.14.0
+  TERM_PROGRAM_VERSION: 1.13.0
 height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.5
+python_version: 3.13.13
 resource_profile:
   cpu_pct:
+  - 24.6
+  - 8.8
+  - 19.9
+  - 5.5
+  - 52.1
+  - 1.0
   - 0.0
-  - 8.0
-  - 2.0
-  - 13.0
-  - 41.9
-  - 40.9
-  - 40.9
-  - 41.9
-  - 43.9
-  - 41.9
-  - 41.9
+  - 0.0
+  - 0.0
+  - 16.9
+  - 23.9
+  - 21.2
+  - 24.3
+  - 22.7
+  - 25.4
+  - 22.7
+  - 26.1
+  - 24.4
+  - 26.3
+  - 26.3
+  - 23.8
+  - 26.9
+  - 27.9
+  - 30.3
+  - 27.1
+  - 28.6
+  - 27.9
+  - 23.7
+  - 26.3
+  - 28.8
+  - 27.0
+  - 22.7
+  - 28.3
+  - 27.3
+  - 26.6
+  - 26.3
+  - 26.7
+  - 28.6
+  - 30.9
+  - 30.6
+  - 27.4
+  - 28.7
+  - 28.7
+  - 30.6
+  - 26.5
+  - 30.6
+  - 32.4
+  - 29.0
+  - 31.9
+  - 34.1
+  - 34.0
+  - 35.5
+  - 35.8
+  - 35.2
+  - 32.8
+  - 31.6
+  - 33.0
+  - 34.6
+  - 34.0
+  - 34.0
+  - 37.5
+  - 32.6
+  - 34.3
+  - 35.6
   - 32.9
-  - 35.0
-  - 25.0
+  - 38.9
+  - 37.8
+  - 35.2
+  - 35.8
+  - 36.1
+  - 40.8
+  - 43.5
+  - 38.6
+  - 41.6
+  - 40.2
+  - 39.9
+  - 40.6
+  - 42.1
+  - 45.0
+  - 43.7
+  - 42.6
+  - 42.8
+  - 45.4
+  - 44.7
+  - 45.0
+  - 44.7
+  - 45.8
+  - 45.5
+  - 43.8
+  - 44.7
+  - 49.8
+  - 47.5
+  - 48.1
+  - 38.9
+  - 55.6
+  - 37.2
+  - 23.5
+  - 34.7
+  - 26.3
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
   elapsed_s:
-  - 0.000434746005339548
-  - 1.0009196900064126
-  - 2.002893769007642
-  - 3.0045541059953393
-  - 4.006183222998516
-  - 5.0080465380015085
-  - 6.0099246589961695
-  - 7.011210867000045
-  - 8.0125454730005
-  - 9.01415062599699
-  - 10.015353801994934
-  - 11.017049571004463
-  - 12.018764655003906
-  - 13.02017490399885
+  - 0.216240182009642
+  - 1.3850774669990642
+  - 2.5178481040056795
+  - 3.6831377330090618
+  - 4.767038019999745
+  - 5.821497726996313
+  - 6.840813654998783
+  - 7.861007453000639
+  - 8.908349528996041
+  - 9.980185584005085
+  - 11.104812716002925
+  - 12.196055620996049
+  - 13.278515384008642
+  - 14.383957040001405
+  - 15.444041700000525
+  - 16.513776464998955
+  - 17.56789396800741
+  - 18.679559744996368
+  - 19.739156714000273
+  - 20.843706048006425
+  - 21.924595645003137
+  - 23.0000208249985
+  - 24.0811214849964
+  - 25.23616655600199
+  - 26.319574371009367
+  - 27.38608034500794
+  - 28.433969118996174
+  - 29.555883927998366
+  - 30.738061274008942
+  - 31.91530870500719
+  - 32.98844905200531
+  - 34.10404258800554
+  - 35.16189311099879
+  - 36.25325840600999
+  - 37.32335370600049
+  - 38.49917578700115
+  - 39.63259127300989
+  - 40.67476679899846
+  - 41.76255726600357
+  - 42.85667244000069
+  - 44.07467553700553
+  - 45.270685210998636
+  - 46.50800084500224
+  - 48.23415881000983
+  - 49.364030299999285
+  - 50.61140697200608
+  - 52.12217296200106
+  - 53.66710125400277
+  - 54.79274949000683
+  - 55.890833501005545
+  - 57.0377311159973
+  - 58.24606454400055
+  - 59.42238506200374
+  - 60.624045229007606
+  - 61.82278498199594
+  - 62.88554052100517
+  - 63.92851067800075
+  - 64.9908863610035
+  - 66.02964415099996
+  - 67.08847785599937
+  - 68.12242473800143
+  - 69.56357159999607
+  - 71.20807791300467
+  - 72.69104391000292
+  - 74.0973151549988
+  - 75.41911072199582
+  - 76.98423492300208
+  - 78.48412646500219
+  - 79.89156660600565
+  - 81.27288853500795
+  - 82.33100587000081
+  - 83.36084777400538
+  - 84.3945363679959
+  - 85.43103001700365
+  - 86.46408649999648
+  - 87.58903674900648
+  - 88.68777805400896
+  - 89.71939265100809
+  - 90.8107100950001
+  - 91.87774363500648
+  - 92.91526769699703
+  - 94.95585455100809
+  - 96.62345221699798
+  - 97.64390727100545
+  - 98.67389961000299
+  - 99.69595202500932
+  - 100.72952138000983
+  - 101.80437668200466
+  - 102.87103064100666
+  - 103.9000487059966
+  - 104.92914545199892
+  - 105.95331892299873
+  - 106.99047634699673
+  - 108.08593399700476
+  - 109.11362410499714
+  - 110.13854868699855
+  - 111.15967469500902
+  - 112.18204889800109
+  - 116.3739026060066
+  - 117.88399684600881
+  - 118.92214485899603
+  - 119.94727700600924
+  - 120.97697808800149
+  - 122.00760203400569
+  - 123.04103387000214
+  - 124.07135470199864
+  - 125.2963249690074
+  - 126.31101836900052
+  - 127.32872721800231
+  - 128.3725408760074
+  - 129.395417947002
+  - 130.41549318400212
+  - 131.4323251379974
+  - 132.59094761199958
+  - 133.74676714900124
+  - 134.7649409900041
+  - 135.78115733100276
+  - 136.7935184310045
+  - 137.80712454899913
+  - 138.81916602500132
+  - 139.9712749790051
+  - 140.99948169800336
+  - 142.01126519699756
+  - 143.02432675700402
+  - 144.03924451200874
+  - 145.05169384799956
+  - 146.10474118500133
+  - 147.24173512100242
+  - 148.2582340020017
+  - 149.27110523999727
+  - 150.284701149998
+  - 151.29846955600078
+  - 152.3120309759979
+  - 153.49522284300474
+  - 154.51020457300183
+  - 155.527186678999
+  - 156.5413037219987
+  - 157.55600275899633
+  - 158.68753242401
+  - 159.89446144500107
+  - 160.9095341420034
+  - 161.92415717699623
+  - 162.93909462400188
+  - 163.9535931700084
+  - 164.9687143159972
+  - 166.14140825301
+  - 167.15536815700762
+  - 168.17013092800335
+  - 169.1849280269962
+  - 170.19723578699632
+  - 171.30403005699918
+  - 172.3176369790017
+  - 173.3323421350069
+  - 174.3458498270047
+  - 175.35902314299892
+  - 176.44394441699842
+  - 177.54555061800056
+  - 178.55974908500502
+  - 179.5743713999982
+  - 180.5888733210013
+  - 181.60234591300832
+  - 182.6160656810098
+  - 183.69041827399633
+  - 184.81503064800927
+  - 185.8331744640018
+  - 186.85138859400467
+  - 187.86969079200935
+  - 188.88477452400548
+  - 189.89866501900542
+  - 192.3680407720094
+  - 194.36685253500764
+  - 198.52267473300162
+  - 203.23757264199958
+  - 204.26085277700622
+  - 205.28627014299855
+  - 206.31514665200666
+  - 207.33935159900284
+  - 208.36780411700602
+  - 209.39340226200875
+  - 210.4225147130055
+  - 211.44631451800524
+  - 212.47023741599696
+  - 213.49589856799867
+  - 214.5227724180004
+  - 215.64618965500267
+  - 216.67045416300243
+  - 217.69572830799734
+  - 218.72638491500402
+  - 219.75345313000435
+  - 220.77867303999665
+  - 221.80716297699837
+  - 222.83649353400688
+  - 223.86142392701004
+  - 224.88636653500726
+  - 225.91144590200565
+  - 226.93466677400284
+  - 227.959169173002
+  - 229.06843260400638
+  - 230.09191744800773
+  - 231.1166377519985
+  - 232.13974933000281
+  - 233.16536345500208
+  - 234.18929899300565
+  - 235.2130283459992
+  - 236.2368394750083
+  - 237.25936065599672
+  - 238.28278502300964
+  - 239.3096299910103
+  - 240.33280419300718
+  - 241.3576974930038
+  - 242.38206264399923
+  - 243.47350513900165
+  - 244.5385709740076
+  - 245.5596590720088
+  - 246.5816798129963
+  - 247.60601136100013
+  - 248.6295649320091
+  - 249.65403463400435
+  - 250.6775320440065
+  - 251.7020259150013
+  - 252.72724621200177
+  - 253.75168583499908
+  - 254.77532965800492
+  - 255.79909315700934
+  - 256.82292749099724
+  - 257.9179567370011
+  - 258.97513904899824
+  - 259.99846242100466
+  - 261.0228419460036
+  - 262.04782068800705
+  - 263.0721912010049
+  - 264.09603141000844
+  - 265.1210346440057
+  - 266.14531300900853
+  - 267.16987197400886
+  - 268.1937854279968
+  - 269.21658107799885
+  - 270.23978843200894
+  - 271.2658661530004
+  - 272.33817072800593
+  - 273.4606242459995
+  - 274.4856970480032
+  - 275.51009470500867
+  - 276.5377728099993
+  - 277.5665728330059
+  - 278.59256095100136
+  - 279.61752727300336
+  - 280.64344250800787
+  - 281.6700378609967
+  - 282.6977916300093
+  - 283.72261388000334
+  - 284.7483693929971
+  - 285.8969605720049
+  - 286.92283763800515
+  - 287.9484427849966
+  - 288.9834568590013
+  - 290.0309259159985
+  - 291.08782490000885
+  - 292.1302886199992
+  - 293.14276550100476
+  - 294.15541349600244
+  - 295.16735451600107
+  - 296.1796208989981
+  - 297.19246607901005
+  - 298.20558135899773
+  - 299.3131325459981
+  - 300.32598243000393
+  - 301.3371902259969
+  - 302.34901880800317
+  - 303.3630349770101
+  - 304.3780283410015
+  - 305.39047630100686
+  - 306.4051075400057
+  - 307.41667639299703
+  - 308.4285034130007
+  - 309.49460793600883
+  - 310.5861445449991
+  - 311.59829072900175
+  - 312.6103543200006
+  - 313.62337871600175
+  - 314.63503350400424
+  - 315.6508779260039
+  - 316.6654483480088
+  - 317.67775130800146
+  - 318.69005499000195
+  - 319.7030831640004
+  - 320.75869858500664
+  - 321.8232463890017
+  - 322.8356337459991
+  - 323.84724611000274
+  - 324.8593947920017
+  - 325.8742357489973
+  - 326.8863600790064
+  - 327.89829671800544
+  - 328.9102855480014
+  - 329.9225450869999
+  - 330.9433189150004
+  - 332.0278788709984
+  - 333.0449475200003
+  - 334.0574406939995
+  - 335.06963412799814
+  - 336.0808598570002
+  - 337.0937189630058
+  - 338.1055185430014
+  - 339.11982308499864
+  - 340.13163501099916
+  - 341.1434317200037
+  - 342.20403051099856
+  - 343.2159070130001
+  - 344.22859742499713
+  - 345.2401993550011
+  - 346.2517336610035
+  - 347.2638211260055
+  - 348.28032448999875
+  - 354.4704330490058
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 1.01953125
-  - 59.8671875
-  - 52.41015625
-  - 60.41796875
-  - 63.578125
-  - 66.5859375
-  - 69.91015625
-  - 73.06640625
-  - 76.0390625
-  - 78.25390625
-  - 82.99609375
-  - 83.375
-  - 83.93359375
-  - 84.08203125
-seconds_elapsed: 10.110211341001559
+  - 25.984375
+  - 62.24609375
+  - 65.75390625
+  - 62.09375
+  - 73.6953125
+  - 41.19140625
+  - 41.19140625
+  - 41.03515625
+  - 41.03515625
+  - 54.1015625
+  - 65.33984375
+  - 65.25390625
+  - 65.5390625
+  - 65.78125
+  - 66.078125
+  - 66.28125
+  - 66.88671875
+  - 66.78515625
+  - 67.53515625
+  - 67.23828125
+  - 67.015625
+  - 67.71875
+  - 66.78125
+  - 65.4921875
+  - 65.7578125
+  - 66.05859375
+  - 66.71875
+  - 64.7265625
+  - 64.47265625
+  - 64.5078125
+  - 65.7265625
+  - 66.27734375
+  - 66.5625
+  - 66.6953125
+  - 66.3359375
+  - 66.5390625
+  - 66.7265625
+  - 66.9140625
+  - 67.12890625
+  - 67.37890625
+  - 68.6015625
+  - 68.33984375
+  - 68.55859375
+  - 68.26953125
+  - 68.57421875
+  - 68.9609375
+  - 69.30078125
+  - 69.9921875
+  - 70.28125
+  - 71.03515625
+  - 70.77734375
+  - 70.6953125
+  - 72.0
+  - 71.828125
+  - 71.5390625
+  - 71.70703125
+  - 72.015625
+  - 72.73828125
+  - 72.3984375
+  - 72.625
+  - 73.5546875
+  - 73.91015625
+  - 73.75390625
+  - 74.08984375
+  - 74.578125
+  - 75.55859375
+  - 76.0234375
+  - 75.77734375
+  - 76.43359375
+  - 76.4609375
+  - 77.37890625
+  - 77.57421875
+  - 77.30859375
+  - 77.61328125
+  - 78.40625
+  - 78.75390625
+  - 79.62890625
+  - 79.37109375
+  - 79.42578125
+  - 79.80078125
+  - 80.34765625
+  - 80.33984375
+  - 81.140625
+  - 81.4609375
+  - 81.86328125
+  - 82.171875
+  - 82.0625
+  - 82.9453125
+  - 82.81640625
+  - 83.08203125
+  - 84.50390625
+  - 84.3515625
+  - 85.28125
+  - 86.578125
+  - 89.44140625
+  - 89.859375
+  - 89.953125
+  - 93.3203125
+  - 94.8046875
+  - 94.6328125
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+seconds_elapsed: 107.62070285600203
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -67,7 +970,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: terminology
-software_version: 1.14.0
+software_version: 1.13.0
 system: Linux
 terminal_results:
   background_color_hex: '#202020202020'
@@ -91,11 +994,6 @@ terminal_results:
     - 21
     - 22
     service_class: 64
-  foreground_color_hex: '#aaaaaaaaaaaa'
-  foreground_color_rgb:
-  - 43690
-  - 43690
-  - 43690
   height: 24
   iterm2_features:
     features: {}
@@ -116,7 +1014,7 @@ terminal_results:
   sixel: false
   software_method: XTVERSION
   software_name: terminology
-  software_version: 1.14.0
+  software_version: 1.13.0
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
@@ -129,7 +1027,7 @@ terminal_results:
     supported: false
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: terminology(1.14.0)
+  xtversion_raw: terminology 1.13.0
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -1355,16 +2253,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001faef\u200d\U0001f468\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001faef\u200d\U0001f468\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001faef\u200d\U0001f468\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fb\u200d\U0001faef\u200d\U0001f468\U0001f3ff
       - measured_by_terminal: 9
@@ -1394,16 +2292,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001faef\u200d\U0001f468\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001faef\u200d\U0001f468\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001faef\u200d\U0001f468\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fc\u200d\U0001faef\u200d\U0001f468\U0001f3ff
       - measured_by_terminal: 9
@@ -1448,16 +2346,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3ff
       - measured_by_terminal: 9
@@ -1490,16 +2388,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001faef\u200d\U0001f468\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001faef\u200d\U0001f468\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001faef\u200d\U0001f468\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3fe\u200d\U0001faef\u200d\U0001f468\U0001f3ff
       - measured_by_terminal: 9
@@ -1550,16 +2448,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001f91d\u200d\U0001f468\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001faef\u200d\U0001f468\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001faef\u200d\U0001f468\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001faef\u200d\U0001f468\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f468\U0001f3ff\u200d\U0001faef\u200d\U0001f468\U0001f3fe
       - measured_by_terminal: 5
@@ -1661,16 +2559,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001f91d\u200d\U0001f469\U0001f3ff
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001faef\u200d\U0001f469\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001faef\u200d\U0001f469\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001faef\u200d\U0001f469\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fb\u200d\U0001faef\u200d\U0001f469\U0001f3ff
       - measured_by_terminal: 9
@@ -1700,16 +2598,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001f91d\u200d\U0001f469\U0001f3ff
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3ff
       - measured_by_terminal: 9
@@ -1763,16 +2661,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001f91d\u200d\U0001f469\U0001f3ff
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001faef\u200d\U0001f469\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001faef\u200d\U0001f469\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001faef\u200d\U0001f469\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fd\u200d\U0001faef\u200d\U0001f469\U0001f3ff
       - measured_by_terminal: 9
@@ -1805,16 +2703,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001f91d\u200d\U0001f469\U0001f3ff
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001faef\u200d\U0001f469\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001faef\u200d\U0001f469\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001faef\u200d\U0001f469\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3fe\u200d\U0001faef\u200d\U0001f469\U0001f3ff
       - measured_by_terminal: 9
@@ -1874,16 +2772,16 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001f91d\u200d\U0001f469\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001faef\u200d\U0001f469\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001faef\u200d\U0001f469\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001faef\u200d\U0001f469\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f469\U0001f3ff\u200d\U0001faef\u200d\U0001f469\U0001f3fe
       - measured_by_terminal: 6
@@ -1982,64 +2880,64 @@ test_results:
       - measured_by_terminal: 10
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3ff\u200d\U0001f91d\u200d\U0001f9d1\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fb\u200d\U0001faf2\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fb\u200d\U0001faf2\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fb\u200d\U0001faf2\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fb\u200d\U0001faf2\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fc\u200d\U0001faf2\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fc\u200d\U0001faf2\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fc\u200d\U0001faf2\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fc\u200d\U0001faf2\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fd\u200d\U0001faf2\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fd\u200d\U0001faf2\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fd\u200d\U0001faf2\U0001f3fe
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fd\u200d\U0001faf2\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fe\u200d\U0001faf2\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fe\u200d\U0001faf2\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fe\u200d\U0001faf2\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3fe\u200d\U0001faf2\U0001f3ff
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3ff\u200d\U0001faf2\U0001f3fb
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3ff\u200d\U0001faf2\U0001f3fc
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3ff\u200d\U0001faf2\U0001f3fd
-      - measured_by_terminal: 8
+      - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001faf1\U0001f3ff\u200d\U0001faf2\U0001f3fe
       - measured_by_terminal: 3
@@ -5471,16 +6369,16 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fb\u200d\U0001fa70
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fb\u200d\U0001faef\u200d\U0001f9d1\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fb\u200d\U0001faef\u200d\U0001f9d1\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fb\u200d\U0001faef\u200d\U0001f9d1\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fb\u200d\U0001faef\u200d\U0001f9d1\U0001f3ff
       - measured_by_terminal: 10
@@ -5489,13 +6387,13 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fc\u200d\U0001fa70
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fc\u200d\U0001faef\u200d\U0001f9d1\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fc\u200d\U0001faef\u200d\U0001f9d1\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fc\u200d\U0001faef\u200d\U0001f9d1\U0001f3ff
       - measured_by_terminal: 10
@@ -5507,16 +6405,16 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fd\u200d\U0001fa70
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fd\u200d\U0001faef\u200d\U0001f9d1\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fd\u200d\U0001faef\u200d\U0001f9d1\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fd\u200d\U0001faef\u200d\U0001f9d1\U0001f3fe
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fd\u200d\U0001faef\u200d\U0001f9d1\U0001f3ff
       - measured_by_terminal: 10
@@ -5528,13 +6426,13 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fe\u200d\U0001fa70
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fe\u200d\U0001faef\u200d\U0001f9d1\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fe\u200d\U0001faef\u200d\U0001f9d1\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3fe\u200d\U0001faef\u200d\U0001f9d1\U0001f3ff
       - measured_by_terminal: 10
@@ -5552,16 +6450,16 @@ test_results:
       - measured_by_terminal: 6
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3ff\u200d\U0001fa70
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3ff\u200d\U0001faef\u200d\U0001f9d1\U0001f3fb
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3ff\u200d\U0001faef\u200d\U0001f9d1\U0001f3fc
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3ff\u200d\U0001faef\u200d\U0001f9d1\U0001f3fd
-      - measured_by_terminal: 10
+      - measured_by_terminal: 9
         measured_by_wcwidth: 2
         wchar: \U0001f9d1\U0001f3ff\u200d\U0001faef\u200d\U0001f9d1\U0001f3fe
       n_errors: 1435
@@ -31118,8 +32016,110 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001f1ff
-      n_errors: 252
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6d8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6dc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6dd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6de
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f6df
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f7f0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fad9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fada
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fadb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fadc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fadf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fae9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faea
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faef
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf8
+      n_errors: 286
       n_total: 43592
-      pct_success: 99.42191227748211
+      pct_success: 99.34391631492016
 wcwidth_version: 0.7.0
 width: 80

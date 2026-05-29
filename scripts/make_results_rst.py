@@ -660,8 +660,12 @@ def display_results_toc(score_table):
     print(".. toctree::")
     print("   :maxdepth: 1")
     print()
+    seen = set()
     for entry in score_table:
         sw_name = make_link(entry["terminal_software_name"])
+        if sw_name in seen:
+            continue
+        seen.add(sw_name)
         print(f"   sw_results/{sw_name}")
     print()
 
