@@ -23,9 +23,13 @@ if _PROJECT_DIR not in sys.path:
 from ucs_detect.accessories import decode_wchars
 from ucs_detect.measure import _wcswidth_vs15
 
-# Checkerboard blocks used as crop markers (color applied via blessed)
-_MARKER_TOP = "\u2580\u2584"
-_MARKER_BOTTOM = "\u2584\u2580"
+
+def _marker_cells(term):
+    """Return (row1_str, row2_str) — a 2×2 checkerboard of magenta blocks."""
+    mc = term.on_color_rgb(255, 0, 255)
+    row1 = mc + "  " + term.normal
+    row2 = mc + "  " + term.normal
+    return row1, row2
 
 
 def set_window_title(title):
@@ -174,18 +178,11 @@ def _crop_to_markers(src_path, dst_path):
         _imagemagick_trim(src_path, dst_path)
         return
 
-    points.sort(key=lambda p: p[0] + p[1])
-    x1, y1 = points[0]
-    x2, y2 = points[-1]
-
-    margin = 4
-    x1 = max(0, x1 - margin)
-    y1 = max(0, y1 - margin)
-    x2 = min(w, x2 + margin)
-    y2 = min(h, y2 + margin)
-
-    cropped = img.crop((x1, y1, x2, y2))
-    cropped.save(dst_path)
+    # Crop vertically to marker bounds; keep full horizontal width
+    y_coords = [p[1] for p in points]
+    y1 = max(0, min(y_coords) - 4)
+    y2 = min(h, max(y_coords) + 4)
+    img.crop((0, y1, w, y2)).save(dst_path)
 
 
 def display_and_capture(term, wchars, expected_width, measured_width,
@@ -223,18 +220,19 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     # Clear screen, position cursor
     sys.stdout.write("\x1b[H\x1b[2J")
 
-    marker_color = term.on_color_rgb(255, 0, 255)
-
-    # Top-left crop marker (padded: TOP_PAD blank rows, LEFT_PAD blank cols)
+    # Top-left crop marker: 2×2 magenta block (padded by TOP_PAD, LEFT_PAD)
     top_marker_row = TOP_PAD + 1
     top_marker_col = LEFT_PAD + 1
+    marker_row1, marker_row2 = _marker_cells(term)
     sys.stdout.write(
-        f"\x1b[{top_marker_row};{top_marker_col}H{marker_color}{_MARKER_TOP}\x1b[0m")
+        f"\x1b[{top_marker_row};{top_marker_col}H{marker_row1}")
+    sys.stdout.write(
+        f"\x1b[{top_marker_row + 1};{top_marker_col}H{marker_row2}")
     sys.stdout.flush()
 
-    # Content box: blank row after marker, then content at column 1
+    # Content box: blank row after 2-row marker, then content at column 1
     # (LEFT_PAD is applied via prefix spaces on each line)
-    content_row = top_marker_row + 2
+    content_row = top_marker_row + 3
     sys.stdout.write(f"\x1b[{content_row};1H")
     sys.stdout.flush()
 
@@ -257,14 +255,17 @@ def display_and_capture(term, wchars, expected_width, measured_width,
         print(prefix + term.cyan(bottom))
 
     # Bottom-right crop marker: max of content widths + margin
-    # Shifted right by LEFT_PAD, down by TOP_PAD + 1 blank row after top marker
+    # Shifted right by LEFT_PAD, down by TOP_PAD + 2 (2-row top marker + gap)
     marker_col = interior + max(0, measured_width - expected_width) + 5 + LEFT_PAD
     if has_text_sizing:
         sized_interior = _wcswidth_vs15(sized_raw) + padding * 2 + 4
         msg_width = len("This terminal supports kitty text sizing protocol:")
         marker_col = max(marker_col, sized_interior + 5 + LEFT_PAD, msg_width + 3 + LEFT_PAD)
-    marker_row = (10 if has_text_sizing else 6) + TOP_PAD + 1  # +1 for blank row after top marker
-    sys.stdout.write(f"\x1b[{marker_row};{marker_col}H{marker_color}{_MARKER_BOTTOM}\x1b[0m")
+    marker_row = (10 if has_text_sizing else 6) + TOP_PAD + 2
+    sys.stdout.write(
+        f"\x1b[{marker_row};{marker_col}H{marker_row1}")
+    sys.stdout.write(
+        f"\x1b[{marker_row + 1};{marker_col}H{marker_row2}")
     sys.stdout.flush()
 
     # Drain stale input (e.g. from does_text_sizing probe) so the CPR

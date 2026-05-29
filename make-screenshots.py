@@ -228,9 +228,6 @@ def main():
     parser.add_argument(
         "--use-system", action="store_true",
         help="Run directly on the host system instead of inside Docker")
-    parser.add_argument(
-        "--host-only", action="store_true",
-        help="Only run terminals that Docker cannot run (skip_docker: true)")
     args = parser.parse_args()
 
     if args.use_docker and not _IS_DOCKER:
@@ -291,7 +288,7 @@ def main():
             skipped.append((d.software_name, reason))
             continue
 
-        if should_skip(launch_cfg, host_only=args.host_only, is_docker=_IS_DOCKER):
+        if should_skip(launch_cfg, is_docker=_IS_DOCKER):
             reason = launch_cfg.get("skip_reason") or "excluded by should_skip"
             skipped.append((d.software_name, reason))
             continue
@@ -422,6 +419,10 @@ def main():
                     stdin=subprocess.DEVNULL,
                 )
 
+            # Find the X11 window.  Key-inject terminals need it for
+            # xdotool; all terminals benefit from passing --window-id to
+            # the batch script so find_own_window (unreliable inside
+            # sandboxes and subterminals) is never called.
             captured_wid = None
             window_cfg = (host_launch_cfg
                           if launch_cfg["subterminal"]
@@ -437,7 +438,6 @@ def main():
             except (subprocess.TimeoutExpired, OSError):
                 pass
 
-            # Key injection for terminals that don't support -e
             if post_keys:
                 with _KEY_INJECT_LOCK:
                     time.sleep(0.5)
@@ -445,41 +445,38 @@ def main():
                     captured_wid = find_window_for_command(
                         window_cfg, proc.pid,
                         pre_windows=snapshot_pre_windows)
-                    if captured_wid is not None:
-                        script_str = str(script_path)
-                        resolved_keys = [
-                            key.replace("${SCRIPT}", script_str)
-                            for key in post_keys
-                        ]
-                        text_keys = [k for k in resolved_keys
-                                     if k != "\n" and not _RE_PAUSE.match(k)]
-                        print(f"injecting: {''.join(text_keys)} ... ",
-                              end="", flush=True)
-                        inject_keys(captured_wid, resolved_keys)
-                        time.sleep(1.5)
-                    else:
-                        proc.kill()
-                        msg = (
-                            "key injection failed: could not find window "
-                            f"for {window_cfg['program']} (PID {proc.pid})")
-                        print(f"FAILED: {msg}")
-                        failures_list.append((sw_name, -4, msg))
-                        continue
             else:
-                # Direct-launch: find window so we can pass --window-id to
-                # the batch script.  find_own_window inside the subprocess
-                # can fail for flatpak/sandboxed terminals.
                 captured_wid = find_window_for_command(
                     window_cfg, proc.pid,
                     pre_windows=snapshot_pre_windows)
 
-            # Build batch script now that we may have a window_id.
-            # Subterminals (libvterm, tmux, etc.) and sandboxed terminals
-            # (flatpak konsole) need the --window-id passed in because
-            # find_own_window cannot discover the X11 window from inside
-            # the subterminal/sandbox.
-            build_batch_script(script_path, sentinel_path, batch_json_path,
-                               captured_wid)
+            # Rebuild script now that we have the window_id.  Must happen
+            # BEFORE key injection so the script is fully written when the
+            # injected shell command reads it.
+            if captured_wid is not None:
+                build_batch_script(script_path, sentinel_path,
+                                   batch_json_path, captured_wid)
+
+            if post_keys:
+                if captured_wid is None:
+                    proc.kill()
+                    msg = (
+                        "key injection failed: could not find window "
+                        f"for {window_cfg['program']} (PID {proc.pid})")
+                    print(f"FAILED: {msg}")
+                    failures_list.append((sw_name, -4, msg))
+                    continue
+                script_str = str(script_path)
+                resolved_keys = [
+                    key.replace("${SCRIPT}", script_str)
+                    for key in post_keys
+                ]
+                text_keys = [k for k in resolved_keys
+                             if k != "\n" and not _RE_PAUSE.match(k)]
+                print(f"injecting: {''.join(text_keys)} ... ",
+                      end="", flush=True)
+                inject_keys(captured_wid, resolved_keys)
+                time.sleep(1.5)
 
             # Wait for sentinel or timeout (scaled by screenshot count).
             # Key-inject terminals may fork/detach, so don't collapse the

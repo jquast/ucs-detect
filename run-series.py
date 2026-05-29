@@ -436,9 +436,6 @@ def main():
     parser.add_argument(
         "--use-docker", action="store_true",
         help="Launch each terminal in its own Docker container (--cpus=2)")
-    parser.add_argument(
-        "--host-only", action="store_true",
-        help="Only run terminals that Docker cannot run (skip_docker: true)")
     args = parser.parse_args()
 
     if args.use_docker and not _IS_DOCKER:
@@ -513,7 +510,7 @@ def main():
                 if candidate in run_only:
                     matched_run_only.add(candidate)
 
-        if should_skip(launch_cfg, host_only=args.host_only):
+        if should_skip(launch_cfg):
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
             skipped.append((d.software_name, reason))
             continue

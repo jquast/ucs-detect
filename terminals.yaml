@@ -118,8 +118,8 @@ terminals:
     skip_docker: true
     skip_reason: creates 1x1 cell windows in Docker
     launch:
-      program: flatpak
-      args: [run, --command=konsole, org.kde.konsole, --, -e]
+      program: konsole
+      args: [-e]
       wm_class: konsole
     launch_docker:
       program: konsole
@@ -137,7 +137,7 @@ terminals:
 
         '
     skip_docker: true
-    skip_reason: subterminal — tested on host via system_screenshots
+    skip_reason: subterminal tested on host via system_screenshots
   linux fbdev:
     homepage: https://www.kernel.org/doc/Documentation/fb/fbcon.txt
     launch:
@@ -204,7 +204,7 @@ terminals:
     version_template: '{aur_version}'
     aur_package: screen
     skip_docker: true
-    skip_reason: subterminal — tested on host via system_screenshots
+    skip_reason: subterminal tested on host via system_screenshots
     launch:
       subterminal: true
       program: screen
@@ -273,7 +273,7 @@ terminals:
     aur_package: terminator
     launch:
       program: terminator
-      args: [--geometry, 80x24, -x, sh, '{script}']
+      args: [-x, sh, '{script}']
     profile_processes:
     - gnome-terminal-server
     timeout: 14400
@@ -281,13 +281,14 @@ terminals:
     skip_reason: D-Bus spawns gnome-terminal-server, geometry doesn't apply
   terminology:
     homepage: https://www.enlightenment.org/about-terminology
+    skip_docker: true
     launch:
       program: terminology
       args: [--geometry, 80x24, --scale, '1.0', -e]
   tmux:
     homepage: https://github.com/tmux/tmux
     skip_docker: true
-    skip_reason: subterminal — tested on host via system_screenshots
+    skip_reason: subterminal tested on host via system_screenshots
     sixel_support_notes: 'Must be compiled with sixel support. Check support and enablement
       with command: ``(tmux show-options -g;tmux show-window-options)|grep -i sixel``'
     launch:
@@ -308,6 +309,9 @@ terminals:
     launch:
       subterminal: true
       skip: true
+    skip_system: true
+    skip_docker: true
+    skip_reason: Run by hand because it is complex and auto-updates itself, maybe it could be in docker
   weston-terminal:
     homepage: https://gitlab.freedesktop.org/wayland/weston
     version_template: '{aur_version}'
@@ -330,7 +334,6 @@ terminals:
     version_template: '{aur_version}'
     aur_package: warp-terminal-bin
     skip_docker: true
-    skip_system: true
     skip_reason: GPU-accelerated; software rendering untested (same class as Rio)
     launch:
       program: warp-terminal
@@ -380,7 +383,7 @@ terminals:
   zellij:
     homepage: https://github.com/zellij-org/zellij
     skip_docker: true
-    skip_reason: subterminal — tested on host via system_screenshots
+    skip_reason: subterminal tested on host via system_screenshots
     launch:
       subterminal: true
       program: zellij

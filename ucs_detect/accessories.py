@@ -324,20 +324,19 @@ _KEY_INJECT_PRE_DELAY = 0.5
 _KEY_INJECT_POST_DELAY = 1.5
 
 
-def should_skip(launch_cfg, host_only=False, is_docker=None):
+def should_skip(launch_cfg, is_docker=None):
     """Return True if the config should be skipped in the current environment.
 
     If *is_docker* is None, uses the process environment (_IS_DOCKER).
-    When *host_only* is True, only terminals with skip_docker: true are
-    selected (everything else is skipped)."""
+    Docker runs terminals with skip_docker: false; system runs the rest
+    (skip_docker: true).  Both respect skip and skip_system."""
     if is_docker is None:
         is_docker = _IS_DOCKER
     if launch_cfg["skip"]:
         return True
-    if host_only:
-        if not launch_cfg["skip_docker"]:
-            return True
-    elif is_docker and launch_cfg["skip_docker"]:
+    if is_docker and launch_cfg["skip_docker"]:
+        return True
+    if not is_docker and not launch_cfg["skip_docker"]:
         return True
     if not is_docker and launch_cfg["skip_system"]:
         return True

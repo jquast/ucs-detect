@@ -214,11 +214,12 @@ emulators pre-installed.  All Docker operations are managed through ``tox`` targ
 
 Unfortunately, many terminals have to be excluded from docker:
 
-- Not Linux or not X11 compatible (Wayland, framebuffer)
+- Not Linux or not X11 compatible
 - GPU-accelerated and not compatible with Xvfb,
-- massive number of build dependencies (domterm, mlterm)
+- massive number of build dependencies
 - JS/Electron stuff (chromium?) for some reason.
-- Cannot reliably set geometry (Konsole)
+- Cannot reliably set geometry
+- Tests with ucs-detect fine, but cannot screenshot for any reason
 
 This requires installing those terminals on the developer's host system.
 
