@@ -110,7 +110,7 @@ terminals:
     skip_docker: true
     skip_reason: macOS only
     launch:
-      program: /Applications/iTerm.app/Contents/MacOS/iTerm2
+      program: /Applications/iTerm2.app/Contents/MacOS/iTerm2
       args: ['{script}']
   kitty:
     homepage: https://sw.kovidgoyal.net/kitty/
@@ -267,8 +267,8 @@ terminals:
     skip_docker: true
     skip_reason: macOS only
     launch:
-      program: osascript
-      args: [-e, 'tell application "Terminal" to do script "sh {script}"']
+      program: /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal
+      args: ['{script}']
   terminal.exe:
     homepage: https://learn.microsoft.com/en-us/windows/terminal/
     skip_docker: true
