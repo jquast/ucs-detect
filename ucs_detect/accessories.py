@@ -197,14 +197,13 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
 
     On macOS uses Quartz CGWindowList to match by owner PID."""
     if sys.platform == "darwin":
-        return _find_window_darwin(pid, timeout)
+        return _find_window_darwin(pid, launch_cfg.get("program", ""), timeout)
     return _find_window_linux(launch_cfg, pid, timeout, pre_windows)
 
 
-def _find_window_darwin(pid, timeout=8):
+def _find_window_darwin(pid, prog_name, timeout=8):
     """Find macOS window by owner PID or process name via osascript."""
     import psutil
-    # Collect the process name and all child PIDs
     pids = {pid}
     proc_name = None
     try:
@@ -214,14 +213,20 @@ def _find_window_darwin(pid, timeout=8):
             pids.add(child.pid)
     except psutil.NoSuchProcess:
         pass
+    # Fallback names: process name from psutil, then program basename
+    names = []
+    if proc_name:
+        names.append(proc_name)
+    if prog_name:
+        names.append(os.path.basename(prog_name))
 
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
-        # Try by PID first (most reliable)
-        for check_pid in pids:
+        # Try by process name first (macOS reuses running app instances)
+        for name in names:
             try:
                 scpt = (f'tell application "System Events" to get id of '
-                        f'first window of (first process whose unix id is {check_pid})')
+                        f'first window of process "{name}"')
                 result = subprocess.run(
                     ["osascript", "-e", scpt],
                     capture_output=True, text=True, timeout=5,
@@ -230,11 +235,11 @@ def _find_window_darwin(pid, timeout=8):
                     return result.stdout.strip()
             except (subprocess.TimeoutExpired, OSError):
                 pass
-        # Fallback: try by process name
-        if proc_name:
+        # Then try by PID
+        for check_pid in pids:
             try:
                 scpt = (f'tell application "System Events" to get id of '
-                        f'first window of process "{proc_name}"')
+                        f'first window of (first process whose unix id is {check_pid})')
                 result = subprocess.run(
                     ["osascript", "-e", scpt],
                     capture_output=True, text=True, timeout=5,
