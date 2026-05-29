@@ -84,6 +84,10 @@ def load_mixins(project_dir=None):
     result = {}
     for key, value in terminals.items():
         result[key.lower()] = value
+        # Also index by filename-friendly form (no spaces/hyphens/underscores)
+        nospace = key.lower().replace(" ", "").replace("-", "").replace("_", "")
+        if nospace != key.lower():
+            result.setdefault(nospace, value)
     return result
 
 
