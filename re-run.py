@@ -15,7 +15,7 @@ def build_command_from_yaml(yaml_file):
 
     session_args = data.get('session_arguments', {})
 
-    cmd = ['ucs-detect', '--rerun', str(yaml_file)]
+    cmd = [sys.executable, '-m', 'ucs_detect', '--rerun', str(yaml_file)]
 
     # Map YAML keys to CLI arguments
     arg_mapping = {

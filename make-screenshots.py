@@ -115,11 +115,13 @@ def build_batch_script(script_path, sentinel_path, batch_json_path, window_id=No
     """Write a shell script that runs make_screenshot.py batch mode."""
     script_rel = "scripts/make_screenshot.py"
     wid_arg = f" --window-id {shlex.quote(str(window_id))}" if window_id else ""
+    py_bin = shlex.quote(os.path.dirname(sys.executable))
     parts = [
         "#!/bin/sh",
         "export LANG=en_US.UTF-8",
+        f"export PATH={py_bin}:$PATH",
         f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
-        f"python {shlex.quote(script_rel)}"
+        f"{shlex.quote(sys.executable)} {shlex.quote(script_rel)}"
         f" --batch {shlex.quote(str(batch_json_path))}{wid_arg}",
         "RC=$?",
         "echo $RC > " + shlex.quote(str(sentinel_path)),

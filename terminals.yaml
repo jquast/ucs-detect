@@ -110,7 +110,7 @@ terminals:
     skip_docker: true
     skip_reason: macOS only
     launch:
-      program: /Applications/iTerm2.app/Contents/MacOS/iTerm2
+      program: /Applications/iTerm.app/Contents/MacOS/iTerm2
       args: ['{script}']
   kitty:
     homepage: https://sw.kovidgoyal.net/kitty/
