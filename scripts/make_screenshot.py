@@ -23,10 +23,9 @@ if _PROJECT_DIR not in sys.path:
 from ucs_detect.accessories import decode_wchars
 from ucs_detect.measure import _wcswidth_vs15
 
-# ANSI escape for bright magenta background — used as crop markers
-_MARKER_BG = "\x1b[48;5;13m"
-_MARKER_TOP = "▀▄"
-_MARKER_BOTTOM = "▄▀"
+# Checkerboard blocks used as crop markers (color applied via blessed)
+_MARKER_TOP = "\u2580\u2584"
+_MARKER_BOTTOM = "\u2584\u2580"
 
 
 def set_window_title(title):
@@ -126,6 +125,29 @@ def capture_window(window_id, output_path):
             os.unlink(tmp_png)
 
 
+def _is_blank(path):
+    """Return True if *path* is mostly blank/white."""
+    from PIL import Image
+    try:
+        img = Image.open(path)
+        if img.mode != "RGB":
+            img = img.convert("RGB")
+        pixels = list(img.get_flattened_data())
+        white = sum(1 for p in pixels if p[0] > 240 and p[1] > 240 and p[2] > 240)
+        black = sum(1 for p in pixels if p[0] < 15 and p[1] < 15 and p[2] < 15)
+        return (white / len(pixels) > 0.95) or (black / len(pixels) > 0.95)
+    except Exception:
+        return False
+
+
+def _imagemagick_trim(src_path, dst_path):
+    """Crop *src_path* using ImageMagick's -trim as a fallback."""
+    subprocess.run(
+        ["convert", src_path, "-trim", "+repage", "-strip", dst_path],
+        capture_output=True, check=True, timeout=10,
+    )
+
+
 def _crop_to_markers(src_path, dst_path):
     """Crop *src_path* to the rectangle bounded by bright-magenta markers."""
     from PIL import Image
@@ -139,12 +161,13 @@ def _crop_to_markers(src_path, dst_path):
         for x in range(w):
             px = img.getpixel((x, y))
             r, g, b = px[0], px[1], px[2]
-            if r > 180 and g < 60 and b > 180:
+            # 24-bit magenta marker background (255,0,255)
+            if r > 250 and g < 5 and b > 250:
                 points.append((x, y))
 
     if len(points) < 4:
-        # Fallback: simple trim
-        img.save(dst_path)
+        # Fallback: ImageMagick trim + marker-based detection on retry
+        _imagemagick_trim(src_path, dst_path)
         return
 
     points.sort(key=lambda p: p[0] + p[1])
@@ -193,8 +216,10 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     # Clear screen, position cursor
     sys.stdout.write("\x1b[H\x1b[2J")
 
-    # Top-left crop marker: bright magenta background, checkerboard blocks
-    sys.stdout.write(f"\x1b[1;1H{_MARKER_BG}{_MARKER_TOP}\x1b[0m")
+    marker_color = term.on_color_rgb(255, 0, 255)
+
+    # Top-left crop marker
+    sys.stdout.write(f"\x1b[1;1H{marker_color}{_MARKER_TOP}\x1b[0m")
     sys.stdout.flush()
 
     # Content box starting at row 2
@@ -220,7 +245,7 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     # Bottom-right crop marker: header/footer width + error overflow + margin
     marker_row = 10 if has_text_sizing else 6
     marker_col = interior + max(0, measured_width - expected_width) + 4
-    sys.stdout.write(f"\x1b[{marker_row};{marker_col}H{_MARKER_BG}{_MARKER_BOTTOM}\x1b[0m")
+    sys.stdout.write(f"\x1b[{marker_row};{marker_col}H{marker_color}{_MARKER_BOTTOM}\x1b[0m")
     sys.stdout.flush()
 
     # Drain stale input (e.g. from does_text_sizing probe) so the CPR
@@ -252,7 +277,14 @@ def display_and_capture(term, wchars, expected_width, measured_width,
         pass
     time.sleep(0.1)
 
-    capture_window(window_id, output_path)
+    for _ in range(5):
+        try:
+            capture_window(window_id, output_path)
+            if not _is_blank(output_path):
+                break
+        except Exception:
+            pass
+        time.sleep(0.5)
 
     sys.stdout.write("\x1b[?25h")
     sys.stdout.flush()

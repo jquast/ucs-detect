@@ -51,13 +51,6 @@ if [ -f /.dockerenv ] && [ -n "${DISPLAY:-}" ]; then
     done
     export WAYLAND_DISPLAY=wayland-0
 
-    # launch a host xterm for key-inject terminals (screen, tmux, zellij, etc.)
-    # that need a visible X11 window to type commands into
-    sudo -u ucs DISPLAY="${DISPLAY}" XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR}" \
-        xterm -geometry 80x24+0+0 -e sleep 999999 &
-    HOST_XTERM_PID=$!
-    sleep 0.5
-
     # start session D-Bus via dbus-launch (properly initializes the session)
     eval "$(sudo -u ucs XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR}" dbus-launch --sh-syntax)"
     DBUS_PID=$DBUS_SESSION_BUS_PID
@@ -88,7 +81,6 @@ if [ -f /.dockerenv ] && [ -n "${DISPLAY:-}" ]; then
     EXIT_CODE=$?
 
     kill "$XFCONFD_PID" 2>/dev/null || true
-    kill "$HOST_XTERM_PID" 2>/dev/null || true
     kill "$DBUS_PID" 2>/dev/null || true
     kill "$WESTON_PID" 2>/dev/null || true
     kill "$OPENBOX_PID" 2>/dev/null || true

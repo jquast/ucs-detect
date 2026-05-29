@@ -162,7 +162,7 @@ def _docker_per_terminal_run(args):
         check_unmatched_run_only(run_only, matched_run_only)
 
     n_cpus = os.cpu_count() or 2
-    parallel = max(1, min((n_cpus - 2) // 2, 16))
+    parallel = args.parallel or max(1, (n_cpus - 2) // 4)
 
     print(f"Per-terminal Docker screenshots: {len(jobs)} terminals, {parallel} parallel")
 
@@ -202,8 +202,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Generate terminal screenshots of unicode width discrepancies")
     parser.add_argument(
-        "--parallel", "-p", type=int, default=1,
-        help="Number of terminals to run in parallel (default: 1)")
+        "--parallel", "-p", type=int, default=0,
+        help="Number of terminals to run in parallel (default: auto)")
     parser.add_argument(
         "--timeout", "-t", type=float, default=600,
         help="Base timeout per terminal in seconds (default: 600). "
@@ -303,6 +303,10 @@ def main():
             skipped.append((d.software_name, "subterminal, no launch config"))
             continue
 
+        if not is_explicit and launch_cfg["program"] == d.software_name.lower():
+            skipped.append((d.software_name, "no terminals.yaml entry"))
+            continue
+
         failures = extract_failures(d.path)
         if not failures:
             skipped.append((d.software_name, "no width failures found"))
@@ -323,7 +327,8 @@ def main():
                 "title": f"ucs-shot-{safe}-{category}-{unique_id}",
             })
 
-        terminal_jobs[d.software_name] = (launch_cfg, records)
+        sw_display = mixins.get(d.software_name.lower(), {}).get("display_name", d.software_name)
+        terminal_jobs[sw_display] = (launch_cfg, records)
 
     if run_only:
         check_unmatched_run_only(run_only, matched_run_only)
