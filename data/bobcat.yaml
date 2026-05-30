@@ -1,11 +1,50 @@
 ambiguous_width: 1
-datetime: 2026-05-24 19:41:36 UTC
+datetime: 2026-05-30 02:26:44 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
 height: 24
-python_version: 3.14.4
-seconds_elapsed: 25.781339774024673
+preferred_encoding: UTF-8
+python_version: 3.14.5
+resource_profile:
+  cpu_pct:
+  - 0.0
+  - 38.9
+  - 38.9
+  - 40.9
+  - 38.9
+  - 40.9
+  - 35.9
+  - 36.9
+  - 28.0
+  - 32.0
+  elapsed_s:
+  - 0.001073616003850475
+  - 1.0023715029819869
+  - 2.0041361559997313
+  - 3.0062312509980984
+  - 4.008334301994182
+  - 5.0103859859809745
+  - 6.012455174000934
+  - 7.014347849995829
+  - 8.015812161989743
+  - 9.017266505979933
+  hardware:
+    cpu_count: 12
+    cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
+    ram_total_kb: 13961408
+  rss_mb:
+  - 114.92578125
+  - 121.44140625
+  - 125.9453125
+  - 128.9140625
+  - 130.640625
+  - 132.67578125
+  - 134.07421875
+  - 135.41796875
+  - 140.734375
+  - 141.796875
+seconds_elapsed: 9.832007201010128
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -13,12 +52,13 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 1.0
 software_name: Bobcat
-software_version: 0.9.9 (r377)
+software_version: 0.9.9 (r4)
 system: Linux
 terminal_results:
-  cell_height: 23
-  cell_width: 10
+  cell_height: 15
+  cell_width: 9
   color_scheme: false
   colored_underlines: false
   decrqcra: true
@@ -34,10 +74,10 @@ terminal_results:
     decsnls: '24'
     decstbm: 1;24
     sgr: 0;
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 1
-    - 4
     - 6
     - 8
     - 9
@@ -46,13 +86,23 @@ terminal_results:
     - 21
     - 22
     - 28
-    - 444
-    - 1337
     service_class: 64
   height: 24
   iterm2_features:
-    features: {}
-    supported: false
+    features:
+      ambiguous_wide: true
+      bracketed_paste: true
+      decscusr: 0
+      decslrm: true
+      mouse: true
+      notifications: true
+      overline: true
+      strikethrough: true
+      titles: 0
+      truecolor: 0
+      unicode_basic: true
+      unicode_widths: 0
+    supported: true
   kitty_clipboard_protocol: false
   kitty_graphics: false
   kitty_notifications: false
@@ -84,13 +134,13 @@ terminal_results:
       value: 2
       value_description: RESET
     2026:
-      changeable: false
+      changeable: true
       enabled: false
       mode_description: Synchronized Output
       mode_name: SYNCHRONIZED_OUTPUT
-      supported: false
-      value: 4
-      value_description: PERMANENTLY_RESET
+      supported: true
+      value: 2
+      value_description: RESET
     2027:
       changeable: false
       enabled: false
@@ -124,13 +174,18 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 552
-  pixels_width: 800
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
-  sixel: true
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 360
+  pixels_width: 720
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
+  sixel: false
+  software_method: XTVERSION
   software_name: Bobcat
-  software_version: 0.9.9 (r377)
+  software_version: 0.9.9 (r4)
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
@@ -142,6 +197,8 @@ terminal_results:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
+  xtversion-bad-screenleak: false
+  xtversion_raw: Bobcat 0.9.9 (r4)
 test_results:
   emoji_vs15_results:
     9.0.0:

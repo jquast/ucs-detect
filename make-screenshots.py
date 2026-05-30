@@ -10,30 +10,46 @@ import atexit
 import json
 import os
 import platform
-import re
 import shlex
 import shutil
 import subprocess
 import sys
 import tempfile
-import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import uuid
 
 import yaml
 
-from ucs_detect.accessories import find_best_failure, safe_name
+from ucs_detect.accessories import (
+    DiscoveredYAML,
+    _IS_DOCKER,
+    _KEY_INJECT_LOCK,
+    _RE_PAUSE,
+    build_launch_args,
+    build_subterminal_launch_args,
+    check_unmatched_run_only,
+    discover_yamls,
+    docker_build,
+    docker_image_exists,
+    find_best_failure,
+    find_window_for_command,
+    get_launch_config,
+    inject_keys,
+    load_mixins,
+    parse_run_only,
+    run_kill_command,
+    safe_name,
+    should_skip,
+    get_project_dir,
+    get_data_dir,
+)
 
-PROJECT_DIR = Path(__file__).resolve().parent
-DATA_DIR = PROJECT_DIR / "data"
+PROJECT_DIR = get_project_dir()
+DATA_DIR = get_data_dir()
 SCREENSHOTS_DIR = PROJECT_DIR / "docs" / "_static" / "screenshots"
-
-_RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
-_RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
-_RE_PAUSE = re.compile(r'^\\p(\d+)$')
-
-_KEY_INJECT_LOCK = threading.RLock()
+DOCKER_IMAGE = "ucs-detect:latest"
 
 # Categories that have failed_codepoints in their results
 _CATEGORY_YAML_KEYS = [
@@ -45,67 +61,6 @@ _CATEGORY_YAML_KEYS = [
     ("sfz_results", "sfz"),
     ("ri_results", "ri"),
 ]
-
-
-def load_mixins():
-    """Load terminals.yaml, returning a dict keyed by lowercased software_name."""
-    mixins_path = PROJECT_DIR / "terminals.yaml"
-    if not mixins_path.exists():
-        return {}
-    with open(mixins_path) as f:
-        data = yaml.safe_load(f) or {}
-    terminals = data.get("terminals", {})
-    result = {}
-    for key, value in terminals.items():
-        result[key.lower()] = value
-    return result
-
-
-def discover_yamls(target_system):
-    """Yield (yaml_path, software_name) for each data YAML matching *target_system*."""
-    target_lower = target_system.lower()
-    for yaml_path in sorted(DATA_DIR.glob("*.yaml")):
-        if yaml_path.name in ("terminals.yaml",):
-            continue
-        try:
-            file_size = yaml_path.stat().st_size
-            if file_size < 200:
-                continue
-            with open(yaml_path) as f:
-                head = f.read(4096)
-        except OSError:
-            continue
-
-        m = _RE_SYSTEM.search(head)
-        if not m or m.group(1).lower() != target_lower:
-            continue
-
-        sw_name = (m.group(1).strip()
-                   if (m := _RE_SOFTWARE_NAME.search(head))
-                   else yaml_path.stem)
-
-        yield yaml_path, sw_name
-
-
-def get_launch_config(sw_name, mixins):
-    """Return (launch_config, is_explicit) for *sw_name*."""
-    key = sw_name.lower()
-    raw_entry = mixins.get(key, {})
-    launch = raw_entry.get("launch", {}) if raw_entry else {}
-    is_explicit = bool(launch)
-
-    cfg = {
-        "program": launch.get("program", key),
-        "args": launch.get("args", ["-e"]),
-        "subterminal": launch.get("subterminal", False),
-        "wrapper": launch.get("wrapper", []),
-        "skip": launch.get("skip", False),
-        "skip_reason": raw_entry.get("skip_reason", ""),
-        "wm_class": launch.get("wm_class", None),
-        "post_launch_delay_ms": launch.get("post_launch_delay_ms", 0),
-        "post_launch_keys": launch.get("post_launch_keys", []),
-    }
-    return cfg, is_explicit
 
 
 def extract_failures(yaml_path):
@@ -156,51 +111,18 @@ def extract_failures(yaml_path):
     return failures
 
 
-def build_launch_args(launch_cfg, script_path):
-    """Build the full argv list for launching a terminal that executes *script_path*."""
-    argv = list(launch_cfg["wrapper"])
-    argv.append(launch_cfg["program"])
-    script_str = str(script_path)
-    has_placeholder = False
-    for arg in launch_cfg["args"]:
-        if "{script}" in arg:
-            has_placeholder = True
-            argv.append(arg.replace("{script}", script_str))
-        else:
-            argv.append(arg)
-    if not has_placeholder and not launch_cfg.get("post_launch_keys"):
-        argv.extend(["/bin/sh", script_str])
-    return argv
-
-
-def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
-    """Build launch args for a subterminal, wrapping inside a host terminal."""
-    script_str = str(script_path)
-    inner_parts = [launch_cfg["program"]] + launch_cfg["args"]
-    has_placeholder = any("{script}" in a for a in launch_cfg["args"])
-    if not has_placeholder and not launch_cfg.get("post_launch_keys"):
-        inner_parts.extend(["/bin/sh", script_str])
-    else:
-        inner_parts = [p.replace("{script}", script_str) for p in inner_parts]
-
-    inner_cmd = " ".join(shlex.quote(a) for a in inner_parts)
-    inner_cmd = f"unset TERM_PROGRAM TERM_PROGRAM_VERSION; {inner_cmd}"
-    argv = list(host_launch_cfg.get("wrapper", []))
-    argv.append(host_launch_cfg["program"])
-    argv.extend(host_launch_cfg.get("args", ["-e"]))
-    argv.extend(["sh", "-c", inner_cmd])
-    return argv
-
-
-def build_batch_script(script_path, sentinel_path, batch_json_path):
+def build_batch_script(script_path, sentinel_path, batch_json_path, window_id=None):
     """Write a shell script that runs make_screenshot.py batch mode."""
     script_rel = "scripts/make_screenshot.py"
+    wid_arg = f" --window-id {shlex.quote(str(window_id))}" if window_id else ""
+    py_bin = shlex.quote(os.path.dirname(sys.executable))
     parts = [
         "#!/bin/sh",
         "export LANG=en_US.UTF-8",
+        f"export PATH={py_bin}:$PATH",
         f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
-        f"python {shlex.quote(script_rel)}"
-        f" --batch {shlex.quote(str(batch_json_path))}",
+        f"{shlex.quote(sys.executable)} {shlex.quote(script_rel)}"
+        f" --batch {shlex.quote(str(batch_json_path))}{wid_arg}",
         "RC=$?",
         "echo $RC > " + shlex.quote(str(sentinel_path)),
         "if [ $RC -ne 0 ]; then",
@@ -211,90 +133,82 @@ def build_batch_script(script_path, sentinel_path, batch_json_path):
     script_path.chmod(0o755)
 
 
-def find_window_for_command(launch_cfg, pid, timeout=8):
-    """Find X11 window ID for a launched process, by PID then by class name."""
-    deadline = time.monotonic() + timeout
+def _docker_per_terminal_run(args):
+    system_name = platform.system()
+    all_terminals = list(discover_yamls(system_name))
+    if not all_terminals:
+        print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
+        sys.exit(0)
 
-    # Strategy 1: search by PID
-    pid_deadline = time.monotonic() + min(timeout / 2, 5)
-    while time.monotonic() < pid_deadline:
-        try:
-            result = subprocess.run(
-                ["xdotool", "search", "--onlyvisible", "--pid", str(pid)],
-                capture_output=True, text=True, timeout=3,
-            )
-            if result.returncode == 0 and result.stdout.strip():
-                return result.stdout.strip().split("\n")[-1]
-        except (subprocess.TimeoutExpired, OSError):
-            pass
-        time.sleep(0.3)
+    mixins = load_mixins()
+    run_only = parse_run_only(args.run_only)
+    matched_run_only = set()
 
-    # Strategy 2: search by class name
-    wm_class = launch_cfg.get("wm_class") or os.path.basename(
-        launch_cfg.get("program", "")
-    ).lower()
-    while time.monotonic() < deadline:
-        for flag in ("--class", "--classname"):
+    jobs = []
+    for d in all_terminals:
+        if d.error_msg:
+            continue
+        launch_cfg, _ = get_launch_config(d.software_name, mixins)
+        if launch_cfg["skip"] or launch_cfg["skip_docker"]:
+            launch_cfg, _ = get_launch_config(d.path.stem, mixins)
+        if launch_cfg["skip"] or launch_cfg["skip_docker"]:
+            continue
+        if run_only:
+            name_lower = d.software_name.lower()
+            prog_lower = launch_cfg.get("program", "").lower()
+            if name_lower not in run_only and prog_lower not in run_only:
+                continue
+            for candidate in (name_lower, prog_lower):
+                if candidate in run_only:
+                    matched_run_only.add(candidate)
+        jobs.append(d.software_name)
+
+    if run_only:
+        check_unmatched_run_only(run_only, matched_run_only)
+
+    n_cpus = os.cpu_count() or 2
+    parallel = args.parallel or max(1, (n_cpus - 2) // 4)
+
+    print(f"Per-terminal Docker screenshots: {len(jobs)} terminals, {parallel} parallel")
+
+    with ThreadPoolExecutor(max_workers=parallel) as executor:
+        futures = {}
+        for sw_name in jobs:
+            cmd = [
+                "docker", "run", "--rm", "--cpus=2",
+                "-e", "DISPLAY=:99",
+                "-v", f"{PROJECT_DIR}:/app",
+                DOCKER_IMAGE,
+                "python", "make-screenshots.py", "--use-system",
+                "--timeout", str(args.timeout),
+                "--run-only", sw_name,
+            ]
+            print(f"[{sw_name}] docker run ...", flush=True)
+            future = executor.submit(subprocess.run, cmd, capture_output=True,
+                                     text=True, timeout=args.timeout + 60)
+            futures[future] = sw_name
+
+        for future in as_completed(futures):
+            sw_name = futures[future]
             try:
-                result = subprocess.run(
-                    ["xdotool", "search", "--onlyvisible", flag, wm_class],
-                    capture_output=True, text=True, timeout=3,
-                )
-                if result.returncode == 0 and result.stdout.strip():
-                    return result.stdout.strip().split("\n")[-1]
-            except (subprocess.TimeoutExpired, OSError):
-                pass
-        time.sleep(0.3)
-
-    return None
-
-
-def inject_keys(window_id, keys):
-    """Send keystrokes to a window via xdotool.
-
-    Special tokens:
-      ``\\n``       press Return
-      ``\\pNNN``    pause for NNN milliseconds
-    """
-    subprocess.run(
-        ["xdotool", "windowfocus", "--sync", str(window_id)],
-        capture_output=True, timeout=2,
-    )
-    time.sleep(0.3)
-    merged = []
-    for key in keys:
-        if key == "\n" or _RE_PAUSE.match(key):
-            if merged:
-                combined = "".join(merged)
-                subprocess.run(
-                    ["xdotool", "type", "--delay", "30", combined],
-                    capture_output=True, timeout=120,
-                )
-                merged = []
-            if key == "\n":
-                subprocess.run(
-                    ["xdotool", "key", "Return"],
-                    capture_output=True, timeout=5,
-                )
-            else:
-                ms = int(_RE_PAUSE.match(key).group(1))
-                time.sleep(ms / 1000.0)
-        else:
-            merged.append(key)
-    if merged:
-        combined = "".join(merged)
-        subprocess.run(
-            ["xdotool", "type", "--delay", "30", combined],
-            capture_output=True, timeout=120,
-        )
+                result = future.result()
+                status = "OK" if result.returncode == 0 else f"exit={result.returncode}"
+                print(f"[{sw_name}] {status}", flush=True)
+                if result.returncode != 0:
+                    if result.stderr:
+                        print(f"[{sw_name}] stderr: {result.stderr.strip()}", flush=True)
+                    if result.stdout:
+                        print(f"[{sw_name}] stdout: {result.stdout.strip()}", flush=True)
+            except Exception as exc:
+                print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)
 
 
 def main():
     parser = argparse.ArgumentParser(
         description="Generate terminal screenshots of unicode width discrepancies")
     parser.add_argument(
-        "--parallel", "-p", type=int, default=1,
-        help="Number of terminals to run in parallel (default: 1)")
+        "--parallel", "-p", type=int, default=0,
+        help="Number of terminals to run in parallel (default: auto)")
     parser.add_argument(
         "--timeout", "-t", type=float, default=600,
         help="Base timeout per terminal in seconds (default: 600). "
@@ -312,7 +226,19 @@ def main():
         "--host-terminal", default="ghostty",
         help="Terminal used to host subterminals (screen, tmux, etc.) "
              "(default: ghostty)")
+    parser.add_argument(
+        "--use-docker", action="store_true",
+        help="Launch each terminal in its own Docker container (--cpus=2)")
+    parser.add_argument(
+        "--use-system", action="store_true",
+        help="Run directly on the host system instead of inside Docker")
     args = parser.parse_args()
+
+    if args.use_docker and not _IS_DOCKER:
+        if not docker_image_exists():
+            docker_build(PROJECT_DIR / "Dockerfile", PROJECT_DIR)
+        _docker_per_terminal_run(args)
+        return
 
     system_name = platform.system()
     if system_name.lower() not in ("linux",):
@@ -339,39 +265,55 @@ def main():
         print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
         sys.exit(0)
 
-    run_only = set()
-    if args.run_only:
-        run_only = set(n.strip().lower() for n in args.run_only.split(",") if n.strip())
+    run_only = parse_run_only(args.run_only)
+    matched_run_only = set()
 
     # Group failures by terminal (one launch per terminal)
     terminal_jobs = {}  # sw_name -> (launch_cfg, list of failure dicts)
     skipped = []
 
-    for yaml_path, sw_name in all_terminals:
-        launch_cfg, is_explicit = get_launch_config(sw_name, mixins)
+    for d in all_terminals:
+        if d.error_msg:
+            continue
+        launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
+        if not is_explicit:
+            launch_cfg, is_explicit = get_launch_config(d.path.stem, mixins)
 
         if run_only:
-            name_lower = sw_name.lower()
+            name_lower = d.software_name.lower()
             prog_lower = launch_cfg.get("program", "").lower()
             if (name_lower not in run_only and prog_lower not in run_only):
-                skipped.append((sw_name, "not in --run-only"))
+                skipped.append((d.software_name, "not in --run-only"))
                 continue
+            for candidate in (name_lower, prog_lower):
+                if candidate in run_only:
+                    matched_run_only.add(candidate)
 
         if launch_cfg["skip"]:
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
-            skipped.append((sw_name, reason))
+            skipped.append((d.software_name, reason))
+            continue
+
+        if should_skip(launch_cfg, is_docker=_IS_DOCKER):
+            reason = launch_cfg.get("skip_reason") or "excluded by should_skip"
+            skipped.append((d.software_name, reason))
             continue
 
         if launch_cfg["subterminal"] and not is_explicit:
-            skipped.append((sw_name, "subterminal, no launch config"))
+            skipped.append((d.software_name, "subterminal, no launch config"))
             continue
 
-        failures = extract_failures(yaml_path)
+        if not is_explicit and launch_cfg["program"] == d.software_name.lower():
+            skipped.append((d.software_name, "no terminals.yaml entry"))
+            continue
+
+        failures = extract_failures(d.path)
         if not failures:
-            skipped.append((sw_name, "no width failures found"))
+            skipped.append((d.software_name, "no width failures found"))
             continue
 
-        safe = safe_name(sw_name)
+        sw_display = mixins.get(d.software_name.lower(), {}).get("display_name", d.software_name)
+        safe = safe_name(sw_display)
         unique_id = uuid.uuid4().hex[:8]
 
         records = []
@@ -386,7 +328,10 @@ def main():
                 "title": f"ucs-shot-{safe}-{category}-{unique_id}",
             })
 
-        terminal_jobs[sw_name] = (launch_cfg, records)
+        terminal_jobs[sw_display] = (launch_cfg, records)
+
+    if run_only:
+        check_unmatched_run_only(run_only, matched_run_only)
 
     if skipped:
         print(f"Skipping {len(skipped)} terminals:")
@@ -436,6 +381,14 @@ def main():
         n_records = len(records)
         print(f"[{sw_name}] {n_records} screenshots ... ", end="", flush=True)
 
+        # Remove old screenshots for this terminal
+        out_dir = SCREENSHOTS_DIR / safe
+        if out_dir.exists():
+            for old_png in out_dir.glob("*.png"):
+                old_png.unlink()
+            for old_png in out_dir.glob("*.xwd"):
+                old_png.unlink()
+
         # Write batch JSON
         batch_json_path = temp_dir / f"batch-{safe}.json"
         batch_json_path.write_text(json.dumps(records))
@@ -444,6 +397,10 @@ def main():
         sentinel_path = temp_dir / f"exit-{safe}.rc"
         stderr_path = temp_dir / f"stderr-{safe}.log"
 
+        # Build batch script now so the file exists before launch.
+        # Direct-launch terminals (konsole, etc.) reference the script
+        # path in their argv.  Key-inject terminals inject the path
+        # later.  We'll rebuild with --window-id once we have one.
         build_batch_script(script_path, sentinel_path, batch_json_path)
 
         try:
@@ -468,35 +425,65 @@ def main():
                     stdin=subprocess.DEVNULL,
                 )
 
-            # Key injection for terminals that don't support -e
+            # Find the X11 window.  Key-inject terminals need it for
+            # xdotool; all terminals benefit from passing --window-id to
+            # the batch script so find_own_window (unreliable inside
+            # sandboxes and subterminals) is never called.
+            captured_wid = None
+            window_cfg = (host_launch_cfg
+                          if launch_cfg["subterminal"]
+                          else launch_cfg)
+            snapshot_pre_windows = None
+            try:
+                result = subprocess.run(
+                    ["xdotool", "search", "--onlyvisible", ""],
+                    capture_output=True, text=True, timeout=3,
+                )
+                if result.returncode == 0:
+                    snapshot_pre_windows = set(result.stdout.strip().split("\n"))
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+
             if post_keys:
                 with _KEY_INJECT_LOCK:
                     time.sleep(0.5)
                     time.sleep(post_delay / 1000.0)
-                    window_cfg = (host_launch_cfg
-                                  if launch_cfg["subterminal"]
-                                  else launch_cfg)
-                    window_id = find_window_for_command(window_cfg, proc.pid)
-                    if window_id is not None:
-                        script_str = str(script_path)
-                        resolved_keys = [
-                            key.replace("${SCRIPT}", script_str)
-                            for key in post_keys
-                        ]
-                        text_keys = [k for k in resolved_keys
-                                     if k != "\n" and not _RE_PAUSE.match(k)]
-                        print(f"injecting: {''.join(text_keys)} ... ",
-                              end="", flush=True)
-                        inject_keys(window_id, resolved_keys)
-                        time.sleep(1.5)
-                    else:
-                        proc.kill()
-                        msg = (
-                            "key injection failed: could not find window "
-                            f"for {window_cfg['program']} (PID {proc.pid})")
-                        print(f"FAILED: {msg}")
-                        failures_list.append((sw_name, -4, msg))
-                        continue
+                    captured_wid = find_window_for_command(
+                        window_cfg, proc.pid,
+                        pre_windows=snapshot_pre_windows)
+            else:
+                captured_wid = find_window_for_command(
+                    window_cfg, proc.pid,
+                    pre_windows=snapshot_pre_windows)
+
+            # For key-inject terminals: rebuild script with --window-id
+            # BEFORE injection so the injected shell command sees it.
+            # Direct-launch terminals must NOT be rebuilt, they are
+            # already executing the first build.
+            if post_keys and captured_wid is not None:
+                build_batch_script(script_path, sentinel_path,
+                                   batch_json_path, captured_wid)
+
+            if post_keys:
+                if captured_wid is None:
+                    proc.kill()
+                    msg = (
+                        "key injection failed: could not find window "
+                        f"for {window_cfg['program']} (PID {proc.pid})")
+                    print(f"FAILED: {msg}")
+                    failures_list.append((sw_name, -4, msg))
+                    continue
+                script_str = str(script_path)
+                resolved_keys = [
+                    key.replace("${SCRIPT}", script_str)
+                    for key in post_keys
+                ]
+                text_keys = [k for k in resolved_keys
+                             if k != "\n" and not _RE_PAUSE.match(k)]
+                print(f"injecting: {''.join(text_keys)} ... ",
+                      end="", flush=True)
+                inject_keys(captured_wid, resolved_keys)
+                time.sleep(1.5)
 
             # Wait for sentinel or timeout (scaled by screenshot count).
             # Key-inject terminals may fork/detach, so don't collapse the
@@ -525,6 +512,8 @@ def main():
                 print("TIMEOUT")
                 failures_list.append((sw_name, -1, "timeout"))
                 continue
+
+            run_kill_command(launch_cfg)
 
             if exit_code != 0:
                 stderr_text = ""

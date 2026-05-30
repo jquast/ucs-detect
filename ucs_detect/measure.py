@@ -22,11 +22,12 @@ _VS15 = '\uFE0E'
 
 
 def _wcswidth_vs15(text, ambiguous_width=1):
-    """Return :func:`wcwidth.wcswidth` of *text*, accounting for VS-15 contraction.
+    """
+    Return :func:`wcwidth.wcswidth` of *text*, accounting for VS-15 contraction.
 
-    wcwidth does not handle VS-15 (U+FE0E) variation selectors.  VS-15 following
-    a wide (width=2) character makes the sequence narrow (width=1), but wcwidth
-    counts the base character as 2 and the VS-15 as 0.
+    wcwidth does not handle VS-15 (U+FE0E) variation selectors.  VS-15 following a wide (width=2)
+    character makes the sequence narrow (width=1), but wcwidth counts the base character as 2 and
+    the VS-15 as 0.
     """
     width = wcwidth.wcswidth(text, ambiguous_width=ambiguous_width)
     if width < 0:
@@ -43,11 +44,11 @@ def _wcswidth_vs15(text, ambiguous_width=1):
 
 
 def _center_vs15(text, dest_width, fillchar=' '):
-    """Center *text* in *dest_width* cells, accounting for VS-15.
+    """
+    Center *text* in *dest_width* cells, accounting for VS-15.
 
-    Matches :func:`wcwidth.center` padding behaviour (Python str.center
-    eccentricity): when both ``total_padding`` and ``dest_width`` are odd,
-    the extra cell goes to the left side.
+    Matches :func:`wcwidth.center` padding behaviour (Python str.center eccentricity): when both
+    ``total_padding`` and ``dest_width`` are odd, the extra cell goes to the left side.
     """
     text_width = _wcswidth_vs15(text)
     total_padding = max(0, dest_width - text_width)

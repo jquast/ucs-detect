@@ -14,27 +14,31 @@ To install or upgrade::
 Problem
 -------
 
-East Asian languages use Wide (W) or Fullwidth (F) characters that occupy 2
-cells. Many scripts use zero-width combining characters that modify adjacent
-characters. Emoji sequences using Zero Width Joiner and Variation Selector-16
-characters. Complex advancing rules with Brahmic scripts.
+Unicode contains East Asian languages which use Wide (W) or Fullwidth (F) characters that occupy 2
+cells. Many languages use zero-width or "combining" characters that modify adjacent characters with
+complex advancing rules.  Emoji sequences also use Zero Width Joiners to join multiple emojis, or
+with adjusting Fitzpatrick variations, and emoji flags are represented by regional indicators of a
+country code.  They may be also displayed without combined emoji and have a "standalone"
+representation.
 
-Terminal applications must determine the display width of these characters, but
-the Unicode Standard is updated periodically while libraries and applications
-lag behind, or never get updated at all.
+Terminal applications must determine the display width of these characters, the Unicode Standard is
+without specific definitions for terminals, many stand behind without any grapheme support at all,
+conforming to pre-emoji era POSIX standard definitions and sans-grapheme wcwidth(3) system
+libraries.
 
-Support also varies within a terminal.
+Further, even well-meaning terminals who report to support "Graphemes" DEC Private Mode 2027 have
+varying interpretations of Unicode Standards.
 
 Solution
 --------
 
-``ucs-detect`` measures terminal compliance with the Specification_ of the
-python wcwidth_ library, for the latest Unicode versions across WIDE, ZERO, ZWJ, VS-16, and VS-15
-unicode sequences.
+``ucs-detect`` measures terminal compliance with the Specification_ of the python wcwidth_ library,
+for the latest Unicode versions across WIDE, ZERO, ZWJ, VS-16, and VS-15 unicode sequences and
+grapheme width of over 500 languages.
 
 ``ucs-browser`` allows to interactive browsing of each kind of category with an interactive terminal
-browsing program.
-
+browsing program. This may also output to a non-tty, and is used to publish the example test files
+at https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files,
 How it works
 ------------
 
@@ -135,6 +139,10 @@ Modes may also be directly entered by CLI options (see ``ucs-browser --help``)
 Navigation follows less(1) conventions: ``j``/``k`` for lines, ``f``/``b`` for
 pages, ``q`` to quit.
 
+Example files are created using ucs-browser, and are published in the source repository at url
+https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files
+
+
 Test Results
 ------------
 
@@ -175,11 +183,65 @@ appear -- click "Details" for an HTML preview.
 Batch Testing
 -------------
 
-``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
-[arguments]`` is not supported, ucs-detect is executed by injecting keystrokes where needed. After
-keystroke injections are begun in series, remaining terminals are done in ``--parallel``::
+The general workflow to gather results and create documentation is, in combined serial and parallel order:
 
-    $ python run-series.py --parallel 8
+.. code-block:: bash
+
+    tox -e docker_build,docker_verify,docker_run_series,docker_screenshots &
+    tox -e system_verify,system_run_series,system_screenshots
+    wait
+    tox -e docs
+
+For reproducible isolated runs, the project provides a Docker image with Xvfb and all linux terminal
+emulators pre-installed.  All Docker operations are managed through ``tox`` targets:
+
+.. code-block:: bash
+
+    # one-time buildx builder setup
+    tox -e docker_buildx_setup
+
+    # build the image (with cache)
+    tox -e docker_build
+
+    # verify all terminals installed (group --version check)
+    tox -e docker_verify
+
+    # run ucs-detect on all terminals
+    tox -e docker_run_series
+
+    # this accepts extra 'run-series.py' arguments,
+    tox -e docker_run_series -- --timeout 600 --run-only "foot,kitty"
+
+    # generate screenshots
+    tox -e docker_screenshots
+
+Unfortunately, many terminals have to be excluded from docker:
+
+- Not Linux or not X11 compatible
+- GPU-accelerated and not compatible with Xvfb,
+- massive number of build dependencies
+- JS/Electron stuff (chromium?) for some reason.
+- Cannot reliably set geometry
+- Tests with ucs-detect fine, but cannot screenshot for any reason
+
+This requires installing those terminals on the developer's host system.
+
+Use the 'system' targets to run these:
+
+.. code-block:: bash
+
+    # verify all terminals installed (group --version check)
+    tox -e system_verify
+
+    # run ucs-detect on all terminals
+    tox -e system_run_series
+
+    # generate screenshots
+    tox -e docker_screenshots
+
+The script ``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
+[arguments]`` or similar is not supported, keystrokes are injected into the target application to
+launch ``ucs-detect`` by configuration.
 
 Problem Analysis
 ----------------
@@ -234,9 +296,10 @@ marks across diverse scripts.
 History
 -------
 
-- 2.2.0 (2026-05-25): Terminal screenshot capture with ``make-screenshots.py``, expanded
-  XTGETTCAP detection and results table, record XTVERSION capture method and TERM_PROGRAM,
-  ``run-series.py`` batch testing with parallel execution (Linux/X11, only).
+- 2.2.0 (2026-05-29): Enrich source repository with more tools, like ``make-screenshots.py``,
+  expanded XTGETTCAP detection and results table, record XTVERSION, TERM_PROGRAM directly. Record
+  cpu and memory resource usage, and introduce ``run-series.py``, used with or without docker for
+  batch testing with parallel execution (Linux only).
 
 - 2.1.0 (2026-04-17): Add more testing for standalone and flags (RI), kitty text sizing
   protocol, make ucs-browser compatible with older python versions, and some changes
@@ -297,3 +360,4 @@ History
 .. _XTGETTCAP: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Operating-System-Commands
 .. _libvte: https://wiki.gnome.org/Projects/VTE
 .. _prettytable: https://github.com/jazzband/prettytable
+.. _Arch Linux: https://archlinux.org/

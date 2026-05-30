@@ -1,172 +1,241 @@
-# Terminal detail mixins for ucs-detect This file provides additional metadata about terminals that
-# cannot be automatically detected or stored in the test result YAML files. This also includes a
-# 'launch' group used by 'run-series.py'
-#
-# Keys are matched against software_name (case-insensitive after lowercasing)
-
 terminals:
-
   AbsoluteTelnetSSH:
     homepage: https://www.celestialsoftware.net
-    launch:
-      skip: true
-    skip_reason: "Windows-only, not available on Linux"
-    
+    skip_docker: true
+    skip_reason: Windows only
   alacritty:
     homepage: https://alacritty.org/
     launch:
       program: alacritty
-      args: [-e]
-
+      args: [-o, window.dimensions.columns=80, -o, window.dimensions.lines=24, -e]
   bobcat:
     homepage: https://github.com/ismail-yilmaz/Bobcat
     launch:
       program: bobcat
       args: []
+      env:
+        TERM: xterm-256color
       post_launch_delay_ms: 300
-      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
-
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   contour:
     homepage: https://contour-terminal.org/
+    skip_docker: true
+    skip_reason: does not respond to CPR (DSR) in Docker/Xvfb; works on host
     launch:
       program: contour
       args: [terminal]
-
   cool-retro-term:
     homepage: https://github.com/Swordfish90/cool-retro-term
+    display_name: cool-retro-term
+    version_template: '{aur_version}'
+    aur_package: cool-retro-term
     launch:
       program: cool-retro-term
+      args: [--fullscreen, -e]
+  domterm:
+    homepage: https://domterm.org/
+    launch:
+      program: DomTerm.AppImage
       args: [-e]
-
+    skip_docker: true
+    skip_reason: Massive dependencies require several hours to build in docker!
   extraterm:
     homepage: https://extraterm.org/
+    skip_docker: true
+    skip_reason: JS/Electron-like, no visible window in Xvfb
+    profile_processes:
+    - qode
     launch:
       program: /opt/extratermqt/extratermqt
       wm_class: qode
       post_launch_delay_ms: 300
-      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
-
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
+    launch_docker:
+      program: extraterm
+      args: []
+      post_launch_delay_ms: 1000
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   foot:
     homepage: https://codeberg.org/dnkl/foot
     launch:
       program: foot
       args: []
-      wrapper: [cage, --]
-      skip: true
-    skip_reason: "cage wrapper"
-
+      wrapper:
+      - cage
+      - --
+    launch_docker:
+      program: foot
+      args: []
+    skip_system: true
+    skip_reason: Wayland-only (requires cage)
   ghostty:
     homepage: https://ghostty.org/
+    skip_docker: true
     launch:
       program: ghostty
       args: [-e]
-
   gnome terminal:
     homepage: https://help.gnome.org/users/gnome-terminal/stable/
+    display_name: GNOME Terminal
+    version_manual: 3.50.1
+    skip_docker: true
+    skip_reason: D-Bus architecture (gnome-terminal-server) fails in Docker/Xvfb
     launch:
       program: gnome-terminal
-      args: [--]
-
+      args: [--wait, --]
+    profile_processes:
+    - gnome-terminal-server
+    timeout: 14400
   hyper:
     homepage: https://hyper.is/
+    skip_docker: true
+    skip_reason: Electron app creates no visible X11 windows in Xvfb/openbox
     launch:
       program: hyper
       args: []
-      post_launch_delay_ms: 90
-      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
-
+      post_launch_delay_ms: 1500
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   iterm2:
     homepage: https://iterm2.com/
-
+    skip_docker: true
+    skip_reason: macOS only
+    launch:
+      program: /Applications/iTerm.app/Contents/MacOS/iTerm2
+      args: ['{script}']
+    timeout: 14400
   kitty:
     homepage: https://sw.kovidgoyal.net/kitty/
     launch:
       program: kitty
-      args: []
-
+      args: [-o, initial_window_width=80c, -o, initial_window_height=24c, sh, '{script}']
   konsole:
     homepage: https://apps.kde.org/konsole/
+    skip_docker: true
+    skip_reason: creates 1x1 cell windows in Docker
     launch:
-      program: flatpak
-      args: [run, --command=konsole, org.kde.konsole, --, -e]
-
+      program: konsole
+      args: [-e]
+      wm_class: konsole
+    launch_docker:
+      program: konsole
+      args: [-e]
   libvterm:
     homepage: https://www.leonerd.org.uk/code/libvterm/
-    description: "libvterm tested is the one shipped with vIM when using command, ``:terminal``."
+    description: libvterm tested is the one shipped with vIM when using command, ``:terminal``.
     launch:
       subterminal: true
       program: vim
-      args: ['-c', ':terminal ++curwin']
+      args: [-c, ':terminal ++curwin']
       post_launch_delay_ms: 300
-      post_launch_keys: ["sh ${SCRIPT} && exit\n"]
+      post_launch_keys:
+      - 'sh ${SCRIPT} && exit
 
+        '
+    skip_docker: true
+    skip_reason: subterminal tested on host via system_screenshots
   linux fbdev:
     homepage: https://www.kernel.org/doc/Documentation/fb/fbcon.txt
     launch:
       subterminal: true
-      skip: true
-
+    skip_system: true
+    skip_docker: true
+    skip_reason: requires bare Linux framebuffer console
   lxterminal:
     homepage: https://github.com/lxde/lxterminal
+    display_name: LXTerminal
+    version_template: '{aur_version}'
+    aur_package: lxterminal
     launch:
       program: lxterminal
-      args: [-e]
-
+      args: [--geometry=80x24, -e]
+    profile_processes:
+    - gnome-terminal-server
+    timeout: 14400
   mintty:
     homepage: https://mintty.github.io/
-
+    skip_docker: true
+    skip_reason: Windows only
   mlterm:
     homepage: https://mlterm.sourceforge.net/
     launch:
       program: mlterm
-      args: ["--sb=false", "-e"]
-
+      args: [--sb=false, -e]
+    skip_docker: true
+    skip_reason: Legacy dependencies require several hours to build
   putty:
     homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/
+    version_template: '{aur_version}'
+    aur_package: putty
     launch:
       program: pterm
-      args: [-e]
-
+      args: [-geometry, 80x24, -e]
   qterminal:
     homepage: https://github.com/lxqt/qterminal
+    display_name: QTerminal
+    version_template: '{aur_version}'
+    aur_package: qterminal
     launch:
       program: qterminal
-      args: [-e]
-
+      args: [--geometry, 960x540, -e]
+    skip_docker: true
+    skip_reason: Qt terminal hangs in Docker
   rio:
     homepage: https://rioterm.com/
+    skip_docker: true
+    skip_reason: exits 1 with software Vulkan (lavapipe); works on host with GPU
     launch:
       program: rio
       args: [-e]
-
   rxvt-unicode:
     homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
+    version_template: '{aur_version}'
+    aur_package: rxvt-unicode
     launch:
       program: urxvt
-      args: ["+sb", "-fn", "xft:Unifont:pixelsize=16", "-e"]
-
+      args: [+sb, -fn, xft:Unifont:pixelsize=16, -rv, -e]
   screen:
     homepage: https://www.gnu.org/software/screen/
+    display_name: GNU Screen
+    version_template: '{aur_version}'
+    aur_package: screen
+    skip_docker: true
+    skip_reason: subterminal tested on host via system_screenshots
     launch:
       subterminal: true
       program: screen
       args: [-q]
       post_launch_delay_ms: 300
-      post_launch_keys: ["\n", '\p1000', "sh ", "${SCRIPT} && exit", "\n"]
-
+      post_launch_keys:
+      - "\n"
+      - \p1000
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   securecrt:
     homepage: https://www.vandyke.com/products/securecrt/
     launch:
       skip: true
-    skip_reason: "My evaluation license has expired"
-
-  st:
-    homepage: https://st.suckless.org/
-    sixel_support_notes: "Patches are available to add sixel support."
+    skip_reason: My evaluation license has expired
+  st-luke:
+    homepage: https://github.com/LukeSmithxyz/st
+    display_name: st-luke
+    description: This is based on Luke Smith xyz's fork of st
+    version_manual: 0.8.5
     launch:
-      program: st
-      args: ["-f", "Unifont:pixelsize=16", "-e"]
-
+      program: /usr/local/bin/st-luke
+      args: [-f, Unifont:pixelsize=16, -g, 80x24, -e]
   syncterm:
     homepage: https://syncterm.bbsdev.net/
     launch:
@@ -174,102 +243,174 @@ terminals:
       program: syncterm
       args: [Local]
       post_launch_delay_ms: 300
-      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
-    skip_reason: "Not very interesting"
-
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
+    skip_reason: Not very interesting/too far outliar to join scaled score, like fbdev
   tabby:
     homepage: https://tabby.sh/
+    skip_docker: true
+    skip_reason: Electron app; not packaged for Arch
+    version_manual: 1.0.230
     launch:
       program: tabby
-      args: [-e]
-
+      args: [run, sh, '{script}']
+      kill_command:
+      - pkill
+      - tabby
   teraterm:
     homepage: https://teratermproject.github.io/
-    launch:
-      skip: true
-    skip_reason: "Windows-only, not available on Linux"
-
+    launch: null
+    skip_system: true
+    skip_docker: true
+    skip_reason: Windows-only, not available on Linux
   terminal.app:
     homepage: https://support.apple.com/guide/terminal/welcome/mac
-
+    skip_docker: true
+    skip_reason: macOS only
+    launch:
+      program: /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal
+      args: ['{script}']
   terminal.exe:
     homepage: https://learn.microsoft.com/en-us/windows/terminal/
-
+    skip_docker: true
+    skip_reason: Windows only
   terminator:
     homepage: https://gnome-terminator.org/
+    display_name: Terminator
+    version_template: '{aur_version}'
+    aur_package: terminator
     launch:
       program: terminator
-      args: [-x, sh, "{script}"]
-
+      args: [-x, sh, '{script}']
+    profile_processes:
+    - gnome-terminal-server
+    timeout: 14400
+    skip_docker: true
+    skip_reason: D-Bus spawns gnome-terminal-server, geometry doesn't apply
   terminology:
     homepage: https://www.enlightenment.org/about-terminology
+    skip_docker: true
     launch:
       program: terminology
-      args: [-e]
-
-  termit:
-    homepage: https://github.com/nonstop/termit
-    launch:
-      program: termit
-      args: [-e]
-
+      args: [--geometry, 80x24, --scale, '1.0', -e]
   tmux:
     homepage: https://github.com/tmux/tmux
-    sixel_support_notes: "Must be compiled with sixel support. Check support and enablement with command: ``(tmux show-options -g;tmux show-window-options)|grep -i sixel``"
+    skip_docker: true
+    skip_reason: subterminal tested on host via system_screenshots
+    sixel_support_notes: 'Must be compiled with sixel support. Check support and enablement
+      with command: ``(tmux show-options -g;tmux show-window-options)|grep -i sixel``'
     launch:
       subterminal: true
       program: tmux
       args: [new-session]
       post_launch_delay_ms: 300
-      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
-
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   xterm.js:
     homepage: https://code.visualstudio.com/docs/terminal/basics
-    description: "The xterm.js variant tested is the one shipped with Visual Studio Code's integrated terminal."
-    sixel_support_notes: "Must be enabled with ``\"terminal.integrated.enableImages\": true``."
+    description: The xterm.js variant tested is the one shipped with Visual Studio
+      Code's integrated terminal.
+    sixel_support_notes: 'Must be enabled with ``"terminal.integrated.enableImages":
+      true``.'
     launch:
       subterminal: true
       skip: true
-
+    skip_system: true
+    skip_docker: true
+    skip_reason: Run by hand because it is complex and auto-updates itself, maybe it could be in docker
   weston-terminal:
     homepage: https://gitlab.freedesktop.org/wayland/weston
+    version_template: '{aur_version}'
+    aur_package: weston
     launch:
       program: weston-terminal
-      args: [--shell, "{script}"]
-      wrapper: [cage, --]
-      skip: true
-    skip_reason: "cage wrapper"
-
+      args: [--shell, '{script}']
+      wrapper:
+      - cage
+      - --
+    launch_docker:
+      program: weston-terminal
+      args: [--shell, '{script}']
+    skip_system: true
+    skip_reason: Wayland compositor nested in Xvfb creates tiny windows
+    skip_docker: true
+  warp:
+    homepage: https://github.com/warpdotdev/warp
+    display_name: Warp
+    version_template: '{aur_version}'
+    aur_package: warp-terminal-bin
+    skip_docker: true
+    skip_reason: GPU-accelerated; software rendering untested (same class as Rio)
+    launch:
+      program: warp-terminal
+      args: []
+      wm_class: dev.warp.Warp
+      post_launch_delay_ms: 1500
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   wezterm:
     homepage: https://wezfurlong.org/wezterm/
     launch:
       program: wezterm
       args: [start, --]
-
+    launch_docker:
+      program: wezterm
+      args: [--config, front_end="Software", --config, enable_wayland=false, start, --]
+      env:
+        WAYLAND_DISPLAY: ''
+    timeout: 1800
   xfce4-terminal:
     homepage: https://docs.xfce.org/apps/terminal/start
+    display_name: XFCE Terminal
+    version_template: '{aur_version}'
+    aur_package: xfce4-terminal
+    skip_docker: true
+    skip_reason: requires full Xfce session with xfconfd (exit=1)
     launch:
       program: xfce4-terminal
-      args: [-e, "sh {script}"]
-
+      args: [-e, 'sh {script}']
+    profile_processes:
+    - gnome-terminal-server
+    timeout: 14400
   xterm:
     homepage: https://invisible-island.net/xterm/
-    sixel_support_notes: "Sixel support can be enabled with argument ``-ti 340``."
+    sixel_support_notes: Sixel support can be enabled with argument ``-ti 340``.
     launch:
       program: xterm
-      args: ["-fa", "Unifont", "-fs", "16", "-e"]
-
+      args: [-fa, Unifont, -fs, '16', -rv, -e]
   zutty:
     homepage: https://tomscii.sig7.se/zutty/
+    version_template: '{aur_version}'
+    aur_package: zutty
     launch:
       program: zutty
-      args: ["-font", "unifont", "-fontsize", "16", "-e"]
-
+      args: [-font, unifont, -fontsize, '16', -e]
   zellij:
     homepage: https://github.com/zellij-org/zellij
+    skip_docker: true
+    skip_reason: subterminal tested on host via system_screenshots
     launch:
       subterminal: true
       program: zellij
       args: []
       post_launch_delay_ms: 300
-      post_launch_keys: ["sh ", "${SCRIPT} && exit", "\n"]
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && pkill zellij
+      - "\n"
+    launch_docker:
+      subterminal: true
+      program: zellij
+      args: []
+      post_launch_delay_ms: 2000
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && pkill zellij
+      - "\n"
+    description: Tested inside host terminal kitty.

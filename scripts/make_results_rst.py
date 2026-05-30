@@ -10,6 +10,7 @@ import re
 import os
 import sys
 import math
+from pathlib import Path
 import contextlib
 import unicodedata
 import colorsys
@@ -40,19 +41,20 @@ import matplotlib  # pylint: disable=wrong-import-position
 matplotlib.use('Agg')  # Non-interactive backend for ReadTheDocs
 import matplotlib.pyplot as plt  # pylint: disable=wrong-import-position
 import numpy as np  # pylint: disable=wrong-import-position
+from PIL import Image  # pylint: disable=wrong-import-position
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
-from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars
+from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars, load_mixins
 from ucs_detect.measure import make_printf_hex
+from ucs_detect.profiler import ProfileSession, generate_graphs
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 GITHUB_EXAMPLE_BASE = 'https://github.com/jquast/ucs-detect/blob/master/docs/ucs_example_files'
 EXAMPLE_FILES_DIR = os.path.join(_ROOT, 'docs', 'ucs_example_files')
 DATA_PATH = os.path.join(_ROOT, "data")
-TERMINAL_DETAIL_MIXINS_PATH = os.path.join(_ROOT, "terminals.yaml")
 PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
@@ -183,6 +185,7 @@ def generate_score_css():
         class_name = make_score_css_class(score)
         css_lines.append(f'.{class_name} {{ background-color: rgb({r}, {g}, {b}); }}')
     css_lines.append('.score-contested { background-color: rgb(220, 220, 220); }')
+    css_lines.append('.score-warn { background-color: rgb(255, 255, 150); }')
     css_lines.append('.score-na { background-color: rgb(220, 220, 220); }')
     return '\n'.join(css_lines)
 
@@ -207,6 +210,14 @@ def generate_score_roles():
     lines.append('.. role:: score-contested')
     lines.append('   :class: score-contested')
     lines.append('')
+    # Add role for warn scores (yellow, COLORTERM-only detection)
+    lines.append('.. role:: score-warn')
+    lines.append('   :class: score-warn')
+    lines.append('')
+    # Add role for fail scores (red, no identification method available)
+    lines.append('.. role:: score-fail')
+    lines.append('   :class: score-fail')
+    lines.append('')
     return '\n'.join(lines)
 
 
@@ -221,6 +232,18 @@ def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
     score_value = round(score * 100) if not math.isnan(score) else 'na'
     link_target = make_link(terminal_name + section_suffix)
     return f':sref:`{text} <{link_target}> {score_value}`'
+
+
+def _wrap_colorterm_warn(text, terminal_name):
+    """Wrap a capability value with warn (yellow) styling and hyperlink."""
+    link_target = make_link(terminal_name + "_identification")
+    return f':sref:`{text} <{link_target}> warn`'
+
+
+def _wrap_id_fail(text, terminal_name):
+    """Wrap a capability value with fail (red) styling and hyperlink."""
+    link_target = make_link(terminal_name + "_identification")
+    return f':sref:`{text} <{link_target}> fail`'
 
 
 def _wrap_vs15_contested(text, terminal_name):
@@ -246,22 +269,6 @@ def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, sectio
     return f':sref:`{text} <{link_target}> {score_value_for_color}:{sort_value}`'
 
 
-def load_terminal_detail_mixins():
-    """
-    Load terminal detail mixins from YAML file.
-    Returns a dictionary keyed by lowercase software_name.
-    """
-    if not os.path.exists(TERMINAL_DETAIL_MIXINS_PATH):
-        return {}
-
-    with open(TERMINAL_DETAIL_MIXINS_PATH, 'r') as f:
-        data = yaml.load(f, Loader=SafeLoader)
-
-    # Normalize keys to lowercase for case-insensitive matching
-    terminals = data.get('terminals', {})
-    return {key.lower(): value for key, value in terminals.items()}
-
-
 def print_datatable(table_str, caption=None):
     """Print a table with sphinx-datatable class for sortable/searchable functionality."""
     if caption:
@@ -282,7 +289,7 @@ def print_datatable(table_str, caption=None):
 def create_score_plots(sw_name, entry, score_table):
     """Create matplotlib plot comparing terminal scores against all terminals."""
     # Collect all scores for comparison
-    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'SRI', 'SFZ', 'RI', 'CAP', 'GFX', 'TIME']
+    metrics = ['WIDE', 'ZWJ', 'LANG', 'VS16', 'SRI', 'SFZ', 'RI', 'CAP', 'GFX', 'RSC']
     terminal_scores_scaled = {}
     all_scores_scaled = {}
 
@@ -298,7 +305,7 @@ def create_score_plots(sw_name, entry, score_table):
         'RI': 'score_ri',
         'CAP': 'score_features',
         'GFX': 'score_graphics',
-        'TIME': 'score_elapsed',
+        'RSC': 'score_resource',
     }
 
     for metric in metrics:
@@ -481,14 +488,65 @@ def create_time_summary_plot(score_table):
     return plot_filename
 
 
+def process_resource_data():
+    """Generate resource profile graphs and compute resource_score in YAML files.
+
+    Reads ``resource_profile`` data from all data YAML files, builds
+    per-terminal CPU/RSS/time graphs, computes 0-100 resource scores
+    across all terminals, and writes scores back to the data YAML files.
+    """
+    sessions: dict[str, ProfileSession] = {}
+    yaml_map: dict[str, str] = {}  # sw_name -> yaml file path
+
+    for fname in os.listdir(DATA_PATH):
+        if not fname.endswith(".yaml") or fname.startswith("_"):
+            continue
+        if fname == "terminals.yaml":
+            continue
+        yaml_path = os.path.join(DATA_PATH, fname)
+        try:
+            with open(yaml_path) as f:
+                data = yaml.load(f, Loader=SafeLoader) or {}
+        except (OSError, yaml.YAMLError):
+            continue
+        rp = data.get("resource_profile") or {}
+        elapsed = rp.get("elapsed_s", [])
+        cpu = rp.get("cpu_pct", [])
+        rss = rp.get("rss_mb", [])
+        if not elapsed or not cpu or not rss:
+            continue
+        mean_cpu = sum(cpu) / len(cpu)
+        mean_rss = sum(rss) / len(rss)
+        if mean_cpu < 0.1 and mean_rss < 5.0:
+            continue  # profiling failed, process tree was never captured
+        sw_name = data.get("software_name", fname.replace(".yaml", ""))
+        session = ProfileSession(sw_name, 0)
+        samples = list(zip(elapsed, cpu, rss))
+        while samples and samples[-1][2] <= 0.0:
+            samples.pop()
+        session._samples = samples
+        sessions[sw_name] = session
+        yaml_map[sw_name] = yaml_path
+
+    if not sessions:
+        return
+
+    profiles_dir = os.path.join(_ROOT, "docs", "_static", "profiles")
+    generate_graphs(sessions, Path(profiles_dir))
+
+
 def main():
     """Generate all RST documentation pages, CSS, and plots from YAML data files."""
+    print('Processing resource data... ', file=sys.stderr, end='', flush=True)
+    process_resource_data()
+    print('ok', file=sys.stderr)
+
     print('Generating score table... ', file=sys.stderr, end='', flush=True)
     score_table, all_successful_languages = make_score_table()
     print('ok', file=sys.stderr)
 
     print('Loading terminal detail mixins... ', file=sys.stderr, end='', flush=True)
-    terminal_mixins = load_terminal_detail_mixins()
+    terminal_mixins = load_mixins()
     print('ok', file=sys.stderr)
 
     print('Writing docs/_static/score-colors.css ... ', file=sys.stderr, end='', flush=True)
@@ -508,9 +566,12 @@ def main():
         display_common_languages(all_successful_languages)
         display_features_table(score_table)
         display_truecolor_table(score_table)
+        display_osc52_table(score_table)
+        display_id_table(score_table, terminal_mixins)
+        display_id_summary_bullets(score_table, terminal_mixins)
         display_xtgettcap_summary_bullets(score_table)
         display_xtgettcap_comparison_table(score_table)
-        # display_time_summary removed: plot is still generated but not published
+        display_performance_section(score_table)
         display_results_toc(score_table)
         display_common_hyperlinks()
     print('ok', file=sys.stderr)
@@ -542,10 +603,23 @@ def main():
             show_xtgettcap_results(sw_name, entry)
             show_text_sizing_results(sw_name, entry)
             show_truecolor_results(sw_name, entry)
+            show_osc52_results(sw_name, entry)
+            show_id_results(sw_name, entry, terminal_mixins)
             show_reproduce_command(sw_name, entry)
             show_time_elapsed_results(sw_name, entry)
             display_common_hyperlinks()
         print('ok', file=sys.stderr)
+
+    # Remove stale per-terminal RST files not in the current score table
+    expected = {f"{make_link(e['terminal_software_name'])}.rst" for e in score_table}
+    sw_dir = os.path.join(_ROOT, "docs", "sw_results")
+    if os.path.isdir(sw_dir):
+        for fname in os.listdir(sw_dir):
+            if fname.endswith(".rst") and fname not in expected:
+                stale = os.path.join(sw_dir, fname)
+                print(f'Removing stale {stale} ... ', file=sys.stderr, end='', flush=True)
+                os.unlink(stale)
+                print('ok', file=sys.stderr)
 
 
 def _fmt_ms(ms):
@@ -597,8 +671,12 @@ def display_results_toc(score_table):
     print(".. toctree::")
     print("   :maxdepth: 1")
     print()
+    seen = set()
     for entry in score_table:
         sw_name = make_link(entry["terminal_software_name"])
+        if sw_name in seen:
+            continue
+        seen.add(sw_name)
         print(f"   sw_results/{sw_name}")
     print()
 
@@ -610,6 +688,10 @@ def display_common_hyperlinks():
     print(".. _`ucs-detect`: https://github.com/jquast/ucs-detect")
     print(".. _`ttyscan`: https://github.com/jquast/ttyscan")
     print(".. _`DEC Private Modes`: https://blessed.readthedocs.io/en/latest/dec_modes.html")
+    print(".. _`OSC 52`: https://dev.to/djmitche/clipboards-terminals-and-linux-3pk5")
+    print(".. _`XTGETTCAP`: https://codeberg.org/dnkl/foot#xtgettcap")
+    print(".. _`Truecolor`: https://github.com/termstandard/colors/blob/master/README.md")
+    print(".. _`Kitty graphics`: https://sw.kovidgoyal.net/kitty/graphics-protocol/")
 
 
 def make_link(text):
@@ -628,6 +710,32 @@ def display_inbound_hyperlink(link_text):
     """Emit an RST hyperlink anchor target for cross-references."""
     print(f".. _{make_link(link_text)}:")
     print()
+
+
+def resource_cost(data):
+    """Compute a raw resource cost from profile data (higher = worse).
+    
+    Returns NaN if no valid profile data is available.
+    """
+    rp = (data.get("resource_profile") or {})
+    elapsed = rp.get("elapsed_s", [])
+    cpu = rp.get("cpu_pct", [])
+    rss = rp.get("rss_mb", [])
+    if not elapsed or not cpu or not rss:
+        return float('NaN')
+    # strip trailing zeros
+    while elapsed and rss and rss[-1] <= 0.0:
+        elapsed.pop()
+        cpu.pop()
+        rss.pop()
+    if not elapsed:
+        return float('NaN')
+    mean_cpu = sum(cpu) / len(cpu)
+    mean_rss = sum(rss) / len(rss)
+    duration = elapsed[-1]
+    if mean_cpu < 0.1 and mean_rss < 5.0:
+        return float('NaN')
+    return math.log(mean_cpu + 1) + math.log(mean_rss + 1) + math.log(duration + 1)
 
 
 def make_score_table():
@@ -686,22 +794,36 @@ def make_score_table():
             # DEC Modes Support,
             _score_dec_modes = score_dec_modes(data)
 
-            # Elapsed time (inverse score - lower is better)
-            _score_elapsed = score_elapsed_time(data)
+            # Resource score, negate raw cost so higher = better for scaling
+            _cost = resource_cost(data)
+            _score_resource = -_cost if not math.isnan(_cost) else float('NaN')
             _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
 
-            # Sixel support - binary score based on DA1 device attributes response
+            # Sixel support, binary score based on DA1 device attributes response
             _sixel_support = data.get("terminal_results", {}).get("sixel", False)
             _score_sixel = 1.0 if _sixel_support else 0.0
 
-            # Features score - fraction of notable features supported
+            # Features score, fraction of notable features supported
             _score_features = score_features(data)
 
-            # Graphics protocol score - 1.0 modern, 0.5 legacy, 0.0 none
+            # Graphics protocol score, 1.0 modern, 0.5 legacy, 0.0 none
             _score_graphics = score_graphics(data)
 
             _sw_name = data.get("software_name", data.get('software'))
             assert _sw_name, f"empty software_name in {yaml_path}"
+
+            tr = data.get("terminal_results") or {}
+            ts = tr.get("text_sizing", {})
+            has_text_sizing = bool(ts.get("width") or ts.get("scale"))
+            if has_text_sizing:
+                score_language = 1.0
+                _score_wide = 1.0
+                _score_zwj = 1.0
+                score_emoji_vs16 = 1.0
+                score_emoji_vs15 = 1.0
+                _score_sri = 1.0
+                _score_sfz = 1.0
+                _score_ri = 1.0
 
             score_table.append(
                 dict(
@@ -714,7 +836,7 @@ def make_score_table():
                     score_sfz=_score_sfz,
                     score_ri=_score_ri,
                     score_dec_modes=_score_dec_modes,
-                    score_elapsed=_score_elapsed,
+                    score_resource=_score_resource,
                     elapsed_seconds=_elapsed_seconds,
                     score_language=score_language,
                     score_wide=_score_wide,
@@ -723,6 +845,7 @@ def make_score_table():
                     sixel_support=_sixel_support,
                     score_features=_score_features,
                     score_graphics=_score_graphics,
+                    has_text_sizing=has_text_sizing,
                     data=data,
                     fname=os.path.basename(yaml_path),
                 )
@@ -730,12 +853,6 @@ def make_score_table():
     except Exception:
         print(f"Error in yaml_path={yaml_path}", file=sys.stderr)
         raise
-
-    # Normalize elapsed time scores to 0-1 range
-    # Get valid elapsed scores
-    valid_elapsed = [e["score_elapsed"] for e in score_table if not math.isnan(e["score_elapsed"])]
-    max_elapsed = max(valid_elapsed) if valid_elapsed else 1.0
-    min_elapsed = min(valid_elapsed) if valid_elapsed else 0.0
 
     # Normalize DEC modes for display (not used in final score)
     valid_dec_modes = [e["score_dec_modes"] for e in score_table
@@ -757,33 +874,27 @@ def make_score_table():
         else:
             entry["score_dec_modes_norm"] = float('NaN')
 
-        # Normalize elapsed time to 0-1 (inverse - lower is better)
-        if not math.isnan(entry["score_elapsed"]):
-            if max_elapsed == min_elapsed:
-                entry["score_elapsed_norm"] = 1.0
+    valid_rc = [e["score_resource"] for e in score_table
+                if not math.isnan(e["score_resource"])]
+    if valid_rc:
+        rc_min, rc_max = min(valid_rc), max(valid_rc)
+        for entry in score_table:
+            if not math.isnan(entry["score_resource"]):
+                if rc_max == rc_min:
+                    entry["score_resource_norm"] = 1.0
+                else:
+                    entry["score_resource_norm"] = (
+                        (entry["score_resource"] - rc_min) / (rc_max - rc_min))
             else:
-                # Use log scale for time (inverse)
-                log_elapsed = math.log10(entry["score_elapsed"])
-                log_min = math.log10(min_elapsed)
-                log_max = math.log10(max_elapsed)
-                entry["score_elapsed_norm"] = 1.0 - (
-                    (log_elapsed - log_min) / (log_max - log_min))
-        else:
-            entry["score_elapsed_norm"] = float('NaN')
+                entry["score_resource_norm"] = float('NaN')
 
-        # Calculate final score using weighted average
-        # Time and graphics are weighted at 0.5 (half as powerful as other metrics)
-        # Graphics (GFX) scores: 1.0 modern (iTerm2/Kitty), 0.5 legacy (Sixel/ReGIS), 0.0 none
-        # SRI/SFZ are standalone (non-sequence) tests, weighted 1/3 as they
-        # cover uncommon edge cases
-        TIME_WEIGHT = 0.5
-        GRAPHICS_WEIGHT = 0.5
-        STANDALONE_WEIGHT = 1.0 / 3.0
+    RESOURCE_WEIGHT = 0.5
+    GRAPHICS_WEIGHT = 0.5
+    STANDALONE_WEIGHT = 1.0 / 3.0
+    for entry in score_table:
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
-            # VS-15 excluded from scoring (interpretation is contested)
-            # see https://github.com/jquast/wcwidth/issues/211
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
             (entry["score_sri"], STANDALONE_WEIGHT),
@@ -791,7 +902,7 @@ def make_score_table():
             (entry["score_ri"], 1.0),
             (entry["score_features"], 1.0),
             (entry["score_graphics"], GRAPHICS_WEIGHT),
-            (entry["score_elapsed_norm"], TIME_WEIGHT)
+            (entry["score_resource_norm"], RESOURCE_WEIGHT)
         ]
         valid_scores_with_weights = [(s, w) for s, w in scores_with_weights if not math.isnan(s)]
         if valid_scores_with_weights:
@@ -902,53 +1013,12 @@ def _classify_xtgettcap(data):
     return ("partial", 0.5)
 
 
-def _count_features(entry):  # "features" in user-facing output
-    """Count supported and total notable features for a terminal."""
-    tr = entry["data"].get("terminal_results") or {}
-    if not tr:
-        return 0, 0
-
-    modes = tr.get("modes") or {}
-    n_found = 0
-    n_total = 0
-    for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
-                     _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
-                     _DPM.GRAPHEME_CLUSTERING, _DPM.BRACKETED_PASTE_MIME):
-        n_total += 1
-        if _get_dec_mode_supported(modes, mode_num):
-            n_found += 1
-    if tr.get("kitty_keyboard") is not None:
-        n_total += 1
-        n_found += 1
-    elif tr.get("modes"):
-        n_total += 1
-    # XTGETTCAP: Full=1.0, Partial=0.5 contribution
-    xt = tr.get("xtgettcap", {})
-    if xt.get("supported", False) and bool(xt.get("capabilities")):
-        n_total += 1
-        _label, xt_score = _classify_xtgettcap(entry)
-        n_found += xt_score
-    elif "xtgettcap" in tr:
-        n_total += 1
-    if tr.get("software_method") == "XTVERSION":
-        n_total += 1
-        n_found += 1
-    # Truecolor detection: 1.0 for any detection method
-    xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
-    if "xtgettcap" in tr or "decrqss" in tr or "environment" in entry["data"]:
-        n_total += 1
-        if xt_has or dq_has or ct_has:
-            n_found += 1
-    return n_found, n_total
-
-
-def _format_features_summary(entry, max_caps):
-    """Format detected features as a count with scored hyperlink."""
+def _format_features_summary(entry):
+    """Format detected features as scaled score with hyperlink to Score Breakdown."""
     sw_name = entry["terminal_software_name"]
-    n_found, _n_total = _count_features(entry)
-    score = n_found / max_caps if max_caps else 0.0
+    score = entry["score_features_scaled"]
     return wrap_score_with_hyperlink(
-        str(n_found), score, sw_name, "_dec_modes"
+        format_score_int(score), score, sw_name, "_scores"
     )
 
 
@@ -1013,12 +1083,9 @@ def display_tabulated_scores(score_table):
 
     tabulated_scores = []
 
-    # determine max features across all terminals for scaling
-    max_caps = max((_count_features(r)[0] for r in score_table), default=1)
-
     for rank, result in enumerate(score_table, start=1):
-        # Build features summary count
-        features_list = _format_features_summary(result, max_caps)
+        # Build features summary (scaled score, links to Score Breakdown)
+        features_list = _format_features_summary(result)
 
         tabulated_scores.append(
             {
@@ -1034,49 +1101,57 @@ def display_tabulated_scores(score_table):
                     "_scores"
                 ),
                 "WIDE": wrap_score_with_hyperlink(
-                    format_score_int(result["score_wide_scaled"]),
+                    format_score_int(result["score_wide_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_wide_scaled"],
                     result["terminal_software_name"],
                     "_wide"
                 ),
                 "LANG": wrap_score_with_hyperlink(
-                    format_score_int(result["score_language_scaled"]),
+                    format_score_int(result["score_language_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_language_scaled"],
                     result["terminal_software_name"],
                     "_lang"
                 ),
                 "ZWJ": wrap_score_with_hyperlink(
-                    format_score_int(result["score_zwj_scaled"]),
+                    format_score_int(result["score_zwj_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_zwj_scaled"],
                     result["terminal_software_name"],
                     "_zwj"
                 ),
                 "VS16": wrap_score_with_hyperlink(
-                    format_score_int(result["score_emoji_vs16_scaled"]),
+                    format_score_int(result["score_emoji_vs16_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_emoji_vs16_scaled"],
                     result["terminal_software_name"],
                     "_vs16"
                 ),
                 "VS15": _wrap_vs15_contested(
-                    format_score_int(result["score_emoji_vs15_scaled"]),
+                    format_score_int(result["score_emoji_vs15_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["terminal_software_name"],
                 ),
                 "SRI": (wrap_score_with_hyperlink(
-                    format_score_int(result["score_sri_scaled"]),
+                    format_score_int(result["score_sri_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_sri_scaled"],
                     result["terminal_software_name"],
                     "_sri"
                 ) if not math.isnan(result["score_sri_scaled"])
                     else _wrap_untested(result["terminal_software_name"], "_sri")),
                 "SFZ": (wrap_score_with_hyperlink(
-                    format_score_int(result["score_sfz_scaled"]),
+                    format_score_int(result["score_sfz_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_sfz_scaled"],
                     result["terminal_software_name"],
                     "_sfz"
                 ) if not math.isnan(result["score_sfz_scaled"])
                     else _wrap_untested(result["terminal_software_name"], "_sfz")),
                 "RI": (wrap_score_with_hyperlink(
-                    format_score_int(result["score_ri_scaled"]),
+                    format_score_int(result["score_ri_scaled"])
+                    + (" \u2020" if result.get("has_text_sizing") else ""),
                     result["score_ri_scaled"],
                     result["terminal_software_name"],
                     "_ri"
@@ -1084,6 +1159,12 @@ def display_tabulated_scores(score_table):
                     else _wrap_untested(result["terminal_software_name"], "_ri")),
                 "Features": features_list,
                 "Graphics": _format_graphics_protocols(result, result["terminal_software_name"]),
+                "Resources": wrap_score_with_hyperlink(
+                    format_score_int(result["score_resource_scaled"]),
+                    result["score_resource_scaled"],
+                    result["terminal_software_name"],
+                    "_resources"
+                ),
             }
         )
 
@@ -1094,6 +1175,19 @@ def display_tabulated_scores(score_table):
     table_str = tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst")
     print_datatable(table_str)
 
+    has_any_text_sizing = any(e.get("has_text_sizing") for e in score_table)
+    if has_any_text_sizing:
+        print()
+        print("\u2020 This terminal supports the `Kitty Text Sizing protocol`_,")
+        print("  which allows any application to programmatically set character widths,")
+        print("  remediating width issues for complex languages, emoji, and other")
+        print("  problematic codepoints. It is scored 100% on WIDE, LANG, ZWJ, VS16,")
+        print("  VS15, SRI, SFZ, and RI.")
+        print()
+        print('.. _`Kitty Text Sizing protocol`: '
+              'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
+        print()
+
 
 def display_table_definitions():
     """Display RST role definitions for score-colored table cells."""
@@ -1101,10 +1195,10 @@ def display_table_definitions():
     print(
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
         "  the weighted average of all feature scores (WIDE, LANG, ZWJ, VS16, SRI, SFZ, RI,\n"
-        "  DEC Modes, and TIME), then scaled (normalized 0-100%) relative to all terminals tested.\n"
+        "  DEC Modes, and RESOURCES), then scaled (normalized 0-100%) relative to all terminals tested.\n"
         "  Note: VS15 is excluded from the final score (its interpretation is contested).\n"
         "  Higher scores indicate better overall Unicode and terminal feature support. DEC Modes and\n"
-        "  TIME are normalized to 0-1 range before averaging. TIME and graphics is weighted at 0.5 (half as\n"
+        "  RESOURCES are normalized to 0-1 range before averaging. RESOURCES and graphics is weighted at 0.5 (half as\n"
         "  powerful as other metrics), and standalone RI and Fitzpatrick are weighted at 0.3\n"
         "  to reduce its impact on the final score."
     )
@@ -1159,8 +1253,10 @@ def display_table_definitions():
         "  that are changeable by the terminal, scaled."
     )
     print(
-        "- *Elapsed Time*: Test execution time in seconds, scaled inversely\n"
-        "  (lower time is better)."
+        "- *Resources*: Composite CPU, RSS memory, and run duration score (0-100),\n"
+        "  where the global mean maps to 50 and the lightest/fastest terminal scores 100.\n"
+        "  Computed by averaging sub-scores for mean CPU%, mean RSS (MB), and total\n"
+        "  seconds, each individually scaled so the global mean = 50, min = 100, max = 0."
     )
     print()
 
@@ -1305,11 +1401,17 @@ def score_features(data):
     """
     Calculate score as fraction of notable terminal features supported.
 
-    Checks 15 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
+    Checks 16 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
     Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
     Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
-    Kitty Clipboard, Kitty Pointer Shapes, Kitty Notifications,
-    Color Report (OSC 10/11), XTVERSION, and Truecolor Detection.
+    Kitty Clipboard, OSC 52 Clipboard, Kitty Pointer Shapes, Kitty
+    Notifications, Color Report (OSC 10/11), Terminal Identification, and
+    Truecolor Detection.
+
+    XTGETTCAP, Truecolor Detection, and Terminal Identification each score
+    0.5 for partial support (XTGETTCAP with fewer than 5 meaningful caps;
+    Truecolor detectable only via COLORTERM; Terminal identified only via
+    TERM_PROGRAM environment variable).
 
     :rtype: float
     :returns: fraction 0.0-1.0 of features supported
@@ -1320,7 +1422,7 @@ def score_features(data):
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 15
+    total = 16
 
     for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
@@ -1343,6 +1445,9 @@ def score_features(data):
     if tr.get("kitty_clipboard_protocol", False):
         count += 1
 
+    if tr.get("osc52_clipboard", False):
+        count += 1
+
     kitty_ptr = tr.get("kitty_pointer_shapes")
     if isinstance(kitty_ptr, dict) and kitty_ptr.get("supported", False):
         count += 1
@@ -1355,11 +1460,15 @@ def score_features(data):
         count += 1
 
     if tr.get("software_method") == "XTVERSION":
-        count += 1
+        count += 1.0
+    elif tr.get("software_method") == "TERM_PROGRAM":
+        count += 0.5
 
     xt_has, dq_has, ct_has = _detect_truecolor_methods(data)
-    if xt_has or dq_has or ct_has:
-        count += 1
+    if xt_has or dq_has:
+        count += 1.0
+    elif ct_has:
+        count += 0.5
 
     return count / total
 
@@ -1449,13 +1558,7 @@ def _format_xtgettcap_feature(entry, sw_name):
 
 
 def _detect_truecolor_methods(data):
-    """Determine which methods detect 24-bit truecolor support.
-
-    Returns ``(xt, dq, ct)`` booleans for XTGETTCAP RGB, DECRQSS, and
-    COLORTERM respectively.
-
-    ``data`` may be either a raw YAML-loaded dict or a score table entry dict.
-    """
+    """Determine which methods detect 24-bit truecolor support."""
     if "data" in data:
         data = data["data"]
     tr = data.get("terminal_results") or {}
@@ -1464,19 +1567,75 @@ def _detect_truecolor_methods(data):
     xt = tr.get("xtgettcap", {})
     xt_has = xt.get("supported", False) and xt.get("capabilities", {}).get("RGB") in ("8", "8/8/8")
 
-    dq = tr.get("decrqss", False)
-    dq_sgr = (tr.get("decrqss_settings") or {}).get("sgr", "")
-    dq_has = dq and ("38:2" in str(dq_sgr) or "48:2" in str(dq_sgr))
+    dq_has = tr.get("decrqss_truecolor_probe", False)
 
     ct_has = env.get("COLORTERM") == "truecolor"
 
     return xt_has, dq_has, ct_has
 
 
-def _capability_yes_no(value, terminal_name, section_suffix):
-    """Format a boolean capability as a scored yes/no with hyperlink."""
+def _detect_osc52_methods(data):
+    """Determine which methods detect OSC 52 clipboard support."""
+    if "data" in data:
+        data = data["data"]
+    tr = data.get("terminal_results") or {}
+    methods = tr.get("osc52_detection") or {}
+    return methods.get("da1_extension_52", False), methods.get("xtgettcap_ms", False)
+
+
+def _detect_id_methods(data):
+    """Determine which methods can identify the terminal software.
+
+    Returns ``(xt_has, tn_unique, tp_has, term_has)`` where *tn_unique* is True
+    when XTGETTCAP ``TN`` capability returns a distinctive (non-generic) name.
+    """
+    if "data" in data:
+        data = data["data"]
+    tr = data.get("terminal_results") or {}
+    env = data.get("environment") or {}
+    sm = tr.get("software_method", "")
+    xt_has = sm == "XTVERSION"
+    tp_has = sm == "TERM_PROGRAM" or bool(env.get("TERM_PROGRAM"))
+    term_val = env.get("TERM", "")
+    term_has = bool(term_val) and term_val not in ("xterm", "xterm-256color", "unknown")
+
+    xt = tr.get("xtgettcap", {})
+    caps = xt.get("capabilities", {}) if xt.get("supported") else {}
+    tn_val = caps.get("TN", "")
+    tn_unique = bool(tn_val) and tn_val.lower() not in (
+        "xterm", "xterm-256color", "unknown", "")
+
+    return xt_has, tn_unique, tp_has, term_has
+
+
+def _tn_unique_from_tr(tr):
+    """Return True if XTGETTCAP TN is a distinctive (non-generic) name."""
+    xt = tr.get("xtgettcap", {})
+    if not xt.get("supported"):
+        return False
+    tn_val = xt.get("capabilities", {}).get("TN", "")
+    return bool(tn_val) and tn_val.lower() not in (
+        "xterm", "xterm-256color", "unknown", "")
+
+
+def _capability_yes_no(value, terminal_name, section_suffix, contested=False,
+                       warn=False, fail=False):
+    """Format a boolean capability as a scored yes/no with hyperlink.
+
+    When *contested* is True and *value* is False, displays 'No' in
+    contested grey (another detection method returns Yes).
+    When *warn* is True and *value* is True, displays 'Yes' in
+    warning yellow (works locally but not over SSH).
+    When *fail* is True and *value* is False, displays 'No' in
+    fail red (no identification method works)."""
     if value is None:
         return wrap_with_score_role("N/A", float('nan'))
+    if fail and not value:
+        return _wrap_id_fail("no", terminal_name)
+    if contested and not value:
+        return _wrap_vs15_contested("no", terminal_name)
+    if warn and value:
+        return _wrap_colorterm_warn("yes", terminal_name)
     status = "yes" if value else "no"
     score = 1.0 if value else 0.0
     return wrap_score_with_hyperlink(
@@ -1519,7 +1678,11 @@ def display_features_table(score_table):
     print()
 
     table_data = []
-    for entry in score_table:
+    features_sorted = sorted(
+        score_table,
+        key=lambda e: (math.isnan(e.get("score_features_scaled", float('NaN'))),
+                       -e.get("score_features_scaled", 0) if not math.isnan(e.get("score_features_scaled", float('NaN'))) else 0))
+    for rank, entry in enumerate(features_sorted, start=1):
         sw_name = entry["terminal_software_name"]
         tr = entry["data"].get("terminal_results") or {}
         modes = tr.get("modes") or {}
@@ -1528,32 +1691,37 @@ def display_features_table(score_table):
         tested = bool(tr)
 
         row = {
-            "Terminal": make_outbound_hyperlink(sw_name),
+            "Rank": rank,
+            "Terminal": make_outbound_hyperlink(sw_name, sw_name + "_scores"),
+            "FEAT Score": wrap_score_with_hyperlink(
+                format_score_int(entry["score_features_scaled"]),
+                entry["score_features_scaled"],
+                sw_name, "_scores"),
         }
 
         # Notable DEC modes (same as CLI)
-        row["Bracketed Paste"] = _capability_yes_no(
+        row["Bracketed Paste (2004)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE) if tested else None,
             sw_name, suffix)
-        row["Synced Output"] = _capability_yes_no(
+        row["Synced Output (2026)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT) if tested else None,
             sw_name, suffix)
-        row["Focus Events"] = _capability_yes_no(
+        row["Focus Events (1004)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS) if tested else None,
             sw_name, suffix)
-        row["Mouse SGR"] = _capability_yes_no(
+        row["Mouse SGR (1006)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR) if tested else None,
             sw_name, suffix)
-        row["Graphemes"] = _capability_yes_no(
+        row["Graphemes (2027)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING) if tested else None,
             sw_name, suffix)
-        row["BP MIME"] = _capability_yes_no(
+        row["Bracketed Paste MIME (5522)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME) if tested else None,
             sw_name, suffix)
 
         # Kitty keyboard
         kitty_kb = tr.get('kitty_keyboard')
-        row["Kitty Kbd"] = _capability_yes_no(
+        row["Kitty Keyboard"] = _capability_yes_no(
             (kitty_kb is not None) if tested else None,
             sw_name, "_kitty_kbd")
 
@@ -1565,32 +1733,38 @@ def display_features_table(score_table):
 
         # Text Sizing (OSC 66)
         text_sizing = tr.get('text_sizing', {})
-        row["Text Size"] = _capability_yes_no(
+        row["Text Size (OSC 66)"] = _capability_yes_no(
             (text_sizing.get('width') or text_sizing.get('scale'))
             if tested else None,
             sw_name, "_text_sizing")
 
         # Kitty Clipboard Protocol
-        row["Kitty Clip"] = _capability_yes_no(
+        row["Kitty Clipboard"] = _capability_yes_no(
             tr.get('kitty_clipboard_protocol', False) if tested else None,
             sw_name, suffix)
 
+        # OSC 52 Clipboard (DA1 ext 52 or XTGETTCAP Ms)
+        osc52 = tr.get('osc52_clipboard', False)
+        row["OSC 52 Clipboard"] = _capability_yes_no(
+            osc52 if tested else None,
+            sw_name, "_osc52")
+
         # Kitty Pointer Shapes (OSC 22)
         kitty_ptr = tr.get('kitty_pointer_shapes')
-        row["Kitty Ptr"] = _capability_yes_no(
+        row["Kitty Ptr (OSC 22)"] = _capability_yes_no(
             (isinstance(kitty_ptr, dict) and kitty_ptr.get('supported', False))
             if tested else None,
             sw_name, suffix)
 
         # Kitty Notifications (OSC 99)
         kitty_notif = tr.get('kitty_notifications')
-        row["Kitty Notif"] = _capability_yes_no(
+        row["Kitty Notif (OSC 99)"] = _capability_yes_no(
             (isinstance(kitty_notif, dict) and kitty_notif.get('supported', False))
             if tested else None,
             sw_name, suffix)
 
         # Color Report (OSC 10/11)
-        row["Color Report"] = _capability_yes_no(
+        row["Color Report (OSC 10/11)"] = _capability_yes_no(
             (bool(tr.get('foreground_color_hex') or tr.get('background_color_hex')))
             if tested else None,
             sw_name, suffix)
@@ -1600,6 +1774,12 @@ def display_features_table(score_table):
         row["Truecolor"] = _capability_yes_no(
             (xt_has or dq_has or ct_has) if tested else None,
             sw_name, "_truecolor")
+
+        # Terminal Identification (XTVERSION, XTGETTCAP TN, or TERM_PROGRAM)
+        id_xt, id_tn, id_tp, id_term = _detect_id_methods(entry)
+        row["Identification"] = _capability_yes_no(
+            (id_xt or id_tn or id_tp) if tested else None,
+            sw_name, "_identification")
 
         table_data.append(row)
 
@@ -1611,32 +1791,29 @@ def display_features_table(score_table):
         print()
 
 
-def _truecolor_cell(value, section_suffix, sw_name, has_any_yes):
-    """Format a truecolor detection cell as yes/no with context-aware coloring.
-
-    ``no`` is grey if any other method in the row detects truecolor,
-    red if no method detects it at all.
-    """
+def _truecolor_cell(value, section_suffix, sw_name, has_any_yes, only_colorterm=False):
+    """Format a truecolor detection cell as yes/no with context-aware coloring."""
     if value is None:
         return ":score-na:`N/A`"
     if value:
         return wrap_score_with_hyperlink("yes", 1.0, sw_name, section_suffix)
+    if only_colorterm:
+        return ":score-warn:`no`"
     if has_any_yes:
         return ":score-contested:`no`"
     return ":score-0:`no`"
 
 
 def display_truecolor_table(score_table):
-    """Display a truecolor detection methods comparison table.
-
-    Shows how 24-bit color support can be detected for each terminal
-    via XTGETTCAP (RGB), DECRQSS (SGR), and COLORTERM environment variable.
-    """
+    """Display a truecolor detection methods comparison table."""
     display_title("Truecolor Detection", 2)
     print("This table shows which methods can be used to detect 24-bit")
     print("truecolor support for each terminal emulator. ``no`` cells are")
+    print("yellow when only COLORTERM detects support (COLORTERM environment")
+    print("variable is not forwarded over SSH without")
+    print("``SendEnv`` / ``AcceptEnv`` configuration),")
     print("grey when at least one other method succeeds, and red when no")
-    print("method can detect truecolor support.")
+    print("method can detect `Truecolor`_ support.")
     print()
 
     table_data = []
@@ -1647,18 +1824,19 @@ def display_truecolor_table(score_table):
 
         xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
         has_any_yes = xt_has or dq_has or ct_has
+        only_colorterm = ct_has and not xt_has and not dq_has
 
-        row = {"Terminal": make_outbound_hyperlink(sw_name)}
+        row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_truecolor")}
 
         row["XTGETTCAP (RGB)"] = (
             _truecolor_cell(xt_has if tested else None,
-                            "_truecolor", sw_name, has_any_yes))
+                            "_truecolor", sw_name, has_any_yes, only_colorterm))
         row["DECRQSS"] = (
             _truecolor_cell(dq_has if tested else None,
-                            "_truecolor", sw_name, has_any_yes))
+                            "_truecolor", sw_name, has_any_yes, only_colorterm))
         row["COLORTERM"] = (
             _truecolor_cell(ct_has if tested else None,
-                            "_truecolor", sw_name, has_any_yes))
+                            "_truecolor", sw_name, has_any_yes, only_colorterm))
 
         table_data.append(row)
 
@@ -1667,6 +1845,164 @@ def display_truecolor_table(score_table):
         print_datatable(table_str)
     else:
         print("No truecolor detection data available.")
+        print()
+
+
+def display_osc52_table(score_table):
+    """Display an OSC 52 clipboard detection methods comparison table."""
+    display_title("OSC 52 Clipboard Detection", 2)
+    print("This table shows which methods can be used to detect `OSC 52`_")
+    print("clipboard support for each terminal emulator.  DA1 extension 52")
+    print("is the mechanism defined by the vt-extensions spec; `XTGETTCAP`_")
+    print("``Ms`` is an alternative capability query that may work on")
+    print("terminals not advertising the DA1 extension.")
+    print()
+
+    table_data = []
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        tr = entry["data"].get("terminal_results") or {}
+        tested = bool(tr)
+
+        da1_has, ms_has = _detect_osc52_methods(entry)
+
+        row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_osc52")}
+
+        row["DA1 ext 52"] = _capability_yes_no(
+            da1_has if tested else None, sw_name, "_osc52",
+            contested=bool(ms_has and not da1_has))
+        row["XTGETTCAP Ms"] = _capability_yes_no(
+            ms_has if tested else None, sw_name, "_osc52",
+            contested=bool(da1_has and not ms_has))
+
+        table_data.append(row)
+
+    if table_data:
+        table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+        print_datatable(table_str)
+    else:
+        print("No OSC 52 detection data available.")
+        print()
+
+
+def display_id_table(score_table, terminal_mixins):
+    """Display a terminal identification methods comparison table."""
+    display_title("Terminal Identification", 2)
+    print("This table shows which methods can be used to identify the")
+    print("terminal software name and version.  XTVERSION and")
+    print("XTGETTCAP ``TN`` are active escape sequence queries (work over")
+    print("SSH).  TERM_PROGRAM and TERM are environment variables;")
+    print("TERM_PROGRAM is not forwarded over SSH without ``SendEnv`` /")
+    print("``AcceptEnv`` configuration, while TERM is (though some")
+    print("protocols such as Serial do not forward TERM).")
+    print()
+
+    def _is_subterminal(name):
+        cfg = terminal_mixins.get(name.lower(), {})
+        return bool((cfg.get("launch") or {}).get("subterminal"))
+
+    table_data = []
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        tr = entry["data"].get("terminal_results") or {}
+        tested = bool(tr)
+
+        xt_has, tn_unique, tp_has, term_has = _detect_id_methods(entry)
+        if _is_subterminal(sw_name):
+            term_has = False
+
+        row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_identification")}
+
+        has_ssh_method = xt_has or tn_unique
+
+        row["XTVERSION"] = _capability_yes_no(
+            xt_has if tested else None, sw_name, "_identification")
+
+        row["XTGETTCAP TN"] = _capability_yes_no(
+            tn_unique if tested else None, sw_name, "_identification",
+            contested=has_ssh_method and not tn_unique)
+
+        if has_ssh_method:
+            row["TERM_PROGRAM"] = _capability_yes_no(
+                tp_has if tested else None, sw_name, "_identification",
+                contested=not tp_has)
+            row["TERM"] = _capability_yes_no(
+                term_has if tested else None, sw_name, "_identification",
+                contested=not term_has)
+        else:
+            row["TERM_PROGRAM"] = _capability_yes_no(
+                tp_has if tested else None, sw_name, "_identification",
+                warn=tp_has, fail=not tp_has)
+            row["TERM"] = _capability_yes_no(
+                term_has if tested else None, sw_name, "_identification",
+                contested=not term_has)
+
+        table_data.append(row)
+
+    if table_data:
+        table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+        print_datatable(table_str)
+    else:
+        print("No terminal identification data available.")
+        print()
+
+
+def display_id_summary_bullets(score_table, terminal_mixins):
+    """Display a bulleted list categorizing terminal identification support."""
+
+    def _link(name):
+        return make_outbound_hyperlink(name, name + "_identification")
+
+    def _is_subterminal(name):
+        cfg = terminal_mixins.get(name.lower(), {})
+        return bool((cfg.get("launch") or {}).get("subterminal"))
+
+    xtversion = []
+    tn_only = []
+    term_program_only = []
+    term_only = []
+    unidentifiable = []
+
+    total = len(score_table)
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        xt_has, tn_unique, tp_has, term_has = _detect_id_methods(entry)
+        if _is_subterminal(sw_name):
+            term_has = False
+
+        if xt_has:
+            xtversion.append(sw_name)
+        elif tn_unique:
+            tn_only.append(sw_name)
+        elif tp_has:
+            term_program_only.append(sw_name)
+        elif term_has:
+            term_only.append(sw_name)
+        else:
+            unidentifiable.append(sw_name)
+
+    def _bullet(heading, terminals, extra=""):
+        if not terminals:
+            return
+        n = len(terminals)
+        links = ", ".join(_link(t) for t in sorted(terminals))
+        print(f"* **{heading} ({n} of {total}):** {links}{extra}")
+
+    groups = [
+        ("Identifiable by XTVERSION", xtversion,
+         " (active query, works over SSH)."),
+        ("Identifiable by XTGETTCAP TN", tn_only,
+         " (active query, works over SSH)."),
+        ("Identifiable by TERM_PROGRAM only", term_program_only,
+         " (environment variable, not forwarded over SSH)."),
+        ("Identifiable by TERM only", term_only,
+         " (environment variable, forwarded over SSH)."),
+        ("Not identifiable", unidentifiable, ""),
+    ]
+    for heading, terminals, extra in sorted(
+        (g for g in groups if g[1]),
+        key=lambda g: len(g[1]) / total, reverse=True):
+        _bullet(heading, terminals, extra)
         print()
 
 
@@ -1697,34 +2033,31 @@ def display_xtgettcap_summary_bullets(score_table):
         else:
             nosupport.append(sw_name)
 
-    def _bullet(heading, terminals, extra=""):
+    def _bullet(heading, terminals, pct, extra=""):
         if not terminals:
             return
         links = ", ".join(_link(t) for t in sorted(terminals))
-        print(f"* **{heading}:** {links}{extra}")
+        print(f"* **{heading} ({pct:.1f}%):** {links}{extra}")
 
-    if full:
-        _bullet("Full XTGETTCAP capability support", full,
-                ". A full terminfo(5) database can be reconstructed "
-                "from XTGETTCAP queries using ttyscan_. "
-                "A preferred TERM from TN, and COLORTERM=truecolor "
-                "from RGB may be derived.")
-        print()
-
-    if partial:
-        _bullet("Partial XTGETTCAP capability support", partial,
-                ". A preferred TERM from TN, and COLORTERM=truecolor "
-                "from RGB may be derived.")
-        print()
-
-    if nosupport:
-        _bullet("No Support", nosupport)
-        print()
-
-    if noncompliant:
-        _bullet("Non-compliant", noncompliant,
-                " -- failed to parse DCS queries, "
-                "displaying raw sequence output.")
+    groups = [
+        ("Full XTGETTCAP capability support", full,
+         ". A full terminfo(5) database can be reconstructed "
+         "from `XTGETTCAP`_ queries using ttyscan_. "
+         "A preferred TERM from TN, and COLORTERM=truecolor "
+         "from RGB may be derived."),
+        ("Partial XTGETTCAP capability support", partial,
+         ". A preferred TERM from TN, and COLORTERM=truecolor "
+         "from RGB may be derived."),
+        ("No Support", nosupport, ""),
+        ("Non-compliant", noncompliant,
+         " -- failed to parse DCS queries, "
+         "displaying raw sequence output."),
+    ]
+    total = len(score_table)
+    for heading, terminals, extra in sorted(
+        (g for g in groups if g[1]),
+        key=lambda g: len(g[1]) / total, reverse=True):
+        _bullet(heading, terminals, len(terminals) / total * 100, extra)
         print()
 
 
@@ -1738,7 +2071,7 @@ def display_xtgettcap_comparison_table(score_table):
     """
     from collections import OrderedDict
 
-    print("This table shows XTGETTCAP terminfo capability values reported "
+    print("This table shows `XTGETTCAP`_ terminfo capability values reported "
           "by each terminal. Terminals are grouped by shared values for "
           "each capability.")
     print()
@@ -1759,6 +2092,9 @@ def display_xtgettcap_comparison_table(score_table):
         print("No XTGETTCAP data available.")
         print()
         return
+
+    from blessed._capabilities import XTGETTCAP_CAPABILITIES
+    cap_descriptions = dict(XTGETTCAP_CAPABILITIES)
 
     def _format_value(value):
         """Format a capability value for display, using repr for non-printable chars."""
@@ -1803,9 +2139,10 @@ def display_xtgettcap_comparison_table(score_table):
                 make_outbound_hyperlink(t, t + "_xtgettcap")
                 for t in sorted(terminals)
             )
-            lines.append(f"| {terminal_links}: {value_display}")
+            lines.append(f"{terminal_links}\\: {value_display}")
         table_data.append({
             "Capability": cap_name,
+            "Description": cap_descriptions.get(cap_name, ""),
             "Terminals and Values": "\n".join(lines),
         })
 
@@ -1815,6 +2152,80 @@ def display_xtgettcap_comparison_table(score_table):
     else:
         print("No XTGETTCAP data available.")
         print()
+
+
+def display_performance_section(score_table):
+    """Display the Test Performance section on the main results page."""
+    display_title("Performance", 2)
+
+    valid = [e for e in score_table
+             if not math.isnan(e.get("score_resource", float('NaN')))]
+
+    if not valid:
+        print("No performance data available.")
+        print()
+        return
+
+    print("The Resources score combines CPU, memory, and runtime into a single "
+          "0-100 metric.  See per-terminal pages for calculation details.")
+    print()
+
+    headers = ["Terminal", "Score", "CPU %", "RSS (MB)", "Time (s)"]
+    rows = []
+    valid_sorted = sorted(valid,
+                          key=lambda e: e["score_resource"],
+                          reverse=True)
+    for e in valid_sorted:
+        sw_name = e["terminal_software_name"]
+        rp = e["data"].get("resource_profile") or {}
+        elapsed = rp.get("elapsed_s", [])
+        cpu = rp.get("cpu_pct", [])
+        rss = rp.get("rss_mb", [])
+        if not elapsed:
+            continue
+        duration = elapsed[-1]
+        mean_cpu = sum(cpu) / len(cpu) if cpu else 0
+        mean_rss = sum(rss) / len(rss) if rss else 0
+        score = int(e["score_resource_scaled"] * 100)
+        rows.append([
+            make_outbound_hyperlink(sw_name, sw_name + "_time"),
+            wrap_score_with_hyperlink(
+                f"{score:.0f}", e["score_resource_scaled"],
+                sw_name, "_resources"),
+            f"{mean_cpu:.1f}",
+            f"{mean_rss:.1f}",
+            f"{duration:.1f}",
+        ])
+
+    print_datatable(tabulate.tabulate(rows, headers=headers, tablefmt="rst"))
+    print()
+    print(".. figure:: _static/profiles/all_cpu.png")
+    print("   :alt: CPU usage across all terminals")
+    print("   :width: 800px")
+    print()
+    print("   CPU usage during test execution, all terminals overlaid.")
+    print()
+    print(".. figure:: _static/profiles/all_rss.png")
+    print("   :alt: RSS memory usage across all terminals")
+    print("   :width: 800px")
+    print()
+    print("   RSS memory usage during test execution, all terminals overlaid.")
+    print()
+    print(".. figure:: _static/profiles/all_cpu_vs_time.png")
+    print("   :alt: CPU % vs Duration trade-off across all terminals")
+    print("   :width: 800px")
+    print()
+    print("   Trade-off between mean CPU % and total test duration. Dots near the")
+    print("   origin use less CPU and less time. Dashed contours show equal")
+    print("   CPU × time product (lower percentile = better).")
+    print()
+    print(".. figure:: _static/profiles/all_time.png")
+    print("   :alt: Duration across all terminals")
+    print("   :width: 800px")
+    print()
+    print("   Total test duration for each terminal, sorted fastest to slowest.")
+    print("   Log scale on the X axis.")
+    print()
 
 
 def show_score_breakdown(sw_name, entry, plot_filename_scaled):
@@ -1882,7 +2293,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         },
         {
             "#": 9,
-            "Score Type": make_outbound_hyperlink("FEAT", sw_name + "_dec_modes"),
+            "Score Type": make_outbound_hyperlink("FEAT", sw_name + "_features_details"),
             "Raw Score": format_raw_score(entry["score_features"]),
             "Final Scaled Score": format_score_pct(entry["score_features_scaled"]),
         },
@@ -1894,9 +2305,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         },
         {
             "#": 11,
-            "Score Type": make_outbound_hyperlink("TIME", sw_name + "_time"),
-            "Raw Score": f"{entry['elapsed_seconds']:.2f}s" if not math.isnan(entry['elapsed_seconds']) else "N/A",
-            "Final Scaled Score": format_score_pct(entry["score_elapsed_scaled"]),
+            "Score Type": make_outbound_hyperlink("Resources", sw_name + "_resources"),
+            "Raw Score": format_score_pct(entry["score_resource_norm"]) if not math.isnan(entry["score_resource"]) else "N/A",
+            "Final Scaled Score": format_score_pct(entry["score_resource_scaled"]),
         },
     ]
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
@@ -1918,13 +2329,13 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print("  (weighted average: WIDE + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX + 0.5 * TIME)")
+    print("  (weighted average: WIDE + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX + 0.5 * RSC)")
     print("  the categorized 'average' absolute support level of this terminal.")
     print()
     print("  .. note::")
     print()
-    print("     TIME is normalized to 0-1 range before averaging.")
-    print("     TIME is weighted at 0.5 (half as powerful as other metrics).")
+    print("     RSC (Resources) is a composite CPU, memory, and runtime score.")
+    print("     RSC is weighted at 0.5 (half as powerful as other metrics).")
     print("     FEAT (Features) is the fraction of notable features supported.")
     print("     GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),")
     print("     50% for legacy only (Sixel, ReGIS), 0% for none.")
@@ -2062,45 +2473,96 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f".. note:: {_UNTESTED_NOTE}")
     print()
 
+    display_inbound_hyperlink(sw_name + "_features_details")
     print("**Features Score Details:**")
     print()
     if not math.isnan(entry["score_features"]):
         tr = entry["data"].get("terminal_results") or {}
         modes = tr.get("modes") or {}
+        xt_label, xt_score = _classify_xtgettcap(entry)
+        xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
+        if xt_has or dq_has:
+            tc_score = 1.0
+        elif ct_has:
+            tc_score = 0.5
+        else:
+            tc_score = 0.0
+
         cap_checks = [
-            (_fmt_mode(_DPM.BRACKETED_PASTE), _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE)),
-            (_fmt_mode(_DPM.SYNCHRONIZED_OUTPUT), _get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT)),
-            (_fmt_mode(_DPM.FOCUS_IN_OUT_EVENTS), _get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS)),
-            (_fmt_mode(_DPM.MOUSE_EXTENDED_SGR), _get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR)),
-            (_fmt_mode(_DPM.GRAPHEME_CLUSTERING), _get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING)),
-            (_fmt_mode(_DPM.BRACKETED_PASTE_MIME), _get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME)),
-            ("Kitty Keyboard", tr.get("kitty_keyboard") is not None),
-            ("XTGETTCAP (Full)" if (_classify_xtgettcap(entry)[0] or "") == "full"
-             else "XTGETTCAP (Partial)" if _classify_xtgettcap(entry)[0]
+            (_fmt_mode(_DPM.BRACKETED_PASTE),
+             float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.SYNCHRONIZED_OUTPUT),
+             float(_get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.FOCUS_IN_OUT_EVENTS),
+             float(_get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.MOUSE_EXTENDED_SGR),
+             float(_get_dec_mode_supported(modes, _DPM.MOUSE_EXTENDED_SGR)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.GRAPHEME_CLUSTERING),
+             float(_get_dec_mode_supported(modes, _DPM.GRAPHEME_CLUSTERING)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.BRACKETED_PASTE_MIME),
+             float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME)),
+             "_dec_modes"),
+            ("Kitty Keyboard",
+             float(tr.get("kitty_keyboard") is not None),
+             "_kitty_kbd"),
+            ("XTGETTCAP (Full)" if xt_label == "full"
+             else "XTGETTCAP (Partial)" if xt_label
              else "XTGETTCAP",
-             _classify_xtgettcap(entry)[1] > 0),
+             xt_score,
+             "_xtgettcap"),
             ("Text Sizing (OSC 66)",
-             (tr.get("text_sizing", {}).get("width")
-              or tr.get("text_sizing", {}).get("scale"))),
+             float(tr.get("text_sizing", {}).get("width")
+              or tr.get("text_sizing", {}).get("scale")
+              or False),
+             "_text_sizing"),
             ("Kitty Clipboard Protocol",
-             tr.get("kitty_clipboard_protocol", False)),
+             float(tr.get("kitty_clipboard_protocol", False)),
+             "_dec_modes"),
+            ("OSC 52 Clipboard",
+             float(tr.get("osc52_clipboard", False)),
+             "_osc52"),
             ("Kitty Pointer Shapes (OSC 22)",
-             isinstance(tr.get("kitty_pointer_shapes"), dict)
+             float(isinstance(tr.get("kitty_pointer_shapes"), dict)
              and tr.get("kitty_pointer_shapes", {}).get("supported", False)),
+             "_dec_modes"),
             ("Kitty Notifications (OSC 99)",
-             isinstance(tr.get("kitty_notifications"), dict)
+             float(isinstance(tr.get("kitty_notifications"), dict)
              and tr.get("kitty_notifications", {}).get("supported", False)),
+             "_dec_modes"),
             ("Color Report (OSC 10/11)",
-             bool(tr.get("foreground_color_hex") or tr.get("background_color_hex"))),
-            ("Truecolor Detection",
-             _detect_truecolor_methods(entry) != (False, False, False)),
+             float(bool(tr.get("foreground_color_hex") or tr.get("background_color_hex"))),
+             "_dec_modes"),
+            ("Terminal Identification (XTVERSION)"
+             if tr.get("software_method") == "XTVERSION"
+             else "Terminal Identification (XTGETTCAP TN)"
+             if _tn_unique_from_tr(tr)
+             else "Terminal Identification (TERM_PROGRAM)"
+             if tr.get("software_method") == "TERM_PROGRAM"
+             else "Terminal Identification",
+             (1.0 if tr.get("software_method") == "XTVERSION"
+              else 1.0 if _tn_unique_from_tr(tr)
+              else 0.5 if tr.get("software_method") == "TERM_PROGRAM"
+              else 0.0),
+             "_identification"),
+            ("Truecolor Detection", tc_score, "_truecolor"),
         ]
-        cap_count = sum(1 for _, v in cap_checks if v)
+        cap_count = sum(v for _, v, _ in cap_checks)
         print(f"Notable terminal features ({cap_count} / {len(cap_checks)}):")
         print()
-        for name, supported in cap_checks:
-            status = "yes" if supported else "no"
-            print(f"- {name}: **{status}**")
+        for name, score, section_suffix in cap_checks:
+            if score == 0.5:
+                status = "partial"
+            elif score:
+                status = "yes"
+            else:
+                status = "no"
+            link_text = make_outbound_hyperlink(name, sw_name + section_suffix)
+            print(f"- {link_text}: **{status}**")
         print()
         print(f"Raw score: {entry['score_features']*100:.2f}%")  # noqa: E226
     else:
@@ -2131,19 +2593,26 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none")
     print()
 
-    print("**TIME Score Details:**")
+    print("**Resource Score Details:**")
     print()
-    if not math.isnan(entry["elapsed_seconds"]):
-        elapsed = entry["elapsed_seconds"]
+    if not math.isnan(entry["score_resource"]):
+        rp = entry["data"].get("resource_profile") or {}
+        elapsed_data = rp.get("elapsed_s", [])
+        cpu_data = rp.get("cpu_pct", [])
+        rss_data = rp.get("rss_mb", [])
+        mean_cpu = sum(cpu_data) / len(cpu_data) if cpu_data else 0
+        mean_rss = sum(rss_data) / len(rss_data) if rss_data else 0
+        duration = elapsed_data[-1] if elapsed_data else 0
 
-        print("Test execution time:")
         print()
-        print(f"- Elapsed time: {elapsed:.2f} seconds")
-        print("- Note: This is a raw measurement; lower is better")
-        print("- Scaled score uses inverse log10 scaling across all terminals")
-        print(f"- Scaled result: {format_score_pct(entry['score_elapsed_scaled'])}")
+        print(f"- Duration: {duration:.1f}s")
+        print(f"- Mean CPU: {mean_cpu:.1f}%")
+        print(f"- Mean RSS: {mean_rss:.1f} MB")
+        print(f"- Resources Score: {entry['score_resource_scaled']*100:.0f}/100")
+        print("- Note: log-scale composite cost = log(CPU+1) + log(RSS+1) + log(time+1)")
+        print(f"- Scaled result: {format_score_pct(entry['score_resource_scaled'])}")
     else:
-        print("Time results not available.")
+        print("Resource profiling data not available.")
     print()
 
     print("**LANG Score Details (Geometric Mean):**")
@@ -2181,6 +2650,24 @@ def show_software_header(entry, sw_name, terminal_mixins):
     print('Full results available at ucs-detect_ repository path')
     print(f"`data/{entry['fname']} <{GITHUB_DATA_LINK.format(fname=entry['fname'])}>`_.")
     print()
+
+    # If this is a subterminal (terminal multiplexer), note the host terminal
+    if sw_name_lower in terminal_mixins:
+        tcfg = terminal_mixins[sw_name_lower]
+        if (tcfg.get("launch") or {}).get("subterminal"):
+            host_name = "ghostty"
+            host_link = make_link(host_name)
+            host_cfg = terminal_mixins.get(host_name.lower(), {})
+            host_desc = host_cfg.get("description", "")
+            host_homepage = host_cfg.get("homepage", "")
+            print(f"*{sw_name}* is a terminal multiplexer. "
+                  f"These tests were executed in host terminal "
+                  f"`:ref:`{host_name} <{host_link}xtgettcap>`_.")
+            if host_desc:
+                print(f"{host_desc}")
+            if host_homepage:
+                print(f"The homepage URL of this host terminal is {host_homepage}.")
+            print()
 
 
 def show_wide_character_support(sw_name, entry):
@@ -2301,7 +2788,7 @@ def show_graphics_results(sw_name, entry):
     if iterm2_supported:
         protocols.append("`iTerm2 inline images`_")
     if kitty_supported:
-        protocols.append("`Kitty graphics protocol`_")
+        protocols.append("`Kitty graphics`_")
 
     if protocols:
         print(f"*{sw_name}* supports the following graphics protocols: "
@@ -2311,7 +2798,7 @@ def show_graphics_results(sw_name, entry):
     print()
 
     # Load terminal mixins for sixel notes
-    terminal_mixins = load_terminal_detail_mixins()
+    terminal_mixins = load_mixins()
     sw_name_lower = entry["terminal_software_name"].lower()
     has_notes = (sw_name_lower in terminal_mixins and
                  'sixel_support_notes' in terminal_mixins[sw_name_lower])
@@ -2344,7 +2831,6 @@ def show_graphics_results(sw_name, entry):
     print('.. _Sixel: https://en.wikipedia.org/wiki/Sixel')
     print('.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS')
     print('.. _`iTerm2 inline images`: https://iterm2.com/documentation-images.html')
-    print('.. _`Kitty graphics protocol`: https://sw.kovidgoyal.net/kitty/graphics-protocol/')
     print()
 
 
@@ -2628,6 +3114,14 @@ def show_text_sizing_results(sw_name, entry):
     print("Detection is performed by measuring cursor movement after sending")
     print("``ESC ] 66 ; w=2 ; <space> BEL`` and ``ESC ] 66 ; s=2 ; <space> BEL``.")
     print()
+    print("Because this terminal supports the `Text Sizing protocol`_, any application")
+    print("can programmatically set the displayed cell width of any character.")
+    print("This means that width errors for complex languages, emoji, variation")
+    print("selectors (VS15, VS16), standalone regional indicators and Fitzpatrick")
+    print("modifiers, and other problematic codepoints can be fully remediated")
+    print("at the application level. For this reason, *{}* scores **100%** on the WIDE,".format(sw_name))
+    print("LANG, ZWJ, VS16, VS15, SRI, SFZ, and RI width tests.")
+    print()
     print('.. _`Text Sizing protocol`: '
           'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
     print()
@@ -2644,19 +3138,8 @@ def show_truecolor_results(sw_name, entry):
     xt_has, dq_has, ct_has = _detect_truecolor_methods(entry)
     ncolors = tr.get("number_of_colors", 0)
 
-    methods = []
-    if xt_has:
-        methods.append("XTGETTCAP (RGB)")
-    if dq_has:
-        methods.append("DECRQSS (SGR)")
-    if ct_has:
-        methods.append("COLORTERM=truecolor")
-
-    if methods:
+    if xt_has or dq_has or ct_has:
         print(f"*{sw_name}* supports 24-bit truecolor, detectable via:")
-        print()
-        for method in methods:
-            print(f"- **{method}**")
     elif ncolors == 16777216:
         print(f"*{sw_name}* supports 24-bit truecolor")
         print(f"({ncolors} colors), but is **not detectable** by")
@@ -2667,23 +3150,134 @@ def show_truecolor_results(sw_name, entry):
     print()
 
     if tr:
-        print("Detection breakdown:")
-        print()
         xt_status = "yes (RGB)" if xt_has else "no"
-        dq_status = "yes (SGR)" if dq_has else ("no" if tr.get("decrqss", False) else "N/A")
+        dq_probe = tr.get("decrqss_truecolor_probe")
+        if dq_probe is True:
+            dq_status = "yes (probe)"
+        elif dq_probe is False:
+            dq_status = "no"
+        else:
+            dq_status = "N/A (untested)"
         ct_status = "yes (truecolor)" if ct_has else (
             env.get("COLORTERM", "unset") if "COLORTERM" in (env or {}) else "N/A")
         print(f"- XTGETTCAP (RGB capability): **{xt_status}**")
-        if tr.get("decrqss", False) and not dq_has:
-            sgr_val = str(tr.get("decrqss_settings", {}).get("sgr", ""))
-            if sgr_val:
-                print(f"- DECRQSS: **no** (SGR value: ``{sgr_val}``)")
-            else:
-                print(f"- DECRQSS: **no** (SGR value not reported)")
-        else:
-            print(f"- DECRQSS: **{dq_status}**")
+        print(f"- DECRQSS (truecolor probe): **{dq_status}**")
         print(f"- COLORTERM: **{ct_status}**")
     print()
+
+    if ct_has and not xt_has and not dq_has:
+        print(".. warning::")
+        print()
+        print("   COLORTERM is an environment variable, not a terminal query."
+              " It is not forwarded over SSH without ``SendEnv`` / ``AcceptEnv``"
+              " configuration, so detection via COLORTERM alone may be unreliable"
+              " on remote hosts.")
+        print()
+
+
+def show_osc52_results(sw_name, entry):
+    """Display OSC 52 clipboard detection method results."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_osc52")
+    display_title("OSC 52 Clipboard Support", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+
+    osc52 = tr.get("osc52_clipboard", False)
+    methods = tr.get("osc52_detection") or {}
+    da1_has = methods.get("da1_extension_52", False)
+    ms_has = methods.get("xtgettcap_ms", False)
+
+    if osc52:
+        parts = []
+        if da1_has:
+            parts.append("DA1 extension 52")
+        if ms_has:
+            parts.append("XTGETTCAP Ms")
+        method_str = " + ".join(parts) if parts else "unknown method"
+        print(f"*{sw_name}* supports OSC 52 clipboard operations")
+        print(f"(detected via {method_str}).")
+    else:
+        print(f"*{sw_name}* does **not** advertise OSC 52 clipboard support")
+        print("via DA1 extension 52 or XTGETTCAP Ms.")
+    print()
+
+    if tr:
+        print(f"- DA1 extension 52: **{'yes' if da1_has else 'no'}**")
+        print(f"- XTGETTCAP Ms: **{'yes' if ms_has else 'no'}**")
+    print()
+
+
+def _show_tn_line(tr):
+    """Print XTGETTCAP TN status line, if available."""
+    xt = tr.get("xtgettcap", {})
+    if xt.get("supported"):
+        tn_val = xt.get("capabilities", {}).get("TN", "")
+        if tn_val:
+            print(f"- XTGETTCAP TN: **yes** ({tn_val})")
+            return
+    print("- XTGETTCAP TN: **no**")
+
+
+def show_id_results(sw_name, entry, terminal_mixins):
+    """Display terminal identification method results with raw values."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_identification")
+    display_title("Terminal Identification", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+    env = entry["data"].get("environment") or {}
+
+    xt_has, tn_unique, tp_has, term_has = _detect_id_methods(entry)
+    cfg = terminal_mixins.get(sw_name.lower(), {})
+    is_sub = bool((cfg.get("launch") or {}).get("subterminal"))
+
+    sw_name_final = entry["data"].get("software_name", "")
+    sw_version = entry["data"].get("software_version", "")
+    xtversion_raw = tr.get("xtversion_raw", "")
+    term_program = env.get("TERM_PROGRAM", "")
+    term = env.get("TERM", "")
+
+    if xt_has or tn_unique or tp_has:
+        methods = []
+        if xt_has:
+            methods.append("XTVERSION")
+        if tn_unique:
+            methods.append("XTGETTCAP TN")
+        if tp_has and not xt_has and not tn_unique:
+            methods.append("TERM_PROGRAM")
+        method_label = " + ".join(methods)
+        print(f"*{sw_name}* is identified as **{sw_name_final}**")
+        if sw_version:
+            print(f"version **{sw_version}**")
+        print(f"(detected via {method_label}).")
+    else:
+        print(f"*{sw_name}* could not be identified via XTVERSION,")
+        print("XTGETTCAP TN, or TERM_PROGRAM.")
+    print()
+
+    if xtversion_raw:
+        print(f"- XTVERSION (raw): **{xtversion_raw}**")
+    elif tr.get("software_method") == "XTVERSION":
+        print("- XTVERSION (raw): (not recorded for this run)")
+    print(f"- XTVERSION: **{'yes' if xt_has else 'no'}**")
+
+    _show_tn_line(tr)
+    if term_program:
+        print(f"- TERM_PROGRAM: **yes** ({term_program})")
+    else:
+        print(f"- TERM_PROGRAM: **{'yes' if tp_has else 'no'}**")
+    suffix = " (inherited from host terminal)" if is_sub and term else ""
+    print(f"- TERM: **{'yes' if term_has else 'no'}**"
+          f"{f' ({term})' if term else ''}{suffix}")
+    print()
+
+    if tp_has and not xt_has and not tn_unique and not is_sub:
+        print(".. warning::")
+        print()
+        print("   TERM_PROGRAM is an environment variable, not a terminal"
+              " query. It is not forwarded over SSH without ``SendEnv`` /"
+              " ``AcceptEnv`` configuration, so identification via"
+              " TERM_PROGRAM alone may be unreliable on remote hosts.")
+        print()
 
 
 def show_sri_results(sw_name, entry):
@@ -2781,31 +3375,79 @@ def show_reproduce_command(sw_name, entry):
     print(f"To reproduce these results for *{sw_name}*, install and run ucs-detect_")
     print("with the following commands::")
     print()
-    print("    pip install ucs-detect")
-    print(f"    ucs-detect --rerun data/{fname}")
+    print(f"    uvx ucs-detect --rerun data/{fname}")
 
     print()
 
 
 def show_time_elapsed_results(sw_name, entry):
     """
-    Display test execution time results.
+    Display test performance results.
     """
     display_inbound_hyperlink(entry["terminal_software_name"] + "_time")
-    display_title("Test Execution Time", 3)
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_resources")
+    display_title("Test Performance", 3)
 
-    if math.isnan(entry["elapsed_seconds"]):
-        print(f"Test execution time for *{sw_name}* is not available.")
+    rp = (entry["data"].get("resource_profile") or {})
+    elapsed_data = rp.get("elapsed_s", [])
+    cpu_data = rp.get("cpu_pct", [])
+    rss_data = rp.get("rss_mb", [])
+
+    if not elapsed_data or not cpu_data or not rss_data:
+        print(f"Performance data for *{sw_name}* is not available.")
         print()
         return
 
-    elapsed = entry["elapsed_seconds"]
-    print(f"The test suite completed in **{elapsed:.2f} seconds** ({int(elapsed)}s).")
+    duration = elapsed_data[-1]
+    mean_cpu = sum(cpu_data) / len(cpu_data)
+    mean_rss = sum(rss_data) / len(rss_data)
+    resource_score = entry["data"].get("resource_score", None)
+
+    print(f"The test suite completed in **{duration:.2f} seconds** "
+          f"({int(duration)}s).")
     print()
-    print("This time measurement represents the total duration of the test execution,")
-    print("including all Unicode wide character tests, emoji ZWJ sequences, variation")
-    print("selectors, language support checks, and DEC mode detection.")
+    if resource_score is not None:
+        print(f"- **Resources Score**: {resource_score:.1f}/100")
+    print(f"- **Mean CPU**: {mean_cpu:.1f}%")
+    print(f"- **Mean RSS**: {mean_rss:.1f} MB")
+    print(f"- **Total time**: {duration:.1f}s")
+
+    safe = safe_name(sw_name)
+
+    cpu_graph = f"../_static/profiles/{safe}_cpu.png"
+    rss_graph = f"../_static/profiles/{safe}_rss.png"
+
     print()
+    print(f".. figure:: {cpu_graph}")
+    print("   :alt: CPU usage over time")
+    print("   :width: 600px")
+    print()
+    print(f"   CPU usage during test execution for *{sw_name}*.")
+    print()
+    print(f".. figure:: {rss_graph}")
+    print("   :alt: RSS memory over time")
+    print("   :width: 600px")
+    print()
+    print(f"   RSS memory usage during test execution for *{sw_name}*.")
+    print()
+
+    time_graph = f"../_static/profiles/{safe}_time.png"
+    cpu_vs_time_graph = f"../_static/profiles/{safe}_cpu_vs_time.png"
+
+    if os.path.exists(os.path.join(_ROOT, "docs", "_static", "profiles", f"{safe}_time.png")):
+        print(f".. figure:: {time_graph}")
+        print("   :alt: Duration comparison")
+        print("   :width: 600px")
+        print()
+        print(f"   Test duration for *{sw_name}* compared to all other terminals.")
+        print()
+    if os.path.exists(os.path.join(_ROOT, "docs", "_static", "profiles", f"{safe}_cpu_vs_time.png")):
+        print(f".. figure:: {cpu_vs_time_graph}")
+        print("   :alt: CPU % vs Duration")
+        print("   :width: 600px")
+        print()
+        print(f"   CPU % vs duration trade-off for *{sw_name}*.")
+        print()
 
 
 def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=None):
@@ -2843,12 +3485,18 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
         screenshot_path = f"../_static/screenshots/{safe_sw}/{category}.png"
         abs_screenshot = os.path.join(_ROOT, "docs", "_static", "screenshots",
                                       safe_sw, f"{category}.png")
-        if os.path.exists(abs_screenshot):
+        if not os.path.exists(abs_screenshot):
+            print(f"warning: Screenshot missing: {abs_screenshot}",
+                  file=sys.stderr)
+        else:
             print()
             print("Screenshot:")
             print()
             print(f".. image:: {screenshot_path}")
             print("   :alt: Terminal screenshot of the rendering discrepancy")
+            w, h = Image.open(abs_screenshot).size
+            print(f"   :width: {w}px")
+            print(f"   :height: {h}px")
             print()
 
     if fail_record.get("delta_ypos", 0) != 0:

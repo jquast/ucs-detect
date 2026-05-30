@@ -1,11 +1,47 @@
 ambiguous_width: 1
-datetime: 2026-05-24 22:04:50 UTC
+datetime: 2026-05-30 02:26:39 UTC
 environment:
   COLORTERM: truecolor
   TERM: alacritty
-height: 16
-python_version: 3.14.4
-seconds_elapsed: 98.71324153797468
+height: 24
+preferred_encoding: UTF-8
+python_version: 3.14.5
+resource_profile:
+  cpu_pct:
+  - 0.0
+  - 15.0
+  - 1.0
+  - 0.0
+  - 82.9
+  - 89.9
+  - 113.8
+  - 110.9
+  - 119.8
+  elapsed_s:
+  - 0.0004599539970513433
+  - 1.0009779130050447
+  - 2.0034356369869784
+  - 3.005841743986821
+  - 4.007579486002214
+  - 5.0089866379857995
+  - 6.010484009981155
+  - 7.011916529998416
+  - 8.013198116997955
+  hardware:
+    cpu_count: 12
+    cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
+    ram_total_kb: 13961408
+  rss_mb:
+  - 18.44921875
+  - 120.42578125
+  - 120.5078125
+  - 120.5078125
+  - 126.48046875
+  - 182.0390625
+  - 188.140625
+  - 179.76953125
+  - 179.125
+seconds_elapsed: 5.087445790995844
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000
@@ -13,8 +49,9 @@ session_arguments:
   limit_graphemes: 5000
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 1.0
 software_name: alacritty
-software_version: 0.17.0
+software_version: ''
 system: Linux
 terminal_results:
   background_color_hex: '#181818181818'
@@ -27,6 +64,7 @@ terminal_results:
   decrqcra: false
   decrqss: false
   decrqss_settings: false
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions: []
     service_class: 6
@@ -35,7 +73,7 @@ terminal_results:
   - 55512
   - 55512
   - 55512
-  height: 16
+  height: 24
   iterm2_features:
     features: {}
     supported: false
@@ -116,20 +154,22 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 592
-  pixels_width: 800
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 360
+  pixels_width: 720
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: false
-  software_name: alacritty
-  software_version: 0.17.0
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: alacritty
-  width: 50
+  width: 80
   xtgettcap:
     capabilities: {}
     supported: false
@@ -10545,4 +10585,4 @@ test_results:
       n_total: 5000
       pct_success: 100.0
 wcwidth_version: 0.7.0
-width: 50
+width: 80

@@ -108,7 +108,7 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", verify_software_name_and_version=False, terminal_full_probe=False, silent=False, no_final_summary=False, reuse_version=False, rerun_software_name='', rerun_software_version='', **_kwargs):
+def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", terminal_full_probe=False, silent=False, no_final_summary=False, **_kwargs):
     """Program entry point."""
 
     def _should_run(*categories):
@@ -131,7 +131,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     session_arguments = {
         k: local_vars[k]
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
-                  "limit_graphemes_pct", "limit_category_time")
+                  "limit_graphemes_pct", "limit_category_time", "timeout_cps")
     }
     environment = {
         k: os.environ[k]
@@ -156,6 +156,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     ambiguous_width=-1,
                     python_version=platform.python_version(),
                     system=platform.system(),
+                    preferred_encoding=locale.getpreferredencoding(),
                     wcwidth_version=wcwidth.__version__,
                     environment=environment,
 
@@ -218,83 +219,9 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             print()
         auto_name = terminal_results.get("software_name", "").strip()
         auto_version = terminal_results.get("software_version", "").strip()
-        auto_detected = (auto_name and auto_version and auto_name != auto_version)
 
-        if set_software_name:
-            terminal_software = set_software_name
-        elif silent or not verify_software_name_and_version:
-            terminal_software = auto_name or rerun_software_name
-        elif auto_name:
-            terminal_software = input(f'Enter "Terminal Software" (press return for "{auto_name}"): ')
-            if not terminal_software.strip():
-                terminal_software = auto_name
-        elif rerun_software_name:
-            terminal_software = input(
-                f'Enter "Terminal Software" (press return for "{rerun_software_name}"): ')
-            if not terminal_software.strip():
-                terminal_software = rerun_software_name
-        else:
-            terminal_software = input('Enter "Terminal Software": ')
-
-        if set_software_version:
-            terminal_version = set_software_version
-        elif silent or not verify_software_name_and_version:
-            terminal_version = auto_version or rerun_software_version
-        elif auto_version:
-            terminal_version = input(f'Enter "Software Version" (press return for "{auto_version}"): ')
-            if not terminal_version.strip():
-                terminal_version = auto_version
-        elif rerun_software_version:
-            terminal_version = input(
-                f'Enter "Software Version" (press return for "{rerun_software_version}"): ')
-            if not terminal_version.strip():
-                terminal_version = rerun_software_version
-        else:
-            terminal_version = input('Enter "Software Version": ')
-
-        # When re-running, prompt if the resolved name or version differs
-        # from what was saved in the YAML file.
-        if rerun_software_name or rerun_software_version:
-            rerun_changed = False
-            if (rerun_software_name
-                    and terminal_software
-                    and terminal_software != rerun_software_name):
-                rerun_changed = True
-                writer(f"\nucs-detect: software name changed:"
-                       f" \"{rerun_software_name}\""
-                       f" => \"{terminal_software}\"\n")
-            if (rerun_software_version
-                    and terminal_version
-                    and terminal_version != rerun_software_version):
-                rerun_changed = True
-                writer(f"\nucs-detect: software version changed:"
-                       f" \"{rerun_software_version}\""
-                       f" => \"{terminal_version}\"\n")
-            if rerun_changed and not silent:
-                if reuse_version:
-                    terminal_software = rerun_software_name or terminal_software
-                    terminal_version = rerun_software_version or terminal_version
-                else:
-                    # When "VTE" appears in either old or new values, prefer
-                    # the original (rerun) values as defaults -- VTE is the
-                    # underlying engine and the user typically wants to keep
-                    # the terminal-specific name and version.
-                    vte_involved = any(
-                        'VTE' in str(val or '')
-                        for val in (rerun_software_name, terminal_software,
-                                    rerun_software_version, terminal_version))
-                    if vte_involved:
-                        default_software = rerun_software_name or terminal_software
-                        default_version = rerun_software_version or terminal_version
-                    else:
-                        default_software = terminal_software
-                        default_version = terminal_version
-                    confirm = input('Continue with new values? '
-                                    '(press return to accept, or enter new values)\n'
-                                    f'  Terminal Software [{default_software}]: ')
-                    terminal_software = confirm.strip() or default_software
-                    confirm = input(f'  Software Version [{default_version}]: ')
-                    terminal_version = confirm.strip() or default_version
+        terminal_software = set_software_name or auto_name
+        terminal_version = set_software_version or auto_version
 
     start_time = time.monotonic()
 
@@ -409,7 +336,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
     elapsed = time.monotonic() - start_time
 
-    # prefer user-entered software name/version over automatic detection
+    # apply explicit overrides (--set-software-name, --set-software-version)
     if save_yaml or save_json:
         if terminal_software:
             terminal_results['software_name'] = terminal_software
@@ -448,6 +375,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             ambiguous_width=ambiguous_width,
             python_version=platform.python_version(),
             system=platform.system(),
+            preferred_encoding=locale.getpreferredencoding(),
             wcwidth_version=wcwidth.__version__,
             environment=environment,
 
@@ -658,6 +586,14 @@ def _build_features_kv_pairs(term, results):
     else:
         pairs.append(("XTGETTCAP?", _color_yes_no(term, False)))
 
+    dtp = results.get('decrqss_truecolor_probe')
+    if dtp is True:
+        pairs.append(("DECRQSS Truecolor?", _color_yes_no(term, True)))
+    elif dtp is False:
+        pairs.append(("DECRQSS Truecolor?", _color_yes_no(term, False)))
+    else:
+        pairs.append(("DECRQSS Truecolor?", term.yellow("N/A")))
+
     notif = results.get('kitty_notifications')
     if isinstance(notif, dict) and notif.get('supported'):
         pairs.append(("Kitty Notifications?", _color_yes_no(term, True)))
@@ -668,14 +604,17 @@ def _build_features_kv_pairs(term, results):
                   _color_yes_no(term, results.get('kitty_clipboard_protocol',
                                                   False))))
 
-    # OSC 52 Clipboard: tri-state -- True (enabled), "supported" (DA1 ext 52
-    # advertised but query timed out), or False (not supported).
+    # OSC 52 Clipboard: boolean, with detection method breakdown.
     osc52 = results.get('osc52_clipboard', False)
-    if osc52 is True:
-        pairs.append(("OSC 52 Clipboard?", term.green2("Yes")))
-    elif osc52 == 'supported':
-        pairs.append(("OSC 52 Clipboard?",
-                      term.yellow("Supported (DA1 ext 52)")))
+    osc52_methods = results.get('osc52_detection', {})
+    if osc52:
+        parts = []
+        if osc52_methods.get('da1_extension_52'):
+            parts.append("DA1 ext 52")
+        if osc52_methods.get('xtgettcap_ms'):
+            parts.append("XTGETTCAP Ms")
+        method_str = " (" + " + ".join(parts) + ")" if parts else ""
+        pairs.append(("OSC 52 Clipboard?", term.green2("Yes") + method_str))
     else:
         pairs.append(("OSC 52 Clipboard?", _color_yes_no(term, False)))
 
@@ -1059,17 +998,16 @@ def _save_results(save_yaml, save_json, **kwargs):
 
 def do_save_yaml(save_yaml, **kwargs):
     """Save results to a YAML file."""
-    # Ensure software_version is always stored as a string in YAML,
-    # otherwise yaml.safe_dump serializes "3.5" as a float.
+    # local
+    from ucs_detect.accessories import _atomic_yaml_dump
     if 'software_version' in kwargs:
         kwargs['software_version'] = str(kwargs['software_version'])
-    with open(save_yaml, "w", encoding='utf-8') as fout:
-        yaml.safe_dump(
-            kwargs, fout,
-            sort_keys=True,
-            allow_unicode=True,
-            default_flow_style=False,
-        )
+    _atomic_yaml_dump(
+        kwargs, save_yaml,
+        sort_keys=True,
+        allow_unicode=True,
+        default_flow_style=False,
+    )
 
 
 def do_save_json(save_json, **kwargs):
@@ -1206,24 +1144,12 @@ def parse_args():
     args.add_argument(
         "--set-software-name",
         default=None,
-        help="Set software name for YAML output (skips interactive prompt)"
+        help="Set software name for YAML output (overrides auto-detection)"
     )
     args.add_argument(
         "--set-software-version",
         default=None,
-        help="Set software version for YAML output (skips interactive prompt)"
-    )
-    args.add_argument(
-        "--verify-software-name-and-version",
-        action="store_true",
-        default=False,
-        help="Prompt for confirmation even when terminal auto-detects name and version"
-    )
-    args.add_argument(
-        "--reuse-version",
-        action="store_true",
-        default=False,
-        help="When re-running, keep original name/version from YAML without prompting"
+        help="Set software version for YAML output (overrides auto-detection)"
     )
     args.add_argument(
         "--terminal-full-probe",
@@ -1295,10 +1221,6 @@ def _apply_rerun_yaml(results):
 
     if not results.get('save_yaml'):
         results['save_yaml'] = yaml_path
-    # Store the YAML's original name/version for comparison after
-    # auto-detection, rather than overriding auto-detection with them.
-    results['rerun_software_name'] = data.get('software_name', '')
-    results['rerun_software_version'] = data.get('software_version', '')
 
     return results
 

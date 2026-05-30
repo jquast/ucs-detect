@@ -17,6 +17,11 @@ $(document).ready(function() {
                     var finalIdx = headers.indexOf('FINAL');
                     table.order([finalIdx, 'desc']).draw();
                 }
+                // Terminal Features table: sort by Rank (ascending)
+                else if (headers.includes('FEAT Score')) {
+                    var rankIdx = headers.indexOf('Rank');
+                    table.order([rankIdx, 'asc']).draw();
+                }
                 // DEC Modes comparison table: sort by Changeable (descending)
                 else if (headers.includes('Changeable') && headers.includes('Supported Modes')) {
                     var changeableIdx = headers.indexOf('Changeable');

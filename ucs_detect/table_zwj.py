@@ -1,4 +1,5 @@
 """Emoji ZWJ (Zero-Width Joiner) sequence test data by Unicode version."""
+
 EMOJI_ZWJ_SEQUENCES = (
     ('17.0', (
         (128104, 8205, 10084, 65039, 8205, 128104),

@@ -1,11 +1,533 @@
 ambiguous_width: 1
-datetime: 2026-05-25 00:02:38 UTC
+datetime: 2026-05-29 23:15:11 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
-height: 23
-python_version: 3.14.4
-seconds_elapsed: 107.00729546003276
+height: 15
+preferred_encoding: UTF-8
+python_version: 3.13.13
+resource_profile:
+  cpu_pct:
+  - 33.4
+  - 44.6
+  - 0.0
+  - 0.0
+  - 14.2
+  - 13.2
+  - 11.5
+  - 11.1
+  - 10.0
+  - 11.6
+  - 11.2
+  - 11.2
+  - 12.1
+  - 14.1
+  - 12.4
+  - 14.1
+  - 12.5
+  - 11.4
+  - 10.7
+  - 13.3
+  - 10.8
+  - 14.7
+  - 10.5
+  - 9.7
+  - 11.9
+  - 11.5
+  - 11.5
+  - 10.3
+  - 10.8
+  - 10.6
+  - 9.2
+  - 10.7
+  - 10.4
+  - 11.2
+  - 11.4
+  - 12.3
+  - 11.4
+  - 12.2
+  - 11.7
+  - 12.4
+  - 10.5
+  - 12.0
+  - 11.7
+  - 12.1
+  - 11.7
+  - 11.4
+  - 11.1
+  - 10.7
+  - 12.2
+  - 13.5
+  - 13.7
+  - 14.6
+  - 12.9
+  - 15.5
+  - 14.6
+  - 14.0
+  - 11.4
+  - 12.8
+  - 13.7
+  - 14.5
+  - 12.6
+  - 13.8
+  - 14.9
+  - 15.2
+  - 13.5
+  - 13.4
+  - 14.3
+  - 13.5
+  - 15.2
+  - 14.1
+  - 14.2
+  - 16.0
+  - 15.3
+  - 16.0
+  - 16.2
+  - 15.2
+  - 16.7
+  - 14.6
+  - 14.8
+  - 18.6
+  - 19.4
+  - 34.7
+  - 43.6
+  - 49.1
+  - 39.9
+  - 26.1
+  - 18.6
+  - 18.5
+  - 21.3
+  - 21.2
+  - 24.7
+  - 22.4
+  - 22.3
+  - 31.3
+  - 21.4
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  elapsed_s:
+  - 0.1434000519948313
+  - 1.34008442000777
+  - 2.3771042419975856
+  - 3.434434202994453
+  - 4.487547659999109
+  - 5.621907509004814
+  - 6.702278972996282
+  - 7.811840984999435
+  - 8.894643154999358
+  - 9.99394131200097
+  - 11.126763756998116
+  - 12.179682753994712
+  - 13.246542082997621
+  - 14.320690470005502
+  - 15.38706833300239
+  - 16.43942964800226
+  - 17.570636985998135
+  - 18.617358289004187
+  - 19.662043104995973
+  - 20.690297073000693
+  - 21.750573672994506
+  - 22.853059624001617
+  - 24.008088047994534
+  - 25.054529076005565
+  - 26.085449463003897
+  - 27.17757412100036
+  - 28.304560759002925
+  - 29.43601363900234
+  - 30.796238413007814
+  - 31.911176171008265
+  - 32.95056453399593
+  - 34.026476924002054
+  - 35.06828471200424
+  - 36.117726904005394
+  - 37.18790476799768
+  - 38.33244418600225
+  - 39.386081328004366
+  - 40.44307315599872
+  - 41.5075671300001
+  - 42.63291246800509
+  - 43.75229245900118
+  - 44.83162948700192
+  - 46.391826448001666
+  - 47.58095710599446
+  - 49.00915573400562
+  - 50.184010130004026
+  - 51.436271276994376
+  - 52.7653708410071
+  - 53.972280582995154
+  - 55.04454669900588
+  - 56.07811799000774
+  - 57.18150329000491
+  - 58.35076475200185
+  - 59.50655471600476
+  - 60.66397474199766
+  - 61.693084719998296
+  - 62.774085867000395
+  - 63.819639980007196
+  - 64.83787692099577
+  - 65.86084303600364
+  - 66.96506868299912
+  - 68.0119242590008
+  - 69.53206226500333
+  - 71.15189575200202
+  - 72.71876344400516
+  - 74.19489434400748
+  - 75.4372321999981
+  - 76.78978757699952
+  - 78.49076675399556
+  - 79.88131445500767
+  - 81.29681026299659
+  - 82.34033670599456
+  - 83.40105535399925
+  - 84.45024980600283
+  - 85.51067865699588
+  - 86.56260509000276
+  - 87.67836395700579
+  - 88.75615829399612
+  - 89.78156718000537
+  - 90.86591872500139
+  - 91.88686730900372
+  - 92.97901656900649
+  - 95.20718701300211
+  - 96.89269244599564
+  - 98.15256183799647
+  - 99.17767266000737
+  - 100.21092838500044
+  - 101.23241946200142
+  - 102.25609448799514
+  - 103.29083391500171
+  - 104.37708009300695
+  - 105.43142583800363
+  - 106.45631475299888
+  - 107.48790132600698
+  - 108.51193817799503
+  - 109.53795024899591
+  - 110.6179277140036
+  - 111.63718362500367
+  - 112.66324295300001
+  - 116.5092281170073
+  - 117.89746703700803
+  - 118.91255286299565
+  - 119.92676215800748
+  - 120.94124427699717
+  - 121.95513225400646
+  - 122.96947513699706
+  - 124.11097444100596
+  - 125.237594102
+  - 126.25057292400743
+  - 127.26294994000637
+  - 128.27576907799812
+  - 129.29017290199408
+  - 130.3037018460018
+  - 131.39415873899998
+  - 132.40706671400403
+  - 133.41973242700624
+  - 134.4326909119991
+  - 135.44724648499687
+  - 136.46004881200497
+  - 137.56829224199464
+  - 138.5817373500031
+  - 139.5974386040034
+  - 140.6106004549947
+  - 141.62363088299753
+  - 142.6551500909991
+  - 143.78843751299428
+  - 144.80137645700597
+  - 145.81407942999795
+  - 146.82813184800034
+  - 147.84131423600775
+  - 148.85498038399965
+  - 150.01326119499572
+  - 151.03429958999914
+  - 152.05775644400273
+  - 153.08023372299795
+  - 154.1027820379968
+  - 155.12444281000353
+  - 156.26478077399952
+  - 157.28575410200574
+  - 158.30175297999813
+  - 159.31606513500446
+  - 160.33150397600548
+  - 161.4642597290076
+  - 162.60227747699537
+  - 163.616514060006
+  - 164.63096731300175
+  - 165.64507523999782
+  - 166.6604623489984
+  - 167.79506716800097
+  - 168.807882677007
+  - 169.8219741530047
+  - 170.8339395820076
+  - 171.84698517099605
+  - 172.86076370600495
+  - 174.07802581400028
+  - 175.09206218899635
+  - 176.10500760900322
+  - 177.13705169499735
+  - 178.18754092100426
+  - 179.2581456600019
+  - 180.31629994200193
+  - 181.4246089179942
+  - 182.55145459700725
+  - 183.6783323790005
+  - 184.72253234000527
+  - 185.7585189530073
+  - 186.78593269399425
+  - 187.8179178230057
+  - 188.84825036500115
+  - 189.87863339400792
+  - 192.47963041199546
+  hardware:
+    cpu_count: 12
+    cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
+    ram_total_kb: 13961408
+  rss_mb:
+  - 57.15625
+  - 124.03515625
+  - 125.73046875
+  - 125.01953125
+  - 137.78515625
+  - 144.21484375
+  - 145.42578125
+  - 148.05078125
+  - 148.46875
+  - 148.91015625
+  - 127.8125
+  - 117.1015625
+  - 117.453125
+  - 117.92578125
+  - 118.421875
+  - 118.9296875
+  - 118.25
+  - 118.53125
+  - 118.8984375
+  - 119.2890625
+  - 119.63671875
+  - 123.37109375
+  - 123.65625
+  - 123.94140625
+  - 124.11328125
+  - 124.50390625
+  - 124.88671875
+  - 125.17578125
+  - 125.4375
+  - 125.77734375
+  - 126.0234375
+  - 126.28515625
+  - 126.5234375
+  - 126.74609375
+  - 127.2109375
+  - 127.60546875
+  - 127.95703125
+  - 128.2578125
+  - 128.609375
+  - 129.0234375
+  - 129.328125
+  - 130.0
+  - 130.46484375
+  - 131.34765625
+  - 131.5625
+  - 131.9375
+  - 132.296875
+  - 132.59375
+  - 132.96875
+  - 133.484375
+  - 133.85546875
+  - 134.36328125
+  - 134.9765625
+  - 135.62890625
+  - 136.19140625
+  - 136.62890625
+  - 136.9140625
+  - 137.203125
+  - 137.5546875
+  - 138.16015625
+  - 138.5
+  - 139.015625
+  - 139.66796875
+  - 140.3828125
+  - 141.15625
+  - 141.546875
+  - 142.3828125
+  - 143.01171875
+  - 143.625
+  - 144.2734375
+  - 144.734375
+  - 145.2578125
+  - 145.78125
+  - 146.27734375
+  - 146.7578125
+  - 147.26953125
+  - 147.95703125
+  - 148.4140625
+  - 148.8984375
+  - 149.4921875
+  - 150.35546875
+  - 156.63671875
+  - 163.14453125
+  - 165.72265625
+  - 171.23046875
+  - 173.45703125
+  - 174.2421875
+  - 174.73828125
+  - 175.56640625
+  - 177.17578125
+  - 180.25390625
+  - 181.6484375
+  - 184.34765625
+  - 187.51953125
+  - 133.93359375
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+seconds_elapsed: 104.61789313801273
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -13,8 +535,9 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 1.0
 software_name: Konsole
-software_version: 26.04.0
+software_version: 23.08.5
 system: Linux
 terminal_results:
   background_color_hex: '#000000000000'
@@ -22,24 +545,25 @@ terminal_results:
   - 0
   - 0
   - 0
-  cell_height: 19
-  cell_width: 10
+  cell_height: 26
+  cell_width: 11
   color_scheme: false
   colored_underlines: false
   decrqcra: false
   decrqss: false
   decrqss_settings: false
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 1
     - 4
     service_class: 62
-  foreground_color_hex: '#fcfcfcfcfcfc'
+  foreground_color_hex: '#b2b2b2b2b2b2'
   foreground_color_rgb:
-  - 64764
-  - 64764
-  - 64764
-  height: 23
+  - 45746
+  - 45746
+  - 45746
+  height: 15
   iterm2_features:
     features: {}
     supported: false
@@ -50,26 +574,31 @@ terminal_results:
   kitty_query: false
   modes: {}
   number_of_colors: 16777216
-  pixels_height: 437
-  pixels_width: 670
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 390
+  pixels_width: 1100
+  screen_ratio: '21:9'
+  screen_ratio_name: UWHD
   sixel: true
   software_method: XTVERSION
   software_name: Konsole
-  software_version: 26.04.0
+  software_version: 23.08.5
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 67
+  width: 100
   xtgettcap:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: Konsole 23.08.5
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -5268,6 +5797,198 @@ test_results:
         wchar: \u31ef
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \u4dc0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dc9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dca
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dce
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dcf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dd9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dda
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dde
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ddf
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4de9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dea
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4deb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dec
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4ded
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dee
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4def
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df0
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df1
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df2
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df4
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df5
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df6
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df7
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df8
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4df9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfa
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfd
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dfe
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \u4dff
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001d300
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -5638,8 +6359,8 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001faef
-      n_errors: 145
+      n_errors: 209
       n_total: 43592
-      pct_success: 99.66737015966233
+      pct_success: 99.52055423013397
 wcwidth_version: 0.7.0
-width: 67
+width: 100

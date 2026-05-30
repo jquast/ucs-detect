@@ -1,4 +1,5 @@
 """Alternative ZWJ table format for emoji sequence testing."""
+
 EMOJI_ZWJ_SEQUENCES = (
     (
         "15.1",

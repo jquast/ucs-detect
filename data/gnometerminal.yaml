@@ -1,11 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-05-25 02:34:11 UTC
+datetime: 2026-05-30 02:15:14 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
 height: 24
-python_version: 3.14.4
-seconds_elapsed: 11019.790355559962
+preferred_encoding: UTF-8
+python_version: 3.13.13
+seconds_elapsed: 8703.304260526013
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 0
@@ -13,8 +14,9 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-software_name: GNOME Terminal
-software_version: 3.60.0(VTE/8400)
+  timeout_cps: 1.0
+software_name: VTE
+software_version: '7600'
 system: Linux
 terminal_results:
   background_color_hex: '#171714142121'
@@ -22,23 +24,20 @@ terminal_results:
   - 5911
   - 5140
   - 8481
-  color_scheme: dark
+  color_scheme: false
   colored_underlines: false
   decrqcra: false
   decrqss: true
   decrqss_settings:
-    decsace: '0'
     decscusr: '0'
-    decslpp: '24'
     decslrm: 1;80
     decstbm: 1;24
-    sgr: 0;38:2::23:20:33
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 1
     - 21
     - 22
-    - 28
     service_class: 61
   foreground_color_hex: '#d0d0cfcfcccc'
   foreground_color_rgb:
@@ -93,24 +92,24 @@ terminal_results:
       mode_description: Grapheme Clustering
       mode_name: GRAPHEME_CLUSTERING
       supported: false
-      value: 4
-      value_description: PERMANENTLY_RESET
+      value: 0
+      value_description: NOT_RECOGNIZED
     2031:
-      changeable: true
+      changeable: false
       enabled: false
       mode_description: Color palette updates
       mode_name: COLOR_PALETTE_UPDATES
-      supported: true
-      value: 2
-      value_description: RESET
+      supported: false
+      value: 0
+      value_description: NOT_RECOGNIZED
     2048:
       changeable: false
       enabled: false
       mode_description: In-Band Window Resize Notifications
       mode_name: IN_BAND_WINDOW_RESIZE
       supported: false
-      value: 4
-      value_description: PERMANENTLY_RESET
+      value: 0
+      value_description: NOT_RECOGNIZED
     5522:
       changeable: false
       enabled: false
@@ -120,14 +119,18 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
   pixels_height: 504
   pixels_width: 720
   screen_ratio: '4:3'
   screen_ratio_name: VGA
   sixel: false
   software_method: XTVERSION
-  software_name: GNOME Terminal
-  software_version: 3.60.0(VTE/8400)
+  software_name: VTE
+  software_version: '7600'
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
@@ -136,104 +139,11 @@ terminal_results:
   ttype: xterm-256color
   width: 80
   xtgettcap:
-    capabilities:
-      RGB: '8'
-      TN: xterm-256color
-      colors: '256'
-      kDC: "\e[3~"
-      kDC3: "\e[3;2~"
-      kDC4: "\e[3;5~"
-      kDC5: "\e[3;6~"
-      kDC6: "\e[3;5~"
-      kDC7: "\e[3;6~"
-      kDN: "\e[1;2B"
-      kDN3: "\e[1;2B"
-      kDN4: "\e[1;5B"
-      kDN5: "\e[1;6B"
-      kDN6: "\e[1;5B"
-      kDN7: "\e[1;6B"
-      kEND: "\e[1;2F"
-      kEND3: "\e[1;2F"
-      kEND4: "\e[1;5F"
-      kEND5: "\e[1;6F"
-      kEND6: "\e[1;5F"
-      kEND7: "\e[1;6F"
-      kHOM: "\e[1;2H"
-      kHOM3: "\e[1;2H"
-      kHOM4: "\e[1;5H"
-      kHOM5: "\e[1;6H"
-      kHOM6: "\e[1;5H"
-      kHOM7: "\e[1;6H"
-      kIC: "\e[2~"
-      kIC3: "\e[2;2~"
-      kIC4: "\e[2;5~"
-      kIC5: "\e[2;6~"
-      kIC6: "\e[2;5~"
-      kIC7: "\e[2;6~"
-      kLFT: "\e[1;2D"
-      kLFT3: "\e[1;2D"
-      kLFT4: "\e[1;5D"
-      kLFT5: "\e[1;6D"
-      kLFT6: "\e[1;5D"
-      kLFT7: "\e[1;6D"
-      kNXT: "\e[6;2~"
-      kNXT3: "\e[6;2~"
-      kNXT4: "\e[6;5~"
-      kNXT5: "\e[6;6~"
-      kNXT6: "\e[6;5~"
-      kNXT7: "\e[6;6~"
-      kPRV: "\e[5;2~"
-      kPRV3: "\e[5;2~"
-      kPRV4: "\e[5;5~"
-      kPRV5: "\e[5;6~"
-      kPRV6: "\e[5;5~"
-      kPRV7: "\e[5;6~"
-      kRIT: "\e[1;2C"
-      kRIT3: "\e[1;2C"
-      kRIT4: "\e[1;5C"
-      kRIT5: "\e[1;6C"
-      kRIT6: "\e[1;5C"
-      kRIT7: "\e[1;6C"
-      kUP: "\e[1;2A"
-      kUP3: "\e[1;2A"
-      kUP4: "\e[1;5A"
-      kUP5: "\e[1;6A"
-      kUP6: "\e[1;5A"
-      kUP7: "\e[1;6A"
-      ka1: "\e[H"
-      ka3: "\e[5~"
-      kbs: "\x7F"
-      kc1: "\e[F"
-      kc3: "\e[6~"
-      kcbt: "\e[Z"
-      kcub1: "\e[D"
-      kcud1: "\e[B"
-      kcuf1: "\e[C"
-      kcuu1: "\e[A"
-      kdch1: "\e[3~"
-      kend: "\e[F"
-      kent: ''
-      kf1: "\eOP"
-      kf10: "\e[21~"
-      kf11: "\e[23~"
-      kf12: "\e[24~"
-      kf2: "\eOQ"
-      kf3: "\eOR"
-      kf4: "\eOS"
-      kf5: "\e[15~"
-      kf6: "\e[17~"
-      kf7: "\e[18~"
-      kf8: "\e[19~"
-      kf9: "\e[20~"
-      khome: "\e[H"
-      kich1: "\e[2~"
-      kind: "\e[1;2B"
-      knp: "\e[6~"
-      kpp: "\e[5~"
-      kri: "\e[1;2A"
-    supported: true
+    capabilities: {}
+    supported: false
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: VTE(7600)
 test_results:
   emoji_vs15_results:
     9.0.0:

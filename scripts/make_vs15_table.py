@@ -3,14 +3,14 @@
 import os
 import sys
 
-import requests
 import wcwidth
+
+from ucs_detect.accessories import do_retrieve, get_data_dir
 
 URL_EMOJI_VARIATION_SEQUENCES = (
     "https://unicode.org/Public/UCD/latest/ucd/emoji/emoji-variation-sequences.txt"
 )
-FETCH_BLOCKSIZE = 3096
-PATH_DATA = os.path.relpath(os.path.join(os.path.dirname(__file__), "data"))
+PATH_DATA = str(get_data_dir())
 
 # Comprehensive CJK Unicode blocks
 # Based on Unicode 15.0 specification
@@ -62,19 +62,6 @@ def is_cjk(codepoint):
     return False
 
 
-def do_retrieve(url, fname):
-    """Retrieve given url to target filepath fname."""
-    folder = os.path.dirname(fname)
-    if folder and not os.path.exists(folder):
-        os.makedirs(folder, exist_ok=True)
-    if os.path.exists(fname):
-        return
-    resp = requests.get(url, stream=True, timeout=30)
-    with open(fname, "wb") as fout:
-        for chunk in resp.iter_content(FETCH_BLOCKSIZE):
-            fout.write(chunk)
-
-
 def fetch_vs15_data():
     """
     Fetch VS15 (text style) sequences from Unicode emoji-variation-sequences.txt.
@@ -99,7 +86,7 @@ def fetch_vs15_data():
                 continue
             cp_str = line.split("FE0E")[0].strip()
             cp = int(cp_str, 16)
-            # Only include characters that are wide by default —
+            # Only include characters that are wide by default
             # these transition from wide (2) to narrow (1) with VS15.
             if wcwidth.wcwidth(chr(cp)) == 2:
                 all_sequences.append((cp, 0xFE0E))
