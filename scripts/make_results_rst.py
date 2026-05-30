@@ -557,7 +557,8 @@ def main():
         display_features_table(score_table)
         display_truecolor_table(score_table)
         display_osc52_table(score_table)
-        display_id_table(score_table)
+        display_id_table(score_table, terminal_mixins)
+        display_id_summary_bullets(score_table, terminal_mixins)
         display_xtgettcap_summary_bullets(score_table)
         display_xtgettcap_comparison_table(score_table)
         display_performance_section(score_table)
@@ -593,7 +594,7 @@ def main():
             show_text_sizing_results(sw_name, entry)
             show_truecolor_results(sw_name, entry)
             show_osc52_results(sw_name, entry)
-            show_id_results(sw_name, entry)
+            show_id_results(sw_name, entry, terminal_mixins)
             show_reproduce_command(sw_name, entry)
             show_time_elapsed_results(sw_name, entry)
             display_common_hyperlinks()
@@ -677,6 +678,10 @@ def display_common_hyperlinks():
     print(".. _`ucs-detect`: https://github.com/jquast/ucs-detect")
     print(".. _`ttyscan`: https://github.com/jquast/ttyscan")
     print(".. _`DEC Private Modes`: https://blessed.readthedocs.io/en/latest/dec_modes.html")
+    print(".. _`OSC 52`: https://dev.to/djmitche/clipboards-terminals-and-linux-3pk5")
+    print(".. _`XTGETTCAP`: https://codeberg.org/dnkl/foot#xtgettcap")
+    print(".. _`Truecolor`: https://github.com/termstandard/colors/blob/master/README.md")
+    print(".. _`Kitty graphics`: https://sw.kovidgoyal.net/kitty/graphics-protocol/")
 
 
 def make_link(text):
@@ -1578,7 +1583,7 @@ def _detect_id_methods(data):
     xt_has = sm == "XTVERSION"
     tp_has = sm == "TERM_PROGRAM" or bool(env.get("TERM_PROGRAM"))
     term_val = env.get("TERM", "")
-    term_has = bool(term_val) and term_val not in ("xterm", "xterm-256color")
+    term_has = bool(term_val) and term_val not in ("xterm", "xterm-256color", "unknown")
     return xt_has, tp_has, term_has
 
 
@@ -1772,7 +1777,7 @@ def display_truecolor_table(score_table):
     print("variable is not forwarded over SSH without")
     print("``SendEnv`` / ``AcceptEnv`` configuration),")
     print("grey when at least one other method succeeds, and red when no")
-    print("method can detect truecolor support.")
+    print("method can detect `Truecolor`_ support.")
     print()
 
     table_data = []
@@ -1810,9 +1815,9 @@ def display_truecolor_table(score_table):
 def display_osc52_table(score_table):
     """Display an OSC 52 clipboard detection methods comparison table."""
     display_title("OSC 52 Clipboard Detection", 2)
-    print("This table shows which methods can be used to detect OSC 52")
+    print("This table shows which methods can be used to detect `OSC 52`_")
     print("clipboard support for each terminal emulator.  DA1 extension 52")
-    print("is the mechanism defined by the vt-extensions spec; XTGETTCAP")
+    print("is the mechanism defined by the vt-extensions spec; `XTGETTCAP`_")
     print("``Ms`` is an alternative capability query that may work on")
     print("terminals not advertising the DA1 extension.")
     print()
@@ -1844,7 +1849,7 @@ def display_osc52_table(score_table):
         print()
 
 
-def display_id_table(score_table):
+def display_id_table(score_table, terminal_mixins):
     """Display a terminal identification methods comparison table."""
     display_title("Terminal Identification", 2)
     print("This table shows which methods can be used to identify the")
@@ -1854,6 +1859,10 @@ def display_id_table(score_table):
     print("over SSH without ``SendEnv`` / ``AcceptEnv`` configuration.")
     print()
 
+    def _is_subterminal(name):
+        cfg = terminal_mixins.get(name.lower(), {})
+        return bool((cfg.get("launch") or {}).get("subterminal"))
+
     table_data = []
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
@@ -1861,6 +1870,8 @@ def display_id_table(score_table):
         tested = bool(tr)
 
         xt_has, tp_has, term_has = _detect_id_methods(entry)
+        if _is_subterminal(sw_name):
+            term_has = False
 
         row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_identification")}
 
@@ -1890,6 +1901,60 @@ def display_id_table(score_table):
         print_datatable(table_str)
     else:
         print("No terminal identification data available.")
+        print()
+
+
+def display_id_summary_bullets(score_table, terminal_mixins):
+    """Display a bulleted list categorizing terminal identification support."""
+
+    def _link(name):
+        return make_outbound_hyperlink(name, name + "_identification")
+
+    def _is_subterminal(name):
+        cfg = terminal_mixins.get(name.lower(), {})
+        return bool((cfg.get("launch") or {}).get("subterminal"))
+
+    xtversion = []
+    term_program_only = []
+    term_only = []
+    unidentifiable = []
+
+    total = len(score_table)
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        xt_has, tp_has, term_has = _detect_id_methods(entry)
+        if _is_subterminal(sw_name):
+            term_has = False
+
+        if xt_has:
+            xtversion.append(sw_name)
+        elif tp_has:
+            term_program_only.append(sw_name)
+        elif term_has:
+            term_only.append(sw_name)
+        else:
+            unidentifiable.append(sw_name)
+
+    def _bullet(heading, terminals, extra=""):
+        if not terminals:
+            return
+        n = len(terminals)
+        links = ", ".join(_link(t) for t in sorted(terminals))
+        print(f"* **{heading} ({n} of {total}):** {links}{extra}")
+
+    groups = [
+        ("Identifiable by XTVERSION", xtversion,
+         " (active query, works over SSH)."),
+        ("Identifiable by TERM_PROGRAM only", term_program_only,
+         " (environment variable, not forwarded over SSH)."),
+        ("Identifiable by TERM only", term_only,
+         " (environment variable, not forwarded over SSH)."),
+        ("Not identifiable", unidentifiable, ""),
+    ]
+    for heading, terminals, extra in sorted(
+        (g for g in groups if g[1]),
+        key=lambda g: len(g[1]) / total, reverse=True):
+        _bullet(heading, terminals, extra)
         print()
 
 
@@ -1929,7 +1994,7 @@ def display_xtgettcap_summary_bullets(score_table):
     groups = [
         ("Full XTGETTCAP capability support", full,
          ". A full terminfo(5) database can be reconstructed "
-         "from XTGETTCAP queries using ttyscan_. "
+         "from `XTGETTCAP`_ queries using ttyscan_. "
          "A preferred TERM from TN, and COLORTERM=truecolor "
          "from RGB may be derived."),
         ("Partial XTGETTCAP capability support", partial,
@@ -1958,7 +2023,7 @@ def display_xtgettcap_comparison_table(score_table):
     """
     from collections import OrderedDict
 
-    print("This table shows XTGETTCAP terminfo capability values reported "
+    print("This table shows `XTGETTCAP`_ terminfo capability values reported "
           "by each terminal. Terminals are grouped by shared values for "
           "each capability.")
     print()
@@ -2539,7 +2604,7 @@ def show_software_header(entry, sw_name, terminal_mixins):
     if sw_name_lower in terminal_mixins:
         tcfg = terminal_mixins[sw_name_lower]
         if (tcfg.get("launch") or {}).get("subterminal"):
-            host_name = "kitty"
+            host_name = "ghostty"
             host_link = make_link(host_name)
             host_cfg = terminal_mixins.get(host_name.lower(), {})
             host_desc = host_cfg.get("description", "")
@@ -2672,7 +2737,7 @@ def show_graphics_results(sw_name, entry):
     if iterm2_supported:
         protocols.append("`iTerm2 inline images`_")
     if kitty_supported:
-        protocols.append("`Kitty graphics protocol`_")
+        protocols.append("`Kitty graphics`_")
 
     if protocols:
         print(f"*{sw_name}* supports the following graphics protocols: "
@@ -2715,7 +2780,6 @@ def show_graphics_results(sw_name, entry):
     print('.. _Sixel: https://en.wikipedia.org/wiki/Sixel')
     print('.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS')
     print('.. _`iTerm2 inline images`: https://iterm2.com/documentation-images.html')
-    print('.. _`Kitty graphics protocol`: https://sw.kovidgoyal.net/kitty/graphics-protocol/')
     print()
 
 
@@ -3092,7 +3156,7 @@ def show_osc52_results(sw_name, entry):
     print()
 
 
-def show_id_results(sw_name, entry):
+def show_id_results(sw_name, entry, terminal_mixins):
     """Display terminal identification method results with raw values."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_identification")
     display_title("Terminal Identification", 3)
@@ -3101,6 +3165,9 @@ def show_id_results(sw_name, entry):
     env = entry["data"].get("environment") or {}
 
     xt_has, tp_has, term_has = _detect_id_methods(entry)
+    cfg = terminal_mixins.get(sw_name.lower(), {})
+    is_sub = bool((cfg.get("launch") or {}).get("subterminal"))
+
     sw_name_final = entry["data"].get("software_name", "")
     sw_version = entry["data"].get("software_version", "")
     xtversion_raw = tr.get("xtversion_raw", "")
@@ -3127,11 +3194,12 @@ def show_id_results(sw_name, entry):
         print(f"- TERM_PROGRAM: **yes** ({term_program})")
     else:
         print(f"- TERM_PROGRAM: **{'yes' if tp_has else 'no'}**")
+    suffix = " (inherited from host terminal)" if is_sub and term else ""
     print(f"- TERM: **{'yes' if term_has else 'no'}**"
-          f"{f' ({term})' if term else ''}")
+          f"{f' ({term})' if term else ''}{suffix}")
     print()
 
-    if tp_has and not xt_has:
+    if tp_has and not xt_has and not is_sub:
         print(".. warning::")
         print()
         print("   TERM_PROGRAM is an environment variable, not a terminal"
