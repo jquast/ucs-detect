@@ -1,13 +1,104 @@
 ambiguous_width: 1
-datetime: 2026-05-25 00:10:10 UTC
+datetime: 2026-05-29 22:41:12 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: Apple_Terminal
   TERM_PROGRAM_VERSION: '465'
-height: 43
-python_version: 3.12.8
-seconds_elapsed: 38.34860804211348
+height: 24
+preferred_encoding: UTF-8
+python_version: 3.13.5
+resource_profile:
+  cpu_pct:
+  - 1.7
+  - 26.6
+  - 27.5
+  - 76.9
+  - 72.5
+  - 71.4
+  - 70.1
+  - 67.3
+  - 69.4
+  - 69.2
+  - 71.1
+  - 69.8
+  - 71.4
+  - 70.7
+  - 71.7
+  - 68.8
+  - 68.0
+  - 69.2
+  - 68.7
+  - 70.5
+  - 72.4
+  - 65.6
+  - 72.0
+  - 77.0
+  - 61.8
+  - 56.5
+  - 65.7
+  - 50.7
+  elapsed_s:
+  - 0.013589874841272831
+  - 1.0300617918837816
+  - 2.0406490419991314
+  - 3.0532825419213623
+  - 4.063905041897669
+  - 5.074943833984435
+  - 6.085791666992009
+  - 7.096594291971996
+  - 8.106756874825805
+  - 9.115166874835268
+  - 10.126446167007089
+  - 11.139193374896422
+  - 12.149483708897606
+  - 13.160036333836615
+  - 14.171199041884392
+  - 15.182318625040352
+  - 16.1933584169019
+  - 17.204126375028864
+  - 18.214916666969657
+  - 19.22567249997519
+  - 20.236657792003825
+  - 21.247856749920174
+  - 22.25878233392723
+  - 23.269719291944057
+  - 24.27937920903787
+  - 25.290632291929796
+  - 26.30162816704251
+  - 27.312950916821137
+  hardware:
+    cpu_count: 8
+  rss_mb:
+  - 7.59375
+  - 108.484375
+  - 138.828125
+  - 161.546875
+  - 173.328125
+  - 179.921875
+  - 187.671875
+  - 190.5625
+  - 192.171875
+  - 193.796875
+  - 195.0625
+  - 196.078125
+  - 197.25
+  - 198.1875
+  - 199.28125
+  - 200.375
+  - 201.390625
+  - 202.375
+  - 203.25
+  - 204.140625
+  - 206.171875
+  - 311.171875
+  - 434.9375
+  - 524.71875
+  - 542.40625
+  - 544.59375
+  - 547.796875
+  - 554.84375
+seconds_elapsed: 25.39079675008543
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -15,6 +106,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 1.0
 software_name: Apple_Terminal
 software_version: '465'
 system: Darwin
@@ -29,6 +121,7 @@ terminal_results:
   decrqcra: false
   decrqss: false
   decrqss_settings: false
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 2
@@ -38,7 +131,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 43
+  height: 24
   iterm2_features:
     features: {}
     supported: false
@@ -49,10 +142,14 @@ terminal_results:
   kitty_query: false
   modes: {}
   number_of_colors: 16777216
-  pixels_height: 747
-  pixels_width: 1082
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 305
+  pixels_width: 580
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: false
   software_method: TERM_PROGRAM
   software_name: Apple_Terminal
@@ -63,7 +160,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 118
+  width: 80
   xtgettcap:
     capabilities: {}
     supported: false
@@ -10629,4 +10726,4 @@ test_results:
       n_total: 43592
       pct_success: 99.92429803633695
 wcwidth_version: 0.7.0
-width: 118
+width: 80

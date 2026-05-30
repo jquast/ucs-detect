@@ -112,6 +112,7 @@ terminals:
     launch:
       program: /Applications/iTerm.app/Contents/MacOS/iTerm2
       args: ['{script}']
+    timeout: 14400
   kitty:
     homepage: https://sw.kovidgoyal.net/kitty/
     launch:
