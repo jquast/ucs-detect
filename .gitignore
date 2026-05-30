@@ -136,9 +136,8 @@ data/emoji-zwj-sequences-latest.txt
 data/emoji-test-latest.txt
 data/emoji-variation-sequences-latest.txt
 
-# auto genereated
+# auto generated
 docs/_static/plots/*.png
-docs/_static/screenshots/**/*.png
 docs/_static/profiles/**/*.png
 docs/sw_results/*.rst
 docs/results.rst

@@ -36,9 +36,10 @@ Solution
 for the latest Unicode versions across WIDE, ZERO, ZWJ, VS-16, and VS-15 unicode sequences and
 grapheme width of over 500 languages.
 
-``ucs-browser`` allows to interactive browsing of each kind of category with an interactive terminal
+``ucs-browser`` allows interactive browsing of each kind of category with an interactive terminal
 browsing program. This may also output to a non-tty, and is used to publish the example test files
-at https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files,
+at https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files
+
 How it works
 ------------
 
@@ -82,17 +83,17 @@ Notable CLI options:
 
 ``--test-only <category>``
   Test a single category: ``wide``, ``zwj``, ``vs16``, ``vs15``, ``lang``,
-  ``unicode``, ``terminal``, or ``all`` (default).
+  ``unicode``, ``terminal``, ``sri``, ``sfz``, ``ri``, or ``all`` (default).
 
 ``--limit-category-time <seconds>``
   Time budget per test category, auto-adjusts sampling (0=unlimited).
 
 ``--stop-at-error <pattern>``
   Pause on errors matching *pattern* for interactive investigation. Values:
-  ``all``, ``zwj``, ``wide``, ``vs16``, ``vs16n``, ``vs15``, ``lang``, or a
+  ``all``, ``zwj``, ``wide``, ``sri``, ``sfz``, ``ri``, ``vs16``, ``vs16n``, ``vs15``, ``lang``, or a
   specific language name (e.g., ``Hindi``).
 
-``--silent``
+``--probe-silently``
   Minimal output, modifying only a single line.
 
 ``--save-json <path>``
@@ -237,7 +238,7 @@ Use the 'system' targets to run these:
     tox -e system_run_series
 
     # generate screenshots
-    tox -e docker_screenshots
+    tox -e system_screenshots
 
 The script ``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
 [arguments]`` or similar is not supported, keystrokes are injected into the target application to
@@ -309,7 +310,7 @@ History
   and provide major speed enhancement to terminal test with integration of latest blessed
   release.
 
-- 2.0.1 (2026-02-05): Add ``--silent`` mode, ``--save-json``, time measurements with RTT and
+- 2.0.1 (2026-02-05): Add ``--probe-silently`` mode, ``--save-json``, time measurements with RTT and
   ping-like statistics, and telnetlib3 shell support for testing over telnet. Bugfix iTerm2 image
   feature detection.
 
