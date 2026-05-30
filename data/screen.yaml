@@ -192,7 +192,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 5.0
 software_name: GNU Screen
-software_version: ''
+software_version: '5.0.1'
 system: Linux
 terminal_results:
   background_color_hex: '#111111111111'
