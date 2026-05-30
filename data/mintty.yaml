@@ -1,12 +1,13 @@
 ambiguous_width: 1
-datetime: 2026-05-25 03:16:17 UTC
+datetime: 2026-05-30 16:31:07 UTC
 environment:
   TERM: xterm
   TERM_PROGRAM: mintty
   TERM_PROGRAM_VERSION: 3.8.1
 height: 24
-python_version: 3.14.3
-seconds_elapsed: 41.959487499999994
+preferred_encoding: UTF-8
+python_version: 3.14.4
+seconds_elapsed: 1152.319496925018
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000
@@ -14,10 +15,13 @@ session_arguments:
   limit_graphemes: 5000
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 4
 software_name: mintty
 software_version: 3.8.1
 system: Windows
 terminal_results:
+  cell_height: 14
+  cell_width: 7
   color_scheme: false
   colored_underlines: false
   decrqcra: false
@@ -28,6 +32,7 @@ terminal_results:
     decslrm: 1;80
     decstbm: 1;24
     sgr: '0'
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 6
@@ -115,10 +120,16 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 8
-  pixels_height: 0
-  pixels_width: 0
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 336
+  pixels_width: 560
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: false
-  software_method: TERM_PROGRAM
+  software_method: XTVERSION
   software_name: mintty
   software_version: 3.8.1
   styled_underlines: false
@@ -133,6 +144,7 @@ terminal_results:
     supported: false
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: mintty 3.8.1
 test_results:
   emoji_vs15_results:
     9.0.0:
