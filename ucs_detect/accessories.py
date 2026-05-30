@@ -328,16 +328,16 @@ def _atomic_yaml_dump(data, path, **dump_kwargs):
 
 
 def fixup_yaml(yaml_path, sw_name, mixins, program):
-    """Fix up software_name in YAML from raw XTVERSION values to display names.
+    """
+    Fix up software_name in YAML from raw XTVERSION values to display names.
 
-    When ucs-detect runs without operator override, the auto-detected
-    ``software_name`` is the raw XTVERSION response (e.g. ``VTE`` for
-    VTE-based terminals).  This function reads the YAML and corrects
-    ``software_name`` to the display name from ``terminals.yaml``.  If a
+    When ucs-detect runs without operator override, the auto-detected ``software_name`` is the raw
+    XTVERSION response (e.g. ``VTE`` for VTE-based terminals).  This function reads the YAML and
+    corrects ``software_name`` to the display name from ``terminals.yaml``.  If a
     ``version_template`` is present, the ``software_version`` is also composed.
 
-    When auto-detection yields no name at all, *program* (the launch
-    binary basename from ``terminals.yaml``) is used as the fallback.
+    When auto-detection yields no name at all, *program* (the launch binary basename from
+    ``terminals.yaml``) is used as the fallback.
     """
     key = sw_name.lower()
     entry = mixins.get(key, {})
@@ -382,6 +382,7 @@ def fixup_yaml(yaml_path, sw_name, mixins, program):
                 result = subprocess.run(
                     ["pacman", "-Q", aur_pkg],
                     capture_output=True, text=True, timeout=5,
+                    check=False,
                 )
                 if result.returncode == 0:
                     parts = result.stdout.strip().split(None, 1)
