@@ -1,13 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-05-25 01:18:12 UTC
+datetime: 2026-05-30 02:41:01 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: vscode
   TERM_PROGRAM_VERSION: 1.121.0
 height: 30
+preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 827.8065040659858
+seconds_elapsed: 767.3361569179979
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -15,6 +16,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 1.0
 software_name: xterm.js
 software_version: 6.1.0-beta.213
 system: Linux
@@ -34,8 +36,9 @@ terminal_results:
     decsca: '0'
     decscl: 61;1
     decscusr: '2'
-    decstbm: 1;48
+    decstbm: 1;30
     sgr: '0'
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 2
@@ -45,7 +48,7 @@ terminal_results:
   - 52428
   - 52428
   - 52428
-  height: 48
+  height: 30
   iterm2_features:
     features: {}
     supported: false
@@ -127,10 +130,14 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
-  pixels_height: 960
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
+  pixels_height: 600
   pixels_width: 1584
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
+  screen_ratio: '21:9'
+  screen_ratio_name: UWHD
   sixel: false
   software_method: XTVERSION
   software_name: xterm.js
@@ -147,6 +154,7 @@ terminal_results:
     supported: false
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: xterm.js(6.1.0-beta.213)
 test_results:
   emoji_vs15_results:
     9.0.0:
