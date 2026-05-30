@@ -585,7 +585,8 @@ def main():
                 proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                     yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     temp_dir,
-                    pause_exit=args.pause_exit)
+                    pause_exit=args.pause_exit,
+                    extra_args=_build_software_overrides(yaml_path, mixins))
 
                 if launch_error:
                     results[sw_name] = (-4, launch_error)

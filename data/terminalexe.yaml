@@ -10,6 +10,7 @@ session_arguments:
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
+  timeout_cps: 4
   stream: stderr
 software_name: Terminal.exe
 software_version: 1.23.260121001

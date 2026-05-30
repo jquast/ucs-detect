@@ -124,7 +124,9 @@ def get_launch_config(sw_name, mixins, is_docker=None):
         is_docker = os.path.exists("/.dockerenv")
     key = sw_name.lower()
     raw_entry = mixins.get(key, {})
-    launch = raw_entry.get("launch", {}) if raw_entry else {}
+    launch = raw_entry.get("launch") if raw_entry else None
+    if launch is None:
+        launch = {}
 
     if is_docker and raw_entry.get("launch_docker"):
         launch = raw_entry["launch_docker"]

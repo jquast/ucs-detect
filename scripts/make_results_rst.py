@@ -1179,10 +1179,10 @@ def display_tabulated_scores(score_table):
     if has_any_text_sizing:
         print()
         print("\u2020 This terminal supports the `Kitty Text Sizing protocol`_,")
-        print("  which allows any application to programmatically set character widths,")
-        print("  remediating width issues for complex languages, emoji, and other")
-        print("  problematic codepoints. It is scored 100% on WIDE, LANG, ZWJ, VS16,")
-        print("  VS15, SRI, SFZ, and RI.")
+        print("which allows any application to programmatically set character widths,")
+        print("remediating width issues for complex languages, emoji, and other")
+        print("problematic codepoints. It is scored 100% on WIDE, LANG, ZWJ, VS16,")
+        print("VS15, SRI, SFZ, and RI.")
         print()
         print('.. _`Kitty Text Sizing protocol`: '
               'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
