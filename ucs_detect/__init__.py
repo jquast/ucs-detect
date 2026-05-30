@@ -221,7 +221,10 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         auto_version = terminal_results.get("software_version", "").strip()
 
         terminal_software = set_software_name or auto_name
-        terminal_version = set_software_version or auto_version
+        if set_software_version and auto_name.upper() == "VTE" and auto_version:
+            terminal_version = f"{set_software_version} (VTE/{auto_version})"
+        else:
+            terminal_version = set_software_version or auto_version
 
     start_time = time.monotonic()
 
@@ -1196,6 +1199,12 @@ def _apply_rerun_yaml(results):
         data = yaml.safe_load(fin)
 
     session_args = data.get('session_arguments', {})
+
+    # Preserve existing software_name/version from YAML when not overridden via CLI
+    if not results.get("set_software_name"):
+        results["set_software_name"] = data.get("software_name")
+    if not results.get("set_software_version"):
+        results["set_software_version"] = data.get("software_version")
     yaml_to_cli = {
         'stream': 'stream',
         'limit_codepoints': 'limit_codepoints',

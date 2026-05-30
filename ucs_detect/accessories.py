@@ -103,8 +103,11 @@ def discover_yamls(target_system, data_dir=None):
     for yaml_path in sorted(data_dir.glob("*.yaml")):
         if yaml_path.name == "terminals.yaml":
             continue
-        with open(yaml_path) as f:
-            data = yaml.safe_load(f) or {}
+        try:
+            with open(yaml_path) as f:
+                data = yaml.safe_load(f) or {}
+        except (OSError, yaml.YAMLError):
+            continue
 
         system = data.get("system", "")
         if system.lower() != target_lower:
@@ -432,16 +435,22 @@ def run_kill_command(launch_cfg):
     kill_cmd = launch_cfg.get("kill_command")
     if not kill_cmd:
         return
-    subprocess.run(kill_cmd, timeout=5, capture_output=True, check=False)
+    try:
+        subprocess.run(kill_cmd, timeout=5, capture_output=True, check=False)
+    except (subprocess.TimeoutExpired, OSError):
+        pass
 
 
 def docker_image_exists(image="ucs-detect:latest"):
     """Check if the Docker image is already built."""
-    result = subprocess.run(
-        ["docker", "images", "-q", image],
-        capture_output=True, text=True, timeout=10, check=False,
-    )
-    return bool(result.stdout.strip())
+    try:
+        result = subprocess.run(
+            ["docker", "images", "-q", image],
+            capture_output=True, text=True, timeout=10, check=False,
+        )
+        return bool(result.stdout.strip())
+    except (subprocess.TimeoutExpired, OSError):
+        return False
 
 
 def docker_build(dockerfile, project_dir, image="ucs-detect:latest"):

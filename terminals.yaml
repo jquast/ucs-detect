@@ -281,6 +281,7 @@ terminals:
     display_name: Terminator
     version_template: '{aur_version}'
     aur_package: terminator
+    version_manual: 2.1.3
     launch:
       program: terminator
       args: [-x, sh, '{script}']
@@ -370,6 +371,7 @@ terminals:
     display_name: XFCE Terminal
     version_template: '{aur_version}'
     aur_package: xfce4-terminal
+    version_manual: 1.1.3
     skip_docker: true
     skip_reason: requires full Xfce session with xfconfd (exit=1)
     launch:
