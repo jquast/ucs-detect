@@ -320,7 +320,7 @@ def _atomic_yaml_dump(data, path, **dump_kwargs):
             yaml.safe_dump(data, f, **dump_kwargs)
             f.flush()
             os.fsync(f.fileno())
-        os.rename(tmp_path, path)
+        os.replace(tmp_path, path)
     except Exception:
         try:
             os.unlink(tmp_path)
