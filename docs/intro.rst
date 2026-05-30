@@ -139,6 +139,10 @@ Modes may also be directly entered by CLI options (see ``ucs-browser --help``)
 Navigation follows less(1) conventions: ``j``/``k`` for lines, ``f``/``b`` for
 pages, ``q`` to quit.
 
+Example files are created using ucs-browser, and are published in the source repository at url
+https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files
+
+
 Test Results
 ------------
 

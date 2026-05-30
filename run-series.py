@@ -363,7 +363,7 @@ def _docker_per_terminal_run(args):
             for candidate in (name_lower, prog_lower):
                 if candidate in run_only:
                     matched_run_only.add(candidate)
-        if should_skip(launch_cfg, is_docker=True):
+        if not run_only and should_skip(launch_cfg, is_docker=True):
             continue
         if launch_cfg.get("subterminal") and not launch_cfg.get("program"):
             continue
@@ -518,7 +518,7 @@ def main():
                 if candidate in run_only:
                     matched_run_only.add(candidate)
 
-        if should_skip(launch_cfg):
+        if not run_only and should_skip(launch_cfg):
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
             skipped.append((d.software_name, reason))
             continue
