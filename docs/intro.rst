@@ -92,7 +92,7 @@ Notable CLI options:
   ``all``, ``zwj``, ``wide``, ``vs16``, ``vs16n``, ``vs15``, ``lang``, or a
   specific language name (e.g., ``Hindi``).
 
-``--silent``
+``--probe-silently``
   Minimal output, modifying only a single line.
 
 ``--save-json <path>``
