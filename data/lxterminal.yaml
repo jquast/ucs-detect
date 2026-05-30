@@ -26244,7 +26244,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 3.0
 software_name: LXTerminal
-software_version: 0.4.1-2
+software_version: 0.4.1-2 (VTE/8400)
 system: Linux
 terminal_results:
   background_color_hex: '#000000000000'

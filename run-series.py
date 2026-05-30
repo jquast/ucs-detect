@@ -54,15 +54,16 @@ _RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([\d.]+)', re.MULTILINE)
 
 
 def write_run_script(script_path, yaml_path, sentinel_path,
-                     pause_exit=False):
+                     pause_exit=False, extra_args=None):
     """Write a shell script that runs re-run.py and records the exit code."""
     yaml_rel = yaml_path.relative_to(PROJECT_DIR)
     py_bin = shlex.quote(os.path.dirname(sys.executable))
+    extra = " ".join(shlex.quote(a) for a in (extra_args or []))
     parts = [
         "#!/bin/sh",
         f"export PATH={py_bin}:$PATH",
         f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
-        f"{shlex.quote(sys.executable)} re-run.py {shlex.quote(str(yaml_rel))}",
+        f"{shlex.quote(sys.executable)} re-run.py {shlex.quote(str(yaml_rel))} {extra}",
         f"echo $? > {shlex.quote(str(sentinel_path))}",
     ]
     if pause_exit:
@@ -71,8 +72,52 @@ def write_run_script(script_path, yaml_path, sentinel_path,
     script_path.chmod(0o755)
 
 
+def _build_software_overrides(yaml_path, mixins):
+    """Return list of extra CLI args for --set-software-name/version.
+
+    Uses the stem-fallback lookup in *mixins* to find the terminal's
+    ``display_name`` and ``version_manual`` / ``version_template``.
+    Returns an empty list when no overrides are configured.
+    """
+    stem = yaml_path.stem.lower()
+    entry = mixins.get(stem, {})
+    args = []
+    display_name = entry.get("display_name")
+    if display_name:
+        args.extend(["--", "--set-software-name", display_name])
+
+    # Resolve version: version_template first, version_manual as fallback
+    version_str = ""
+    if entry.get("version_template"):
+        aur_version = ""
+        aur_pkg = entry.get("aur_package")
+        if aur_pkg:
+            try:
+                result = subprocess.run(
+                    ["pacman", "-Q", aur_pkg],
+                    capture_output=True, text=True, timeout=5,
+                )
+                if result.returncode == 0:
+                    parts = result.stdout.strip().split(None, 1)
+                    if len(parts) > 1:
+                        aur_version = parts[1]
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+        version_str = entry["version_template"].format(
+            aur_version=aur_version,
+            release=entry.get("version_release", ""),
+            sw_name="", sw_version="", xt_name="", xt_version="",
+            xtversion_raw="",
+        )
+    if not version_str:
+        version_str = str(entry.get("version_manual", ""))
+    if version_str:
+        args.extend(["--set-software-version", version_str])
+    return args
+
+
 def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
-                       temp_dir, pause_exit=False):
+                       temp_dir, pause_exit=False, extra_args=None):
     """Launch a terminal and inject keys. Does not wait for completion.
 
     Returns (proc, sentinel_path, stderr_path, error_msg).
@@ -82,7 +127,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
     sentinel_path = temp_dir / f"exit-{safe}.rc"
     stderr_path = temp_dir / f"stderr-{safe}.log"
     write_run_script(script_path, yaml_path, sentinel_path,
-                     pause_exit=pause_exit)
+                     pause_exit=pause_exit, extra_args=extra_args)
 
     post_delay = launch_cfg.get("post_launch_delay_ms", 0)
     post_keys = launch_cfg.get("post_launch_keys", [])
@@ -243,95 +288,6 @@ def _embed_profile_in_yaml(yaml_path, sw_name, session):
     from ucs_detect.accessories import _atomic_yaml_dump
     data["resource_profile"]["hardware"] = hardware_info()
     try:
-        _atomic_yaml_dump(data, yaml_path, default_flow_style=False,
-                          allow_unicode=True)
-    except OSError:
-        pass
-
-
-def _fixup_yaml(yaml_path, sw_name, mixins, program):
-    """Fix up software_name in YAML from raw XTVERSION values to display names.
-
-    When ucs-detect runs without operator override, the auto-detected
-    ``software_name`` is the raw XTVERSION response (e.g. ``VTE`` for
-    VTE-based terminals).  This function reads the freshly-written YAML
-    and corrects ``software_name`` to the display name from
-    ``terminals.yaml``.  If a ``version_template`` is present, the
-    ``software_version`` is also composed.
-
-    When auto-detection yields no name at all, *program* (the launch
-    binary basename from ``terminals.yaml``) is used as the fallback.
-    """
-    key = sw_name.lower()
-    entry = mixins.get(key, {})
-    if not entry:
-        stem_key = yaml_path.stem.lower()
-        if stem_key != key:
-            entry = mixins.get(stem_key, {})
-    display_name = entry.get("display_name")
-    version_template = entry.get("version_template")
-
-    try:
-        with open(yaml_path) as f:
-            data = yaml.safe_load(f)
-    except (OSError, yaml.YAMLError):
-        return
-    if data is None:
-        return
-
-    current_name = data.get("software_name", "")
-    current_version = data.get("software_version", "")
-
-    if display_name:
-        data["software_name"] = display_name
-    elif not current_name:
-        data["software_name"] = os.path.basename(program) if program else sw_name
-
-    if version_template:
-        tr = data.get("terminal_results") or {}
-        raw_name = tr.get("software_name", "")
-        raw_version = tr.get("software_version", "")
-        raw_xtversion = tr.get("xtversion_raw", "")
-        if raw_xtversion:
-            parts = raw_xtversion.split(None, 1)
-            xt_name = parts[0] if parts else ""
-            xt_version = parts[1] if len(parts) > 1 else raw_version
-        else:
-            xt_name = raw_name
-            xt_version = raw_version
-        # resolve {aur_version} from pacman if aur_package is configured
-        aur_version = ""
-        aur_pkg = entry.get("aur_package")
-        if aur_pkg:
-            try:
-                result = subprocess.run(
-                    ["pacman", "-Q", aur_pkg],
-                    capture_output=True, text=True, timeout=5,
-                )
-                if result.returncode == 0:
-                    # "aur_pkg 1.2.3-4" -> "1.2.3-4"
-                    parts = result.stdout.strip().split(None, 1)
-                    if len(parts) > 1:
-                        aur_version = parts[1]
-            except (subprocess.TimeoutExpired, OSError):
-                pass
-        version_str = version_template.format(
-            sw_name=raw_name,
-            sw_version=raw_version,
-            xt_name=xt_name,
-            xt_version=xt_version,
-            xtversion_raw=raw_xtversion,
-            release=entry.get("version_release", ""),
-            aur_version=aur_version,
-        )
-        data["software_version"] = version_str
-
-    version_manual = entry.get("version_manual")
-    if version_manual and not data.get("software_version"):
-        data["software_version"] = version_manual
-
-    try:
-        from ucs_detect.accessories import _atomic_yaml_dump
         _atomic_yaml_dump(data, yaml_path, default_flow_style=False,
                           allow_unicode=True)
     except OSError:
@@ -595,7 +551,8 @@ def main():
             proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                 yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 temp_dir,
-                pause_exit=args.pause_exit)
+                pause_exit=args.pause_exit,
+                extra_args=_build_software_overrides(yaml_path, mixins))
 
             if launch_error:
                 results[sw_name] = (-4, launch_error)
@@ -662,12 +619,12 @@ def main():
                 results[sw_name] = (-99, str(exc))
                 print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)
                 failures.append((sw_name, -99, str(exc)))
+                if profile is not None:
+                    profile.stop()
                 if not args.continue_after_failure:
                     for f in future_map:
                         f.cancel()
                     break
-                if profile is not None:
-                    profile.stop()
                 continue
 
             if profile is not None:
@@ -687,7 +644,6 @@ def main():
                     break
             else:
                 print(f"[{name}] OK", flush=True)
-                _fixup_yaml(yaml_path, name, mixins, program)
                 run_kill_command(launch_cfg)
 
     # Profile graphs and resource scores are generated by

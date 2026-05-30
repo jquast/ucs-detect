@@ -221,7 +221,10 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         auto_version = terminal_results.get("software_version", "").strip()
 
         terminal_software = set_software_name or auto_name
-        terminal_version = set_software_version or auto_version
+        if set_software_version and auto_name.upper() == "VTE" and auto_version:
+            terminal_version = f"{set_software_version} (VTE/{auto_version})"
+        else:
+            terminal_version = set_software_version or auto_version
 
     start_time = time.monotonic()
 
