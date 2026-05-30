@@ -64,7 +64,11 @@ def main():
     cmd = build_command_from_yaml(args.yaml_file)
 
     if args.extra_args:
-        cmd.extend(args.extra_args)
+        extra = args.extra_args
+        if extra and extra[0] == "--":
+            extra = extra[1:]
+        if extra:
+            cmd.extend(extra)
 
     print(f"Running: {shlex.join(cmd)}")
 

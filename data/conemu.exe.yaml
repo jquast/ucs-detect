@@ -11,6 +11,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 4
 software_name: ConEmu
 software_version: 23.07.24
 system: Windows

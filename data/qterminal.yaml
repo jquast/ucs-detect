@@ -252,7 +252,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: QTerminal
-software_version: ''
+software_version: '2.2.1'
 system: Linux
 terminal_results:
   color_scheme: false

@@ -1,12 +1,13 @@
 ambiguous_width: 1
-datetime: 2026-05-25 03:16:17 UTC
+datetime: 2026-05-30 20:36:54 UTC
 environment:
   TERM: xterm
   TERM_PROGRAM: mintty
   TERM_PROGRAM_VERSION: 3.8.1
 height: 24
+preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 41.959487499999994
+seconds_elapsed: 26.702839799999992
 session_arguments:
   limit_category_time: 0
   limit_codepoints: 5000
@@ -14,6 +15,7 @@ session_arguments:
   limit_graphemes: 5000
   limit_graphemes_pct: 0
   stream: stderr
+  timeout_cps: 4
 software_name: mintty
 software_version: 3.8.1
 system: Windows
@@ -28,6 +30,7 @@ terminal_results:
     decslrm: 1;80
     decstbm: 1;24
     sgr: '0'
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 6
@@ -115,6 +118,10 @@ terminal_results:
       value: 0
       value_description: NOT_RECOGNIZED
   number_of_colors: 8
+  osc52_clipboard: false
+  osc52_detection:
+    da1_extension_52: false
+    xtgettcap_ms: false
   pixels_height: 0
   pixels_width: 0
   sixel: false

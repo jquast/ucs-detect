@@ -312,7 +312,10 @@ def main():
             skipped.append((d.software_name, "no width failures found"))
             continue
 
-        sw_display = mixins.get(d.software_name.lower(), {}).get("display_name", d.software_name)
+        entry = mixins.get(d.software_name.lower(), {})
+        if not entry:
+            entry = mixins.get(d.path.stem.lower(), {})
+        sw_display = entry.get("display_name", d.software_name)
         safe = safe_name(sw_display)
         unique_id = uuid.uuid4().hex[:8]
 
