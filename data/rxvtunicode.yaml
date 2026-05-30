@@ -60,7 +60,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: urxvt
-software_version: ''
+software_version: '9.31'
 system: Linux
 terminal_results:
   background_color_hex: '#ffffffffffff'

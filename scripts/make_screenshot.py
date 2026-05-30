@@ -135,22 +135,19 @@ def capture_window(window_id, output_path):
 def _is_blank(path):
     """Return True if *path* is mostly blank/white."""
     from PIL import Image
-    try:
-        img = Image.open(path)
-        if img.mode != "RGB":
-            img = img.convert("RGB")
-        pixels = list(img.get_flattened_data())
-        white = sum(1 for p in pixels if p[0] > 240 and p[1] > 240 and p[2] > 240)
-        if white / len(pixels) > 0.95:
+    img = Image.open(path)
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    pixels = list(img.get_flattened_data())
+    white = sum(1 for p in pixels if p[0] > 240 and p[1] > 240 and p[2] > 240)
+    if white / len(pixels) > 0.95:
+        return True
+    # All-black is only blank in Docker (Xvfb may produce black frames)
+    if os.path.exists("/.dockerenv"):
+        black = sum(1 for p in pixels if p[0] < 15 and p[1] < 15 and p[2] < 15)
+        if black / len(pixels) > 0.95:
             return True
-        # All-black is only blank in Docker (Xvfb may produce black frames)
-        if os.path.exists("/.dockerenv"):
-            black = sum(1 for p in pixels if p[0] < 15 and p[1] < 15 and p[2] < 15)
-            if black / len(pixels) > 0.95:
-                return True
-        return False
-    except Exception:
-        return False
+    return False
 
 
 def _imagemagick_trim(src_path, dst_path):
@@ -286,16 +283,10 @@ def display_and_capture(term, wchars, expected_width, measured_width,
 
     # Drain stale input (e.g. from does_text_sizing probe) so the CPR
     # response we read is genuinely our own.
-    try:
-        term.flushinp(timeout=0.05)
-    except Exception:
-        pass
+    term.flushinp(timeout=0.05)
 
     # Sync: wait for terminal to finish processing escape sequences
-    try:
-        term.get_location(timeout=2)
-    except Exception:
-        pass
+    term.get_location(timeout=2)
 
     # Settle: nudge a repaint and wait for the framebuffer to catch up.
     # CPR confirms the terminal parsed our bytes, but pixel rendering is async.
@@ -307,19 +298,13 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     time.sleep(0.15)
 
     # Second sync for slow compositors (weston, Xwayland)
-    try:
-        term.get_location(timeout=1)
-    except Exception:
-        pass
+    term.get_location(timeout=1)
     time.sleep(0.1)
 
     for _ in range(5):
-        try:
-            capture_window(window_id, output_path)
-            if not _is_blank(output_path):
-                break
-        except Exception:
-            pass
+        capture_window(window_id, output_path)
+        if not _is_blank(output_path):
+            break
         time.sleep(0.5)
 
     sys.stdout.write("\x1b[?25h")

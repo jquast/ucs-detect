@@ -15,8 +15,8 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
   timeout_cps: 1.0
-software_name: VTE
-software_version: '7600'
+software_name: GNOME Terminal
+software_version: 3.50.1 (VTE/7600)
 system: Linux
 terminal_results:
   background_color_hex: '#171714142121'

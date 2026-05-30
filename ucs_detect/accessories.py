@@ -103,11 +103,8 @@ def discover_yamls(target_system, data_dir=None):
     for yaml_path in sorted(data_dir.glob("*.yaml")):
         if yaml_path.name == "terminals.yaml":
             continue
-        try:
-            with open(yaml_path) as f:
-                data = yaml.safe_load(f) or {}
-        except (OSError, yaml.YAMLError):
-            continue
+        with open(yaml_path) as f:
+            data = yaml.safe_load(f) or {}
 
         system = data.get("system", "")
         if system.lower() != target_lower:
@@ -124,7 +121,9 @@ def get_launch_config(sw_name, mixins, is_docker=None):
         is_docker = os.path.exists("/.dockerenv")
     key = sw_name.lower()
     raw_entry = mixins.get(key, {})
-    launch = raw_entry.get("launch", {}) if raw_entry else {}
+    launch = raw_entry.get("launch") if raw_entry else None
+    if launch is None:
+        launch = {}
 
     if is_docker and raw_entry.get("launch_docker"):
         launch = raw_entry["launch_docker"]
@@ -313,18 +312,91 @@ def inject_keys(window_id, keys):
 def _atomic_yaml_dump(data, path, **dump_kwargs):
     """Write *data* as YAML to *path* atomically."""
     tmp_path = str(path) + ".tmp"
-    try:
-        with open(tmp_path, "w", encoding="utf-8") as f:
-            yaml.safe_dump(data, f, **dump_kwargs)
-            f.flush()
-            os.fsync(f.fileno())
-        os.rename(tmp_path, path)
-    except Exception:
-        try:
-            os.unlink(tmp_path)
-        except OSError:
-            pass
-        raise
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        yaml.safe_dump(data, f, **dump_kwargs)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp_path, path)
+
+
+def fixup_yaml(yaml_path, sw_name, mixins, program):
+    """
+    Fix up software_name in YAML from raw XTVERSION values to display names.
+
+    When ucs-detect runs without operator override, the auto-detected ``software_name`` is the raw
+    XTVERSION response (e.g. ``VTE`` for VTE-based terminals).  This function reads the YAML and
+    corrects ``software_name`` to the display name from ``terminals.yaml``.  If a
+    ``version_template`` is present, the ``software_version`` is also composed.
+
+    When auto-detection yields no name at all, *program* (the launch binary basename from
+    ``terminals.yaml``) is used as the fallback.
+    """
+    key = sw_name.lower()
+    entry = mixins.get(key, {})
+    if not entry:
+        stem_key = yaml_path.stem.lower()
+        if stem_key != key:
+            entry = mixins.get(stem_key, {})
+    display_name = entry.get("display_name")
+    version_template = entry.get("version_template")
+
+    with open(yaml_path) as f:
+        data = yaml.safe_load(f)
+    if data is None:
+        return
+
+    current_name = data.get("software_name", "")
+
+    if display_name:
+        data["software_name"] = display_name
+    elif not current_name:
+        data["software_name"] = os.path.basename(program) if program else sw_name
+
+    if version_template:
+        tr = data.get("terminal_results") or {}
+        raw_name = tr.get("software_name", "")
+        raw_version = tr.get("software_version", "")
+        raw_xtversion = tr.get("xtversion_raw", "")
+        if raw_xtversion:
+            parts = raw_xtversion.split(None, 1)
+            xt_name = parts[0] if parts else ""
+            xt_version = parts[1] if len(parts) > 1 else raw_version
+        else:
+            xt_name = raw_name
+            xt_version = raw_version
+        aur_version = ""
+        aur_pkg = entry.get("aur_package")
+        if aur_pkg:
+            try:
+                result = subprocess.run(
+                    ["pacman", "-Q", aur_pkg],
+                    capture_output=True, text=True, timeout=5,
+                    check=False,
+                )
+                if result.returncode == 0:
+                    parts = result.stdout.strip().split(None, 1)
+                    if len(parts) > 1:
+                        aur_version = parts[1]
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+        version_str = version_template.format(
+            sw_name=raw_name,
+            sw_version=raw_version,
+            xt_name=xt_name,
+            xt_version=xt_version,
+            xtversion_raw=raw_xtversion,
+            release=entry.get("version_release", ""),
+            aur_version=aur_version,
+        )
+        if version_str:
+            data["software_version"] = version_str
+
+    version_manual = entry.get("version_manual")
+    if version_manual and not data.get("software_version"):
+        data["software_version"] = version_manual
+
+    _atomic_yaml_dump(data, yaml_path, default_flow_style=False,
+                      allow_unicode=True)
 
 
 _IS_DOCKER = os.path.exists("/.dockerenv")
@@ -360,22 +432,16 @@ def run_kill_command(launch_cfg):
     kill_cmd = launch_cfg.get("kill_command")
     if not kill_cmd:
         return
-    try:
-        subprocess.run(kill_cmd, timeout=5, capture_output=True, check=False)
-    except (subprocess.TimeoutExpired, OSError):
-        pass
+    subprocess.run(kill_cmd, timeout=5, capture_output=True, check=False)
 
 
 def docker_image_exists(image="ucs-detect:latest"):
     """Check if the Docker image is already built."""
-    try:
-        result = subprocess.run(
-            ["docker", "images", "-q", image],
-            capture_output=True, text=True, timeout=10, check=False,
-        )
-        return bool(result.stdout.strip())
-    except (subprocess.TimeoutExpired, OSError):
-        return False
+    result = subprocess.run(
+        ["docker", "images", "-q", image],
+        capture_output=True, text=True, timeout=10, check=False,
+    )
+    return bool(result.stdout.strip())
 
 
 def docker_build(dockerfile, project_dir, image="ucs-detect:latest"):

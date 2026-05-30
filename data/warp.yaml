@@ -227,7 +227,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: Warp
-software_version: ''
+software_version: 'Oz v0.2026.05.20.09.21.stable_03'
 system: Linux
 terminal_results:
   background_color_hex: '#000000000000'
