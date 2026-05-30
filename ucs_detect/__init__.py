@@ -1199,6 +1199,12 @@ def _apply_rerun_yaml(results):
         data = yaml.safe_load(fin)
 
     session_args = data.get('session_arguments', {})
+
+    # Preserve existing software_name/version from YAML when not overridden via CLI
+    if not results.get("set_software_name"):
+        results["set_software_name"] = data.get("software_name")
+    if not results.get("set_software_version"):
+        results["set_software_version"] = data.get("software_version")
     yaml_to_cli = {
         'stream': 'stream',
         'limit_codepoints': 'limit_codepoints',
