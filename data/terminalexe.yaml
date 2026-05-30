@@ -1,19 +1,20 @@
 ambiguous_width: 1
-datetime: 2026-05-25 03:16:29 UTC
+datetime: 2026-05-30 20:37:46 UTC
 environment: {}
 height: 30
+preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 124.10370629999998
+seconds_elapsed: 83.22359269999993
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
-  timeout_cps: 4
   stream: stderr
-software_name: Terminal.exe
-software_version: 1.23.260121001
+  timeout_cps: 4
+software_name: WindowsTerminal
+software_version: 1.24.11321.0
 system: Windows
 terminal_results:
   background_color_hex: '#0c0c0c0c0c0c'
@@ -34,6 +35,7 @@ terminal_results:
     decslrm: 1;120
     decstbm: 1;30
     sgr: 0;38:2::12:12:12
+  decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 4
@@ -130,13 +132,14 @@ terminal_results:
       value_description: NOT_RECOGNIZED
   number_of_colors: 16777216
   osc52_clipboard: true
+  osc52_detection:
+    da1_extension_52: true
+    xtgettcap_ms: false
   pixels_height: 600
   pixels_width: 1200
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
-  software_name: Terminal.exe
-  software_version: 1.23.260121001
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
