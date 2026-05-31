@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-29 19:15:04 UTC
+datetime: 2026-05-30 22:06:54 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -7,10 +7,10 @@ environment:
   TERM_PROGRAM_VERSION: 3.4.1
 height: 38
 preferred_encoding: UTF-8
-python_version: 3.14.4
-seconds_elapsed: 1936.313317498003
+python_version: 3.13.13
+seconds_elapsed: 1990.1318319640122
 session_arguments:
-  limit_category_time: 900.0
+  limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0

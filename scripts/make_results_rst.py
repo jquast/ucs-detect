@@ -504,11 +504,8 @@ def process_resource_data():
         if fname == "terminals.yaml":
             continue
         yaml_path = os.path.join(DATA_PATH, fname)
-        try:
-            with open(yaml_path) as f:
-                data = yaml.load(f, Loader=SafeLoader) or {}
-        except (OSError, yaml.YAMLError):
-            continue
+        with open(yaml_path) as f:
+            data = yaml.load(f, Loader=SafeLoader) or {}
         rp = data.get("resource_profile") or {}
         elapsed = rp.get("elapsed_s", [])
         cpu = rp.get("cpu_pct", [])
@@ -746,113 +743,109 @@ def make_score_table():
     #     python ucs_detect/__init__.py --save-yaml data/output.yaml --limit-codepoints=1000 --limit-words=1000 --limit-errors=100
     #
     yaml_path = None
-    try:
-        for yaml_path in [
-            os.path.join(DATA_PATH, fname)
-            for fname in os.listdir(DATA_PATH)
-            if fname.endswith(".yaml") and not fname.startswith("_")
-            and fname != "terminals.yaml"
-            and os.path.isfile(os.path.join(DATA_PATH, fname))
-        ]:
-            with open(yaml_path, "r") as f:
-                data = yaml.load(f, Loader=SafeLoader)
+    for yaml_path in [
+        os.path.join(DATA_PATH, fname)
+        for fname in os.listdir(DATA_PATH)
+        if fname.endswith(".yaml") and not fname.startswith("_")
+        and fname != "terminals.yaml"
+        and os.path.isfile(os.path.join(DATA_PATH, fname))
+    ]:
+        with open(yaml_path, "r") as f:
+            data = yaml.load(f, Loader=SafeLoader)
 
-            # determine score for 'WIDE',
-            _score_wide = score_wide(data)
+        # determine score for 'WIDE',
+        _score_wide = score_wide(data)
 
-            # 'EMOJI ZWJ',
-            _score_zwj = score_zwj(data)
+        # 'EMOJI ZWJ',
+        _score_zwj = score_zwj(data)
 
-            # 'SRI' (Standalone Regional Indicators),
-            _score_sri = score_sri(data)
+        # 'SRI' (Standalone Regional Indicators),
+        _score_sri = score_sri(data)
 
-            # 'SFZ' (Standalone Fitzpatrick),
-            _score_sfz = score_sfz(data)
+        # 'SFZ' (Standalone Fitzpatrick),
+        _score_sfz = score_sfz(data)
 
-            # 'RI' (Regional Indicator Flags),
-            _score_ri = score_ri(data)
+        # 'RI' (Regional Indicator Flags),
+        _score_ri = score_ri(data)
 
-            # 'EMOJI VS-16',
-            _vs16_base = data["test_results"].get("emoji_vs16_results", {})
-            if _vs16_base and "9.0.0" in _vs16_base:
-                score_emoji_vs16 = _vs16_base["9.0.0"]["pct_success"] / 100
-            else:
-                score_emoji_vs16 = 0.0
+        # 'EMOJI VS-16',
+        _vs16_base = data["test_results"].get("emoji_vs16_results", {})
+        if _vs16_base and "9.0.0" in _vs16_base:
+            score_emoji_vs16 = _vs16_base["9.0.0"]["pct_success"] / 100
+        else:
+            score_emoji_vs16 = 0.0
 
-            # 'EMOJI VS-15',
-            # Support both new (emoji_vs15_results) and old (emoji_vs15_type_a_results) formats
-            _vs15_base = data["test_results"].get("emoji_vs15_results",  # noqa: E127
-                                                   data["test_results"].get("emoji_vs15_type_a_results"))  # noqa: E127
-            if _vs15_base and "9.0.0" in _vs15_base:
-                score_emoji_vs15 = _vs15_base["9.0.0"]["pct_success"] / 100
-            else:
-                score_emoji_vs15 = 0.0
+        # 'EMOJI VS-15',
+        # Support both new (emoji_vs15_results) and old (emoji_vs15_type_a_results) formats
+        _vs15_base = data["test_results"].get("emoji_vs15_results",  # noqa: E127
+                                               data["test_results"].get("emoji_vs15_type_a_results"))  # noqa: E127
+        if _vs15_base and "9.0.0" in _vs15_base:
+            score_emoji_vs15 = _vs15_base["9.0.0"]["pct_success"] / 100
+        else:
+            score_emoji_vs15 = 0.0
 
-            # Language Support,
-            score_language = score_lang(data)
+        # Language Support,
+        score_language = score_lang(data)
 
-            # DEC Modes Support,
-            _score_dec_modes = score_dec_modes(data)
+        # DEC Modes Support,
+        _score_dec_modes = score_dec_modes(data)
 
-            # Resource score, negate raw cost so higher = better for scaling
-            _cost = resource_cost(data)
-            _score_resource = -_cost if not math.isnan(_cost) else float('NaN')
-            _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
+        # Resource score, negate raw cost so higher = better for scaling
+        _cost = resource_cost(data)
+        _score_resource = -_cost if not math.isnan(_cost) else float('NaN')
+        _elapsed_seconds = data.get("seconds_elapsed", float('NaN'))
 
-            # Sixel support, binary score based on DA1 device attributes response
-            _sixel_support = data.get("terminal_results", {}).get("sixel", False)
-            _score_sixel = 1.0 if _sixel_support else 0.0
+        # Sixel support, binary score based on DA1 device attributes response
+        _sixel_support = data.get("terminal_results", {}).get("sixel", False)
+        _score_sixel = 1.0 if _sixel_support else 0.0
 
-            # Features score, fraction of notable features supported
-            _score_features = score_features(data)
+        # Features score, fraction of notable features supported
+        _score_features = score_features(data)
 
-            # Graphics protocol score, 1.0 modern, 0.5 legacy, 0.0 none
-            _score_graphics = score_graphics(data)
+        # Graphics protocol score, 1.0 modern, 0.5 legacy, 0.0 none
+        _score_graphics = score_graphics(data)
 
-            _sw_name = data.get("software_name", data.get('software'))
-            assert _sw_name, f"empty software_name in {yaml_path}"
+        _sw_name = data.get("software_name", data.get('software'))
+        assert _sw_name, f"empty software_name in {yaml_path}"
 
-            tr = data.get("terminal_results") or {}
-            ts = tr.get("text_sizing", {})
-            has_text_sizing = bool(ts.get("width") or ts.get("scale"))
-            if has_text_sizing:
-                score_language = 1.0
-                _score_wide = 1.0
-                _score_zwj = 1.0
-                score_emoji_vs16 = 1.0
-                score_emoji_vs15 = 1.0
-                _score_sri = 1.0
-                _score_sfz = 1.0
-                _score_ri = 1.0
+        tr = data.get("terminal_results") or {}
+        ts = tr.get("text_sizing", {})
+        has_text_sizing = bool(ts.get("width") or ts.get("scale"))
+        if has_text_sizing:
+            score_language = 1.0
+            _score_wide = 1.0
+            _score_zwj = 1.0
+            score_emoji_vs16 = 1.0
+            score_emoji_vs15 = 1.0
+            _score_sri = 1.0
+            _score_sfz = 1.0
+            _score_ri = 1.0
 
-            score_table.append(
-                dict(
-                    terminal_software_name=_sw_name,
-                    terminal_software_version=data.get("software_version", data.get('version')),
-                    os_system=data["system"],
-                    score_emoji_vs16=score_emoji_vs16,
-                    score_emoji_vs15=score_emoji_vs15,
-                    score_sri=_score_sri,
-                    score_sfz=_score_sfz,
-                    score_ri=_score_ri,
-                    score_dec_modes=_score_dec_modes,
-                    score_resource=_score_resource,
-                    elapsed_seconds=_elapsed_seconds,
-                    score_language=score_language,
-                    score_wide=_score_wide,
-                    score_zwj=_score_zwj,
-                    score_sixel=_score_sixel,
-                    sixel_support=_sixel_support,
-                    score_features=_score_features,
-                    score_graphics=_score_graphics,
-                    has_text_sizing=has_text_sizing,
-                    data=data,
-                    fname=os.path.basename(yaml_path),
-                )
+        score_table.append(
+            dict(
+                terminal_software_name=_sw_name,
+                terminal_software_version=data.get("software_version", data.get('version')),
+                os_system=data["system"],
+                score_emoji_vs16=score_emoji_vs16,
+                score_emoji_vs15=score_emoji_vs15,
+                score_sri=_score_sri,
+                score_sfz=_score_sfz,
+                score_ri=_score_ri,
+                score_dec_modes=_score_dec_modes,
+                score_resource=_score_resource,
+                elapsed_seconds=_elapsed_seconds,
+                score_language=score_language,
+                score_wide=_score_wide,
+                score_zwj=_score_zwj,
+                score_sixel=_score_sixel,
+                sixel_support=_sixel_support,
+                score_features=_score_features,
+                score_graphics=_score_graphics,
+                has_text_sizing=has_text_sizing,
+                data=data,
+                fname=os.path.basename(yaml_path),
             )
-    except Exception:
-        print(f"Error in yaml_path={yaml_path}", file=sys.stderr)
-        raise
+        )
 
     # Normalize DEC modes for display (not used in final score)
     valid_dec_modes = [e["score_dec_modes"] for e in score_table
@@ -2166,6 +2159,18 @@ def display_performance_section(score_table):
         print()
         return
 
+    print("  .. note::")
+    print()
+    print("     Test duration and resources used is not an indicator of software quality.")
+    print()
+    print("     We make a best effort to track CPU and System Memory for linux systems,")
+    print("     only. Docker and cgroups are used to enforce a 2 CPU limit but it is not")
+    print("     reliable.  Many terminals use GPU memory not tracked.  Some terminals")
+    print("     perform differently under docker. Further, some have complex process")
+    print("     groups, chrome, or OS-integration of shared resources that may not")
+    print("     be accurately reflected here.")
+    print()
+    print()
     print("The Resources score combines CPU, memory, and runtime into a single "
           "0-100 metric.  See per-terminal pages for calculation details.")
     print()

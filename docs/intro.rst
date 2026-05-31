@@ -21,13 +21,13 @@ with adjusting Fitzpatrick variations, and emoji flags are represented by region
 country code.  They may be also displayed without combined emoji and have a "standalone"
 representation.
 
-Terminal applications must determine the display width of these characters, the Unicode Standard is
-without specific definitions for terminals, many stand behind without any grapheme support at all,
-conforming to pre-emoji era POSIX standard definitions and sans-grapheme wcwidth(3) system
-libraries.
+Terminal applications must determine the displayed width of these characters, but the Unicode
+Standards are non-specific about terminals leaving much for interpretation.  Even well-meaning
+terminals who report to support "Grapheme Support" by DEC Private Mode 2027 have varying
+interpretations of the Unicode Standards.
 
-Further, even well-meaning terminals who report to support "Graphemes" DEC Private Mode 2027 have
-varying interpretations of Unicode Standards.
+Many terminal emulators have stood behind without any grapheme or emoji support at all, conforming
+to pre-emoji era POSIX standard definitions of the wcwidth(3) system libraries.
 
 Solution
 --------

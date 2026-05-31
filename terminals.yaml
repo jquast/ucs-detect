@@ -231,7 +231,7 @@ terminals:
   st-luke:
     homepage: https://github.com/LukeSmithxyz/st
     display_name: st-luke
-    description: This is based on Luke Smith xyz's fork of st
+    description: This is Luke Smith's fork of suckless simple terminal, st.
     version_manual: 0.8.5
     launch:
       program: /usr/local/bin/st-luke

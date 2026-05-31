@@ -315,18 +315,11 @@ def inject_keys(window_id, keys):
 def _atomic_yaml_dump(data, path, **dump_kwargs):
     """Write *data* as YAML to *path* atomically."""
     tmp_path = str(path) + ".tmp"
-    try:
-        with open(tmp_path, "w", encoding="utf-8") as f:
-            yaml.safe_dump(data, f, **dump_kwargs)
-            f.flush()
-            os.fsync(f.fileno())
-        os.replace(tmp_path, path)
-    except Exception:
-        try:
-            os.unlink(tmp_path)
-        except OSError:
-            pass
-        raise
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        yaml.safe_dump(data, f, **dump_kwargs)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp_path, path)
 
 
 def fixup_yaml(yaml_path, sw_name, mixins, program):
@@ -350,11 +343,8 @@ def fixup_yaml(yaml_path, sw_name, mixins, program):
     display_name = entry.get("display_name")
     version_template = entry.get("version_template")
 
-    try:
-        with open(yaml_path) as f:
-            data = yaml.safe_load(f)
-    except (OSError, yaml.YAMLError):
-        return
+    with open(yaml_path) as f:
+        data = yaml.safe_load(f)
     if data is None:
         return
 
@@ -408,11 +398,8 @@ def fixup_yaml(yaml_path, sw_name, mixins, program):
     if version_manual and not data.get("software_version"):
         data["software_version"] = version_manual
 
-    try:
-        _atomic_yaml_dump(data, yaml_path, default_flow_style=False,
-                          allow_unicode=True)
-    except OSError:
-        pass
+    _atomic_yaml_dump(data, yaml_path, default_flow_style=False,
+                      allow_unicode=True)
 
 
 _IS_DOCKER = os.path.exists("/.dockerenv")

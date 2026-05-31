@@ -134,10 +134,49 @@ class ProfileSession:
                 self._proc_cache.pop(proc.pid, None)
         return cpu_total, rss_total / (1024 * 1024)
 
+    @staticmethod
+    def _find_all_by_name(name: str):
+        """Yield all processes (excluding current) whose name matches *name*."""
+        # 3rd party
+        import psutil  # type: ignore[import-untyped]
+        my_pid = os.getpid()
+        for proc in psutil.process_iter(["name", "pid"]):
+            try:
+                if proc.info["name"] == name and proc.info["pid"] != my_pid:
+                    yield proc
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+
+    def _discover_all_recovered_processes(self, prog_basename: str) -> None:
+        """After recovery, find all processes matching *prog_basename* and their children."""
+        # 3rd party
+        import psutil  # type: ignore[import-untyped]
+        seen_pids = {p.pid for p in self._extra_procs if p.pid in self._proc_cache}
+        for proc in self._find_all_by_name(prog_basename):
+            if proc.pid in seen_pids or proc.pid in self._proc_cache:
+                continue
+            try:
+                proc.cpu_percent(interval=None)
+                self._proc_cache[proc.pid] = proc
+                self._extra_procs.append(proc)
+                for child in proc.children(recursive=True):
+                    if child.pid in self._proc_cache:
+                        continue
+                    try:
+                        child.cpu_percent(interval=None)
+                        self._proc_cache[child.pid] = child
+                        self._extra_procs.append(child)
+                    except (psutil.NoSuchProcess, psutil.AccessDenied):
+                        pass
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                pass
+
     def _discover_extra_processes(self) -> None:
         """Try to find any still-undiscovered extra processes by name."""
         # 3rd party
         import psutil  # type: ignore[import-untyped]
+        if self._recovered and self._program:
+            self._discover_all_recovered_processes(os.path.basename(self._program))
         found_names = set()
         for p in self._extra_procs:
             if p.pid not in self._proc_cache:
@@ -192,7 +231,7 @@ class ProfileSession:
 
         while not self._stop_event.is_set():
             elapsed = time.monotonic() - t0
-            if self._extra:
+            if self._extra or self._recovered:
                 self._discover_extra_processes()
             try:
                 cpu, rss_mb = self._sample_process_tree(root)
