@@ -287,6 +287,13 @@ def maybe_determine_software(term, writer, timeout=1.0):
         if response.startswith('>|'):
             response = response[2:]
 
+        # Strip non-printable characters that leak from terminal
+        # responses (e.g. ESC \ and ESC BEL DCS/OSC string terminators).
+        while response.endswith('\x1b\\') or response.endswith('\x1b\x07'):
+            response = response[:-2]
+        response = ''.join(c for c in response if c.isprintable())
+        response = response.rstrip('\\')
+
         # check for DA3-style ASCII-encoded name (only SyncTERM/CTerm
         # is known to respond this way)
         decoded = _try_decode_da3_name(response)
