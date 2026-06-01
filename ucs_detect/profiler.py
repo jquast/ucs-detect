@@ -106,9 +106,8 @@ class ProfileSession:
 
         try:
             raw_children = root.children(recursive=True)
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
+        except psutil.AccessDenied:
             return 0.0, 0.0
-
         procs = [root]
         for child in raw_children:
             cached = self._get_or_prime_child(child)
