@@ -84,7 +84,8 @@ def _build_software_overrides(yaml_path, mixins):
     args = []
     display_name = entry.get("display_name")
     if display_name:
-        args.extend(["--", "--set-software-name", display_name])
+        args.append("--")
+        args.extend(["--set-software-name", display_name])
 
     # Resolve version: version_template first, version_manual as fallback
     version_str = ""
@@ -112,6 +113,8 @@ def _build_software_overrides(yaml_path, mixins):
     if not version_str:
         version_str = str(entry.get("version_manual", ""))
     if version_str:
+        if not args:
+            args.append("--")
         args.extend(["--set-software-version", version_str])
     return args
 
