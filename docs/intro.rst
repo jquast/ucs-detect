@@ -225,9 +225,8 @@ Unfortunately, many terminals have to be excluded from docker:
 - Cannot reliably set geometry
 - Tests with ucs-detect fine, but cannot screenshot for any reason
 
-This requires installing those terminals on the developer's host system.
-
-Use the 'system' targets to run these:
+This requires installing those terminals on the developer's host system.  Use the 'system' targets
+to run these:
 
 .. code-block:: bash
 
