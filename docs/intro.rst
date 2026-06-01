@@ -297,7 +297,7 @@ marks across diverse scripts.
 History
 -------
 
-- 2.2.0 (2026-05-29): Enrich source repository with more tools, like ``make-screenshots.py``,
+- 2.2.0 (2026-06-01): Enrich source repository with more tools, like ``make-screenshots.py``,
   expanded XTGETTCAP detection and results table, record XTVERSION, TERM_PROGRAM directly. Record
   cpu and memory resource usage, and introduce ``run-series.py``, used with or without docker for
   batch testing with parallel execution (Linux only).
