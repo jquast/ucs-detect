@@ -296,12 +296,11 @@ marks across diverse scripts.
 History
 -------
 
-- 2.2.1 (2026-06-01): Bugfix 'ENQ' response capture (PuTTY) and profiling
-
-- 2.2.0 (2026-06-01): Enrich source repository with more tools, like ``make-screenshots.py``,
-  expanded XTGETTCAP detection and results table, record XTVERSION, TERM_PROGRAM directly. Record
-  cpu and memory resource usage, and introduce ``run-series.py``, used with or without docker for
-  batch testing with parallel execution (Linux only).
+- 2.2.1 (2026-06-01): Bugfix 'ENQ' response capture (PuTTY) and profiling Enrich source repository
+  with more tools, like ``make-screenshots.py``, expanded XTGETTCAP detection and results table,
+  record XTVERSION, TERM_PROGRAM directly. Record cpu and memory resource usage, and introduce
+  ``run-series.py``, used with or without docker for batch testing with parallel execution (Linux
+  only).
 
 - 2.1.0 (2026-04-17): Add more testing for standalone and flags (RI), kitty text sizing
   protocol, make ucs-browser compatible with older python versions, and some changes
