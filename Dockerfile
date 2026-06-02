@@ -92,16 +92,11 @@ RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
     hyper-bin \
     && pacman -Scc --noconfirm
 
-# build st-luke from AUR source
+# install st (suckless terminal) from AUR
 RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
     --mount=type=cache,target=/home/ucs/.cache/yay,uid=1000,gid=1000 \
     --mount=type=cache,target=/var/cache/pacman/pkg \
-    cd /tmp && \
-    sudo -u ucs git clone https://aur.archlinux.org/st-luke-git.git && \
-    cd st-luke-git && \
-    sudo -u ucs makepkg -s --noconfirm && \
-    cp /tmp/st-luke-git/src/st-luke/st /usr/local/bin/st-luke && \
-    rm -rf /tmp/st-luke-git
+    sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake st
 
 # all terminal emulators available in Arch official repos
 RUN --mount=type=cache,target=/var/cache/pacman/pkg \

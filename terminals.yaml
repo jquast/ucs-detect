@@ -228,13 +228,12 @@ terminals:
     launch:
       skip: true
     skip_reason: My evaluation license has expired
-  st-luke:
-    homepage: https://github.com/LukeSmithxyz/st
-    display_name: st-luke
-    description: This is Luke Smith's fork of suckless simple terminal, st.
-    version_manual: 0.8.5
+  st:
+    homepage: https://st.suckless.org/
+    display_name: st
+    version_manual: 0.9.2
     launch:
-      program: /usr/local/bin/st-luke
+      program: st
       args: [-f, Unifont:pixelsize=16, -g, 80x24, -e]
   syncterm:
     homepage: https://syncterm.bbsdev.net/
