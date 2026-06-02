@@ -272,20 +272,27 @@ def maybe_determine_software(term, writer, timeout=1.0):
     # flushinp() may hang on non-console handles (e.g. mintty PTY).
     if sys.platform == 'win32':
         return result
-    if term.stream:
-        term.stream.write('\x05')
-        term.stream.flush()
-    else:
-        sys.stderr.write('\x05')
-        sys.stderr.flush()
-
-    response = _read_dcs_or_plain_response(term, timeout=timeout)
+    with term.cbreak():
+        if term.stream:
+            term.stream.write('\x05')
+            term.stream.flush()
+        else:
+            sys.stderr.write('\x05')
+            sys.stderr.flush()
+        response = _read_dcs_or_plain_response(term, timeout=timeout)
     # Clean up: some terminals (e.g. SyncTERM) display ENQ as a
     # visible CP437 glyph (♣).  Overwrite it with a space.
     writer('\r' + ' ' * (term.width - 1) + '\r')
     if response:
         if response.startswith('>|'):
             response = response[2:]
+
+        # Strip non-printable characters that leak from terminal
+        # responses (e.g. ESC \ and ESC BEL DCS/OSC string terminators).
+        while response.endswith('\x1b\\') or response.endswith('\x1b\x07'):
+            response = response[:-2]
+        response = ''.join(c for c in response if c.isprintable())
+        response = response.rstrip('\\')
 
         # check for DA3-style ASCII-encoded name (only SyncTERM/CTerm
         # is known to respond this way)

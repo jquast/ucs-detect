@@ -1579,7 +1579,7 @@ def _detect_osc52_methods(data):
 def _detect_id_methods(data):
     """Determine which methods can identify the terminal software.
 
-    Returns ``(xt_has, tn_unique, tp_has, term_has)`` where *tn_unique* is True
+    Returns ``(xt_has, tn_unique, tp_has, term_has, enq_has)`` where *tn_unique* is True
     when XTGETTCAP ``TN`` capability returns a distinctive (non-generic) name.
     """
     if "data" in data:
@@ -1591,6 +1591,7 @@ def _detect_id_methods(data):
     tp_has = sm == "TERM_PROGRAM" or bool(env.get("TERM_PROGRAM"))
     term_val = env.get("TERM", "")
     term_has = bool(term_val) and term_val not in ("xterm", "xterm-256color", "unknown")
+    enq_has = sm == "ENQ"
 
     xt = tr.get("xtgettcap", {})
     caps = xt.get("capabilities", {}) if xt.get("supported") else {}
@@ -1598,7 +1599,7 @@ def _detect_id_methods(data):
     tn_unique = bool(tn_val) and tn_val.lower() not in (
         "xterm", "xterm-256color", "unknown", "")
 
-    return xt_has, tn_unique, tp_has, term_has
+    return xt_has, tn_unique, tp_has, term_has, enq_has
 
 
 def _tn_unique_from_tr(tr):
@@ -1768,8 +1769,8 @@ def display_features_table(score_table):
             (xt_has or dq_has or ct_has) if tested else None,
             sw_name, "_truecolor")
 
-        # Terminal Identification (XTVERSION, XTGETTCAP TN, or TERM_PROGRAM)
-        id_xt, id_tn, id_tp, id_term = _detect_id_methods(entry)
+        # Terminal Identification (XTVERSION, XTGETTCAP TN, TERM_PROGRAM, or ENQ)
+        id_xt, id_tn, id_tp, id_term, id_enq = _detect_id_methods(entry)
         row["Identification"] = _capability_yes_no(
             (id_xt or id_tn or id_tp) if tested else None,
             sw_name, "_identification")
@@ -1882,9 +1883,9 @@ def display_id_table(score_table, terminal_mixins):
     """Display a terminal identification methods comparison table."""
     display_title("Terminal Identification", 2)
     print("This table shows which methods can be used to identify the")
-    print("terminal software name and version.  XTVERSION and")
-    print("XTGETTCAP ``TN`` are active escape sequence queries (work over")
-    print("SSH).  TERM_PROGRAM and TERM are environment variables;")
+    print("terminal software name and version.  XTVERSION, XTGETTCAP")
+    print("``TN``, and ``ENQ`` are active escape sequence queries (work")
+    print("over SSH).  TERM_PROGRAM and TERM are environment variables;")
     print("TERM_PROGRAM is not forwarded over SSH without ``SendEnv`` /")
     print("``AcceptEnv`` configuration, while TERM is (though some")
     print("protocols such as Serial do not forward TERM).")
@@ -1900,13 +1901,13 @@ def display_id_table(score_table, terminal_mixins):
         tr = entry["data"].get("terminal_results") or {}
         tested = bool(tr)
 
-        xt_has, tn_unique, tp_has, term_has = _detect_id_methods(entry)
+        xt_has, tn_unique, tp_has, term_has, enq_has = _detect_id_methods(entry)
         if _is_subterminal(sw_name):
             term_has = False
 
         row = {"Terminal": make_outbound_hyperlink(sw_name, sw_name + "_identification")}
 
-        has_ssh_method = xt_has or tn_unique
+        has_ssh_method = xt_has or tn_unique or enq_has
 
         row["XTVERSION"] = _capability_yes_no(
             xt_has if tested else None, sw_name, "_identification")
@@ -1914,6 +1915,10 @@ def display_id_table(score_table, terminal_mixins):
         row["XTGETTCAP TN"] = _capability_yes_no(
             tn_unique if tested else None, sw_name, "_identification",
             contested=has_ssh_method and not tn_unique)
+
+        row["ENQ"] = _capability_yes_no(
+            enq_has if tested else None, sw_name, "_identification",
+            contested=has_ssh_method and not enq_has)
 
         if has_ssh_method:
             row["TERM_PROGRAM"] = _capability_yes_no(
@@ -1952,6 +1957,7 @@ def display_id_summary_bullets(score_table, terminal_mixins):
 
     xtversion = []
     tn_only = []
+    enq_only = []
     term_program_only = []
     term_only = []
     unidentifiable = []
@@ -1959,7 +1965,7 @@ def display_id_summary_bullets(score_table, terminal_mixins):
     total = len(score_table)
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
-        xt_has, tn_unique, tp_has, term_has = _detect_id_methods(entry)
+        xt_has, tn_unique, tp_has, term_has, enq_has = _detect_id_methods(entry)
         if _is_subterminal(sw_name):
             term_has = False
 
@@ -1967,6 +1973,8 @@ def display_id_summary_bullets(score_table, terminal_mixins):
             xtversion.append(sw_name)
         elif tn_unique:
             tn_only.append(sw_name)
+        elif enq_has:
+            enq_only.append(sw_name)
         elif tp_has:
             term_program_only.append(sw_name)
         elif term_has:
@@ -1985,6 +1993,8 @@ def display_id_summary_bullets(score_table, terminal_mixins):
         ("Identifiable by XTVERSION", xtversion,
          " (active query, works over SSH)."),
         ("Identifiable by XTGETTCAP TN", tn_only,
+         " (active query, works over SSH)."),
+        ("Identifiable by ENQ only", enq_only,
          " (active query, works over SSH)."),
         ("Identifiable by TERM_PROGRAM only", term_program_only,
          " (environment variable, not forwarded over SSH)."),
@@ -3231,7 +3241,7 @@ def show_id_results(sw_name, entry, terminal_mixins):
     tr = entry["data"].get("terminal_results") or {}
     env = entry["data"].get("environment") or {}
 
-    xt_has, tn_unique, tp_has, term_has = _detect_id_methods(entry)
+    xt_has, tn_unique, tp_has, term_has, enq_has = _detect_id_methods(entry)
     cfg = terminal_mixins.get(sw_name.lower(), {})
     is_sub = bool((cfg.get("launch") or {}).get("subterminal"))
 
@@ -3241,13 +3251,15 @@ def show_id_results(sw_name, entry, terminal_mixins):
     term_program = env.get("TERM_PROGRAM", "")
     term = env.get("TERM", "")
 
-    if xt_has or tn_unique or tp_has:
+    if xt_has or tn_unique or tp_has or enq_has:
         methods = []
         if xt_has:
             methods.append("XTVERSION")
         if tn_unique:
             methods.append("XTGETTCAP TN")
-        if tp_has and not xt_has and not tn_unique:
+        if enq_has and not xt_has and not tn_unique:
+            methods.append("ENQ")
+        if tp_has and not xt_has and not tn_unique and not enq_has:
             methods.append("TERM_PROGRAM")
         method_label = " + ".join(methods)
         print(f"*{sw_name}* is identified as **{sw_name_final}**")
@@ -3256,7 +3268,7 @@ def show_id_results(sw_name, entry, terminal_mixins):
         print(f"(detected via {method_label}).")
     else:
         print(f"*{sw_name}* could not be identified via XTVERSION,")
-        print("XTGETTCAP TN, or TERM_PROGRAM.")
+        print("XTGETTCAP TN, ENQ, or TERM_PROGRAM.")
     print()
 
     if xtversion_raw:
@@ -3266,6 +3278,7 @@ def show_id_results(sw_name, entry, terminal_mixins):
     print(f"- XTVERSION: **{'yes' if xt_has else 'no'}**")
 
     _show_tn_line(tr)
+    print(f"- ENQ: **{'yes' if enq_has else 'no'}**")
     if term_program:
         print(f"- TERM_PROGRAM: **yes** ({term_program})")
     else:

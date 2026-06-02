@@ -296,6 +296,8 @@ marks across diverse scripts.
 History
 -------
 
+- 2.2.1 (2026-06-01): Bugfix 'ENQ' response capture (PuTTY) and profiling
+
 - 2.2.0 (2026-06-01): Enrich source repository with more tools, like ``make-screenshots.py``,
   expanded XTGETTCAP detection and results table, record XTVERSION, TERM_PROGRAM directly. Record
   cpu and memory resource usage, and introduce ``run-series.py``, used with or without docker for

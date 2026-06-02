@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-30 19:29:43 UTC
+datetime: 2026-06-02 01:27:46 UTC
 environment:
   TERM: st-256color
 height: 24
@@ -7,55 +7,55 @@ preferred_encoding: UTF-8
 python_version: 3.14.5
 resource_profile:
   cpu_pct:
-  - 0.0
   - 1.0
   - 0.0
-  - 0.0
-  - 24.0
-  - 32.0
-  - 33.9
-  - 36.0
-  - 36.0
-  - 35.9
+  - 1.0
+  - 27.0
+  - 31.0
+  - 34.0
+  - 35.0
+  - 36.9
+  - 36.9
   - 38.9
-  - 49.9
-  - 28.0
-  - 26.0
+  - 50.9
+  - 32.0
+  - 29.0
+  - 22.9
   elapsed_s:
-  - 0.0004820660105906427
-  - 1.0009901520097628
-  - 2.0025499630137347
-  - 3.004195025016088
-  - 4.006111657014117
-  - 5.007568716013338
-  - 6.009121434995905
-  - 7.01140978501644
-  - 8.012662040011492
-  - 9.013787616015179
-  - 10.015350163012045
-  - 11.01680734299589
-  - 12.017971752007725
-  - 13.019092439993983
+  - 1.0009503689943813
+  - 2.0040686299907975
+  - 3.0054794840107206
+  - 4.006654905999312
+  - 5.008106516994303
+  - 6.009536695986753
+  - 7.01065593198291
+  - 8.012165239983005
+  - 9.013717018009629
+  - 10.01514659600798
+  - 11.016759257996455
+  - 12.018423797009746
+  - 13.019740822986932
+  - 14.021202700998401
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 8.6171875
-  - 21.11328125
-  - 21.11328125
-  - 21.11328125
-  - 22.1328125
-  - 22.8828125
-  - 23.4453125
-  - 24.0078125
-  - 24.69921875
-  - 25.140625
-  - 25.515625
-  - 26.6953125
-  - 26.8984375
-  - 26.921875
-seconds_elapsed: 10.349211153981742
+  - 16.609375
+  - 16.609375
+  - 16.86328125
+  - 17.8203125
+  - 18.4453125
+  - 19.2578125
+  - 19.9453125
+  - 20.515625
+  - 20.81640625
+  - 21.06640625
+  - 24.28515625
+  - 24.4921875
+  - 24.5546875
+  - 24.55859375
+seconds_elapsed: 11.126711408025585
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -64,15 +64,15 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
   timeout_cps: 1.0
-software_name: st-luke
-software_version: 0.8.5
+software_name: st
+software_version: 0.9.2
 system: Linux
 terminal_results:
-  background_color_hex: '#282828282828'
+  background_color_hex: '#000000000000'
   background_color_rgb:
-  - 10280
-  - 10280
-  - 10280
+  - 0
+  - 0
+  - 0
   color_scheme: false
   colored_underlines: false
   decrqcra: false
@@ -82,11 +82,11 @@ terminal_results:
   device_attributes:
     extensions: []
     service_class: 6
-  foreground_color_hex: '#ebebdbdbb2b2'
+  foreground_color_hex: '#e5e5e5e5e5e5'
   foreground_color_rgb:
-  - 60395
-  - 56283
-  - 45746
+  - 58853
+  - 58853
+  - 58853
   height: 24
   iterm2_features:
     features: {}
@@ -107,8 +107,8 @@ terminal_results:
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: false
-  software_name: st-luke
-  software_version: 0.8.5
+  software_name: st
+  software_version: 0.9.2
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:

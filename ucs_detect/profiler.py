@@ -38,14 +38,26 @@ class ProfileSession:
         self._extra_procs: list = []  # psutil.Process objects found by name, not in child tree
 
     @staticmethod
+    def _is_zombie(proc) -> bool:
+        """Return True if *proc* is a zombie (defunct) process."""
+        # 3rd party
+        import psutil  # type: ignore[import-untyped]
+        try:
+            return proc.status() == "zombie"
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            return True
+
+    @staticmethod
     def _find_process_by_name(name: str):
         """Return the first process matching *name*, excluding the current process."""
         # 3rd party
         import psutil  # type: ignore[import-untyped]
         my_pid = os.getpid()
-        for proc in psutil.process_iter(["name", "pid"]):
+        for proc in psutil.process_iter(["name", "pid", "status"]):
             try:
-                if proc.info["name"] == name and proc.info["pid"] != my_pid:
+                if (proc.info["name"] == name
+                        and proc.info["pid"] != my_pid
+                        and proc.info["status"] != "zombie"):
                     return proc
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 continue
@@ -86,6 +98,8 @@ class ProfileSession:
         if pid in self._proc_cache:
             return self._proc_cache[pid]
         try:
+            if self._is_zombie(child):
+                return None
             child.cpu_percent(interval=None)
         except (psutil.NoSuchProcess, psutil.AccessDenied):
             return None
@@ -104,11 +118,13 @@ class ProfileSession:
         cpu_total = 0.0
         rss_total = 0.0
 
+        if self._is_zombie(root):
+            raise psutil.NoSuchProcess(root.pid)
+
         try:
             raw_children = root.children(recursive=True)
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
+        except psutil.AccessDenied:
             return 0.0, 0.0
-
         procs = [root]
         for child in raw_children:
             cached = self._get_or_prime_child(child)
@@ -140,9 +156,11 @@ class ProfileSession:
         # 3rd party
         import psutil  # type: ignore[import-untyped]
         my_pid = os.getpid()
-        for proc in psutil.process_iter(["name", "pid"]):
+        for proc in psutil.process_iter(["name", "pid", "status"]):
             try:
-                if proc.info["name"] == name and proc.info["pid"] != my_pid:
+                if (proc.info["name"] == name
+                        and proc.info["pid"] != my_pid
+                        and proc.info["status"] != "zombie"):
                     yield proc
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 continue
@@ -156,6 +174,8 @@ class ProfileSession:
             if proc.pid in seen_pids or proc.pid in self._proc_cache:
                 continue
             try:
+                if self._is_zombie(proc):
+                    continue
                 proc.cpu_percent(interval=None)
                 self._proc_cache[proc.pid] = proc
                 self._extra_procs.append(proc)
@@ -163,6 +183,8 @@ class ProfileSession:
                     if child.pid in self._proc_cache:
                         continue
                     try:
+                        if self._is_zombie(child):
+                            continue
                         child.cpu_percent(interval=None)
                         self._proc_cache[child.pid] = child
                         self._extra_procs.append(child)
@@ -270,10 +292,11 @@ class ProfileSession:
 
     def to_dict(self) -> dict:
         """Return samples as a dict suitable for YAML embedding."""
+        filtered = self.samples()
         return {
-            "elapsed_s": [s[0] for s in self._samples],
-            "cpu_pct": [s[1] for s in self._samples],
-            "rss_mb": [s[2] for s in self._samples],
+            "elapsed_s": [s[0] for s in filtered],
+            "cpu_pct": [s[1] for s in filtered],
+            "rss_mb": [s[2] for s in filtered],
         }
 
 

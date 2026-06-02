@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-05-29 19:01:38 UTC
+datetime: 2026-06-01 17:24:06 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
@@ -9,48 +9,96 @@ python_version: 3.14.5
 resource_profile:
   cpu_pct:
   - 0.0
-  - 2.0
-  - 1.0
+  - 6.0
   - 0.0
-  - 24.0
+  - 0.0
+  - 0.0
+  - 20.0
   - 22.0
+  - 25.8
+  - 26.9
+  - 28.0
+  - 29.9
+  - 28.9
+  - 28.9
+  - 29.9
   - 30.9
-  - 33.0
-  - 26.0
-  - 30.0
-  - 19.0
+  - 33.9
+  - 31.9
+  - 31.9
+  - 34.9
+  - 34.9
+  - 32.9
+  - 34.9
+  - 36.9
+  - 38.9
   - 21.0
+  - 22.0
+  - 24.9
+  - 23.9
   elapsed_s:
-  - 0.0004432419955264777
-  - 1.000898573998711
-  - 2.0024588399974164
-  - 3.0043768860050477
-  - 4.006742682002368
-  - 5.008321561006596
-  - 6.009451175996219
-  - 7.011165586998686
-  - 8.012514772999566
-  - 9.013583491992904
-  - 10.015031050992548
-  - 11.016432361997431
+  - 0.0010264409938827157
+  - 1.0024506880145054
+  - 2.0045385799894575
+  - 3.0092059390153736
+  - 4.011304423009278
+  - 5.013649105007062
+  - 6.015959078009473
+  - 7.018026270001428
+  - 8.024328403989784
+  - 9.026795779995155
+  - 10.02849258299102
+  - 11.03126952299499
+  - 12.034943717007991
+  - 13.036796089989366
+  - 14.038909029011847
+  - 15.040816658001859
+  - 16.04233452898916
+  - 17.044173650996527
+  - 18.046273518993985
+  - 19.04784702300094
+  - 20.049433567008236
+  - 21.051101179997204
+  - 22.053340865008067
+  - 23.05476878900663
+  - 24.05669615798979
+  - 25.05840057399473
+  - 26.060066684003687
+  - 27.062890107015846
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 2.56640625
-  - 18.21875
-  - 23.1015625
-  - 23.1015625
-  - 31.21875
-  - 32.63671875
-  - 33.44140625
-  - 34.40234375
-  - 34.8984375
-  - 35.0625
-  - 35.96875
-  - 37.0234375
-seconds_elapsed: 8.057263561990112
+  - 7.48046875
+  - 21.453125
+  - 21.4921875
+  - 21.546875
+  - 21.546875
+  - 21.92578125
+  - 22.34765625
+  - 22.6640625
+  - 22.94921875
+  - 23.21484375
+  - 23.484375
+  - 23.6875
+  - 23.921875
+  - 24.171875
+  - 24.42578125
+  - 24.8046875
+  - 25.05859375
+  - 25.30859375
+  - 25.5625
+  - 25.76171875
+  - 25.890625
+  - 26.1171875
+  - 26.24609375
+  - 26.4375
+  - 29.84765625
+  - 30.08203125
+  - 30.17578125
+  - 30.28515625
+seconds_elapsed: 23.25559965299908
 session_arguments:
   limit_category_time: 900.0
   limit_codepoints: 0
@@ -60,14 +108,14 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: urxvt
-software_version: '9.31'
+software_version: 9.31-9
 system: Linux
 terminal_results:
-  background_color_hex: '#ffffffffffff'
+  background_color_hex: '#000000000000'
   background_color_rgb:
-  - 65535
-  - 65535
-  - 65535
+  - 0
+  - 0
+  - 0
   color_scheme: false
   colored_underlines: false
   decrqcra: false
@@ -78,11 +126,11 @@ terminal_results:
     extensions:
     - 2
     service_class: 1
-  foreground_color_hex: '#000000000000'
+  foreground_color_hex: '#ffffffffffff'
   foreground_color_rgb:
-  - 0
-  - 0
-  - 0
+  - 65535
+  - 65535
+  - 65535
   height: 24
   iterm2_features:
     features: {}
@@ -162,11 +210,14 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 316
-  pixels_width: 496
+  pixels_height: 388
+  pixels_width: 644
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: false
+  software_method: ENQ
+  software_name: urxvt
+  software_version: 9.31-9
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
