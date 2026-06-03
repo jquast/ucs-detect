@@ -1,5 +1,5 @@
 terminals:
-  AbsoluteTelnetSSH:
+  AbsoluteTelnet/SSH:
     homepage: https://www.celestialsoftware.net
     skip_docker: true
     skip_reason: Windows only
