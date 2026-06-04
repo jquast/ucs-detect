@@ -1,4 +1,7 @@
-"""VS-15 (wide-to-narrow) variation selector sequence test data."""
+# VS-15 table for testing emoji variation sequences
+# Sourced from Unicode emoji-variation-sequences.txt
+# Only includes characters that are wide by default (wcwidth=2)
+# and should become narrow (width=1) when followed by VS15 (U+FE0E)
 
 VS15_WIDE_TO_NARROW = (
     ('9.0.0', (
