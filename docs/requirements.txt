@@ -1,5 +1,5 @@
 PyYAML
-wcwidth
+wcwidth @ git+https://github.com/jquast/wcwidth.git@jq/dynawidth
 blessed
 sphinx
 sphinx-rtd-theme
