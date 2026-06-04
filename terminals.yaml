@@ -79,7 +79,7 @@ terminals:
     skip_reason: Wayland-only (requires cage)
   ghostty:
     homepage: https://ghostty.org/
-    skip_docker: true
+    # skip_docker: true
     launch:
       program: ghostty
       args: [-e]

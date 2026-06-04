@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-04 17:12:30 UTC
+datetime: 2026-06-04 18:48:09 UTC
 environment:
   COLORTERM: truecolor
   TERM: tmux-256color
@@ -10,34 +10,22 @@ preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 137.9
-  - 83.5
-  - 82.4
-  - 38.9
-  - 39.5
-  - 41.1
-  - 43.2
+  - 78.0
+  - 74.2
+  - 58.4
   elapsed_s:
-  - 0.04260536201763898
-  - 1.0834659870015457
-  - 2.126274531998206
-  - 3.181520709011238
-  - 4.262260343006346
-  - 5.4013089800137095
-  - 6.494786204013508
+  - 0.013281134015414864
+  - 1.0264124550158158
+  - 2.0374097289750353
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 171.83984375
-  - 181.84765625
-  - 185.62109375
-  - 187.26953125
-  - 187.5390625
-  - 189.11328125
-  - 189.359375
-seconds_elapsed: 7.257228942005895
+  - 182.265625
+  - 185.14453125
+  - 180.6484375
+seconds_elapsed: 2.599650226009544
 session_arguments:
   all: false
   limit_category_time: 900.0

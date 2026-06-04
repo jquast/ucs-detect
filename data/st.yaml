@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-04 17:17:12 UTC
+datetime: 2026-06-04 18:54:25 UTC
 environment:
   TERM: st-256color
 height: 24
@@ -9,26 +9,23 @@ resource_profile:
   cpu_pct:
   - 1.0
   - 0.0
-  - 3.0
-  - 28.0
-  - 14.0
+  - 6.0
+  - 21.0
   elapsed_s:
-  - 1.0011770400451496
-  - 2.0028951760032214
-  - 3.0046336840023287
-  - 4.00652215804439
-  - 5.007961017021444
+  - 1.0009132840204984
+  - 2.0027203390491195
+  - 3.004604729998391
+  - 4.005813853000291
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 16.6875
-  - 16.6875
-  - 20.421875
-  - 20.7421875
-  - 20.828125
-seconds_elapsed: 1.7562349709914997
+  - 16.44921875
+  - 16.44921875
+  - 17.03515625
+  - 18.94921875
+seconds_elapsed: 1.5509379339637235
 session_arguments:
   all: false
   limit_category_time: 900.0
