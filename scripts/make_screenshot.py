@@ -20,8 +20,9 @@ _PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _PROJECT_DIR not in sys.path:
     sys.path.insert(0, _PROJECT_DIR)
 
+import wcwidth
+
 from ucs_detect.accessories import decode_wchars
-from ucs_detect.measure import _wcswidth_vs15
 
 
 def _marker_cells(term):
@@ -211,7 +212,7 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     sys.stdout.write("\x1b[?25l")  # hide cursor
 
     text = decode_wchars(wchars)
-    display_width = _wcswidth_vs15(text)
+    display_width = wcwidth.wcswidth(text)
 
     padding = 4
     interior = display_width + padding * 2 + 4  # +4 for "•+" and "+•"
@@ -271,7 +272,7 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     # Shifted right by LEFT_PAD, down by TOP_PAD + 2 (2-row top marker + gap)
     marker_col = interior + max(0, measured_width - expected_width) + 5 + LEFT_PAD
     if has_text_sizing:
-        sized_interior = _wcswidth_vs15(sized_raw) + padding * 2 + 4
+        sized_interior = wcwidth.wcswidth(sized_raw) + padding * 2 + 4
         msg_width = len("This terminal supports kitty text sizing protocol:")
         marker_col = max(marker_col, sized_interior + 5 + LEFT_PAD, msg_width + 3 + LEFT_PAD)
     marker_row = (10 if has_text_sizing else 6) + TOP_PAD + 2

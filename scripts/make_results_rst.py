@@ -246,12 +246,6 @@ def _wrap_id_fail(text, terminal_name):
     return f':sref:`{text} <{link_target}> fail`'
 
 
-def _wrap_vs15_contested(text, terminal_name):
-    """Wrap VS-15 score with contested (grey) styling and hyperlink."""
-    link_target = make_link(terminal_name + "_vs15")
-    return f':sref:`{text} <{link_target}> contested`'
-
-
 def _wrap_untested(terminal_name, section_suffix):
     """Wrap untested score with grey styling and hyperlink."""
     link_target = make_link(terminal_name + section_suffix)
@@ -888,6 +882,7 @@ def make_score_table():
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
+            (entry["score_emoji_vs15"], 1.0),
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
             (entry["score_sri"], STANDALONE_WEIGHT),
@@ -1121,10 +1116,12 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_vs16"
                 ),
-                "VS15": _wrap_vs15_contested(
+                "VS15": wrap_score_with_hyperlink(
                     format_score_int(result["score_emoji_vs15_scaled"])
                     + (" \u2020" if result.get("has_text_sizing") else ""),
+                    result["score_emoji_vs15_scaled"],
                     result["terminal_software_name"],
+                    "_vs15"
                 ),
                 "SRI": (wrap_score_with_hyperlink(
                     format_score_int(result["score_sri_scaled"])
@@ -1187,9 +1184,8 @@ def display_table_definitions():
     print("Definitions:\n")
     print(
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
-        "  the weighted average of all feature scores (WIDE, LANG, ZWJ, VS16, SRI, SFZ, RI,\n"
+        "  the weighted average of all feature scores (WIDE, LANG, ZWJ, VS16, VS15, SRI, SFZ, RI,\n"
         "  DEC Modes, and RESOURCES), then scaled (normalized 0-100%) relative to all terminals tested.\n"
-        "  Note: VS15 is excluded from the final score (its interpretation is contested).\n"
         "  Higher scores indicate better overall Unicode and terminal feature support. DEC Modes and\n"
         "  RESOURCES are normalized to 0-1 range before averaging. RESOURCES and graphics is weighted at 0.5 (half as\n"
         "  powerful as other metrics), and standalone RI and Fitzpatrick are weighted at 0.3\n"
@@ -1217,8 +1213,6 @@ def display_table_definitions():
     print(
         "- *VS15 score*: Determined by the number of Emoji using Variation\n"
         "  Selector-15 supported as narrow characters.\n"
-        "  **Excluded from final scoring** (this interpretation is contested).\n"
-        "  See `jquast/wcwidth#211 <https://github.com/jquast/wcwidth/issues/211>`_."
     )
     print(
         "- *SRI score*: Percentage of standalone Regional Indicator symbols\n"
@@ -1612,12 +1606,10 @@ def _tn_unique_from_tr(tr):
         "xterm", "xterm-256color", "unknown", "")
 
 
-def _capability_yes_no(value, terminal_name, section_suffix, contested=False,
+def _capability_yes_no(value, terminal_name, section_suffix,
                        warn=False, fail=False):
     """Format a boolean capability as a scored yes/no with hyperlink.
 
-    When *contested* is True and *value* is False, displays 'No' in
-    contested grey (another detection method returns Yes).
     When *warn* is True and *value* is True, displays 'Yes' in
     warning yellow (works locally but not over SSH).
     When *fail* is True and *value* is False, displays 'No' in
@@ -1626,8 +1618,6 @@ def _capability_yes_no(value, terminal_name, section_suffix, contested=False,
         return wrap_with_score_role("N/A", float('nan'))
     if fail and not value:
         return _wrap_id_fail("no", terminal_name)
-    if contested and not value:
-        return _wrap_vs15_contested("no", terminal_name)
     if warn and value:
         return _wrap_colorterm_warn("yes", terminal_name)
     status = "yes" if value else "no"
@@ -2764,22 +2754,6 @@ def show_vs_results(sw_name, entry, variation_str):
         show_record_failure(sw_name, whatis, failure_record,
                             test_type=f"vs{variation_str}",
                             category=f"vs{variation_str}")
-    if variation_str == '15':
-        print()
-        print(".. note::")
-        print()
-        print("   The interpretation of VS-15 (U+FE0E) narrowing Wide Emoji"
-              " is contested.")
-        print("   While this test expects VS-15 to make Wide Emoji Narrow,"
-              " most terminal")
-        print("   emulators do not implement this behavior, and python"
-              " `wcwidth.wcswidth()`_")
-        print("   does not currently return a narrow width for these"
-              " sequences.")
-        print("   Only 2 of 35 terminals tested match this expectation."
-              " This score is")
-        print("   excluded from the final ranking. See `jquast/wcwidth#211"
-              " <https://github.com/jquast/wcwidth/issues/211>`_.")
     print()
 
 
@@ -3522,23 +3496,10 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
               " where no movement is expected.")
     elif "measured_by_terminal" in fail_record and (
             fail_record.get("measured_by_wcwidth", 0) != fail_record["measured_by_terminal"]):
-        if test_type == "vs15":
-            print("- The expected width for VS-15 is"
-                  f" {fail_record['measured_by_wcwidth']},"
-                  f" while *{sw_name}* measures width"
-                  f" {fail_record['measured_by_terminal']}.")
-            print("  python `wcwidth.wcswidth()`_ currently returns"
-                  f" {fail_record['measured_by_terminal']}"
-                  f" for this sequence, "
-                  f" `it is contested"
-                  f" <https://github.com/jquast/wcwidth/issues/211>`_"
-                  f" about whether it should return"
-                  f" {fail_record['measured_by_wcwidth']}.")
-        else:
-            print("- python `wcwidth.wcswidth()`_ measures width"
-                  f" {fail_record['measured_by_wcwidth']},")
-            print(f"  while *{sw_name}* measures width"
-                  f" {fail_record['measured_by_terminal']}.")
+        print("- python `wcwidth.wcswidth()`_ measures width"
+              f" {fail_record['measured_by_wcwidth']},")
+        print(f"  while *{sw_name}* measures width"
+              f" {fail_record['measured_by_terminal']}.")
     print()
 
 
