@@ -139,7 +139,6 @@ RUN --mount=type=cache,target=/var/cache/pacman/pkg \
     python-pillow \
     python-prettytable \
     python-requests \
-    python-wcwidth \
     python-psutil \
     python-matplotlib \
     && pacman -Scc --noconfirm
