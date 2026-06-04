@@ -237,7 +237,8 @@ class WcVariationSequenceGenerator:
         """
         Class constructor.
 
-        :param int base_width: filter by base character width (1 or 2).
+        :param base_width: filter by base character width (1, 2, or None for all widths).
+        :type base_width: int or None
         :param str unicode_version: Unicode version.
         :param str variation_selector: 'VS15' or 'VS16'.
         """
@@ -274,8 +275,9 @@ class WcVariationSequenceGenerator:
                     continue
 
                 # Check base character width matches our filter
-                if wcwidth(chr(base_cp),
-                           unicode_version=unicode_version) != base_width:
+                cell_width = wcwidth(chr(base_cp),
+                                     unicode_version=unicode_version)
+                if base_width is not None and cell_width != base_width:
                     continue
 
                 # Extract name from comment
@@ -292,10 +294,16 @@ class WcVariationSequenceGenerator:
                 else:
                     name = "UNKNOWN"
 
-                # Create the variation sequence
+                # Create the variation sequence; store cell_width for sorting.
                 sequence = chr(base_cp) + chr(vs_cp)
-                self.sequences.append((sequence, name))
+                self.sequences.append((sequence, name, cell_width))
 
+        # Sort: width=2 entries first (emoji-presentation-by-default),
+        # then width=1 entries (text-presentation-by-default).
+        # Within each group, preserve the original reverse-file-order.
+        self.sequences.sort(key=lambda x: x[2], reverse=True)
+        # Drop the width tuple element after sorting.
+        self.sequences = [(seq, name) for seq, name, _ in self.sequences]
         self.sequences.reverse()
 
     def __iter__(self):
@@ -931,8 +939,11 @@ class Pager:
         elif self.variation_selector == 'SPACE_KLUDGE':
             label = "VS16-SPACE-KLUDGE"
         elif self.variation_selector:
-            width_label = ("NARROW" if self.base_width_filter == 1
-                           else "WIDE")
+            if self.base_width_filter is None:
+                width_label = "ALL"
+            else:
+                width_label = ("NARROW" if self.base_width_filter == 1
+                               else "WIDE")
             vs_display = ("W/VS" if self.show_variation_selector
                           else "WO/VS")
             label = f"{width_label}+{self.variation_selector}+{vs_display}"
@@ -1051,8 +1062,10 @@ def validate_args(opts):
     """Validate result of parse_args() and return keyword arguments."""
     if opts['--wide'] is None:
         opts['--wide'] = 2
+        wide_was_default = True
     else:
         assert opts['--wide'] in ("1", "2"), opts['--wide']
+        wide_was_default = False
     if opts['--alignment'] is None:
         opts['--alignment'] = 'left'
     else:
@@ -1081,10 +1094,12 @@ def validate_args(opts):
             opts['display_width'] = opts['base_width_filter']
     elif opts.get('--vs16'):
         opts['variation_selector'] = 'VS16'
+        if wide_was_default:
+            opts['base_width_filter'] = None
         if opts['show_variation_selector']:
             opts['display_width'] = 2
         else:
-            opts['display_width'] = opts['base_width_filter']
+            opts['display_width'] = opts['base_width_filter'] or 2
     elif opts.get('--vs16-space-kludge'):
         opts['variation_selector'] = 'SPACE_KLUDGE'
         opts['base_width_filter'] = 1
