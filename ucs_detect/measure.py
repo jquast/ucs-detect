@@ -52,7 +52,7 @@ def status_header(term, label):
     colored_label = re.sub(r'\d+', lambda m: term.magenta(m.group()), label)
     header_text = f"[ {colored_label} ]"
     plain_text = f"[ {label} ]"
-    text_width = wcwidth.wcswidth(plain_text)
+    text_width = wcwidth.wcswidth(plain_text, term_program=False)
     pad_total = max(0, term.width - text_width)
     pad_left = pad_total // 2
     pad_right = pad_total - pad_left
@@ -79,7 +79,7 @@ def extract_unique_graphemes(text):
         if grapheme.isspace() or grapheme in seen:
             continue
         seen.add(grapheme)
-        w = wcwidth.wcswidth(grapheme)
+        w = wcwidth.wcswidth(grapheme, term_program=False)
         if w > 0:
             by_width[w].append(grapheme)
     return {w: sorted(gs) for w, gs in sorted(by_width.items())}
@@ -171,7 +171,7 @@ def display_error_and_prompt(
 
     writer(str(_make_codepoint_table(term, wchars_display)) + "\n")
 
-    text_width = wcwidth.wcswidth(wchars_display)
+    text_width = wcwidth.wcswidth(wchars_display, term_program=False)
     interior = max(text_width, len(wchars_display)) + 2
     border = "+" + "-" * interior + "+"
     total_padding = max(0, interior - text_width)
@@ -755,7 +755,7 @@ def parse_udhr():
                     break
                 stripped = line.strip()
                 if stripped:
-                    wcs_width = wcwidth.wcswidth(stripped)
+                    wcs_width = wcwidth.wcswidth(stripped, term_program=False)
                     if wcs_width == -1 or wcs_width != len(stripped):
                         is_interesting = True
                         break
