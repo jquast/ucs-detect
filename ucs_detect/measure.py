@@ -18,7 +18,6 @@ import wcwidth
 # local
 from ucs_detect import terminal
 
-
 # Unicode ranges where most fonts lack glyphs
 UNCOMMON_WIDE_RANGES = (
     (0x16FF0, 0x18CFF),   # Ideographic Symbols, Tangut, Khitan Small Script
