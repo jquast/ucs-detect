@@ -32,6 +32,7 @@ def build_command_from_yaml(yaml_file):
         'no_terminal_test': '--no-terminal-test',
         'no_languages_test': '--no-languages-test',
         'no_fullscreen': '--no-fullscreen',
+        'all': '--all',
     }
 
     # Add arguments with values

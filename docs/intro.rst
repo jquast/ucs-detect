@@ -78,6 +78,10 @@ Run a detailed test and save a YAML report::
 
 Notable CLI options:
 
+``--all``
+  Test all codepoints and graphemes. By default, only codepoints and graphemes
+  known to have failed in any terminal (contested) are tested.
+
 ``--rerun <yaml-file>``
   Re-test a terminal using parameters from a previous YAML report.
 

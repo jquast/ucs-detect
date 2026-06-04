@@ -355,6 +355,7 @@ def _docker_per_terminal_run(args):
             future = executor.submit(subprocess.run, cmd, capture_output=True,
                                      text=True, timeout=(term_timeout or args.timeout) + 60)
             futures[future] = sw_name
+            time.sleep(30)
 
         for future in as_completed(futures):
             sw_name = futures[future]
@@ -614,6 +615,7 @@ def main():
                 future_map[future] = (
                     sw_name, proc, profile, sentinel_path, yaml_path,
                     launch_cfg.get("program", sw_name), launch_cfg)
+                time.sleep(30)
 
         for future in as_completed(future_map):
             sw_name, proc, profile, sentinel_path, yaml_path, program, launch_cfg = future_map[future]
