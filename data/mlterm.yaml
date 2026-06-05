@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-05 02:02:22 UTC
+datetime: 2026-06-05 06:55:13 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm
@@ -8,28 +8,34 @@ preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 2.7
-  - 13.8
-  - 26.7
-  - 26.7
-  - 21.5
+  - 3.4
+  - 0.0
+  - 32.1
+  - 24.6
+  - 24.6
+  - 28.5
+  - 19.7
   elapsed_s:
-  - 1.0507726920186542
-  - 2.1814643000252545
-  - 3.1913826260133646
-  - 4.203516851004679
-  - 5.216428144020028
+  - 1.0317898499779403
+  - 2.215562511992175
+  - 3.2510591839672998
+  - 4.309003767964896
+  - 5.326303833979182
+  - 6.344144545961171
+  - 7.3609533129492775
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 13.0078125
-  - 13.8046875
-  - 17.6015625
-  - 18.43359375
-  - 19.21484375
-seconds_elapsed: 2.4569723309832625
+  - 12.73046875
+  - 13.01953125
+  - 16.86328125
+  - 17.50390625
+  - 18.26171875
+  - 18.93359375
+  - 19.265625
+seconds_elapsed: 3.919373192009516
 session_arguments:
   all: false
   limit_category_time: 0

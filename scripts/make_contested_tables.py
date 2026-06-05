@@ -24,6 +24,7 @@ except ImportError:
     from yaml import SafeLoader
 
 import yaml
+import wcwidth
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _PROJECT = os.path.dirname(_HERE)
@@ -114,11 +115,9 @@ def collect_failures():
             for entry in lang_entry.get('failed', []):
                 if 'inherited_from' in entry:
                     continue
-                grapheme_id = entry.get('grapheme_id', '')
-                width = _grapheme_id_width(grapheme_id)
-                if width is None:
-                    width = entry.get('measured_by_wcwidth', 1)
                 grapheme_str = entry['wchars'].encode('ascii').decode('unicode_escape')
+                width = wcwidth.wcswidth(grapheme_str, term_program=False)
+                assert width > 0, f"wcswidth({grapheme_str!r}) = {width}"
                 lang_by_width[width][lang_name].add(grapheme_str)
 
     return {
