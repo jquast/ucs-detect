@@ -200,82 +200,93 @@ def _crop_to_markers(src_path, dst_path):
 
 
 def display_and_capture(term, wchars, expected_width, measured_width,
-                        output_path, window_id, has_text_sizing=False):
+                        output_path, window_id, has_text_sizing=False,
+                        software_name=None):
     """Display a single failure and capture a screenshot."""
-    hbar = "━"
-    vbar = "┃"
-    cross = "╋"
-
-    LEFT_PAD = 2
-    TOP_PAD = 1
+    hbar, vbar, cross = "━", "┃", "╋"
+    LEFT_PAD, TOP_PAD = 2, 1
+    PAD = 4
 
     sys.stdout.write("\x1b[?25l")  # hide cursor
 
     text = decode_wchars(wchars)
     display_width = wcwidth.wcswidth(text, term_program=False)
 
-    padding = 4
-    interior = display_width + padding * 2 + 4  # +4 for "•+" and "+•"
-    dots = "•" * padding
-    inner = (term.magenta(dots + f"•{vbar}") + term.normal + text
-             + term.magenta(f"{vbar}•" + dots))
+    def _box(box_width, content, *, heading=None):
+        """Render a measurement box.  Returns (interior_width, heading_width)."""
+        interior = box_width + PAD * 2 + 4
+        dots = "•" * PAD
+        inner = (term.magenta(dots + f"•{vbar}") + term.normal + content
+                 + term.magenta(f"{vbar}•" + dots))
 
-    # Top border with expected-width marker aligned to text width
-    wstr = str(expected_width)
-    marker_pad = max(0, expected_width - len(wstr))
-    width_str = "╂" + "┰" * marker_pad + wstr + "╂"
-    left_fill = (interior - len(width_str)) // 2
-    right_fill = interior - len(width_str) - left_fill
-    top = cross + hbar * left_fill + width_str + hbar * right_fill + cross
+        ws = str(box_width)
+        mpad = max(0, box_width - len(ws))
+        wm = "╂" + "┰" * mpad + ws + "╂"
+        lf = (interior - len(wm)) // 2
+        rf = interior - len(wm) - lf
+        top = cross + hbar * lf + wm + hbar * rf + cross
+        bottom = cross + term.center("", interior, fillchar=hbar) + cross
 
-    # Bottom border, simple fill
-    bottom = cross + term.center("", interior, fillchar=hbar) + cross
+        if heading is not None:
+            print(prefix)
+            print(prefix + term.normal + heading)
+        print(prefix + term.cyan(top))
+        print(prefix + term.cyan(vbar) + inner + term.cyan(vbar))
+        print(prefix + term.cyan(bottom))
+
+        return interior, len(heading) if heading else 0
 
     # Clear screen, position cursor
     sys.stdout.write("\x1b[H\x1b[2J")
 
     # Top-left crop marker: 2×2 magenta block (padded by TOP_PAD, LEFT_PAD)
     top_marker_row = TOP_PAD + 1
-    top_marker_col = LEFT_PAD + 1
     marker_row1, marker_row2 = _marker_cells(term)
     sys.stdout.write(
-        f"\x1b[{top_marker_row};{top_marker_col}H{marker_row1}")
+        f"\x1b[{top_marker_row};{LEFT_PAD + 1}H{marker_row1}")
     sys.stdout.write(
-        f"\x1b[{top_marker_row + 1};{top_marker_col}H{marker_row2}")
+        f"\x1b[{top_marker_row + 1};{LEFT_PAD + 1}H{marker_row2}")
     sys.stdout.flush()
 
-    # Content box: blank row after 2-row marker, then content at column 1
-    # (LEFT_PAD is applied via prefix spaces on each line)
     content_row = top_marker_row + 3
     sys.stdout.write(f"\x1b[{content_row};1H")
     sys.stdout.flush()
 
     prefix = " " * LEFT_PAD
 
-    print(prefix + term.cyan(top))
-    print(prefix + term.cyan(vbar) + inner + term.cyan(vbar))
-    print(prefix + term.cyan(bottom))
+    # Table 1: measured by wcwidth (no terminal overrides)
+    interior, _ = _box(expected_width, text)
+    max_interior = interior
+    max_heading = 0
+    extra_tables = 0
 
+    # Table 2: kitty text sizing protocol
     if has_text_sizing:
-        sized_raw = term.text_sized(text, width=expected_width)
-        sized_dots = "•" * padding
-        sized_inner = (term.magenta(sized_dots + f"•{vbar}") + term.normal + sized_raw
-                       + term.magenta(f"{vbar}•" + sized_dots))
+        si, hw = _box(expected_width, term.text_sized(text, width=expected_width),
+                      heading="This terminal supports kitty text sizing protocol:")
+        max_interior = max(max_interior, si)
+        max_heading = max(max_heading, hw)
+        extra_tables += 1
 
-        print(prefix)
-        print(prefix + term.normal + "This terminal supports kitty text sizing protocol:")
-        print(prefix + term.cyan(top))
-        print(prefix + term.cyan(vbar) + sized_inner + term.cyan(vbar))
-        print(prefix + term.cyan(bottom))
+    # Table 3: wcwidth with term_program overrides
+    if (software_name
+            and (cw := wcwidth.wcstwidth(text, term_program=software_name)) != display_width):
+        ci, hw = _box(cw, text,
+                      heading=(
+                          f"This is corrected by argument term_program='{software_name}'"
+                          f" in python width() and wcstwidth():"))
+        max_interior = max(max_interior, ci)
+        max_heading = max(max_heading, hw)
+        extra_tables += 1
 
     # Bottom-right crop marker: max of content widths + margin
     # Shifted right by LEFT_PAD, down by TOP_PAD + 2 (2-row top marker + gap)
-    marker_col = interior + max(0, measured_width - expected_width) + 5 + LEFT_PAD
-    if has_text_sizing:
-        sized_interior = wcwidth.wcswidth(sized_raw, term_program=False) + padding * 2 + 4
-        msg_width = len("This terminal supports kitty text sizing protocol:")
-        marker_col = max(marker_col, sized_interior + 5 + LEFT_PAD, msg_width + 3 + LEFT_PAD)
-    marker_row = (10 if has_text_sizing else 6) + TOP_PAD + 2
+    marker_col = max(
+        interior + max(0, measured_width - expected_width) + 5 + LEFT_PAD,
+        max_interior + 5 + LEFT_PAD,
+        max_heading + 3 + LEFT_PAD,
+    )
+    marker_row = 6 + extra_tables * 4 + TOP_PAD + 2
     sys.stdout.write(
         f"\x1b[{marker_row};{marker_col}H{marker_row1}")
     sys.stdout.write(
@@ -358,6 +369,8 @@ def main():
     term = Terminal()
     has_text_sizing = bool(term.does_text_sizing(timeout=1))
 
+    software_name = records[0].get("software_name") if records else None
+
     failed = 0
     for record in records:
         wchars = record["wchars"]
@@ -368,7 +381,8 @@ def main():
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
         if not display_and_capture(term, wchars, expected_width, measured_width,
-                                   output_path, window_id, has_text_sizing):
+                                   output_path, window_id, has_text_sizing,
+                                   software_name):
             failed += 1
 
     if failed:
