@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-04 18:53:26 UTC
+datetime: 2026-06-05 01:54:32 UTC
 environment:
   COLORTERM: truecolor
   TERM: alacritty
@@ -8,28 +8,31 @@ preferred_encoding: UTF-8
 python_version: 3.14.5
 resource_profile:
   cpu_pct:
-  - 16.0
+  - 1.0
+  - 17.0
+  - 2.0
   - 0.0
-  - 4.0
-  - 61.9
-  - 79.9
+  - 40.9
+  - 72.9
   elapsed_s:
-  - 1.0009373220382258
-  - 2.002807949029375
-  - 3.0053523230017163
-  - 4.006653523014393
-  - 5.00835094798822
+  - 1.00146052101627
+  - 2.002556608989835
+  - 3.0044179540127516
+  - 4.005640893999953
+  - 5.007489698007703
+  - 6.009001411963254
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 120.53125
-  - 120.53125
-  - 121.81640625
-  - 128.234375
-  - 131.5078125
-seconds_elapsed: 2.1133946370100603
+  - 8.53125
+  - 119.83984375
+  - 119.9921875
+  - 119.9921875
+  - 127.07421875
+  - 130.3828125
+seconds_elapsed: 2.4278459909837693
 session_arguments:
   all: false
   limit_category_time: 0
@@ -4789,7 +4792,7 @@ test_results:
     Chakma:
       failed: []
       n_errors: 0
-      n_total: 238
+      n_total: 225
       pct_success: 100.0
     Chickasaw:
       failed: []
@@ -4943,30 +4946,6 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 4
         wchars: \ua9b1\ua9c0\ua994\ua9bf
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua98f\ua9c0\ua9a5\ua9bf\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a0\ua9c0\ua9b1\ua9b6\ua983
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua994\ua9bf\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua99d\ua9ba\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9a5\ua9bf\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a9\ua9c0\ua9a7\ua9ba\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a9\ua9c0\ua9a7\ua9be\ua9b8\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9b1\ua9c0\ua98f\ua9bf\ua9b6
       - grapheme_id: Javanese (Javanese)-3-00
         measured_by_terminal: 2
         measured_by_wcwidth: 3
@@ -5571,390 +5550,6 @@ test_results:
         measured_by_terminal: 2
         measured_by_wcwidth: 3
         wchars: \ua9b1\ua9c0\ua9b2\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua98f\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua98f\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua994\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9a0\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9a0\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9a2\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9a2\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9a4\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9a5\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9a7\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9a9\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9b1\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9b1\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9b1\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9b2\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9b2\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua98f\ua9c0\ua9b2\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua994\ua9c0\ua9ad\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua994\ua9c0\ua9ad\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua994\ua9c0\ua9ad\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua99a\ua9c0\ua995\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua99a\ua9c0\ua997\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua99a\ua9c0\ua997\ua9b8\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua99a\ua9c0\ua997\ua9b8\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9c0\ua9a0\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9c0\ua9a0\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9c0\ua9a0\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9c0\ua9a4\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9c0\ua9a9\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9c0\ua9b1\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9c0\ua9b2\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a2\ua9c0\ua9a0\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua98f\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua98f\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua98f\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua994\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua994\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua994\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua994\ua9b8\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua994\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua997\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua997\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua99d\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua99d\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua99d\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua99d\ua9b8\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua99d\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a0\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a0\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a0\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a0\ua9b8\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a0\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a0\ua9bc\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a0\ua9bd
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a2\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a2\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a2\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a2\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a2\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a4\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a4\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a4\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a5\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a5\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a5\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a5\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a7\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a7\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a7\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a7\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a9\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a9\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a9\ua9b8\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9a9\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9ad\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9ad\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9ae\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9ae\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9ae\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9ae\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b1\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b1\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b1\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b1\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b1\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b2\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b2\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b2\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9c0\ua9b2\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9c0\ua98f\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9c0\ua9a0\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9c0\ua9a4\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9c0\ua9a5\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9c0\ua9a9\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9c0\ua9ad\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9c0\ua9b1\ua9b6\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9c0\ua9b1\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a7\ua9c0\ua9b2\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a5\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a5\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a5\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a7\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a7\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a7\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a7\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a7\ua9b8\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a7\ua9bc\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9c0\ua9a9\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9c0\ua9ad\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9c0\ua9ad\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9c0\ua9b1\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9c0\ua9b1\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9c0\ua9b1\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9c0\ua9b2\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9c0\ua9b2\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9c0\ua9b2\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua98f\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9a7\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9a9\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9a9\ua9bc
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9b1\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9b1\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9b1\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9b1\ua9b8
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9b2\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9b2\ua9b6
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9b2\ua9b6\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9c0\ua9b2\ua9b8
       - grapheme_id: Javanese (Javanese)-2-02
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -6131,9 +5726,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua9ba\ua9b4
-      n_errors: 345
-      n_total: 631
-      pct_success: 45.32488114104596
+      n_errors: 209
+      n_total: 488
+      pct_success: 57.17213114754098
     Kabyle:
       failed: []
       n_errors: 0
@@ -6462,12 +6057,6 @@ test_results:
         measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u178e\u17d2\u178e\u17c4\u17c7
-      - inherited_from: Khmer, Central
-        measured_by_wcwidth: 2
-        wchars: \u1788\u17d2\u1798\u17c4\u17c7
-      - inherited_from: Khmer, Central
-        measured_by_wcwidth: 2
-        wchars: \u178e\u17d2\u178e\u17c4\u17c7
       - grapheme_id: Khmer, Central-2-41
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -6492,9 +6081,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1796\u17c4\u17c7
-      n_errors: 10
-      n_total: 474
-      pct_success: 97.8902953586498
+      n_errors: 8
+      n_total: 390
+      pct_success: 97.94871794871794
     Khün:
       failed:
       - grapheme_id: Khün-2-1f
@@ -6502,8 +6091,8 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1a23\u1a55\u1a6e\u1a60
       n_errors: 1
-      n_total: 357
-      pct_success: 99.71988795518207
+      n_total: 354
+      pct_success: 99.71751412429379
     Lamnso':
       failed: []
       n_errors: 0
@@ -6874,8 +6463,8 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1017\u103c\u1031
       n_errors: 3
-      n_total: 212
-      pct_success: 98.58490566037736
+      n_total: 208
+      pct_success: 98.5576923076923
     Mòoré:
       failed: []
       n_errors: 0

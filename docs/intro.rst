@@ -165,25 +165,20 @@ Related articles:
 Updating Results
 ----------------
 
-Results are shared with terminal emulator projects and may become outdated as
-they improve Unicode support. Submit a pull request to update YAML data files.
+Results are published in HTML and yaml, for use in code generation for publishing "correction
+tables", and may become outdated as they improve Unicode support. Submit a pull request to update
+YAML data files.
 
 Re-test an existing terminal::
 
     $ ucs-detect --rerun data/contour.yaml
 
-This re-executes with the same parameters, overwriting the existing YAML file.
-
 Submit results for a new terminal::
 
-    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-category-time=900
+    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml
 
-The ``--limit-category-time`` argument is used to automatically reduce test size to attempt to
-complete each category under a reasonable time. This automatically adjusts the
-``--limit-codepoints-wide-pct`` parameter as low as 1%.
-
-To preview documentation changes, create a *draft pull request*. A readthedocs.org build status will
-appear -- click "Details" for an HTML preview.
+Commit and make a PR. To preview documentation changes, create a *draft pull request*. A
+readthedocs.org build status will appear -- click "Details" for an HTML preview.
 
 Batch Testing
 -------------
@@ -299,6 +294,9 @@ marks across diverse scripts.
 
 History
 -------
+
+- 2.3.0 (2026-06-04): Integrate with wcwidth>=0.8.0, which offers a ``term_program`` argument,
+  still a WIP!
 
 - 2.2.1 (2026-06-01): Bugfix 'ENQ' response capture (PuTTY) and profiling Enrich source repository
   with more tools, like ``make-screenshots.py``, expanded XTGETTCAP detection and results table,

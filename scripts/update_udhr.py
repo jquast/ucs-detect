@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """Update UDHR (Universal Declaration of Human Rights) language data for ucs_detect."""
-# Script to update UDHR text files from the unicode-org/udhr XML repository.
-# Parses XML files from {tempdir}/udhr/data/udhr/ and generates plain text files
+# Script to update UDHR text files from the unicode-org/udhr git submodule.
+# Parses XML files from udhr/data/udhr/ and generates plain text files
 # in ucs_detect/udhr/ matching the existing format.
 
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
-import tempfile
 import subprocess
 
 
@@ -124,19 +123,16 @@ def generate_text_file(xml_path, output_dir):
 
 def main():
     """Fetch UDHR data and regenerate language table modules."""
-    # Process all UDHR XML files
-    xml_dir = Path(tempfile.gettempdir()) / 'udhr' / 'data' / 'udhr'
-    output_dir = Path(__file__).parent / 'ucs_detect' / 'udhr'
+    repo_root = Path(__file__).parent.parent
+    xml_dir = repo_root / 'udhr' / 'data' / 'udhr'
+    output_dir = repo_root / 'ucs_detect' / 'udhr'
 
-    # yes, i know git submodules exist, no thank you ..
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     if not xml_dir.exists():
-        temp_dir = Path(tempfile.gettempdir())
-        response = input("Clone UDHR repository to {temp_dir}? [y/n]: ").strip().lower()
-        if response.startswith('y'):
-            subprocess.check_call(
-                ['git', 'clone', 'https://github.com/unicode-org/udhr.git'],
-                cwd=temp_dir
-            )
+        print(f"UDHR submodule not found at {xml_dir}", file=sys.stderr)
+        print("Run: git submodule update --init udhr", file=sys.stderr)
+        return 1
 
     # Get all XML files
     xml_files = sorted(xml_dir.glob('*.xml'))
@@ -161,8 +157,11 @@ def main():
 
     # Apply encoding fixes for known issues in upstream XML
     print("\nApplying encoding fixes...")
-    import fix_udhr_data  # pylint: disable=import-error
-    fix_udhr_data.main()
+    try:
+        import fix_udhr_data  # pylint: disable=import-error
+        fix_udhr_data.main()
+    except ImportError:
+        print("fix_udhr_data module not available, skipping encoding fixes.")
 
     return errors
 

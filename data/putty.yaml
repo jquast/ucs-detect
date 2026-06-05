@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-04 18:52:28 UTC
+datetime: 2026-06-05 01:54:59 UTC
 environment:
   TERM: xterm
 height: 23
@@ -9,29 +9,29 @@ resource_profile:
   cpu_pct:
   - 7.0
   - 0.0
-  - 5.0
-  - 37.9
-  - 46.9
+  - 0.0
+  - 21.0
+  - 47.9
   elapsed_s:
-  - 1.000886591966264
-  - 2.0049886489869095
-  - 3.006857340980787
-  - 4.00834128097631
-  - 5.010859325993806
+  - 1.0009653029846959
+  - 2.0030127670033835
+  - 3.004913155979011
+  - 4.00798048696015
+  - 5.009331759007182
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 59.5625
-  - 59.5625
-  - 65.8203125
-  - 69.546875
-  - 73.18359375
-seconds_elapsed: 2.567159025988076
+  - 59.37890625
+  - 59.41015625
+  - 59.41015625
+  - 67.11328125
+  - 71.4296875
+seconds_elapsed: 1.8448275200207718
 session_arguments:
   all: false
-  limit_category_time: 900.0
+  limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
@@ -5650,7 +5650,7 @@ test_results:
     Chakma:
       failed: []
       n_errors: 0
-      n_total: 238
+      n_total: 225
       pct_success: 100.0
     Chickasaw:
       failed: []
@@ -5788,27 +5788,6 @@ test_results:
         measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9a9\ua9c0\ua9a0\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua98f\ua9c0\ua9b2\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a0\ua9c0\ua9b2\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua99d\ua9ba\ua9b4\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9a5\ua9b3\ua9ba\ua9b4\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9a7\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9b1\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9b2\ua9ba\ua9b4
       - grapheme_id: Javanese (Javanese)-3-01
         measured_by_terminal: 4
         measured_by_wcwidth: 3
@@ -6357,9 +6336,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua9ba\ua9b4
-      n_errors: 154
-      n_total: 631
-      pct_success: 75.59429477020603
+      n_errors: 147
+      n_total: 488
+      pct_success: 69.87704918032787
     Kabyle:
       failed: []
       n_errors: 0
@@ -6436,12 +6415,6 @@ test_results:
         measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u178e\u17d2\u178e\u17c4\u17c7
-      - inherited_from: Khmer, Central
-        measured_by_wcwidth: 2
-        wchars: \u1788\u17d2\u1798\u17c4\u17c7
-      - inherited_from: Khmer, Central
-        measured_by_wcwidth: 2
-        wchars: \u178e\u17d2\u178e\u17c4\u17c7
       - grapheme_id: Khmer, Central-2-41
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -6466,9 +6439,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1796\u17c4\u17c7
-      n_errors: 10
-      n_total: 474
-      pct_success: 97.8902953586498
+      n_errors: 8
+      n_total: 390
+      pct_success: 97.94871794871794
     Khün:
       failed:
       - grapheme_id: Khün-2-1f
@@ -6476,8 +6449,8 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1a23\u1a55\u1a6e\u1a60
       n_errors: 1
-      n_total: 357
-      pct_success: 99.71988795518207
+      n_total: 354
+      pct_success: 99.71751412429379
     Lamnso':
       failed: []
       n_errors: 0
@@ -6565,8 +6538,8 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1017\u103c\u1031
       n_errors: 3
-      n_total: 212
-      pct_success: 98.58490566037736
+      n_total: 208
+      pct_success: 98.5576923076923
     Mòoré:
       failed: []
       n_errors: 0

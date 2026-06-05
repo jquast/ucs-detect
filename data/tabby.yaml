@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-04 18:49:58 UTC
+datetime: 2026-06-05 02:01:10 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -10,111 +10,93 @@ python_version: 3.13.13
 resource_profile:
   cpu_pct:
   - 0.0
-  - 121.80000000000001
-  - 26.2
-  - 179.5
-  - 175.4
-  - 153.29999999999998
-  - 157.1
-  - 152.60000000000002
-  - 156.4
-  - 163.8
-  - 152.1
-  - 157.39999999999998
-  - 162.6
-  - 160.70000000000002
-  - 165.6
-  - 37.0
-  - 0.9
+  - 21.7
+  - 9.8
+  - 18.7
+  - 10.9
+  - 6.9
+  - 20.8
+  - 27.599999999999998
+  - 43.9
+  - 25.7
+  - 79.10000000000001
+  - 33.6
+  - 143.4
+  - 167.20000000000002
+  - 154.3
+  - 148.79999999999998
+  - 157.0
+  - 153.20000000000002
+  - 153.3
+  - 154.09999999999997
+  - 161.5
+  - 159.9
+  - 5.0
   - 2.0
-  - 0.0
-  - 2.0
-  - 2.0
-  - 0.0
-  - 2.0
-  - 1.0
-  - 0.9
-  - 1.8
-  - 0.0
-  - 1.0
+  - 8.9
   - 3.0
-  - 24.6
-  - 0.0
-  - 11.9
   elapsed_s:
-  - 1.0380787209724076
-  - 2.067883668001741
-  - 3.2835508399875835
-  - 4.313630867982283
-  - 5.344220997008961
-  - 6.370493814989459
-  - 7.553431934968103
-  - 8.612021635985002
-  - 9.630409003002569
-  - 10.646804158983286
-  - 11.660590173967648
-  - 12.886890270980075
-  - 13.90130650397623
-  - 14.91571347299032
-  - 15.929854893998709
-  - 16.944080896966625
-  - 18.02542821399402
-  - 19.14440014801221
-  - 20.168417415989097
-  - 21.18454028200358
-  - 22.199517386965454
-  - 23.2157920319587
-  - 24.230582078977022
-  - 25.245432180992793
-  - 26.26033015595749
-  - 27.327967890014406
-  - 28.41417945199646
-  - 29.429250116983894
-  - 30.44317147397669
-  - 31.45933928497834
-  - 32.474643634981476
-  - 33.49010685598478
+  - 1.0184572080033831
+  - 2.0313303499715403
+  - 3.0450586570077576
+  - 4.167122412996832
+  - 5.18064726999728
+  - 6.195494789979421
+  - 7.2089842919958755
+  - 8.22245587100042
+  - 9.23550511902431
+  - 10.374816400988493
+  - 11.385226018028334
+  - 12.397260303026997
+  - 13.408599324000534
+  - 14.419957751990296
+  - 15.430956545984372
+  - 16.549347812018823
+  - 17.560957663983572
+  - 18.573223687999416
+  - 19.584754533017986
+  - 20.596126951975748
+  - 21.608343074971344
+  - 22.77439160400536
+  - 23.932621214014944
+  - 24.943266481976025
+  - 25.95687709399499
+  - 26.970385644002818
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 716.0859375
-  - 824.3203125
-  - 836.13671875
-  - 858.11328125
-  - 873.77734375
-  - 886.7890625
-  - 897.9296875
-  - 913.5703125
-  - 925.03515625
-  - 925.21484375
-  - 929.61328125
-  - 929.41796875
-  - 946.078125
-  - 954.609375
-  - 943.6015625
-  - 938.1796875
-  - 938.17578125
-  - 938.17578125
-  - 938.18359375
-  - 938.2421875
-  - 938.30859375
-  - 938.30859375
-  - 938.31640625
-  - 938.3203125
-  - 938.32421875
-  - 938.328125
-  - 938.328125
-  - 938.328125
-  - 938.21875
-  - 814.1796875
-  - 814.3125
-  - 824.7578125
-seconds_elapsed: 12.894563307985663
+  - 205.33984375
+  - 227.6640625
+  - 436.39453125
+  - 524.83203125
+  - 551.703125
+  - 559.15234375
+  - 619.2890625
+  - 667.35546875
+  - 718.1171875
+  - 719.46875
+  - 811.0546875
+  - 818.94140625
+  - 842.55859375
+  - 862.74609375
+  - 880.37109375
+  - 910.234375
+  - 922.33984375
+  - 939.9453125
+  - 959.7734375
+  - 979.125
+  - 1007.5625
+  - 982.71875
+  - 980.87890625
+  - 980.60546875
+  - 981.7734375
+  - 285.42578125
+seconds_elapsed: 10.22001100803027
 session_arguments:
   all: false
-  limit_category_time: 900.0
+  limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
@@ -5817,7 +5799,7 @@ test_results:
     Chakma:
       failed: []
       n_errors: 0
-      n_total: 238
+      n_total: 225
       pct_success: 100.0
     Chickasaw:
       failed: []
@@ -5955,27 +5937,6 @@ test_results:
         measured_by_terminal: 5
         measured_by_wcwidth: 4
         wchars: \ua9a9\ua9c0\ua9a0\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua98f\ua9c0\ua9b2\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a0\ua9c0\ua9b2\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua99d\ua9ba\ua9b4\ua981
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9a5\ua9b3\ua9ba\ua9b4\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9a7\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9b1\ua9ba\ua9b4
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a4\ua9c0\ua9b2\ua9ba\ua9b4
       - grapheme_id: Javanese (Javanese)-3-01
         measured_by_terminal: 4
         measured_by_wcwidth: 3
@@ -6524,9 +6485,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b2\ua9ba\ua9b4
-      n_errors: 154
-      n_total: 631
-      pct_success: 75.59429477020603
+      n_errors: 147
+      n_total: 488
+      pct_success: 69.87704918032787
     Kabyle:
       failed: []
       n_errors: 0
@@ -6603,12 +6564,6 @@ test_results:
         measured_by_terminal: 4
         measured_by_wcwidth: 3
         wchars: \u178e\u17d2\u178e\u17c4\u17c7
-      - inherited_from: Khmer, Central
-        measured_by_wcwidth: 2
-        wchars: \u1788\u17d2\u1798\u17c4\u17c7
-      - inherited_from: Khmer, Central
-        measured_by_wcwidth: 2
-        wchars: \u178e\u17d2\u178e\u17c4\u17c7
       - grapheme_id: Khmer, Central-2-41
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -6633,9 +6588,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1796\u17c4\u17c7
-      n_errors: 10
-      n_total: 474
-      pct_success: 97.8902953586498
+      n_errors: 8
+      n_total: 390
+      pct_success: 97.94871794871794
     Khün:
       failed:
       - grapheme_id: Khün-2-1f
@@ -6643,8 +6598,8 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1a23\u1a55\u1a6e\u1a60
       n_errors: 1
-      n_total: 357
-      pct_success: 99.71988795518207
+      n_total: 354
+      pct_success: 99.71751412429379
     Lamnso':
       failed: []
       n_errors: 0
@@ -6732,8 +6687,8 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1017\u103c\u1031
       n_errors: 3
-      n_total: 212
-      pct_success: 98.58490566037736
+      n_total: 208
+      pct_success: 98.5576923076923
     Mòoré:
       failed: []
       n_errors: 0

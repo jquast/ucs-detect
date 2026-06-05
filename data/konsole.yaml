@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-04 18:52:46 UTC
+datetime: 2026-06-05 02:02:51 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -8,25 +8,22 @@ preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 43.3
-  - 62.0
-  - 35.4
-  - 29.5
+  - 28.4
+  - 41.1
+  - 36.2
   elapsed_s:
-  - 1.027586603013333
-  - 2.043443622009363
-  - 3.0593344360240735
-  - 4.075877878000028
+  - 1.1932084590080194
+  - 2.3573281489661895
+  - 3.3773259249865077
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 135.4453125
-  - 152.8515625
-  - 160.66015625
-  - 165.875
-seconds_elapsed: 3.100846590998117
+  - 126.33984375
+  - 141.578125
+  - 152.1328125
+seconds_elapsed: 2.2941027489723638
 session_arguments:
   all: false
   limit_category_time: 0
@@ -918,7 +915,7 @@ test_results:
     Chakma:
       failed: []
       n_errors: 0
-      n_total: 238
+      n_total: 225
       pct_success: 100.0
     Chickasaw:
       failed: []
@@ -1031,12 +1028,6 @@ test_results:
       - grapheme_id: Javanese (Javanese)-4-0b
         measured_by_terminal: 3
         measured_by_wcwidth: 4
-        wchars: \ua9a4\ua9c0\ua9a5\ua9b3\ua9ba\ua9b4\ua982
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
-        wchars: \ua9a0\ua9c0\ua9b1\ua9b6\ua983
-      - inherited_from: Javanese (Javanese)
-        measured_by_wcwidth: 3
         wchars: \ua9a4\ua9c0\ua9a5\ua9b3\ua9ba\ua9b4\ua982
       - grapheme_id: Javanese (Javanese)-3-01
         measured_by_terminal: 4
@@ -1486,9 +1477,9 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua9b1\ua9c0\ua9b2
-      n_errors: 117
-      n_total: 631
-      pct_success: 81.45800316957211
+      n_errors: 115
+      n_total: 488
+      pct_success: 76.4344262295082
     Kabyle:
       failed: []
       n_errors: 0
@@ -1553,12 +1544,6 @@ test_results:
         measured_by_terminal: 2
         measured_by_wcwidth: 3
         wchars: \u178e\u17d2\u178a\u17bb\u17c7
-      - inherited_from: Khmer, Central
-        measured_by_wcwidth: 2
-        wchars: \u1782\u17d2\u179a\u17b9\u17c7
-      - inherited_from: Khmer, Central
-        measured_by_wcwidth: 2
-        wchars: \u178e\u17d2\u178a\u17bb\u17c7
       - grapheme_id: Khmer, Central-2-31
         measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -1583,9 +1568,9 @@ test_results:
         measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchars: \u179b\u17bb\u17c7
-      n_errors: 10
-      n_total: 474
-      pct_success: 97.8902953586498
+      n_errors: 8
+      n_total: 390
+      pct_success: 97.94871794871794
     Khün:
       failed:
       - grapheme_id: Khün-2-3f
@@ -1605,8 +1590,8 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1a41\u1a62\u1a6d
       n_errors: 4
-      n_total: 357
-      pct_success: 98.8795518207283
+      n_total: 354
+      pct_success: 98.87005649717514
     Lamnso':
       failed: []
       n_errors: 0
@@ -1820,8 +1805,8 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u101e\u105e\u1031
       n_errors: 15
-      n_total: 212
-      pct_success: 92.9245283018868
+      n_total: 208
+      pct_success: 92.78846153846155
     Mòoré:
       failed: []
       n_errors: 0
