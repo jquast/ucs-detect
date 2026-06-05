@@ -61,10 +61,11 @@ def _grapheme_id_width(grapheme_id):
 
 def collect_failures():
     """Collect all unique failures from data/*.yaml, grouped by category."""
-    # WIDE, SRI, SFZ: set of int (base codepoint)
+    # WIDE, SRI, SFZ, NARROW: set of int (base codepoint)
     wide_set = set()
     sri_set = set()
     sfz_set = set()
+    narrow_set = set()
 
     # VS16, VS15, ZWJ, RI: set of tuple-of-ints (sequence)
     vs16_set = set()
@@ -84,7 +85,8 @@ def collect_failures():
         for yaml_key, target_set in (
                 ('unicode_wide_results', wide_set),
                 ('sri_results', sri_set),
-                ('sfz_results', sfz_set)):
+                ('sfz_results', sfz_set),
+                ('narrow_results', narrow_set)):
             cat_data = test_results.get(yaml_key, {})
             for _ver, ver_data in cat_data.items():
                 for entry in ver_data.get('failed_codepoints', []):
@@ -124,6 +126,7 @@ def collect_failures():
         'wide': wide_set,
         'sri': sri_set,
         'sfz': sfz_set,
+        'narrow': narrow_set,
         'vs16': vs16_set,
         'vs15': vs15_set,
         'zwj': zwj_set,
@@ -203,6 +206,9 @@ def main():
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_sfz_contested.py'),
         'SFZ_CONTESTED', failures['sfz'], '17.0.0')
+    _write_single_cp_table(
+        os.path.join(_OUT_DIR, 'table_narrow_contested.py'),
+        'NARROW_CONTESTED', failures['narrow'], '17.0.0')
     _write_sequence_table(
         os.path.join(_OUT_DIR, 'table_vs16_contested.py'),
         'VS16_CONTESTED', failures['vs16'], '17.0.0')

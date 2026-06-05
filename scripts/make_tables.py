@@ -58,6 +58,7 @@ def main():
         ("make_vs15_table.py", "table_vs15.py"),
         ("make_vs16_table.py", "table_vs16.py"),
         ("make_lang_table.py", "table_lang.py"),
+        ("make_narrow_table.py", "table_narrow.py"),
     ]:
         _run_script(script_name, output_filename)
 

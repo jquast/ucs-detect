@@ -122,7 +122,7 @@ _width_func = wcstwidth
 _use_correction = True
 
 
-def _set_width_func(use_correction, software_name=None):
+def set_width_func(use_correction, software_name=None):
     """Toggle between standard wcswidth and correction-table wcstwidth."""
     global _width_func, _use_correction
     _use_correction = use_correction
@@ -131,6 +131,21 @@ def _set_width_func(use_correction, software_name=None):
         _width_func = functools.partial(wcstwidth, term_program=term_program)
     else:
         _width_func = wcswidth
+
+
+def correction_adjustment(ucs, slot_width):
+    """Conditionally use backspace(!) or padding to align 'ucs' to 'slot_width'."""
+    if not _use_correction:
+        return ''
+    char_width = _width_func(ucs)
+    if char_width < 0:
+        return ''
+    diff = char_width - slot_width
+    if diff > 0:
+        return '\b' * diff
+    if diff < 0:
+        return ' ' * abs(diff)
+    return ''
 
 
 def get_http_session():
@@ -861,7 +876,7 @@ class Pager:
             self.include_uncommon = not self.include_uncommon
             self._reinitialize()
         elif inp == 't':
-            _set_width_func(not _use_correction, self.software_name)
+            set_width_func(use_correction=not _use_correction, self.software_name)
             self._reinitialize()
         elif inp == 'g':
             self.grapheme_mode = not self.grapheme_mode
@@ -1089,9 +1104,12 @@ class Pager:
                 if len(hex_label) > total_len:
                     hex_label = hex_label[:total_len - 1] + '…'
                 hex_label = f'{hex_label:<{total_len}s}'
+            adj = ''
+            if self.term.is_a_tty:
+                adj = correction_adjustment(ucs, self.screen.wide)
             if style.alignment == 'right':
-                return f'{hex_label} {delimiter}{disp_ucs}{delimiter}'
-            return f'{delimiter}{disp_ucs}{delimiter} {hex_label}'
+                return f'{hex_label} {delimiter}{disp_ucs}{adj}{delimiter}'
+            return f'{delimiter}{disp_ucs}{adj}{delimiter} {hex_label}'
 
         if len(name) > style.name_len:
             idx = max(0, style.name_len - len(style.continuation))
@@ -1108,6 +1126,8 @@ class Pager:
                             '{name:<{name_len}s}'))
         val = ord(ucs)
         disp_ucs = style.attr_major(ucs)
+        if self.term.is_a_tty:
+            disp_ucs += correction_adjustment(ucs, self.screen.wide)
 
         return fmt.format(name_len=style.name_len,
                           ucs_printlen=UCS_PRINTLEN,
@@ -1201,7 +1221,7 @@ def main_browser(opts):
             sv = term.get_software_version()
             if sv is not None and sv.name:
                 software_name = sv.name
-    _set_width_func(True, software_name)
+    set_width_func(use_correction=True, software_name)
 
     screen = Screen(term, style, wide=opts['display_width'])
     pager = Pager(term, screen, opts['character_factory'],

@@ -23,7 +23,7 @@ class ErrorMatcher:
             return False
         if self.filter_value == 'all':
             return True
-        if self.filter_value in ('zwj', 'wide', 'vs16', 'vs16n', 'vs15'):
+        if self.filter_value in ('zwj', 'wide', 'narrow', 'vs16', 'vs16n', 'vs15'):
             return test_type == self.filter_value
         return False
 

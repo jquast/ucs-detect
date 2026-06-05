@@ -46,6 +46,7 @@ from ucs_detect.table_lang import LANG_GRAPHEMES
 from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 from ucs_detect.table_wide import WIDE_CHARACTERS
+from ucs_detect.table_narrow import NARROW_CHARACTERS
 from ucs_detect.error_matcher import ErrorMatcher
 from ucs_detect.table_ri_contested import RI_CONTESTED
 from ucs_detect.table_sfz_contested import SFZ_CONTESTED
@@ -55,6 +56,7 @@ from ucs_detect.table_lang_contested import LANG_CONTESTED
 from ucs_detect.table_vs15_contested import VS15_CONTESTED
 from ucs_detect.table_vs16_contested import VS16_CONTESTED
 from ucs_detect.table_wide_contested import WIDE_CONTESTED
+from ucs_detect.table_narrow_contested import NARROW_CONTESTED
 
 
 def _utcnow_str():
@@ -131,6 +133,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         vs16_table = VS16_NARROW_TO_WIDE
         vs15_table = VS15_WIDE_TO_NARROW
         lang_table = LANG_GRAPHEMES
+        narrow_table = NARROW_CHARACTERS
     else:
         wide_table = WIDE_CONTESTED
         sri_table = SRI_CONTESTED
@@ -140,6 +143,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         vs16_table = VS16_CONTESTED
         vs15_table = VS15_CONTESTED
         lang_table = LANG_CONTESTED
+        narrow_table = NARROW_CONTESTED
 
     term, writer = init_term(stream)
 
@@ -263,6 +267,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     emoji_zwj_results = {}
     emoji_vs16_results = {}
     emoji_vs15_results = {}
+    narrow_results = {}
     language_results = None
 
     if has_unicode:
@@ -351,6 +356,14 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     **test_kwargs,
                 )
 
+            if _should_run("unicode", "narrow"):
+                narrow_results = measure.test_support(
+                    table=narrow_table, expected_width=1,
+                    test_type="narrow",
+                    label="NARROW",
+                    **test_kwargs,
+                )
+
             if _should_run("lang") and not no_languages_test:
                 # Drain stale CPR responses that may have accumulated
                 # from codepoint test sprays before starting language tests.
@@ -388,6 +401,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             emoji_zwj_results=emoji_zwj_results,
             emoji_vs16_results=emoji_vs16_results,
             emoji_vs15_results=emoji_vs15_results,
+            narrow_results=narrow_results,
             language_results=language_results,
             elapsed=elapsed,
             has_unicode=has_unicode,
@@ -418,6 +432,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 emoji_zwj_results=emoji_zwj_results,
                 emoji_vs16_results=emoji_vs16_results,
                 emoji_vs15_results=emoji_vs15_results,
+                narrow_results=narrow_results,
                 language_results=language_results,
             ),
             terminal_results=terminal_results,
@@ -682,10 +697,12 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
     zwj = result_sets.get("emoji_zwj_results", {})
     vs16 = result_sets.get("emoji_vs16_results", {})
     vs15 = result_sets.get("emoji_vs15_results", {})
+    narrow = result_sets.get("narrow_results", {})
 
     for name, data in [("WIDE", wide), ("Standalone RI", sri),
                        ("Standalone Fitz.", sfz), ("RI Flags", ri),
-                       ("ZWJ", zwj), ("VS16", vs16), ("VS15", vs15)]:
+                       ("ZWJ", zwj), ("VS16", vs16), ("VS15", vs15),
+                       ("NARROW", narrow)]:
         if data:
             for label, d in data.items():
                 pct_val = d["pct_success"]
@@ -1157,7 +1174,7 @@ def parse_args():
         "--test-only",
         default="all",
         choices=("all", "unicode", "terminal", "wide", "sri", "sfz",
-                 "ri", "zwj", "vs16", "vs15", "lang"),
+                 "ri", "zwj", "vs16", "vs15", "lang", "narrow"),
         help="Run only the specified test category",
     )
     args.add_argument(

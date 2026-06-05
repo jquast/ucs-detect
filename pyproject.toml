@@ -58,7 +58,7 @@ dependencies = [
   "psutil",
   "pyyaml<7",
   "requests",
-  "wcwidth>=0.8.1",
+  "wcwidth @ git+https://github.com/jquast/wcwidth.git@jq/dynawidth",
 ]
 
 [project.scripts]
@@ -68,9 +68,9 @@ ucs-browser = "ucs_detect.browser:main"
 [project.urls]
 Homepage = "https://github.com/jquast/ucs-detect"
 
-# required when integrating with pre-release of wcwidth as a 'dependency'
-# [tool.hatch.metadata]
-# allow-direct-references = true
+# XXX required when integrating with pre-release of wcwidth as a 'dependency'
+[tool.hatch.metadata]
+allow-direct-references = true
 
 [tool.hatch.build.targets.sdist]
 include = [
