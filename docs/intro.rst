@@ -180,6 +180,42 @@ Submit results for a new terminal::
 Commit and make a PR. To preview documentation changes, create a *draft pull request*. A
 readthedocs.org build status will appear -- click "Details" for an HTML preview.
 
+Problem Analysis
+----------------
+
+Use ``--stop-at-error`` to investigate discrepancies interactively::
+
+    $ ucs-detect --stop-at-error 'Hindi'
+
+Example output::
+
+    Failure in language 'Hindi' (Hindi-2-01):
+    +---+-----------+--------+----------+---------+-------------------------+
+    | # | Codepoint | Python | Category | wcwidth |           Name          |
+    +---+-----------+--------+----------+---------+-------------------------+
+    | 1 |   U+0915  | \u0915 |    Lo    |    1    |   DEVANAGARI LETTER KA  |
+    | 2 |   U+094D  | \u094d |    Mn    |    0    |  DEVANAGARI SIGN VIRAMA |
+    | 3 |   U+0928  | \u0928 |    Lo    |    1    |   DEVANAGARI LETTER NA  |
+    | 4 |   U+093F  | \u093f |    Mc    |    0    | DEVANAGARI VOWEL SIGN I |
+    +---+-----------+--------+----------+---------+-------------------------+
+    +----+
+    | क्नि |
+    +----+
+
+    measured by terminal: 3
+    measured by wcwidth:  2
+
+    Shell
+    -----
+    printf '\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa8\xe0\xa4\xbf\n'
+
+    Python
+    ------
+    python -c "print('\u0915\u094d\u0928\u093f')"
+
+    press return for next error, or n for non-stop:
+
+
 Batch Testing
 -------------
 
@@ -242,41 +278,20 @@ The script ``run-series.py`` is an X11 automation for testing all linux terminal
 [arguments]`` or similar is not supported, keystrokes are injected into the target application to
 launch ``ucs-detect`` by configuration.
 
-Problem Analysis
-----------------
+Updating ucs-detect
+-------------------
 
-Use ``--stop-at-error`` to investigate discrepancies interactively::
+ucs-detect contains auto-generated tables of codepoints and grapheme sequences derived from
+Unicode.org, UDHR data, and python wcwidth code. Therefor, ucs-detect tables should be updated
+anytime:
 
-    $ ucs-detect --stop-at-error 'Hindi'
+- new release or revisions of unicode.org data files
+- new languages or revisions of UDHR data files
+- python wcwidth that affects wcswidth measurement
 
-Example output::
+To update these tables and then perform automatic reformatting, run::
 
-    Failure in language 'Hindi' (Hindi-2-01):
-    +---+-----------+--------+----------+---------+-------------------------+
-    | # | Codepoint | Python | Category | wcwidth |           Name          |
-    +---+-----------+--------+----------+---------+-------------------------+
-    | 1 |   U+0915  | \u0915 |    Lo    |    1    |   DEVANAGARI LETTER KA  |
-    | 2 |   U+094D  | \u094d |    Mn    |    0    |  DEVANAGARI SIGN VIRAMA |
-    | 3 |   U+0928  | \u0928 |    Lo    |    1    |   DEVANAGARI LETTER NA  |
-    | 4 |   U+093F  | \u093f |    Mc    |    0    | DEVANAGARI VOWEL SIGN I |
-    +---+-----------+--------+----------+---------+-------------------------+
-    +----+
-    | क्नि |
-    +----+
-
-    measured by terminal: 3
-    measured by wcwidth:  2
-
-    Shell
-    -----
-    printf '\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa8\xe0\xa4\xbf\n'
-
-    Python
-    ------
-    python -c "print('\u0915\u094d\u0928\u093f')"
-
-    press return for next error, or n for non-stop:
-
+    tox -e make_tables,format
 
 UDHR Data
 ---------
@@ -295,8 +310,10 @@ marks across diverse scripts.
 History
 -------
 
-- 2.3.0 (2026-06-04): Integrate with wcwidth>=0.8.0, which offers a ``term_program`` argument,
-  still a WIP!
+- 2.3.0 (2026-06-05): Integrate with wcwidth>=0.8.0, which offers a ``term_program`` argument that
+  is a circular dependency on our published results, and, now artificially "caps" all graphemes to a
+  maximum of width 2, matching more terminal emulators for width measurement (ghostty, wezterm,
+  foot, mlterm)
 
 - 2.2.1 (2026-06-01): Bugfix 'ENQ' response capture (PuTTY) and profiling Enrich source repository
   with more tools, like ``make-screenshots.py``, expanded XTGETTCAP detection and results table,
