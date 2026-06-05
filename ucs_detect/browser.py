@@ -37,6 +37,9 @@ Interactive Keys:
     -, _              Decrease character name display length by 2
     +, =              Increase character name display length by 2
 
+  Help:
+    ?, F1             Show this interactive key listing
+
   Exit:
     q, Q              Quit browser
 
@@ -76,6 +79,14 @@ from ucs_detect.table_lang import LANG_GRAPHEMES
 #: print function alias, does not end with line terminator.
 echo = functools.partial(print, end='')
 flushout = functools.partial(print, end='', flush=True)
+
+
+def _get_interactive_help():
+    """Extract 'Interactive Keys:' through EOF from the module docstring."""
+    marker = 'Interactive Keys:'
+    idx = __doc__.index(marker)
+    return __doc__[idx:]
+
 
 #: printable length of highest unicode character description
 LIMIT_UCS = 0x3fffd
@@ -660,6 +671,14 @@ class Pager:
         echo(self.term.center('Initializing page data ...').rstrip())
         flushout()
 
+    def _show_help(self):
+        """Clear screen, display Interactive Keys help, wait for any key."""
+        echo(self.term.home + self.term.clear + _get_interactive_help())
+        echo('\r\nPress any key to return...')
+        flushout()
+        self.term.inkey()
+        self.dirty = self.STATE_REFRESH
+
     def initialize_page_data(self):
         """Initialize the page data for the given screen."""
         # pylint: disable=attribute-defined-outside-init
@@ -888,6 +907,8 @@ class Pager:
                 else:
                     self.screen.wide = self.base_width_filter
                 self.on_resize(None, None)
+        elif inp == '?' or inp.code == self.term.KEY_F1:
+            self._show_help()
         elif inp in ('_', '-'):
             nlen = max(1, self.screen.style.name_len - 2)
             if nlen != self.screen.style.name_len:
@@ -1243,6 +1264,9 @@ Interactive Keys:
   Display Adjustment:
     -, _              Decrease character name display length by 2
     +, =              Increase character name display length by 2
+
+  Help:
+    ?, F1             Show this interactive key listing
 
   Exit:
     q, Q              Quit browser

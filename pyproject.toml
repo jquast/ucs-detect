@@ -58,7 +58,7 @@ dependencies = [
   "psutil",
   "pyyaml<7",
   "requests",
-  "wcwidth>=0.8",
+  "wcwidth>=0.8.1",
 ]
 
 [project.scripts]
