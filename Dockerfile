@@ -149,7 +149,7 @@ WORKDIR /app
 # install ucs-detect in editable mode
 COPY README.rst pyproject.toml setup.cfg ./
 COPY ucs_detect/ ./ucs_detect/
-RUN pip install -e .  --break-system-package
+RUN pip  install -e .  --break-system-package
 
 # entrypoint: start Xvfb if DISPLAY is set, then exec command
 ENV LIBGL_ALWAYS_SOFTWARE=1
