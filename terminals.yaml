@@ -9,6 +9,8 @@ terminals:
       program: alacritty
       args: [-o, window.dimensions.columns=80, -o, window.dimensions.lines=24, -e]
   bobcat:
+    # runs in docker, but fails screenshots there?
+    # skip_docker: true
     homepage: https://github.com/ismail-yilmaz/Bobcat
     launch:
       program: bobcat

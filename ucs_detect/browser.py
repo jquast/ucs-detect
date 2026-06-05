@@ -28,6 +28,7 @@ Interactive Keys:
     g                 Toggle grapheme cluster mode
     z                 Toggle ZWJ emoji mode
     U                 Toggle uncommon CJK extensions
+    t                 Toggle correction tables (wcstwidth vs wcswidth)
     w                 Toggle with/without variation selector (VS mode only)
     [                 Decrease grapheme width (grapheme mode only)
     ]                 Increase grapheme width (grapheme mode only)
@@ -65,7 +66,7 @@ import unicodedata
 import blessed
 import requests
 import urllib3.util
-from wcwidth import ZERO_WIDTH, wcwidth, _wcmatch_version
+from wcwidth import ZERO_WIDTH, wcswidth, wcstwidth, _wcmatch_version
 
 # local
 from ucs_detect.measure import _is_uncommon
@@ -102,6 +103,23 @@ BACKOFF_FACTOR = float(os.environ.get('BACKOFF_FACTOR', '1.0'))
 
 #: Module-level flag, set True by --refresh-unicode CLI argument.
 REFRESH_UNICODE = False
+
+#: Module-level width-measurement function; toggled between wcswidth and wcstwidth.
+_width_func = wcstwidth
+
+#: Whether correction tables are currently active.
+_use_correction = True
+
+
+def _set_width_func(use_correction, software_name=None):
+    """Toggle between standard wcswidth and correction-table wcstwidth."""
+    global _width_func, _use_correction
+    _use_correction = use_correction
+    if use_correction:
+        term_program = software_name if software_name else True
+        _width_func = functools.partial(wcstwidth, term_program=term_program)
+    else:
+        _width_func = wcswidth
 
 
 def get_http_session():
@@ -161,7 +179,7 @@ class WcWideCharacterGenerator:
         """
         self.characters = (
             chr(idx) for idx in range(LIMIT_UCS)
-            if wcwidth(chr(idx), unicode_version=unicode_version) == width
+            if _width_func(chr(idx), unicode_version=unicode_version) == width
             and (include_uncommon or not _is_uncommon(idx)))
 
     def __iter__(self):
@@ -201,7 +219,7 @@ class WcCombinedCharacterGenerator:
                 self.characters.append(
                     letters_o[:1] +
                     chr(val) +
-                    letters_o[wcwidth(chr(val)) + 1:])
+                    letters_o[_width_func(chr(val)) + 1:])
         self.characters.reverse()
 
     def __iter__(self):
@@ -275,8 +293,8 @@ class WcVariationSequenceGenerator:
                     continue
 
                 # Check base character width matches our filter
-                cell_width = wcwidth(chr(base_cp),
-                                     unicode_version=unicode_version)
+                cell_width = _width_func(chr(base_cp),
+                                         unicode_version=unicode_version)
                 if base_width is not None and cell_width != base_width:
                     continue
 
@@ -352,8 +370,8 @@ class WcSpaceKludgeGenerator:
                     base_cp = int(codepoints[0], 16)
                 except ValueError:
                     continue
-                if wcwidth(chr(base_cp),
-                           unicode_version=unicode_version) != base_width:
+                if _width_func(chr(base_cp),
+                               unicode_version=unicode_version) != base_width:
                     continue
                 comment_parts = line.split('#')
                 if len(comment_parts) >= 2:
@@ -381,8 +399,15 @@ class WcSpaceKludgeGenerator:
 
 
 def _available_grapheme_widths():
-    """Return sorted list of widths available in LANG_GRAPHEMES."""
-    return sorted({w for w, _ in LANG_GRAPHEMES})
+    """Return sorted list of widths available in LANG_GRAPHEMES using current _width_func."""
+    widths = set()
+    for _gw, lang_entries in LANG_GRAPHEMES:
+        for _lang, graphemes in lang_entries:
+            for g in graphemes:
+                w = _width_func(g)
+                if w > 0:
+                    widths.add(w)
+    return sorted(widths)
 
 
 class WcGraphemeGenerator:
@@ -396,12 +421,13 @@ class WcGraphemeGenerator:
         """
         seen = set()
         self.graphemes = []
-        for gw, lang_entries in LANG_GRAPHEMES:
-            if gw != width:
-                continue
+        for _gw, lang_entries in LANG_GRAPHEMES:
             for lang, graphemes in lang_entries:
                 for g in graphemes:
-                    if g not in seen:
+                    if g in seen:
+                        continue
+                    w = _width_func(g)
+                    if w == width:
                         seen.add(g)
                         self.graphemes.append((g, lang))
         self._idx = 0
@@ -569,7 +595,7 @@ class Pager:
 
     def __init__(self, term, screen, character_factory,
                  variation_selector=None, show_variation_selector=True,
-                 include_uncommon=True):
+                 include_uncommon=True, software_name=None):
         """
         Class constructor.
 
@@ -584,6 +610,8 @@ class Pager:
         :param show_variation_selector: Whether to display variation selector.
         :type show_variation_selector: bool
         :param bool include_uncommon: include uncommon CJK extensions.
+        :param software_name: terminal software name for correction tables.
+        :type software_name: str or None
         """
         self.term = term
         self.screen = screen
@@ -591,6 +619,7 @@ class Pager:
         self.variation_selector = variation_selector
         self.show_variation_selector = show_variation_selector
         self.include_uncommon = include_uncommon
+        self.software_name = software_name
         self.grapheme_mode = False
         self.grapheme_width = 1
         self.zwj_mode = False
@@ -616,9 +645,13 @@ class Pager:
 
     def _set_lastpage(self):
         """Calculate value of class attribute ``last_page``."""
-        self.last_page = (
-            (len(self._page_data) - 1) // self.screen.page_size
-        )
+        page_size = self.screen.page_size
+        if page_size < 1 or not self._page_data:
+            self.last_page = 0
+        else:
+            self.last_page = (
+                (len(self._page_data) - 1) // page_size
+            )
 
     def display_initialize(self):
         """Display 'please wait' message, and narrow build warning."""
@@ -808,6 +841,9 @@ class Pager:
         elif inp == 'U':
             self.include_uncommon = not self.include_uncommon
             self._reinitialize()
+        elif inp == 't':
+            _set_width_func(not _use_correction, self.software_name)
+            self._reinitialize()
         elif inp == 'g':
             self.grapheme_mode = not self.grapheme_mode
             if self.grapheme_mode:
@@ -953,6 +989,8 @@ class Pager:
             label = "NARROW" if self.screen.wide == 1 else "WIDE"
         if self.include_uncommon:
             label += "+ALL"
+        if _use_correction:
+            label += "+CORR"
         return label
 
     def draw_status(self, writer, idx):
@@ -978,7 +1016,7 @@ class Pager:
                    .format(idx=style.attr_minor(f'{idx}'),
                            last_end=style.attr_major(last_end),
                            mode=style.attr_major(mode),
-                           keyset=style.attr_major('kjfbvc012567gzwU[]-='),
+                           keyset=style.attr_major('kjfbvc012567gzwUt[]-='),
                            q=style.attr_minor('q')))
             writer(self.term.center(txt).rstrip())
 
@@ -1024,7 +1062,7 @@ class Pager:
 
         if multi_cp:
             disp_ucs = style.attr_major(ucs)
-            hex_label = '+'.join(f'{ord(c):04X}' for c in ucs)
+            hex_label = '+'.join(f'0x{ord(c):04X}' for c in ucs)
             if self.term.is_a_tty:
                 total_len = UCS_PRINTLEN + 2 + 1 + style.name_len
                 if len(hex_label) > total_len:
@@ -1136,11 +1174,20 @@ def main_browser(opts):
         style.alignment = 'left'
     style.name_len = 10
 
+    software_name = None
+    if term.is_a_tty:
+        with term.cbreak():
+            sv = term.get_software_version()
+            if sv is not None and sv.name:
+                software_name = sv.name
+    _set_width_func(True, software_name)
+
     screen = Screen(term, style, wide=opts['display_width'])
     pager = Pager(term, screen, opts['character_factory'],
                   variation_selector=opts['variation_selector'],
                   show_variation_selector=opts['show_variation_selector'],
-                  include_uncommon=opts.get('--include-uncommon', False))
+                  include_uncommon=opts.get('--include-uncommon', False),
+                  software_name=software_name)
 
     if opts['variation_selector']:
         pager.base_width_filter = opts['base_width_filter']
@@ -1188,6 +1235,7 @@ Interactive Keys:
     g                 Toggle grapheme cluster mode
     z                 Toggle ZWJ emoji mode
     U                 Toggle uncommon CJK extensions
+    t                 Toggle correction tables (wcstwidth vs wcswidth)
     w                 Toggle with/without variation selector (VS mode only)
     [                 Decrease grapheme width (grapheme mode only)
     ]                 Increase grapheme width (grapheme mode only)
@@ -1273,3 +1321,7 @@ Notes:
 def main():
     """CLI entry point."""
     sys.exit(main_browser(validate_args(parse_args())))
+
+
+if __name__ == '__main__':
+    main()
