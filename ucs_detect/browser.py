@@ -571,10 +571,13 @@ class Screen:
         txt = alignment(heading, self.hint_width, self.style.header_fill)
         return self.style.attr_major(txt)
 
-    def msg_intro(self, label=None):
+    def msg_intro(self, label=None, software_name=None, software_version=None):
         """Introductory message displayed above heading."""
-        if label:
-            text = f'{self.intro_msg_fmt.format(delim=self.style.attr_minor(self.style.delimiter))} [{label}]'
+        name_ver = f'{software_name} {software_version}'.strip() if software_name else None
+        parts = [label, name_ver] if name_ver else [label]
+        combined = ' '.join(p for p in parts if p)
+        if combined:
+            text = f'{self.intro_msg_fmt.format(delim=self.style.attr_minor(self.style.delimiter))} [{combined}]'
         else:
             text = self.intro_msg_fmt.format(delim=self.style.attr_minor(self.style.delimiter))
         if self.term.is_a_tty:
@@ -621,7 +624,8 @@ class Pager:
 
     def __init__(self, term, screen, character_factory,
                  variation_selector=None, show_variation_selector=True,
-                 include_uncommon=True, software_name=None):
+                 include_uncommon=True, software_name=None,
+                 software_version=None):
         """
         Class constructor.
 
@@ -638,6 +642,8 @@ class Pager:
         :param bool include_uncommon: include uncommon CJK extensions.
         :param software_name: terminal software name for correction tables.
         :type software_name: str or None
+        :param software_version: terminal software version string.
+        :type software_version: str or None
         """
         self.term = term
         self.screen = screen
@@ -646,6 +652,7 @@ class Pager:
         self.show_variation_selector = show_variation_selector
         self.include_uncommon = include_uncommon
         self.software_name = software_name
+        self.software_version = software_version
         self.grapheme_mode = False
         self.grapheme_width = 1
         self.zwj_mode = False
@@ -876,7 +883,7 @@ class Pager:
             self.include_uncommon = not self.include_uncommon
             self._reinitialize()
         elif inp == 't':
-            set_width_func(use_correction=not _use_correction, self.software_name)
+            set_width_func(not _use_correction, self.software_name)
             self._reinitialize()
         elif inp == 'g':
             self.grapheme_mode = not self.grapheme_mode
@@ -992,7 +999,9 @@ class Pager:
             label = self.mode_label() if not self.term.is_a_tty else None
             writer(''.join(
                 (self.term.home, self.term.clear,
-                 self.screen.msg_intro(label=label),
+                 self.screen.msg_intro(label=label,
+                                       software_name=self.software_name,
+                                       software_version=self.software_version),
                  '\n', self.screen.header, '\n',)))
             return True
         return False
@@ -1216,19 +1225,22 @@ def main_browser(opts):
     style.name_len = 10
 
     software_name = None
+    software_version = None
     if term.is_a_tty:
         with term.cbreak():
             sv = term.get_software_version()
             if sv is not None and sv.name:
                 software_name = sv.name
-    set_width_func(use_correction=True, software_name)
+                software_version = sv.version or None
+    set_width_func(True, software_name)
 
     screen = Screen(term, style, wide=opts['display_width'])
     pager = Pager(term, screen, opts['character_factory'],
                   variation_selector=opts['variation_selector'],
                   show_variation_selector=opts['show_variation_selector'],
                   include_uncommon=opts.get('--include-uncommon', False),
-                  software_name=software_name)
+                  software_name=software_name,
+                  software_version=software_version)
 
     if opts['variation_selector']:
         pager.base_width_filter = opts['base_width_filter']

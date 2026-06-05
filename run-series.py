@@ -402,6 +402,9 @@ def main():
     parser.add_argument(
         "--use-docker", action="store_true",
         help="Launch each terminal in its own Docker container (--cpus=2)")
+    parser.add_argument(
+        "--all", action="store_true",
+        help="Pass --all to ucs-detect, testing all codepoints (not just contested)")
     args = parser.parse_args()
 
     if args.use_docker and not _IS_DOCKER:
@@ -551,12 +554,15 @@ def main():
             print("--- Key-injection terminals (sequential launch, parallel wait) ---")
         for yaml_path, sw_name, launch_cfg, _seconds_elapsed in key_jobs:
             print(f"[{sw_name}] launching ...", flush=True)
+            extra_args = _build_software_overrides(yaml_path, mixins)
+            if args.all:
+                extra_args = (extra_args or []) + ['--all']
 
             proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                 yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 temp_dir,
                 pause_exit=args.pause_exit,
-                extra_args=_build_software_overrides(yaml_path, mixins))
+                extra_args=extra_args)
 
             if launch_error:
                 results[sw_name] = (-4, launch_error)
@@ -586,11 +592,14 @@ def main():
             if key_jobs:
                 print("\n--- Direct-launch terminals (parallel) ---")
             for yaml_path, sw_name, launch_cfg, _seconds_elapsed in direct_jobs:
+                extra_args = _build_software_overrides(yaml_path, mixins)
+                if args.all:
+                    extra_args = (extra_args or []) + ['--all']
                 proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                     yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     temp_dir,
                     pause_exit=args.pause_exit,
-                    extra_args=_build_software_overrides(yaml_path, mixins))
+                    extra_args=extra_args)
 
                 if launch_error:
                     results[sw_name] = (-4, launch_error)
