@@ -66,7 +66,8 @@ _CATEGORY_YAML_KEYS = [
 def extract_failures(yaml_path):
     """Extract all failure records from a YAML data file.
 
-    Returns a list of (category, wchars, expected_width, measured_width) tuples.
+    Returns (failures, software_version) where failures is a list of
+    (category, wchars, expected_width, measured_width) tuples.
     """
     with open(yaml_path) as f:
         data = yaml.safe_load(f)
@@ -108,7 +109,7 @@ def extract_failures(yaml_path):
             best.get("measured_by_terminal", 0),
         ))
 
-    return failures
+    return failures, data.get("software_version", "")
 
 
 def build_batch_script(script_path, sentinel_path, batch_json_path, window_id=None):
@@ -307,10 +308,18 @@ def main():
             skipped.append((d.software_name, "no terminals.yaml entry"))
             continue
 
-        failures = extract_failures(d.path)
+        failures, software_version = extract_failures(d.path)
         if not failures:
             skipped.append((d.software_name, "no width failures found"))
             continue
+
+        # Determine effective software_name for wcwidth term_program matching.
+        # VTE-based terminals (GNOME Terminal, XFCE Terminal, etc.) report
+        # software_name different from wcwidth's canonical "vte" — detect
+        # them via software_version and map to "vte".
+        effective_sw_name = d.software_name
+        if software_version and "VTE" in software_version:
+            effective_sw_name = "vte"
 
         entry = mixins.get(d.software_name.lower(), {})
         if not entry:
@@ -329,6 +338,7 @@ def main():
                 "measured_width": measured_width,
                 "output": str(out_path),
                 "title": f"ucs-shot-{safe}-{category}-{unique_id}",
+                "software_name": effective_sw_name,
             })
 
         terminal_jobs[sw_display] = (launch_cfg, records)

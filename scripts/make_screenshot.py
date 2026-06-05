@@ -197,6 +197,10 @@ def _crop_to_markers(src_path, dst_path):
 
     y2 = min(h, y2 + 4)
     img.crop((0, y1, w, y2)).save(dst_path)
+    subprocess.run(
+        ["convert", dst_path, "-strip", dst_path],
+        capture_output=True, check=True, timeout=10,
+    )
 
 
 def display_and_capture(term, wchars, expected_width, measured_width,
@@ -210,7 +214,7 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     sys.stdout.write("\x1b[?25l")  # hide cursor
 
     text = decode_wchars(wchars)
-    display_width = wcwidth.wcswidth(text, term_program=False)
+    display_width = wcwidth.wcswidth(text)
 
     def _box(box_width, content, *, heading=None):
         """Render a measurement box.  Returns (interior_width, heading_width)."""
@@ -272,9 +276,8 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     if (software_name
             and (cw := wcwidth.wcstwidth(text, term_program=software_name)) != display_width):
         ci, hw = _box(cw, text,
-                      heading=(
-                          f"This is corrected by argument term_program='{software_name}'"
-                          f" in python width() and wcstwidth():"))
+                      heading=(f"This may be corrected using wcstwidth("
+                               f"'…', term_program='{software_name}'):"))
         max_interior = max(max_interior, ci)
         max_heading = max(max_heading, hw)
         extra_tables += 1

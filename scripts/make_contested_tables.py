@@ -116,7 +116,7 @@ def collect_failures():
                 if 'inherited_from' in entry:
                     continue
                 grapheme_str = entry['wchars'].encode('ascii').decode('unicode_escape')
-                width = wcwidth.wcswidth(grapheme_str, term_program=False)
+                width = wcwidth.wcswidth(grapheme_str)
                 assert width > 0, f"wcswidth({grapheme_str!r}) = {width}"
                 lang_by_width[width][lang_name].add(grapheme_str)
 
