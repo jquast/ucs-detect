@@ -1,4 +1,5 @@
 """Generate narrow character table data for ucs_detect."""
+import unicodedata
 import wcwidth
 
 
@@ -8,6 +9,9 @@ def fetch_narrow_data():
     codepoints = []
     for cp in range(0x3FFFE):
         ch = chr(cp)
+        cat = unicodedata.category(ch)
+        if cat in ('Cs', 'Cn'):
+            continue
         if wcwidth.wcswidth(ch) == 1:
             codepoints.append(cp)
     return [(version, codepoints)]
