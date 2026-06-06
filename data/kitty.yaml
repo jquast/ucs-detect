@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-05 23:53:00 UTC
+datetime: 2026-06-06 00:13:25 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-kitty
@@ -8,403 +8,598 @@ preferred_encoding: UTF-8
 python_version: 3.14.5
 resource_profile:
   cpu_pct:
-  - 63.9
-  - 34.9
-  - 6.0
-  - 14.7
+  - 63.8
+  - 53.9
   - 4.0
   - 4.0
-  - 16.9
-  - 55.6
-  - 60.7
-  - 59.6
-  - 56.1
-  - 53.6
-  - 50.8
-  - 56.8
-  - 55.2
-  - 45.6
-  - 46.7
+  - 18.9
+  - 4.0
+  - 5.0
+  - 4.0
+  - 53.8
   - 54.8
-  - 54.7
+  - 56.5
   - 57.5
-  - 55.4
-  - 51.7
-  - 51.8
-  - 50.7
-  - 50.8
-  - 55.3
-  - 53.8
-  - 52.8
-  - 53.2
-  - 58.1
-  - 51.0
-  - 50.8
-  - 49.3
-  - 48.4
-  - 49.1
-  - 49.3
-  - 47.7
-  - 52.8
-  - 55.7
-  - 48.8
-  - 52.6
-  - 46.8
-  - 46.9
-  - 40.9
-  - 52.8
-  - 49.4
-  - 49.8
-  - 49.7
-  - 44.7
-  - 51.7
-  - 44.8
-  - 46.8
-  - 50.7
-  - 53.8
-  - 49.8
-  - 55.6
-  - 53.7
-  - 45.6
-  - 11.9
-  - 12.9
-  - 12.9
-  - 11.9
-  - 13.9
-  - 13.0
-  - 13.0
-  - 11.9
-  - 11.0
-  - 12.9
-  - 12.9
-  - 11.9
-  - 41.8
-  - 55.7
-  - 53.4
-  - 47.3
-  - 52.8
-  - 52.5
-  - 52.8
-  - 51.4
-  - 46.4
-  - 55.5
-  - 50.8
-  - 50.5
-  - 47.3
-  - 49.7
   - 53.6
+  - 58.2
+  - 56.7
+  - 53.8
+  - 54.5
+  - 52.8
+  - 51.2
   - 56.8
   - 58.8
-  - 53.6
+  - 46.6
+  - 49.8
   - 54.8
-  - 51.8
-  - 57.5
-  - 50.6
-  - 51.6
-  - 52.8
-  - 49.7
-  - 55.5
-  - 56.8
+  - 49.9
+  - 48.8
+  - 53.7
   - 53.8
-  - 56.7
-  - 50.7
-  - 51.5
-  - 57.5
-  - 52.7
-  - 55.6
-  - 55.4
-  - 56.6
-  - 52.5
-  - 52.6
-  - 51.8
-  - 54.2
-  - 39.4
-  - 11.9
-  - 10.9
+  - 54.3
+  - 54.7
+  - 54.8
+  - 56.1
+  - 50.9
+  - 59.3
+  - 59.8
+  - 54.5
+  - 59.6
+  - 46.4
+  - 50.1
+  - 42.7
+  - 55.8
+  - 51.4
+  - 56.3
+  - 55.5
+  - 53.7
+  - 51.9
+  - 53.3
+  - 52.8
+  - 54.7
+  - 61.6
+  - 51.2
+  - 59.1
+  - 53.8
+  - 49.7
+  - 57.3
+  - 58.8
+  - 48.8
+  - 64.7
+  - 60.8
+  - 66.8
+  - 60.4
+  - 42.7
+  - 14.9
+  - 14.9
+  - 15.9
+  - 12.9
+  - 14.9
   - 12.0
+  - 12.0
+  - 14.9
+  - 16.0
+  - 14.9
+  - 14.9
+  - 14.9
+  - 14.8
+  - 13.9
   - 13.0
-  - 10.0
-  - 11.0
-  - 11.8
-  - 11.8
-  - 11.9
-  - 9.9
-  - 11.9
+  - 15.9
+  - 14.9
+  - 14.9
+  - 14.9
+  - 13.0
+  - 15.0
+  - 15.0
+  - 16.0
+  - 14.0
+  - 15.0
+  - 14.9
+  - 14.0
+  - 14.9
+  - 14.9
+  - 15.0
+  - 13.9
+  - 15.9
   - 12.0
-  - 10.9
-  - 11.9
-  - 11.0
-  - 9.9
-  - 12.0
-  - 12.0
-  - 27.5
+  - 14.9
+  - 16.0
+  - 14.0
+  - 14.0
+  - 15.9
+  - 15.9
+  - 13.9
+  - 14.0
+  - 14.0
+  - 14.0
+  - 12.9
+  - 15.0
+  - 13.0
+  - 14.9
+  - 29.9
+  - 14.0
+  - 14.9
+  - 14.0
+  - 13.9
+  - 15.0
+  - 14.0
+  - 15.0
+  - 13.9
+  - 15.0
+  - 14.0
+  - 15.9
+  - 13.9
+  - 15.9
+  - 13.0
+  - 15.0
+  - 15.0
+  - 16.0
+  - 15.0
+  - 15.0
+  - 14.9
+  - 14.0
+  - 15.0
+  - 16.0
+  - 14.9
+  - 14.9
+  - 15.0
+  - 14.0
+  - 15.0
+  - 13.0
+  - 15.0
+  - 14.9
+  - 13.9
+  - 15.0
+  - 14.9
+  - 14.9
+  - 14.9
+  - 15.0
+  - 15.0
+  - 15.0
+  - 15.0
+  - 14.9
+  - 14.0
+  - 15.9
+  - 14.9
+  - 15.9
+  - 15.0
+  - 15.9
+  - 16.9
+  - 16.0
+  - 15.0
+  - 16.9
+  - 14.9
+  - 14.9
+  - 16.0
+  - 16.0
+  - 16.0
+  - 15.9
+  - 17.0
+  - 14.9
+  - 51.7
+  - 91.7
+  - 28.9
+  - 18.0
+  - 15.0
+  - 16.9
+  - 15.9
+  - 15.0
+  - 16.0
+  - 17.0
+  - 18.0
+  - 16.0
+  - 18.0
+  - 16.0
+  - 18.0
+  - 17.0
+  - 18.0
+  - 18.0
+  - 18.0
+  - 18.0
+  - 17.0
+  - 17.0
+  - 18.0
+  - 18.0
+  - 18.0
+  - 14.0
   elapsed_s:
-  - 1.002691699017305
-  - 2.0056866640225053
-  - 3.008697693992872
-  - 4.017325353983324
-  - 5.034511883975938
-  - 6.04369747400051
-  - 7.046870553982444
-  - 8.049896601005457
-  - 9.058883236022666
-  - 10.063680842984468
-  - 11.078695709002204
-  - 12.087497586966492
-  - 13.091625772009138
-  - 14.09561700298218
-  - 15.102927190018818
-  - 16.11725466797361
-  - 17.125272486999165
-  - 18.129113179980777
-  - 19.16858435200993
-  - 20.173701110004913
-  - 21.184055642981548
-  - 22.19568491500104
-  - 23.199310944008175
-  - 24.223050137981772
-  - 25.2277196230134
-  - 26.232707654009573
-  - 27.243789234024007
-  - 28.24869871599367
-  - 29.252702352998313
-  - 30.275533458974678
-  - 31.28618352196645
-  - 32.30341173696797
-  - 33.30871481297072
-  - 34.3225408999715
-  - 35.338710200972855
-  - 36.35284252499696
-  - 37.388745664968155
-  - 38.39469437202206
-  - 39.399224838998634
-  - 40.4048208000022
-  - 41.4107098079985
-  - 42.41900135297328
-  - 43.421986804984044
-  - 44.42449172498891
-  - 45.42801463097567
-  - 46.43235525296768
-  - 47.44669124297798
-  - 48.45019839401357
-  - 49.455413580988534
-  - 50.463719482009765
-  - 51.46920944796875
-  - 52.47148415597621
-  - 53.476824298966676
-  - 54.4827181629953
-  - 55.48548541497439
-  - 56.48954362596851
-  - 57.498850311967544
-  - 58.5037796269753
-  - 59.51146269100718
-  - 60.5177047419711
-  - 61.52063622698188
-  - 62.526538327976596
-  - 63.531355860002805
-  - 64.53476985997986
-  - 65.53800929698627
-  - 66.54071508400375
-  - 67.54684900998836
-  - 68.5514774430194
-  - 69.55791268899338
-  - 70.56570583098801
-  - 71.57114572200226
-  - 72.57550029101549
-  - 73.60606333601754
-  - 74.621101110999
-  - 75.62446682300651
-  - 76.63430840097135
-  - 77.63801977701951
-  - 78.64193696598522
-  - 79.65721795900026
-  - 80.66799100697972
-  - 81.67748816497624
-  - 82.70410533901304
-  - 83.72028542001499
-  - 84.72772940399591
-  - 85.73628097301116
-  - 86.7389224349754
-  - 87.7420635750168
-  - 88.75033779902151
-  - 89.75317363598151
-  - 90.75713963998714
-  - 91.76380870700814
-  - 92.76972327701515
-  - 93.77901221602224
-  - 94.78450808901107
-  - 95.78782903897809
-  - 96.80076969100628
-  - 97.80354788998375
-  - 98.80665159999626
-  - 99.81372101197485
-  - 100.8168019609875
-  - 101.82342793099815
-  - 102.83768984198105
-  - 103.84072579600615
-  - 104.84879936400102
-  - 105.85473268397618
-  - 106.88332553696819
-  - 107.89021711598616
-  - 108.89978633000283
-  - 109.90729261102388
-  - 110.9103728759801
-  - 111.92559708998306
-  - 112.93962386297062
-  - 113.9467844790197
-  - 114.95342489198083
-  - 115.95671188097913
-  - 116.9605687300209
-  - 117.9636477099848
-  - 118.97306772100274
-  - 119.98283106501913
-  - 120.99421151401475
-  - 121.9999801919912
-  - 123.01108959497651
-  - 124.01408106199233
-  - 125.02096677699592
-  - 126.02950151800178
-  - 127.03224575100467
-  - 128.03818906098604
-  - 129.04233821696835
-  - 130.04622168897185
-  - 131.0511355610215
+  - 1.0018151890253648
+  - 2.00486116000684
+  - 3.0070412910426967
+  - 4.009966512036044
+  - 5.013620069017634
+  - 6.020279232994653
+  - 7.025722180027515
+  - 8.03250743803801
+  - 9.039497198013123
+  - 10.042938809026964
+  - 11.050458692014217
+  - 12.055261978006456
+  - 13.063762381032575
+  - 14.071807566040661
+  - 15.08724132500356
+  - 16.09131603501737
+  - 17.09469217102742
+  - 18.10422981501324
+  - 19.11426424002275
+  - 20.122952834994067
+  - 21.125442829041276
+  - 22.1285066200071
+  - 23.137135797995143
+  - 24.140597203047946
+  - 25.143514533992857
+  - 26.146338217018638
+  - 27.152702082006726
+  - 28.156775140028913
+  - 29.166524754022248
+  - 30.17377208301332
+  - 31.1795291909948
+  - 32.18229451501975
+  - 33.19836951000616
+  - 34.20879137900192
+  - 35.23051658802433
+  - 36.2333381610224
+  - 37.24455610202858
+  - 38.25184346403694
+  - 39.27590622002026
+  - 40.281656280043535
+  - 41.28844855702482
+  - 42.29197104804916
+  - 43.307721215998754
+  - 44.31385586300166
+  - 45.34252792102052
+  - 46.36535088502569
+  - 47.37815495004179
+  - 48.38203429302666
+  - 49.386814886995126
+  - 50.39342400600435
+  - 51.39870829303982
+  - 52.41954207100207
+  - 53.42952910304302
+  - 54.43638229399221
+  - 55.44551620999118
+  - 56.45143395999912
+  - 57.45518404600443
+  - 58.45927414903417
+  - 59.46290963602951
+  - 60.46750710904598
+  - 61.475124085030984
+  - 62.48320554301608
+  - 63.48880570603069
+  - 64.49315471603768
+  - 65.49608974804869
+  - 66.50006181700155
+  - 67.50725939602125
+  - 68.51117243099725
+  - 69.51435070502339
+  - 70.51704090903513
+  - 71.52151462301845
+  - 72.52903153502848
+  - 73.53352338104742
+  - 74.53721407899866
+  - 75.55005918903043
+  - 76.55789883102989
+  - 77.56225821201224
+  - 78.56550365802832
+  - 79.56944402802037
+  - 80.57312574004754
+  - 81.58144681999693
+  - 82.58491825504461
+  - 83.58745100500528
+  - 84.59027593204519
+  - 85.59294763003709
+  - 86.5956975230365
+  - 87.59862423699815
+  - 88.60144220601069
+  - 89.60476086300332
+  - 90.60776545002591
+  - 91.61186752701178
+  - 92.61537894199137
+  - 93.62040558399167
+  - 94.62345762399491
+  - 95.62819910701364
+  - 96.63143094204133
+  - 97.63474380702246
+  - 98.63759995304281
+  - 99.6400773160276
+  - 100.64273769099964
+  - 101.64732193102827
+  - 102.65178372804075
+  - 103.65936312300619
+  - 104.66228667704854
+  - 105.66522395599168
+  - 106.66887697804486
+  - 107.67542826599674
+  - 108.67804095003521
+  - 109.68241065501934
+  - 110.68756872002268
+  - 111.69000660203164
+  - 112.692636132997
+  - 113.69763628701912
+  - 114.70140837301733
+  - 115.70588373800274
+  - 116.70784099999582
+  - 117.7100059009972
+  - 118.714110506
+  - 119.71677144704154
+  - 120.71957512403606
+  - 121.72252930299146
+  - 122.73030475003179
+  - 123.73370145802619
+  - 124.73652411502553
+  - 125.7396799279959
+  - 126.74216169200372
+  - 127.7451245500124
+  - 128.7475186670199
+  - 129.74962746701203
+  - 130.75239688600414
+  - 131.75955241703195
+  - 132.76277807104634
+  - 133.76521315902937
+  - 134.76902687601978
+  - 135.77426035900135
+  - 136.77708561602049
+  - 137.78033646102995
+  - 138.7836349250283
+  - 139.78606088802917
+  - 140.78843940002844
+  - 141.79118363803718
+  - 142.79714175401023
+  - 143.80150626401883
+  - 144.80452920199605
+  - 145.80937659804476
+  - 146.81397019402357
+  - 147.81653398601338
+  - 148.81908060400747
+  - 149.82249484100612
+  - 150.82565787504427
+  - 151.8307709210203
+  - 152.83367171999998
+  - 153.83731684600934
+  - 154.8416276810458
+  - 155.8464537539985
+  - 156.84901354601607
+  - 157.8525071820477
+  - 158.855989306001
+  - 159.85911616001977
+  - 160.86213080299785
+  - 161.86551792401588
+  - 162.87007381004514
+  - 163.87582984002074
+  - 164.87872580403928
+  - 165.8815174610354
+  - 166.88410285004647
+  - 167.89308638003422
+  - 168.8958080020384
+  - 169.8986099230242
+  - 170.90498946601292
+  - 171.9088126340066
+  - 172.91314682201482
+  - 173.91650752804708
+  - 174.91879124002298
+  - 175.92250764300115
+  - 176.92557605699403
+  - 177.92902616702486
+  - 178.9313337689964
+  - 179.9332468790235
+  - 180.93550996499835
+  - 181.93806710204808
+  - 182.94032389402855
+  - 183.94250658503734
+  - 184.9449274429935
+  - 185.9471664080047
+  - 186.94904386199778
+  - 187.95084018300986
+  - 188.95307251100894
+  - 189.955250316998
+  - 190.95736356900306
+  - 191.95969360804884
+  - 192.96184521104442
+  - 193.96415202401113
+  - 194.96631732903188
+  - 195.9684683069936
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 209.25390625
-  - 214.36328125
-  - 214.37890625
-  - 214.48046875
-  - 214.48046875
-  - 214.4765625
-  - 215.0546875
-  - 215.52734375
-  - 215.828125
-  - 218.9609375
-  - 219.4765625
-  - 238.03125
-  - 260.77734375
-  - 286.484375
-  - 311.01953125
-  - 324.21484375
-  - 345.45703125
-  - 370.421875
-  - 396.16796875
-  - 419.53515625
-  - 428.8515625
-  - 445.36328125
-  - 462.1796875
-  - 479.0546875
-  - 497.21875
-  - 517.1875
-  - 532.0078125
-  - 552.9765625
-  - 571.4921875
-  - 587.57421875
-  - 608.10546875
-  - 623.875
-  - 638.06640625
-  - 654.4375
-  - 665.84765625
-  - 677.58203125
-  - 693.12109375
-  - 706.2265625
-  - 724.046875
-  - 744.20703125
-  - 765.45703125
-  - 785.1953125
-  - 801.23828125
-  - 815.13671875
-  - 828.71875
-  - 829.7421875
-  - 829.8046875
-  - 830.8671875
-  - 830.9296875
-  - 830.93359375
-  - 830.97265625
-  - 830.97265625
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.15234375
-  - 831.21484375
-  - 832.08984375
-  - 832.08984375
-  - 832.08984375
-  - 832.21484375
-  - 832.27734375
-  - 833.3984375
-  - 833.45703125
-  - 834.5859375
-  - 834.6484375
-  - 835.8359375
-  - 835.8359375
-  - 835.8359375
-  - 835.8359375
-  - 835.8359375
-  - 836.40234375
-  - 836.40234375
-  - 836.40234375
-  - 836.40234375
-  - 836.40234375
-  - 836.40234375
-  - 836.40234375
-  - 836.64453125
-  - 837.20703125
-  - 837.2109375
-  - 837.2109375
-  - 837.2109375
-  - 837.2109375
-  - 837.7734375
-  - 837.8984375
-  - 837.8984375
-  - 837.8984375
-  - 837.8984375
-  - 839.71484375
-  - 839.71484375
-  - 839.71484375
-  - 839.71484375
-  - 839.71484375
-  - 839.71484375
-  - 839.81640625
-  - 839.8359375
-  - 839.8359375
-  - 839.8359375
-  - 839.8359375
-  - 839.8359375
-  - 839.8359375
-  - 839.8359375
-  - 839.8359375
-  - 839.8359375
-  - 840.03125
-  - 840.51171875
-  - 840.51171875
-  - 840.51171875
-  - 840.51171875
-  - 840.51171875
-  - 840.51171875
-  - 840.51171875
-  - 840.51171875
-  - 840.51171875
-  - 841.07421875
-seconds_elapsed: 124.01893242902588
+  - 205.56640625
+  - 211.203125
+  - 211.21484375
+  - 211.21484375
+  - 211.3046875
+  - 211.3046875
+  - 211.3046875
+  - 211.3046875
+  - 212.44140625
+  - 212.58984375
+  - 212.859375
+  - 215.96875
+  - 215.96875
+  - 231.34765625
+  - 249.6875
+  - 273.046875
+  - 293.62890625
+  - 311.3359375
+  - 329.7578125
+  - 354.41015625
+  - 380.15625
+  - 403.17578125
+  - 418.36328125
+  - 430.0703125
+  - 447.83984375
+  - 464.39453125
+  - 485.03125
+  - 503.6796875
+  - 519.8359375
+  - 537.69140625
+  - 555.76953125
+  - 573.9609375
+  - 590.83203125
+  - 609.234375
+  - 627.21484375
+  - 643.83203125
+  - 660.97265625
+  - 672.72265625
+  - 686.07421875
+  - 698.30859375
+  - 708.4453125
+  - 728.19140625
+  - 747.9609375
+  - 770.125
+  - 788.63671875
+  - 804.68359375
+  - 819.984375
+  - 827.546875
+  - 828.61328125
+  - 828.61328125
+  - 828.73828125
+  - 829.421875
+  - 829.421875
+  - 829.42578125
+  - 829.42578125
+  - 829.76171875
+  - 829.94921875
+  - 829.94921875
+  - 829.94921875
+  - 830.07421875
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.1328125
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 830.8984375
+  - 831.015625
+  - 831.015625
+  - 831.015625
+  - 831.015625
+  - 831.015625
+  - 831.015625
+  - 831.015625
+  - 831.015625
+  - 831.015625
+  - 831.015625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+  - 830.765625
+seconds_elapsed: 187.3986304560094
 session_arguments:
   all: false
   limit_category_time: 0
@@ -15675,7 +15870,6237 @@ test_results:
       n_errors: 0
       n_total: 8
       pct_success: 100.0
-  narrow_results: {}
+  narrow_results:
+    17.0.0:
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \xad
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0600
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0601
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0602
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0603
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0604
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0605
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u06dd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u070f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0890
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0891
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u08e2
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u261d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26f9
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u270c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u270d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud800
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud801
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud802
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud803
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud804
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud805
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud806
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud807
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud808
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud809
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud80a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud80b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud80c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud80d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud80e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud80f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud810
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud811
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud812
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud813
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud814
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud815
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud816
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud817
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud818
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud819
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud81a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud81b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud81c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud81d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud81e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud81f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud820
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud821
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud822
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud823
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud824
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud825
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud826
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud827
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud828
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud829
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud82a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud82b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud82c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud82d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud82e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud82f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud830
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud831
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud832
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud833
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud834
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud835
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud836
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud837
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud838
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud839
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud83a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud83b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud83c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud83d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud83e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud83f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud840
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud841
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud842
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud843
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud844
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud845
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud846
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud847
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud848
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud849
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud84a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud84b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud84c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud84d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud84e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud84f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud850
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud851
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud852
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud853
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud854
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud855
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud856
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud857
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud858
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud859
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud85a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud85b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud85c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud85d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud85e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud85f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud860
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud861
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud862
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud863
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud864
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud865
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud866
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud867
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud868
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud869
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud86a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud86b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud86c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud86d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud86e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud86f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud870
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud871
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud872
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud873
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud874
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud875
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud876
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud877
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud878
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud879
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud87a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud87b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud87c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud87d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud87e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud87f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud880
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud881
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud882
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud883
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud884
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud885
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud886
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud887
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud888
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud889
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud88a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud88b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud88c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud88d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud88e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud88f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud890
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud891
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud892
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud893
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud894
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud895
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud896
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud897
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud898
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud899
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud89a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud89b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud89c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud89d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud89e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud89f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8a9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8aa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ab
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ac
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ad
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ae
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8af
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8b9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ba
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8bb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8bc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8bd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8be
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8bf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8c9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ca
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8cb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8cc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8cd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ce
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8cf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8d9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8da
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8db
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8dc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8dd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8de
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8df
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8e9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ea
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8eb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ec
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ed
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ee
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ef
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8f9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8fa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8fb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8fc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8fd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8fe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud8ff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud900
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud901
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud902
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud903
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud904
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud905
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud906
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud907
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud908
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud909
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud90a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud90b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud90c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud90d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud90e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud90f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud910
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud911
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud912
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud913
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud914
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud915
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud916
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud917
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud918
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud919
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud91a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud91b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud91c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud91d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud91e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud91f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud920
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud921
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud922
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud923
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud924
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud925
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud926
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud927
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud928
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud929
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud92a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud92b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud92c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud92d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud92e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud92f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud930
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud931
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud932
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud933
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud934
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud935
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud936
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud937
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud938
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud939
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud93a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud93b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud93c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud93d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud93e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud93f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud940
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud941
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud942
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud943
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud944
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud945
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud946
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud947
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud948
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud949
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud94a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud94b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud94c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud94d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud94e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud94f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud950
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud951
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud952
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud953
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud954
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud955
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud956
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud957
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud958
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud959
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud95a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud95b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud95c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud95d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud95e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud95f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud960
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud961
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud962
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud963
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud964
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud965
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud966
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud967
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud968
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud969
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud96a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud96b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud96c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud96d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud96e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud96f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud970
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud971
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud972
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud973
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud974
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud975
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud976
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud977
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud978
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud979
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud97a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud97b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud97c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud97d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud97e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud97f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud980
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud981
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud982
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud983
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud984
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud985
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud986
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud987
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud988
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud989
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud98a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud98b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud98c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud98d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud98e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud98f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud990
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud991
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud992
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud993
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud994
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud995
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud996
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud997
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud998
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud999
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud99a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud99b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud99c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud99d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud99e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud99f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9a9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9aa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ab
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ac
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ad
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ae
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9af
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9b9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ba
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9bb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9bc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9bd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9be
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9bf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9c9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ca
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9cb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9cc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9cd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ce
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9cf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9d9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9da
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9db
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9dc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9dd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9de
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9df
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9e9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ea
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9eb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ec
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ed
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ee
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ef
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9f9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9fa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9fb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9fc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9fd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9fe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ud9ff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda00
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda01
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda02
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda03
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda04
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda05
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda06
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda07
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda08
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda09
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda0a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda0b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda0c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda0d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda0e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda0f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda10
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda11
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda12
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda13
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda14
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda15
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda16
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda17
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda18
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda19
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda1a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda1b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda1c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda1d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda1e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda1f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda20
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda21
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda22
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda23
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda24
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda25
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda26
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda27
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda28
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda29
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda2a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda2b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda2c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda2d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda2e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda2f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda30
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda31
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda32
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda33
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda34
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda35
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda36
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda37
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda38
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda39
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda3a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda3b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda3c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda3d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda3e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda3f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda40
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda41
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda42
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda43
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda44
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda45
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda46
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda47
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda48
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda49
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda4a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda4b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda4c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda4d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda4e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda4f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda50
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda51
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda52
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda53
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda54
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda55
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda56
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda57
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda58
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda59
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda5a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda5b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda5c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda5d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda5e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda5f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda60
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda61
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda62
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda63
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda64
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda65
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda66
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda67
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda68
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda69
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda6a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda6b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda6c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda6d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda6e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda6f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda70
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda71
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda72
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda73
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda74
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda75
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda76
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda77
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda78
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda79
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda7a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda7b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda7c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda7d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda7e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda7f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda80
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda81
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda82
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda83
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda84
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda85
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda86
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda87
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda88
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda89
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda8a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda8b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda8c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda8d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda8e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda8f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda90
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda91
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda92
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda93
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda94
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda95
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda96
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda97
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda98
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda99
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda9a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda9b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda9c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda9d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda9e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uda9f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaa9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaaa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaab
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaac
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaad
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaae
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaaf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udab9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaba
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udabb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udabc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udabd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udabe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udabf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udac9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaca
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udacb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udacc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udacd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udace
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udacf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udad9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udada
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udadb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udadc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udadd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udade
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udadf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udae9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaea
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaeb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaec
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaed
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaee
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaef
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaf9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udafa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udafb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udafc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udafd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udafe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udaff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb00
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb01
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb02
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb03
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb04
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb05
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb06
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb07
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb08
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb09
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb0a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb0b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb0c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb0d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb0e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb0f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb10
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb11
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb12
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb13
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb14
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb15
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb16
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb17
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb18
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb19
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb1a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb1b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb1c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb1d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb1e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb1f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb20
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb21
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb22
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb23
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb24
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb25
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb26
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb27
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb28
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb29
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb2a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb2b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb2c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb2d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb2e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb2f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb30
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb31
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb32
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb33
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb34
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb35
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb36
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb37
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb38
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb39
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb3a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb3b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb3c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb3d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb3e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb3f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb40
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb41
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb42
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb43
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb44
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb45
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb46
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb47
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb48
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb49
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb4a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb4b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb4c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb4d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb4e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb4f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb50
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb51
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb52
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb53
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb54
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb55
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb56
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb57
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb58
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb59
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb5a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb5b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb5c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb5d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb5e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb5f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb60
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb61
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb62
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb63
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb64
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb65
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb66
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb67
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb68
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb69
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb6a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb6b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb6c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb6d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb6e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb6f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb70
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb71
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb72
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb73
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb74
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb75
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb76
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb77
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb78
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb79
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb7a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb7b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb7c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb7d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb7e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb7f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb80
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb81
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb82
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb83
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb84
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb85
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb86
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb87
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb88
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb89
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb8a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb8b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb8c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb8d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb8e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb8f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb90
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb91
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb92
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb93
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb94
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb95
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb96
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb97
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb98
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb99
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb9a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb9b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb9c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb9d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb9e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udb9f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udba9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbaa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbab
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbac
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbad
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbae
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbaf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbb9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbba
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbbb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbbc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbbd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbbe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbbf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbc9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbca
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbcb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbcc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbcd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbce
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbcf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbd9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbda
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbdb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbdc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbdd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbde
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbdf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbe9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbea
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbeb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbec
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbed
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbee
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbef
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbf9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbfa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbfb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbfc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbfd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbfe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udbff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc00
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc01
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc02
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc03
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc04
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc05
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc06
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc07
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc08
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc09
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc0a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc0b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc0c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc0d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc0e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc0f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc10
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc11
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc12
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc13
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc14
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc15
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc16
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc17
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc18
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc19
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc1a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc1b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc1c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc1d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc1e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc1f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc20
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc21
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc22
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc23
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc24
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc25
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc26
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc27
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc28
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc29
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc2a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc2b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc2c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc2d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc2e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc2f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc30
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc31
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc32
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc33
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc34
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc35
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc36
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc37
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc38
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc39
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc3a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc3b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc3c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc3d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc3e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc3f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc40
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc41
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc42
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc43
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc44
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc45
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc46
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc47
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc48
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc49
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc4a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc4b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc4c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc4d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc4e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc4f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc50
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc51
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc52
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc53
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc54
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc55
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc56
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc57
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc58
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc59
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc5a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc5b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc5c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc5d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc5e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc5f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc60
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc61
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc62
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc63
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc64
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc65
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc66
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc67
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc68
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc69
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc6a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc6b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc6c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc6d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc6e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc6f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc70
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc71
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc72
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc73
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc74
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc75
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc76
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc77
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc78
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc79
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc7a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc7b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc7c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc7d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc7e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc7f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc80
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc81
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc82
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc83
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc84
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc85
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc86
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc87
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc88
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc89
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc8a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc8b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc8c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc8d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc8e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc8f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc90
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc91
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc92
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc93
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc94
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc95
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc96
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc97
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc98
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc99
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc9a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc9b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc9c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc9d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc9e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udc9f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udca9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcaa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcab
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcac
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcad
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcae
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcaf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcb9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcba
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcbb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcbc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcbd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcbe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcbf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcc9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcca
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udccb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udccc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udccd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcce
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udccf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcd9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcda
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcdb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcdc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcdd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcde
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcdf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udce9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcea
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udceb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcec
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udced
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcee
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcef
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcf9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcfa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcfb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcfc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcfd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcfe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udcff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd00
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd01
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd02
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd03
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd04
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd05
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd06
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd07
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd08
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd09
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd0a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd0b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd0c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd0d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd0e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd0f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd10
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd11
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd12
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd13
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd14
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd15
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd16
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd17
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd18
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd19
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd1a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd1b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd1c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd1d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd1e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd1f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd20
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd21
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd22
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd23
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd24
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd25
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd26
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd27
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd28
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd29
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd2a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd2b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd2c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd2d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd2e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd2f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd30
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd31
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd32
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd33
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd34
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd35
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd36
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd37
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd38
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd39
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd3a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd3b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd3c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd3d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd3e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd3f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd40
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd41
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd42
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd43
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd44
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd45
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd46
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd47
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd48
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd49
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd4a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd4b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd4c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd4d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd4e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd4f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd50
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd51
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd52
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd53
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd54
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd55
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd56
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd57
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd58
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd59
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd5a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd5b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd5c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd5d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd5e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd5f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd60
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd61
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd62
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd63
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd64
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd65
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd66
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd67
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd68
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd69
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd6a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd6b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd6c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd6d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd6e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd6f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd70
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd71
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd72
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd73
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd74
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd75
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd76
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd77
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd78
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd79
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd7a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd7b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd7c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd7d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd7e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd7f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd80
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd81
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd82
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd83
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd84
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd85
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd86
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd87
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd88
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd89
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd8a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd8b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd8c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd8d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd8e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd8f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd90
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd91
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd92
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd93
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd94
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd95
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd96
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd97
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd98
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd99
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd9a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd9b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd9c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd9d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd9e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udd9f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udda9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddaa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddab
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddac
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddad
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddae
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddaf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddb9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddba
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddbb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddbc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddbd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddbe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddbf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddc9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddca
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddcb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddcc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddcd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddce
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddcf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddd9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddda
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udddb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udddc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udddd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddde
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udddf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udde9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddea
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddeb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddec
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udded
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddee
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddef
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddf9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddfa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddfb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddfc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddfd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddfe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uddff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude00
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude01
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude02
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude03
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude04
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude05
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude06
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude07
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude08
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude09
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude0a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude0b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude0c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude0d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude0e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude0f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude10
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude11
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude12
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude13
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude14
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude15
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude16
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude17
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude18
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude19
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude1a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude1b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude1c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude1d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude1e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude1f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude20
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude21
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude22
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude23
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude24
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude25
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude26
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude27
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude28
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude29
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude2a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude2b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude2c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude2d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude2e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude2f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude30
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude31
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude32
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude33
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude34
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude35
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude36
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude37
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude38
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude39
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude3a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude3b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude3c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude3d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude3e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude3f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude40
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude41
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude42
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude43
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude44
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude45
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude46
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude47
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude48
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude49
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude4a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude4b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude4c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude4d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude4e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude4f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude50
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude51
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude52
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude53
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude54
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude55
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude56
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude57
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude58
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude59
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude5a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude5b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude5c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude5d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude5e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude5f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude60
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude61
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude62
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude63
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude64
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude65
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude66
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude67
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude68
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude69
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude6a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude6b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude6c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude6d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude6e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude6f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude70
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude71
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude72
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude73
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude74
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude75
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude76
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude77
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude78
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude79
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude7a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude7b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude7c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude7d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude7e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude7f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude80
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude81
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude82
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude83
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude84
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude85
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude86
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude87
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude88
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude89
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude8a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude8b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude8c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude8d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude8e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude8f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude90
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude91
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude92
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude93
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude94
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude95
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude96
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude97
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude98
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude99
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude9a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude9b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude9c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude9d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude9e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \ude9f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udea9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeaa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeab
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeac
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udead
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeae
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeaf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeb9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeba
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udebb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udebc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udebd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udebe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udebf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udec9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeca
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udecb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udecc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udecd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udece
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udecf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \uded9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeda
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udedb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udedc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udedd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udede
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udedf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udee9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeea
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeeb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeec
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeed
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeee
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeef
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udef9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udefa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udefb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udefc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udefd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udefe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udeff
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf00
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf01
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf02
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf03
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf04
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf05
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf06
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf07
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf08
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf09
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf0a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf0b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf0c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf0d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf0e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf0f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf10
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf11
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf12
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf13
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf14
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf15
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf16
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf17
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf18
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf19
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf1a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf1b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf1c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf1d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf1e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf1f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf20
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf21
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf22
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf23
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf24
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf25
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf26
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf27
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf28
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf29
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf2a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf2b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf2c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf2d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf2e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf2f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf30
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf31
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf32
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf33
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf34
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf35
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf36
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf37
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf38
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf39
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf3a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf3b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf3c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf3d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf3e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf3f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf40
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf41
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf42
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf43
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf44
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf45
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf46
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf47
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf48
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf49
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf4a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf4b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf4c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf4d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf4e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf4f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf50
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf51
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf52
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf53
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf54
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf55
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf56
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf57
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf58
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf59
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf5a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf5b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf5c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf5d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf5e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf5f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf60
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf61
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf62
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf63
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf64
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf65
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf66
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf67
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf68
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf69
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf6a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf6b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf6c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf6d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf6e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf6f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf70
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf71
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf72
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf73
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf74
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf75
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf76
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf77
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf78
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf79
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf7a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf7b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf7c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf7d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf7e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf7f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf80
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf81
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf82
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf83
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf84
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf85
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf86
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf87
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf88
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf89
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf8a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf8b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf8c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf8d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf8e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf8f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf90
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf91
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf92
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf93
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf94
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf95
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf96
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf97
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf98
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf99
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf9a
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf9b
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf9c
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf9d
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf9e
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udf9f
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfa9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfaa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfab
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfac
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfad
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfae
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfaf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfb9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfba
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfbb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfbc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfbd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfbe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfbf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfc9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfca
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfcb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfcc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfcd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfce
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfcf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfd9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfda
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfdb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfdc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfdd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfde
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfdf
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfe9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfea
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfeb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfec
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfed
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfee
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfef
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff0
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff1
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff2
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff3
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff4
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff5
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff6
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff7
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff8
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udff9
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udffa
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udffb
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udffc
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udffd
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udffe
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \udfff
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \uff9e
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \uff9f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U000110bd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U000110cd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3cb
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3cc
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f574
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f575
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f590
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U0002fffe
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U0002ffff
+      n_errors: 2075
+      n_total: 11931
+      pct_success: 82.60833123795156
   ri_results:
     17.0.0:
       failed_codepoints: []
