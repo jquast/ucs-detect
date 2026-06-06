@@ -192,7 +192,8 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     text_keys = [k for k in resolved_keys
                                  if k != "\n" and not _RE_PAUSE.match(k)]
                     print(f"[{sw_name}] injecting: {''.join(text_keys)}", flush=True)
-                    inject_keys(window_id, resolved_keys)
+                    key_delay = launch_cfg.get("key_delay_ms", 30)
+                    inject_keys(window_id, resolved_keys, key_delay_ms=key_delay)
                 else:
                     proc.kill()
                     error_msg = (
@@ -556,7 +557,7 @@ def main():
             print(f"[{sw_name}] launching ...", flush=True)
             extra_args = _build_software_overrides(yaml_path, mixins)
             if args.all:
-                extra_args = (extra_args or []) + ['--all']
+                extra_args = (extra_args or ['--']) + ['--all']
 
             proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                 yaml_path, sw_name, launch_cfg, host_launch_cfg,
@@ -594,7 +595,7 @@ def main():
             for yaml_path, sw_name, launch_cfg, _seconds_elapsed in direct_jobs:
                 extra_args = _build_software_overrides(yaml_path, mixins)
                 if args.all:
-                    extra_args = (extra_args or []) + ['--all']
+                    extra_args = (extra_args or ['--']) + ['--all']
                 proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                     yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     temp_dir,

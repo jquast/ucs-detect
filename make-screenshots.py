@@ -495,7 +495,8 @@ def main():
                              if k != "\n" and not _RE_PAUSE.match(k)]
                 print(f"injecting: {''.join(text_keys)} ... ",
                       end="", flush=True)
-                inject_keys(captured_wid, resolved_keys)
+                key_delay = launch_cfg.get("key_delay_ms", 30)
+                inject_keys(captured_wid, resolved_keys, key_delay_ms=key_delay)
                 time.sleep(1.5)
 
             # Wait for sentinel or timeout (scaled by screenshot count).

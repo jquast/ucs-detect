@@ -58,7 +58,7 @@ dependencies = [
   "psutil",
   "pyyaml<7",
   "requests",
-  "wcwidth @ git+https://github.com/jquast/wcwidth.git@jq/dynawidth",
+  "wcwidth @ git+https://github.com/jquast/wcwidth.git@jq/bugfix-more-than-narrow",
 ]
 
 [project.scripts]
