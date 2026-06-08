@@ -1235,7 +1235,8 @@ def main_browser(opts):
             if sv is not None and sv.name:
                 software_name = sv.name
                 software_version = sv.version or None
-    set_width_func(True, software_name)
+    if not opts.get('--no-correction'):
+        set_width_func(True, software_name)
 
     screen = Screen(term, style, wide=opts['display_width'])
     pager = Pager(term, screen, opts['character_factory'],

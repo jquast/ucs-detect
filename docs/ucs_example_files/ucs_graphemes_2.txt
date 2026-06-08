@@ -1,4 +1,4 @@
-Delimiters (│) should align. [GRAPHEME w=2+CORR]
+Delimiters (│) should align. [GRAPHEME w=2]
 │──│═══════════════════
 │、│ 0x03001 (Jinan)
 │。│ 0x03002 (Jinan)

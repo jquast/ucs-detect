@@ -316,10 +316,14 @@ marks across diverse scripts.
 History
 -------
 
-- 2.3.0 (2026-06-07): Integrate with wcwidth>=0.8.0, which offers a new `wcstwidth()`_ function that
-  is a circular dependency on our published results, and, now artificially "caps" all graphemes to a
-  maximum of width 2, matching more terminal emulators for width measurement (ghostty, wezterm,
-  foot, mlterm)
+- 2.3.0 (2026-06-08): Integrate with wcwidth>=0.8.1, which offers a new `wcstwidth()`_ function
+  and some specification changes, and update ZWJ, grapheme, and contested tables.  As a circular
+  dependency on our published results, wcwidth's new specification also artificially "caps" all
+  graphemes to a maximum of width 2, matching more terminal emulators for width measurement
+  (ghostty, wezterm, foot, mlterm). New NARROW width tracking detects narrow characters that display
+  as wide.  Contested tables introduced: only codepoints known to fail in any terminal are tested,
+  use ``--all`` to thoroughly test all codepoints.  ``ucs-browser`` has new ``t`` key to toggle
+  correction tables and ``--no-correction`` mode.
 
 - 2.2.1 (2026-06-01): Bugfix 'ENQ' response capture (PuTTY) and profiling Enrich source repository
   with more tools, like ``make-screenshots.py``, expanded XTGETTCAP detection and results table,

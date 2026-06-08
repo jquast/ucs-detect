@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-08 02:45:35 UTC
+datetime: 2026-06-08 04:39:10 UTC
 environment:
   TERM: xterm
 height: 24
@@ -8,15 +8,21 @@ python_version: 3.14.5
 resource_profile:
   cpu_pct:
   - 2.0
+  - 21.0
+  - 28.0
   elapsed_s:
-  - 1.0009184880182147
+  - 1.0009014790412039
+  - 2.0027745929546654
+  - 3.0040911310352385
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 19.80078125
-seconds_elapsed: 4.0226506849285215
+  - 20.17578125
+  - 28.23828125
+  - 28.3359375
+seconds_elapsed: 1.8205712579656392
 session_arguments:
   all: false
   limit_category_time: 0
@@ -10602,8 +10608,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \u324f
       n_errors: 8
-      n_total: 185
-      pct_success: 95.67567567567568
+      n_total: 187
+      pct_success: 95.72192513368985
   ri_results:
     17.0.0:
       failed_codepoints: []

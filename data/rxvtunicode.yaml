@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-08 02:46:45 UTC
+datetime: 2026-06-08 04:42:04 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
@@ -9,15 +9,24 @@ python_version: 3.14.5
 resource_profile:
   cpu_pct:
   - 3.0
+  - 0.0
+  - 0.0
+  - 17.0
   elapsed_s:
-  - 1.0009550999384373
+  - 1.0010125170229003
+  - 2.002405429026112
+  - 3.0038372930139303
+  - 4.005379874957725
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 21.7265625
-seconds_elapsed: 1.7361841719830409
+  - 22.125
+  - 22.125
+  - 22.25
+  - 27.421875
+seconds_elapsed: 1.4596549379639328
 session_arguments:
   all: false
   limit_category_time: 0
@@ -10541,8 +10550,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \u324f
       n_errors: 8
-      n_total: 185
-      pct_success: 95.67567567567568
+      n_total: 187
+      pct_success: 95.72192513368985
   ri_results:
     17.0.0:
       failed_codepoints: []

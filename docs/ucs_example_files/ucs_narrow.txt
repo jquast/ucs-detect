@@ -1,4 +1,4 @@
-Delimiters (│) should align. [NARROW+CORR]
+Delimiters (│) should align. [NARROW]
 │─│═══════════════════
 │ │ 0x00020 Space
 │!│ 0x00021 Exclamat …

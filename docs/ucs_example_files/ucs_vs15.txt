@@ -1,4 +1,4 @@
-Delimiters (│) should align. [WIDE+VS15+W/VS+CORR]
+Delimiters (│) should align. [WIDE+VS15+W/VS]
 │─│═══════════════════
 │⌚︎│ 0x231A+0xFE0E
 │⌛︎│ 0x231B+0xFE0E
