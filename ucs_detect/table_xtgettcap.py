@@ -33,7 +33,7 @@ XTGETTCAP_CAPABILITIES = (
     ("rs1", "Reset string"),
     ("u6", "CPR response format"),
     ("u7", "CPR request"),
-    ("u8", "DA response"), 
+    ("u8", "DA response"),
     ("u9", "DA request"),
     # Keypad key sequences
     ("kcuu1", "Up arrow key"),
