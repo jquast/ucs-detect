@@ -246,6 +246,12 @@ def _wrap_id_fail(text, terminal_name):
     return f':sref:`{text} <{link_target}> fail`'
 
 
+def _wrap_id_contested(text, terminal_name, section_suffix):
+    """Wrap a capability value with contested (grey) styling and hyperlink."""
+    link_target = make_link(terminal_name + section_suffix)
+    return f':sref:`{text} <{link_target}> contested`'
+
+
 def _wrap_untested(terminal_name, section_suffix):
     """Wrap untested score with grey styling and hyperlink."""
     link_target = make_link(terminal_name + section_suffix)
@@ -1639,15 +1645,19 @@ def _tn_unique_from_tr(tr):
 
 
 def _capability_yes_no(value, terminal_name, section_suffix,
-                       warn=False, fail=False):
+                       warn=False, fail=False, contested=False):
     """Format a boolean capability as a scored yes/no with hyperlink.
 
     When *warn* is True and *value* is True, displays 'Yes' in
     warning yellow (works locally but not over SSH).
     When *fail* is True and *value* is False, displays 'No' in
-    fail red (no identification method works)."""
+    fail red (no identification method works).
+    When *contested* is True and *value* is False, displays 'No' in
+    contested grey (another detection method disagrees)."""
     if value is None:
         return wrap_with_score_role("N/A", float('nan'))
+    if contested and not value:
+        return _wrap_id_contested("no", terminal_name, section_suffix)
     if fail and not value:
         return _wrap_id_fail("no", terminal_name)
     if warn and value:
