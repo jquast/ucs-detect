@@ -35,7 +35,8 @@ RUN --mount=type=cache,target=/var/cache/pacman/pkg \
 # unifont for consistent terminal font rendering
 # (not in Arch official repos, only AUR; download OTF directly from GNU)
 RUN mkdir -p /usr/share/fonts/OTF && \
-    curl -L -o /usr/share/fonts/OTF/unifont.otf \
+    curl -L --retry 3 --retry-delay 5 --retry-max-time 60 \
+    -o /usr/share/fonts/OTF/unifont.otf \
     "https://unifoundry.com/pub/unifont/unifont-16.0.02/font-builds/unifont-16.0.02.otf" && \
     fc-cache -fv
 
