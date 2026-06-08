@@ -1,11 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-06-05 16:30:31 UTC
+datetime: 2026-06-08 04:49:52 UTC
 environment:
   TERM: xterm
 height: 24
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 29.321533681999426
+seconds_elapsed: 47.10507668799255
 session_arguments:
   all: false
   limit_category_time: 0
@@ -6455,6 +6455,12 @@ test_results:
       n_errors: 0
       n_total: 8
       pct_success: 100.0
+  narrow_results:
+    17.0.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 187
+      pct_success: 100.0
   ri_results:
     17.0.0:
       failed_codepoints:
@@ -6672,7 +6678,7 @@ test_results:
         measured_by_wcwidth: 2
         wchar: \U0001f3ff
       n_errors: 31
-      n_total: 553
-      pct_success: 94.39421338155516
-wcwidth_version: 0.8.0
+      n_total: 506
+      pct_success: 93.87351778656127
+wcwidth_version: 0.8.1
 width: 80
