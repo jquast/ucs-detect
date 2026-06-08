@@ -4,7 +4,7 @@ requires = [ "hatchling" ]
 
 [project]
 name = "ucs-detect"
-version = "2.3.0"
+version = "2.3.1"
 description = "Detects Unicode support of an interactive terminal"
 readme = "README.rst"
 keywords = [
