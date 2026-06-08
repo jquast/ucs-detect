@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-06-05 17:19:12 UTC
+datetime: 2026-06-08 05:03:16 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: Apple_Terminal
   TERM_PROGRAM_VERSION: '470.2'
-height: 41
+height: 38
 preferred_encoding: UTF-8
 python_version: 3.12.8
-seconds_elapsed: 4.34532287500042
+seconds_elapsed: 4.195262750000012
 session_arguments:
   all: false
   limit_category_time: 0
@@ -42,7 +42,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 41
+  height: 38
   iterm2_features:
     features: {}
     supported: false
@@ -57,7 +57,7 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 509
+  pixels_height: 473
   pixels_width: 678
   screen_ratio: '4:3'
   screen_ratio_name: VGA
@@ -10702,6 +10702,12 @@ test_results:
       n_errors: 0
       n_total: 8
       pct_success: 100.0
+  narrow_results:
+    17.0.0:
+      failed_codepoints: []
+      n_errors: 0
+      n_total: 187
+      pct_success: 100.0
   ri_results:
     17.0.0:
       failed_codepoints:
@@ -10889,7 +10895,7 @@ test_results:
         measured_by_wcwidth: 2
         wchar: \U0001f1ff
       n_errors: 26
-      n_total: 553
-      pct_success: 95.29837251356238
-wcwidth_version: 0.8.0
+      n_total: 506
+      pct_success: 94.86166007905138
+wcwidth_version: 0.8.1
 width: 94
