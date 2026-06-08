@@ -118,13 +118,13 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", terminal_full_probe=False, silent=False, no_final_summary=False, all=False, **_kwargs):
+def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", terminal_full_probe=False, silent=False, no_final_summary=False, test_all=False, **_kwargs):
     """Program entry point."""
 
     def _should_run(*categories):
         return test_only == "all" or test_only in categories
 
-    if all:
+    if test_all:
         wide_table = WIDE_CHARACTERS
         sri_table = STANDALONE_REGIONAL_INDICATORS
         sfz_table = STANDALONE_FITZPATRICK
@@ -1227,7 +1227,7 @@ def parse_args():
     )
     args.add_argument(
         "--all",
-        dest="all",
+        dest="test_all",
         action="store_true",
         default=False,
         help="Test all codepoints and graphemes, not only contested ones",
@@ -1271,7 +1271,7 @@ def _apply_rerun_yaml(results):
     yaml_bool_flags = {
         'no_terminal_test': 'no_terminal_test',
         'no_languages_test': 'no_languages_test',
-        'all': 'all',
+        'all': 'test_all',
     }
 
     for yaml_key, cli_key in yaml_to_cli.items():
