@@ -1211,6 +1211,9 @@ def main_browser(opts):
     global REFRESH_UNICODE
     REFRESH_UNICODE = opts.get('--refresh-unicode', False)
 
+    if opts.get('--no-correction'):
+        set_width_func(False)
+
     # local
     from ucs_detect.terminal import make_terminal
     term = make_terminal()
@@ -1354,6 +1357,9 @@ Notes:
         '--refresh-unicode', action='store_true',
         help='Force re-download of emoji-variation-sequences.txt '
              'from unicode.org.')
+    parser.add_argument(
+        '--no-correction', action='store_true',
+        help='Disable terminal-specific width correction tables (for example file generation).')
 
     args = parser.parse_args()
 
@@ -1370,6 +1376,7 @@ Notes:
         '--without-vs': args.without_vs,
         '--include-uncommon': args.include_uncommon,
         '--refresh-unicode': args.refresh_unicode,
+        '--no-correction': args.no_correction,
         '--help': False,
     }
 

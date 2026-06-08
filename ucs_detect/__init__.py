@@ -162,9 +162,9 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     session_arguments = {
         k: local_vars[k]
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
-                  "limit_graphemes_pct", "limit_category_time", "timeout_cps",
-                  "all")
+                  "limit_graphemes_pct", "limit_category_time", "timeout_cps")
     }
+    session_arguments['all'] = test_all
     environment = {
         k: os.environ[k]
         for k in ("TERM", "COLORTERM", "TERM_PROGRAM", "TERM_PROGRAM_VERSION")

@@ -148,6 +148,10 @@ pages, ``q`` to quit.
 Example files are created using ucs-browser, and are published in the source repository at url
 https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files
 
+Use ``--no-correction`` when generating example files to disable terminal-specific
+width correction tables, producing output that reflects wcwidth defaults. Example
+file generation is handled by ``tox -e make_tables``.
+
 
 Test Results
 ------------

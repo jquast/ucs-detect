@@ -109,7 +109,7 @@ terminals:
       post_launch_delay_ms: 1500
       post_launch_keys:
       - 'sh '
-      - ${SCRIPT} && exit
+      - ${SCRIPT}
       - "\n"
   iterm2:
     homepage: https://iterm2.com/

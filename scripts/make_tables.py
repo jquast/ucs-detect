@@ -72,7 +72,7 @@ def main():
         filepath = os.path.join(_EXAMPLE_DIR, filename)
         print(f"==> {filename}")
         result = subprocess.run(
-            [sys.executable, browser_script] + args,
+            [sys.executable, browser_script, "--no-correction"] + args,
             capture_output=True,
             check=True,
             cwd=_PROJECT,
