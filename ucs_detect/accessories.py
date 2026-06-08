@@ -271,7 +271,7 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
     return None
 
 
-def inject_keys(window_id, keys):
+def inject_keys(window_id, keys, key_delay_ms=30):
     r"""
     Send keystrokes to a window via xdotool.
 
@@ -284,13 +284,14 @@ def inject_keys(window_id, keys):
         capture_output=True, timeout=2, check=False,
     )
     time.sleep(0.3)
+    delay_str = str(key_delay_ms)
     merged = []
     for key in keys:
         if key in ("\n", "\\n") or _RE_PAUSE.match(key):
             if merged:
                 combined = "".join(merged)
                 subprocess.run(
-                    ["xdotool", "type", "--delay", "30", combined],
+                    ["xdotool", "type", "--delay", delay_str, combined],
                     capture_output=True, timeout=120, check=False,
                 )
                 merged = []
@@ -307,7 +308,7 @@ def inject_keys(window_id, keys):
     if merged:
         combined = "".join(merged)
         subprocess.run(
-            ["xdotool", "type", "--delay", "30", combined],
+            ["xdotool", "type", "--delay", delay_str, combined],
             capture_output=True, timeout=120, check=False,
         )
 

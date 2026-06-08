@@ -135,6 +135,9 @@ dmypy.json
 data/emoji-zwj-sequences-latest.txt
 data/emoji-test-latest.txt
 data/emoji-variation-sequences-latest.txt
+# just used during table generation, should
+# probably be moved to another folder !
+ucs_detect/udhr/
 
 # auto generated
 docs/_static/plots/*.png

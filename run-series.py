@@ -11,6 +11,7 @@ import platform
 import re
 import shlex
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -53,6 +54,22 @@ DOCKERFILE = PROJECT_DIR / "Dockerfile"
 _RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([\d.]+)', re.MULTILINE)
 
 
+_KEEP_TEMP_ON_EXIT = False
+
+
+def _sig_keep_temp(signum, frame):
+    """Set flag to preserve temp directory on SIGINT/SIGTERM."""
+    global _KEEP_TEMP_ON_EXIT
+    _KEEP_TEMP_ON_EXIT = True
+    raise KeyboardInterrupt()
+
+
+def _cleanup_temp(temp_path):
+    """Remove *temp_path* unless interrupted or --keep-temp was set."""
+    if not _KEEP_TEMP_ON_EXIT:
+        shutil.rmtree(temp_path, ignore_errors=True)
+
+
 def write_run_script(script_path, yaml_path, sentinel_path,
                      pause_exit=False, extra_args=None):
     """Write a shell script that runs re-run.py and records the exit code."""
@@ -64,7 +81,9 @@ def write_run_script(script_path, yaml_path, sentinel_path,
         f"export PATH={py_bin}:$PATH",
         f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
         f"{shlex.quote(sys.executable)} re-run.py {shlex.quote(str(yaml_rel))} {extra}",
-        f"echo $? > {shlex.quote(str(sentinel_path))}",
+        "rc=$?",
+        f"echo $rc > {shlex.quote(str(sentinel_path))}",
+        '[ $rc -eq 0 ] || read -p "Failed (exit $rc), press enter..." _',
     ]
     if pause_exit:
         parts.append('read -p "Press enter to exit..." _')
@@ -97,6 +116,7 @@ def _build_software_overrides(yaml_path, mixins):
                 result = subprocess.run(
                     ["pacman", "-Q", aur_pkg],
                     capture_output=True, text=True, timeout=5,
+                    check=False,
                 )
                 if result.returncode == 0:
                     parts = result.stdout.strip().split(None, 1)
@@ -152,6 +172,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 result = subprocess.run(
                     ["xdotool", "search", "--onlyvisible", ""],
                     capture_output=True, text=True, timeout=3,
+                    check=False,
                 )
                 if result.returncode == 0:
                     snapshot_pre_windows = set(result.stdout.strip().split("\n"))
@@ -167,6 +188,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     env.pop(key, None)
                 else:
                     env[key] = value
+            # pylint: disable=consider-using-with
             proc = subprocess.Popen(
                 argv,
                 env=env,
@@ -189,10 +211,16 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     resolved_keys = [
                         key.replace("${SCRIPT}", script_str) for key in post_keys
                     ]
+                    if pause_exit:
+                        resolved_keys = [
+                            re.sub(r'\s*&&\s*(?:exit|pkill\b.*)$', '', k)
+                            for k in resolved_keys
+                        ]
                     text_keys = [k for k in resolved_keys
                                  if k != "\n" and not _RE_PAUSE.match(k)]
                     print(f"[{sw_name}] injecting: {''.join(text_keys)}", flush=True)
-                    inject_keys(window_id, resolved_keys)
+                    key_delay = launch_cfg.get("key_delay_ms", 30)
+                    inject_keys(window_id, resolved_keys, key_delay_ms=key_delay)
                 else:
                     proc.kill()
                     error_msg = (
@@ -355,6 +383,7 @@ def _docker_per_terminal_run(args):
             future = executor.submit(subprocess.run, cmd, capture_output=True,
                                      text=True, timeout=(term_timeout or args.timeout) + 60)
             futures[future] = sw_name
+            time.sleep(30)
 
         for future in as_completed(futures):
             sw_name = futures[future]
@@ -362,11 +391,13 @@ def _docker_per_terminal_run(args):
                 result = future.result()
                 status = "OK" if result.returncode == 0 else f"exit={result.returncode}"
                 print(f"[{sw_name}] {status}", flush=True)
+            # pylint: disable=broad-exception-caught
             except Exception as exc:
                 print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)
 
 
 def main():
+    """Parse CLI arguments and run ucs-detect for each terminal YAML file."""
     parser = argparse.ArgumentParser(
         description="Run ucs-detect re-run.py for each terminal YAML of the current OS")
     parser.add_argument(
@@ -401,6 +432,9 @@ def main():
     parser.add_argument(
         "--use-docker", action="store_true",
         help="Launch each terminal in its own Docker container (--cpus=2)")
+    parser.add_argument(
+        "--all", action="store_true",
+        help="Pass --all to ucs-detect, testing all codepoints (not just contested)")
     args = parser.parse_args()
 
     if args.use_docker and not _IS_DOCKER:
@@ -441,7 +475,9 @@ def main():
 
     temp_dir = Path(tempfile.mkdtemp(prefix="ucs-run-series-"))
     if not args.keep_temp:
-        atexit.register(shutil.rmtree, str(temp_dir), ignore_errors=True)
+        signal.signal(signal.SIGINT, _sig_keep_temp)
+        signal.signal(signal.SIGTERM, _sig_keep_temp)
+        atexit.register(_cleanup_temp, str(temp_dir))
     else:
         print(f"Temp directory: {temp_dir}")
 
@@ -550,12 +586,15 @@ def main():
             print("--- Key-injection terminals (sequential launch, parallel wait) ---")
         for yaml_path, sw_name, launch_cfg, _seconds_elapsed in key_jobs:
             print(f"[{sw_name}] launching ...", flush=True)
+            extra_args = _build_software_overrides(yaml_path, mixins)
+            if args.all:
+                extra_args = (extra_args or ['--']) + ['--all']
 
             proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                 yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 temp_dir,
                 pause_exit=args.pause_exit,
-                extra_args=_build_software_overrides(yaml_path, mixins))
+                extra_args=extra_args)
 
             if launch_error:
                 results[sw_name] = (-4, launch_error)
@@ -585,11 +624,14 @@ def main():
             if key_jobs:
                 print("\n--- Direct-launch terminals (parallel) ---")
             for yaml_path, sw_name, launch_cfg, _seconds_elapsed in direct_jobs:
+                extra_args = _build_software_overrides(yaml_path, mixins)
+                if args.all:
+                    extra_args = (extra_args or ['--']) + ['--all']
                 proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
                     yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     temp_dir,
                     pause_exit=args.pause_exit,
-                    extra_args=_build_software_overrides(yaml_path, mixins))
+                    extra_args=extra_args)
 
                 if launch_error:
                     results[sw_name] = (-4, launch_error)
@@ -614,11 +656,13 @@ def main():
                 future_map[future] = (
                     sw_name, proc, profile, sentinel_path, yaml_path,
                     launch_cfg.get("program", sw_name), launch_cfg)
+                time.sleep(30)
 
         for future in as_completed(future_map):
             sw_name, proc, profile, sentinel_path, yaml_path, program, launch_cfg = future_map[future]
             try:
                 name, exit_code, error = future.result()
+            # pylint: disable=broad-exception-caught
             except Exception as exc:
                 results[sw_name] = (-99, str(exc))
                 print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)

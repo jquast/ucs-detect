@@ -9,6 +9,8 @@ terminals:
       program: alacritty
       args: [-o, window.dimensions.columns=80, -o, window.dimensions.lines=24, -e]
   bobcat:
+    # runs in docker, but fails screenshots there?
+    # skip_docker: true
     homepage: https://github.com/ismail-yilmaz/Bobcat
     launch:
       program: bobcat
@@ -77,9 +79,11 @@ terminals:
       args: []
     skip_system: true
     skip_reason: Wayland-only (requires cage)
+    has_features:
+      - ambiguous_wide
   ghostty:
     homepage: https://ghostty.org/
-    skip_docker: true
+    # skip_docker: true
     launch:
       program: ghostty
       args: [-e]
@@ -105,7 +109,7 @@ terminals:
       post_launch_delay_ms: 1500
       post_launch_keys:
       - 'sh '
-      - ${SCRIPT} && exit
+      - ${SCRIPT}
       - "\n"
   iterm2:
     homepage: https://iterm2.com/
@@ -349,6 +353,7 @@ terminals:
       program: warp-terminal
       args: []
       wm_class: dev.warp.Warp
+      key_delay_ms: 50
       post_launch_delay_ms: 1500
       post_launch_keys:
       - 'sh '
@@ -365,6 +370,8 @@ terminals:
       env:
         WAYLAND_DISPLAY: ''
     timeout: 1800
+    has_features:
+      - ambiguous_wide
   xfce4-terminal:
     homepage: https://docs.xfce.org/apps/terminal/start
     display_name: XFCE Terminal

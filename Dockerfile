@@ -35,7 +35,8 @@ RUN --mount=type=cache,target=/var/cache/pacman/pkg \
 # unifont for consistent terminal font rendering
 # (not in Arch official repos, only AUR; download OTF directly from GNU)
 RUN mkdir -p /usr/share/fonts/OTF && \
-    curl -L -o /usr/share/fonts/OTF/unifont.otf \
+    curl -L --retry 3 --retry-delay 5 --retry-max-time 60 \
+    -o /usr/share/fonts/OTF/unifont.otf \
     "https://unifoundry.com/pub/unifont/unifont-16.0.02/font-builds/unifont-16.0.02.otf" && \
     fc-cache -fv
 
@@ -139,7 +140,6 @@ RUN --mount=type=cache,target=/var/cache/pacman/pkg \
     python-pillow \
     python-prettytable \
     python-requests \
-    python-wcwidth \
     python-psutil \
     python-matplotlib \
     && pacman -Scc --noconfirm
@@ -150,7 +150,7 @@ WORKDIR /app
 # install ucs-detect in editable mode
 COPY README.rst pyproject.toml setup.cfg ./
 COPY ucs_detect/ ./ucs_detect/
-RUN pip install -e . --break-system-packages
+RUN pip install -e .  --break-system-package
 
 # entrypoint: start Xvfb if DISPLAY is set, then exec command
 ENV LIBGL_ALWAYS_SOFTWARE=1

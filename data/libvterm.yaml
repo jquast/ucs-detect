@@ -1,228 +1,169 @@
 ambiguous_width: 1
-datetime: 2026-06-01 17:22:49 UTC
+datetime: 2026-06-08 04:44:52 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
-height: 20
+height: 19
 preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 334.1
-  - 122.0
-  - 118.0
-  - 121.69999999999999
-  - 122.9
-  - 121.6
-  - 118.69999999999999
-  - 121.8
-  - 121.69999999999999
-  - 103.1
-  - 101.2
-  - 104.5
-  - 92.3
-  - 75.4
-  - 86.39999999999999
-  - 81.1
-  - 101.69999999999999
-  - 55.8
-  - 56.3
-  - 42.7
-  - 48.9
-  - 35.4
-  - 38.2
-  - 50.1
-  - 59.3
-  - 54.1
-  - 69.3
-  - 64.8
-  - 55.1
-  - 58.8
-  - 61.9
-  - 50.6
-  - 49.8
-  - 50.199999999999996
-  - 55.400000000000006
-  - 62.0
-  - 65.9
-  - 46.199999999999996
-  - 62.300000000000004
-  - 67.89999999999999
-  - 48.1
-  - 41.199999999999996
-  - 46.6
-  - 46.900000000000006
-  - 46.8
-  - 43.9
-  - 45.8
-  - 50.0
-  - 50.6
-  - 45.4
-  - 46.199999999999996
-  - 43.5
-  - 48.0
-  - 44.2
-  - 47.1
-  - 64.5
-  - 59.3
-  - 57.5
-  - 57.6
-  - 58.6
-  - 58.0
-  - 52.199999999999996
-  - 58.699999999999996
-  - 59.7
-  - 57.0
-  - 52.6
-  - 57.8
-  - 54.599999999999994
-  - 14.799999999999999
+  - 83.8
+  - 119.8
+  - 118.80000000000001
+  - 119.0
+  - 119.9
+  - 120.9
+  - 121.1
+  - 119.69999999999999
+  - 98.80000000000001
+  - 87.2
+  - 90.30000000000001
+  - 110.8
+  - 121.9
+  - 125.5
+  - 129.6
+  - 128.7
+  - 129.6
+  - 128.0
+  - 132.7
+  - 131.2
+  - 127.6
+  - 129.4
+  - 131.5
+  - 127.7
+  - 125.5
+  - 134.2
+  - 133.29999999999998
+  - 132.1
+  - 134.3
+  - 130.6
+  - 130.3
+  - 127.4
+  - 126.39999999999999
+  - 134.2
+  - 131.4
+  - 133.1
+  - 111.1
+  - 111.5
+  - 115.5
+  - 112.69999999999999
+  - 110.6
+  - 96.80000000000001
+  - 93.5
+  - 88.30000000000001
+  - 98.69999999999999
+  - 110.0
+  - 133.5
+  - 132.2
+  - 95.1
   elapsed_s:
-  - 0.01846436399500817
-  - 1.03380736100371
-  - 2.0498033199983183
-  - 3.0665572010038886
-  - 4.085422769014258
-  - 5.1024436310108285
-  - 6.121929896005895
-  - 7.141259130003164
-  - 8.158876789006172
-  - 9.17797249299474
-  - 10.196523235994391
-  - 11.224232156004291
-  - 12.248348149994854
-  - 13.277731550013414
-  - 14.298688098002458
-  - 15.32908282999415
-  - 16.352254735014867
-  - 17.3781677329971
-  - 18.46988825101289
-  - 19.679130522999913
-  - 20.85052378999535
-  - 22.041127386008156
-  - 23.259009622997837
-  - 24.68519541400019
-  - 25.80067207000684
-  - 26.825902764016064
-  - 27.87872150199837
-  - 29.023284686991246
-  - 30.210212548001437
-  - 31.375971171015408
-  - 32.52414942800533
-  - 33.70070236700121
-  - 34.73371163700358
-  - 35.77886735400534
-  - 36.83406471001217
-  - 37.90081490701414
-  - 39.04603795701405
-  - 40.20974018800189
-  - 41.38512541499222
-  - 42.54856066199136
-  - 43.75912830099696
-  - 45.00612993200775
-  - 46.15648271300597
-  - 47.479780438996386
-  - 48.7208069160115
-  - 49.80247331500868
-  - 50.84469260100741
-  - 51.88937332198839
-  - 52.964249618991744
-  - 54.21892945098807
-  - 55.37216098600766
-  - 56.63837910199072
-  - 57.85969817600562
-  - 59.00060667700018
-  - 60.19868056301493
-  - 61.39450050200685
-  - 62.794188833009684
-  - 63.96518893100438
-  - 65.12055916601093
-  - 66.31046482000966
-  - 67.43848452699604
-  - 68.60439761899761
-  - 69.84681679098867
-  - 71.10134188100346
-  - 72.34339778398862
-  - 73.52926437999122
-  - 74.71615619701333
-  - 75.80679034400964
-  - 76.9782669369888
+  - 1.0264919130131602
+  - 2.0416771289892495
+  - 3.069096898077987
+  - 4.1045475479913875
+  - 5.119957642978989
+  - 6.137720428057946
+  - 7.154992058058269
+  - 8.171385970083065
+  - 9.190343422000296
+  - 10.212111860048026
+  - 11.232809075037949
+  - 12.251675417996012
+  - 13.271658250014298
+  - 14.29683223599568
+  - 15.316510931006633
+  - 16.335075502982363
+  - 17.35310319205746
+  - 18.371271162992343
+  - 19.402109256014228
+  - 20.450109145021997
+  - 21.471312828012742
+  - 22.491170187015086
+  - 23.511339121032506
+  - 24.530492399004288
+  - 25.54801057605073
+  - 26.568635690025985
+  - 27.629688892047852
+  - 28.67982381908223
+  - 29.69874892104417
+  - 30.718994928058237
+  - 31.737646804074757
+  - 32.75822775706183
+  - 33.77857735904399
+  - 34.80696689407341
+  - 35.82752911897842
+  - 36.84799212298822
+  - 37.8699825030053
+  - 38.8952310270397
+  - 39.94476603507064
+  - 40.966112022986636
+  - 41.995850893086754
+  - 43.018492075032555
+  - 44.041421909001656
+  - 45.0771230510436
+  - 46.11932764807716
+  - 47.17300976300612
+  - 48.20879080297891
+  - 49.287162895081565
+  - 50.33134252007585
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 211.7578125
-  - 224.64453125
-  - 227.58984375
-  - 228.8125
-  - 241.671875
-  - 246.1875
-  - 247.30859375
-  - 248.07421875
-  - 249.12109375
-  - 249.60546875
-  - 257.26953125
-  - 257.859375
-  - 258.1953125
-  - 258.31640625
-  - 258.57421875
-  - 258.8828125
-  - 259.2578125
-  - 259.38671875
-  - 259.51171875
-  - 259.62890625
-  - 259.734375
-  - 259.85546875
-  - 259.9453125
-  - 307.98046875
-  - 307.515625
-  - 307.55078125
-  - 308.61328125
-  - 309.2109375
-  - 312.55859375
-  - 313.65234375
-  - 314.82421875
-  - 315.5
-  - 316.6484375
-  - 316.93359375
-  - 317.51953125
-  - 318.6640625
-  - 319.38671875
-  - 319.98046875
-  - 320.046875
-  - 320.8671875
-  - 321.11328125
-  - 321.16015625
-  - 320.96484375
-  - 321.1484375
-  - 320.40234375
-  - 320.4765625
-  - 320.5546875
-  - 320.64453125
-  - 320.69921875
-  - 320.80078125
-  - 320.48828125
-  - 320.515625
-  - 320.56640625
-  - 320.76171875
-  - 321.00390625
-  - 321.16796875
-  - 321.20703125
-  - 321.26171875
-  - 321.31640625
-  - 321.359375
-  - 321.3984375
-  - 321.44921875
-  - 321.66796875
-  - 321.796875
-  - 321.84765625
-  - 321.8828125
-  - 321.91796875
-  - 321.98046875
-  - 320.33203125
-seconds_elapsed: 76.19180352400872
+  - 207.21484375
+  - 212.78515625
+  - 215.33984375
+  - 228.05078125
+  - 232.1328125
+  - 232.91796875
+  - 233.58984375
+  - 234.15234375
+  - 241.54296875
+  - 242.12109375
+  - 242.5
+  - 242.80859375
+  - 243.0390625
+  - 243.33203125
+  - 243.6953125
+  - 244.01171875
+  - 245.1484375
+  - 246.21484375
+  - 247.375
+  - 248.25
+  - 248.09765625
+  - 248.30859375
+  - 248.46875
+  - 312.0390625
+  - 312.47265625
+  - 312.5234375
+  - 312.85546875
+  - 312.99609375
+  - 313.25
+  - 313.51171875
+  - 313.87109375
+  - 314.99609375
+  - 315.5859375
+  - 315.69140625
+  - 315.7890625
+  - 315.3359375
+  - 315.96484375
+  - 316.109375
+  - 316.29296875
+  - 316.7109375
+  - 316.75
+  - 316.85546875
+  - 317.30078125
+  - 317.45703125
+  - 317.96484375
+  - 317.90234375
+  - 321.05859375
+  - 321.35546875
+  - 321.6328125
+seconds_elapsed: 49.77978617302142
 session_arguments:
+  all: true
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
@@ -247,7 +188,7 @@ terminal_results:
     decsca: '2'
     decscusr: '2'
     decslrm: 1;71
-    decstbm: 1;20
+    decstbm: 1;19
     sgr: '38:2:0:0:0'
   decrqss_truecolor_probe: true
   device_attributes:
@@ -259,7 +200,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 20
+  height: 19
   iterm2_features:
     features: {}
     supported: false
@@ -344,7 +285,7 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 500
+  pixels_height: 494
   pixels_width: 781
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
@@ -6576,10 +6517,62 @@ test_results:
       n_total: 68
       pct_success: 100.0
     Chakma:
-      failed: []
-      n_errors: 0
+      failed:
+      - grapheme_id: Chakma-2-07
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U00011107\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-0e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U00011108\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-15
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U0001110c\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-1a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U0001110e\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-1d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U00011111\U00011133\U00011122\U0001112c
+      - grapheme_id: Chakma-2-20
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U00011116\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-23
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U00011116\U00011133\U00011122\U0001112c
+      - grapheme_id: Chakma-2-28
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U00011118\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-2f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U0001111a\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-3d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U0001111d\U00011133\U00011122\U0001112c
+      - grapheme_id: Chakma-2-41
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U0001111f\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-46
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U00011121\U00011133\U00011120\U0001112c
+      - grapheme_id: Chakma-2-4c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \U00011123\U00011133\U00011126\U0001112c
+      n_errors: 13
       n_total: 267
-      pct_success: 100.0
+      pct_success: 95.13108614232209
     Chickasaw:
       failed: []
       n_errors: 0
@@ -7302,181 +7295,1293 @@ test_results:
       pct_success: 100.0
     Javanese (Javanese):
       failed:
-      - grapheme_id: Javanese (Javanese)-4-07
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua98f\ua9c0\ua9b2\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-4-0d
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua9a0\ua9c0\ua9b2\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-4-0e
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua9a2\ua9c0\ua9a9\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-4-13
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua9a4\ua9c0\ua99d\ua9ba\ua9b4\ua981
-      - grapheme_id: Javanese (Javanese)-4-18
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua9a4\ua9c0\ua9a5\ua9b3\ua9ba\ua9b4\ua982
-      - grapheme_id: Javanese (Javanese)-4-1c
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua9a4\ua9c0\ua9a7\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-4-1e
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua9a4\ua9c0\ua9b1\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-4-1f
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua9a4\ua9c0\ua9b2\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-4-24
-        measured_by_terminal: 5
-        measured_by_wcwidth: 4
-        wchars: \ua9a9\ua9c0\ua9a0\ua9ba\ua9b4
       - grapheme_id: Javanese (Javanese)-2-02
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \ua98f\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-2-08
+      - grapheme_id: Javanese (Javanese)-2-06
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua992\ua9ba\ua9b4
+        wchars: \ua98f\ua9c0\ua98f
+      - grapheme_id: Javanese (Javanese)-2-07
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua98f\ua981
+      - grapheme_id: Javanese (Javanese)-2-08
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua98f\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-09
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua98f\ua9bc
       - grapheme_id: Javanese (Javanese)-2-0a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua992\ua9bf\ua9ba
+        wchars: \ua98f\ua9c0\ua994
+      - grapheme_id: Javanese (Javanese)-2-0b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua994\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-0c
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua994\ua9bf
       - grapheme_id: Javanese (Javanese)-2-0d
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua994\ua9ba\ua9b4
+        wchars: \ua98f\ua9c0\ua995
+      - grapheme_id: Javanese (Javanese)-2-0e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a0
+      - grapheme_id: Javanese (Javanese)-2-0f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a0\ua9b6
       - grapheme_id: Javanese (Javanese)-2-10
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua995\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-2-13
+        wchars: \ua98f\ua9c0\ua9a0\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-11
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \ua997\ua9bf\ua9ba\ua9b4
+        wchars: \ua98f\ua9c0\ua9a0\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-12
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a2
+      - grapheme_id: Javanese (Javanese)-2-13
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a2\ua982
+      - grapheme_id: Javanese (Javanese)-2-14
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a2\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-15
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a4
       - grapheme_id: Javanese (Javanese)-2-16
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua99d\ua9ba\ua9b4
+        wchars: \ua98f\ua9c0\ua9a4\ua9b6\ua981
       - grapheme_id: Javanese (Javanese)-2-17
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua99d\ua9ba\ua9b4\ua982
+        wchars: \ua98f\ua9c0\ua9a5
+      - grapheme_id: Javanese (Javanese)-2-18
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a5\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-19
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a5\ua9bf\ua9b6
       - grapheme_id: Javanese (Javanese)-2-1a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9ba\ua983
+        wchars: \ua98f\ua9c0\ua9a7
       - grapheme_id: Javanese (Javanese)-2-1b
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a0\ua9ba\ua9b4
+        wchars: \ua98f\ua9c0\ua9a7\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-1c
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a7\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-1d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a9
+      - grapheme_id: Javanese (Javanese)-2-1e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9a9\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-1f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9aa
+      - grapheme_id: Javanese (Javanese)-2-20
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9ad
+      - grapheme_id: Javanese (Javanese)-2-21
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9ae
       - grapheme_id: Javanese (Javanese)-2-22
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a2\ua9ba\ua9b4
+        wchars: \ua98f\ua9c0\ua9b1
+      - grapheme_id: Javanese (Javanese)-2-23
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9b1\ua982
+      - grapheme_id: Javanese (Javanese)-2-24
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9b1\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-25
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9b1\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-26
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9b1\ua9ba
       - grapheme_id: Javanese (Javanese)-2-27
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9ba\ua983
+        wchars: \ua98f\ua9c0\ua9b2
       - grapheme_id: Javanese (Javanese)-2-28
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a4\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-2-2d
+        wchars: \ua98f\ua9c0\ua9b2\ua981
+      - grapheme_id: Javanese (Javanese)-2-29
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-2-2f
+        wchars: \ua98f\ua9c0\ua9b2\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-2a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9bf\ua983
-      - grapheme_id: Javanese (Javanese)-2-31
+        wchars: \ua98f\ua9c0\ua9b2\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-2b
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \ua9a5\ua9bf\ua9ba\ua9b4
+        wchars: \ua98f\ua9c0\ua9b2\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-2c
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua98f\ua9c0\ua9b2\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-2e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua992\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-30
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua992\ua9bf\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-31
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua992\ua9c0\ua992
       - grapheme_id: Javanese (Javanese)-2-34
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a7\ua9ba\ua983
-      - grapheme_id: Javanese (Javanese)-2-35
+        wchars: \ua994\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-36
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a7\ua9ba\ua9b4
+        wchars: \ua994\ua9c0\ua992\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-37
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua994\ua9c0\ua992\ua9bf\ua9bc\ua981
+      - grapheme_id: Javanese (Javanese)-2-38
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua994\ua9c0\ua9ad
+      - grapheme_id: Javanese (Javanese)-2-39
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua994\ua9c0\ua9ad\ua981
       - grapheme_id: Javanese (Javanese)-2-3a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9ba\ua983
+        wchars: \ua994\ua9c0\ua9ad\ua9b8
       - grapheme_id: Javanese (Javanese)-2-3b
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9ba\ua9b4
+        wchars: \ua994\ua9c0\ua9ad\ua9bc
       - grapheme_id: Javanese (Javanese)-2-3d
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9bf\ua983
-      - grapheme_id: Javanese (Javanese)-2-3e
+        wchars: \ua995\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-40
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua997\ua9bf\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-41
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9a9\ua9bf\ua9b6\ua983
+        wchars: \ua99a\ua9c0\ua995
       - grapheme_id: Javanese (Javanese)-2-42
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9aa\ua9ba\ua9b4
+        wchars: \ua99a\ua9c0\ua995\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-43
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua99a\ua9c0\ua997
+      - grapheme_id: Javanese (Javanese)-2-44
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua99a\ua9c0\ua997\ua9b6
       - grapheme_id: Javanese (Javanese)-2-45
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9ab\ua9ba\ua9b4
+        wchars: \ua99a\ua9c0\ua997\ua9b8\ua981
+      - grapheme_id: Javanese (Javanese)-2-46
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua99a\ua9c0\ua997\ua9b8\ua982
+      - grapheme_id: Javanese (Javanese)-2-49
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua99d\ua9ba\ua9b4
       - grapheme_id: Javanese (Javanese)-2-4a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9ba\ua983
-      - grapheme_id: Javanese (Javanese)-2-4b
+        wchars: \ua99d\ua9ba\ua9b4\ua982
+      - grapheme_id: Javanese (Javanese)-2-4d
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-2-4c
+        wchars: \ua9a0\ua9ba\ua983
+      - grapheme_id: Javanese (Javanese)-2-4e
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9ad\ua9ba\ua9b4\ua981
+        wchars: \ua9a0\ua9ba\ua9b4
       - grapheme_id: Javanese (Javanese)-2-52
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9ae\ua9ba\ua9b4
+        wchars: \ua9a0\ua9c0\ua98f\ua981
       - grapheme_id: Javanese (Javanese)-2-53
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9ae\ua9ba\ua9b4\ua981
+        wchars: \ua9a0\ua9c0\ua98f\ua9b8
       - grapheme_id: Javanese (Javanese)-2-54
-        measured_by_terminal: 4
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9ae\ua9ba\ua9b4\ua983
+        wchars: \ua9a0\ua9c0\ua992
       - grapheme_id: Javanese (Javanese)-2-55
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9ae\ua9bf\ua9b8\ua983
+        wchars: \ua9a0\ua9c0\ua994\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-56
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua99a
+      - grapheme_id: Javanese (Javanese)-2-57
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9a0
       - grapheme_id: Javanese (Javanese)-2-58
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9ba\ua9b4
-      - grapheme_id: Javanese (Javanese)-2-5b
+        wchars: \ua9a0\ua9c0\ua9a0\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-59
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \ua9b1\ua9bf\ua983
+        wchars: \ua9a0\ua9c0\ua9a0\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-5a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9a0\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-5b
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9a0\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-5c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9a4
+      - grapheme_id: Javanese (Javanese)-2-5d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9a4\ua9b6
       - grapheme_id: Javanese (Javanese)-2-5e
         measured_by_terminal: 3
         measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9a9
+      - grapheme_id: Javanese (Javanese)-2-5f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9a9\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-60
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9ad
+      - grapheme_id: Javanese (Javanese)-2-61
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9ad\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-62
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9b1
+      - grapheme_id: Javanese (Javanese)-2-63
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9b1\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-64
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9b1\ua9b6\ua983
+      - grapheme_id: Javanese (Javanese)-2-65
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9b1\ua9be
+      - grapheme_id: Javanese (Javanese)-2-66
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9b1\ua9c0\ua9ae
+      - grapheme_id: Javanese (Javanese)-2-67
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9b2
+      - grapheme_id: Javanese (Javanese)-2-68
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9b2\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-69
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a0\ua9c0\ua9b2\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-6c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a2\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-6f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a2\ua9c0\ua98f
+      - grapheme_id: Javanese (Javanese)-2-70
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a2\ua9c0\ua9a0
+      - grapheme_id: Javanese (Javanese)-2-71
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a2\ua9c0\ua9a0\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-72
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a2\ua9c0\ua9a2
+      - grapheme_id: Javanese (Javanese)-2-73
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a2\ua9c0\ua9a5
+      - grapheme_id: Javanese (Javanese)-2-74
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a2\ua9c0\ua9a9\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-75
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a2\ua9c0\ua9b2
+      - grapheme_id: Javanese (Javanese)-2-77
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9ba\ua983
+      - grapheme_id: Javanese (Javanese)-2-78
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-79
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua98f
+      - grapheme_id: Javanese (Javanese)-2-7a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua98f\ua981
+      - grapheme_id: Javanese (Javanese)-2-7b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua98f\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-7c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua98f\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-7d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua992
+      - grapheme_id: Javanese (Javanese)-2-7e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua994
+      - grapheme_id: Javanese (Javanese)-2-7f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua994\ua981
+      - grapheme_id: Javanese (Javanese)-2-80
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua994\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-81
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua994\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-82
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua994\ua9b8\ua982
+      - grapheme_id: Javanese (Javanese)-2-83
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua994\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-84
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua994\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-85
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua994\ua9bf\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-86
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua997
+      - grapheme_id: Javanese (Javanese)-2-87
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua997\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-88
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua997\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-89
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99a\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-8a
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99b\ua983
+      - grapheme_id: Javanese (Javanese)-2-8b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99b\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-8c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99d
+      - grapheme_id: Javanese (Javanese)-2-8d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99d\ua981
+      - grapheme_id: Javanese (Javanese)-2-8e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99d\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-8f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99d\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-90
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99d\ua9b8\ua981
+      - grapheme_id: Javanese (Javanese)-2-91
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99d\ua9ba\ua981
+      - grapheme_id: Javanese (Javanese)-2-92
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99d\ua9ba\ua9b4\ua981
+      - grapheme_id: Javanese (Javanese)-2-93
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua99d\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-94
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0
+      - grapheme_id: Javanese (Javanese)-2-95
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua982
+      - grapheme_id: Javanese (Javanese)-2-96
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua983
+      - grapheme_id: Javanese (Javanese)-2-97
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-98
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-99
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua9b8\ua981
+      - grapheme_id: Javanese (Javanese)-2-9a
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-9b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-9c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua9bc\ua982
+      - grapheme_id: Javanese (Javanese)-2-9d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a0\ua9bd
+      - grapheme_id: Javanese (Javanese)-2-9e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a2
+      - grapheme_id: Javanese (Javanese)-2-9f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a2\ua981
+      - grapheme_id: Javanese (Javanese)-2-a0
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a2\ua982
+      - grapheme_id: Javanese (Javanese)-2-a1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a2\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-a2
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a2\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-a3
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a2\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-a4
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a2\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-a5
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a4
+      - grapheme_id: Javanese (Javanese)-2-a6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a4\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-a7
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a4\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-a8
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a4\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-a9
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a4\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-aa
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a5
+      - grapheme_id: Javanese (Javanese)-2-ab
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a5\ua981
+      - grapheme_id: Javanese (Javanese)-2-ac
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a5\ua9b3\ua9ba\ua9b4\ua982
+      - grapheme_id: Javanese (Javanese)-2-ad
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a5\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-ae
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a5\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-af
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a5\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-b0
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a5\ua9bf
+      - grapheme_id: Javanese (Javanese)-2-b1
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a5\ua9bf\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-b2
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a7
+      - grapheme_id: Javanese (Javanese)-2-b3
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a7\ua981
+      - grapheme_id: Javanese (Javanese)-2-b4
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a7\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-b5
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a7\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-b6
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a7\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-b7
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a7\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-b8
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a7\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-b9
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a9
+      - grapheme_id: Javanese (Javanese)-2-ba
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a9\ua982
+      - grapheme_id: Javanese (Javanese)-2-bb
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a9\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-bc
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a9\ua9b8\ua982
+      - grapheme_id: Javanese (Javanese)-2-bd
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9a9\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-be
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9ad
+      - grapheme_id: Javanese (Javanese)-2-bf
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9ad\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-c0
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9ad\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-c1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9ae
+      - grapheme_id: Javanese (Javanese)-2-c2
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9ae\ua982
+      - grapheme_id: Javanese (Javanese)-2-c3
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9ae\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-c4
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9ae\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-c5
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9ae\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-c6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b1
+      - grapheme_id: Javanese (Javanese)-2-c7
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b1\ua982
+      - grapheme_id: Javanese (Javanese)-2-c8
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b1\ua983
+      - grapheme_id: Javanese (Javanese)-2-c9
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b1\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-ca
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b1\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-cb
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b1\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-cc
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b1\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-cd
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b1\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-ce
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b2
+      - grapheme_id: Javanese (Javanese)-2-cf
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b2\ua981
+      - grapheme_id: Javanese (Javanese)-2-d0
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b2\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-d1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b2\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-d2
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b2\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-d3
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a4\ua9c0\ua9b2\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-d6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-d8
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9bf\ua983
+      - grapheme_id: Javanese (Javanese)-2-da
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9bf\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-db
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua98f
+      - grapheme_id: Javanese (Javanese)-2-dc
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua98f\ua981
+      - grapheme_id: Javanese (Javanese)-2-dd
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a0
+      - grapheme_id: Javanese (Javanese)-2-de
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a0\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-df
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a2\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-e0
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a4
+      - grapheme_id: Javanese (Javanese)-2-e1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a4\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-e2
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a5
+      - grapheme_id: Javanese (Javanese)-2-e3
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a5\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-e4
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a5\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-e5
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a7\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-e6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a9
+      - grapheme_id: Javanese (Javanese)-2-e7
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9a9\ua982
+      - grapheme_id: Javanese (Javanese)-2-e8
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9ab\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-e9
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9ad
+      - grapheme_id: Javanese (Javanese)-2-ea
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9ad\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-eb
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9b1
+      - grapheme_id: Javanese (Javanese)-2-ec
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9b1\ua9b6\ua982
+      - grapheme_id: Javanese (Javanese)-2-ed
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9b1\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-ee
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a5\ua9c0\ua9b2
+      - grapheme_id: Javanese (Javanese)-2-f0
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9ba\ua983
+      - grapheme_id: Javanese (Javanese)-2-f1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-f3
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9c0\ua98f
+      - grapheme_id: Javanese (Javanese)-2-f4
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9c0\ua9a0\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-f5
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9c0\ua9a5
+      - grapheme_id: Javanese (Javanese)-2-f6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9c0\ua9a7
+      - grapheme_id: Javanese (Javanese)-2-f7
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9c0\ua9a7\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-f8
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9c0\ua9b2
+      - grapheme_id: Javanese (Javanese)-2-f9
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a7\ua9c0\ua9b2\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-fc
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9ba\ua983
+      - grapheme_id: Javanese (Javanese)-2-fd
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-ff
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9bf\ua983
+      - grapheme_id: Javanese (Javanese)-2-100
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9bf\ua9b6\ua983
+      - grapheme_id: Javanese (Javanese)-2-101
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua98f\ua981
+      - grapheme_id: Javanese (Javanese)-2-102
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua994\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-103
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a0\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-104
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a0\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-105
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a4\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-106
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a5
+      - grapheme_id: Javanese (Javanese)-2-107
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a5\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-108
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a5\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-109
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a5\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-10a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7
+      - grapheme_id: Javanese (Javanese)-2-10b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua981
+      - grapheme_id: Javanese (Javanese)-2-10c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua982
+      - grapheme_id: Javanese (Javanese)-2-10d
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua983
+      - grapheme_id: Javanese (Javanese)-2-10e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-10f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-110
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua9b8\ua981
+      - grapheme_id: Javanese (Javanese)-2-111
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-112
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua9ba\ua982
+      - grapheme_id: Javanese (Javanese)-2-113
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua9bc\ua982
+      - grapheme_id: Javanese (Javanese)-2-114
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a7\ua9be\ua9b8\ua982
+      - grapheme_id: Javanese (Javanese)-2-115
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a9
+      - grapheme_id: Javanese (Javanese)-2-116
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9a9\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-117
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9ab
+      - grapheme_id: Javanese (Javanese)-2-118
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9ab\ua983
+      - grapheme_id: Javanese (Javanese)-2-119
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9ad
+      - grapheme_id: Javanese (Javanese)-2-11a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9a9\ua9c0\ua9b2\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-11d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9aa\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-120
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ab\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-125
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9ba\ua983
+      - grapheme_id: Javanese (Javanese)-2-126
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-127
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9ba\ua9b4\ua981
+      - grapheme_id: Javanese (Javanese)-2-128
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua98f\ua981
+      - grapheme_id: Javanese (Javanese)-2-129
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua99a\ua9bc\ua981
+      - grapheme_id: Javanese (Javanese)-2-12a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9a0\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-12b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9a7\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-12c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9a9\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-12d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9ad
+      - grapheme_id: Javanese (Javanese)-2-12e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9ad\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-12f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9ad\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-130
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9ad\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-131
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9ae
+      - grapheme_id: Javanese (Javanese)-2-132
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9b1
+      - grapheme_id: Javanese (Javanese)-2-133
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9b1\ua982
+      - grapheme_id: Javanese (Javanese)-2-134
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9b1\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-135
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9b1\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-136
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9b2
+      - grapheme_id: Javanese (Javanese)-2-137
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9b2\ua981
+      - grapheme_id: Javanese (Javanese)-2-138
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9b2\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-139
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ad\ua9c0\ua9b2\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-13e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ae\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-13f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ae\ua9ba\ua9b4\ua981
+      - grapheme_id: Javanese (Javanese)-2-140
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9ae\ua9ba\ua9b4\ua983
+      - grapheme_id: Javanese (Javanese)-2-141
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9ae\ua9bf\ua9b8\ua983
+      - grapheme_id: Javanese (Javanese)-2-144
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9ba\ua9b4
+      - grapheme_id: Javanese (Javanese)-2-147
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9bf\ua983
+      - grapheme_id: Javanese (Javanese)-2-148
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua98f
+      - grapheme_id: Javanese (Javanese)-2-149
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua98f\ua981
+      - grapheme_id: Javanese (Javanese)-2-14a
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua98f\ua9bf\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-14b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua992
+      - grapheme_id: Javanese (Javanese)-2-14c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua994\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-14d
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua994\ua9bf
+      - grapheme_id: Javanese (Javanese)-2-14e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua99b\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-14f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a0
+      - grapheme_id: Javanese (Javanese)-2-150
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a0\ua9bf
+      - grapheme_id: Javanese (Javanese)-2-151
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a2\ua982
+      - grapheme_id: Javanese (Javanese)-2-152
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a2\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-153
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a2\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-154
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a5
+      - grapheme_id: Javanese (Javanese)-2-155
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a7
+      - grapheme_id: Javanese (Javanese)-2-156
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a7\ua981
+      - grapheme_id: Javanese (Javanese)-2-157
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a9
+      - grapheme_id: Javanese (Javanese)-2-158
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a9\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-159
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a9\ua9bc
+      - grapheme_id: Javanese (Javanese)-2-15a
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9a9\ua9bf
+      - grapheme_id: Javanese (Javanese)-2-15b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9ad
+      - grapheme_id: Javanese (Javanese)-2-15c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9ae
+      - grapheme_id: Javanese (Javanese)-2-15d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b1
+      - grapheme_id: Javanese (Javanese)-2-15e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b1\ua982
+      - grapheme_id: Javanese (Javanese)-2-15f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b1\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-160
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b1\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-161
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b1\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-162
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b1\ua9ba
+      - grapheme_id: Javanese (Javanese)-2-163
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b2
+      - grapheme_id: Javanese (Javanese)-2-164
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b2\ua981
+      - grapheme_id: Javanese (Javanese)-2-165
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b2\ua9b6
+      - grapheme_id: Javanese (Javanese)-2-166
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b2\ua9b6\ua981
+      - grapheme_id: Javanese (Javanese)-2-167
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \ua9b1\ua9c0\ua9b2\ua9b8
+      - grapheme_id: Javanese (Javanese)-2-169
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
         wchars: \ua9b2\ua9ba\ua9b4
-      n_errors: 43
+      - grapheme_id: Javanese (Javanese)-1-10
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua98f\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-3b
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9a0\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-42
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9a2\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-4d
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9a4\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-51
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9a5\ua9b3\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-57
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9a5\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-5e
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9a7\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-68
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9a9\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-7c
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9ad\ua9c0
+      - grapheme_id: Javanese (Javanese)-1-8f
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \ua9b1\ua9c0
+      n_errors: 321
       n_total: 530
-      pct_success: 91.88679245283019
+      pct_success: 39.43396226415095
     Kabyle:
       failed: []
       n_errors: 0
@@ -7549,50 +8654,390 @@ test_results:
       pct_success: 94.77351916376307
     Khmer, Central:
       failed:
-      - grapheme_id: Khmer, Central-3-16
+      - grapheme_id: Khmer, Central-2-07
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1780\u17d2\u178a\u17c5
+      - grapheme_id: Khmer, Central-2-0b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1780\u17d2\u179a\u17c4
+      - grapheme_id: Khmer, Central-2-0d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1780\u17d2\u179f\u17b6
+      - grapheme_id: Khmer, Central-2-10
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1781\u17d2\u1787\u17b6
+      - grapheme_id: Khmer, Central-2-12
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1781\u17d2\u179b\u17b6
+      - grapheme_id: Khmer, Central-2-19
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1782\u17d2\u1793\u17b6
+      - grapheme_id: Khmer, Central-2-1a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1782\u17d2\u1798\u17b6
+      - grapheme_id: Khmer, Central-2-1c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1782\u17d2\u179a\u17b6
+      - grapheme_id: Khmer, Central-2-1d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1782\u17d2\u179a\u17b9\u17c7
+      - grapheme_id: Khmer, Central-2-26
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1784\u17d2\u1780\u17be
+      - grapheme_id: Khmer, Central-2-2c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1784\u17d2\u179a\u17c0
+      - grapheme_id: Khmer, Central-2-2d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1784\u17d2\u17a0\u17b6
+      - grapheme_id: Khmer, Central-2-35
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1785\u17d2\u1785\u17c1
+      - grapheme_id: Khmer, Central-2-36
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1785\u17d2\u1794\u17b6
+      - grapheme_id: Khmer, Central-2-38
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1786\u17d2\u1793\u17b6\u17c6
+      - grapheme_id: Khmer, Central-2-39
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1786\u17d2\u1793\u17c4
+      - grapheme_id: Khmer, Central-2-3b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1786\u17d2\u179b\u17be
+      - grapheme_id: Khmer, Central-2-3f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1787\u17d2\u1787\u17b6
+      - grapheme_id: Khmer, Central-2-40
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1787\u17d2\u1789\u17b6
+      - grapheme_id: Khmer, Central-2-43
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1787\u17d2\u179a\u17be
+      - grapheme_id: Khmer, Central-2-44
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1787\u17d2\u179a\u17c0
+      - grapheme_id: Khmer, Central-2-45
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1787\u17d2\u179a\u17c2
+      - grapheme_id: Khmer, Central-2-47
         measured_by_terminal: 4
-        measured_by_wcwidth: 3
+        measured_by_wcwidth: 2
         wchars: \u1788\u17d2\u1798\u17c4\u17c7
-      - grapheme_id: Khmer, Central-3-1d
-        measured_by_terminal: 4
-        measured_by_wcwidth: 3
-        wchars: \u178e\u17d2\u178e\u17c4\u17c7
-      - grapheme_id: Khmer, Central-2-41
+      - grapheme_id: Khmer, Central-2-4a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1789\u17d2\u1787\u17b6
+      - grapheme_id: Khmer, Central-2-4c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1789\u17d2\u1789\u17b6
+      - grapheme_id: Khmer, Central-2-4d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1789\u17d2\u1789\u17c8
+      - grapheme_id: Khmer, Central-2-55
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u178a\u17d2\u178b\u17b6
+      - grapheme_id: Khmer, Central-2-5c
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u178e\u17c4\u17c7
-      - grapheme_id: Khmer, Central-2-5a
+      - grapheme_id: Khmer, Central-2-5e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u178e\u17d2\u178a\u17b6
+      - grapheme_id: Khmer, Central-2-5f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u178e\u17d2\u178a\u17bb\u17c7
+      - grapheme_id: Khmer, Central-2-61
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u178e\u17d2\u178e\u17c4\u17c7
+      - grapheme_id: Khmer, Central-2-6b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u178f\u17d2\u179a\u17b6
+      - grapheme_id: Khmer, Central-2-71
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1790\u17d2\u1784\u17c3
+      - grapheme_id: Khmer, Central-2-72
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1790\u17d2\u1793\u17b6
+      - grapheme_id: Khmer, Central-2-75
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1790\u17d2\u179b\u17c3
+      - grapheme_id: Khmer, Central-2-7c
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1791\u17c4\u17c7
-      - grapheme_id: Khmer, Central-2-65
+      - grapheme_id: Khmer, Central-2-80
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1793\u17c1\u17c7
-      - grapheme_id: Khmer, Central-2-67
+        wchars: \u1791\u17d2\u1799\u17b6
+      - grapheme_id: Khmer, Central-2-84
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1793\u17c4\u17c7
-      - grapheme_id: Khmer, Central-2-74
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1794\u17c4\u17c7
+        wchars: \u1792\u17d2\u1793\u17b6
       - grapheme_id: Khmer, Central-2-86
         measured_by_terminal: 3
         measured_by_wcwidth: 2
+        wchars: \u1792\u17d2\u1799\u17b6
+      - grapheme_id: Khmer, Central-2-87
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1792\u17d2\u1799\u17c4
+      - grapheme_id: Khmer, Central-2-88
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1792\u17d2\u179c\u17be
+      - grapheme_id: Khmer, Central-2-8c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1793\u17c1\u17c7
+      - grapheme_id: Khmer, Central-2-8e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1793\u17c4\u17c7
+      - grapheme_id: Khmer, Central-2-93
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1793\u17d2\u1790\u17c2
+      - grapheme_id: Khmer, Central-2-94
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1793\u17d2\u1790\u17c4
+      - grapheme_id: Khmer, Central-2-95
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1793\u17d2\u1791\u17b6
+      - grapheme_id: Khmer, Central-2-96
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1793\u17d2\u1791\u17c8
+      - grapheme_id: Khmer, Central-2-9a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1793\u17d2\u1799\u17b6
+      - grapheme_id: Khmer, Central-2-9b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1793\u17d2\u179b\u17c2
+      - grapheme_id: Khmer, Central-2-a1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1794\u17c4\u17c7
+      - grapheme_id: Khmer, Central-2-a6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1794\u17d2\u178a\u17c1
+      - grapheme_id: Khmer, Central-2-aa
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1794\u17d2\u179a\u17b6
+      - grapheme_id: Khmer, Central-2-ad
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1794\u17d2\u179a\u17be
+      - grapheme_id: Khmer, Central-2-ae
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1794\u17d2\u179a\u17c2
+      - grapheme_id: Khmer, Central-2-b1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1795\u17d2\u178a\u17b6
+      - grapheme_id: Khmer, Central-2-b2
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1795\u17d2\u1791\u17b6
+      - grapheme_id: Khmer, Central-2-b4
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1795\u17d2\u1791\u17c1
+      - grapheme_id: Khmer, Central-2-b5
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1795\u17d2\u1793\u17c2
+      - grapheme_id: Khmer, Central-2-b6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1795\u17d2\u179b\u17b6
+      - grapheme_id: Khmer, Central-2-b9
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1795\u17d2\u179f\u17b6
+      - grapheme_id: Khmer, Central-2-ba
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1795\u17d2\u179f\u17c1
+      - grapheme_id: Khmer, Central-2-bb
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1795\u17d2\u179f\u17c3
+      - grapheme_id: Khmer, Central-2-bf
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
         wchars: \u1796\u17c4\u17c7
-      n_errors: 8
+      - grapheme_id: Khmer, Central-2-c1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1796\u17d2\u1799\u17b6
+      - grapheme_id: Khmer, Central-2-c4
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1796\u17d2\u179a\u17c0
+      - grapheme_id: Khmer, Central-2-c5
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1796\u17d2\u179a\u17c3
+      - grapheme_id: Khmer, Central-2-d0
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u1784\u17b6
+      - grapheme_id: Khmer, Central-2-d1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u1785\u17b6
+      - grapheme_id: Khmer, Central-2-d2
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u178a\u17b6
+      - grapheme_id: Khmer, Central-2-d3
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u178a\u17c2
+      - grapheme_id: Khmer, Central-2-d4
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u1793\u17b6
+      - grapheme_id: Khmer, Central-2-d5
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u1793\u17c1
+      - grapheme_id: Khmer, Central-2-d9
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u1797\u17b6
+      - grapheme_id: Khmer, Central-2-dc
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u179a\u17b6
+      - grapheme_id: Khmer, Central-2-df
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u179a\u17be
+      - grapheme_id: Khmer, Central-2-e0
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u179a\u17c1
+      - grapheme_id: Khmer, Central-2-e1
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u179b\u17c0
+      - grapheme_id: Khmer, Central-2-e2
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1798\u17d2\u179b\u17c3
+      - grapheme_id: Khmer, Central-2-f6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179b\u17d2\u1794\u17c8
+      - grapheme_id: Khmer, Central-2-f7
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179b\u17d2\u1798\u17be
+      - grapheme_id: Khmer, Central-2-ff
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u1782\u17b6
+      - grapheme_id: Khmer, Central-2-101
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u178a\u17d2\u179a\u17b8
+      - grapheme_id: Khmer, Central-2-102
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u178f\u17d2\u179a
+      - grapheme_id: Khmer, Central-2-103
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u1790\u17b6
+      - grapheme_id: Khmer, Central-2-106
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u1793\u17b6
+      - grapheme_id: Khmer, Central-2-107
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u1798\u17b6
+      - grapheme_id: Khmer, Central-2-108
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u1798\u17be
+      - grapheme_id: Khmer, Central-2-10a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u179a\u17b6
+      - grapheme_id: Khmer, Central-2-10d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u179b\u17b6
+      - grapheme_id: Khmer, Central-2-10e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u179f\u17d2\u179c\u17c2
+      n_errors: 90
       n_total: 443
-      pct_success: 98.1941309255079
+      pct_success: 79.68397291196389
     Khün:
       failed:
       - grapheme_id: Khün-2-1f
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a23\u1a55\u1a6e\u1a60
-      n_errors: 1
+      - grapheme_id: Khün-2-46
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a60\u1a45\u1a60\u1a3f\u1a62
+      - grapheme_id: Khün-2-47
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a62\u1a60\u1a45\u1a60\u1a3f
+      - grapheme_id: Khün-2-e5
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a3f\u1a62\u1a60\u1a4b
+      n_errors: 4
       n_total: 396
-      pct_success: 99.74747474747475
+      pct_success: 98.98989898989899
     Korean:
       failed: []
       n_errors: 0
@@ -9313,17 +10758,33 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1007\u103c\u1031
-      - grapheme_id: Mon-2-21
+      - grapheme_id: Mon-2-19
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1012\u1039\u1002\u1031
+      - grapheme_id: Mon-2-22
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1016\u103b\u1031\u1036
       - grapheme_id: Mon-2-23
         measured_by_terminal: 3
         measured_by_wcwidth: 2
+        wchars: \u1017\u1039\u1010\u1031
+      - grapheme_id: Mon-2-24
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1017\u1039\u105c\u1031
+      - grapheme_id: Mon-2-26
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
         wchars: \u1017\u103c\u1031
-      n_errors: 3
+      - grapheme_id: Mon-2-39
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u101e\u1039\u1002\u1031
+      n_errors: 7
       n_total: 332
-      pct_success: 99.09638554216868
+      pct_success: 97.89156626506023
     Mongolian, Halh (Mongolian):
       failed: []
       n_errors: 0
@@ -10162,157 +11623,245 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011315\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-25
+      - grapheme_id: Sanskrit (Grantha)-2-20
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001131f\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-26
+      - grapheme_id: Sanskrit (Grantha)-2-21
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001131f\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-2a
+      - grapheme_id: Sanskrit (Grantha)-2-24
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011320\U00011348\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-30
+      - grapheme_id: Sanskrit (Grantha)-2-2a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011323\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-38
+      - grapheme_id: Sanskrit (Grantha)-2-31
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011324\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-39
+      - grapheme_id: Sanskrit (Grantha)-2-32
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011324\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-3b
+      - grapheme_id: Sanskrit (Grantha)-2-34
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011324\U0001133f\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-3c
+      - grapheme_id: Sanskrit (Grantha)-2-35
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011324\U0001133f\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-3e
+      - grapheme_id: Sanskrit (Grantha)-2-37
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011324\U00011341\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-41
+      - grapheme_id: Sanskrit (Grantha)-2-3a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011324\U00011347\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-48
+      - grapheme_id: Sanskrit (Grantha)-2-40
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011325\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-55
+      - grapheme_id: Sanskrit (Grantha)-2-4c
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011327\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-57
+      - grapheme_id: Sanskrit (Grantha)-2-4e
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011327\U0001133f\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-5b
+      - grapheme_id: Sanskrit (Grantha)-2-52
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011327\U00011347\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-5c
+      - grapheme_id: Sanskrit (Grantha)-2-53
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011327\U00011348\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-61
+      - grapheme_id: Sanskrit (Grantha)-2-57
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011328\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-62
+      - grapheme_id: Sanskrit (Grantha)-2-58
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011328\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-64
+      - grapheme_id: Sanskrit (Grantha)-2-5a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011328\U0001133f\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-69
+      - grapheme_id: Sanskrit (Grantha)-2-5f
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011328\U00011348\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-79
+      - grapheme_id: Sanskrit (Grantha)-2-6c
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001132d\U0001133f\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-81
+      - grapheme_id: Sanskrit (Grantha)-2-73
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001132e\U0001133f\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-8c
+      - grapheme_id: Sanskrit (Grantha)-2-7d
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001132f\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-8d
+      - grapheme_id: Sanskrit (Grantha)-2-7e
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001132f\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-90
+      - grapheme_id: Sanskrit (Grantha)-2-81
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001132f\U00011341\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-93
+      - grapheme_id: Sanskrit (Grantha)-2-84
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001132f\U00011348\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-95
+      - grapheme_id: Sanskrit (Grantha)-2-86
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U0001132f\U0001134b\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-9a
+      - grapheme_id: Sanskrit (Grantha)-2-8a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011330\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-9c
+      - grapheme_id: Sanskrit (Grantha)-2-8c
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011330\U0001133f\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-a5
+      - grapheme_id: Sanskrit (Grantha)-2-94
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011332\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-a7
+      - grapheme_id: Sanskrit (Grantha)-2-96
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011332\U0001133f\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-af
+      - grapheme_id: Sanskrit (Grantha)-2-9d
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011335\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-b0
+      - grapheme_id: Sanskrit (Grantha)-2-9e
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011335\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-ba
+      - grapheme_id: Sanskrit (Grantha)-2-a7
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011336\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-c3
+      - grapheme_id: Sanskrit (Grantha)-2-af
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011337\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-c4
+      - grapheme_id: Sanskrit (Grantha)-2-b0
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011337\U0001133e\U00011303
-      - grapheme_id: Sanskrit (Grantha)-2-ce
+      - grapheme_id: Sanskrit (Grantha)-2-b9
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011338\U0001133e\U00011302
-      - grapheme_id: Sanskrit (Grantha)-2-d7
+      - grapheme_id: Sanskrit (Grantha)-2-c1
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \U00011339\U0001133e\U00011303
-      n_errors: 39
+      - grapheme_id: Sanskrit (Grantha)-1-07
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011315\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-0a
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011317\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-0d
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001131a\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-12
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001131c\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-13
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001131e\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-15
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001131f\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-1a
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011323\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-1d
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011324\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-21
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011326\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-24
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011327\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-27
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011328\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-2a
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001132a\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-2c
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001132c\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-2e
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001132d\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-31
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001132e\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-34
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U0001132f\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-37
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011330\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-39
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011332\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-3c
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011335\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-3f
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011336\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-41
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011337\U0001134d
+      - grapheme_id: Sanskrit (Grantha)-1-44
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \U00011338\U0001134d
+      n_errors: 61
       n_total: 293
-      pct_success: 86.68941979522185
+      pct_success: 79.18088737201366
     Secoya:
       failed: []
       n_errors: 0
@@ -10714,6 +12263,444 @@ test_results:
       n_errors: 0
       n_total: 79
       pct_success: 100.0
+  narrow_results:
+    17.0.0:
+      failed_codepoints:
+      - measured_by_terminal: 6
+        measured_by_wcwidth: 1
+        wchar: \u070f
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u23ed
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u23ee
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u23ef
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u23f1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u23f2
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u23f8
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u23f9
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u23fa
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u24c2
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u261d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26c8
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26cf
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26d1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26d3
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26e9
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26f0
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26f1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26f7
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26f8
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u26f9
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u270c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u270d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u2934
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u2935
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f170
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f171
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f172
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f173
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f174
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f175
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f176
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f177
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f178
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f179
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f17a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f17b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f17c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f17d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f17e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f17f
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f180
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f181
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f182
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f183
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f184
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f185
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f186
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f187
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f188
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f189
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f321
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f324
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f325
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f326
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f327
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f328
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f329
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f32a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f32b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f32c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f336
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f37d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f396
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f397
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f399
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f39a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f39b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f39e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f39f
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3cb
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3cc
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3cd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3ce
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3d4
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3d5
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3d6
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3d7
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3d8
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3d9
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3da
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3db
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3dc
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3dd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3de
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3df
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3f3
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3f5
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f3f7
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f43f
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f441
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f4fd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f549
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f54a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f56f
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f570
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f573
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f574
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f575
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f576
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f577
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f578
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f579
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f587
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f58a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f58b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f58c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f58d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f590
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5a5
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5a8
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5b1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5b2
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5bc
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5c2
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5c3
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5c4
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5d1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5d2
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5d3
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5dc
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5dd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5de
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5e1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5e3
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5e8
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5ef
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5f3
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f5fa
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6cb
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6cd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6ce
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6cf
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6e0
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6e1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6e2
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6e3
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6e4
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6e5
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6e9
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6f0
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f6f3
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f93b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f946
+      n_errors: 144
+      n_total: 36254
+      pct_success: 99.6028024493849
   ri_results:
     '17.0':
       failed_codepoints:
@@ -11545,5 +13532,5 @@ test_results:
       n_errors: 7
       n_total: 43592
       pct_success: 99.98394200770784
-wcwidth_version: 0.7.0
+wcwidth_version: 0.8.1
 width: 71

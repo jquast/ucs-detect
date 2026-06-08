@@ -1,0 +1,3 @@
+[submodule "udhr"]
+	path = udhr
+	url = https://github.com/unicode-org/udhr.git

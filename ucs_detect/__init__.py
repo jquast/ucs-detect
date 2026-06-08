@@ -46,7 +46,17 @@ from ucs_detect.table_lang import LANG_GRAPHEMES
 from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 from ucs_detect.table_wide import WIDE_CHARACTERS
+from ucs_detect.table_narrow import NARROW_CHARACTERS
 from ucs_detect.error_matcher import ErrorMatcher
+from ucs_detect.table_ri_contested import RI_CONTESTED
+from ucs_detect.table_sfz_contested import SFZ_CONTESTED
+from ucs_detect.table_sri_contested import SRI_CONTESTED
+from ucs_detect.table_zwj_contested import ZWJ_CONTESTED
+from ucs_detect.table_lang_contested import LANG_CONTESTED
+from ucs_detect.table_vs15_contested import VS15_CONTESTED
+from ucs_detect.table_vs16_contested import VS16_CONTESTED
+from ucs_detect.table_wide_contested import WIDE_CONTESTED
+from ucs_detect.table_narrow_contested import NARROW_CONTESTED
 
 
 def _utcnow_str():
@@ -108,11 +118,32 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", terminal_full_probe=False, silent=False, no_final_summary=False, **_kwargs):
+def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", terminal_full_probe=False, silent=False, no_final_summary=False, test_all=False, **_kwargs):
     """Program entry point."""
 
     def _should_run(*categories):
         return test_only == "all" or test_only in categories
+
+    if test_all:
+        wide_table = WIDE_CHARACTERS
+        sri_table = STANDALONE_REGIONAL_INDICATORS
+        sfz_table = STANDALONE_FITZPATRICK
+        ri_table = REGIONAL_INDICATOR_FLAGS
+        zwj_table = EMOJI_ZWJ_SEQUENCES
+        vs16_table = VS16_NARROW_TO_WIDE
+        vs15_table = VS15_WIDE_TO_NARROW
+        lang_table = LANG_GRAPHEMES
+        narrow_table = NARROW_CHARACTERS
+    else:
+        wide_table = WIDE_CONTESTED
+        sri_table = SRI_CONTESTED
+        sfz_table = SFZ_CONTESTED
+        ri_table = RI_CONTESTED
+        zwj_table = ZWJ_CONTESTED
+        vs16_table = VS16_CONTESTED
+        vs15_table = VS15_CONTESTED
+        lang_table = LANG_CONTESTED
+        narrow_table = NARROW_CONTESTED
 
     term, writer = init_term(stream)
 
@@ -133,6 +164,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         for k in ("stream", "limit_codepoints", "limit_errors", "limit_graphemes",
                   "limit_graphemes_pct", "limit_category_time", "timeout_cps")
     }
+    session_arguments['all'] = test_all
     environment = {
         k: os.environ[k]
         for k in ("TERM", "COLORTERM", "TERM_PROGRAM", "TERM_PROGRAM_VERSION")
@@ -235,6 +267,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     emoji_zwj_results = {}
     emoji_vs16_results = {}
     emoji_vs15_results = {}
+    narrow_results = {}
     language_results = None
 
     if has_unicode:
@@ -253,7 +286,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
             if _should_run("unicode", "wide"):
                 wide_results = measure.test_support(
-                    table=WIDE_CHARACTERS, expected_width=2,
+                    table=wide_table, expected_width=2,
                     test_type="wide", label="WIDE",
                     limit_pct=limit_codepoints_wide_pct,
                     include_uncommon=include_uncommon_codepoints,
@@ -262,7 +295,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
             if _should_run("unicode", "sri"):
                 sri_results = measure.test_support(
-                    table=STANDALONE_REGIONAL_INDICATORS,
+                    table=sri_table,
                     expected_width=2,
                     test_type="sri",
                     label="Standalone Regional Indicators",
@@ -271,7 +304,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
             if _should_run("unicode", "sfz"):
                 sfz_results = measure.test_support(
-                    table=STANDALONE_FITZPATRICK,
+                    table=sfz_table,
                     expected_width=2,
                     test_type="sfz",
                     label="Standalone Fitzpatrick",
@@ -280,7 +313,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
             if _should_run("unicode", "ri"):
                 ri_results = measure.test_support(
-                    table=REGIONAL_INDICATOR_FLAGS,
+                    table=ri_table,
                     expected_width=2,
                     test_type="ri",
                     label="Regional Indicator Flags",
@@ -289,7 +322,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
             if _should_run("unicode", "zwj"):
                 emoji_zwj_results = measure.test_support(
-                    table=EMOJI_ZWJ_SEQUENCES, expected_width=2,
+                    table=zwj_table, expected_width=2,
                     test_type="zwj", label="ZWJ", **test_kwargs,
                 )
 
@@ -298,7 +331,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                              if limit_category_time else 0)
                 emoji_vs16_results = merge_results(
                     measure.test_support(
-                        table=VS16_NARROW_TO_WIDE, expected_width=2,
+                        table=vs16_table, expected_width=2,
                         test_type="vs16",
                         label="Variation Selector-16",
                         **{**test_kwargs,
@@ -307,7 +340,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     measure.test_support(
                         table=tuple(
                             (ver, tuple(seq[0] for seq in sequences))
-                            for ver, sequences in VS16_NARROW_TO_WIDE),
+                            for ver, sequences in vs16_table),
                         expected_width=1, suppress_output=True,
                         test_type="vs16n",
                         **{**test_kwargs,
@@ -317,9 +350,17 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
             if _should_run("unicode", "vs15"):
                 emoji_vs15_results = measure.test_support(
-                    table=VS15_WIDE_TO_NARROW, expected_width=1,
+                    table=vs15_table, expected_width=1,
                     test_type="vs15",
                     label="Variation Selector-15",
+                    **test_kwargs,
+                )
+
+            if _should_run("unicode", "narrow"):
+                narrow_results = measure.test_support(
+                    table=narrow_table, expected_width=1,
+                    test_type="narrow",
+                    label="NARROW",
                     **test_kwargs,
                 )
 
@@ -328,7 +369,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 # from codepoint test sprays before starting language tests.
                 term.flushinp(timeout=0.01)
                 language_results = measure.test_language_support(
-                    LANG_GRAPHEMES, term, writer, timeout_cps,
+                    lang_table, term, writer, timeout_cps,
                     limit_graphemes, limit_errors, error_matcher,
                     limit_category_time=limit_category_time,
                     limit_graphemes_pct=limit_graphemes_pct,
@@ -360,6 +401,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             emoji_zwj_results=emoji_zwj_results,
             emoji_vs16_results=emoji_vs16_results,
             emoji_vs15_results=emoji_vs15_results,
+            narrow_results=narrow_results,
             language_results=language_results,
             elapsed=elapsed,
             has_unicode=has_unicode,
@@ -390,6 +432,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 emoji_zwj_results=emoji_zwj_results,
                 emoji_vs16_results=emoji_vs16_results,
                 emoji_vs15_results=emoji_vs15_results,
+                narrow_results=narrow_results,
                 language_results=language_results,
             ),
             terminal_results=terminal_results,
@@ -654,10 +697,12 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
     zwj = result_sets.get("emoji_zwj_results", {})
     vs16 = result_sets.get("emoji_vs16_results", {})
     vs15 = result_sets.get("emoji_vs15_results", {})
+    narrow = result_sets.get("narrow_results", {})
 
     for name, data in [("WIDE", wide), ("Standalone RI", sri),
                        ("Standalone Fitz.", sfz), ("RI Flags", ri),
-                       ("ZWJ", zwj), ("VS16", vs16), ("VS15", vs15)]:
+                       ("ZWJ", zwj), ("VS16", vs16), ("VS15", vs15),
+                       ("NARROW", narrow)]:
         if data:
             for label, d in data.items():
                 pct_val = d["pct_success"]
@@ -1129,7 +1174,7 @@ def parse_args():
         "--test-only",
         default="all",
         choices=("all", "unicode", "terminal", "wide", "sri", "sfz",
-                 "ri", "zwj", "vs16", "vs15", "lang"),
+                 "ri", "zwj", "vs16", "vs15", "lang", "narrow"),
         help="Run only the specified test category",
     )
     args.add_argument(
@@ -1180,6 +1225,13 @@ def parse_args():
         default=False,
         help="Do not display the final results summary table"
     )
+    args.add_argument(
+        "--all",
+        dest="test_all",
+        action="store_true",
+        default=False,
+        help="Test all codepoints and graphemes, not only contested ones",
+    )
     results = vars(args.parse_args())
     if results["rerun"]:
         results = _apply_rerun_yaml(results)
@@ -1219,6 +1271,7 @@ def _apply_rerun_yaml(results):
     yaml_bool_flags = {
         'no_terminal_test': 'no_terminal_test',
         'no_languages_test': 'no_languages_test',
+        'all': 'test_all',
     }
 
     for yaml_key, cli_key in yaml_to_cli.items():

@@ -1,5 +1,5 @@
 PyYAML
-wcwidth
+wcwidth>=0.8.1
 blessed
 sphinx
 sphinx-rtd-theme

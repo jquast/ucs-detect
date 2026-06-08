@@ -78,6 +78,10 @@ Run a detailed test and save a YAML report::
 
 Notable CLI options:
 
+``--all``
+  Test all codepoints and graphemes. By default, only codepoints and graphemes
+  known to have failed in any terminal (contested) are tested.
+
 ``--rerun <yaml-file>``
   Re-test a terminal using parameters from a previous YAML report.
 
@@ -132,6 +136,7 @@ Modes are toggled with keyboard shortcuts:
 - ``7``: VS-16 (emoji style)
 - ``w``: Toggle with/without variation selector
 - ``U``: Toggle uncommon CJK extensions
+- ``t``: Toggle correction tables (wcstwidth vs wcswidth)
 - ``v``: Select Unicode version
 - ``-`` / ``+``: Adjust name column width
 
@@ -142,6 +147,10 @@ pages, ``q`` to quit.
 
 Example files are created using ucs-browser, and are published in the source repository at url
 https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files
+
+Use ``--no-correction`` when generating example files to disable terminal-specific
+width correction tables, producing output that reflects wcwidth defaults. Example
+file generation is handled by ``tox -e make_tables``.
 
 
 Test Results
@@ -157,29 +166,61 @@ Related articles:
 
 - `ucs-detect test results`_ (November 2023, release 1.0.4)
 - `State of Terminal Emulation 2025`_ (November 2025, release 1.0.8)
+- `Perfecting Terminal Character Width Using Correction Tables` (June 2026, release https://www.jeffquast.com/post/perfecting-terminal-character-width-using-correction-tables/
 
 Updating Results
 ----------------
 
-Results are shared with terminal emulator projects and may become outdated as
-they improve Unicode support. Submit a pull request to update YAML data files.
+Results are published in HTML and yaml, for use in code generation for publishing "correction
+tables", and may become outdated as they improve Unicode support. Submit a pull request to update
+YAML data files.
 
 Re-test an existing terminal::
 
     $ ucs-detect --rerun data/contour.yaml
 
-This re-executes with the same parameters, overwriting the existing YAML file.
-
 Submit results for a new terminal::
 
-    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml --limit-category-time=900
+    $ ucs-detect --save-yaml=data/jeffs-own-terminal.yaml
 
-The ``--limit-category-time`` argument is used to automatically reduce test size to attempt to
-complete each category under a reasonable time. This automatically adjusts the
-``--limit-codepoints-wide-pct`` parameter as low as 1%.
+Commit and make a PR. To preview documentation changes, create a *draft pull request*. A
+readthedocs.org build status will appear -- click "Details" for an HTML preview.
 
-To preview documentation changes, create a *draft pull request*. A readthedocs.org build status will
-appear -- click "Details" for an HTML preview.
+Problem Analysis
+----------------
+
+Use ``--stop-at-error`` to investigate discrepancies interactively::
+
+    $ ucs-detect --stop-at-error 'Hindi'
+
+Example output::
+
+    Failure in language 'Hindi' (Hindi-2-01):
+    +---+-----------+--------+----------+---------+-------------------------+
+    | # | Codepoint | Python | Category | wcwidth |           Name          |
+    +---+-----------+--------+----------+---------+-------------------------+
+    | 1 |   U+0915  | \u0915 |    Lo    |    1    |   DEVANAGARI LETTER KA  |
+    | 2 |   U+094D  | \u094d |    Mn    |    0    |  DEVANAGARI SIGN VIRAMA |
+    | 3 |   U+0928  | \u0928 |    Lo    |    1    |   DEVANAGARI LETTER NA  |
+    | 4 |   U+093F  | \u093f |    Mc    |    0    | DEVANAGARI VOWEL SIGN I |
+    +---+-----------+--------+----------+---------+-------------------------+
+    +----+
+    | क्नि |
+    +----+
+
+    measured by terminal: 3
+    measured by wcwidth:  2
+
+    Shell
+    -----
+    printf '\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa8\xe0\xa4\xbf\n'
+
+    Python
+    ------
+    python -c "print('\u0915\u094d\u0928\u093f')"
+
+    press return for next error, or n for non-stop:
+
 
 Batch Testing
 -------------
@@ -243,41 +284,20 @@ The script ``run-series.py`` is an X11 automation for testing all linux terminal
 [arguments]`` or similar is not supported, keystrokes are injected into the target application to
 launch ``ucs-detect`` by configuration.
 
-Problem Analysis
-----------------
+Updating ucs-detect
+-------------------
 
-Use ``--stop-at-error`` to investigate discrepancies interactively::
+ucs-detect contains auto-generated tables of codepoints and grapheme sequences derived from
+Unicode.org, UDHR data, and python wcwidth code. Therefor, ucs-detect tables should be updated
+anytime:
 
-    $ ucs-detect --stop-at-error 'Hindi'
+- new release or revisions of unicode.org data files
+- new languages or revisions of UDHR data files
+- python wcwidth that affects wcswidth measurement
 
-Example output::
+To update these tables and then perform automatic reformatting, run::
 
-    Failure in language 'Hindi' (Hindi-2-01):
-    +---+-----------+--------+----------+---------+-------------------------+
-    | # | Codepoint | Python | Category | wcwidth |           Name          |
-    +---+-----------+--------+----------+---------+-------------------------+
-    | 1 |   U+0915  | \u0915 |    Lo    |    1    |   DEVANAGARI LETTER KA  |
-    | 2 |   U+094D  | \u094d |    Mn    |    0    |  DEVANAGARI SIGN VIRAMA |
-    | 3 |   U+0928  | \u0928 |    Lo    |    1    |   DEVANAGARI LETTER NA  |
-    | 4 |   U+093F  | \u093f |    Mc    |    0    | DEVANAGARI VOWEL SIGN I |
-    +---+-----------+--------+----------+---------+-------------------------+
-    +----+
-    | क्नि |
-    +----+
-
-    measured by terminal: 3
-    measured by wcwidth:  2
-
-    Shell
-    -----
-    printf '\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xa8\xe0\xa4\xbf\n'
-
-    Python
-    ------
-    python -c "print('\u0915\u094d\u0928\u093f')"
-
-    press return for next error, or n for non-stop:
-
+    tox -e make_tables,format
 
 UDHR Data
 ---------
@@ -295,6 +315,15 @@ marks across diverse scripts.
 
 History
 -------
+
+- 2.3.0 (2026-06-08): Integrate with wcwidth>=0.8.1, which offers a new `wcstwidth()`_ function
+  and some specification changes, and update ZWJ, grapheme, and contested tables.  As a circular
+  dependency on our published results, wcwidth's new specification also artificially "caps" all
+  graphemes to a maximum of width 2, matching more terminal emulators for width measurement
+  (ghostty, wezterm, foot, mlterm). New NARROW width tracking detects narrow characters that display
+  as wide.  Contested tables introduced: only codepoints known to fail in any terminal are tested,
+  use ``--all`` to thoroughly test all codepoints.  ``ucs-browser`` has new ``t`` key to toggle
+  correction tables and ``--no-correction`` mode.
 
 - 2.2.1 (2026-06-01): Bugfix 'ENQ' response capture (PuTTY) and profiling Enrich source repository
   with more tools, like ``make-screenshots.py``, expanded XTGETTCAP detection and results table,
@@ -342,6 +371,7 @@ History
 - 0.0.4 (2020-06-20): Initial releases and bugfixes
 
 .. _wcwidth: https://github.com/jquast/wcwidth
+.. _`wcstwidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html#wcstwidth
 .. _`Query Cursor Position`: https://blessed.readthedocs.io/en/latest/location.html#finding-the-cursor
 .. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
 .. _Specification: https://wcwidth.readthedocs.io/en/latest/specs.html

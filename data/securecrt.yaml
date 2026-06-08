@@ -4,7 +4,7 @@ height: 39
 python_version: 3.14.4
 seconds_elapsed: 121.70935274998192
 session_arguments:
-  limit_category_time: 900.0
+  limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
