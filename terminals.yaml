@@ -79,6 +79,8 @@ terminals:
       args: []
     skip_system: true
     skip_reason: Wayland-only (requires cage)
+    has_features:
+      - ambiguous_wide
   ghostty:
     homepage: https://ghostty.org/
     # skip_docker: true
@@ -368,6 +370,8 @@ terminals:
       env:
         WAYLAND_DISPLAY: ''
     timeout: 1800
+    has_features:
+      - ambiguous_wide
   xfce4-terminal:
     homepage: https://docs.xfce.org/apps/terminal/start
     display_name: XFCE Terminal
