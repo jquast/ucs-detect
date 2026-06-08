@@ -7,27 +7,15 @@ preferred_encoding: UTF-8
 python_version: 3.14.5
 resource_profile:
   cpu_pct:
-  - 6.0
-  - 1.0
-  - 0.0
-  - 39.9
-  - 46.9
+  - 7.0
   elapsed_s:
-  - 1.0010105010587722
-  - 2.003505270113237
-  - 3.00542398809921
-  - 4.006652116077021
-  - 5.00848402606789
+  - 1.0009493959369138
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 13961408
   rss_mb:
-  - 59.05078125
-  - 59.0546875
-  - 59.0546875
-  - 69.20703125
-  - 71.47265625
+  - 58.35546875
 seconds_elapsed: 2.2188420930178836
 session_arguments:
   all: false
