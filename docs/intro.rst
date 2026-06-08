@@ -136,6 +136,7 @@ Modes are toggled with keyboard shortcuts:
 - ``7``: VS-16 (emoji style)
 - ``w``: Toggle with/without variation selector
 - ``U``: Toggle uncommon CJK extensions
+- ``t``: Toggle correction tables (wcstwidth vs wcswidth)
 - ``v``: Select Unicode version
 - ``-`` / ``+``: Adjust name column width
 
@@ -161,6 +162,7 @@ Related articles:
 
 - `ucs-detect test results`_ (November 2023, release 1.0.4)
 - `State of Terminal Emulation 2025`_ (November 2025, release 1.0.8)
+- `Perfecting Terminal Character Width Using Correction Tables` (June 2026, release https://www.jeffquast.com/post/perfecting-terminal-character-width-using-correction-tables/
 
 Updating Results
 ----------------
@@ -310,7 +312,7 @@ marks across diverse scripts.
 History
 -------
 
-- 2.3.0 (2026-06-05): Integrate with wcwidth>=0.8.0, which offers a ``term_program`` argument that
+- 2.3.0 (2026-06-07): Integrate with wcwidth>=0.8.0, which offers a new `wcstwidth()`_ function that
   is a circular dependency on our published results, and, now artificially "caps" all graphemes to a
   maximum of width 2, matching more terminal emulators for width measurement (ghostty, wezterm,
   foot, mlterm)
@@ -361,6 +363,7 @@ History
 - 0.0.4 (2020-06-20): Initial releases and bugfixes
 
 .. _wcwidth: https://github.com/jquast/wcwidth
+.. _`wcstwidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html#wcstwidth
 .. _`Query Cursor Position`: https://blessed.readthedocs.io/en/latest/location.html#finding-the-cursor
 .. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
 .. _Specification: https://wcwidth.readthedocs.io/en/latest/specs.html
