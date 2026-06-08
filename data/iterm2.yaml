@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-05 17:26:10 UTC
+datetime: 2026-06-08 05:10:37 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -8,7 +8,7 @@ environment:
 height: 25
 preferred_encoding: UTF-8
 python_version: 3.12.8
-seconds_elapsed: 429.8885057910011
+seconds_elapsed: 437.953418084
 session_arguments:
   all: false
   limit_category_time: 0
@@ -6524,6 +6524,15 @@ test_results:
       n_errors: 0
       n_total: 8
       pct_success: 100.0
+  narrow_results:
+    17.0.0:
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \xad
+      n_errors: 1
+      n_total: 187
+      pct_success: 99.46524064171123
   ri_results:
     17.0.0:
       failed_codepoints: []
@@ -6548,29 +6557,8 @@ test_results:
       - measured_by_terminal: 0
         measured_by_wcwidth: 2
         wchar: \u115f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001f6d8
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001fa8a
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001fa8e
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001fac8
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001facd
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001faea
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001faef
-      n_errors: 8
-      n_total: 553
-      pct_success: 98.55334538878843
-wcwidth_version: 0.8.0
+      n_errors: 1
+      n_total: 506
+      pct_success: 99.80237154150198
+wcwidth_version: 0.8.1
 width: 80
