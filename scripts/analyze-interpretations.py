@@ -10,7 +10,7 @@ is hashed using the same method as update-tables.py. Terminals are split into th
 - GC=?:   DEC 2027 status not probed
 
 Categorization:
-    WIDE, SRI, SFZ, VS16, VS15, ZWJ, RI, LANG
+    WIDE, NARROW, SRI, SFZ, VS16, VS15, ZWJ, RI, LANG
 """
 
 from __future__ import annotations
@@ -75,6 +75,7 @@ def load_ucs_detect_yaml():
 
 SINGLE_CP_CATEGORIES = (
     ('unicode_wide_results', 'WIDE'),
+    ('narrow_results', 'NARROW'),
     ('sri_results', 'SRI'),
     ('sfz_results', 'SFZ'),
     ('emoji_vs16_results', 'VS16'),
