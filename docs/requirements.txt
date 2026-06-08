@@ -1,5 +1,5 @@
 PyYAML
-wcwidth git+https://github.com/jquast/wcwidth.git@jq/bugfix-more-than-narrow
+wcwidth @ git+https://github.com/jquast/wcwidth.git@jq/bugfix-more-than-narrow
 blessed
 sphinx
 sphinx-rtd-theme
