@@ -775,8 +775,8 @@ def make_score_table():
 
         # 'EMOJI VS-16',
         _vs16_base = data["test_results"].get("emoji_vs16_results", {})
-        if _vs16_base and "9.0.0" in _vs16_base:
-            score_emoji_vs16 = _vs16_base["9.0.0"]["pct_success"] / 100
+        if _vs16_base:
+            score_emoji_vs16 = next(iter(_vs16_base.values()))["pct_success"] / 100
         else:
             score_emoji_vs16 = 0.0
 
@@ -784,8 +784,8 @@ def make_score_table():
         # Support both new (emoji_vs15_results) and old (emoji_vs15_type_a_results) formats
         _vs15_base = data["test_results"].get("emoji_vs15_results",  # noqa: E127
                                                data["test_results"].get("emoji_vs15_type_a_results"))  # noqa: E127
-        if _vs15_base and "9.0.0" in _vs15_base:
-            score_emoji_vs15 = _vs15_base["9.0.0"]["pct_success"] / 100
+        if _vs15_base:
+            score_emoji_vs15 = next(iter(_vs15_base.values()))["pct_success"] / 100
         else:
             score_emoji_vs15 = 0.0
 
@@ -2453,8 +2453,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("**VS16 Score Details:**")
     print()
     _vs16_base = entry["data"]["test_results"].get("emoji_vs16_results", {})
-    if _vs16_base and "9.0.0" in _vs16_base:
-        vs16_results = _vs16_base["9.0.0"]
+    if _vs16_base:
+        vs16_results = next(iter(_vs16_base.values()))
         n_errors = vs16_results["n_errors"]
         n_total = vs16_results["n_total"]
         pct_success = vs16_results["pct_success"]
@@ -2473,8 +2473,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print()
     vs15_base = entry["data"]["test_results"].get("emoji_vs15_results",
                                                    entry["data"]["test_results"].get("emoji_vs15_type_a_results"))  # noqa: E127
-    if vs15_base and "9.0.0" in vs15_base:
-        vs15_results = vs15_base["9.0.0"]
+    if vs15_base:
+        vs15_results = next(iter(vs15_base.values()))
         n_errors = vs15_results["n_errors"]
         n_total = vs15_results["n_total"]
         pct_success = vs15_results["pct_success"]
@@ -2823,12 +2823,12 @@ def show_vs_results(sw_name, entry, variation_str):
     # Check if the VS results exist (e.g., VS15 might not be available for all terminals)
     vs_results_key = f"emoji_vs{variation_str}_results"
     vs_data = entry["data"]["test_results"].get(vs_results_key, {})
-    if not vs_data or "9.0.0" not in vs_data:
+    if not vs_data:
         print(f"Emoji VS-{variation_str} results for *{sw_name}* are not available.")
         print()
         return
 
-    records = vs_data["9.0.0"]
+    records = next(iter(vs_data.values()))
     n_errors = records["n_errors"]
     n_total = records["n_total"]
     pct_success = records["pct_success"]

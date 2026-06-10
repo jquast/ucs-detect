@@ -210,28 +210,28 @@ def main():
 
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_wide_contested.py'),
-        'WIDE_CONTESTED', failures['wide'], '17.0.0')
+        'WIDE_CONTESTED', failures['wide'], '9.0.0')
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_sri_contested.py'),
-        'SRI_CONTESTED', failures['sri'], '17.0.0')
+        'SRI_CONTESTED', failures['sri'], '9.0.0')
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_sfz_contested.py'),
-        'SFZ_CONTESTED', failures['sfz'], '17.0.0')
+        'SFZ_CONTESTED', failures['sfz'], '9.0.0')
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_narrow_contested.py'),
-        'NARROW_CONTESTED', failures['narrow'], '17.0.0')
+        'NARROW_CONTESTED', failures['narrow'], '9.0.0')
     _write_sequence_table(
         os.path.join(_OUT_DIR, 'table_vs16_contested.py'),
-        'VS16_CONTESTED', failures['vs16'], '17.0.0')
+        'VS16_CONTESTED', failures['vs16'], '9.0.0')
     _write_sequence_table(
         os.path.join(_OUT_DIR, 'table_vs15_contested.py'),
-        'VS15_CONTESTED', failures['vs15'], '17.0.0')
+        'VS15_CONTESTED', failures['vs15'], '9.0.0')
     _write_sequence_table(
         os.path.join(_OUT_DIR, 'table_zwj_contested.py'),
-        'ZWJ_CONTESTED', failures['zwj'], '17.0.0')
+        'ZWJ_CONTESTED', failures['zwj'], '9.0.0')
     _write_sequence_table(
         os.path.join(_OUT_DIR, 'table_ri_contested.py'),
-        'RI_CONTESTED', failures['ri'], '17.0.0')
+        'RI_CONTESTED', failures['ri'], '9.0.0')
     _write_lang_table(
         os.path.join(_OUT_DIR, 'table_lang_contested.py'),
         'LANG_CONTESTED', failures['lang'])
