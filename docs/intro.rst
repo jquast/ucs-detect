@@ -316,6 +316,8 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.2 (2026-06-10): Bugfix regression in VS15/16 reporting.
+
 - 2.3.1 (2026-06-08): Remove erroneous ``Pillow`` dependency of pypi package.
 
 - 2.3.0 (2026-06-08): Integrate with wcwidth>=0.8.1, which offers a new `wcstwidth()`_ function
