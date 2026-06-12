@@ -4,7 +4,7 @@ requires = [ "hatchling" ]
 
 [project]
 name = "ucs-detect"
-version = "2.3.2"
+version = "2.3.4"
 description = "Detects Unicode support of an interactive terminal"
 readme = "README.rst"
 keywords = [
@@ -68,8 +68,8 @@ ucs-browser = "ucs_detect.browser:main"
 Homepage = "https://github.com/jquast/ucs-detect"
 
 # XXX required when integrating with pre-release of wcwidth as a 'dependency'
-[tool.hatch.metadata]
-allow-direct-references = true
+#[tool.hatch.metadata]
+#allow-direct-references = true
 
 [tool.hatch.build.targets.sdist]
 include = [

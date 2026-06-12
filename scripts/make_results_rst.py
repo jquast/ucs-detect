@@ -6,6 +6,8 @@ Reads YAML test result files from ``data/``, computes scores, and produces
 CSS, and matplotlib plots.
 """
 
+from __future__ import annotations
+
 import re
 import os
 import sys

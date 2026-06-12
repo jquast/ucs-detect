@@ -1,5 +1,7 @@
 """Shared utility functions used across scripts and the ucs_detect package."""
 
+from __future__ import annotations
+
 # std imports
 import os
 import re
