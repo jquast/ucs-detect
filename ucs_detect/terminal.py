@@ -1,5 +1,7 @@
 """Terminal detection and capability utilities."""
 
+from __future__ import annotations
+
 # std imports
 import os
 import re
