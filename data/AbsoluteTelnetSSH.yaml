@@ -1,12 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-05-30 16:33:37 UTC
+datetime: 2026-06-13 07:52:47 UTC
 environment:
-  TERM: xterm
-height: 24
+  COLORTERM: truecolor
+  TERM: xterm-256color
+height: 26
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 327.493564710021
+seconds_elapsed: 121.47417914100004
 session_arguments:
+  all: false
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
@@ -15,7 +17,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: AbsoluteTelnet/SSH
-software_version: '13.16'
+software_version: '13.17'
 system: Windows
 terminal_results:
   background_color_hex: '#000000000000'
@@ -23,14 +25,22 @@ terminal_results:
   - 0
   - 0
   - 0
-  cell_height: 18
-  cell_width: 10
+  cell_height: 21
+  cell_width: 9
   color_scheme: false
-  colored_underlines: false
-  decrqcra: false
-  decrqss: false
-  decrqss_settings: false
-  decrqss_truecolor_probe: false
+  colored_underlines: true
+  decrqcra: true
+  decrqss: true
+  decrqss_settings:
+    decsca: '0'
+    decscl: 64;1
+    decscpp: '117'
+    decscusr: '5'
+    decslpp: '26'
+    decsnls: '26'
+    decstbm: 1;26
+    sgr: 0;38;2;0;0;0
+  decrqss_truecolor_probe: true
   device_attributes:
     extensions:
     - 1
@@ -41,17 +51,18 @@ terminal_results:
     - 9
     - 15
     - 22
+    - 52
     service_class: 62
   foreground_color_hex: '#bbbbbbbbbbbb'
   foreground_color_rgb:
   - 48059
   - 48059
   - 48059
-  height: 24
+  height: 26
   iterm2_features:
     features: {}
     supported: false
-  kitty_clipboard_protocol: false
+  kitty_clipboard_protocol: true
   kitty_graphics: false
   kitty_notifications: false
   kitty_pointer_shapes: false
@@ -106,51 +117,130 @@ terminal_results:
       value: 2
       value_description: RESET
     2048:
-      changeable: false
+      changeable: true
       enabled: false
       mode_description: In-Band Window Resize Notifications
       mode_name: IN_BAND_WINDOW_RESIZE
-      supported: false
-      value: 0
-      value_description: NOT_RECOGNIZED
+      supported: true
+      value: 2
+      value_description: RESET
     5522:
-      changeable: false
+      changeable: true
       enabled: false
       mode_description: Bracketed Paste MIME
       mode_name: BRACKETED_PASTE_MIME
-      supported: false
-      value: 0
-      value_description: NOT_RECOGNIZED
-  number_of_colors: 256
-  osc52_clipboard: false
+      supported: true
+      value: 2
+      value_description: RESET
+  number_of_colors: 16777216
+  osc52_clipboard: true
   osc52_detection:
-    da1_extension_52: false
-    xtgettcap_ms: false
-  pixels_height: 432
-  pixels_width: 800
+    da1_extension_52: true
+    xtgettcap_ms: true
+  pixels_height: 546
+  pixels_width: 1053
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: false
-  styled_underlines: false
+  software_method: XTVERSION
+  software_name: AbsoluteTelnet/SSH
+  software_version: '13.17'
+  styled_underlines: true
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
-  ttype: xterm
-  width: 80
+  ttype: xterm-256color
+  width: 117
   xtgettcap:
     capabilities:
-      RGB: '1'
-      TN: AbsoluteTelnet/SSH
-      Tc: 'true'
+      Ms: "\e]52;%p1%s;%p2%s\a"
+      RGB: '8'
+      Setulc: "\e[58:2::%p1%d:%p2%d:%p3%dm"
+      Smulx: "\e[4:%p1%dm"
+      Su: ''
+      TN: xterm-256color
+      Tc: ''
+      bel: "\a"
+      blink: "\e[5m"
+      bold: "\e[1m"
+      civis: "\e[?25l"
+      clear: "\e[H\e[2J"
+      cnorm: "\e[?12l\e[?25h"
       colors: '256'
+      cr: "\r"
+      csr: "\e[%i%p1%d;%p2%dr"
+      cub: "\e[%p1%dD"
+      cub1: "\b"
+      cud: "\e[%p1%dB"
+      cud1: '
+
+        '
+      cuf: "\e[%p1%dC"
+      cuf1: "\e[C"
+      cup: "\e[%i%p1%d;%p2%dH"
+      cuu: "\e[%p1%dA"
+      cuu1: "\e[A"
+      cvvis: "\e[?12;25h"
+      dch: "\e[%p1%dP"
+      dch1: "\e[P"
+      dim: "\e[2m"
+      dl: "\e[%p1%dM"
+      dl1: "\e[M"
+      ech: "\e[%p1%dX"
+      ed: "\e[J"
+      el: "\e[K"
+      el1: "\e[1K"
+      flash: "\e[?5h$<100/>\e[?5l"
+      home: "\e[H"
+      hpa: "\e[%i%p1%dG"
+      hts: "\eH"
+      ich: "\e[%p1%d@"
+      il: "\e[%p1%dL"
+      il1: "\e[L"
+      ind: '
+
+        '
+      indn: "\e[%p1%dS"
+      nel: "\eE"
+      op: "\e[39;49m"
+      rc: "\e8"
+      rep: "\e[%p1%db"
+      rev: "\e[7m"
+      ri: "\eM"
+      rin: "\e[%p1%dT"
+      ritm: "\e[23m"
+      rmacs: "\e(B"
+      rmam: "\e[?7l"
+      rmcup: "\e[?1049l"
+      rmkx: "\e[?1l\e>"
+      rmso: "\e[27m"
+      rmul: "\e[24m"
+      rs1: "\ec"
+      rs2: "\e[!p"
+      sc: "\e7"
       setab: "\e[48;5;%p1%dm"
       setaf: "\e[38;5;%p1%dm"
       setrgbb: "\e[48;2;%p1%d;%p2%d;%p3%dm"
       setrgbf: "\e[38;2;%p1%d;%p2%d;%p3%dm"
+      sgr0: "\e(B\e[m"
+      sitm: "\e[3m"
+      smacs: "\e(0"
+      smam: "\e[?7h"
+      smcup: "\e[?1049h"
+      smkx: "\e[?1h\e="
+      smso: "\e[7m"
+      smul: "\e[4m"
+      tbc: "\e[3g"
+      u6: "\e[%i%d;%dR"
+      u7: "\e[6n"
+      u8: "\e[?62;1;2;6;7;8;9;15;22;52c"
+      u9: "\e[c"
+      vpa: "\e[%i%p1%dd"
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
+  xtversion_raw: AbsoluteTelnet/SSH 13.17
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -165,625 +255,466 @@ test_results:
       n_total: 426
       pct_success: 100.0
   emoji_zwj_results:
-    '17.0':
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 1445
       pct_success: 100.0
   language_results:
-    (Jinan):
-      failed: []
-      n_errors: 0
-      n_total: 501
-      pct_success: 100.0
-    (Yeonbyeon):
-      failed: []
-      n_errors: 0
-      n_total: 307
-      pct_success: 100.0
     Aja:
       failed: []
       n_errors: 0
-      n_total: 79
+      n_total: 3
       pct_success: 100.0
     Amarakaeri:
       failed: []
       n_errors: 0
-      n_total: 64
+      n_total: 6
       pct_success: 100.0
     Arabic, Standard:
       failed: []
       n_errors: 0
-      n_total: 60
+      n_total: 8
       pct_success: 100.0
     Assyrian Neo-Aramaic:
       failed: []
       n_errors: 0
-      n_total: 42
+      n_total: 8
       pct_success: 100.0
     Baatonum:
       failed: []
       n_errors: 0
-      n_total: 59
+      n_total: 1
       pct_success: 100.0
     Bamun:
       failed: []
       n_errors: 0
-      n_total: 75
+      n_total: 17
       pct_success: 100.0
     Belanda Viri:
       failed: []
       n_errors: 0
-      n_total: 85
+      n_total: 3
       pct_success: 100.0
     Bengali:
       failed: []
       n_errors: 0
-      n_total: 385
+      n_total: 335
       pct_success: 100.0
     Bhojpuri:
       failed: []
       n_errors: 0
-      n_total: 313
+      n_total: 252
       pct_success: 100.0
     Bora:
       failed: []
       n_errors: 0
-      n_total: 59
+      n_total: 2
       pct_success: 100.0
     Burmese:
       failed: []
       n_errors: 0
-      n_total: 268
+      n_total: 223
       pct_success: 100.0
     Catalan (2):
       failed: []
       n_errors: 0
-      n_total: 68
+      n_total: 6
       pct_success: 100.0
     Chakma:
       failed: []
       n_errors: 0
-      n_total: 267
+      n_total: 225
       pct_success: 100.0
     Chickasaw:
       failed: []
       n_errors: 0
-      n_total: 61
+      n_total: 4
       pct_success: 100.0
     Chinantec, Chiltepec:
       failed: []
       n_errors: 0
-      n_total: 78
-      pct_success: 100.0
-    Chinese, Gan:
-      failed: []
-      n_errors: 0
-      n_total: 503
-      pct_success: 100.0
-    Chinese, Hakka:
-      failed: []
-      n_errors: 0
-      n_total: 498
-      pct_success: 100.0
-    Chinese, Jinyu:
-      failed: []
-      n_errors: 0
-      n_total: 500
-      pct_success: 100.0
-    Chinese, Mandarin (Beijing):
-      failed: []
-      n_errors: 0
-      n_total: 514
-      pct_success: 100.0
-    Chinese, Mandarin (Guiyang):
-      failed: []
-      n_errors: 0
-      n_total: 505
-      pct_success: 100.0
-    Chinese, Mandarin (Harbin):
-      failed: []
-      n_errors: 0
-      n_total: 504
-      pct_success: 100.0
-    Chinese, Mandarin (Nanjing):
-      failed: []
-      n_errors: 0
-      n_total: 502
-      pct_success: 100.0
-    Chinese, Mandarin (Simplified):
-      failed: []
-      n_errors: 0
-      n_total: 532
-      pct_success: 100.0
-    Chinese, Mandarin (Tianjin):
-      failed: []
-      n_errors: 0
-      n_total: 512
-      pct_success: 100.0
-    Chinese, Mandarin (Traditional):
-      failed: []
-      n_errors: 0
-      n_total: 505
-      pct_success: 100.0
-    Chinese, Min Nan:
-      failed: []
-      n_errors: 0
-      n_total: 503
-      pct_success: 100.0
-    Chinese, Wu:
-      failed: []
-      n_errors: 0
-      n_total: 506
-      pct_success: 100.0
-    Chinese, Xiang:
-      failed: []
-      n_errors: 0
-      n_total: 501
-      pct_success: 100.0
-    Chinese, Yue:
-      failed: []
-      n_errors: 0
-      n_total: 503
-      pct_success: 100.0
-    Colorado:
-      failed: []
-      n_errors: 0
-      n_total: 55
+      n_total: 6
       pct_success: 100.0
     Dagaare, Southern:
       failed: []
       n_errors: 0
-      n_total: 63
-      pct_success: 100.0
-    Dangme:
-      failed: []
-      n_errors: 0
-      n_total: 58
+      n_total: 3
       pct_success: 100.0
     Dari:
       failed: []
       n_errors: 0
-      n_total: 54
+      n_total: 6
       pct_success: 100.0
     Dendi:
       failed: []
       n_errors: 0
-      n_total: 73
+      n_total: 1
       pct_success: 100.0
     Dinka, Northeastern:
       failed: []
       n_errors: 0
-      n_total: 55
-      pct_success: 100.0
-    Ditammari:
-      failed: []
-      n_errors: 0
-      n_total: 60
+      n_total: 2
       pct_success: 100.0
     Dzongkha:
       failed: []
       n_errors: 0
-      n_total: 200
+      n_total: 160
       pct_success: 100.0
     Evenki:
       failed: []
       n_errors: 0
-      n_total: 77
+      n_total: 13
       pct_success: 100.0
     Farsi, Western:
       failed: []
       n_errors: 0
-      n_total: 49
+      n_total: 3
       pct_success: 100.0
     Fon:
       failed: []
       n_errors: 0
-      n_total: 88
+      n_total: 1
       pct_success: 100.0
     French (Welche):
       failed: []
       n_errors: 0
-      n_total: 60
+      n_total: 2
       pct_success: 100.0
     Fur:
       failed: []
       n_errors: 0
-      n_total: 90
+      n_total: 9
       pct_success: 100.0
     Ga:
       failed: []
       n_errors: 0
-      n_total: 62
+      n_total: 1
       pct_success: 100.0
     Gen:
       failed: []
       n_errors: 0
-      n_total: 87
+      n_total: 1
       pct_success: 100.0
     Gilyak:
       failed: []
       n_errors: 0
-      n_total: 84
+      n_total: 2
       pct_success: 100.0
     Gujarati:
       failed: []
       n_errors: 0
-      n_total: 343
+      n_total: 290
       pct_success: 100.0
     Gumuz:
       failed: []
       n_errors: 0
-      n_total: 54
+      n_total: 2
       pct_success: 100.0
     Hindi:
       failed: []
       n_errors: 0
-      n_total: 390
-      pct_success: 100.0
-    Japanese:
-      failed: []
-      n_errors: 0
-      n_total: 505
-      pct_success: 100.0
-    Japanese (Osaka):
-      failed: []
-      n_errors: 0
-      n_total: 497
-      pct_success: 100.0
-    Japanese (Tokyo):
-      failed: []
-      n_errors: 0
-      n_total: 499
+      n_total: 164
       pct_success: 100.0
     Javanese (Javanese):
       failed: []
       n_errors: 0
-      n_total: 530
+      n_total: 488
       pct_success: 100.0
     Kabyle:
       failed: []
       n_errors: 0
-      n_total: 62
+      n_total: 8
       pct_success: 100.0
     Kannada:
       failed: []
       n_errors: 0
-      n_total: 287
+      n_total: 236
       pct_success: 100.0
     Khmer, Central:
       failed: []
       n_errors: 0
-      n_total: 443
+      n_total: 390
       pct_success: 100.0
     Khün:
       failed: []
       n_errors: 0
-      n_total: 396
-      pct_success: 100.0
-    Korean:
-      failed: []
-      n_errors: 0
-      n_total: 315
+      n_total: 354
       pct_success: 100.0
     Lamnso':
       failed: []
       n_errors: 0
-      n_total: 74
+      n_total: 3
       pct_success: 100.0
     Lao:
       failed: []
       n_errors: 0
-      n_total: 277
+      n_total: 227
       pct_success: 100.0
     Lingala (tones):
       failed: []
       n_errors: 0
-      n_total: 71
+      n_total: 8
       pct_success: 100.0
     Magahi:
       failed: []
       n_errors: 0
-      n_total: 314
+      n_total: 22
       pct_success: 100.0
     Maithili:
       failed: []
       n_errors: 0
-      n_total: 357
+      n_total: 66
       pct_success: 100.0
     Malayalam:
       failed: []
       n_errors: 0
-      n_total: 845
+      n_total: 382
       pct_success: 100.0
     Maldivian:
       failed: []
       n_errors: 0
-      n_total: 226
+      n_total: 209
       pct_success: 100.0
     Maori (2):
       failed: []
       n_errors: 0
-      n_total: 48
+      n_total: 6
       pct_success: 100.0
     Marathi:
       failed: []
       n_errors: 0
-      n_total: 391
+      n_total: 103
       pct_success: 100.0
     Mazahua Central:
       failed: []
       n_errors: 0
-      n_total: 66
-      pct_success: 100.0
-    Mirandese:
-      failed: []
-      n_errors: 0
-      n_total: 62
-      pct_success: 100.0
-    Mixtec, Metlatónoc:
-      failed: []
-      n_errors: 0
-      n_total: 65
+      n_total: 3
       pct_success: 100.0
     Mon:
       failed: []
       n_errors: 0
-      n_total: 332
-      pct_success: 100.0
-    Mongolian, Halh (Mongolian):
-      failed: []
-      n_errors: 0
-      n_total: 22
+      n_total: 208
       pct_success: 100.0
     Mòoré:
       failed: []
       n_errors: 0
-      n_total: 63
+      n_total: 1
       pct_success: 100.0
     Nanai:
       failed: []
       n_errors: 0
-      n_total: 65
+      n_total: 2
       pct_success: 100.0
     Navajo:
       failed: []
       n_errors: 0
-      n_total: 53
+      n_total: 4
       pct_success: 100.0
     Nepali:
       failed: []
       n_errors: 0
-      n_total: 352
-      pct_success: 100.0
-    Nuosu:
-      failed: []
-      n_errors: 0
-      n_total: 336
+      n_total: 71
       pct_success: 100.0
     Orok:
       failed: []
       n_errors: 0
-      n_total: 65
+      n_total: 1
       pct_success: 100.0
     Otomi, Mezquital:
       failed: []
       n_errors: 0
-      n_total: 72
+      n_total: 1
       pct_success: 100.0
     Panjabi, Eastern:
       failed: []
       n_errors: 0
-      n_total: 302
+      n_total: 236
       pct_success: 100.0
     Panjabi, Western:
       failed: []
       n_errors: 0
-      n_total: 62
+      n_total: 3
       pct_success: 100.0
     Pashto, Northern:
       failed: []
       n_errors: 0
-      n_total: 62
+      n_total: 1
       pct_success: 100.0
     Picard:
       failed: []
       n_errors: 0
-      n_total: 53
+      n_total: 1
       pct_success: 100.0
     Pular (Adlam):
       failed: []
       n_errors: 0
-      n_total: 93
-      pct_success: 100.0
-    Saint Lucian Creole French:
-      failed: []
-      n_errors: 0
-      n_total: 58
+      n_total: 24
       pct_success: 100.0
     Sanskrit:
       failed: []
       n_errors: 0
-      n_total: 493
+      n_total: 155
       pct_success: 100.0
     Sanskrit (Grantha):
       failed: []
       n_errors: 0
-      n_total: 293
+      n_total: 237
       pct_success: 100.0
     Secoya:
       failed: []
       n_errors: 0
-      n_total: 53
+      n_total: 1
       pct_success: 100.0
     Seraiki:
       failed: []
       n_errors: 0
-      n_total: 64
+      n_total: 1
       pct_success: 100.0
     Shan:
       failed: []
       n_errors: 0
-      n_total: 181
+      n_total: 106
       pct_success: 100.0
     Shipibo-Conibo:
       failed: []
       n_errors: 0
-      n_total: 64
+      n_total: 2
       pct_success: 100.0
     Sinhala:
       failed: []
       n_errors: 0
-      n_total: 258
+      n_total: 198
       pct_success: 100.0
     Siona:
       failed: []
       n_errors: 0
-      n_total: 67
+      n_total: 1
       pct_success: 100.0
     South Azerbaijani:
       failed: []
       n_errors: 0
-      n_total: 67
+      n_total: 6
       pct_success: 100.0
     Tagalog (Tagalog):
       failed: []
       n_errors: 0
-      n_total: 34
+      n_total: 16
       pct_success: 100.0
     Tai Dam:
       failed: []
       n_errors: 0
-      n_total: 189
+      n_total: 120
       pct_success: 100.0
     Tamang, Eastern:
       failed: []
       n_errors: 0
-      n_total: 70
+      n_total: 11
       pct_success: 100.0
     Tamazight, Central Atlas:
       failed: []
       n_errors: 0
-      n_total: 70
+      n_total: 5
       pct_success: 100.0
     Tamil:
       failed: []
       n_errors: 0
-      n_total: 175
-      pct_success: 100.0
-    Tamil (Sri Lanka):
-      failed: []
-      n_errors: 0
-      n_total: 175
+      n_total: 132
       pct_success: 100.0
     Telugu:
       failed: []
       n_errors: 0
-      n_total: 384
+      n_total: 335
       pct_success: 100.0
     Tem:
       failed: []
       n_errors: 0
-      n_total: 67
+      n_total: 2
       pct_success: 100.0
     Thai:
       failed: []
       n_errors: 0
-      n_total: 262
+      n_total: 206
       pct_success: 100.0
     Thai (2):
       failed: []
       n_errors: 0
-      n_total: 252
+      n_total: 14
       pct_success: 100.0
     Tibetan, Central:
       failed: []
       n_errors: 0
-      n_total: 214
+      n_total: 48
       pct_success: 100.0
     Ticuna:
       failed: []
       n_errors: 0
-      n_total: 88
+      n_total: 13
       pct_success: 100.0
     Uduk:
       failed: []
       n_errors: 0
-      n_total: 57
+      n_total: 2
       pct_success: 100.0
     Urdu:
       failed: []
       n_errors: 0
-      n_total: 110
+      n_total: 23
       pct_success: 100.0
     Urdu (2):
       failed: []
       n_errors: 0
-      n_total: 82
-      pct_success: 100.0
-    Veps:
-      failed: []
-      n_errors: 0
-      n_total: 59
+      n_total: 1
       pct_success: 100.0
     Vietnamese:
       failed: []
       n_errors: 0
-      n_total: 117
-      pct_success: 100.0
-    Vietnamese (Han nom):
-      failed: []
-      n_errors: 0
-      n_total: 559
-      pct_success: 100.0
-    Waama:
-      failed: []
-      n_errors: 0
-      n_total: 56
+      n_total: 42
       pct_success: 100.0
     Yaneshaʼ:
       failed: []
       n_errors: 0
-      n_total: 75
+      n_total: 10
       pct_success: 100.0
     Yiddish, Eastern:
       failed: []
       n_errors: 0
-      n_total: 58
+      n_total: 10
       pct_success: 100.0
     Yoruba:
       failed: []
       n_errors: 0
-      n_total: 73
+      n_total: 8
       pct_success: 100.0
-    Éwé:
-      failed: []
+  narrow_results:
+    9.0.0:
+      failed_codepoints: []
       n_errors: 0
-      n_total: 79
+      n_total: 187
       pct_success: 100.0
   ri_results:
-    '17.0':
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
   sfz_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
   sri_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 26
       pct_success: 100.0
   unicode_wide_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
-      n_total: 43592
+      n_total: 506
       pct_success: 100.0
-wcwidth_version: 0.7.0
-width: 80
+wcwidth_version: 0.8.1
+width: 117
