@@ -1,12 +1,12 @@
 ambiguous_width: 1
-datetime: 2026-06-13 07:52:47 UTC
+datetime: 2026-06-17 16:55:37 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
-height: 26
+height: 31
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 121.47417914100004
+seconds_elapsed: 14.50303966901265
 session_arguments:
   all: false
   limit_category_time: 0
@@ -34,17 +34,18 @@ terminal_results:
   decrqss_settings:
     decsca: '0'
     decscl: 64;1
-    decscpp: '117'
+    decscpp: '131'
     decscusr: '5'
-    decslpp: '26'
-    decsnls: '26'
-    decstbm: 1;26
+    decslpp: '31'
+    decsnls: '31'
+    decstbm: 1;31
     sgr: 0;38;2;0;0;0
   decrqss_truecolor_probe: true
   device_attributes:
     extensions:
     - 1
     - 2
+    - 4
     - 6
     - 7
     - 8
@@ -58,12 +59,18 @@ terminal_results:
   - 48059
   - 48059
   - 48059
-  height: 26
+  height: 31
   iterm2_features:
     features: {}
     supported: false
   kitty_clipboard_protocol: true
   kitty_graphics: false
+  kitty_keyboard:
+    disambiguate: false
+    report_all_keys: false
+    report_alternates: false
+    report_events: false
+    report_text: false
   kitty_notifications: false
   kitty_pointer_shapes: false
   kitty_query: false
@@ -137,11 +144,11 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: true
-  pixels_height: 546
-  pixels_width: 1053
+  pixels_height: 651
+  pixels_width: 1179
   screen_ratio: '16:9'
   screen_ratio_name: HD
-  sixel: false
+  sixel: true
   software_method: XTVERSION
   software_name: AbsoluteTelnet/SSH
   software_version: '13.17'
@@ -151,7 +158,7 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 117
+  width: 131
   xtgettcap:
     capabilities:
       Ms: "\e]52;%p1%s;%p2%s\a"
@@ -234,7 +241,7 @@ terminal_results:
       tbc: "\e[3g"
       u6: "\e[%i%d;%dR"
       u7: "\e[6n"
-      u8: "\e[?62;1;2;6;7;8;9;15;22;52c"
+      u8: "\e[?62;1;2;4;6;7;8;9;15;22;52c"
       u9: "\e[c"
       vpa: "\e[%i%p1%dd"
     supported: true
@@ -717,4 +724,4 @@ test_results:
       n_total: 506
       pct_success: 100.0
 wcwidth_version: 0.8.1
-width: 117
+width: 131
