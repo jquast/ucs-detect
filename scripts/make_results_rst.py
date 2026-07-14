@@ -61,6 +61,45 @@ PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
 
+SERVICE_CLASS_NAMES = {
+    1: "VT100",
+    2: "VT200",
+    6: "Level 4 (no VT class)",
+    18: "VT330",
+    41: "VT420",
+    61: "VT510",
+    62: "VT520",
+    63: "VT320",
+    64: "VT420",
+    65: "VT525",
+}
+
+DA1_EXTENSION_NAMES = {
+    1: "132-column mode",
+    2: "Printer port",
+    3: "ReGIS graphics",
+    4: "Sixel graphics",
+    6: "Selective erase",
+    7: "Soft character sets (DRCS)",
+    8: "User-defined keys (UDK)",
+    9: "National replacement charsets",
+    12: "Yugoslavian, Serbian/Croatian (SCS)",
+    14: "Advanced video option",
+    15: "Technical character set",
+    17: "Terminal state reports (16-bit)",
+    18: "User windows",
+    21: "Horizontal scrolling",
+    22: "ANSI color",
+    23: "Greek",
+    24: "Turkish",
+    28: "Rectangular area operations",
+    29: "Text locator (mouse)",
+    32: "ANSI text terminal (Level 3)",
+    42: "ISO Latin-2 character set",
+    52: "OSC 52 clipboard",
+    314: "Pixel geometry (contour-style Px/Py)",
+}
+
 # Mapping from test category to example file basename.
 # Language failures use ucs_graphemes_{width}.txt, resolved at lookup time.
 CATEGORY_FILE_MAP = {
@@ -2901,10 +2940,25 @@ def show_graphics_results(sw_name, entry):
 
     if tr.get("device_attributes"):
         da1_data = tr["device_attributes"]
+        raw = da1_data.get("raw")
+        service_class = da1_data.get("service_class")
         extensions = da1_data.get("extensions", [])
         print("**Device Attributes Response:**")
         print()
-        print(f"- Extensions reported: {', '.join(map(str, extensions)) if extensions else 'none'}")
+        if raw:
+            escaped = raw.replace('\x1b', 'ESC')
+            print(f"- Raw response: ``{escaped}``")
+        if service_class is not None:
+            sc_name = SERVICE_CLASS_NAMES.get(
+                service_class, f"Class {service_class}")
+            print(f"- Service class: {service_class} ({sc_name})")
+        if extensions:
+            print("- Extensions:")
+            for ext in sorted(extensions):
+                desc = DA1_EXTENSION_NAMES.get(ext, "unknown")
+                print(f"  - ``{ext}``: {desc}")
+        else:
+            print("- Extensions: none reported")
         print(f"- Sixel_ indicator (``4``): {'present' if 4 in extensions else 'not present'}")
         print(f"- ReGIS_ indicator (``3``): {'present' if 3 in extensions else 'not present'}")
         print()
