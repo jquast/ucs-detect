@@ -1,9 +1,10 @@
 # VS-15 table for testing emoji variation sequences
 # Sourced from Unicode emoji-variation-sequences.txt
-# Only includes characters that are wide by default (wcwidth=2)
-# and should become narrow (width=1) when followed by VS15 (U+FE0E)
+# Only includes characters that are wide by default (wcwidth=2).
+# VS15 (U+FE0E) selects text presentation and must NOT change the width:
+# the cluster is expected to stay 2 columns wide.
 
-VS15_WIDE_TO_NARROW = (
+VS15_WIDE_UNCHANGED = (
     ('9.0.0', (
         (8986, 65038),
         (8987, 65038),

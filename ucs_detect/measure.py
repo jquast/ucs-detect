@@ -449,6 +449,19 @@ def wchar_to_str(wchar):
     return "".join(chr(cp) for cp in wchar)
 
 
+def resolve_expected_width(expected_width, wchar):
+    """Resolve the expected column advance for *wchar*.
+
+    *expected_width* is either a constant, which is the common case, or a callable
+    mapping a sequence to its own expectation.  The callable form exists for tests
+    whose expectation follows the base character rather than the sequence as a whole
+    (see VS15 in ucs_detect/__init__.py).
+    """
+    if callable(expected_width):
+        return expected_width(wchar)
+    return expected_width
+
+
 def exit_and_display_timeout_error(term, writer, timeout, **_kwargs):
     """Display timeout error and exit."""
     term.flushinp(timeout=0.05)
@@ -498,7 +511,11 @@ def test_support(
     silent=False,
     bg_rgb=None,
 ):
-    """Test terminal support for a Unicode character table."""
+    """Test terminal support for a Unicode character table.
+
+    *expected_width* may be an int, or a callable resolved per sequence by
+    :func:`resolve_expected_width`.
+    """
     success_report = collections.defaultdict(int)
     failure_report = collections.defaultdict(list)
     time_report = {}
@@ -506,7 +523,9 @@ def test_support(
     if suppress_output or silent:
         outer_ypos, outer_xpos = _get_pos_or_exit(term, writer, timeout)
 
-    cell_inner = expected_width + 3
+    # Column layout only; a per-sequence expectation uses the widest cell it can produce.
+    nominal_width = 2 if callable(expected_width) else expected_width
+    cell_inner = nominal_width + 3
     num_columns = max(1, (term.width - 1) // cell_inner)
 
     category_start = time.monotonic()
@@ -646,14 +665,17 @@ def test_support(
                     delta_ypos = end_ypos - start_ypos
                     delta_xpos = end_xpos - start_xpos
 
-                if (delta_ypos, delta_xpos) == (0, expected_width):
+                wchar_expected_width = resolve_expected_width(
+                    expected_width, wchar)
+
+                if (delta_ypos, delta_xpos) == (0, wchar_expected_width):
                     success_report[ver] += 1
                 else:
                     entry = {"wchar": unicode_escape_string(wchars_str)}
                     if delta_ypos != 0:
                         entry["delta_ypos"] = delta_ypos
-                    if delta_xpos != expected_width:
-                        entry["measured_by_wcwidth"] = expected_width
+                    if delta_xpos != wchar_expected_width:
+                        entry["measured_by_wcwidth"] = wchar_expected_width
                         entry["measured_by_terminal"] = delta_xpos
                     failure_report[ver].append(entry)
 
@@ -673,7 +695,7 @@ def test_support(
                             ),
                             wchars_display=wchars_str,
                             measured_by_terminal=delta_xpos,
-                            measured_by_wcwidth=expected_width,
+                            measured_by_wcwidth=wchar_expected_width,
                         )
                         if not should_continue:
                             stop_at_error.disable()

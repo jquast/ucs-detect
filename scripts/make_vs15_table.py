@@ -66,7 +66,8 @@ def fetch_vs15_data():
     """
     Fetch VS15 (text style) sequences from Unicode emoji-variation-sequences.txt.
 
-    Returns characters that are wide by default and become narrow with VS15.
+    Returns characters that are wide by default.  Their width is expected to stay
+    wide when VS15 follows: the selector changes presentation, not width.
     """
     fname = os.path.join(PATH_DATA, "emoji-variation-sequences-latest.txt")
     do_retrieve(url=URL_EMOJI_VARIATION_SEQUENCES, fname=fname)
@@ -86,8 +87,8 @@ def fetch_vs15_data():
                 continue
             cp_str = line.split("FE0E")[0].strip()
             cp = int(cp_str, 16)
-            # Only include characters that are wide by default
-            # these transition from wide (2) to narrow (1) with VS15.
+            # Only include characters that are wide by default; these are the
+            # interesting case, because a terminal must NOT narrow them to 1.
             if wcwidth.wcwidth(chr(cp)) == 2:
                 all_sequences.append((cp, 0xFE0E))
 
@@ -99,15 +100,16 @@ def main():
     version, all_sequences = fetch_vs15_data()
     cjk_count = sum(1 for cp, _ in all_sequences if is_cjk(cp))
 
-    print(f"# Found {len(all_sequences)} VS15 wide-to-narrow sequences", file=sys.stderr)
+    print(f"# Found {len(all_sequences)} VS15 sequences over a wide base", file=sys.stderr)
     print(f"# Found {cjk_count} CJK sequences", file=sys.stderr)
 
     print("# VS-15 table for testing emoji variation sequences")
     print("# Sourced from Unicode emoji-variation-sequences.txt")
-    print("# Only includes characters that are wide by default (wcwidth=2)")
-    print("# and should become narrow (width=1) when followed by VS15 (U+FE0E)")
+    print("# Only includes characters that are wide by default (wcwidth=2).")
+    print("# VS15 (U+FE0E) selects text presentation and must NOT change the width:")
+    print("# the cluster is expected to stay 2 columns wide.")
     print()
-    print("VS15_WIDE_TO_NARROW = (")
+    print("VS15_WIDE_UNCHANGED = (")
     print(f"    ('{version}', (")
     for seq in all_sequences:
         print(f"        {seq},")

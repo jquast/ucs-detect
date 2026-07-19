@@ -43,7 +43,7 @@ from ucs_detect.table_sfz import STANDALONE_FITZPATRICK
 from ucs_detect.table_sri import STANDALONE_REGIONAL_INDICATORS
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_lang import LANG_GRAPHEMES
-from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
+from ucs_detect.table_vs15 import VS15_WIDE_UNCHANGED
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 from ucs_detect.table_wide import WIDE_CHARACTERS
 from ucs_detect.table_narrow import NARROW_CHARACTERS
@@ -118,6 +118,38 @@ def init_term(stream):
     return term, writer
 
 
+def vs15_expected_width(wchar):
+    """Return the expected column advance of a base character followed by VS15.
+
+    VS15 (U+FE0E) selects *text* presentation.  It does not change how many columns
+    the grapheme cluster occupies, so the expectation is the width of the base
+    character on its own.
+
+    terminal-unicode-core is explicit that the two variation selectors are not
+    symmetric.  VS16 "will force the grapheme cluster's width to be 2, which may
+    possibly cause reflowing of that symbol to the next line", whereas VS15 "will NOT
+    change the underlying width but only change the display to prefer textual
+    non-colored presentation".
+
+    The asymmetry is mechanical rather than stylistic.  A terminal reaches the
+    selector only after the base character has already been placed and the cursor
+    advanced.  Growing a cluster needs more room, which a terminal can still take;
+    shrinking one means giving a column back, which means undoing work that is
+    already committed -- un-wrapping a line that has wrapped, un-scrolling content
+    that has left the screen.  Terminals that attempt it end up with behaviour no
+    application can predict.
+
+    This test previously expected width 1 for every sequence, i.e. it required the
+    terminal to narrow an already-emitted wide cluster.  That rewarded the very
+    behaviour the specification forbids.
+
+    See: https://github.com/contour-terminal/terminal-unicode-core
+         spec/terminal-unicode-core.tex, "Variation Selector 15"
+    """
+    base = wchar[0] if isinstance(wchar, tuple) else wchar
+    return max(1, wcwidth.wcwidth(chr(base)))
+
+
 def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", terminal_full_probe=False, silent=False, no_final_summary=False, test_all=False, **_kwargs):
     """Program entry point."""
 
@@ -131,7 +163,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         ri_table = REGIONAL_INDICATOR_FLAGS
         zwj_table = EMOJI_ZWJ_SEQUENCES
         vs16_table = VS16_NARROW_TO_WIDE
-        vs15_table = VS15_WIDE_TO_NARROW
+        vs15_table = VS15_WIDE_UNCHANGED
         lang_table = LANG_GRAPHEMES
         narrow_table = NARROW_CHARACTERS
     else:
@@ -350,7 +382,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
             if _should_run("unicode", "vs15"):
                 emoji_vs15_results = measure.test_support(
-                    table=vs15_table, expected_width=1,
+                    table=vs15_table, expected_width=vs15_expected_width,
                     test_type="vs15",
                     label="Variation Selector-15",
                     **test_kwargs,
