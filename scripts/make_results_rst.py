@@ -61,6 +61,45 @@ PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
 
+SERVICE_CLASS_NAMES = {
+    1: "VT100",
+    2: "VT200",
+    6: "Level 4 (no VT class)",
+    18: "VT330",
+    41: "VT420",
+    61: "VT510",
+    62: "VT520",
+    63: "VT320",
+    64: "VT420",
+    65: "VT525",
+}
+
+DA1_EXTENSION_NAMES = {
+    1: "132-column mode",
+    2: "Printer port",
+    3: "ReGIS graphics",
+    4: "Sixel graphics",
+    6: "Selective erase",
+    7: "Soft character sets (DRCS)",
+    8: "User-defined keys (UDK)",
+    9: "National replacement charsets",
+    12: "Yugoslavian, Serbian/Croatian (SCS)",
+    14: "Advanced video option",
+    15: "Technical character set",
+    17: "Terminal state reports (16-bit)",
+    18: "User windows",
+    21: "Horizontal scrolling",
+    22: "ANSI color",
+    23: "Greek",
+    24: "Turkish",
+    28: "Rectangular area operations",
+    29: "Text locator (mouse)",
+    32: "ANSI text terminal (Level 3)",
+    42: "ISO Latin-2 character set",
+    52: "OSC 52 clipboard",
+    314: "Pixel geometry (contour-style Px/Py)",
+}
+
 # Mapping from test category to example file basename.
 # Language failures use ucs_graphemes_{width}.txt, resolved at lookup time.
 CATEGORY_FILE_MAP = {
@@ -567,6 +606,7 @@ def main():
         display_features_table(score_table)
         display_truecolor_table(score_table)
         display_osc52_table(score_table)
+        display_da1_table(score_table)
         display_id_table(score_table, terminal_mixins)
         display_id_summary_bullets(score_table, terminal_mixins)
         display_xtgettcap_summary_bullets(score_table)
@@ -1601,6 +1641,15 @@ def _detect_osc52_methods(data):
     return methods.get("da1_extension_52", False), methods.get("xtgettcap_ms", False)
 
 
+def _is_conpty_interposed(data):
+    """Check if DA1 response is from ConPTY, and that it isn't from terminal.exe."""
+    if data.get("system") == "Windows":
+        if (data.get("terminal_results") or {}).get("device_attributes", {}).get("service_class") == 61:
+            sw_name = data.get("software_name", "").lower()
+            return sw_name != "windowsterminal"
+    return False
+
+
 def _detect_id_methods(data):
     """Determine which methods can identify the terminal software.
 
@@ -1902,6 +1951,86 @@ def display_osc52_table(score_table):
     else:
         print("No OSC 52 detection data available.")
         print()
+
+
+def _format_da1_extensions(extensions):
+    """Format DA1 extensions as a comma-joined list with known names."""
+    if not extensions:
+        return "none"
+    parts = []
+    for ext in sorted(extensions):
+        name = DA1_EXTENSION_NAMES.get(ext)
+        if name:
+            parts.append(f"{ext} ({name})")
+        else:
+            parts.append(str(ext))
+    if len(parts) <= 3:
+        return "; ".join(parts)
+    return "; ".join(parts[:3]) + f", … ({len(extensions)} total)"
+
+
+def display_da1_table(score_table):
+    """Display a Device Attributes (DA1) comparison table."""
+    display_title("Device Attributes (DA1)", 2)
+    print("This table shows the `Device Attributes`_ (``CSI c``) response values.")
+    print("Service class identifies the DEC terminal model (e.g. VT520), and")
+    print("numeric extensions indicate support for specific features.")
+    print()
+
+    table_data = []
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        tr = entry["data"].get("terminal_results") or {}
+        da = tr.get("device_attributes")
+        if not da:
+            continue
+
+        sc = da.get("service_class")
+        raw = da.get("raw", "")
+        extensions = da.get("extensions", [])
+
+        sc_label = SERVICE_CLASS_NAMES.get(sc, f"Unknown Class {sc}") if sc is not None else "N/A"
+        conpty = _is_conpty_interposed(entry["data"])
+
+        if conpty:
+            label = f":score-warn:`{sc_label} \u2020`"
+        else:
+            label = sc_label
+
+        # Summarise key extensions
+        ext_summary = _format_da1_extensions(extensions)
+
+        row = {
+            "Terminal": make_outbound_hyperlink(
+                sw_name, sw_name + "_graphics"),
+            "Service Class": label,
+            "Raw Response": raw.replace("\\x1b", "ESC ") if raw else "N/A",
+            "Extensions": ext_summary,
+        }
+        table_data.append(row)
+
+    if table_data:
+        table_str = tabulate.tabulate(table_data, headers="keys",
+                                       tablefmt="rst")
+        print_datatable(table_str)
+    else:
+        print("No device attributes data available.")
+        print()
+
+    print()
+    print()
+    print(".. warning::")
+    print()
+    print("   On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or OpenConsole.exe)")
+    print("   for all MSYS2_ or Cygwin_ programs.  The DA1 response reflects **conhost.exe's")
+    print("   capabilities** and not necessarily the terminal emulator's.  DA1 is not a reliable")
+    print("   indicator of terminal feature support with ConPTY, these terminals are marked by")
+    print("   '\\u2020' in yellow.")
+    print()
+    print(".. _MSYS2: https://www.msys2.org/")
+    print(".. _Cygwin: https://www.cygwin.com/")
+    print(".. _`Device Attributes`: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html")
+    print()
 
 
 def display_id_table(score_table, terminal_mixins):
@@ -2896,13 +3025,38 @@ def show_graphics_results(sw_name, entry):
 
     if tr.get("device_attributes"):
         da1_data = tr["device_attributes"]
+        raw = da1_data.get("raw")
+        service_class = da1_data.get("service_class")
         extensions = da1_data.get("extensions", [])
         print("**Device Attributes Response:**")
         print()
-        print(f"- Extensions reported: {', '.join(map(str, extensions)) if extensions else 'none'}")
+        if raw:
+            escaped = raw.replace('\x1b', 'ESC')
+            print(f"- Raw response: ``{escaped}``")
+        if service_class is not None:
+            sc_name = SERVICE_CLASS_NAMES.get(
+                service_class, f"Class {service_class}")
+            print(f"- Service class: {service_class} ({sc_name})")
+        if extensions:
+            print("- Extensions:")
+            for ext in sorted(extensions):
+                desc = DA1_EXTENSION_NAMES.get(ext, "unknown")
+                print(f"  - ``{ext}``: {desc}")
+        else:
+            print("- Extensions: none reported")
         print(f"- Sixel_ indicator (``4``): {'present' if 4 in extensions else 'not present'}")
         print(f"- ReGIS_ indicator (``3``): {'present' if 3 in extensions else 'not present'}")
         print()
+
+        # ConPTY-mediated DA1 warning
+        if _is_conpty_interposed(entry["data"]):
+            print(".. warning::")
+            print()
+            print("   This DA1 response was interposed by Windows ConPTY")
+            print("   (conhost.exe / OpenConsole.exe).  The service class")
+            print("   and extensions reflect conhost.exe, not the terminal")
+            print("   emulator.")
+            print()
 
     print('.. _Sixel: https://en.wikipedia.org/wiki/Sixel')
     print('.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS')
