@@ -742,8 +742,7 @@ def _make_kv_table(term, title, pairs, has_unicode=True):
     _set_double_border(table, has_unicode)
     table.title = term.magenta(title)
     table.field_names = ["Attribute", "Value"]
-    table.align["Attribute"] = "r"
-    table.align["Value"] = "l"
+    table.align = {"Attribute": "r", "Value": "l"}
     table.header = False
     table.max_table_width = max(40, term.width - 1)
     for key, value in pairs:
@@ -785,9 +784,7 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
         term.magenta("Description"),
         term.magenta("Value"),
     ]
-    full_table.align["Cap"] = "l"
-    full_table.align["Description"] = "l"
-    full_table.align["Value"] = "l"
+    full_table.align = {"Cap": "l", "Description": "l", "Value": "l"}
     full_table.max_table_width = max(40, term.width - 1)
     for capname, value in sorted_caps:
         desc = cap_info.get(capname, capname)
@@ -867,10 +864,12 @@ def _make_one_language_table(term, title, failed_langs, results, has_unicode):
         term.magenta("Failures"),
         term.magenta("Success"),
     ]
-    table.align["Language"] = "l"
-    table.align["Total"] = "r"
-    table.align["Failures"] = "r"
-    table.align["Success"] = "r"
+    table.align = {
+        "Language": "l",
+        "Total": "r",
+        "Failures": "r",
+        "Success": "r",
+    }
     for lang in failed_langs:
         data = results[lang]
         table.add_row([

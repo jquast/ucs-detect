@@ -138,12 +138,14 @@ def _make_codepoint_table(term, wchars_display):
         term.magenta("wcwidth"),
         term.magenta("Name"),
     ]
-    table.align["#"] = "r"
-    table.align["Codepoint"] = "l"
-    table.align["Python"] = "l"
-    table.align["Category"] = "l"
-    table.align["wcwidth"] = "r"
-    table.align["Name"] = "l"
+    table.align = {
+        "#": "r",
+        "Codepoint": "l",
+        "Python": "l",
+        "Category": "l",
+        "wcwidth": "r",
+        "Name": "l",
+    }
     for idx, char in enumerate(wchars_display):
         codepoint_val = ord(char)
         if codepoint_val > 0xFFFF:
