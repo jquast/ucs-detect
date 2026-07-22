@@ -2004,7 +2004,7 @@ def display_da1_table(score_table):
             "Terminal": make_outbound_hyperlink(
                 sw_name, sw_name + "_graphics"),
             "Service Class": label,
-            "Raw Response": raw.replace("\\x1b", "ESC ") if raw else "N/A",
+            "Raw Response": raw.replace("\x1b", "ESC ") if raw else "N/A",
             "Extensions": ext_summary,
         }
         table_data.append(row)
@@ -3042,6 +3042,7 @@ def show_graphics_results(sw_name, entry):
             for ext in sorted(extensions):
                 desc = DA1_EXTENSION_NAMES.get(ext, "unknown")
                 print(f"  - ``{ext}``: {desc}")
+            print()
         else:
             print("- Extensions: none reported")
         print(f"- Sixel_ indicator (``4``): {'present' if 4 in extensions else 'not present'}")

@@ -316,7 +316,8 @@ marks across diverse scripts.
 History
 -------
 
-- 2.3.5 (unreleased): Improve html reports with considerations about DA1 and VS15
+- 2.3.5 (unreleased): Improve html reports with considerations about DA1 and VS15, include
+  raw DA1 string value in yaml reports, add DA1 table to html results.
 
 - 2.3.4 (2026-06-12): Bugfix for python 3.6, only (typing).
 
