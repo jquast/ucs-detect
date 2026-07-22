@@ -897,7 +897,8 @@ def make_score_table():
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
-            (entry["score_emoji_vs15"], 1.0),
+            # VS-15 excluded from final score - interpretation is contested,
+            # see https://github.com/jquast/wcwidth/issues/211
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
             (entry["score_narrow"], 1.0),
@@ -1139,10 +1140,8 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_vs16"
                 ),
-                "VS15": wrap_score_with_hyperlink(
-                    format_score_int(result["score_emoji_vs15_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
-                    result["score_emoji_vs15_scaled"],
+                "VS15": _wrap_id_contested(
+                    format_score_int(result["score_emoji_vs15_scaled"]),
                     result["terminal_software_name"],
                     "_vs15"
                 ),
@@ -1207,7 +1206,7 @@ def display_table_definitions():
     print("Definitions:\n")
     print(
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
-        "  the weighted average of all feature scores (WIDE, NARROW, LANG, ZWJ, VS16, VS15, SRI, SFZ, RI,\n"
+        "  the weighted average of all feature scores (WIDE, NARROW, LANG, ZWJ, VS16, SRI, SFZ, RI,\n"
         "  DEC Modes, and RESOURCES), then scaled (normalized 0-100%) relative to all terminals tested.\n"
         "  Higher scores indicate better overall Unicode and terminal feature support. DEC Modes and\n"
         "  RESOURCES are normalized to 0-1 range before averaging. RESOURCES and graphics is weighted at 0.5 (half as\n"
@@ -1240,7 +1239,9 @@ def display_table_definitions():
     )
     print(
         "- *VS15 score*: Determined by the number of Emoji using Variation\n"
-        "  Selector-15 supported as narrow characters.\n"
+        "  Selector-15 supported as narrow characters. Note: Interpretation\n"
+        "  of VS15 is `contested <https://github.com/jquast/wcwidth/issues/211>`_\n"
+        "  (excluded from final score).\n"
     )
     print(
         "- *SRI score*: Percentage of standalone Regional Indicator symbols\n"
