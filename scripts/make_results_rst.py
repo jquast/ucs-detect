@@ -1194,11 +1194,13 @@ def display_tabulated_scores(score_table):
         print("which allows any application to programmatically set character widths,")
         print("remediating width issues for complex languages, emoji, and other")
         print("problematic codepoints. It is scored 100% on WIDE, NARROW, LANG, ZWJ, VS16,")
-        print("VS15, SRI, SFZ, and RI.")
+        print("SRI, SFZ, and RI.")
         print()
         print('.. _`Kitty Text Sizing protocol`: '
               'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
         print()
+
+    display_table_definitions()
 
 
 def display_table_definitions():
@@ -1428,18 +1430,6 @@ def score_dec_modes(data):
 def score_features(data):
     """
     Calculate score as fraction of notable terminal features supported.
-
-    Checks 16 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
-    Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
-    Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
-    Kitty Clipboard, OSC 52 Clipboard, Kitty Pointer Shapes, Kitty
-    Notifications, Color Report (OSC 10/11), Terminal Identification, and
-    Truecolor Detection.
-
-    XTGETTCAP, Truecolor Detection, and Terminal Identification each score
-    0.5 for partial support (XTGETTCAP with fewer than 5 meaningful caps;
-    Truecolor detectable only via COLORTERM; Terminal identified only via
-    TERM_PROGRAM environment variable).
 
     :rtype: float
     :returns: fraction 0.0-1.0 of features supported
@@ -2473,6 +2463,10 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print()
 
     print("**VS15 Score Details** *(excluded from final score)*:")
+    print()
+    print(".. note:: Interpretation of VS-15 is `contested <https://github.com/jquast/wcwidth/issues/211>`_.\n"
+          "   Its width behavior is not consistently implemented across terminals;\n"
+          "   this measurement is informational and excluded from final scoring.")
     print()
     vs15_base = entry["data"]["test_results"].get("emoji_vs15_results",
                                                    entry["data"]["test_results"].get("emoji_vs15_type_a_results"))  # noqa: E127
