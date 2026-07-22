@@ -316,6 +316,10 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.5 (unreleased): Improve html reports with considerations about DA1 and VS15
+
+- 2.3.4 (2026-06-12): Bugfix for python 3.6, only (typing).
+
 - 2.3.2 (2026-06-10): Bugfix regression in VS15/16 reporting.
 
 - 2.3.1 (2026-06-08): Remove erroneous ``Pillow`` dependency of pypi package.
