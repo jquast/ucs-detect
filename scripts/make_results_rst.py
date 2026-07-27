@@ -97,7 +97,7 @@ DA1_EXTENSION_NAMES = {
     32: "ANSI text terminal (Level 3)",
     42: "ISO Latin-2 character set",
     52: "OSC 52 clipboard",
-    314: "Pixel geometry (contour-style Px/Py)",
+    314: "Pixel geometry",
 }
 
 # Mapping from test category to example file basename.
@@ -227,6 +227,8 @@ def generate_score_css():
         css_lines.append(f'.{class_name} {{ background-color: rgb({r}, {g}, {b}); }}')
     css_lines.append('.score-contested { background-color: rgb(220, 220, 220); }')
     css_lines.append('.score-warn { background-color: rgb(255, 255, 150); }')
+    css_lines.append('.score-pass { background-color: rgb(193, 242, 193); }')
+    css_lines.append('.score-fail { background-color: rgb(242, 193, 193); }')
     css_lines.append('.score-na { background-color: rgb(220, 220, 220); }')
     return '\n'.join(css_lines)
 
@@ -254,6 +256,10 @@ def generate_score_roles():
     # Add role for warn scores (yellow, COLORTERM-only detection)
     lines.append('.. role:: score-warn')
     lines.append('   :class: score-warn')
+    lines.append('')
+    # Add role for pass scores (green, feature present)
+    lines.append('.. role:: score-pass')
+    lines.append('   :class: score-pass')
     lines.append('')
     # Add role for fail scores (red, no identification method available)
     lines.append('.. role:: score-fail')
@@ -606,7 +612,7 @@ def main():
         display_features_table(score_table)
         display_truecolor_table(score_table)
         display_osc52_table(score_table)
-        display_da1_table(score_table)
+        display_da1_response_section(score_table)
         display_id_table(score_table, terminal_mixins)
         display_id_summary_bullets(score_table, terminal_mixins)
         display_xtgettcap_summary_bullets(score_table)
@@ -638,6 +644,7 @@ def main():
             show_sfz_results(sw_name, entry)
             show_ri_results(sw_name, entry)
             show_graphics_results(sw_name, entry)
+            show_device_attributes(sw_name, entry)
             show_language_results(sw_name, entry)
             show_dec_modes_results(sw_name, entry)
             show_kitty_keyboard_results(sw_name, entry)
@@ -1920,7 +1927,8 @@ def display_osc52_table(score_table):
     """Display an OSC 52 clipboard detection methods comparison table."""
     display_title("OSC 52 Clipboard Detection", 2)
     print("This table shows which methods can be used to detect `OSC 52`_")
-    print("clipboard support for each terminal emulator.  DA1 extension 52")
+    print("clipboard support for each terminal emulator."
+          "  :ref:`DA1 <deviceattributesresponse>` extension 52")
     print("is the mechanism defined by the vt-extensions spec; `XTGETTCAP`_")
     print("``Ms`` is an alternative capability query that may work on")
     print("terminals not advertising the DA1 extension.")
@@ -1953,31 +1961,18 @@ def display_osc52_table(score_table):
         print()
 
 
-def _format_da1_extensions(extensions):
-    """Format DA1 extensions as a comma-joined list with known names."""
-    if not extensions:
-        return "none"
-    parts = []
-    for ext in sorted(extensions):
-        name = DA1_EXTENSION_NAMES.get(ext)
-        if name:
-            parts.append(f"{ext} ({name})")
-        else:
-            parts.append(str(ext))
-    if len(parts) <= 3:
-        return "; ".join(parts)
-    return "; ".join(parts[:3]) + f", … ({len(extensions)} total)"
-
-
-def display_da1_table(score_table):
-    """Display a Device Attributes (DA1) comparison table."""
-    display_title("Device Attributes (DA1)", 2)
-    print("This table shows the `Device Attributes`_ (``CSI c``) response values.")
-    print("Service class identifies the DEC terminal model (e.g. VT520), and")
-    print("numeric extensions indicate support for specific features.")
+def display_da1_response_section(score_table):
+    """Display a Device Attributes comparison table for the summary page."""
+    display_inbound_hyperlink("device-attributes-response")
+    display_title("Device Attributes", 2)
+    print("This table shows the `Device Attributes`_ (``CSI c``) DEC service")
+    print("class and per-extension feature support for each terminal.")
     print()
 
-    table_data = []
+    # Collect all extensions across all terminals and check for ConPTY
+    all_extensions = set()
+    has_conpty = False
+    terminal_data = []
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
         tr = entry["data"].get("terminal_results") or {}
@@ -1986,49 +1981,74 @@ def display_da1_table(score_table):
             continue
 
         sc = da.get("service_class")
-        raw = da.get("raw", "")
         extensions = da.get("extensions", [])
 
         sc_label = SERVICE_CLASS_NAMES.get(sc, f"Unknown Class {sc}") if sc is not None else "N/A"
         conpty = _is_conpty_interposed(entry["data"])
+        has_conpty = has_conpty or conpty
 
         if conpty:
             label = f":score-warn:`{sc_label} \u2020`"
         else:
             label = sc_label
 
-        # Summarise key extensions
-        ext_summary = _format_da1_extensions(extensions)
+        all_extensions.update(extensions)
+        terminal_data.append({
+            "sw_name": sw_name,
+            "service_class": label,
+            "conpty": conpty,
+            "extensions": set(extensions),
+        })
 
-        row = {
-            "Terminal": make_outbound_hyperlink(
-                sw_name, sw_name + "_graphics"),
-            "Service Class": label,
-            "Raw Response": raw.replace("\x1b", "ESC ") if raw else "N/A",
-            "Extensions": ext_summary,
-        }
-        table_data.append(row)
-
-    if table_data:
-        table_str = tabulate.tabulate(table_data, headers="keys",
-                                       tablefmt="rst")
-        print_datatable(table_str)
-    else:
+    if not terminal_data:
         print("No device attributes data available.")
         print()
+        return
 
+    # Sort extensions numerically, map to readable column names
+    sorted_exts = sorted(all_extensions)
+    ext_columns = [(ext, DA1_EXTENSION_NAMES.get(ext, f"Extension {ext}"))
+                   for ext in sorted_exts]
+
+    # Build table
+    headers = ["Terminal", "Service Class"]
+    for _, ext_name in ext_columns:
+        headers.append(ext_name)
+
+    table_data = []
+    for td in terminal_data:
+        row = {
+            "Terminal": make_outbound_hyperlink(
+                td["sw_name"], td["sw_name"] + "_graphics"),
+            "Service Class": td["service_class"],
+        }
+        for ext_num, ext_name in ext_columns:
+            if ext_num in td["extensions"]:
+                if td["conpty"]:
+                    row[ext_name] = f":score-warn:`{ext_num}`"
+                else:
+                    row[ext_name] = f":score-pass:`{ext_num}`"
+            else:
+                row[ext_name] = ":score-fail:`no`"
+        table_data.append(row)
+
+    table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
     print()
-    print()
-    print(".. warning::")
-    print()
-    print("   On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or OpenConsole.exe)")
-    print("   for all MSYS2_ or Cygwin_ programs.  The DA1 response reflects **conhost.exe's")
-    print("   capabilities** and not necessarily the terminal emulator's.  DA1 is not a reliable")
-    print("   indicator of terminal feature support with ConPTY, these terminals are marked by")
-    print("   '\\u2020' in yellow.")
-    print()
-    print(".. _MSYS2: https://www.msys2.org/")
-    print(".. _Cygwin: https://www.cygwin.com/")
+
+    if has_conpty:
+        print()
+        print(".. warning::")
+        print()
+        print("   On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or OpenConsole.exe)")
+        print("   for all MSYS2_ or Cygwin_ programs.  The DA1 response reflects **conhost.exe's")
+        print("   capabilities** and not necessarily the terminal emulator's.")
+        print("   DA1 is not a reliable indicator of terminal feature support with ConPTY.")
+        print()
+        print(".. _MSYS2: https://www.msys2.org/")
+        print(".. _Cygwin: https://www.cygwin.com/")
+        print()
+
     print(".. _`Device Attributes`: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html")
     print()
 
@@ -2591,7 +2611,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print("VS16 results not available.")
     print()
 
-    print("**VS15 Score Details** *(excluded from final score)*:")
+    print("**Variation Selector-15 support:**")
     print()
     print(".. note:: Interpretation of VS-15 is `contested <https://github.com/jquast/wcwidth/issues/211>`_.\n"
           "   Its width behavior is not consistently implemented across terminals;\n"
@@ -2973,6 +2993,50 @@ def show_vs_results(sw_name, entry, variation_str):
     print()
 
 
+def show_device_attributes(sw_name, entry):
+    """Display device attributes with raw response and extension breakdown."""
+    sw_link = make_link(sw_name) + "_device_attributes"
+    display_inbound_hyperlink(sw_link)
+    display_title("Device Attributes", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+    da = tr.get("device_attributes")
+    if not da:
+        print("No Device Attributes response available.")
+        print()
+        return
+
+    raw = da.get("raw", "")
+    service_class = da.get("service_class")
+    extensions = da.get("extensions", [])
+
+    if raw:
+        escaped = raw.replace('\x1b', 'ESC ')
+        print(f"- **Raw response:** ``{escaped}``")
+    if service_class is not None:
+        sc_name = SERVICE_CLASS_NAMES.get(service_class, f"Unknown Class {service_class}")
+        print(f"- **Service class:** {service_class} ({sc_name})")
+    print()
+
+    if extensions:
+        print("**Detected Extensions:**")
+        print()
+        table_data = []
+        for ext in sorted(extensions):
+            desc = DA1_EXTENSION_NAMES.get(ext, "unknown")
+            table_data.append({"Code": str(ext), "Description": desc})
+        table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+        for line in table_str.split('\n'):
+            if line.strip():
+                print(f"   {line}")
+            else:
+                print()
+        print()
+    else:
+        print("No extensions reported.")
+        print()
+
+
 def show_graphics_results(sw_name, entry):
     """Display graphics protocol support results."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_graphics")
@@ -3014,50 +3078,42 @@ def show_graphics_results(sw_name, entry):
 
     print("**Detection Methods:**")
     print()
-    print("- **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query")
-    print("  ``CSI c`` (``\\x1b[c``). Extension code ``4`` indicates Sixel_ support,")
-    print("  ``3`` ReGIS_.")
-    print("- **Kitty graphics**: Detected by sending a Kitty graphics query and")
-    print("  checking for an ``OK`` response.")
-    print("- **iTerm2 inline images**: Detected via the iTerm2 capabilities query")
-    print("  ``OSC 1337 ; Capabilities``.")
-    print()
 
-    if tr.get("device_attributes"):
-        da1_data = tr["device_attributes"]
-        raw = da1_data.get("raw")
-        service_class = da1_data.get("service_class")
-        extensions = da1_data.get("extensions", [])
-        print("**Device Attributes Response:**")
-        print()
-        if raw:
-            escaped = raw.replace('\x1b', 'ESC')
-            print(f"- Raw response: ``{escaped}``")
-        if service_class is not None:
-            sc_name = SERVICE_CLASS_NAMES.get(
-                service_class, f"Class {service_class}")
-            print(f"- Service class: {service_class} ({sc_name})")
-        if extensions:
-            print("- Extensions:")
-            for ext in sorted(extensions):
-                desc = DA1_EXTENSION_NAMES.get(ext, "unknown")
-                print(f"  - ``{ext}``: {desc}")
-            print()
+    sixel_detected = 4 in da_ext
+    regis_detected = 3 in da_ext
+    if sixel_detected and regis_detected:
+        da1_status = "**Detected**"
+    elif sixel_detected or regis_detected:
+        parts = []
+        if sixel_detected:
+            parts.append("Sixel: **Detected**")
         else:
-            print("- Extensions: none reported")
-        print(f"- Sixel_ indicator (``4``): {'present' if 4 in extensions else 'not present'}")
-        print(f"- ReGIS_ indicator (``3``): {'present' if 3 in extensions else 'not present'}")
-        print()
+            parts.append("Sixel: Not detected")
+        if regis_detected:
+            parts.append("ReGIS: **Detected**")
+        else:
+            parts.append("ReGIS: Not detected")
+        da1_status = "; ".join(parts)
+    else:
+        da1_status = "**Not detected**"
 
-        # ConPTY-mediated DA1 warning
-        if _is_conpty_interposed(entry["data"]):
-            print(".. warning::")
-            print()
-            print("   This DA1 response was interposed by Windows ConPTY")
-            print("   (conhost.exe / OpenConsole.exe).  The service class")
-            print("   and extensions reflect conhost.exe, not the terminal")
-            print("   emulator.")
-            print()
+    sixel_indicator = "present" if sixel_detected else "not present"
+    regis_indicator = "present" if regis_detected else "not present"
+    da_link = make_link(sw_name) + "_device_attributes"
+    print(f"- **Sixel** and **ReGIS**: {da1_status} via the"
+          f" :ref:`Device Attributes <{da_link}>` (DA1) query"
+          f" ``CSI c`` (``\\x1b[c``)."
+          f" Sixel indicator (``4``): {sixel_indicator},"
+          f" ReGIS indicator (``3``): {regis_indicator}.")
+
+    kitty_status = "**Detected**" if kitty_supported else "Not detected"
+    print(f"- **Kitty graphics**: {kitty_status} by sending a"
+          f" Kitty graphics query and checking for an ``OK`` response.")
+
+    iterm2_status = "**Detected**" if iterm2_supported else "Not detected"
+    print(f"- **iTerm2 inline images**: {iterm2_status} via the"
+          f" iTerm2 capabilities query ``OSC 1337 ; Capabilities``.")
+    print()
 
     print('.. _Sixel: https://en.wikipedia.org/wiki/Sixel')
     print('.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS')
