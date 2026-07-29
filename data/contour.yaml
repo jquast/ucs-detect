@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-08 04:49:12 UTC
+datetime: 2026-07-29 18:36:05 UTC
 environment:
   COLORTERM: truecolor
   TERM: contour
@@ -8,178 +8,157 @@ preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 53.3
-  - 25.2
-  - 0.0
+  - 39.2
+  - 11.8
   - 0.0
   - 2.0
-  - 4.6
-  - 34.1
-  - 35.4
-  - 35.6
+  - 0.0
+  - 19.6
+  - 37.3
   - 36.3
-  - 35.4
-  - 34.4
-  - 35.4
+  - 39.3
+  - 39.3
+  - 38.3
+  - 38.3
+  - 38.2
+  - 40.1
   - 36.7
   - 35.2
-  - 36.3
-  - 37.4
-  - 36.4
-  - 34.4
-  - 35.8
-  - 35.3
-  - 36.3
-  - 33.5
-  - 33.1
-  - 35.3
-  - 34.4
-  - 34.1
-  - 34.4
-  - 34.2
-  - 34.4
-  - 57.8
-  - 63.7
-  - 41.9
-  - 32.2
-  - 32.4
-  - 35.4
-  - 34.4
-  - 34.5
-  - 34.0
-  - 31.6
-  - 30.6
   - 31.4
-  - 34.8
-  - 36.5
-  - 33.9
-  - 33.5
-  - 32.6
-  - 34.5
-  - 36.5
-  - 33.6
-  - 30.6
-  - 30.8
-  - 31.1
-  - 34.5
-  - 16.8
+  - 21.6
+  - 20.4
+  - 20.6
+  - 20.6
+  - 20.5
+  - 20.6
+  - 20.6
+  - 21.4
+  - 20.4
+  - 19.2
+  - 18.4
+  - 19.3
+  - 18.3
+  - 17.8
+  - 20.7
+  - 19.5
+  - 19.6
+  - 20.5
+  - 18.6
+  - 19.6
+  - 20.1
+  - 18.6
+  - 15.6
+  - 13.7
+  - 12.3
+  - 19.4
+  - 17.6
+  - 17.7
+  - 16.7
+  - 20.4
+  - 7.2
   elapsed_s:
-  - 0.31458312610629946
-  - 1.4462288831127807
-  - 2.5187925590435043
-  - 3.539403152070008
-  - 4.5595308491028845
-  - 5.576872377074324
-  - 6.660457513062283
-  - 7.716576126054861
-  - 8.733528201002628
-  - 10.000851337099448
-  - 11.018243640079163
-  - 12.033818364026956
-  - 13.051249369047582
-  - 14.067997890058905
-  - 15.239922913024202
-  - 16.408791676047258
-  - 17.425740345031954
-  - 18.441931047011167
-  - 19.457516752067022
-  - 20.47384986304678
-  - 21.535269703017548
-  - 22.670403410098515
-  - 23.686535704066046
-  - 24.70208395109512
-  - 25.819608323043212
-  - 26.867758223088458
-  - 27.914011065033264
-  - 28.968359288061038
-  - 29.984980304026976
-  - 31.0076019060798
-  - 32.02513700805139
-  - 33.047621681005694
-  - 34.11504047806375
-  - 35.50674136902671
-  - 36.52208056906238
-  - 37.53971167409327
-  - 38.555805400013924
-  - 39.57355480908882
-  - 40.5872222360922
-  - 41.73673536803108
-  - 42.74906487809494
-  - 43.76235577906482
-  - 44.77989012806211
-  - 45.813448508037254
-  - 46.8264009160921
-  - 47.91964906605426
-  - 48.932885452057235
-  - 49.944221205078065
-  - 50.95903512102086
-  - 51.9730433820514
-  - 52.98606013704557
-  - 53.9998790420359
-  - 55.07154060900211
-  - 56.19920017407276
-  - 57.211788532091305
+  - 1.0367415560176596
+  - 2.0569932910148054
+  - 3.0757557160104625
+  - 4.095084293046966
+  - 5.113194220000878
+  - 6.132876522024162
+  - 7.151989788049832
+  - 8.171439778001513
+  - 9.190131800016388
+  - 10.20886952301953
+  - 11.22781167901121
+  - 12.246882322011515
+  - 13.265998545044567
+  - 14.288137698022183
+  - 15.361593374051154
+  - 16.396712789020967
+  - 17.41834163304884
+  - 18.438122162013315
+  - 19.551350801018998
+  - 20.579459419008344
+  - 21.59959543601144
+  - 22.618458299024496
+  - 23.6421182420454
+  - 24.660497238044627
+  - 25.68154494004557
+  - 26.7072995500057
+  - 27.73792568902718
+  - 28.779445174033754
+  - 29.8120710660005
+  - 30.846352058055345
+  - 31.884430877049454
+  - 32.95387253805529
+  - 34.164213049050886
+  - 35.18457408901304
+  - 36.205146237043664
+  - 37.22762030904414
+  - 38.24732181400759
+  - 39.269530897028744
+  - 40.419396301032975
+  - 41.43843384302454
+  - 42.462219529028516
+  - 43.48599243705394
+  - 44.54607926803874
+  - 45.679462144034915
+  - 46.69972128805239
+  - 47.718140633020084
+  - 48.73725554504199
+  - 49.81693566602189
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 13961408
+    ram_total_kb: 15509692
   rss_mb:
-  - 114.953125
-  - 183.0703125
-  - 183.21875
-  - 183.21875
-  - 183.26953125
-  - 183.875
-  - 183.7578125
-  - 179.8203125
-  - 180.41796875
-  - 180.9296875
-  - 181.54296875
-  - 182.10546875
-  - 182.7421875
-  - 183.5
-  - 183.828125
-  - 184.01953125
-  - 184.22265625
-  - 184.41796875
-  - 184.61328125
-  - 184.8046875
-  - 185.05859375
-  - 185.31640625
-  - 185.515625
-  - 185.64453125
-  - 185.70703125
-  - 185.8359375
-  - 185.9609375
-  - 186.08984375
-  - 186.22265625
-  - 186.96484375
-  - 192.40625
-  - 198.14453125
-  - 199.88671875
-  - 199.94921875
-  - 200.01953125
-  - 200.08203125
-  - 200.08203125
-  - 200.0859375
-  - 200.0859375
-  - 200.08984375
-  - 200.09375
-  - 200.09765625
-  - 200.234375
-  - 200.546875
-  - 200.73828125
-  - 200.79296875
-  - 200.9296875
-  - 201.15625
+  - 149.8828125
+  - 180.38671875
+  - 180.58984375
+  - 180.71484375
+  - 180.71484375
+  - 182.60546875
   - 184.0
-  - 176.62890625
-  - 168.6953125
-  - 162.765625
-  - 161.93359375
-  - 160.30859375
-  - 158.49609375
-seconds_elapsed: 51.172427249955945
+  - 184.4375
+  - 184.8984375
+  - 185.34375
+  - 185.76953125
+  - 186.1171875
+  - 186.51953125
+  - 186.984375
+  - 187.2265625
+  - 187.4921875
+  - 187.7578125
+  - 188.0234375
+  - 188.265625
+  - 188.28515625
+  - 188.546875
+  - 188.6015625
+  - 188.6015625
+  - 188.6015625
+  - 188.6015625
+  - 188.6015625
+  - 188.6015625
+  - 188.6015625
+  - 188.6015625
+  - 188.6015625
+  - 188.1484375
+  - 187.3515625
+  - 187.3515625
+  - 187.3515625
+  - 187.3515625
+  - 186.1875
+  - 186.1875
+  - 186.1875
+  - 186.1875
+  - 186.1875
+  - 186.1875
+  - 186.1875
+  - 186.24609375
+  - 186.42578125
+  - 186.49609375
+  - 186.50390625
+  - 186.5078125
+  - 186.515625
+seconds_elapsed: 43.52066607901361
 session_arguments:
   all: true
   limit_category_time: 0
@@ -221,11 +200,15 @@ terminal_results:
     extensions:
     - 1
     - 4
-    - 8
+    - 7
+    - 9
+    - 18
+    - 21
     - 22
-    - 28
+    - 29
     - 52
     - 314
+    raw: "\e[?65;1;4;7;9;18;21;22;29;52;314c"
     service_class: 65
   foreground_color_hex: '#d0d0d0d0d0d0'
   foreground_color_rgb:
@@ -357,8 +340,8 @@ terminal_results:
       civis: "\e[?25l"
       clear: "\e[H\e[2J"
       cnorm: "\e[?12l\e[?25h"
-      colors: "\x01\0"
-      cols: P
+      colors: '256'
+      cols: '80'
       cr: "\r"
       csr: "\e[%i%p1%d;%p2%dr"
       cub: "\e[%p1%dD"
@@ -401,7 +384,7 @@ terminal_results:
       initc: "\e]4;%p1%d;rgb:%p2%{255}%*%{1000}%/%2.2X/%p3%{255}%*%{1000}%/%2.2X/%p4%{255}%*%{1000}%/%2.2X\e\
         \\"
       invis: "\e[8m"
-      it: "\b"
+      it: '8'
       kDC: "\e[3;2~"
       kDC3: "\e[3;3~"
       kDC4: "\e[3;4~"
@@ -490,14 +473,14 @@ terminal_results:
       knp: "\e[6~"
       kpp: "\e[5~"
       kri: "\e[1;2A"
-      lines: "\x18"
+      lines: '24'
       mc5i: ''
       mir: ''
       msgr: ''
       npc: ''
       oc: "\e]104\e\\"
       op: "\e[39;49m"
-      pairs: "\x01\0\0"
+      pairs: '65536'
       rc: "\e8"
       rep: "%p1%c\e[%p2%{1}%-%db"
       rev: "\e[7m"
@@ -535,7 +518,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: contour 0.6.3.8249
+  xtversion_raw: contour 0.7.0-master-834edcd4
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -1665,6 +1648,135 @@ test_results:
   emoji_zwj_results:
     '17.0':
       failed_codepoints:
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fe
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fc
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fc\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fe\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fe\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fe
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3fe\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fc
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fe
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f468\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fc\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fc
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fc\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3fc
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fe\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fe
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3fe\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3fe
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3fd
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f469\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f469\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d1\U0001f3fb\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f9d1\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d1\U0001f3fd\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f9d1\U0001f3ff
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d1\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f9d1\U0001f3fb
+      - measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchar: \U0001f9d1\U0001f3ff\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f9d1\U0001f3fd
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \u26f9\U0001f3fb\u200d\u2640\ufe0f
@@ -1827,9 +1939,9 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001f441\ufe0f\u200d\U0001f5e8\ufe0f
-      n_errors: 54
+      n_errors: 97
       n_total: 1445
-      pct_success: 96.26297577854672
+      pct_success: 93.2871972318339
   language_results:
     (Jinan):
       failed: []
@@ -4566,12 +4678,12 @@ test_results:
     Chinese, Mandarin (Beijing):
       failed: []
       n_errors: 0
-      n_total: 514
+      n_total: 513
       pct_success: 100.0
     Chinese, Mandarin (Guiyang):
       failed: []
       n_errors: 0
-      n_total: 505
+      n_total: 504
       pct_success: 100.0
     Chinese, Mandarin (Harbin):
       failed: []
@@ -4581,17 +4693,17 @@ test_results:
     Chinese, Mandarin (Nanjing):
       failed: []
       n_errors: 0
-      n_total: 502
+      n_total: 501
       pct_success: 100.0
     Chinese, Mandarin (Simplified):
       failed: []
       n_errors: 0
-      n_total: 532
+      n_total: 531
       pct_success: 100.0
     Chinese, Mandarin (Tianjin):
       failed: []
       n_errors: 0
-      n_total: 512
+      n_total: 511
       pct_success: 100.0
     Chinese, Mandarin (Traditional):
       failed: []
@@ -21490,7 +21602,7 @@ test_results:
     Urdu:
       failed:
       - grapheme_id: Urdu-2-00
-        measured_by_terminal: 1
+        measured_by_terminal: 0
         measured_by_wcwidth: 2
         wchars: \u0601\u06f1
       n_errors: 1
@@ -21546,10 +21658,64 @@ test_results:
       pct_success: 100.0
   narrow_results:
     17.0.0:
-      failed_codepoints: []
-      n_errors: 0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \xad
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0600
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0601
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0602
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0603
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0604
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0605
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u06dd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u070f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0890
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0891
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u08e2
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0e33
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \u0eb3
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \uff9e
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \uff9f
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U000110bd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U000110cd
+      n_errors: 18
       n_total: 36254
-      pct_success: 100.0
+      pct_success: 99.9503503061731
   ri_results:
     '17.0':
       failed_codepoints: []
@@ -21558,10 +21724,25 @@ test_results:
       pct_success: 100.0
   sfz_results:
     17.0.0:
-      failed_codepoints: []
-      n_errors: 0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3fb
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3fc
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3fd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3fe
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3ff
+      n_errors: 5
       n_total: 5
-      pct_success: 100.0
+      pct_success: 0.0
   sri_results:
     17.0.0:
       failed_codepoints: []
@@ -21570,9 +21751,24 @@ test_results:
       pct_success: 100.0
   unicode_wide_results:
     17.0.0:
-      failed_codepoints: []
-      n_errors: 0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3fb
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3fc
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3fd
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3fe
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 2
+        wchar: \U0001f3ff
+      n_errors: 5
       n_total: 43592
-      pct_success: 100.0
-wcwidth_version: 0.8.1
+      pct_success: 99.9885300055056
+wcwidth_version: 0.8.2
 width: 80

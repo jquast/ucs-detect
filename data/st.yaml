@@ -1,31 +1,46 @@
 ambiguous_width: 1
-datetime: 2026-06-08 04:41:33 UTC
+datetime: 2026-07-29 18:41:18 UTC
 environment:
   TERM: st-256color
 height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.5
+python_version: 3.14.6
 resource_profile:
   cpu_pct:
-  - 1.0
+  - 3.0
+  - 0.0
   - 0.0
   - 0.0
   - 27.0
+  - 21.0
+  - 22.0
+  - 20.0
+  - 16.0
   elapsed_s:
-  - 1.00089122611098
-  - 2.0028312740614638
-  - 3.0046413270756602
-  - 4.005999070010148
+  - 1.003409605997149
+  - 2.0052007639897056
+  - 3.0071269539766945
+  - 4.009254592994694
+  - 5.010993567004334
+  - 6.0132605959661305
+  - 7.015088483982254
+  - 8.016998666978907
+  - 9.018748525006231
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 13961408
+    ram_total_kb: 15509692
   rss_mb:
-  - 16.3359375
-  - 16.3359375
-  - 16.33984375
-  - 18.93359375
-seconds_elapsed: 1.6048743179999292
+  - 16.07421875
+  - 16.07421875
+  - 16.07421875
+  - 16.07421875
+  - 19.796875
+  - 19.80078125
+  - 20.08203125
+  - 20.13671875
+  - 20.1484375
+seconds_elapsed: 4.482535671966616
 session_arguments:
   all: false
   limit_category_time: 0
@@ -52,6 +67,7 @@ terminal_results:
   decrqss_truecolor_probe: false
   device_attributes:
     extensions: []
+    raw: "\e[?6c"
     service_class: 6
   foreground_color_hex: '#e5e5e5e5e5e5'
   foreground_color_rgb:
@@ -94,7 +110,7 @@ terminal_results:
   xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -574,7 +590,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10665,5 +10681,5 @@ test_results:
       n_errors: 26
       n_total: 506
       pct_success: 94.86166007905138
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.2
 width: 80

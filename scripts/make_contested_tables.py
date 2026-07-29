@@ -208,18 +208,26 @@ def main():
     """Generate all contested table modules."""
     failures = collect_failures()
 
+    # Use the latest wcwidth-supported Unicode version for contested tables
+    # derived from wcwidth character sets (matches make_wide_table.py et al.).
+    _unicode_version = wcwidth.list_versions()[-1]
+
+    # VS15/VS16 use '9.0.0': the emoji variation sequence codepoint set has
+    # not changed since it was first standardized in Unicode 9.0.0 (see
+    # make_vs15_table.py, make_vs16_table.py).
+
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_wide_contested.py'),
-        'WIDE_CONTESTED', failures['wide'], '9.0.0')
+        'WIDE_CONTESTED', failures['wide'], _unicode_version)
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_sri_contested.py'),
-        'SRI_CONTESTED', failures['sri'], '9.0.0')
+        'SRI_CONTESTED', failures['sri'], _unicode_version)
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_sfz_contested.py'),
-        'SFZ_CONTESTED', failures['sfz'], '9.0.0')
+        'SFZ_CONTESTED', failures['sfz'], _unicode_version)
     _write_single_cp_table(
         os.path.join(_OUT_DIR, 'table_narrow_contested.py'),
-        'NARROW_CONTESTED', failures['narrow'], '9.0.0')
+        'NARROW_CONTESTED', failures['narrow'], _unicode_version)
     _write_sequence_table(
         os.path.join(_OUT_DIR, 'table_vs16_contested.py'),
         'VS16_CONTESTED', failures['vs16'], '9.0.0')
@@ -228,10 +236,10 @@ def main():
         'VS15_CONTESTED', failures['vs15'], '9.0.0')
     _write_sequence_table(
         os.path.join(_OUT_DIR, 'table_zwj_contested.py'),
-        'ZWJ_CONTESTED', failures['zwj'], '9.0.0')
+        'ZWJ_CONTESTED', failures['zwj'], _unicode_version)
     _write_sequence_table(
         os.path.join(_OUT_DIR, 'table_ri_contested.py'),
-        'RI_CONTESTED', failures['ri'], '9.0.0')
+        'RI_CONTESTED', failures['ri'], _unicode_version)
     _write_lang_table(
         os.path.join(_OUT_DIR, 'table_lang_contested.py'),
         'LANG_CONTESTED', failures['lang'])

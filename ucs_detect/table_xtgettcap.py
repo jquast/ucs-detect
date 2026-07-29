@@ -67,4 +67,6 @@ XTGETTCAP_CAPABILITIES = (
     ("kf10", "Function key F10"),
     ("kf11", "Function key F11"),
     ("kf12", "Function key F12"),
+    # Other extensions, maybe Terminal-specific
+    ("query-os-name", "OS name"),
 )
