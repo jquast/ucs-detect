@@ -59,7 +59,7 @@ EXAMPLE_FILES_DIR = os.path.join(_ROOT, 'docs', 'ucs_example_files')
 DATA_PATH = os.path.join(_ROOT, "data")
 PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
-LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
+LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
 
 SERVICE_CLASS_NAMES = {
     1: "VT100",
