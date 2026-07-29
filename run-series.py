@@ -51,22 +51,22 @@ DATA_DIR = get_data_dir()
 DOCKER_IMAGE = "ucs-detect:latest"
 DOCKERFILE = PROJECT_DIR / "Dockerfile"
 
-_RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([\d.]+)', re.MULTILINE)
+RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([\d.]+)', re.MULTILINE)
 
 
-_KEEP_TEMP_ON_EXIT = False
+KEEP_TEMP_ON_EXIT = False
 
 
-def _sig_keep_temp(signum, frame):
+def sig_keep_temp(signum, frame):
     """Set flag to preserve temp directory on SIGINT/SIGTERM."""
-    global _KEEP_TEMP_ON_EXIT
-    _KEEP_TEMP_ON_EXIT = True
+    global KEEP_TEMP_ON_EXIT
+    KEEP_TEMP_ON_EXIT = True
     raise KeyboardInterrupt()
 
 
-def _cleanup_temp(temp_path):
+def cleanup_temp(temp_path):
     """Remove *temp_path* unless interrupted or --keep-temp was set."""
-    if not _KEEP_TEMP_ON_EXIT:
+    if not KEEP_TEMP_ON_EXIT:
         shutil.rmtree(temp_path, ignore_errors=True)
 
 
@@ -91,7 +91,7 @@ def write_run_script(script_path, yaml_path, sentinel_path,
     script_path.chmod(0o755)
 
 
-def _build_software_overrides(yaml_path, mixins):
+def build_software_overrides(yaml_path, mixins):
     """Return list of extra CLI args for --set-software-name/version.
 
     Uses the stem-fallback lookup in *mixins* to find the terminal's
@@ -106,7 +106,6 @@ def _build_software_overrides(yaml_path, mixins):
         args.append("--")
         args.extend(["--set-software-name", display_name])
 
-    # Resolve version: version_template first, version_manual as fallback
     version_str = ""
     if entry.get("version_template"):
         aur_version = ""
@@ -139,7 +138,7 @@ def _build_software_overrides(yaml_path, mixins):
     return args
 
 
-def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
+def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                        temp_dir, pause_exit=False, extra_args=None):
     """Launch a terminal and inject keys. Does not wait for completion.
 
@@ -205,7 +204,8 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 # In Docker, the host terminal is our xterm, not the host's TERM_PROGRAM
                 if _IS_DOCKER and launch_cfg["subterminal"]:
                     window_cfg = dict(window_cfg, wm_class="XTerm")
-                window_id = find_window_for_command(window_cfg, proc.pid, pre_windows=snapshot_pre_windows)
+                window_id = find_window_for_command(
+                    window_cfg, proc.pid, pre_windows=snapshot_pre_windows)
                 if window_id is not None:
                     script_str = str(script_path)
                     resolved_keys = [
@@ -239,7 +239,7 @@ def _launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
         return (None, None, None, str(exc))
 
 
-def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout,
+def poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout,
                    post_keys=None):
     """Wait for sentinel file.  Returns (sw_name, exit_code, error_msg).
 
@@ -292,7 +292,7 @@ def _poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout,
     return (sw_name, exit_code, error_msg)
 
 
-def _docker_self_run(argv):
+def docker_self_run(argv):
     """Re-execute run-series.py inside the Docker container."""
     docker_args = [
         "docker", "run", "--rm",
@@ -305,7 +305,7 @@ def _docker_self_run(argv):
     sys.exit(subprocess.call(docker_args))
 
 
-def _embed_profile_in_yaml(yaml_path, sw_name, session):
+def embed_profile_in_yaml(yaml_path, sw_name, session):
     """Append resource_profile data to the terminal's YAML file."""
     try:
         with open(yaml_path) as f:
@@ -325,7 +325,7 @@ def _embed_profile_in_yaml(yaml_path, sw_name, session):
         pass
 
 
-def _docker_per_terminal_run(args):
+def docker_per_terminal_run(args):
     """Run each terminal in its own Docker container, with --cpus=2 each."""
     system_name = platform.system()
     all_terminals = list(discover_yamls(system_name))
@@ -440,7 +440,7 @@ def main():
     if args.use_docker and not _IS_DOCKER:
         if not docker_image_exists():
             docker_build(DOCKERFILE, PROJECT_DIR)
-        _docker_per_terminal_run(args)
+        docker_per_terminal_run(args)
         return
 
     if not args.use_system and not _IS_DOCKER:
@@ -448,7 +448,7 @@ def main():
             docker_build(DOCKERFILE, PROJECT_DIR)
         argv = sys.argv[1:]
         argv = [a for a in argv if a != "--use-system"]
-        _docker_self_run(argv)
+        docker_self_run(argv)
 
     system_name = platform.system()
     if system_name.lower() not in ("linux", "darwin"):
@@ -460,7 +460,6 @@ def main():
         print("Warning: xdotool not found; keyboard injection will not work",
               file=sys.stderr)
 
-    # default parallelism: max(2, min(n_cpus // 2 - 1, 16))
     if args.parallel is None:
         n_cpus = os.cpu_count() or 2
         args.parallel = max(1, min(n_cpus // 3, 8))
@@ -475,9 +474,9 @@ def main():
 
     temp_dir = Path(tempfile.mkdtemp(prefix="ucs-run-series-"))
     if not args.keep_temp:
-        signal.signal(signal.SIGINT, _sig_keep_temp)
-        signal.signal(signal.SIGTERM, _sig_keep_temp)
-        atexit.register(_cleanup_temp, str(temp_dir))
+        signal.signal(signal.SIGINT, sig_keep_temp)
+        signal.signal(signal.SIGTERM, sig_keep_temp)
+        atexit.register(cleanup_temp, str(temp_dir))
     else:
         print(f"Temp directory: {temp_dir}")
 
@@ -586,11 +585,11 @@ def main():
             print("--- Key-injection terminals (sequential launch, parallel wait) ---")
         for yaml_path, sw_name, launch_cfg, _seconds_elapsed in key_jobs:
             print(f"[{sw_name}] launching ...", flush=True)
-            extra_args = _build_software_overrides(yaml_path, mixins)
+            extra_args = build_software_overrides(yaml_path, mixins)
             if args.all:
                 extra_args = (extra_args or ['--']) + ['--all']
 
-            proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
+            proc, sentinel_path, stderr_path, launch_error = launch_and_inject(
                 yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 temp_dir,
                 pause_exit=args.pause_exit,
@@ -614,7 +613,7 @@ def main():
             term_timeout = launch_cfg.get("timeout") or args.timeout
             post_keys = launch_cfg.get("post_launch_keys")
             future = executor.submit(
-                _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
+                poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
                 term_timeout, post_keys=post_keys)
             future_map[future] = (
                 sw_name, proc, profile, sentinel_path, yaml_path,
@@ -624,10 +623,10 @@ def main():
             if key_jobs:
                 print("\n--- Direct-launch terminals (parallel) ---")
             for yaml_path, sw_name, launch_cfg, _seconds_elapsed in direct_jobs:
-                extra_args = _build_software_overrides(yaml_path, mixins)
+                extra_args = build_software_overrides(yaml_path, mixins)
                 if args.all:
                     extra_args = (extra_args or ['--']) + ['--all']
-                proc, sentinel_path, stderr_path, launch_error = _launch_and_inject(
+                proc, sentinel_path, stderr_path, launch_error = launch_and_inject(
                     yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     temp_dir,
                     pause_exit=args.pause_exit,
@@ -651,7 +650,7 @@ def main():
                 term_timeout = launch_cfg.get("timeout") or args.timeout
                 post_keys = launch_cfg.get("post_launch_keys")
                 future = executor.submit(
-                    _poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
+                    poll_sentinel, sw_name, proc, sentinel_path, stderr_path,
                     term_timeout, post_keys=post_keys)
                 future_map[future] = (
                     sw_name, proc, profile, sentinel_path, yaml_path,
@@ -659,7 +658,8 @@ def main():
                 time.sleep(30)
 
         for future in as_completed(future_map):
-            sw_name, proc, profile, sentinel_path, yaml_path, program, launch_cfg = future_map[future]
+            (sw_name, proc, profile, sentinel_path,
+             yaml_path, program, launch_cfg) = future_map[future]
             try:
                 name, exit_code, error = future.result()
             # pylint: disable=broad-exception-caught
@@ -678,7 +678,7 @@ def main():
             if profile is not None:
                 profile.stop()
                 profiler_sessions[name] = profile
-                _embed_profile_in_yaml(yaml_path, name, profile)
+                embed_profile_in_yaml(yaml_path, name, profile)
 
             results[name] = (exit_code, error)
             if error or exit_code != 0:
