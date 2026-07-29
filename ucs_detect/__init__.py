@@ -1235,10 +1235,11 @@ def _build_parser():
 
 
 def _explicit_cli_args():
-    """Return the set of argument names explicitly given on the command line.
+    """
+    Return the set of argument names explicitly given on the command line.
 
-    Values restored from a --rerun YAML file must not override arguments typed
-    by the user, even when the typed value happens to equal the default.
+    Values restored from a --rerun YAML file must not override arguments typed by the user, even
+    when the typed value happens to equal the default.
     """
     parser = _build_parser()
     for action in parser._actions:
@@ -1263,10 +1264,11 @@ def parse_args():
 
 
 def _apply_rerun_yaml(results, explicit_args=()):
-    """Merge session arguments from a saved YAML file into *results*.
+    """
+    Merge session arguments from a saved YAML file into *results*.
 
-    Arguments named in *explicit_args* were given on the command line and take
-    precedence over the values saved in the YAML file.
+    Arguments named in *explicit_args* were given on the command line and take precedence over the
+    values saved in the YAML file.
     """
     yaml_path = os.path.expanduser(results["rerun"])
     with open(yaml_path, encoding='utf-8') as fin:
