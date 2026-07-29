@@ -316,9 +316,9 @@ marks across diverse scripts.
 History
 -------
 
-- 2.3.5 (2026-07-29): Improve html reports with considerations about DA1 and VS15, collect
-  and tabulated summary and ``DA1`` string values in yaml and html reports. Changed
-  default ``--timeout-cps=3``.
+- 2.3.5 (2026-07-29): Improve html reports with ConPTY considerations about DA1 and 'contested'
+  status of VS15, collect and tabulate summaries of ``DA1`` features.  report xterm w/sixel
+  supported as caveat.  Changed default ``--timeout-cps=3``.
 
 - 2.3.4 (2026-06-12): Bugfix for python 3.6, only (typing).
 
