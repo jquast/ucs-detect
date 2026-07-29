@@ -61,13 +61,11 @@ PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
 CONPTY_DA_CAVEAT_LINES = (
-    "On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or "
+    "† On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or "
     "OpenConsole.exe) for MSYS2_ or Cygwin_ programs.  The DA1 response "
     "reflects **conhost.exe's capabilities** and not necessarily the "
     "terminal emulator's.",
 )
-
-
 
 SERVICE_CLASS_NAMES = {
     1: "VT100",
@@ -1174,35 +1172,35 @@ def display_tabulated_scores(score_table):
                 ),
                 "WIDE": wrap_score_with_hyperlink(
                     format_score_int(result["score_wide_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_wide_scaled"],
                     result["terminal_software_name"],
                     "_wide"
                 ),
                 "NARROW": wrap_score_with_hyperlink(
                     format_score_int(result["score_narrow_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_narrow_scaled"],
                     result["terminal_software_name"],
                     "_narrow"
                 ),
                 "LANG": wrap_score_with_hyperlink(
                     format_score_int(result["score_language_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_language_scaled"],
                     result["terminal_software_name"],
                     "_lang"
                 ),
                 "ZWJ": wrap_score_with_hyperlink(
                     format_score_int(result["score_zwj_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_zwj_scaled"],
                     result["terminal_software_name"],
                     "_zwj"
                 ),
                 "VS16": wrap_score_with_hyperlink(
                     format_score_int(result["score_emoji_vs16_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_emoji_vs16_scaled"],
                     result["terminal_software_name"],
                     "_vs16"
@@ -1214,7 +1212,7 @@ def display_tabulated_scores(score_table):
                 ),
                 "SRI": (wrap_score_with_hyperlink(
                     format_score_int(result["score_sri_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_sri_scaled"],
                     result["terminal_software_name"],
                     "_sri"
@@ -1222,7 +1220,7 @@ def display_tabulated_scores(score_table):
                     else _wrap_untested(result["terminal_software_name"], "_sri")),
                 "SFZ": (wrap_score_with_hyperlink(
                     format_score_int(result["score_sfz_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_sfz_scaled"],
                     result["terminal_software_name"],
                     "_sfz"
@@ -1230,7 +1228,7 @@ def display_tabulated_scores(score_table):
                     else _wrap_untested(result["terminal_software_name"], "_sfz")),
                 "RI": (wrap_score_with_hyperlink(
                     format_score_int(result["score_ri_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_ri_scaled"],
                     result["terminal_software_name"],
                     "_ri"
@@ -1257,7 +1255,7 @@ def display_tabulated_scores(score_table):
     has_any_text_sizing = any(e.get("has_text_sizing") for e in score_table)
     if has_any_text_sizing:
         print()
-        print("\u2020 This terminal supports the `Kitty Text Sizing protocol`_,")
+        print("† This terminal supports the `Kitty Text Sizing protocol`_,")
         print("which allows any application to programmatically set character widths,")
         print("remediating width issues for complex languages, emoji, and other")
         print("problematic codepoints. It is scored 100% on WIDE, NARROW, LANG, ZWJ, VS16,")
@@ -2014,7 +2012,7 @@ def display_da1_response_section(score_table):
         has_conpty = has_conpty or conpty
 
         if conpty:
-            label = f":score-warn:`{sc_label} \u2020`"
+            label = f":score-warn:`{sc_label} †`"
         else:
             label = sc_label
 
@@ -2051,7 +2049,7 @@ def display_da1_response_section(score_table):
         for ext_num, ext_name in ext_columns:
             if ext_num in td["extensions"]:
                 if td["conpty"]:
-                    row[ext_name] = f":score-warn:`{ext_num}`"
+                    row[ext_name] = f":score-warn:`{ext_num}`†"
                 else:
                     row[ext_name] = f":score-pass:`{ext_num}`"
             else:
