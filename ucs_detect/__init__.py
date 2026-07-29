@@ -1150,7 +1150,7 @@ def _build_parser():
     args.add_argument(
         "--timeout-cps",
         type=float,
-        default=1.0,
+        default=3.0,
         help="Timeout in seconds for cursor position reports during testing",
     )
     args.add_argument(
