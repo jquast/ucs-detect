@@ -1065,6 +1065,16 @@ def _classify_xtgettcap(data):
     return ("partial", 0.5)
 
 
+def _classify_kitty_keyboard(tr):
+    """Classify Kitty keyboard state: full (any flag set) / partial (all False) / None."""
+    kk = tr.get("kitty_keyboard")
+    if kk is None:
+        return None, 0.0
+    if any(kk.values()):
+        return "full", 1.0
+    return "partial", 0.5
+
+
 def _format_features_summary(entry):
     """Format detected features as scaled score with hyperlink to Score Breakdown."""
     sw_name = entry["terminal_software_name"]
@@ -1496,8 +1506,9 @@ def score_features(data):
         if mode_key in modes and _mode_is_usable(modes[mode_key]):
             count += 1
 
-    if tr.get("kitty_keyboard") is not None:
-        count += 1
+    _kk_label, kk_score = _classify_kitty_keyboard(tr)
+    if kk_score > 0:
+        count += kk_score
 
     _label, xt_score = _classify_xtgettcap(data)
     if xt_score > 0:
@@ -1795,10 +1806,15 @@ def display_features_table(score_table):
             sw_name, suffix)
 
         # Kitty keyboard
-        kitty_kb = tr.get('kitty_keyboard')
-        row["Kitty Keyboard"] = _capability_yes_no(
-            (kitty_kb is not None) if tested else None,
-            sw_name, "_kitty_kbd")
+        kk_label, kk_score = _classify_kitty_keyboard(tr)
+        if not tested:
+            row["Kitty Keyboard"] = _capability_yes_no(None, sw_name, "_kitty_kbd")
+        elif kk_label is None:
+            row["Kitty Keyboard"] = _capability_yes_no(False, sw_name, "_kitty_kbd")
+        else:
+            text = "yes (Full)" if kk_label == "full" else "yes (Partial)"
+            row["Kitty Keyboard"] = wrap_score_with_hyperlink(
+                text, kk_score, sw_name, "_kitty_kbd")
 
         # Graphics protocols
         row["Graphics"] = _format_graphics_protocols(entry, sw_name)
@@ -2723,8 +2739,10 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             (_fmt_mode(_DPM.BRACKETED_PASTE_MIME),
              float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME)),
              "_dec_modes"),
-            ("Kitty Keyboard",
-             float(tr.get("kitty_keyboard") is not None),
+            ("Kitty Keyboard (Full)" if _classify_kitty_keyboard(tr)[0] == "full"
+             else "Kitty Keyboard (Partial)" if _classify_kitty_keyboard(tr)[0]
+             else "Kitty Keyboard",
+             _classify_kitty_keyboard(tr)[1],
              "_kitty_kbd"),
             ("XTGETTCAP (Full)" if xt_label == "full"
              else "XTGETTCAP (Partial)" if xt_label
@@ -3283,7 +3301,6 @@ def show_kitty_keyboard_results(sw_name, entry):
         return
 
     print(f"*{sw_name}* supports the `Kitty keyboard protocol`_.")
-    print()
 
     flags = [
         ("disambiguate", "Disambiguate escape codes"),
@@ -3305,6 +3322,17 @@ def show_kitty_keyboard_results(sw_name, entry):
 
     table_str = tabulate.tabulate(tabulated_flags, headers="keys", tablefmt="rst")
     print_datatable(table_str)
+
+    if not any(kitty_kb.values()):
+        # known bug for alacritty (fix rejected),
+        # also detected in microsoft terminal.exe (not investigated)
+        print()
+        print(".. note::")
+        print()
+        print("   Although this terminal responds to the ``CSI ? u`` query")
+        print("   (proving it supports the protocol), **all individual flags are")
+        print("   reported as disabled**.  This likely indicates a terminal bug.")
+        print()
 
     print("Detection is performed by sending ``CSI ? u`` to query the current")
     print("progressive enhancement flags. A terminal that supports this protocol")

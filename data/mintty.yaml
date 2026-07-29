@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-08 07:49:01 UTC
+datetime: 2026-07-29 22:08:08 UTC
 environment:
   TERM: xterm
   TERM_PROGRAM: mintty
@@ -7,7 +7,7 @@ environment:
 height: 24
 preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 35.3479527999998
+seconds_elapsed: 17.682119899999975
 session_arguments:
   all: false
   limit_category_time: 0
@@ -43,6 +43,7 @@ terminal_results:
     - 28
     - 32
     - 42
+    raw: "\e[?61;6;7;21;22;23;24;28;32;42c"
     service_class: 61
   height: 24
   iterm2_features:
@@ -143,7 +144,7 @@ terminal_results:
   xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 3
         measured_by_wcwidth: 1
@@ -623,7 +624,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 426
@@ -26242,5 +26243,5 @@ test_results:
       n_errors: 202
       n_total: 506
       pct_success: 60.079051383399204
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.3
 width: 80
