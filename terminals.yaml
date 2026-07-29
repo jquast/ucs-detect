@@ -388,10 +388,10 @@ terminals:
     timeout: 14400
   xterm:
     homepage: https://invisible-island.net/xterm/
-    sixel_support_notes: Sixel support can be enabled with argument ``-ti 340``.
+    sixel_support_notes: Sixel support is enabled by CLI argument, E.g. ``xterm -rv -ti vt340``.
     launch:
       program: xterm
-      args: [-fa, Unifont, -fs, '16', -rv, -e]
+      args: [-fa, Unifont, -fs, '16', -rv, -ti, vt340, -e]
   zutty:
     homepage: https://tomscii.sig7.se/zutty/
     version_template: '{aur_version}'

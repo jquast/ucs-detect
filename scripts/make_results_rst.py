@@ -1092,6 +1092,14 @@ def _format_features_summary(entry):
     )
 
 
+def _sixel_support_notes_for(sw_name):
+    """Return True if *sw_name* has ``sixel_support_notes`` in terminals.yaml."""
+    terminal_mixins = load_mixins()
+    sw_name_lower = sw_name.lower()
+    return (sw_name_lower in terminal_mixins
+            and 'sixel_support_notes' in terminal_mixins[sw_name_lower])
+
+
 def _format_graphics_protocols(entry, sw_name):
     """
     Format detected graphics protocols as a comma-joined list with color scoring.
@@ -1105,7 +1113,10 @@ def _format_graphics_protocols(entry, sw_name):
 
     protocols = []
     if tr.get("sixel", False):
-        protocols.append("Sixel")
+        sixel_label = "Sixel"
+        if _sixel_support_notes_for(sw_name):
+            sixel_label += " †"
+        protocols.append(sixel_label)
     da_ext = tr.get("device_attributes", {}).get("extensions", [])
     if 3 in da_ext:
         protocols.append("ReGIS")
@@ -1263,6 +1274,25 @@ def display_tabulated_scores(score_table):
         print()
         print('.. _`Kitty Text Sizing protocol`: '
               'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
+        print()
+
+    has_any_sixel_notes = any(
+        _sixel_support_notes_for(e["terminal_software_name"])
+        for e in score_table
+        if e["data"].get("terminal_results", {}).get("sixel", False)
+    )
+    if has_any_sixel_notes:
+        sixel_mixins = load_mixins()
+        sixel_note_terminals = [
+            e["terminal_software_name"]
+            for e in score_table
+            if (e["data"].get("terminal_results", {}).get("sixel", False)
+                and _sixel_support_notes_for(e["terminal_software_name"]))
+        ]
+        for sw_name in sixel_note_terminals:
+            notes = sixel_mixins[sw_name.lower()]['sixel_support_notes']
+            print()
+            print(f"† *{sw_name}*: {notes}")
         print()
 
     display_table_definitions()
@@ -3078,7 +3108,10 @@ def show_graphics_results(sw_name, entry):
 
     protocols = []
     if sixel_supported:
-        protocols.append("Sixel_")
+        sixel_label = "Sixel_"
+        if _sixel_support_notes_for(sw_name):
+            sixel_label = "Sixel_ \u2020"
+        protocols.append(sixel_label)
     if regis_supported:
         protocols.append("ReGIS_")
     if iterm2_supported:
@@ -3093,13 +3126,8 @@ def show_graphics_results(sw_name, entry):
         print(f"*{sw_name}* does not report support for any graphics protocols.")
     print()
 
-    # Load terminal mixins for sixel notes
-    terminal_mixins = load_mixins()
-    sw_name_lower = entry["terminal_software_name"].lower()
-    has_notes = (sw_name_lower in terminal_mixins and
-                 'sixel_support_notes' in terminal_mixins[sw_name_lower])
-    if has_notes:
-        notes = terminal_mixins[sw_name_lower]['sixel_support_notes']
+    if _sixel_support_notes_for(sw_name):
+        notes = load_mixins()[sw_name.lower()]['sixel_support_notes']
         print(f"**Note:** {notes}")
         print()
 
@@ -3311,6 +3339,7 @@ def show_kitty_keyboard_results(sw_name, entry):
         return
 
     print(f"*{sw_name}* supports the `Kitty keyboard protocol`_.")
+    print()
 
     flags = [
         ("disambiguate", "Disambiguate escape codes"),
