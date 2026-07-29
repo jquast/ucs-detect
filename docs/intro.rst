@@ -288,7 +288,7 @@ Updating ucs-detect
 -------------------
 
 ucs-detect contains auto-generated tables of codepoints and grapheme sequences derived from
-Unicode.org, UDHR data, and python wcwidth code. Therefor, ucs-detect tables should be updated
+Unicode.org, UDHR data, and python wcwidth code. Therefore, ucs-detect tables should be updated
 anytime:
 
 - new release or revisions of unicode.org data files
