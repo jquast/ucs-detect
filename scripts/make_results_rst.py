@@ -3011,8 +3011,7 @@ def show_device_attributes(sw_name, entry):
     extensions = da.get("extensions", [])
 
     if raw:
-        escaped = raw.replace('\x1b', 'ESC ')
-        print(f"- **Raw response:** ``{escaped}``")
+        print(f"- **Raw response:** ``{repr(raw)}``")
     if service_class is not None:
         sc_name = SERVICE_CLASS_NAMES.get(service_class, f"Unknown Class {service_class}")
         print(f"- **Service class:** {service_class} ({sc_name})")

@@ -1,28 +1,43 @@
 ambiguous_width: 1
-datetime: 2026-06-08 04:39:10 UTC
+datetime: 2026-07-29 18:40:02 UTC
 environment:
   TERM: xterm
 height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.5
+python_version: 3.14.6
 resource_profile:
   cpu_pct:
-  - 2.0
-  - 21.0
-  - 28.0
+  - 4.0
+  - 0.0
+  - 16.0
+  - 24.9
+  - 23.0
+  - 24.0
+  - 23.8
+  - 16.9
   elapsed_s:
-  - 1.0009014790412039
-  - 2.0027745929546654
-  - 3.0040911310352385
+  - 1.001987463037949
+  - 2.0040806230390444
+  - 3.0062147270073183
+  - 4.008156966010574
+  - 5.010302216047421
+  - 6.012211187044159
+  - 7.018330346036237
+  - 8.024600588018075
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 13961408
+    ram_total_kb: 15509692
   rss_mb:
-  - 20.17578125
-  - 28.23828125
-  - 28.3359375
-seconds_elapsed: 1.8205712579656392
+  - 20.359375
+  - 20.359375
+  - 26.35546875
+  - 27.84765625
+  - 28.5
+  - 28.51171875
+  - 28.52734375
+  - 28.52734375
+seconds_elapsed: 5.2251655390136875
 session_arguments:
   all: false
   limit_category_time: 0
@@ -71,6 +86,7 @@ terminal_results:
     - 21
     - 22
     - 28
+    raw: "\e[?64;1;2;6;9;15;17;18;21;22;28c"
     service_class: 64
   foreground_color_hex: '#ffffffffffff'
   foreground_color_rgb:
@@ -219,7 +235,7 @@ terminal_results:
   xtversion_raw: XTerm(410)
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -699,7 +715,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10790,5 +10806,5 @@ test_results:
       n_errors: 26
       n_total: 506
       pct_success: 94.86166007905138
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.2
 width: 80

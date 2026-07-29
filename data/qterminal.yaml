@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-08 04:48:58 UTC
+datetime: 2026-07-29 18:38:02 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -8,52 +8,64 @@ preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 33.4
+  - 46.4
+  - 34.0
+  - 1.0
   - 0.0
-  - 0.0
-  - 9.6
-  - 35.4
+  - 5.3
+  - 37.5
+  - 32.3
+  - 40.2
+  - 37.1
+  - 53.9
+  - 41.2
+  - 50.0
+  - 27.4
+  - 30.3
   - 38.3
-  - 34.4
-  - 51.2
-  - 49.1
-  - 38.7
-  - 31.5
-  - 38.5
-  - 28.6
+  - 35.7
+  - 33.4
   elapsed_s:
-  - 1.0305548120522872
-  - 2.0496853060321882
-  - 3.069457688019611
-  - 4.118819067021832
-  - 5.467084089061245
-  - 6.483400496072136
-  - 7.502054292010143
-  - 8.51858924201224
-  - 9.533604438998736
-  - 10.551931043039076
-  - 11.715846359031275
-  - 12.730310550075956
-  - 13.74390086706262
+  - 0.03812919504707679
+  - 1.0597533750114962
+  - 2.0900366170099005
+  - 3.1183431620011106
+  - 4.151115409040358
+  - 5.280598686018493
+  - 6.316520792024676
+  - 7.337603696039878
+  - 8.356862666027155
+  - 9.379820103000384
+  - 10.400359451014083
+  - 11.419700903992634
+  - 12.439731224032585
+  - 13.460603140993044
+  - 14.482846489001531
+  - 15.502371570037212
+  - 16.539302801014856
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 13961408
+    ram_total_kb: 15509692
   rss_mb:
-  - 45.703125
-  - 45.734375
-  - 45.73828125
-  - 56.93359375
-  - 67.9140625
-  - 71.16796875
-  - 75.6640625
-  - 86.109375
-  - 93.828125
-  - 103.34375
-  - 105.75
-  - 110.8203125
-  - 115.60546875
-seconds_elapsed: 9.293115606997162
+  - 10.1484375
+  - 46.00390625
+  - 46.0234375
+  - 46.0234375
+  - 52.328125
+  - 67.796875
+  - 69.58984375
+  - 73.81640625
+  - 79.08203125
+  - 88.828125
+  - 93.6328125
+  - 102.5234375
+  - 105.734375
+  - 107.12890625
+  - 111.4921875
+  - 115.9296875
+  - 81.3671875
+seconds_elapsed: 11.802267135994043
 session_arguments:
   all: true
   limit_category_time: 0
@@ -76,6 +88,7 @@ terminal_results:
   device_attributes:
     extensions:
     - 2
+    raw: "\e[?1;2c"
     service_class: 1
   height: 21
   iterm2_features:
@@ -3509,12 +3522,12 @@ test_results:
     Chinese, Mandarin (Beijing):
       failed: []
       n_errors: 0
-      n_total: 514
+      n_total: 513
       pct_success: 100.0
     Chinese, Mandarin (Guiyang):
       failed: []
       n_errors: 0
-      n_total: 505
+      n_total: 504
       pct_success: 100.0
     Chinese, Mandarin (Harbin):
       failed: []
@@ -3524,17 +3537,17 @@ test_results:
     Chinese, Mandarin (Nanjing):
       failed: []
       n_errors: 0
-      n_total: 502
+      n_total: 501
       pct_success: 100.0
     Chinese, Mandarin (Simplified):
       failed: []
       n_errors: 0
-      n_total: 532
+      n_total: 531
       pct_success: 100.0
     Chinese, Mandarin (Tianjin):
       failed: []
       n_errors: 0
-      n_total: 512
+      n_total: 511
       pct_success: 100.0
     Chinese, Mandarin (Traditional):
       failed: []
@@ -9149,5 +9162,5 @@ test_results:
       n_errors: 16
       n_total: 5000
       pct_success: 99.68
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.2
 width: 94

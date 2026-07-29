@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-06-05 17:31:48 UTC
+datetime: 2026-07-29 18:48:34 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: vscode
-  TERM_PROGRAM_VERSION: 1.123.0
-height: 28
+  TERM_PROGRAM_VERSION: 1.131.0
+height: 53
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 127.87258933205158
+seconds_elapsed: 116.83945337601472
 session_arguments:
   all: false
   limit_category_time: 0
@@ -37,19 +37,20 @@ terminal_results:
     decsca: '0'
     decscl: 61;1
     decscusr: '2'
-    decstbm: 1;28
+    decstbm: 1;53
     sgr: '0'
   decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 2
+    raw: "\e[?1;2c"
     service_class: 1
   foreground_color_hex: '#cccccccccccc'
   foreground_color_rgb:
   - 52428
   - 52428
   - 52428
-  height: 28
+  height: 53
   iterm2_features:
     features: {}
     supported: false
@@ -135,10 +136,10 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 560
-  pixels_width: 1584
-  screen_ratio: '21:9'
-  screen_ratio_name: UWHD
+  pixels_height: 1060
+  pixels_width: 1576
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: false
   software_method: XTVERSION
   software_name: xterm.js
@@ -149,16 +150,16 @@ terminal_results:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 198
+  width: 197
   xtgettcap:
     capabilities: {}
     supported: false
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: xterm.js(6.1.0-beta.220)
+  xtversion_raw: xterm.js(6.1.0-beta.291)
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -638,7 +639,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10519,6 +10520,21 @@ test_results:
       n_errors: 0
       n_total: 8
       pct_success: 100.0
+  narrow_results:
+    17.0.0:
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \xad
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f93b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \U0001f946
+      n_errors: 3
+      n_total: 187
+      pct_success: 98.3957219251337
   ri_results:
     17.0.0:
       failed_codepoints: []
@@ -11343,9 +11359,6 @@ test_results:
         wchar: \U0001f6d7
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchar: \U0001f6d8
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
         wchar: \U0001f6dc
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -11440,12 +11453,6 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fa89
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001fa8a
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001fa8e
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fa8f
@@ -11598,12 +11605,6 @@ test_results:
         wchar: \U0001fac6
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchar: \U0001fac8
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001facd
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
         wchar: \U0001face
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -11682,12 +11683,6 @@ test_results:
         wchar: \U0001fae9
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchar: \U0001faea
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: \U0001faef
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
         wchar: \U0001faf0
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -11713,8 +11708,8 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001faf8
-      n_errors: 365
-      n_total: 553
-      pct_success: 33.99638336347197
-wcwidth_version: 0.8.0
-width: 198
+      n_errors: 358
+      n_total: 506
+      pct_success: 29.249011857707508
+wcwidth_version: 0.8.3
+width: 197
