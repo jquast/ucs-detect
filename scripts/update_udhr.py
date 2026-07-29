@@ -155,14 +155,6 @@ def main():
     if errors > 0:
         print(f"Errors: {errors} files", file=sys.stderr)
 
-    # Apply encoding fixes for known issues in upstream XML
-    print("\nApplying encoding fixes...")
-    try:
-        import fix_udhr_data  # pylint: disable=import-error
-        fix_udhr_data.main()
-    except ImportError:
-        print("fix_udhr_data module not available, skipping encoding fixes.")
-
     return errors
 
 
