@@ -60,6 +60,14 @@ DATA_PATH = os.path.join(_ROOT, "data")
 PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
+CONPTY_DA_CAVEAT_LINES = (
+    "On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or "
+    "OpenConsole.exe) for MSYS2_ or Cygwin_ programs.  The DA1 response "
+    "reflects **conhost.exe's capabilities** and not necessarily the "
+    "terminal emulator's.",
+)
+
+
 
 SERVICE_CLASS_NAMES = {
     1: "VT100",
@@ -740,6 +748,8 @@ def display_common_hyperlinks():
     print(".. _`XTGETTCAP`: https://codeberg.org/dnkl/foot#xtgettcap")
     print(".. _`Truecolor`: https://github.com/termstandard/colors/blob/master/README.md")
     print(".. _`Kitty graphics`: https://sw.kovidgoyal.net/kitty/graphics-protocol/")
+    print(".. _MSYS2: https://www.msys2.org/")
+    print(".. _Cygwin: https://www.cygwin.com/")
 
 
 def make_link(text):
@@ -2056,13 +2066,8 @@ def display_da1_response_section(score_table):
         print()
         print(".. warning::")
         print()
-        print("   On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or OpenConsole.exe)")
-        print("   for all MSYS2_ or Cygwin_ programs.  The DA1 response reflects **conhost.exe's")
-        print("   capabilities** and not necessarily the terminal emulator's.")
-        print("   DA1 is not a reliable indicator of terminal feature support with ConPTY.")
-        print()
-        print(".. _MSYS2: https://www.msys2.org/")
-        print(".. _Cygwin: https://www.cygwin.com/")
+        for line in CONPTY_DA_CAVEAT_LINES:
+            print(f"   {line}")
         print()
 
     print(".. _`Device Attributes`: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html")
@@ -3051,6 +3056,13 @@ def show_device_attributes(sw_name, entry):
         print()
     else:
         print("No extensions reported.")
+        print()
+
+    if _is_conpty_interposed(entry["data"]):
+        print(".. note::")
+        print()
+        for line in CONPTY_DA_CAVEAT_LINES:
+            print(f"   {line}")
         print()
 
 
