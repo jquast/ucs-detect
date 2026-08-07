@@ -142,6 +142,7 @@ def maybe_determine_da_and_sixel(term, timeout=1.0):
 
     if da is not None:
         result['device_attributes'] = {
+            'raw': da.raw,
             'service_class': da.service_class,
             'extensions': sorted(da.extensions),
         }

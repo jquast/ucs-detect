@@ -1,11 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-06-08 04:49:52 UTC
+datetime: 2026-07-29 19:07:08 UTC
 environment:
   TERM: xterm
 height: 24
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 47.10507668799255
+seconds_elapsed: 27.150890371005516
 session_arguments:
   all: false
   limit_category_time: 0
@@ -17,7 +17,7 @@ session_arguments:
   timeout_cps: 1.0
 software_name: TeraTerm
 software_version: 5.6.0
-system: Linux
+system: Windows
 terminal_results:
   background_color_hex: '#000000000000'
   background_color_rgb:
@@ -42,6 +42,7 @@ terminal_results:
   device_attributes:
     extensions:
     - 2
+    raw: "\e[?1;2c"
     service_class: 1
   foreground_color_hex: '#ffffffffffff'
   foreground_color_rgb:
@@ -149,7 +150,7 @@ terminal_results:
   xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -629,7 +630,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -6680,5 +6681,5 @@ test_results:
       n_errors: 31
       n_total: 506
       pct_success: 93.87351778656127
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.3
 width: 80

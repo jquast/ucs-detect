@@ -1,26 +1,29 @@
 ambiguous_width: 1
-datetime: 2026-06-08 04:39:53 UTC
+datetime: 2026-07-29 18:38:27 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
 height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.5
+python_version: 3.14.6
 resource_profile:
   cpu_pct:
-  - 28.9
-  - 22.9
+  - 8.0
+  - 26.9
+  - 29.9
   elapsed_s:
-  - 1.0030964689794928
-  - 2.0049722640542313
+  - 1.0036165080382489
+  - 2.0055702319950797
+  - 3.0079898789990693
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 13961408
+    ram_total_kb: 15509692
   rss_mb:
-  - 122.04296875
-  - 123.1015625
-seconds_elapsed: 2.1441276310943067
+  - 115.19921875
+  - 119.81640625
+  - 120.73046875
+seconds_elapsed: 2.466740076954011
 session_arguments:
   all: false
   limit_category_time: 0
@@ -50,8 +53,8 @@ terminal_results:
     decslrm: 1;80
     decsnls: '24'
     decstbm: 1;24
-    sgr: 0;
-  decrqss_truecolor_probe: false
+    sgr: '0'
+  decrqss_truecolor_probe: true
   device_attributes:
     extensions:
     - 1
@@ -63,6 +66,7 @@ terminal_results:
     - 21
     - 22
     - 28
+    raw: "\e[?64;1;6;8;9;15;17;21;22;28c"
     service_class: 64
   height: 24
   iterm2_features:
@@ -171,14 +175,117 @@ terminal_results:
   ttype: xterm-256color
   width: 80
   xtgettcap:
-    capabilities: {}
-    supported: false
+    capabilities:
+      RGB: '8'
+      Su: ''
+      Sync: ''
+      TN: xterm-256color
+      Tc: ''
+      am: ''
+      bce: ''
+      bel: "\a"
+      blink: "\e[5m"
+      bold: "\e[1m"
+      ccc: ''
+      civis: "\e[?25l"
+      clear: "\e[H\e[2J"
+      cnorm: "\e[?25h"
+      colors: '256'
+      cols: '80'
+      cr: "\r"
+      csr: "\e[%i%p1%d;%p2%dr"
+      cub: "\e[%p1%dD"
+      cub1: "\b"
+      cud: "\e[%p1%dB"
+      cud1: '
+
+        '
+      cuf: "\e[%p1%dC"
+      cuf1: "\e[C"
+      cup: "\e[%i%p1%d;%p2%dH"
+      cuu: "\e[%p1%dA"
+      cuu1: "\e[A"
+      cvvis: "\e[?25h"
+      dch: "\e[%p1%dP"
+      dch1: "\e[P"
+      dim: "\e[2m"
+      dl: "\e[%p1%dM"
+      dl1: "\e[M"
+      ech: "\e[%p1%dX"
+      ed: "\e[J"
+      el: "\e[K"
+      el1: "\e[1K"
+      home: "\e[H"
+      hpa: "\e[%i%p1%d`"
+      ht: "\t"
+      hts: "\eH"
+      ich: "\e[%p1%d@"
+      il: "\e[%p1%dL"
+      il1: "\e[L"
+      ind: "\eD"
+      indn: "\e[%p1%dS"
+      invis: "\e[8m"
+      kbs: "\x7F"
+      kcub1: "\e[D"
+      kcud1: "\e[B"
+      kcuf1: "\e[C"
+      kcuu1: "\e[A"
+      kdch1: "\e[3~"
+      kend: "\e[F"
+      kf1: "\eOP"
+      kf10: "\e[21~"
+      kf11: "\e[23~"
+      kf12: "\e[24~"
+      kf2: "\eOQ"
+      kf3: "\eOR"
+      kf4: "\eOS"
+      kf5: "\e[15~"
+      kf6: "\e[17~"
+      kf7: "\e[18~"
+      kf8: "\e[19~"
+      kf9: "\e[20~"
+      khome: "\e[H"
+      kich1: "\e[2~"
+      knp: "\e[6~"
+      kpp: "\e[5~"
+      lines: '24'
+      mir: ''
+      msgr: ''
+      nel: "\eE"
+      op: "\e[39;49m"
+      pairs: '32767'
+      rc: "\e8"
+      rev: "\e[7m"
+      ri: "\eM"
+      rin: "\e[%p1%dT"
+      ritm: "\e[23m"
+      rmam: "\e[?7l"
+      rmcup: "\e[?1049l"
+      rmir: "\e[4l"
+      rmkx: "\e[?1l\e>"
+      rmul: "\e[24m"
+      rs1: "\ec"
+      rs2: "\e[!p"
+      sc: "\e7"
+      setab: "\e[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p1%d%;m"
+      setaf: "\e[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1%d%;m"
+      sgr0: "\e[m"
+      sitm: "\e[3m"
+      smam: "\e[?7h"
+      smcup: "\e[?1049h"
+      smir: "\e[4h"
+      smkx: "\e[?1h\e="
+      smul: "\e[4m"
+      tbc: "\e[3g"
+      vpa: "\e[%i%p1%dd"
+      xenl: ''
+    supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: Bobcat 0.9.9 (r4)
+  xtversion_raw: Bobcat 0.9.9 (r5)
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 3
         measured_by_wcwidth: 1
@@ -658,7 +765,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 426
@@ -5605,49 +5712,153 @@ test_results:
       pct_success: 100.0
     Burmese:
       failed:
-      - grapheme_id: Burmese-2-06
-        measured_by_terminal: 3
+      - grapheme_id: Burmese-2-02
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1000\u103b\u1031
-      - grapheme_id: Burmese-2-0c
-        measured_by_terminal: 3
+        wchars: \u1000\u103a\u103b
+      - grapheme_id: Burmese-2-03
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1000\u103c\u1031
-      - grapheme_id: Burmese-2-0e
-        measured_by_terminal: 3
+        wchars: \u1000\u103b
+      - grapheme_id: Burmese-2-04
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1000\u103c\u103d\u1031
-      - grapheme_id: Burmese-2-16
-        measured_by_terminal: 3
+        wchars: \u1000\u103b\u102d\u102f
+      - grapheme_id: Burmese-2-05
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1001\u103b\u1031
-      - grapheme_id: Burmese-2-19
-        measured_by_terminal: 3
+        wchars: \u1000\u103b\u1030
+      - grapheme_id: Burmese-2-07
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1001\u103c\u1031
-      - grapheme_id: Burmese-2-33
-        measured_by_terminal: 3
+        wchars: \u1000\u103b\u103d
+      - grapheme_id: Burmese-2-08
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1015\u103b\u1031
-      - grapheme_id: Burmese-2-37
-        measured_by_terminal: 3
+        wchars: \u1000\u103c
+      - grapheme_id: Burmese-2-09
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1015\u103c\u1031
-      - grapheme_id: Burmese-2-44
-        measured_by_terminal: 3
+        wchars: \u1000\u103c\u102d\u102f
+      - grapheme_id: Burmese-2-0a
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1019\u103c\u1031
-      - grapheme_id: Burmese-2-52
-        measured_by_terminal: 3
+        wchars: \u1000\u103c\u102e
+      - grapheme_id: Burmese-2-0b
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u101c\u103b\u1031
-      - grapheme_id: Burmese-2-55
-        measured_by_terminal: 3
+        wchars: \u1000\u103c\u102f
+      - grapheme_id: Burmese-2-0d
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u101c\u103b\u103e\u1031
-      n_errors: 10
+        wchars: \u1000\u103c\u1036
+      - grapheme_id: Burmese-2-10
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1001\u103b
+      - grapheme_id: Burmese-2-11
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1001\u103b\u102d
+      - grapheme_id: Burmese-2-12
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1001\u103b\u102d\u102f
+      - grapheme_id: Burmese-2-13
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1001\u103b\u102d\u102f\u1037
+      - grapheme_id: Burmese-2-14
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1001\u103b\u102e
+      - grapheme_id: Burmese-2-15
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1001\u103b\u102f
+      - grapheme_id: Burmese-2-17
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1001\u103c
+      - grapheme_id: Burmese-2-18
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1001\u103c\u102f\u1036
+      - grapheme_id: Burmese-2-1d
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1004\u103c
+      - grapheme_id: Burmese-2-1e
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1004\u103c\u102d
+      - grapheme_id: Burmese-2-32
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1015\u103b
+      - grapheme_id: Burmese-2-34
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1015\u103c
+      - grapheme_id: Burmese-2-35
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1015\u103c\u102e
+      - grapheme_id: Burmese-2-36
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1015\u103c\u102f
+      - grapheme_id: Burmese-2-39
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1016\u103b
+      - grapheme_id: Burmese-2-3a
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1016\u103c
+      - grapheme_id: Burmese-2-3b
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1016\u103c\u102d\u102f
+      - grapheme_id: Burmese-2-40
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1019\u103b
+      - grapheme_id: Burmese-2-41
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1019\u103b\u102d\u102f
+      - grapheme_id: Burmese-2-42
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1019\u103b\u103e
+      - grapheme_id: Burmese-2-43
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1019\u103c
+      - grapheme_id: Burmese-2-45
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1019\u103c\u103e
+      - grapheme_id: Burmese-2-4a
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101a\u103b
+      - grapheme_id: Burmese-2-51
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101c\u103b
+      - grapheme_id: Burmese-2-53
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101c\u103b\u103e
+      - grapheme_id: Burmese-2-54
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101c\u103b\u103e\u102d\u102f\u1037
+      n_errors: 36
       n_total: 223
-      pct_success: 95.51569506726457
+      pct_success: 83.85650224215246
     Catalan (2):
       failed: []
       n_errors: 0
@@ -8861,18 +9072,54 @@ test_results:
       pct_success: 100.0
     Mon:
       failed:
-      - grapheme_id: Mon-2-0d
-        measured_by_terminal: 3
+      - grapheme_id: Mon-2-06
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1007\u103c\u1031
+        wchars: \u1001\u103b\u1033
+      - grapheme_id: Mon-2-07
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1002\u103b\u102d\u102f
+      - grapheme_id: Mon-2-0c
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1007\u103c
+      - grapheme_id: Mon-2-0e
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1007\u103c\u1033
+      - grapheme_id: Mon-2-13
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1010\u103c
+      - grapheme_id: Mon-2-14
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1010\u103c\u102f\u1036
       - grapheme_id: Mon-2-19
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1012\u1039\u1002\u1031
-      - grapheme_id: Mon-2-22
-        measured_by_terminal: 3
+      - grapheme_id: Mon-2-1a
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1016\u103b\u1031\u1036
+        wchars: \u1012\u103c
+      - grapheme_id: Mon-2-1e
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1015\u103b\u1032
+      - grapheme_id: Mon-2-1f
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1015\u103c\u1033
+      - grapheme_id: Mon-2-20
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1015\u103c\u1036
+      - grapheme_id: Mon-2-21
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1016\u103b\u102f
       - grapheme_id: Mon-2-23
         measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -8881,17 +9128,45 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1017\u1039\u105c\u1031
-      - grapheme_id: Mon-2-26
-        measured_by_terminal: 3
+      - grapheme_id: Mon-2-25
+        measured_by_terminal: 1
         measured_by_wcwidth: 2
-        wchars: \u1017\u103c\u1031
+        wchars: \u1017\u103b\u1035\u102f
+      - grapheme_id: Mon-2-27
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1017\u103c\u1034
+      - grapheme_id: Mon-2-2c
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u1019\u103b\u102e\u102f
+      - grapheme_id: Mon-2-2e
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101a\u103b\u1035\u102f
+      - grapheme_id: Mon-2-2f
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101a\u103c\u1034
+      - grapheme_id: Mon-2-34
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101c\u103b\u102d\u102f
       - grapheme_id: Mon-2-39
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u101e\u1039\u1002\u1031
-      n_errors: 7
+      - grapheme_id: Mon-2-3e
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101e\u103c
+      - grapheme_id: Mon-2-3f
+        measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchars: \u101e\u103c\u102d\u102f
+      n_errors: 23
       n_total: 208
-      pct_success: 96.63461538461539
+      pct_success: 88.9423076923077
     Mòoré:
       failed: []
       n_errors: 0
@@ -10800,5 +11075,5 @@ test_results:
       n_errors: 11
       n_total: 506
       pct_success: 97.82608695652173
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.2
 width: 80

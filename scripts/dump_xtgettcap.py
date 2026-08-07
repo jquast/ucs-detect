@@ -6,7 +6,7 @@ import yaml
 
 def main():
     """Dump all XTGETTCAP terminfo capability names for each terminal."""
-    data_dir = Path(__file__).resolve().parent / "data"
+    data_dir = Path(__file__).resolve().parent.parent / "data"
     yaml_files = sorted(data_dir.glob("*.yaml"))
 
     results = []

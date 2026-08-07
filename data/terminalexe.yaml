@@ -1,10 +1,10 @@
 ambiguous_width: 1
-datetime: 2026-06-08 07:48:51 UTC
+datetime: 2026-07-29 22:05:43 UTC
 environment: {}
-height: 33
+height: 50
 preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 37.393803899999966
+seconds_elapsed: 20.75592089999998
 session_arguments:
   all: false
   limit_category_time: 0
@@ -33,8 +33,8 @@ terminal_results:
     decsace: '1'
     decsca: '0'
     decscusr: '5'
-    decslrm: 1;120
-    decstbm: 1;33
+    decslrm: 1;183
+    decstbm: 1;50
     sgr: 0;38:2::12:12:12
   decrqss_truecolor_probe: false
   device_attributes:
@@ -51,18 +51,25 @@ terminal_results:
     - 32
     - 42
     - 52
+    raw: "\e[?61;4;6;7;14;21;22;23;24;28;32;42;52c"
     service_class: 61
   foreground_color_hex: '#cccccccccccc'
   foreground_color_rgb:
   - 52428
   - 52428
   - 52428
-  height: 33
+  height: 50
   iterm2_features:
     features: {}
     supported: false
   kitty_clipboard_protocol: false
   kitty_graphics: false
+  kitty_keyboard:
+    disambiguate: false
+    report_all_keys: false
+    report_alternates: false
+    report_events: false
+    report_text: false
   kitty_notifications: false
   kitty_pointer_shapes: false
   kitty_query: false
@@ -136,8 +143,8 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: false
-  pixels_height: 660
-  pixels_width: 1200
+  pixels_height: 1000
+  pixels_width: 1830
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
@@ -149,7 +156,7 @@ terminal_results:
     scale: false
     width: false
   ttype: ms-terminal
-  width: 120
+  width: 183
   xtgettcap:
     capabilities: {}
     supported: false
@@ -157,7 +164,7 @@ terminal_results:
   xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -637,7 +644,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 426
@@ -3075,4 +3082,4 @@ test_results:
       n_total: 506
       pct_success: 93.87351778656127
 wcwidth_version: 0.8.1
-width: 120
+width: 183

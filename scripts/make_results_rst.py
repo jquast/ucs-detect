@@ -59,7 +59,52 @@ EXAMPLE_FILES_DIR = os.path.join(_ROOT, 'docs', 'ucs_example_files')
 DATA_PATH = os.path.join(_ROOT, "data")
 PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
-LINK_REGEX = re.compile(r'[^a-zA-Z0-9]')
+LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
+CONPTY_DA_CAVEAT_LINES = (
+    "† On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or "
+    "OpenConsole.exe) for MSYS2_ or Cygwin_ programs.  The DA1 response "
+    "reflects **conhost.exe's capabilities** and not necessarily the "
+    "terminal emulator's.",
+)
+
+SERVICE_CLASS_NAMES = {
+    1: "VT100",
+    2: "VT200",
+    6: "Level 4 (no VT class)",
+    18: "VT330",
+    41: "VT420",
+    61: "VT510",
+    62: "VT520",
+    63: "VT320",
+    64: "VT420",
+    65: "VT525",
+}
+
+DA1_EXTENSION_NAMES = {
+    1: "132-column mode",
+    2: "Printer port",
+    3: "ReGIS graphics",
+    4: "Sixel graphics",
+    6: "Selective erase",
+    7: "Soft character sets (DRCS)",
+    8: "User-defined keys (UDK)",
+    9: "National replacement charsets",
+    12: "Yugoslavian, Serbian/Croatian (SCS)",
+    14: "Advanced video option",
+    15: "Technical character set",
+    17: "Terminal state reports (16-bit)",
+    18: "User windows",
+    21: "Horizontal scrolling",
+    22: "ANSI color",
+    23: "Greek",
+    24: "Turkish",
+    28: "Rectangular area operations",
+    29: "Text locator (mouse)",
+    32: "ANSI text terminal (Level 3)",
+    42: "ISO Latin-2 character set",
+    52: "OSC 52 clipboard",
+    314: "Pixel geometry",
+}
 
 # Mapping from test category to example file basename.
 # Language failures use ucs_graphemes_{width}.txt, resolved at lookup time.
@@ -188,6 +233,8 @@ def generate_score_css():
         css_lines.append(f'.{class_name} {{ background-color: rgb({r}, {g}, {b}); }}')
     css_lines.append('.score-contested { background-color: rgb(220, 220, 220); }')
     css_lines.append('.score-warn { background-color: rgb(255, 255, 150); }')
+    css_lines.append('.score-pass { background-color: rgb(193, 242, 193); }')
+    css_lines.append('.score-fail { background-color: rgb(242, 193, 193); }')
     css_lines.append('.score-na { background-color: rgb(220, 220, 220); }')
     return '\n'.join(css_lines)
 
@@ -215,6 +262,10 @@ def generate_score_roles():
     # Add role for warn scores (yellow, COLORTERM-only detection)
     lines.append('.. role:: score-warn')
     lines.append('   :class: score-warn')
+    lines.append('')
+    # Add role for pass scores (green, feature present)
+    lines.append('.. role:: score-pass')
+    lines.append('   :class: score-pass')
     lines.append('')
     # Add role for fail scores (red, no identification method available)
     lines.append('.. role:: score-fail')
@@ -567,6 +618,7 @@ def main():
         display_features_table(score_table)
         display_truecolor_table(score_table)
         display_osc52_table(score_table)
+        display_da1_response_section(score_table)
         display_id_table(score_table, terminal_mixins)
         display_id_summary_bullets(score_table, terminal_mixins)
         display_xtgettcap_summary_bullets(score_table)
@@ -598,6 +650,7 @@ def main():
             show_sfz_results(sw_name, entry)
             show_ri_results(sw_name, entry)
             show_graphics_results(sw_name, entry)
+            show_device_attributes(sw_name, entry)
             show_language_results(sw_name, entry)
             show_dec_modes_results(sw_name, entry)
             show_kitty_keyboard_results(sw_name, entry)
@@ -693,6 +746,8 @@ def display_common_hyperlinks():
     print(".. _`XTGETTCAP`: https://codeberg.org/dnkl/foot#xtgettcap")
     print(".. _`Truecolor`: https://github.com/termstandard/colors/blob/master/README.md")
     print(".. _`Kitty graphics`: https://sw.kovidgoyal.net/kitty/graphics-protocol/")
+    print(".. _MSYS2: https://www.msys2.org/")
+    print(".. _Cygwin: https://www.cygwin.com/")
 
 
 def make_link(text):
@@ -897,7 +952,8 @@ def make_score_table():
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
-            (entry["score_emoji_vs15"], 1.0),
+            # VS-15 excluded from final score - interpretation is contested,
+            # see https://github.com/jquast/wcwidth/issues/211
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
             (entry["score_narrow"], 1.0),
@@ -1017,6 +1073,16 @@ def _classify_xtgettcap(data):
     return ("partial", 0.5)
 
 
+def _classify_kitty_keyboard(tr):
+    """Classify Kitty keyboard state: full (any flag set) / partial (all False) / None."""
+    kk = tr.get("kitty_keyboard")
+    if kk is None:
+        return None, 0.0
+    if any(kk.values()):
+        return "full", 1.0
+    return "partial", 0.5
+
+
 def _format_features_summary(entry):
     """Format detected features as scaled score with hyperlink to Score Breakdown."""
     sw_name = entry["terminal_software_name"]
@@ -1024,6 +1090,14 @@ def _format_features_summary(entry):
     return wrap_score_with_hyperlink(
         format_score_int(score), score, sw_name, "_scores"
     )
+
+
+def _sixel_support_notes_for(sw_name):
+    """Return True if *sw_name* has ``sixel_support_notes`` in terminals.yaml."""
+    terminal_mixins = load_mixins()
+    sw_name_lower = sw_name.lower()
+    return (sw_name_lower in terminal_mixins
+            and 'sixel_support_notes' in terminal_mixins[sw_name_lower])
 
 
 def _format_graphics_protocols(entry, sw_name):
@@ -1039,7 +1113,10 @@ def _format_graphics_protocols(entry, sw_name):
 
     protocols = []
     if tr.get("sixel", False):
-        protocols.append("Sixel")
+        sixel_label = "Sixel"
+        if _sixel_support_notes_for(sw_name):
+            sixel_label += " †"
+        protocols.append(sixel_label)
     da_ext = tr.get("device_attributes", {}).get("extensions", [])
     if 3 in da_ext:
         protocols.append("ReGIS")
@@ -1106,49 +1183,47 @@ def display_tabulated_scores(score_table):
                 ),
                 "WIDE": wrap_score_with_hyperlink(
                     format_score_int(result["score_wide_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_wide_scaled"],
                     result["terminal_software_name"],
                     "_wide"
                 ),
                 "NARROW": wrap_score_with_hyperlink(
                     format_score_int(result["score_narrow_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_narrow_scaled"],
                     result["terminal_software_name"],
                     "_narrow"
                 ),
                 "LANG": wrap_score_with_hyperlink(
                     format_score_int(result["score_language_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_language_scaled"],
                     result["terminal_software_name"],
                     "_lang"
                 ),
                 "ZWJ": wrap_score_with_hyperlink(
                     format_score_int(result["score_zwj_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_zwj_scaled"],
                     result["terminal_software_name"],
                     "_zwj"
                 ),
                 "VS16": wrap_score_with_hyperlink(
                     format_score_int(result["score_emoji_vs16_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_emoji_vs16_scaled"],
                     result["terminal_software_name"],
                     "_vs16"
                 ),
-                "VS15": wrap_score_with_hyperlink(
-                    format_score_int(result["score_emoji_vs15_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
-                    result["score_emoji_vs15_scaled"],
+                "VS15": _wrap_id_contested(
+                    format_score_int(result["score_emoji_vs15_scaled"]),
                     result["terminal_software_name"],
                     "_vs15"
                 ),
                 "SRI": (wrap_score_with_hyperlink(
                     format_score_int(result["score_sri_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_sri_scaled"],
                     result["terminal_software_name"],
                     "_sri"
@@ -1156,7 +1231,7 @@ def display_tabulated_scores(score_table):
                     else _wrap_untested(result["terminal_software_name"], "_sri")),
                 "SFZ": (wrap_score_with_hyperlink(
                     format_score_int(result["score_sfz_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_sfz_scaled"],
                     result["terminal_software_name"],
                     "_sfz"
@@ -1164,7 +1239,7 @@ def display_tabulated_scores(score_table):
                     else _wrap_untested(result["terminal_software_name"], "_sfz")),
                 "RI": (wrap_score_with_hyperlink(
                     format_score_int(result["score_ri_scaled"])
-                    + (" \u2020" if result.get("has_text_sizing") else ""),
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["score_ri_scaled"],
                     result["terminal_software_name"],
                     "_ri"
@@ -1191,15 +1266,36 @@ def display_tabulated_scores(score_table):
     has_any_text_sizing = any(e.get("has_text_sizing") for e in score_table)
     if has_any_text_sizing:
         print()
-        print("\u2020 This terminal supports the `Kitty Text Sizing protocol`_,")
+        print("† This terminal supports the `Kitty Text Sizing protocol`_,")
         print("which allows any application to programmatically set character widths,")
         print("remediating width issues for complex languages, emoji, and other")
         print("problematic codepoints. It is scored 100% on WIDE, NARROW, LANG, ZWJ, VS16,")
-        print("VS15, SRI, SFZ, and RI.")
+        print("SRI, SFZ, and RI.")
         print()
         print('.. _`Kitty Text Sizing protocol`: '
               'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
         print()
+
+    has_any_sixel_notes = any(
+        _sixel_support_notes_for(e["terminal_software_name"])
+        for e in score_table
+        if e["data"].get("terminal_results", {}).get("sixel", False)
+    )
+    if has_any_sixel_notes:
+        sixel_mixins = load_mixins()
+        sixel_note_terminals = [
+            e["terminal_software_name"]
+            for e in score_table
+            if (e["data"].get("terminal_results", {}).get("sixel", False)
+                and _sixel_support_notes_for(e["terminal_software_name"]))
+        ]
+        for sw_name in sixel_note_terminals:
+            notes = sixel_mixins[sw_name.lower()]['sixel_support_notes']
+            print()
+            print(f"† *{sw_name}*: {notes}")
+        print()
+
+    display_table_definitions()
 
 
 def display_table_definitions():
@@ -1207,7 +1303,7 @@ def display_table_definitions():
     print("Definitions:\n")
     print(
         "- *FINAL score*: The overall terminal emulator quality score, calculated as\n"
-        "  the weighted average of all feature scores (WIDE, NARROW, LANG, ZWJ, VS16, VS15, SRI, SFZ, RI,\n"
+        "  the weighted average of all feature scores (WIDE, NARROW, LANG, ZWJ, VS16, SRI, SFZ, RI,\n"
         "  DEC Modes, and RESOURCES), then scaled (normalized 0-100%) relative to all terminals tested.\n"
         "  Higher scores indicate better overall Unicode and terminal feature support. DEC Modes and\n"
         "  RESOURCES are normalized to 0-1 range before averaging. RESOURCES and graphics is weighted at 0.5 (half as\n"
@@ -1240,7 +1336,9 @@ def display_table_definitions():
     )
     print(
         "- *VS15 score*: Determined by the number of Emoji using Variation\n"
-        "  Selector-15 supported as narrow characters.\n"
+        "  Selector-15 supported as narrow characters. Note: Interpretation\n"
+        "  of VS15 is `contested <https://github.com/jquast/wcwidth/issues/211>`_\n"
+        "  (excluded from final score).\n"
     )
     print(
         "- *SRI score*: Percentage of standalone Regional Indicator symbols\n"
@@ -1428,18 +1526,6 @@ def score_features(data):
     """
     Calculate score as fraction of notable terminal features supported.
 
-    Checks 16 features: Bracketed Paste (mode 2004), Synced Output (mode 2026),
-    Focus Events (mode 1004), Mouse SGR (mode 1006), Graphemes (mode 2027),
-    Bracketed Paste MIME (mode 5522), Kitty Keyboard, XTGETTCAP, Text Sizing,
-    Kitty Clipboard, OSC 52 Clipboard, Kitty Pointer Shapes, Kitty
-    Notifications, Color Report (OSC 10/11), Terminal Identification, and
-    Truecolor Detection.
-
-    XTGETTCAP, Truecolor Detection, and Terminal Identification each score
-    0.5 for partial support (XTGETTCAP with fewer than 5 meaningful caps;
-    Truecolor detectable only via COLORTERM; Terminal identified only via
-    TERM_PROGRAM environment variable).
-
     :rtype: float
     :returns: fraction 0.0-1.0 of features supported
     """
@@ -1458,8 +1544,9 @@ def score_features(data):
         if mode_key in modes and _mode_is_usable(modes[mode_key]):
             count += 1
 
-    if tr.get("kitty_keyboard") is not None:
-        count += 1
+    _kk_label, kk_score = _classify_kitty_keyboard(tr)
+    if kk_score > 0:
+        count += kk_score
 
     _label, xt_score = _classify_xtgettcap(data)
     if xt_score > 0:
@@ -1610,6 +1697,15 @@ def _detect_osc52_methods(data):
     return methods.get("da1_extension_52", False), methods.get("xtgettcap_ms", False)
 
 
+def _is_conpty_interposed(data):
+    """Check if DA1 response is from ConPTY, and that it isn't from terminal.exe."""
+    if data.get("system") == "Windows":
+        if (data.get("terminal_results") or {}).get("device_attributes", {}).get("service_class") == 61:
+            sw_name = data.get("software_name", "").lower()
+            return sw_name != "windowsterminal"
+    return False
+
+
 def _detect_id_methods(data):
     """Determine which methods can identify the terminal software.
 
@@ -1748,10 +1844,15 @@ def display_features_table(score_table):
             sw_name, suffix)
 
         # Kitty keyboard
-        kitty_kb = tr.get('kitty_keyboard')
-        row["Kitty Keyboard"] = _capability_yes_no(
-            (kitty_kb is not None) if tested else None,
-            sw_name, "_kitty_kbd")
+        kk_label, kk_score = _classify_kitty_keyboard(tr)
+        if not tested:
+            row["Kitty Keyboard"] = _capability_yes_no(None, sw_name, "_kitty_kbd")
+        elif kk_label is None:
+            row["Kitty Keyboard"] = _capability_yes_no(False, sw_name, "_kitty_kbd")
+        else:
+            text = "yes (Full)" if kk_label == "full" else "yes (Partial)"
+            row["Kitty Keyboard"] = wrap_score_with_hyperlink(
+                text, kk_score, sw_name, "_kitty_kbd")
 
         # Graphics protocols
         row["Graphics"] = _format_graphics_protocols(entry, sw_name)
@@ -1880,7 +1981,8 @@ def display_osc52_table(score_table):
     """Display an OSC 52 clipboard detection methods comparison table."""
     display_title("OSC 52 Clipboard Detection", 2)
     print("This table shows which methods can be used to detect `OSC 52`_")
-    print("clipboard support for each terminal emulator.  DA1 extension 52")
+    print("clipboard support for each terminal emulator."
+          "  :ref:`DA1 <deviceattributesresponse>` extension 52")
     print("is the mechanism defined by the vt-extensions spec; `XTGETTCAP`_")
     print("``Ms`` is an alternative capability query that may work on")
     print("terminals not advertising the DA1 extension.")
@@ -1911,6 +2013,93 @@ def display_osc52_table(score_table):
     else:
         print("No OSC 52 detection data available.")
         print()
+
+
+def display_da1_response_section(score_table):
+    """Display a Device Attributes comparison table for the summary page."""
+    display_inbound_hyperlink("device-attributes-response")
+    display_title("Device Attributes", 2)
+    print("This table shows the `Device Attributes`_ (``CSI c``) DEC service")
+    print("class and per-extension feature support for each terminal.")
+    print()
+
+    # Collect all extensions across all terminals and check for ConPTY
+    all_extensions = set()
+    has_conpty = False
+    terminal_data = []
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        tr = entry["data"].get("terminal_results") or {}
+        da = tr.get("device_attributes")
+        if not da:
+            continue
+
+        sc = da.get("service_class")
+        extensions = da.get("extensions", [])
+
+        sc_label = SERVICE_CLASS_NAMES.get(sc, f"Unknown Class {sc}") if sc is not None else "N/A"
+        conpty = _is_conpty_interposed(entry["data"])
+        has_conpty = has_conpty or conpty
+
+        if conpty:
+            label = f":score-warn:`{sc_label} †`"
+        else:
+            label = sc_label
+
+        all_extensions.update(extensions)
+        terminal_data.append({
+            "sw_name": sw_name,
+            "service_class": label,
+            "conpty": conpty,
+            "extensions": set(extensions),
+        })
+
+    if not terminal_data:
+        print("No device attributes data available.")
+        print()
+        return
+
+    # Sort extensions numerically, map to readable column names
+    sorted_exts = sorted(all_extensions)
+    ext_columns = [(ext, DA1_EXTENSION_NAMES.get(ext, f"Extension {ext}"))
+                   for ext in sorted_exts]
+
+    # Build table
+    headers = ["Terminal", "Service Class"]
+    for _, ext_name in ext_columns:
+        headers.append(ext_name)
+
+    table_data = []
+    for td in terminal_data:
+        row = {
+            "Terminal": make_outbound_hyperlink(
+                td["sw_name"], td["sw_name"] + "_graphics"),
+            "Service Class": td["service_class"],
+        }
+        for ext_num, ext_name in ext_columns:
+            if ext_num in td["extensions"]:
+                if td["conpty"]:
+                    row[ext_name] = f":score-warn:`{ext_num}`†"
+                else:
+                    row[ext_name] = f":score-pass:`{ext_num}`"
+            else:
+                row[ext_name] = ":score-fail:`no`"
+        table_data.append(row)
+
+    table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
+    print()
+
+    if has_conpty:
+        print()
+        print(".. warning::")
+        print()
+        for line in CONPTY_DA_CAVEAT_LINES:
+            print(f"   {line}")
+        print()
+
+    print(".. _`Device Attributes`: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html")
+    print()
 
 
 def display_id_table(score_table, terminal_mixins):
@@ -2471,7 +2660,11 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print("VS16 results not available.")
     print()
 
-    print("**VS15 Score Details** *(excluded from final score)*:")
+    print("**Variation Selector-15 support:**")
+    print()
+    print(".. note:: Interpretation of VS-15 is `contested <https://github.com/jquast/wcwidth/issues/211>`_.\n"
+          "   Its width behavior is not consistently implemented across terminals;\n"
+          "   this measurement is informational and excluded from final scoring.")
     print()
     vs15_base = entry["data"]["test_results"].get("emoji_vs15_results",
                                                    entry["data"]["test_results"].get("emoji_vs15_type_a_results"))  # noqa: E127
@@ -2579,8 +2772,10 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             (_fmt_mode(_DPM.BRACKETED_PASTE_MIME),
              float(_get_dec_mode_supported(modes, _DPM.BRACKETED_PASTE_MIME)),
              "_dec_modes"),
-            ("Kitty Keyboard",
-             float(tr.get("kitty_keyboard") is not None),
+            ("Kitty Keyboard (Full)" if _classify_kitty_keyboard(tr)[0] == "full"
+             else "Kitty Keyboard (Partial)" if _classify_kitty_keyboard(tr)[0]
+             else "Kitty Keyboard",
+             _classify_kitty_keyboard(tr)[1],
              "_kitty_kbd"),
             ("XTGETTCAP (Full)" if xt_label == "full"
              else "XTGETTCAP (Partial)" if xt_label
@@ -2849,6 +3044,56 @@ def show_vs_results(sw_name, entry, variation_str):
     print()
 
 
+def show_device_attributes(sw_name, entry):
+    """Display device attributes with raw response and extension breakdown."""
+    sw_link = make_link(sw_name) + "_device_attributes"
+    display_inbound_hyperlink(sw_link)
+    display_title("Device Attributes", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+    da = tr.get("device_attributes")
+    if not da:
+        print("No Device Attributes response available.")
+        print()
+        return
+
+    raw = da.get("raw", "")
+    service_class = da.get("service_class")
+    extensions = da.get("extensions", [])
+
+    if raw:
+        print(f"- **Raw response:** ``{repr(raw)}``")
+    if service_class is not None:
+        sc_name = SERVICE_CLASS_NAMES.get(service_class, f"Unknown Class {service_class}")
+        print(f"- **Service class:** {service_class} ({sc_name})")
+    print()
+
+    if extensions:
+        print("**Detected Extensions:**")
+        print()
+        table_data = []
+        for ext in sorted(extensions):
+            desc = DA1_EXTENSION_NAMES.get(ext, "unknown")
+            table_data.append({"Code": str(ext), "Description": desc})
+        table_str = tabulate.tabulate(table_data, headers="keys", tablefmt="rst")
+        for line in table_str.split('\n'):
+            if line.strip():
+                print(f"   {line}")
+            else:
+                print()
+        print()
+    else:
+        print("No extensions reported.")
+        print()
+
+    if _is_conpty_interposed(entry["data"]):
+        print(".. note::")
+        print()
+        for line in CONPTY_DA_CAVEAT_LINES:
+            print(f"   {line}")
+        print()
+
+
 def show_graphics_results(sw_name, entry):
     """Display graphics protocol support results."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_graphics")
@@ -2863,7 +3108,10 @@ def show_graphics_results(sw_name, entry):
 
     protocols = []
     if sixel_supported:
-        protocols.append("Sixel_")
+        sixel_label = "Sixel_"
+        if _sixel_support_notes_for(sw_name):
+            sixel_label = "Sixel_ \u2020"
+        protocols.append(sixel_label)
     if regis_supported:
         protocols.append("ReGIS_")
     if iterm2_supported:
@@ -2878,36 +3126,49 @@ def show_graphics_results(sw_name, entry):
         print(f"*{sw_name}* does not report support for any graphics protocols.")
     print()
 
-    # Load terminal mixins for sixel notes
-    terminal_mixins = load_mixins()
-    sw_name_lower = entry["terminal_software_name"].lower()
-    has_notes = (sw_name_lower in terminal_mixins and
-                 'sixel_support_notes' in terminal_mixins[sw_name_lower])
-    if has_notes:
-        notes = terminal_mixins[sw_name_lower]['sixel_support_notes']
+    if _sixel_support_notes_for(sw_name):
+        notes = load_mixins()[sw_name.lower()]['sixel_support_notes']
         print(f"**Note:** {notes}")
         print()
 
     print("**Detection Methods:**")
     print()
-    print("- **Sixel** and **ReGIS**: Detected via the Device Attributes (DA1) query")
-    print("  ``CSI c`` (``\\x1b[c``). Extension code ``4`` indicates Sixel_ support,")
-    print("  ``3`` ReGIS_.")
-    print("- **Kitty graphics**: Detected by sending a Kitty graphics query and")
-    print("  checking for an ``OK`` response.")
-    print("- **iTerm2 inline images**: Detected via the iTerm2 capabilities query")
-    print("  ``OSC 1337 ; Capabilities``.")
-    print()
 
-    if tr.get("device_attributes"):
-        da1_data = tr["device_attributes"]
-        extensions = da1_data.get("extensions", [])
-        print("**Device Attributes Response:**")
-        print()
-        print(f"- Extensions reported: {', '.join(map(str, extensions)) if extensions else 'none'}")
-        print(f"- Sixel_ indicator (``4``): {'present' if 4 in extensions else 'not present'}")
-        print(f"- ReGIS_ indicator (``3``): {'present' if 3 in extensions else 'not present'}")
-        print()
+    sixel_detected = 4 in da_ext
+    regis_detected = 3 in da_ext
+    if sixel_detected and regis_detected:
+        da1_status = "**Detected**"
+    elif sixel_detected or regis_detected:
+        parts = []
+        if sixel_detected:
+            parts.append("Sixel: **Detected**")
+        else:
+            parts.append("Sixel: Not detected")
+        if regis_detected:
+            parts.append("ReGIS: **Detected**")
+        else:
+            parts.append("ReGIS: Not detected")
+        da1_status = "; ".join(parts)
+    else:
+        da1_status = "**Not detected**"
+
+    sixel_indicator = "present" if sixel_detected else "not present"
+    regis_indicator = "present" if regis_detected else "not present"
+    da_link = make_link(sw_name) + "_device_attributes"
+    print(f"- **Sixel** and **ReGIS**: {da1_status} via the"
+          f" :ref:`Device Attributes <{da_link}>` (DA1) query"
+          f" ``CSI c`` (``\\x1b[c``)."
+          f" Sixel indicator (``4``): {sixel_indicator},"
+          f" ReGIS indicator (``3``): {regis_indicator}.")
+
+    kitty_status = "**Detected**" if kitty_supported else "Not detected"
+    print(f"- **Kitty graphics**: {kitty_status} by sending a"
+          f" Kitty graphics query and checking for an ``OK`` response.")
+
+    iterm2_status = "**Detected**" if iterm2_supported else "Not detected"
+    print(f"- **iTerm2 inline images**: {iterm2_status} via the"
+          f" iTerm2 capabilities query ``OSC 1337 ; Capabilities``.")
+    print()
 
     print('.. _Sixel: https://en.wikipedia.org/wiki/Sixel')
     print('.. _ReGIS: https://en.wikipedia.org/wiki/ReGIS')
@@ -3100,6 +3361,17 @@ def show_kitty_keyboard_results(sw_name, entry):
 
     table_str = tabulate.tabulate(tabulated_flags, headers="keys", tablefmt="rst")
     print_datatable(table_str)
+
+    if not any(kitty_kb.values()):
+        # known bug for alacritty (fix rejected),
+        # also detected in microsoft terminal.exe (not investigated)
+        print()
+        print(".. note::")
+        print()
+        print("   Although this terminal responds to the ``CSI ? u`` query")
+        print("   (proving it supports the protocol), **all individual flags are")
+        print("   reported as disabled**.  This likely indicates a terminal bug.")
+        print()
 
     print("Detection is performed by sending ``CSI ? u`` to query the current")
     print("progressive enhancement flags. A terminal that supports this protocol")

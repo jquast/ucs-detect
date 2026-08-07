@@ -1,28 +1,25 @@
 ambiguous_width: 1
-datetime: 2026-06-08 04:39:10 UTC
+datetime: 2026-07-29 20:24:11 UTC
 environment:
   TERM: xterm
 height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.5
+python_version: 3.14.6
 resource_profile:
   cpu_pct:
   - 2.0
-  - 21.0
-  - 28.0
+  - 24.0
   elapsed_s:
-  - 1.0009014790412039
-  - 2.0027745929546654
-  - 3.0040911310352385
+  - 1.0009317109943368
+  - 2.0029937070212327
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 13961408
+    ram_total_kb: 15509692
   rss_mb:
-  - 20.17578125
-  - 28.23828125
-  - 28.3359375
-seconds_elapsed: 1.8205712579656392
+  - 20.40234375
+  - 28.5234375
+seconds_elapsed: 1.5095732670160942
 session_arguments:
   all: false
   limit_category_time: 0
@@ -50,11 +47,10 @@ terminal_results:
   decrqss_settings:
     decsace: '0'
     decsca: '0'
-    decscl: 64;1
+    decscl: 63;1
     decscpp: '80'
     decscusr: '2'
     decslpp: '24'
-    decslrm: 1;80
     decsnls: '24'
     decstbm: 1;24
     sgr: 0;38:2::0:0:0
@@ -63,15 +59,16 @@ terminal_results:
     extensions:
     - 1
     - 2
+    - 3
+    - 4
     - 6
     - 9
     - 15
     - 17
-    - 18
-    - 21
     - 22
     - 28
-    service_class: 64
+    raw: "\e[?63;1;2;3;4;6;9;15;17;22;28c"
+    service_class: 63
   foreground_color_hex: '#ffffffffffff'
   foreground_color_rgb:
   - 65535
@@ -160,7 +157,7 @@ terminal_results:
   pixels_width: 960
   screen_ratio: '16:9'
   screen_ratio_name: HD
-  sixel: false
+  sixel: true
   software_method: XTVERSION
   software_name: XTerm
   software_version: '410'
@@ -219,7 +216,7 @@ terminal_results:
   xtversion_raw: XTerm(410)
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -699,7 +696,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10790,5 +10787,5 @@ test_results:
       n_errors: 26
       n_total: 506
       pct_success: 94.86166007905138
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.2
 width: 80

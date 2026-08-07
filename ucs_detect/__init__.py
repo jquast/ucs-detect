@@ -742,8 +742,7 @@ def _make_kv_table(term, title, pairs, has_unicode=True):
     _set_double_border(table, has_unicode)
     table.title = term.magenta(title)
     table.field_names = ["Attribute", "Value"]
-    table.align["Attribute"] = "r"
-    table.align["Value"] = "l"
+    table.align = {"Attribute": "r", "Value": "l"}
     table.header = False
     table.max_table_width = max(40, term.width - 1)
     for key, value in pairs:
@@ -785,9 +784,7 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
         term.magenta("Description"),
         term.magenta("Value"),
     ]
-    full_table.align["Cap"] = "l"
-    full_table.align["Description"] = "l"
-    full_table.align["Value"] = "l"
+    full_table.align = {"Cap": "l", "Description": "l", "Value": "l"}
     full_table.max_table_width = max(40, term.width - 1)
     for capname, value in sorted_caps:
         desc = cap_info.get(capname, capname)
@@ -867,10 +864,12 @@ def _make_one_language_table(term, title, failed_langs, results, has_unicode):
         term.magenta("Failures"),
         term.magenta("Success"),
     ]
-    table.align["Language"] = "l"
-    table.align["Total"] = "r"
-    table.align["Failures"] = "r"
-    table.align["Success"] = "r"
+    table.align = {
+        "Language": "l",
+        "Total": "r",
+        "Failures": "r",
+        "Success": "r",
+    }
     for lang in failed_langs:
         data = results[lang]
         table.add_row([
@@ -1067,8 +1066,8 @@ def do_save_json(save_json, **kwargs):
         fout.write('\n')
 
 
-def parse_args():
-    """Parse command-line arguments."""
+def _build_parser():
+    """Construct the command-line argument parser."""
     args = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     args.add_argument(
         "--stream",
@@ -1151,7 +1150,7 @@ def parse_args():
     args.add_argument(
         "--timeout-cps",
         type=float,
-        default=1.0,
+        default=3.0,
         help="Timeout in seconds for cursor position reports during testing",
     )
     args.add_argument(
@@ -1232,9 +1231,29 @@ def parse_args():
         default=False,
         help="Test all codepoints and graphemes, not only contested ones",
     )
+    return args
+
+
+def _explicit_cli_args():
+    """
+    Return the set of argument names explicitly given on the command line.
+
+    Values restored from a --rerun YAML file must not override arguments typed by the user, even
+    when the typed value happens to equal the default.
+    """
+    parser = _build_parser()
+    for action in parser._actions:
+        action.default = argparse.SUPPRESS
+    given, _unknown = parser.parse_known_args()
+    return set(vars(given))
+
+
+def parse_args():
+    """Parse command-line arguments."""
+    args = _build_parser()
     results = vars(args.parse_args())
     if results["rerun"]:
-        results = _apply_rerun_yaml(results)
+        results = _apply_rerun_yaml(results, _explicit_cli_args())
     if results["save_yaml"]:
         results["save_yaml"] = os.path.expanduser(results["save_yaml"])
     if results["save_json"]:
@@ -1244,8 +1263,13 @@ def parse_args():
     return results
 
 
-def _apply_rerun_yaml(results):
-    """Merge session arguments from a saved YAML file into *results*."""
+def _apply_rerun_yaml(results, explicit_args=()):
+    """
+    Merge session arguments from a saved YAML file into *results*.
+
+    Arguments named in *explicit_args* were given on the command line and take precedence over the
+    values saved in the YAML file.
+    """
     yaml_path = os.path.expanduser(results["rerun"])
     with open(yaml_path, encoding='utf-8') as fin:
         data = yaml.safe_load(fin)
@@ -1275,9 +1299,13 @@ def _apply_rerun_yaml(results):
     }
 
     for yaml_key, cli_key in yaml_to_cli.items():
+        if cli_key in explicit_args:
+            continue
         if yaml_key in session_args and session_args[yaml_key] is not None:
             results[cli_key] = session_args[yaml_key]
     for yaml_key, cli_key in yaml_bool_flags.items():
+        if cli_key in explicit_args:
+            continue
         if session_args.get(yaml_key):
             results[cli_key] = True
 

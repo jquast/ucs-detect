@@ -1,10 +1,10 @@
 ambiguous_width: 1
-datetime: 2026-06-08 07:50:24 UTC
+datetime: 2026-07-29 22:07:00 UTC
 environment: {}
 height: 40
 preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 91.95926879999979
+seconds_elapsed: 52.390509699999996
 session_arguments:
   all: false
   limit_category_time: 0
@@ -32,6 +32,7 @@ terminal_results:
   device_attributes:
     extensions:
     - 2
+    raw: "\e[?1;2c"
     service_class: 1
   height: 40
   iterm2_features:
@@ -68,7 +69,7 @@ terminal_results:
   xtversion-bad-screenleak: false
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 3
         measured_by_wcwidth: 1
@@ -548,7 +549,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2

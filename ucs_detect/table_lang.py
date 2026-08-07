@@ -5528,6 +5528,7 @@ LANG_GRAPHEMES = (
             '默',
             '，',
             '：',
+            '；',
         )),
         ('Chinese, Mandarin (Tianjin)', (
             '、',
@@ -17146,19 +17147,9 @@ LANG_GRAPHEMES = (
         ('Chinese, Jinyu', (
             '.',
         )),
-        ('Chinese, Mandarin (Beijing)', (
-            '.',
-        )),
-        ('Chinese, Mandarin (Guiyang)', (
-            '.',
-        )),
-        ('Chinese, Mandarin (Nanjing)', (
-            '.',
-        )),
         ('Chinese, Mandarin (Simplified)', (
             '(',
             ')',
-            ',',
             '0',
             '1',
             '2',
@@ -17166,14 +17157,10 @@ LANG_GRAPHEMES = (
             '7',
             '8',
             '9',
-            ';',
             'A',
             'I',
             '“',
             '”',
-        )),
-        ('Chinese, Mandarin (Tianjin)', (
-            '.',
         )),
         ('Chinese, Mandarin (Traditional)', (
             '(',
