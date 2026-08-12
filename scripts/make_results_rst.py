@@ -3374,15 +3374,15 @@ def show_kitty_keyboard_results(sw_name, entry):
     table_str = tabulate.tabulate(tabulated_flags, headers="keys", tablefmt="rst")
     print_datatable(table_str)
 
-    if not kitty_kb.get("supported_flags"):
+    if kitty_kb.get("supported_flags") != (1 << len(KITTY_KB_FLAG_KEYS)) - 1:
         # known instance: alacritty (stale state reporting, upstream fix rejected)
         print()
         print(".. note::")
         print()
-        print("   Although this terminal responds to the ``CSI ? u`` state request")
-        print("   (proving it recognizes the protocol), **it did not honor any")
-        print("   modes when they were enabled**.  This likely indicates a terminal")
-        print("   bug or a query-only stub.")
+        print("   Although this terminal supports the ``CSI ? u`` state request,")
+        print("   it does not report all progressive enhancement modes as enabled")
+        print("   when set.  This may reflect a bug in the terminal emulator; it")
+        print("   may in fact support some or all of these modes.")
         print()
 
     print("Detection is performed by enabling all progressive enhancement")
