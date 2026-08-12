@@ -15,6 +15,9 @@ import contextlib
 import blessed
 from blessed.keyboard import KittyKeyboardProtocol
 
+#: Kitty keyboard protocol progressive enhancement modes, as blessed names them
+KITTY_KB_MODES = tuple(KittyKeyboardProtocol(0).make_arguments())
+
 SCREEN_RATIOS = [(4, 3), (16, 9), (16, 10), (21, 9), (32, 9)]
 
 
@@ -361,62 +364,32 @@ def maybe_determine_colors(term, writer, timeout=1.0):
     return result
 
 
-#: All five Kitty keyboard protocol progressive enhancement flags
-KITTY_KB_ALL_FLAGS = 31
-
-
 def maybe_determine_kitty_keyboard(term, timeout=1.0):
-    """
-    Measure Kitty keyboard protocol support by enabling flags and querying them back.
-
-    A terminal at rest always reports flags=0 to the bare ``CSI ? u`` query, so the current
-    flags alone cannot distinguish depth of support.  Instead, request all five progressive
-    enhancement flags -- by push (``CSI > 31 u``) and by set (``CSI = 31 ; 1 u``) -- and
-    re-query after each: per the protocol specification, terminals enable the flags they
-    support and ignore the rest.
-
-    The per-flag booleans report whether each flag was honored, ``flag_stack`` and
-    ``set_mode`` report whether the push/pop stack and the set escape worked (``None`` when
-    indeterminate because no flags are supported), and the terminal's original flags are
-    always restored on exit.
-    """
+    """Determine support for the Kitty keyboard protocol state request and each of its modes."""
+    # A terminal at rest always reports flags=0, so each mode is confirmed by
+    # enabling it and re-querying.  blessed's enable_kitty_keyboard() is not used:
+    # it restores to a fresh state query, which is stale on misreporting terminals
+    # and skipped entirely when that query times out.
     kb_initial = term.get_kitty_keyboard_state(timeout=timeout)
     if kb_initial is None:
         return {}
 
-    def query_value():
-        state = term.get_kitty_keyboard_state(timeout=timeout)
-        return state.value if state is not None else 0
-
-    try:
-        # Push all flags onto the stack, then pop; terminal should return to initial flags
-        echo(term, f'\x1b[>{KITTY_KB_ALL_FLAGS}u')
-        pushed = query_value()
-        echo(term, '\x1b[<u')
-        popped = query_value()
-
-        # Set all flags directly (mode 1 = set/clear exactly)
-        echo(term, f'\x1b[={KITTY_KB_ALL_FLAGS};1u')
-        set_value = query_value()
-    finally:
-        # Restore the terminal's original flags even if a mid-probe query timed out
+    supported_flags = 0
+    for mode in KITTY_KB_MODES:
+        intended = KittyKeyboardProtocol(0)
+        setattr(intended, mode, True)
+        echo(term, f'\x1b[={intended.value};1u')
+        state = term.get_kitty_keyboard_state(timeout=timeout, force=True)
         echo(term, f'\x1b[={kb_initial.value};1u')
+        # Only an exact match confirms the mode, so a terminal that already has
+        # flags enabled at rest is credited only for those already reported.
+        if state is not None and state.value == intended.value:
+            supported_flags |= intended.value
 
-    supported_flags = pushed | set_value
-    kb_supported = KittyKeyboardProtocol(supported_flags)
     return {
         'kitty_keyboard': {
-            'disambiguate': kb_supported.disambiguate,
-            'report_events': kb_supported.report_events,
-            'report_alternates': kb_supported.report_alternates,
-            'report_all_keys': kb_supported.report_all_keys,
-            'report_text': kb_supported.report_text,
-            'initial_flags': kb_initial.value,
+            **KittyKeyboardProtocol(supported_flags).make_arguments(),
             'supported_flags': supported_flags,
-            'flag_stack': (pushed == supported_flags and popped == kb_initial.value
-                           if supported_flags else None),
-            'set_mode': (set_value == supported_flags
-                         if supported_flags else None),
         }
     }
 

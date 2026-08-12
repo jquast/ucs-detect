@@ -607,8 +607,7 @@ def _build_features_kv_pairs(term, results):
         flag_keys = ('disambiguate', 'report_events', 'report_alternates',
                      'report_all_keys', 'report_text')
         n_flags = sum(bool(kitty_kb.get(key)) for key in flag_keys)
-        suffix = f" ({n_flags}/{len(flag_keys)} flags"
-        suffix += " + stack)" if kitty_kb.get('flag_stack') else ")"
+        suffix = f" ({n_flags}/{len(flag_keys)} modes)"
         pairs.append(("Kitty Keyboard?", _color_yes_no(term, True, suffix)))
     else:
         pairs.append(("Kitty Keyboard?", _color_yes_no(term, False)))

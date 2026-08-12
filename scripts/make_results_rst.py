@@ -1082,23 +1082,17 @@ KITTY_KB_FLAG_KEYS = ("disambiguate", "report_events", "report_alternates",
 def _classify_kitty_keyboard(tr):
     """Classify Kitty keyboard support as full, partial, or none.
 
-    Returns ``(label, score)`` where label is "full", "partial", or None,
-    and score is 1.0, 0.5, or 0.0.
-
-    New-style records (marked by ``supported_flags``) measured which flags the
-    terminal honors when actively enabled: Full requires all five flags plus a
-    working push/pop stack.  Legacy records only queried the flags at rest
-    (always 0 on a conformant terminal) and cannot distinguish depth of
-    support, so they remain "partial".
+    Returns ``(label, score)`` where label is "full", "partial", or None.
     """
+    # Score is ``(modes confirmed + state request) / 6``: full (1.0) requires
+    # supporting state request and all five modes; partial is any lower score,
+    # a terminal that *only* answers the state request scores 1/6.
     kk = tr.get("kitty_keyboard")
-    if kk is None:
+    if kk is None or "supported_flags" not in kk:
         return None, 0.0
-    if "supported_flags" in kk:
-        n_flags = sum(bool(kk.get(key)) for key in KITTY_KB_FLAG_KEYS)
-        if n_flags == len(KITTY_KB_FLAG_KEYS) and kk.get("flag_stack"):
-            return "full", 1.0
-    return "partial", 0.5
+    n_modes = sum(bool(kk.get(key)) for key in KITTY_KB_FLAG_KEYS)
+    score = (n_modes + 1) / (len(KITTY_KB_FLAG_KEYS) + 1)
+    return ("full" if score >= 1.0 else "partial"), score
 
 
 def _format_features_summary(entry):
@@ -3348,7 +3342,7 @@ def show_kitty_keyboard_results(sw_name, entry):
     tr = entry["data"].get("terminal_results") or {}
     kitty_kb = tr.get("kitty_keyboard")
 
-    if kitty_kb is None:
+    if kitty_kb is None or "supported_flags" not in kitty_kb:
         print(f"*{sw_name}* does not support the `Kitty keyboard protocol`_.")
         print()
         print('.. _`Kitty keyboard protocol`: '
@@ -3358,14 +3352,6 @@ def show_kitty_keyboard_results(sw_name, entry):
 
     print(f"*{sw_name}* supports the `Kitty keyboard protocol`_.")
     print()
-
-    # New-style records enabled the flags and re-queried; legacy records only
-    # queried the flags at rest and cannot distinguish depth of support.
-    is_measured = "supported_flags" in kitty_kb
-    if not is_measured:
-        print("Flags were queried at rest only (legacy probe); flag support was "
-              "not actively measured.")
-        print()
 
     flags = [
         ("disambiguate", "Disambiguate escape codes"),
@@ -3382,42 +3368,27 @@ def show_kitty_keyboard_results(sw_name, entry):
             "#": idx,
             "Flag": description,
             "Key": f"``{key}``",
-            "Supported" if is_measured else "State": "Yes" if value else "No",
+            "Supported": "Yes" if value else "No",
         })
 
     table_str = tabulate.tabulate(tabulated_flags, headers="keys", tablefmt="rst")
     print_datatable(table_str)
 
-    if is_measured:
-        def fmt_tristate(value):
-            return "n/a" if value is None else "Yes" if value else "No"
-
-        print(f"- Flag stack (``CSI > flags u`` push / ``CSI < u`` pop): "
-              f"{fmt_tristate(kitty_kb.get('flag_stack'))}")
-        print(f"- Set mode (``CSI = flags ; 1 u``): "
-              f"{fmt_tristate(kitty_kb.get('set_mode'))}")
-        print(f"- Flags enabled before probe: {kitty_kb.get('initial_flags', 0)}")
-        print()
-
-    if is_measured and not kitty_kb.get("supported_flags"):
+    if not kitty_kb.get("supported_flags"):
+        # known instance: alacritty (stale state reporting, upstream fix rejected)
         print()
         print(".. note::")
         print()
-        print("   Although this terminal responds to the ``CSI ? u`` query")
+        print("   Although this terminal responds to the ``CSI ? u`` state request")
         print("   (proving it recognizes the protocol), **it did not honor any")
-        print("   flags when they were enabled**.  This likely indicates a")
-        print("   terminal bug or a query-only stub.")
+        print("   modes when they were enabled**.  This likely indicates a terminal")
+        print("   bug or a query-only stub.")
         print()
 
-    if is_measured:
-        print("Detection is performed by enabling all progressive enhancement")
-        print("flags -- by push (``CSI > 31 u``) and by set (``CSI = 31 ; 1 u``) --")
-        print("and re-querying with ``CSI ? u`` to measure which flags the terminal")
-        print("honors, before restoring its original flags.")
-    else:
-        print("Detection was performed by sending ``CSI ? u`` to query the current")
-        print("progressive enhancement flags. A terminal that supports this protocol")
-        print("responds with the active flags value.")
+    print("Detection is performed by enabling all progressive enhancement")
+    print("modes by set (``CSI = 31 ; 1 u``) and re-querying with ``CSI ? u``")
+    print("to confirm which modes the terminal honors, before restoring its")
+    print("original flags.")
     print()
     print('.. _`Kitty keyboard protocol`: '
           'https://sw.kovidgoyal.net/kitty/keyboard-protocol/')
