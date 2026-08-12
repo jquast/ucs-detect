@@ -879,6 +879,11 @@ def make_score_table():
             _score_narrow = 1.0
             _score_zwj = 1.0
             score_emoji_vs16 = 1.0
+            # VS15 is deliberately overridden here: the Text Sizing protocol can
+            # programmatically set any character's cell width, so a supporting
+            # terminal scores 100% on all width categories. The raw measurement
+            # in the YAML remains untouched, and VS15 stays excluded from the
+            # final score because its interpretation is contested (wcwidth #211).
             score_emoji_vs15 = 1.0
             _score_sri = 1.0
             _score_sfz = 1.0
@@ -1217,7 +1222,8 @@ def display_tabulated_scores(score_table):
                     "_vs16"
                 ),
                 "VS15": _wrap_id_contested(
-                    format_score_int(result["score_emoji_vs15_scaled"]),
+                    format_score_int(result["score_emoji_vs15_scaled"])
+                    + (" †" if result.get("has_text_sizing") else ""),
                     result["terminal_software_name"],
                     "_vs15"
                 ),
@@ -1270,7 +1276,9 @@ def display_tabulated_scores(score_table):
         print("which allows any application to programmatically set character widths,")
         print("remediating width issues for complex languages, emoji, and other")
         print("problematic codepoints. It is scored 100% on WIDE, NARROW, LANG, ZWJ, VS16,")
-        print("SRI, SFZ, and RI.")
+        print("VS15, SRI, SFZ, and RI. Interpretation of VS15 is `contested")
+        print("<https://github.com/jquast/wcwidth/issues/211>`_ and excluded from")
+        print("the final score.")
         print()
         print('.. _`Kitty Text Sizing protocol`: '
               'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
@@ -2679,7 +2687,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Errors: {n_errors} of {n_total} codepoints tested")
         print(f"- Success rate: {pct_success:.1f}%")
         print(f"- Formula: {pct_success:.1f} / 100")
-        print(f"- Result: {entry['score_emoji_vs15']*100:.2f}%")  # noqa: E226
+        print(f"- Result: {entry['score_emoji_vs15']*100:.2f}%"
+              + (" † (Text Sizing protocol)"
+                 if entry.get("has_text_sizing") else ""))  # noqa: E226
     else:
         print("VS15 results not available.")
     print()
