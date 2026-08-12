@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-06-08 04:39:01 UTC
+datetime: 2026-08-12 18:04:15 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
@@ -7,22 +7,34 @@ environment:
   TERM_PROGRAM_VERSION: 1.3.1-arch2
 height: 26
 preferred_encoding: UTF-8
-python_version: 3.14.5
+python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 82.9
-  - 100.9
+  - 92.9
+  - 80.9
+  - 29.9
+  - 128.8
+  - 135.8
+  - 130.8
   elapsed_s:
-  - 1.00179362797644
-  - 2.003163482993841
+  - 1.0010835620050784
+  - 2.0024235360033344
+  - 3.004034037992824
+  - 4.005911471991567
+  - 5.007291551999515
+  - 6.008699747995706
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15509692
+    ram_total_kb: 15481856
   rss_mb:
-  - 219.9375
-  - 238.5546875
-seconds_elapsed: 3.9294116660021245
+  - 238.9453125
+  - 267.48046875
+  - 270.4296875
+  - 286.91796875
+  - 287.2265625
+  - 287.7265625
+seconds_elapsed: 3.7033410650037695
 session_arguments:
   all: false
   limit_category_time: 0
@@ -56,6 +68,7 @@ terminal_results:
     extensions:
     - 22
     - 52
+    raw: "\e[?62;22;52c"
     service_class: 62
   foreground_color_hex: '#ffffffffffff'
   foreground_color_rgb:
@@ -69,11 +82,12 @@ terminal_results:
   kitty_clipboard_protocol: false
   kitty_graphics: true
   kitty_keyboard:
-    disambiguate: false
-    report_all_keys: false
-    report_alternates: false
-    report_events: false
-    report_text: false
+    disambiguate: true
+    report_all_keys: true
+    report_alternates: true
+    report_events: true
+    report_text: true
+    supported_flags: 31
   kitty_notifications: false
   kitty_pointer_shapes: false
   kitty_query: false
@@ -387,13 +401,13 @@ terminal_results:
   xtversion_raw: ghostty 1.3.1-arch2
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 158
       pct_success: 100.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 426
@@ -991,5 +1005,5 @@ test_results:
       n_errors: 1
       n_total: 506
       pct_success: 99.80237154150198
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.2
 width: 79

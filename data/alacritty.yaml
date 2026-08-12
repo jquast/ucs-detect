@@ -1,35 +1,35 @@
 ambiguous_width: 1
-datetime: 2026-07-29 18:39:01 UTC
+datetime: 2026-08-12 18:05:56 UTC
 environment:
   COLORTERM: truecolor
   TERM: alacritty
 height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.6
+python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 17.0
-  - 2.0
+  - 15.0
   - 0.0
-  - 48.9
-  - 69.9
+  - 2.0
+  - 64.9
+  - 71.9
   elapsed_s:
-  - 1.0009994150022976
-  - 2.003070103994105
-  - 3.0048203420010395
-  - 4.006322897970676
-  - 5.007701364986133
+  - 1.0009252079762518
+  - 2.003303645993583
+  - 3.0054224350024015
+  - 4.007263028994203
+  - 5.008974339987617
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15509692
+    ram_total_kb: 15481856
   rss_mb:
-  - 119.41015625
-  - 119.49609375
-  - 119.49609375
-  - 126.953125
-  - 130.0703125
-seconds_elapsed: 2.393389311968349
+  - 119.6484375
+  - 119.6484375
+  - 119.9765625
+  - 129.79296875
+  - 132.63671875
+seconds_elapsed: 1.882180956978118
 session_arguments:
   all: false
   limit_category_time: 0
@@ -75,6 +75,7 @@ terminal_results:
     report_alternates: false
     report_events: false
     report_text: false
+    supported_flags: 0
   kitty_notifications: false
   kitty_pointer_shapes: false
   kitty_query: false

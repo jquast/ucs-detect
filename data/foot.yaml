@@ -1,47 +1,32 @@
 ambiguous_width: 1
-datetime: 2026-07-29 18:40:08 UTC
+datetime: 2026-08-12 18:03:36 UTC
 environment:
   COLORTERM: truecolor
   TERM: foot
 height: 39
 preferred_encoding: UTF-8
-python_version: 3.14.6
+python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 4.0
+  - 2.0
   - 0.0
-  - 0.0
-  - 0.0
-  - 1.0
-  - 23.9
-  - 23.0
-  - 25.9
-  - 22.9
+  - 17.0
+  - 30.0
   elapsed_s:
-  - 1.0026779680047184
-  - 2.004868844000157
-  - 3.0076601220062003
-  - 4.009648310020566
-  - 5.012546687037684
-  - 6.019167088030372
-  - 7.021095719013829
-  - 8.023199459013995
-  - 9.025340869033244
+  - 1.0011370120046195
+  - 2.003181239007972
+  - 3.0052508150110953
+  - 4.0069469709997065
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15509692
+    ram_total_kb: 15481856
   rss_mb:
-  - 17.625
-  - 18.140625
-  - 18.125
-  - 18.125
-  - 18.625
-  - 24.609375
-  - 29.65234375
-  - 33.97265625
-  - 37.125
-seconds_elapsed: 4.472292826976627
+  - 18.28515625
+  - 18.28515625
+  - 27.8125
+  - 36.69921875
+seconds_elapsed: 1.8201725860126317
 session_arguments:
   all: false
   limit_category_time: 0
@@ -91,11 +76,12 @@ terminal_results:
   kitty_clipboard_protocol: false
   kitty_graphics: false
   kitty_keyboard:
-    disambiguate: false
-    report_all_keys: false
-    report_alternates: false
-    report_events: false
-    report_text: false
+    disambiguate: true
+    report_all_keys: true
+    report_alternates: true
+    report_events: true
+    report_text: true
+    supported_flags: 31
   kitty_notifications: false
   kitty_pointer_shapes: false
   kitty_query: false
