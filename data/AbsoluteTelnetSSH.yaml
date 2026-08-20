@@ -1,13 +1,13 @@
 ambiguous_width: 1
-datetime: 2026-08-07 20:53:16 UTC
+datetime: 2026-08-20 22:59:16 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: AbsoluteTelnet/SSH
-height: 50
+height: 67
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 42.383783536963165
+seconds_elapsed: 13.703438611002639
 session_arguments:
   all: false
   limit_category_time: 0
@@ -16,9 +16,9 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 1.0
+  timeout_cps: 3.0
 software_name: AbsoluteTelnet/SSH
-software_version: '14.01'
+software_version: '14.03'
 system: Windows
 terminal_results:
   background_color_hex: '#0c0c0c0c0c0c'
@@ -26,8 +26,8 @@ terminal_results:
   - 3084
   - 3084
   - 3084
-  cell_height: 22
-  cell_width: 11
+  cell_height: 15
+  cell_width: 8
   color_scheme: dark
   colored_underlines: true
   decrqcra: true
@@ -35,11 +35,11 @@ terminal_results:
   decrqss_settings:
     decsca: '0'
     decscl: 64;1
-    decscpp: '89'
+    decscpp: '220'
     decscusr: '6'
-    decslpp: '50'
-    decsnls: '50'
-    decstbm: 1;50
+    decslpp: '67'
+    decsnls: '67'
+    decstbm: 1;67
     sgr: 0;38;2;12;12;12
   decrqss_truecolor_probe: true
   device_attributes:
@@ -54,13 +54,14 @@ terminal_results:
     - 15
     - 22
     - 52
+    raw: "\e[?62;1;2;4;6;7;8;9;15;22;52c"
     service_class: 62
   foreground_color_hex: '#cccccccccccc'
   foreground_color_rgb:
   - 52428
   - 52428
   - 52428
-  height: 50
+  height: 67
   iterm2_features:
     features: {}
     supported: false
@@ -72,7 +73,8 @@ terminal_results:
     report_alternates: false
     report_events: false
     report_text: false
-  kitty_notifications: false
+  kitty_notifications:
+    supported: true
   kitty_pointer_shapes:
     current: '0'
     supported: true
@@ -147,21 +149,21 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: true
-  pixels_height: 1100
-  pixels_width: 979
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  pixels_height: 1005
+  pixels_width: 1760
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: true
   software_method: XTVERSION
   software_name: AbsoluteTelnet/SSH
-  software_version: '14.01'
+  software_version: '14.03'
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
   ttype: xterm-256color
-  width: 89
+  width: 220
   xtgettcap:
     capabilities:
       Ms: "\e]52;%p1%s;%p2%s\a"
@@ -256,7 +258,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: AbsoluteTelnet/SSH 14.01
+  xtversion_raw: AbsoluteTelnet/SSH 14.03
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -271,7 +273,7 @@ test_results:
       n_total: 426
       pct_success: 100.0
   emoji_zwj_results:
-    9.0.0:
+    17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 1445
@@ -703,34 +705,34 @@ test_results:
       n_total: 8
       pct_success: 100.0
   narrow_results:
-    9.0.0:
+    17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 187
       pct_success: 100.0
   ri_results:
-    9.0.0:
+    17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
   sfz_results:
-    9.0.0:
+    17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
   sri_results:
-    9.0.0:
+    17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 26
       pct_success: 100.0
   unicode_wide_results:
-    9.0.0:
+    17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 506
       pct_success: 100.0
-wcwidth_version: 0.8.1
-width: 89
+wcwidth_version: 0.8.2
+width: 220
