@@ -52,7 +52,7 @@ classifiers = [
   "Topic :: Text Processing :: General",
 ]
 dependencies = [
-  "blessed>=1.43,<2",
+  "blessed>=1.49,<2",
   "prettytable",
   "psutil",
   "pyyaml<7",

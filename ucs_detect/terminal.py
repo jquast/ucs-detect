@@ -428,6 +428,13 @@ def maybe_determine_kitty_graphics(term, timeout=1.0, **_kw):
     return {'kitty_graphics': term.does_kitty_graphics(timeout=timeout)}
 
 
+def maybe_determine_tofu(term, timeout=1.0, **_kw):
+    """Detect font glyph coverage protocol support, delegating to blessed."""
+    coverage = term.get_font_coverage('\u25a1', timeout=timeout)
+    return {'tofu': {'supported': coverage.supported,
+                     'protocol': coverage.protocol}}
+
+
 def maybe_determine_iterm2_features(term, timeout=1.0, **_kw):
     """Query iTerm2 feature reporting protocol, delegating to blessed."""
     result = {'iterm2_features': {'supported': False, 'features': {}}}
@@ -714,18 +721,14 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
     # modern terminals respond to and retro terminals (linux fbdev, real
     # VT100, etc.) ignore.  kitty responds to XTVERSION but not DA1.
     with _status(writer, term, "Device Attributes", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_da_and_sixel(term,
-                                                  timeout=timeout))
+        attrs.update(maybe_determine_da_and_sixel(term, timeout=timeout))
     with _status(writer, term, "Software Version", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_software(term, writer,
-                                              timeout=timeout))
+        attrs.update(maybe_determine_software(term, writer, timeout=timeout))
 
     with _status(writer, term, "Cell Size", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_cell_size(term, writer,
-                                               timeout=timeout))
+        attrs.update(maybe_determine_cell_size(term, writer, timeout=timeout))
     with _status(writer, term, "Pixel Size", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_pixel_size(term, writer,
-                                                timeout=timeout))
+        attrs.update(maybe_determine_pixel_size(term, writer, timeout=timeout))
     attrs.update(maybe_determine_screen_ratio(attrs))
 
     has_device_attrs = attrs.get('device_attributes') is not None
@@ -749,51 +752,37 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
         timeout=timeout, silent=silent))
 
     with _status(writer, term, "Kitty Keyboard", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_kitty_keyboard(term,
-                                                    timeout=timeout))
-
+        attrs.update(maybe_determine_kitty_keyboard(term, timeout=timeout))
     with _status(writer, term, "XTGETTCAP", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_xtgettcap(term,
-                                               timeout=timeout))
+        attrs.update(maybe_determine_xtgettcap(term, timeout=timeout))
     with _status(writer, term, "Kitty Graphics", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_kitty_graphics(term,
-                                                    timeout=timeout))
+        attrs.update(maybe_determine_kitty_graphics(term, timeout=timeout))
     with _status(writer, term, "iTerm2 Features", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_iterm2_features(term,
-                                                     timeout=timeout))
+        attrs.update(maybe_determine_iterm2_features(term, timeout=timeout))
     with _status(writer, term, "Text Sizing", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_text_sizing(term,
-                                                 timeout=timeout))
+        attrs.update(maybe_determine_text_sizing(term, timeout=timeout))
+    with _status(writer, term, "Tofu Detection", bg_rgb, silent=silent):
+        attrs.update(maybe_determine_tofu(term, timeout=timeout))
     with _status(writer, term, "Tab Stop Width", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_tab_stop_width(term,
-                                                    timeout=timeout))
+        attrs.update(maybe_determine_tab_stop_width(term, timeout=timeout))
     with _status(writer, term, "Kitty Notifications", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_kitty_notifications(term,
-                                                         timeout=timeout))
+        attrs.update(maybe_determine_kitty_notifications(term, timeout=timeout))
     with _status(writer, term, "Kitty Clipboard", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_kitty_clipboard(term,
-                                                     timeout=timeout))
+        attrs.update(maybe_determine_kitty_clipboard(term, timeout=timeout))
     with _status(writer, term, "Kitty Pointer Shapes", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_kitty_pointer_shapes(term,
-                                                          timeout=timeout))
+        attrs.update(maybe_determine_kitty_pointer_shapes(term, timeout=timeout))
     with _status(writer, term, "Styled Underlines", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_styled_underlines(term,
-                                                       timeout=timeout))
+        attrs.update(maybe_determine_styled_underlines(term, timeout=timeout))
     with _status(writer, term, "Color Scheme", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_color_scheme(term,
-                                                  timeout=timeout))
+        attrs.update(maybe_determine_color_scheme(term, timeout=timeout))
     with _status(writer, term, "Kitty Query", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_kitty_query(term,
-                                                 timeout=timeout))
+        attrs.update(maybe_determine_kitty_query(term, timeout=timeout))
     with _status(writer, term, "DECRQSS", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_decrqss(term,
-                                             timeout=timeout))
+        attrs.update(maybe_determine_decrqss(term, timeout=timeout))
     with _status(writer, term, "DECRQSS Truecolor", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_decrqss_truecolor(term,
-                                                       timeout=timeout))
+        attrs.update(maybe_determine_decrqss_truecolor(term, timeout=timeout))
     with _status(writer, term, "DECRQCRA", bg_rgb, silent=silent):
-        attrs.update(maybe_determine_decrqcra(term,
-                                              timeout=timeout))
+        attrs.update(maybe_determine_decrqcra(term, timeout=timeout))
 
     return attrs
 

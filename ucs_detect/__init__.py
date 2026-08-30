@@ -43,6 +43,7 @@ from ucs_detect.table_sfz import STANDALONE_FITZPATRICK
 from ucs_detect.table_sri import STANDALONE_REGIONAL_INDICATORS
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_lang import LANG_GRAPHEMES
+from ucs_detect.table_tofu import TOFU_CODEPOINTS
 from ucs_detect.table_vs15 import VS15_WIDE_TO_NARROW
 from ucs_detect.table_vs16 import VS16_NARROW_TO_WIDE
 from ucs_detect.table_wide import WIDE_CHARACTERS
@@ -229,7 +230,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             writer(f"\nucs-detect: Ambiguous width: {ambig_label}")
 
     terminal_results = {}
-    if _should_run("terminal"):
+    if _should_run("terminal", "tofu"):
         if not no_terminal_test or test_only == "terminal":
             # Resolve 'auto' timeout from measured response times
             if timeout_query == "auto":
@@ -268,6 +269,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
     emoji_vs16_results = {}
     emoji_vs15_results = {}
     narrow_results = {}
+    tofu_results = {}
     language_results = None
 
     if has_unicode:
@@ -299,6 +301,16 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     expected_width=2,
                     test_type="sri",
                     label="Standalone Regional Indicators",
+                    **test_kwargs,
+                )
+
+            # font glyph coverage, reported but not scored: it is a property
+            # of the installed font, and not of the terminal emulator.
+            if (_should_run("unicode", "tofu")
+                    and (terminal_results.get("tofu") or {}).get("supported")):
+                tofu_results = measure.test_tofu_support(
+                    table=TOFU_CODEPOINTS,
+                    include_uncommon=include_uncommon_codepoints,
                     **test_kwargs,
                 )
 
@@ -402,6 +414,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             emoji_vs16_results=emoji_vs16_results,
             emoji_vs15_results=emoji_vs15_results,
             narrow_results=narrow_results,
+            tofu_results=tofu_results,
             language_results=language_results,
             elapsed=elapsed,
             has_unicode=has_unicode,
@@ -433,6 +446,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 emoji_vs16_results=emoji_vs16_results,
                 emoji_vs15_results=emoji_vs15_results,
                 narrow_results=narrow_results,
+                tofu_results=tofu_results,
                 language_results=language_results,
             ),
             terminal_results=terminal_results,
@@ -631,6 +645,15 @@ def _build_features_kv_pairs(term, results):
     else:
         pairs.append(("Kitty Text Sizing?", _color_yes_no(term, False)))
 
+    tofu = results.get('tofu')
+    if tofu is None:
+        pairs.append(("Tofu Detection?", term.yellow("N/A")))
+    elif tofu.get('supported'):
+        pairs.append(("Tofu Detection?",
+                      _color_yes_no(term, True, f" ({tofu.get('protocol')})")))
+    else:
+        pairs.append(("Tofu Detection?", _color_yes_no(term, False)))
+
     xtgettcap = results.get('xtgettcap', {})
     if xtgettcap.get('supported'):
         pairs.append(("XTGETTCAP?", _color_yes_no(term, True)))
@@ -715,6 +738,11 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
                 if sp := d.get("sampled_pct"):
                     pct += f" ({sp}% sampled)"
                 pairs.append((name, pct))
+
+    tofu = result_sets.get("tofu_results") or {}
+    for _ver, entry in tofu.items():
+        tofu_val = color_pct(term, entry["pct_success"])
+        pairs.append(("Font Coverage", f'{tofu_val} ({entry["n_errors"]} tofus)'))
 
     langs = result_sets.get("language_results")
     if langs:
@@ -1128,7 +1156,7 @@ def _build_parser():
         "--include-uncommon-codepoints",
         action="store_true",
         default=False,
-        help=("Include uncommon codepoints in WIDE testing."),
+        help=("Include uncommon codepoints in WIDE and tofu testing."),
     )
     args.add_argument(
         "--save-yaml",
@@ -1178,7 +1206,7 @@ def _build_parser():
         "--test-only",
         default="all",
         choices=("all", "unicode", "terminal", "wide", "sri", "sfz",
-                 "ri", "zwj", "vs16", "vs15", "lang", "narrow"),
+                 "ri", "zwj", "vs16", "vs15", "lang", "narrow", "tofu"),
         help="Run only the specified test category",
     )
     args.add_argument(

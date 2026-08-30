@@ -50,7 +50,8 @@ if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
 from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars, load_mixins
-from ucs_detect.measure import make_printf_hex
+from ucs_detect.measure import UNCOMMON_WIDE_RANGES, make_printf_hex
+from ucs_detect.table_tofu import TOFU_CODEPOINTS
 from ucs_detect.profiler import ProfileSession, generate_graphs
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
@@ -656,6 +657,7 @@ def main():
             show_kitty_keyboard_results(sw_name, entry)
             show_xtgettcap_results(sw_name, entry)
             show_text_sizing_results(sw_name, entry)
+            show_tofu_results(sw_name, entry)
             show_truecolor_results(sw_name, entry)
             show_osc52_results(sw_name, entry)
             show_id_results(sw_name, entry, terminal_mixins)
@@ -746,6 +748,10 @@ def display_common_hyperlinks():
     print(".. _`XTGETTCAP`: https://codeberg.org/dnkl/foot#xtgettcap")
     print(".. _`Truecolor`: https://github.com/termstandard/colors/blob/master/README.md")
     print(".. _`Kitty graphics`: https://sw.kovidgoyal.net/kitty/graphics-protocol/")
+    print(".. _`Font Glyph Coverage Enquiry`: "
+          "https://github.com/mintty/mintty/wiki/CtrlSeqs#font-glyph-coverage-enquiry")
+    print(".. _`Glyph Protocol`: "
+          "https://rapha.land/introducing-glyph-protocol-for-terminals/")
     print(".. _MSYS2: https://www.msys2.org/")
     print(".. _Cygwin: https://www.cygwin.com/")
 
@@ -1100,6 +1106,20 @@ def _classify_kitty_keyboard(tr):
     return ("full" if score >= 1.0 else "partial"), score
 
 
+def _classify_tofu(tr):
+    """Classify font glyph coverage protocol support.
+
+    Returns ``(protocol, score)`` where protocol is "mintty", "glyph", or None.
+    """
+    # Whether the terminal answers a font glyph coverage enquiry at all is a
+    # property of the emulator, and is scored.  *Which* codepoints it reports a
+    # glyph for is a property of the installed font, and is not.
+    tofu = tr.get("tofu")
+    if not isinstance(tofu, dict) or not tofu.get("supported"):
+        return None, 0.0
+    return tofu.get("protocol"), 1.0
+
+
 def _format_features_summary(entry):
     """Format detected features as scaled score with hyperlink to Score Breakdown."""
     sw_name = entry["terminal_software_name"]
@@ -1382,6 +1402,13 @@ def display_table_definitions():
         "  This mode enables grapheme clustering behavior in the terminal."
     )
     print(
+        "- *Tofu*: The font glyph coverage protocol the terminal answers, ``mintty``\n"
+        "  (`Font Glyph Coverage Enquiry`_, ``OSC 7771``) or ``glyph`` (`Glyph\n"
+        "  Protocol`_, ``APC 25a1``), by which it may be asked whether its font has a\n"
+        "  glyph for a codepoint.  Answering at all counts towards the FEAT score; which\n"
+        "  codepoints are covered does not, being a property of the installed font."
+    )
+    print(
         "- *DEC Modes*: Determined by the number of DEC private modes\n"
         "  that are changeable by the terminal, scaled."
     )
@@ -1555,7 +1582,7 @@ def score_features(data):
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 16
+    total = 17
 
     for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
@@ -1571,6 +1598,10 @@ def score_features(data):
     _label, xt_score = _classify_xtgettcap(data)
     if xt_score > 0:
         count += xt_score
+
+    _tofu_label, tofu_score = _classify_tofu(tr)
+    if tofu_score > 0:
+        count += tofu_score
 
     text_sizing = tr.get("text_sizing", {})
     if text_sizing.get("width") or text_sizing.get("scale"):
@@ -1886,6 +1917,16 @@ def display_features_table(score_table):
             (text_sizing.get('width') or text_sizing.get('scale'))
             if tested else None,
             sw_name, "_text_sizing")
+
+        # Font glyph coverage enquiry (mintty OSC 7771, Glyph Protocol APC 25a1)
+        tofu_protocol, tofu_score = _classify_tofu(tr)
+        if tofu_protocol is None:
+            row["Tofu"] = _capability_yes_no(
+                False if tested and tr.get("tofu") is not None else None,
+                sw_name, "_tofu")
+        else:
+            row["Tofu"] = wrap_score_with_hyperlink(
+                tofu_protocol, tofu_score, sw_name, "_tofu")
 
         # Kitty Clipboard Protocol
         row["Kitty Clipboard"] = _capability_yes_no(
@@ -2809,6 +2850,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
               or tr.get("text_sizing", {}).get("scale")
               or False),
              "_text_sizing"),
+            ("Tofu Detection",
+             _classify_tofu(tr)[1],
+             "_tofu"),
             ("Kitty Clipboard Protocol",
              float(tr.get("kitty_clipboard_protocol", False)),
              "_dec_modes"),
@@ -3501,6 +3545,194 @@ def show_text_sizing_results(sw_name, entry):
     print('.. _`Text Sizing protocol`: '
           'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
     print()
+
+
+def _tofu_excluded_ranges():
+    """
+    Describe the ranges a default tofu sweep leaves out.
+
+    Returns ``[(start, end, [block names], n_codepoints)]`` for each range of
+    :data:`UNCOMMON_WIDE_RANGES` that holds testable codepoints, and the totals
+    ``(n_excluded, n_all)`` over the whole table.
+    """
+    described, n_excluded, n_all = [], 0, 0
+    per_range = {(start, end): {} for start, end in UNCOMMON_WIDE_RANGES}
+    for _ver, ranges in TOFU_CODEPOINTS:
+        for start, end, block_name in ranges:
+            n_all += end - start + 1
+            for bounds in per_range:
+                low, high = max(start, bounds[0]), min(end, bounds[1])
+                if low <= high:
+                    per_range[bounds][block_name] = (
+                        per_range[bounds].get(block_name, 0) + high - low + 1)
+    for (start, end), blocks in per_range.items():
+        n_codepoints = sum(blocks.values())
+        if n_codepoints:
+            described.append((start, end, sorted(blocks), n_codepoints))
+            n_excluded += n_codepoints
+    described.sort()
+    return described, n_excluded, n_all
+
+
+def _show_tofu_exclusions():
+    """Print the note detailing what a default tofu sweep leaves out."""
+    described, n_excluded, n_all = _tofu_excluded_ranges()
+    print(".. note::")
+    print()
+    print("   These ranges are left out of the sweep, and of the count above: they are")
+    print("   a tofu in all but a few specialist CJK and historic script fonts, and a")
+    print("   font meant for terminal use is not worse for lacking them.  They account")
+    print(f"   for {n_excluded:,} of the {n_all:,} codepoints that could be tested;"
+          f" pass")
+    print("   ``ucs-detect --include-uncommon-codepoints`` to sweep them as well.")
+    print()
+    for start, end, blocks, n_codepoints in described:
+        print(f"   - ``U+{start:04X}``..``U+{end:04X}`` \u2014 {', '.join(blocks)}"
+              f" ({n_codepoints:,} codepoints)")
+    print()
+
+
+def _tofu_protocol_phrase(protocol):
+    """Return a sentence fragment naming the font glyph coverage *protocol*."""
+    if protocol == "mintty":
+        return "mintty's `Font Glyph Coverage Enquiry`_, ``OSC 7771``"
+    if protocol == "glyph":
+        return "the `Glyph Protocol`_ ``q`` verb, ``APC 25a1``"
+    return f"``{protocol}``"
+
+
+def _tofu_escape(codepoint):
+    """Return *codepoint* as a python escape sequence, for :func:`show_wchar`."""
+    if codepoint > 0xFFFF:
+        return f"\\U{codepoint:08x}"
+    return f"\\u{codepoint:04x}"
+
+
+def show_tofu_results(sw_name, entry):
+    """Display font glyph coverage ("tofu") detection and sweep results."""
+    TOFU_BLOCK_CODEPOINT_LIMIT = 32
+    TOFU_BLOCK_RANGE_LIMIT = 32
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_tofu")
+    display_title("Tofu Detection", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+    tofu = tr.get("tofu") or {}
+    protocol = tofu.get("protocol") if tofu.get("supported") else None
+
+    print("A *tofu* is the \u25a1 ``U+25A1`` WHITE SQUARE placeholder box drawn in place of")
+    print("a codepoint the terminal's font has no glyph for.  Two protocols allow a")
+    print("program to ask which codepoints may 'tofu': mintty's `Font")
+    print("Glyph Coverage Enquiry`_ and the `Glyph Protocol`_ implemented first by Rio.")
+    print()
+
+    if protocol is None:
+        print(f"*{sw_name}* does **not** answer a font glyph coverage enquiry by either")
+        print("protocol, 'tofus' cannot be determined by automatic code.")
+        print()
+        return
+
+    print(f"*{sw_name}* answers by {_tofu_protocol_phrase(protocol)}.")
+    print()
+    print(f"- Protocol: **{protocol}**")
+    print()
+
+    print(".. warning::")
+    print()
+    print("   Both protocols answer about *single codepoints* only.  They are without")
+    print("   support for grapheme clusters: ligatures, mark positioning, ``ZWJ`` joining,")
+    print("   VS-15 and VS-16 presentation, contextual forms, etc. ")
+    print()
+    print("   What is measured below is a property of the *font* this terminal was")
+    print("   configured with when tested, and not of the terminal emulator: it is")
+    print("   reported, but is not scored. GNU's Unifont is sometimes configured for use.")
+    print()
+
+    tofu_results = entry["data"].get("test_results", {}).get("tofu_results") or {}
+    if not tofu_results:
+        print(f"No codepoint sweep was recorded for *{sw_name}*.")
+        print()
+        return
+
+    ver, result = next(iter(tofu_results.items()))
+    n_errors, n_total = result["n_errors"], result["n_total"]
+    print(f"Every assigned codepoint of Unicode version {ver} that occupies a cell")
+    # a sweep without --include-uncommon-codepoints skips the ranges the WIDE
+    # test skips by default; data recorded before the option is a full sweep.
+    if result.get("include_uncommon", True):
+        print("of its own is tested, the ideographic extension and historic script")
+        print("ranges that no general-purpose font carries included.")
+    else:
+        print("of its own is tested, less the ideographic extension and historic")
+        print("script ranges that no general-purpose font is known to carry.")
+    print()
+    print(f"Tofus were detected for **{n_errors:,}** out of **{n_total:,}** codepoints")
+    print("tested.")
+    print()
+
+    if not result.get("include_uncommon", True):
+        _show_tofu_exclusions()
+
+    if n_unknown := (result.get("n_unknown") or 0):
+        print(f"{n_unknown:,} codepoints went unanswered by the terminal, and are assumed")
+        print("renderable.")
+        print()
+
+    blocks = result.get("blocks") or {}
+    if not blocks:
+        print("No Unicode block holds a tofu: every codepoint tested has a glyph.")
+        print()
+        return
+
+    offenders = sorted(blocks.items(), key=lambda kv: (-kv[1]["n_errors"], kv[0]))
+    tabulated_blocks = [
+        {
+            "Block": make_outbound_hyperlink(block_name,
+                                             sw_name + "_tofu_" + block_name),
+            "Tofus": block["n_errors"],
+            "Total": block["n_total"],
+            "Pct": "{:0.1f}%".format(
+                block["n_errors"] / block["n_total"] * 100
+                if block["n_total"] else 0),
+        }
+        for block_name, block in offenders
+    ]
+    print(f"Tofus were found in the following {len(offenders)} Unicode blocks:")
+    print()
+    table_str = tabulate.tabulate(tabulated_blocks, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
+
+    for block_name, block in offenders:
+        display_inbound_hyperlink(sw_name + "_tofu_" + block_name)
+        display_title(block_name, 4)
+        n_block_errors, n_block_total = block["n_errors"], block["n_total"]
+        if n_block_errors == n_block_total:
+            print(f"All {n_block_total:,} codepoints tested of the *{block_name}* block")
+            print(f"have no glyph in the font of *{sw_name}*.")
+        else:
+            print(f"{n_block_errors:,} of the {n_block_total:,} codepoints tested of the")
+            print(f"*{block_name}* block have no glyph in the font of *{sw_name}*.")
+        print()
+
+        codepoint_ranges = block["codepoint_ranges"]
+        if n_block_errors > TOFU_BLOCK_CODEPOINT_LIMIT:
+            # a table of thousands of rows helps nobody, and there may be
+            # hundreds of such blocks: name the ranges, they say as much.
+            for start, end in codepoint_ranges[:TOFU_BLOCK_RANGE_LIMIT]:
+                if start == end:
+                    print(f"- {make_unicode_codepoint(chr(start))}")
+                else:
+                    print(f"- {make_unicode_codepoint(chr(start))} through"
+                          f" {make_unicode_codepoint(chr(end))},"
+                          f" {end - start + 1:,} codepoints")
+            if len(codepoint_ranges) > TOFU_BLOCK_RANGE_LIMIT:
+                print(f"- \u2026 and {len(codepoint_ranges) - TOFU_BLOCK_RANGE_LIMIT:,}"
+                      " further ranges")
+            print()
+            continue
+
+        show_wchar("".join(_tofu_escape(codepoint)
+                           for start, end in codepoint_ranges
+                           for codepoint in range(start, end + 1)))
 
 
 def show_truecolor_results(sw_name, entry):
