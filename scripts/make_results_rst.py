@@ -1073,14 +1073,26 @@ def _classify_xtgettcap(data):
     return ("partial", 0.5)
 
 
+#: Kitty keyboard progressive enhancement flag keys recorded by
+#: maybe_determine_kitty_keyboard()
+KITTY_KB_FLAG_KEYS = ("disambiguate", "report_events", "report_alternates",
+                      "report_all_keys", "report_text")
+
+
 def _classify_kitty_keyboard(tr):
-    """Classify Kitty keyboard state: full (any flag set) / partial (all False) / None."""
+    """Classify Kitty keyboard support as full, partial, or none.
+
+    Returns ``(label, score)`` where label is "full", "partial", or None.
+    """
+    # Score is ``(modes confirmed + state request) / 6``: full (1.0) requires
+    # supporting state request and all five modes; partial is any lower score,
+    # a terminal that *only* answers the state request scores 1/6.
     kk = tr.get("kitty_keyboard")
-    if kk is None:
+    if kk is None or "supported_flags" not in kk:
         return None, 0.0
-    if any(kk.values()):
-        return "full", 1.0
-    return "partial", 0.5
+    n_modes = sum(bool(kk.get(key)) for key in KITTY_KB_FLAG_KEYS)
+    score = (n_modes + 1) / (len(KITTY_KB_FLAG_KEYS) + 1)
+    return ("full" if score >= 1.0 else "partial"), score
 
 
 def _format_features_summary(entry):
@@ -3330,7 +3342,7 @@ def show_kitty_keyboard_results(sw_name, entry):
     tr = entry["data"].get("terminal_results") or {}
     kitty_kb = tr.get("kitty_keyboard")
 
-    if kitty_kb is None:
+    if kitty_kb is None or "supported_flags" not in kitty_kb:
         print(f"*{sw_name}* does not support the `Kitty keyboard protocol`_.")
         print()
         print('.. _`Kitty keyboard protocol`: '
@@ -3356,26 +3368,27 @@ def show_kitty_keyboard_results(sw_name, entry):
             "#": idx,
             "Flag": description,
             "Key": f"``{key}``",
-            "State": "Yes" if value else "No",
+            "Supported": "Yes" if value else "No",
         })
 
     table_str = tabulate.tabulate(tabulated_flags, headers="keys", tablefmt="rst")
     print_datatable(table_str)
 
-    if not any(kitty_kb.values()):
-        # known bug for alacritty (fix rejected),
-        # also detected in microsoft terminal.exe (not investigated)
+    if kitty_kb.get("supported_flags") != (1 << len(KITTY_KB_FLAG_KEYS)) - 1:
+        # known instance: alacritty (stale state reporting, upstream fix rejected)
         print()
         print(".. note::")
         print()
-        print("   Although this terminal responds to the ``CSI ? u`` query")
-        print("   (proving it supports the protocol), **all individual flags are")
-        print("   reported as disabled**.  This likely indicates a terminal bug.")
+        print("   Although this terminal supports the ``CSI ? u`` state request,")
+        print("   it does not report all progressive enhancement modes as enabled")
+        print("   when set.  This may reflect a bug in the terminal emulator; it")
+        print("   may in fact support some or all of these modes.")
         print()
 
-    print("Detection is performed by sending ``CSI ? u`` to query the current")
-    print("progressive enhancement flags. A terminal that supports this protocol")
-    print("responds with the active flags value.")
+    print("Detection is performed by enabling all progressive enhancement")
+    print("modes by set (``CSI = 31 ; 1 u``) and re-querying with ``CSI ? u``")
+    print("to confirm which modes the terminal honors, before restoring its")
+    print("original flags.")
     print()
     print('.. _`Kitty keyboard protocol`: '
           'https://sw.kovidgoyal.net/kitty/keyboard-protocol/')

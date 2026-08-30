@@ -1,16 +1,6 @@
 name: terminal tests
 
 on:
-  push:
-    paths:
-      - Dockerfile
-      - docker-entrypoint.sh
-      - run-series.py
-      - re-run.py
-      - terminals.yaml
-      - ucs_detect/**
-      - .github/workflows/terminal-tests.yml
-  pull_request:
   workflow_dispatch:
 
 env:

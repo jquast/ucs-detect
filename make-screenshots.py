@@ -311,6 +311,19 @@ def main():
         failures, software_version = extract_failures(d.path)
         if not failures:
             skipped.append((d.software_name, "no width failures found"))
+            # Terminal no longer reports any width failure: remove its
+            # stale screenshots, mirroring the launch-time cleanup.
+            if not args.dry_run:
+                entry = mixins.get(d.software_name.lower(), {})
+                if not entry:
+                    entry = mixins.get(d.path.stem.lower(), {})
+                sw_display = entry.get("display_name", d.software_name)
+                stale_dir = SCREENSHOTS_DIR / safe_name(sw_display)
+                if stale_dir.exists():
+                    for stale_png in stale_dir.glob("*.png"):
+                        stale_png.unlink()
+                    for stale_xwd in stale_dir.glob("*.xwd"):
+                        stale_xwd.unlink()
             continue
 
         # Determine effective software_name for wcwidth term_program matching.

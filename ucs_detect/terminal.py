@@ -13,6 +13,10 @@ import contextlib
 
 # 3rd party
 import blessed
+from blessed.keyboard import KittyKeyboardProtocol
+
+#: Kitty keyboard protocol progressive enhancement modes, as blessed names them
+KITTY_KB_MODES = tuple(KittyKeyboardProtocol(0).make_arguments())
 
 SCREEN_RATIOS = [(4, 3), (16, 9), (16, 10), (21, 9), (32, 9)]
 
@@ -361,18 +365,33 @@ def maybe_determine_colors(term, writer, timeout=1.0):
 
 
 def maybe_determine_kitty_keyboard(term, timeout=1.0):
-    """Query Kitty keyboard protocol support."""
-    result = {}
-    kb_state = term.get_kitty_keyboard_state(timeout=timeout)
-    if kb_state is not None:
-        result['kitty_keyboard'] = {
-            'disambiguate': kb_state.disambiguate,
-            'report_events': kb_state.report_events,
-            'report_alternates': kb_state.report_alternates,
-            'report_all_keys': kb_state.report_all_keys,
-            'report_text': kb_state.report_text,
+    """Determine support for the Kitty keyboard protocol state request and each of its modes."""
+    # A terminal at rest always reports flags=0, so each mode is confirmed by
+    # enabling it and re-querying.  blessed's enable_kitty_keyboard() is not used:
+    # it restores to a fresh state query, which is stale on misreporting terminals
+    # and skipped entirely when that query times out.
+    kb_initial = term.get_kitty_keyboard_state(timeout=timeout)
+    if kb_initial is None:
+        return {}
+
+    supported_flags = 0
+    for mode in KITTY_KB_MODES:
+        intended = KittyKeyboardProtocol(0)
+        setattr(intended, mode, True)
+        echo(term, f'\x1b[={intended.value};1u')
+        state = term.get_kitty_keyboard_state(timeout=timeout, force=True)
+        echo(term, f'\x1b[={kb_initial.value};1u')
+        # Only an exact match confirms the mode, so a terminal that already has
+        # flags enabled at rest is credited only for those already reported.
+        if state is not None and state.value == intended.value:
+            supported_flags |= intended.value
+
+    return {
+        'kitty_keyboard': {
+            **KittyKeyboardProtocol(supported_flags).make_arguments(),
+            'supported_flags': supported_flags,
         }
-    return result
+    }
 
 
 def echo(term, data):

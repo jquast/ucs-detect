@@ -602,8 +602,13 @@ def _build_features_kv_pairs(term, results):
             else:
                 pairs.append((mode_label, term.yellow("N/A")))
 
-    if results.get('kitty_keyboard') is not None:
-        pairs.append(("Kitty Keyboard?", _color_yes_no(term, True)))
+    kitty_kb = results.get('kitty_keyboard')
+    if kitty_kb is not None:
+        flag_keys = ('disambiguate', 'report_events', 'report_alternates',
+                     'report_all_keys', 'report_text')
+        n_flags = sum(bool(kitty_kb.get(key)) for key in flag_keys)
+        suffix = f" ({n_flags}/{len(flag_keys)} modes)"
+        pairs.append(("Kitty Keyboard?", _color_yes_no(term, True, suffix)))
     else:
         pairs.append(("Kitty Keyboard?", _color_yes_no(term, False)))
 
