@@ -1,11 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-07-29 19:07:08 UTC
+datetime: 2026-08-31 14:05:13 UTC
 environment:
   TERM: xterm
-height: 24
+height: 59
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 27.150890371005516
+seconds_elapsed: 57.78404512099951
 session_arguments:
   all: false
   limit_category_time: 0
@@ -35,8 +35,8 @@ terminal_results:
     decsca: '0'
     decscl: 61;1
     decscusr: '1'
-    decslrm: 1;80
-    decstbm: 1;24
+    decslrm: 1;207
+    decstbm: 1;59
     sgr: '0'
   decrqss_truecolor_probe: false
   device_attributes:
@@ -49,7 +49,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 24
+  height: 59
   iterm2_features:
     features: {}
     supported: false
@@ -128,10 +128,10 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 384
-  pixels_width: 640
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
+  pixels_height: 944
+  pixels_width: 1656
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: false
   software_name: TeraTerm
   software_version: 5.6.0
@@ -140,8 +140,11 @@ terminal_results:
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: xterm
-  width: 80
+  width: 207
   xtgettcap:
     capabilities:
       colors: '256'
@@ -6582,6 +6585,7 @@ test_results:
       n_errors: 26
       n_total: 26
       pct_success: 0.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -6682,4 +6686,4 @@ test_results:
       n_total: 506
       pct_success: 93.87351778656127
 wcwidth_version: 0.8.3
-width: 80
+width: 207

@@ -559,8 +559,12 @@ def main():
 
     profiler_sessions = {}
     try:
-        from ucs_detect.profiler import ProfileSession  # noqa: F811
-    except ImportError:
+        from ucs_detect.profiler import ProfileSession, require_psutil  # noqa: F811
+        # profiling is optional: without psutil, run the series without it rather than
+        # failing later, once a session begins to sample
+        require_psutil()
+    except ImportError as err:
+        print(f"resource profiling disabled: {err}")
         ProfileSession = None  # type: ignore[assignment]
 
     key_jobs = [j for j in jobs if j[2].get("post_launch_keys")]

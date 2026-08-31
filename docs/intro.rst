@@ -65,8 +65,8 @@ and zero-width combining characters across hundreds of languages.
 
 Terminal features that may be automatically detected are also reported:
 `Bracketed Paste`_, `Synchronized Output`_, `Mouse SGR`_, `Grapheme
-Clustering`_, `Kitty Keyboard protocol`_, `Sixel`_, `ReGIS`_, `Kitty`_ or
-`iTerm2 image protocol`_, and `XTGETTCAP`_ support.
+Clustering`_, `Kitty Keyboard protocol`_, `Font Glyph Coverage`_, `Sixel`_,
+`ReGIS`_, `Kitty`_ or `iTerm2 image protocol`_, and `XTGETTCAP`_ support.
 
 Run a default test::
 
@@ -316,6 +316,10 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.6 (2026-08-31): Test for new feature, "tofu detection", fix scores normalized by
+  only 'contested', fix kitty keyboard "partial" support reporting, and, remove Resources (RSC) from
+  final score.
+
 - 2.3.5 (2026-07-29): Improve html reports with ConPTY considerations about DA1 and 'contested'
   status of VS15, collect and tabulate summaries of ``DA1`` features.  report xterm w/sixel
   supported as caveat.  Changed default ``--timeout-cps=3``.
@@ -394,6 +398,7 @@ History
 .. _`Mouse SGR`: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Extended-coordinates
 .. _`Grapheme Clustering`: https://github.com/contour-terminal/terminal-unicode-core
 .. _`Kitty Keyboard protocol`: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
+.. _`Font Glyph Coverage`: https://github.com/mintty/mintty/wiki/CtrlSeqs#font-glyph-coverage-enquiry
 .. _Sixel: https://en.wikipedia.org/wiki/Sixel
 .. _ReGIS: https://en.wikipedia.org/wiki/ReGIS
 .. _Kitty: https://sw.kovidgoyal.net/kitty/graphics-protocol/

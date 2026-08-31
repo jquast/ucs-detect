@@ -50,8 +50,16 @@ if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
 from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars, load_mixins
-from ucs_detect.measure import make_printf_hex
-from ucs_detect.profiler import ProfileSession, generate_graphs
+from ucs_detect.measure import UNCOMMON_WIDE_RANGES, make_printf_hex
+from ucs_detect.table_tofu import TOFU_CODEPOINTS
+from ucs_detect.table_lang_contested import LANG_CONTESTED
+from ucs_detect.table_narrow_contested import NARROW_CONTESTED
+from ucs_detect.table_wide_contested import WIDE_CONTESTED
+from ucs_detect.profiler import (ProfileSession, generate_graphs, GRAPH_DPI,
+                                 GRAPH_WIDTH_PX, GRAPH_WIDTH_ALL_PX)
+
+#: Display width of the per-terminal score comparison plot, ``figsize=(8, 4)``.
+SCORE_PLOT_WIDTH_PX = 800
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 GITHUB_EXAMPLE_BASE = 'https://github.com/jquast/ucs-detect/blob/master/docs/ucs_example_files'
@@ -61,10 +69,10 @@ PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
 CONPTY_DA_CAVEAT_LINES = (
-    "† On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or "
-    "OpenConsole.exe) for MSYS2_ or Cygwin_ programs.  The DA1 response "
-    "reflects **conhost.exe's capabilities** and not necessarily the "
-    "terminal emulator's.",
+    "† On Windows, MSYS2_ and Cygwin_ launch native Windows programs through "
+    "ConPTY (conhost.exe or OpenConsole.exe), which answers DA1 itself instead "
+    "of passing it to the terminal, so the response shown is **conhost.exe's**.  "
+    "See mintty's `Input/Output interaction with alien programs`_.",
 )
 
 SERVICE_CLASS_NAMES = {
@@ -407,7 +415,7 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
             pct = sum(1 for s in valid_scores if s <= score) / len(valid_scores) * 100
             percentiles.append(pct)
 
-    # Create bar chart (8 inches at 100dpi = 800px wide to accommodate 8 metrics)
+    # Create bar chart (8 inches wide to accommodate 8 metrics, saved at GRAPH_DPI)
     fig, ax = plt.subplots(figsize=(8, 4))
 
     x_pos = np.arange(len(metrics))
@@ -441,7 +449,7 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
     ax.legend()
 
     plt.tight_layout()
-    plt.savefig(output_path, dpi=100, bbox_inches='tight',
+    plt.savefig(output_path, dpi=GRAPH_DPI, bbox_inches='tight',
                 # 'None' CreationDate is used so the git hash's don't unnecessarily update
                 metadata={'CreationDate': None})
     plt.close()
@@ -536,7 +544,7 @@ def create_time_summary_plot(score_table):
 
     plt.tight_layout()
     plot_filename = "time_summary_scatter.png"
-    plt.savefig(os.path.join(PLOTS_PATH, plot_filename), dpi=100,
+    plt.savefig(os.path.join(PLOTS_PATH, plot_filename), dpi=GRAPH_DPI,
                 bbox_inches='tight', metadata={'CreationDate': None})
     plt.close()
     return plot_filename
@@ -656,6 +664,7 @@ def main():
             show_kitty_keyboard_results(sw_name, entry)
             show_xtgettcap_results(sw_name, entry)
             show_text_sizing_results(sw_name, entry)
+            show_tofu_results(sw_name, entry)
             show_truecolor_results(sw_name, entry)
             show_osc52_results(sw_name, entry)
             show_id_results(sw_name, entry, terminal_mixins)
@@ -746,6 +755,10 @@ def display_common_hyperlinks():
     print(".. _`XTGETTCAP`: https://codeberg.org/dnkl/foot#xtgettcap")
     print(".. _`Truecolor`: https://github.com/termstandard/colors/blob/master/README.md")
     print(".. _`Kitty graphics`: https://sw.kovidgoyal.net/kitty/graphics-protocol/")
+    print(".. _`Font Glyph Coverage Enquiry`: "
+          "https://github.com/mintty/mintty/wiki/CtrlSeqs#font-glyph-coverage-enquiry")
+    print(".. _`Glyph Protocol`: "
+          "https://rapha.land/introducing-glyph-protocol-for-terminals/")
     print(".. _MSYS2: https://www.msys2.org/")
     print(".. _Cygwin: https://www.cygwin.com/")
 
@@ -950,7 +963,6 @@ def make_score_table():
             else:
                 entry["score_resource_norm"] = float('NaN')
 
-    RESOURCE_WEIGHT = 0.5
     GRAPHICS_WEIGHT = 0.5
     STANDALONE_WEIGHT = 1.0 / 3.0
     for entry in score_table:
@@ -967,7 +979,6 @@ def make_score_table():
             (entry["score_ri"], 1.0),
             (entry["score_features"], 1.0),
             (entry["score_graphics"], GRAPHICS_WEIGHT),
-            (entry["score_resource_norm"], RESOURCE_WEIGHT)
         ]
         valid_scores_with_weights = [(s, w) for s, w in scores_with_weights if not math.isnan(s)]
         if valid_scores_with_weights:
@@ -1098,6 +1109,20 @@ def _classify_kitty_keyboard(tr):
     n_modes = sum(bool(kk.get(key)) for key in KITTY_KB_FLAG_KEYS)
     score = (n_modes + 1) / (len(KITTY_KB_FLAG_KEYS) + 1)
     return ("full" if score >= 1.0 else "partial"), score
+
+
+def _classify_tofu(tr):
+    """Classify font glyph coverage protocol support.
+
+    Returns ``(protocol, score)`` where protocol is "mintty", "glyph", or None.
+    """
+    # Whether the terminal answers a font glyph coverage enquiry at all is a
+    # property of the emulator, and is scored.  *Which* codepoints it reports a
+    # glyph for is a property of the installed font, and is not.
+    tofu = tr.get("tofu")
+    if not isinstance(tofu, dict) or not tofu.get("supported"):
+        return None, 0.0
+    return tofu.get("protocol"), 1.0
 
 
 def _format_features_summary(entry):
@@ -1382,12 +1407,20 @@ def display_table_definitions():
         "  This mode enables grapheme clustering behavior in the terminal."
     )
     print(
+        "- *Tofu*: The font glyph coverage protocol the terminal answers, ``mintty``\n"
+        "  (`Font Glyph Coverage Enquiry`_, ``OSC 7771``) or ``glyph`` (`Glyph\n"
+        "  Protocol`_, ``APC 25a1``), by which it may be asked whether its font has a\n"
+        "  glyph for a codepoint.  Answering at all counts towards the FEAT score; which\n"
+        "  codepoints are covered does not, being a property of the installed font."
+    )
+    print(
         "- *DEC Modes*: Determined by the number of DEC private modes\n"
         "  that are changeable by the terminal, scaled."
     )
     print(
         "- *Resources*: Composite CPU, RSS memory, and run duration score (0-100),\n"
         "  where the global mean maps to 50 and the lightest/fastest terminal scores 100.\n"
+        "  Excluded from the final score, it cannot be measured for all terminals.\n"
         "  Computed by averaging sub-scores for mean CPU%, mean RSS (MB), and total\n"
         "  seconds, each individually scaled so the global mean = 50, min = 100, max = 0."
     )
@@ -1423,6 +1456,72 @@ def scale_scores(score_table, entry, key):
     return (my_score - min_score) / (max_score - min_score)
 
 
+def _index_contested_languages():
+    """Return contested graphemes by language, unioned over the width groups tested."""
+    languages = {}
+    for _expected_width, lang_entries in LANG_CONTESTED:
+        for lang, graphemes in lang_entries:
+            languages.setdefault(lang, set()).update(graphemes)
+    return {lang: frozenset(graphemes) for lang, graphemes in languages.items()}
+
+
+_CONTESTED_WIDE = {version: frozenset(codepoints) for version, codepoints in WIDE_CONTESTED}
+_CONTESTED_NARROW = {version: frozenset(codepoints) for version, codepoints in NARROW_CONTESTED}
+_CONTESTED_LANG = _index_contested_languages()
+
+
+def tested_all_tables(data):
+    """Return True when these results were measured with ``--all``."""
+    return bool((data.get("session_arguments") or {}).get("all"))
+
+
+def lookup_contested(contested_by_version, version):
+    """Return the contested codepoints for *version*, or None when unknown."""
+    if version in contested_by_version:
+        return contested_by_version[version]
+    if len(contested_by_version) == 1:
+        return next(iter(contested_by_version.values()))
+    return None
+
+
+def contested_width_counts(data, results_key, contested_by_version):
+    """Return ``(n_total, n_errors)`` of a width test, restricted to contested codepoints. """
+    results = data["test_results"].get(results_key) or {}
+    if not results:
+        return 0, 0
+    version, result = next(iter(results.items()))
+    if not tested_all_tables(data) or "sampled_pct" in result:
+        return result["n_total"], result["n_errors"]
+    contested = lookup_contested(contested_by_version, version)
+    if contested is None or result["n_total"] < len(contested):
+        return result["n_total"], result["n_errors"]
+    failed = {ord(decode_wchars(item["wchar"])[0])
+              for item in result.get("failed_codepoints") or ()}
+    return len(contested), len(failed & contested)
+
+
+def contested_language_percentages(data):
+    """Return ``{language: fraction_success}``, restricted to contested graphemes."""
+    language_results = data.get("test_results", {}).get("language_results") or {}
+    if not tested_all_tables(data):
+        return {lang: result["pct_success"] / 100
+                for lang, result in language_results.items()}
+    percentages = {}
+    for lang, result in language_results.items():
+        contested = _CONTESTED_LANG.get(lang)
+        if contested is None:
+            continue
+        if "sampled_pct" in result or result["n_total"] < len(contested):
+            percentages[lang] = result["pct_success"] / 100
+            continue
+        failed = {decode_wchars(item["wchars"]) for item in result.get("failed") or ()}
+        percentages[lang] = (len(contested) - len(failed & contested)) / len(contested)
+    if not percentages:
+        return {lang: result["pct_success"] / 100
+                for lang, result in language_results.items()}
+    return percentages
+
+
 def score_zwj(data):
     """Calculate ZWJ score as percentage of successful sequences tested."""
     zwj_results = data["test_results"].get("emoji_zwj_results") or {}
@@ -1436,27 +1535,21 @@ def score_zwj(data):
 
 
 def score_wide(data):
-    """Calculate WIDE score as percentage of successful codepoints tested."""
-    wide_results = data["test_results"].get("unicode_wide_results") or {}
-    if not wide_results:
-        return 0.0
-    result = next(iter(wide_results.values()))
-    n_total = result["n_total"]
+    """Calculate WIDE score as percentage of successful contested codepoints tested."""
+    n_total, n_errors = contested_width_counts(
+        data, "unicode_wide_results", _CONTESTED_WIDE)
     if n_total == 0:
         return 0.0
-    return (n_total - result["n_errors"]) / n_total
+    return (n_total - n_errors) / n_total
 
 
 def score_narrow(data):
-    """Calculate NARROW score as percentage of successful codepoints tested."""
-    narrow_results = data["test_results"].get("narrow_results") or {}
-    if not narrow_results:
-        return 0.0
-    result = next(iter(narrow_results.values()))
-    n_total = result["n_total"]
+    """Calculate NARROW score as percentage of successful contested codepoints tested."""
+    n_total, n_errors = contested_width_counts(
+        data, "narrow_results", _CONTESTED_NARROW)
     if n_total == 0:
         return 0.0
-    return (n_total - result["n_errors"]) / n_total
+    return (n_total - n_errors) / n_total
 
 
 def score_sri(data):
@@ -1497,20 +1590,14 @@ def score_ri(data):
 
 def score_lang(data):
     """
-    Calculate language support score using geometric mean of all language success percentages.
+    Calculate language support score using geometric mean of contested language success.
 
     This gives a fairer score than simple counting of 100% languages, as it considers
     partial support (e.g., 99%, 98%) and doesn't let one low score dominate the result.
     """
-    language_results = data.get("test_results", {}).get("language_results")
-    if not language_results:
+    percentages = list(contested_language_percentages(data).values())
+    if not percentages:
         return 0.0
-
-    # Get success percentages for all languages (as fractions 0.0-1.0)
-    percentages = [
-        lang_data["pct_success"] / 100
-        for lang_data in language_results.values()
-    ]
 
     # Calculate geometric mean using log space to avoid overflow
     # geometric_mean = exp(mean(log(percentages)))
@@ -1555,7 +1642,7 @@ def score_features(data):
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 16
+    total = 17
 
     for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
@@ -1571,6 +1658,10 @@ def score_features(data):
     _label, xt_score = _classify_xtgettcap(data)
     if xt_score > 0:
         count += xt_score
+
+    _tofu_label, tofu_score = _classify_tofu(tr)
+    if tofu_score > 0:
+        count += tofu_score
 
     text_sizing = tr.get("text_sizing", {})
     if text_sizing.get("width") or text_sizing.get("scale"):
@@ -1886,6 +1977,16 @@ def display_features_table(score_table):
             (text_sizing.get('width') or text_sizing.get('scale'))
             if tested else None,
             sw_name, "_text_sizing")
+
+        # Font glyph coverage enquiry (mintty OSC 7771, Glyph Protocol APC 25a1)
+        tofu_protocol, tofu_score = _classify_tofu(tr)
+        if tofu_protocol is None:
+            row["Tofu"] = _capability_yes_no(
+                False if tested and tr.get("tofu") is not None else None,
+                sw_name, "_tofu")
+        else:
+            row["Tofu"] = wrap_score_with_hyperlink(
+                tofu_protocol, tofu_score, sw_name, "_tofu")
 
         # Kitty Clipboard Protocol
         row["Kitty Clipboard"] = _capability_yes_no(
@@ -2425,7 +2526,8 @@ def display_performance_section(score_table):
     print()
     print()
     print("The Resources score combines CPU, memory, and runtime into a single "
-          "0-100 metric.  See per-terminal pages for calculation details.")
+          "0-100 metric, excluded from the final score.  See per-terminal pages "
+          "for calculation details.")
     print()
 
     headers = ["Terminal", "Score", "CPU %", "RSS (MB)", "Time (s)"]
@@ -2459,19 +2561,19 @@ def display_performance_section(score_table):
     print()
     print(".. figure:: _static/profiles/all_cpu.png")
     print("   :alt: CPU usage across all terminals")
-    print("   :width: 800px")
+    print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   CPU usage during test execution, all terminals overlaid.")
     print()
     print(".. figure:: _static/profiles/all_rss.png")
     print("   :alt: RSS memory usage across all terminals")
-    print("   :width: 800px")
+    print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   RSS memory usage during test execution, all terminals overlaid.")
     print()
     print(".. figure:: _static/profiles/all_cpu_vs_time.png")
     print("   :alt: CPU % vs Duration trade-off across all terminals")
-    print("   :width: 800px")
+    print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   Trade-off between mean CPU % and total test duration. Dots near the")
     print("   origin use less CPU and less time. Dashed contours show equal")
@@ -2479,7 +2581,7 @@ def display_performance_section(score_table):
     print()
     print(".. figure:: _static/profiles/all_time.png")
     print("   :alt: Duration across all terminals")
-    print("   :width: 800px")
+    print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   Total test duration for each terminal, sorted fastest to slowest.")
     print("   Log scale on the X axis.")
@@ -2585,7 +2687,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print(".. figure:: ../_static/plots/" + plot_filename_scaled)
     print("   :align: center")
-    print("   :width: 800px")
+    print(f"   :width: {SCORE_PLOT_WIDTH_PX}px")
     print()
     print("   Scaled scores comparison across all metrics (normalized 0-100%)")
     print()
@@ -2593,13 +2695,13 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print("  (weighted average: WIDE + NARROW + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX + 0.5 * RSC)")
+    print("  (weighted average: WIDE + NARROW + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX)")
     print("  the categorized 'average' absolute support level of this terminal.")
     print()
     print("  .. note::")
     print()
-    print("     RSC (Resources) is a composite CPU, memory, and runtime score.")
-    print("     RSC is weighted at 0.5 (half as powerful as other metrics).")
+    print("     RSC (Resources) is a composite CPU, memory, and runtime score,")
+    print("     displayed for comparison but excluded from the final score")
     print("     FEAT (Features) is the fraction of notable features supported.")
     print("     GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),")
     print("     50% for legacy only (Sixel, ReGIS), 0% for none.")
@@ -2612,15 +2714,14 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     # Add detailed score breakdowns for each type
     print("**WIDE Score Details:**")
     print()
-    wide_results = entry["data"]["test_results"].get("unicode_wide_results") or {}
-    if wide_results:
-        result = next(iter(wide_results.values()))
-        n_total = result["n_total"]
-        n_success = n_total - result["n_errors"]
+    n_total, n_errors = contested_width_counts(
+        entry["data"], "unicode_wide_results", _CONTESTED_WIDE)
+    if n_total:
+        n_success = n_total - n_errors
         print("Wide character support calculation:")
         print()
-        print(f"- Total successful codepoints: {n_success}")
-        print(f"- Total codepoints tested: {n_total}")
+        print(f"- Total successful contested codepoints: {n_success}")
+        print(f"- Total contested codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
         print(f"- Result: {entry['score_wide']*100:.2f}%")  # noqa: E226
     else:
@@ -2629,15 +2730,14 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print("**NARROW Score Details:**")
     print()
-    narrow_results = entry["data"]["test_results"].get("narrow_results") or {}
-    if narrow_results:
-        result = next(iter(narrow_results.values()))
-        n_total = result["n_total"]
-        n_success = n_total - result["n_errors"]
+    n_total, n_errors = contested_width_counts(
+        entry["data"], "narrow_results", _CONTESTED_NARROW)
+    if n_total:
+        n_success = n_total - n_errors
         print("Narrow character support calculation:")
         print()
-        print(f"- Total successful codepoints: {n_success}")
-        print(f"- Total codepoints tested: {n_total}")
+        print(f"- Total successful contested codepoints: {n_success}")
+        print(f"- Total contested codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
         print(f"- Result: {entry['score_narrow']*100:.2f}%")  # noqa: E226
     else:
@@ -2809,6 +2909,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
               or tr.get("text_sizing", {}).get("scale")
               or False),
              "_text_sizing"),
+            ("Tofu Detection",
+             _classify_tofu(tr)[1],
+             "_tofu"),
             ("Kitty Clipboard Protocol",
              float(tr.get("kitty_clipboard_protocol", False)),
              "_dec_modes"),
@@ -2906,14 +3009,14 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print("**LANG Score Details (Geometric Mean):**")
     print()
-    lang_results = entry["data"]["test_results"].get("language_results") or {}
-    if lang_results:
-        n = len(lang_results)
+    percentages = contested_language_percentages(entry["data"])
+    if percentages:
+        n = len(percentages)
         geo_mean = entry["score_language"]
 
         print("Geometric mean calculation:")
         print()
-        print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} languages")
+        print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} contested languages")
         print("- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_")
         print(f"- Result: {geo_mean * 100:.2f}%")
     print()
@@ -2939,6 +3042,14 @@ def show_software_header(entry, sw_name, terminal_mixins):
     print('Full results available at ucs-detect_ repository path')
     print(f"`data/{entry['fname']} <{GITHUB_DATA_LINK.format(fname=entry['fname'])}>`_.")
     print()
+
+    # A terminal measured in a non-default runtime environment describes it here,
+    # e.g. mintty, which only answers queries itself outside of ConPTY.
+    if sw_name_lower in terminal_mixins:
+        env_notes = terminal_mixins[sw_name_lower].get('test_environment_notes')
+        if env_notes:
+            print(env_notes)
+            print()
 
     # If this is a subterminal (terminal multiplexer), note the host terminal
     if sw_name_lower in terminal_mixins:
@@ -3503,6 +3614,194 @@ def show_text_sizing_results(sw_name, entry):
     print()
 
 
+def _tofu_excluded_ranges():
+    """
+    Describe the ranges a default tofu sweep leaves out.
+
+    Returns ``[(start, end, [block names], n_codepoints)]`` for each range of
+    :data:`UNCOMMON_WIDE_RANGES` that holds testable codepoints, and the totals
+    ``(n_excluded, n_all)`` over the whole table.
+    """
+    described, n_excluded, n_all = [], 0, 0
+    per_range = {(start, end): {} for start, end in UNCOMMON_WIDE_RANGES}
+    for _ver, ranges in TOFU_CODEPOINTS:
+        for start, end, block_name in ranges:
+            n_all += end - start + 1
+            for bounds in per_range:
+                low, high = max(start, bounds[0]), min(end, bounds[1])
+                if low <= high:
+                    per_range[bounds][block_name] = (
+                        per_range[bounds].get(block_name, 0) + high - low + 1)
+    for (start, end), blocks in per_range.items():
+        n_codepoints = sum(blocks.values())
+        if n_codepoints:
+            described.append((start, end, sorted(blocks), n_codepoints))
+            n_excluded += n_codepoints
+    described.sort()
+    return described, n_excluded, n_all
+
+
+def _show_tofu_exclusions():
+    """Print the note detailing what a default tofu sweep leaves out."""
+    described, n_excluded, n_all = _tofu_excluded_ranges()
+    print(".. note::")
+    print()
+    print("   These ranges are left out of the sweep, and of the count above: they are")
+    print("   a tofu in all but a few specialist CJK and historic script fonts, and a")
+    print("   font meant for terminal use is not worse for lacking them.  They account")
+    print(f"   for {n_excluded:,} of the {n_all:,} codepoints that could be tested;"
+          f" pass")
+    print("   ``ucs-detect --include-uncommon-codepoints`` to sweep them as well.")
+    print()
+    for start, end, blocks, n_codepoints in described:
+        print(f"   - ``U+{start:04X}``..``U+{end:04X}`` \u2014 {', '.join(blocks)}"
+              f" ({n_codepoints:,} codepoints)")
+    print()
+
+
+def _tofu_protocol_phrase(protocol):
+    """Return a sentence fragment naming the font glyph coverage *protocol*."""
+    if protocol == "mintty":
+        return "mintty's `Font Glyph Coverage Enquiry`_, ``OSC 7771``"
+    if protocol == "glyph":
+        return "the `Glyph Protocol`_ ``q`` verb, ``APC 25a1``"
+    return f"``{protocol}``"
+
+
+def _tofu_escape(codepoint):
+    """Return *codepoint* as a python escape sequence, for :func:`show_wchar`."""
+    if codepoint > 0xFFFF:
+        return f"\\U{codepoint:08x}"
+    return f"\\u{codepoint:04x}"
+
+
+def show_tofu_results(sw_name, entry):
+    """Display font glyph coverage ("tofu") detection and sweep results."""
+    TOFU_BLOCK_CODEPOINT_LIMIT = 32
+    TOFU_BLOCK_RANGE_LIMIT = 32
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_tofu")
+    display_title("Tofu Detection", 3)
+
+    tr = entry["data"].get("terminal_results") or {}
+    tofu = tr.get("tofu") or {}
+    protocol = tofu.get("protocol") if tofu.get("supported") else None
+
+    print("A *tofu* is the \u25a1 ``U+25A1`` WHITE SQUARE placeholder box drawn in place of")
+    print("a codepoint the terminal's font has no glyph for.  Two protocols allow a")
+    print("program to ask which codepoints may 'tofu': mintty's `Font")
+    print("Glyph Coverage Enquiry`_ and the `Glyph Protocol`_ implemented first by Rio.")
+    print()
+
+    if protocol is None:
+        print(f"*{sw_name}* does **not** answer a font glyph coverage enquiry by either")
+        print("protocol, 'tofus' cannot be determined by automatic code.")
+        print()
+        return
+
+    print(f"*{sw_name}* answers by {_tofu_protocol_phrase(protocol)}.")
+    print()
+    print(f"- Protocol: **{protocol}**")
+    print()
+
+    print(".. warning::")
+    print()
+    print("   Both protocols answer about *single codepoints* only.  They are without")
+    print("   support for grapheme clusters: ligatures, mark positioning, ``ZWJ`` joining,")
+    print("   VS-15 and VS-16 presentation, contextual forms, etc. ")
+    print()
+    print("   What is measured below is a property of the *font* this terminal was")
+    print("   configured with when tested, and not of the terminal emulator: it is")
+    print("   reported, but is not scored. GNU's Unifont is sometimes configured for use.")
+    print()
+
+    tofu_results = entry["data"].get("test_results", {}).get("tofu_results") or {}
+    if not tofu_results:
+        print(f"No codepoint sweep was recorded for *{sw_name}*.")
+        print()
+        return
+
+    ver, result = next(iter(tofu_results.items()))
+    n_errors, n_total = result["n_errors"], result["n_total"]
+    print(f"Every assigned codepoint of Unicode version {ver} that occupies a cell")
+    # a sweep without --include-uncommon-codepoints skips the ranges the WIDE
+    # test skips by default; data recorded before the option is a full sweep.
+    if result.get("include_uncommon", True):
+        print("of its own is tested, the ideographic extension and historic script")
+        print("ranges that no general-purpose font carries included.")
+    else:
+        print("of its own is tested, less the ideographic extension and historic")
+        print("script ranges that no general-purpose font is known to carry.")
+    print()
+    print(f"Tofus were detected for **{n_errors:,}** out of **{n_total:,}** codepoints")
+    print("tested.")
+    print()
+
+    if not result.get("include_uncommon", True):
+        _show_tofu_exclusions()
+
+    if n_unknown := (result.get("n_unknown") or 0):
+        print(f"{n_unknown:,} codepoints went unanswered by the terminal, and are assumed")
+        print("renderable.")
+        print()
+
+    blocks = result.get("blocks") or {}
+    if not blocks:
+        print("No Unicode block holds a tofu: every codepoint tested has a glyph.")
+        print()
+        return
+
+    offenders = sorted(blocks.items(), key=lambda kv: (-kv[1]["n_errors"], kv[0]))
+    tabulated_blocks = [
+        {
+            "Block": make_outbound_hyperlink(block_name,
+                                             sw_name + "_tofu_" + block_name),
+            "Tofus": block["n_errors"],
+            "Total": block["n_total"],
+            "Pct": "{:0.1f}%".format(
+                block["n_errors"] / block["n_total"] * 100
+                if block["n_total"] else 0),
+        }
+        for block_name, block in offenders
+    ]
+    print(f"Tofus were found in the following {len(offenders)} Unicode blocks:")
+    print()
+    table_str = tabulate.tabulate(tabulated_blocks, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
+
+    for block_name, block in offenders:
+        display_inbound_hyperlink(sw_name + "_tofu_" + block_name)
+        display_title(block_name, 4)
+        n_block_errors, n_block_total = block["n_errors"], block["n_total"]
+        if n_block_errors == n_block_total:
+            print(f"All {n_block_total:,} codepoints tested of the *{block_name}* block")
+            print(f"have no glyph in the font of *{sw_name}*.")
+        else:
+            print(f"{n_block_errors:,} of the {n_block_total:,} codepoints tested of the")
+            print(f"*{block_name}* block have no glyph in the font of *{sw_name}*.")
+        print()
+
+        codepoint_ranges = block["codepoint_ranges"]
+        if n_block_errors > TOFU_BLOCK_CODEPOINT_LIMIT:
+            # a table of thousands of rows helps nobody, and there may be
+            # hundreds of such blocks: name the ranges, they say as much.
+            for start, end in codepoint_ranges[:TOFU_BLOCK_RANGE_LIMIT]:
+                if start == end:
+                    print(f"- {make_unicode_codepoint(chr(start))}")
+                else:
+                    print(f"- {make_unicode_codepoint(chr(start))} through"
+                          f" {make_unicode_codepoint(chr(end))},"
+                          f" {end - start + 1:,} codepoints")
+            if len(codepoint_ranges) > TOFU_BLOCK_RANGE_LIMIT:
+                print(f"- \u2026 and {len(codepoint_ranges) - TOFU_BLOCK_RANGE_LIMIT:,}"
+                      " further ranges")
+            print()
+            continue
+
+        show_wchar("".join(_tofu_escape(codepoint)
+                           for start, end in codepoint_ranges
+                           for codepoint in range(start, end + 1)))
+
+
 def show_truecolor_results(sw_name, entry):
     """Display truecolor detection method results."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_truecolor")
@@ -3799,13 +4098,13 @@ def show_time_elapsed_results(sw_name, entry):
     print()
     print(f".. figure:: {cpu_graph}")
     print("   :alt: CPU usage over time")
-    print("   :width: 600px")
+    print(f"   :width: {GRAPH_WIDTH_PX}px")
     print()
     print(f"   CPU usage during test execution for *{sw_name}*.")
     print()
     print(f".. figure:: {rss_graph}")
     print("   :alt: RSS memory over time")
-    print("   :width: 600px")
+    print(f"   :width: {GRAPH_WIDTH_PX}px")
     print()
     print(f"   RSS memory usage during test execution for *{sw_name}*.")
     print()
@@ -3816,14 +4115,14 @@ def show_time_elapsed_results(sw_name, entry):
     if os.path.exists(os.path.join(_ROOT, "docs", "_static", "profiles", f"{safe}_time.png")):
         print(f".. figure:: {time_graph}")
         print("   :alt: Duration comparison")
-        print("   :width: 600px")
+        print(f"   :width: {GRAPH_WIDTH_PX}px")
         print()
         print(f"   Test duration for *{sw_name}* compared to all other terminals.")
         print()
     if os.path.exists(os.path.join(_ROOT, "docs", "_static", "profiles", f"{safe}_cpu_vs_time.png")):
         print(f".. figure:: {cpu_vs_time_graph}")
         print("   :alt: CPU % vs Duration")
-        print("   :width: 600px")
+        print(f"   :width: {GRAPH_WIDTH_PX}px")
         print()
         print(f"   CPU % vs duration trade-off for *{sw_name}*.")
         print()

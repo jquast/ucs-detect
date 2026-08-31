@@ -1,14 +1,94 @@
 ambiguous_width: 1
-datetime: 2026-08-12 19:20:03 UTC
+datetime: 2026-08-31 16:13:02 UTC
 environment:
   COLORTERM: truecolor
   TERM: rio
   TERM_PROGRAM: rio
-  TERM_PROGRAM_VERSION: 0.5.22
+  TERM_PROGRAM_VERSION: 0.5.27
 height: 32
 preferred_encoding: UTF-8
-python_version: 3.14.4
-seconds_elapsed: 20.639075210987357
+python_version: 3.13.13
+resource_profile:
+  cpu_pct:
+  - 3.0
+  - 4.0
+  - 2.0
+  - 3.0
+  - 2.0
+  - 3.0
+  - 3.9
+  - 4.0
+  - 61.4
+  - 60.3
+  - 62.3
+  - 61.3
+  - 63.2
+  - 61.5
+  - 65.7
+  - 61.3
+  - 36.6
+  - 62.2
+  - 87.1
+  - 83.2
+  - 63.3
+  - 59.3
+  - 61.3
+  - 62.3
+  elapsed_s:
+  - 1.0183340500007034
+  - 2.028578745001141
+  - 3.0379882300003374
+  - 4.047626565999963
+  - 5.05731243199989
+  - 6.066959073999897
+  - 7.075467746999493
+  - 8.088493422001193
+  - 9.100782322002487
+  - 10.111155972001143
+  - 11.123455282002396
+  - 12.135166217001824
+  - 13.146071466999274
+  - 14.158215506002307
+  - 15.182459521001874
+  - 16.217793091000203
+  - 17.228785146002338
+  - 18.24005127700002
+  - 19.253255580999394
+  - 20.263003537998884
+  - 21.273103898001864
+  - 22.284499142999266
+  - 23.29578056399987
+  - 24.306248396002047
+  hardware:
+    cpu_count: 12
+    cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
+    ram_total_kb: 15481852
+  rss_mb:
+  - 9.82421875
+  - 15.71875
+  - 64.3359375
+  - 71.90625
+  - 78.0625
+  - 86.125
+  - 95.703125
+  - 97.2421875
+  - 100.90234375
+  - 102.19921875
+  - 104.67578125
+  - 107.13671875
+  - 111.02734375
+  - 111.52734375
+  - 113.31640625
+  - 113.50390625
+  - 113.91015625
+  - 116.7109375
+  - 120.07421875
+  - 124.5703125
+  - 125.3125
+  - 126.3984375
+  - 127.0859375
+  - 129.3828125
+seconds_elapsed: 16.690435667998827
 session_arguments:
   all: true
   limit_category_time: 0
@@ -19,7 +99,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: Rio
-software_version: 0.4.5
+software_version: 0.5.27
 system: Linux
 terminal_results:
   background_color_hex: '#0f0f0d0d0e0e'
@@ -141,12 +221,15 @@ terminal_results:
   sixel: true
   software_method: XTVERSION
   software_name: Rio
-  software_version: 0.4.5
+  software_version: 0.5.27
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: glyph
+    supported: true
   ttype: rio
   width: 111
   xtgettcap:
@@ -363,7 +446,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: Rio 0.5.22
+  xtversion_raw: Rio 0.5.27
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -1316,6 +1399,15 @@ test_results:
       n_errors: 26
       n_total: 26
       pct_success: 0.0
+  tofu_results:
+    17.0.0:
+      blocks: {}
+      include_uncommon: false
+      n_errors: 0
+      n_total: 73679
+      n_unknown: 0
+      pct_success: 100.0
+      protocol: glyph
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -1415,5 +1507,5 @@ test_results:
       n_errors: 31
       n_total: 43592
       pct_success: 99.9288860341347
-wcwidth_version: 0.9.0
+wcwidth_version: 0.8.3
 width: 111

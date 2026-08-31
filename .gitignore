@@ -135,6 +135,9 @@ dmypy.json
 data/emoji-zwj-sequences-latest.txt
 data/emoji-test-latest.txt
 data/emoji-variation-sequences-latest.txt
+data/UnicodeData-latest.txt
+data/Blocks-latest.txt
+data/DerivedCoreProperties-latest.txt
 # just used during table generation, should
 # probably be moved to another folder !
 ucs_detect/udhr/

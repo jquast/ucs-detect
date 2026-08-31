@@ -932,7 +932,7 @@ resource_profile:
 seconds_elapsed: 315.30725271001575
 session_arguments:
   all: false
-  limit_category_time: 900.0
+  limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0

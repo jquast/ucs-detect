@@ -727,6 +727,117 @@ def test_support(
     }
 
 
+def _compress_codepoint_ranges(codepoints):
+    """Compress *codepoints* into a list of inclusive ``[start, end]`` pairs."""
+    ranges = []
+    for codepoint in sorted(codepoints):
+        if ranges and codepoint == ranges[-1][1] + 1:
+            ranges[-1][1] = codepoint
+        else:
+            ranges.append([codepoint, codepoint])
+    return ranges
+
+
+def test_tofu_support(
+    table,
+    term,
+    writer,
+    timeout,
+    limit_codepoints=0,
+    limit_errors=0,
+    limit_category_time=0,
+    include_uncommon=True,
+    silent=False,
+    **_kwargs,
+):
+    """
+    Test which codepoints the terminal's font has no glyph for, its "tofus".
+
+    Unlike :func:`test_support`, no cursor position report is involved: the terminal is asked about
+    each codepoint directly, by whichever font glyph coverage protocol it answers, and blessed
+    batches those queries for us.
+
+    Honours *include_uncommon* as the WIDE test does: the ideographic extensions and historic
+    scripts of :data:`UNCOMMON_WIDE_RANGES` are a tofu in all but a few specialist fonts, and swamp
+    the count of the codepoints anybody reads.
+    """
+    results = {}
+    for ver, ranges in table:
+        blocks = collections.OrderedDict()
+        for start, end, block_name in ranges:
+            codepoints = [codepoint for codepoint in range(start, end + 1)
+                          if include_uncommon or not _is_uncommon(codepoint)]
+            if codepoints:
+                blocks.setdefault(block_name, []).extend(codepoints)
+
+        n_all = sum(len(codepoints) for codepoints in blocks.values())
+        if limit_codepoints:
+            n_all = min(n_all, limit_codepoints)
+
+        if not silent:
+            writer("\n" + status_header(
+                term, f"Testing TOFU v={ver}"
+                f" ({n_all} codepoints, {len(blocks)} blocks)") + "\n")
+
+        ver_start_time = time.monotonic()
+        block_report = {}
+        protocol = None
+        n_total = n_errors = n_unknown = 0
+
+        for block_name, codepoints in blocks.items():
+            if limit_codepoints:
+                remaining = limit_codepoints - n_total
+                if remaining <= 0:
+                    break
+                codepoints = codepoints[:remaining]
+
+            if not silent:
+                writer(f"\r{term.clear_eol}"
+                       + term.magenta(f"{n_total}/{n_all}")
+                       + f" {block_name}")
+
+            coverage = term.get_font_coverage(
+                "".join(map(chr, codepoints)), timeout=timeout)
+            if not coverage:
+                # no protocol answered, there is nothing that can be tested
+                if not silent:
+                    writer(f"\r{term.clear_eol}")
+                return {}
+
+            protocol = coverage.protocol
+            n_total += len(codepoints)
+            n_unknown += len(coverage.unknown)
+
+            tofus = coverage.uncovered
+            if tofus:
+                n_errors += len(tofus)
+                block_report[block_name] = {
+                    "n_errors": len(tofus),
+                    "n_total": len(codepoints),
+                    "codepoint_ranges": _compress_codepoint_ranges(tofus),
+                }
+
+            if limit_errors and n_errors >= limit_errors:
+                break
+            if (limit_category_time
+                    and time.monotonic() - ver_start_time >= limit_category_time):
+                break
+
+        if not silent:
+            writer(f"\r{term.clear_eol}")
+
+        results[ver] = _make_result_entry(
+            n_errors=n_errors,
+            n_total=n_total,
+            elapsed=time.monotonic() - ver_start_time,
+            extra={"protocol": protocol,
+                   "n_unknown": n_unknown,
+                   "include_uncommon": include_uncommon,
+                   "blocks": block_report},
+        )
+    return results
+
+
 def make_success_pct(n_errors, n_total):
     """Calculate success percentage from error and total counts."""
     return ((n_total - n_errors) / n_total if n_total else 0) * 100

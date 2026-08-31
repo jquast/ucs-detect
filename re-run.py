@@ -3,66 +3,37 @@
 import os
 import shlex
 import argparse
+import textwrap
 import subprocess
 import sys
 
-import yaml
+EPILOG = textwrap.dedent("""\
+    Arguments after yaml_file must be separated with '--' as arguments to 'ucs-detect' CLI
 
-
-def build_command_from_yaml(yaml_file):
-    with open(yaml_file) as f:
-        data = yaml.safe_load(f)
-
-    session_args = data.get('session_arguments', {})
-
-    cmd = ['ucs-detect', '--rerun', str(yaml_file)]
-
-    # Map YAML keys to CLI arguments
-    arg_mapping = {
-        'stream': '--stream',
-        'limit_codepoints': '--limit-codepoints',
-        'limit_words': '--limit-words',
-        'limit_errors': '--limit-errors',
-        'timeout_cps': '--timeout-cps',
-        'stop_at_error': '--stop-at-error',
-    }
-
-    # Boolean flags (only add if True)
-    bool_flags = {
-        'no_terminal_test': '--no-terminal-test',
-        'no_languages_test': '--no-languages-test',
-        'no_fullscreen': '--no-fullscreen',
-        'all': '--all',
-    }
-
-    # Add arguments with values
-    for yaml_key, cli_arg in arg_mapping.items():
-        if yaml_key in session_args:
-            value = session_args[yaml_key]
-            if value is not None:
-                cmd.extend([cli_arg, str(value)])
-
-    # Add boolean flags
-    for yaml_key, cli_flag in bool_flags.items():
-        if session_args.get(yaml_key):
-            cmd.append(cli_flag)
-
-    return cmd
+        re-run.py data/securecrt.yaml -- --all
+        re-run.py data/securecrt.yaml -- --limit-category-time 60
+    """)
 
 
 def main():
     parser = argparse.ArgumentParser(
+        usage='%(prog)s yaml_file [-- ucs-detect-arg ...]',
         description='Re-run ucs-detect with arguments from a saved YAML file.',
-        epilog='Any additional arguments after yaml_file are passed to ucs-detect')
-    parser.add_argument('yaml_file')
-    parser.add_argument('extra_args', nargs='*', help='Additional arguments to pass to ucs-detect')
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=EPILOG)
+    parser.add_argument('yaml_file',
+                        help='saved report to restore session_arguments from, and save back to')
+    parser.add_argument('extra_args', nargs='*', metavar='ucs-detect-arg',
+                        help="arguments passed through to ucs-detect, after a '--' separator")
     args = parser.parse_args()
 
     if not os.path.exists(args.yaml_file):
         print(f"Error: File not found: {args.yaml_file}", file=sys.stderr)
         sys.exit(1)
 
-    cmd = build_command_from_yaml(args.yaml_file)
+    # ucs-detect --rerun restores 'session_arguments' from the file itself; anything
+    # given here is passed through and takes precedence over the restored value.
+    cmd = ['ucs-detect', '--rerun', str(args.yaml_file)]
 
     if args.extra_args:
         extra = args.extra_args

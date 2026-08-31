@@ -15,6 +15,25 @@ import colorsys
 import threading
 from pathlib import Path
 
+# Graphs are saved at twice their display size: the documentation displays a graph at
+# ``figsize`` inches * 100 CSS pixels (see GRAPH_WIDTH_PX), so the inline image is sharp on
+# high-density displays
+GRAPH_DPI = 200
+GRAPH_WIDTH_PX = 1200
+GRAPH_WIDTH_ALL_PX = 1400
+
+
+def require_psutil():
+    """Return psutil module, which sampling a process tree requires."""
+    try:
+        # 3rd party
+        import psutil  # type: ignore[import-untyped]  # pylint: disable=import-outside-toplevel
+    except ImportError as err:
+        raise ImportError(
+            'resource profiling requires psutil: pip install "ucs-detect[profile]". '
+            'psutil does not support Cygwin, where profiling is unavailable.') from err
+    return psutil
+
 
 class ProfileSession:
     """Samples CPU% and RSS of a process tree during a terminal test."""  # pylint: disable=too-many-instance-attributes
@@ -40,8 +59,7 @@ class ProfileSession:
     @staticmethod
     def _is_zombie(proc) -> bool:
         """Return True if *proc* is a zombie (defunct) process."""
-        # 3rd party
-        import psutil  # type: ignore[import-untyped]
+        psutil = require_psutil()
         try:
             return proc.status() == "zombie"
         except (psutil.NoSuchProcess, psutil.AccessDenied):
@@ -50,8 +68,7 @@ class ProfileSession:
     @staticmethod
     def _find_process_by_name(name: str):
         """Return the first process matching *name*, excluding the current process."""
-        # 3rd party
-        import psutil  # type: ignore[import-untyped]
+        psutil = require_psutil()
         my_pid = os.getpid()
         for proc in psutil.process_iter(["name", "pid", "status"]):
             try:
@@ -80,6 +97,9 @@ class ProfileSession:
 
     def start(self) -> None:
         """Begin sampling in a background thread."""
+        # checked here rather than in _sample_loop(), whose exceptions the daemon
+        # thread would swallow, leaving a session that silently records nothing
+        require_psutil()
         self._stop_event.clear()
         self._thread = threading.Thread(target=self._sample_loop, daemon=True)
         self._thread.start()
@@ -92,8 +112,7 @@ class ProfileSession:
 
     def _get_or_prime_child(self, child):
         """Return a cached Process for *child*, priming cpu_percent if new."""
-        # 3rd party
-        import psutil  # type: ignore[import-untyped]
+        psutil = require_psutil()
         pid = child.pid
         if pid in self._proc_cache:
             return self._proc_cache[pid]
@@ -113,8 +132,7 @@ class ProfileSession:
         Processes whose name or first argument matches ``_exclude_names`` (e.g. ``ucs-detect``,
         ``re-run.py``) are skipped so the test harness CPU is not attributed to the terminal.
         """
-        # 3rd party
-        import psutil  # type: ignore[import-untyped]
+        psutil = require_psutil()
         cpu_total = 0.0
         rss_total = 0.0
 
@@ -153,8 +171,7 @@ class ProfileSession:
     @staticmethod
     def _find_all_by_name(name: str):
         """Yield all processes (excluding current) whose name matches *name*."""
-        # 3rd party
-        import psutil  # type: ignore[import-untyped]
+        psutil = require_psutil()
         my_pid = os.getpid()
         for proc in psutil.process_iter(["name", "pid", "status"]):
             try:
@@ -167,8 +184,7 @@ class ProfileSession:
 
     def _discover_all_recovered_processes(self, prog_basename: str) -> None:
         """After recovery, find all processes matching *prog_basename* and their children."""
-        # 3rd party
-        import psutil  # type: ignore[import-untyped]
+        psutil = require_psutil()
         seen_pids = {p.pid for p in self._extra_procs if p.pid in self._proc_cache}
         for proc in self._find_all_by_name(prog_basename):
             if proc.pid in seen_pids or proc.pid in self._proc_cache:
@@ -195,8 +211,7 @@ class ProfileSession:
 
     def _discover_extra_processes(self) -> None:
         """Try to find any still-undiscovered extra processes by name."""
-        # 3rd party
-        import psutil  # type: ignore[import-untyped]
+        psutil = require_psutil()
         if self._recovered and self._program:
             self._discover_all_recovered_processes(os.path.basename(self._program))
         found_names = set()
@@ -220,8 +235,7 @@ class ProfileSession:
                     pass
 
     def _sample_loop(self) -> None:
-        # 3rd party
-        import psutil  # type: ignore[import-untyped]
+        psutil = require_psutil()
         t0 = time.monotonic()
 
         def _init_baselines(process):
@@ -441,7 +455,7 @@ def generate_graphs(
 
             plt.tight_layout()
             png_path = output_dir / f"{safe}_{label}.png"
-            fig.savefig(str(png_path), dpi=100)
+            fig.savefig(str(png_path), dpi=GRAPH_DPI)
             plt.close(fig)
 
         # Aggregate: all terminals colored by HSV rank
@@ -485,7 +499,7 @@ def generate_graphs(
 
         plt.tight_layout()
         png_path = output_dir / f"all_{label}.png"
-        fig.savefig(str(png_path), dpi=150)
+        fig.savefig(str(png_path), dpi=GRAPH_DPI)
         plt.close(fig)
 
     # CPU vs Time scatter: trade-off between CPU% and duration
@@ -524,7 +538,7 @@ def generate_graphs(
 
         plt.tight_layout()
         png_path = output_dir / f"{safe}_cpu_vs_time.png"
-        fig.savefig(str(png_path), dpi=100)
+        fig.savefig(str(png_path), dpi=GRAPH_DPI)
         plt.close(fig)
 
     # Aggregate CPU vs Time: all terminals colored by rank
@@ -556,7 +570,7 @@ def generate_graphs(
 
     plt.tight_layout()
     png_path = output_dir / "all_cpu_vs_time.png"
-    fig.savefig(str(png_path), dpi=150)
+    fig.savefig(str(png_path), dpi=GRAPH_DPI)
     plt.close(fig)
 
     # Time-only horizontal bar charts: terminals sorted by duration
@@ -589,7 +603,7 @@ def generate_graphs(
 
         plt.tight_layout()
         png_path = output_dir / f"{safe}_time.png"
-        fig.savefig(str(png_path), dpi=100)
+        fig.savefig(str(png_path), dpi=GRAPH_DPI)
         plt.close(fig)
 
     # Aggregate time bars: all terminals colored by rank
@@ -621,7 +635,7 @@ def generate_graphs(
 
     plt.tight_layout()
     png_path = output_dir / "all_time.png"
-    fig.savefig(str(png_path), dpi=150)
+    fig.savefig(str(png_path), dpi=GRAPH_DPI)
     plt.close(fig)
 
 
