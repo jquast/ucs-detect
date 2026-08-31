@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-08-31 13:47:48 UTC
+datetime: 2026-08-31 14:19:40 UTC
 environment:
   TERM: xterm
   TERM_PROGRAM: mintty
@@ -7,7 +7,7 @@ environment:
 height: 42
 preferred_encoding: UTF-8
 python_version: 3.12.12
-seconds_elapsed: 589.7830734000017
+seconds_elapsed: 640.0078295000058
 session_arguments:
   all: false
   limit_category_time: 0
@@ -5291,12 +5291,1502 @@ test_results:
       pct_success: 0.0
   tofu_results:
     17.0.0:
-      blocks: {}
+      blocks:
+        Adlam:
+          codepoint_ranges:
+          - - 125184
+            - 125251
+          - - 125259
+            - 125259
+          - - 125264
+            - 125273
+          - - 125278
+            - 125279
+          n_errors: 81
+          n_total: 81
+        Aegean Numbers:
+          codepoint_ranges:
+          - - 65792
+            - 65794
+          - - 65799
+            - 65843
+          - - 65847
+            - 65855
+          n_errors: 57
+          n_total: 57
+        Ahom:
+          codepoint_ranges:
+          - - 71424
+            - 71450
+          - - 71472
+            - 71494
+          n_errors: 50
+          n_total: 50
+        Alchemical Symbols:
+          codepoint_ranges:
+          - - 128768
+            - 128895
+          n_errors: 128
+          n_total: 128
+        Anatolian Hieroglyphs:
+          codepoint_ranges:
+          - - 82944
+            - 83526
+          n_errors: 583
+          n_total: 583
+        Ancient Greek Musical Notation:
+          codepoint_ranges:
+          - - 119296
+            - 119361
+          - - 119365
+            - 119365
+          n_errors: 67
+          n_total: 67
+        Ancient Greek Numbers:
+          codepoint_ranges:
+          - - 65856
+            - 65934
+          n_errors: 79
+          n_total: 79
+        Ancient Symbols:
+          codepoint_ranges:
+          - - 65936
+            - 65948
+          - - 65952
+            - 65952
+          n_errors: 14
+          n_total: 14
+        Arabic Extended-C:
+          codepoint_ranges:
+          - - 69314
+            - 69319
+          - - 69328
+            - 69336
+          n_errors: 15
+          n_total: 15
+        Arabic Mathematical Alphabetic Symbols:
+          codepoint_ranges:
+          - - 126464
+            - 126467
+          - - 126469
+            - 126495
+          - - 126497
+            - 126498
+          - - 126500
+            - 126500
+          - - 126503
+            - 126503
+          - - 126505
+            - 126514
+          - - 126516
+            - 126519
+          - - 126521
+            - 126521
+          - - 126523
+            - 126523
+          - - 126530
+            - 126530
+          - - 126535
+            - 126535
+          - - 126537
+            - 126537
+          - - 126539
+            - 126539
+          - - 126541
+            - 126543
+          - - 126545
+            - 126546
+          - - 126548
+            - 126548
+          - - 126551
+            - 126551
+          - - 126553
+            - 126553
+          - - 126555
+            - 126555
+          - - 126557
+            - 126557
+          - - 126559
+            - 126559
+          - - 126561
+            - 126562
+          - - 126564
+            - 126564
+          - - 126567
+            - 126570
+          - - 126572
+            - 126578
+          - - 126580
+            - 126583
+          - - 126585
+            - 126588
+          - - 126590
+            - 126590
+          - - 126592
+            - 126601
+          - - 126603
+            - 126619
+          - - 126625
+            - 126627
+          - - 126629
+            - 126633
+          - - 126635
+            - 126651
+          - - 126704
+            - 126705
+          n_errors: 143
+          n_total: 143
+        Avestan:
+          codepoint_ranges:
+          - - 68352
+            - 68405
+          - - 68409
+            - 68415
+          n_errors: 61
+          n_total: 61
+        Bamum Supplement:
+          codepoint_ranges:
+          - - 92160
+            - 92728
+          n_errors: 569
+          n_total: 569
+        Bassa Vah:
+          codepoint_ranges:
+          - - 92880
+            - 92909
+          - - 92917
+            - 92917
+          n_errors: 31
+          n_total: 31
+        Beria Erfe:
+          codepoint_ranges:
+          - - 93856
+            - 93880
+          - - 93883
+            - 93907
+          n_errors: 50
+          n_total: 50
+        Bhaiksuki:
+          codepoint_ranges:
+          - - 72704
+            - 72712
+          - - 72714
+            - 72750
+          - - 72768
+            - 72773
+          - - 72784
+            - 72812
+          n_errors: 81
+          n_total: 81
+        Brahmi:
+          codepoint_ranges:
+          - - 69635
+            - 69687
+          - - 69703
+            - 69709
+          - - 69714
+            - 69743
+          - - 69745
+            - 69746
+          - - 69749
+            - 69749
+          n_errors: 93
+          n_total: 93
+        Byzantine Musical Symbols:
+          codepoint_ranges:
+          - - 118784
+            - 119029
+          n_errors: 246
+          n_total: 246
+        Carian:
+          codepoint_ranges:
+          - - 66208
+            - 66256
+          n_errors: 49
+          n_total: 49
+        Caucasian Albanian:
+          codepoint_ranges:
+          - - 66864
+            - 66915
+          - - 66927
+            - 66927
+          n_errors: 53
+          n_total: 53
+        Chakma:
+          codepoint_ranges:
+          - - 69891
+            - 69926
+          - - 69942
+            - 69956
+          - - 69959
+            - 69959
+          n_errors: 52
+          n_total: 52
+        Chess Symbols:
+          codepoint_ranges:
+          - - 129536
+            - 129623
+          - - 129632
+            - 129645
+          n_errors: 102
+          n_total: 102
+        Chorasmian:
+          codepoint_ranges:
+          - - 69552
+            - 69579
+          n_errors: 28
+          n_total: 28
+        Coptic Epact Numbers:
+          codepoint_ranges:
+          - - 66273
+            - 66299
+          n_errors: 27
+          n_total: 27
+        Counting Rod Numerals:
+          codepoint_ranges:
+          - - 119648
+            - 119672
+          n_errors: 25
+          n_total: 25
+        Cuneiform:
+          codepoint_ranges:
+          - - 73728
+            - 74649
+          n_errors: 922
+          n_total: 922
+        Cuneiform Numbers and Punctuation:
+          codepoint_ranges:
+          - - 74752
+            - 74862
+          - - 74864
+            - 74868
+          n_errors: 116
+          n_total: 116
+        Cypriot Syllabary:
+          codepoint_ranges:
+          - - 67584
+            - 67589
+          - - 67592
+            - 67592
+          - - 67594
+            - 67637
+          - - 67639
+            - 67640
+          - - 67644
+            - 67644
+          - - 67647
+            - 67647
+          n_errors: 55
+          n_total: 55
+        Cypro-Minoan:
+          codepoint_ranges:
+          - - 77712
+            - 77810
+          n_errors: 99
+          n_total: 99
+        Cyrillic Extended-D:
+          codepoint_ranges:
+          - - 122928
+            - 122989
+          n_errors: 62
+          n_total: 62
+        Deseret:
+          codepoint_ranges:
+          - - 66560
+            - 66639
+          n_errors: 80
+          n_total: 80
+        Devanagari Extended-A:
+          codepoint_ranges:
+          - - 72448
+            - 72457
+          n_errors: 10
+          n_total: 10
+        Dives Akuru:
+          codepoint_ranges:
+          - - 71936
+            - 71942
+          - - 71945
+            - 71945
+          - - 71948
+            - 71955
+          - - 71957
+            - 71958
+          - - 71960
+            - 71983
+          - - 71999
+            - 71999
+          - - 72001
+            - 72001
+          - - 72004
+            - 72006
+          - - 72016
+            - 72025
+          n_errors: 57
+          n_total: 57
+        Dogra:
+          codepoint_ranges:
+          - - 71680
+            - 71723
+          - - 71739
+            - 71739
+          n_errors: 45
+          n_total: 45
+        Domino Tiles:
+          codepoint_ranges:
+          - - 127024
+            - 127123
+          n_errors: 100
+          n_total: 100
+        Duployan:
+          codepoint_ranges:
+          - - 113664
+            - 113770
+          - - 113776
+            - 113788
+          - - 113792
+            - 113800
+          - - 113808
+            - 113817
+          - - 113820
+            - 113820
+          - - 113823
+            - 113823
+          n_errors: 141
+          n_total: 141
+        Early Dynastic Cuneiform:
+          codepoint_ranges:
+          - - 74880
+            - 75075
+          n_errors: 196
+          n_total: 196
+        Egyptian Hieroglyph Format Controls:
+          codepoint_ranges:
+          - - 78913
+            - 78918
+          n_errors: 6
+          n_total: 6
+        Egyptian Hieroglyphs:
+          codepoint_ranges:
+          - - 77824
+            - 78895
+          n_errors: 1072
+          n_total: 1072
+        Egyptian Hieroglyphs Extended-A:
+          codepoint_ranges:
+          - - 78944
+            - 82938
+          n_errors: 3995
+          n_total: 3995
+        Elbasan:
+          codepoint_ranges:
+          - - 66816
+            - 66855
+          n_errors: 40
+          n_total: 40
+        Elymaic:
+          codepoint_ranges:
+          - - 69600
+            - 69622
+          n_errors: 23
+          n_total: 23
+        Emoticons:
+          codepoint_ranges:
+          - - 128512
+            - 128591
+          n_errors: 80
+          n_total: 80
+        Enclosed Alphanumeric Supplement:
+          codepoint_ranges:
+          - - 127232
+            - 127278
+          - - 127280
+            - 127405
+          - - 127462
+            - 127487
+          n_errors: 199
+          n_total: 200
+        Enclosed Ideographic Supplement:
+          codepoint_ranges:
+          - - 127488
+            - 127490
+          - - 127504
+            - 127547
+          - - 127552
+            - 127560
+          - - 127568
+            - 127569
+          - - 127584
+            - 127589
+          n_errors: 64
+          n_total: 64
+        Ethiopic Extended-B:
+          codepoint_ranges:
+          - - 124896
+            - 124902
+          - - 124904
+            - 124907
+          - - 124909
+            - 124910
+          - - 124912
+            - 124926
+          n_errors: 28
+          n_total: 28
+        Garay:
+          codepoint_ranges:
+          - - 68928
+            - 68965
+          - - 68974
+            - 68997
+          - - 69006
+            - 69007
+          n_errors: 64
+          n_total: 64
+        Geometric Shapes Extended:
+          codepoint_ranges:
+          - - 128896
+            - 128985
+          - - 128992
+            - 129003
+          - - 129008
+            - 129008
+          n_errors: 103
+          n_total: 103
+        Gothic:
+          codepoint_ranges:
+          - - 66352
+            - 66378
+          n_errors: 27
+          n_total: 27
+        Grantha:
+          codepoint_ranges:
+          - - 70405
+            - 70412
+          - - 70415
+            - 70416
+          - - 70419
+            - 70440
+          - - 70442
+            - 70448
+          - - 70450
+            - 70451
+          - - 70453
+            - 70457
+          - - 70461
+            - 70461
+          - - 70480
+            - 70480
+          - - 70493
+            - 70497
+          n_errors: 53
+          n_total: 53
+        Gunjala Gondi:
+          codepoint_ranges:
+          - - 73056
+            - 73061
+          - - 73063
+            - 73064
+          - - 73066
+            - 73097
+          - - 73112
+            - 73112
+          - - 73120
+            - 73129
+          n_errors: 51
+          n_total: 51
+        Gurung Khema:
+          codepoint_ranges:
+          - - 90368
+            - 90397
+          - - 90416
+            - 90425
+          n_errors: 40
+          n_total: 40
+        Hanifi Rohingya:
+          codepoint_ranges:
+          - - 68864
+            - 68899
+          - - 68912
+            - 68921
+          n_errors: 46
+          n_total: 46
+        Hatran:
+          codepoint_ranges:
+          - - 67808
+            - 67826
+          - - 67828
+            - 67829
+          - - 67835
+            - 67839
+          n_errors: 26
+          n_total: 26
+        Ideographic Symbols and Punctuation:
+          codepoint_ranges:
+          - - 94176
+            - 94179
+          n_errors: 4
+          n_total: 4
+        Imperial Aramaic:
+          codepoint_ranges:
+          - - 67648
+            - 67669
+          - - 67671
+            - 67679
+          n_errors: 31
+          n_total: 31
+        Indic Siyaq Numbers:
+          codepoint_ranges:
+          - - 126065
+            - 126132
+          n_errors: 68
+          n_total: 68
+        Inscriptional Pahlavi:
+          codepoint_ranges:
+          - - 68448
+            - 68466
+          - - 68472
+            - 68479
+          n_errors: 27
+          n_total: 27
+        Inscriptional Parthian:
+          codepoint_ranges:
+          - - 68416
+            - 68437
+          - - 68440
+            - 68447
+          n_errors: 30
+          n_total: 30
+        Kaithi:
+          codepoint_ranges:
+          - - 69763
+            - 69807
+          - - 69819
+            - 69820
+          - - 69822
+            - 69825
+          n_errors: 51
+          n_total: 51
+        Kaktovik Numerals:
+          codepoint_ranges:
+          - - 119488
+            - 119507
+          n_errors: 20
+          n_total: 20
+        Kana Extended-B:
+          codepoint_ranges:
+          - - 110576
+            - 110579
+          - - 110581
+            - 110587
+          - - 110589
+            - 110590
+          n_errors: 13
+          n_total: 13
+        Kawi:
+          codepoint_ranges:
+          - - 73474
+            - 73474
+          - - 73476
+            - 73488
+          - - 73490
+            - 73523
+          - - 73539
+            - 73561
+          n_errors: 71
+          n_total: 71
+        Kharoshthi:
+          codepoint_ranges:
+          - - 68096
+            - 68096
+          - - 68112
+            - 68115
+          - - 68117
+            - 68119
+          - - 68121
+            - 68149
+          - - 68160
+            - 68168
+          - - 68176
+            - 68184
+          n_errors: 55
+          n_total: 55
+        Khojki:
+          codepoint_ranges:
+          - - 70144
+            - 70161
+          - - 70163
+            - 70187
+          - - 70200
+            - 70205
+          - - 70207
+            - 70208
+          n_errors: 51
+          n_total: 51
+        Khudawadi:
+          codepoint_ranges:
+          - - 70320
+            - 70366
+          - - 70384
+            - 70393
+          n_errors: 57
+          n_total: 57
+        Kirat Rai:
+          codepoint_ranges:
+          - - 93504
+            - 93561
+          n_errors: 58
+          n_total: 58
+        Latin Extended-F:
+          codepoint_ranges:
+          - - 67456
+            - 67461
+          - - 67463
+            - 67504
+          - - 67506
+            - 67514
+          n_errors: 57
+          n_total: 57
+        Latin Extended-G:
+          codepoint_ranges:
+          - - 122624
+            - 122654
+          - - 122661
+            - 122666
+          n_errors: 37
+          n_total: 37
+        Linear A:
+          codepoint_ranges:
+          - - 67072
+            - 67382
+          - - 67392
+            - 67413
+          - - 67424
+            - 67431
+          n_errors: 341
+          n_total: 341
+        Linear B Ideograms:
+          codepoint_ranges:
+          - - 65664
+            - 65786
+          n_errors: 123
+          n_total: 123
+        Linear B Syllabary:
+          codepoint_ranges:
+          - - 65536
+            - 65547
+          - - 65549
+            - 65574
+          - - 65576
+            - 65594
+          - - 65596
+            - 65597
+          - - 65599
+            - 65613
+          - - 65616
+            - 65629
+          n_errors: 88
+          n_total: 88
+        Lisu Supplement:
+          codepoint_ranges:
+          - - 73648
+            - 73648
+          n_errors: 1
+          n_total: 1
+        Lycian:
+          codepoint_ranges:
+          - - 66176
+            - 66204
+          n_errors: 29
+          n_total: 29
+        Lydian:
+          codepoint_ranges:
+          - - 67872
+            - 67897
+          - - 67903
+            - 67903
+          n_errors: 27
+          n_total: 27
+        Mahajani:
+          codepoint_ranges:
+          - - 69968
+            - 70002
+          - - 70004
+            - 70006
+          n_errors: 38
+          n_total: 38
+        Mahjong Tiles:
+          codepoint_ranges:
+          - - 126976
+            - 127019
+          n_errors: 44
+          n_total: 44
+        Makasar:
+          codepoint_ranges:
+          - - 73440
+            - 73458
+          - - 73463
+            - 73464
+          n_errors: 21
+          n_total: 21
+        Manichaean:
+          codepoint_ranges:
+          - - 68288
+            - 68324
+          - - 68331
+            - 68342
+          n_errors: 49
+          n_total: 49
+        Marchen:
+          codepoint_ranges:
+          - - 72816
+            - 72847
+          n_errors: 32
+          n_total: 32
+        Masaram Gondi:
+          codepoint_ranges:
+          - - 72960
+            - 72966
+          - - 72968
+            - 72969
+          - - 72971
+            - 73008
+          - - 73030
+            - 73030
+          - - 73040
+            - 73049
+          n_errors: 58
+          n_total: 58
+        Mathematical Alphanumeric Symbols:
+          codepoint_ranges:
+          - - 119808
+            - 119892
+          - - 119894
+            - 119964
+          - - 119966
+            - 119967
+          - - 119970
+            - 119970
+          - - 119973
+            - 119974
+          - - 119977
+            - 119980
+          - - 119982
+            - 119993
+          - - 119995
+            - 119995
+          - - 119997
+            - 120003
+          - - 120005
+            - 120069
+          - - 120071
+            - 120074
+          - - 120077
+            - 120084
+          - - 120086
+            - 120092
+          - - 120094
+            - 120121
+          - - 120123
+            - 120126
+          - - 120128
+            - 120132
+          - - 120134
+            - 120134
+          - - 120138
+            - 120144
+          - - 120146
+            - 120485
+          - - 120488
+            - 120779
+          - - 120782
+            - 120831
+          n_errors: 996
+          n_total: 996
+        Mayan Numerals:
+          codepoint_ranges:
+          - - 119520
+            - 119539
+          n_errors: 20
+          n_total: 20
+        Medefaidrin:
+          codepoint_ranges:
+          - - 93760
+            - 93850
+          n_errors: 91
+          n_total: 91
+        Mende Kikakui:
+          codepoint_ranges:
+          - - 124928
+            - 125124
+          - - 125127
+            - 125135
+          n_errors: 206
+          n_total: 206
+        Meroitic Cursive:
+          codepoint_ranges:
+          - - 68000
+            - 68023
+          - - 68028
+            - 68047
+          - - 68050
+            - 68095
+          n_errors: 90
+          n_total: 90
+        Meroitic Hieroglyphs:
+          codepoint_ranges:
+          - - 67968
+            - 67999
+          n_errors: 32
+          n_total: 32
+        Miao:
+          codepoint_ranges:
+          - - 93952
+            - 94026
+          - - 94032
+            - 94032
+          - - 94099
+            - 94111
+          n_errors: 89
+          n_total: 89
+        Miscellaneous Symbols Supplement:
+          codepoint_ranges:
+          - - 118464
+            - 118480
+          - - 118496
+            - 118512
+          n_errors: 34
+          n_total: 34
+        Miscellaneous Symbols and Pictographs:
+          codepoint_ranges:
+          - - 127744
+            - 128511
+          n_errors: 768
+          n_total: 768
+        Modi:
+          codepoint_ranges:
+          - - 71168
+            - 71215
+          - - 71233
+            - 71236
+          - - 71248
+            - 71257
+          n_errors: 62
+          n_total: 62
+        Mongolian Supplement:
+          codepoint_ranges:
+          - - 71264
+            - 71276
+          n_errors: 13
+          n_total: 13
+        Mro:
+          codepoint_ranges:
+          - - 92736
+            - 92766
+          - - 92768
+            - 92777
+          - - 92782
+            - 92783
+          n_errors: 43
+          n_total: 43
+        Multani:
+          codepoint_ranges:
+          - - 70272
+            - 70278
+          - - 70280
+            - 70280
+          - - 70282
+            - 70285
+          - - 70287
+            - 70301
+          - - 70303
+            - 70313
+          n_errors: 38
+          n_total: 38
+        Musical Symbols:
+          codepoint_ranges:
+          - - 119040
+            - 119078
+          - - 119081
+            - 119140
+          - - 119146
+            - 119148
+          - - 119171
+            - 119172
+          - - 119180
+            - 119209
+          - - 119214
+            - 119274
+          n_errors: 195
+          n_total: 195
+        Myanmar Extended-C:
+          codepoint_ranges:
+          - - 71376
+            - 71395
+          n_errors: 20
+          n_total: 20
+        Nabataean:
+          codepoint_ranges:
+          - - 67712
+            - 67742
+          - - 67751
+            - 67759
+          n_errors: 40
+          n_total: 40
+        Nag Mundari:
+          codepoint_ranges:
+          - - 124112
+            - 124139
+          - - 124144
+            - 124153
+          n_errors: 38
+          n_total: 38
+        Nandinagari:
+          codepoint_ranges:
+          - - 72096
+            - 72103
+          - - 72106
+            - 72144
+          - - 72161
+            - 72163
+          n_errors: 50
+          n_total: 50
+        Newa:
+          codepoint_ranges:
+          - - 70656
+            - 70708
+          - - 70727
+            - 70747
+          - - 70749
+            - 70749
+          - - 70751
+            - 70753
+          n_errors: 78
+          n_total: 78
+        Nyiakeng Puachue Hmong:
+          codepoint_ranges:
+          - - 123136
+            - 123180
+          - - 123191
+            - 123197
+          - - 123200
+            - 123209
+          - - 123214
+            - 123215
+          n_errors: 64
+          n_total: 64
+        Ol Onal:
+          codepoint_ranges:
+          - - 124368
+            - 124397
+          - - 124400
+            - 124410
+          - - 124415
+            - 124415
+          n_errors: 42
+          n_total: 42
+        Old Hungarian:
+          codepoint_ranges:
+          - - 68736
+            - 68786
+          - - 68800
+            - 68850
+          - - 68858
+            - 68863
+          n_errors: 108
+          n_total: 108
+        Old Italic:
+          codepoint_ranges:
+          - - 66304
+            - 66339
+          - - 66349
+            - 66351
+          n_errors: 39
+          n_total: 39
+        Old North Arabian:
+          codepoint_ranges:
+          - - 68224
+            - 68255
+          n_errors: 32
+          n_total: 32
+        Old Permic:
+          codepoint_ranges:
+          - - 66384
+            - 66421
+          n_errors: 38
+          n_total: 38
+        Old Persian:
+          codepoint_ranges:
+          - - 66464
+            - 66499
+          - - 66504
+            - 66517
+          n_errors: 50
+          n_total: 50
+        Old Sogdian:
+          codepoint_ranges:
+          - - 69376
+            - 69415
+          n_errors: 40
+          n_total: 40
+        Old South Arabian:
+          codepoint_ranges:
+          - - 68192
+            - 68223
+          n_errors: 32
+          n_total: 32
+        Old Turkic:
+          codepoint_ranges:
+          - - 68608
+            - 68680
+          n_errors: 73
+          n_total: 73
+        Old Uyghur:
+          codepoint_ranges:
+          - - 69488
+            - 69505
+          - - 69510
+            - 69513
+          n_errors: 22
+          n_total: 22
+        Ornamental Dingbats:
+          codepoint_ranges:
+          - - 128592
+            - 128639
+          n_errors: 48
+          n_total: 48
+        Osage:
+          codepoint_ranges:
+          - - 66736
+            - 66771
+          - - 66776
+            - 66811
+          n_errors: 72
+          n_total: 72
+        Osmanya:
+          codepoint_ranges:
+          - - 66688
+            - 66717
+          - - 66720
+            - 66729
+          n_errors: 40
+          n_total: 40
+        Ottoman Siyaq Numbers:
+          codepoint_ranges:
+          - - 126209
+            - 126269
+          n_errors: 61
+          n_total: 61
+        Pahawh Hmong:
+          codepoint_ranges:
+          - - 92928
+            - 92975
+          - - 92983
+            - 92997
+          - - 93008
+            - 93017
+          - - 93019
+            - 93025
+          - - 93027
+            - 93047
+          - - 93053
+            - 93071
+          n_errors: 120
+          n_total: 120
+        Palmyrene:
+          codepoint_ranges:
+          - - 67680
+            - 67711
+          n_errors: 32
+          n_total: 32
+        Pau Cin Hau:
+          codepoint_ranges:
+          - - 72384
+            - 72440
+          n_errors: 57
+          n_total: 57
+        Phaistos Disc:
+          codepoint_ranges:
+          - - 66000
+            - 66044
+          n_errors: 45
+          n_total: 45
+        Phoenician:
+          codepoint_ranges:
+          - - 67840
+            - 67867
+          - - 67871
+            - 67871
+          n_errors: 29
+          n_total: 29
+        Playing Cards:
+          codepoint_ranges:
+          - - 127136
+            - 127150
+          - - 127153
+            - 127167
+          - - 127169
+            - 127183
+          - - 127185
+            - 127221
+          n_errors: 82
+          n_total: 82
+        Psalter Pahlavi:
+          codepoint_ranges:
+          - - 68480
+            - 68497
+          - - 68505
+            - 68508
+          - - 68521
+            - 68527
+          n_errors: 29
+          n_total: 29
+        Rumi Numeral Symbols:
+          codepoint_ranges:
+          - - 69216
+            - 69246
+          n_errors: 31
+          n_total: 31
+        Sharada:
+          codepoint_ranges:
+          - - 70019
+            - 70066
+          - - 70081
+            - 70088
+          - - 70093
+            - 70093
+          - - 70096
+            - 70111
+          n_errors: 73
+          n_total: 73
+        Shavian:
+          codepoint_ranges:
+          - - 66640
+            - 66687
+          n_errors: 48
+          n_total: 48
+        Siddham:
+          codepoint_ranges:
+          - - 71040
+            - 71086
+          - - 71105
+            - 71131
+          n_errors: 74
+          n_total: 74
+        Sidetic:
+          codepoint_ranges:
+          - - 67904
+            - 67929
+          n_errors: 26
+          n_total: 26
+        Sinhala Archaic Numbers:
+          codepoint_ranges:
+          - - 70113
+            - 70132
+          n_errors: 20
+          n_total: 20
+        Sogdian:
+          codepoint_ranges:
+          - - 69424
+            - 69445
+          - - 69457
+            - 69465
+          n_errors: 31
+          n_total: 31
+        Sora Sompeng:
+          codepoint_ranges:
+          - - 69840
+            - 69864
+          - - 69872
+            - 69881
+          n_errors: 35
+          n_total: 35
+        Soyombo:
+          codepoint_ranges:
+          - - 72272
+            - 72272
+          - - 72284
+            - 72329
+          - - 72346
+            - 72354
+          n_errors: 56
+          n_total: 56
+        Sunuwar:
+          codepoint_ranges:
+          - - 72640
+            - 72673
+          - - 72688
+            - 72697
+          n_errors: 44
+          n_total: 44
+        Supplemental Arrows-C:
+          codepoint_ranges:
+          - - 129024
+            - 129035
+          - - 129040
+            - 129095
+          - - 129104
+            - 129113
+          - - 129120
+            - 129159
+          - - 129168
+            - 129197
+          - - 129200
+            - 129211
+          - - 129216
+            - 129217
+          - - 129232
+            - 129240
+          n_errors: 171
+          n_total: 171
+        Supplemental Symbols and Pictographs:
+          codepoint_ranges:
+          - - 129280
+            - 129535
+          n_errors: 256
+          n_total: 256
+        Sutton SignWriting:
+          codepoint_ranges:
+          - - 120832
+            - 121343
+          - - 121399
+            - 121402
+          - - 121453
+            - 121460
+          - - 121462
+            - 121475
+          - - 121477
+            - 121483
+          n_errors: 545
+          n_total: 545
+        Symbols and Pictographs Extended-A:
+          codepoint_ranges:
+          - - 129648
+            - 129660
+          - - 129664
+            - 129674
+          - - 129678
+            - 129734
+          - - 129736
+            - 129736
+          - - 129741
+            - 129756
+          - - 129759
+            - 129770
+          - - 129775
+            - 129784
+          n_errors: 120
+          n_total: 120
+        Symbols for Legacy Computing:
+          codepoint_ranges:
+          - - 129792
+            - 129938
+          - - 129940
+            - 130042
+          n_errors: 250
+          n_total: 250
+        Symbols for Legacy Computing Supplement:
+          codepoint_ranges:
+          - - 117760
+            - 118012
+          - - 118016
+            - 118451
+          - - 118458
+            - 118463
+          n_errors: 695
+          n_total: 695
+        Tai Xuan Jing Symbols:
+          codepoint_ranges:
+          - - 119552
+            - 119638
+          n_errors: 87
+          n_total: 87
+        Tai Yo:
+          codepoint_ranges:
+          - - 124608
+            - 124638
+          - - 124640
+            - 124642
+          - - 124644
+            - 124645
+          - - 124647
+            - 124653
+          - - 124656
+            - 124660
+          - - 124670
+            - 124671
+          n_errors: 50
+          n_total: 50
+        Takri:
+          codepoint_ranges:
+          - - 71296
+            - 71338
+          - - 71352
+            - 71353
+          - - 71360
+            - 71369
+          n_errors: 55
+          n_total: 55
+        Tamil Supplement:
+          codepoint_ranges:
+          - - 73664
+            - 73713
+          - - 73727
+            - 73727
+          n_errors: 51
+          n_total: 51
+        Tangsa:
+          codepoint_ranges:
+          - - 92784
+            - 92862
+          - - 92864
+            - 92873
+          n_errors: 89
+          n_total: 89
+        Tirhuta:
+          codepoint_ranges:
+          - - 70784
+            - 70831
+          - - 70852
+            - 70855
+          - - 70864
+            - 70873
+          n_errors: 62
+          n_total: 62
+        Todhri:
+          codepoint_ranges:
+          - - 67008
+            - 67059
+          n_errors: 52
+          n_total: 52
+        Tolong Siki:
+          codepoint_ranges:
+          - - 73136
+            - 73179
+          - - 73184
+            - 73193
+          n_errors: 54
+          n_total: 54
+        Toto:
+          codepoint_ranges:
+          - - 123536
+            - 123565
+          n_errors: 30
+          n_total: 30
+        Transport and Map Symbols:
+          codepoint_ranges:
+          - - 128640
+            - 128728
+          - - 128732
+            - 128748
+          - - 128752
+            - 128764
+          n_errors: 119
+          n_total: 119
+        Tulu-Tigalari:
+          codepoint_ranges:
+          - - 70528
+            - 70537
+          - - 70539
+            - 70539
+          - - 70542
+            - 70542
+          - - 70544
+            - 70581
+          - - 70583
+            - 70583
+          - - 70609
+            - 70609
+          - - 70611
+            - 70613
+          - - 70615
+            - 70616
+          n_errors: 57
+          n_total: 57
+        Ugaritic:
+          codepoint_ranges:
+          - - 66432
+            - 66461
+          - - 66463
+            - 66463
+          n_errors: 31
+          n_total: 31
+        Unified Canadian Aboriginal Syllabics Extended-A:
+          codepoint_ranges:
+          - - 72368
+            - 72383
+          n_errors: 16
+          n_total: 16
+        Vithkuqi:
+          codepoint_ranges:
+          - - 66928
+            - 66938
+          - - 66940
+            - 66954
+          - - 66956
+            - 66962
+          - - 66964
+            - 66965
+          - - 66967
+            - 66977
+          - - 66979
+            - 66993
+          - - 66995
+            - 67001
+          - - 67003
+            - 67004
+          n_errors: 70
+          n_total: 70
+        Wancho:
+          codepoint_ranges:
+          - - 123584
+            - 123627
+          - - 123632
+            - 123641
+          - - 123647
+            - 123647
+          n_errors: 55
+          n_total: 55
+        Warang Citi:
+          codepoint_ranges:
+          - - 71840
+            - 71922
+          - - 71935
+            - 71935
+          n_errors: 84
+          n_total: 84
+        Yezidi:
+          codepoint_ranges:
+          - - 69248
+            - 69289
+          - - 69293
+            - 69293
+          - - 69296
+            - 69297
+          n_errors: 45
+          n_total: 45
+        Zanabazar Square:
+          codepoint_ranges:
+          - - 72192
+            - 72192
+          - - 72203
+            - 72242
+          - - 72250
+            - 72250
+          - - 72255
+            - 72262
+          n_errors: 50
+          n_total: 50
+        Znamenny Musical Notation:
+          codepoint_ranges:
+          - - 118608
+            - 118723
+          n_errors: 116
+          n_total: 116
       include_uncommon: false
-      n_errors: 0
-      n_total: 5000
+      n_errors: 19671
+      n_total: 73679
       n_unknown: 0
-      pct_success: 100.0
+      pct_success: 73.30175490981148
       protocol: mintty
   unicode_wide_results:
     17.0.0:

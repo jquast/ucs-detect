@@ -3,16 +3,28 @@
 import os
 import shlex
 import argparse
+import textwrap
 import subprocess
 import sys
+
+EPILOG = textwrap.dedent("""\
+    Arguments after yaml_file must be separated with '--' as arguments to 'ucs-detect' CLI
+
+        re-run.py data/securecrt.yaml -- --all
+        re-run.py data/securecrt.yaml -- --limit-category-time 60
+    """)
 
 
 def main():
     parser = argparse.ArgumentParser(
+        usage='%(prog)s yaml_file [-- ucs-detect-arg ...]',
         description='Re-run ucs-detect with arguments from a saved YAML file.',
-        epilog='Any additional arguments after yaml_file are passed to ucs-detect')
-    parser.add_argument('yaml_file')
-    parser.add_argument('extra_args', nargs='*', help='Additional arguments to pass to ucs-detect')
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=EPILOG)
+    parser.add_argument('yaml_file',
+                        help='saved report to restore session_arguments from, and save back to')
+    parser.add_argument('extra_args', nargs='*', metavar='ucs-detect-arg',
+                        help="arguments passed through to ucs-detect, after a '--' separator")
     args = parser.parse_args()
 
     if not os.path.exists(args.yaml_file):
