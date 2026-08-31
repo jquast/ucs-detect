@@ -54,9 +54,9 @@ seconds_elapsed: 9.135138223005924
 session_arguments:
   all: true
   limit_category_time: 0
-  limit_codepoints: 5000
-  limit_errors: 500
-  limit_graphemes: 5000
+  limit_codepoints: 0
+  limit_errors: 0
+  limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
   timeout_cps: 1.0

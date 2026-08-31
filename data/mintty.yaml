@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-08-31 02:32:42 UTC
+datetime: 2026-08-31 13:47:48 UTC
 environment:
   TERM: xterm
   TERM_PROGRAM: mintty
@@ -7,13 +7,13 @@ environment:
 height: 42
 preferred_encoding: UTF-8
 python_version: 3.12.12
-seconds_elapsed: 575.4071092000004
+seconds_elapsed: 589.7830734000017
 session_arguments:
   all: false
   limit_category_time: 0
-  limit_codepoints: 5000
-  limit_errors: 1000
-  limit_graphemes: 5000
+  limit_codepoints: 0
+  limit_errors: 0
+  limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
   timeout_cps: 8.0
