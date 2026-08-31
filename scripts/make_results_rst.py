@@ -963,7 +963,6 @@ def make_score_table():
             else:
                 entry["score_resource_norm"] = float('NaN')
 
-    RESOURCE_WEIGHT = 0.5
     GRAPHICS_WEIGHT = 0.5
     STANDALONE_WEIGHT = 1.0 / 3.0
     for entry in score_table:
@@ -980,7 +979,6 @@ def make_score_table():
             (entry["score_ri"], 1.0),
             (entry["score_features"], 1.0),
             (entry["score_graphics"], GRAPHICS_WEIGHT),
-            (entry["score_resource_norm"], RESOURCE_WEIGHT)
         ]
         valid_scores_with_weights = [(s, w) for s, w in scores_with_weights if not math.isnan(s)]
         if valid_scores_with_weights:
@@ -1422,6 +1420,7 @@ def display_table_definitions():
     print(
         "- *Resources*: Composite CPU, RSS memory, and run duration score (0-100),\n"
         "  where the global mean maps to 50 and the lightest/fastest terminal scores 100.\n"
+        "  Excluded from the final score, it cannot be measured for all terminals.\n"
         "  Computed by averaging sub-scores for mean CPU%, mean RSS (MB), and total\n"
         "  seconds, each individually scaled so the global mean = 50, min = 100, max = 0."
     )
@@ -2527,7 +2526,8 @@ def display_performance_section(score_table):
     print()
     print()
     print("The Resources score combines CPU, memory, and runtime into a single "
-          "0-100 metric.  See per-terminal pages for calculation details.")
+          "0-100 metric, excluded from the final score.  See per-terminal pages "
+          "for calculation details.")
     print()
 
     headers = ["Terminal", "Score", "CPU %", "RSS (MB)", "Time (s)"]
@@ -2695,13 +2695,13 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print("  (weighted average: WIDE + NARROW + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX + 0.5 * RSC)")
+    print("  (weighted average: WIDE + NARROW + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX)")
     print("  the categorized 'average' absolute support level of this terminal.")
     print()
     print("  .. note::")
     print()
-    print("     RSC (Resources) is a composite CPU, memory, and runtime score.")
-    print("     RSC is weighted at 0.5 (half as powerful as other metrics).")
+    print("     RSC (Resources) is a composite CPU, memory, and runtime score,")
+    print("     displayed for comparison but excluded from the final score")
     print("     FEAT (Features) is the fraction of notable features supported.")
     print("     GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),")
     print("     50% for legacy only (Sixel, ReGIS), 0% for none.")
