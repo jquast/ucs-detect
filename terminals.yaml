@@ -171,6 +171,13 @@ terminals:
     homepage: https://mintty.github.io/
     skip_docker: true
     skip_reason: Windows only
+    test_environment_notes: 'These results were recorded by a customized installation:
+      a Cygwin-native ``python3`` under Cygwin, with GNU Unifont installed and configured for glyph
+      coverage.  A native Windows Python is answered by ConPTY instead of by mintty, see
+      `Input/Output interaction with alien programs
+      <https://github.com/mintty/mintty/wiki/Tips#inputoutput-interaction-with-alien-programs>`_.
+      Even so, font rendering remains corrupted in our test environment, tofu results are incorrect,
+      and mintty appears to be entirely without grapheme support.'
   mlterm:
     homepage: https://mlterm.sourceforge.net/
     launch:

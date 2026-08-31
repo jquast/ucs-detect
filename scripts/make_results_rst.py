@@ -62,10 +62,10 @@ PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
 CONPTY_DA_CAVEAT_LINES = (
-    "† On Windows, the DA1 query is intercepted by ConPTY (conhost.exe or "
-    "OpenConsole.exe) for MSYS2_ or Cygwin_ programs.  The DA1 response "
-    "reflects **conhost.exe's capabilities** and not necessarily the "
-    "terminal emulator's.",
+    "† On Windows, MSYS2_ and Cygwin_ launch native Windows programs through "
+    "ConPTY (conhost.exe or OpenConsole.exe), which answers DA1 itself instead "
+    "of passing it to the terminal, so the response shown is **conhost.exe's**.  "
+    "See mintty's `Input/Output interaction with alien programs`_.",
 )
 
 SERVICE_CLASS_NAMES = {
@@ -2983,6 +2983,14 @@ def show_software_header(entry, sw_name, terminal_mixins):
     print('Full results available at ucs-detect_ repository path')
     print(f"`data/{entry['fname']} <{GITHUB_DATA_LINK.format(fname=entry['fname'])}>`_.")
     print()
+
+    # A terminal measured in a non-default runtime environment describes it here,
+    # e.g. mintty, which only answers queries itself outside of ConPTY.
+    if sw_name_lower in terminal_mixins:
+        env_notes = terminal_mixins[sw_name_lower].get('test_environment_notes')
+        if env_notes:
+            print(env_notes)
+            print()
 
     # If this is a subterminal (terminal multiplexer), note the host terminal
     if sw_name_lower in terminal_mixins:

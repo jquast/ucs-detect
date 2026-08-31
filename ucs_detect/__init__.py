@@ -119,7 +119,28 @@ def init_term(stream):
     return term, writer
 
 
-def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", terminal_full_probe=False, silent=False, no_final_summary=False, test_all=False, **_kwargs):
+def _system_name():
+    """
+    Return the operating system name, normalized for MSYS2 and Cygwin.
+
+    Their Python builds answer :func:`platform.system` with a uname string such as
+    ``CYGWIN_NT-10.0-26200`` where every other Windows build answers ``Windows``.
+    """
+    name = platform.system()
+    if name.startswith(("CYGWIN", "MINGW", "MSYS")):
+        return "Windows"
+    return name
+
+
+def _strip_vte_suffix(version):
+    """Strip a trailing ``(VTE/...)`` label, so a --rerun does not nest a second one."""
+    head, sep, tail = version.rpartition(' (VTE/')
+    if sep and tail.endswith(')'):
+        return head
+    return version
+
+
+def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes_pct, limit_codepoints_wide_pct, include_uncommon_codepoints, save_yaml, save_json, no_terminal_test, no_languages_test, timeout_cps, timeout_query, stop_at_error, set_software_name, set_software_version, limit_category_time=0, cursor_report_delay_ms=0, detect_all_dec_modes=False, test_only="all", terminal_full_probe=False, silent=False, no_final_summary=False, test_all=False, rerun_inherited_version=False, **_kwargs):
     """Program entry point."""
 
     def _should_run(*categories):
@@ -188,7 +209,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                     height=term.height,
                     ambiguous_width=-1,
                     python_version=platform.python_version(),
-                    system=platform.system(),
+                    system=_system_name(),
                     preferred_encoding=locale.getpreferredencoding(),
                     wcwidth_version=wcwidth.__version__,
                     environment=environment,
@@ -254,8 +275,17 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
         auto_version = terminal_results.get("software_version", "").strip()
 
         terminal_software = set_software_name or auto_name
+
+        # A version inherited from a --rerun YAML describes the build measured on that
+        # run: when this run detected a version for the same software, the fresh value
+        # wins.  An explicit --set-software-version is never inherited, and still wins.
+        if (rerun_inherited_version and auto_version and set_software_name
+                and auto_name.casefold() == set_software_name.casefold()):
+            set_software_version = ""
+
         if set_software_version and auto_name.upper() == "VTE" and auto_version:
-            terminal_version = f"{set_software_version} (VTE/{auto_version})"
+            terminal_version = (f"{_strip_vte_suffix(set_software_version)}"
+                                f" (VTE/{auto_version})")
         else:
             terminal_version = set_software_version or auto_version
 
@@ -392,11 +422,13 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
 
     elapsed = time.monotonic() - start_time
 
-    # apply explicit overrides (--set-software-name, --set-software-version)
+    # --set-software-name/--set-software-version label the saved profile; they fill in
+    # terminal_results only where detection found nothing, so a measured value is kept
+    # and a later --rerun can tell an operator's label from a detected one.
     if save_yaml or save_json:
-        if terminal_software:
+        if terminal_software and not terminal_results.get('software_name'):
             terminal_results['software_name'] = terminal_software
-        if terminal_version:
+        if terminal_version and not terminal_results.get('software_version'):
             terminal_results['software_version'] = terminal_version
 
     if not no_final_summary:
@@ -432,7 +464,7 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
             height=term.height,
             ambiguous_width=ambiguous_width,
             python_version=platform.python_version(),
-            system=platform.system(),
+            system=_system_name(),
             preferred_encoding=locale.getpreferredencoding(),
             wcwidth_version=wcwidth.__version__,
             environment=environment,
@@ -1309,11 +1341,14 @@ def _apply_rerun_yaml(results, explicit_args=()):
 
     session_args = data.get('session_arguments', {})
 
-    # Preserve existing software_name/version from YAML when not overridden via CLI
+    # Preserve existing software_name/version from YAML when not overridden via CLI.
+    # The version is inherited weakly: run() prefers a version this run detects for the
+    # same software, so a re-run against a different build records what it measured.
     if not results.get("set_software_name"):
         results["set_software_name"] = data.get("software_name")
     if not results.get("set_software_version"):
         results["set_software_version"] = data.get("software_version")
+        results["rerun_inherited_version"] = bool(results["set_software_version"])
     yaml_to_cli = {
         'stream': 'stream',
         'limit_codepoints': 'limit_codepoints',
