@@ -753,13 +753,13 @@ def test_tofu_support(
     """
     Test which codepoints the terminal's font has no glyph for, its "tofus".
 
-    Unlike :func:`test_support`, no cursor position report is involved: the terminal is
-    asked about each codepoint directly, by whichever font glyph coverage protocol it
-    answers, and blessed batches those queries for us.
+    Unlike :func:`test_support`, no cursor position report is involved: the terminal is asked about
+    each codepoint directly, by whichever font glyph coverage protocol it answers, and blessed
+    batches those queries for us.
 
-    Honours *include_uncommon* as the WIDE test does: the ideographic extensions and
-    historic scripts of :data:`UNCOMMON_WIDE_RANGES` are a tofu in all but a few
-    specialist fonts, and swamp the count of the codepoints anybody reads.
+    Honours *include_uncommon* as the WIDE test does: the ideographic extensions and historic
+    scripts of :data:`UNCOMMON_WIDE_RANGES` are a tofu in all but a few specialist fonts, and swamp
+    the count of the codepoints anybody reads.
     """
     results = {}
     for ver, ranges in table:
@@ -777,7 +777,7 @@ def test_tofu_support(
         if not silent:
             writer("\n" + status_header(
                 term, f"Testing TOFU v={ver}"
-                      f" ({n_all} codepoints, {len(blocks)} blocks)") + "\n")
+                f" ({n_all} codepoints, {len(blocks)} blocks)") + "\n")
 
         ver_start_time = time.monotonic()
         block_report = {}
