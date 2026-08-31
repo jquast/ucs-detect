@@ -52,6 +52,9 @@ if _ROOT not in sys.path:
 from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars, load_mixins
 from ucs_detect.measure import UNCOMMON_WIDE_RANGES, make_printf_hex
 from ucs_detect.table_tofu import TOFU_CODEPOINTS
+from ucs_detect.table_lang_contested import LANG_CONTESTED
+from ucs_detect.table_narrow_contested import NARROW_CONTESTED
+from ucs_detect.table_wide_contested import WIDE_CONTESTED
 from ucs_detect.profiler import (ProfileSession, generate_graphs, GRAPH_DPI,
                                  GRAPH_WIDTH_PX, GRAPH_WIDTH_ALL_PX)
 
@@ -1454,6 +1457,72 @@ def scale_scores(score_table, entry, key):
     return (my_score - min_score) / (max_score - min_score)
 
 
+def _index_contested_languages():
+    """Return contested graphemes by language, unioned over the width groups tested."""
+    languages = {}
+    for _expected_width, lang_entries in LANG_CONTESTED:
+        for lang, graphemes in lang_entries:
+            languages.setdefault(lang, set()).update(graphemes)
+    return {lang: frozenset(graphemes) for lang, graphemes in languages.items()}
+
+
+_CONTESTED_WIDE = {version: frozenset(codepoints) for version, codepoints in WIDE_CONTESTED}
+_CONTESTED_NARROW = {version: frozenset(codepoints) for version, codepoints in NARROW_CONTESTED}
+_CONTESTED_LANG = _index_contested_languages()
+
+
+def tested_all_tables(data):
+    """Return True when these results were measured with ``--all``."""
+    return bool((data.get("session_arguments") or {}).get("all"))
+
+
+def lookup_contested(contested_by_version, version):
+    """Return the contested codepoints for *version*, or None when unknown."""
+    if version in contested_by_version:
+        return contested_by_version[version]
+    if len(contested_by_version) == 1:
+        return next(iter(contested_by_version.values()))
+    return None
+
+
+def contested_width_counts(data, results_key, contested_by_version):
+    """Return ``(n_total, n_errors)`` of a width test, restricted to contested codepoints. """
+    results = data["test_results"].get(results_key) or {}
+    if not results:
+        return 0, 0
+    version, result = next(iter(results.items()))
+    if not tested_all_tables(data) or "sampled_pct" in result:
+        return result["n_total"], result["n_errors"]
+    contested = lookup_contested(contested_by_version, version)
+    if contested is None or result["n_total"] < len(contested):
+        return result["n_total"], result["n_errors"]
+    failed = {ord(decode_wchars(item["wchar"])[0])
+              for item in result.get("failed_codepoints") or ()}
+    return len(contested), len(failed & contested)
+
+
+def contested_language_percentages(data):
+    """Return ``{language: fraction_success}``, restricted to contested graphemes."""
+    language_results = data.get("test_results", {}).get("language_results") or {}
+    if not tested_all_tables(data):
+        return {lang: result["pct_success"] / 100
+                for lang, result in language_results.items()}
+    percentages = {}
+    for lang, result in language_results.items():
+        contested = _CONTESTED_LANG.get(lang)
+        if contested is None:
+            continue
+        if "sampled_pct" in result or result["n_total"] < len(contested):
+            percentages[lang] = result["pct_success"] / 100
+            continue
+        failed = {decode_wchars(item["wchars"]) for item in result.get("failed") or ()}
+        percentages[lang] = (len(contested) - len(failed & contested)) / len(contested)
+    if not percentages:
+        return {lang: result["pct_success"] / 100
+                for lang, result in language_results.items()}
+    return percentages
+
+
 def score_zwj(data):
     """Calculate ZWJ score as percentage of successful sequences tested."""
     zwj_results = data["test_results"].get("emoji_zwj_results") or {}
@@ -1467,27 +1536,21 @@ def score_zwj(data):
 
 
 def score_wide(data):
-    """Calculate WIDE score as percentage of successful codepoints tested."""
-    wide_results = data["test_results"].get("unicode_wide_results") or {}
-    if not wide_results:
-        return 0.0
-    result = next(iter(wide_results.values()))
-    n_total = result["n_total"]
+    """Calculate WIDE score as percentage of successful contested codepoints tested."""
+    n_total, n_errors = contested_width_counts(
+        data, "unicode_wide_results", _CONTESTED_WIDE)
     if n_total == 0:
         return 0.0
-    return (n_total - result["n_errors"]) / n_total
+    return (n_total - n_errors) / n_total
 
 
 def score_narrow(data):
-    """Calculate NARROW score as percentage of successful codepoints tested."""
-    narrow_results = data["test_results"].get("narrow_results") or {}
-    if not narrow_results:
-        return 0.0
-    result = next(iter(narrow_results.values()))
-    n_total = result["n_total"]
+    """Calculate NARROW score as percentage of successful contested codepoints tested."""
+    n_total, n_errors = contested_width_counts(
+        data, "narrow_results", _CONTESTED_NARROW)
     if n_total == 0:
         return 0.0
-    return (n_total - result["n_errors"]) / n_total
+    return (n_total - n_errors) / n_total
 
 
 def score_sri(data):
@@ -1528,20 +1591,14 @@ def score_ri(data):
 
 def score_lang(data):
     """
-    Calculate language support score using geometric mean of all language success percentages.
+    Calculate language support score using geometric mean of contested language success.
 
     This gives a fairer score than simple counting of 100% languages, as it considers
     partial support (e.g., 99%, 98%) and doesn't let one low score dominate the result.
     """
-    language_results = data.get("test_results", {}).get("language_results")
-    if not language_results:
+    percentages = list(contested_language_percentages(data).values())
+    if not percentages:
         return 0.0
-
-    # Get success percentages for all languages (as fractions 0.0-1.0)
-    percentages = [
-        lang_data["pct_success"] / 100
-        for lang_data in language_results.values()
-    ]
 
     # Calculate geometric mean using log space to avoid overflow
     # geometric_mean = exp(mean(log(percentages)))
@@ -2657,15 +2714,14 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     # Add detailed score breakdowns for each type
     print("**WIDE Score Details:**")
     print()
-    wide_results = entry["data"]["test_results"].get("unicode_wide_results") or {}
-    if wide_results:
-        result = next(iter(wide_results.values()))
-        n_total = result["n_total"]
-        n_success = n_total - result["n_errors"]
+    n_total, n_errors = contested_width_counts(
+        entry["data"], "unicode_wide_results", _CONTESTED_WIDE)
+    if n_total:
+        n_success = n_total - n_errors
         print("Wide character support calculation:")
         print()
-        print(f"- Total successful codepoints: {n_success}")
-        print(f"- Total codepoints tested: {n_total}")
+        print(f"- Total successful contested codepoints: {n_success}")
+        print(f"- Total contested codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
         print(f"- Result: {entry['score_wide']*100:.2f}%")  # noqa: E226
     else:
@@ -2674,15 +2730,14 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print("**NARROW Score Details:**")
     print()
-    narrow_results = entry["data"]["test_results"].get("narrow_results") or {}
-    if narrow_results:
-        result = next(iter(narrow_results.values()))
-        n_total = result["n_total"]
-        n_success = n_total - result["n_errors"]
+    n_total, n_errors = contested_width_counts(
+        entry["data"], "narrow_results", _CONTESTED_NARROW)
+    if n_total:
+        n_success = n_total - n_errors
         print("Narrow character support calculation:")
         print()
-        print(f"- Total successful codepoints: {n_success}")
-        print(f"- Total codepoints tested: {n_total}")
+        print(f"- Total successful contested codepoints: {n_success}")
+        print(f"- Total contested codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
         print(f"- Result: {entry['score_narrow']*100:.2f}%")  # noqa: E226
     else:
@@ -2954,14 +3009,14 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print("**LANG Score Details (Geometric Mean):**")
     print()
-    lang_results = entry["data"]["test_results"].get("language_results") or {}
-    if lang_results:
-        n = len(lang_results)
+    percentages = contested_language_percentages(entry["data"])
+    if percentages:
+        n = len(percentages)
         geo_mean = entry["score_language"]
 
         print("Geometric mean calculation:")
         print()
-        print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} languages")
+        print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} contested languages")
         print("- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_")
         print(f"- Result: {geo_mean * 100:.2f}%")
     print()
