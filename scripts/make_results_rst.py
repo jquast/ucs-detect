@@ -52,7 +52,11 @@ if _ROOT not in sys.path:
 from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars, load_mixins
 from ucs_detect.measure import UNCOMMON_WIDE_RANGES, make_printf_hex
 from ucs_detect.table_tofu import TOFU_CODEPOINTS
-from ucs_detect.profiler import ProfileSession, generate_graphs
+from ucs_detect.profiler import (ProfileSession, generate_graphs, GRAPH_DPI,
+                                 GRAPH_WIDTH_PX, GRAPH_WIDTH_ALL_PX)
+
+#: Display width of the per-terminal score comparison plot, ``figsize=(8, 4)``.
+SCORE_PLOT_WIDTH_PX = 800
 
 GITHUB_DATA_LINK = 'https://github.com/jquast/ucs-detect/blob/master/data/{fname}'
 GITHUB_EXAMPLE_BASE = 'https://github.com/jquast/ucs-detect/blob/master/docs/ucs_example_files'
@@ -408,7 +412,7 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
             pct = sum(1 for s in valid_scores if s <= score) / len(valid_scores) * 100
             percentiles.append(pct)
 
-    # Create bar chart (8 inches at 100dpi = 800px wide to accommodate 8 metrics)
+    # Create bar chart (8 inches wide to accommodate 8 metrics, saved at GRAPH_DPI)
     fig, ax = plt.subplots(figsize=(8, 4))
 
     x_pos = np.arange(len(metrics))
@@ -442,7 +446,7 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
     ax.legend()
 
     plt.tight_layout()
-    plt.savefig(output_path, dpi=100, bbox_inches='tight',
+    plt.savefig(output_path, dpi=GRAPH_DPI, bbox_inches='tight',
                 # 'None' CreationDate is used so the git hash's don't unnecessarily update
                 metadata={'CreationDate': None})
     plt.close()
@@ -537,7 +541,7 @@ def create_time_summary_plot(score_table):
 
     plt.tight_layout()
     plot_filename = "time_summary_scatter.png"
-    plt.savefig(os.path.join(PLOTS_PATH, plot_filename), dpi=100,
+    plt.savefig(os.path.join(PLOTS_PATH, plot_filename), dpi=GRAPH_DPI,
                 bbox_inches='tight', metadata={'CreationDate': None})
     plt.close()
     return plot_filename
@@ -2500,19 +2504,19 @@ def display_performance_section(score_table):
     print()
     print(".. figure:: _static/profiles/all_cpu.png")
     print("   :alt: CPU usage across all terminals")
-    print("   :width: 800px")
+    print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   CPU usage during test execution, all terminals overlaid.")
     print()
     print(".. figure:: _static/profiles/all_rss.png")
     print("   :alt: RSS memory usage across all terminals")
-    print("   :width: 800px")
+    print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   RSS memory usage during test execution, all terminals overlaid.")
     print()
     print(".. figure:: _static/profiles/all_cpu_vs_time.png")
     print("   :alt: CPU % vs Duration trade-off across all terminals")
-    print("   :width: 800px")
+    print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   Trade-off between mean CPU % and total test duration. Dots near the")
     print("   origin use less CPU and less time. Dashed contours show equal")
@@ -2520,7 +2524,7 @@ def display_performance_section(score_table):
     print()
     print(".. figure:: _static/profiles/all_time.png")
     print("   :alt: Duration across all terminals")
-    print("   :width: 800px")
+    print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   Total test duration for each terminal, sorted fastest to slowest.")
     print("   Log scale on the X axis.")
@@ -2626,7 +2630,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
 
     print(".. figure:: ../_static/plots/" + plot_filename_scaled)
     print("   :align: center")
-    print("   :width: 800px")
+    print(f"   :width: {SCORE_PLOT_WIDTH_PX}px")
     print()
     print("   Scaled scores comparison across all metrics (normalized 0-100%)")
     print()
@@ -4039,13 +4043,13 @@ def show_time_elapsed_results(sw_name, entry):
     print()
     print(f".. figure:: {cpu_graph}")
     print("   :alt: CPU usage over time")
-    print("   :width: 600px")
+    print(f"   :width: {GRAPH_WIDTH_PX}px")
     print()
     print(f"   CPU usage during test execution for *{sw_name}*.")
     print()
     print(f".. figure:: {rss_graph}")
     print("   :alt: RSS memory over time")
-    print("   :width: 600px")
+    print(f"   :width: {GRAPH_WIDTH_PX}px")
     print()
     print(f"   RSS memory usage during test execution for *{sw_name}*.")
     print()
@@ -4056,14 +4060,14 @@ def show_time_elapsed_results(sw_name, entry):
     if os.path.exists(os.path.join(_ROOT, "docs", "_static", "profiles", f"{safe}_time.png")):
         print(f".. figure:: {time_graph}")
         print("   :alt: Duration comparison")
-        print("   :width: 600px")
+        print(f"   :width: {GRAPH_WIDTH_PX}px")
         print()
         print(f"   Test duration for *{sw_name}* compared to all other terminals.")
         print()
     if os.path.exists(os.path.join(_ROOT, "docs", "_static", "profiles", f"{safe}_cpu_vs_time.png")):
         print(f".. figure:: {cpu_vs_time_graph}")
         print("   :alt: CPU % vs Duration")
-        print("   :width: 600px")
+        print(f"   :width: {GRAPH_WIDTH_PX}px")
         print()
         print(f"   CPU % vs duration trade-off for *{sw_name}*.")
         print()
