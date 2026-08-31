@@ -15,6 +15,13 @@ import colorsys
 import threading
 from pathlib import Path
 
+# Graphs are saved at twice their display size: the documentation displays a graph at
+# ``figsize`` inches * 100 CSS pixels (see GRAPH_WIDTH_PX), so the inline image is sharp on
+# high-density displays
+GRAPH_DPI = 200
+GRAPH_WIDTH_PX = 1200
+GRAPH_WIDTH_ALL_PX = 1400
+
 
 def require_psutil():
     """Return psutil module, which sampling a process tree requires."""
@@ -448,7 +455,7 @@ def generate_graphs(
 
             plt.tight_layout()
             png_path = output_dir / f"{safe}_{label}.png"
-            fig.savefig(str(png_path), dpi=100)
+            fig.savefig(str(png_path), dpi=GRAPH_DPI)
             plt.close(fig)
 
         # Aggregate: all terminals colored by HSV rank
@@ -492,7 +499,7 @@ def generate_graphs(
 
         plt.tight_layout()
         png_path = output_dir / f"all_{label}.png"
-        fig.savefig(str(png_path), dpi=150)
+        fig.savefig(str(png_path), dpi=GRAPH_DPI)
         plt.close(fig)
 
     # CPU vs Time scatter: trade-off between CPU% and duration
@@ -531,7 +538,7 @@ def generate_graphs(
 
         plt.tight_layout()
         png_path = output_dir / f"{safe}_cpu_vs_time.png"
-        fig.savefig(str(png_path), dpi=100)
+        fig.savefig(str(png_path), dpi=GRAPH_DPI)
         plt.close(fig)
 
     # Aggregate CPU vs Time: all terminals colored by rank
@@ -563,7 +570,7 @@ def generate_graphs(
 
     plt.tight_layout()
     png_path = output_dir / "all_cpu_vs_time.png"
-    fig.savefig(str(png_path), dpi=150)
+    fig.savefig(str(png_path), dpi=GRAPH_DPI)
     plt.close(fig)
 
     # Time-only horizontal bar charts: terminals sorted by duration
@@ -596,7 +603,7 @@ def generate_graphs(
 
         plt.tight_layout()
         png_path = output_dir / f"{safe}_time.png"
-        fig.savefig(str(png_path), dpi=100)
+        fig.savefig(str(png_path), dpi=GRAPH_DPI)
         plt.close(fig)
 
     # Aggregate time bars: all terminals colored by rank
@@ -628,7 +635,7 @@ def generate_graphs(
 
     plt.tight_layout()
     png_path = output_dir / "all_time.png"
-    fig.savefig(str(png_path), dpi=150)
+    fig.savefig(str(png_path), dpi=GRAPH_DPI)
     plt.close(fig)
 
 
