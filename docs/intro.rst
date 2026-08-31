@@ -65,8 +65,8 @@ and zero-width combining characters across hundreds of languages.
 
 Terminal features that may be automatically detected are also reported:
 `Bracketed Paste`_, `Synchronized Output`_, `Mouse SGR`_, `Grapheme
-Clustering`_, `Kitty Keyboard protocol`_, `Sixel`_, `ReGIS`_, `Kitty`_ or
-`iTerm2 image protocol`_, and `XTGETTCAP`_ support.
+Clustering`_, `Kitty Keyboard protocol`_, `Font Glyph Coverage`_, `Sixel`_,
+`ReGIS`_, `Kitty`_ or `iTerm2 image protocol`_, and `XTGETTCAP`_ support.
 
 Run a default test::
 
@@ -394,6 +394,7 @@ History
 .. _`Mouse SGR`: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Extended-coordinates
 .. _`Grapheme Clustering`: https://github.com/contour-terminal/terminal-unicode-core
 .. _`Kitty Keyboard protocol`: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
+.. _`Font Glyph Coverage`: https://github.com/mintty/mintty/wiki/CtrlSeqs#font-glyph-coverage-enquiry
 .. _Sixel: https://en.wikipedia.org/wiki/Sixel
 .. _ReGIS: https://en.wikipedia.org/wiki/ReGIS
 .. _Kitty: https://sw.kovidgoyal.net/kitty/graphics-protocol/

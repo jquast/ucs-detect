@@ -1,10 +1,10 @@
 ambiguous_width: 1
-datetime: 2026-07-29 22:07:00 UTC
+datetime: 2026-08-31 03:04:58 UTC
 environment: {}
-height: 40
+height: 54
 preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 52.390509699999996
+seconds_elapsed: 36.0810338
 session_arguments:
   all: false
   limit_category_time: 0
@@ -13,7 +13,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 4
+  timeout_cps: 4.0
 software_name: ConEmu
 software_version: 23.07.24
 system: Windows
@@ -21,20 +21,15 @@ terminal_results:
   color_scheme: false
   colored_underlines: false
   decrqcra: false
-  decrqss: true
-  decrqss_settings:
-    decsace: '1'
-    decsca: '0'
-    decslrm: 1;134
-    decstbm: 1;40
-    sgr: '0'
+  decrqss: false
+  decrqss_settings: false
   decrqss_truecolor_probe: false
   device_attributes:
     extensions:
     - 2
     raw: "\e[?1;2c"
     service_class: 1
-  height: 40
+  height: 54
   iterm2_features:
     features: {}
     supported: false
@@ -49,10 +44,10 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 680
-  pixels_width: 1072
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
+  pixels_height: 918
+  pixels_width: 1672
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
   sixel: false
   software_name: ConEmu
   software_version: 23.07.24
@@ -61,8 +56,11 @@ terminal_results:
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: ansicon
-  width: 134
+  width: 209
   xtgettcap:
     capabilities: {}
     supported: false
@@ -26993,6 +26991,7 @@ test_results:
       n_errors: 0
       n_total: 26
       pct_success: 100.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -27605,5 +27604,5 @@ test_results:
       n_errors: 202
       n_total: 506
       pct_success: 60.079051383399204
-wcwidth_version: 0.8.1
-width: 134
+wcwidth_version: 0.8.3
+width: 209

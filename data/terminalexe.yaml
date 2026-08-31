@@ -1,10 +1,10 @@
 ambiguous_width: 1
-datetime: 2026-07-29 22:05:43 UTC
+datetime: 2026-08-31 03:01:49 UTC
 environment: {}
 height: 50
 preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 20.75592089999998
+seconds_elapsed: 18.004563500000017
 session_arguments:
   all: false
   limit_category_time: 0
@@ -13,7 +13,7 @@ session_arguments:
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 4
+  timeout_cps: 4.0
 software_name: WindowsTerminal
 software_version: 1.24.11321.0
 system: Windows
@@ -64,12 +64,6 @@ terminal_results:
     supported: false
   kitty_clipboard_protocol: false
   kitty_graphics: false
-  kitty_keyboard:
-    disambiguate: false
-    report_all_keys: false
-    report_alternates: false
-    report_events: false
-    report_text: false
   kitty_notifications: false
   kitty_pointer_shapes: false
   kitty_query: false
@@ -155,6 +149,9 @@ terminal_results:
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: ms-terminal
   width: 183
   xtgettcap:
@@ -2982,6 +2979,7 @@ test_results:
       n_errors: 26
       n_total: 26
       pct_success: 0.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -3081,5 +3079,5 @@ test_results:
       n_errors: 31
       n_total: 506
       pct_success: 93.87351778656127
-wcwidth_version: 0.8.1
+wcwidth_version: 0.8.3
 width: 183

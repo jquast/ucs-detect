@@ -54,11 +54,16 @@ classifiers = [
 dependencies = [
   "blessed>=1.49,<2",
   "prettytable",
-  "psutil",
   "pyyaml<7",
   "requests",
   "wcwidth>=0.8.1",
 ]
+
+[project.optional-dependencies]
+# Resource profiling only, used by run-series.py and scripts/make_results_rst.py and
+# not by ucs-detect itself.  psutil refuses to build on Cygwin, "platform cygwin is not
+# supported", which is a platform ucs-detect is otherwise able to measure.
+profile = ["psutil"]
 
 [project.scripts]
 ucs-detect = "ucs_detect:main"

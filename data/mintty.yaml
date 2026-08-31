@@ -1,13 +1,13 @@
 ambiguous_width: 1
-datetime: 2026-07-29 22:08:08 UTC
+datetime: 2026-08-31 03:05:01 UTC
 environment:
   TERM: xterm
   TERM_PROGRAM: mintty
   TERM_PROGRAM_VERSION: 3.8.1
-height: 24
+height: 42
 preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 17.682119899999975
+seconds_elapsed: 10.639268500000071
 session_arguments:
   all: false
   limit_category_time: 0
@@ -16,7 +16,7 @@ session_arguments:
   limit_graphemes: 5000
   limit_graphemes_pct: 0
   stream: stderr
-  timeout_cps: 4
+  timeout_cps: 4.0
 software_name: mintty
 software_version: 3.8.1
 system: Windows
@@ -28,8 +28,8 @@ terminal_results:
   decrqss_settings:
     decsace: '1'
     decsca: '0'
-    decslrm: 1;80
-    decstbm: 1;24
+    decslrm: 1;127
+    decstbm: 1;42
     sgr: '0'
   decrqss_truecolor_probe: false
   device_attributes:
@@ -45,7 +45,7 @@ terminal_results:
     - 42
     raw: "\e[?61;6;7;21;22;23;24;28;32;42c"
     service_class: 61
-  height: 24
+  height: 42
   iterm2_features:
     features: {}
     supported: false
@@ -135,8 +135,11 @@ terminal_results:
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: xterm
-  width: 80
+  width: 127
   xtgettcap:
     capabilities: {}
     supported: false
@@ -25631,6 +25634,7 @@ test_results:
       n_errors: 0
       n_total: 26
       pct_success: 100.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -26244,4 +26248,4 @@ test_results:
       n_total: 506
       pct_success: 60.079051383399204
 wcwidth_version: 0.8.3
-width: 80
+width: 127
