@@ -316,6 +316,10 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.6 (2026-08-31): Test for new feature, "tofu detection", fix scores normalized by
+  only 'contested', fix kitty keyboard "partial" support reporting, and, remove Resources (RSC) from
+  final score.
+
 - 2.3.5 (2026-07-29): Improve html reports with ConPTY considerations about DA1 and 'contested'
   status of VS15, collect and tabulate summaries of ``DA1`` features.  report xterm w/sixel
   supported as caveat.  Changed default ``--timeout-cps=3``.
