@@ -29,6 +29,7 @@ import datetime
 import platform
 import functools
 import contextlib
+import importlib.metadata
 
 # 3rd party
 import yaml
@@ -130,6 +131,64 @@ def _system_name():
     if name.startswith(("CYGWIN", "MINGW", "MSYS")):
         return "Windows"
     return name
+
+
+def _ucs_detect_version():
+    """
+    Return the version of ucs-detect that is running.
+
+    A source checkout answers from its own ``pyproject.toml`` rather than from
+    :mod:`importlib.metadata`, which reports the *installed* distribution: with a
+    different version installed system-wide, metadata would record a version that is
+    not the code which produced these results.
+    """
+    pyproject = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'pyproject.toml')
+    try:
+        with open(pyproject, encoding='utf-8') as fin:
+            for line in fin:
+                key, sep, value = line.partition('=')
+                if sep and key.strip() == 'version':
+                    return value.strip().strip('\'"')
+    except OSError:
+        pass
+    try:
+        return importlib.metadata.version('ucs-detect')
+    except importlib.metadata.PackageNotFoundError:
+        return 'unknown'
+
+
+#: Generated tables whose keys are the Unicode version their data was sourced from.
+#: LANG_GRAPHEMES is excluded, its keys are UDHR revisions, and the xtgettcap and
+#: contested language tables carry no version at all.
+_VERSIONED_TABLES = (
+    WIDE_CHARACTERS, NARROW_CHARACTERS, VS15_WIDE_TO_NARROW, VS16_NARROW_TO_WIDE,
+    EMOJI_ZWJ_SEQUENCES, REGIONAL_INDICATOR_FLAGS, STANDALONE_FITZPATRICK,
+    STANDALONE_REGIONAL_INDICATORS, TOFU_CODEPOINTS,
+    WIDE_CONTESTED, NARROW_CONTESTED, VS15_CONTESTED, VS16_CONTESTED,
+    ZWJ_CONTESTED, RI_CONTESTED, SFZ_CONTESTED, SRI_CONTESTED,
+)
+
+
+def _version_sort_key(version):
+    """Sort key for a dotted version, preferring the more precise spelling of a tie."""
+    parts = tuple(int(part) for part in version.split('.'))
+    return parts + (0,) * (3 - len(parts)), len(parts)
+
+
+def _unicode_version():
+    """
+    Return the newest Unicode version of the generated codepoint tables.
+
+    This is the revision of the Unicode data files the tables were *generated from*,
+    which the per-version keys of ``test_results`` do not answer: those record the
+    version each codepoint was introduced in, and only for the categories a given run
+    actually exercised.  A run limited by ``--test-only`` or cut short by
+    ``--limit-category-time`` would otherwise leave no record of which Unicode release
+    the expectations came from.
+    """
+    versions = [version for table in _VERSIONED_TABLES for version, _ in table]
+    return max(versions, key=_version_sort_key) if versions else 'unknown'
 
 
 def _strip_vte_suffix(version):
@@ -1102,6 +1161,8 @@ def display_results(term, writer, ambig_label, terminal_results=None,
 def _save_results(save_yaml, save_json, **kwargs):
     """Save results to yaml and/or json, adding a UTC timestamp."""
     kwargs['datetime'] = _utcnow_str()
+    kwargs['ucs_detect_version'] = _ucs_detect_version()
+    kwargs['unicode_version'] = _unicode_version()
     if save_yaml:
         do_save_yaml(save_yaml, **kwargs)
     if save_json:

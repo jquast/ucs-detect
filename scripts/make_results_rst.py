@@ -1642,9 +1642,10 @@ def score_features(data):
 
     modes = tr.get("modes") or {}
     count = 0
-    total = 17
+    total = 18
 
     for mode_num in (_DPM.BRACKETED_PASTE, _DPM.SYNCHRONIZED_OUTPUT,
+                     _DPM.IN_BAND_WINDOW_RESIZE,
                      _DPM.FOCUS_IN_OUT_EVENTS, _DPM.MOUSE_EXTENDED_SGR,
                      _DPM.GRAPHEME_CLUSTERING, _DPM.BRACKETED_PASTE_MIME):
         mode_key = str(mode_num) if str(mode_num) in modes else mode_num
@@ -1940,6 +1941,9 @@ def display_features_table(score_table):
             sw_name, suffix)
         row["Synced Output (2026)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT) if tested else None,
+            sw_name, suffix)
+        row["In-Band Resize (2048)"] = _capability_yes_no(
+            _get_dec_mode_supported(modes, _DPM.IN_BAND_WINDOW_RESIZE) if tested else None,
             sw_name, suffix)
         row["Focus Events (1004)"] = _capability_yes_no(
             _get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS) if tested else None,
@@ -2881,6 +2885,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
              "_dec_modes"),
             (_fmt_mode(_DPM.SYNCHRONIZED_OUTPUT),
              float(_get_dec_mode_supported(modes, _DPM.SYNCHRONIZED_OUTPUT)),
+             "_dec_modes"),
+            (_fmt_mode(_DPM.IN_BAND_WINDOW_RESIZE),
+             float(_get_dec_mode_supported(modes, _DPM.IN_BAND_WINDOW_RESIZE)),
              "_dec_modes"),
             (_fmt_mode(_DPM.FOCUS_IN_OUT_EVENTS),
              float(_get_dec_mode_supported(modes, _DPM.FOCUS_IN_OUT_EVENTS)),
