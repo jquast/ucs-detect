@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-06-08 05:10:37 UTC
+datetime: 2026-08-31 17:26:27 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: iTerm.app
   TERM_PROGRAM_VERSION: 3.6.11
-height: 25
+height: 37
 preferred_encoding: UTF-8
 python_version: 3.12.8
-seconds_elapsed: 437.953418084
+seconds_elapsed: 980.514626917
 session_arguments:
   all: false
   limit_category_time: 0
@@ -19,7 +19,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: iTerm2
-software_version: 3.6.10
+software_version: 3.6.11
 system: Darwin
 terminal_results:
   background_color_hex: '#000000000000'
@@ -35,7 +35,7 @@ terminal_results:
     decsca: '0'
     decscl: '65'
     decscusr: '1'
-    decslpp: '25'
+    decslpp: '37'
     decslrm: ''
     decstbm: ''
     sgr: 0;38:2:1:0:0:0
@@ -51,13 +51,14 @@ terminal_results:
     - 21
     - 22
     - 52
+    raw: "\e[?64;1;2;4;6;17;18;21;22;52c"
     service_class: 64
   foreground_color_hex: '#c7f1c7f1c7f1'
   foreground_color_rgb:
   - 51185
   - 51185
   - 51185
-  height: 25
+  height: 37
   iterm2_features:
     features:
       bracketed_paste: true
@@ -78,11 +79,12 @@ terminal_results:
   kitty_clipboard_protocol: false
   kitty_graphics: true
   kitty_keyboard:
-    disambiguate: false
-    report_all_keys: false
-    report_alternates: false
-    report_events: false
-    report_text: false
+    disambiguate: true
+    report_all_keys: true
+    report_alternates: true
+    report_events: true
+    report_text: true
+    supported_flags: 31
   kitty_notifications: false
   kitty_pointer_shapes: false
   kitty_query: false
@@ -156,21 +158,24 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: true
-  pixels_height: 737
-  pixels_width: 1130
+  pixels_height: 1073
+  pixels_width: 1620
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
   sixel: true
   software_method: XTVERSION
   software_name: iTerm2
-  software_version: 3.6.10
+  software_version: 3.6.11
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: xterm-256color
-  width: 80
+  width: 115
   xtgettcap:
     capabilities:
       AX: '1'
@@ -381,7 +386,7 @@ terminal_results:
   xtversion_raw: iTerm2 3.6.11
 test_results:
   emoji_vs15_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -861,7 +866,7 @@ test_results:
       n_total: 158
       pct_success: 0.0
   emoji_vs16_results:
-    17.0.0:
+    9.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -6531,8 +6536,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \xad
       n_errors: 1
-      n_total: 187
-      pct_success: 99.46524064171123
+      n_total: 5434
+      pct_success: 99.9815973500184
   ri_results:
     17.0.0:
       failed_codepoints: []
@@ -6551,6 +6556,7 @@ test_results:
       n_errors: 0
       n_total: 26
       pct_success: 100.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -6560,5 +6566,5 @@ test_results:
       n_errors: 1
       n_total: 506
       pct_success: 99.80237154150198
-wcwidth_version: 0.8.1
-width: 80
+wcwidth_version: 0.8.3
+width: 115
