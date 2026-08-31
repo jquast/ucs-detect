@@ -68,8 +68,12 @@ DATA_PATH = os.path.join(_ROOT, "data")
 PLOTS_PATH = os.path.join(_ROOT, "docs", "_static", "plots")
 RST_DEPTH = [None, "=", "-", "+", "^"]
 LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
+FOOTNOTE_TEXT_SIZING = "†"
+FOOTNOTE_SIXEL = "‡"
+FOOTNOTE_CONPTY = "§"
 CONPTY_DA_CAVEAT_LINES = (
-    "† On Windows, MSYS2_ and Cygwin_ launch native Windows programs through "
+    f"{FOOTNOTE_CONPTY} On Windows, MSYS2_ and Cygwin_ launch native Windows programs "
+    "through "
     "ConPTY (conhost.exe or OpenConsole.exe), which answers DA1 itself instead "
     "of passing it to the terminal, so the response shown is **conhost.exe's**.  "
     "See mintty's `Input/Output interaction with alien programs`_.",
@@ -1157,7 +1161,7 @@ def _format_graphics_protocols(entry, sw_name):
     if tr.get("sixel", False):
         sixel_label = "Sixel"
         if _sixel_support_notes_for(sw_name):
-            sixel_label += " †"
+            sixel_label += f" {FOOTNOTE_SIXEL}"
         protocols.append(sixel_label)
     da_ext = tr.get("device_attributes", {}).get("extensions", [])
     if 3 in da_ext:
@@ -1225,48 +1229,48 @@ def display_tabulated_scores(score_table):
                 ),
                 "WIDE": wrap_score_with_hyperlink(
                     format_score_int(result["score_wide_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["score_wide_scaled"],
                     result["terminal_software_name"],
                     "_wide"
                 ),
                 "NARROW": wrap_score_with_hyperlink(
                     format_score_int(result["score_narrow_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["score_narrow_scaled"],
                     result["terminal_software_name"],
                     "_narrow"
                 ),
                 "LANG": wrap_score_with_hyperlink(
                     format_score_int(result["score_language_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["score_language_scaled"],
                     result["terminal_software_name"],
                     "_lang"
                 ),
                 "ZWJ": wrap_score_with_hyperlink(
                     format_score_int(result["score_zwj_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["score_zwj_scaled"],
                     result["terminal_software_name"],
                     "_zwj"
                 ),
                 "VS16": wrap_score_with_hyperlink(
                     format_score_int(result["score_emoji_vs16_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["score_emoji_vs16_scaled"],
                     result["terminal_software_name"],
                     "_vs16"
                 ),
                 "VS15": _wrap_id_contested(
                     format_score_int(result["score_emoji_vs15_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["terminal_software_name"],
                     "_vs15"
                 ),
                 "SRI": (wrap_score_with_hyperlink(
                     format_score_int(result["score_sri_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["score_sri_scaled"],
                     result["terminal_software_name"],
                     "_sri"
@@ -1274,7 +1278,7 @@ def display_tabulated_scores(score_table):
                     else _wrap_untested(result["terminal_software_name"], "_sri")),
                 "SFZ": (wrap_score_with_hyperlink(
                     format_score_int(result["score_sfz_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["score_sfz_scaled"],
                     result["terminal_software_name"],
                     "_sfz"
@@ -1282,7 +1286,7 @@ def display_tabulated_scores(score_table):
                     else _wrap_untested(result["terminal_software_name"], "_sfz")),
                 "RI": (wrap_score_with_hyperlink(
                     format_score_int(result["score_ri_scaled"])
-                    + (" †" if result.get("has_text_sizing") else ""),
+                    + (f" {FOOTNOTE_TEXT_SIZING}" if result.get("has_text_sizing") else ""),
                     result["score_ri_scaled"],
                     result["terminal_software_name"],
                     "_ri"
@@ -1309,7 +1313,8 @@ def display_tabulated_scores(score_table):
     has_any_text_sizing = any(e.get("has_text_sizing") for e in score_table)
     if has_any_text_sizing:
         print()
-        print("† This terminal supports the `Kitty Text Sizing protocol`_,")
+        print(f"{FOOTNOTE_TEXT_SIZING} This terminal supports the "
+              "`Kitty Text Sizing protocol`_,")
         print("which allows any application to programmatically set character widths,")
         print("remediating width issues for complex languages, emoji, and other")
         print("problematic codepoints. It is scored 100% on WIDE, NARROW, LANG, ZWJ, VS16,")
@@ -1337,7 +1342,7 @@ def display_tabulated_scores(score_table):
         for sw_name in sixel_note_terminals:
             notes = sixel_mixins[sw_name.lower()]['sixel_support_notes']
             print()
-            print(f"† *{sw_name}*: {notes}")
+            print(f"{FOOTNOTE_SIXEL} *{sw_name}*: {notes}")
         print()
 
     display_table_definitions()
@@ -2167,7 +2172,7 @@ def display_da1_response_section(score_table):
         has_conpty = has_conpty or conpty
 
         if conpty:
-            label = f":score-warn:`{sc_label} †`"
+            label = f":score-warn:`{sc_label} {FOOTNOTE_CONPTY}`"
         else:
             label = sc_label
 
@@ -2204,7 +2209,7 @@ def display_da1_response_section(score_table):
         for ext_num, ext_name in ext_columns:
             if ext_num in td["extensions"]:
                 if td["conpty"]:
-                    row[ext_name] = f":score-warn:`{ext_num}`†"
+                    row[ext_name] = f":score-warn:`{ext_num}`{FOOTNOTE_CONPTY}"
                 else:
                     row[ext_name] = f":score-pass:`{ext_num}`"
             else:
@@ -2804,7 +2809,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Success rate: {pct_success:.1f}%")
         print(f"- Formula: {pct_success:.1f} / 100")
         print(f"- Result: {entry['score_emoji_vs15']*100:.2f}%"
-              + (" † (Text Sizing protocol)"
+              + (f" {FOOTNOTE_TEXT_SIZING} (Text Sizing protocol)"
                  if entry.get("has_text_sizing") else ""))  # noqa: E226
     else:
         print("VS15 results not available.")

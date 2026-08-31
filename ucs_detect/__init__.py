@@ -138,9 +138,9 @@ def _ucs_detect_version():
     Return the version of ucs-detect that is running.
 
     A source checkout answers from its own ``pyproject.toml`` rather than from
-    :mod:`importlib.metadata`, which reports the *installed* distribution: with a
-    different version installed system-wide, metadata would record a version that is
-    not the code which produced these results.
+    :mod:`importlib.metadata`, which reports the *installed* distribution: with a different version
+    installed system-wide, metadata would record a version that is not the code which produced these
+    results.
     """
     pyproject = os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'pyproject.toml')
@@ -180,12 +180,11 @@ def _unicode_version():
     """
     Return the newest Unicode version of the generated codepoint tables.
 
-    This is the revision of the Unicode data files the tables were *generated from*,
-    which the per-version keys of ``test_results`` do not answer: those record the
-    version each codepoint was introduced in, and only for the categories a given run
-    actually exercised.  A run limited by ``--test-only`` or cut short by
-    ``--limit-category-time`` would otherwise leave no record of which Unicode release
-    the expectations came from.
+    This is the revision of the Unicode data files the tables were *generated from*, which the per-
+    version keys of ``test_results`` do not answer: those record the version each codepoint was
+    introduced in, and only for the categories a given run actually exercised.  A run limited by
+    ``--test-only`` or cut short by ``--limit-category-time`` would otherwise leave no record of
+    which Unicode release the expectations came from.
     """
     versions = [version for table in _VERSIONED_TABLES for version, _ in table]
     return max(versions, key=_version_sort_key) if versions else 'unknown'
