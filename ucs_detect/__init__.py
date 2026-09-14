@@ -646,7 +646,7 @@ def _build_terminal_kv_pairs(term, results):
                       f"#{r8:02x}{g8:02x}{b8:02x} [{swatch}]"))
 
     has_kitty_gfx = results.get('kitty_graphics', False)
-    has_iterm2_gfx = (results.get('iterm2_features') or {}).get('supported', False)
+    has_iterm2_gfx = results.get('iterm2_graphics', False)
     has_sixel = results.get('sixel', False)
     if has_kitty_gfx or has_iterm2_gfx:
         protocols = []
@@ -659,7 +659,7 @@ def _build_terminal_kv_pairs(term, results):
         pairs.append(("Graphics?", term.green2(", ".join(protocols))))
     elif has_sixel:
         pairs.append(("Graphics?", term.yellow("Sixel")))
-    elif any(k in results for k in ('sixel', 'kitty_graphics', 'iterm2_features')):
+    elif any(k in results for k in ('sixel', 'kitty_graphics', 'iterm2_graphics')):
         pairs.append(("Graphics?", term.firebrick1("No")))
 
     if da := results.get('device_attributes'):

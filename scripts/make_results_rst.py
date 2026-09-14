@@ -1198,8 +1198,7 @@ def _format_graphics_protocols(entry, sw_name):
     if 3 in da_ext:
         protocols.append("ReGIS")
     has_modern = False
-    iterm2 = tr.get("iterm2_features") or {}
-    if iterm2.get("supported", False):
+    if tr.get("iterm2_graphics", False):
         protocols.append("iTerm2")
         has_modern = True
     if tr.get("kitty_graphics", False):
@@ -1754,8 +1753,7 @@ def score_graphics(data):
     if 3 in da_ext:
         has_any = True
 
-    iterm2 = tr.get("iterm2_features") or {}
-    if iterm2.get("supported", False):
+    if tr.get("iterm2_graphics", False):
         return 1.0
     if tr.get("kitty_graphics", False):
         return 1.0
@@ -3022,8 +3020,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         gfx_protocols.append(("Sixel", False))
     da_ext = tr.get("device_attributes", {}).get("extensions", [])
     gfx_protocols.append(("ReGIS", 3 in da_ext))
-    iterm2 = tr.get("iterm2_features") or {}
-    gfx_protocols.append(("iTerm2", iterm2.get("supported", False)))
+    gfx_protocols.append(("iTerm2", tr.get("iterm2_graphics", False)))
     gfx_protocols.append(("Kitty", tr.get("kitty_graphics", False)))
     supported = [name for name, v in gfx_protocols if v]
     print(f"Graphics protocol support ({int(gfx_score * 100)}%):")
@@ -3288,7 +3285,7 @@ def show_graphics_results(sw_name, entry):
     da_ext = tr.get("device_attributes", {}).get("extensions", [])
     regis_supported = 3 in da_ext
     kitty_supported = tr.get("kitty_graphics", False)
-    iterm2_supported = (tr.get("iterm2_features") or {}).get("supported", False)
+    iterm2_supported = tr.get("iterm2_graphics", False)
 
     protocols = []
     if sixel_supported:
@@ -3350,8 +3347,15 @@ def show_graphics_results(sw_name, entry):
           f" Kitty graphics query and checking for an ``OK`` response.")
 
     iterm2_status = "**Detected**" if iterm2_supported else "Not detected"
-    print(f"- **iTerm2 inline images**: {iterm2_status} via the"
-          f" iTerm2 capabilities query ``OSC 1337 ; Capabilities``.")
+    print(f"- **iTerm2 inline images**: {iterm2_status} by drawing a 1x1"
+          f" transparent image, ``OSC 1337 ; File=inline=1``, and checking that"
+          f" the cursor advanced a single column.")
+
+    iterm2_cap = (tr.get("iterm2_features") or {}).get("supported", False)
+    iterm2_cap_status = "**Detected**" if iterm2_cap else "Not detected"
+    print(f"- **iTerm2 capabilities**: {iterm2_cap_status} via the"
+          f" ``OSC 1337 ; Capabilities`` query, which does not describe image"
+          f" support, and does not contribute to this score.")
     print()
 
     print('.. _Sixel: https://en.wikipedia.org/wiki/Sixel')
