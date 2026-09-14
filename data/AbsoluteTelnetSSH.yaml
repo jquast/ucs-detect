@@ -1,13 +1,13 @@
 ambiguous_width: 1
-datetime: 2026-08-20 22:59:16 UTC
+datetime: 2026-09-08 06:29:28 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: AbsoluteTelnet/SSH
-height: 67
+height: 55
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 13.703438611002639
+seconds_elapsed: 59.055752566084266
 session_arguments:
   all: false
   limit_category_time: 0
@@ -18,7 +18,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 3.0
 software_name: AbsoluteTelnet/SSH
-software_version: '14.03'
+software_version: '14.08'
 system: Windows
 terminal_results:
   background_color_hex: '#0c0c0c0c0c0c'
@@ -26,8 +26,8 @@ terminal_results:
   - 3084
   - 3084
   - 3084
-  cell_height: 15
-  cell_width: 8
+  cell_height: 18
+  cell_width: 9
   color_scheme: dark
   colored_underlines: true
   decrqcra: true
@@ -35,11 +35,11 @@ terminal_results:
   decrqss_settings:
     decsca: '0'
     decscl: 64;1
-    decscpp: '220'
-    decscusr: '6'
-    decslpp: '67'
-    decsnls: '67'
-    decstbm: 1;67
+    decscpp: '219'
+    decscusr: '5'
+    decslpp: '55'
+    decsnls: '55'
+    decstbm: 1;55
     sgr: 0;38;2;12;12;12
   decrqss_truecolor_probe: true
   device_attributes:
@@ -61,18 +61,34 @@ terminal_results:
   - 52428
   - 52428
   - 52428
-  height: 67
+  height: 55
   iterm2_features:
-    features: {}
-    supported: false
+    features:
+      bracketed_paste: true
+      clipboard_writable: true
+      decscusr: 7
+      focus_reporting: true
+      hyperlinks: true
+      mouse: true
+      notifications: true
+      overline: true
+      sixel: true
+      strikethrough: true
+      sync: true
+      titles: 3
+      truecolor: 3
+      unicode_basic: true
+      unicode_widths: 17
+    supported: true
   kitty_clipboard_protocol: true
   kitty_graphics: true
   kitty_keyboard:
-    disambiguate: false
-    report_all_keys: false
-    report_alternates: false
-    report_events: false
-    report_text: false
+    disambiguate: true
+    report_all_keys: true
+    report_alternates: true
+    report_events: true
+    report_text: true
+    supported_flags: 31
   kitty_notifications:
     supported: true
   kitty_pointer_shapes:
@@ -149,21 +165,24 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: true
-  pixels_height: 1005
-  pixels_width: 1760
+  pixels_height: 990
+  pixels_width: 1971
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
   software_method: XTVERSION
   software_name: AbsoluteTelnet/SSH
-  software_version: '14.03'
+  software_version: '14.08'
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
-    scale: false
-    width: false
+    scale: true
+    width: true
+  tofu:
+    protocol: mintty
+    supported: true
   ttype: xterm-256color
-  width: 220
+  width: 219
   xtgettcap:
     capabilities:
       Ms: "\e]52;%p1%s;%p2%s\a"
@@ -258,7 +277,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: AbsoluteTelnet/SSH 14.03
+  xtversion_raw: AbsoluteTelnet/SSH 14.08
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -708,7 +727,7 @@ test_results:
     17.0.0:
       failed_codepoints: []
       n_errors: 0
-      n_total: 187
+      n_total: 5529
       pct_success: 100.0
   ri_results:
     17.0.0:
@@ -728,11 +747,226 @@ test_results:
       n_errors: 0
       n_total: 26
       pct_success: 100.0
+  tofu_results:
+    17.0.0:
+      blocks:
+        Alchemical Symbols:
+          codepoint_ranges:
+          - - 128887
+            - 128890
+          n_errors: 4
+          n_total: 128
+        Arabic Extended-C:
+          codepoint_ranges:
+          - - 69329
+            - 69336
+          n_errors: 8
+          n_total: 15
+        Arabic Presentation Forms-A:
+          codepoint_ranges:
+          - - 64451
+            - 64453
+          - - 64456
+            - 64466
+          - - 64968
+            - 64974
+          n_errors: 21
+          n_total: 656
+        Balinese:
+          codepoint_ranges:
+          - - 6990
+            - 6991
+          - - 7039
+            - 7039
+          n_errors: 3
+          n_total: 96
+        Bopomofo:
+          codepoint_ranges:
+          - - 12590
+            - 12591
+          n_errors: 2
+          n_total: 43
+        Bopomofo Extended:
+          codepoint_ranges:
+          - - 12728
+            - 12735
+          n_errors: 8
+          n_total: 32
+        CJK Compatibility Ideographs:
+          codepoint_ranges:
+          - - 64046
+            - 64047
+          n_errors: 2
+          n_total: 472
+        Control Pictures:
+          codepoint_ranges:
+          - - 9255
+            - 9257
+          n_errors: 3
+          n_total: 42
+        Counting Rod Numerals:
+          codepoint_ranges:
+          - - 119666
+            - 119670
+          n_errors: 5
+          n_total: 25
+        Cyrillic Extended-C:
+          codepoint_ranges:
+          - - 7305
+            - 7306
+          n_errors: 2
+          n_total: 11
+        Cyrillic Extended-D:
+          codepoint_ranges:
+          - - 122928
+            - 122989
+          n_errors: 62
+          n_total: 62
+        Devanagari Extended-A:
+          codepoint_ranges:
+          - - 72448
+            - 72457
+          n_errors: 10
+          n_total: 10
+        Egyptian Hieroglyphs Extended-A:
+          codepoint_ranges:
+          - - 81601
+            - 81601
+          n_errors: 1
+          n_total: 3995
+        Halfwidth and Fullwidth Forms:
+          codepoint_ranges:
+          - - 65435
+            - 65435
+          n_errors: 1
+          n_total: 224
+        Hangul Compatibility Jamo:
+          codepoint_ranges:
+          - - 12609
+            - 12609
+          n_errors: 1
+          n_total: 93
+        Hangul Jamo:
+          codepoint_ranges:
+          - - 4358
+            - 4358
+          n_errors: 1
+          n_total: 95
+        Ideographic Symbols and Punctuation:
+          codepoint_ranges:
+          - - 94176
+            - 94176
+          - - 94178
+            - 94179
+          n_errors: 3
+          n_total: 4
+        Kana Extended-B:
+          codepoint_ranges:
+          - - 110576
+            - 110579
+          - - 110581
+            - 110587
+          - - 110589
+            - 110590
+          n_errors: 13
+          n_total: 13
+        Kannada:
+          codepoint_ranges:
+          - - 3292
+            - 3292
+          n_errors: 1
+          n_total: 69
+        Katakana:
+          codepoint_ranges:
+          - - 12525
+            - 12525
+          n_errors: 1
+          n_total: 96
+        Katakana Phonetic Extensions:
+          codepoint_ranges:
+          - - 12799
+            - 12799
+          n_errors: 1
+          n_total: 16
+        Latin Extended-D:
+          codepoint_ranges:
+          - - 42958
+            - 42959
+          - - 42962
+            - 42962
+          - - 42964
+            - 42964
+          - - 42993
+            - 42993
+          n_errors: 5
+          n_total: 204
+        Lisu Supplement:
+          codepoint_ranges:
+          - - 73648
+            - 73648
+          n_errors: 1
+          n_total: 1
+        Miscellaneous Symbols and Arrows:
+          codepoint_ranges:
+          - - 11158
+            - 11158
+          n_errors: 1
+          n_total: 254
+        Miscellaneous Symbols and Pictographs:
+          codepoint_ranges:
+          - - 128335
+            - 128335
+          n_errors: 1
+          n_total: 768
+        Rumi Numeral Symbols:
+          codepoint_ranges:
+          - - 69216
+            - 69246
+          n_errors: 31
+          n_total: 31
+        Sunuwar:
+          codepoint_ranges:
+          - - 72692
+            - 72692
+          n_errors: 1
+          n_total: 44
+        Sutton SignWriting:
+          codepoint_ranges:
+          - - 121091
+            - 121092
+          n_errors: 2
+          n_total: 545
+        Syriac Supplement:
+          codepoint_ranges:
+          - - 2144
+            - 2154
+          n_errors: 11
+          n_total: 11
+        Telugu:
+          codepoint_ranges:
+          - - 3164
+            - 3164
+          n_errors: 1
+          n_total: 77
+        Tibetan:
+          codepoint_ranges:
+          - - 4053
+            - 4056
+          n_errors: 4
+          n_total: 134
+      include_uncommon: false
+      n_errors: 211
+      n_total: 73679
+      n_unknown: 0
+      pct_success: 99.71362260617
+      protocol: mintty
   unicode_wide_results:
     17.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 506
       pct_success: 100.0
-wcwidth_version: 0.8.2
-width: 220
+ucs_detect_version: 2.3.6
+unicode_version: 17.0.0
+wcwidth_version: 0.8.3
+width: 219
