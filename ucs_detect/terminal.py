@@ -435,6 +435,12 @@ def maybe_determine_tofu(term, timeout=1.0, **_kw):
                      'protocol': coverage.protocol}}
 
 
+def maybe_determine_iterm2_graphics(term, timeout=1.0, **_kw):
+    """Detect iTerm2 inline image protocol support, delegating to blessed."""
+    echo(term, term.move_x(0))
+    return {'iterm2_graphics': term.does_iterm2_graphics(timeout=timeout)}
+
+
 def maybe_determine_iterm2_features(term, timeout=1.0, **_kw):
     """Query iTerm2 feature reporting protocol, delegating to blessed."""
     result = {'iterm2_features': {'supported': False, 'features': {}}}
@@ -759,6 +765,8 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
         attrs.update(maybe_determine_kitty_graphics(term, timeout=timeout))
     with _status(writer, term, "iTerm2 Features", bg_rgb, silent=silent):
         attrs.update(maybe_determine_iterm2_features(term, timeout=timeout))
+    with _status(writer, term, "iTerm2 Graphics", bg_rgb, silent=silent):
+        attrs.update(maybe_determine_iterm2_graphics(term, timeout=timeout))
     with _status(writer, term, "Text Sizing", bg_rgb, silent=silent):
         attrs.update(maybe_determine_text_sizing(term, timeout=timeout))
     with _status(writer, term, "Tofu Detection", bg_rgb, silent=silent):

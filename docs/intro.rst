@@ -316,6 +316,9 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.7 (2026-09-14): Requires blessed_ 1.50, detect `iTerm2 image protocol`_ support by drawing
+  an image, rather than by the ``OSC 1337 ; Capabilities`` report.
+
 - 2.3.6 (2026-08-31): Test for new feature, "tofu detection", fix scores normalized by
   only 'contested', fix kitty keyboard "partial" support reporting, and, remove Resources (RSC) from
   final score.
@@ -385,6 +388,7 @@ History
 - 0.0.4 (2020-06-20): Initial releases and bugfixes
 
 .. _wcwidth: https://github.com/jquast/wcwidth
+.. _blessed: https://github.com/jquast/blessed
 .. _`wcstwidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html#wcstwidth
 .. _`Query Cursor Position`: https://blessed.readthedocs.io/en/latest/location.html#finding-the-cursor
 .. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
