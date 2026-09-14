@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-08-12 18:05:56 UTC
+datetime: 2026-09-14 19:32:55 UTC
 environment:
   COLORTERM: truecolor
   TERM: alacritty
@@ -8,100 +8,34 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 16.0
+  - 21.0
   - 0.0
-  - 3.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
+  - 1.0
+  - 80.8
+  - 104.8
+  - 90.8
+  - 96.8
   elapsed_s:
-  - 1.001568234001752
-  - 2.0037615380024363
-  - 3.0072117670024454
-  - 4.01006280799993
-  - 5.012465253999835
-  - 6.014146763001918
-  - 7.0163641840008495
-  - 8.018363823000982
-  - 9.019793057999777
-  - 10.021493198000826
-  - 11.02321055700304
-  - 12.025272628001403
-  - 13.027140532001795
-  - 14.029515442001866
-  - 15.030989208000392
-  - 16.032698863000405
-  - 17.03458648800006
-  - 18.0358091220005
-  - 19.037588096001855
-  - 20.03950681800052
-  - 21.04084982600034
-  - 22.04256268500103
-  - 23.044447141001
-  - 24.045820254003047
-  - 25.047558008001943
-  - 26.04939817000195
-  - 27.05075370800114
-  - 28.052456154000538
-  - 29.054310911000357
+  - 1.0016213269846048
+  - 2.003533716982929
+  - 3.0050384619971737
+  - 4.007053717999952
+  - 5.009629218984628
+  - 6.011721899994882
+  - 7.013759883004241
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 119.20703125
-  - 119.20703125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-  - 121.11328125
-seconds_elapsed: 1.882180956978118
+  - 120.48046875
+  - 120.48828125
+  - 120.48828125
+  - 129.2109375
+  - 129.546875
+  - 132.1875
+  - 134.671875
+seconds_elapsed: 4.019988425978227
 session_arguments:
   all: false
   limit_category_time: 0
@@ -139,6 +73,7 @@ terminal_results:
   iterm2_features:
     features: {}
     supported: false
+  iterm2_graphics: false
   kitty_clipboard_protocol: false
   kitty_graphics: false
   kitty_keyboard:
@@ -232,6 +167,9 @@ terminal_results:
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: alacritty
   width: 80
   xtgettcap:
@@ -8680,6 +8618,9 @@ test_results:
         wchar: \U000111c3
       - measured_by_terminal: 0
         measured_by_wcwidth: 1
+        wchar: \U000113d1
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
         wchar: \U0001193f
       - measured_by_terminal: 0
         measured_by_wcwidth: 1
@@ -8708,9 +8649,9 @@ test_results:
       - measured_by_terminal: 0
         measured_by_wcwidth: 1
         wchar: \U00011f02
-      n_errors: 24
-      n_total: 187
-      pct_success: 87.16577540106952
+      n_errors: 25
+      n_total: 5000
+      pct_success: 99.5
   ri_results:
     17.0.0:
       failed_codepoints: []
@@ -8807,6 +8748,7 @@ test_results:
       n_errors: 26
       n_total: 26
       pct_success: 0.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -8891,5 +8833,7 @@ test_results:
       n_errors: 26
       n_total: 506
       pct_success: 94.86166007905138
-wcwidth_version: 0.8.2
+ucs_detect_version: 2.3.7
+unicode_version: 17.0.0
+wcwidth_version: 0.8.3
 width: 80

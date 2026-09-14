@@ -1,12 +1,71 @@
 ambiguous_width: 1
-datetime: 2026-08-31 16:43:19 UTC
+datetime: 2026-09-14 19:30:17 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
-height: 77
+height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.4
-seconds_elapsed: 12.032208451997576
+python_version: 3.14.7
+resource_profile:
+  cpu_pct:
+  - 43.9
+  - 43.9
+  - 44.9
+  - 36.9
+  - 37.9
+  - 36.9
+  - 40.9
+  - 40.9
+  - 40.9
+  - 49.9
+  - 54.9
+  - 57.9
+  - 52.9
+  - 52.9
+  - 51.9
+  - 54.9
+  - 38.9
+  elapsed_s:
+  - 1.0050121020176448
+  - 2.007811129995389
+  - 3.0103237540170085
+  - 4.012123947992222
+  - 5.014995742996689
+  - 6.017979546013521
+  - 7.0211012920190115
+  - 8.02358811799786
+  - 9.026208251016214
+  - 10.028681202995358
+  - 11.031085886992514
+  - 12.033654575992841
+  - 13.036011356016388
+  - 14.038274412014289
+  - 15.040332736010896
+  - 16.042340407992015
+  - 17.044528201018693
+  hardware:
+    cpu_count: 12
+    cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
+    ram_total_kb: 15481852
+  rss_mb:
+  - 117.14453125
+  - 119.671875
+  - 122.34375
+  - 124.49609375
+  - 125.22265625
+  - 126.171875
+  - 127.125
+  - 127.83203125
+  - 128.46484375
+  - 129.4765625
+  - 133.93359375
+  - 135.65234375
+  - 136.81640625
+  - 137.12109375
+  - 137.4140625
+  - 138.62109375
+  - 138.453125
+seconds_elapsed: 17.143462833977537
 session_arguments:
   all: true
   limit_category_time: 0
@@ -17,11 +76,11 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: Bobcat
-software_version: 0.9.9 (r442)
+software_version: 0.9.9 (r5)
 system: Linux
 terminal_results:
-  cell_height: 23
-  cell_width: 10
+  cell_height: 15
+  cell_width: 9
   color_scheme: false
   colored_underlines: false
   decrqcra: true
@@ -30,18 +89,17 @@ terminal_results:
     decsace: '2'
     decsca: '0'
     decscl: 64;1
-    decscpp: '288'
+    decscpp: '80'
     decscusr: '1'
-    decslpp: 77t
-    decslrm: 1;288
-    decsnls: '77'
-    decstbm: 1;77
+    decslpp: 24t
+    decslrm: 1;80
+    decsnls: '24'
+    decstbm: 1;24
     sgr: '0'
   decrqss_truecolor_probe: true
   device_attributes:
     extensions:
     - 1
-    - 4
     - 6
     - 8
     - 9
@@ -50,30 +108,27 @@ terminal_results:
     - 21
     - 22
     - 28
-    - 444
-    - 1337
-    raw: "\e[?64;1;6;8;9;15;17;21;22;28;4;444;1337c"
+    raw: "\e[?64;1;6;8;9;15;17;21;22;28c"
     service_class: 64
-  height: 77
+  height: 24
   iterm2_features:
     features:
       ambiguous_wide: true
       bracketed_paste: true
       decscusr: 0
       decslrm: true
-      focus_reporting: true
       mouse: true
       notifications: true
       overline: true
-      sixel: true
       strikethrough: true
       titles: 0
       truecolor: 0
       unicode_basic: true
       unicode_widths: 0
     supported: true
+  iterm2_graphics: true
   kitty_clipboard_protocol: false
-  kitty_graphics: true
+  kitty_graphics: false
   kitty_notifications: false
   kitty_pointer_shapes: false
   kitty_query: false
@@ -147,14 +202,14 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 1771
-  pixels_width: 2880
-  screen_ratio: '16:10'
-  screen_ratio_name: WSXGA
-  sixel: true
+  pixels_height: 360
+  pixels_width: 720
+  screen_ratio: '16:9'
+  screen_ratio_name: HD
+  sixel: false
   software_method: XTVERSION
   software_name: Bobcat
-  software_version: 0.9.9 (r442)
+  software_version: 0.9.9 (r5)
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
@@ -164,7 +219,7 @@ terminal_results:
     protocol: null
     supported: false
   ttype: xterm-256color
-  width: 288
+  width: 80
   xtgettcap:
     capabilities:
       RGB: '8'
@@ -273,7 +328,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: Bobcat 0.9.9 (r442)
+  xtversion_raw: Bobcat 0.9.9 (r5)
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -12393,5 +12448,7 @@ test_results:
       n_errors: 11
       n_total: 43592
       pct_success: 99.97476601211231
+ucs_detect_version: 2.3.7
+unicode_version: 17.0.0
 wcwidth_version: 0.8.3
-width: 288
+width: 80

@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-08-12 18:06:24 UTC
+datetime: 2026-09-14 19:33:58 UTC
 environment:
   TERM: xterm
 height: 24
@@ -7,100 +7,28 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 2.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
+  - 3.0
+  - 27.0
+  - 36.9
+  - 35.9
+  - 32.9
   elapsed_s:
-  - 1.0015797279993421
-  - 2.003246444000979
-  - 3.005079657999886
-  - 4.006471939999756
-  - 5.00809767499959
-  - 6.010006287000579
-  - 7.011877313001605
-  - 8.013268173999677
-  - 9.014935478000552
-  - 10.016154296001332
-  - 11.01789103199917
-  - 12.01905912499933
-  - 13.02051838099942
-  - 14.021919963000983
-  - 15.023185805999674
-  - 16.024416788000963
-  - 17.025633850000304
-  - 18.02698943699943
-  - 19.028223069999513
-  - 20.029475483999704
-  - 21.030982250002126
-  - 22.03216372099996
-  - 23.033851848002087
-  - 24.035055079999438
-  - 25.03664782800115
-  - 26.037811266000062
-  - 27.03955923600006
-  - 28.04085206700256
-  - 29.042499338000198
+  - 1.0043149770062882
+  - 2.0062740560097154
+  - 3.008070714015048
+  - 4.0099337520077825
+  - 5.013362402009079
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-  - 21.2421875
-seconds_elapsed: 1.544953307020478
+  - 21.015625
+  - 28.55859375
+  - 29.14453125
+  - 29.39453125
+  - 29.4765625
+seconds_elapsed: 3.587653889990179
 session_arguments:
   all: false
   limit_category_time: 0
@@ -111,7 +39,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: XTerm
-software_version: '410'
+software_version: '411'
 system: Linux
 terminal_results:
   background_color_hex: '#000000000000'
@@ -159,6 +87,7 @@ terminal_results:
   iterm2_features:
     features: {}
     supported: false
+  iterm2_graphics: false
   kitty_clipboard_protocol: false
   kitty_graphics: false
   kitty_notifications: false
@@ -241,12 +170,15 @@ terminal_results:
   sixel: true
   software_method: XTVERSION
   software_name: XTerm
-  software_version: '410'
+  software_version: '411'
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: xterm
   width: 80
   xtgettcap:
@@ -294,7 +226,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: XTerm(410)
+  xtversion_raw: XTerm(411)
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -10686,8 +10618,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \u324f
       n_errors: 8
-      n_total: 187
-      pct_success: 95.72192513368985
+      n_total: 5529
+      pct_success: 99.85530837402786
   ri_results:
     17.0.0:
       failed_codepoints: []
@@ -10784,6 +10716,7 @@ test_results:
       n_errors: 26
       n_total: 26
       pct_success: 0.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -10868,5 +10801,7 @@ test_results:
       n_errors: 26
       n_total: 506
       pct_success: 94.86166007905138
-wcwidth_version: 0.8.2
+ucs_detect_version: 2.3.7
+unicode_version: 17.0.0
+wcwidth_version: 0.8.3
 width: 80
