@@ -79,12 +79,6 @@ _TEXT_SIZING_LABELS = {
     "vs16": "VS16", "vs15": "VS15", "sri": "SRI", "sfz": "SFZ", "ri": "RI",
 }
 
-
-def _text_sizing_mark(result, key):
-    """Footnote suffix for a score credited 100% by the Text Sizing protocol."""
-    if key in result.get("text_sizing_credited", ()):
-        return f" {FOOTNOTE_TEXT_SIZING}"
-    return ""
 CONPTY_DA_CAVEAT_LINES = (
     f"{FOOTNOTE_CONPTY} On Windows, MSYS2_ and Cygwin_ launch native Windows programs "
     "through "
@@ -335,6 +329,19 @@ def _wrap_untested(terminal_name, section_suffix):
     """Wrap untested score with grey styling and hyperlink."""
     link_target = make_link(terminal_name + section_suffix)
     return f':sref:`N/A <{link_target}> contested`'
+
+
+def _text_sizing_mark(result, key):
+    """Footnote suffix for a score credited 100% by the Text Sizing protocol."""
+    if key in result.get("text_sizing_credited", ()):
+        return f" {FOOTNOTE_TEXT_SIZING}"
+    return ""
+
+
+def _text_sizing_credit_note(result, key):
+    """Score breakdown suffix naming the Text Sizing protocol credit, if any."""
+    mark = _text_sizing_mark(result, key)
+    return f"{mark} (Text Sizing protocol)" if mark else ""
 
 
 def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, section_suffix):
@@ -1337,13 +1344,13 @@ def display_tabulated_scores(score_table):
     has_any_text_sizing = any(e.get("text_sizing_credited") for e in score_table)
     if has_any_text_sizing:
         print()
-        print(f"{FOOTNOTE_TEXT_SIZING} This terminal supports the "
+        print(f"{FOOTNOTE_TEXT_SIZING} This score is credited 100% by the "
               "`Kitty Text Sizing protocol`_,")
         print("which allows any application to programmatically set character widths,")
         print("remediating width issues for complex languages, emoji, and other")
-        print("problematic codepoints. A score marked with this symbol measured below")
-        print("100% and is credited 100% for that reason; unmarked scores were measured")
-        print("directly. Interpretation of VS15 is `contested")
+        print("problematic codepoints. Only scores that measured below 100%, or were")
+        print("not measured at all, are credited and marked; unmarked scores were")
+        print("measured directly. Interpretation of VS15 is `contested")
         print("<https://github.com/jquast/wcwidth/issues/211>`_ and excluded from")
         print("the final score.")
         print()
@@ -2757,7 +2764,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Total successful contested codepoints: {n_success}")
         print(f"- Total contested codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
-        print(f"- Result: {entry['score_wide']*100:.2f}%")  # noqa: E226
+        print(f"- Result: {entry['score_wide']*100:.2f}%"  # noqa: E226
+              + _text_sizing_credit_note(entry, "wide"))
     else:
         print("No WIDE character support detected.")
     print()
@@ -2773,7 +2781,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Total successful contested codepoints: {n_success}")
         print(f"- Total contested codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
-        print(f"- Result: {entry['score_narrow']*100:.2f}%")  # noqa: E226
+        print(f"- Result: {entry['score_narrow']*100:.2f}%"  # noqa: E226
+              + _text_sizing_credit_note(entry, "narrow"))
     else:
         print("No NARROW character support detected.")
     print()
@@ -2790,7 +2799,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Total successful sequences: {n_success}")
         print(f"- Total sequences tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
-        print(f"- Result: {entry['score_zwj']*100:.2f}%")  # noqa: E226
+        print(f"- Result: {entry['score_zwj']*100:.2f}%"  # noqa: E226
+              + _text_sizing_credit_note(entry, "zwj"))
     else:
         print("No ZWJ support detected.")
     print()
@@ -2809,7 +2819,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Errors: {n_errors} of {n_total} codepoints tested")
         print(f"- Success rate: {pct_success:.1f}%")
         print(f"- Formula: {pct_success:.1f} / 100")
-        print(f"- Result: {entry['score_emoji_vs16']*100:.2f}%")  # noqa: E226
+        print(f"- Result: {entry['score_emoji_vs16']*100:.2f}%"  # noqa: E226
+              + _text_sizing_credit_note(entry, "vs16"))
     else:
         print("VS16 results not available.")
     print()
@@ -2833,9 +2844,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Errors: {n_errors} of {n_total} codepoints tested")
         print(f"- Success rate: {pct_success:.1f}%")
         print(f"- Formula: {pct_success:.1f} / 100")
-        print(f"- Result: {entry['score_emoji_vs15']*100:.2f}%"
-              + (f" {FOOTNOTE_TEXT_SIZING} (Text Sizing protocol)"
-                 if "vs15" in entry.get("text_sizing_credited", ()) else ""))  # noqa: E226
+        print(f"- Result: {entry['score_emoji_vs15']*100:.2f}%"  # noqa: E226
+              + _text_sizing_credit_note(entry, "vs15"))
     else:
         print("VS15 results not available.")
     print()
@@ -2855,7 +2865,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Total successful codepoints: {n_success}")
         print(f"- Total codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
-        print(f"- Result: {entry['score_sri']*100:.2f}%")  # noqa: E226
+        print(f"- Result: {entry['score_sri']*100:.2f}%"  # noqa: E226
+              + _text_sizing_credit_note(entry, "sri"))
     else:
         print(f".. note:: {_UNTESTED_NOTE}")
     print()
@@ -2872,7 +2883,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Total successful codepoints: {n_success}")
         print(f"- Total codepoints tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
-        print(f"- Result: {entry['score_sfz']*100:.2f}%")  # noqa: E226
+        print(f"- Result: {entry['score_sfz']*100:.2f}%"  # noqa: E226
+              + _text_sizing_credit_note(entry, "sfz"))
     else:
         print(f".. note:: {_UNTESTED_NOTE}")
     print()
@@ -2889,7 +2901,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f"- Total successful sequences: {n_success}")
         print(f"- Total sequences tested: {n_total}")
         print(f"- Formula: {n_success} / {n_total}")
-        print(f"- Result: {entry['score_ri']*100:.2f}%")  # noqa: E226
+        print(f"- Result: {entry['score_ri']*100:.2f}%"  # noqa: E226
+              + _text_sizing_credit_note(entry, "ri"))
     else:
         print(f".. note:: {_UNTESTED_NOTE}")
     print()
@@ -3055,7 +3068,8 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print()
         print(f"- Formula: (p₁ × p₂ × ... × pₙ)^(1/n) where n = {n} contested languages")
         print("- About `geometric mean <https://en.wikipedia.org/wiki/Geometric_mean>`_")
-        print(f"- Result: {geo_mean * 100:.2f}%")
+        print(f"- Result: {geo_mean * 100:.2f}%"
+              + _text_sizing_credit_note(entry, "lang"))
     print()
 
 
@@ -3646,10 +3660,16 @@ def show_text_sizing_results(sw_name, entry):
     credited = [_TEXT_SIZING_LABELS[k] for k in _TEXT_SIZING_LABELS
                 if k in entry.get("text_sizing_credited", ())]
     if credited:
+        if len(credited) == 1:
+            credited_list = credited[0]
+        elif len(credited) == 2:
+            credited_list = " and ".join(credited)
+        else:
+            credited_list = ", ".join(credited[:-1]) + ", and " + credited[-1]
         print(f"at the application level. For this reason, *{sw_name}* is credited")
-        print("**100%** on the {} width test{}, where it measured below 100%.".format(
-            ", ".join(credited), "s" if len(credited) > 1 else ""))
-        print("Every other width score was measured directly.")
+        print("**100%** on the {} width test{}, where it measured below 100% or".format(
+            credited_list, "s" if len(credited) > 1 else ""))
+        print("was not measured at all. Every other width score was measured directly.")
     else:
         print(f"at the application level. *{sw_name}* also measured **100%** on every")
         print("width test directly, so no score is credited to the protocol.")
