@@ -316,7 +316,7 @@ marks across diverse scripts.
 History
 -------
 
-- 2.3.7 (2026-09-15): improve `iTerm2 image protocol`_ detection.
+- 2.3.7 (2026-09-15): Improved `iTerm2 image protocol`_ detection.
 
 - 2.3.6 (2026-08-31): Test for new feature, "tofu detection", fix scores normalized by
   only 'contested', fix kitty keyboard "partial" support reporting, and, remove Resources (RSC) from
