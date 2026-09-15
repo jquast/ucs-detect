@@ -361,7 +361,7 @@ terminals:
       args: []
       wm_class: dev.warp.Warp
       key_delay_ms: 50
-      post_launch_delay_ms: 1500
+      post_launch_delay_ms: 3500
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit

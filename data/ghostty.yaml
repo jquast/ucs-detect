@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-08-12 18:04:15 UTC
+datetime: 2026-09-14 19:31:20 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
@@ -10,100 +10,34 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 93.9
-  - 66.8
-  - 7.0
-  - 8.0
-  - 22.0
-  - 10.0
-  - 8.0
-  - 3.0
-  - 8.0
-  - 9.0
-  - 4.0
-  - 8.0
-  - 6.0
-  - 3.0
-  - 6.0
-  - 6.0
-  - 3.0
-  - 7.0
-  - 6.0
-  - 3.0
-  - 6.0
-  - 7.0
-  - 3.0
-  - 6.0
-  - 7.0
-  - 3.0
-  - 7.0
-  - 6.0
-  - 3.0
+  - 85.9
+  - 99.8
+  - 123.7
+  - 124.7
+  - 114.7
+  - 141.7
+  - 148.6
   elapsed_s:
-  - 1.0015537510007562
-  - 2.0030338500000653
-  - 3.005434714999865
-  - 4.007213217999379
-  - 5.008841028000461
-  - 6.0106972829998995
-  - 7.012319227000262
-  - 8.014337791999424
-  - 9.016104202997667
-  - 10.017186847999255
-  - 11.019914165997761
-  - 12.022140211000078
-  - 13.024002169997402
-  - 14.02535708600044
-  - 15.027094245997432
-  - 16.02896793999753
-  - 17.03105989100004
-  - 18.03275736899741
-  - 19.034683013000176
-  - 20.036207380999258
-  - 21.0380145679992
-  - 22.03994193700055
-  - 23.041982605998783
-  - 24.044032660000084
-  - 25.045367259997874
-  - 26.0470830009981
-  - 27.04892471600033
-  - 28.050180480000563
-  - 29.051866797999537
+  - 1.0020088389865123
+  - 2.0032107989827637
+  - 3.0053583919943776
+  - 4.007488246978028
+  - 5.011271829978796
+  - 6.013350805995287
+  - 7.0155891879985575
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 233.40625
-  - 259.6171875
-  - 259.6171875
-  - 259.6171875
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.1484375
-  - 262.0234375
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-  - 261.9921875
-seconds_elapsed: 3.7033410650037695
+  - 214.82421875
+  - 250.265625
+  - 269.09375
+  - 280.2734375
+  - 280.1171875
+  - 281.42578125
+  - 281.83203125
+seconds_elapsed: 5.228851618012413
 session_arguments:
   all: false
   limit_category_time: 0
@@ -114,7 +48,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: ghostty
-software_version: 1.3.2-main-+3706abab0
+software_version: 1.3.1-arch2
 system: Linux
 terminal_results:
   background_color_hex: '#28282c2c3434'
@@ -148,6 +82,7 @@ terminal_results:
   iterm2_features:
     features: {}
     supported: false
+  iterm2_graphics: false
   kitty_clipboard_protocol: false
   kitty_graphics: true
   kitty_keyboard:
@@ -237,12 +172,15 @@ terminal_results:
   sixel: false
   software_method: XTVERSION
   software_name: ghostty
-  software_version: 1.3.2-main-+3706abab0
+  software_version: 1.3.1-arch2
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: xterm-ghostty
   width: 79
   xtgettcap:
@@ -1043,10 +981,25 @@ test_results:
       pct_success: 100.0
   narrow_results:
     17.0.0:
-      failed_codepoints: []
-      n_errors: 0
-      n_total: 187
-      pct_success: 100.0
+      failed_codepoints:
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U00016d63
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U00016d67
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U00016d68
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U00016d69
+      - measured_by_terminal: 0
+        measured_by_wcwidth: 1
+        wchar: \U00016d6a
+      n_errors: 5
+      n_total: 5529
+      pct_success: 99.90956773376742
   ri_results:
     17.0.0:
       failed_codepoints: []
@@ -1065,6 +1018,7 @@ test_results:
       n_errors: 0
       n_total: 26
       pct_success: 100.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -1074,5 +1028,7 @@ test_results:
       n_errors: 1
       n_total: 506
       pct_success: 99.80237154150198
-wcwidth_version: 0.8.2
+ucs_detect_version: 2.3.7
+unicode_version: 17.0.0
+wcwidth_version: 0.8.3
 width: 79

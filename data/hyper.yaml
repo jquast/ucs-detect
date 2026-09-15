@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-08-31 17:11:47 UTC
+datetime: 2026-09-14 20:21:51 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -8,7 +8,7 @@ environment:
 height: 72
 preferred_encoding: UTF-8
 python_version: 3.13.13
-seconds_elapsed: 3154.447449026
+seconds_elapsed: 3161.8108810800186
 session_arguments:
   all: true
   limit_category_time: 0
@@ -52,6 +52,7 @@ terminal_results:
   iterm2_features:
     features: {}
     supported: false
+  iterm2_graphics: false
   kitty_clipboard_protocol: false
   kitty_graphics: false
   kitty_notifications: false
@@ -12993,5 +12994,7 @@ test_results:
       n_errors: 365
       n_total: 43592
       pct_success: 99.1626904019086
+ucs_detect_version: 2.3.7
+unicode_version: 17.0.0
 wcwidth_version: 0.8.3
 width: 205

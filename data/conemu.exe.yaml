@@ -1,10 +1,10 @@
 ambiguous_width: 1
-datetime: 2026-08-31 14:47:32 UTC
+datetime: 2026-09-15 07:13:35 UTC
 environment: {}
 height: 54
 preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 401.1267802000002
+seconds_elapsed: 389.7613074000001
 session_arguments:
   all: true
   limit_category_time: 0
@@ -33,6 +33,7 @@ terminal_results:
   iterm2_features:
     features: {}
     supported: false
+  iterm2_graphics: false
   kitty_clipboard_protocol: false
   kitty_graphics: false
   kitty_notifications: false
@@ -33430,5 +33431,7 @@ test_results:
       n_errors: 209
       n_total: 43592
       pct_success: 99.52055423013397
+ucs_detect_version: 2.3.7
+unicode_version: 17.0.0
 wcwidth_version: 0.8.3
 width: 209

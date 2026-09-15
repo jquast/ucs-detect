@@ -316,8 +316,7 @@ marks across diverse scripts.
 History
 -------
 
-- 2.3.7 (2026-09-14): Requires blessed_ 1.50, detect `iTerm2 image protocol`_ support by drawing
-  an image, rather than by the ``OSC 1337 ; Capabilities`` report.
+- 2.3.7 (2026-09-15): improve `iTerm2 image protocol`_ detection.
 
 - 2.3.6 (2026-08-31): Test for new feature, "tofu detection", fix scores normalized by
   only 'contested', fix kitty keyboard "partial" support reporting, and, remove Resources (RSC) from

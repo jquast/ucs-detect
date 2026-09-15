@@ -1,88 +1,76 @@
 ambiguous_width: 1
-datetime: 2026-08-31 16:10:30 UTC
+datetime: 2026-09-14 19:32:25 UTC
 environment:
   COLORTERM: truecolor
   TERM: contour
   TERM_PROGRAM: contour
-  TERM_PROGRAM_VERSION: 0.7.0-master-c51e15ed
+  TERM_PROGRAM_VERSION: 0.7.1-master-9f0850ce
 height: 24
 preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 27.7
-  - 66.3
-  - 103.9
-  - 104.7
-  - 103.8
-  - 104.9
-  - 104.8
-  - 104.6
-  - 103.8
-  - 103.9
-  - 104.8
-  - 103.9
-  - 104.0
-  - 104.8
-  - 103.9
-  - 86.2
-  - 46.5
-  - 46.5
-  - 46.5
-  - 47.5
-  - 44.6
-  - 45.6
+  - 46.2
+  - 56.0
+  - 103.0
+  - 84.5
+  - 40.3
+  - 43.3
+  - 42.5
+  - 41.2
+  - 43.3
+  - 42.3
+  - 42.3
+  - 43.2
+  - 43.2
+  - 41.3
+  - 42.2
+  - 40.2
+  - 36.7
+  - 44.2
   elapsed_s:
-  - 1.0197194419997686
-  - 2.030230868000217
-  - 3.040848783999536
-  - 4.051820174001477
-  - 5.064014604999102
-  - 6.075805235999724
-  - 7.0865841369995906
-  - 8.116913625999587
-  - 9.130105593001645
-  - 10.141408641000453
-  - 11.152018896002119
-  - 12.163719692001905
-  - 13.174463659001049
-  - 14.18449974699979
-  - 15.195596959001705
-  - 16.205712126000435
-  - 17.215340809001646
-  - 18.226387007001904
-  - 19.237545325999236
-  - 20.248497839002084
-  - 21.259765614999196
-  - 22.269446268001047
+  - 1.0366103090054821
+  - 2.0538925910077523
+  - 3.0712296279962175
+  - 4.090519955003401
+  - 5.10800329799531
+  - 6.125462033989606
+  - 7.142003785993438
+  - 8.1781576689973
+  - 9.246020910999505
+  - 10.262512344983406
+  - 11.279035271989414
+  - 12.296195640985388
+  - 13.314740239002276
+  - 14.332008831988787
+  - 15.348315545998048
+  - 16.36753544298699
+  - 17.38674972599256
+  - 18.453521986986743
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 146.11328125
-  - 208.82421875
-  - 211.3359375
-  - 212.9296875
-  - 213.25
-  - 213.79296875
-  - 214.29296875
-  - 214.54296875
-  - 214.796875
-  - 215.109375
-  - 215.36328125
-  - 215.7421875
-  - 215.9921875
-  - 216.3046875
-  - 218.515625
-  - 219.4140625
-  - 220.71875
-  - 221.2578125
-  - 221.2578125
-  - 221.265625
-  - 221.265625
-  - 221.265625
-seconds_elapsed: 21.39184631900207
+  - 162.88671875
+  - 193.22265625
+  - 198.875
+  - 199.89453125
+  - 200.359375
+  - 201.61328125
+  - 202.1484375
+  - 202.484375
+  - 202.875
+  - 202.875
+  - 202.46484375
+  - 202.40234375
+  - 202.3984375
+  - 202.3984375
+  - 202.3984375
+  - 202.3984375
+  - 202.3984375
+  - 202.40234375
+seconds_elapsed: 16.993947723996826
 session_arguments:
   all: true
   limit_category_time: 0
@@ -93,7 +81,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: contour
-software_version: 0.7.0-master-c51e15ed
+software_version: 0.7.1-master-9f0850ce
 system: Linux
 terminal_results:
   background_color_hex: '#1a1a17171616'
@@ -161,6 +149,7 @@ terminal_results:
       unicode_basic: true
       unicode_widths: 17
     supported: true
+  iterm2_graphics: false
   kitty_clipboard_protocol: true
   kitty_graphics: true
   kitty_keyboard:
@@ -253,7 +242,7 @@ terminal_results:
   sixel: true
   software_method: XTVERSION
   software_name: contour
-  software_version: 0.7.0-master-c51e15ed
+  software_version: 0.7.1-master-9f0850ce
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
@@ -466,7 +455,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: contour 0.7.0-master-c51e15ed
+  xtversion_raw: contour 0.7.1-master-9f0850ce
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -1582,5 +1571,7 @@ test_results:
       n_errors: 0
       n_total: 43592
       pct_success: 100.0
+ucs_detect_version: 2.3.7
+unicode_version: 17.0.0
 wcwidth_version: 0.8.3
 width: 80

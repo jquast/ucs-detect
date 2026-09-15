@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-08-12 18:04:29 UTC
+datetime: 2026-09-14 19:34:32 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
@@ -8,100 +8,31 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 3.0
+  - 6.0
   - 0.0
   - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
-  - 0.0
+  - 24.9
+  - 18.9
+  - 20.0
   elapsed_s:
-  - 1.0022481109990622
-  - 2.003562754998711
-  - 3.0060001210003975
-  - 4.0078472749992216
-  - 5.00983398599783
-  - 6.011449894998805
-  - 7.01311144400097
-  - 8.01507766099894
-  - 9.017086723997636
-  - 10.019105077000859
-  - 11.021006979000958
-  - 12.023059848997946
-  - 13.025218761998985
-  - 14.026875969000685
-  - 15.028096742000344
-  - 16.029805996000505
-  - 17.031057526997756
-  - 18.0327666819976
-  - 19.034959049000463
-  - 20.036784240997804
-  - 21.038852263998706
-  - 22.04045398800008
-  - 23.041858724998747
-  - 24.043659890998242
-  - 25.044900199998665
-  - 26.04656301599971
-  - 27.047788245999982
-  - 28.049457835000794
-  - 29.05123899499813
+  - 1.0026437689957675
+  - 2.0041102850227617
+  - 3.005346849007765
+  - 4.007178250001743
+  - 5.011689759005094
+  - 6.014139410021016
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 23.28125
-  - 23.28125
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-  - 25.38671875
-seconds_elapsed: 1.5198627259815112
+  - 22.87890625
+  - 22.98046875
+  - 22.98046875
+  - 28.0625
+  - 28.09375
+  - 28.21875
+seconds_elapsed: 3.2177304119977634
 session_arguments:
   all: false
   limit_category_time: 0
@@ -140,6 +71,7 @@ terminal_results:
   iterm2_features:
     features: {}
     supported: false
+  iterm2_graphics: false
   kitty_clipboard_protocol: false
   kitty_graphics: false
   kitty_notifications: false
@@ -221,13 +153,16 @@ terminal_results:
   screen_ratio_name: WSXGA
   sixel: false
   software_method: ENQ
-  software_name: urxvt
+  software_name: '[?1;2c'
   software_version: 9.31-9
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
     scale: false
     width: false
+  tofu:
+    protocol: null
+    supported: false
   ttype: rxvt-unicode-256color
   width: 80
   xtgettcap:
@@ -10626,8 +10561,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \u324f
       n_errors: 8
-      n_total: 187
-      pct_success: 95.72192513368985
+      n_total: 5529
+      pct_success: 99.85530837402786
   ri_results:
     17.0.0:
       failed_codepoints: []
@@ -10724,6 +10659,7 @@ test_results:
       n_errors: 26
       n_total: 26
       pct_success: 0.0
+  tofu_results: {}
   unicode_wide_results:
     17.0.0:
       failed_codepoints:
@@ -10808,5 +10744,7 @@ test_results:
       n_errors: 26
       n_total: 506
       pct_success: 94.86166007905138
-wcwidth_version: 0.8.2
+ucs_detect_version: 2.3.7
+unicode_version: 17.0.0
+wcwidth_version: 0.8.3
 width: 80
