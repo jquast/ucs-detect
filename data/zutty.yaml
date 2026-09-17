@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-09-14 19:30:57 UTC
+datetime: 2026-09-17 02:15:12 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -8,46 +8,55 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 42.9
+  - 40.9
+  - 5.0
   - 0.0
-  - 18.0
-  - 170.7
-  - 167.0
-  - 174.5
-  - 170.7
-  - 170.7
+  - 150.7
+  - 170.5
+  - 168.6
+  - 173.4
   - 172.7
-  - 173.7
-  - 148.7
+  - 175.7
+  - 175.6
+  - 173.6
+  - 165.7
+  - 176.7
+  - 166.2
   elapsed_s:
-  - 1.001367974007735
-  - 2.0032734340056777
-  - 3.004640768020181
-  - 4.006408931018086
-  - 5.0080417999997735
-  - 6.038043506006943
-  - 7.0407654930022545
-  - 8.04247852100525
-  - 9.044229154998902
-  - 10.04567988801864
-  - 11.047533731005387
+  - 1.0021465600002557
+  - 2.004075881006429
+  - 3.0059953500021948
+  - 4.007945243007271
+  - 5.009681002004072
+  - 6.012868909005192
+  - 7.016328088997398
+  - 8.018750560004264
+  - 9.020361921997392
+  - 10.022140482004033
+  - 11.024670461003552
+  - 12.02690292999614
+  - 13.028586209999048
+  - 14.07575492199976
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 123.80078125
-  - 123.80078125
-  - 123.8046875
-  - 123.8046875
-  - 123.8046875
-  - 123.8046875
-  - 123.8046875
-  - 123.8046875
-  - 123.8046875
-  - 123.8046875
-  - 123.8046875
-seconds_elapsed: 7.915828271012288
+  - 124.81640625
+  - 124.82421875
+  - 124.82421875
+  - 124.828125
+  - 124.828125
+  - 124.828125
+  - 124.828125
+  - 124.828125
+  - 124.828125
+  - 124.828125
+  - 124.828125
+  - 124.828125
+  - 124.828125
+  - 124.828125
+seconds_elapsed: 11.0799556330021
 session_arguments:
   all: false
   limit_category_time: 0
@@ -1250,7 +1259,7 @@ test_results:
       n_total: 426
       pct_success: 50.0
   emoji_zwj_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -10487,7 +10496,7 @@ test_results:
       n_total: 8
       pct_success: 100.0
   narrow_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -10517,19 +10526,19 @@ test_results:
       n_total: 5529
       pct_success: 99.85530837402786
   ri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
   sfz_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
   sri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10614,7 +10623,7 @@ test_results:
       pct_success: 0.0
   tofu_results: {}
   unicode_wide_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10698,6 +10707,6 @@ test_results:
       n_total: 506
       pct_success: 94.86166007905138
 ucs_detect_version: 2.3.7
-unicode_version: 17.0.0
-wcwidth_version: 0.8.3
+unicode_version: 18.0.0
+wcwidth_version: 0.8.4
 width: 80

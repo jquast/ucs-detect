@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-09-14 19:33:58 UTC
+datetime: 2026-09-17 02:17:06 UTC
 environment:
   TERM: xterm
 height: 24
@@ -7,28 +7,19 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 3.0
-  - 27.0
-  - 36.9
-  - 35.9
-  - 32.9
+  - 14.0
+  - 53.9
   elapsed_s:
-  - 1.0043149770062882
-  - 2.0062740560097154
-  - 3.008070714015048
-  - 4.0099337520077825
-  - 5.013362402009079
+  - 1.001403107002261
+  - 2.003125565999653
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 21.015625
-  - 28.55859375
-  - 29.14453125
-  - 29.39453125
-  - 29.4765625
-seconds_elapsed: 3.587653889990179
+  - 27.82421875
+  - 29.4296875
+seconds_elapsed: 1.5149522199935745
 session_arguments:
   all: false
   limit_category_time: 0
@@ -1354,7 +1345,7 @@ test_results:
       n_total: 426
       pct_success: 50.0
   emoji_zwj_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -10591,7 +10582,7 @@ test_results:
       n_total: 8
       pct_success: 100.0
   narrow_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -10621,19 +10612,19 @@ test_results:
       n_total: 5529
       pct_success: 99.85530837402786
   ri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
   sfz_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
   sri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10718,7 +10709,7 @@ test_results:
       pct_success: 0.0
   tofu_results: {}
   unicode_wide_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10802,6 +10793,6 @@ test_results:
       n_total: 506
       pct_success: 94.86166007905138
 ucs_detect_version: 2.3.7
-unicode_version: 17.0.0
-wcwidth_version: 0.8.3
+unicode_version: 18.0.0
+wcwidth_version: 0.8.4
 width: 80

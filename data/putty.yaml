@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-09-14 19:32:24 UTC
+datetime: 2026-09-17 02:16:06 UTC
 environment:
   TERM: xterm
 height: 23
@@ -7,31 +7,28 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 13.0
+  - 9.0
+  - 1.0
   - 0.0
-  - 0.0
-  - 56.9
-  - 74.8
-  - 75.9
+  - 78.9
+  - 82.8
   elapsed_s:
-  - 1.0019384420011193
-  - 2.004460600001039
-  - 3.006380218983395
-  - 4.008295703999465
-  - 5.010465557978023
-  - 6.012488519976614
+  - 1.002325956011191
+  - 2.0041745199996512
+  - 3.005797572011943
+  - 4.007664339005714
+  - 5.009252586009097
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 60.12109375
-  - 60.12109375
-  - 60.12109375
-  - 71.5
-  - 74.0234375
-  - 76.57421875
-seconds_elapsed: 2.744913161994191
+  - 59.82421875
+  - 59.828125
+  - 59.828125
+  - 70.96875
+  - 75.78515625
+seconds_elapsed: 1.9647543780010892
 session_arguments:
   all: false
   limit_category_time: 0
@@ -1221,7 +1218,7 @@ test_results:
       n_total: 426
       pct_success: 50.0
   emoji_zwj_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -10462,7 +10459,7 @@ test_results:
       n_total: 8
       pct_success: 100.0
   narrow_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 0
         measured_by_wcwidth: 1
@@ -10507,19 +10504,19 @@ test_results:
       n_total: 5529
       pct_success: 99.76487610779526
   ri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
   sfz_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
   sri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10604,7 +10601,7 @@ test_results:
       pct_success: 0.0
   tofu_results: {}
   unicode_wide_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10688,6 +10685,6 @@ test_results:
       n_total: 506
       pct_success: 94.86166007905138
 ucs_detect_version: 2.3.7
-unicode_version: 17.0.0
-wcwidth_version: 0.8.3
+unicode_version: 18.0.0
+wcwidth_version: 0.8.4
 width: 79
