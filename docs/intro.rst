@@ -316,6 +316,8 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.8 (2026-09-16): Unicode 18.0 support.
+
 - 2.3.7 (2026-09-15): Improved `iTerm2 image protocol`_ detection.
 
 - 2.3.6 (2026-08-31): Test for new feature, "tofu detection", fix scores normalized by

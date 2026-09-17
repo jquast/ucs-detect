@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-09-14 19:33:24 UTC
+datetime: 2026-09-17 02:18:01 UTC
 environment:
   COLORTERM: truecolor
   TERM: foot
@@ -8,22 +8,16 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 13.0
-  - 41.9
-  - 46.9
+  - 29.0
   elapsed_s:
-  - 1.0022191619791556
-  - 2.0046354179794434
-  - 3.0064436459797435
+  - 1.0014261470059864
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 23.140625
-  - 31.4140625
-  - 40.1953125
-seconds_elapsed: 2.2704052980116103
+  - 29.9140625
+seconds_elapsed: 1.0851181220059516
 session_arguments:
   all: false
   limit_category_time: 0
@@ -415,7 +409,7 @@ test_results:
       n_total: 426
       pct_success: 100.0
   emoji_zwj_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 1445
@@ -8003,7 +7997,7 @@ test_results:
       n_total: 8
       pct_success: 100.0
   narrow_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 0
         measured_by_wcwidth: 1
@@ -8048,13 +8042,13 @@ test_results:
       n_total: 5529
       pct_success: 99.76487610779526
   ri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
   sfz_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -8075,7 +8069,7 @@ test_results:
       n_total: 5
       pct_success: 0.0
   sri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -8160,7 +8154,7 @@ test_results:
       pct_success: 0.0
   tofu_results: {}
   unicode_wide_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -8258,7 +8252,7 @@ test_results:
       n_errors: 31
       n_total: 506
       pct_success: 93.87351778656127
-ucs_detect_version: 2.3.7
-unicode_version: 17.0.0
-wcwidth_version: 0.8.3
+ucs_detect_version: 2.3.8
+unicode_version: 18.0.0
+wcwidth_version: 0.8.4
 width: 116

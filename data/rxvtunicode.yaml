@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-09-14 19:34:32 UTC
+datetime: 2026-09-17 02:18:00 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
@@ -8,31 +8,25 @@ preferred_encoding: UTF-8
 python_version: 3.14.7
 resource_profile:
   cpu_pct:
-  - 6.0
+  - 3.0
   - 0.0
-  - 0.0
-  - 24.9
-  - 18.9
-  - 20.0
+  - 10.0
+  - 28.0
   elapsed_s:
-  - 1.0026437689957675
-  - 2.0041102850227617
-  - 3.005346849007765
-  - 4.007178250001743
-  - 5.011689759005094
-  - 6.014139410021016
+  - 1.0015977869916242
+  - 2.002969730994664
+  - 3.004096764998394
+  - 4.005820117992698
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 22.87890625
-  - 22.98046875
-  - 22.98046875
-  - 28.0625
-  - 28.09375
-  - 28.21875
-seconds_elapsed: 3.2177304119977634
+  - 22.96875
+  - 22.96875
+  - 28.13671875
+  - 20.9765625
+seconds_elapsed: 0.9356781330134254
 session_arguments:
   all: false
   limit_category_time: 0
@@ -1297,7 +1291,7 @@ test_results:
       n_total: 426
       pct_success: 50.0
   emoji_zwj_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 3
         measured_by_wcwidth: 2
@@ -10534,7 +10528,7 @@ test_results:
       n_total: 8
       pct_success: 100.0
   narrow_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -10564,19 +10558,19 @@ test_results:
       n_total: 5529
       pct_success: 99.85530837402786
   ri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 262
       pct_success: 100.0
   sfz_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
   sri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10661,7 +10655,7 @@ test_results:
       pct_success: 0.0
   tofu_results: {}
   unicode_wide_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -10744,7 +10738,7 @@ test_results:
       n_errors: 26
       n_total: 506
       pct_success: 94.86166007905138
-ucs_detect_version: 2.3.7
-unicode_version: 17.0.0
-wcwidth_version: 0.8.3
+ucs_detect_version: 2.3.8
+unicode_version: 18.0.0
+wcwidth_version: 0.8.4
 width: 80

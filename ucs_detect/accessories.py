@@ -52,14 +52,21 @@ def get_data_dir():
 FETCH_BLOCKSIZE = 3096
 
 
-def do_retrieve(url, fname):
-    """Retrieve given url to target filepath fname."""
+def do_retrieve(url, fname, force=False):
+    """
+    Retrieve given url to target filepath fname.
+
+    When *force* is True, any cached copy of *fname* is re-downloaded.  Callers that fetch a
+    "latest" URL must use it: those files are re-issued with each Unicode release, so a cached copy
+    silently pins table generation to the version that happened to be current when it was first
+    fetched.
+    """
     # 3rd party
     import requests
     folder = os.path.dirname(fname)
     if folder and not os.path.exists(folder):
         os.makedirs(folder, exist_ok=True)
-    if os.path.exists(fname):
+    if os.path.exists(fname) and not force:
         return
     resp = requests.get(url, stream=True, timeout=30)
     with open(fname, "wb") as fout:

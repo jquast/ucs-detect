@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-09-14 19:34:34 UTC
+datetime: 2026-09-17 02:15:24 UTC
 environment:
   TERM: xterm-256color
   TERM_PROGRAM: terminology
@@ -9,94 +9,85 @@ preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 14.7
-  - 0.0
-  - 0.0
-  - 27.5
-  - 59.2
-  - 60.4
-  - 59.8
-  - 63.0
-  - 65.0
-  - 66.9
-  - 64.8
-  - 63.1
-  - 66.9
-  - 73.9
-  - 69.9
-  - 68.9
-  - 70.8
-  - 71.5
-  - 69.5
-  - 73.1
-  - 76.8
-  - 68.7
-  - 54.1
-  - 34.3
-  - 34.3
-  - 50.9
-  - 4.6
+  - 27.1
+  - 2.9
+  - 2.0
+  - 2.0
+  - 33.0
+  - 44.0
+  - 48.2
+  - 49.1
+  - 45.9
+  - 48.0
+  - 52.1
+  - 57.1
+  - 60.1
+  - 70.0
+  - 69.0
+  - 75.6
+  - 70.0
+  - 71.6
+  - 73.6
+  - 71.7
+  - 76.7
+  - 72.0
+  - 60.3
+  - 4.9
   elapsed_s:
-  - 1.0317175480013248
-  - 2.0507927880098578
-  - 3.079151799000101
-  - 4.13112659699982
-  - 5.1501226290129125
-  - 6.181502135004848
-  - 7.227911930996925
-  - 8.244637132011121
-  - 9.261453351005912
-  - 10.27723308801069
-  - 11.294032017001882
-  - 12.312101257994073
-  - 13.326626944995951
-  - 14.343061704013962
-  - 15.35815443500178
-  - 16.374148594011785
-  - 17.38963365901145
-  - 18.405892951996066
-  - 19.42669468501117
-  - 20.477773938997416
-  - 21.489848514000187
-  - 22.50587862500106
-  - 23.525156512012472
-  - 24.542457663017558
-  - 25.56360549601959
-  - 26.58379074902041
-  - 27.62411393900402
+  - 0.25388651799585205
+  - 1.512450877999072
+  - 2.561563360999571
+  - 3.5786560330016073
+  - 4.601399595005205
+  - 5.631138219003333
+  - 6.654128540001693
+  - 7.671449191009742
+  - 8.689499351006816
+  - 9.713293848006288
+  - 10.941550133007695
+  - 11.958154827996623
+  - 12.973506509995786
+  - 13.988037044007797
+  - 15.001651013008086
+  - 16.016329846999724
+  - 17.18003407699871
+  - 18.412860227996134
+  - 19.44242060200486
+  - 20.475125258002663
+  - 21.507636982001713
+  - 22.536954025999876
+  - 23.564110170002095
+  - 24.592762355998275
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481852
   rss_mb:
-  - 75.3125
-  - 52.828125
-  - 52.828125
-  - 77.265625
-  - 79.9453125
-  - 82.47265625
-  - 84.609375
-  - 87.1484375
-  - 89.84765625
-  - 92.69140625
-  - 95.48828125
-  - 96.96484375
-  - 98.81640625
-  - 104.3671875
-  - 108.46875
-  - 112.7109375
-  - 116.11328125
-  - 118.50390625
-  - 117.39453125
-  - 121.9765625
-  - 122.6796875
-  - 126.109375
-  - 126.6640625
-  - 126.328125
-  - 126.03515625
-  - 126.26953125
-  - 126.1015625
-seconds_elapsed: 23.128984940005466
+  - 50.46875
+  - 51.68359375
+  - 51.68359375
+  - 51.203125
+  - 75.3671875
+  - 76.71484375
+  - 78.3984375
+  - 80.73828125
+  - 82.25390625
+  - 83.28515625
+  - 84.5625
+  - 86.68359375
+  - 89.828125
+  - 93.6171875
+  - 96.765625
+  - 104.70703125
+  - 109.6328125
+  - 115.33203125
+  - 118.28125
+  - 125.015625
+  - 126.4765625
+  - 130.6640625
+  - 130.38671875
+  - 130.10546875
+seconds_elapsed: 20.015382586003398
 session_arguments:
   all: true
   limit_category_time: 0
@@ -14765,9 +14756,9 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1a20\u1a62\u1a60\u1a37
       - grapheme_id: Khün-2-0c
-        measured_by_terminal: 3
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a20\u1a6e\u1a60
+        wchars: \u1a20\u1a6e\u1a60\u1a2f\u1a68
       - grapheme_id: Khün-2-0d
         measured_by_terminal: 4
         measured_by_wcwidth: 2
@@ -14777,845 +14768,1029 @@ test_results:
         measured_by_wcwidth: 2
         wchars: \u1a20\u1a6e\u1a75
       - grapheme_id: Khün-2-0f
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a20\u1a6f\u1a60
+        wchars: \u1a20\u1a6f\u1a60\u1a2f
       - grapheme_id: Khün-2-10
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a20\u1a6f\u1a60\u1a36\u1a75
+      - grapheme_id: Khün-2-11
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a20\u1a6f\u1a75
-      - grapheme_id: Khün-2-11
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a21\u1a60\u1a26\u1a62
       - grapheme_id: Khün-2-12
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a21\u1a60\u1a2f\u1a62
+        wchars: \u1a21\u1a60\u1a26\u1a62
       - grapheme_id: Khün-2-13
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a21\u1a60\u1a2f\u1a62
+      - grapheme_id: Khün-2-14
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a21\u1a60\u1a36
-      - grapheme_id: Khün-2-14
+      - grapheme_id: Khün-2-15
         measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u1a21\u1a60\u1a36\u1a62
-      - grapheme_id: Khün-2-15
+      - grapheme_id: Khün-2-16
         measured_by_terminal: 5
         measured_by_wcwidth: 2
         wchars: \u1a21\u1a60\u1a36\u1a68\u1a76
-      - grapheme_id: Khün-2-16
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a21\u1a60\u1a45
       - grapheme_id: Khün-2-17
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a21\u1a60\u1a4b
+        wchars: \u1a21\u1a60\u1a45
       - grapheme_id: Khün-2-18
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a21\u1a6e\u1a60
+        wchars: \u1a21\u1a60\u1a4b
       - grapheme_id: Khün-2-19
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a21\u1a6e\u1a60\u1a32
+      - grapheme_id: Khün-2-1a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a21\u1a6e\u1a62
-      - grapheme_id: Khün-2-1a
+      - grapheme_id: Khün-2-1b
         measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u1a21\u1a6e\u1a62\u1a62
-      - grapheme_id: Khün-2-1b
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a21\u1a6f\u1a60
       - grapheme_id: Khün-2-1c
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a21\u1a71\u1a62
+        wchars: \u1a21\u1a6f\u1a60\u1a20
+      - grapheme_id: Khün-2-1d
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a21\u1a6f\u1a60\u1a26
       - grapheme_id: Khün-2-1e
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a23\u1a55\u1a60
-      - grapheme_id: Khün-2-1f
+        wchars: \u1a21\u1a71\u1a62
+      - grapheme_id: Khün-2-20
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a23\u1a55\u1a6e\u1a60
-      - grapheme_id: Khün-2-20
+        wchars: \u1a23\u1a55\u1a60\u1a4b
+      - grapheme_id: Khün-2-21
+        measured_by_terminal: 7
+        measured_by_wcwidth: 2
+        wchars: \u1a23\u1a55\u1a6e\u1a60\u1a26\u1a68\u1a75
+      - grapheme_id: Khün-2-22
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a23\u1a60\u1a23
-      - grapheme_id: Khün-2-21
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a23\u1a60\u1a2f\u1a67
-      - grapheme_id: Khün-2-22
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a23\u1a60\u1a36\u1a62
       - grapheme_id: Khün-2-23
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a23\u1a60\u1a3e\u1a6b
+        wchars: \u1a23\u1a60\u1a2f\u1a67
       - grapheme_id: Khün-2-24
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a23\u1a60\u1a45
+        wchars: \u1a23\u1a60\u1a36\u1a62
       - grapheme_id: Khün-2-25
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a23\u1a60\u1a4b\u1a62
+        wchars: \u1a23\u1a60\u1a3e\u1a6b
       - grapheme_id: Khün-2-26
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a23\u1a60\u1a45
+      - grapheme_id: Khün-2-27
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a23\u1a62\u1a60\u1a37
+        wchars: \u1a23\u1a60\u1a4b\u1a62
       - grapheme_id: Khün-2-28
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a23\u1a6e\u1a62\u1a62
-      - grapheme_id: Khün-2-29
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a23\u1a6f\u1a60
+        wchars: \u1a23\u1a62\u1a60\u1a37
       - grapheme_id: Khün-2-2a
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a24\u1a60\u1a2f\u1a65
+        wchars: \u1a23\u1a6e\u1a62\u1a62
       - grapheme_id: Khün-2-2b
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a24\u1a60\u1a36\u1a68
+        wchars: \u1a23\u1a6f\u1a60\u1a36\u1a62
       - grapheme_id: Khün-2-2c
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a24\u1a60\u1a36\u1a6b
+        wchars: \u1a23\u1a6f\u1a60\u1a45
       - grapheme_id: Khün-2-2d
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a24\u1a60\u1a45\u1a6b
+        wchars: \u1a24\u1a60\u1a2f\u1a65
       - grapheme_id: Khün-2-2e
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a24\u1a60\u1a4b
+        wchars: \u1a24\u1a60\u1a36\u1a68
       - grapheme_id: Khün-2-2f
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a24\u1a62\u1a60\u1a2c
+        wchars: \u1a24\u1a60\u1a36\u1a6b
       - grapheme_id: Khün-2-30
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a24\u1a6e\u1a62
+        wchars: \u1a24\u1a60\u1a45\u1a6b
       - grapheme_id: Khün-2-31
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a24\u1a71\u1a75
+        wchars: \u1a24\u1a60\u1a4b
       - grapheme_id: Khün-2-32
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a24\u1a62\u1a60\u1a2c
+      - grapheme_id: Khün-2-33
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a24\u1a6e\u1a62
+      - grapheme_id: Khün-2-34
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a24\u1a71\u1a75
+      - grapheme_id: Khün-2-35
         measured_by_terminal: 5
         measured_by_wcwidth: 2
         wchars: \u1a27\u1a60\u1a26\u1a65\u1a75
-      - grapheme_id: Khün-2-33
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a27\u1a60\u1a2f\u1a62
-      - grapheme_id: Khün-2-35
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a27\u1a6e\u1a60
       - grapheme_id: Khün-2-36
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a27\u1a6e\u1a62\u1a62
+        wchars: \u1a27\u1a60\u1a2f\u1a62
       - grapheme_id: Khün-2-38
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a27\u1a71\u1a60
+        wchars: \u1a27\u1a6e\u1a60\u1a37
       - grapheme_id: Khün-2-39
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a28\u1a60\u1a36\u1a62
-      - grapheme_id: Khün-2-3a
-        measured_by_terminal: 5
-        measured_by_wcwidth: 2
-        wchars: \u1a29\u1a60\u1a36\u1a62\u1a62
+        wchars: \u1a27\u1a6e\u1a62\u1a62
       - grapheme_id: Khün-2-3b
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a29\u1a60\u1a36\u1a7c
+        wchars: \u1a27\u1a71\u1a60\u1a3f
       - grapheme_id: Khün-2-3c
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a29\u1a6d\u1a75
+        wchars: \u1a28\u1a60\u1a36\u1a62
       - grapheme_id: Khün-2-3d
-        measured_by_terminal: 3
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a29\u1a6e\u1a60
+        wchars: \u1a29\u1a60\u1a36\u1a62\u1a62
       - grapheme_id: Khün-2-3e
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a29\u1a71\u1a62
+        wchars: \u1a29\u1a60\u1a36\u1a7c
       - grapheme_id: Khün-2-3f
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a29\u1a75\u1a6d
+        wchars: \u1a29\u1a6d\u1a75
       - grapheme_id: Khün-2-40
         measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a2a\u1a60\u1a26\u1a68\u1a75
+        wchars: \u1a29\u1a6e\u1a60\u1a4b\u1a68
       - grapheme_id: Khün-2-41
-        measured_by_terminal: 3
+        measured_by_terminal: 6
         measured_by_wcwidth: 2
-        wchars: \u1a2a\u1a6e\u1a62
+        wchars: \u1a29\u1a6e\u1a60\u1a4b\u1a68\u1a75
       - grapheme_id: Khün-2-42
+        measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchars: \u1a29\u1a6e\u1a60\u1a4b\u1a68\u1a76
+      - grapheme_id: Khün-2-43
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a2c\u1a60\u1a2c
-      - grapheme_id: Khün-2-43
-        measured_by_terminal: 5
-        measured_by_wcwidth: 2
-        wchars: \u1a2f\u1a60\u1a26\u1a62\u1a75
+        wchars: \u1a29\u1a71\u1a62
       - grapheme_id: Khün-2-44
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a2f\u1a60\u1a30
+        wchars: \u1a29\u1a75\u1a6d
       - grapheme_id: Khün-2-45
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a2f\u1a60\u1a36\u1a65
+        wchars: \u1a2a\u1a60\u1a26\u1a68\u1a75
       - grapheme_id: Khün-2-46
-        measured_by_terminal: 6
-        measured_by_wcwidth: 2
-        wchars: \u1a2f\u1a60\u1a45\u1a60\u1a3f\u1a62
-      - grapheme_id: Khün-2-47
-        measured_by_terminal: 6
-        measured_by_wcwidth: 2
-        wchars: \u1a2f\u1a62\u1a60\u1a45\u1a60\u1a3f
-      - grapheme_id: Khün-2-48
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a2f\u1a6a\u1a6f
+        wchars: \u1a2a\u1a6e\u1a62
+      - grapheme_id: Khün-2-47
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a2c\u1a60\u1a2c
+      - grapheme_id: Khün-2-48
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a60\u1a26\u1a62\u1a75
       - grapheme_id: Khün-2-49
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a2f\u1a6f\u1a60
+        wchars: \u1a2f\u1a60\u1a30
       - grapheme_id: Khün-2-4a
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a60\u1a36\u1a65
+      - grapheme_id: Khün-2-4b
+        measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a60\u1a45\u1a60\u1a3f\u1a62
+      - grapheme_id: Khün-2-4c
+        measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a62\u1a60\u1a45\u1a60\u1a3f
+      - grapheme_id: Khün-2-4d
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a2f\u1a70\u1a60
-      - grapheme_id: Khün-2-4c
+        wchars: \u1a2f\u1a6a\u1a6f
+      - grapheme_id: Khün-2-4e
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a6f\u1a60\u1a26
+      - grapheme_id: Khün-2-4f
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a6f\u1a60\u1a36
+      - grapheme_id: Khün-2-50
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a2f\u1a70\u1a60\u1a3f
+      - grapheme_id: Khün-2-52
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a2f\u1a71\u1a62
-      - grapheme_id: Khün-2-4d
+      - grapheme_id: Khün-2-53
         measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u1a2f\u1a74\u1a60\u1a3f
-      - grapheme_id: Khün-2-4e
+      - grapheme_id: Khün-2-54
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a31\u1a60\u1a31
-      - grapheme_id: Khün-2-50
+      - grapheme_id: Khün-2-56
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a32\u1a55\u1a66
-      - grapheme_id: Khün-2-51
+      - grapheme_id: Khün-2-57
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a32\u1a55\u1a7c
-      - grapheme_id: Khün-2-52
+      - grapheme_id: Khün-2-58
         measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u1a32\u1a60\u1a20\u1a6b
-      - grapheme_id: Khün-2-53
+      - grapheme_id: Khün-2-59
         measured_by_terminal: 5
         measured_by_wcwidth: 2
         wchars: \u1a32\u1a60\u1a26\u1a62\u1a62
-      - grapheme_id: Khün-2-54
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a32\u1a60\u1a2f\u1a62
-      - grapheme_id: Khün-2-55
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a32\u1a60\u1a32\u1a65
-      - grapheme_id: Khün-2-56
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a32\u1a60\u1a33\u1a69
-      - grapheme_id: Khün-2-57
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a32\u1a60\u1a36\u1a6b
-      - grapheme_id: Khün-2-58
-        measured_by_terminal: 5
-        measured_by_wcwidth: 2
-        wchars: \u1a32\u1a60\u1a36\u1a6b\u1a62
-      - grapheme_id: Khün-2-59
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a32\u1a60\u1a45\u1a6b
       - grapheme_id: Khün-2-5a
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a32\u1a60\u1a4b\u1a62
+        wchars: \u1a32\u1a60\u1a2f\u1a62
       - grapheme_id: Khün-2-5b
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a32\u1a6e\u1a60
+        wchars: \u1a32\u1a60\u1a32\u1a65
       - grapheme_id: Khün-2-5c
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a32\u1a6f\u1a60
+        wchars: \u1a32\u1a60\u1a33\u1a69
       - grapheme_id: Khün-2-5d
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a32\u1a6f\u1a75
+        wchars: \u1a32\u1a60\u1a36\u1a6b
+      - grapheme_id: Khün-2-5e
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a32\u1a60\u1a36\u1a6b\u1a62
       - grapheme_id: Khün-2-5f
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a32\u1a71\u1a60
+        wchars: \u1a32\u1a60\u1a45\u1a6b
       - grapheme_id: Khün-2-60
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a32\u1a71\u1a62
+        wchars: \u1a32\u1a60\u1a4b\u1a62
       - grapheme_id: Khün-2-61
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a33\u1a60\u1a26\u1a68
+        wchars: \u1a32\u1a6e\u1a60\u1a20
       - grapheme_id: Khün-2-62
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a33\u1a60\u1a45\u1a62
+        wchars: \u1a32\u1a6e\u1a60\u1a26
       - grapheme_id: Khün-2-63
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a33\u1a6b\u1a60\u1a37
+        wchars: \u1a32\u1a6e\u1a60\u1a3e
       - grapheme_id: Khün-2-64
-        measured_by_terminal: 3
+        measured_by_terminal: 6
         measured_by_wcwidth: 2
-        wchars: \u1a33\u1a6e\u1a60
+        wchars: \u1a32\u1a6e\u1a60\u1a3e\u1a68\u1a75
       - grapheme_id: Khün-2-65
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a33\u1a6e\u1a62\u1a62
+        wchars: \u1a32\u1a6f\u1a60\u1a20
       - grapheme_id: Khün-2-66
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a32\u1a6f\u1a60\u1a26\u1a75
+      - grapheme_id: Khün-2-67
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a32\u1a6f\u1a60\u1a3e\u1a62
+      - grapheme_id: Khün-2-68
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a33\u1a6f\u1a60
-      - grapheme_id: Khün-2-67
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a34\u1a60\u1a26\u1a62
-      - grapheme_id: Khün-2-68
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a34\u1a60\u1a26\u1a68
+        wchars: \u1a32\u1a6f\u1a75
       - grapheme_id: Khün-2-69
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a60\u1a35\u1a65
+        wchars: \u1a32\u1a71\u1a60\u1a3f
       - grapheme_id: Khün-2-6a
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a60\u1a3f
+        wchars: \u1a32\u1a71\u1a62
       - grapheme_id: Khün-2-6b
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a60\u1a3f\u1a75
+        wchars: \u1a33\u1a60\u1a26\u1a68
       - grapheme_id: Khün-2-6c
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a60\u1a45\u1a62
+        wchars: \u1a33\u1a60\u1a45\u1a62
       - grapheme_id: Khün-2-6d
-        measured_by_terminal: 5
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a60\u1a45\u1a6b\u1a75
+        wchars: \u1a33\u1a6b\u1a60\u1a37
       - grapheme_id: Khün-2-6e
-        measured_by_terminal: 3
+        measured_by_terminal: 6
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a6e\u1a60
+        wchars: \u1a33\u1a6e\u1a60\u1a36\u1a68\u1a75
       - grapheme_id: Khün-2-6f
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a6e\u1a62\u1a62
+        wchars: \u1a33\u1a6e\u1a62\u1a62
       - grapheme_id: Khün-2-70
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a33\u1a6f\u1a60\u1a26\u1a62
+      - grapheme_id: Khün-2-71
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a6e\u1a62\u1a75
-      - grapheme_id: Khün-2-71
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a34\u1a6f\u1a60
+        wchars: \u1a33\u1a6f\u1a60\u1a3e
       - grapheme_id: Khün-2-72
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a6f\u1a62
+        wchars: \u1a34\u1a60\u1a26\u1a62
       - grapheme_id: Khün-2-73
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a34\u1a70\u1a60
+        wchars: \u1a34\u1a60\u1a26\u1a68
       - grapheme_id: Khün-2-74
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a36\u1a60\u1a32\u1a65
+        wchars: \u1a34\u1a60\u1a35\u1a65
       - grapheme_id: Khün-2-75
-        measured_by_terminal: 5
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a36\u1a60\u1a36\u1a62\u1a62
+        wchars: \u1a34\u1a60\u1a3f
       - grapheme_id: Khün-2-76
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a36\u1a60\u1a36\u1a65
+        wchars: \u1a34\u1a60\u1a3f\u1a75
       - grapheme_id: Khün-2-77
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a36\u1a60\u1a4b
-      - grapheme_id: Khün-2-78
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a36\u1a60\u1a4b\u1a62
+        wchars: \u1a34\u1a60\u1a45\u1a62
+      - grapheme_id: Khün-2-78
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a34\u1a60\u1a45\u1a6b\u1a75
       - grapheme_id: Khün-2-79
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a36\u1a62\u1a60\u1a37
-      - grapheme_id: Khün-2-7b
-        measured_by_terminal: 3
+        wchars: \u1a34\u1a6e\u1a60\u1a48
+      - grapheme_id: Khün-2-7a
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a36\u1a6f\u1a60
-      - grapheme_id: Khün-2-7e
+        wchars: \u1a34\u1a6e\u1a60\u1a48\u1a71
+      - grapheme_id: Khün-2-7b
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a37\u1a60\u1a26\u1a62
+        wchars: \u1a34\u1a6e\u1a62\u1a62
+      - grapheme_id: Khün-2-7c
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a34\u1a6e\u1a62\u1a75
+      - grapheme_id: Khün-2-7d
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a34\u1a6f\u1a60\u1a36
+      - grapheme_id: Khün-2-7e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a34\u1a6f\u1a62
       - grapheme_id: Khün-2-7f
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a37\u1a60\u1a2f\u1a62
+        wchars: \u1a34\u1a70\u1a60\u1a48
       - grapheme_id: Khün-2-80
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a37\u1a60\u1a32\u1a62
+        wchars: \u1a36\u1a60\u1a32\u1a65
       - grapheme_id: Khün-2-81
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a37\u1a60\u1a32\u1a65
+        wchars: \u1a36\u1a60\u1a36\u1a62\u1a62
       - grapheme_id: Khün-2-82
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a37\u1a60\u1a34\u1a6b
+        wchars: \u1a36\u1a60\u1a36\u1a65
       - grapheme_id: Khün-2-83
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a37\u1a60\u1a3f
+        wchars: \u1a36\u1a60\u1a4b
       - grapheme_id: Khün-2-84
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a37\u1a60\u1a45\u1a6b
+        wchars: \u1a36\u1a60\u1a4b\u1a62
       - grapheme_id: Khün-2-85
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a37\u1a60\u1a4b
-      - grapheme_id: Khün-2-86
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a37\u1a6e\u1a60
+        wchars: \u1a36\u1a62\u1a60\u1a37
       - grapheme_id: Khün-2-87
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a38\u1a60\u1a20\u1a6b
-      - grapheme_id: Khün-2-88
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a38\u1a60\u1a2f\u1a68
-      - grapheme_id: Khün-2-89
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a38\u1a60\u1a36\u1a62
+        wchars: \u1a36\u1a6f\u1a60\u1a36
       - grapheme_id: Khün-2-8a
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a38\u1a60\u1a4b
+        wchars: \u1a37\u1a60\u1a26\u1a62
       - grapheme_id: Khün-2-8b
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a38\u1a6e\u1a60
+        wchars: \u1a37\u1a60\u1a2f\u1a62
       - grapheme_id: Khün-2-8c
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a38\u1a6e\u1a62\u1a75
+        wchars: \u1a37\u1a60\u1a32\u1a62
       - grapheme_id: Khün-2-8d
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a38\u1a75\u1a60\u1a3f
+        wchars: \u1a37\u1a60\u1a32\u1a65
       - grapheme_id: Khün-2-8e
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a39\u1a60\u1a2f\u1a65
+        wchars: \u1a37\u1a60\u1a34\u1a6b
       - grapheme_id: Khün-2-8f
-        measured_by_terminal: 4
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a39\u1a60\u1a3f\u1a75
+        wchars: \u1a37\u1a60\u1a3f
       - grapheme_id: Khün-2-90
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a39\u1a60\u1a45\u1a65
+        wchars: \u1a37\u1a60\u1a45\u1a6b
       - grapheme_id: Khün-2-91
-        measured_by_terminal: 4
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a39\u1a6a\u1a62\u1a71
+        wchars: \u1a37\u1a60\u1a4b
       - grapheme_id: Khün-2-92
-        measured_by_terminal: 4
+        measured_by_terminal: 6
         measured_by_wcwidth: 2
-        wchars: \u1a39\u1a6b\u1a60\u1a43
+        wchars: \u1a37\u1a6e\u1a60\u1a26\u1a68\u1a76
       - grapheme_id: Khün-2-93
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a39\u1a6e\u1a68\u1a60
+        wchars: \u1a38\u1a60\u1a20\u1a6b
       - grapheme_id: Khün-2-94
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3b\u1a55\u1a60
+        wchars: \u1a38\u1a60\u1a2f\u1a68
       - grapheme_id: Khün-2-95
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a38\u1a60\u1a36\u1a62
+      - grapheme_id: Khün-2-96
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a3b\u1a60\u1a26
-      - grapheme_id: Khün-2-96
-        measured_by_terminal: 5
-        measured_by_wcwidth: 2
-        wchars: \u1a3b\u1a60\u1a36\u1a68\u1a76
+        wchars: \u1a38\u1a60\u1a4b
       - grapheme_id: Khün-2-97
         measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a3b\u1a60\u1a36\u1a6b\u1a76
+        wchars: \u1a38\u1a6e\u1a60\u1a26\u1a68
       - grapheme_id: Khün-2-98
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3b\u1a60\u1a3f
+        wchars: \u1a38\u1a6e\u1a60\u1a36
       - grapheme_id: Khün-2-99
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3b\u1a60\u1a4b
+        wchars: \u1a38\u1a6e\u1a62\u1a75
       - grapheme_id: Khün-2-9a
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3b\u1a6e\u1a60
+        wchars: \u1a38\u1a75\u1a60\u1a3f
+      - grapheme_id: Khün-2-9b
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a39\u1a60\u1a2f\u1a65
       - grapheme_id: Khün-2-9c
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3d\u1a71\u1a60
+        wchars: \u1a39\u1a60\u1a3f\u1a75
       - grapheme_id: Khün-2-9d
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3e\u1a60\u1a32\u1a65
+        wchars: \u1a39\u1a60\u1a45\u1a65
       - grapheme_id: Khün-2-9e
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3e\u1a60\u1a3e
+        wchars: \u1a39\u1a6a\u1a62\u1a71
       - grapheme_id: Khün-2-9f
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3e\u1a60\u1a3e\u1a7c
+        wchars: \u1a39\u1a6b\u1a60\u1a43
       - grapheme_id: Khün-2-a0
-        measured_by_terminal: 3
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a3e\u1a60\u1a45
+        wchars: \u1a39\u1a6e\u1a68\u1a60\u1a3f
       - grapheme_id: Khün-2-a1
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a3e\u1a60\u1a45\u1a75
+        wchars: \u1a3b\u1a55\u1a60\u1a4b\u1a62
       - grapheme_id: Khün-2-a2
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a3e\u1a6e\u1a60
+        wchars: \u1a3b\u1a60\u1a26
       - grapheme_id: Khün-2-a3
-        measured_by_terminal: 3
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a3e\u1a6f\u1a75
+        wchars: \u1a3b\u1a60\u1a36\u1a68\u1a76
+      - grapheme_id: Khün-2-a4
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a3b\u1a60\u1a36\u1a6b\u1a76
       - grapheme_id: Khün-2-a5
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a3f\u1a60\u1a26\u1a62
-      - grapheme_id: Khün-2-a6
-        measured_by_terminal: 5
-        measured_by_wcwidth: 2
-        wchars: \u1a3f\u1a60\u1a26\u1a62\u1a62
-      - grapheme_id: Khün-2-a7
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a3f\u1a60\u1a26\u1a65
-      - grapheme_id: Khün-2-a8
-        measured_by_terminal: 5
-        measured_by_wcwidth: 2
-        wchars: \u1a3f\u1a60\u1a26\u1a65\u1a75
-      - grapheme_id: Khün-2-a9
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a3f\u1a60\u1a4b
+        wchars: \u1a3b\u1a60\u1a3f
+      - grapheme_id: Khün-2-a6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a3b\u1a60\u1a4b
+      - grapheme_id: Khün-2-a7
+        measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchars: \u1a3b\u1a6e\u1a60\u1a4b\u1a68\u1a75
+      - grapheme_id: Khün-2-a9
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a3d\u1a71\u1a60\u1a3f
       - grapheme_id: Khün-2-aa
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a3f\u1a62\u1a60\u1a37
+        wchars: \u1a3e\u1a60\u1a32\u1a65
       - grapheme_id: Khün-2-ab
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a3f\u1a6b\u1a60\u1a48
-      - grapheme_id: Khün-2-ac
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a3f\u1a6e\u1a60
+        wchars: \u1a3e\u1a60\u1a3e
+      - grapheme_id: Khün-2-ac
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a3e\u1a60\u1a3e\u1a7c
+      - grapheme_id: Khün-2-ad
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a3e\u1a60\u1a45
       - grapheme_id: Khün-2-ae
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a60\u1a20\u1a62
+        wchars: \u1a3e\u1a60\u1a45\u1a75
       - grapheme_id: Khün-2-af
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a60\u1a2e\u1a62
+        wchars: \u1a3e\u1a6e\u1a60\u1a20\u1a68
       - grapheme_id: Khün-2-b0
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a60\u1a3e\u1a6b
+        wchars: \u1a3e\u1a6e\u1a60\u1a26\u1a68
       - grapheme_id: Khün-2-b1
-        measured_by_terminal: 3
+        measured_by_terminal: 6
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a60\u1a3f
+        wchars: \u1a3e\u1a6e\u1a60\u1a4b\u1a68\u1a75
       - grapheme_id: Khün-2-b2
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a60\u1a45
-      - grapheme_id: Khün-2-b3
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a41\u1a60\u1a45\u1a75
+        wchars: \u1a3e\u1a6f\u1a75
       - grapheme_id: Khün-2-b4
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a60\u1a4b
+        wchars: \u1a3f\u1a60\u1a26\u1a62
       - grapheme_id: Khün-2-b5
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a62\u1a60\u1a37
+        wchars: \u1a3f\u1a60\u1a26\u1a62\u1a62
       - grapheme_id: Khün-2-b6
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a41\u1a62\u1a6d
-      - grapheme_id: Khün-2-b7
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a6b\u1a60\u1a37
+        wchars: \u1a3f\u1a60\u1a26\u1a65
+      - grapheme_id: Khün-2-b7
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a3f\u1a60\u1a26\u1a65\u1a75
       - grapheme_id: Khün-2-b8
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a6e\u1a60
+        wchars: \u1a3f\u1a60\u1a4b
       - grapheme_id: Khün-2-b9
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a6e\u1a68\u1a60
+        wchars: \u1a3f\u1a62\u1a60\u1a37
       - grapheme_id: Khün-2-ba
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a41\u1a6f\u1a60
+        wchars: \u1a3f\u1a6b\u1a60\u1a48
       - grapheme_id: Khün-2-bb
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a43\u1a60\u1a26\u1a6b
+        wchars: \u1a3f\u1a6e\u1a60\u1a36
       - grapheme_id: Khün-2-bc
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a43\u1a60\u1a45\u1a75
-      - grapheme_id: Khün-2-bd
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a43\u1a62\u1a60\u1a3f
+        wchars: \u1a3f\u1a6e\u1a60\u1a3e\u1a68
       - grapheme_id: Khün-2-be
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a43\u1a68\u1a60\u1a37
+        wchars: \u1a41\u1a60\u1a20\u1a62
       - grapheme_id: Khün-2-bf
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a43\u1a6e\u1a60
+        wchars: \u1a41\u1a60\u1a2e\u1a62
+      - grapheme_id: Khün-2-c0
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a41\u1a60\u1a3e\u1a6b
       - grapheme_id: Khün-2-c1
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a43\u1a70\u1a60
+        wchars: \u1a41\u1a60\u1a3f
       - grapheme_id: Khün-2-c2
-        measured_by_terminal: 4
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a45\u1a60\u1a32\u1a65
+        wchars: \u1a41\u1a60\u1a45
       - grapheme_id: Khün-2-c3
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a45\u1a60\u1a36\u1a62
+        wchars: \u1a41\u1a60\u1a45\u1a75
       - grapheme_id: Khün-2-c4
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a45\u1a60\u1a3f
+        wchars: \u1a41\u1a60\u1a4b
       - grapheme_id: Khün-2-c5
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a45\u1a60\u1a45\u1a75
+        wchars: \u1a41\u1a62\u1a60\u1a37
+      - grapheme_id: Khün-2-c6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a41\u1a62\u1a6d
       - grapheme_id: Khün-2-c7
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a45\u1a6e\u1a60
+        wchars: \u1a41\u1a6b\u1a60\u1a37
       - grapheme_id: Khün-2-c8
-        measured_by_terminal: 3
+        measured_by_terminal: 6
         measured_by_wcwidth: 2
-        wchars: \u1a45\u1a71\u1a62
+        wchars: \u1a41\u1a6e\u1a60\u1a26\u1a68\u1a75
       - grapheme_id: Khün-2-c9
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a20\u1a62
+        wchars: \u1a41\u1a6e\u1a60\u1a27
       - grapheme_id: Khün-2-ca
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a20\u1a67
-      - grapheme_id: Khün-2-cb
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a26\u1a62
-      - grapheme_id: Khün-2-cc
         measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a26\u1a65\u1a75
+        wchars: \u1a41\u1a6e\u1a60\u1a36\u1a68
+      - grapheme_id: Khün-2-cb
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a41\u1a6e\u1a68\u1a60\u1a2c
+      - grapheme_id: Khün-2-cc
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a41\u1a6f\u1a60\u1a26
       - grapheme_id: Khün-2-cd
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a26\u1a6b
+        wchars: \u1a43\u1a60\u1a26\u1a6b
       - grapheme_id: Khün-2-ce
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a36\u1a6b
+        wchars: \u1a43\u1a60\u1a45\u1a75
       - grapheme_id: Khün-2-cf
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a3e\u1a6b
+        wchars: \u1a43\u1a62\u1a60\u1a3f
       - grapheme_id: Khün-2-d0
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a3f
+        wchars: \u1a43\u1a68\u1a60\u1a37
       - grapheme_id: Khün-2-d1
-        measured_by_terminal: 4
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a45\u1a75
+        wchars: \u1a43\u1a6e\u1a60\u1a20\u1a68
       - grapheme_id: Khün-2-d2
-        measured_by_terminal: 3
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a60\u1a4b
-      - grapheme_id: Khün-2-d3
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a48\u1a62\u1a60\u1a3f
+        wchars: \u1a43\u1a6e\u1a60\u1a26\u1a68
       - grapheme_id: Khün-2-d4
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a6b\u1a60\u1a3e
-      - grapheme_id: Khün-2-d6
-        measured_by_terminal: 3
+        wchars: \u1a43\u1a70\u1a60\u1a20
+      - grapheme_id: Khün-2-d5
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a6e\u1a60
+        wchars: \u1a45\u1a60\u1a32\u1a65
+      - grapheme_id: Khün-2-d6
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a45\u1a60\u1a36\u1a62
       - grapheme_id: Khün-2-d7
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a6f\u1a60
-      - grapheme_id: Khün-2-d9
-        measured_by_terminal: 3
+        wchars: \u1a45\u1a60\u1a3f
+      - grapheme_id: Khün-2-d8
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a48\u1a71\u1a60
+        wchars: \u1a45\u1a60\u1a45\u1a75
       - grapheme_id: Khün-2-da
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a45\u1a6e\u1a60\u1a36
+      - grapheme_id: Khün-2-db
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a45\u1a6e\u1a60\u1a36\u1a62
+      - grapheme_id: Khün-2-dc
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a55\u1a68
-      - grapheme_id: Khün-2-db
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a36\u1a62
-      - grapheme_id: Khün-2-dc
-        measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a36\u1a66
+        wchars: \u1a45\u1a71\u1a62
       - grapheme_id: Khün-2-dd
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a36\u1a67
+        wchars: \u1a48\u1a60\u1a20\u1a62
       - grapheme_id: Khün-2-de
-        measured_by_terminal: 5
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a36\u1a67\u1a75
+        wchars: \u1a48\u1a60\u1a20\u1a67
       - grapheme_id: Khün-2-df
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a36\u1a6b
+        wchars: \u1a48\u1a60\u1a26\u1a62
       - grapheme_id: Khün-2-e0
-        measured_by_terminal: 3
+        measured_by_terminal: 5
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a3e
+        wchars: \u1a48\u1a60\u1a26\u1a65\u1a75
       - grapheme_id: Khün-2-e1
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a3e\u1a62
+        wchars: \u1a48\u1a60\u1a26\u1a6b
       - grapheme_id: Khün-2-e2
-        measured_by_terminal: 5
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a3e\u1a62\u1a62
+        wchars: \u1a48\u1a60\u1a36\u1a6b
       - grapheme_id: Khün-2-e3
-        measured_by_terminal: 5
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a3e\u1a6a\u1a75
+        wchars: \u1a48\u1a60\u1a3e\u1a6b
       - grapheme_id: Khün-2-e4
-        measured_by_terminal: 4
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a3e\u1a73
+        wchars: \u1a48\u1a60\u1a3f
       - grapheme_id: Khün-2-e5
-        measured_by_terminal: 6
-        measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a3f\u1a62\u1a60\u1a4b
-      - grapheme_id: Khün-2-e6
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a3f\u1a69
+        wchars: \u1a48\u1a60\u1a45\u1a75
+      - grapheme_id: Khün-2-e6
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a48\u1a60\u1a4b
       - grapheme_id: Khün-2-e7
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a45\u1a6b
+        wchars: \u1a48\u1a62\u1a60\u1a3f
       - grapheme_id: Khün-2-e8
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a60\u1a45\u1a75
-      - grapheme_id: Khün-2-e9
+        wchars: \u1a48\u1a6b\u1a60\u1a3e
+      - grapheme_id: Khün-2-ea
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a6e\u1a56\u1a68
-      - grapheme_id: Khün-2-ea
-        measured_by_terminal: 3
-        measured_by_wcwidth: 2
-        wchars: \u1a49\u1a6e\u1a60
+        wchars: \u1a48\u1a6e\u1a60\u1a48
       - grapheme_id: Khün-2-eb
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a6f\u1a60
+        wchars: \u1a48\u1a6f\u1a60\u1a45
       - grapheme_id: Khün-2-ec
-        measured_by_terminal: 3
+        measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a6f\u1a75
+        wchars: \u1a48\u1a71\u1a60\u1a3f
       - grapheme_id: Khün-2-ed
         measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u1a49\u1a71\u1a60
+        wchars: \u1a49\u1a55\u1a68
       - grapheme_id: Khün-2-ee
         measured_by_terminal: 4
         measured_by_wcwidth: 2
-        wchars: \u1a4b\u1a60\u1a36\u1a62
+        wchars: \u1a49\u1a60\u1a36\u1a62
       - grapheme_id: Khün-2-ef
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a36\u1a66
+      - grapheme_id: Khün-2-f0
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a36\u1a67
+      - grapheme_id: Khün-2-f1
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a36\u1a67\u1a75
+      - grapheme_id: Khün-2-f2
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a36\u1a6b
+      - grapheme_id: Khün-2-f3
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a3e
+      - grapheme_id: Khün-2-f4
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a3e\u1a62
+      - grapheme_id: Khün-2-f5
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a3e\u1a62\u1a62
+      - grapheme_id: Khün-2-f6
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a3e\u1a6a\u1a75
+      - grapheme_id: Khün-2-f7
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a3e\u1a73
+      - grapheme_id: Khün-2-f8
+        measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a3f\u1a62\u1a60\u1a4b
+      - grapheme_id: Khün-2-f9
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a3f\u1a69
+      - grapheme_id: Khün-2-fa
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a45\u1a6b
+      - grapheme_id: Khün-2-fb
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a60\u1a45\u1a75
+      - grapheme_id: Khün-2-fc
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6e\u1a56\u1a68
+      - grapheme_id: Khün-2-fd
+        measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6e\u1a60\u1a26\u1a62\u1a62
+      - grapheme_id: Khün-2-fe
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6e\u1a60\u1a2f
+      - grapheme_id: Khün-2-ff
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6e\u1a60\u1a32\u1a69
+      - grapheme_id: Khün-2-100
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6e\u1a60\u1a36\u1a68
+      - grapheme_id: Khün-2-101
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6e\u1a60\u1a3e\u1a68
+      - grapheme_id: Khün-2-102
+        measured_by_terminal: 6
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6e\u1a60\u1a3e\u1a68\u1a68
+      - grapheme_id: Khün-2-103
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6f\u1a60\u1a26\u1a75
+      - grapheme_id: Khün-2-104
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6f\u1a60\u1a36\u1a62
+      - grapheme_id: Khün-2-105
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6f\u1a60\u1a3e
+      - grapheme_id: Khün-2-106
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a6f\u1a75
+      - grapheme_id: Khün-2-107
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a71\u1a60\u1a3e\u1a75
+      - grapheme_id: Khün-2-108
+        measured_by_terminal: 5
+        measured_by_wcwidth: 2
+        wchars: \u1a49\u1a71\u1a60\u1a3f\u1a75
+      - grapheme_id: Khün-2-109
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a4b\u1a60\u1a36\u1a62
+      - grapheme_id: Khün-2-10a
         measured_by_terminal: 5
         measured_by_wcwidth: 2
         wchars: \u1a4b\u1a60\u1a36\u1a68\u1a75
-      - grapheme_id: Khün-2-f0
+      - grapheme_id: Khün-2-10b
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u1a4b\u1a60\u1a4b
-      - grapheme_id: Khün-2-f1
+      - grapheme_id: Khün-2-10c
         measured_by_terminal: 4
         measured_by_wcwidth: 2
         wchars: \u1a53\u1a60\u1a45\u1a62
+      - grapheme_id: Khün-2-10d
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a20
+      - grapheme_id: Khün-2-10e
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a26
+      - grapheme_id: Khün-2-10f
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a27
+      - grapheme_id: Khün-2-110
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a29
+      - grapheme_id: Khün-2-111
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a2f
+      - grapheme_id: Khün-2-112
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a32
+      - grapheme_id: Khün-2-113
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a32\u1a71
+      - grapheme_id: Khün-2-114
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a36
+      - grapheme_id: Khün-2-115
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a37
+      - grapheme_id: Khün-2-116
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a3e
+      - grapheme_id: Khün-2-117
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a3f
+      - grapheme_id: Khün-2-118
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a41
+      - grapheme_id: Khün-2-119
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a43
+      - grapheme_id: Khün-2-11a
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a45
+      - grapheme_id: Khün-2-11b
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a63\u1a60\u1a48
+      - grapheme_id: Khün-2-11c
+        measured_by_terminal: 3
+        measured_by_wcwidth: 2
+        wchars: \u1a64\u1a60\u1a26
+      - grapheme_id: Khün-2-11d
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u1a64\u1a60\u1a36\u1a62
       - grapheme_id: Khün-1-01
         measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -15627,446 +15802,366 @@ test_results:
       - grapheme_id: Khün-1-03
         measured_by_terminal: 2
         measured_by_wcwidth: 1
-        wchars: \u1a20\u1a68
-      - grapheme_id: Khün-1-04
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
         wchars: \u1a20\u1a69
-      - grapheme_id: Khün-1-05
+      - grapheme_id: Khün-1-04
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a20\u1a73\u1a75
-      - grapheme_id: Khün-1-06
+      - grapheme_id: Khün-1-05
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a20\u1a75
-      - grapheme_id: Khün-1-07
+      - grapheme_id: Khün-1-06
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a20\u1a75\u1a74
-      - grapheme_id: Khün-1-09
+      - grapheme_id: Khün-1-08
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a21\u1a62
-      - grapheme_id: Khün-1-0a
+      - grapheme_id: Khün-1-09
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a21\u1a73\u1a76
-      - grapheme_id: Khün-1-0b
+      - grapheme_id: Khün-1-0a
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a21\u1a75
-      - grapheme_id: Khün-1-0d
+      - grapheme_id: Khün-1-0c
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a23\u1a62
-      - grapheme_id: Khün-1-0e
+      - grapheme_id: Khün-1-0d
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a23\u1a62\u1a74
-      - grapheme_id: Khün-1-0f
+      - grapheme_id: Khün-1-0e
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a23\u1a69
-      - grapheme_id: Khün-1-10
+      - grapheme_id: Khün-1-0f
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a23\u1a69\u1a62
-      - grapheme_id: Khün-1-11
+      - grapheme_id: Khün-1-10
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a23\u1a73\u1a76
-      - grapheme_id: Khün-1-12
+      - grapheme_id: Khün-1-11
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a23\u1a74
-      - grapheme_id: Khün-1-14
+      - grapheme_id: Khün-1-13
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a25\u1a62
       - grapheme_id: Khün-1-16
         measured_by_terminal: 2
         measured_by_wcwidth: 1
-        wchars: \u1a26\u1a62
-      - grapheme_id: Khün-1-17
-        measured_by_terminal: 3
-        measured_by_wcwidth: 1
-        wchars: \u1a26\u1a62\u1a62
-      - grapheme_id: Khün-1-18
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a26\u1a68
-      - grapheme_id: Khün-1-19
-        measured_by_terminal: 3
-        measured_by_wcwidth: 1
-        wchars: \u1a26\u1a68\u1a75
-      - grapheme_id: Khün-1-1a
-        measured_by_terminal: 3
-        measured_by_wcwidth: 1
-        wchars: \u1a26\u1a68\u1a76
-      - grapheme_id: Khün-1-1b
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a26\u1a75
-      - grapheme_id: Khün-1-1d
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
         wchars: \u1a27\u1a62
-      - grapheme_id: Khün-1-1e
+      - grapheme_id: Khün-1-17
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a27\u1a74
-      - grapheme_id: Khün-1-1f
+      - grapheme_id: Khün-1-18
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a27\u1a75\u1a74
-      - grapheme_id: Khün-1-21
+      - grapheme_id: Khün-1-1a
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a29\u1a62
-      - grapheme_id: Khün-1-22
+      - grapheme_id: Khün-1-1b
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a29\u1a66
-      - grapheme_id: Khün-1-23
+      - grapheme_id: Khün-1-1c
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a29\u1a68\u1a75
-      - grapheme_id: Khün-1-24
+      - grapheme_id: Khün-1-1d
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a29\u1a69
-      - grapheme_id: Khün-1-25
+      - grapheme_id: Khün-1-1e
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a2a\u1a68\u1a75
-      - grapheme_id: Khün-1-26
+      - grapheme_id: Khün-1-1f
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a2a\u1a69
-      - grapheme_id: Khün-1-28
+      - grapheme_id: Khün-1-20
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a2d\u1a5b
-      - grapheme_id: Khün-1-29
+      - grapheme_id: Khün-1-21
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a2d\u1a65
-      - grapheme_id: Khün-1-2c
+      - grapheme_id: Khün-1-24
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a2f\u1a62
-      - grapheme_id: Khün-1-2d
+      - grapheme_id: Khün-1-25
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a2f\u1a66
-      - grapheme_id: Khün-1-2e
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a2f\u1a68
-      - grapheme_id: Khün-1-2f
+      - grapheme_id: Khün-1-26
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a2f\u1a6a
-      - grapheme_id: Khün-1-32
+      - grapheme_id: Khün-1-29
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a32\u1a65
-      - grapheme_id: Khün-1-33
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a32\u1a69
-      - grapheme_id: Khün-1-34
+      - grapheme_id: Khün-1-2a
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a32\u1a73\u1a75
-      - grapheme_id: Khün-1-35
+      - grapheme_id: Khün-1-2b
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a32\u1a75
-      - grapheme_id: Khün-1-36
+      - grapheme_id: Khün-1-2c
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a32\u1a75\u1a74
-      - grapheme_id: Khün-1-38
+      - grapheme_id: Khün-1-2e
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a33\u1a68
-      - grapheme_id: Khün-1-39
+      - grapheme_id: Khün-1-2f
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a33\u1a6a
-      - grapheme_id: Khün-1-3b
+      - grapheme_id: Khün-1-31
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a34\u1a66\u1a75
-      - grapheme_id: Khün-1-3c
+      - grapheme_id: Khün-1-32
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a34\u1a69
-      - grapheme_id: Khün-1-3e
+      - grapheme_id: Khün-1-34
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a35\u1a65
-      - grapheme_id: Khün-1-3f
+      - grapheme_id: Khün-1-35
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a35\u1a66
-      - grapheme_id: Khün-1-41
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a36\u1a62
-      - grapheme_id: Khün-1-42
+      - grapheme_id: Khün-1-37
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a36\u1a66\u1a76
-      - grapheme_id: Khün-1-43
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a36\u1a68
-      - grapheme_id: Khün-1-44
-        measured_by_terminal: 3
-        measured_by_wcwidth: 1
-        wchars: \u1a36\u1a68\u1a75
-      - grapheme_id: Khün-1-45
+      - grapheme_id: Khün-1-38
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a36\u1a69
-      - grapheme_id: Khün-1-46
+      - grapheme_id: Khün-1-39
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a36\u1a69\u1a75
-      - grapheme_id: Khün-1-47
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a36\u1a75
-      - grapheme_id: Khün-1-49
+      - grapheme_id: Khün-1-3b
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a37\u1a62
-      - grapheme_id: Khün-1-4a
+      - grapheme_id: Khün-1-3c
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a37\u1a65
-      - grapheme_id: Khün-1-4b
+      - grapheme_id: Khün-1-3d
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a37\u1a69
-      - grapheme_id: Khün-1-4c
+      - grapheme_id: Khün-1-3e
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a37\u1a6a
-      - grapheme_id: Khün-1-4e
+      - grapheme_id: Khün-1-40
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a38\u1a75
-      - grapheme_id: Khün-1-4f
+      - grapheme_id: Khün-1-41
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a39\u1a6a\u1a62
-      - grapheme_id: Khün-1-50
+      - grapheme_id: Khün-1-42
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a39\u1a75
-      - grapheme_id: Khün-1-52
+      - grapheme_id: Khün-1-44
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a3b\u1a65
-      - grapheme_id: Khün-1-53
+      - grapheme_id: Khün-1-45
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a3b\u1a66\u1a75
-      - grapheme_id: Khün-1-54
+      - grapheme_id: Khün-1-46
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a3b\u1a73
-      - grapheme_id: Khün-1-58
+      - grapheme_id: Khün-1-4a
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a3e\u1a62
-      - grapheme_id: Khün-1-59
+      - grapheme_id: Khün-1-4b
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a3e\u1a66
-      - grapheme_id: Khün-1-5a
+      - grapheme_id: Khün-1-4c
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a3e\u1a68
-      - grapheme_id: Khün-1-5b
-        measured_by_terminal: 3
-        measured_by_wcwidth: 1
-        wchars: \u1a3e\u1a68\u1a68
-      - grapheme_id: Khün-1-5c
-        measured_by_terminal: 3
-        measured_by_wcwidth: 1
-        wchars: \u1a3e\u1a68\u1a75
-      - grapheme_id: Khün-1-5d
+      - grapheme_id: Khün-1-4d
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a3e\u1a69
-      - grapheme_id: Khün-1-5e
+      - grapheme_id: Khün-1-4e
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a3e\u1a6a
-      - grapheme_id: Khün-1-5f
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a3e\u1a75
-      - grapheme_id: Khün-1-61
+      - grapheme_id: Khün-1-50
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a3f\u1a69
-      - grapheme_id: Khün-1-62
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a3f\u1a75
-      - grapheme_id: Khün-1-63
+      - grapheme_id: Khün-1-51
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a40\u1a6a\u1a75
-      - grapheme_id: Khün-1-64
+      - grapheme_id: Khün-1-52
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a40\u1a75
-      - grapheme_id: Khün-1-66
+      - grapheme_id: Khün-1-54
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a41\u1a62
-      - grapheme_id: Khün-1-67
+      - grapheme_id: Khün-1-55
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a41\u1a65
-      - grapheme_id: Khün-1-68
+      - grapheme_id: Khün-1-56
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a41\u1a66
-      - grapheme_id: Khün-1-69
+      - grapheme_id: Khün-1-57
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a41\u1a6a\u1a62
-      - grapheme_id: Khün-1-6b
+      - grapheme_id: Khün-1-59
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a43\u1a62\u1a74
-      - grapheme_id: Khün-1-6c
+      - grapheme_id: Khün-1-5a
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a43\u1a65
-      - grapheme_id: Khün-1-6d
+      - grapheme_id: Khün-1-5b
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a43\u1a69
-      - grapheme_id: Khün-1-6e
+      - grapheme_id: Khün-1-5c
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a43\u1a6a
-      - grapheme_id: Khün-1-70
+      - grapheme_id: Khün-1-5e
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a45\u1a62
-      - grapheme_id: Khün-1-71
+      - grapheme_id: Khün-1-5f
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a45\u1a65
-      - grapheme_id: Khün-1-73
+      - grapheme_id: Khün-1-61
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a62
-      - grapheme_id: Khün-1-74
+      - grapheme_id: Khün-1-62
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a65
-      - grapheme_id: Khün-1-75
+      - grapheme_id: Khün-1-63
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a66
-      - grapheme_id: Khün-1-76
+      - grapheme_id: Khün-1-64
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a68\u1a75
-      - grapheme_id: Khün-1-77
+      - grapheme_id: Khün-1-65
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a69
-      - grapheme_id: Khün-1-78
+      - grapheme_id: Khün-1-66
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a6a
-      - grapheme_id: Khün-1-79
+      - grapheme_id: Khün-1-67
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a6a\u1a62
-      - grapheme_id: Khün-1-7a
+      - grapheme_id: Khün-1-68
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a73\u1a75
-      - grapheme_id: Khün-1-7b
+      - grapheme_id: Khün-1-69
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a48\u1a75\u1a74
-      - grapheme_id: Khün-1-7d
+      - grapheme_id: Khün-1-6b
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a49\u1a56
-      - grapheme_id: Khün-1-7e
+      - grapheme_id: Khün-1-6c
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a49\u1a56\u1a62
-      - grapheme_id: Khün-1-7f
+      - grapheme_id: Khün-1-6d
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a49\u1a62
-      - grapheme_id: Khün-1-80
+      - grapheme_id: Khün-1-6e
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a49\u1a68\u1a62
-      - grapheme_id: Khün-1-81
+      - grapheme_id: Khün-1-6f
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a49\u1a68\u1a76
-      - grapheme_id: Khün-1-82
+      - grapheme_id: Khün-1-70
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a49\u1a73
-      - grapheme_id: Khün-1-84
+      - grapheme_id: Khün-1-72
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a4b\u1a62
-      - grapheme_id: Khün-1-85
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u1a4b\u1a68
-      - grapheme_id: Khün-1-86
-        measured_by_terminal: 3
-        measured_by_wcwidth: 1
-        wchars: \u1a4b\u1a68\u1a75
-      - grapheme_id: Khün-1-87
-        measured_by_terminal: 3
-        measured_by_wcwidth: 1
-        wchars: \u1a4b\u1a68\u1a76
-      - grapheme_id: Khün-1-88
+      - grapheme_id: Khün-1-73
         measured_by_terminal: 3
         measured_by_wcwidth: 1
         wchars: \u1a4b\u1a6a\u1a62
-      - grapheme_id: Khün-1-89
+      - grapheme_id: Khün-1-74
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a4b\u1a74
-      - grapheme_id: Khün-1-8a
+      - grapheme_id: Khün-1-75
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a50\u1a62
-      - grapheme_id: Khün-1-8c
+      - grapheme_id: Khün-1-77
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a53\u1a62
-      - grapheme_id: Khün-1-8e
+      - grapheme_id: Khün-1-79
         measured_by_terminal: 2
         measured_by_wcwidth: 1
         wchars: \u1a54\u1a7c
-      n_errors: 337
-      n_total: 396
-      pct_success: 14.898989898989898
+      n_errors: 363
+      n_total: 419
+      pct_success: 13.365155131264917
     Korean:
       failed: []
       n_errors: 0
@@ -19679,10 +19774,14 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0d26\u0d4d\u0d26
-      - grapheme_id: Malayalam-2-06
+      - grapheme_id: Malayalam-2-05
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0d35\u0d4d\u0d35
+      - grapheme_id: Malayalam-2-06
+        measured_by_terminal: 4
+        measured_by_wcwidth: 2
+        wchars: \u0d7b\u0d4d\u0d31\u0d46
       - grapheme_id: Malayalam-1-0b
         measured_by_terminal: 2
         measured_by_wcwidth: 1
@@ -19926,13 +20025,9 @@ test_results:
       - inherited_from: Malayalam
         measured_by_wcwidth: 1
         wchars: \u0d39\u0d43
-      - grapheme_id: Malayalam-1-01
-        measured_by_terminal: 2
-        measured_by_wcwidth: 1
-        wchars: \u0d7b\u0d4d
       n_errors: 479
-      n_total: 845
-      pct_success: 43.31360946745562
+      n_total: 844
+      pct_success: 43.24644549763033
     Maldivian:
       failed:
       - grapheme_id: Maldivian-1-01
@@ -30851,7 +30946,7 @@ test_results:
       n_total: 79
       pct_success: 100.0
   narrow_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 36254
@@ -30872,13 +30967,13 @@ test_results:
       n_total: 262
       pct_success: 98.85496183206108
   sfz_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints: []
       n_errors: 0
       n_total: 5
       pct_success: 100.0
   sri_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -30963,7 +31058,7 @@ test_results:
       pct_success: 0.0
   tofu_results: {}
   unicode_wide_results:
-    17.0.0:
+    18.0.0:
       failed_codepoints:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -31645,6 +31740,9 @@ test_results:
         wchar: \U0001d376
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001f1ae
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001f1e6
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -31726,6 +31824,9 @@ test_results:
         wchar: \U0001f6d8
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001f6d9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001f6dc
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -31736,6 +31837,9 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001f6df
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001f7da
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001f7f0
@@ -31757,6 +31861,9 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fadc
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fadd
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001fadf
@@ -31795,6 +31902,9 @@ test_results:
         wchar: \U0001faea
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
+        wchar: \U0001faeb
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
         wchar: \U0001faef
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
@@ -31823,10 +31933,16 @@ test_results:
       - measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchar: \U0001faf8
-      n_errors: 286
-      n_total: 43592
-      pct_success: 99.34391631492016
-ucs_detect_version: 2.3.7
-unicode_version: 17.0.0
-wcwidth_version: 0.8.3
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001faf9
+      - measured_by_terminal: 1
+        measured_by_wcwidth: 2
+        wchar: \U0001fafa
+      n_errors: 293
+      n_total: 44568
+      pct_success: 99.34257763417699
+ucs_detect_version: 2.3.8
+unicode_version: 18.0.0
+wcwidth_version: 0.8.4
 width: 80
