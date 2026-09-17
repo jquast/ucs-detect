@@ -56,7 +56,7 @@ dependencies = [
   "prettytable",
   "pyyaml<7",
   "requests",
-  "wcwidth @ git+https://github.com/jquast/wcwidth@e0927eb313823d6f2bc240907d6b3d5528498bdc",
+  "wcwidth>=0.8.4",
 ]
 
 [project.optional-dependencies]
