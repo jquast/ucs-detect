@@ -69,7 +69,7 @@ def fetch_vs15_data():
     Returns characters that are wide by default and become narrow with VS15.
     """
     fname = os.path.join(PATH_DATA, "emoji-variation-sequences-latest.txt")
-    do_retrieve(url=URL_EMOJI_VARIATION_SEQUENCES, fname=fname)
+    do_retrieve(url=URL_EMOJI_VARIATION_SEQUENCES, fname=fname, force=True)
 
     all_sequences = []
     # Use '9.0.0' as the version key for compatibility with existing

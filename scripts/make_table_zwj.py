@@ -4,8 +4,6 @@
 import os
 import re
 
-import wcwidth
-
 from ucs_detect.accessories import do_retrieve, get_data_dir
 
 URL_EMOJI_ZWJ_SEQUENCES = "https://unicode.org/Public/emoji/{version}/emoji-zwj-sequences.txt"
@@ -17,16 +15,19 @@ def fetch_zwj_data():
     fname = os.path.join(PATH_DATA, URL_EMOJI_ZWJ_SEQUENCES.rsplit("/", 1)[-1])
     filename, ext = os.path.splitext(fname)
     fname = filename + "-latest" + ext
-    do_retrieve(url=URL_EMOJI_ZWJ_SEQUENCES.format(version="latest"), fname=fname)
+    do_retrieve(url=URL_EMOJI_ZWJ_SEQUENCES.format(version="latest"), fname=fname, force=True)
     pattern = re.compile(r".*# E([0-9.]+)")
     all_sequences = []
-    latest_version = "0"
+    # Key by the emoji spec version of the file itself, not by the highest
+    # per-sequence "# E" tag: a release that adds no new ZWJ sequences (as
+    # Emoji 18.0 did) would otherwise report the previous version.
+    file_version = "0"
     with open(fname, encoding="utf-8") as f:
         for line in f:
-            if match := re.match(pattern, line):
-                version = match.group(1)
-                if wcwidth._wcversion_value(version) > wcwidth._wcversion_value(latest_version):
-                    latest_version = version
+            if line.startswith("# Version:"):
+                file_version = line.split(":")[1].strip()
+                continue
+            if re.match(pattern, line):
                 data, _, _ = line.partition("#")
                 data_fields = (field.strip() for field in data.split(";"))
                 code_points_str, *_ = data_fields
@@ -34,7 +35,7 @@ def fetch_zwj_data():
                     all_sequences.append(
                         tuple(int(code_point, 16) for code_point in code_points_str.split())
                     )
-    return latest_version, all_sequences
+    return file_version, all_sequences
 
 
 def main():

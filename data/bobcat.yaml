@@ -16519,7 +16519,7 @@ test_results:
       n_errors: 987
       n_total: 44568
       pct_success: 97.78540656973614
-ucs_detect_version: 2.3.7
+ucs_detect_version: 2.3.8
 unicode_version: 18.0.0
 wcwidth_version: 0.8.4
 width: 80

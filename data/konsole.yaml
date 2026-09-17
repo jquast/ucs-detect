@@ -10872,7 +10872,7 @@ test_results:
       n_errors: 1185
       n_total: 44568
       pct_success: 97.34114162627895
-ucs_detect_version: 2.3.7
+ucs_detect_version: 2.3.8
 unicode_version: 18.0.0
 wcwidth_version: 0.8.4
 width: 260

@@ -14,7 +14,7 @@ PATH_DATA = str(get_data_dir())
 def fetch_ri_flag_data():
     """Fetch all Regional Indicator flag sequences from the latest emoji spec."""
     fname = os.path.join(PATH_DATA, "emoji-test-latest.txt")
-    do_retrieve(url=URL_EMOJI_TEST.format(version="latest"), fname=fname)
+    do_retrieve(url=URL_EMOJI_TEST.format(version="latest"), fname=fname, force=True)
 
     version = "0"
     flag_sequences = []

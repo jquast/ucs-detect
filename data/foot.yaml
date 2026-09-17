@@ -8252,7 +8252,7 @@ test_results:
       n_errors: 31
       n_total: 506
       pct_success: 93.87351778656127
-ucs_detect_version: 2.3.7
+ucs_detect_version: 2.3.8
 unicode_version: 18.0.0
 wcwidth_version: 0.8.4
 width: 116
