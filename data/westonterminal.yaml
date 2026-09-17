@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-09-17 17:39:09 UTC
+datetime: 2026-09-17 22:31:51 UTC
 environment:
   COLORTERM: xterm
   TERM: xterm
-  TERM_PROGRAM: ghostty
-  TERM_PROGRAM_VERSION: 1.3.2-main-+7fd93e09c
+  TERM_PROGRAM: ''
+  TERM_PROGRAM_VERSION: ''
 height: 40
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 8.25235917099053
+seconds_elapsed: 6.616151053021895
 session_arguments:
   all: true
   limit_category_time: 0
@@ -53,9 +53,8 @@ terminal_results:
   screen_ratio: '4:3'
   screen_ratio_name: VGA
   sixel: false
-  software_method: TERM_PROGRAM
-  software_name: ghostty
-  software_version: 1.3.2-main-+7fd93e09c
+  software_name: weston-terminal
+  software_version: 15.0.1-1
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
@@ -559,7 +558,7 @@ test_results:
       n_total: 426
       pct_success: 100.0
   emoji_zwj_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 8
         measured_by_wcwidth: 2
@@ -31656,7 +31655,7 @@ test_results:
       n_total: 36254
       pct_success: 99.97793346941027
   ri_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 8
         measured_by_wcwidth: 2
