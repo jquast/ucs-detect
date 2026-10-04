@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-09-17 20:23:05 UTC
+datetime: 2026-10-04 06:46:55 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: iTerm.app
-  TERM_PROGRAM_VERSION: 3.7.1
-height: 30
+  TERM_PROGRAM_VERSION: 3.7.3
+height: 38
 preferred_encoding: UTF-8
 python_version: 3.12.8
-seconds_elapsed: 20593.666089000006
+seconds_elapsed: 22376.724546959
 session_arguments:
   all: true
   limit_category_time: 0
@@ -19,7 +19,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 10.0
 software_name: iTerm2
-software_version: 3.7.2
+software_version: 3.7.3
 system: Darwin
 terminal_results:
   background_color_hex: '#000000000000'
@@ -35,7 +35,7 @@ terminal_results:
     decsca: '0'
     decscl: '65'
     decscusr: '1'
-    decslpp: '30'
+    decslpp: '38'
     decslrm: ''
     decstbm: ''
     sgr: 0;38:2:1:0:0:0
@@ -58,7 +58,7 @@ terminal_results:
   - 51185
   - 51185
   - 51185
-  height: 30
+  height: 38
   iterm2_features:
     features:
       bracketed_paste: true
@@ -159,14 +159,14 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: true
-  pixels_height: 877
-  pixels_width: 1522
+  pixels_height: 1080
+  pixels_width: 1920
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
   software_method: XTVERSION
   software_name: iTerm2
-  software_version: 3.7.2
+  software_version: 3.7.3
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
@@ -176,7 +176,7 @@ terminal_results:
     protocol: null
     supported: false
   ttype: xterm-256color
-  width: 108
+  width: 136
   xtgettcap:
     capabilities:
       AX: '1'
@@ -384,7 +384,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: iTerm2 3.7.2
+  xtversion_raw: iTerm2 3.7.3
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -868,48 +868,12 @@ test_results:
       pct_success: 0.0
   emoji_vs16_results:
     9.0.0:
-      failed_codepoints:
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: '#\ufe0f'
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: '*\ufe0f'
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 0\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 1\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 2\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 3\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 4\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 5\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 6\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 7\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 8\ufe0f
-      - measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchar: 9\ufe0f
-      n_errors: 12
+      failed_codepoints: []
+      n_errors: 0
       n_total: 426
-      pct_success: 97.1830985915493
+      pct_success: 100.0
   emoji_zwj_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 4
         measured_by_wcwidth: 2
@@ -11098,788 +11062,11 @@ test_results:
       n_total: 36254
       pct_success: 99.95310862249683
   ri_results:
-    '17.0':
-      failed_codepoints:
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1e9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1f6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1fd
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e6\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1e7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1e9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1ef
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1f6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1fb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e7\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1e9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1f5
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1f6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1fb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1fd
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e8\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e9\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e9\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e9\U0001f1ef
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e9\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e9\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e9\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1e9\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ea\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1eb\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1eb\U0001f1ef
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1eb\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1eb\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1eb\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1eb\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1e7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1e9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1f5
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1f6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ec\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ed\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ed\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ed\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ed\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ed\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ed\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1e9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1f6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ee\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ef\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ef\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ef\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ef\U0001f1f5
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1f5
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f0\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1e7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1fb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f1\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1e9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f5
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1fb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1fd
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f2\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1f5
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f3\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f4\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f5\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f6\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f7\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f7\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f7\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f7\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f7\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1e7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1e9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1ef
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1fb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1fd
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f8\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1e9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1ed
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1ef
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1f1
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1f4
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1f7
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1fb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1fc
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1f9\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fa\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fa\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fa\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fa\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fa\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fa\U0001f1fe
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fa\U0001f1ff
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fb\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fb\U0001f1e8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fb\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fb\U0001f1ec
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fb\U0001f1ee
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fb\U0001f1f3
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fb\U0001f1fa
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fc\U0001f1eb
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fc\U0001f1f8
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fd\U0001f1f0
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fe\U0001f1ea
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1fe\U0001f1f9
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ff\U0001f1e6
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ff\U0001f1f2
-      - measured_by_terminal: 4
-        measured_by_wcwidth: 2
-        wchar: \U0001f1ff\U0001f1fc
-      n_errors: 259
+    '18.0':
+      failed_codepoints: []
+      n_errors: 0
       n_total: 262
-      pct_success: 1.1450381679389312
+      pct_success: 100.0
   sfz_results:
     18.0.0:
       failed_codepoints: []
@@ -14832,5 +14019,5 @@ test_results:
       pct_success: 97.80784419314307
 ucs_detect_version: 2.3.8
 unicode_version: 18.0.0
-wcwidth_version: 0.8.4
-width: 108
+wcwidth_version: 0.9.1
+width: 136
