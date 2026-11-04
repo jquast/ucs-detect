@@ -138,6 +138,7 @@ data/emoji-variation-sequences-latest.txt
 data/UnicodeData-latest.txt
 data/Blocks-latest.txt
 data/DerivedCoreProperties-latest.txt
+data/DerivedAge-*.txt
 # just used during table generation, should
 # probably be moved to another folder !
 ucs_detect/udhr/
