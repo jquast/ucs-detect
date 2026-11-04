@@ -59,6 +59,7 @@ RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
 RUN sed -i 's/^#\?MAKEFLAGS=.*/MAKEFLAGS="-j$(( $(nproc) > 2 ? $(nproc) - 2 : 1 ))"/' /etc/makepkg.conf && \
     sed -i 's/^CFLAGS="\(.*\)"/CFLAGS="\1 -Wno-error=incompatible-pointer-types"/' /etc/makepkg.conf && \
     sed -i 's/^BUILDENV=(\(.*\)!ccache\(.*\))/BUILDENV=(\1ccache\2)/' /etc/makepkg.conf && \
+    sed -i 's|-fLC - --retry 3|-fL --retry 3|' /etc/makepkg.conf && \
     echo 'export CCACHE_DIR=/home/ucs/.ccache' >> /home/ucs/.bashrc && \
     echo 'export PATH=/usr/lib/ccache/bin:$PATH' >> /home/ucs/.bashrc
 
@@ -131,6 +132,30 @@ RUN --mount=type=cache,target=/var/cache/pacman/pkg \
 # remove nvidia EGL vendor config -- nvidia-utils was pulled in by rio,
 # but without a real GPU its libEGL_nvidia.so crashes Xvfb at startup
 RUN rm -f /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+
+# .NET SDK builds the XTerm.NET Avalonia host below
+RUN --mount=type=cache,target=/var/cache/pacman/pkg \
+    pacman -S --noconfirm --needed \
+    dotnet-sdk \
+    && pacman -Scc --noconfirm
+
+# XTerm.NET is a headless emulator library; the terminal window ucs-detect drives
+# is the Example desktop app from its Avalonia host, Iciclecreek.Avalonia.Terminal.
+# Its window opens maximized; 680x520 keeps it near 80x24 like the other terminals.
+RUN --mount=type=cache,target=/home/ucs/.nuget/packages,uid=1000,gid=1000 \
+    mkdir -p /opt/xtermnet /home/ucs/.nuget && \
+    chown ucs:ucs /opt/xtermnet /home/ucs/.nuget && \
+    sudo -u ucs env HOME=/home/ucs git clone \
+        https://github.com/tomlm/Iciclecreek.Avalonia.Terminal.git /home/ucs/iciclecreek && \
+    sudo -u ucs env HOME=/home/ucs git -C /home/ucs/iciclecreek checkout \
+        bbee5ed1f80cf00388749523d3389e5f30c41a1b && \
+    sudo -u ucs sed -i 's/WindowState="Maximized"/Width="680" Height="520"/' \
+        /home/ucs/iciclecreek/src/Example/MainWindow.axaml && \
+    sudo -u ucs env HOME=/home/ucs DOTNET_CLI_HOME=/home/ucs \
+        NUGET_PACKAGES=/home/ucs/.nuget/packages \
+        dotnet publish /home/ucs/iciclecreek/src/Example/Example.csproj \
+        -c Release -o /opt/xtermnet && \
+    rm -rf /home/ucs/iciclecreek
 
 # python dependencies for ucs-detect
 RUN --mount=type=cache,target=/var/cache/pacman/pkg \
