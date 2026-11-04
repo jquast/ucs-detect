@@ -333,6 +333,21 @@ terminals:
     skip_system: true
     skip_docker: true
     skip_reason: Run by hand because it is complex and auto-updates itself, maybe it could be in docker
+  XTerm.NET:
+    homepage: https://github.com/tomlm/XTerm.NET
+    description: XTerm.NET is a headless emulator library; tested through the Example desktop
+      application of its Avalonia host, Iciclecreek.Avalonia.Terminal.
+    skip_system: true
+    skip_reason: built from source in the Docker image
+    launch:
+      program: /opt/xtermnet/Example
+      args: []
+      click_before_keys: true
+      post_launch_delay_ms: 6000
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   weston-terminal:
     homepage: https://gitlab.freedesktop.org/wayland/weston
     version_template: '{aur_version}'

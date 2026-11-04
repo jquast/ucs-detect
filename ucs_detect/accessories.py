@@ -167,6 +167,7 @@ def get_launch_config(sw_name, mixins, is_docker=None):
         "profile_processes": raw_entry.get("profile_processes", []),
         "timeout": raw_entry.get("timeout", None),
         "wm_class": launch.get("wm_class", None),
+        "click_before_keys": launch.get("click_before_keys", False),
     }
     return cfg, is_explicit
 
@@ -280,14 +281,37 @@ def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
     return None
 
 
-def inject_keys(window_id, keys, key_delay_ms=30):
+def inject_keys(window_id, keys, key_delay_ms=30, click_before_keys=False):
     r"""
     Send keystrokes to a window via xdotool.
 
     Special tokens:
       ``\\n``       press Return
       ``\\pNNN``    pause for NNN milliseconds
+
+    *click_before_keys*: click the center of the window first
     """
+    if click_before_keys:
+        width, height = 0, 0
+        try:
+            geometry = subprocess.run(
+                ["xdotool", "getwindowgeometry", "--shell", str(window_id)],
+                capture_output=True, text=True, timeout=3, check=False,
+            )
+            values = dict(
+                line.split("=", 1) for line in geometry.stdout.splitlines() if "=" in line
+            )
+            width, height = int(values.get("WIDTH", 0)), int(values.get("HEIGHT", 0))
+        except (ValueError, subprocess.TimeoutExpired, OSError):
+            pass
+        subprocess.run(
+            ["xdotool", "mousemove", "--window", str(window_id),
+             str(width // 2 if width else 40), str(height // 2 if height else 40),
+             "click", "1"],
+            capture_output=True, timeout=5, check=False,
+        )
+        time.sleep(0.2)
+
     subprocess.run(
         ["xdotool", "windowfocus", "--sync", str(window_id)],
         capture_output=True, timeout=2, check=False,

@@ -220,7 +220,8 @@ def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                                  if k != "\n" and not _RE_PAUSE.match(k)]
                     print(f"[{sw_name}] injecting: {''.join(text_keys)}", flush=True)
                     key_delay = launch_cfg.get("key_delay_ms", 30)
-                    inject_keys(window_id, resolved_keys, key_delay_ms=key_delay)
+                    inject_keys(window_id, resolved_keys, key_delay_ms=key_delay,
+                                click_before_keys=launch_cfg.get("click_before_keys", False))
                 else:
                     proc.kill()
                     error_msg = (

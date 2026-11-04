@@ -509,7 +509,8 @@ def main():
                 print(f"injecting: {''.join(text_keys)} ... ",
                       end="", flush=True)
                 key_delay = launch_cfg.get("key_delay_ms", 30)
-                inject_keys(captured_wid, resolved_keys, key_delay_ms=key_delay)
+                inject_keys(captured_wid, resolved_keys, key_delay_ms=key_delay,
+                            click_before_keys=launch_cfg.get("click_before_keys", False))
                 time.sleep(1.5)
 
             # Wait for sentinel or timeout (scaled by screenshot count).
