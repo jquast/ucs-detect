@@ -400,11 +400,15 @@ terminals:
     version_template: '{aur_version}'
     aur_package: xfce4-terminal
     version_manual: 1.1.3
-    skip_docker: true
-    skip_reason: requires full Xfce session with xfconfd (exit=1)
     launch:
       program: xfce4-terminal
       args: [-e, 'sh {script}']
+    launch_docker:
+      program: xfce4-terminal
+      args: [-e, 'sh {script}']
+      env:
+        WAYLAND_DISPLAY: ''
+        GDK_BACKEND: x11
     profile_processes:
     - gnome-terminal-server
     timeout: 14400
