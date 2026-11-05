@@ -112,6 +112,21 @@ def extract_failures(yaml_path):
     return failures, data.get("software_version", "")
 
 
+def scaled_timeout(timeout, n_records):
+    """Return the wait budget for a terminal generating *n_records* screenshots."""
+    return timeout * max(1, n_records / 10)
+
+
+def run_container(cmd, container_name, timeout):
+    """Run *cmd* to completion, removing the container if it outlives *timeout*."""
+    try:
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        subprocess.run(["docker", "rm", "-f", container_name],
+                       capture_output=True, check=False)
+        raise
+
+
 def build_batch_script(script_path, sentinel_path, batch_json_path, window_id=None):
     """Write a shell script that runs make_screenshot.py batch mode."""
     script_rel = "scripts/make_screenshot.py"
@@ -146,14 +161,13 @@ def _docker_per_terminal_run(args):
     matched_run_only = set()
 
     jobs = []
+    skipped = []
     for d in all_terminals:
         if d.error_msg:
             continue
-        launch_cfg, _ = get_launch_config(d.software_name, mixins)
-        if launch_cfg["skip"] or launch_cfg["skip_docker"]:
-            launch_cfg, _ = get_launch_config(d.path.stem, mixins)
-        if launch_cfg["skip"] or launch_cfg["skip_docker"]:
-            continue
+        launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
+        if not is_explicit:
+            launch_cfg, is_explicit = get_launch_config(d.path.stem, mixins)
         if run_only:
             name_lower = d.software_name.lower()
             prog_lower = launch_cfg.get("program", "").lower()
@@ -162,10 +176,19 @@ def _docker_per_terminal_run(args):
             for candidate in (name_lower, prog_lower):
                 if candidate in run_only:
                     matched_run_only.add(candidate)
-        jobs.append(d.software_name)
+        if launch_cfg["skip"] or launch_cfg["skip_docker"]:
+            if run_only:
+                skipped.append(
+                    (d.software_name,
+                     launch_cfg.get("skip_reason") or "marked skip in mixins"))
+            continue
+        failures, _ = extract_failures(d.path)
+        jobs.append((d.software_name, len(failures)))
 
     if run_only:
         check_unmatched_run_only(run_only, matched_run_only)
+    for sw_name, reason in skipped:
+        print(f"[{sw_name}] skipping: {reason}", flush=True)
 
     n_cpus = os.cpu_count() or 2
     parallel = args.parallel or max(1, (n_cpus - 2) // 4)
@@ -174,9 +197,11 @@ def _docker_per_terminal_run(args):
 
     with ThreadPoolExecutor(max_workers=parallel) as executor:
         futures = {}
-        for sw_name in jobs:
+        for sw_name, n_records in jobs:
+            container_name = f"ucs-shots-{safe_name(sw_name)}-{os.getpid()}"
             cmd = [
                 "docker", "run", "--rm", "--cpus=2",
+                "--name", container_name,
                 "-e", "DISPLAY=:99",
                 "-v", f"{PROJECT_DIR}:/app",
                 DOCKER_IMAGE,
@@ -185,8 +210,8 @@ def _docker_per_terminal_run(args):
                 "--run-only", sw_name,
             ]
             print(f"[{sw_name}] docker run ...", flush=True)
-            future = executor.submit(subprocess.run, cmd, capture_output=True,
-                                     text=True, timeout=args.timeout + 60)
+            future = executor.submit(run_container, cmd, container_name,
+                                     scaled_timeout(args.timeout, n_records) + 60)
             futures[future] = sw_name
 
         for future in as_completed(futures):
@@ -509,14 +534,15 @@ def main():
                 print(f"injecting: {''.join(text_keys)} ... ",
                       end="", flush=True)
                 key_delay = launch_cfg.get("key_delay_ms", 30)
-                inject_keys(captured_wid, resolved_keys, key_delay_ms=key_delay)
+                inject_keys(captured_wid, resolved_keys, key_delay_ms=key_delay,
+                            click_before_keys=launch_cfg.get("click_before_keys", False))
                 time.sleep(1.5)
 
             # Wait for sentinel or timeout (scaled by screenshot count).
             # Key-inject terminals may fork/detach, so don't collapse the
             # deadline based on the launcher process exiting.
-            scaled_timeout = args.timeout * max(1, n_records / 10)
-            deadline = time.monotonic() + scaled_timeout
+            budget = scaled_timeout(args.timeout, n_records)
+            deadline = time.monotonic() + budget
             exit_code = -99
             proc_dead = False
             while time.monotonic() < deadline:

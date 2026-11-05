@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-09-17 02:15:01 UTC
+datetime: 2026-11-05 00:02:57 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm
@@ -8,105 +8,50 @@ preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 70.2
-  - 1.8
-  - 2.7
-  - 60.7
-  - 45.1
-  - 43.9
-  - 43.3
-  - 42.9
-  - 42.2
-  - 41.7
-  - 42.7
-  - 46.9
-  - 47.2
-  - 37.3
-  - 31.5
-  - 58.0
-  - 52.7
-  - 76.4
-  - 82.0
-  - 82.0
-  - 65.7
-  - 77.0
-  - 77.7
-  - 85.5
-  - 85.6
-  - 77.9
-  - 58.0
-  - 36.0
-  - 43.6
-  - 5.8
+  - 2.0
+  - 77.2
+  - 67.1
+  - 52.6
+  - 60.3
+  - 74.2
+  - 82.2
+  - 86.0
+  - 86.2
+  - 94.1
+  - 69.3
+  - 41.6
   elapsed_s:
-  - 0.05789777099562343
-  - 1.0865946739941137
-  - 2.1926646789943334
-  - 3.2902633320045425
-  - 4.3090166409965605
-  - 5.32864321199304
-  - 6.377068533998681
-  - 7.422062439000001
-  - 8.441639073993429
-  - 9.461590007995255
-  - 10.590194732998498
-  - 11.763352563997614
-  - 12.782831898002769
-  - 13.799856390993227
-  - 15.006121728001744
-  - 16.21917939299601
-  - 17.247247891005827
-  - 18.272005981998518
-  - 19.29321923700627
-  - 20.317463619998307
-  - 21.341169096995145
-  - 22.498325862994534
-  - 23.613969989004545
-  - 24.63003819300502
-  - 25.647723033995135
-  - 26.664385896001477
-  - 27.67905504400551
-  - 28.69655375399452
-  - 30.005598795003607
-  - 31.340633054001955
+  - 1.0171179649769329
+  - 2.0269628269888926
+  - 3.0892153769964352
+  - 4.148228017002111
+  - 5.174275431985734
+  - 6.18603580998024
+  - 7.196307704987703
+  - 8.20574890699936
+  - 9.217354136984795
+  - 10.227214938000543
+  - 11.237096684984863
+  - 12.247482156002661
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481852
+    ram_total_kb: 15481848
   rss_mb:
-  - 10.125
-  - 13.0234375
-  - 13.3359375
-  - 16.6640625
-  - 20.44140625
-  - 22.3984375
-  - 23.41796875
-  - 24.4296875
-  - 25.37109375
-  - 26.37109375
-  - 27.6171875
-  - 28.3671875
-  - 29.0546875
-  - 31.1484375
-  - 31.625
-  - 32.546875
-  - 32.953125
-  - 33.390625
-  - 32.26953125
-  - 31.40625
-  - 32.03125
-  - 32.34375
-  - 32.90234375
-  - 32.90234375
-  - 32.90234375
-  - 33.12890625
-  - 33.7421875
-  - 33.7421875
-  - 36.13671875
-  - 36.05859375
-seconds_elapsed: 27.976891458994942
+  - 15.953125
+  - 23.75390625
+  - 28.59375
+  - 30.71484375
+  - 33.96875
+  - 36.2109375
+  - 36.86328125
+  - 25.30078125
+  - 26.3984375
+  - 26.3984375
+  - 34.30859375
+  - 37.6171875
+seconds_elapsed: 10.556821050005965
 session_arguments:
-  all: true
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
@@ -115,7 +60,7 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: mlterm
-software_version: 3.9.4
+software_version: 3.9.5
 system: Linux
 terminal_results:
   background_color_hex: '#ffffffffffff'
@@ -249,7 +194,7 @@ terminal_results:
   sixel: true
   software_method: XTVERSION
   software_name: mlterm
-  software_version: 3.9.4
+  software_version: 3.9.5
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
@@ -303,7 +248,7 @@ terminal_results:
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: mlterm(3.9.4)
+  xtversion_raw: mlterm(3.9.5)
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -1431,7 +1376,7 @@ test_results:
       n_total: 426
       pct_success: 50.0
   emoji_zwj_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 7
         measured_by_wcwidth: 2
@@ -8359,33 +8304,21 @@ test_results:
         measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchars: \u0939\u094b\u0902
-      - grapheme_id: Hindi-2-7f
-        measured_by_terminal: 1
+      - grapheme_id: Hindi-2-85
+        measured_by_terminal: 3
         measured_by_wcwidth: 2
-        wchars: \u0958\u093e
-      - grapheme_id: Hindi-2-80
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0958\u093f
-      - grapheme_id: Hindi-2-81
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u095b\u093e
-      - grapheme_id: Hindi-2-82
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u095c\u093e
-      - grapheme_id: Hindi-2-83
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u095d\u093e
-      - grapheme_id: Hindi-2-84
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u095e\u093e
-      n_errors: 121
+        wchars: \u095e\u094d\u0924\u093e
+      - grapheme_id: Hindi-1-1e
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0958
+      - grapheme_id: Hindi-1-1f
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u095b
+      n_errors: 118
       n_total: 390
-      pct_success: 68.97435897435898
+      pct_success: 69.74358974358974
     Japanese:
       failed: []
       n_errors: 0
@@ -13435,29 +13368,37 @@ test_results:
         measured_by_terminal: 1
         measured_by_wcwidth: 2
         wchars: \u0a39\u0a40\u0a02
-      - grapheme_id: Panjabi, Eastern-2-62
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0a5b\u0a3e
-      - grapheme_id: Panjabi, Eastern-2-63
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0a5b\u0a40
-      - grapheme_id: Panjabi, Eastern-2-64
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0a5c\u0a3e
-      - grapheme_id: Panjabi, Eastern-2-65
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0a5c\u0a40\u0a02
-      - grapheme_id: Panjabi, Eastern-2-66
-        measured_by_terminal: 1
-        measured_by_wcwidth: 2
-        wchars: \u0a5e\u0a3e
-      n_errors: 103
+      - grapheme_id: Panjabi, Eastern-1-a8
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0a5b
+      - grapheme_id: Panjabi, Eastern-1-a9
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0a5b\u0a41
+      - grapheme_id: Panjabi, Eastern-1-aa
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0a5c
+      - grapheme_id: Panjabi, Eastern-1-ab
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0a5c\u0a47
+      - grapheme_id: Panjabi, Eastern-1-ac
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0a5c\u0a4d
+      - grapheme_id: Panjabi, Eastern-1-ad
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0a5e
+      - grapheme_id: Panjabi, Eastern-1-ae
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u0a5e\u0a41
+      n_errors: 105
       n_total: 302
-      pct_success: 65.89403973509934
+      pct_success: 65.23178807947019
     Panjabi, Western:
       failed:
       - grapheme_id: Panjabi, Western-1-09
@@ -13947,9 +13888,13 @@ test_results:
         measured_by_terminal: 3
         measured_by_wcwidth: 2
         wchars: \u0938\u094d\u0924\u094d\u0930\u093e
-      n_errors: 138
+      - grapheme_id: Sanskrit-1-09
+        measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchars: \u093d
+      n_errors: 139
       n_total: 493
-      pct_success: 72.00811359026369
+      pct_success: 71.80527383367141
     Sanskrit (Grantha):
       failed:
       - grapheme_id: Sanskrit (Grantha)-2-00
@@ -16572,12 +16517,189 @@ test_results:
       pct_success: 100.0
   narrow_results:
     18.0.0:
-      failed_codepoints: []
-      n_errors: 0
-      n_total: 36254
-      pct_success: 100.0
+      failed_codepoints:
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u090c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u093d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0950
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0958
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0959
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u095a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u095b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u095c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u095d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u095e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0960
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u098c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u09bd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u09dc
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u09dd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u09e0
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u09e1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0a59
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0a5a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0a5b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0a5c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0a5e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0a8c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0abd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0ad0
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0ae0
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0b0c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0b3d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0b5c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0b5d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0b60
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0b61
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0bd0
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c0c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c3d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c58
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c59
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c5a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c5c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c5d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c60
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c61
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0c8c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0cbd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0cdc
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0cdd
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0cde
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0ce0
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0ce1
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d3d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d58
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d59
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d5a
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d5b
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d5c
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d5d
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d5e
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d60
+      - measured_by_terminal: 2
+        measured_by_wcwidth: 1
+        wchar: \u0d61
+      n_errors: 59
+      n_total: 37193
+      pct_success: 99.84136799935472
   ri_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 8
         measured_by_wcwidth: 2
@@ -20308,5 +20430,5 @@ test_results:
       pct_success: 97.2940226171244
 ucs_detect_version: 2.3.8
 unicode_version: 18.0.0
-wcwidth_version: 0.8.4
+wcwidth_version: 0.9.4
 width: 80

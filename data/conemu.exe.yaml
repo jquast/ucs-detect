@@ -1,12 +1,11 @@
 ambiguous_width: 1
-datetime: 2026-09-17 18:13:53 UTC
+datetime: 2026-11-05 17:31:03 UTC
 environment: {}
-height: 54
+height: 40
 preferred_encoding: cp1252
 python_version: 3.14.3
-seconds_elapsed: 368.2698653
+seconds_elapsed: 418.81818139999984
 session_arguments:
-  all: true
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
@@ -29,7 +28,7 @@ terminal_results:
     - 2
     raw: "\e[?1;2c"
     service_class: 1
-  height: 54
+  height: 40
   iterm2_features:
     features: {}
     supported: false
@@ -45,10 +44,10 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 918
-  pixels_width: 1672
-  screen_ratio: '16:9'
-  screen_ratio_name: HD
+  pixels_height: 680
+  pixels_width: 1072
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: false
   software_name: ConEmu
   software_version: 23.07.24
@@ -61,7 +60,7 @@ terminal_results:
     protocol: null
     supported: false
   ttype: ansicon
-  width: 209
+  width: 134
   xtgettcap:
     capabilities: {}
     supported: false
@@ -578,7 +577,7 @@ test_results:
       n_total: 426
       pct_success: 98.12206572769952
   emoji_zwj_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 8
         measured_by_wcwidth: 2
@@ -32095,10 +32094,10 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \U0001f1ac
       n_errors: 149
-      n_total: 36254
-      pct_success: 99.58901086776632
+      n_total: 37193
+      pct_success: 99.59938698142123
   ri_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 4
         measured_by_wcwidth: 2
@@ -36466,4 +36465,4 @@ test_results:
 ucs_detect_version: 2.3.8
 unicode_version: 18.0.0
 wcwidth_version: 0.8.4
-width: 209
+width: 134

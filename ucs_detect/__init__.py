@@ -35,10 +35,9 @@ import importlib.metadata
 import yaml
 import blessed
 import wcwidth
-import prettytable
 
 # local
-from ucs_detect import measure, terminal
+from ucs_detect import measure, terminal, table_compat
 from ucs_detect.table_ri import REGIONAL_INDICATOR_FLAGS
 from ucs_detect.table_sfz import STANDALONE_FITZPATRICK
 from ucs_detect.table_sri import STANDALONE_REGIONAL_INDICATORS
@@ -861,18 +860,19 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
 
 def _make_kv_table(term, title, pairs, has_unicode=True):
     """Build a table from (key, value) tuples."""
-    table = prettytable.PrettyTable()
+    table = table_compat.new_table(
+        title=term.magenta(title),
+        field_names=["Attribute", "Value"],
+        align={"Attribute": "r", "Value": "l"},
+    )
     _set_double_border(table, has_unicode)
-    table.title = term.magenta(title)
-    table.field_names = ["Attribute", "Value"]
-    table.align = {"Attribute": "r", "Value": "l"}
     table.header = False
     table.max_table_width = max(40, term.width - 1)
     for key, value in pairs:
         if key is None:
-            table.add_row(["", value])
+            table_compat.add_row(table, ["", value])
         else:
-            table.add_row([key, value])
+            table_compat.add_row(table, [key, value])
     return table
 
 
@@ -899,19 +899,21 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
         return []
 
     # build one full table to get consistent column widths
-    full_table = prettytable.PrettyTable()
+    full_table = table_compat.new_table(
+        title=term.magenta(f"XTGETTCAP ({n_caps} capabilities)"),
+        field_names=[
+            term.magenta("Cap"),
+            term.magenta("Description"),
+            term.magenta("Value"),
+        ],
+        align={"Cap": "l", "Description": "l", "Value": "l"},
+    )
     _set_double_border(full_table, has_unicode)
-    full_table.title = term.magenta(f"XTGETTCAP ({n_caps} capabilities)")
-    full_table.field_names = [
-        term.magenta("Cap"),
-        term.magenta("Description"),
-        term.magenta("Value"),
-    ]
-    full_table.align = {"Cap": "l", "Description": "l", "Value": "l"}
     full_table.max_table_width = max(40, term.width - 1)
     for capname, value in sorted_caps:
         desc = cap_info.get(capname, capname)
-        full_table.add_row([capname, desc, _truncate_value(repr(value))])
+        table_compat.add_row(
+            full_table, [capname, desc, _truncate_value(repr(value))])
 
     # render and split into lines
     all_rendered = str(full_table).split("\n")
@@ -924,9 +926,15 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
     if n_columns <= 1:
         return all_rendered
 
-    # split: title+header lines, data rows, bottom border
-    header_lines = all_rendered[:5]
-    data_lines = all_rendered[5:-1]
+    # split: title+header lines, data rows, bottom border; older prettytable
+    # releases drop the title, so locate the header row instead of assuming it
+    header_idx = 1
+    for idx, line in enumerate(all_rendered[1:-1], start=1):
+        if all(name in line for name in ("Cap", "Description", "Value")):
+            header_idx = idx
+            break
+    header_lines = all_rendered[:header_idx + 2]
+    data_lines = all_rendered[header_idx + 2:-1]
     bottom_border = all_rendered[-1]
 
     rows_per_col = math.ceil(len(data_lines) / n_columns)
@@ -946,16 +954,11 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
             chunk.append(empty_row)
 
     # first chunk gets title+header, others get header padded to same height
-    # header_lines: [top_border, title, title_sep, header, header_sep]
-    # header_no_title needs blank spacers for title rows
     blank_spacer = " " * tbl_width
-    header_no_title = [
-        blank_spacer,                # align with top_border (title row 1)
-        blank_spacer,                # align with title row
-        header_lines[0],             # top border
-        header_lines[3],             # header
-        header_lines[4],             # header separator
-    ]
+    header_no_title = (
+        [blank_spacer] * (header_idx - 1)
+        + [all_rendered[0], all_rendered[header_idx], all_rendered[header_idx + 1]]
+    )
     output = []
 
     # title+header for first, padded header for rest
@@ -978,24 +981,25 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
 
 def _make_one_language_table(term, title, failed_langs, results, has_unicode):
     """Build a single language table from a list of failed language names."""
-    table = prettytable.PrettyTable()
+    table = table_compat.new_table(
+        title=term.magenta(title),
+        field_names=[
+            term.magenta("Language"),
+            term.magenta("Total"),
+            term.magenta("Failures"),
+            term.magenta("Success"),
+        ],
+        align={
+            "Language": "l",
+            "Total": "r",
+            "Failures": "r",
+            "Success": "r",
+        },
+    )
     _set_double_border(table, has_unicode)
-    table.title = term.magenta(title)
-    table.field_names = [
-        term.magenta("Language"),
-        term.magenta("Total"),
-        term.magenta("Failures"),
-        term.magenta("Success"),
-    ]
-    table.align = {
-        "Language": "l",
-        "Total": "r",
-        "Failures": "r",
-        "Success": "r",
-    }
     for lang in failed_langs:
         data = results[lang]
-        table.add_row([
+        table_compat.add_row(table, [
             lang,
             f"{data['n_total']:n}",
             f"{data['n_errors']:n}",

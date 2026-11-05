@@ -5,7 +5,6 @@ python_version: 3.14.4
 seconds_elapsed: 0.0019193140033166856
 session_arguments:
   limit_category_time: 0
-  limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
