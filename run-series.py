@@ -326,6 +326,16 @@ def embed_profile_in_yaml(yaml_path, sw_name, session):
         pass
 
 
+def run_container(cmd, container_name, timeout):
+    """Run *cmd* to completion, removing the container if it outlives *timeout*."""
+    try:
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        subprocess.run(["docker", "rm", "-f", container_name],
+                       capture_output=True, check=False)
+        raise
+
+
 def docker_per_terminal_run(args):
     """Run each terminal in its own Docker container, with --cpus=2 each."""
     system_name = platform.system()
@@ -339,21 +349,25 @@ def docker_per_terminal_run(args):
     matched_run_only = set()
 
     jobs = []
+    skipped = []
     for d in all_terminals:
         if d.error_msg:
             continue
-        launch_cfg, _ = get_launch_config(d.software_name, mixins)
+        launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
+        if not is_explicit:
+            launch_cfg, is_explicit = get_launch_config(d.path.stem, mixins)
         if run_only:
             name_lower = d.software_name.lower()
             prog_lower = launch_cfg.get("program", "").lower()
-            if name_lower not in run_only and prog_lower not in run_only:
+            file_lower = d.path.stem.lower()
+            if not {name_lower, prog_lower, file_lower} & run_only:
                 continue
-            for candidate in (name_lower, prog_lower):
-                if candidate in run_only:
-                    matched_run_only.add(candidate)
-        if not run_only and should_skip(launch_cfg, is_docker=True):
-            continue
-        if launch_cfg.get("subterminal") and not launch_cfg.get("program"):
+            matched_run_only.update({name_lower, prog_lower, file_lower} & run_only)
+        if should_skip(launch_cfg, is_docker=True):
+            if run_only:
+                skipped.append(
+                    (d.software_name,
+                     launch_cfg.get("skip_reason") or "marked skip in mixins"))
             continue
         jobs.append((d.software_name, d.seconds_elapsed, launch_cfg.get("timeout")))
 
@@ -361,6 +375,8 @@ def docker_per_terminal_run(args):
 
     if run_only:
         check_unmatched_run_only(run_only, matched_run_only)
+    for sw_name, reason in skipped:
+        print(f"[{sw_name}] skipping: {reason}", flush=True)
 
     n_cpus = os.cpu_count() or 2
     parallel = max(1, min((n_cpus - 2) // 2, 16))
@@ -371,8 +387,10 @@ def docker_per_terminal_run(args):
     with ThreadPoolExecutor(max_workers=parallel) as executor:
         futures = {}
         for sw_name, _prev_time, term_timeout in jobs:
+            container_name = f"ucs-run-{safe_name(sw_name)}-{os.getpid()}"
             cmd = [
                 "docker", "run", "--rm", "--cpus=2",
+                "--name", container_name,
                 "-e", "DISPLAY=:99",
                 "-v", f"{PROJECT_DIR}:/app",
                 DOCKER_IMAGE,
@@ -383,8 +401,8 @@ def docker_per_terminal_run(args):
             ]
             if args.all:
                 cmd.append("--all")
-            future = executor.submit(subprocess.run, cmd, capture_output=True,
-                                     text=True, timeout=(term_timeout or args.timeout) + 60)
+            future = executor.submit(run_container, cmd, container_name,
+                                     (term_timeout or args.timeout) + 60)
             futures[future] = sw_name
             time.sleep(30)
 
