@@ -1,80 +1,50 @@
 ambiguous_width: 1
-datetime: 2026-09-17 02:14:22 UTC
+datetime: 2026-11-04 23:52:41 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
 height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.7
+python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 38.9
-  - 37.9
-  - 38.9
-  - 41.9
-  - 46.8
-  - 47.8
-  - 47.9
-  - 48.8
-  - 47.9
-  - 49.9
-  - 46.9
-  - 42.9
-  - 48.9
-  - 48.9
-  - 41.9
-  - 46.9
-  - 44.8
+  - 56.9
+  - 56.9
+  - 58.8
+  - 50.9
   - 50.8
-  - 46.9
-  - 40.9
+  - 54.9
+  - 53.9
+  - 48.9
+  - 49.9
+  - 45.9
   elapsed_s:
-  - 1.0055243829992833
-  - 2.0083012980030617
-  - 3.010704790998716
-  - 4.0136075880000135
-  - 5.0160675719962455
-  - 6.019239847999415
-  - 7.0225516659993446
-  - 8.026645455000107
-  - 9.029159180994611
-  - 10.031609380996088
-  - 11.034614036994753
-  - 12.037361875991337
-  - 13.039825537998695
-  - 14.042614507998223
-  - 15.045461708999937
-  - 16.048274587999913
-  - 17.05192428799637
-  - 18.054662230002577
-  - 19.057378222991247
-  - 20.059697575998143
+  - 1.0039862520061433
+  - 2.005842881015269
+  - 3.0082895510131493
+  - 4.0106286680093035
+  - 5.013460775022395
+  - 6.015735588007374
+  - 7.01764116002596
+  - 8.019577978004236
+  - 9.021741728007328
+  - 10.0237451660214
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481852
+    ram_total_kb: 15481848
   rss_mb:
-  - 115.7578125
-  - 119.22265625
-  - 122.3984375
-  - 124.77734375
-  - 127.05078125
-  - 127.98828125
-  - 128.89453125
-  - 130.25390625
-  - 130.8515625
-  - 131.53515625
-  - 135.65625
-  - 136.7578125
-  - 137.62890625
-  - 138.71484375
-  - 139.015625
-  - 139.03515625
-  - 139.23828125
-  - 140.015625
-  - 140.12109375
-  - 140.12109375
-seconds_elapsed: 20.17371556200669
+  - 121.56640625
+  - 124.84375
+  - 127.1015625
+  - 128.62109375
+  - 133.03515625
+  - 135.734375
+  - 137.14453125
+  - 137.15234375
+  - 138.37890625
+  - 138.37890625
+seconds_elapsed: 10.665695362986298
 session_arguments:
   all: true
   limit_category_time: 0
@@ -826,7 +796,7 @@ test_results:
       n_total: 426
       pct_success: 100.0
   emoji_zwj_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 6
         measured_by_wcwidth: 2
@@ -11889,10 +11859,10 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \U000110cd
       n_errors: 5
-      n_total: 36254
-      pct_success: 99.98620841838142
+      n_total: 37193
+      pct_success: 99.9865566101148
   ri_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 4
         measured_by_wcwidth: 2
@@ -12755,13 +12725,21 @@ test_results:
           - - 69314
             - 69314
           n_errors: 1
-          n_total: 15
+          n_total: 39
         Arabic Mathematical Alphabetic Symbols:
           codepoint_ranges:
           - - 126464
             - 126464
           n_errors: 1
           n_total: 143
+        Archaic Cuneiform Numerals:
+          codepoint_ranges:
+          - - 75088
+            - 75088
+          - - 75344
+            - 75344
+          n_errors: 2
+          n_total: 311
         Avestan:
           codepoint_ranges:
           - - 68352
@@ -12782,6 +12760,12 @@ test_results:
             - 92880
           n_errors: 1
           n_total: 31
+        Bengali Supplement:
+          codepoint_ranges:
+          - - 73201
+            - 73201
+          n_errors: 1
+          n_total: 1
         Beria Erfe:
           codepoint_ranges:
           - - 93856
@@ -12853,7 +12837,7 @@ test_results:
           - - 74752
             - 74752
           n_errors: 1
-          n_total: 116
+          n_total: 128
         Cypriot Syllabary:
           codepoint_ranges:
           - - 67584
@@ -12877,7 +12861,7 @@ test_results:
           - - 72448
             - 72448
           n_errors: 1
-          n_total: 10
+          n_total: 11
         Dives Akuru:
           codepoint_ranges:
           - - 71936
@@ -13048,6 +13032,24 @@ test_results:
             - 68416
           n_errors: 1
           n_total: 30
+        Jurchen:
+          codepoint_ranges:
+          - - 101888
+            - 101888
+          - - 102144
+            - 102144
+          - - 102400
+            - 102400
+          - - 102656
+            - 102656
+          n_errors: 4
+          n_total: 914
+        Jurchen Radicals:
+          codepoint_ranges:
+          - - 102816
+            - 102816
+          n_errors: 1
+          n_total: 51
         Kaithi:
           codepoint_ranges:
           - - 69763
@@ -13205,7 +13207,13 @@ test_results:
           - - 118464
             - 118464
           n_errors: 1
-          n_total: 34
+          n_total: 53
+        Miscellaneous Symbols and Arrows Extended:
+          codepoint_ranges:
+          - - 121600
+            - 121600
+          n_errors: 1
+          n_total: 29
         Miscellaneous Symbols and Pictographs:
           codepoint_ranges:
           - - 128000
@@ -13236,6 +13244,12 @@ test_results:
             - 70272
           n_errors: 1
           n_total: 38
+        Musical Symbols Supplement:
+          codepoint_ranges:
+          - - 119379
+            - 119379
+          n_errors: 1
+          n_total: 42
         Myanmar Extended-C:
           codepoint_ranges:
           - - 71376
@@ -13443,7 +13457,7 @@ test_results:
           - - 129648
             - 129648
           n_errors: 1
-          n_total: 120
+          n_total: 128
         Tai Yo:
           codepoint_ranges:
           - - 124608
@@ -13497,7 +13511,7 @@ test_results:
           - - 128640
             - 128640
           n_errors: 1
-          n_total: 119
+          n_total: 120
         Tulu-Tigalari:
           codepoint_ranges:
           - - 70528
@@ -13547,10 +13561,10 @@ test_results:
           n_errors: 1
           n_total: 116
       include_uncommon: false
-      n_errors: 159
-      n_total: 73679
-      n_unknown: 16113
-      pct_success: 99.78419902550252
+      n_errors: 169
+      n_total: 75306
+      n_unknown: 17712
+      pct_success: 99.77558229091971
       protocol: mintty
   unicode_wide_results:
     18.0.0:
@@ -16521,5 +16535,5 @@ test_results:
       pct_success: 97.78540656973614
 ucs_detect_version: 2.3.8
 unicode_version: 18.0.0
-wcwidth_version: 0.8.4
+wcwidth_version: 0.9.4
 width: 80

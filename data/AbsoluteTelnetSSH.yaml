@@ -11,7 +11,6 @@ seconds_elapsed: 37.61711145300069
 session_arguments:
   all: false
   limit_category_time: 0
-  limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0

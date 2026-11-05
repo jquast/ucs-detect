@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-09-17 03:11:14 UTC
+datetime: 2026-11-05 00:50:46 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: Hyper
   TERM_PROGRAM_VERSION: 3.4.1
-height: 72
+height: 26
 preferred_encoding: UTF-8
 python_version: 3.13.13
-seconds_elapsed: 3187.0521467210056
+seconds_elapsed: 3149.8385937849816
 session_arguments:
   all: true
   limit_category_time: 0
@@ -35,7 +35,7 @@ terminal_results:
     decsca: '0'
     decscl: 61;1
     decscusr: '2'
-    decstbm: 1;72
+    decstbm: 1;26
     sgr: '0'
   decrqss_truecolor_probe: false
   device_attributes:
@@ -48,7 +48,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 72
+  height: 26
   iterm2_features:
     features: {}
     supported: false
@@ -79,7 +79,7 @@ terminal_results:
     protocol: null
     supported: false
   ttype: xterm-256color
-  width: 205
+  width: 109
   xtgettcap:
     capabilities: {}
     supported: false
@@ -1212,7 +1212,7 @@ test_results:
       n_total: 426
       pct_success: 50.0
   emoji_zwj_results:
-    '17.0':
+    '18.0':
       failed_codepoints:
       - measured_by_terminal: 5
         measured_by_wcwidth: 2
@@ -12078,10 +12078,10 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \U0001f946
       n_errors: 13
-      n_total: 36254
-      pct_success: 99.9641418877917
+      n_total: 37193
+      pct_success: 99.96504718629849
   ri_results:
-    '17.0':
+    '18.0':
       failed_codepoints: []
       n_errors: 0
       n_total: 262
@@ -16208,5 +16208,5 @@ test_results:
       pct_success: 96.99111470113085
 ucs_detect_version: 2.3.8
 unicode_version: 18.0.0
-wcwidth_version: 0.8.4
-width: 205
+wcwidth_version: 0.9.4
+width: 109
