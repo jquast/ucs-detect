@@ -327,6 +327,9 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.9 (2026-11-05): More Unicode 18 support, data gathered and contested tables regenerated,
+  and support older versions of prettytable without alignment of color support.
+
 - 2.3.8 (2026-09-16): Unicode 18.0 support.
 
 - 2.3.7 (2026-09-15): Improved `iTerm2 image protocol`_ detection.
