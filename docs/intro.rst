@@ -285,18 +285,15 @@ The script ``run-series.py`` is an X11 automation for testing all linux terminal
 launch ``ucs-detect`` by configuration. When the application gives keyboard focus to its terminal
 widget only on a pointer press, set ``click_before_keys: true`` in the terminal's ``launch`` block.
 
-Reviewing collected data
-------------------------
+Reviewing data
+--------------
 
-``tox -e review`` compares every ``data/*.yaml`` with the same file at ``HEAD`` and reports
-terminal identity, detected capabilities, and test result changes.  Resource profiling, window
-geometry, and run timestamps differ on every run and are excluded.
+After collection, use ``tox -e review`` to compare ``data/*.yaml`` with the same file at ``HEAD``.
+This is a special version of ``git diff`` that reduces to a summary of differences.
 
 .. code-block:: bash
 
     tox -e review
-    tox -e review -- --rev HEAD~1
-    tox -e review -- kitty foot
 
 Updating ucs-detect
 -------------------
