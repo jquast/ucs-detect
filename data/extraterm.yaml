@@ -718,7 +718,6 @@ resource_profile:
   - 537.703125
 seconds_elapsed: 251.22404244402424
 session_arguments:
-  all: true
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0

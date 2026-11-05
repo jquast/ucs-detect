@@ -7,7 +7,6 @@ preferred_encoding: UTF-8
 python_version: 3.14.4
 seconds_elapsed: 91.90850066297571
 session_arguments:
-  all: true
   limit_category_time: 0
   limit_errors: 0
   limit_graphemes: 0

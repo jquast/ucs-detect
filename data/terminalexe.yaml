@@ -6,7 +6,6 @@ preferred_encoding: cp1252
 python_version: 3.14.3
 seconds_elapsed: 199.12604850000014
 session_arguments:
-  all: true
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0

@@ -2710,7 +2710,6 @@ resource_profile:
   - 260.19921875
 seconds_elapsed: 9.493723989988212
 session_arguments:
-  all: true
   limit_category_time: 0
   limit_codepoints: 0
   limit_errors: 0
