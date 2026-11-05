@@ -16,3 +16,9 @@ table.sphinx-datatable.dataTable {
     margin-left: 0 !important;
     margin-right: auto !important;
 }
+
+/* Anti-features: supported is a risk, not an achievement */
+.antifeature {
+    color: #d32f2f;
+    font-weight: bold;
+}

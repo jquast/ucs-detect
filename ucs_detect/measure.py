@@ -16,7 +16,7 @@ import unicodedata
 import wcwidth
 
 # local
-from ucs_detect import terminal
+from ucs_detect import terminal, table_compat
 
 # Unicode ranges where most fonts lack glyphs
 UNCOMMON_WIDE_RANGES = (
@@ -127,25 +127,24 @@ def make_printf_hex(wchar):
 
 def _make_codepoint_table(term, wchars_display):
     """Build a prettytable showing codepoint breakdown of a character sequence."""
-    # 3rd party
-    from prettytable import PrettyTable
-    table = PrettyTable()
-    table.field_names = [
-        term.magenta("#"),
-        term.magenta("Codepoint"),
-        term.magenta("Python"),
-        term.magenta("Category"),
-        term.magenta("wcwidth"),
-        term.magenta("Name"),
-    ]
-    table.align = {
-        "#": "r",
-        "Codepoint": "l",
-        "Python": "l",
-        "Category": "l",
-        "wcwidth": "r",
-        "Name": "l",
-    }
+    table = table_compat.new_table(
+        field_names=[
+            term.magenta("#"),
+            term.magenta("Codepoint"),
+            term.magenta("Python"),
+            term.magenta("Category"),
+            term.magenta("wcwidth"),
+            term.magenta("Name"),
+        ],
+        align={
+            "#": "r",
+            "Codepoint": "l",
+            "Python": "l",
+            "Category": "l",
+            "wcwidth": "r",
+            "Name": "l",
+        },
+    )
     for idx, char in enumerate(wchars_display):
         codepoint_val = ord(char)
         if codepoint_val > 0xFFFF:
@@ -154,7 +153,7 @@ def _make_codepoint_table(term, wchars_display):
         else:
             cp_str = f"U+{codepoint_val:04X}"
             py_str = f"\\u{codepoint_val:04x}"
-        table.add_row([
+        table_compat.add_row(table, [
             idx + 1,
             cp_str,
             py_str,

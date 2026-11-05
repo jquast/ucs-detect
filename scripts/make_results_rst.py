@@ -686,6 +686,7 @@ def main():
             show_device_attributes(sw_name, entry)
             show_language_results(sw_name, entry)
             show_dec_modes_results(sw_name, entry)
+            show_decrqcra_results(sw_name, entry)
             show_kitty_keyboard_results(sw_name, entry)
             show_xtgettcap_results(sw_name, entry)
             show_text_sizing_results(sw_name, entry)
@@ -3003,6 +3004,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
                 status = "no"
             link_text = make_outbound_hyperlink(name, sw_name + section_suffix)
             print(f"- {link_text}: **{status}**")
+        if tr.get("decrqcra", False):
+            link_text = make_outbound_hyperlink("DECRQCRA", sw_name + "_decrqcra")
+            print(f"- {link_text}: :antifeature:`yes`")
         print()
         print(f"Raw score: {entry['score_features']*100:.2f}%")  # noqa: E226
     else:
@@ -3510,6 +3514,39 @@ def show_dec_modes_results(sw_name, entry):
     print()
 
 
+def show_decrqcra_results(sw_name, entry):
+    """Display DECRQCRA support and the security risk of screen reading."""
+    tr = entry["data"].get("terminal_results") or {}
+    if not tr.get("decrqcra", False):
+        return
+
+    display_inbound_hyperlink(sw_name + "_decrqcra")
+    display_title("DECRQCRA", 3)
+
+    print("`Request Checksum of Rectangular Area`_ (DECRQCRA) allows an application")
+    print("running in the terminal to read a checksum of any rectangular region of")
+    print("the screen.")
+    print()
+    print(f"*{sw_name}* answers DECRQCRA queries.")
+    print()
+    print(".. error::")
+    print()
+    print("   Any program that can write to the terminal, including a compromised")
+    print("   remote host, can read the contents of the primary and alternate")
+    print("   terminal screen contents through 'screen scraping'.  Though useful")
+    print("   for compliance testing with tools like `esctest`_, release builds of")
+    print("   terminals should disable it by default: see `wezterm PR 7701`_ and")
+    print("   `ANSI terminal security in 2023: cursor checksum`_ for details.")
+    print()
+    print('.. _`Request Checksum of Rectangular Area`: '
+          'https://vt100.net/docs/vt510-rm/DECRQCRA.html')
+    print('.. _`esctest`: https://github.com/ThomasDickey/esctest2')
+    print('.. _`wezterm PR 7701`: https://github.com/wezterm/wezterm/pull/7701')
+    print('.. _`ANSI terminal security in 2023: cursor checksum`: '
+          'https://dgl.cx/2023/09/ansi-terminal-security#cursor-checksum')
+    print()
+
+
 def show_kitty_keyboard_results(sw_name, entry):
     """Display Kitty keyboard protocol detection results."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_kitty_kbd")
@@ -3776,7 +3813,7 @@ def show_tofu_results(sw_name, entry):
     print()
     print("   Both protocols answer about *single codepoints* only.  They are without")
     print("   support for grapheme clusters: ligatures, mark positioning, ``ZWJ`` joining,")
-    print("   VS-15 and VS-16 presentation, contextual forms, etc. ")
+    print("   VS-15 and VS-16 presentation, contextual forms, etc.")
     print()
     print("   What is measured below is a property of the *font* this terminal was")
     print("   configured with when tested, and not of the terminal emulator: it is")

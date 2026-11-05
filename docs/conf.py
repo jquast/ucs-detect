@@ -102,9 +102,18 @@ def score_ref_role(name, rawtext, text, lineno, inliner, options={}, content=[])
     return [refnode], []
 
 
+def anti_feature_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
+    """Custom role for anti-feature values: bold red, no score background."""
+    from docutils import nodes
+
+    node = nodes.inline(rawtext, text, classes=['antifeature'])
+    return [node], []
+
+
 def setup(app):
     from docutils.parsers.rst import roles
     roles.register_local_role('sref', score_ref_role)
+    roles.register_local_role('antifeature', anti_feature_role)
 
     app.add_css_file("my_theme.css")
     app.add_css_file("score-colors.css")
