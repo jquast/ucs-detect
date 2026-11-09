@@ -189,9 +189,13 @@ def _unicode_version():
     return max(versions, key=_version_sort_key) if versions else 'unknown'
 
 
-def _strip_vte_suffix(version):
-    """Strip a trailing ``(VTE/...)`` label, so a --rerun does not nest a second one."""
-    head, sep, tail = version.rpartition(' (VTE/')
+#: XTVERSION names of embedded terminal engines, mapped to their display labels.
+_ENGINE_VERSION_LABELS = {'VTE': 'VTE', 'SWIFTTERM': 'SwiftTerm'}
+
+
+def _strip_engine_suffix(version, label):
+    """Strip a trailing ``(LABEL/...)`` label, so a --rerun does not nest a second one."""
+    head, sep, tail = version.rpartition(f' ({label}/')
     if sep and tail.endswith(')'):
         return head
     return version
@@ -340,9 +344,10 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 and auto_name.casefold() == set_software_name.casefold()):
             set_software_version = ""
 
-        if set_software_version and auto_name.upper() == "VTE" and auto_version:
-            terminal_version = (f"{_strip_vte_suffix(set_software_version)}"
-                                f" (VTE/{auto_version})")
+        engine_label = _ENGINE_VERSION_LABELS.get(auto_name.upper())
+        if set_software_version and engine_label and auto_version:
+            terminal_version = (f"{_strip_engine_suffix(set_software_version, engine_label)}"
+                                f" ({engine_label}/{auto_version})")
         else:
             terminal_version = set_software_version or auto_version
 

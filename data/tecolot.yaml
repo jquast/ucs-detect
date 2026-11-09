@@ -18,8 +18,8 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
   timeout_cps: 3.0
-software_name: 'SwiftTerm+282c3c3a932b:'
-software_version: ''
+software_name: Tecolot
+software_version: 0.99.7 (SwiftTerm/282c3c3a932b)
 system: Darwin
 terminal_results:
   background_color_hex: '#28282c2c3434'
@@ -170,7 +170,8 @@ terminal_results:
   screen_ratio_name: HD
   sixel: true
   software_method: XTVERSION
-  software_name: 'SwiftTerm+282c3c3a932b:'
+  software_name: SwiftTerm
+  software_version: '282c3c3a932b'
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:

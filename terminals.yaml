@@ -269,6 +269,23 @@ terminals:
       kill_command:
       - pkill
       - tabby
+  tecolot:
+    homepage: https://tecolot.com/
+    display_name: Tecolot
+    version_manual: 0.99.7
+    skip_docker: true
+    skip_reason: macOS only
+    launch:
+      program: /Applications/Tecolot.app/Contents/MacOS/Tecolot
+      args: []
+      post_launch_delay_ms: 3000
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
+      kill_command:
+      - pkill
+      - Tecolot
   teraterm:
     homepage: https://teratermproject.github.io/
     launch: null

@@ -52,6 +52,13 @@ This technique is inspired by `resize(1)`_, which determines terminal
 dimensions over transports like serial lines by moving to (999, 999) and
 querying cursor position.
 
+Use Cases
+---------
+
+- ttyscan
+- ghostty test suite?
+- contour test suite?
+
 ucs-detect
 ----------
 
@@ -151,7 +158,6 @@ https://github.com/jquast/ucs-detect/tree/master/docs/ucs_example_files
 Use ``--no-correction`` when generating example files to disable terminal-specific
 width correction tables, producing output that reflects wcwidth defaults. Example
 file generation is handled by ``tox -e make_tables``.
-
 
 Test Results
 ------------

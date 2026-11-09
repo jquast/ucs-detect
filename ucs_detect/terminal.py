@@ -225,6 +225,20 @@ def _try_decode_da3_name(name):
     return decoded_name, decoded_version
 
 
+def _split_swiftterm_version(name, version):
+    """Split SwiftTerm's ``SwiftTerm[ tag][-branch]+version:`` identity.
+
+    SwiftTerm joins its build version to the name with ``+`` and terminates
+    the identity with ``:``, which the generic space/parenthesis parser
+    leaves in *name*.
+    """
+    if not name.startswith('SwiftTerm'):
+        return name, version
+    if '+' in name:
+        name, _, version = name.rpartition('+')
+    return name.rstrip(':'), version.rstrip(':')
+
+
 _RE_XTVERSION_RESPONSE = re.compile(r'\x1bP>\|(.+?)\x1b\\')
 
 
@@ -258,6 +272,7 @@ def maybe_determine_software(term, writer, timeout=1.0):
         decoded = _try_decode_da3_name(name)
         if decoded:
             name, version = decoded
+        name, version = _split_swiftterm_version(name, version)
         result['software_name'] = name
         if version:
             result['software_version'] = version
