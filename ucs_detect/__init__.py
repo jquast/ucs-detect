@@ -37,7 +37,7 @@ import blessed
 import wcwidth
 
 # local
-from ucs_detect import measure, terminal, table_compat
+from ucs_detect import measure, controls, terminal, table_compat
 from ucs_detect.table_ri import REGIONAL_INDICATOR_FLAGS
 from ucs_detect.table_sfz import STANDALONE_FITZPATRICK
 from ucs_detect.table_sri import STANDALONE_REGIONAL_INDICATORS
@@ -328,6 +328,9 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 has_unicode=has_unicode or terminal_full_probe,
                 silent=silent,
             )
+            terminal_results.update(
+                controls.maybe_determine_control_advance(
+                    term, timeout=resolved_timeout))
 
     if save_yaml or save_json:
         if not silent:
