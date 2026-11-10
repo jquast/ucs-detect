@@ -4,7 +4,6 @@ from __future__ import annotations
 
 # std imports
 import os
-import time
 import collections
 
 # local
@@ -13,10 +12,12 @@ from ucs_detect.measure import get_location_with_retry
 
 Probe = collections.namedtuple('Probe', ('codepoint', 'encoding', 'data'))
 
-_C0 = tuple(range(0x20)) + (0x7F,)
-_C1 = tuple(range(0x80, 0xA0))
+#: Controls with no standard cursor motion, charset shift, or parser state change.
+_C0 = (0x00, 0x01, 0x02, 0x03, 0x04, 0x06, 0x10, 0x12, 0x14, 0x15,
+       0x16, 0x17, 0x19, 0x1C, 0x1D, 0x1E, 0x1F, 0x7F)
+_C1 = (0x80, 0x81, 0x82, 0x83, 0x86, 0x87, 0x91, 0x92, 0x93, 0x94,
+       0x95, 0x96, 0x97, 0x99)
 _CLEANUP = b'\x18\x1b\\\x0f'
-_DELAYED = frozenset((0x05, 0x1B, 0x18, 0x1A, 0x9A))
 
 
 def iter_probes():
@@ -24,7 +25,6 @@ def iter_probes():
     for codepoint in _C0:
         yield Probe(codepoint, 'raw', bytes([codepoint]))
     for codepoint in _C1:
-        yield Probe(codepoint, 'raw', bytes([codepoint]))
         yield Probe(codepoint, 'utf-8', chr(codepoint).encode('utf-8'))
 
 
@@ -62,12 +62,7 @@ def _probe_one(term, park_y, park_x, probe, timeout):
         return None
 
     _write_bytes(term, probe.data)
-    if probe.codepoint in _DELAYED:
-        time.sleep(0.01)
     _write_bytes(term, _CLEANUP)
-    if probe.codepoint == 0x88:
-        # TBC 0 removes the tab stop HTS just set at the park column.
-        _write_bytes(term, b'\x1b[0g')
     term.flushinp(timeout=0.02)
 
     y1, x1 = get_location_with_retry(term, timeout)
@@ -78,12 +73,11 @@ def _probe_one(term, park_y, park_x, probe, timeout):
 
 def maybe_determine_control_advance(term, timeout=1.0, **_kwargs):
     """
-    Measure the horizontal cursor advance of C0, DEL, and C1 characters.
+    Measure the horizontal cursor advance of selected C0, DEL, and C1 controls.
 
     Each probe parks the cursor mid-screen, records its column, writes one control character, resets
-    the parser with CAN, ST, and SI, and records the new column.  C1 characters are probed twice:
-    once as a raw byte, which is invalid UTF-8, and once as its UTF-8 encoding, which reaches the
-    parser as U+0080 through U+009F.
+    the parser with CAN, ST, and SI, and records the new column.  C1 characters are probed in their
+    UTF-8 encoding, which reaches the parser as U+0080 through U+009F.
 
     :returns: dict with a ``control_advance`` mapping of ``U+XXXX/encoding`` to column delta.
     """
@@ -94,8 +88,8 @@ def maybe_determine_control_advance(term, timeout=1.0, **_kwargs):
     park_x = _park_column(term)
     original_y, original_x = get_location_with_retry(term, timeout)
     try:
-        # Raw mode matters: cbreak leaves ONLCR set, so the line discipline
-        # would turn LF into CRLF before the terminal ever sees it.
+        # Raw mode disables line-discipline output processing, so the terminal
+        # sees the control byte unchanged.
         with term.raw():
             for probe in iter_probes():
                 dx = _probe_one(term, park_y, park_x, probe, timeout)

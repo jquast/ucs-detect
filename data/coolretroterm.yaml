@@ -116,6 +116,39 @@ system: Linux
 terminal_results:
   color_scheme: false
   colored_underlines: false
+  control_advance:
+    U+0000/raw: 1
+    U+0001/raw: 1
+    U+0002/raw: 1
+    U+0003/raw: 1
+    U+0004/raw: 1
+    U+0006/raw: 1
+    U+0010/raw: 1
+    U+0012/raw: 1
+    U+0014/raw: 1
+    U+0015/raw: 1
+    U+0016/raw: 1
+    U+0017/raw: 1
+    U+0019/raw: 1
+    U+001C/raw: 1
+    U+001D/raw: 1
+    U+001E/raw: 1
+    U+001F/raw: 1
+    U+007F/raw: 1
+    U+0080/utf-8: 1
+    U+0081/utf-8: 1
+    U+0082/utf-8: 1
+    U+0083/utf-8: 1
+    U+0086/utf-8: 1
+    U+0087/utf-8: 1
+    U+0091/utf-8: 1
+    U+0092/utf-8: 1
+    U+0093/utf-8: 1
+    U+0094/utf-8: 1
+    U+0095/utf-8: 1
+    U+0096/utf-8: 1
+    U+0097/utf-8: 1
+    U+0099/utf-8: 1
   decrqcra: false
   decrqss: false
   decrqss_settings: false

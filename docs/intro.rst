@@ -228,6 +228,17 @@ Example output::
     press return for next error, or n for non-stop:
 
 
+Discrepancies
+-------------
+
+C0 (bytes ``0x00`` through ``0x1F``), DEL (``0x7F``), and C1 (bytes ``0x80`` through ``0x9F``)
+are not printable text. They are normally only written to a terminal by a program in error, such as
+``cat /dev/urandom`` displaying garbage. Their measured widths may vary, even between narrow and
+wide, and they may cause surprising changes such as shift-in and shift-out. Only backspace and tab
+are approximated; all other control characters are treated as zero width, even where a terminal
+displays them as narrow. These effects are parser behavior, not printable width, and are not scored.
+
+
 Batch Testing
 -------------
 
