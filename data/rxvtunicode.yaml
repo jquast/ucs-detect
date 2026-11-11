@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-11 19:13:20 UTC
+datetime: 2026-11-11 20:35:05 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
@@ -8,25 +8,55 @@ preferred_encoding: UTF-8
 python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 3.0
+  - 6.0
   - 0.0
   - 0.0
-  - 24.0
+  - 1.0
+  - 7.0
+  - 9.0
+  - 12.0
+  - 10.0
+  - 8.0
+  - 6.0
+  - 11.0
+  - 9.0
+  - 7.0
+  - 9.0
   elapsed_s:
-  - 1.0014402589877136
-  - 2.003005737962667
-  - 3.004337233956903
-  - 4.0057367630070075
+  - 1.0028065129881725
+  - 2.007356052985415
+  - 3.008996198012028
+  - 4.010688517009839
+  - 5.012417049962096
+  - 6.01412322797114
+  - 7.0157004710054025
+  - 8.01733320398489
+  - 9.019000978965778
+  - 10.020684910006821
+  - 11.022510412964039
+  - 12.024183065979742
+  - 13.025808366015553
+  - 14.027478055970278
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481804
   rss_mb:
-  - 23.5390625
-  - 23.5390625
-  - 23.5390625
-  - 31.203125
-seconds_elapsed: 0.940481761994306
+  - 23.41015625
+  - 23.515625
+  - 23.515625
+  - 28.90625
+  - 29.9765625
+  - 30.5859375
+  - 31.21484375
+  - 31.21875
+  - 31.21875
+  - 31.22265625
+  - 31.25
+  - 31.27734375
+  - 31.2890625
+  - 31.3203125
+seconds_elapsed: 10.112056215002667
 session_arguments:
   all: false
   limit_category_time: 0
@@ -10877,8 +10907,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \u324f
       n_errors: 8
-      n_total: 6592
-      pct_success: 99.87864077669903
+      n_total: 6589
+      pct_success: 99.87858552132342
   ri_results:
     18.0.0:
       failed_codepoints: []
@@ -14108,7 +14138,7 @@ test_results:
       n_errors: 1042
       n_total: 1529
       pct_success: 31.85088293001962
-ucs_detect_version: 2.3.9
+ucs_detect_version: 2.3.10+3f68594
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 80
