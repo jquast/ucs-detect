@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-04 23:57:24 UTC
+datetime: 2026-11-11 19:13:20 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
@@ -8,22 +8,25 @@ preferred_encoding: UTF-8
 python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 2.0
+  - 3.0
   - 0.0
-  - 14.0
+  - 0.0
+  - 24.0
   elapsed_s:
-  - 1.001539305987535
-  - 2.0032158969843294
-  - 3.0043865729821846
+  - 1.0014402589877136
+  - 2.003005737962667
+  - 3.004337233956903
+  - 4.0057367630070075
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481848
+    ram_total_kb: 15481804
   rss_mb:
-  - 23.45703125
-  - 23.45703125
-  - 28.84375
-seconds_elapsed: 0.9333069990098011
+  - 23.5390625
+  - 23.5390625
+  - 23.5390625
+  - 31.203125
+seconds_elapsed: 0.940481761994306
 session_arguments:
   all: false
   limit_category_time: 0
@@ -79,6 +82,7 @@ terminal_results:
     U+0099/utf-8: 0
   decrqcra: false
   decrqss: false
+  decrqss_injection: false
   decrqss_settings: false
   decrqss_truecolor_probe: false
   device_attributes:
@@ -14104,7 +14108,7 @@ test_results:
       n_errors: 1042
       n_total: 1529
       pct_success: 31.85088293001962
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.9
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 80

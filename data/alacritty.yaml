@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-04 23:55:50 UTC
+datetime: 2026-11-11 19:11:21 UTC
 environment:
   COLORTERM: truecolor
   TERM: alacritty
@@ -8,28 +8,28 @@ preferred_encoding: UTF-8
 python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 17.0
+  - 14.0
   - 0.0
   - 4.0
-  - 111.8
-  - 115.8
+  - 77.3
+  - 119.8
   elapsed_s:
-  - 1.001245502004167
-  - 2.0031274710199796
-  - 3.004598652012646
-  - 4.006222698022611
-  - 5.008486587001244
+  - 1.0013688059989363
+  - 2.003014827030711
+  - 3.004357496043667
+  - 4.005739386018831
+  - 5.014260173018556
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481848
+    ram_total_kb: 15481804
   rss_mb:
-  - 120.52734375
-  - 120.52734375
-  - 123.69921875
-  - 132.11328125
-  - 137.0390625
-seconds_elapsed: 2.4567400539817754
+  - 120.3828125
+  - 120.3828125
+  - 120.39453125
+  - 131.6484375
+  - 136.99609375
+seconds_elapsed: 1.7321287600207143
 session_arguments:
   all: false
   limit_category_time: 0
@@ -85,6 +85,7 @@ terminal_results:
     U+0099/utf-8: 0
   decrqcra: false
   decrqss: false
+  decrqss_injection: false
   decrqss_settings: false
   decrqss_truecolor_probe: false
   device_attributes:
@@ -12070,7 +12071,7 @@ test_results:
       n_errors: 1000
       n_total: 1517
       pct_success: 34.080421885299934
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.9
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 80
