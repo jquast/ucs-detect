@@ -1508,11 +1508,6 @@ _CONTESTED_NARROW = {version: frozenset(codepoints) for version, codepoints in N
 _CONTESTED_LANG = _index_contested_languages()
 
 
-def tested_all_tables(data):
-    """Return True when these results were measured with ``--all``."""
-    return bool((data.get("session_arguments") or {}).get("all"))
-
-
 def lookup_contested(contested_by_version, version):
     """Return the contested codepoints for *version*, or None when unknown."""
     if version in contested_by_version:
@@ -1528,7 +1523,7 @@ def contested_width_counts(data, results_key, contested_by_version):
     if not results:
         return 0, 0
     version, result = next(iter(results.items()))
-    if not tested_all_tables(data) or "sampled_pct" in result:
+    if "sampled_pct" in result:
         return result["n_total"], result["n_errors"]
     contested = lookup_contested(contested_by_version, version)
     if contested is None or result["n_total"] < len(contested):
@@ -1541,9 +1536,6 @@ def contested_width_counts(data, results_key, contested_by_version):
 def contested_language_percentages(data):
     """Return ``{language: fraction_success}``, restricted to contested graphemes."""
     language_results = data.get("test_results", {}).get("language_results") or {}
-    if not tested_all_tables(data):
-        return {lang: result["pct_success"] / 100
-                for lang, result in language_results.items()}
     percentages = {}
     for lang, result in language_results.items():
         contested = _CONTESTED_LANG.get(lang)
