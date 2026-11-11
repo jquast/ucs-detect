@@ -687,6 +687,7 @@ def main():
             show_language_results(sw_name, entry)
             show_dec_modes_results(sw_name, entry)
             show_decrqcra_results(sw_name, entry)
+            show_decrqss_injection_results(sw_name, entry)
             show_kitty_keyboard_results(sw_name, entry)
             show_xtgettcap_results(sw_name, entry)
             show_text_sizing_results(sw_name, entry)
@@ -3007,6 +3008,10 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         if tr.get("decrqcra", False):
             link_text = make_outbound_hyperlink("DECRQCRA", sw_name + "_decrqcra")
             print(f"- {link_text}: :antifeature:`yes`")
+        if tr.get("decrqss_injection", False):
+            link_text = make_outbound_hyperlink("DECRQSS Injection",
+                                                sw_name + "_decrqss_injection")
+            print(f"- {link_text}: :antifeature:`yes`")
         print()
         print(f"Raw score: {entry['score_features']*100:.2f}%")  # noqa: E226
     else:
@@ -3544,6 +3549,33 @@ def show_decrqcra_results(sw_name, entry):
     print('.. _`wezterm PR 7701`: https://github.com/wezterm/wezterm/pull/7701')
     print('.. _`ANSI terminal security in 2023: cursor checksum`: '
           'https://dgl.cx/2023/09/ansi-terminal-security#cursor-checksum')
+    print()
+
+
+def show_decrqss_injection_results(sw_name, entry):
+    """Display DECRQSS response injection support and its security risk."""
+    tr = entry["data"].get("terminal_results") or {}
+    if not tr.get("decrqss_injection", False):
+        return
+
+    display_inbound_hyperlink(sw_name + "_decrqss_injection")
+    display_title("DECRQSS Injection", 3)
+
+    print("`Request Status String`_ (DECRQSS) asks a terminal for the value of a")
+    print("setting.  A terminal that repeats the unrecognized request payload in")
+    print("its reply allows passing attacker-controlled text into the input stream.")
+    print()
+    print(f"*{sw_name}* repeats the DECRQSS request payload.")
+    print()
+    print(".. error::")
+    print()
+    print("   Any program that can write to the terminal can inject keystrokes or")
+    print("   escape sequences into the input of the program running inside it.")
+    print("   Known as `CVE-2008-2383`_ in xterm and `CVE-2022-45872`_ in iTerm2.")
+    print()
+    print('.. _`Request Status String`: https://vt100.net/docs/vt510-rm/DECRQSS.html')
+    print('.. _`CVE-2008-2383`: https://nvd.nist.gov/vuln/detail/CVE-2008-2383')
+    print('.. _`CVE-2022-45872`: https://nvd.nist.gov/vuln/detail/CVE-2022-45872')
     print()
 
 

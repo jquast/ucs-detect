@@ -13,6 +13,7 @@ import contextlib
 
 # 3rd party
 import blessed
+from blessed.keyboard import _read_until
 from blessed.keyboard import KittyKeyboardProtocol
 
 #: Kitty keyboard protocol progressive enhancement modes, as blessed names them
@@ -569,13 +570,7 @@ def maybe_determine_kitty_query(term, timeout=1.0, **_kw):
 
 
 def maybe_determine_decrqss(term, timeout=1.0, **_kw):
-    """
-    Query terminal state via DECRQSS for all common settings.
-
-    Queries each setting in ``blessed.Decrqss`` that is relevant to modern terminals and returns a
-    dict of results. The ``decrqss`` key is True when at least one setting responded. Individual
-    setting values are stored under ``decrqss_settings``.
-    """
+    """Query terminal state via DECRQSS for all common settings."""
     S = blessed.Terminal.Decrqss
     settings = [
         (S.SGR, 'sgr'),
@@ -660,9 +655,6 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
     if not term.is_a_tty or not term._does_styling:
         return {'decrqcra': False}
 
-    # 3rd party
-    from blessed.keyboard import _read_until
-
     stack = contextlib.ExitStack()
     try:
         if term._line_buffered:
@@ -718,6 +710,46 @@ def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
     supported = (cksum_a is not None and cksum_b is not None
                  and cksum_a != cksum_b)
     return {'decrqcra': supported}
+
+
+# DECRQSS injection -- CVE-2008-2383, CVE-2022-45872
+_DECRQSS_MARKER = "INJECT_9x7k"
+_DECRQSS_INJECT = "\x1b[s\x1bP$q;{marker}\x1b\\\x1b[u"
+_INJECTED_RE = re.compile(r"\x1bP[^\x1b]*" + re.escape(_DECRQSS_MARKER) + r"[^\x1b]*\x1b\\")
+
+
+def maybe_determine_decrqss_injection(term, timeout=1.0, **_kw):
+    """Probe for DECRQSS response injection (CVE-2008-2383, CVE-2022-45872). """
+    # Saves the cursor, sends a DECRQSS query carrying a marker payload, restores the cursor, and
+    # fences the exchange with a CPR request.  A terminal that repeats an unrecognized request payload
+    # in its response places the marker in the input stream, where the application reads it as typed
+    # text.  See ``blessed/bin/screen-scrape.py`` for the related DECRQCRA probe.
+
+    if not term.is_a_tty or not term._does_styling:
+        return {'decrqss_injection': False}
+
+    stack = contextlib.ExitStack()
+    try:
+        if term._line_buffered:
+            stack.enter_context(term.cbreak())
+
+        query = (_DECRQSS_INJECT.format(marker=_DECRQSS_MARKER)
+                 + "\x1b[6n")
+        term.stream.write(query)
+        term.stream.flush()
+
+        # wait for CPR boundary, re-buffering any non-CPR data
+        match, data = _read_until(term=term,
+                                  pattern=_CPR_RE.pattern,
+                                  timeout=timeout)
+        if match:
+            data = data[:match.start()] + data[match.end():]
+        injectable = _DECRQSS_MARKER in data
+        term.ungetch(_INJECTED_RE.sub('', data))
+    finally:
+        stack.close()
+
+    return {'decrqss_injection': injectable}
 
 
 def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
@@ -806,6 +838,8 @@ def do_terminal_detection(all_modes=False, cursor_report_delay_ms=0,
         attrs.update(maybe_determine_decrqss_truecolor(term, timeout=timeout))
     with _status(writer, term, "DECRQCRA", bg_rgb, silent=silent):
         attrs.update(maybe_determine_decrqcra(term, timeout=timeout))
+    with _status(writer, term, "DECRQSS Injection", bg_rgb, silent=silent):
+        attrs.update(maybe_determine_decrqss_injection(term, timeout=timeout))
 
     return attrs
 
