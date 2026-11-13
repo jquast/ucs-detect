@@ -168,6 +168,7 @@ def get_launch_config(sw_name, mixins, is_docker=None):
         "timeout": raw_entry.get("timeout", None),
         "wm_class": launch.get("wm_class", None),
         "click_before_keys": launch.get("click_before_keys", False),
+        "kill_command": launch.get("kill_command"),
     }
     return cfg, is_explicit
 
@@ -291,6 +292,17 @@ def inject_keys(window_id, keys, key_delay_ms=30, click_before_keys=False):
 
     *click_before_keys*: click the center of the window first
     """
+    activated = subprocess.run(
+        ["xdotool", "windowactivate", "--sync", str(window_id)],
+        capture_output=True, timeout=5, check=False,
+    )
+    if activated.returncode != 0:
+        subprocess.run(
+            ["xdotool", "windowfocus", "--sync", str(window_id)],
+            capture_output=True, timeout=2, check=False,
+        )
+    time.sleep(0.2)
+
     if click_before_keys:
         width, height = 0, 0
         try:

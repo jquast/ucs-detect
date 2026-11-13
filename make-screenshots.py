@@ -466,6 +466,7 @@ def main():
 
             with open(stderr_path, "w") as stderr_file:
                 env = os.environ.copy()
+                env.pop("TERM", None)
                 env.pop("TERM_PROGRAM", None)
                 env.pop("TERM_PROGRAM_VERSION", None)
                 proc = subprocess.Popen(
