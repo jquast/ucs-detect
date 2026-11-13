@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-04 23:54:51 UTC
+datetime: 2026-11-11 20:31:11 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -8,52 +8,46 @@ preferred_encoding: UTF-8
 python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 36.9
-  - 10.0
+  - 37.9
+  - 11.0
   - 0.0
-  - 121.8
-  - 170.2
-  - 171.7
+  - 125.8
+  - 160.7
+  - 169.7
+  - 168.6
   - 170.7
   - 171.7
-  - 171.7
-  - 171.5
-  - 172.7
-  - 171.4
-  - 170.7
+  - 168.6
+  - 169.3
   elapsed_s:
-  - 1.0017462620162405
-  - 2.0035848740080837
-  - 3.0052920300222468
-  - 4.0068823950132355
-  - 5.040912886004662
-  - 6.042731355002616
-  - 7.044383943022694
-  - 8.045921283017378
-  - 9.047302000020863
-  - 10.050012338993838
-  - 11.05170025699772
-  - 12.055316726007732
-  - 13.056885448022513
+  - 1.0028128969715908
+  - 2.0046773920184933
+  - 3.00625203398522
+  - 4.00787923502503
+  - 5.009804407018237
+  - 6.011805563000962
+  - 7.013895548006985
+  - 8.015585391025525
+  - 9.017228737007827
+  - 10.019810769998003
+  - 11.022813303978182
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481848
+    ram_total_kb: 15481804
   rss_mb:
-  - 122.640625
-  - 122.6640625
-  - 122.6640625
-  - 122.66796875
-  - 122.66796875
-  - 122.66796875
-  - 122.66796875
-  - 122.66796875
-  - 122.66796875
-  - 122.66796875
-  - 122.66796875
-  - 122.63671875
-  - 122.63671875
-seconds_elapsed: 9.769653429015307
+  - 122.73828125
+  - 122.7890625
+  - 122.7890625
+  - 122.58984375
+  - 122.58984375
+  - 122.58984375
+  - 122.58984375
+  - 122.58984375
+  - 122.58984375
+  - 122.58984375
+  - 122.58984375
+seconds_elapsed: 7.168849289009813
 session_arguments:
   all: false
   limit_category_time: 0
@@ -74,8 +68,42 @@ terminal_results:
   - 0
   color_scheme: false
   colored_underlines: false
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 0
+    U+0080/utf-8: 1
+    U+0081/utf-8: 1
+    U+0082/utf-8: 1
+    U+0083/utf-8: 1
+    U+0086/utf-8: 1
+    U+0087/utf-8: 1
+    U+0091/utf-8: 1
+    U+0092/utf-8: 1
+    U+0093/utf-8: 1
+    U+0094/utf-8: 1
+    U+0095/utf-8: 1
+    U+0096/utf-8: 1
+    U+0097/utf-8: 1
+    U+0099/utf-8: 1
   decrqcra: false
   decrqss: true
+  decrqss_injection: false
   decrqss_settings:
     decscl: 64;1
   decrqss_truecolor_probe: false
@@ -10808,8 +10836,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \u324f
       n_errors: 8
-      n_total: 6592
-      pct_success: 99.87864077669903
+      n_total: 6589
+      pct_success: 99.87858552132342
   ri_results:
     18.0.0:
       failed_codepoints: []
@@ -14039,7 +14067,7 @@ test_results:
       n_errors: 1042
       n_total: 1529
       pct_success: 31.85088293001962
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.10+3f68594
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 80

@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-04 23:57:12 UTC
+datetime: 2026-11-11 20:33:45 UTC
 environment:
   COLORTERM: truecolor
   TERM: foot
@@ -8,19 +8,19 @@ preferred_encoding: UTF-8
 python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 25.0
-  - 42.9
+  - 3.0
+  - 46.9
   elapsed_s:
-  - 1.0014763899962418
-  - 2.0029810319829267
+  - 1.0016274439985864
+  - 2.003123051021248
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481848
+    ram_total_kb: 15481804
   rss_mb:
-  - 30.41015625
-  - 40.75
-seconds_elapsed: 1.209178377990611
+  - 18.92578125
+  - 35.69140625
+seconds_elapsed: 1.2206564400112256
 session_arguments:
   all: false
   limit_category_time: 0
@@ -43,8 +43,42 @@ terminal_results:
   cell_width: 6
   color_scheme: dark
   colored_underlines: true
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 0
+    U+0080/utf-8: 0
+    U+0081/utf-8: 0
+    U+0082/utf-8: 0
+    U+0083/utf-8: 0
+    U+0086/utf-8: 0
+    U+0087/utf-8: 0
+    U+0091/utf-8: 0
+    U+0092/utf-8: 0
+    U+0093/utf-8: 0
+    U+0094/utf-8: 0
+    U+0095/utf-8: 0
+    U+0096/utf-8: 0
+    U+0097/utf-8: 0
+    U+0099/utf-8: 0
   decrqcra: false
   decrqss: true
+  decrqss_injection: false
   decrqss_settings:
     decscusr: '2'
     decstbm: 1;39
@@ -8110,8 +8144,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \U000110cd
       n_errors: 13
-      n_total: 6592
-      pct_success: 99.80279126213593
+      n_total: 6589
+      pct_success: 99.80270147215056
   ri_results:
     18.0.0:
       failed_codepoints: []
@@ -8443,7 +8477,7 @@ test_results:
       n_errors: 71
       n_total: 1529
       pct_success: 95.35644211903205
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.10+3f68594
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 116

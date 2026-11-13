@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-04 23:54:50 UTC
+datetime: 2026-11-11 20:31:49 UTC
 environment:
   TERM: st-256color
 height: 24
@@ -10,34 +10,25 @@ resource_profile:
   - 1.0
   - 0.0
   - 0.0
-  - 43.9
-  - 85.9
+  - 50.9
   - 84.9
-  - 81.9
-  - 33.0
   elapsed_s:
-  - 1.0015549679810647
-  - 2.0032310699752998
-  - 3.0047428639954887
-  - 4.006135503994301
-  - 5.007609423977556
-  - 6.009235176985385
-  - 7.0109699919994455
-  - 8.012151861999882
+  - 1.0014814260066487
+  - 2.00453253404703
+  - 3.0056966250413097
+  - 4.007093475025613
+  - 5.008390007016715
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481848
+    ram_total_kb: 15481804
   rss_mb:
-  - 17.4609375
-  - 17.4609375
-  - 17.4609375
-  - 20.32421875
-  - 20.34375
-  - 20.37109375
-  - 20.75
-  - 20.78515625
-seconds_elapsed: 4.743841262010392
+  - 17.53515625
+  - 17.53515625
+  - 17.5390625
+  - 21.51953125
+  - 21.828125
+seconds_elapsed: 2.07723061501747
 session_arguments:
   all: false
   limit_category_time: 0
@@ -58,8 +49,42 @@ terminal_results:
   - 0
   color_scheme: false
   colored_underlines: false
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 0
+    U+0080/utf-8: 0
+    U+0081/utf-8: 0
+    U+0082/utf-8: 0
+    U+0083/utf-8: 0
+    U+0086/utf-8: 0
+    U+0087/utf-8: 0
+    U+0091/utf-8: 0
+    U+0092/utf-8: 0
+    U+0093/utf-8: 0
+    U+0094/utf-8: 0
+    U+0095/utf-8: 0
+    U+0096/utf-8: 0
+    U+0097/utf-8: 0
+    U+0099/utf-8: 0
   decrqcra: false
   decrqss: false
+  decrqss_injection: false
   decrqss_settings: false
   decrqss_truecolor_probe: false
   device_attributes:
@@ -10788,8 +10813,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \u324f
       n_errors: 8
-      n_total: 6592
-      pct_success: 99.87864077669903
+      n_total: 6589
+      pct_success: 99.87858552132342
   ri_results:
     18.0.0:
       failed_codepoints: []
@@ -14019,7 +14044,7 @@ test_results:
       n_errors: 1042
       n_total: 1529
       pct_success: 31.85088293001962
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.10+3f68594
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 80

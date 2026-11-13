@@ -17,7 +17,7 @@ terminals:
       args: []
       env:
         TERM: xterm-256color
-      post_launch_delay_ms: 300
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
@@ -53,7 +53,7 @@ terminals:
     launch:
       program: /opt/extratermqt/extratermqt
       wm_class: qode
-      post_launch_delay_ms: 300
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
@@ -61,7 +61,7 @@ terminals:
     launch_docker:
       program: extraterm
       args: []
-      post_launch_delay_ms: 1000
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
@@ -106,7 +106,7 @@ terminals:
     launch:
       program: hyper
       args: []
-      post_launch_delay_ms: 1500
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT}
@@ -142,7 +142,7 @@ terminals:
       subterminal: true
       program: vim
       args: [-c, ':terminal ++curwin']
-      post_launch_delay_ms: 300
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh ${SCRIPT} && exit
 
@@ -185,6 +185,24 @@ terminals:
       args: [--sb=false, -e]
     skip_docker: true
     skip_reason: Legacy dependencies require several hours to build
+  otty:
+    homepage: https://github.com/otty-shell/otty
+    version_manual: 0.2.0-alpha.1
+    skip_docker: true
+    skip_reason: built from source on host; GPU-accelerated (iced/wgpu)
+    launch:
+      program: /home/jq/Code/otty/target/release/otty
+      args: []
+      wm_class: run.otty.Otty
+      click_before_keys: true
+      post_launch_delay_ms: 3000
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
+      kill_command:
+      - pkill
+      - otty
   putty:
     homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/
     version_template: '{aur_version}'
@@ -227,7 +245,7 @@ terminals:
       subterminal: true
       program: screen
       args: [-q]
-      post_launch_delay_ms: 300
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - "\n"
       - \p1000
@@ -252,7 +270,7 @@ terminals:
       skip: true
       program: syncterm
       args: [Local]
-      post_launch_delay_ms: 300
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
@@ -323,6 +341,23 @@ terminals:
     launch:
       program: terminology
       args: [--geometry, 80x24, --scale, '1.0', -e]
+  termy:
+    homepage: https://github.com/lassejlv/termy
+    version_manual: 1.0.0-rc.11
+    skip_docker: true
+    skip_reason: GPU-accelerated (GPUI/Vulkan); needs a real GPU, installed from the upstream deb
+    test_environment_notes: 'Reports ``TERM_PROGRAM=ghostty`` and ``TERM_PROGRAM_VERSION=1.2.0``
+      to child processes even when both are unset at launch, so environment-based identification
+      points at Ghostty.  It identifies itself as ``Termy 0.2.0`` by XTVERSION.'
+    launch:
+      program: termy
+      args: []
+      click_before_keys: true
+      post_launch_delay_ms: 3000
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   tmux:
     homepage: https://github.com/tmux/tmux
     skip_docker: true
@@ -333,7 +368,7 @@ terminals:
       subterminal: true
       program: tmux
       args: [new-session]
-      post_launch_delay_ms: 300
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
@@ -360,7 +395,7 @@ terminals:
       program: /opt/xtermnet/Example
       args: []
       click_before_keys: true
-      post_launch_delay_ms: 6000
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
@@ -393,7 +428,7 @@ terminals:
       args: []
       wm_class: dev.warp.Warp
       key_delay_ms: 50
-      post_launch_delay_ms: 3500
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
@@ -450,7 +485,7 @@ terminals:
       subterminal: true
       program: zellij
       args: []
-      post_launch_delay_ms: 300
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && pkill zellij
@@ -459,7 +494,7 @@ terminals:
       subterminal: true
       program: zellij
       args: []
-      post_launch_delay_ms: 2000
+      post_launch_delay_ms: 3000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && pkill zellij

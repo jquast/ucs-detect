@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-04 23:57:24 UTC
+datetime: 2026-11-11 20:35:05 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
@@ -8,22 +8,55 @@ preferred_encoding: UTF-8
 python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 2.0
+  - 6.0
   - 0.0
-  - 14.0
+  - 0.0
+  - 1.0
+  - 7.0
+  - 9.0
+  - 12.0
+  - 10.0
+  - 8.0
+  - 6.0
+  - 11.0
+  - 9.0
+  - 7.0
+  - 9.0
   elapsed_s:
-  - 1.001539305987535
-  - 2.0032158969843294
-  - 3.0043865729821846
+  - 1.0028065129881725
+  - 2.007356052985415
+  - 3.008996198012028
+  - 4.010688517009839
+  - 5.012417049962096
+  - 6.01412322797114
+  - 7.0157004710054025
+  - 8.01733320398489
+  - 9.019000978965778
+  - 10.020684910006821
+  - 11.022510412964039
+  - 12.024183065979742
+  - 13.025808366015553
+  - 14.027478055970278
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481848
+    ram_total_kb: 15481804
   rss_mb:
-  - 23.45703125
-  - 23.45703125
-  - 28.84375
-seconds_elapsed: 0.9333069990098011
+  - 23.41015625
+  - 23.515625
+  - 23.515625
+  - 28.90625
+  - 29.9765625
+  - 30.5859375
+  - 31.21484375
+  - 31.21875
+  - 31.21875
+  - 31.22265625
+  - 31.25
+  - 31.27734375
+  - 31.2890625
+  - 31.3203125
+seconds_elapsed: 10.112056215002667
 session_arguments:
   all: false
   limit_category_time: 0
@@ -44,8 +77,42 @@ terminal_results:
   - 0
   color_scheme: false
   colored_underlines: false
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 1
+    U+0080/utf-8: 0
+    U+0081/utf-8: 0
+    U+0082/utf-8: 0
+    U+0083/utf-8: 0
+    U+0086/utf-8: 0
+    U+0087/utf-8: 0
+    U+0091/utf-8: 0
+    U+0092/utf-8: 0
+    U+0093/utf-8: 0
+    U+0094/utf-8: 0
+    U+0095/utf-8: 0
+    U+0096/utf-8: 0
+    U+0097/utf-8: 0
+    U+0099/utf-8: 0
   decrqcra: false
   decrqss: false
+  decrqss_injection: false
   decrqss_settings: false
   decrqss_truecolor_probe: false
   device_attributes:
@@ -10840,8 +10907,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \u324f
       n_errors: 8
-      n_total: 6592
-      pct_success: 99.87864077669903
+      n_total: 6589
+      pct_success: 99.87858552132342
   ri_results:
     18.0.0:
       failed_codepoints: []
@@ -14071,7 +14138,7 @@ test_results:
       n_errors: 1042
       n_total: 1529
       pct_success: 31.85088293001962
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.10+3f68594
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 80

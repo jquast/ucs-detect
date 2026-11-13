@@ -180,6 +180,7 @@ def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
 
         with open(stderr_path, "w") as stderr_file:
             env = os.environ.copy()
+            env.pop("TERM", None)
             env.pop("TERM_PROGRAM", None)
             env.pop("TERM_PROGRAM_VERSION", None)
             for key, value in launch_cfg.get("env", {}).items():

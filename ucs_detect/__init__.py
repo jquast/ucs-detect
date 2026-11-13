@@ -29,6 +29,7 @@ import datetime
 import platform
 import functools
 import contextlib
+import subprocess
 import importlib.metadata
 
 # 3rd party
@@ -37,7 +38,7 @@ import blessed
 import wcwidth
 
 # local
-from ucs_detect import measure, terminal, table_compat
+from ucs_detect import measure, controls, terminal, table_compat
 from ucs_detect.table_ri import REGIONAL_INDICATOR_FLAGS
 from ucs_detect.table_sfz import STANDALONE_FITZPATRICK
 from ucs_detect.table_sri import STANDALONE_REGIONAL_INDICATORS
@@ -132,6 +133,23 @@ def _system_name():
     return name
 
 
+def _git_commit_id(root):
+    """Return the abbreviated HEAD commit of the git worktree at *root*, or an empty string."""
+    if not os.path.exists(os.path.join(root, '.git')):
+        return ''
+    try:
+        result = subprocess.run(
+            ['git', '-C', root, 'rev-parse', '--short=7', 'HEAD'],
+            capture_output=True, text=True, timeout=1.0, check=False)
+    except (OSError, subprocess.SubprocessError):
+        return ''
+    commit = result.stdout.strip()
+    if (result.returncode == 0 and 7 <= len(commit) <= 40
+            and set(commit) <= set('0123456789abcdef')):
+        return commit
+    return ''
+
+
 def _ucs_detect_version():
     """
     Return the version of ucs-detect that is running.
@@ -139,16 +157,19 @@ def _ucs_detect_version():
     A source checkout answers from its own ``pyproject.toml`` rather than from
     :mod:`importlib.metadata`, which reports the *installed* distribution: with a different version
     installed system-wide, metadata would record a version that is not the code which produced these
-    results.
+    results.  When that checkout is a git worktree, the abbreviated HEAD commit is appended as a
+    PEP 440 local version, for example ``2.3.9+a48d4a1``.
     """
-    pyproject = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'pyproject.toml')
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    pyproject = os.path.join(root, 'pyproject.toml')
     try:
         with open(pyproject, encoding='utf-8') as fin:
             for line in fin:
                 key, sep, value = line.partition('=')
                 if sep and key.strip() == 'version':
-                    return value.strip().strip('\'"')
+                    version = value.strip().strip('\'"')
+                    commit = _git_commit_id(root) if '+' not in version else ''
+                    return f'{version}+{commit}' if commit else version
     except OSError:
         pass
     try:
@@ -328,6 +349,9 @@ def run(stream, limit_codepoints, limit_errors, limit_graphemes, limit_graphemes
                 has_unicode=has_unicode or terminal_full_probe,
                 silent=silent,
             )
+            terminal_results.update(
+                controls.maybe_determine_control_advance(
+                    term, timeout=resolved_timeout))
 
     if save_yaml or save_json:
         if not silent:

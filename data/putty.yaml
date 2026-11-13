@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-04 23:56:27 UTC
+datetime: 2026-11-11 20:33:18 UTC
 environment:
   TERM: xterm
 height: 23
@@ -7,25 +7,28 @@ preferred_encoding: UTF-8
 python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 7.0
+  - 6.0
   - 0.0
-  - 9.0
-  - 88.9
+  - 1.0
+  - 53.9
+  - 74.9
   elapsed_s:
-  - 1.0012765010178555
-  - 2.0029434600146487
-  - 3.0042919240077026
-  - 4.005638130998705
+  - 1.001947371987626
+  - 2.0037660739617422
+  - 3.0052495489944704
+  - 4.0069250339875
+  - 5.008457619987894
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481848
+    ram_total_kb: 15481804
   rss_mb:
-  - 61.29296875
-  - 61.29296875
-  - 62.375
-  - 74.6484375
-seconds_elapsed: 1.5120301010028925
+  - 61.80859375
+  - 61.80859375
+  - 61.80859375
+  - 72.890625
+  - 78.4921875
+seconds_elapsed: 1.4036530400044285
 session_arguments:
   all: false
   limit_category_time: 0
@@ -41,8 +44,42 @@ system: Linux
 terminal_results:
   color_scheme: false
   colored_underlines: false
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: -1
+    U+0080/utf-8: 1
+    U+0081/utf-8: 1
+    U+0082/utf-8: 1
+    U+0083/utf-8: 1
+    U+0086/utf-8: 1
+    U+0087/utf-8: 1
+    U+0091/utf-8: 1
+    U+0092/utf-8: 1
+    U+0093/utf-8: 1
+    U+0094/utf-8: 1
+    U+0095/utf-8: 1
+    U+0096/utf-8: 1
+    U+0097/utf-8: 1
+    U+0099/utf-8: 1
   decrqcra: false
   decrqss: false
+  decrqss_injection: false
   decrqss_settings: false
   decrqss_truecolor_probe: false
   device_attributes:
@@ -10786,8 +10823,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \U000110cd
       n_errors: 13
-      n_total: 6592
-      pct_success: 99.80279126213593
+      n_total: 6589
+      pct_success: 99.80270147215056
   ri_results:
     18.0.0:
       failed_codepoints: []
@@ -13918,7 +13955,7 @@ test_results:
       n_errors: 1009
       n_total: 1529
       pct_success: 34.009156311314584
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.10+3f68594
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 79

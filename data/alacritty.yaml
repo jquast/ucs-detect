@@ -1,5 +1,5 @@
 ambiguous_width: 1
-datetime: 2026-11-04 23:55:50 UTC
+datetime: 2026-11-11 20:32:17 UTC
 environment:
   COLORTERM: truecolor
   TERM: alacritty
@@ -8,28 +8,28 @@ preferred_encoding: UTF-8
 python_version: 3.14.9
 resource_profile:
   cpu_pct:
-  - 17.0
+  - 16.0
   - 0.0
-  - 4.0
-  - 111.8
-  - 115.8
+  - 3.0
+  - 67.9
+  - 120.8
   elapsed_s:
-  - 1.001245502004167
-  - 2.0031274710199796
-  - 3.004598652012646
-  - 4.006222698022611
-  - 5.008486587001244
+  - 1.0015084319747984
+  - 2.003213854972273
+  - 3.004477478971239
+  - 4.0060336730093695
+  - 5.007302518002689
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481848
+    ram_total_kb: 15481804
   rss_mb:
-  - 120.52734375
-  - 120.52734375
-  - 123.69921875
-  - 132.11328125
-  - 137.0390625
-seconds_elapsed: 2.4567400539817754
+  - 120.55859375
+  - 120.55859375
+  - 120.56640625
+  - 131.625
+  - 134.59375
+seconds_elapsed: 1.824172985041514
 session_arguments:
   all: false
   limit_category_time: 0
@@ -50,8 +50,42 @@ terminal_results:
   - 6168
   color_scheme: false
   colored_underlines: false
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 0
+    U+0080/utf-8: 0
+    U+0081/utf-8: 0
+    U+0082/utf-8: 0
+    U+0083/utf-8: 0
+    U+0086/utf-8: 0
+    U+0087/utf-8: 0
+    U+0091/utf-8: 0
+    U+0092/utf-8: 0
+    U+0093/utf-8: 0
+    U+0094/utf-8: 0
+    U+0095/utf-8: 0
+    U+0096/utf-8: 0
+    U+0097/utf-8: 0
+    U+0099/utf-8: 0
   decrqcra: false
   decrqss: false
+  decrqss_injection: false
   decrqss_settings: false
   decrqss_truecolor_probe: false
   device_attributes:
@@ -8932,8 +8966,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \U00011f02
       n_errors: 25
-      n_total: 6592
-      pct_success: 99.62075242718447
+      n_total: 6589
+      pct_success: 99.62057975413569
   ri_results:
     18.0.0:
       failed_codepoints: []
@@ -12037,7 +12071,7 @@ test_results:
       n_errors: 1000
       n_total: 1517
       pct_success: 34.080421885299934
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.10+3f68594
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 80

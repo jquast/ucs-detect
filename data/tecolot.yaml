@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-11-09 15:50:55 UTC
+datetime: 2026-11-13 17:04:17 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: tecolot
   TERM_PROGRAM_VERSION: 0.99.7
-height: 43
+height: 25
 preferred_encoding: UTF-8
 python_version: 3.9.6
-seconds_elapsed: 3.389588583
+seconds_elapsed: 3.484553791
 session_arguments:
   all: false
   limit_category_time: 0
@@ -27,23 +27,57 @@ terminal_results:
   - 10280
   - 11308
   - 13364
-  cell_height: 25
-  cell_width: 13
+  cell_height: 15
+  cell_width: 7
   color_scheme: dark
   colored_underlines: true
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 1
+    U+0080/utf-8: 0
+    U+0081/utf-8: 0
+    U+0082/utf-8: 0
+    U+0083/utf-8: 0
+    U+0086/utf-8: 0
+    U+0087/utf-8: 0
+    U+0091/utf-8: 0
+    U+0092/utf-8: 0
+    U+0093/utf-8: 0
+    U+0094/utf-8: 0
+    U+0095/utf-8: 0
+    U+0096/utf-8: 0
+    U+0097/utf-8: 0
+    U+0099/utf-8: 0
   decrqcra: true
   decrqss: true
+  decrqss_injection: false
   decrqss_settings:
     decsace: '0'
     decsasd: '0'
     decsca: '0'
     decscl: 65;1
     decscusr: '1'
-    decslpp: '43'
-    decslrm: 1;147
-    decsnls: '43'
+    decslpp: '25'
+    decslrm: 1;80
+    decsnls: '25'
     decssdt: '0'
-    decstbm: 1;43
+    decstbm: 1;25
     sgr: 0;38;2;40;44;52
   decrqss_truecolor_probe: true
   device_attributes:
@@ -63,7 +97,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 43
+  height: 25
   iterm2_features:
     features:
       bracketed_paste: true
@@ -164,14 +198,14 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: true
-  pixels_height: 1075
-  pixels_width: 1911
-  screen_ratio: '16:9'
-  screen_ratio_name: HD
+  pixels_height: 375
+  pixels_width: 560
+  screen_ratio: '16:10'
+  screen_ratio_name: WSXGA
   sixel: true
   software_method: XTVERSION
   software_name: SwiftTerm
-  software_version: '282c3c3a932b'
+  software_version: 282c3c3a932b
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
@@ -181,7 +215,7 @@ terminal_results:
     protocol: null
     supported: false
   ttype: xterm-256color
-  width: 147
+  width: 80
   xtgettcap:
     capabilities:
       AX: ''
@@ -1202,7 +1236,7 @@ test_results:
     18.0.0:
       failed_codepoints: []
       n_errors: 0
-      n_total: 6592
+      n_total: 6589
       pct_success: 100.0
   ri_results:
     18.0.0:
@@ -4157,7 +4191,7 @@ test_results:
       n_errors: 976
       n_total: 1529
       pct_success: 36.167429692609545
-ucs_detect_version: 2.3.9
+ucs_detect_version: 2.3.10+1c01b9d
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
-width: 147
+width: 80
