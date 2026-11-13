@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-11-05 21:15:55 UTC
+datetime: 2026-11-13 17:16:50 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: iTerm.app
   TERM_PROGRAM_VERSION: 3.7.7
-height: 41
+height: 63
 preferred_encoding: UTF-8
 python_version: 3.9.6
-seconds_elapsed: 1521.575825125
+seconds_elapsed: 772.896255583
 session_arguments:
   all: false
   limit_category_time: 0
@@ -27,17 +27,51 @@ terminal_results:
   - 5518
   - 6458
   - 7797
-  cell_height: 26
-  cell_width: 11
+  cell_height: 17
+  cell_width: 7
   color_scheme: dark
   colored_underlines: false
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 1
+    U+0080/utf-8: 1
+    U+0081/utf-8: 1
+    U+0082/utf-8: 1
+    U+0083/utf-8: 1
+    U+0086/utf-8: 1
+    U+0087/utf-8: 1
+    U+0091/utf-8: 1
+    U+0092/utf-8: 1
+    U+0093/utf-8: 1
+    U+0094/utf-8: 1
+    U+0095/utf-8: 1
+    U+0096/utf-8: 1
+    U+0097/utf-8: 1
+    U+0099/utf-8: 1
   decrqcra: false
   decrqss: true
+  decrqss_injection: false
   decrqss_settings:
     decsca: '0'
     decscl: '65'
     decscusr: '2'
-    decslpp: '41'
+    decslpp: '63'
     decslrm: ''
     decstbm: ''
     sgr: 0;38:2:1:21:25:30
@@ -60,7 +94,7 @@ terminal_results:
   - 56490
   - 56491
   - 56490
-  height: 41
+  height: 63
   iterm2_features:
     features:
       bracketed_paste: true
@@ -161,8 +195,8 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: true
-  pixels_height: 1066
-  pixels_width: 1903
+  pixels_height: 1071
+  pixels_width: 1904
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: true
@@ -178,7 +212,7 @@ terminal_results:
     protocol: null
     supported: false
   ttype: xterm-256color
-  width: 173
+  width: 272
   xtgettcap:
     capabilities:
       AX: '1'
@@ -6181,8 +6215,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \uf87f
       n_errors: 17
-      n_total: 6592
-      pct_success: 99.74211165048543
+      n_total: 6589
+      pct_success: 99.74199423281226
   ri_results:
     18.0.0:
       failed_codepoints: []
@@ -9139,7 +9173,7 @@ test_results:
       n_errors: 977
       n_total: 1529
       pct_success: 36.10202746893395
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.10+1c01b9d
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
-width: 173
+width: 272

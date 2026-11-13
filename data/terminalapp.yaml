@@ -1,14 +1,14 @@
 ambiguous_width: 1
-datetime: 2026-11-05 20:56:47 UTC
+datetime: 2026-11-13 17:03:37 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
   TERM_PROGRAM: Apple_Terminal
   TERM_PROGRAM_VERSION: '488.9'
-height: 68
+height: 44
 preferred_encoding: UTF-8
 python_version: 3.9.6
-seconds_elapsed: 7.731191167
+seconds_elapsed: 5.859375249999999
 session_arguments:
   all: false
   limit_category_time: 0
@@ -29,8 +29,42 @@ terminal_results:
   - 13287
   color_scheme: false
   colored_underlines: false
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 0
+    U+0080/utf-8: 1
+    U+0081/utf-8: 1
+    U+0082/utf-8: 1
+    U+0083/utf-8: 1
+    U+0086/utf-8: 1
+    U+0087/utf-8: 1
+    U+0091/utf-8: 1
+    U+0092/utf-8: 1
+    U+0093/utf-8: 1
+    U+0094/utf-8: 1
+    U+0095/utf-8: 1
+    U+0096/utf-8: 1
+    U+0097/utf-8: 1
+    U+0099/utf-8: 1
   decrqcra: false
   decrqss: false
+  decrqss_injection: false
   decrqss_settings: false
   decrqss_truecolor_probe: false
   device_attributes:
@@ -43,7 +77,7 @@ terminal_results:
   - 59086
   - 59086
   - 59086
-  height: 68
+  height: 44
   iterm2_features:
     features: {}
     supported: false
@@ -59,8 +93,8 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 1037
-  pixels_width: 1903
+  pixels_height: 1027
+  pixels_width: 1901
   screen_ratio: '16:9'
   screen_ratio_name: HD
   sixel: false
@@ -76,7 +110,7 @@ terminal_results:
     protocol: null
     supported: false
   ttype: xterm-256color
-  width: 269
+  width: 171
   xtgettcap:
     capabilities: {}
     supported: false
@@ -11284,8 +11318,8 @@ test_results:
         measured_by_wcwidth: 1
         wchar: \uf8d6
       n_errors: 95
-      n_total: 6592
-      pct_success: 98.55885922330097
+      n_total: 6589
+      pct_success: 98.55820306571559
   ri_results:
     18.0.0:
       failed_codepoints:
@@ -14404,7 +14438,7 @@ test_results:
       n_errors: 1002
       n_total: 1529
       pct_success: 34.46697187704382
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.10+1c01b9d
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
-width: 269
+width: 171
