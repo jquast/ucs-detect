@@ -197,6 +197,8 @@ terminals:
       click_before_keys: true
       post_launch_delay_ms: 3000
       post_launch_keys:
+      - \kctrl+shift+f
+      - \p500
       - 'sh '
       - ${SCRIPT} && exit
       - "\n"

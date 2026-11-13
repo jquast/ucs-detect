@@ -20,6 +20,7 @@ import yaml
 _RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
 _RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
 _RE_PAUSE = re.compile(r'^\\p(\d+)$')
+_RE_KEY = re.compile(r'^\\k(\S+)$')
 
 
 class DiscoveredYAML(NamedTuple):
@@ -289,6 +290,7 @@ def inject_keys(window_id, keys, key_delay_ms=30, click_before_keys=False):
     Special tokens:
       ``\\n``       press Return
       ``\\pNNN``    pause for NNN milliseconds
+      ``\\kCOMBO``  press an xdotool key combination, e.g. ``\\kctrl+shift+f``
 
     *click_before_keys*: click the center of the window first
     """
@@ -332,7 +334,7 @@ def inject_keys(window_id, keys, key_delay_ms=30, click_before_keys=False):
     delay_str = str(key_delay_ms)
     merged = []
     for key in keys:
-        if key in ("\n", "\\n") or _RE_PAUSE.match(key):
+        if key in ("\n", "\\n") or _RE_PAUSE.match(key) or _RE_KEY.match(key):
             if merged:
                 combined = "".join(merged)
                 subprocess.run(
@@ -345,9 +347,15 @@ def inject_keys(window_id, keys, key_delay_ms=30, click_before_keys=False):
                     ["xdotool", "key", "Return"],
                     capture_output=True, timeout=5, check=False,
                 )
-            else:
+            elif _RE_PAUSE.match(key):
                 ms = int(_RE_PAUSE.match(key).group(1))
                 time.sleep(ms / 1000.0)
+            else:
+                combo = _RE_KEY.match(key).group(1)
+                subprocess.run(
+                    ["xdotool", "key", combo],
+                    capture_output=True, timeout=5, check=False,
+                )
         else:
             merged.append(key)
     if merged:

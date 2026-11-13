@@ -3,8 +3,6 @@ datetime: 2026-11-13 16:50:33 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
-  TERM_PROGRAM: ghostty
-  TERM_PROGRAM_VERSION: 1.2.0
 height: 41
 preferred_encoding: UTF-8
 python_version: 3.13.13

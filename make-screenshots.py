@@ -26,6 +26,7 @@ from ucs_detect.accessories import (
     DiscoveredYAML,
     _IS_DOCKER,
     _KEY_INJECT_LOCK,
+    _RE_KEY,
     _RE_PAUSE,
     build_launch_args,
     build_subterminal_launch_args,
@@ -531,7 +532,8 @@ def main():
                     for key in post_keys
                 ]
                 text_keys = [k for k in resolved_keys
-                             if k != "\n" and not _RE_PAUSE.match(k)]
+                             if k != "\n" and not _RE_PAUSE.match(k)
+                             and not _RE_KEY.match(k)]
                 print(f"injecting: {''.join(text_keys)} ... ",
                       end="", flush=True)
                 key_delay = launch_cfg.get("key_delay_ms", 30)

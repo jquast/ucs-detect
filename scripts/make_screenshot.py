@@ -7,6 +7,7 @@ For each record, displays a simplified ``--stop-at-error``-style box with
 and saves a trimmed PNG.
 """
 import argparse
+import functools
 import json
 import os
 import shutil
@@ -26,9 +27,17 @@ from ucs_detect.accessories import decode_wchars
 
 
 def _marker_cells(term):
-    """Return (row1_str, row2_str) — a 2×2 checkerboard of magenta and yellow."""
-    mc = term.on_color_rgb(255, 0, 255)
-    yc = term.on_color_rgb(255, 255, 0)
+    """Return (row1_str, row2_str), a 2x2 checkerboard of magenta and yellow.
+
+    The sequences are layered so the most precise color a terminal supports
+    wins: ANSI bright background first, then the exact xterm 256-color cube
+    entry (201 is magenta, 226 is yellow), then truecolor.  Writing the
+    truecolor SGR directly avoids blessed's downconversion.  The 256-color
+    layer keeps the markers exact through multiplexers such as GNU Screen,
+    which drops ``48;2`` unless its own truecolor setting is on.
+    """
+    mc = "\x1b[45m\x1b[105m\x1b[48;5;201m\x1b[48;2;255;0;255m"
+    yc = "\x1b[43m\x1b[103m\x1b[48;5;226m\x1b[48;2;255;255;0m"
     row1 = mc + " " + yc + " " + term.normal
     row2 = yc + " " + mc + " " + term.normal
     return row1, row2
@@ -159,48 +168,138 @@ def _imagemagick_trim(src_path, dst_path):
     )
 
 
+def _is_marker_pixel(pixel):
+    """Return True for a marker's magenta or yellow, allowing palette drift."""
+    r, g, b = pixel[0], pixel[1], pixel[2]
+    magenta = r > 150 and b > 150 and g < 100 and abs(r - b) < 80
+    yellow = r > 150 and g > 140 and b < 100 and abs(r - g) < 110
+    warm = r > 110 and r - g > 70 and r - b > 70 and b < 80
+    return magenta or yellow or warm
+
+
+def _is_marker_edge(pixel):
+    """Return True for a pixel blended between a marker color and the background."""
+    r, g, b = pixel[0], pixel[1], pixel[2]
+    return (r - g > 80 and b - g > 80) or (r - b > 80 and g - b > 80)
+
+
+_MIN_MARKER_RUN = 6
+_MIN_MARKER_HEIGHT = 12
+
+
+def _marker_runs(px, y, width):
+    """Return the horizontal runs of marker pixels in row *y*."""
+    runs = []
+    start = None
+    for x in range(width):
+        if _is_marker_pixel(px[x, y]):
+            if start is None:
+                start = x
+        elif start is not None:
+            if x - start >= _MIN_MARKER_RUN:
+                runs.append((start, x - 1))
+            start = None
+    if start is not None and width - start >= _MIN_MARKER_RUN:
+        runs.append((start, width - 1))
+    return runs
+
+
+def _marker_blocks(px, width, height):
+    """Return ``(x1, y1, x2, y2)`` for each block of marker pixels.
+
+    A checkerboard's two cell rows can be separated by one blended row that
+    fails the color test, so a single empty row is tolerated inside a block.
+    """
+    blocks = []
+    current = []
+    gap = 0
+    for y in range(height):
+        runs = _marker_runs(px, y, width)
+        if runs:
+            run_x1 = min(run[0] for run in runs)
+            run_x2 = max(run[1] for run in runs)
+            if not current or gap >= 2:
+                if current:
+                    blocks.append(current)
+                current = [run_x1, y, run_x2, y]
+            else:
+                current[0] = min(current[0], run_x1)
+                current[2] = max(current[2], run_x2)
+                current[3] = y
+            gap = 0
+        else:
+            gap += 1
+    if current:
+        blocks.append(current)
+    return blocks
+
+
 def _crop_to_markers(src_path, dst_path):
-    """Crop *src_path* to the rectangle bounded by bright-magenta markers."""
+    """Crop *src_path* to the rectangle bounded by the two checkerboards.
+
+    The top-left marker supplies the left and top edges, the bottom-right
+    marker the right and bottom edges.  One extra pixel is included on a side
+    where the marker's anti-aliased edge is still visible.
+    """
     from PIL import Image
     img = Image.open(src_path)
     if img.mode != "RGB":
         img = img.convert("RGB")
     w, h = img.size
+    px = img.load()
 
-    def _is_marker(px):
-        r, g, b = px[0], px[1], px[2]
-        return (r > 220 and g < 30 and b > 220) or (r > 220 and g > 220 and b < 30)
-
-    # Scan top-down for first marker row
-    y1 = None
-    for y in range(h):
-        for x in range(w):
-            if _is_marker(img.getpixel((x, y))):
-                y1 = y
-                break
-        if y1 is not None:
-            break
-
-    if y1 is None:
+    blocks = [block for block in _marker_blocks(px, w, h)
+              if block[3] - block[1] + 1 >= _MIN_MARKER_HEIGHT]
+    if not blocks:
         _imagemagick_trim(src_path, dst_path)
         return
 
-    # Scan bottom-up for last marker row
-    y2 = None
-    for y in range(h - 1, -1, -1):
-        for x in range(w):
-            if _is_marker(img.getpixel((x, y))):
-                y2 = y
-                break
-        if y2 is not None:
-            break
+    # The two markers are the tallest blocks; window chrome can contain
+    # smaller patches of the same colors.
+    tallest = max(block[3] - block[1] + 1 for block in blocks)
+    blocks = [block for block in blocks
+              if block[3] - block[1] + 1 >= tallest / 2]
+    top = min(blocks, key=lambda block: block[1])
+    bottom = max(blocks, key=lambda block: block[3])
+    if top[1] >= bottom[1]:
+        _imagemagick_trim(src_path, dst_path)
+        return
 
-    y2 = min(h, y2 + 4)
-    img.crop((0, y1, w, y2)).save(dst_path)
+    x1, y1, top_x2, top_y2 = top
+    bottom_x1, bottom_y1, x2, y2 = bottom
+
+    if x1 > 0 and any(_is_marker_edge(px[x1 - 1, y])
+                      for y in range(y1, top_y2 + 1)):
+        x1 -= 1
+    if x2 + 1 < w and any(_is_marker_edge(px[x2 + 1, y])
+                          for y in range(bottom_y1, y2 + 1)):
+        x2 += 1
+    if y1 > 0 and any(_is_marker_edge(px[x, y1 - 1])
+                      for x in range(x1, top_x2 + 1)):
+        y1 -= 1
+    if y2 + 1 < h and any(_is_marker_edge(px[x, y2 + 1])
+                          for x in range(bottom_x1, x2 + 1)):
+        y2 += 1
+
+    img.crop((x1, y1, x2 + 1, y2 + 1)).save(dst_path)
     subprocess.run(
         ["convert", dst_path, "-strip", dst_path],
         capture_output=True, check=True, timeout=10,
     )
+
+
+def _clear_screen(term):
+    """Blank the visible screen one line at a time with EL.
+
+    Erasing the display (``CSI 2J``) is not a plain clear on every terminal:
+    OTTY scrolls the erased lines into history, and its viewport then keeps
+    showing them, so successive screens stack down the window.
+    """
+    parts = [term.move_yx(row, 0) + term.clear_eol
+             for row in range(term.height)]
+    parts.append(term.move_yx(0, 0))
+    sys.stdout.write("".join(parts))
+    sys.stdout.flush()
 
 
 def display_and_capture(term, wchars, expected_width, measured_width,
@@ -212,6 +311,8 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     PAD = 4
 
     sys.stdout.write("\x1b[?25l")  # hide cursor
+
+    printc = functools.partial(print, end=term.clear_eol + "\n")
 
     text = decode_wchars(wchars)
     display_width = wcwidth.wcswidth(text)
@@ -232,24 +333,23 @@ def display_and_capture(term, wchars, expected_width, measured_width,
         bottom = cross + term.center("", interior, fillchar=hbar) + cross
 
         if heading is not None:
-            print(prefix)
-            print(prefix + term.normal + heading)
-        print(prefix + term.cyan(top))
-        print(prefix + term.cyan(vbar) + inner + term.cyan(vbar))
-        print(prefix + term.cyan(bottom))
+            printc(prefix)
+            printc(prefix + term.normal + heading)
+        printc(prefix + term.cyan(top))
+        printc(prefix + term.cyan(vbar) + inner + term.cyan(vbar))
+        printc(prefix + term.cyan(bottom))
 
         return interior, len(heading) if heading else 0
 
-    # Clear screen, position cursor
-    sys.stdout.write("\x1b[H\x1b[2J")
+    _clear_screen(term)
 
     # Top-left crop marker: 2×2 magenta block (padded by TOP_PAD, LEFT_PAD)
     top_marker_row = TOP_PAD + 1
     marker_row1, marker_row2 = _marker_cells(term)
     sys.stdout.write(
-        f"\x1b[{top_marker_row};{LEFT_PAD + 1}H{marker_row1}")
+        f"\x1b[{top_marker_row};{LEFT_PAD + 1}H{marker_row1}{term.clear_eol}")
     sys.stdout.write(
-        f"\x1b[{top_marker_row + 1};{LEFT_PAD + 1}H{marker_row2}")
+        f"\x1b[{top_marker_row + 1};{LEFT_PAD + 1}H{marker_row2}{term.clear_eol}")
     sys.stdout.flush()
 
     content_row = top_marker_row + 3
@@ -291,9 +391,9 @@ def display_and_capture(term, wchars, expected_width, measured_width,
     )
     marker_row = 6 + extra_tables * 4 + TOP_PAD + 2
     sys.stdout.write(
-        f"\x1b[{marker_row};{marker_col}H{marker_row1}")
+        f"\x1b[{marker_row};{marker_col}H{marker_row1}{term.clear_eol}")
     sys.stdout.write(
-        f"\x1b[{marker_row + 1};{marker_col}H{marker_row2}")
+        f"\x1b[{marker_row + 1};{marker_col}H{marker_row2}{term.clear_eol}")
     sys.stdout.flush()
 
     # Drain stale input (e.g. from does_text_sizing probe) so the CPR

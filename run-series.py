@@ -27,6 +27,7 @@ from ucs_detect.accessories import (
     _KEY_INJECT_LOCK,
     _KEY_INJECT_PRE_DELAY,
     _KEY_INJECT_POST_DELAY,
+    _RE_KEY,
     _RE_PAUSE,
     build_launch_args,
     build_subterminal_launch_args,
@@ -218,7 +219,8 @@ def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                             for k in resolved_keys
                         ]
                     text_keys = [k for k in resolved_keys
-                                 if k != "\n" and not _RE_PAUSE.match(k)]
+                                 if k != "\n" and not _RE_PAUSE.match(k)
+                                 and not _RE_KEY.match(k)]
                     print(f"[{sw_name}] injecting: {''.join(text_keys)}", flush=True)
                     key_delay = launch_cfg.get("key_delay_ms", 30)
                     inject_keys(window_id, resolved_keys, key_delay_ms=key_delay,
