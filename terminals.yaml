@@ -251,6 +251,9 @@ terminals:
       post_launch_keys:
       - "\n"
       - \p1000
+      - screen -X truecolor on
+      - "\n"
+      - \p300
       - 'sh '
       - ${SCRIPT} && exit
       - "\n"

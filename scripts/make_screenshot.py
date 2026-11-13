@@ -30,12 +30,11 @@ def _marker_cells(term):
     """Return (row1_str, row2_str), a 2x2 checkerboard of magenta and yellow.
 
     The sequences are layered so the most precise color a terminal supports
-    wins: ANSI bright background first, then the exact xterm 256-color cube
-    entry (201 is magenta, 226 is yellow), then truecolor.  Writing the
-    truecolor SGR directly avoids blessed's downconversion.  The 256-color
-    layer keeps the markers exact through multiplexers such as GNU Screen,
-    which drops ``48;2`` unless its own truecolor setting is on.
+    wins: ANSI bright background first, then the exact xterm 256 color cube
+    entry (201 is magenta, 226 is yellow), then truecolor.
     """
+    # The 256 color layer is the fallback for GNU Screen with truecolor off,
+    # which drops the 48;2 sequence.
     mc = "\x1b[45m\x1b[105m\x1b[48;5;201m\x1b[48;2;255;0;255m"
     yc = "\x1b[43m\x1b[103m\x1b[48;5;226m\x1b[48;2;255;255;0m"
     row1 = mc + " " + yc + " " + term.normal
