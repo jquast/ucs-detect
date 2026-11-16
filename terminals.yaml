@@ -267,6 +267,9 @@ terminals:
     homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/
     version_template: '{aur_version}'
     aur_package: putty
+    # pterm lays right to left text out itself, so its spillover scan would report the reordered
+    # ink as spill; the scan skips every candidate with a right to left character.
+    spillover_rtl: no
     launch:
       program: pterm
       args: [-fn, 'Unifont 16', -geometry, 80x24, -e]

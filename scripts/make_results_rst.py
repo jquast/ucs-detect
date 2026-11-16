@@ -4397,8 +4397,9 @@ def show_spillover_results(sw_name, entry):
         print()
         return
 
-    print("**Screenshots:**")
-    print()
+    display_inbound_hyperlink(
+        entry["terminal_software_name"] + "_spillover_screenshots")
+    display_title("Screenshots", 4)
 
     for filename, record, abs_image in shown:
         spills = record["spillovers"]
