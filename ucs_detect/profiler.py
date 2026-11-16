@@ -36,13 +36,12 @@ def require_psutil():
 
 
 class ProfileSession:
-    """Samples CPU% and RSS of a process tree during a terminal test."""  # pylint: disable=too-many-instance-attributes
+    """Samples CPU% and RSS of a process tree during a terminal test."""
 
     def __init__(self, sw_name: str, pid: int, interval: float = 1.0,
                  program: str | None = None,
                  extra_programs: list[str] | None = None,
                  exclude_names: set[str] | None = None):
-        """Initialize a profile session for a process tree."""
         self._sw_name = sw_name
         self._pid = pid
         self._interval = interval
@@ -58,7 +57,6 @@ class ProfileSession:
 
     @staticmethod
     def _is_zombie(proc) -> bool:
-        """Return True if *proc* is a zombie (defunct) process."""
         psutil = require_psutil()
         try:
             return proc.status() == "zombie"
@@ -67,7 +65,6 @@ class ProfileSession:
 
     @staticmethod
     def _find_process_by_name(name: str):
-        """Return the first process matching *name*, excluding the current process."""
         psutil = require_psutil()
         my_pid = os.getpid()
         for proc in psutil.process_iter(["name", "pid", "status"]):
@@ -81,11 +78,6 @@ class ProfileSession:
         return None
 
     def _find_process_by_candidates(self):
-        """
-        Try to find the terminal process using program basename and extra names.
-
-        Returns (process, name_that_matched) or (None, None).
-        """
         prog_basename = os.path.basename(self._program) if self._program else None
         candidates = [prog_basename] if prog_basename else []
         candidates.extend(self._extra)
@@ -111,7 +103,6 @@ class ProfileSession:
             self._thread.join(timeout=5)
 
     def _get_or_prime_child(self, child):
-        """Return a cached Process for *child*, priming cpu_percent if new."""
         psutil = require_psutil()
         pid = child.pid
         if pid in self._proc_cache:
@@ -126,12 +117,6 @@ class ProfileSession:
         return child
 
     def _sample_process_tree(self, root) -> tuple[float, float]:
-        """
-        Sum CPU% and RSS across *root* and all descendants.
-
-        Processes whose name or first argument matches ``_exclude_names`` (e.g. ``ucs-detect``,
-        ``re-run.py``) are skipped so the test harness CPU is not attributed to the terminal.
-        """
         psutil = require_psutil()
         cpu_total = 0.0
         rss_total = 0.0
@@ -170,7 +155,6 @@ class ProfileSession:
 
     @staticmethod
     def _find_all_by_name(name: str):
-        """Yield all processes (excluding current) whose name matches *name*."""
         psutil = require_psutil()
         my_pid = os.getpid()
         for proc in psutil.process_iter(["name", "pid", "status"]):
@@ -183,7 +167,6 @@ class ProfileSession:
                 continue
 
     def _discover_all_recovered_processes(self, prog_basename: str) -> None:
-        """After recovery, find all processes matching *prog_basename* and their children."""
         psutil = require_psutil()
         seen_pids = {p.pid for p in self._extra_procs if p.pid in self._proc_cache}
         for proc in self._find_all_by_name(prog_basename):
@@ -210,7 +193,6 @@ class ProfileSession:
                 pass
 
     def _discover_extra_processes(self) -> None:
-        """Try to find any still-undiscovered extra processes by name."""
         psutil = require_psutil()
         if self._recovered and self._program:
             self._discover_all_recovered_processes(os.path.basename(self._program))
@@ -239,7 +221,6 @@ class ProfileSession:
         t0 = time.monotonic()
 
         def _init_baselines(process):
-            """Prime cpu_percent() for all processes under *process*."""
             try:
                 procs = [process] + process.children(recursive=True)
             except (psutil.NoSuchProcess, psutil.AccessDenied):
@@ -282,13 +263,7 @@ class ProfileSession:
             self._stop_event.wait(self._interval)
 
     def samples(self) -> list[tuple[float, float, float]]:
-        """
-        Return collected samples as (elapsed_seconds, cpu_pct, rss_mb) tuples.
-
-        The first sample is dropped when it is a known initialization artifact (0.0 CPU from
-        cpu_percent priming). Trailing entries with zero RSS (process-exit artifacts) are always
-        stripped.
-        """
+        """Return collected samples as (elapsed_seconds, cpu_pct, rss_mb) tuples."""
         result = list(self._samples)
         if result and result[0][1] == 0.0:
             result.pop(0)
@@ -346,14 +321,7 @@ def generate_graphs(
     profiles: dict[str, ProfileSession],
     output_dir: Path,
 ) -> None:
-    """
-    Generate per-terminal CPU and memory graphs with shared log scales.
-
-    Writes ``{safe}_cpu.png`` and ``{safe}_rss.png`` for each terminal, plus aggregate
-    ``all_cpu.png`` and ``all_rss.png`` showing all terminals overlaid.  All graphs share the same
-    Y-axis range (log scale) and the same X-axis range (log scale, determined by the slowest
-    terminal).  A red crosshair marks the global mean of both axes with a "---- mean average" label.
-    """
+    """Generate per-terminal CPU and memory graphs with shared log scales."""
     try:
         # 3rd party
         import matplotlib

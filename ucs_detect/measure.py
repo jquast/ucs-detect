@@ -39,7 +39,6 @@ _UNCOMMON_STARTS = tuple(s for s, _ in UNCOMMON_WIDE_RANGES)
 
 
 def _is_uncommon(codepoint):
-    """Return True if codepoint is in an uncommon wide range."""
     idx = bisect.bisect_right(_UNCOMMON_STARTS, codepoint) - 1
     if idx < 0:
         return False
@@ -62,7 +61,6 @@ def status_header(term, label):
 
 
 def _write_final_sampling_rate(writer, term, final_pct, initial_pct):
-    """Display final sampling rate message when time-budget reduced it."""
     if final_pct != initial_pct and final_pct > 0:
         msg = f"Final sampling rate was {final_pct}% due to category time limit"
         writer("\n" + status_header(term, msg) + "\n")
@@ -126,7 +124,6 @@ def make_printf_hex(wchar):
 
 
 def _make_codepoint_table(term, wchars_display):
-    """Build a prettytable showing codepoint breakdown of a character sequence."""
     table = table_compat.new_table(
         field_names=[
             term.magenta("#"),
@@ -458,7 +455,6 @@ def exit_and_display_timeout_error(term, writer, timeout, **_kwargs):
 
 
 def _get_pos_or_exit(term, writer, timeout):
-    """Get cursor position, exiting on timeout."""
     ypos, xpos = get_location_with_retry(term, timeout)
     if (ypos, xpos) == (-1, -1):
         exit_and_display_timeout_error(term, writer, timeout)
@@ -467,7 +463,6 @@ def _get_pos_or_exit(term, writer, timeout):
 
 def _make_result_entry(n_errors, n_total, elapsed, extra=None,
                        sampled_pct=None):
-    """Build a standard result dict for test reporting."""
     entry = {
         "n_errors": n_errors,
         "n_total": n_total,
@@ -727,7 +722,6 @@ def test_support(
 
 
 def _compress_codepoint_ranges(codepoints):
-    """Compress *codepoints* into a list of inclusive ``[start, end]`` pairs."""
     ranges = []
     for codepoint in sorted(codepoints):
         if ranges and codepoint == ranges[-1][1] + 1:
@@ -749,17 +743,7 @@ def test_tofu_support(
     silent=False,
     **_kwargs,
 ):
-    """
-    Test which codepoints the terminal's font has no glyph for, its "tofus".
-
-    Unlike :func:`test_support`, no cursor position report is involved: the terminal is asked about
-    each codepoint directly, by whichever font glyph coverage protocol it answers, and blessed
-    batches those queries for us.
-
-    Honours *include_uncommon* as the WIDE test does: the ideographic extensions and historic
-    scripts of :data:`UNCOMMON_WIDE_RANGES` are a tofu in all but a few specialist fonts, and swamp
-    the count of the codepoints anybody reads.
-    """
+    """Test which codepoints the terminal's font has no glyph for, its "tofus"."""
     results = {}
     for ver, ranges in table:
         blocks = collections.OrderedDict()

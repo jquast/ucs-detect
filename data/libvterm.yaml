@@ -1,50 +1,47 @@
 ambiguous_width: 1
-datetime: 2026-11-11 21:34:42 UTC
+datetime: 2026-11-15 21:43:58 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
-height: 19
+height: 24
 preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 126.6
-  - 155.1
-  - 158.3
-  - 104.9
-  - 100.1
-  - 100.0
-  - 100.1
-  - 99.9
-  - 100.0
-  - 100.1
+  - 225.39999999999998
+  - 161.89999999999998
+  - 156.0
+  - 163.0
+  - 151.2
+  - 100.9
+  - 98.6
+  - 99.7
+  - 99.0
   elapsed_s:
-  - 1.0270446570357308
-  - 2.038283098023385
-  - 3.050069158023689
-  - 4.060619054012932
-  - 5.071247938030865
-  - 6.080034560000058
-  - 7.090031016035937
-  - 8.099303961033002
-  - 9.109980223001912
-  - 10.11960741400253
+  - 0.018252510984893888
+  - 1.0364323669928126
+  - 2.0494287899928167
+  - 3.062328964995686
+  - 4.074605584988603
+  - 5.086846539983526
+  - 6.0975892239948735
+  - 7.111466603993904
+  - 8.124948825978208
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481804
+    ram_total_kb: 15481796
   rss_mb:
-  - 225.01171875
-  - 227.19140625
-  - 227.890625
-  - 228.0859375
-  - 178.5546875
-  - 178.5546875
-  - 178.5546875
-  - 178.5546875
-  - 178.5546875
-  - 178.5546875
-seconds_elapsed: 2.9849820749950595
+  - 224.3046875
+  - 235.0078125
+  - 238.12109375
+  - 238.546875
+  - 239.1640625
+  - 189.9375
+  - 188.421875
+  - 186.609375
+  - 186.609375
+seconds_elapsed: 4.497800511016976
 session_arguments:
   all: false
   limit_category_time: 0
@@ -105,7 +102,7 @@ terminal_results:
     decsca: '2'
     decscusr: '2'
     decslrm: 1;71
-    decstbm: 1;19
+    decstbm: 1;24
     sgr: '38:2:0:0:0'
   decrqss_truecolor_probe: true
   device_attributes:
@@ -118,7 +115,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 19
+  height: 24
   iterm2_features:
     features: {}
     supported: false
@@ -205,7 +202,7 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 494
+  pixels_height: 504
   pixels_width: 781
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
@@ -15340,7 +15337,7 @@ test_results:
       n_errors: 983
       n_total: 1529
       pct_success: 35.70961412688031
-ucs_detect_version: 2.3.10+3f68594
+ucs_detect_version: 2.3.10+58005c1
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 71

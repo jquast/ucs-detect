@@ -12,6 +12,8 @@ import re
 import os
 import sys
 import math
+import functools
+import collections
 from pathlib import Path
 import contextlib
 import unicodedata
@@ -34,7 +36,6 @@ _DPM = blessed.Terminal.DecPrivateMode
 
 
 def _fmt_mode(mode_num):
-    """Format a DEC private mode as ``'description (number)'``."""
     return f"{_DPM(mode_num).long_description} ({mode_num})"
 
 
@@ -50,13 +51,23 @@ if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
 from ucs_detect.accessories import find_best_failure, safe_name, decode_wchars, load_mixins
-from ucs_detect.measure import UNCOMMON_WIDE_RANGES, make_printf_hex
-from ucs_detect.table_tofu import TOFU_CODEPOINTS
+from ucs_detect import colors as color_measure
+from ucs_detect.measure import make_printf_hex
 from ucs_detect.table_lang_contested import LANG_CONTESTED
 from ucs_detect.table_narrow_contested import NARROW_CONTESTED
 from ucs_detect.table_wide_contested import WIDE_CONTESTED
 from ucs_detect.profiler import (ProfileSession, generate_graphs, GRAPH_DPI,
                                  GRAPH_WIDTH_PX, GRAPH_WIDTH_ALL_PX)
+from screenshot_pages import (collect_screenshot_groups,
+                              screenshot_toc_lines,
+                              write_screenshot_pages)
+from ucs_detect.spillover import (spillover_rate, scaled_spillover_score,
+                                  spillover_statistics_from_amounts,
+                                  spillover_examples_from_records,
+                                  emoji_spill_counts, emoji_spillover_rate,
+                                  spillover_kind, KIND_ORDER,
+                                  MAX_EVIDENCE_IMAGES,
+                                  ranked_evidence_pages)
 
 #: Display width of the per-terminal score comparison plot, ``figsize=(8, 4)``.
 SCORE_PLOT_WIDTH_PX = 800
@@ -71,6 +82,15 @@ LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
 FOOTNOTE_TEXT_SIZING = "†"
 FOOTNOTE_SIXEL = "‡"
 FOOTNOTE_CONPTY = "§"
+FOOTNOTE_SPILL_PARTIAL = "¶"
+
+#: Display names of spillover test categories without their own label.
+SPILLOVER_CATEGORY_NAMES = {
+    "zwj": "Emoji ZWJ",
+    "vs16": "VS16",
+    "vs15": "VS15",
+    "ri": "Regional Indicator",
+}
 
 # Width metrics that the Text Sizing protocol may credit to 100%, keyed as
 # recorded in score_table["text_sizing_credited"], with their column labels.
@@ -144,7 +164,6 @@ _example_index_cache = {}
 
 
 def _build_example_index(filepath):
-    """Parse an example file, returning ``{hex_key: 1_based_line_number}``."""
     index = {}
     with open(filepath, 'r', encoding='utf-8') as f:
         for lineno, line in enumerate(f, start=1):
@@ -164,7 +183,6 @@ def _build_example_index(filepath):
 
 
 def _get_example_index(category, measured_width=None):
-    """Return the ``{hex_key: line_number}`` index for *category*, building if needed.  """
     if category.startswith('lang'):
         if measured_width is None:
             return None
@@ -183,10 +201,6 @@ def _get_example_index(category, measured_width=None):
 
 
 def _example_file_link(wchar, category, measured_width=None):
-    """Return an RST hyperlink and line number for the example file at *wchar*.
-
-    :returns: ``(basename, lineno, url)`` tuple or ``None``.
-    """
     def _wchar_to_hex(wchar):
         cps = [f'{ord(c):X}' for c in wchar]
         return '+'.join(cps)
@@ -233,10 +247,7 @@ def make_score_css_class(score):
 
 
 def generate_score_css():
-    """
-    Generate CSS rules for all score classes (0-100).
-    Returns a string containing CSS rules.
-    """
+    """Generate CSS rules for all score classes (0-100)."""
     css_lines = [
         '/* Auto-generated score color classes */',
         '/* Common properties for all score classes */',
@@ -260,10 +271,7 @@ def generate_score_css():
 
 
 def generate_score_roles():
-    """
-    Generate reStructuredText role definitions for all score classes.
-    Returns a string containing role definitions that can be used inline.
-    """
+    """Generate reStructuredText role definitions for all score classes."""
     lines = ['.. Generate custom roles for score coloring', '']
     for score_pct in range(101):
         score = score_pct / 100.0
@@ -308,46 +316,47 @@ def wrap_score_with_hyperlink(text, score, terminal_name, section_suffix):
 
 
 def _wrap_colorterm_warn(text, terminal_name):
-    """Wrap a capability value with warn (yellow) styling and hyperlink."""
     link_target = make_link(terminal_name + "_identification")
     return f':sref:`{text} <{link_target}> warn`'
 
 
 def _wrap_id_fail(text, terminal_name):
-    """Wrap a capability value with fail (red) styling and hyperlink."""
     link_target = make_link(terminal_name + "_identification")
     return f':sref:`{text} <{link_target}> fail`'
 
 
 def _wrap_id_contested(text, terminal_name, section_suffix):
-    """Wrap a capability value with contested (grey) styling and hyperlink."""
     link_target = make_link(terminal_name + section_suffix)
     return f':sref:`{text} <{link_target}> contested`'
 
 
 def _wrap_untested(terminal_name, section_suffix):
-    """Wrap untested score with grey styling and hyperlink."""
     link_target = make_link(terminal_name + section_suffix)
     return f':sref:`N/A <{link_target}> contested`'
 
 
+def _wrap_unmeasured(terminal_name, section_suffix):
+    link_target = make_link(terminal_name + section_suffix)
+    return f':sref:`N/A <{link_target}> unmeasured`'
+
+
 def _text_sizing_mark(result, key):
-    """Footnote suffix for a score credited 100% by the Text Sizing protocol."""
     if key in result.get("text_sizing_credited", ()):
         return f" {FOOTNOTE_TEXT_SIZING}"
     return ""
 
 
 def _text_sizing_credit_note(result, key):
-    """Score breakdown suffix naming the Text Sizing protocol credit, if any."""
     mark = _text_sizing_mark(result, key)
     return f"{mark} (Text Sizing protocol)" if mark else ""
 
 
+def _spill_partial_mark(result):
+    return f" {FOOTNOTE_SPILL_PARTIAL}" if result.get("spill_partial") else ""
+
+
 def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, section_suffix):
-    """
-    Wrap elapsed time text with hyperlink and score styling, using actual seconds for sorting.
-    """
+    """Wrap elapsed time text with hyperlink and score styling, using actual seconds for sorting."""
     score_value_for_color = round(score * 100) if not math.isnan(score) else 'na'
     sort_value = int(elapsed_seconds) if not math.isnan(elapsed_seconds) else 'na'
     link_target = make_link(terminal_name + section_suffix)
@@ -375,7 +384,8 @@ def print_datatable(table_str, caption=None):
 def create_score_plots(sw_name, entry, score_table):
     """Create matplotlib plot comparing terminal scores against all terminals."""
     # Collect all scores for comparison
-    metrics = ['WIDE', 'NARROW', 'ZWJ', 'LANG', 'VS16', 'SRI', 'SFZ', 'RI', 'CAP', 'GFX', 'RSC']
+    metrics = ['WIDE', 'NARROW', 'ZWJ', 'LANG', 'VS16', 'SRI', 'SFZ', 'RI',
+               'SPILL', 'CAP', 'GFX', 'RSC']
     terminal_scores_scaled = {}
     all_scores_scaled = {}
 
@@ -390,6 +400,7 @@ def create_score_plots(sw_name, entry, score_table):
         'SRI': 'score_sri',
         'SFZ': 'score_sfz',
         'RI': 'score_ri',
+        'SPILL': 'score_spill',
         'CAP': 'score_features',
         'GFX': 'score_graphics',
         'RSC': 'score_resource',
@@ -413,7 +424,6 @@ def create_score_plots(sw_name, entry, score_table):
 
 
 def _percentile_to_color(pct):
-    """Interpolate HSV shortest path from red (0%) to green (100%)."""
     # hue 0.0 = red, hue 0.333 = green, interpolate by percentile
     h = (pct / 100.0) * (1.0 / 3.0)
     r, g, b = colorsys.hsv_to_rgb(h, 0.7, 0.9)
@@ -422,7 +432,6 @@ def _percentile_to_color(pct):
 
 def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
                                output_path, use_scaled=False):  # noqa: E127
-    """Create a bar chart showing multiple metrics at once."""
     metrics = list(scores_dict.keys())
     values = []
     percentiles = []
@@ -433,8 +442,8 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
         valid_scores = [s for s in all_scores if not math.isnan(s)]
 
         if math.isnan(score):
-            values.append(0)
-            percentiles.append(0)
+            values.append(None)
+            percentiles.append(None)
         else:
             values.append(score * 100)
             pct = sum(1 for s in valid_scores if s <= score) / len(valid_scores) * 100
@@ -444,9 +453,12 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
     fig, ax = plt.subplots(figsize=(8, 4))
 
     x_pos = np.arange(len(metrics))
-    colors = [_percentile_to_color(p) for p in percentiles]
+    colors = ['#cccccc' if p is None else _percentile_to_color(p)
+              for p in percentiles]
 
-    bars = ax.bar(x_pos, values, color=colors, alpha=0.7, edgecolor='black', linewidth=1.5)  # noqa: F841
+    bars = ax.bar(x_pos, [v if v is not None else 0 for v in values],
+                  color=colors, alpha=0.7, edgecolor='black',
+                  linewidth=1.5)  # noqa: F841
 
     # Add mean lines for each metric
     for i, metric in enumerate(metrics):
@@ -459,6 +471,10 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
 
     # Add value labels above all bars, drawn on top of mean lines
     for i, val in enumerate(values):
+        if val is None:
+            ax.text(i, 2, 'N/A', ha='center', va='bottom',
+                    fontsize=9, fontweight='bold', color='black')
+            continue
         y_pos = max(val, 2)
         ax.text(i, y_pos + 1, f'{val:.0f}%', ha='center', va='bottom',
                 fontsize=9, fontweight='bold', color='black')
@@ -481,12 +497,7 @@ def _create_multi_metric_plot(terminal_name, scores_dict, all_scores_dict,
 
 
 def create_time_summary_plot(score_table):
-    """
-    Create a scatterplot showing the correlation between final Score and CPR
-    round-trip time (rtt_avg_ms).
-
-    :returns: filename of the generated plot
-    """
+    """Create a scatterplot showing the correlation between final Score and CPR round-trip time (rtt_avg_ms)."""
     os.makedirs(PLOTS_PATH, exist_ok=True)
 
     names = []
@@ -576,12 +587,7 @@ def create_time_summary_plot(score_table):
 
 
 def process_resource_data():
-    """Generate resource profile graphs and compute resource_score in YAML files.
-
-    Reads ``resource_profile`` data from all data YAML files, builds
-    per-terminal CPU/RSS/time graphs, computes 0-100 resource scores
-    across all terminals, and writes scores back to the data YAML files.
-    """
+    """Generate resource profile graphs and compute resource_score in YAML files."""
     sessions: dict[str, ProfileSession] = {}
     yaml_map: dict[str, str] = {}  # sw_name -> yaml file path
 
@@ -629,6 +635,10 @@ def main():
     score_table, all_successful_languages = make_score_table()
     print('ok', file=sys.stderr)
 
+    screenshots_dir = os.path.join(_ROOT, "docs", "_static", "screenshots")
+    screenshot_groups = collect_screenshot_groups(
+        score_table, screenshots_dir, PLOTS_PATH, make_link)
+
     print('Loading terminal detail mixins... ', file=sys.stderr, end='', flush=True)
     terminal_mixins = load_mixins()
     print('ok', file=sys.stderr)
@@ -656,10 +666,22 @@ def main():
         display_id_summary_bullets(score_table, terminal_mixins)
         display_xtgettcap_summary_bullets(score_table)
         display_xtgettcap_comparison_table(score_table)
+        display_terminal_colors(score_table)
         display_performance_section(score_table)
         display_results_toc(score_table)
+        display_screenshot_toc(screenshot_groups)
         display_common_hyperlinks()
     print('ok', file=sys.stderr)
+
+    print('Writing docs/screenshots/ ... ', file=sys.stderr, end='', flush=True)
+    write_screenshot_pages(
+        screenshot_groups,
+        screenshots_dir,
+        PLOTS_PATH,
+        os.path.join(_ROOT, "docs", "screenshots"),
+        make_link)
+    print('ok', file=sys.stderr)
+
     for entry in score_table:
         sw_name = entry["terminal_software_name"]
 
@@ -682,6 +704,8 @@ def main():
             show_sri_results(sw_name, entry)
             show_sfz_results(sw_name, entry)
             show_ri_results(sw_name, entry)
+            show_spillover_results(sw_name, entry)
+            show_bidi_results(sw_name, entry)
             show_graphics_results(sw_name, entry)
             show_device_attributes(sw_name, entry)
             show_language_results(sw_name, entry)
@@ -693,6 +717,7 @@ def main():
             show_text_sizing_results(sw_name, entry)
             show_tofu_results(sw_name, entry)
             show_truecolor_results(sw_name, entry)
+            show_color_results(sw_name, entry)
             show_osc52_results(sw_name, entry)
             show_id_results(sw_name, entry, terminal_mixins)
             show_reproduce_command(sw_name, entry)
@@ -713,7 +738,6 @@ def main():
 
 
 def _fmt_ms(ms):
-    """Format milliseconds with adaptive precision."""
     if ms >= 1000:
         return f"{ms / 1000:.1f}s"
     if ms >= 100:
@@ -724,7 +748,6 @@ def _fmt_ms(ms):
 
 
 def _escape_terminfo_value(value):
-    """Escape non-printable control characters for display in RST tables."""
     result = []
     for ch in value:
         if ch == '\x1b':
@@ -762,13 +785,23 @@ def display_results_toc(score_table):
     print("   :maxdepth: 1")
     print()
     seen = set()
+    links = []
     for entry in score_table:
-        sw_name = make_link(entry["terminal_software_name"])
-        if sw_name in seen:
+        sw_name = entry["terminal_software_name"]
+        link = make_link(sw_name)
+        if link in seen:
             continue
-        seen.add(sw_name)
-        print(f"   sw_results/{sw_name}")
+        seen.add(link)
+        links.append((sw_name.casefold(), link))
+    for _name, link in sorted(links):
+        print(f"   sw_results/{link}")
     print()
+
+
+def display_screenshot_toc(groups):
+    """Display the Screenshots section linking to one page per screenshot type."""
+    for line in screenshot_toc_lines(groups):
+        print(line)
 
 
 def display_common_hyperlinks():
@@ -809,10 +842,7 @@ def display_inbound_hyperlink(link_text):
 
 
 def resource_cost(data):
-    """Compute a raw resource cost from profile data (higher = worse).
-    
-    Returns NaN if no valid profile data is available.
-    """
+    """Compute a raw resource cost from profile data (higher = worse)."""
     rp = (data.get("resource_profile") or {})
     elapsed = rp.get("elapsed_s", [])
     cpu = rp.get("cpu_pct", [])
@@ -907,6 +937,25 @@ def make_score_table():
         # Graphics protocol score, 1.0 modern, 0.5 legacy, 0.0 none
         _score_graphics = score_graphics(data)
 
+        # Spillover score, share of tested emoji sequences that spilled: only ZWJ,
+        # VS16, VS15, and RI have a standardized cell width, so only their spills
+        # are an error.  Language graphemes are reported, not scored.
+        spill_section = data.get("spillover_results") or {}
+        spill_n_tested = spill_section.get("n_tested") or 0
+        spill_n_spillover = spill_section.get("n_spillover") or 0
+        _score_spill = emoji_spillover_rate(spill_section)
+        spill_partial = bool(
+            spill_n_tested
+            and spill_section.get("n_candidates")
+            and spill_n_tested < spill_section["n_candidates"])
+
+        bidi_section = data.get("bidi_results") or {}
+        bidi_supported = bidi_section.get("supported")
+        if bidi_supported is None:
+            _score_bidi = float('NaN')
+        else:
+            _score_bidi = 1.0 if bidi_supported else 0.0
+
         _sw_name = data.get("software_name", data.get('software'))
         assert _sw_name, f"empty software_name in {yaml_path}"
 
@@ -960,6 +1009,13 @@ def make_score_table():
                 sixel_support=_sixel_support,
                 score_features=_score_features,
                 score_graphics=_score_graphics,
+                score_spill=_score_spill,
+                score_bidi=_score_bidi,
+                bidi_section=bidi_section,
+                spill_n_tested=spill_n_tested,
+                spill_n_spillover=spill_n_spillover,
+                spill_n_no_ink=spill_section.get("n_no_ink") or 0,
+                spill_partial=spill_partial,
                 text_sizing_credited=text_sizing_credited,
                 data=data,
                 fname=os.path.basename(yaml_path),
@@ -1000,6 +1056,11 @@ def make_score_table():
             else:
                 entry["score_resource_norm"] = float('NaN')
 
+    valid_spill = [1 - e["score_spill"] for e in score_table
+                   if not math.isnan(e["score_spill"])]
+    spill_fill = (sum(valid_spill) / len(valid_spill)
+                  if valid_spill else float('nan'))
+
     GRAPHICS_WEIGHT = 0.5
     STANDALONE_WEIGHT = 1.0 / 3.0
     for entry in score_table:
@@ -1014,6 +1075,10 @@ def make_score_table():
             (entry["score_sri"], STANDALONE_WEIGHT),
             (entry["score_sfz"], STANDALONE_WEIGHT),
             (entry["score_ri"], 1.0),
+            (1 - entry["score_spill"] if not math.isnan(entry["score_spill"])
+             else spill_fill, 1.0),
+            (entry["score_bidi"] if not math.isnan(entry["score_bidi"])
+             else spill_fill, 1.0),
             (entry["score_features"], 1.0),
             (entry["score_graphics"], GRAPHICS_WEIGHT),
         ]
@@ -1076,7 +1141,6 @@ def format_score_int(score):
 
 
 def _truncate_version(version):
-    """Truncate version string at first '-', appending ellipsis if truncated."""
     version = str(version) if version is not None else ""
     # Strip non-printable characters (e.g. ESC from terminal response strings)
     # and trailing backslashes which break RST table formatting
@@ -1088,14 +1152,6 @@ def _truncate_version(version):
 
 
 def _classify_xtgettcap(data):
-    """Classify XTGETTCAP support as full, partial, or none.
-
-    Returns ``(label, score)`` where label is "full", "partial", or None,
-    and score is 1.0, 0.5, or 0.0.
-
-    ``data`` may be either a raw YAML-loaded dict or a score table entry
-    dict.
-    """
     if "data" in data:
         data = data["data"]
     tr = data.get("terminal_results") or {}
@@ -1133,10 +1189,6 @@ KITTY_KB_FLAG_KEYS = ("disambiguate", "report_events", "report_alternates",
 
 
 def _classify_kitty_keyboard(tr):
-    """Classify Kitty keyboard support as full, partial, or none.
-
-    Returns ``(label, score)`` where label is "full", "partial", or None.
-    """
     # Score is ``(modes confirmed + state request) / 6``: full (1.0) requires
     # supporting state request and all five modes; partial is any lower score,
     # a terminal that *only* answers the state request scores 1/6.
@@ -1149,10 +1201,6 @@ def _classify_kitty_keyboard(tr):
 
 
 def _classify_tofu(tr):
-    """Classify font glyph coverage protocol support.
-
-    Returns ``(protocol, score)`` where protocol is "mintty", "glyph", or None.
-    """
     # Whether the terminal answers a font glyph coverage enquiry at all is a
     # property of the emulator, and is scored.  *Which* codepoints it reports a
     # glyph for is a property of the installed font, and is not.
@@ -1163,7 +1211,6 @@ def _classify_tofu(tr):
 
 
 def _format_features_summary(entry):
-    """Format detected features as scaled score with hyperlink to Score Breakdown."""
     sw_name = entry["terminal_software_name"]
     score = entry["score_features_scaled"]
     return wrap_score_with_hyperlink(
@@ -1172,7 +1219,6 @@ def _format_features_summary(entry):
 
 
 def _sixel_support_notes_for(sw_name):
-    """Return True if *sw_name* has ``sixel_support_notes`` in terminals.yaml."""
     terminal_mixins = load_mixins()
     sw_name_lower = sw_name.lower()
     return (sw_name_lower in terminal_mixins
@@ -1180,12 +1226,6 @@ def _sixel_support_notes_for(sw_name):
 
 
 def _format_graphics_protocols(entry, sw_name):
-    """
-    Format detected graphics protocols as a comma-joined list with color scoring.
-
-    Green (1.0) for modern protocols (iTerm2, Kitty), yellow (0.5) for legacy
-    only (Sixel, ReGIS), red (0.0) for none.
-    """
     tr = entry["data"].get("terminal_results") or {}
     if not tr:
         return wrap_with_score_role("N/A", float('nan'))
@@ -1211,6 +1251,69 @@ def _format_graphics_protocols(entry, sw_name):
         return wrap_score_with_hyperlink("none", 0.0, sw_name, "_graphics")
     score = 1.0 if has_modern else 0.5
     return wrap_score_with_hyperlink(", ".join(protocols), score, sw_name, "_graphics")
+
+
+def _color_luminance(rgb):
+    def linear(channel):
+        value = channel / 255
+        if value <= 0.04045:
+            return value / 12.92
+        return ((value + 0.055) / 1.055) ** 2.4
+
+    red, green, blue = (linear(channel) for channel in rgb)
+    return 0.2126 * red + 0.7152 * green + 0.0722 * blue
+
+
+def display_terminal_colors(score_table):
+    """Display each terminal's default 16 colors, indexed by blue lightness."""
+    display_title("Terminal Colors", 2)
+    print("This table shows the default 16 colors used by each terminal, in palette")
+    print("order from color 0, black, to color 15, bright white, sorted by their")
+    print("color index 4 (blue). These colors are for informational purposes only.")
+    print()
+
+    blue_index = color_measure.ANSI_COLOR_NAMES.index('blue')
+    strip_width = (color_measure.STRIP_SWATCH_WIDTH_PX
+                   * len(color_measure.ANSI_COLOR_NAMES))
+    measured = []
+    for entry in score_table:
+        sw_name = entry["terminal_software_name"]
+        section = (entry.get("data") or {}).get("color_results") or {}
+        records = (section.get("sixteen") or {}).get("colors") or []
+        if len(records) != len(color_measure.ANSI_COLOR_NAMES):
+            continue
+        blue = next(
+            (record.get("rgb") or [0, 0, 0] for record in records
+             if int(record.get("index", -1)) == blue_index), [0, 0, 0])
+        measured.append((_color_luminance(blue), sw_name, records))
+    measured.sort(key=lambda item: (item[0], item[1].lower()))
+
+    rows = []
+    for index, (_luminance, sw_name, records) in enumerate(measured, start=1):
+        safe_sw = safe_name(sw_name)
+        relative = f"_static/screenshots/{safe_sw}/colors/{safe_sw}.png"
+        color_measure.write_palette_strip(
+            os.path.join(_ROOT, "docs", relative), records)
+        label = f"colors_{safe_sw}"
+        print(f".. |{label}| image:: {relative}")
+        print(f"   :width: {strip_width}px")
+        print(f"   :height: {color_measure.STRIP_SWATCH_HEIGHT_PX}px")
+        print("   :class: palette-strip")
+        print(f"   :alt: The default 16 colors of {sw_name}")
+        print()
+        rows.append({
+            "Index": index,
+            "Terminal": make_outbound_hyperlink(sw_name, sw_name + "_colors"),
+            "Color": f"|{label}|",
+        })
+
+    if not rows:
+        print("No color measurements are available.")
+        print()
+        return
+
+    table_str = tabulate.tabulate(rows, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
 
 
 def display_tabulated_scores(score_table):
@@ -1324,6 +1427,22 @@ def display_tabulated_scores(score_table):
                     "_ri"
                 ) if not math.isnan(result["score_ri_scaled"])
                     else _wrap_untested(result["terminal_software_name"], "_ri")),
+                "SPILL": (wrap_score_with_hyperlink(
+                    format_score_int(result["score_spill_scaled"])
+                    + _spill_partial_mark(result),
+                    result["score_spill_scaled"],
+                    result["terminal_software_name"],
+                    "_spillover"
+                ) if not math.isnan(result["score_spill_scaled"])
+                    else _wrap_untested(result["terminal_software_name"], "_spillover")),
+                "BiDi": (wrap_score_with_hyperlink(
+                    format_score_int(result["score_bidi_scaled"]),
+                    result["score_bidi_scaled"],
+                    result["terminal_software_name"],
+                    "_bidi"
+                ) if not math.isnan(result["score_bidi_scaled"])
+                    else _wrap_unmeasured(result["terminal_software_name"],
+                                          "_bidi")),
                 "Features": features_list,
                 "Graphics": _format_graphics_protocols(result, result["terminal_software_name"]),
                 "Resources": wrap_score_with_hyperlink(
@@ -1341,6 +1460,18 @@ def display_tabulated_scores(score_table):
     # Generate and print table with inline role-colored scores
     table_str = tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst")
     print_datatable(table_str)
+
+    partial_spill = [e["terminal_software_name"] for e in score_table
+                     if e.get("spill_partial")]
+    if partial_spill:
+        names = ", ".join(
+            make_outbound_hyperlink(name, name + "_spillover")
+            for name in partial_spill)
+        print()
+        print(f"{FOOTNOTE_SPILL_PARTIAL} Spillover scan stopped before testing "
+              "every contested grapheme for:")
+        print(f"{names}.")
+        print()
 
     has_any_text_sizing = any(e.get("text_sizing_credited") for e in score_table)
     if has_any_text_sizing:
@@ -1439,6 +1570,19 @@ def display_table_definitions():
         "  characters. Sourced from the Unicode emoji-test.txt specification."
     )
     print(
+        "- *SPILL score*: Share of tested ZWJ, VS16, VS15, and RI sequences with\n"
+        "  changed pixels outside the cursor advance, either direction and any cell\n"
+        "  count: only their width is standardized, so only their spills are an\n"
+        "  error.  Language graphemes are gathered and reported, not scored.  Scaled\n"
+        "  score is inverted so 100 is the lowest observed rate.  Informational and\n"
+        "  excluded from the final score.  ¶ marks a scan that stopped early."
+    )
+    print(
+        "- *BiDi score*: 100 when a block of ``X`` written in the left half is\n"
+        "  painted in the right half after a right to left request, 0 otherwise.\n"
+        "  Unmeasured terminals take the SPILL fill in the final score."
+    )
+    print(
         "- *Mode 2027*: DEC Mode 2027 (GRAPHEME_CLUSTERING) support. Shows 'enabled'\n"
         "  if the mode is currently enabled, 'may enable' if the mode is supported but\n"
         "  not enabled and can be changed to enabled, or 'no' if not supported.\n"
@@ -1471,9 +1615,10 @@ def scale_scores(score_table, entry, key):
     if math.isnan(my_score):
         return float('NaN')
 
-    # VS16, VS15, SRI, SFZ, RI, Sixel, and Graphics are not scaled - return raw score
+    # VS16, VS15, SRI, SFZ, RI, Sixel, Graphics, and BiDi are not scaled - return raw score
     if key in ('score_emoji_vs16', 'score_emoji_vs15', 'score_sri',
-               'score_sfz', 'score_ri', 'score_sixel', 'score_graphics'):
+               'score_sfz', 'score_ri', 'score_sixel', 'score_graphics',
+               'score_bidi'):
         return my_score
 
     valid_scores = [_entry[key] for _entry in score_table if not math.isnan(_entry[key])]
@@ -1483,6 +1628,10 @@ def scale_scores(score_table, entry, key):
     min_score = min(valid_scores)
     if max_score == min_score:
         return 1.0  # All scores are the same
+
+    # Spill rate is inverted so the lowest rate scores 100 and the highest 0.
+    if key == 'score_spill':
+        return scaled_spillover_score(my_score, min_score, max_score)
 
     # Inverse log10 scaling for elapsed time (lower is better, log scale for color distribution)
     if key == 'score_elapsed':
@@ -1495,7 +1644,6 @@ def scale_scores(score_table, entry, key):
 
 
 def _index_contested_languages():
-    """Return contested graphemes by language, unioned over the width groups tested."""
     languages = {}
     for _expected_width, lang_entries in LANG_CONTESTED:
         for lang, graphemes in lang_entries:
@@ -1518,7 +1666,7 @@ def lookup_contested(contested_by_version, version):
 
 
 def contested_width_counts(data, results_key, contested_by_version):
-    """Return ``(n_total, n_errors)`` of a width test, restricted to contested codepoints. """
+    """Return ``(n_total, n_errors)`` of a width test, restricted to contested codepoints."""
     results = data["test_results"].get(results_key) or {}
     if not results:
         return 0, 0
@@ -1619,12 +1767,7 @@ def score_ri(data):
 
 
 def score_lang(data):
-    """
-    Calculate language support score using geometric mean of contested language success.
-
-    This gives a fairer score than simple counting of 100% languages, as it considers
-    partial support (e.g., 99%, 98%) and doesn't let one low score dominate the result.
-    """
+    """Calculate language support score using geometric mean of contested language success."""
     percentages = list(contested_language_percentages(data).values())
     if not percentages:
         return 0.0
@@ -1642,11 +1785,7 @@ def score_lang(data):
 
 
 def score_dec_modes(data):
-    """
-    Calculate score based on changeable DEC private modes.
-
-    Returns the count of changeable modes.
-    """
+    """Calculate score based on changeable DEC private modes."""
     if "terminal_results" not in data or "modes" not in data["terminal_results"]:
         return float('NaN')
 
@@ -1660,12 +1799,7 @@ def score_dec_modes(data):
 
 
 def score_features(data):
-    """
-    Calculate score as fraction of notable terminal features supported.
-
-    :rtype: float
-    :returns: fraction 0.0-1.0 of features supported
-    """
+    """Calculate score as fraction of notable terminal features supported."""
     tr = data.get("terminal_results") or {}
     if not tr:
         return float('NaN')
@@ -1726,16 +1860,15 @@ def score_features(data):
     elif ct_has:
         count += 0.5
 
-    return count / total
+    # DECRQCRA lets any program read the screen, an antifeature worth -1.
+    if tr.get("decrqcra", False):
+        count -= 1
+
+    return max(count, 0) / total
 
 
 def score_graphics(data):
-    """
-    Calculate graphics protocol support score.
-
-    :rtype: float
-    :returns: 1.0 for modern (iTerm2/Kitty), 0.5 for legacy only (Sixel/ReGIS), 0.0 for none
-    """
+    """Calculate graphics protocol support score."""
     tr = data.get("terminal_results") or {}
     if not tr:
         return 0.0
@@ -1756,12 +1889,7 @@ def score_graphics(data):
 
 
 def score_elapsed_time(data):
-    """
-    Calculate score based on elapsed time (inverse - lower is better).
-
-    Returns the raw seconds_elapsed value, which will be inverted during scaling.
-    This is a raw score where lower values are better.
-    """
+    """Calculate score based on elapsed time (inverse - lower is better)."""
     elapsed = data.get("seconds_elapsed")
     if elapsed is None or math.isnan(elapsed):
         return float('NaN')
@@ -1801,7 +1929,6 @@ def display_common_languages(all_successful_languages):
 
 
 def _format_xtgettcap_feature(entry, sw_name):
-    """Format XTGETTCAP as Yes (Full), Yes (Partial), No, or N/A with score."""
     tr = entry["data"].get("terminal_results") or {}
     if not tr:
         return wrap_with_score_role("N/A", float("nan"))
@@ -1813,7 +1940,6 @@ def _format_xtgettcap_feature(entry, sw_name):
 
 
 def _detect_truecolor_methods(data):
-    """Determine which methods detect 24-bit truecolor support."""
     if "data" in data:
         data = data["data"]
     tr = data.get("terminal_results") or {}
@@ -1830,7 +1956,6 @@ def _detect_truecolor_methods(data):
 
 
 def _detect_osc52_methods(data):
-    """Determine which methods detect OSC 52 clipboard support."""
     if "data" in data:
         data = data["data"]
     tr = data.get("terminal_results") or {}
@@ -1839,7 +1964,6 @@ def _detect_osc52_methods(data):
 
 
 def _is_conpty_interposed(data):
-    """Check if DA1 response is from ConPTY, and that it isn't from terminal.exe."""
     if data.get("system") == "Windows":
         if (data.get("terminal_results") or {}).get("device_attributes", {}).get("service_class") == 61:
             sw_name = data.get("software_name", "").lower()
@@ -1848,11 +1972,6 @@ def _is_conpty_interposed(data):
 
 
 def _detect_id_methods(data):
-    """Determine which methods can identify the terminal software.
-
-    Returns ``(xt_has, tn_unique, tp_has, term_has, enq_has)`` where *tn_unique* is True
-    when XTGETTCAP ``TN`` capability returns a distinctive (non-generic) name.
-    """
     if "data" in data:
         data = data["data"]
     tr = data.get("terminal_results") or {}
@@ -1874,7 +1993,6 @@ def _detect_id_methods(data):
 
 
 def _tn_unique_from_tr(tr):
-    """Return True if XTGETTCAP TN is a distinctive (non-generic) name."""
     xt = tr.get("xtgettcap", {})
     if not xt.get("supported"):
         return False
@@ -1885,14 +2003,6 @@ def _tn_unique_from_tr(tr):
 
 def _capability_yes_no(value, terminal_name, section_suffix,
                        warn=False, fail=False, contested=False):
-    """Format a boolean capability as a scored yes/no with hyperlink.
-
-    When *warn* is True and *value* is True, displays 'Yes' in
-    warning yellow (works locally but not over SSH).
-    When *fail* is True and *value* is False, displays 'No' in
-    fail red (no identification method works).
-    When *contested* is True and *value* is False, displays 'No' in
-    contested grey (another detection method disagrees)."""
     if value is None:
         return wrap_with_score_role("N/A", float('nan'))
     if contested and not value:
@@ -1908,14 +2018,6 @@ def _capability_yes_no(value, terminal_name, section_suffix,
 
 
 def _mode_is_usable(mode_data):
-    """Check if a DEC mode is usable (changeable or permanently enabled).
-
-    DECRPM value 4 (permanently reset) means the terminal acknowledges the
-    mode but it cannot be enabled: treat as unsupported.  Values 1 (set),
-    2 (reset), and 3 (permanently set) are usable.  Checks the raw ``value``
-    field for correctness with older data files, falling back to the
-    ``supported`` and ``changeable`` fields.
-    """
     value = mode_data.get('value')
     if value is not None:
         return value in {1, 2, 3}
@@ -1924,7 +2026,6 @@ def _mode_is_usable(mode_data):
 
 
 def _get_dec_mode_supported(modes, mode_num):
-    """Check if a DEC mode is usable, handling both int and str keys."""
     mode_key = str(mode_num) if str(mode_num) in modes else mode_num
     if mode_key in modes:
         return _mode_is_usable(modes[mode_key])
@@ -1932,11 +2033,7 @@ def _get_dec_mode_supported(modes, mode_num):
 
 
 def display_features_table(score_table):
-    """Display a features comparison table with terminals as rows.
-
-    Mirrors the notable features shown by the ucs-detect CLI tool's
-    ``_build_features_kv_pairs`` output.
-    """
+    """Display a features comparison table with terminals as rows."""
     display_title("Terminal Features", 2)
     print("This table shows notable terminal features for each terminal,")
     print("matching the feature detection performed by ``ucs-detect``.")
@@ -2075,7 +2172,6 @@ def display_features_table(score_table):
 
 
 def _truecolor_cell(value, section_suffix, sw_name, has_any_yes, only_colorterm=False):
-    """Format a truecolor detection cell as yes/no with context-aware coloring."""
     if value is None:
         return ":score-na:`N/A`"
     if value:
@@ -2442,13 +2538,7 @@ def display_xtgettcap_summary_bullets(score_table):
 
 
 def display_xtgettcap_comparison_table(score_table):
-    """Display an XTGETTCAP terminfo capability comparison table.
-
-    Shows all capabilities reported by each terminal via XTGETTCAP, grouped
-    by shared values so terminals with the same capability value appear
-    together.  Each terminal name links to its detailed XTGETTCAP results
-    page.
-    """
+    """Display an XTGETTCAP terminfo capability comparison table."""
     from collections import OrderedDict
 
     print("This table shows `XTGETTCAP`_ terminfo capability values reported "
@@ -2477,7 +2567,6 @@ def display_xtgettcap_comparison_table(score_table):
     cap_descriptions = dict(XTGETTCAP_CAPABILITIES)
 
     def _format_value(value):
-        """Format a capability value for display, using repr for non-printable chars."""
         if value is None or value == "":
             return "(not reported)"
         raw = str(value)
@@ -2692,18 +2781,24 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         },
         {
             "#": 10,
+            "Score Type": make_outbound_hyperlink("SPILL", sw_name + "_spillover"),
+            "Raw Score": format_raw_score(entry["score_spill"]),
+            "Final Scaled Score": format_score_pct(entry["score_spill_scaled"]),
+        },
+        {
+            "#": 11,
             "Score Type": make_outbound_hyperlink("FEAT", sw_name + "_features_details"),
             "Raw Score": format_raw_score(entry["score_features"]),
             "Final Scaled Score": format_score_pct(entry["score_features_scaled"]),
         },
         {
-            "#": 11,
+            "#": 12,
             "Score Type": make_outbound_hyperlink("Graphics", sw_name + "_graphics"),
             "Raw Score": f"{entry['score_graphics']*100:.0f}%",  # noqa: E226
             "Final Scaled Score": format_score_pct(entry["score_graphics_scaled"]),
         },
         {
-            "#": 12,
+            "#": 13,
             "Score Type": make_outbound_hyperlink("Resources", sw_name + "_resources"),
             "Raw Score": format_score_pct(entry["score_resource_norm"]) if not math.isnan(entry["score_resource"]) else "N/A",
             "Final Scaled Score": format_score_pct(entry["score_resource_scaled"]),
@@ -2711,6 +2806,26 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     ]
     table_str = tabulate.tabulate(score_breakdown, headers="keys", tablefmt="rst")
     print_datatable(table_str)
+
+    print()
+    print("**SPILL Score Details:**")
+    print()
+    section = entry["data"].get("spillover_results") or {}
+    if not math.isnan(entry["score_spill"]):
+        n_emoji_spill, n_emoji_tested = emoji_spill_counts(section) or (0, 0)
+        print("Emoji spillover calculation:")
+        print()
+        print(f"- Total contested emoji sequences with spillover: {n_emoji_spill}")
+        print(f"- Total contested emoji sequences tested: {n_emoji_tested}")
+        print(f"- Formula: {n_emoji_spill} / {n_emoji_tested}")
+        print(f"- Result: {entry['score_spill'] * 100:.2f}%")
+        print(f"- Scaled score: {entry['score_spill_scaled'] * 100:.1f} / 100")
+        print("- Only ZWJ, VS16, VS15, and RI spills are scored.")
+    else:
+        print("No spillover scan is available for this terminal.  Its final")
+        print("score uses the mean scaled SPILL score, so the missing scan")
+        print("neither raises nor lowers the final score.")
+    print()
 
     # Add score comparison plot
     print("**Score Comparison Plot:**")
@@ -2728,7 +2843,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print("  (weighted average: WIDE + NARROW + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + CAP + 0.5 * GFX)")
+    print("  (weighted average: WIDE + NARROW + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + SPILL + CAP + 0.5 * GFX)")
     print("  the categorized 'average' absolute support level of this terminal.")
     print()
     print("  .. note::")
@@ -2738,6 +2853,9 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("     FEAT (Features) is the fraction of notable features supported.")
     print("     GFX (Graphics) scores 100% for modern protocols (iTerm2, Kitty),")
     print("     50% for legacy only (Sixel, ReGIS), 0% for none.")
+    print("     SPILL (Spillover) is measured where a spillover scan exists.  A")
+    print("     terminal without one receives the mean SPILL score, so the missing")
+    print("     scan neither raises nor lowers its final score.")
     print()
     print(f"- Final Scaled Score: {format_score_pct(entry['score_final_scaled'])}")
     print("  (normalized across all terminals tested).")
@@ -3004,6 +3122,12 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
             link_text = make_outbound_hyperlink("DECRQSS Injection",
                                                 sw_name + "_decrqss_injection")
             print(f"- {link_text}: :antifeature:`yes`")
+        if tr.get("decrqcra", False):
+            earned = max(cap_count - 1, 0)
+            print()
+            print("The DECRQCRA antifeature is included in the score: "
+                  f"{cap_count:g} features - 1 antifeature = "
+                  f"{earned:g} of {len(cap_checks)}.")
         print()
         print(f"Raw score: {entry['score_features']*100:.2f}%")  # noqa: E226
     else:
@@ -3431,9 +3555,7 @@ def show_language_results(sw_name, entry):
 
 
 def show_dec_modes_results(sw_name, entry):
-    """
-    Display detailed DEC private mode support results.
-    """
+    """Display detailed DEC private mode support results."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_dec_modes")
     display_title("DEC Private Modes Support", 3)
 
@@ -3744,71 +3866,16 @@ def show_text_sizing_results(sw_name, entry):
     print()
 
 
-def _tofu_excluded_ranges():
-    """
-    Describe the ranges a default tofu sweep leaves out.
-
-    Returns ``[(start, end, [block names], n_codepoints)]`` for each range of
-    :data:`UNCOMMON_WIDE_RANGES` that holds testable codepoints, and the totals
-    ``(n_excluded, n_all)`` over the whole table.
-    """
-    described, n_excluded, n_all = [], 0, 0
-    per_range = {(start, end): {} for start, end in UNCOMMON_WIDE_RANGES}
-    for _ver, ranges in TOFU_CODEPOINTS:
-        for start, end, block_name in ranges:
-            n_all += end - start + 1
-            for bounds in per_range:
-                low, high = max(start, bounds[0]), min(end, bounds[1])
-                if low <= high:
-                    per_range[bounds][block_name] = (
-                        per_range[bounds].get(block_name, 0) + high - low + 1)
-    for (start, end), blocks in per_range.items():
-        n_codepoints = sum(blocks.values())
-        if n_codepoints:
-            described.append((start, end, sorted(blocks), n_codepoints))
-            n_excluded += n_codepoints
-    described.sort()
-    return described, n_excluded, n_all
-
-
-def _show_tofu_exclusions():
-    """Print the note detailing what a default tofu sweep leaves out."""
-    described, n_excluded, n_all = _tofu_excluded_ranges()
-    print(".. note::")
-    print()
-    print("   These ranges are left out of the sweep, and of the count above: they are")
-    print("   a tofu in all but a few specialist CJK and historic script fonts, and a")
-    print("   font meant for terminal use is not worse for lacking them.  They account")
-    print(f"   for {n_excluded:,} of the {n_all:,} codepoints that could be tested;"
-          f" pass")
-    print("   ``ucs-detect --include-uncommon-codepoints`` to sweep them as well.")
-    print()
-    for start, end, blocks, n_codepoints in described:
-        print(f"   - ``U+{start:04X}``..``U+{end:04X}`` \u2014 {', '.join(blocks)}"
-              f" ({n_codepoints:,} codepoints)")
-    print()
-
-
 def _tofu_protocol_phrase(protocol):
-    """Return a sentence fragment naming the font glyph coverage *protocol*."""
     if protocol == "mintty":
-        return "mintty's `Font Glyph Coverage Enquiry`_, ``OSC 7771``"
+        return "its `Font Glyph Coverage Enquiry`_, ``OSC 7771``"
     if protocol == "glyph":
         return "the `Glyph Protocol`_ ``q`` verb, ``APC 25a1``"
     return f"``{protocol}``"
 
 
-def _tofu_escape(codepoint):
-    """Return *codepoint* as a python escape sequence, for :func:`show_wchar`."""
-    if codepoint > 0xFFFF:
-        return f"\\U{codepoint:08x}"
-    return f"\\u{codepoint:04x}"
-
-
 def show_tofu_results(sw_name, entry):
     """Display font glyph coverage ("tofu") detection and sweep results."""
-    TOFU_BLOCK_CODEPOINT_LIMIT = 32
-    TOFU_BLOCK_RANGE_LIMIT = 32
     display_inbound_hyperlink(entry["terminal_software_name"] + "_tofu")
     display_title("Tofu Detection", 3)
 
@@ -3816,10 +3883,10 @@ def show_tofu_results(sw_name, entry):
     tofu = tr.get("tofu") or {}
     protocol = tofu.get("protocol") if tofu.get("supported") else None
 
-    print("A *tofu* is the \u25a1 ``U+25A1`` WHITE SQUARE placeholder box drawn in place of")
-    print("a codepoint the terminal's font has no glyph for.  Two protocols allow a")
-    print("program to ask which codepoints may 'tofu': mintty's `Font")
-    print("Glyph Coverage Enquiry`_ and the `Glyph Protocol`_ implemented first by Rio.")
+    print("A *tofu* is the \u25a1 ``U+25A1`` WHITE SQUARE placeholder box a terminal draws")
+    print("in place of a codepoint its font cannot render.  Two protocols let a program")
+    print("ask which codepoints those are: mintty's `Font Glyph Coverage Enquiry`_ and")
+    print("the `Glyph Protocol`_ implemented first by Rio.")
     print()
 
     if protocol is None:
@@ -3830,8 +3897,6 @@ def show_tofu_results(sw_name, entry):
 
     print(f"*{sw_name}* answers by {_tofu_protocol_phrase(protocol)}.")
     print()
-    print(f"- Protocol: **{protocol}**")
-    print()
 
     print(".. warning::")
     print()
@@ -3839,7 +3904,7 @@ def show_tofu_results(sw_name, entry):
     print("   support for grapheme clusters: ligatures, mark positioning, ``ZWJ`` joining,")
     print("   VS-15 and VS-16 presentation, contextual forms, etc.")
     print()
-    print("   What is measured below is a property of the *font* this terminal was")
+    print("   What is measured here is a property of the *font* this terminal was")
     print("   configured with when tested, and not of the terminal emulator: it is")
     print("   reported, but is not scored. GNU's Unifont is sometimes configured for use.")
     print()
@@ -3850,86 +3915,12 @@ def show_tofu_results(sw_name, entry):
         print()
         return
 
-    ver, result = next(iter(tofu_results.items()))
+    result = next(iter(tofu_results.values()))
     n_errors, n_total = result["n_errors"], result["n_total"]
-    print(f"Every assigned codepoint of Unicode version {ver} that occupies a cell")
-    # a sweep without --include-uncommon-codepoints skips the ranges the WIDE
-    # test skips by default; data recorded before the option is a full sweep.
-    if result.get("include_uncommon", True):
-        print("of its own is tested, the ideographic extension and historic script")
-        print("ranges that no general-purpose font carries included.")
-    else:
-        print("of its own is tested, less the ideographic extension and historic")
-        print("script ranges that no general-purpose font is known to carry.")
-    print()
+    pct = n_errors / n_total * 100 if n_total else 0
     print(f"Tofus were detected for **{n_errors:,}** out of **{n_total:,}** codepoints")
-    print("tested.")
+    print(f"tested ({pct:0.1f}%).")
     print()
-
-    if not result.get("include_uncommon", True):
-        _show_tofu_exclusions()
-
-    if n_unknown := (result.get("n_unknown") or 0):
-        print(f"{n_unknown:,} codepoints went unanswered by the terminal, and are assumed")
-        print("renderable.")
-        print()
-
-    blocks = result.get("blocks") or {}
-    if not blocks:
-        print("No Unicode block holds a tofu: every codepoint tested has a glyph.")
-        print()
-        return
-
-    offenders = sorted(blocks.items(), key=lambda kv: (-kv[1]["n_errors"], kv[0]))
-    tabulated_blocks = [
-        {
-            "Block": make_outbound_hyperlink(block_name,
-                                             sw_name + "_tofu_" + block_name),
-            "Tofus": block["n_errors"],
-            "Total": block["n_total"],
-            "Pct": "{:0.1f}%".format(
-                block["n_errors"] / block["n_total"] * 100
-                if block["n_total"] else 0),
-        }
-        for block_name, block in offenders
-    ]
-    print(f"Tofus were found in the following {len(offenders)} Unicode blocks:")
-    print()
-    table_str = tabulate.tabulate(tabulated_blocks, headers="keys", tablefmt="rst")
-    print_datatable(table_str)
-
-    for block_name, block in offenders:
-        display_inbound_hyperlink(sw_name + "_tofu_" + block_name)
-        display_title(block_name, 4)
-        n_block_errors, n_block_total = block["n_errors"], block["n_total"]
-        if n_block_errors == n_block_total:
-            print(f"All {n_block_total:,} codepoints tested of the *{block_name}* block")
-            print(f"have no glyph in the font of *{sw_name}*.")
-        else:
-            print(f"{n_block_errors:,} of the {n_block_total:,} codepoints tested of the")
-            print(f"*{block_name}* block have no glyph in the font of *{sw_name}*.")
-        print()
-
-        codepoint_ranges = block["codepoint_ranges"]
-        if n_block_errors > TOFU_BLOCK_CODEPOINT_LIMIT:
-            # a table of thousands of rows helps nobody, and there may be
-            # hundreds of such blocks: name the ranges, they say as much.
-            for start, end in codepoint_ranges[:TOFU_BLOCK_RANGE_LIMIT]:
-                if start == end:
-                    print(f"- {make_unicode_codepoint(chr(start))}")
-                else:
-                    print(f"- {make_unicode_codepoint(chr(start))} through"
-                          f" {make_unicode_codepoint(chr(end))},"
-                          f" {end - start + 1:,} codepoints")
-            if len(codepoint_ranges) > TOFU_BLOCK_RANGE_LIMIT:
-                print(f"- \u2026 and {len(codepoint_ranges) - TOFU_BLOCK_RANGE_LIMIT:,}"
-                      " further ranges")
-            print()
-            continue
-
-        show_wchar("".join(_tofu_escape(codepoint)
-                           for start, end in codepoint_ranges
-                           for codepoint in range(start, end + 1)))
 
 
 def show_truecolor_results(sw_name, entry):
@@ -4013,7 +4004,6 @@ def show_osc52_results(sw_name, entry):
 
 
 def _show_tn_line(tr):
-    """Print XTGETTCAP TN status line, if available."""
     xt = tr.get("xtgettcap", {})
     if xt.get("supported"):
         tn_val = xt.get("capabilities", {}).get("TN", "")
@@ -4169,10 +4159,329 @@ def show_ri_results(sw_name, entry):
         )
 
 
+def _join_words(words):
+    words = list(words)
+    if not words:
+        return ""
+    if len(words) == 1:
+        return words[0]
+    if len(words) == 2:
+        return f"{words[0]} and {words[1]}"
+    return ", ".join(words[:-1]) + f", and {words[-1]}"
+
+
+def _spillover_category_name(spill):
+    category = spill.get("category") or ""
+    if category == "language":
+        return spill.get("label") or "Language"
+    return SPILLOVER_CATEGORY_NAMES.get(category, category or "Unknown")
+
+
+def _spillover_codepoints(spill):
+    return " ".join(
+        f"U+{codepoint:04X}" for codepoint in spill.get("codepoints") or [])
+
+
+def _spillover_amount_items(counts, key):
+    pairs = []
+    for amount, count in (counts.get(key) or {}).items():
+        try:
+            pairs.append((int(amount), int(count)))
+        except (TypeError, ValueError):
+            continue
+    return sorted(pairs)
+
+
+def _spillover_counts(section):
+    by_kind = section.get("spill_counts_by_kind")
+    if isinstance(by_kind, dict) and by_kind:
+        examples = section.get("spill_examples") or {}
+        if not examples:
+            records = [
+                record
+                for page in (section.get("images") or {}).values()
+                for record in page.get("spillovers") or []]
+            examples = spillover_examples_from_records(records)
+        return by_kind, examples, False
+    records = [
+        record
+        for page in (section.get("images") or {}).values()
+        for record in page.get("spillovers") or []]
+    if records:
+        grouped = collections.defaultdict(list)
+        for record in records:
+            grouped[spillover_kind(
+                record.get("category"), record.get("label"))].append(
+                    (record.get("spill_left_cells") or 0,
+                     record.get("spill_right_cells") or 0))
+        return ({
+            kind: spillover_statistics_from_amounts(amounts)
+            for kind, amounts in grouped.items()},
+            spillover_examples_from_records(records), True)
+    counts = section.get("spill_counts")
+    if isinstance(counts, dict) and counts:
+        return {"All": counts}, {}, False
+    return None, {}, False
+
+
+def _spillover_kind_items(kind_counts):
+    def rank(item):
+        kind, counts = item
+        if kind == "All":
+            return 0, -1, kind
+        if kind in KIND_ORDER:
+            return 1, KIND_ORDER[kind], kind
+        return 2, -(counts.get("graphemes_any") or 0), kind
+
+    return sorted(kind_counts.items(), key=rank)
+
+
+def _example_grapheme(example):
+    if not example:
+        return ""
+    grapheme = decode_wchars((example.get("example") or "''").strip("'"))
+    return re.sub(r"([\\`*_|\[\]])", r"\\\1", grapheme)
+
+
+def _spillover_example_text(example, direction, cells):
+    if not example or example.get("width") is None:
+        return ""
+    width = example["width"]
+    side = "left" if direction == "Left" else "right"
+    width_unit = "cell" if width == 1 else "cells"
+    cells_unit = "cell" if cells == 1 else "cells"
+    return (f"{width} {width_unit} wide and spills "
+            f"{cells} {cells_unit} {side}.")
+
+
+def _print_spillover_counts(kind_counts, examples):
+    headers = ("kind", "Direction", "cell_length", "grapheme_count",
+               "example_grapheme", "example_repr", "example_desc")
+    rows = []
+    for kind, counts in _spillover_kind_items(kind_counts):
+        for direction, key in (("Left", "left_cells"), ("Right", "right_cells")):
+            for amount, count in _spillover_amount_items(counts, key):
+                example = (examples.get(kind, {})
+                           .get(direction, {})
+                           .get(str(amount)))
+                rows.append({
+                    "kind": kind,
+                    "Direction": direction,
+                    "cell_length": amount,
+                    "grapheme_count": count,
+                    "example_grapheme": _example_grapheme(example),
+                    "example_repr": (f"``{example['example']}``"
+                                     if example else ""),
+                    "example_desc": _spillover_example_text(
+                        example, direction, amount),
+                })
+    print(".. list-table::")
+    print("   :header-rows: 1")
+    print("   :class: sphinx-datatable")
+    print()
+    for position, header in enumerate(headers):
+        print(f"   {'*' if position == 0 else ' '} - {header}")
+    print()
+    for row in rows:
+        for position, header in enumerate(headers):
+            print(f"   {'*' if position == 0 else ' '} - {row[header]}")
+        print()
+
+
+def show_bidi_results(sw_name, entry):
+    """Display whether a right to left request mirrored a block of text."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_bidi")
+    display_title("BiDi", 3)
+    section = entry.get("data", {}).get("bidi_results") or {}
+    if not section:
+        print(f"BiDi results for *{sw_name}* are not available.")
+        print()
+        return
+    supported = section.get("supported")
+    if supported is None:
+        print(f"BiDi was not measured for *{sw_name}*.")
+        print()
+        return
+    print(f"*{sw_name}*: **{'yes' if supported else 'no'}**, horizontal mirroring"
+          " of a right to left block was detected.")
+    print()
+    print("The test fills the left half of the screen with text, captures it, then")
+    print("prints the same block after enabling RTL, ``CSI 2 SP k`` ")
+    print("captures again and compares whether the text fills the left (no support)")
+    print("or right half (BiDi supported) by RTL horizontal mirroring.")
+    print()
+
+
+def show_spillover_results(sw_name, entry):
+    """Display spillover statistics and animated evidence for a terminal."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_spillover")
+    display_title("Spillover", 3)
+    section = entry.get("data", {}).get("spillover_results") or {}
+    if not section:
+        print(f"Spillover results for *{sw_name}* are not available.")
+        print()
+        return
+    images = section.get("images") or {}
+    n_spillover = section.get("n_spillover") or 0
+    n_tested = section.get("n_tested") or 0
+    if not n_tested:
+        print(f"Spillover was not tested for *{sw_name}*.")
+        print()
+        return
+    rate = spillover_rate(n_spillover, n_tested)
+    print(
+        f"*{sw_name}*: **{n_spillover}** of {n_tested} contested graphemes "
+        f"changed pixels outside the cursor advance ({rate * 100:.2f}%).")
+    print()
+    print("A *spill* is the detection of a pixel change outside the cells")
+    print("of the width calculated by the terminal, they can sometimes 'spill'")
+    print("in either direction to adjacent cells. Only 'Contested' graphemes known")
+    print("Cto vary in width between terminal emulators are tested.")
+    print()
+    print(".. note::")
+    print()
+    print("   Spillover of complex language graphemes is expected, and varies by")
+    print("   terminal emulator, the font engines that they use, and how they use")
+    print("   them.  This is not an indicator of an error, and is provided only for")
+    print("   informational purposes.  There is no standard qualifying whether a")
+    print("   grapheme may write outside cells it reports as its width.")
+    print()
+    errors = section.get("errors") or []
+    if errors:
+        print(f"Capture errors: {len(errors)}")
+        print()
+
+    if not n_spillover:
+        print("Spillover count is zero.")
+        print()
+    else:
+        counts, examples, evidence_only = _spillover_counts(section)
+        if counts is None:
+            print("This scan retained summary counts only.")
+            print()
+        else:
+            print("**Spills by the numbers:**")
+            print()
+            _print_spillover_counts(counts, examples)
+            if evidence_only:
+                shown_count = sum(
+                    kind.get("graphemes_any", 0)
+                    for kind in counts.values())
+                print(f"Direction and amount counts cover the "
+                      f"{shown_count} graphemes in the "
+                      f"captured screenshots, of {n_spillover} graphemes "
+                      "with spillover.")
+            print()
+
+    if not images:
+        print(f"Captured screenshots are unavailable for *{sw_name}*.")
+        print()
+        return
+
+    safe_sw = safe_name(sw_name)
+    shown = []
+    for filename in ranked_evidence_pages(images)[:MAX_EVIDENCE_IMAGES]:
+        record = images[filename]
+        if not record.get("spillovers"):
+            continue
+        abs_image = os.path.join(
+            _ROOT, "docs", "_static", "screenshots", safe_sw, filename)
+        if not os.path.exists(abs_image):
+            print(f"warning: Spillover image missing: {abs_image}",
+                  file=sys.stderr)
+            continue
+        shown.append((filename, record, abs_image))
+
+    if not shown:
+        print(f"Captured screenshots are unavailable for *{sw_name}*.")
+        print()
+        return
+
+    print("**Screenshots:**")
+    print()
+
+    for filename, record, abs_image in shown:
+        spills = record["spillovers"]
+        categories = _join_words(dict.fromkeys(
+            _spillover_category_name(spill) for spill in spills))
+        codepoints = _spillover_codepoints(spills[0])
+        shifted = ("  :antifeature:`displaced rows were detected`."
+                   if section.get("shifted_graphemes") else "")
+        print(f"Spillovers of {categories}, starting at ``{codepoints}``:{shifted}")
+        print()
+        print(f".. image:: ../_static/screenshots/{safe_sw}/{filename}")
+        print("   :alt: Animated spillover evidence")
+        with Image.open(abs_image) as image:
+            width, _height = image.size
+        print(f"   :width: {min(width, 720)}px")
+        print("   :loading: lazy")
+        print()
+
+
+def _color_static_paths(sw_name):
+    safe_sw = safe_name(sw_name)
+    relative = f"../_static/screenshots/{safe_sw}"
+    absolute = os.path.join(_ROOT, "docs", "_static", "screenshots", safe_sw)
+    return safe_sw, relative, absolute
+
+
+def _clear_color_assets(absolute):
+    directory = os.path.join(absolute, "colors")
+    if not os.path.isdir(directory):
+        return
+    for path in Path(directory).glob("16_*.png"):
+        try:
+            path.unlink()
+        except OSError:
+            pass
+
+
+def _print_color_swatches(records, relative, absolute):
+    directory = os.path.join(absolute, "colors")
+    for record in records:
+        index = int(record.get("index", 0))
+        rgb = record.get("rgb") or [0, 0, 0]
+        filename = f"16_{index}.png"
+        color_measure.write_swatch(os.path.join(directory, filename), rgb)
+        print(f".. |c16_{index}| image:: {relative}/colors/{filename}")
+        print("   :width: 12px")
+        print("   :height: 12px")
+        print(f"   :alt: {color_measure.rgb_hex(rgb)}")
+        print()
+
+
+def show_color_results(sw_name, entry):
+    """Display the default 16 colors for a terminal."""
+    display_inbound_hyperlink(entry["terminal_software_name"] + "_colors")
+    display_title("Default Colors", 3)
+    section = (entry.get("data") or {}).get("color_results") or {}
+    records = (section.get("sixteen") or {}).get("colors") or []
+    if not records:
+        print(f"Color results for *{sw_name}* are not available.")
+        print()
+        return
+    _safe_sw, relative, absolute = _color_static_paths(sw_name)
+    _clear_color_assets(absolute)
+    print("The default 16 colors of this terminal were detected as follows:")
+    print()
+    _print_color_swatches(records, relative, absolute)
+    table_rows = []
+    for record in records:
+        index = int(record.get("index", 0))
+        rgb = record.get("rgb") or [0, 0, 0]
+        table_rows.append({
+            "index": index,
+            "name": record.get("name") or "",
+            "rgb": f"``{color_measure.rgb_hex(rgb)}``",
+            "image": f"|c16_{index}|",
+        })
+    table_str = tabulate.tabulate(
+        table_rows, headers="keys", tablefmt="rst")
+    print_datatable(table_str)
+
+
 def show_reproduce_command(sw_name, entry):
-    """
-    Display command to reproduce the test results.
-    """
+    """Display command to reproduce the test results."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_reproduce")
     display_title("Reproduction", 3)
 
@@ -4189,9 +4498,7 @@ def show_reproduce_command(sw_name, entry):
 
 
 def show_time_elapsed_results(sw_name, entry):
-    """
-    Display test performance results.
-    """
+    """Display test performance results."""
     display_inbound_hyperlink(entry["terminal_software_name"] + "_time")
     display_inbound_hyperlink(entry["terminal_software_name"] + "_resources")
     display_title("Test Performance", 3)
@@ -4258,6 +4565,12 @@ def show_time_elapsed_results(sw_name, entry):
         print()
 
 
+@functools.lru_cache(maxsize=None)
+def _screenshots_skipped(sw_name):
+    config = load_mixins().get(sw_name.lower()) or {}
+    return bool(config.get("skip_screenshots"))
+
+
 def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=None):
     """Display details of a test failure record for a terminal."""
     num_bars = "1234567890" * ((fail_record.get("measured_by_wcwidth", 0) // 10) + 1)
@@ -4288,23 +4601,26 @@ def show_record_failure(sw_name, whatis, fail_record, test_type=None, category=N
                   " for this sequence in the example file.")
 
     # Screenshot reference
-    if category:
+    if category and not _screenshots_skipped(sw_name):
         safe_sw = safe_name(sw_name)
         screenshot_path = f"../_static/screenshots/{safe_sw}/{category}.png"
         abs_screenshot = os.path.join(_ROOT, "docs", "_static", "screenshots",
                                       safe_sw, f"{category}.png")
         if not os.path.exists(abs_screenshot):
-            print(f"warning: Screenshot missing: {abs_screenshot}",
-                  file=sys.stderr)
+            if os.path.isdir(os.path.dirname(abs_screenshot)):
+                print(f"warning: Screenshot missing: {abs_screenshot}",
+                      file=sys.stderr)
         else:
             print()
             print("Screenshot:")
             print()
             print(f".. image:: {screenshot_path}")
             print("   :alt: Terminal screenshot of the rendering discrepancy")
-            w, h = Image.open(abs_screenshot).size
+            with Image.open(abs_screenshot) as image:
+                w, h = image.size
             print(f"   :width: {w}px")
             print(f"   :height: {h}px")
+            print("   :loading: lazy")
             print()
 
     if fail_record.get("delta_ypos", 0) != 0:

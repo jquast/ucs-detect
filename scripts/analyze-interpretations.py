@@ -64,6 +64,8 @@ def decode_wchars(wchars: str) -> str:
 def load_ucs_detect_yaml():
     items = []
     for yaml_path in sorted(glob.glob(os.path.join(PATH_UCS_DETECT_DATA, '*.yaml'))):
+        if os.path.basename(yaml_path).startswith('_'):
+            continue
         with open(yaml_path, encoding='utf-8') as f:
             doc = yaml.load(f, Loader=SafeLoader)
         name = doc.get('software_name', '')

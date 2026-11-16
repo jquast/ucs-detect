@@ -5,7 +5,7 @@ import wcwidth
 
 
 def fetch_vs16_data():
-    "List VS16 sequences."
+    """List VS16 sequences."""
     table = wcwidth.VS16_NARROW_TO_WIDE
     versions = list(table.keys())
     assert (

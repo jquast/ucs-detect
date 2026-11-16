@@ -42,6 +42,10 @@ RUN_KEYS = frozenset((
     'session_arguments',
     'ucs_detect_version',
     'unicode_version',
+    'wcwidth_branch',
+    'wcwidth_commit',
+    'wcwidth_dirty',
+    'wcwidth_path',
     'wcwidth_version',
 ))
 
@@ -51,6 +55,9 @@ RUN_SUMMARY_KEYS = (
     'session_arguments',
     'ucs_detect_version',
     'unicode_version',
+    'wcwidth_branch',
+    'wcwidth_commit',
+    'wcwidth_dirty',
     'wcwidth_version',
 )
 
@@ -81,6 +88,19 @@ IDENTITY_RESULT_KEYS = frozenset((
 LANGUAGE_CATEGORY = 'language_results'
 FAILURE_KEYS = ('failed', 'failed_codepoints')
 
+#: Spillover counters worth reporting on their own.
+SPILLOVER_KEYS = (
+    'n_candidates', 'n_tested', 'n_spillover', 'n_no_ink', 'n_shifted')
+
+#: Spill distribution counters that summarize a scan without its histograms.
+SPILL_COUNT_KEYS = (
+    'graphemes_any', 'graphemes_left', 'graphemes_right',
+    'graphemes_both', 'max_left_cells', 'max_right_cells')
+
+#: Spillover geometry that makes two scans comparable.
+SPILLOVER_GEOMETRY_KEYS = (
+    'term_width', 'term_height', 'cell_width_px', 'cell_height_px')
+
 #: Codepoints shown per failure group.
 MAX_EXAMPLES = 4
 
@@ -88,7 +108,6 @@ _MISSING = object()
 
 
 class _Writer(object):
-    """Collect output lines with an indentation level."""
 
     def __init__(self):
         self.lines = []
@@ -113,7 +132,6 @@ def _load_worktree(path):
 
 
 def _load_revision(rev, path):
-    """Return the parsed YAML at *rev* for *path*, or None when absent."""
     relpath = os.path.relpath(path, _PROJECT)
     try:
         proc = subprocess.run(
@@ -137,8 +155,13 @@ def _format_value(value):
     return text if len(text) <= 60 else text[:57] + '...'
 
 
+def _format_count(value):
+    if isinstance(value, int):
+        return '{:,}'.format(value)
+    return _format_value(value)
+
+
 def _format_wchars(escaped):
-    """Render a ``\\uXXXX`` escape string as ``U+XXXX`` codepoints."""
     try:
         decoded = escaped.encode('ascii').decode('unicode_escape')
     except (UnicodeDecodeError, AttributeError):
@@ -147,7 +170,6 @@ def _format_wchars(escaped):
 
 
 def _leaf_changes(old, new, path=()):
-    """Yield ``(path, old, new)`` for every changed leaf below *old* and *new*."""
     if isinstance(old, dict) or isinstance(new, dict):
         old_dict = old if isinstance(old, dict) else {}
         new_dict = new if isinstance(new, dict) else {}
@@ -176,7 +198,6 @@ def _failure_index(entries, key_name):
 
 
 def _compare_failures(old_entries, new_entries, key_name):
-    """Return (added, removed, changed) failure entries between two lists."""
     old_index = _failure_index(old_entries, key_name)
     new_index = _failure_index(new_entries, key_name)
     added = [new_index[key] for key in new_index.keys() - old_index.keys()]
@@ -318,6 +339,57 @@ def _write_added_category(out, name, versions, added):
             version, entry.get('n_total', '?'), entry.get('n_errors', '?')), 2)
 
 
+def _write_spillover(out, old, new, counters):
+    if not old and not new:
+        return
+    if not old:
+        counters['spillover'] += 1
+        out.write('(added)')
+        old = {}
+    elif not new:
+        counters['spillover'] += 1
+        out.write('(removed)')
+        new = {}
+    for key in SPILLOVER_KEYS:
+        old_value = old.get(key, _MISSING)
+        new_value = new.get(key, _MISSING)
+        if old_value == new_value:
+            continue
+        counters['spillover'] += 1
+        out.write('{}: {} -> {}'.format(
+            key, _format_count(old_value), _format_count(new_value)))
+    old_counts = old.get('spill_counts') or {}
+    new_counts = new.get('spill_counts') or {}
+    for key in SPILL_COUNT_KEYS:
+        old_value = old_counts.get(key, _MISSING)
+        new_value = new_counts.get(key, _MISSING)
+        if old_value == new_value:
+            continue
+        counters['spillover'] += 1
+        out.write('spill_counts.{}: {} -> {}'.format(
+            key, _format_count(old_value), _format_count(new_value)))
+    old_shifted = set(old.get('shifted_graphemes') or ())
+    new_shifted = set(new.get('shifted_graphemes') or ())
+    removed = old_shifted - new_shifted
+    added = new_shifted - old_shifted
+    if removed:
+        counters['spillover'] += 1
+        out.write('no longer shifted: {:,}'.format(len(removed)))
+    if added:
+        counters['spillover'] += 1
+        out.write('newly shifted: {:,}'.format(len(added)))
+    old_calibration = old.get('calibration') or {}
+    new_calibration = new.get('calibration') or {}
+    for key in SPILLOVER_GEOMETRY_KEYS:
+        old_value = old_calibration.get(key, _MISSING)
+        new_value = new_calibration.get(key, _MISSING)
+        if old_value == new_value:
+            continue
+        counters['spillover'] += 1
+        out.write('calibration.{}: {} -> {}'.format(
+            key, _format_value(old_value), _format_value(new_value)))
+
+
 def _write_test_results(out, old_results, new_results, counters):
     for name in sorted(set(old_results) | set(new_results)):
         old_value = old_results.get(name) or {}
@@ -351,7 +423,7 @@ def _compare_document(old, new):
     identity = []
     capabilities = []
     for key in sorted(set(old) | set(new), key=str):
-        if key in ('test_results', 'terminal_results'):
+        if key in ('test_results', 'terminal_results', 'spillover_results'):
             continue
         if key in RUN_KEYS or key in WINDOW_KEYS:
             continue
@@ -386,6 +458,13 @@ def _compare_document(old, new):
                 '.'.join(map(str, path)),
                 _format_value(old_value),
                 _format_value(new_value)), 2)
+    if old.get('spillover_results') != new.get('spillover_results'):
+        spill_out = _Writer()
+        _write_spillover(spill_out, old.get('spillover_results') or {},
+                         new.get('spillover_results') or {}, counters)
+        if spill_out.lines:
+            out.write('spillover', 1)
+            out.lines.extend(spill_out.lines)
     if old.get('test_results') != new.get('test_results'):
         test_out = _Writer()
         _write_test_results(test_out, old.get('test_results') or {},
@@ -419,6 +498,8 @@ def main():
                         help='only review these files or terminal names')
     parser.add_argument('--rev', default='HEAD',
                         help='git revision to compare against (default: HEAD)')
+    parser.add_argument('--old', default=None,
+                        help='YAML file to compare against instead of --rev')
     parser.add_argument('--data-dir', default=_DATA_DIR,
                         help='directory holding the data YAML files')
     args = parser.parse_args()
@@ -426,7 +507,7 @@ def main():
     names = os.listdir(args.data_dir)
     paths = sorted(
         os.path.join(args.data_dir, name) for name in names
-        if name.endswith('.yaml'))
+        if name.endswith('.yaml') and not name.startswith('_'))
     if args.terminals:
         wanted = set(args.terminals)
         paths = [path for path in paths
@@ -436,6 +517,8 @@ def main():
             os.path.splitext(os.path.basename(path))[0] for path in paths}
         if missing:
             parser.error('unknown terminal(s): {}'.format(', '.join(sorted(missing))))
+    if args.old and len(paths) != 1:
+        parser.error('--old requires exactly one terminal')
 
     out = _Writer()
     run_changes = collections.defaultdict(collections.Counter)
@@ -444,15 +527,16 @@ def main():
     noise_only = 0
     new_files = 0
     test_changed = collections.Counter()
+    spillover_changed = []
 
     for path in paths:
         new = _load_worktree(path)
-        old = _load_revision(args.rev, path)
+        old = _load_worktree(args.old) if args.old else _load_revision(args.rev, path)
         name = os.path.splitext(os.path.basename(path))[0]
         if old is None:
             new_files += 1
             out.write('=== {} (new file) ==='.format(name))
-            out.write('  not present at {}'.format(args.rev))
+            out.write('  not present at {}'.format(args.old or args.rev))
             out.write()
             continue
 
@@ -473,21 +557,27 @@ def main():
         out.write()
         if counters['categories'] or counters['languages']:
             test_changed[name] = counters['categories'] + counters['languages']
+        if counters['spillover']:
+            spillover_changed.append(name)
         for key in ('added', 'removed', 'changed'):
             totals[key] += counters[key]
 
     _write_run_metadata(out, run_changes)
 
+    baseline = args.old or args.rev
     out.write('summary')
     out.write('  {} file{} compared against {}, {} changed, {} new, '
               '{} only resource/window/run'.format(
                   len(paths), '' if len(paths) == 1 else 's',
-                  args.rev, changed_files, new_files, noise_only), 1)
+                  baseline, changed_files, new_files, noise_only), 1)
     out.write('  new failures: {}, no longer failing: {}, changed measurement: {}'.format(
         totals['added'], totals['removed'], totals['changed']), 1)
     if test_changed:
         out.write('  terminals with test result changes: {}'.format(
             ', '.join(sorted(test_changed))), 1)
+    if spillover_changed:
+        out.write('  terminals with spillover changes: {}'.format(
+            ', '.join(sorted(spillover_changed))), 1)
 
     print(out.text())
     return 0

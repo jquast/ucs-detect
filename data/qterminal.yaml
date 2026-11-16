@@ -1,65 +1,276 @@
 ambiguous_width: 1
-datetime: 2026-11-11 21:38:13 UTC
+bidi_results:
+  scanned_datetime: 2026-11-16 03:24:48 UTC
+  supported: false
+  control_left: 1.0
+  requested_right: 0.0
+  errors: []
+color_results:
+  scanned_datetime: 2026-11-16 03:24:41 UTC
+  painted_rows: 30
+  calibration:
+    origin_x: 2
+    origin_y: 51
+    cell_width_px: 8.0
+    cell_height_px: 16.0
+    term_width: 117
+    term_height: 30
+  sixteen:
+    layout:
+      columns: 4
+      bands: 4
+      block_width: 2
+      block_height: 2
+      group_width: 20
+      ruler_row: 29
+    colors:
+    - index: 0
+      name: black
+      rgb:
+      - 0
+      - 0
+      - 0
+    - index: 1
+      name: red
+      rgb:
+      - 178
+      - 24
+      - 24
+    - index: 2
+      name: green
+      rgb:
+      - 24
+      - 178
+      - 24
+    - index: 3
+      name: yellow
+      rgb:
+      - 178
+      - 104
+      - 24
+    - index: 4
+      name: blue
+      rgb:
+      - 24
+      - 24
+      - 178
+    - index: 5
+      name: magenta
+      rgb:
+      - 178
+      - 24
+      - 178
+    - index: 6
+      name: cyan
+      rgb:
+      - 24
+      - 178
+      - 178
+    - index: 7
+      name: white
+      rgb:
+      - 178
+      - 178
+      - 178
+    - index: 8
+      name: bright_black
+      rgb:
+      - 104
+      - 104
+      - 104
+    - index: 9
+      name: bright_red
+      rgb:
+      - 255
+      - 84
+      - 84
+    - index: 10
+      name: bright_green
+      rgb:
+      - 84
+      - 255
+      - 84
+    - index: 11
+      name: bright_yellow
+      rgb:
+      - 255
+      - 255
+      - 84
+    - index: 12
+      name: bright_blue
+      rgb:
+      - 84
+      - 84
+      - 255
+    - index: 13
+      name: bright_magenta
+      rgb:
+      - 255
+      - 84
+      - 255
+    - index: 14
+      name: bright_cyan
+      rgb:
+      - 84
+      - 255
+      - 255
+    - index: 15
+      name: bright_white
+      rgb:
+      - 255
+      - 255
+      - 255
+datetime: 2026-11-15 21:45:58 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
-height: 21
+font_test_results:
+  font_version: 18.0.01
+  unicode_version: '18.0'
+  font_family: Unifont
+  origin_x: 2
+  origin_y: 51
+  cell_width: 8.0
+  cell_height: 16.0
+  term_width: 117
+  term_height: 30
+  sampled_cells: 2
+  text: \U0001faeb
+  codepoint: U+1FAEB
+  name: cracking face
+  emoji_version: '18.0'
+  ink_fraction: 0.062
+  ink_color:
+  - 59
+  - 50
+  - 179
+  monochrome: false
+  ascii:
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  - '...............X'
+  reference:
+  - - 0
+    - 160
+    - 64
+  - - 64
+    - 0
+    - 192
+  - - 0
+    - 160
+    - 64
+  grapheme:
+    text: \U0001faeb
+    codepoint: U+1FAEB
+    name: cracking face
+    emoji_version: '18.0'
+  control:
+    text: \U0001f600
+    codepoint: U+1F600
+    name: grinning face
+    emoji_version: '1.0'
+    ink_fraction: 0.664
+    ink_color:
+    - 162
+    - 163
+    - 162
+    monochrome: true
+    ascii:
+    - '.....XXXXXX.....'
+    - '...XXXXXXXXXX...'
+    - ..XXXXX...XXXX..
+    - .XXXX.......XXXX
+    - .XXXXXX..XXX.XXX
+    - XXXXXXXX.XXXXXXX
+    - XXX.XXXX.XXXX.XX
+    - XXX...........XX
+    - XXXXXXXXXXXXX.XX
+    - XXXXXXXXXXXXXXXX
+    - .XXXXXXXXXXXXXXX
+    - .XXXXXXXXXXXXXXX
+    - ..XXXXXXXXXXXXX.
+    - '...XXXXXXXXXXX..'
+    - '.....XXXXXXX....'
+    - '................'
+    reference:
+    - - 0
+      - 160
+      - 64
+    - - 64
+      - 0
+      - 192
+    - - 0
+      - 160
+      - 64
+    grapheme:
+      text: \U0001f600
+      codepoint: U+1F600
+      name: grinning face
+      emoji_version: '1.0'
+height: 30
 preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 2.0
-  - 0.9
-  - 17.8
-  - 5.9
-  - 1.0
-  - 1.0
+  - 42.0
   - 0.0
-  - 28.7
-  - 63.4
-  - 29.7
-  - 6.9
-  - 17.8
-  - 13.9
-  - 9.9
-  - 9.9
+  - 0.0
+  - 1.0
+  - 22.7
+  - 42.3
+  - 45.2
+  - 28.2
+  - 17.1
+  - 19.5
+  - 36.4
+  - 63.0
+  - 17.7
   elapsed_s:
-  - 1.0154172210022807
-  - 2.0409415459726006
-  - 3.095770542975515
-  - 4.1043244050233625
-  - 5.113282245991286
-  - 6.122134087025188
-  - 7.130846345971804
-  - 8.139205010025762
-  - 9.15017296699807
-  - 10.15998318901984
-  - 11.168689345999155
-  - 12.17752028699033
-  - 13.188160728022922
-  - 14.196305177989416
-  - 15.204849741014186
+  - 1.0268614919914398
+  - 2.0519302549946588
+  - 3.069262548990082
+  - 4.088143500004662
+  - 5.107889238977805
+  - 6.122216917981859
+  - 7.139958388986997
+  - 8.157543804001762
+  - 9.185321805998683
+  - 10.239425568986917
+  - 11.266285427002003
+  - 12.283119155996246
+  - 13.29884003699408
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481804
+    ram_total_kb: 15481796
   rss_mb:
-  - 18.71484375
-  - 26.59375
-  - 46.93359375
-  - 52.96484375
-  - 52.96484375
-  - 52.96484375
-  - 53.02734375
-  - 59.02734375
-  - 69.46484375
-  - 74.22265625
-  - 76.2890625
-  - 80.5859375
-  - 84.203125
-  - 84.8125
-  - 83.79296875
-seconds_elapsed: 6.093189763021655
+  - 54.43359375
+  - 54.43359375
+  - 54.43359375
+  - 54.5
+  - 55.84375
+  - 58.765625
+  - 61.75390625
+  - 62.3125
+  - 62.3125
+  - 62.3125
+  - 64.30859375
+  - 67.12109375
+  - 68.08203125
+seconds_elapsed: 8.323546548985178
 session_arguments:
   all: false
   limit_category_time: 0
@@ -71,6 +282,6183 @@ session_arguments:
   timeout_cps: 1.0
 software_name: QTerminal
 software_version: 2.2.1
+spillover_results:
+  scanned_datetime: 2026-11-16 03:25:04 UTC
+  n_candidates: 8644
+  n_tested: 8644
+  n_spillover: 605
+  n_no_ink: 6
+  n_shifted: 0
+  shifted_graphemes: []
+  spill_counts:
+    graphemes_any: 605
+    graphemes_left: 605
+    graphemes_right: 0
+    graphemes_both: 0
+    left_cells:
+      '1': 605
+    right_cells: {}
+    max_left_cells: 1
+    max_right_cells: 0
+  spill_counts_by_kind:
+    Burmese:
+      graphemes_any: 48
+      graphemes_left: 48
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 48
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Dzongkha:
+      graphemes_any: 90
+      graphemes_left: 90
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 90
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Javanese (Javanese):
+      graphemes_any: 347
+      graphemes_left: 347
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 347
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Khün:
+      graphemes_any: 38
+      graphemes_left: 38
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 38
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Mon:
+      graphemes_any: 24
+      graphemes_left: 24
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 24
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Sanskrit (Grantha):
+      graphemes_any: 21
+      graphemes_left: 21
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 21
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Shan:
+      graphemes_any: 4
+      graphemes_left: 4
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 4
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Tibetan, Central:
+      graphemes_any: 33
+      graphemes_left: 33
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 33
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+  spill_examples:
+    Burmese:
+      Left:
+        '1':
+          example: '''\u1000\u1031'''
+          width: 2
+    Javanese (Javanese):
+      Left:
+        '1':
+          example: '''\ua98f\ua9ba'''
+          width: 2
+    Khün:
+      Left:
+        '1':
+          example: '''\u1a23\u1a55'''
+          width: 2
+    Mon:
+      Left:
+        '1':
+          example: '''\u1000\u1060\u1031'''
+          width: 2
+    Sanskrit (Grantha):
+      Left:
+        '1':
+          example: '''\U00011315\U0001134b'''
+          width: 2
+    Shan:
+      Left:
+        '1':
+          example: '''\u1075\u1031'''
+          width: 2
+    Dzongkha:
+      Left:
+        '1':
+          example: '''\u0f40\u0fb1'''
+          width: 1
+    Tibetan, Central:
+      Left:
+        '1':
+          example: '''\u0f42\u0fb2\u0f72'''
+          width: 1
+  n_tested_by_kind:
+    Aja: 3
+    Amarakaeri: 6
+    Arabic, Standard: 8
+    Assyrian Neo-Aramaic: 8
+    Baatonum: 1
+    Bamun: 17
+    Belanda Viri: 3
+    Bengali: 335
+    Bhojpuri: 252
+    Bora: 2
+    Burmese: 223
+    Catalan (2): 6
+    Chakma: 225
+    Chickasaw: 4
+    Chinantec, Chiltepec: 6
+    Dagaare, Southern: 3
+    Dari: 6
+    Dendi: 1
+    Dinka, Northeastern: 2
+    Dzongkha: 160
+    Evenki: 13
+    Farsi, Western: 3
+    Fon: 1
+    French (Welche): 2
+    Fur: 9
+    Ga: 1
+    Gen: 1
+    Gilyak: 2
+    Gujarati: 290
+    Gumuz: 2
+    Hindi: 164
+    Javanese (Javanese): 488
+    Kabyle: 8
+    Kannada: 236
+    Khmer, Central: 390
+    Khün: 421
+    Lamnso': 3
+    Lao: 217
+    Lingala (tones): 8
+    Magahi: 22
+    Maithili: 66
+    Malayalam: 382
+    Maldivian: 209
+    Maori (2): 6
+    Marathi: 103
+    Mazahua Central: 3
+    Mon: 208
+    Mòoré: 1
+    Nanai: 2
+    Navajo: 4
+    Nepali: 71
+    Orok: 1
+    Otomi, Mezquital: 1
+    Panjabi, Eastern: 236
+    Panjabi, Western: 3
+    Pashto, Northern: 1
+    Picard: 1
+    Pular (Adlam): 24
+    RI: 262
+    Sanskrit: 155
+    Sanskrit (Grantha): 237
+    Secoya: 1
+    Seraiki: 1
+    Shan: 106
+    Shipibo-Conibo: 2
+    Sinhala: 198
+    Siona: 1
+    South Azerbaijani: 6
+    Tagalog (Tagalog): 16
+    Tai Dam: 120
+    Tamang, Eastern: 11
+    Tamazight, Central Atlas: 5
+    Tamil: 132
+    Telugu: 335
+    Tem: 2
+    Thai: 193
+    Thai (2): 14
+    Tibetan, Central: 48
+    Ticuna: 13
+    Uduk: 2
+    Urdu: 23
+    Urdu (2): 1
+    VS15: 158
+    VS16: 213
+    Vietnamese: 42
+    Yaneshaʼ: 10
+    Yiddish, Eastern: 10
+    Yoruba: 8
+    ZWJ: 1445
+  layout:
+    left_cells: 3
+    column_stride: 24
+    start_column: 3
+    painted_rows: 86
+    rows_per_page: 85
+    columns_per_page: 10
+    items_per_page: 850
+  calibration:
+    origin_x: 2
+    origin_y: 51
+    cell_width_px: 8.0
+    cell_height_px: 16.0
+    term_width: 317
+    term_height: 86
+  images:
+    QTerminal-spillover_001_U+1000.gif:
+      page: 0
+      spillovers:
+      - wchar: \u1000\u1031
+        codepoints:
+        - 4096
+        - 4145
+        category: language
+        label: Burmese
+        row: 48
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1000\u103a\u103b
+        codepoints:
+        - 4096
+        - 4154
+        - 4155
+        category: language
+        label: Burmese
+        row: 48
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1000\u103b
+        codepoints:
+        - 4096
+        - 4155
+        category: language
+        label: Burmese
+        row: 48
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1000\u103b\u1031
+        codepoints:
+        - 4096
+        - 4155
+        - 4145
+        category: language
+        label: Burmese
+        row: 49
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1000\u103c
+        codepoints:
+        - 4096
+        - 4156
+        category: language
+        label: Burmese
+        row: 49
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1000\u103c\u1031
+        codepoints:
+        - 4096
+        - 4156
+        - 4145
+        category: language
+        label: Burmese
+        row: 49
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1001\u1031
+        codepoints:
+        - 4097
+        - 4145
+        category: language
+        label: Burmese
+        row: 50
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1001\u103b
+        codepoints:
+        - 4097
+        - 4155
+        category: language
+        label: Burmese
+        row: 50
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1001\u103b\u1031
+        codepoints:
+        - 4097
+        - 4155
+        - 4145
+        category: language
+        label: Burmese
+        row: 50
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1001\u103c
+        codepoints:
+        - 4097
+        - 4156
+        category: language
+        label: Burmese
+        row: 50
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1001\u103c\u1031
+        codepoints:
+        - 4097
+        - 4156
+        - 4145
+        category: language
+        label: Burmese
+        row: 51
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1004\u103c
+        codepoints:
+        - 4100
+        - 4156
+        category: language
+        label: Burmese
+        row: 51
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1004\u103d\u1031
+        codepoints:
+        - 4100
+        - 4157
+        - 4145
+        category: language
+        label: Burmese
+        row: 51
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1005\u1031
+        codepoints:
+        - 4101
+        - 4145
+        category: language
+        label: Burmese
+        row: 51
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1006\u1031
+        codepoints:
+        - 4102
+        - 4145
+        category: language
+        label: Burmese
+        row: 51
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1010\u1031
+        codepoints:
+        - 4112
+        - 4145
+        category: language
+        label: Burmese
+        row: 52
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1010\u103d\u1031
+        codepoints:
+        - 4112
+        - 4157
+        - 4145
+        category: language
+        label: Burmese
+        row: 52
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1011\u1031
+        codepoints:
+        - 4113
+        - 4145
+        category: language
+        label: Burmese
+        row: 52
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1011\u103d\u1031
+        codepoints:
+        - 4113
+        - 4157
+        - 4145
+        category: language
+        label: Burmese
+        row: 52
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1012\u1031
+        codepoints:
+        - 4114
+        - 4145
+        category: language
+        label: Burmese
+        row: 52
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1014\u1031
+        codepoints:
+        - 4116
+        - 4145
+        category: language
+        label: Burmese
+        row: 52
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1014\u103e\u1031
+        codepoints:
+        - 4116
+        - 4158
+        - 4145
+        category: language
+        label: Burmese
+        row: 53
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1015\u1031
+        codepoints:
+        - 4117
+        - 4145
+        category: language
+        label: Burmese
+        row: 53
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1015\u103b
+        codepoints:
+        - 4117
+        - 4155
+        category: language
+        label: Burmese
+        row: 53
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1015\u103b\u1031
+        codepoints:
+        - 4117
+        - 4155
+        - 4145
+        category: language
+        label: Burmese
+        row: 53
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1015\u103c
+        codepoints:
+        - 4117
+        - 4156
+        category: language
+        label: Burmese
+        row: 53
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1015\u103c\u1031
+        codepoints:
+        - 4117
+        - 4156
+        - 4145
+        category: language
+        label: Burmese
+        row: 54
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1016\u1031
+        codepoints:
+        - 4118
+        - 4145
+        category: language
+        label: Burmese
+        row: 54
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1016\u103b
+        codepoints:
+        - 4118
+        - 4155
+        category: language
+        label: Burmese
+        row: 54
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1016\u103c
+        codepoints:
+        - 4118
+        - 4156
+        category: language
+        label: Burmese
+        row: 54
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1018\u1031
+        codepoints:
+        - 4120
+        - 4145
+        category: language
+        label: Burmese
+        row: 54
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1019\u1031
+        codepoints:
+        - 4121
+        - 4145
+        category: language
+        label: Burmese
+        row: 54
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1019\u103b
+        codepoints:
+        - 4121
+        - 4155
+        category: language
+        label: Burmese
+        row: 54
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1019\u103c
+        codepoints:
+        - 4121
+        - 4156
+        category: language
+        label: Burmese
+        row: 55
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1019\u103c\u1031
+        codepoints:
+        - 4121
+        - 4156
+        - 4145
+        category: language
+        label: Burmese
+        row: 55
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1019\u103d\u1031
+        codepoints:
+        - 4121
+        - 4157
+        - 4145
+        category: language
+        label: Burmese
+        row: 55
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1019\u103e\u1031
+        codepoints:
+        - 4121
+        - 4158
+        - 4145
+        category: language
+        label: Burmese
+        row: 55
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101a\u1031
+        codepoints:
+        - 4122
+        - 4145
+        category: language
+        label: Burmese
+        row: 55
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101a\u103b
+        codepoints:
+        - 4122
+        - 4155
+        category: language
+        label: Burmese
+        row: 55
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101b\u1031
+        codepoints:
+        - 4123
+        - 4145
+        category: language
+        label: Burmese
+        row: 56
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101b\u103d\u1031
+        codepoints:
+        - 4123
+        - 4157
+        - 4145
+        category: language
+        label: Burmese
+        row: 56
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101b\u103e\u1031
+        codepoints:
+        - 4123
+        - 4158
+        - 4145
+        category: language
+        label: Burmese
+        row: 56
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101c\u1031
+        codepoints:
+        - 4124
+        - 4145
+        category: language
+        label: Burmese
+        row: 56
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101c\u103b
+        codepoints:
+        - 4124
+        - 4155
+        category: language
+        label: Burmese
+        row: 56
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101c\u103b\u1031
+        codepoints:
+        - 4124
+        - 4155
+        - 4145
+        category: language
+        label: Burmese
+        row: 56
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101d\u1031
+        codepoints:
+        - 4125
+        - 4145
+        category: language
+        label: Burmese
+        row: 57
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u101e\u1031
+        codepoints:
+        - 4126
+        - 4145
+        category: language
+        label: Burmese
+        row: 57
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1021\u1031
+        codepoints:
+        - 4129
+        - 4145
+        category: language
+        label: Burmese
+        row: 57
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+    QTerminal-spillover_002_U+A98F.gif:
+      page: 1
+      spillovers:
+      - wchar: \ua98f\ua9ba
+        codepoints:
+        - 43407
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 15
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9ba\ua9b4
+        codepoints:
+        - 43407
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 16
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9bf
+        codepoints:
+        - 43407
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 16
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua98f
+        codepoints:
+        - 43407
+        - 43456
+        - 43407
+        category: language
+        label: Javanese (Javanese)
+        row: 16
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua98f\ua981
+        codepoints:
+        - 43407
+        - 43456
+        - 43407
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 16
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua98f\ua9ba
+        codepoints:
+        - 43407
+        - 43456
+        - 43407
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 16
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua98f\ua9bc
+        codepoints:
+        - 43407
+        - 43456
+        - 43407
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 16
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua994
+        codepoints:
+        - 43407
+        - 43456
+        - 43412
+        category: language
+        label: Javanese (Javanese)
+        row: 16
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua994\ua9b8
+        codepoints:
+        - 43407
+        - 43456
+        - 43412
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 16
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua994\ua9bf
+        codepoints:
+        - 43407
+        - 43456
+        - 43412
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua995
+        codepoints:
+        - 43407
+        - 43456
+        - 43413
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a0
+        codepoints:
+        - 43407
+        - 43456
+        - 43424
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a0\ua9b6
+        codepoints:
+        - 43407
+        - 43456
+        - 43424
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a0\ua9b8
+        codepoints:
+        - 43407
+        - 43456
+        - 43424
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a0\ua9ba
+        codepoints:
+        - 43407
+        - 43456
+        - 43424
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a2
+        codepoints:
+        - 43407
+        - 43456
+        - 43426
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a2\ua982
+        codepoints:
+        - 43407
+        - 43456
+        - 43426
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a2\ua9b6
+        codepoints:
+        - 43407
+        - 43456
+        - 43426
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a4
+        codepoints:
+        - 43407
+        - 43456
+        - 43428
+        category: language
+        label: Javanese (Javanese)
+        row: 17
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a4\ua9b6\ua981
+        codepoints:
+        - 43407
+        - 43456
+        - 43428
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a5
+        codepoints:
+        - 43407
+        - 43456
+        - 43429
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a5\ua9b6
+        codepoints:
+        - 43407
+        - 43456
+        - 43429
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a5\ua9bf\ua9b6
+        codepoints:
+        - 43407
+        - 43456
+        - 43429
+        - 43455
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a7
+        codepoints:
+        - 43407
+        - 43456
+        - 43431
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a7\ua9b6
+        codepoints:
+        - 43407
+        - 43456
+        - 43431
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a7\ua9ba
+        codepoints:
+        - 43407
+        - 43456
+        - 43431
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a9
+        codepoints:
+        - 43407
+        - 43456
+        - 43433
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9a9\ua9b8
+        codepoints:
+        - 43407
+        - 43456
+        - 43433
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9aa
+        codepoints:
+        - 43407
+        - 43456
+        - 43434
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9ad
+        codepoints:
+        - 43407
+        - 43456
+        - 43437
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9ae
+        codepoints:
+        - 43407
+        - 43456
+        - 43438
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b1
+        codepoints:
+        - 43407
+        - 43456
+        - 43441
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b1\ua982
+        codepoints:
+        - 43407
+        - 43456
+        - 43441
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b1\ua9b6
+        codepoints:
+        - 43407
+        - 43456
+        - 43441
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b1\ua9b8
+        codepoints:
+        - 43407
+        - 43456
+        - 43441
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b1\ua9ba
+        codepoints:
+        - 43407
+        - 43456
+        - 43441
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b2
+        codepoints:
+        - 43407
+        - 43456
+        - 43442
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b2\ua981
+        codepoints:
+        - 43407
+        - 43456
+        - 43442
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b2\ua9b6\ua981
+        codepoints:
+        - 43407
+        - 43456
+        - 43442
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 19
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b2\ua9b8
+        codepoints:
+        - 43407
+        - 43456
+        - 43442
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 20
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b2\ua9ba
+        codepoints:
+        - 43407
+        - 43456
+        - 43442
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 20
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua9c0\ua9b2\ua9ba\ua9b4
+        codepoints:
+        - 43407
+        - 43456
+        - 43442
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 20
+        column: 51
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua992\ua9ba\ua9b4
+        codepoints:
+        - 43410
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 20
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua992\ua9bf
+        codepoints:
+        - 43410
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 20
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua992\ua9bf\ua9ba
+        codepoints:
+        - 43410
+        - 43455
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 20
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua992\ua9c0\ua992
+        codepoints:
+        - 43410
+        - 43456
+        - 43410
+        category: language
+        label: Javanese (Javanese)
+        row: 20
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9ba
+        codepoints:
+        - 43412
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 20
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9ba\ua9b4
+        codepoints:
+        - 43412
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9bf
+        codepoints:
+        - 43412
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9c0\ua992\ua9bc
+        codepoints:
+        - 43412
+        - 43456
+        - 43410
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9c0\ua992\ua9bf\ua9bc\ua981
+        codepoints:
+        - 43412
+        - 43456
+        - 43410
+        - 43455
+        - 43452
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9c0\ua9ad
+        codepoints:
+        - 43412
+        - 43456
+        - 43437
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9c0\ua9ad\ua981
+        codepoints:
+        - 43412
+        - 43456
+        - 43437
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9c0\ua9ad\ua9b8
+        codepoints:
+        - 43412
+        - 43456
+        - 43437
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua9c0\ua9ad\ua9bc
+        codepoints:
+        - 43412
+        - 43456
+        - 43437
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua995\ua9ba\ua9b4
+        codepoints:
+        - 43413
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua997\ua9ba
+        codepoints:
+        - 43415
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua997\ua9bf\ua9ba\ua9b4
+        codepoints:
+        - 43415
+        - 43455
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99a\ua9c0\ua995
+        codepoints:
+        - 43418
+        - 43456
+        - 43413
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99a\ua9c0\ua995\ua9b6
+        codepoints:
+        - 43418
+        - 43456
+        - 43413
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99a\ua9c0\ua997
+        codepoints:
+        - 43418
+        - 43456
+        - 43415
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99a\ua9c0\ua997\ua9b6
+        codepoints:
+        - 43418
+        - 43456
+        - 43415
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99a\ua9c0\ua997\ua9b8\ua981
+        codepoints:
+        - 43418
+        - 43456
+        - 43415
+        - 43448
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99a\ua9c0\ua997\ua9b8\ua982
+        codepoints:
+        - 43418
+        - 43456
+        - 43415
+        - 43448
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99d\ua9ba
+        codepoints:
+        - 43421
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 23
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99d\ua9ba\ua9b4
+        codepoints:
+        - 43421
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 23
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99d\ua9ba\ua9b4\ua982
+        codepoints:
+        - 43421
+        - 43450
+        - 43444
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 23
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9ba
+        codepoints:
+        - 43424
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 23
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9ba\ua983
+        codepoints:
+        - 43424
+        - 43450
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 23
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9ba\ua9b4
+        codepoints:
+        - 43424
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 23
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9be
+        codepoints:
+        - 43424
+        - 43454
+        category: language
+        label: Javanese (Javanese)
+        row: 23
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9bf
+        codepoints:
+        - 43424
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 23
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua98f\ua981
+        codepoints:
+        - 43424
+        - 43456
+        - 43407
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua98f\ua9b8
+        codepoints:
+        - 43424
+        - 43456
+        - 43407
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua992
+        codepoints:
+        - 43424
+        - 43456
+        - 43410
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua994\ua9b8
+        codepoints:
+        - 43424
+        - 43456
+        - 43412
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua99a
+        codepoints:
+        - 43424
+        - 43456
+        - 43418
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a0
+        codepoints:
+        - 43424
+        - 43456
+        - 43424
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a0\ua9b6
+        codepoints:
+        - 43424
+        - 43456
+        - 43424
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a0\ua9b6\ua981
+        codepoints:
+        - 43424
+        - 43456
+        - 43424
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a0\ua9b8
+        codepoints:
+        - 43424
+        - 43456
+        - 43424
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a0\ua9ba
+        codepoints:
+        - 43424
+        - 43456
+        - 43424
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 24
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a4
+        codepoints:
+        - 43424
+        - 43456
+        - 43428
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a4\ua9b6
+        codepoints:
+        - 43424
+        - 43456
+        - 43428
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a9
+        codepoints:
+        - 43424
+        - 43456
+        - 43433
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9a9\ua9bc
+        codepoints:
+        - 43424
+        - 43456
+        - 43433
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9ad
+        codepoints:
+        - 43424
+        - 43456
+        - 43437
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9ad\ua9ba
+        codepoints:
+        - 43424
+        - 43456
+        - 43437
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9b1
+        codepoints:
+        - 43424
+        - 43456
+        - 43441
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9b1\ua9b6\ua981
+        codepoints:
+        - 43424
+        - 43456
+        - 43441
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9b1\ua9b6\ua983
+        codepoints:
+        - 43424
+        - 43456
+        - 43441
+        - 43446
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9b1\ua9be
+        codepoints:
+        - 43424
+        - 43456
+        - 43441
+        - 43454
+        category: language
+        label: Javanese (Javanese)
+        row: 25
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9b1\ua9c0\ua9ae
+        codepoints:
+        - 43424
+        - 43456
+        - 43441
+        - 43456
+        - 43438
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 3
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9b2
+        codepoints:
+        - 43424
+        - 43456
+        - 43442
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9b2\ua9b6\ua981
+        codepoints:
+        - 43424
+        - 43456
+        - 43442
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua9c0\ua9b2\ua9ba\ua9b4
+        codepoints:
+        - 43424
+        - 43456
+        - 43442
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 75
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9ba
+        codepoints:
+        - 43426
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9ba\ua9b4
+        codepoints:
+        - 43426
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9be
+        codepoints:
+        - 43426
+        - 43454
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9bf
+        codepoints:
+        - 43426
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9c0\ua98f
+        codepoints:
+        - 43426
+        - 43456
+        - 43407
+        category: language
+        label: Javanese (Javanese)
+        row: 26
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9c0\ua9a0
+        codepoints:
+        - 43426
+        - 43456
+        - 43424
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9c0\ua9a0\ua9b6\ua981
+        codepoints:
+        - 43426
+        - 43456
+        - 43424
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9c0\ua9a2
+        codepoints:
+        - 43426
+        - 43456
+        - 43426
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9c0\ua9a5
+        codepoints:
+        - 43426
+        - 43456
+        - 43429
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9c0\ua9a9\ua9ba\ua9b4
+        codepoints:
+        - 43426
+        - 43456
+        - 43433
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 99
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a2\ua9c0\ua9b2
+        codepoints:
+        - 43426
+        - 43456
+        - 43442
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9ba
+        codepoints:
+        - 43428
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9ba\ua983
+        codepoints:
+        - 43428
+        - 43450
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9ba\ua9b4
+        codepoints:
+        - 43428
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua98f
+        codepoints:
+        - 43428
+        - 43456
+        - 43407
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua98f\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43407
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua98f\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43407
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua98f\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43407
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua992
+        codepoints:
+        - 43428
+        - 43456
+        - 43410
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua994
+        codepoints:
+        - 43428
+        - 43456
+        - 43412
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua994\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43412
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua994\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43412
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua994\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43412
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua994\ua9b8\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43412
+        - 43448
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua994\ua9ba
+        codepoints:
+        - 43428
+        - 43456
+        - 43412
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua994\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43412
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua994\ua9bf\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43412
+        - 43455
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua997
+        codepoints:
+        - 43428
+        - 43456
+        - 43415
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua997\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43415
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua997\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43415
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99a\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43418
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99b\ua983
+        codepoints:
+        - 43428
+        - 43456
+        - 43419
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99b\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43419
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99d
+        codepoints:
+        - 43428
+        - 43456
+        - 43421
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99d\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43421
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 29
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99d\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43421
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99d\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43421
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99d\ua9b8\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43421
+        - 43448
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99d\ua9ba\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43421
+        - 43450
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99d\ua9ba\ua9b4\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43421
+        - 43450
+        - 43444
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 99
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua99d\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43421
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua983
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua9b8\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43448
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua9ba
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua9bc\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43452
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a0\ua9bd
+        codepoints:
+        - 43428
+        - 43456
+        - 43424
+        - 43453
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a2
+        codepoints:
+        - 43428
+        - 43456
+        - 43426
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a2\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43426
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a2\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43426
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a2\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43426
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 31
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a2\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43426
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a2\ua9ba
+        codepoints:
+        - 43428
+        - 43456
+        - 43426
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a2\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43426
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a4
+        codepoints:
+        - 43428
+        - 43456
+        - 43428
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a4\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43428
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a4\ua9b6\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43428
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a4\ua9ba
+        codepoints:
+        - 43428
+        - 43456
+        - 43428
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a4\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43428
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a5
+        codepoints:
+        - 43428
+        - 43456
+        - 43429
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a5\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43429
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a5\ua9b3\ua9ba\ua9b4\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43429
+        - 43443
+        - 43450
+        - 43444
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 3
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a5\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43429
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a5\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43429
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a5\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43429
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a5\ua9bf
+        codepoints:
+        - 43428
+        - 43456
+        - 43429
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a5\ua9bf\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43429
+        - 43455
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a7
+        codepoints:
+        - 43428
+        - 43456
+        - 43431
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a7\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43431
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a7\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43431
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a7\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43431
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a7\ua9ba
+        codepoints:
+        - 43428
+        - 43456
+        - 43431
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a7\ua9ba\ua9b4
+        codepoints:
+        - 43428
+        - 43456
+        - 43431
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 27
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a7\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43431
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a9
+        codepoints:
+        - 43428
+        - 43456
+        - 43433
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a9\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43433
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a9\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43433
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a9\ua9b8\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43433
+        - 43448
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9a9\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43433
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9ad
+        codepoints:
+        - 43428
+        - 43456
+        - 43437
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9ad\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43437
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9ad\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43437
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9ae
+        codepoints:
+        - 43428
+        - 43456
+        - 43438
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9ae\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43438
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9ae\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43438
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9ae\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43438
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9ae\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43438
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b1
+        codepoints:
+        - 43428
+        - 43456
+        - 43441
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b1\ua982
+        codepoints:
+        - 43428
+        - 43456
+        - 43441
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b1\ua983
+        codepoints:
+        - 43428
+        - 43456
+        - 43441
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b1\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43441
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b1\ua9b6\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43441
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b1\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43441
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b1\ua9ba\ua9b4
+        codepoints:
+        - 43428
+        - 43456
+        - 43441
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 51
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b1\ua9bc
+        codepoints:
+        - 43428
+        - 43456
+        - 43441
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b2
+        codepoints:
+        - 43428
+        - 43456
+        - 43442
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b2\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43442
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b2\ua9b6
+        codepoints:
+        - 43428
+        - 43456
+        - 43442
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b2\ua9b6\ua981
+        codepoints:
+        - 43428
+        - 43456
+        - 43442
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b2\ua9b8
+        codepoints:
+        - 43428
+        - 43456
+        - 43442
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a4\ua9c0\ua9b2\ua9ba\ua9b4
+        codepoints:
+        - 43428
+        - 43456
+        - 43442
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 219
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9ba
+        codepoints:
+        - 43429
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 37
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9ba\ua9b4
+        codepoints:
+        - 43429
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 37
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9bf
+        codepoints:
+        - 43429
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 37
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9bf\ua983
+        codepoints:
+        - 43429
+        - 43455
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 37
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9bf\ua9ba\ua9b4
+        codepoints:
+        - 43429
+        - 43455
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 37
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua98f
+        codepoints:
+        - 43429
+        - 43456
+        - 43407
+        category: language
+        label: Javanese (Javanese)
+        row: 37
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua98f\ua981
+        codepoints:
+        - 43429
+        - 43456
+        - 43407
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 37
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a0
+        codepoints:
+        - 43429
+        - 43456
+        - 43424
+        category: language
+        label: Javanese (Javanese)
+        row: 37
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a0\ua9b6
+        codepoints:
+        - 43429
+        - 43456
+        - 43424
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a2\ua9b8
+        codepoints:
+        - 43429
+        - 43456
+        - 43426
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a4
+        codepoints:
+        - 43429
+        - 43456
+        - 43428
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a4\ua9b6
+        codepoints:
+        - 43429
+        - 43456
+        - 43428
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a5
+        codepoints:
+        - 43429
+        - 43456
+        - 43429
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a5\ua9b6
+        codepoints:
+        - 43429
+        - 43456
+        - 43429
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a5\ua9ba
+        codepoints:
+        - 43429
+        - 43456
+        - 43429
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a7\ua9ba
+        codepoints:
+        - 43429
+        - 43456
+        - 43431
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a9
+        codepoints:
+        - 43429
+        - 43456
+        - 43433
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9a9\ua982
+        codepoints:
+        - 43429
+        - 43456
+        - 43433
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 38
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9ab\ua9ba
+        codepoints:
+        - 43429
+        - 43456
+        - 43435
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9ad
+        codepoints:
+        - 43429
+        - 43456
+        - 43437
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9ad\ua9b8
+        codepoints:
+        - 43429
+        - 43456
+        - 43437
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9b1
+        codepoints:
+        - 43429
+        - 43456
+        - 43441
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9b1\ua9b6\ua982
+        codepoints:
+        - 43429
+        - 43456
+        - 43441
+        - 43446
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9b1\ua9bc
+        codepoints:
+        - 43429
+        - 43456
+        - 43441
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9c0\ua9b2
+        codepoints:
+        - 43429
+        - 43456
+        - 43442
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9ba
+        codepoints:
+        - 43431
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9ba\ua983
+        codepoints:
+        - 43431
+        - 43450
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9ba\ua9b4
+        codepoints:
+        - 43431
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9bf
+        codepoints:
+        - 43431
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9c0\ua98f
+        codepoints:
+        - 43431
+        - 43456
+        - 43407
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9c0\ua9a0\ua9b8
+        codepoints:
+        - 43431
+        - 43456
+        - 43424
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9c0\ua9a5
+        codepoints:
+        - 43431
+        - 43456
+        - 43429
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9c0\ua9a7
+        codepoints:
+        - 43431
+        - 43456
+        - 43431
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9c0\ua9a7\ua9ba
+        codepoints:
+        - 43431
+        - 43456
+        - 43431
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9c0\ua9b2
+        codepoints:
+        - 43431
+        - 43456
+        - 43442
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a7\ua9c0\ua9b2\ua9b6
+        codepoints:
+        - 43431
+        - 43456
+        - 43442
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9ba
+        codepoints:
+        - 43433
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 40
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9ba\ua983
+        codepoints:
+        - 43433
+        - 43450
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9ba\ua9b4
+        codepoints:
+        - 43433
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9bf
+        codepoints:
+        - 43433
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9bf\ua983
+        codepoints:
+        - 43433
+        - 43455
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua98f\ua981
+        codepoints:
+        - 43433
+        - 43456
+        - 43407
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua994\ua9bc
+        codepoints:
+        - 43433
+        - 43456
+        - 43412
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a0\ua9b8
+        codepoints:
+        - 43433
+        - 43456
+        - 43424
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a0\ua9ba\ua9b4
+        codepoints:
+        - 43433
+        - 43456
+        - 43424
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 195
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a4\ua9b6\ua981
+        codepoints:
+        - 43433
+        - 43456
+        - 43428
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 41
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a5
+        codepoints:
+        - 43433
+        - 43456
+        - 43429
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a5\ua9b6
+        codepoints:
+        - 43433
+        - 43456
+        - 43429
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a5\ua9b8
+        codepoints:
+        - 43433
+        - 43456
+        - 43429
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a5\ua9bc
+        codepoints:
+        - 43433
+        - 43456
+        - 43429
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua981
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua982
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua983
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua9b6
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua9b8
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 42
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua9b8\ua981
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43448
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua9ba
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua9ba\ua982
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43450
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua9bc\ua982
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43452
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a7\ua9be\ua9b8\ua982
+        codepoints:
+        - 43433
+        - 43456
+        - 43431
+        - 43454
+        - 43448
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a9
+        codepoints:
+        - 43433
+        - 43456
+        - 43433
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9a9\ua9b6
+        codepoints:
+        - 43433
+        - 43456
+        - 43433
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9ab
+        codepoints:
+        - 43433
+        - 43456
+        - 43435
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9ab\ua983
+        codepoints:
+        - 43433
+        - 43456
+        - 43435
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9ad
+        codepoints:
+        - 43433
+        - 43456
+        - 43437
+        category: language
+        label: Javanese (Javanese)
+        row: 43
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9c0\ua9b2\ua9b6
+        codepoints:
+        - 43433
+        - 43456
+        - 43442
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 44
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9aa\ua9ba\ua9b4
+        codepoints:
+        - 43434
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 44
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ab\ua9ba
+        codepoints:
+        - 43435
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 44
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ab\ua9ba\ua9b4
+        codepoints:
+        - 43435
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 44
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ab\ua9be
+        codepoints:
+        - 43435
+        - 43454
+        category: language
+        label: Javanese (Javanese)
+        row: 44
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9ba
+        codepoints:
+        - 43437
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9ba\ua983
+        codepoints:
+        - 43437
+        - 43450
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9ba\ua9b4
+        codepoints:
+        - 43437
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9ba\ua9b4\ua981
+        codepoints:
+        - 43437
+        - 43450
+        - 43444
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua98f\ua981
+        codepoints:
+        - 43437
+        - 43456
+        - 43407
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua99a\ua9bc\ua981
+        codepoints:
+        - 43437
+        - 43456
+        - 43418
+        - 43452
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9a0\ua9b8
+        codepoints:
+        - 43437
+        - 43456
+        - 43424
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9a7\ua9b8
+        codepoints:
+        - 43437
+        - 43456
+        - 43431
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9a9\ua9b8
+        codepoints:
+        - 43437
+        - 43456
+        - 43433
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9ad
+        codepoints:
+        - 43437
+        - 43456
+        - 43437
+        category: language
+        label: Javanese (Javanese)
+        row: 45
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9ad\ua9b6
+        codepoints:
+        - 43437
+        - 43456
+        - 43437
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9ad\ua9b6\ua981
+        codepoints:
+        - 43437
+        - 43456
+        - 43437
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9ad\ua9ba
+        codepoints:
+        - 43437
+        - 43456
+        - 43437
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9ae
+        codepoints:
+        - 43437
+        - 43456
+        - 43438
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9b1
+        codepoints:
+        - 43437
+        - 43456
+        - 43441
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9b1\ua982
+        codepoints:
+        - 43437
+        - 43456
+        - 43441
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9b1\ua9b6\ua981
+        codepoints:
+        - 43437
+        - 43456
+        - 43441
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9b1\ua9b8
+        codepoints:
+        - 43437
+        - 43456
+        - 43441
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9b2
+        codepoints:
+        - 43437
+        - 43456
+        - 43442
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9b2\ua981
+        codepoints:
+        - 43437
+        - 43456
+        - 43442
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 46
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9b2\ua9b6\ua981
+        codepoints:
+        - 43437
+        - 43456
+        - 43442
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 47
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua9c0\ua9b2\ua9b8
+        codepoints:
+        - 43437
+        - 43456
+        - 43442
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 47
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ae\ua9ba
+        codepoints:
+        - 43438
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 47
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ae\ua9ba\ua9b4
+        codepoints:
+        - 43438
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 47
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ae\ua9ba\ua9b4\ua981
+        codepoints:
+        - 43438
+        - 43450
+        - 43444
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 47
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ae\ua9ba\ua9b4\ua983
+        codepoints:
+        - 43438
+        - 43450
+        - 43444
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 47
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9ba
+        codepoints:
+        - 43441
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9ba\ua9b4
+        codepoints:
+        - 43441
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9be
+        codepoints:
+        - 43441
+        - 43454
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9bf
+        codepoints:
+        - 43441
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9bf\ua983
+        codepoints:
+        - 43441
+        - 43455
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua98f
+        codepoints:
+        - 43441
+        - 43456
+        - 43407
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua98f\ua981
+        codepoints:
+        - 43441
+        - 43456
+        - 43407
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua98f\ua9bf\ua9b6
+        codepoints:
+        - 43441
+        - 43456
+        - 43407
+        - 43455
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua992
+        codepoints:
+        - 43441
+        - 43456
+        - 43410
+        category: language
+        label: Javanese (Javanese)
+        row: 48
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua994\ua9b8
+        codepoints:
+        - 43441
+        - 43456
+        - 43412
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua994\ua9bf
+        codepoints:
+        - 43441
+        - 43456
+        - 43412
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua99b\ua9b6
+        codepoints:
+        - 43441
+        - 43456
+        - 43419
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a0
+        codepoints:
+        - 43441
+        - 43456
+        - 43424
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a0\ua9bf
+        codepoints:
+        - 43441
+        - 43456
+        - 43424
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a2\ua982
+        codepoints:
+        - 43441
+        - 43456
+        - 43426
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a2\ua9b6
+        codepoints:
+        - 43441
+        - 43456
+        - 43426
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a2\ua9b8
+        codepoints:
+        - 43441
+        - 43456
+        - 43426
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a5
+        codepoints:
+        - 43441
+        - 43456
+        - 43429
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a7
+        codepoints:
+        - 43441
+        - 43456
+        - 43431
+        category: language
+        label: Javanese (Javanese)
+        row: 49
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a7\ua981
+        codepoints:
+        - 43441
+        - 43456
+        - 43431
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a9
+        codepoints:
+        - 43441
+        - 43456
+        - 43433
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a9\ua9b6
+        codepoints:
+        - 43441
+        - 43456
+        - 43433
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a9\ua9bc
+        codepoints:
+        - 43441
+        - 43456
+        - 43433
+        - 43452
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9a9\ua9bf
+        codepoints:
+        - 43441
+        - 43456
+        - 43433
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9ad
+        codepoints:
+        - 43441
+        - 43456
+        - 43437
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9ae
+        codepoints:
+        - 43441
+        - 43456
+        - 43438
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b1
+        codepoints:
+        - 43441
+        - 43456
+        - 43441
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b1\ua982
+        codepoints:
+        - 43441
+        - 43456
+        - 43441
+        - 43394
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b1\ua9b6
+        codepoints:
+        - 43441
+        - 43456
+        - 43441
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 50
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b1\ua9b6\ua981
+        codepoints:
+        - 43441
+        - 43456
+        - 43441
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b1\ua9b8
+        codepoints:
+        - 43441
+        - 43456
+        - 43441
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b1\ua9ba
+        codepoints:
+        - 43441
+        - 43456
+        - 43441
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b2
+        codepoints:
+        - 43441
+        - 43456
+        - 43442
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b2\ua981
+        codepoints:
+        - 43441
+        - 43456
+        - 43442
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b2\ua9b6
+        codepoints:
+        - 43441
+        - 43456
+        - 43442
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b2\ua9b6\ua981
+        codepoints:
+        - 43441
+        - 43456
+        - 43442
+        - 43446
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9c0\ua9b2\ua9b8
+        codepoints:
+        - 43441
+        - 43456
+        - 43442
+        - 43448
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b2\ua9ba
+        codepoints:
+        - 43442
+        - 43450
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b2\ua9ba\ua9b4
+        codepoints:
+        - 43442
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 51
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+    QTerminal-spillover_003_U+1A23.gif:
+      page: 2
+      spillovers:
+      - wchar: \u1a23\u1a55
+        codepoints:
+        - 6691
+        - 6741
+        category: language
+        label: Khün
+        row: 14
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a23\u1a55\u1a6e\u1a60
+        codepoints:
+        - 6691
+        - 6741
+        - 6766
+        - 6752
+        category: language
+        label: Khün
+        row: 15
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a23\u1a55\u1a6e\u1a60\u1a26\u1a68\u1a75
+        codepoints:
+        - 6691
+        - 6741
+        - 6766
+        - 6752
+        - 6694
+        - 6760
+        - 6773
+        category: language
+        label: Khün
+        row: 15
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a27\u1a6e
+        codepoints:
+        - 6695
+        - 6766
+        category: language
+        label: Khün
+        row: 17
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a27\u1a71
+        codepoints:
+        - 6695
+        - 6769
+        category: language
+        label: Khün
+        row: 18
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a29\u1a6d\u1a75
+        codepoints:
+        - 6697
+        - 6765
+        - 6773
+        category: language
+        label: Khün
+        row: 18
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a2f\u1a6a\u1a6f
+        codepoints:
+        - 6703
+        - 6762
+        - 6767
+        category: language
+        label: Khün
+        row: 20
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a2f\u1a71
+        codepoints:
+        - 6703
+        - 6769
+        category: language
+        label: Khün
+        row: 20
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a32\u1a55
+        codepoints:
+        - 6706
+        - 6741
+        category: language
+        label: Khün
+        row: 21
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a32\u1a71
+        codepoints:
+        - 6706
+        - 6769
+        category: language
+        label: Khün
+        row: 23
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a36\u1a6e
+        codepoints:
+        - 6710
+        - 6766
+        category: language
+        label: Khün
+        row: 26
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a36\u1a71
+        codepoints:
+        - 6710
+        - 6769
+        category: language
+        label: Khün
+        row: 27
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a37\u1a55
+        codepoints:
+        - 6711
+        - 6741
+        category: language
+        label: Khün
+        row: 27
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a39\u1a6a\u1a62\u1a71
+        codepoints:
+        - 6713
+        - 6762
+        - 6754
+        - 6769
+        category: language
+        label: Khün
+        row: 29
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a3b\u1a71
+        codepoints:
+        - 6715
+        - 6769
+        category: language
+        label: Khün
+        row: 30
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a3e\u1a71
+        codepoints:
+        - 6718
+        - 6769
+        category: language
+        label: Khün
+        row: 32
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a3f\u1a70
+        codepoints:
+        - 6719
+        - 6768
+        category: language
+        label: Khün
+        row: 33
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a43\u1a6f
+        codepoints:
+        - 6723
+        - 6767
+        category: language
+        label: Khün
+        row: 35
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a45\u1a6e
+        codepoints:
+        - 6725
+        - 6766
+        category: language
+        label: Khün
+        row: 36
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a48\u1a6e
+        codepoints:
+        - 6728
+        - 6766
+        category: language
+        label: Khün
+        row: 38
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a48\u1a71
+        codepoints:
+        - 6728
+        - 6769
+        category: language
+        label: Khün
+        row: 38
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a20
+        codepoints:
+        - 6755
+        - 6752
+        - 6688
+        category: language
+        label: Khün
+        row: 42
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a26
+        codepoints:
+        - 6755
+        - 6752
+        - 6694
+        category: language
+        label: Khün
+        row: 42
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a27
+        codepoints:
+        - 6755
+        - 6752
+        - 6695
+        category: language
+        label: Khün
+        row: 42
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a29
+        codepoints:
+        - 6755
+        - 6752
+        - 6697
+        category: language
+        label: Khün
+        row: 42
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a2f
+        codepoints:
+        - 6755
+        - 6752
+        - 6703
+        category: language
+        label: Khün
+        row: 43
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a32
+        codepoints:
+        - 6755
+        - 6752
+        - 6706
+        category: language
+        label: Khün
+        row: 43
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a32\u1a71
+        codepoints:
+        - 6755
+        - 6752
+        - 6706
+        - 6769
+        category: language
+        label: Khün
+        row: 43
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a36
+        codepoints:
+        - 6755
+        - 6752
+        - 6710
+        category: language
+        label: Khün
+        row: 43
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a37
+        codepoints:
+        - 6755
+        - 6752
+        - 6711
+        category: language
+        label: Khün
+        row: 43
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a3e
+        codepoints:
+        - 6755
+        - 6752
+        - 6718
+        category: language
+        label: Khün
+        row: 43
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a3f
+        codepoints:
+        - 6755
+        - 6752
+        - 6719
+        category: language
+        label: Khün
+        row: 43
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a41
+        codepoints:
+        - 6755
+        - 6752
+        - 6721
+        category: language
+        label: Khün
+        row: 43
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a43
+        codepoints:
+        - 6755
+        - 6752
+        - 6723
+        category: language
+        label: Khün
+        row: 43
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a45
+        codepoints:
+        - 6755
+        - 6752
+        - 6725
+        category: language
+        label: Khün
+        row: 43
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a63\u1a60\u1a48
+        codepoints:
+        - 6755
+        - 6752
+        - 6728
+        category: language
+        label: Khün
+        row: 44
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a64\u1a60\u1a26
+        codepoints:
+        - 6756
+        - 6752
+        - 6694
+        category: language
+        label: Khün
+        row: 44
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a64\u1a60\u1a36\u1a62
+        codepoints:
+        - 6756
+        - 6752
+        - 6710
+        - 6754
+        category: language
+        label: Khün
+        row: 44
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+    QTerminal-spillover_005_U+0F40.gif:
+      page: 4
+      spillovers:
+      - wchar: \u0f40\u0fb1
+        codepoints:
+        - 3904
+        - 4017
+        category: language
+        label: Dzongkha
+        row: 72
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f40\u0fb1\u0f72
+        codepoints:
+        - 3904
+        - 4017
+        - 3954
+        category: language
+        label: Dzongkha
+        row: 72
+        column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f40\u0fb3
+        codepoints:
+        - 3904
+        - 4019
+        category: language
+        label: Dzongkha
+        row: 72
+        column: 219
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f40\u0fb3\u0f7c
+        codepoints:
+        - 3904
+        - 4019
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 73
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f41\u0fb1
+        codepoints:
+        - 3905
+        - 4017
+        category: language
+        label: Dzongkha
+        row: 73
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f41\u0fb1\u0f72
+        codepoints:
+        - 3905
+        - 4017
+        - 3954
+        category: language
+        label: Dzongkha
+        row: 73
+        column: 123
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f41\u0fb2\u0f72
+        codepoints:
+        - 3905
+        - 4018
+        - 3954
+        category: language
+        label: Dzongkha
+        row: 73
+        column: 147
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f41\u0fb2\u0f7c
+        codepoints:
+        - 3905
+        - 4018
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 73
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb1
+        codepoints:
+        - 3906
+        - 4017
+        category: language
+        label: Dzongkha
+        row: 74
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb1\u0f72
+        codepoints:
+        - 3906
+        - 4017
+        - 3954
+        category: language
+        label: Dzongkha
+        row: 74
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb1\u0f74
+        codepoints:
+        - 3906
+        - 4017
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 74
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb1\u0f7c
+        codepoints:
+        - 3906
+        - 4017
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 74
+        column: 123
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb2
+        codepoints:
+        - 3906
+        - 4018
+        category: language
+        label: Dzongkha
+        row: 74
+        column: 147
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb2\u0f74
+        codepoints:
+        - 3906
+        - 4018
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 74
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb2\u0f7a
+        codepoints:
+        - 3906
+        - 4018
+        - 3962
+        category: language
+        label: Dzongkha
+        row: 74
+        column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb2\u0f7c
+        codepoints:
+        - 3906
+        - 4018
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 74
+        column: 219
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb3\u0f72
+        codepoints:
+        - 3906
+        - 4019
+        - 3954
+        category: language
+        label: Dzongkha
+        row: 75
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0fb3\u0f7a
+        codepoints:
+        - 3906
+        - 4019
+        - 3962
+        category: language
+        label: Dzongkha
+        row: 75
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f51\u0fb2
+        codepoints:
+        - 3921
+        - 4018
+        category: language
+        label: Dzongkha
+        row: 77
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f51\u0fb2\u0f7c
+        codepoints:
+        - 3921
+        - 4018
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 77
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f54\u0fb1
+        codepoints:
+        - 3924
+        - 4017
+        category: language
+        label: Dzongkha
+        row: 77
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f54\u0fb1\u0f7c
+        codepoints:
+        - 3924
+        - 4017
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 77
+        column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f55\u0fb1\u0f7a
+        codepoints:
+        - 3925
+        - 4017
+        - 3962
+        category: language
+        label: Dzongkha
+        row: 78
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f55\u0fb1\u0f7c
+        codepoints:
+        - 3925
+        - 4017
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 78
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f55\u0fb2\u0f74
+        codepoints:
+        - 3925
+        - 4018
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 78
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f55\u0fb2\u0f7c
+        codepoints:
+        - 3925
+        - 4018
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 78
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb1
+        codepoints:
+        - 3926
+        - 4017
+        category: language
+        label: Dzongkha
+        row: 78
+        column: 147
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb1\u0f72
+        codepoints:
+        - 3926
+        - 4017
+        - 3954
+        category: language
+        label: Dzongkha
+        row: 78
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb1\u0f74
+        codepoints:
+        - 3926
+        - 4017
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 78
+        column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb1\u0f7a
+        codepoints:
+        - 3926
+        - 4017
+        - 3962
+        category: language
+        label: Dzongkha
+        row: 78
+        column: 219
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb1\u0f7c
+        codepoints:
+        - 3926
+        - 4017
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 79
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb2
+        codepoints:
+        - 3926
+        - 4018
+        category: language
+        label: Dzongkha
+        row: 79
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb2\u0f7a
+        codepoints:
+        - 3926
+        - 4018
+        - 3962
+        category: language
+        label: Dzongkha
+        row: 79
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb3
+        codepoints:
+        - 3926
+        - 4019
+        category: language
+        label: Dzongkha
+        row: 79
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f56\u0fb3\u0f7c
+        codepoints:
+        - 3926
+        - 4019
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 79
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f58\u0fb1\u0f7c
+        codepoints:
+        - 3928
+        - 4017
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 79
+        column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f5f\u0fb3\u0f7c
+        codepoints:
+        - 3935
+        - 4019
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 81
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0f90\u0fb1
+        codepoints:
+        - 3938
+        - 3984
+        - 4017
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0f92
+        codepoints:
+        - 3938
+        - 3986
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0f92\u0fb1
+        codepoints:
+        - 3938
+        - 3986
+        - 4017
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0f92\u0fb1\u0f74
+        codepoints:
+        - 3938
+        - 3986
+        - 4017
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0f9f
+        codepoints:
+        - 3938
+        - 3999
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 123
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0f9f\u0f7a
+        codepoints:
+        - 3938
+        - 3999
+        - 3962
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 147
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0fa1
+        codepoints:
+        - 3938
+        - 4001
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0fa3
+        codepoints:
+        - 3938
+        - 4003
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0fa9
+        codepoints:
+        - 3938
+        - 4009
+        category: language
+        label: Dzongkha
+        row: 82
+        column: 219
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0fa9\u0f72
+        codepoints:
+        - 3938
+        - 4009
+        - 3954
+        category: language
+        label: Dzongkha
+        row: 83
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0fa9\u0f74
+        codepoints:
+        - 3938
+        - 4009
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 83
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0fa9\u0f7c
+        codepoints:
+        - 3938
+        - 4009
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 83
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f63\u0f71
+        codepoints:
+        - 3939
+        - 3953
+        category: language
+        label: Dzongkha
+        row: 83
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f63\u0f95\u0f7c
+        codepoints:
+        - 3939
+        - 3989
+        - 3964
+        category: language
+        label: Dzongkha
+        row: 83
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f63\u0f9f
+        codepoints:
+        - 3939
+        - 3999
+        category: language
+        label: Dzongkha
+        row: 83
+        column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f63\u0fa1
+        codepoints:
+        - 3939
+        - 4001
+        category: language
+        label: Dzongkha
+        row: 83
+        column: 219
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f63\u0fb7
+        codepoints:
+        - 3939
+        - 4023
+        category: language
+        label: Dzongkha
+        row: 84
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f66\u0f90
+        codepoints:
+        - 3942
+        - 3984
+        category: language
+        label: Dzongkha
+        row: 84
+        column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f66\u0f90\u0f74
+        codepoints:
+        - 3942
+        - 3984
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 84
+        column: 219
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+  errors: []
 system: Linux
 terminal_results:
   color_scheme: false
@@ -118,7 +6506,7 @@ terminal_results:
     - 2
     raw: "\e[?1;2c"
     service_class: 1
-  height: 21
+  height: 30
   iterm2_features:
     features: {}
     supported: false
@@ -172,7 +6560,7 @@ terminal_results:
     protocol: null
     supported: false
   ttype: xterm-256color
-  width: 94
+  width: 117
   xtgettcap:
     capabilities: {}
     supported: false
@@ -32697,7 +39085,7 @@ test_results:
       n_errors: 1182
       n_total: 1529
       pct_success: 22.694571615434924
-ucs_detect_version: 2.3.10+3f68594
+ucs_detect_version: 2.3.10+58005c1
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
-width: 94
+width: 117

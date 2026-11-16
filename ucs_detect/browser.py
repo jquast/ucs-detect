@@ -66,15 +66,21 @@ import functools
 import unicodedata
 
 # 3rd party
+import yaml
 import blessed
 import requests
 import urllib3.util
 from wcwidth import ZERO_WIDTH, wcswidth, wcstwidth, _wcmatch_version
 
 # local
+from ucs_detect import spillover
 from ucs_detect.measure import _is_uncommon
 from ucs_detect.table_zwj import EMOJI_ZWJ_SEQUENCES
 from ucs_detect.table_lang import LANG_GRAPHEMES
+from ucs_detect.table_zwj_contested import ZWJ_CONTESTED
+from ucs_detect.table_lang_contested import LANG_CONTESTED
+from ucs_detect.table_vs15_contested import VS15_CONTESTED
+from ucs_detect.table_vs16_contested import VS16_CONTESTED
 
 #: print function alias, does not end with line terminator.
 echo = functools.partial(print, end='')
@@ -82,7 +88,6 @@ flushout = functools.partial(print, end='', flush=True)
 
 
 def _get_interactive_help():
-    """Extract 'Interactive Keys:' through EOF from the module docstring."""
     marker = 'Interactive Keys:'
     idx = __doc__.index(marker)
     return __doc__[idx:]
@@ -167,12 +172,7 @@ def get_http_session():
 
 
 def fetch_emoji_variation_sequences():
-    """
-    Fetch emoji-variation-sequences.txt, using cache when available.
-
-    :returns: path to local cached file.
-    :rtype: str
-    """
+    """Fetch emoji-variation-sequences.txt, using cache when available."""
     if os.path.exists(CACHE_EMOJI_VS) and not REFRESH_UNICODE:
         return CACHE_EMOJI_VS
 
@@ -195,25 +195,15 @@ class WcWideCharacterGenerator:
     # pylint: disable=R0903
     #         Too few public methods (0/2)
     def __init__(self, width, unicode_version, include_uncommon=True):
-        """
-        Class constructor.
-
-        :param width: generate characters of given width.
-        :param str unicode_version: Unicode Version for render.
-        :param bool include_uncommon: include uncommon CJK extensions.
-        :type width: int
-        """
         self.characters = (
             chr(idx) for idx in range(LIMIT_UCS)
             if _width_func(chr(idx), unicode_version=unicode_version) == width
             and (include_uncommon or not _is_uncommon(idx)))
 
     def __iter__(self):
-        """Return the iterator object."""
         return self
 
     def __next__(self):
-        """Return the next item."""
         while True:
             ucs = next(self.characters)
             try:
@@ -230,12 +220,6 @@ class WcCombinedCharacterGenerator:
     #         Too few public methods (0/2)
 
     def __init__(self, width, unicode_version):
-        """
-        Class constructor.
-
-        :param int width: generate characters of given width.
-        :param str unicode_version: Unicode version.
-        """
         self.characters = []
         letters_o = ('o' * width)
         for (begin, end) in ZERO_WIDTH[_wcmatch_version(unicode_version)]:
@@ -249,17 +233,9 @@ class WcCombinedCharacterGenerator:
         self.characters.reverse()
 
     def __iter__(self):
-        """Return the iterator object."""
         return self
 
     def __next__(self):
-        """
-        Return the next unicode character and name as a tuple.
-
-        :return: unicode character and name, as tuple.
-        :rtype: tuple[unicode, unicode]
-        :raises StopIteration: no more characters
-        """
         while True:
             if not self.characters:
                 raise StopIteration
@@ -277,16 +253,16 @@ class WcVariationSequenceGenerator:
     # pylint: disable=R0903
     #         Too few public methods (0/2)
 
-    def __init__(self, base_width, unicode_version, variation_selector='VS15'):
-        """
-        Class constructor.
-
-        :param base_width: filter by base character width (1, 2, or None for all widths).
-        :type base_width: int or None
-        :param str unicode_version: Unicode version.
-        :param str variation_selector: 'VS15' or 'VS16'.
-        """
+    def __init__(self, base_width, unicode_version, variation_selector='VS15',
+                 sequences=None):
         self.sequences = []
+
+        if sequences is not None:
+            for sequence in sequences:
+                text = ''.join(chr(codepoint) for codepoint in sequence)
+                self.sequences.append((text, variation_selector))
+            self.sequences.reverse()
+            return
 
         # Determine which variation selector we're looking for
         vs_hex = 'FE0E' if variation_selector == 'VS15' else 'FE0F'
@@ -351,17 +327,9 @@ class WcVariationSequenceGenerator:
         self.sequences.reverse()
 
     def __iter__(self):
-        """Return the iterator object."""
         return self
 
     def __next__(self):
-        """
-        Return the next variation sequence and name as a tuple.
-
-        :return: variation sequence and name, as tuple.
-        :rtype: tuple[str, str]
-        :raises StopIteration: no more sequences
-        """
         if not self.sequences:
             raise StopIteration
         return self.sequences.pop()
@@ -371,12 +339,6 @@ class WcSpaceKludgeGenerator:
     """Generator yields VS-16 eligible base chars with trailing space instead of VS-16."""
 
     def __init__(self, base_width, unicode_version):
-        """
-        Class constructor.
-
-        :param int base_width: filter by base character width (1 or 2).
-        :param str unicode_version: Unicode version.
-        """
         self.sequences = []
         filepath = fetch_emoji_variation_sequences()
 
@@ -414,18 +376,15 @@ class WcSpaceKludgeGenerator:
         self.sequences.reverse()
 
     def __iter__(self):
-        """Return the iterator object."""
         return self
 
     def __next__(self):
-        """Return the next item."""
         if not self.sequences:
             raise StopIteration
         return self.sequences.pop()
 
 
 def _available_grapheme_widths():
-    """Return sorted list of widths available in LANG_GRAPHEMES using current _width_func."""
     widths = set()
     for _gw, lang_entries in LANG_GRAPHEMES:
         for _lang, graphemes in lang_entries:
@@ -437,17 +396,14 @@ def _available_grapheme_widths():
 
 
 class WcGraphemeGenerator:
-    """Generator yields unique graphemes from LANG_GRAPHEMES for a given width."""
+    """Generator yields unique graphemes from a language table for a given width."""
 
-    def __init__(self, width):
-        """
-        Class constructor.
-
-        :param int width: grapheme display width to browse.
-        """
+    def __init__(self, width, lang_graphemes=None):
         seen = set()
         self.graphemes = []
-        for _gw, lang_entries in LANG_GRAPHEMES:
+        if lang_graphemes is None:
+            lang_graphemes = LANG_GRAPHEMES
+        for _gw, lang_entries in lang_graphemes:
             for lang, graphemes in lang_entries:
                 for g in graphemes:
                     if g in seen:
@@ -459,11 +415,9 @@ class WcGraphemeGenerator:
         self._idx = 0
 
     def __iter__(self):
-        """Return the iterator object."""
         return self
 
     def __next__(self):
-        """Return the next item."""
         if self._idx >= len(self.graphemes):
             raise StopIteration
         result = self.graphemes[self._idx]
@@ -472,12 +426,13 @@ class WcGraphemeGenerator:
 
 
 class WcZwjGenerator:
-    """Generator yields ZWJ emoji sequences from EMOJI_ZWJ_SEQUENCES."""
+    """Generator yields ZWJ emoji sequences from an emoji sequence table."""
 
-    def __init__(self):
-        """Class constructor."""
+    def __init__(self, zwj_sequences=None):
+        if zwj_sequences is None:
+            zwj_sequences = EMOJI_ZWJ_SEQUENCES
         self.sequences = []
-        for _version, seqs in EMOJI_ZWJ_SEQUENCES:
+        for _version, seqs in zwj_sequences:
             for seq in seqs:
                 ucs = ''.join(chr(cp) for cp in seq)
                 name = unicodedata.name(chr(seq[0]), f'U+{seq[0]:04X}')
@@ -485,14 +440,33 @@ class WcZwjGenerator:
         self._idx = 0
 
     def __iter__(self):
-        """Return the iterator object."""
         return self
 
     def __next__(self):
-        """Return the next item."""
         if self._idx >= len(self.sequences):
             raise StopIteration
         result = self.sequences[self._idx]
+        self._idx += 1
+        return result
+
+
+class WcSpilloverGenerator:
+    """Generator yields contested multiple codepoint graphemes for spillover."""
+
+    def __init__(self):
+        self.graphemes = [
+            (candidate.text, candidate.label or candidate.category)
+            for candidate in spillover.contested_graphemes()
+        ]
+        self._idx = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._idx >= len(self.graphemes):
+            raise StopIteration
+        result = self.graphemes[self._idx]
         self._idx += 1
         return result
 
@@ -520,11 +494,6 @@ class Style:
     alignment = 'right'
 
     def __init__(self, **kwargs):
-        """
-        Class constructor.
-
-        Any given keyword arguments are assigned to the class attribute of the same name.
-        """
         for key, val in kwargs.items():
             setattr(self, key, val)
 
@@ -535,10 +504,11 @@ class Screen:
     intro_msg_fmt = 'Delimiters ({delim}) should align.'
 
     def __init__(self, term, style, wide=2):
-        """Class constructor."""
         self.term = term
         self.style = style
         self.wide = wide
+        self.single_column = False
+        self.columns_override = None
 
     @property
     def header(self):
@@ -592,6 +562,10 @@ class Screen:
     @property
     def num_columns(self):
         """Number of columns displayed."""
+        if self.columns_override:
+            return self.columns_override
+        if self.single_column:
+            return 1
         if self.term.is_a_tty:
             return self.term.width // self.hint_width
         return 1
@@ -626,25 +600,6 @@ class Pager:
                  variation_selector=None, show_variation_selector=True,
                  include_uncommon=True, software_name=None,
                  software_version=None):
-        """
-        Class constructor.
-
-        :param term: blessed Terminal class instance.
-        :type term: blessed.Terminal
-        :param screen: Screen class instance.
-        :type screen: Screen
-        :param character_factory: Character factory generator.
-        :type character_factory: callable returning iterable.
-        :param variation_selector: Variation selector mode.
-        :type variation_selector: str or None
-        :param show_variation_selector: Whether to display variation selector.
-        :type show_variation_selector: bool
-        :param bool include_uncommon: include uncommon CJK extensions.
-        :param software_name: terminal software name for correction tables.
-        :type software_name: str or None
-        :param software_version: terminal software version string.
-        :type software_version: str or None
-        """
         self.term = term
         self.screen = screen
         self.character_factory = character_factory
@@ -656,6 +611,8 @@ class Pager:
         self.grapheme_mode = False
         self.grapheme_width = 1
         self.zwj_mode = False
+        self.contested_mode = False
+        self.spillover_mode = False
         self.base_width_filter = screen.wide
         self.dirty = self.STATE_REFRESH
         self.last_page = 0
@@ -672,12 +629,10 @@ class Pager:
         self.dirty = self.STATE_REFRESH
 
     def _reinitialize(self):
-        """Re-initialize page data and trigger a resize/redraw."""
         self.initialize_page_data()
         self.on_resize(None, None)
 
     def _set_lastpage(self):
-        """Calculate value of class attribute ``last_page``."""
         page_size = self.screen.page_size
         if page_size < 1 or not self._page_data:
             self.last_page = 0
@@ -694,7 +649,6 @@ class Pager:
         flushout()
 
     def _show_help(self):
-        """Clear screen, display Interactive Keys help, wait for any key."""
         echo(self.term.home + self.term.clear + _get_interactive_help())
         echo('\r\nPress any key to return...')
         flushout()
@@ -707,17 +661,30 @@ class Pager:
         if self.term.is_a_tty:
             self.display_initialize()
 
-        if self.zwj_mode:
-            self.character_generator = WcZwjGenerator()
+        if self.spillover_mode:
+            self.character_generator = WcSpilloverGenerator()
+        elif self.zwj_mode:
+            zwj_sequences = ZWJ_CONTESTED if self.contested_mode else None
+            self.character_generator = WcZwjGenerator(zwj_sequences)
         elif self.grapheme_mode:
-            self.character_generator = WcGraphemeGenerator(self.grapheme_width)
+            lang_graphemes = LANG_CONTESTED if self.contested_mode else None
+            self.character_generator = WcGraphemeGenerator(
+                self.grapheme_width, lang_graphemes)
         elif self.variation_selector == 'SPACE_KLUDGE':
             self.character_generator = WcSpaceKludgeGenerator(
                 self.base_width_filter, 'auto')
         elif self.variation_selector:
+            sequences = None
+            vs_table = None
+            if self.contested_mode:
+                vs_table = (VS15_CONTESTED
+                            if self.variation_selector == 'VS15'
+                            else VS16_CONTESTED)
+                sequences = [seq for _version, seqs in vs_table
+                             for seq in seqs]
             self.character_generator = WcVariationSequenceGenerator(
                 self.base_width_filter, 'auto',
-                self.variation_selector)
+                self.variation_selector, sequences)
         elif self.character_factory == WcWideCharacterGenerator:
             self.character_generator = self.character_factory(
                 self.screen.wide, 'auto',
@@ -735,14 +702,7 @@ class Pager:
         self._set_lastpage()
 
     def page_data(self, idx, offset):
-        """
-        Return character data for page of given index and offset.
-
-        :param int idx: page index.
-        :param int offset: scrolling region offset of current page.
-        :returns: list of tuples in form of ``(ucs, name)``
-        :rtype: list[(unicode, unicode)]
-        """
+        """Return character data for page of given index and offset."""
         size = self.screen.page_size
 
         while offset < 0 and idx:
@@ -763,7 +723,6 @@ class Pager:
         return (idx, offset), self._page_data[start:end]
 
     def _run_notty(self, writer):
-        """Pager run method for terminals that are not a tty."""
         page_idx = page_offset = 0
         while True:
             npage_idx, _ = self.draw(writer, page_idx, page_offset)
@@ -773,7 +732,6 @@ class Pager:
             self.dirty = self.STATE_DIRTY
 
     def _run_tty(self, writer, reader):
-        """Pager run method for terminals that are a tty."""
         signal.signal(signal.SIGWINCH, self.on_resize)
 
         page_idx = page_offset = 0
@@ -797,12 +755,7 @@ class Pager:
                 return
 
     def run(self, writer, reader):
-        """
-        Pager entry point.
-
-        :param callable writer: callable writes to output stream.
-        :param callable reader: callable reads keystrokes from input stream.
-        """
+        """Pager entry point."""
         self.initialize_page_data()
         if not self.term.is_a_tty:
             self._run_notty(writer)
@@ -810,16 +763,7 @@ class Pager:
             self._run_tty(writer, reader)
 
     def process_keystroke(self, inp, idx, offset):
-        """
-        Process keystroke ``inp``, adjusting screen parameters.
-
-        :param inp: return value of blessed.Terminal.inkey().
-        :type inp: blessed.keyboard.Keystroke
-        :param int idx: page index.
-        :param int offset: scrolling region offset of current page.
-        :returns: tuple of next (idx, offset).
-        :rtype: (int, int)
-        """
+        """Process keystroke ``inp``, adjusting screen parameters."""
         if inp.lower() in ('q', 'Q'):
             return (-1, -1)
         self._process_keystroke_commands(inp)
@@ -827,7 +771,10 @@ class Pager:
         return idx, offset
 
     def _process_keystroke_commands(self, inp):
-        """Process keystrokes that issue commands (side effects)."""
+        if self.spillover_mode and inp in ('1', '2', '5', '6', '7', 'c'):
+            self.spillover_mode = False
+            self.screen.single_column = False
+            self.screen.columns_override = None
         if inp in ('1', '2', '5', '6', '7') and (self.grapheme_mode or self.zwj_mode):
             return
         elif inp in ('1', '2'):
@@ -843,10 +790,13 @@ class Pager:
                     self.screen.wide = new_width
                     self._reinitialize()
         elif inp == '0':
-            if self.variation_selector or self.grapheme_mode or self.zwj_mode:
+            if (self.variation_selector or self.grapheme_mode
+                    or self.zwj_mode or self.spillover_mode):
                 self.variation_selector = None
                 self.grapheme_mode = False
                 self.zwj_mode = False
+                self.spillover_mode = False
+                self.screen.single_column = False
                 self._reinitialize()
         elif inp == '5':
             if self.variation_selector != 'VS15':
@@ -887,6 +837,8 @@ class Pager:
             self._reinitialize()
         elif inp == 'g':
             self.grapheme_mode = not self.grapheme_mode
+            self.spillover_mode = False
+            self.screen.single_column = False
             if self.grapheme_mode:
                 self.zwj_mode = False
                 self.variation_selector = None
@@ -896,6 +848,8 @@ class Pager:
             self._reinitialize()
         elif inp == 'z':
             self.zwj_mode = not self.zwj_mode
+            self.spillover_mode = False
+            self.screen.single_column = False
             if self.zwj_mode:
                 self.grapheme_mode = False
                 self.variation_selector = None
@@ -944,7 +898,6 @@ class Pager:
                 self.on_resize(None, None)
 
     def _process_keystroke_movement(self, inp, idx, offset):
-        """Process keystrokes that adjust index and offset."""
         term = self.term
         if inp in ('y', 'k') or inp.code in (term.KEY_UP,):
             offset -= self.screen.num_columns
@@ -968,15 +921,7 @@ class Pager:
         return idx, offset
 
     def draw(self, writer, idx, offset):
-        """
-        Draw the current page view to ``writer``.
-
-        :param callable writer: callable writes to output stream.
-        :param int idx: current page index.
-        :param int offset: scrolling region offset of current page.
-        :returns: tuple of next (idx, offset).
-        :rtype: (int, int)
-        """
+        """Draw the current page view to ``writer``."""
         while self.dirty:
             self.draw_heading(writer)
             self.dirty = self.STATE_CLEAN
@@ -988,13 +933,7 @@ class Pager:
         return idx, offset
 
     def draw_heading(self, writer):
-        """
-        Conditionally redraw screen when ``dirty`` attribute is REFRESH.
-
-        :param callable writer: callable writes to output stream.
-        :return: True if class attribute ``dirty`` is ``STATE_REFRESH``.
-        :rtype: bool
-        """
+        """Conditionally redraw screen when ``dirty`` attribute is REFRESH."""
         if self.dirty == self.STATE_REFRESH:
             label = self.mode_label() if not self.term.is_a_tty else None
             writer(''.join(
@@ -1007,13 +946,10 @@ class Pager:
         return False
 
     def mode_label(self):
-        """
-        Return a label describing the current browsing mode.
-
-        :return: Mode label string.
-        :rtype: str
-        """
-        if self.zwj_mode:
+        """Return a label describing the current browsing mode."""
+        if self.spillover_mode:
+            label = "SPILLOVER"
+        elif self.zwj_mode:
             label = "ZWJ"
         elif self.grapheme_mode:
             label = f"GRAPHEME w={self.grapheme_width}"
@@ -1032,6 +968,8 @@ class Pager:
             label = "COMBINING"
         else:
             label = "NARROW" if self.screen.wide == 1 else "WIDE"
+        if self.contested_mode:
+            label += "+CONTESTED"
         if self.include_uncommon:
             label += "+ALL"
         if _use_correction:
@@ -1039,12 +977,7 @@ class Pager:
         return label
 
     def draw_status(self, writer, idx):
-        """
-        Conditionally draw status bar when output terminal is a tty.
-
-        :param callable writer: callable writes to output stream.
-        :param int idx: current page position index.
-        """
+        """Conditionally draw status bar when output terminal is a tty."""
         if self.term.is_a_tty:
             writer(self.term.hide_cursor())
             style = self.screen.style
@@ -1066,12 +999,20 @@ class Pager:
             writer(self.term.center(txt).rstrip())
 
     def page_view(self, data):
-        """
-        Generate text for the current unicode pageview.
+        """Generate text for the current unicode pageview."""
+        if self.spillover_mode:
+            columns = self.screen.num_columns
+            items = []
+            for idx, (ucs, _name) in enumerate(data):
+                row = idx // columns
+                column = (spillover.START_COLUMN
+                          + (idx % columns) * spillover.COLUMN_STRIDE)
+                items.append((row, column, ucs))
+            yield spillover.render_page(
+                self.screen.row_begins, self.screen.num_rows,
+                self.term.width, items)
+            return
 
-        :param list[(unicode, unicode)] data: current page data as     tuple of ``(ucs, name)``.
-        :returns: generator for full-page text for display
-        """
         if self.term.is_a_tty:
             yield self.term.move(self.screen.row_begins, 0)
         clear_eol = self.term.clear_eol
@@ -1093,14 +1034,7 @@ class Pager:
             yield ''.join((clear_eol, '\n', clear_eos))
 
     def text_entry(self, ucs, name):
-        """
-        Display a single column segment row describing ``(ucs, name)``.
-
-        :param str ucs: target unicode point character string.
-        :param str name: name of unicode point.
-        :return: formatted text for display.
-        :rtype: unicode
-        """
+        """Display a single column segment row describing ``(ucs, name)``."""
         style = self.screen.style
         delimiter = style.attr_minor(style.delimiter)
         multi_cp = len(ucs) > 1
@@ -1202,14 +1136,50 @@ def validate_args(opts):
     elif opts.get('--zwj'):
         opts['zwj_mode'] = True
         opts['display_width'] = 2
+    elif opts.get('--spillover'):
+        opts['spillover_mode'] = True
+        opts['contested_mode'] = True
+        opts['display_width'] = 2
+
+    opts['contested_mode'] = bool(
+        opts.get('--contested') or opts.get('spillover_mode'))
+    if opts['contested_mode'] and not any((
+            opts.get('grapheme_mode'), opts.get('zwj_mode'),
+            opts['variation_selector'], opts.get('spillover_mode'))):
+        opts['grapheme_mode'] = True
+        opts['display_width'] = 1
 
     return opts
+
+
+def write_contested_list(path):
+    """Write the contested candidate list to *path*, or stdout for a dash."""
+    candidates = spillover.contested_graphemes()
+    document = {
+        'n_candidates': len(candidates),
+        'candidates': spillover.candidate_rows(candidates),
+    }
+    text = yaml.safe_dump(
+        document, sort_keys=False, default_flow_style=False,
+        allow_unicode=True, width=1000)
+    if path == '-':
+        try:
+            echo(text)
+        except BrokenPipeError:
+            pass
+    else:
+        with open(path, 'w', encoding='utf-8') as stream:
+            stream.write(text)
 
 
 def main_browser(opts):
     """Program entry point for interactive browser."""
     global REFRESH_UNICODE
     REFRESH_UNICODE = opts.get('--refresh-unicode', False)
+
+    if opts.get('--list-contested'):
+        write_contested_list(opts['--list-contested'])
+        return 0
 
     if opts.get('--no-correction'):
         set_width_func(False)
@@ -1255,6 +1225,12 @@ def main_browser(opts):
             pager.grapheme_width = grapheme_width
     if opts.get('zwj_mode'):
         pager.zwj_mode = True
+    if opts.get('spillover_mode'):
+        pager.spillover_mode = True
+        pager.contested_mode = True
+        screen.columns_override = spillover.column_count(term.width)
+    elif opts.get('contested_mode'):
+        pager.contested_mode = True
 
     with term.location(), term.cbreak(), \
             term.fullscreen(), term.hidden_cursor():
@@ -1343,7 +1319,18 @@ Notes:
     mode_group.add_argument(
         '--zwj', action='store_true',
         help='Browse emoji ZWJ (Zero-Width Joiner) sequences.')
+    mode_group.add_argument(
+        '--spillover', action='store_true',
+        help='Display contested multiple codepoint graphemes one per row '
+             'over truecolor cell blocks.')
 
+    parser.add_argument(
+        '--contested', action='store_true',
+        help='Use contested tables for the selected browse mode.')
+    parser.add_argument(
+        '--list-contested', metavar='<path>', default=None,
+        help='Write the contested grapheme list to <path> and exit; use a '
+             'single dash for stdout.')
     parser.add_argument(
         '--without-vs', action='store_true',
         help='Display base characters without variation selector.')
@@ -1374,6 +1361,9 @@ Notes:
         '--graphemes': args.graphemes,
         '--grapheme-width': args.grapheme_width,
         '--zwj': args.zwj,
+        '--spillover': args.spillover,
+        '--contested': args.contested,
+        '--list-contested': args.list_contested,
         '--without-vs': args.without_vs,
         '--include-uncommon': args.include_uncommon,
         '--refresh-unicode': args.refresh_unicode,

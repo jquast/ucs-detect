@@ -1,59 +1,62 @@
 #!/usr/bin/env python3
-"""Generate terminal screenshots of unicode width discrepancies for all terminals.
+"""Generate terminal screenshots, color measurements, spillover, and BiDi evidence.
 
-Reads YAML test result files from ``data/``, extracts the midpoint failure for
-each test category, launches each terminal once scripts/make_screenshot.py
-in batch mode, and collects the resulting PNG screenshots.
+Each terminal is started once.  The ``all`` stage runs
+``scripts/make_screenshot.py`` in batch mode, then ``scripts/font_test.py``,
+``scripts/color_test.py``, ``scripts/bidi_scan.py``, and
+``scripts/spillover_scan.py`` in the same launch.  The ``screenshots``,
+``colors``, ``bidi``, and ``spillover`` stages run one command alone.  The
+screenshot command writes one PNG per width failure.  The color command paints
+the 16 configurable colors and records their RGB values.  The spillover command
+renders contested graphemes over truecolor blocks, captures each page, and
+records cell overflow counts.  The BiDi command requests a right to left
+character path, captures the probe page, and records where the ink landed.
+
+All stages share terminal discovery, launch, window lookup, key injection,
+and Docker orchestration through :mod:`ucs_detect.stage`.
 """
 import argparse
 import atexit
+import functools
 import json
 import os
 import platform
-import shlex
 import shutil
-import subprocess
 import sys
 import tempfile
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-import uuid
 
-import yaml
-
+from ucs_detect import fonts, imaging, stage
 from ucs_detect.accessories import (
-    DiscoveredYAML,
     _IS_DOCKER,
-    _KEY_INJECT_LOCK,
-    _RE_PAUSE,
-    build_launch_args,
-    build_subterminal_launch_args,
-    check_unmatched_run_only,
-    discover_yamls,
-    docker_build,
-    docker_image_exists,
     find_best_failure,
-    find_window_for_command,
-    get_launch_config,
-    inject_keys,
-    load_mixins,
-    parse_run_only,
-    run_kill_command,
-    safe_name,
-    should_skip,
-    get_project_dir,
     get_data_dir,
+    get_launch_config,
+    load_document,
+    load_mixins,
+    safe_name,
 )
+from ucs_detect.spillover import contested_graphemes
+from ucs_detect.tasks import default_workers
 
-PROJECT_DIR = get_project_dir()
+PROJECT_DIR = stage.PROJECT_DIR
 DATA_DIR = get_data_dir()
 SCREENSHOTS_DIR = PROJECT_DIR / "docs" / "_static" / "screenshots"
-DOCKER_IMAGE = "ucs-detect:latest"
+
+#: Seconds allowed for the font test in one terminal launch.
+FONT_TEST_TIMEOUT = 120
+
+#: Seconds allowed for the color measurement in one terminal launch.
+COLOR_TEST_TIMEOUT = 240
+
+#: Seconds allowed for the BiDi probe in one terminal launch.
+BIDI_TIMEOUT = 120
 
 # Categories that have failed_codepoints in their results
 _CATEGORY_YAML_KEYS = [
     ("unicode_wide_results", "wide"),
+    ("narrow_results", "narrow"),
     ("emoji_zwj_results", "zwj"),
     ("emoji_vs16_results", "vs16"),
     ("emoji_vs15_results", "vs15"),
@@ -63,14 +66,16 @@ _CATEGORY_YAML_KEYS = [
 ]
 
 
-def extract_failures(yaml_path):
-    """Extract all failure records from a YAML data file.
+@functools.lru_cache(maxsize=None)
+def terminal_document(yaml_path):
+    """Return the parsed terminal data YAML, read once per process."""
+    return load_document(yaml_path)
 
-    Returns (failures, software_version) where failures is a list of
-    (category, wchars, expected_width, measured_width) tuples.
-    """
-    with open(yaml_path) as f:
-        data = yaml.safe_load(f)
+
+@functools.lru_cache(maxsize=None)
+def extract_failures(yaml_path):
+    """Extract all failure records from a YAML data file."""
+    data = terminal_document(yaml_path)
     tr = data.get("test_results", {})
     failures = []
 
@@ -93,7 +98,6 @@ def extract_failures(yaml_path):
             ))
             break  # only first version
 
-    # Language results have a different structure
     lang_results = tr.get("language_results") or {}
     for lang_name, lang_data in sorted(lang_results.items()):
         if not (failed := lang_data.get("failed", [])):
@@ -112,146 +116,638 @@ def extract_failures(yaml_path):
     return failures, data.get("software_version", "")
 
 
-def scaled_timeout(timeout, n_records):
-    """Return the wait budget for a terminal generating *n_records* screenshots."""
-    return timeout * max(1, n_records / 10)
+def effective_software_name(job, software_version):
+    """Return the name used for wcwidth ``term_program`` correction lookup."""
+    if software_version and "VTE" in software_version:
+        return "vte"
+    return job.software_name
 
 
-def run_container(cmd, container_name, timeout):
-    """Run *cmd* to completion, removing the container if it outlives *timeout*."""
+def screenshot_records(job):
+    """Return batch records for the screenshot stage of *job*."""
+    failures, software_version = extract_failures(job.yaml_path)
+    if not failures:
+        return []
+    directory = SCREENSHOTS_DIR / safe_name(job.display_name)
+    directory.mkdir(parents=True, exist_ok=True)
+    name = effective_software_name(job, software_version)
+    title_suffix = stage.unique_title('ucs-shot', job.software_name)
+    records = []
+    for category, wchars, expected_width, measured_width in failures:
+        records.append({
+            "wchars": wchars,
+            "expected_width": expected_width,
+            "measured_width": measured_width,
+            "output": str(directory / f"{category}.png"),
+            "title": f"{title_suffix}-{category}",
+            "software_name": name,
+        })
+    return records
+
+
+def remove_stale(directory, pattern, keep_prefix=()):
+    """Remove files matching *pattern*, skipping names in *keep_prefix*."""
+    if not directory.is_dir():
+        return
+    for stale in directory.glob(pattern):
+        if any(stale.name.startswith(prefix) for prefix in keep_prefix):
+            continue
+        stale.unlink()
+
+
+def remove_stale_screenshots(job):
+    """Remove width failure screenshots, keeping color and spillover evidence."""
+    directory = SCREENSHOTS_DIR / safe_name(job.display_name)
+    remove_stale(directory, "*.png", keep_prefix=("spillover_", "colors-"))
+    remove_stale(directory, "*.xwd")
+
+
+def font_test_arguments(job, window_id_path):
+    """Return the font test argv for *job*."""
+    capture = (PROJECT_DIR / "fonts" / "captures"
+               / f"{safe_name(job.software_name)}.png")
+    return [
+        sys.executable, "scripts/font_test.py",
+        "--yaml", str(job.yaml_path.relative_to(PROJECT_DIR)),
+        "--title", stage.unique_title('ucs-font', job.software_name),
+        "--window-id-file", str(window_id_path),
+        "--capture", str(capture),
+    ] + capture_delay_arguments(job)
+
+
+def cursor_arguments(job):
+    """Return the pointer guard flag for *job*, empty when the terminal has none."""
+    rows = job.launch_cfg.get("cursor_center_rows") or 0
+    if not rows:
+        return []
+    return ["--cursor-center-rows", str(rows)]
+
+
+def capture_delay_arguments(job):
+    """Return the renderer pause flag for *job*, empty when it needs none."""
+    delay = job.launch_cfg.get("screenshot_delay_ms") or 0
+    if not delay:
+        return []
+    return ["--capture-delay-ms", str(delay)]
+
+
+def color_test_arguments(job, window_id_path):
+    """Return the color measurement argv for *job*."""
+    capture = SCREENSHOTS_DIR / safe_name(job.display_name)
+    capture.mkdir(parents=True, exist_ok=True)
+    return [
+        sys.executable, "scripts/color_test.py",
+        "--yaml", str(job.yaml_path.relative_to(PROJECT_DIR)),
+        "--title", stage.unique_title('ucs-color', job.software_name),
+        "--window-id-file", str(window_id_path),
+        "--capture-dir", str(capture),
+    ] + cursor_arguments(job) + capture_delay_arguments(job)
+
+
+def build_screenshot_script(temp_dir, job, records, log_path=None,
+                            status_path=None, workers=1):
+    """Return the script path and sentinel path for the screenshot stage."""
+    safe = safe_name(job.software_name)
+    batch_path = temp_dir / f"batch-{safe}.json"
+    batch_path.write_text(json.dumps(records))
+    script_path = temp_dir / f"screenshot-{safe}.sh"
+    sentinel_path = temp_dir / f"screenshot-{safe}.rc"
+    window_id_path = temp_dir / f"screenshot-{safe}.id"
+    commands = []
+    if records:
+        command = [
+            sys.executable, "scripts/make_screenshot.py",
+            "--batch", str(batch_path),
+            "--window-id-file", str(window_id_path),
+            "--workers", str(workers)] + capture_delay_arguments(job)
+        if status_path is not None:
+            command.extend(["--status-file", str(status_path)])
+        commands.append(command)
+    commands.append(font_test_arguments(job, window_id_path))
+    stage.write_commands(
+        script_path, commands, sentinel_path, stop_on_error=False,
+        log_path=log_path)
+    return script_path, sentinel_path, window_id_path
+
+
+def verify_font_test_output(job):
+    """Return an error string when the YAML font test section is missing."""
+    section = terminal_document(job.yaml_path).get("font_test_results")
+    if not section:
+        return "YAML has no font_test_results section"
+    if not section.get("ascii"):
+        return "font test recorded no ASCII rows"
+    return None
+
+
+def verify_color_output(job):
+    """Return an error string when the YAML color section is incomplete."""
+    section = terminal_document(job.yaml_path).get("color_results")
+    if not section:
+        return "YAML has no color_results section"
+    colors = (section.get("sixteen") or {}).get("colors") or []
+    if len(colors) != 16:
+        return f"color test recorded {len(colors)} of 16 colors"
+    return None
+
+
+def missing_outputs(records):
+    """Return the names of records whose output is absent or empty."""
+    return [Path(record["output"]).name for record in records
+            if not Path(record["output"]).is_file()
+            or Path(record["output"]).stat().st_size == 0]
+
+
+def read_image_errors(status_path):
+    """Return the recoverable image errors recorded by the inner script."""
     try:
-        return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
-    except subprocess.TimeoutExpired:
-        subprocess.run(["docker", "rm", "-f", container_name],
-                       capture_output=True, check=False)
-        raise
+        payload = json.loads(status_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    return payload.get("errors") or []
 
 
-def build_batch_script(script_path, sentinel_path, batch_json_path, window_id=None):
-    """Write a shell script that runs make_screenshot.py batch mode."""
-    script_rel = "scripts/make_screenshot.py"
-    wid_arg = f" --window-id {shlex.quote(str(window_id))}" if window_id else ""
-    py_bin = shlex.quote(os.path.dirname(sys.executable))
-    parts = [
-        "#!/bin/sh",
-        "export LANG=en_US.UTF-8",
-        f"export PATH={py_bin}:$PATH",
-        f"cd {shlex.quote(str(PROJECT_DIR))} || exit 1",
-        f"{shlex.quote(sys.executable)} {shlex.quote(script_rel)}"
-        f" --batch {shlex.quote(str(batch_json_path))}{wid_arg}",
-        "RC=$?",
-        "echo $RC > " + shlex.quote(str(sentinel_path)),
-        "if [ $RC -ne 0 ]; then",
-        '    read -p "Press enter to exit... " _',
-        "fi",
+def collect_image_errors(status_path, records):
+    """Return the image errors of one launch, including outputs never written."""
+    errors = read_image_errors(status_path)
+    reported = {Path(error.get("output") or "").name for error in errors}
+    for name in missing_outputs(records):
+        if name not in reported:
+            errors.append({"output": name, "error": "not written"})
+    return errors
+
+
+def run_screenshot_stage(job, host_cfg, args, temp_dir):
+    """Run the screenshot stage for one terminal."""
+    records = screenshot_records(job)
+    remove_stale_screenshots(job)
+    stderr_path = temp_dir / f"screenshot-{safe_name(job.software_name)}.log"
+    status_path = temp_dir / f"screenshot-{safe_name(job.software_name)}.status"
+    script_path, sentinel_path, window_id_path = build_screenshot_script(
+        temp_dir, job, records, log_path=stderr_path, status_path=status_path,
+        workers=args.workers)
+    exit_code, message = stage.run_stage(
+        job.launch_cfg, host_cfg, script_path, sentinel_path, stderr_path,
+        window_id_path,
+        stage.scaled_timeout(args.timeout, len(records)) + FONT_TEST_TIMEOUT,
+        max_window_size=imaging.SCREENSHOT_MAX_SIZE)
+    terminal_document.cache_clear()
+    errors = collect_image_errors(status_path, records)
+    if exit_code != 0 and not status_path.is_file():
+        return message, errors
+    return verify_font_test_output(job), errors
+
+
+def evidence_directory(job, args):
+    """Return the absolute spillover evidence directory for *job*, or None."""
+    if not args.evidence_dir:
+        return None
+    base = Path(args.evidence_dir).expanduser()
+    if not base.is_absolute():
+        base = PROJECT_DIR / base
+    return base / safe_name(job.display_name)
+
+
+def spillover_script_arguments(job, args, window_id_path, workers=1):
+    """Return the spillover scan argv for *job*."""
+    directory = evidence_directory(job, args)
+    arguments = [
+        sys.executable, "scripts/spillover_scan.py",
+        "--yaml", str(job.yaml_path.relative_to(PROJECT_DIR)),
+        "--title", stage.unique_title('ucs-spillover', job.software_name),
+        "--window-id-file", str(window_id_path),
+        "--workers", str(workers),
     ]
-    script_path.write_text("\n".join(parts) + "\n")
-    script_path.chmod(0o755)
+    if args.limit:
+        arguments.extend(["--limit", str(args.limit)])
+    if directory is not None:
+        arguments.extend(["--evidence-dir", str(directory)])
+    return arguments + cursor_arguments(job) + capture_delay_arguments(job)
 
 
-def _docker_per_terminal_run(args):
-    system_name = platform.system()
-    all_terminals = list(discover_yamls(system_name))
-    if not all_terminals:
-        print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
-        sys.exit(0)
+def build_spillover_script(temp_dir, job, args, log_path=None, workers=1):
+    """Return the script path, sentinel path, and window id path."""
+    safe = safe_name(job.software_name)
+    script_path = temp_dir / f"spillover-{safe}.sh"
+    sentinel_path = temp_dir / f"spillover-{safe}.rc"
+    window_id_path = temp_dir / f"spillover-{safe}.id"
+    stage.write_script(
+        script_path,
+        spillover_script_arguments(job, args, window_id_path, workers),
+        sentinel_path, log_path=log_path)
+    return script_path, sentinel_path, window_id_path
 
-    mixins = load_mixins()
-    run_only = parse_run_only(args.run_only)
-    matched_run_only = set()
 
-    jobs = []
+def bidi_script_arguments(job, args, window_id_path):
+    """Return the BiDi scan argv for *job*."""
+    arguments = [
+        sys.executable, "scripts/bidi_scan.py",
+        "--yaml", str(job.yaml_path.relative_to(PROJECT_DIR)),
+        "--title", stage.unique_title('ucs-bidi', job.software_name),
+        "--window-id-file", str(window_id_path),
+    ]
+    return arguments + cursor_arguments(job) + capture_delay_arguments(job)
+
+
+def run_bidi_stage(job, host_cfg, args, temp_dir):
+    """Run the BiDi probe for one terminal, returning an error or None."""
+    safe = safe_name(job.software_name)
+    stderr_path = temp_dir / f"bidi-{safe}.log"
+    script_path = temp_dir / f"bidi-{safe}.sh"
+    sentinel_path = temp_dir / f"bidi-{safe}.rc"
+    window_id_path = temp_dir / f"bidi-{safe}.id"
+    stage.write_script(
+        script_path, bidi_script_arguments(job, args, window_id_path),
+        sentinel_path, log_path=stderr_path)
+    exit_code, message = stage.run_stage(
+        job.launch_cfg, host_cfg, script_path, sentinel_path, stderr_path,
+        window_id_path, BIDI_TIMEOUT)
+    terminal_document.cache_clear()
+    if exit_code != 0:
+        return message, []
+    section = terminal_document(job.yaml_path).get("bidi_results")
+    if not section:
+        return "YAML has no bidi_results section", []
+    return None, []
+
+
+def build_combined_script(temp_dir, job, args, records, run_spillover,
+                          run_font=True, run_colors=True, run_bidi=True,
+                          log_path=None, status_path=None, workers=1):
+    """Return one script that runs every stage of *job* in one launch."""
+    safe = safe_name(job.software_name)
+    script_path = temp_dir / f"stage-{safe}.sh"
+    sentinel_path = temp_dir / f"stage-{safe}.rc"
+    window_id_path = temp_dir / f"stage-{safe}.id"
+    commands = []
+    if records:
+        batch_path = temp_dir / f"batch-{safe}.json"
+        batch_path.write_text(json.dumps(records))
+        command = [
+            sys.executable, "scripts/make_screenshot.py",
+            "--batch", str(batch_path),
+            "--window-id-file", str(window_id_path),
+            "--workers", str(workers)] + capture_delay_arguments(job)
+        if status_path is not None:
+            command.extend(["--status-file", str(status_path)])
+        commands.append(command)
+    if run_font:
+        commands.append(font_test_arguments(job, window_id_path))
+    if run_colors:
+        commands.append(color_test_arguments(job, window_id_path))
+    if run_bidi:
+        commands.append(bidi_script_arguments(job, args, window_id_path))
+    if run_spillover:
+        commands.append(spillover_script_arguments(
+            job, args, window_id_path, workers))
+    stage.write_commands(
+        script_path, commands, sentinel_path, stop_on_error=False,
+        log_path=log_path)
+    return script_path, sentinel_path, window_id_path
+
+
+def page_error_summary(section):
+    """Return the first recorded page error, or an empty string."""
+    errors = section.get("errors") or []
+    if not errors:
+        return ""
+    return (f"; {len(errors)} page(s) not captured, first page "
+            f"{errors[0].get('page')}: {errors[0].get('message')}")
+
+
+def verify_spillover_output(job, args):
+    """Return an error string when the YAML spillover section is incomplete."""
+    section = terminal_document(job.yaml_path).get("spillover_results")
+    if not section:
+        return "YAML has no spillover_results section"
+    expected = len(contested_graphemes())
+    if args.limit:
+        expected = min(expected, args.limit)
+    if section.get("n_tested") != expected:
+        return (f"YAML reports {section.get('n_tested')} tested, "
+                f"expected {expected}{page_error_summary(section)}")
+    return None
+
+
+def run_spillover_stage(job, host_cfg, args, temp_dir):
+    """Run the spillover stage for one terminal, returning an error or None."""
+    stderr_path = temp_dir / f"spillover-{safe_name(job.software_name)}.log"
+    script_path, sentinel_path, window_id_path = build_spillover_script(
+        temp_dir, job, args, log_path=stderr_path, workers=args.workers)
+    budget = job.launch_cfg.get("timeout") or args.spillover_timeout
+    exit_code, message = stage.run_stage(
+        job.launch_cfg, host_cfg, script_path, sentinel_path, stderr_path,
+        window_id_path, budget)
+    terminal_document.cache_clear()
+    if exit_code != 0:
+        return message, []
+    return verify_spillover_output(job, args), []
+
+
+def run_color_stage(job, host_cfg, args, temp_dir):
+    """Run the color measurement stage for one terminal, returning an error."""
+    safe = safe_name(job.software_name)
+    stderr_path = temp_dir / f"colors-{safe}.log"
+    script_path = temp_dir / f"colors-{safe}.sh"
+    sentinel_path = temp_dir / f"colors-{safe}.rc"
+    window_id_path = temp_dir / f"colors-{safe}.id"
+    stage.write_script(
+        script_path, color_test_arguments(job, window_id_path),
+        sentinel_path, log_path=stderr_path)
+    exit_code, message = stage.run_stage(
+        job.launch_cfg, host_cfg, script_path, sentinel_path, stderr_path,
+        window_id_path, COLOR_TEST_TIMEOUT)
+    terminal_document.cache_clear()
+    if exit_code != 0:
+        return message, []
+    return verify_color_output(job), []
+
+
+def run_combined_stage(job, host_cfg, args, temp_dir):
+    """Run every stage of *job* in one terminal launch."""
+    run_screens = not job.launch_cfg.get("skip_screenshots")
+    run_font = not job.launch_cfg.get("skip_screenshots")
+    run_colors = not job.launch_cfg.get("skip_colors")
+    run_bidi = not job.launch_cfg.get("skip_bidi")
+    run_spillover = not job.launch_cfg.get("skip_spillover")
+    records = screenshot_records(job) if run_screens else []
+    if run_screens:
+        remove_stale_screenshots(job)
+    if not records:
+        run_screens = False
+    if not any((run_screens, run_font, run_colors, run_bidi, run_spillover)):
+        return None, []
+    stderr_path = temp_dir / f"stage-{safe_name(job.software_name)}.log"
+    status_path = temp_dir / f"stage-{safe_name(job.software_name)}.status"
+    script_path, sentinel_path, window_id_path = build_combined_script(
+        temp_dir, job, args, records, run_spillover, run_font, run_colors,
+        run_bidi, log_path=stderr_path, status_path=status_path,
+        workers=args.workers)
+    budget = 0.0
+    if run_screens:
+        budget += stage.scaled_timeout(args.timeout, len(records))
+    if run_font:
+        budget += FONT_TEST_TIMEOUT
+    if run_colors:
+        budget += COLOR_TEST_TIMEOUT
+    if run_bidi:
+        budget += BIDI_TIMEOUT
+    if run_spillover:
+        budget += job.launch_cfg.get("timeout") or args.spillover_timeout
+    exit_code, message = stage.run_stage(
+        job.launch_cfg, host_cfg, script_path, sentinel_path, stderr_path,
+        window_id_path, budget,
+        max_window_size=imaging.SCREENSHOT_MAX_SIZE)
+    terminal_document.cache_clear()
+    errors = collect_image_errors(status_path, records) if run_screens else []
+    if exit_code != 0 and not (run_screens and status_path.is_file()):
+        return message, errors
+    if run_font:
+        font_error = verify_font_test_output(job)
+        if font_error:
+            return font_error, errors
+    if run_colors:
+        color_error = verify_color_output(job)
+        if color_error:
+            return color_error, errors
+    if run_bidi:
+        bidi_section = terminal_document(job.yaml_path).get("bidi_results")
+        if not bidi_section:
+            return "YAML has no bidi_results section", errors
+    if run_spillover:
+        return verify_spillover_output(job, args), errors
+    return None, errors
+
+
+def host_launch_config(args):
+    """Return the launch config of the subterminal host."""
+    host_cfg, _ = get_launch_config(args.host_terminal, load_mixins())
+    if host_cfg.get("subterminal"):
+        raise SystemExit(
+            f"Error: --host-terminal '{args.host_terminal}' is a subterminal")
+    return host_cfg
+
+
+def docker_args(args):
+    """Return the outer ``docker run`` arguments for the current settings."""
+    arguments = []
+    if args.stage in ("screenshots", "all"):
+        source = os.environ.get("UCS_DETECT_WCWIDTH_SOURCE")
+        if source:
+            root = Path(source).expanduser()
+            root = (PROJECT_DIR / root).resolve() if not root.is_absolute() \
+                else root.resolve()
+            if (root / "wcwidth" / "__init__.py").is_file():
+                arguments.extend(["-v", f"{root}:/wcwidth:ro"])
+    return arguments
+
+
+def screenshot_skip_reason(job):
+    """Return the reason *job* is excluded from the screenshot stage."""
+    return (job.launch_cfg.get("skip_screenshots_reason")
+            or job.launch_cfg.get("skip_reason")
+            or "skip_screenshots")
+
+
+def screenshot_allowed(job, args):
+    """Return True when *job* should run the screenshot stage."""
+    if not job.launch_cfg.get("skip_screenshots"):
+        return True
+    if not args.dry_run:
+        print(f"[{job.software_name}] screenshots: skipped, "
+              f"{screenshot_skip_reason(job)}")
+    return False
+
+
+def split_screenshot_jobs(jobs):
+    """Return ``(allowed, skipped)`` jobs for the screenshot stage."""
+    allowed = []
     skipped = []
-    for d in all_terminals:
-        if d.error_msg:
-            continue
-        launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
-        if not is_explicit:
-            launch_cfg, is_explicit = get_launch_config(d.path.stem, mixins)
-        if run_only:
-            name_lower = d.software_name.lower()
-            prog_lower = launch_cfg.get("program", "").lower()
-            if name_lower not in run_only and prog_lower not in run_only:
-                continue
-            for candidate in (name_lower, prog_lower):
-                if candidate in run_only:
-                    matched_run_only.add(candidate)
-        if launch_cfg["skip"] or launch_cfg["skip_docker"]:
-            if run_only:
-                skipped.append(
-                    (d.software_name,
-                     launch_cfg.get("skip_reason") or "marked skip in mixins"))
-            continue
-        failures, _ = extract_failures(d.path)
-        jobs.append((d.software_name, len(failures)))
+    for job in jobs:
+        if job.launch_cfg.get("skip_screenshots"):
+            skipped.append(job)
+        else:
+            allowed.append(job)
+    return allowed, skipped
 
-    if run_only:
-        check_unmatched_run_only(run_only, matched_run_only)
-    for sw_name, reason in skipped:
-        print(f"[{sw_name}] skipping: {reason}", flush=True)
 
-    n_cpus = os.cpu_count() or 2
-    parallel = args.parallel or max(1, (n_cpus - 2) // 4)
+def spillover_skip_reason(job):
+    """Return the reason *job* is excluded from the spillover stage."""
+    return (job.launch_cfg.get("skip_spillover_reason")
+            or job.launch_cfg.get("skip_reason")
+            or "skip_spillover")
 
-    print(f"Per-terminal Docker screenshots: {len(jobs)} terminals, {parallel} parallel")
 
-    with ThreadPoolExecutor(max_workers=parallel) as executor:
-        futures = {}
-        for sw_name, n_records in jobs:
-            container_name = f"ucs-shots-{safe_name(sw_name)}-{os.getpid()}"
-            cmd = [
-                "docker", "run", "--rm", "--cpus=2",
-                "--name", container_name,
-                "-e", "DISPLAY=:99",
-                "-v", f"{PROJECT_DIR}:/app",
-                DOCKER_IMAGE,
-                "python", "make-screenshots.py", "--use-system",
-                "--timeout", str(args.timeout),
-                "--run-only", sw_name,
-            ]
-            print(f"[{sw_name}] docker run ...", flush=True)
-            future = executor.submit(run_container, cmd, container_name,
-                                     scaled_timeout(args.timeout, n_records) + 60)
-            futures[future] = sw_name
+def spillover_allowed(job, args):
+    """Return True when *job* should run the spillover stage."""
+    if not job.launch_cfg.get("skip_spillover"):
+        return True
+    if not args.dry_run:
+        print(f"[{job.software_name}] spillover: skipped, "
+              f"{spillover_skip_reason(job)}")
+    return False
 
-        for future in as_completed(futures):
-            sw_name = futures[future]
-            try:
-                result = future.result()
-                status = "OK" if result.returncode == 0 else f"exit={result.returncode}"
-                print(f"[{sw_name}] {status}", flush=True)
-                if result.returncode != 0:
-                    if result.stderr:
-                        print(f"[{sw_name}] stderr: {result.stderr.strip()}", flush=True)
-                    if result.stdout:
-                        print(f"[{sw_name}] stdout: {result.stdout.strip()}", flush=True)
-            except Exception as exc:
-                print(f"[{sw_name}] EXCEPTION: {exc}", flush=True)
+
+def split_spillover_jobs(jobs):
+    """Return ``(allowed, skipped)`` jobs for the spillover stage."""
+    allowed = []
+    skipped = []
+    for job in jobs:
+        if job.launch_cfg.get("skip_spillover"):
+            skipped.append(job)
+        else:
+            allowed.append(job)
+    return allowed, skipped
+
+
+def bidi_skip_reason(job):
+    """Return the reason *job* is excluded from the BiDi stage."""
+    return (job.launch_cfg.get("skip_bidi_reason")
+            or job.launch_cfg.get("skip_reason")
+            or "skip_bidi")
+
+
+def bidi_allowed(job, args):
+    """Return True when *job* should run the BiDi stage."""
+    if not job.launch_cfg.get("skip_bidi"):
+        return True
+    if not args.dry_run:
+        print(f"[{job.software_name}] bidi: skipped, "
+              f"{bidi_skip_reason(job)}")
+    return False
+
+
+def split_bidi_jobs(jobs):
+    """Return ``(allowed, skipped)`` jobs for the BiDi stage."""
+    allowed = []
+    skipped = []
+    for job in jobs:
+        if job.launch_cfg.get("skip_bidi"):
+            skipped.append(job)
+        else:
+            allowed.append(job)
+    return allowed, skipped
+
+
+def color_skip_reason(job):
+    """Return the reason *job* is excluded from the color stage."""
+    return (job.launch_cfg.get("skip_colors_reason")
+            or job.launch_cfg.get("skip_reason")
+            or "skip_colors")
+
+
+def color_allowed(job, args):
+    """Return True when *job* should run the color stage."""
+    if not job.launch_cfg.get("skip_colors"):
+        return True
+    if not args.dry_run:
+        print(f"[{job.software_name}] colors: skipped, "
+              f"{color_skip_reason(job)}")
+    return False
+
+
+def split_color_jobs(jobs):
+    """Return ``(allowed, skipped)`` jobs for the color stage."""
+    allowed = []
+    skipped = []
+    for job in jobs:
+        if job.launch_cfg.get("skip_colors"):
+            skipped.append(job)
+        else:
+            allowed.append(job)
+    return allowed, skipped
+
+
+def container_budget(job, args):
+    """Return the seconds a container needs for the stages it will run."""
+    total = 0.0
+    if (args.stage in ("screenshots", "all")
+            and not job.launch_cfg.get("skip_screenshots")):
+        total += stage.scaled_timeout(
+            args.timeout, max(1, len(screenshot_records(job))))
+        total += FONT_TEST_TIMEOUT
+    if args.stage in ("colors", "all"):
+        if not job.launch_cfg.get("skip_colors"):
+            total += COLOR_TEST_TIMEOUT
+    if args.stage in ("bidi", "all"):
+        if not job.launch_cfg.get("skip_bidi"):
+            total += BIDI_TIMEOUT
+    if args.stage in ("spillover", "all"):
+        if not job.launch_cfg.get("skip_spillover"):
+            total += job.launch_cfg.get("timeout") or args.spillover_timeout
+    return total
+
+
+def docker_stage(args, jobs, extra_args):
+    """Run one container per terminal, executing *extra_args* inside it."""
+    parallel = stage.default_parallel(args.parallel)
+    print(f"Per-terminal {args.stage}: {len(jobs)} terminals, "
+          f"{parallel} parallel")
+    timeout = max(container_budget(job, args) for job in jobs) + 300
+    failures = stage.run_containers(
+        [job.software_name for job in jobs], extra_args, parallel,
+        "ucs-shots", timeout, docker_args(args))
+    if failures:
+        print("\nFailures:", file=sys.stderr)
+        for name, code in failures:
+            print(f"  {name}: exit={code}", file=sys.stderr)
+        return 1
+    return 0
+
+
+def print_skipped(skipped):
+    """Print the terminals that were not staged."""
+    if not skipped:
+        return
+    print(f"Skipping {len(skipped)} terminals:")
+    for name, reason in skipped:
+        print(f"  [{name}] {reason}")
+    print()
 
 
 def main():
+    """Entry point."""
     parser = argparse.ArgumentParser(
-        description="Generate terminal screenshots of unicode width discrepancies")
+        description="Generate terminal screenshots, colors, and spillover "
+                    "evidence")
+    parser.add_argument(
+        "--stage", choices=("screenshots", "colors", "bidi", "spillover",
+                            "all"),
+        default="all", help="Which stage to run (default: all)")
     parser.add_argument(
         "--parallel", "-p", type=int, default=0,
-        help="Number of terminals to run in parallel (default: auto)")
+        help="Number of Docker containers to stage at once (default: 4); "
+             "the host stages one terminal at a time")
+    parser.add_argument(
+        "--workers", type=int, default=None,
+        help="Processes cropping images and analysing pages inside each "
+             "terminal (default: none in Docker, CPU count minus two on the "
+             "host)")
     parser.add_argument(
         "--timeout", "-t", type=float, default=600,
-        help="Base timeout per terminal in seconds (default: 600). "
-             "Scaled by number of screenshots: timeout * max(1, n_screenshots / 10).")
+        help="Base timeout per screenshot stage in seconds (default: 600). "
+             "Scaled by the number of screenshots.")
+    parser.add_argument(
+        "--spillover-timeout", type=float, default=7200,
+        help="Timeout per spillover stage in seconds (default: 7200)")
+    parser.add_argument(
+        "--limit", type=int, default=0,
+        help="Test only the first N spillover candidates")
+    parser.add_argument(
+        "--evidence-dir", default=str(SCREENSHOTS_DIR),
+        help="Base directory for full page spillover images")
     parser.add_argument(
         "--dry-run", "-n", action="store_true",
         help="Print what would be executed without actually running")
     parser.add_argument(
         "--run-only", type=str, default="",
-        help="Comma-separated list of terminal names to run; all others are skipped")
+        help="Comma separated terminal names to run")
     parser.add_argument(
         "--keep-temp", action="store_true",
         help="Keep temporary files on exit (for debugging)")
     parser.add_argument(
         "--host-terminal", default="ghostty",
-        help="Terminal used to host subterminals (screen, tmux, etc.) "
-             "(default: ghostty)")
+        help="Terminal used to host subterminals (default: ghostty)")
     parser.add_argument(
         "--use-docker", action="store_true",
         help="Launch each terminal in its own Docker container (--cpus=2)")
@@ -260,364 +756,245 @@ def main():
         help="Run directly on the host system instead of inside Docker")
     args = parser.parse_args()
 
-    if args.use_docker and not _IS_DOCKER:
-        if not docker_image_exists():
-            docker_build(PROJECT_DIR / "Dockerfile", PROJECT_DIR)
-        _docker_per_terminal_run(args)
-        return
+    container_mode = args.use_docker or _IS_DOCKER
+    launch_containers = args.use_docker and not _IS_DOCKER
+    if args.workers is None:
+        args.workers = 1 if container_mode else default_workers()
+    if args.use_system and not _IS_DOCKER and platform.system().lower() == 'linux':
+        try:
+            os.environ['FONTCONFIG_FILE'] = fonts.ensure_system_fonts(
+                str(PROJECT_DIR))
+        except OSError as error:
+            print(f'Warning: system font setup failed: {error}',
+                  file=sys.stderr)
+    jobs, skipped = stage.selected_terminals(args, is_docker=container_mode)
 
-    system_name = platform.system()
-    if system_name.lower() not in ("linux",):
-        print(f"Error: unsupported OS '{system_name}'. Only Linux is supported.",
+    if launch_containers:
+        if not args.dry_run:
+            stage.prepare_docker()
+        print_skipped(skipped)
+        if args.stage == "screenshots":
+            jobs, screenshot_skipped = split_screenshot_jobs(jobs)
+            print_skipped([
+                (job.software_name, screenshot_skip_reason(job))
+                for job in screenshot_skipped])
+        if args.stage == "spillover":
+            jobs, spillover_skipped = split_spillover_jobs(jobs)
+            print_skipped([
+                (job.software_name, spillover_skip_reason(job))
+                for job in spillover_skipped])
+        if args.stage == "bidi":
+            jobs, bidi_skipped = split_bidi_jobs(jobs)
+            print_skipped([
+                (job.software_name, bidi_skip_reason(job))
+                for job in bidi_skipped])
+        if args.stage == "colors":
+            jobs, color_skipped = split_color_jobs(jobs)
+            print_skipped([
+                (job.software_name, color_skip_reason(job))
+                for job in color_skipped])
+        if args.stage == "all":
+            active = []
+            inactive = []
+            for job in jobs:
+                if (job.launch_cfg.get("skip_screenshots")
+                        and job.launch_cfg.get("skip_spillover")
+                        and job.launch_cfg.get("skip_bidi")
+                        and job.launch_cfg.get("skip_colors")):
+                    inactive.append(job)
+                else:
+                    active.append(job)
+            jobs = active
+            print_skipped([
+                (job.software_name,
+                 f"screenshots, colors, bidi, and spillover skipped, "
+                 f"{screenshot_skip_reason(job)}")
+                for job in inactive])
+        if not jobs:
+            print("No terminal jobs found.", file=sys.stderr)
+            return 0
+        extra_args = ["--stage", args.stage,
+                      "--timeout", str(args.timeout),
+                      "--spillover-timeout", str(args.spillover_timeout)]
+        if args.limit:
+            extra_args.extend(["--limit", str(args.limit)])
+        if args.stage in ("spillover", "bidi", "all"):
+            relative = stage.evidence_relative(args.evidence_dir)
+            if relative:
+                extra_args.extend(["--evidence-dir", relative])
+        if args.dry_run:
+            print(f"Would run stage '{args.stage}' in {len(jobs)} "
+                  f"containers:")
+            for job in sorted(jobs, key=lambda item: item.software_name):
+                skip_screen = job.launch_cfg.get("skip_screenshots")
+                skip_spill = job.launch_cfg.get("skip_spillover")
+                skip_bidi = job.launch_cfg.get("skip_bidi")
+                skip_colors = job.launch_cfg.get("skip_colors")
+                if args.stage == "colors":
+                    detail = ("colors skipped"
+                              if skip_colors else "colors")
+                elif args.stage == "bidi":
+                    detail = ("bidi skipped"
+                              if skip_bidi else "bidi probe")
+                elif skip_screen and skip_spill and skip_bidi and skip_colors:
+                    detail = "every stage skipped"
+                elif skip_spill and skip_bidi and skip_colors:
+                    detail = "screenshots and font test"
+                elif skip_screen and skip_colors:
+                    detail = "bidi and spillover only"
+                elif skip_spill:
+                    detail = "screenshots, font test, colors, and bidi"
+                elif skip_screen:
+                    detail = "colors, bidi, and spillover"
+                else:
+                    detail = ("screenshots, font test, colors, bidi, then "
+                              "spillover")
+                print(f"  [{job.software_name}] {detail}")
+            return 0
+        return docker_stage(args, jobs, extra_args)
+
+    if platform.system().lower() not in ("linux", "darwin"):
+        print(f"Error: unsupported OS '{platform.system()}'", file=sys.stderr)
+        return 1
+    if not imaging.require_capture_tools():
+        print("Error: the capture tools for this platform are missing",
               file=sys.stderr)
-        sys.exit(1)
+        return 1
 
-    if not shutil.which("xdotool") or not shutil.which("xwd"):
-        print("Error: xdotool and xwd are required", file=sys.stderr)
-        sys.exit(1)
+    print_skipped(skipped)
+    host_cfg = host_launch_config(args)
 
-    mixins = load_mixins()
-
-    # Build host terminal launch config for subterminals
-    host_launch_cfg, _ = get_launch_config(args.host_terminal, mixins)
-    if host_launch_cfg.get("subterminal"):
-        print(f"Error: --host-terminal '{args.host_terminal}' is a subterminal",
-              file=sys.stderr)
-        sys.exit(1)
-
-    all_terminals = list(discover_yamls(system_name))
-
-    if not all_terminals:
-        print(f"No terminal YAML files found for {system_name}", file=sys.stderr)
-        sys.exit(0)
-
-    run_only = parse_run_only(args.run_only)
-    matched_run_only = set()
-
-    # Group failures by terminal (one launch per terminal)
-    terminal_jobs = {}  # sw_name -> (launch_cfg, list of failure dicts)
-    skipped = []
-
-    for d in all_terminals:
-        if d.error_msg:
-            continue
-        launch_cfg, is_explicit = get_launch_config(d.software_name, mixins)
-        if not is_explicit:
-            launch_cfg, is_explicit = get_launch_config(d.path.stem, mixins)
-
-        if run_only:
-            name_lower = d.software_name.lower()
-            prog_lower = launch_cfg.get("program", "").lower()
-            if (name_lower not in run_only and prog_lower not in run_only):
-                skipped.append((d.software_name, "not in --run-only"))
-                continue
-            for candidate in (name_lower, prog_lower):
-                if candidate in run_only:
-                    matched_run_only.add(candidate)
-
-        if launch_cfg["skip"]:
-            reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
-            skipped.append((d.software_name, reason))
-            continue
-
-        if should_skip(launch_cfg, is_docker=_IS_DOCKER):
-            reason = launch_cfg.get("skip_reason") or "excluded by should_skip"
-            skipped.append((d.software_name, reason))
-            continue
-
-        if launch_cfg["subterminal"] and not is_explicit:
-            skipped.append((d.software_name, "subterminal, no launch config"))
-            continue
-
-        if not is_explicit and launch_cfg["program"] == d.software_name.lower():
-            skipped.append((d.software_name, "no terminals.yaml entry"))
-            continue
-
-        failures, software_version = extract_failures(d.path)
-        if not failures:
-            skipped.append((d.software_name, "no width failures found"))
-            # Terminal no longer reports any width failure: remove its
-            # stale screenshots, mirroring the launch-time cleanup.
-            if not args.dry_run:
-                entry = mixins.get(d.software_name.lower(), {})
-                if not entry:
-                    entry = mixins.get(d.path.stem.lower(), {})
-                sw_display = entry.get("display_name", d.software_name)
-                stale_dir = SCREENSHOTS_DIR / safe_name(sw_display)
-                if stale_dir.exists():
-                    for stale_png in stale_dir.glob("*.png"):
-                        stale_png.unlink()
-                    for stale_xwd in stale_dir.glob("*.xwd"):
-                        stale_xwd.unlink()
-            continue
-
-        # Determine effective software_name for wcwidth term_program matching.
-        # VTE-based terminals (GNOME Terminal, XFCE Terminal, etc.) report
-        # software_name different from wcwidth's canonical "vte" — detect
-        # them via software_version and map to "vte".
-        effective_sw_name = d.software_name
-        if software_version and "VTE" in software_version:
-            effective_sw_name = "vte"
-
-        entry = mixins.get(d.software_name.lower(), {})
-        if not entry:
-            entry = mixins.get(d.path.stem.lower(), {})
-        sw_display = entry.get("display_name", d.software_name)
-        safe = safe_name(sw_display)
-        unique_id = uuid.uuid4().hex[:8]
-
-        records = []
-        for category, wchars, expected_width, measured_width in failures:
-            out_dir = SCREENSHOTS_DIR / safe
-            out_path = out_dir / f"{category}.png"
-            records.append({
-                "wchars": wchars,
-                "expected_width": expected_width,
-                "measured_width": measured_width,
-                "output": str(out_path),
-                "title": f"ucs-shot-{safe}-{category}-{unique_id}",
-                "software_name": effective_sw_name,
-            })
-
-        terminal_jobs[sw_display] = (launch_cfg, records)
-
-    if run_only:
-        check_unmatched_run_only(run_only, matched_run_only)
-
-    if skipped:
-        print(f"Skipping {len(skipped)} terminals:")
-        for name, reason in skipped:
-            print(f"  [{name}] {reason}")
-        print()
-
-    if not terminal_jobs:
-        print("No screenshot jobs found.", file=sys.stderr)
-        sys.exit(0)
-
-    total_screenshots = sum(len(records) for _, records in terminal_jobs.values())
-
+    if not jobs:
+        print("No terminal jobs found.", file=sys.stderr)
+        return 0
     if args.dry_run:
-        print(f"Would launch {len(terminal_jobs)} terminals"
-              f" to generate {total_screenshots} screenshots:\n")
-        for sw_name, (_launch_cfg, records) in sorted(terminal_jobs.items()):
-            safe = safe_name(sw_name)
-            print(f"  [{sw_name}] {len(records)} screenshots:")
-            for rec in records:
-                cat = os.path.basename(rec["output"]).replace(".png", "")
-                print(f"    {cat}: {rec['wchars']} "
-                      f"(term={rec['measured_width']}, wcwidth={rec['expected_width']})")
-        return
+        print(f"Would run stage '{args.stage}' for {len(jobs)} terminals:")
+        for job in sorted(jobs, key=lambda item: item.software_name):
+            skip_screen = job.launch_cfg.get("skip_screenshots")
+            skip_colors = job.launch_cfg.get("skip_colors")
+            skip_spill = job.launch_cfg.get("skip_spillover")
+            skip_bidi = job.launch_cfg.get("skip_bidi")
+            if args.stage == "screenshots":
+                detail = f"{len(screenshot_records(job))} screenshots"
+                if skip_screen:
+                    detail = (f"screenshots skipped, "
+                              f"{screenshot_skip_reason(job)}")
+            elif args.stage == "colors":
+                detail = "16 colors"
+                if skip_colors:
+                    detail = f"colors skipped, {color_skip_reason(job)}"
+            elif args.stage == "bidi":
+                detail = "bidi probe"
+                if skip_bidi:
+                    detail = f"bidi skipped, {bidi_skip_reason(job)}"
+            elif args.stage == "spillover":
+                detail = f"{len(contested_graphemes())} candidates"
+                if skip_spill:
+                    detail = (f"spillover skipped, "
+                              f"{spillover_skip_reason(job)}")
+            else:
+                parts = []
+                if not skip_screen:
+                    parts.append(f"{len(screenshot_records(job))} screenshots")
+                    parts.append("font test")
+                if not skip_colors:
+                    parts.append("colors")
+                if not skip_bidi:
+                    parts.append("bidi probe")
+                if not skip_spill:
+                    parts.append(f"{len(contested_graphemes())} candidates")
+                detail = ", ".join(parts) if parts else "all stages skipped"
+            print(f"  [{job.software_name}] {detail}")
+        return 0
 
-    # Create output directories
-    for sw_name in terminal_jobs:
-        out_dir = SCREENSHOTS_DIR / safe_name(sw_name)
-        out_dir.mkdir(parents=True, exist_ok=True)
-
-    temp_dir = Path(tempfile.mkdtemp(prefix="ucs-screenshots-"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="ucs-stages-"))
     if args.keep_temp:
         print(f"Temp directory: {temp_dir}")
     else:
         atexit.register(shutil.rmtree, str(temp_dir), ignore_errors=True)
 
-    print(f"Launching {len(terminal_jobs)} terminals"
-          f" to generate {total_screenshots} screenshots"
-          f" (timeout={args.timeout}s)")
-    print()
+    print(f"Per-terminal {args.stage}: {len(jobs)} terminals, "
+          f"{args.workers} image workers each")
 
-    failures_list = []
-    t0 = time.monotonic()
+    def stage_one(job):
+        """Run one terminal's stage, returning ``(label, message, errors)``."""
+        if args.stage == "all":
+            if (job.launch_cfg.get("skip_screenshots")
+                    and job.launch_cfg.get("skip_spillover")
+                    and job.launch_cfg.get("skip_bidi")
+                    and job.launch_cfg.get("skip_colors")):
+                return None
+            error, errors = run_combined_stage(job, host_cfg, args, temp_dir)
+            return "all", error, errors
+        if args.stage == "screenshots":
+            if not screenshot_allowed(job, args):
+                return None
+            if not screenshot_records(job):
+                print(f"[{job.software_name}] screenshots: no failures found")
+                if not args.dry_run:
+                    remove_stale_screenshots(job)
+                return None
+            error, errors = run_screenshot_stage(
+                job, host_cfg, args, temp_dir)
+            return "screenshots", error, errors
+        if args.stage == "colors":
+            if not color_allowed(job, args):
+                return None
+            error, errors = run_color_stage(job, host_cfg, args, temp_dir)
+            return "colors", error, errors
+        if args.stage == "bidi":
+            if not bidi_allowed(job, args):
+                return None
+            error, errors = run_bidi_stage(job, host_cfg, args, temp_dir)
+            return "bidi", error, errors
+        if not spillover_allowed(job, args):
+            return None
+        error, errors = run_spillover_stage(job, host_cfg, args, temp_dir)
+        return "spillover", error, errors
 
-    for sw_name, (launch_cfg, records) in sorted(terminal_jobs.items()):
-        safe = safe_name(sw_name)
-        n_records = len(records)
-        print(f"[{sw_name}] {n_records} screenshots ... ", end="", flush=True)
-
-        # Remove old screenshots for this terminal
-        out_dir = SCREENSHOTS_DIR / safe
-        if out_dir.exists():
-            for old_png in out_dir.glob("*.png"):
-                old_png.unlink()
-            for old_png in out_dir.glob("*.xwd"):
-                old_png.unlink()
-
-        # Write batch JSON
-        batch_json_path = temp_dir / f"batch-{safe}.json"
-        batch_json_path.write_text(json.dumps(records))
-
-        script_path = temp_dir / f"screenshot-{safe}.sh"
-        sentinel_path = temp_dir / f"exit-{safe}.rc"
-        stderr_path = temp_dir / f"stderr-{safe}.log"
-
-        # Build batch script now so the file exists before launch.
-        # Direct-launch terminals (konsole, etc.) reference the script
-        # path in their argv.  Key-inject terminals inject the path
-        # later.  We'll rebuild with --window-id once we have one.
-        build_batch_script(script_path, sentinel_path, batch_json_path)
-
+    failures = []
+    recoverable = []
+    attempted = 0
+    started = time.monotonic()
+    for job in sorted(jobs, key=lambda item: item.software_name):
         try:
-            if not launch_cfg["subterminal"]:
-                argv = build_launch_args(launch_cfg, script_path)
-            else:
-                argv = build_subterminal_launch_args(
-                    launch_cfg, host_launch_cfg, script_path)
+            outcome = stage_one(job)
+        except Exception as error:  # pylint: disable=broad-except
+            attempted += 1
+            print(f"[{job.software_name}] {args.stage}: EXCEPTION: {error}")
+            failures.append((job.software_name, args.stage, str(error)))
+            continue
+        if outcome is None:
+            continue
+        label, message, errors = outcome
+        attempted += 1
+        if message:
+            print(f"[{job.software_name}] {label}: FAILED: {message}")
+            failures.append((job.software_name, label, message))
+        else:
+            print(f"[{job.software_name}] {label}: OK")
+        for error in errors:
+            recoverable.append((job.software_name, error))
+        if errors:
+            print(f"[{job.software_name}] {label}: "
+                  f"{len(errors)} recoverable image error(s)")
 
-            post_keys = launch_cfg.get("post_launch_keys", [])
-            post_delay = launch_cfg.get("post_launch_delay_ms", 0)
-
-            with open(stderr_path, "w") as stderr_file:
-                env = os.environ.copy()
-                env.pop("TERM", None)
-                env.pop("TERM_PROGRAM", None)
-                env.pop("TERM_PROGRAM_VERSION", None)
-                proc = subprocess.Popen(
-                    argv,
-                    env=env,
-                    stdout=subprocess.DEVNULL,
-                    stderr=stderr_file,
-                    stdin=subprocess.DEVNULL,
-                )
-
-            # Find the X11 window.  Key-inject terminals need it for
-            # xdotool; all terminals benefit from passing --window-id to
-            # the batch script so find_own_window (unreliable inside
-            # sandboxes and subterminals) is never called.
-            captured_wid = None
-            window_cfg = (host_launch_cfg
-                          if launch_cfg["subterminal"]
-                          else launch_cfg)
-            snapshot_pre_windows = None
-            try:
-                result = subprocess.run(
-                    ["xdotool", "search", "--onlyvisible", ""],
-                    capture_output=True, text=True, timeout=3,
-                )
-                if result.returncode == 0:
-                    snapshot_pre_windows = set(result.stdout.strip().split("\n"))
-            except (subprocess.TimeoutExpired, OSError):
-                pass
-
-            if post_keys:
-                with _KEY_INJECT_LOCK:
-                    time.sleep(0.5)
-                    time.sleep(post_delay / 1000.0)
-                    captured_wid = find_window_for_command(
-                        window_cfg, proc.pid,
-                        pre_windows=snapshot_pre_windows)
-            else:
-                captured_wid = find_window_for_command(
-                    window_cfg, proc.pid,
-                    pre_windows=snapshot_pre_windows)
-
-            # For key-inject terminals: rebuild script with --window-id
-            # BEFORE injection so the injected shell command sees it.
-            # Direct-launch terminals must NOT be rebuilt, they are
-            # already executing the first build.
-            if post_keys and captured_wid is not None:
-                build_batch_script(script_path, sentinel_path,
-                                   batch_json_path, captured_wid)
-
-            if post_keys:
-                if captured_wid is None:
-                    proc.kill()
-                    msg = (
-                        "key injection failed: could not find window "
-                        f"for {window_cfg['program']} (PID {proc.pid})")
-                    print(f"FAILED: {msg}")
-                    failures_list.append((sw_name, -4, msg))
-                    continue
-                script_str = str(script_path)
-                resolved_keys = [
-                    key.replace("${SCRIPT}", script_str)
-                    for key in post_keys
-                ]
-                text_keys = [k for k in resolved_keys
-                             if k != "\n" and not _RE_PAUSE.match(k)]
-                print(f"injecting: {''.join(text_keys)} ... ",
-                      end="", flush=True)
-                key_delay = launch_cfg.get("key_delay_ms", 30)
-                inject_keys(captured_wid, resolved_keys, key_delay_ms=key_delay,
-                            click_before_keys=launch_cfg.get("click_before_keys", False))
-                time.sleep(1.5)
-
-            # Wait for sentinel or timeout (scaled by screenshot count).
-            # Key-inject terminals may fork/detach, so don't collapse the
-            # deadline based on the launcher process exiting.
-            budget = scaled_timeout(args.timeout, n_records)
-            deadline = time.monotonic() + budget
-            exit_code = -99
-            proc_dead = False
-            while time.monotonic() < deadline:
-                if sentinel_path.exists():
-                    try:
-                        exit_code = int(sentinel_path.read_text().strip())
-                    except (ValueError, OSError):
-                        exit_code = -2
-                    break
-                if not post_keys and not proc_dead and proc.poll() is not None:
-                    proc_dead = True
-                    deadline = min(deadline, time.monotonic() + 30)
-                time.sleep(0.3)
-
-            if exit_code == -99:
-                try:
-                    proc.kill()
-                except OSError:
-                    pass
-                print("TIMEOUT")
-                failures_list.append((sw_name, -1, "timeout"))
-                continue
-
-            run_kill_command(launch_cfg)
-
-            if exit_code != 0:
-                stderr_text = ""
-                if stderr_path.exists():
-                    try:
-                        stderr_text = stderr_path.read_text().strip()
-                    except OSError:
-                        pass
-                msg = f"exit code {exit_code}"
-                if stderr_text:
-                    msg += f" ({stderr_text})"
-                print(f"FAILED: {msg}")
-                failures_list.append((sw_name, exit_code, msg))
-                continue
-
-            # Verify all outputs exist
-            missing = []
-            for rec in records:
-                out_path = Path(rec["output"])
-                if not out_path.exists() or out_path.stat().st_size == 0:
-                    missing.append(out_path.name)
-            if missing:
-                print(f"PARTIAL: missing {missing}")
-                failures_list.append((sw_name, -2,
-                                      f"missing: {', '.join(missing)}"))
-            else:
-                total_bytes = sum(Path(r["output"]).stat().st_size for r in records)
-                print(f"OK ({total_bytes} bytes)")
-
-        except FileNotFoundError:
-            msg = f"executable not found: {launch_cfg['program']}"
-            print(f"FAILED: {msg}")
-            failures_list.append((sw_name, -4, msg))
-        except OSError as exc:
-            print(f"FAILED: {exc}")
-            failures_list.append((sw_name, -4, str(exc)))
-
-    elapsed = time.monotonic() - t0
-    n_ok = len(terminal_jobs) - len(failures_list)
-    print(f"\n--- Done in {elapsed:.1f}s: {n_ok}/{len(terminal_jobs)} terminals OK"
-          f" ({total_screenshots} screenshots) ---")
-
-    if failures_list:
+    elapsed = time.monotonic() - started
+    print(f"\n--- Done in {elapsed:.1f}s: "
+          f"{attempted - len(failures)}/{attempted} stages OK, "
+          f"{len(recoverable)} recoverable image error(s) ---")
+    if failures:
         print("\nFailures:")
-        for item in failures_list:
-            name = item[0]
-            msg = item[-1]
-            print(f"  {name}: {msg}")
-        sys.exit(1)
+        for name, label, message in failures:
+            print(f"  {name} [{label}]: {message}")
+    if recoverable:
+        print("\nRecoverable image errors:")
+        for name, error in recoverable:
+            print(f"  [{name}] {error.get('output')}: {error.get('error')}")
+    if failures or recoverable:
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

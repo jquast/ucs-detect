@@ -63,11 +63,7 @@ def is_cjk(codepoint):
 
 
 def fetch_vs15_data():
-    """
-    Fetch VS15 (text style) sequences from Unicode emoji-variation-sequences.txt.
-
-    Returns characters that are wide by default and become narrow with VS15.
-    """
+    """Fetch VS15 (text style) sequences from Unicode emoji-variation-sequences.txt."""
     fname = os.path.join(PATH_DATA, "emoji-variation-sequences-latest.txt")
     do_retrieve(url=URL_EMOJI_VARIATION_SEQUENCES, fname=fname, force=True)
 

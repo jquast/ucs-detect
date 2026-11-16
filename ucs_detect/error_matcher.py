@@ -7,7 +7,6 @@ class ErrorMatcher:
     """Match and filter errors by test type or language."""
 
     def __init__(self, filter_value: Optional[str] = None):
-        """Initialize with optional filter value."""
         self.filter_value = filter_value.lower() if filter_value else None
         self.enabled = bool(filter_value)
         self.user_disabled = False

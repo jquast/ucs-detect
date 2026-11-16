@@ -344,6 +344,10 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.11 (2026-11-15): Screenshot stages measure contested grapheme spillover with animated
+  evidence pages, record the default 16 colors and one LANG page per UDHR language, and the
+  results gain a Screenshots section with one page per screenshot type.
+
 - 2.3.9 (2026-11-05): More Unicode 18 support, data gathered and contested tables regenerated,
   and support older versions of prettytable without alignment of color support.
 

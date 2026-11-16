@@ -1,52 +1,40 @@
 ambiguous_width: 1
-datetime: 2026-11-11 21:34:56 UTC
+datetime: 2026-11-15 21:44:10 UTC
 environment:
   COLORTERM: truecolor
   TERM: tmux-256color
   TERM_PROGRAM: tmux
   TERM_PROGRAM_VERSION: '3.4'
-height: 19
+height: 24
 preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 89.6
-  - 122.5
-  - 113.9
+  - 85.8
+  - 123.6
+  - 118.8
   - 100.0
   - 100.1
-  - 99.7
-  - 99.9
-  - 100.9
-  - 99.9
-  - 99.8
+  - 100.0
   elapsed_s:
-  - 0.01044264598749578
-  - 1.021712051006034
-  - 2.034244228969328
-  - 3.0439488730044104
-  - 4.05429802800063
-  - 5.063600194000173
-  - 6.086653364007361
-  - 7.0972545219701715
-  - 8.108046857989393
-  - 9.1188473799848
+  - 0.015226125018671155
+  - 1.0272182800108567
+  - 2.0383691739989445
+  - 3.048406315007014
+  - 4.0583011000126135
+  - 5.067557211004896
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481804
+    ram_total_kb: 15481796
   rss_mb:
-  - 188.1328125
-  - 190.41796875
-  - 182.890625
-  - 182.890625
-  - 182.890625
-  - 182.890625
-  - 182.890625
-  - 182.890625
-  - 182.890625
-  - 182.890625
-seconds_elapsed: 1.700003618025221
+  - 183.55859375
+  - 185.02734375
+  - 185.02734375
+  - 177.796875
+  - 177.796875
+  - 177.828125
+seconds_elapsed: 2.164157350984169
 session_arguments:
   all: false
   limit_category_time: 0
@@ -65,7 +53,7 @@ terminal_results:
   - 4369
   - 4369
   - 4369
-  cell_height: 26
+  cell_height: 21
   cell_width: 11
   color_scheme: false
   colored_underlines: false
@@ -118,7 +106,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 19
+  height: 24
   iterm2_features:
     features: {}
     supported: false
@@ -134,7 +122,7 @@ terminal_results:
   osc52_detection:
     da1_extension_52: false
     xtgettcap_ms: false
-  pixels_height: 494
+  pixels_height: 504
   pixels_width: 781
   screen_ratio: '16:10'
   screen_ratio_name: WSXGA
@@ -10222,7 +10210,7 @@ test_results:
       n_errors: 1156
       n_total: 1529
       pct_success: 24.395029431000655
-ucs_detect_version: 2.3.10+3f68594
+ucs_detect_version: 2.3.10+58005c1
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 71

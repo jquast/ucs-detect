@@ -1,53 +1,261 @@
 ambiguous_width: 1
-datetime: 2026-11-11 20:31:11 UTC
+bidi_results:
+  scanned_datetime: 2026-11-16 03:21:54 UTC
+  supported: false
+  control_left: 1.0
+  requested_right: 0.0
+  errors: []
+color_results:
+  scanned_datetime: 2026-11-16 03:21:49 UTC
+  painted_rows: 24
+  calibration:
+    origin_x: 2.0
+    origin_y: 2
+    cell_width_px: 9.0
+    cell_height_px: 18.0
+    term_width: 80
+    term_height: 24
+  sixteen:
+    layout:
+      columns: 4
+      bands: 4
+      block_width: 2
+      block_height: 2
+      group_width: 20
+      ruler_row: 23
+    colors:
+    - index: 0
+      name: black
+      rgb:
+      - 0
+      - 0
+      - 0
+    - index: 1
+      name: red
+      rgb:
+      - 205
+      - 0
+      - 0
+    - index: 2
+      name: green
+      rgb:
+      - 0
+      - 205
+      - 0
+    - index: 3
+      name: yellow
+      rgb:
+      - 205
+      - 205
+      - 0
+    - index: 4
+      name: blue
+      rgb:
+      - 0
+      - 0
+      - 238
+    - index: 5
+      name: magenta
+      rgb:
+      - 205
+      - 0
+      - 205
+    - index: 6
+      name: cyan
+      rgb:
+      - 0
+      - 205
+      - 205
+    - index: 7
+      name: white
+      rgb:
+      - 229
+      - 229
+      - 229
+    - index: 8
+      name: bright_black
+      rgb:
+      - 127
+      - 127
+      - 127
+    - index: 9
+      name: bright_red
+      rgb:
+      - 255
+      - 0
+      - 0
+    - index: 10
+      name: bright_green
+      rgb:
+      - 0
+      - 255
+      - 0
+    - index: 11
+      name: bright_yellow
+      rgb:
+      - 255
+      - 255
+      - 0
+    - index: 12
+      name: bright_blue
+      rgb:
+      - 92
+      - 92
+      - 255
+    - index: 13
+      name: bright_magenta
+      rgb:
+      - 255
+      - 0
+      - 255
+    - index: 14
+      name: bright_cyan
+      rgb:
+      - 0
+      - 255
+      - 255
+    - index: 15
+      name: bright_white
+      rgb:
+      - 255
+      - 255
+      - 255
+datetime: 2026-11-16 00:50:41 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
+font_test_results:
+  font_version: 18.0.01
+  unicode_version: '18.0'
+  font_family: Unifont
+  origin_x: 2
+  origin_y: 2
+  cell_width: 9.0
+  cell_height: 18.0
+  term_width: 80
+  term_height: 24
+  sampled_cells: 2
+  text: \U0001faeb
+  codepoint: U+1FAEB
+  name: cracking face
+  emoji_version: '18.0'
+  ink_fraction: 0.173
+  ink_color:
+  - 255
+  - 255
+  - 255
+  monochrome: true
+  ascii:
+  - '................'
+  - '................'
+  - '................'
+  - '................'
+  - ..XXXXX.........
+  - .XX...XX........
+  - .X.XXX.X........
+  - .XXXXXXX........
+  - .XXX.XXX........
+  - .XXX.XXX........
+  - .XXXXXXX........
+  - .XXX.XXX........
+  - ..XXXXX.........
+  - '................'
+  - '................'
+  - '................'
+  reference:
+  - - 0
+    - 160
+    - 64
+  - - 64
+    - 0
+    - 192
+  - - 0
+    - 160
+    - 64
+  grapheme:
+    text: \U0001faeb
+    codepoint: U+1FAEB
+    name: cracking face
+    emoji_version: '18.0'
+  control:
+    text: \U0001f600
+    codepoint: U+1F600
+    name: grinning face
+    emoji_version: '1.0'
+    ink_fraction: 0.08
+    ink_color:
+    - 255
+    - 255
+    - 255
+    monochrome: true
+    ascii:
+    - '................'
+    - '................'
+    - .X.X.X.XX.X.X.X.
+    - '................'
+    - .X............X.
+    - '................'
+    - .X............X.
+    - .X............X.
+    - '................'
+    - .X............X.
+    - '................'
+    - .X............X.
+    - '................'
+    - .X.X.X.XX.X.X.X.
+    - '................'
+    - '................'
+    reference:
+    - - 0
+      - 160
+      - 64
+    - - 64
+      - 0
+      - 192
+    - - 0
+      - 160
+      - 64
+    grapheme:
+      text: \U0001f600
+      codepoint: U+1F600
+      name: grinning face
+      emoji_version: '1.0'
 height: 24
 preferred_encoding: UTF-8
-python_version: 3.14.9
+python_version: 3.14.10
 resource_profile:
   cpu_pct:
-  - 37.9
-  - 11.0
+  - 27.0
   - 0.0
-  - 125.8
-  - 160.7
-  - 169.7
-  - 168.6
-  - 170.7
+  - 79.9
+  - 179.2
+  - 172.8
+  - 174.8
+  - 175.8
   - 171.7
-  - 168.6
-  - 169.3
   elapsed_s:
-  - 1.0028128969715908
-  - 2.0046773920184933
-  - 3.00625203398522
-  - 4.00787923502503
-  - 5.009804407018237
-  - 6.011805563000962
-  - 7.013895548006985
-  - 8.015585391025525
-  - 9.017228737007827
-  - 10.019810769998003
-  - 11.022813303978182
+  - 1.0013503200025298
+  - 2.0027205860242248
+  - 3.0040623160020914
+  - 4.0305619279970415
+  - 5.032058324024547
+  - 6.033222985017346
+  - 7.034623526997166
+  - 8.035795939009404
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481804
+    ram_total_kb: 15481796
   rss_mb:
-  - 122.73828125
-  - 122.7890625
-  - 122.7890625
-  - 122.58984375
-  - 122.58984375
-  - 122.58984375
-  - 122.58984375
-  - 122.58984375
-  - 122.58984375
-  - 122.58984375
-  - 122.58984375
-seconds_elapsed: 7.168849289009813
+  - 114.55078125
+  - 114.55078125
+  - 114.5546875
+  - 114.5546875
+  - 114.5546875
+  - 114.5546875
+  - 114.5546875
+  - 114.5546875
+seconds_elapsed: 5.6451196300040465
 session_arguments:
   all: false
   limit_category_time: 0
@@ -58,7 +266,133 @@ session_arguments:
   stream: stderr
   timeout_cps: 1.0
 software_name: zutty
-software_version: 0.17-1
+software_version: 0.18-1
+spillover_results:
+  scanned_datetime: 2026-11-16 03:22:40 UTC
+  n_candidates: 8644
+  n_tested: 8644
+  n_spillover: 0
+  n_no_ink: 4
+  n_shifted: 0
+  shifted_graphemes: []
+  spill_counts:
+    graphemes_any: 0
+    graphemes_left: 0
+    graphemes_right: 0
+    graphemes_both: 0
+    left_cells: {}
+    right_cells: {}
+    max_left_cells: 0
+    max_right_cells: 0
+  spill_counts_by_kind: {}
+  spill_examples: {}
+  n_tested_by_kind:
+    Aja: 3
+    Amarakaeri: 6
+    Arabic, Standard: 8
+    Assyrian Neo-Aramaic: 8
+    Baatonum: 1
+    Bamun: 17
+    Belanda Viri: 3
+    Bengali: 335
+    Bhojpuri: 252
+    Bora: 2
+    Burmese: 223
+    Catalan (2): 6
+    Chakma: 225
+    Chickasaw: 4
+    Chinantec, Chiltepec: 6
+    Dagaare, Southern: 3
+    Dari: 6
+    Dendi: 1
+    Dinka, Northeastern: 2
+    Dzongkha: 160
+    Evenki: 13
+    Farsi, Western: 3
+    Fon: 1
+    French (Welche): 2
+    Fur: 9
+    Ga: 1
+    Gen: 1
+    Gilyak: 2
+    Gujarati: 290
+    Gumuz: 2
+    Hindi: 164
+    Javanese (Javanese): 488
+    Kabyle: 8
+    Kannada: 236
+    Khmer, Central: 390
+    Khün: 421
+    Lamnso': 3
+    Lao: 217
+    Lingala (tones): 8
+    Magahi: 22
+    Maithili: 66
+    Malayalam: 382
+    Maldivian: 209
+    Maori (2): 6
+    Marathi: 103
+    Mazahua Central: 3
+    Mon: 208
+    Mòoré: 1
+    Nanai: 2
+    Navajo: 4
+    Nepali: 71
+    Orok: 1
+    Otomi, Mezquital: 1
+    Panjabi, Eastern: 236
+    Panjabi, Western: 3
+    Pashto, Northern: 1
+    Picard: 1
+    Pular (Adlam): 24
+    RI: 262
+    Sanskrit: 155
+    Sanskrit (Grantha): 237
+    Secoya: 1
+    Seraiki: 1
+    Shan: 106
+    Shipibo-Conibo: 2
+    Sinhala: 198
+    Siona: 1
+    South Azerbaijani: 6
+    Tagalog (Tagalog): 16
+    Tai Dam: 120
+    Tamang, Eastern: 11
+    Tamazight, Central Atlas: 5
+    Tamil: 132
+    Telugu: 335
+    Tem: 2
+    Thai: 193
+    Thai (2): 14
+    Tibetan, Central: 48
+    Ticuna: 13
+    Uduk: 2
+    Urdu: 23
+    Urdu (2): 1
+    VS15: 158
+    VS16: 213
+    Vietnamese: 42
+    Yaneshaʼ: 10
+    Yiddish, Eastern: 10
+    Yoruba: 8
+    ZWJ: 1445
+  layout:
+    left_cells: 3
+    column_stride: 24
+    start_column: 3
+    painted_rows: 24
+    rows_per_page: 23
+    columns_per_page: 8
+    items_per_page: 184
+  calibration:
+    origin_x: 2.0
+    origin_y: 2
+    cell_width_px: 9.0
+    cell_height_px: 18.0
+    term_width: 212
+    term_height: 59
+  images: {}
+  errors: []
 system: Linux
 terminal_results:
   background_color_hex: '#000000000000'
@@ -141,7 +475,7 @@ terminal_results:
   pixels_width: 0
   sixel: false
   software_name: zutty
-  software_version: 0.17-1
+  software_version: 0.18-1
   styled_underlines: false
   tab_stop_width: 8
   text_sizing:
@@ -14067,7 +14401,7 @@ test_results:
       n_errors: 1042
       n_total: 1529
       pct_success: 31.85088293001962
-ucs_detect_version: 2.3.10+3f68594
+ucs_detect_version: 2.3.11+353970e
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 80
