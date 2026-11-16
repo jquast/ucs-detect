@@ -44,6 +44,9 @@ def main():
                         help='Directory for full page spillover images')
     parser.add_argument('--workers', type=int, default=1,
                         help='Processes analysing pages (default: 1, inline)')
+    parser.add_argument('--exclude-rtl', action='store_true',
+                        help='Skip candidates with right to left characters, '
+                             'for a terminal that lays them out itself')
     args = parser.parse_args()
 
     prepared = prepare(args, 'ucs-spillover', 'spillover scan')
@@ -53,6 +56,8 @@ def main():
 
     candidates = spillover.contested_graphemes()
     candidates = spillover.apply_measured_advances(candidates, prepared.data)
+    if args.exclude_rtl:
+        candidates = spillover.without_rtl(candidates)
     if args.limit:
         candidates = candidates[:args.limit]
     if not candidates:
@@ -83,6 +88,8 @@ def main():
             section = spillover.build_results(
                 calibration, results, errors, len(candidates), images,
                 shifted, painted_rows, args.cursor_center_rows)
+            if args.exclude_rtl:
+                section['rtl_excluded'] = True
             spillover.write_results(args.yaml, section)
         except spillover.SpilloverError as error:
             keep_temp = True

@@ -23,7 +23,7 @@ table.sphinx-datatable.dataTable {
     font-weight: bold;
 }
 
-/* Palette strips keep their 20px height when a table column is narrower than the strip */
-.rst-content img.palette-strip {
-    height: 20px;
+/* Section headings that carry the reader on to the full results */
+.bold-ref {
+    font-weight: bold;
 }

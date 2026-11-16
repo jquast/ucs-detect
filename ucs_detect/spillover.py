@@ -20,6 +20,7 @@ import tempfile
 import functools
 import subprocess
 import collections
+import unicodedata
 
 # 3rd party
 import yaml
@@ -93,6 +94,10 @@ SETTLE_DELAY = 0.2
 
 #: Captures compared before a page is measured as it finally landed.
 SETTLE_ATTEMPTS = 4
+
+#: Bidirectional classes laid out right to left, including Arabic numbers, which a terminal that
+#: applies the bidi algorithm places with the surrounding right to left text.
+RTL_DIRECTIONS = ('R', 'AL', 'AN')
 
 #: Palette slots the animation gives to the capture's own colors, exactly, most frequent first.
 EXACT_PALETTE_COLORS = 128
@@ -491,6 +496,18 @@ def _marker_cells(truecolor=False):
     row1 = MARKER_MAGENTA + ' ' + MARKER_YELLOW + ' ' + RESET
     row2 = MARKER_YELLOW + ' ' + MARKER_MAGENTA + ' ' + RESET
     return row1, row2
+
+
+def has_rtl_text(text):
+    """Return True when *text* contains a character laid out right to left."""
+    return any(unicodedata.bidirectional(char) in RTL_DIRECTIONS
+               for char in text)
+
+
+def without_rtl(candidates):
+    """Return the candidates that contain no right to left characters."""
+    return [candidate for candidate in candidates
+            if not has_rtl_text(candidate.text)]
 
 
 def contested_graphemes():
@@ -1252,7 +1269,8 @@ def _capture_settled(window_id, path, park, attempts=SETTLE_ATTEMPTS):
     The last frame is kept: a page that never settles is measured as it finally landed.
     """
     imaging.capture_window_raw(window_id, path, park=park)
-    settled_path = f'{path}.settle'
+    stem, suffix = os.path.splitext(path)
+    settled_path = f'{stem}.settle{suffix}'
     try:
         for _attempt in range(attempts):
             time.sleep(SETTLE_DELAY)

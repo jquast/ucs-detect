@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 03:20:23 UTC
+  scanned_datetime: 2026-11-16 05:54:06 UTC
   supported: true
   control_left: 1.0
   requested_right: 1.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 03:20:18 UTC
+  scanned_datetime: 2026-11-16 05:54:00 UTC
   painted_rows: 24
   calibration:
     origin_x: 1
@@ -120,7 +120,7 @@ color_results:
       - 255
       - 255
       - 255
-datetime: 2026-11-15 21:48:29 UTC
+datetime: 2026-11-16 05:48:25 UTC
 environment:
   TERM: xterm
 font_test_results:
@@ -224,25 +224,25 @@ preferred_encoding: UTF-8
 python_version: 3.14.10
 resource_profile:
   cpu_pct:
-  - 8.0
+  - 7.0
   - 0.0
   - 3.0
   - 79.9
   elapsed_s:
-  - 1.0031013039988466
-  - 2.004574078018777
-  - 3.0056060170172714
-  - 4.007239247002872
+  - 1.0014864480181132
+  - 2.0032438620110042
+  - 3.0052305450080894
+  - 4.006660348997684
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481796
   rss_mb:
-  - 56.8203125
-  - 56.8203125
-  - 57.1484375
-  - 66.59375
-seconds_elapsed: 1.5214098420110531
+  - 55.97265625
+  - 55.97265625
+  - 56.375
+  - 65.48828125
+seconds_elapsed: 1.511286424996797
 session_arguments:
   all: false
   limit_category_time: 0
@@ -255,216 +255,27 @@ session_arguments:
 software_name: pterm
 software_version: 0.85-1
 spillover_results:
-  scanned_datetime: 2026-11-16 03:20:52 UTC
-  n_candidates: 8644
-  n_tested: 8644
-  n_spillover: 44
-  n_no_ink: 304
+  scanned_datetime: 2026-11-16 05:54:38 UTC
+  n_candidates: 8347
+  n_tested: 8347
+  n_spillover: 0
+  n_no_ink: 4
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 44
-    graphemes_left: 1
-    graphemes_right: 43
+    graphemes_any: 0
+    graphemes_left: 0
+    graphemes_right: 0
     graphemes_both: 0
-    left_cells:
-      '1': 1
-    right_cells:
-      '22': 43
-    max_left_cells: 1
-    max_right_cells: 22
-  spill_counts_by_kind:
-    Arabic, Standard:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-    Assyrian Neo-Aramaic:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-    Bamun:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-    Dendi:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-    Fur:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-    Maldivian:
-      graphemes_any: 29
-      graphemes_left: 0
-      graphemes_right: 29
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 29
-      max_left_cells: 0
-      max_right_cells: 22
-    Maori (2):
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-    Pular (Adlam):
-      graphemes_any: 3
-      graphemes_left: 0
-      graphemes_right: 3
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 3
-      max_left_cells: 0
-      max_right_cells: 22
-    Sanskrit:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-    Urdu:
-      graphemes_any: 3
-      graphemes_left: 1
-      graphemes_right: 2
-      graphemes_both: 0
-      left_cells:
-        '1': 1
-      right_cells:
-        '22': 2
-      max_left_cells: 1
-      max_right_cells: 22
-    Urdu (2):
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-    Yoruba:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '22': 1
-      max_left_cells: 0
-      max_right_cells: 22
-  spill_examples:
-    Urdu:
-      Left:
-        '1':
-          example: '''\u0601\u06f1'''
-          width: 1
-      Right:
-        '22':
-          example: '''\u0642\u0650'''
-          width: 1
-    Arabic, Standard:
-      Right:
-        '22':
-          example: '''\u064a\u064f'''
-          width: 1
-    Assyrian Neo-Aramaic:
-      Right:
-        '22':
-          example: '''\u0721\u0739'''
-          width: 1
-    Bamun:
-      Right:
-        '22':
-          example: '''\u0061\u0300'''
-          width: 1
-    Dendi:
-      Right:
-        '22':
-          example: '''\u0254\u030c'''
-          width: 1
-    Fur:
-      Right:
-        '22':
-          example: '''\u0020\u0331\u0301'''
-          width: 1
-    Maldivian:
-      Right:
-        '22':
-          example: '''\u0781\u07a8'''
-          width: 1
-    Maori (2):
-      Right:
-        '22':
-          example: '''\u0075\u0304'''
-          width: 1
-    Pular (Adlam):
-      Right:
-        '22':
-          example: '''\U0001e924\U0001e946'''
-          width: 1
-    Sanskrit:
-      Right:
-        '22':
-          example: '''\u0924\u0941\u0902'''
-          width: 1
-    Urdu (2):
-      Right:
-        '22':
-          example: '''\u06a9\u064f'''
-          width: 1
-    Yoruba:
-      Right:
-        '22':
-          example: '''\u006e\u0304'''
-          width: 1
+    left_cells: {}
+    right_cells: {}
+    max_left_cells: 0
+    max_right_cells: 0
+  spill_counts_by_kind: {}
+  spill_examples: {}
   n_tested_by_kind:
     Aja: 3
     Amarakaeri: 6
-    Arabic, Standard: 8
-    Assyrian Neo-Aramaic: 8
     Baatonum: 1
     Bamun: 17
     Belanda Viri: 3
@@ -477,12 +288,10 @@ spillover_results:
     Chickasaw: 4
     Chinantec, Chiltepec: 6
     Dagaare, Southern: 3
-    Dari: 6
     Dendi: 1
     Dinka, Northeastern: 2
     Dzongkha: 160
     Evenki: 13
-    Farsi, Western: 3
     Fon: 1
     French (Welche): 2
     Fur: 9
@@ -503,7 +312,6 @@ spillover_results:
     Magahi: 22
     Maithili: 66
     Malayalam: 382
-    Maldivian: 209
     Maori (2): 6
     Marathi: 103
     Mazahua Central: 3
@@ -515,15 +323,11 @@ spillover_results:
     Orok: 1
     Otomi, Mezquital: 1
     Panjabi, Eastern: 236
-    Panjabi, Western: 3
-    Pashto, Northern: 1
     Picard: 1
-    Pular (Adlam): 24
     RI: 262
     Sanskrit: 155
     Sanskrit (Grantha): 237
     Secoya: 1
-    Seraiki: 1
     Shan: 106
     Shipibo-Conibo: 2
     Sinhala: 198
@@ -541,13 +345,10 @@ spillover_results:
     Tibetan, Central: 48
     Ticuna: 13
     Uduk: 2
-    Urdu: 23
-    Urdu (2): 1
     VS15: 158
     VS16: 213
     Vietnamese: 42
     Yaneshaʼ: 10
-    Yiddish, Eastern: 10
     Yoruba: 8
     ZWJ: 1445
   layout:
@@ -565,439 +366,9 @@ spillover_results:
     cell_height_px: 22.0
     term_width: 173
     term_height: 49
-  images:
-    pterm-spillover_004_U+0781.gif:
-      page: 15
-      spillovers:
-      - wchar: \u0781\u07a8
-        codepoints:
-        - 1921
-        - 1960
-        category: language
-        label: Maldivian
-        row: 27
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0782\u07a8
-        codepoints:
-        - 1922
-        - 1960
-        category: language
-        label: Maldivian
-        row: 28
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0783\u07a6
-        codepoints:
-        - 1923
-        - 1958
-        category: language
-        label: Maldivian
-        row: 29
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0783\u07ad
-        codepoints:
-        - 1923
-        - 1965
-        category: language
-        label: Maldivian
-        row: 30
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0784\u07ab
-        codepoints:
-        - 1924
-        - 1963
-        category: language
-        label: Maldivian
-        row: 31
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0785\u07a8
-        codepoints:
-        - 1925
-        - 1960
-        category: language
-        label: Maldivian
-        row: 32
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0786\u07a9
-        codepoints:
-        - 1926
-        - 1961
-        category: language
-        label: Maldivian
-        row: 33
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0787\u07a8
-        codepoints:
-        - 1927
-        - 1960
-        category: language
-        label: Maldivian
-        row: 34
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0787\u07af
-        codepoints:
-        - 1927
-        - 1967
-        category: language
-        label: Maldivian
-        row: 35
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0788\u07ac
-        codepoints:
-        - 1928
-        - 1964
-        category: language
-        label: Maldivian
-        row: 36
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0789\u07a9
-        codepoints:
-        - 1929
-        - 1961
-        category: language
-        label: Maldivian
-        row: 37
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u078a\u07a7
-        codepoints:
-        - 1930
-        - 1959
-        category: language
-        label: Maldivian
-        row: 38
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u078a\u07b0
-        codepoints:
-        - 1930
-        - 1968
-        category: language
-        label: Maldivian
-        row: 39
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u078b\u07ac
-        codepoints:
-        - 1931
-        - 1964
-        category: language
-        label: Maldivian
-        row: 40
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u078c\u07aa
-        codepoints:
-        - 1932
-        - 1962
-        category: language
-        label: Maldivian
-        row: 41
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u078d\u07aa
-        codepoints:
-        - 1933
-        - 1962
-        category: language
-        label: Maldivian
-        row: 42
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u078e\u07a8
-        codepoints:
-        - 1934
-        - 1960
-        category: language
-        label: Maldivian
-        row: 43
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0790\u07a7
-        codepoints:
-        - 1936
-        - 1959
-        category: language
-        label: Maldivian
-        row: 44
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0791\u07a6
-        codepoints:
-        - 1937
-        - 1958
-        category: language
-        label: Maldivian
-        row: 45
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0792\u07a8
-        codepoints:
-        - 1938
-        - 1960
-        category: language
-        label: Maldivian
-        row: 46
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-    pterm-spillover_005_U+0793.gif:
-      page: 16
-      spillovers:
-      - wchar: \u0793\u07aa
-        codepoints:
-        - 1939
-        - 1962
-        category: language
-        label: Maldivian
-        row: 0
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0794\u07ad
-        codepoints:
-        - 1940
-        - 1965
-        category: language
-        label: Maldivian
-        row: 1
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0796\u07ab
-        codepoints:
-        - 1942
-        - 1963
-        category: language
-        label: Maldivian
-        row: 2
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0798\u07a6
-        codepoints:
-        - 1944
-        - 1958
-        category: language
-        label: Maldivian
-        row: 3
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0799\u07b0
-        codepoints:
-        - 1945
-        - 1968
-        category: language
-        label: Maldivian
-        row: 4
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u079e\u07a6
-        codepoints:
-        - 1950
-        - 1958
-        category: language
-        label: Maldivian
-        row: 5
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u07a0\u07a6
-        codepoints:
-        - 1952
-        - 1958
-        category: language
-        label: Maldivian
-        row: 6
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u07a2\u07b0
-        codepoints:
-        - 1954
-        - 1968
-        category: language
-        label: Maldivian
-        row: 7
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u07a4\u07ac
-        codepoints:
-        - 1956
-        - 1964
-        category: language
-        label: Maldivian
-        row: 8
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: u\u0304
-        codepoints:
-        - 117
-        - 772
-        category: language
-        label: Maori (2)
-        row: 9
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-    pterm-spillover_006_U+1E924.gif:
-      page: 17
-      spillovers:
-      - wchar: \U0001e924\U0001e946
-        codepoints:
-        - 125220
-        - 125254
-        category: language
-        label: Pular (Adlam)
-        row: 9
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \U0001e92e\U0001e945
-        codepoints:
-        - 125230
-        - 125253
-        category: language
-        label: Pular (Adlam)
-        row: 10
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \U0001e937\U0001e946
-        codepoints:
-        - 125239
-        - 125254
-        category: language
-        label: Pular (Adlam)
-        row: 11
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0924\u0941\u0902
-        codepoints:
-        - 2340
-        - 2369
-        - 2306
-        category: language
-        label: Sanskrit
-        row: 12
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-    pterm-spillover_007_U+0642.gif:
-      page: 19
-      spillovers:
-      - wchar: \u0642\u0650
-        codepoints:
-        - 1602
-        - 1616
-        category: language
-        label: Urdu
-        row: 32
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u0686\u0651
-        codepoints:
-        - 1670
-        - 1617
-        category: language
-        label: Urdu
-        row: 33
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: \u06a9\u064f
-        codepoints:
-        - 1705
-        - 1615
-        category: language
-        label: Urdu (2)
-        row: 34
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
-      - wchar: n\u0304
-        codepoints:
-        - 110
-        - 772
-        category: language
-        label: Yoruba
-        row: 43
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 22
+  images: {}
   errors: []
+  rtl_excluded: true
 system: Linux
 terminal_results:
   color_scheme: false
@@ -14913,7 +14284,8 @@ test_results:
       n_errors: 1009
       n_total: 1529
       pct_success: 34.009156311314584
-ucs_detect_version: 2.3.10+58005c1
+ucs_detect_version: 2.3.11+45169f9
 unicode_version: 18.0.0
+wcwidth_path: /usr/lib/python3.14/site-packages/wcwidth
 wcwidth_version: 0.9.4
 width: 80

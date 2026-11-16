@@ -35,7 +35,7 @@ def require_psutil():
     return psutil
 
 
-class ProfileSession:
+class ProfileSession:  # pylint: disable=too-many-instance-attributes
     """Samples CPU% and RSS of a process tree during a terminal test."""
 
     def __init__(self, sw_name: str, pid: int, interval: float = 1.0,

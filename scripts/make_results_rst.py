@@ -384,7 +384,7 @@ def print_datatable(table_str, caption=None):
 def create_score_plots(sw_name, entry, score_table):
     """Create matplotlib plot comparing terminal scores against all terminals."""
     # Collect all scores for comparison
-    metrics = ['WIDE', 'NARROW', 'ZWJ', 'LANG', 'VS16', 'SRI', 'SFZ', 'RI',
+    metrics = ['WIDE', 'NARROW', 'ZWJ', 'LANG', 'VS16', 'VS15', 'SRI', 'SFZ', 'RI',
                'SPILL', 'CAP', 'GFX', 'RSC']
     terminal_scores_scaled = {}
     all_scores_scaled = {}
@@ -841,6 +841,13 @@ def display_inbound_hyperlink(link_text):
     print()
 
 
+def display_score_details_heading(sw_name, key, text):
+    """Anchor a score calculation section, its heading links on to the results."""
+    display_inbound_hyperlink(f"{sw_name}_{key}_calc")
+    print(f":bref:`{text} <{make_link(f'{sw_name}_{key}')}>`:")
+    print()
+
+
 def resource_cost(data):
     """Compute a raw resource cost from profile data (higher = worse)."""
     rp = (data.get("resource_profile") or {})
@@ -1067,8 +1074,7 @@ def make_score_table():
         scores_with_weights = [
             (entry["score_language"], 1.0),
             (entry["score_emoji_vs16"], 1.0),
-            # VS-15 excluded from final score - interpretation is contested,
-            # see https://github.com/jquast/wcwidth/issues/211
+            (entry["score_emoji_vs15"], 1.0),
             (entry["score_zwj"], 1.0),
             (entry["score_wide"], 1.0),
             (entry["score_narrow"], 1.0),
@@ -1297,7 +1303,6 @@ def display_terminal_colors(score_table):
         label = f"colors_{safe_sw}"
         print(f".. |{label}| image:: {relative}")
         print(f"   :width: {strip_width}px")
-        print(f"   :height: {color_measure.STRIP_SWATCH_HEIGHT_PX}px")
         print("   :class: palette-strip")
         print(f"   :alt: The default 16 colors of {sw_name}")
         print()
@@ -1397,9 +1402,10 @@ def display_tabulated_scores(score_table):
                     result["terminal_software_name"],
                     "_vs16"
                 ),
-                "VS15": _wrap_id_contested(
+                "VS15": wrap_score_with_hyperlink(
                     format_score_int(result["score_emoji_vs15_scaled"])
                     + _text_sizing_mark(result, "vs15"),
+                    result["score_emoji_vs15_scaled"],
                     result["terminal_software_name"],
                     "_vs15"
                 ),
@@ -1482,9 +1488,8 @@ def display_tabulated_scores(score_table):
         print("remediating width issues for complex languages, emoji, and other")
         print("problematic codepoints. Only scores that measured below 100%, or were")
         print("not measured at all, are credited and marked; unmarked scores were")
-        print("measured directly. Interpretation of VS15 is `contested")
-        print("<https://github.com/jquast/wcwidth/issues/211>`_ and excluded from")
-        print("the final score.")
+        print("measured directly.  Interpretation of VS15 is `contested")
+        print("<https://github.com/jquast/wcwidth/issues/211>`_.")
         print()
         print('.. _`Kitty Text Sizing protocol`: '
               'https://sw.kovidgoyal.net/kitty/text-sizing-protocol/')
@@ -1551,8 +1556,7 @@ def display_table_definitions():
     print(
         "- *VS15 score*: Determined by the number of Emoji using Variation\n"
         "  Selector-15 supported as narrow characters. Note: Interpretation\n"
-        "  of VS15 is `contested <https://github.com/jquast/wcwidth/issues/211>`_\n"
-        "  (excluded from final score).\n"
+        "  of VS15 is `contested <https://github.com/jquast/wcwidth/issues/211>`_.\n"
     )
     print(
         "- *SRI score*: Percentage of standalone Regional Indicator symbols\n"
@@ -2724,64 +2728,64 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     score_breakdown = [
         {
             "#": 1,
-            "Score Type": make_outbound_hyperlink("WIDE", sw_name + "_wide"),
+            "Score Type": make_outbound_hyperlink("WIDE", sw_name + "_wide_calc"),
             "Raw Score": format_raw_score(entry["score_wide"]),
             "Final Scaled Score": format_score_pct(entry["score_wide_scaled"]),
         },
         {
             "#": 2,
-            "Score Type": make_outbound_hyperlink("NARROW", sw_name + "_narrow"),
+            "Score Type": make_outbound_hyperlink("NARROW", sw_name + "_narrow_calc"),
             "Raw Score": format_raw_score(entry["score_narrow"]),
             "Final Scaled Score": format_score_pct(entry["score_narrow_scaled"]),
         },
         {
             "#": 3,
-            "Score Type": make_outbound_hyperlink("ZWJ", sw_name + "_zwj"),
+            "Score Type": make_outbound_hyperlink("ZWJ", sw_name + "_zwj_calc"),
             "Raw Score": format_raw_score(entry["score_zwj"]),
             "Final Scaled Score": format_score_pct(entry["score_zwj_scaled"]),
         },
         {
             "#": 4,
-            "Score Type": make_outbound_hyperlink("LANG", sw_name + "_lang"),
+            "Score Type": make_outbound_hyperlink("LANG", sw_name + "_lang_calc"),
             "Raw Score": format_raw_score(entry["score_language"]),
             "Final Scaled Score": format_score_pct(entry["score_language_scaled"]),
         },
         {
             "#": 5,
-            "Score Type": make_outbound_hyperlink("VS16", sw_name + "_vs16"),
+            "Score Type": make_outbound_hyperlink("VS16", sw_name + "_vs16_calc"),
             "Raw Score": format_raw_score(entry["score_emoji_vs16"]),
             "Final Scaled Score": format_score_pct(entry["score_emoji_vs16_scaled"]),
         },
         {
             "#": 6,
-            "Score Type": make_outbound_hyperlink("VS15", sw_name + "_vs15"),
+            "Score Type": make_outbound_hyperlink("VS15", sw_name + "_vs15_calc"),
             "Raw Score": format_raw_score(entry["score_emoji_vs15"]),
-            "Final Scaled Score": "*(excluded)*",
+            "Final Scaled Score": format_score_pct(entry["score_emoji_vs15_scaled"]),
         },
         {
             "#": 7,
-            "Score Type": make_outbound_hyperlink("SRI", sw_name + "_sri"),
+            "Score Type": make_outbound_hyperlink("SRI", sw_name + "_sri_calc"),
             "Raw Score": format_raw_score(entry["score_sri"]),
             "Final Scaled Score": (format_score_pct(entry["score_sri_scaled"])
                                    if not math.isnan(entry["score_sri"]) else "*(excluded)*"),
         },
         {
             "#": 8,
-            "Score Type": make_outbound_hyperlink("SFZ", sw_name + "_sfz"),
+            "Score Type": make_outbound_hyperlink("SFZ", sw_name + "_sfz_calc"),
             "Raw Score": format_raw_score(entry["score_sfz"]),
             "Final Scaled Score": (format_score_pct(entry["score_sfz_scaled"])
                                    if not math.isnan(entry["score_sfz"]) else "*(excluded)*"),
         },
         {
             "#": 9,
-            "Score Type": make_outbound_hyperlink("RI", sw_name + "_ri"),
+            "Score Type": make_outbound_hyperlink("RI", sw_name + "_ri_calc"),
             "Raw Score": format_raw_score(entry["score_ri"]),
             "Final Scaled Score": (format_score_pct(entry["score_ri_scaled"])
                                    if not math.isnan(entry["score_ri"]) else "*(excluded)*"),
         },
         {
             "#": 10,
-            "Score Type": make_outbound_hyperlink("SPILL", sw_name + "_spillover"),
+            "Score Type": make_outbound_hyperlink("SPILL", sw_name + "_spillover_calc"),
             "Raw Score": format_raw_score(entry["score_spill"]),
             "Final Scaled Score": format_score_pct(entry["score_spill_scaled"]),
         },
@@ -2793,13 +2797,13 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         },
         {
             "#": 12,
-            "Score Type": make_outbound_hyperlink("Graphics", sw_name + "_graphics"),
+            "Score Type": make_outbound_hyperlink("Graphics", sw_name + "_graphics_calc"),
             "Raw Score": f"{entry['score_graphics']*100:.0f}%",  # noqa: E226
             "Final Scaled Score": format_score_pct(entry["score_graphics_scaled"]),
         },
         {
             "#": 13,
-            "Score Type": make_outbound_hyperlink("Resources", sw_name + "_resources"),
+            "Score Type": make_outbound_hyperlink("Resources", sw_name + "_resources_calc"),
             "Raw Score": format_score_pct(entry["score_resource_norm"]) if not math.isnan(entry["score_resource"]) else "N/A",
             "Final Scaled Score": format_score_pct(entry["score_resource_scaled"]),
         },
@@ -2808,7 +2812,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print_datatable(table_str)
 
     print()
-    print("**SPILL Score Details:**")
+    display_score_details_heading(sw_name, "spillover", "SPILL Score Details")
     print()
     section = entry["data"].get("spillover_results") or {}
     if not math.isnan(entry["score_spill"]):
@@ -2843,7 +2847,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("**Final Scaled Score Calculation:**")
     print()
     print(f"- Raw Final Score: {format_raw_score(entry['score_final'])}")
-    print("  (weighted average: WIDE + NARROW + ZWJ + LANG + VS16 + 0.33 * SRI + 0.33 * SFZ + RI + SPILL + CAP + 0.5 * GFX)")
+    print("  (weighted average: WIDE + NARROW + ZWJ + LANG + VS16 + VS15 + 0.33 * SRI + 0.33 * SFZ + RI + SPILL + CAP + 0.5 * GFX)")
     print("  the categorized 'average' absolute support level of this terminal.")
     print()
     print("  .. note::")
@@ -2863,7 +2867,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print()
 
     # Add detailed score breakdowns for each type
-    print("**WIDE Score Details:**")
+    display_score_details_heading(sw_name, "wide", "WIDE Score Details")
     print()
     n_total, n_errors = contested_width_counts(
         entry["data"], "unicode_wide_results", _CONTESTED_WIDE)
@@ -2880,7 +2884,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print("No WIDE character support detected.")
     print()
 
-    print("**NARROW Score Details:**")
+    display_score_details_heading(sw_name, "narrow", "NARROW Score Details")
     print()
     n_total, n_errors = contested_width_counts(
         entry["data"], "narrow_results", _CONTESTED_NARROW)
@@ -2897,7 +2901,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print("No NARROW character support detected.")
     print()
 
-    print("**ZWJ Score Details:**")
+    display_score_details_heading(sw_name, "zwj", "ZWJ Score Details")
     print()
     zwj_results = entry["data"]["test_results"].get("emoji_zwj_results") or {}
     if zwj_results:
@@ -2915,7 +2919,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print("No ZWJ support detected.")
     print()
 
-    print("**VS16 Score Details:**")
+    display_score_details_heading(sw_name, "vs16", "VS16 Score Details")
     print()
     _vs16_base = entry["data"]["test_results"].get("emoji_vs16_results", {})
     if _vs16_base:
@@ -2935,11 +2939,10 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print("VS16 results not available.")
     print()
 
-    print("**Variation Selector-15 support:**")
+    display_score_details_heading(sw_name, "vs15", "Variation Selector-15 support")
     print()
     print(".. note:: Interpretation of VS-15 is `contested <https://github.com/jquast/wcwidth/issues/211>`_.\n"
-          "   Its width behavior is not consistently implemented across terminals;\n"
-          "   this measurement is informational and excluded from final scoring.")
+          "   Its width behavior is not consistently implemented across terminals.")
     print()
     vs15_base = entry["data"]["test_results"].get("emoji_vs15_results",
                                                    entry["data"]["test_results"].get("emoji_vs15_type_a_results"))  # noqa: E127
@@ -2963,7 +2966,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     _UNTESTED_NOTE = ("This terminal has not yet been tested with the latest version "
                        "of ucs-detect. This score is excluded from the final score.")  # noqa: E127
 
-    print("**SRI Score Details:**")
+    display_score_details_heading(sw_name, "sri", "SRI Score Details")
     print()
     sri_results = entry["data"]["test_results"].get("sri_results") or {}
     if sri_results:
@@ -2981,7 +2984,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f".. note:: {_UNTESTED_NOTE}")
     print()
 
-    print("**SFZ Score Details:**")
+    display_score_details_heading(sw_name, "sfz", "SFZ Score Details")
     print()
     sfz_results = entry["data"]["test_results"].get("sfz_results") or {}
     if sfz_results:
@@ -2999,7 +3002,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print(f".. note:: {_UNTESTED_NOTE}")
     print()
 
-    print("**RI Score Details:**")
+    display_score_details_heading(sw_name, "ri", "RI Score Details")
     print()
     ri_results = entry["data"]["test_results"].get("ri_results") or {}
     if ri_results:
@@ -3134,7 +3137,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print("Features results not available.")
     print()
 
-    print("**Graphics Score Details:**")
+    display_score_details_heading(sw_name, "graphics", "Graphics Score Details")
     print()
     tr = entry["data"].get("terminal_results") or {}
     gfx_score = entry["score_graphics"]
@@ -3157,7 +3160,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print("Scoring: 100% for modern (iTerm2/Kitty), 50% for legacy only (Sixel/ReGIS), 0% for none")
     print()
 
-    print("**Resource Score Details:**")
+    display_score_details_heading(sw_name, "resources", "Resource Score Details")
     print()
     if not math.isnan(entry["score_resource"]):
         rp = entry["data"].get("resource_profile") or {}
@@ -3179,7 +3182,7 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
         print("Resource profiling data not available.")
     print()
 
-    print("**LANG Score Details (Geometric Mean):**")
+    display_score_details_heading(sw_name, "lang", "LANG Score Details (Geometric Mean)")
     print()
     percentages = contested_language_percentages(entry["data"])
     if percentages:
@@ -4397,8 +4400,9 @@ def show_spillover_results(sw_name, entry):
         print()
         return
 
-    print("**Screenshots:**")
-    print()
+    display_inbound_hyperlink(
+        entry["terminal_software_name"] + "_spillover_screenshots")
+    display_title("Screenshots", 4)
 
     for filename, record, abs_image in shown:
         spills = record["spillovers"]

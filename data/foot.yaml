@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 03:20:05 UTC
+  scanned_datetime: 2026-11-16 05:54:41 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 03:20:00 UTC
+  scanned_datetime: 2026-11-16 05:54:35 UTC
   painted_rows: 40
   calibration:
     origin_x: 273.0
@@ -120,7 +120,7 @@ color_results:
       - 255
       - 255
       - 255
-datetime: 2026-11-15 21:49:26 UTC
+datetime: 2026-11-16 05:48:52 UTC
 environment:
   COLORTERM: truecolor
   TERM: foot
@@ -225,19 +225,19 @@ preferred_encoding: UTF-8
 python_version: 3.14.10
 resource_profile:
   cpu_pct:
-  - 5.0
-  - 49.9
+  - 6.0
+  - 53.9
   elapsed_s:
-  - 1.0127803289797157
-  - 2.014411124982871
+  - 1.0015596819866914
+  - 2.0030160110036377
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481796
   rss_mb:
-  - 23.76171875
-  - 41.22265625
-seconds_elapsed: 1.4343354360025842
+  - 23.015625
+  - 42.25
+seconds_elapsed: 1.233182633004617
 session_arguments:
   all: false
   limit_category_time: 0
@@ -250,7 +250,7 @@ session_arguments:
 software_name: foot
 software_version: 1.28.0
 spillover_results:
-  scanned_datetime: 2026-11-16 03:20:54 UTC
+  scanned_datetime: 2026-11-16 05:55:45 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 6357
@@ -23742,7 +23742,8 @@ test_results:
       n_errors: 71
       n_total: 1529
       pct_success: 95.35644211903205
-ucs_detect_version: 2.3.10+58005c1
+ucs_detect_version: 2.3.11+45169f9
 unicode_version: 18.0.0
+wcwidth_path: /usr/lib/python3.14/site-packages/wcwidth
 wcwidth_version: 0.9.4
 width: 130

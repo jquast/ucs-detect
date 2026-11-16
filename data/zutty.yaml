@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 03:21:54 UTC
+  scanned_datetime: 2026-11-16 05:56:13 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 03:21:49 UTC
+  scanned_datetime: 2026-11-16 05:56:08 UTC
   painted_rows: 24
   calibration:
     origin_x: 2.0
@@ -120,7 +120,7 @@ color_results:
       - 255
       - 255
       - 255
-datetime: 2026-11-16 00:50:41 UTC
+datetime: 2026-11-16 05:45:29 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -225,37 +225,40 @@ preferred_encoding: UTF-8
 python_version: 3.14.10
 resource_profile:
   cpu_pct:
-  - 27.0
+  - 29.0
   - 0.0
-  - 79.9
-  - 179.2
+  - 80.8
+  - 184.8
+  - 173.7
+  - 165.8
   - 172.8
-  - 174.8
-  - 175.8
-  - 171.7
+  - 176.8
+  - 172.8
   elapsed_s:
-  - 1.0013503200025298
-  - 2.0027205860242248
-  - 3.0040623160020914
-  - 4.0305619279970415
-  - 5.032058324024547
-  - 6.033222985017346
-  - 7.034623526997166
-  - 8.035795939009404
+  - 1.0013678050017916
+  - 2.0027675900200848
+  - 3.0055354210198857
+  - 4.006831153004896
+  - 5.008511495019775
+  - 6.0633621659944765
+  - 7.0649537529970985
+  - 8.066328326007351
+  - 9.067639312008396
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481796
   rss_mb:
-  - 114.55078125
-  - 114.55078125
-  - 114.5546875
-  - 114.5546875
-  - 114.5546875
-  - 114.5546875
-  - 114.5546875
-  - 114.5546875
-seconds_elapsed: 5.6451196300040465
+  - 113.52734375
+  - 113.52734375
+  - 113.53125
+  - 113.53125
+  - 113.53125
+  - 113.53125
+  - 113.53125
+  - 113.53125
+  - 113.53125
+seconds_elapsed: 6.340499754005577
 session_arguments:
   all: false
   limit_category_time: 0
@@ -268,7 +271,7 @@ session_arguments:
 software_name: zutty
 software_version: 0.18-1
 spillover_results:
-  scanned_datetime: 2026-11-16 03:22:40 UTC
+  scanned_datetime: 2026-11-16 05:57:08 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 0
@@ -14401,7 +14404,8 @@ test_results:
       n_errors: 1042
       n_total: 1529
       pct_success: 31.85088293001962
-ucs_detect_version: 2.3.11+353970e
+ucs_detect_version: 2.3.11+45169f9
 unicode_version: 18.0.0
+wcwidth_path: /usr/lib/python3.14/site-packages/wcwidth
 wcwidth_version: 0.9.4
 width: 80

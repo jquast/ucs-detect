@@ -241,6 +241,8 @@ def get_launch_config(sw_name, mixins, is_docker=None):
         "kill_command": launch.get("kill_command"),
         "screenshot_delay_ms": raw_entry.get(
             "screenshot_delay_ms", launch.get("screenshot_delay_ms", 0)),
+        "spillover_rtl": raw_entry.get(
+            "spillover_rtl", launch.get("spillover_rtl", True)),
         "macos": launch.get("macos") or raw_entry.get("macos") or {},
         "cursor_center_rows": raw_entry.get(
             "cursor_center_rows", launch.get("cursor_center_rows", 0)),

@@ -27,7 +27,7 @@ import tempfile
 import time
 from pathlib import Path
 
-from ucs_detect import fonts, imaging, stage
+from ucs_detect import fonts, imaging, stage, spillover
 from ucs_detect.accessories import (
     _IS_DOCKER,
     find_best_failure,
@@ -322,6 +322,8 @@ def spillover_script_arguments(job, args, window_id_path, workers=1):
         arguments.extend(["--limit", str(args.limit)])
     if directory is not None:
         arguments.extend(["--evidence-dir", str(directory)])
+    if not job.launch_cfg.get("spillover_rtl", True):
+        arguments.append("--exclude-rtl")
     return arguments + cursor_arguments(job) + capture_delay_arguments(job)
 
 
@@ -420,7 +422,10 @@ def verify_spillover_output(job, args):
     section = terminal_document(job.yaml_path).get("spillover_results")
     if not section:
         return "YAML has no spillover_results section"
-    expected = len(contested_graphemes())
+    candidates = contested_graphemes()
+    if not job.launch_cfg.get("spillover_rtl", True):
+        candidates = spillover.without_rtl(candidates)
+    expected = len(candidates)
     if args.limit:
         expected = min(expected, args.limit)
     if section.get("n_tested") != expected:
