@@ -566,7 +566,7 @@ def app_paths():
             try:
                 with open(info, 'rb') as stream:
                     name = plistlib.load(stream).get('CFBundleName')
-            except (OSError, plistlib.InvalidFileException, ValueError):
+            except (OSError, ValueError):
                 continue
             if name:
                 _APP_PATH_CACHE.setdefault(name, str(bundle))
@@ -594,7 +594,7 @@ def app_owner(config):
         try:
             with open(info, 'rb') as stream:
                 name = plistlib.load(stream).get('CFBundleName')
-        except (OSError, plistlib.InvalidFileException, ValueError):
+        except (OSError, ValueError):
             name = None
         if name:
             return name

@@ -292,6 +292,7 @@ def run_stage(launch_cfg, host_cfg, script_path, sentinel_path,
     mac_config = launch_cfg.get('macos') or {}
     argv = launch_argv(launch_cfg, host_cfg, script_path)
     snapshot = window_snapshot()
+    process: subprocess.Popen | macos.MacLaunch
     if mac_config:
         try:
             process = macos.launch(

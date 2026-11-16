@@ -42,8 +42,8 @@ PAGE_FILENAME = 'colors-16.png'
 #: Height in pixels of one color box in a summary palette strip.
 STRIP_SWATCH_HEIGHT_PX = 20
 
-#: Width in pixels of one color box, a wide band rather than a square.
-STRIP_SWATCH_WIDTH_PX = 8 * STRIP_SWATCH_HEIGHT_PX
+#: Width in pixels of one color box in a summary palette strip, a square.
+STRIP_SWATCH_WIDTH_PX = STRIP_SWATCH_HEIGHT_PX
 
 #: Escape sequence that clears the page and returns the cursor home.
 CLEAR = '\x1b[0m\x1b[2J\x1b[H'

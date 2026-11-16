@@ -102,6 +102,28 @@ def score_ref_role(name, rawtext, text, lineno, inliner, options={}, content=[])
     return [refnode], []
 
 
+def bold_ref_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
+    """Custom role for a bold internal reference.
+
+    Usage: :bref:`link_text <target>`
+    """
+    from docutils import nodes
+    from sphinx import addnodes
+    from sphinx.util.nodes import split_explicit_title
+
+    has_explicit_title, title, target = split_explicit_title(text)
+    refnode = addnodes.pending_xref(
+        rawtext,
+        refdomain='std',
+        reftype='ref',
+        reftarget=target.lower(),
+        refexplicit=has_explicit_title,
+    )
+    refnode['classes'].append('bold-ref')
+    refnode += nodes.inline(title, title)
+    return [refnode], []
+
+
 def anti_feature_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """Custom role for anti-feature values: bold red, no score background."""
     from docutils import nodes
@@ -113,6 +135,7 @@ def anti_feature_role(name, rawtext, text, lineno, inliner, options={}, content=
 def setup(app):
     from docutils.parsers.rst import roles
     roles.register_local_role('sref', score_ref_role)
+    roles.register_local_role('bref', bold_ref_role)
     roles.register_local_role('antifeature', anti_feature_role)
 
     app.add_css_file("my_theme.css")
