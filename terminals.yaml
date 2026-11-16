@@ -24,6 +24,16 @@ terminals:
       - 'sh '
       - ${SCRIPT} && exit
       - "\n"
+    launch_docker:
+      program: bobcat
+      args: [--font-family, Unifont, --font-size, '16', --geometry, 240x65]
+      env:
+        TERM: xterm-256color
+      post_launch_delay_ms: 8000
+      post_launch_keys:
+      - 'sh '
+      - ${SCRIPT} && exit
+      - "\n"
   contour:
     homepage: https://contour-terminal.org/
     skip_docker: true

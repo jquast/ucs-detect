@@ -36,10 +36,10 @@ SAMPLED_CELLS = 2
 ASCII_COLUMNS = 8
 ASCII_ROWS = 16
 
-#: Sum of channel differences above which a pixel is ink.
-INK_DISTANCE = 60
+#: Sum of channel differences above which a pixel counts as painted.
+PAINTED_DISTANCE = 60
 
-#: Fraction of an ASCII block that must be ink before the block is ``X``.
+#: Fraction of an ASCII block that must be painted before the block is ``X``.
 BLOCK_FRACTION = 0.3
 
 TEST_ROW = 2
@@ -67,10 +67,10 @@ def _backgrounds(column, reference):
     return colors
 
 
-def _is_ink(pixel, backgrounds):
+def _is_painted(pixel, backgrounds):
     red, green, blue = pixel[:3]
     return all(abs(red - color[0]) + abs(green - color[1]) + abs(blue - color[2])
-               > INK_DISTANCE for color in backgrounds)
+               > PAINTED_DISTANCE for color in backgrounds)
 
 
 def _source_box(calibration, row, column, cells, image_size):
@@ -86,7 +86,7 @@ def _source_box(calibration, row, column, cells, image_size):
 
 def cell_ascii(image, calibration, row=TEST_ROW, column=TEST_COLUMN,
                cells=SAMPLED_CELLS, reference=None):
-    """Return ``(rows, ink_fraction, ink_color)`` for the grapheme at a cell."""
+    """Return ``(rows, painted_fraction, painted_color)`` for the grapheme at a cell."""
     if image.mode != 'RGB':
         image = image.convert('RGB')
     pixels = image.load()
@@ -98,9 +98,9 @@ def cell_ascii(image, calibration, row=TEST_ROW, column=TEST_COLUMN,
     backgrounds = _backgrounds(column, reference)
     columns = ASCII_COLUMNS * cells
     rows = []
-    ink_total = 0
+    painted_total = 0
     sampled_total = 0
-    ink_sum = [0, 0, 0]
+    painted_sum = [0, 0, 0]
     for grid_row in range(ASCII_ROWS):
         top = y0 + (y1 - y0) * grid_row // ASCII_ROWS
         bottom = max(top + 1, y0 + (y1 - y0) * (grid_row + 1) // ASCII_ROWS)
@@ -109,27 +109,27 @@ def cell_ascii(image, calibration, row=TEST_ROW, column=TEST_COLUMN,
             left = x0 + (x1 - x0) * grid_column // columns
             right = max(
                 left + 1, x0 + (x1 - x0) * (grid_column + 1) // columns)
-            ink = 0
+            painted = 0
             total = 0
             for y in range(top, min(bottom, y1)):
                 for x in range(left, min(right, x1)):
                     total += 1
                     pixel = pixels[x, y]
-                    if _is_ink(pixel, backgrounds):
-                        ink += 1
+                    if _is_painted(pixel, backgrounds):
+                        painted += 1
                         for channel in range(3):
-                            ink_sum[channel] += pixel[channel]
+                            painted_sum[channel] += pixel[channel]
             sampled_total += total
-            ink_total += ink
-            line.append('X' if total and ink / total >= BLOCK_FRACTION else '.')
+            painted_total += painted
+            line.append('X' if total and painted / total >= BLOCK_FRACTION else '.')
         rows.append(''.join(line))
-    fraction = ink_total / sampled_total if sampled_total else 0.0
-    color = tuple(round(channel / ink_total) for channel in ink_sum) \
-        if ink_total else (0, 0, 0)
+    fraction = painted_total / sampled_total if sampled_total else 0.0
+    color = tuple(round(channel / painted_total) for channel in painted_sum) \
+        if painted_total else (0, 0, 0)
     return rows, fraction, color
 
 
-def grapheme_record(grapheme, ascii_rows, ink_fraction, ink_color):
+def grapheme_record(grapheme, ascii_rows, painted_fraction, painted_color):
     """Return one grapheme measurement mapping."""
     text, name, emoji_version = grapheme
     # local
@@ -139,9 +139,9 @@ def grapheme_record(grapheme, ascii_rows, ink_fraction, ink_color):
         'codepoint': f'U+{ord(text):04X}',
         'name': name,
         'emoji_version': emoji_version,
-        'ink_fraction': round(ink_fraction, 3),
-        'ink_color': list(ink_color),
-        'monochrome': max(ink_color) - min(ink_color) <= 40,
+        'ink_fraction': round(painted_fraction, 3),
+        'ink_color': list(painted_color),
+        'monochrome': max(painted_color) - min(painted_color) <= 40,
         'ascii': ascii_rows,
     }
 

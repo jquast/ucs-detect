@@ -10,7 +10,7 @@ screenshot command writes one PNG per width failure.  The color command paints
 the 16 configurable colors and records their RGB values.  The spillover command
 renders contested graphemes over truecolor blocks, captures each page, and
 records cell overflow counts.  The BiDi command requests a right to left
-character path, captures the probe page, and records where the ink landed.
+character path, captures the probe page, and records where the glyphs landed.
 
 All stages share terminal discovery, launch, window lookup, key injection,
 and Docker orchestration through :mod:`ucs_detect.stage`.

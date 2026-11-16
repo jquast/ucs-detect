@@ -3,7 +3,7 @@
 
 Runs inside the terminal under test.  It paints truecolor cell blocks, draws
 contested graphemes one per row, captures each page with xwd, compares the page
-with and without graphemes, and records the graphemes whose ink crosses the
+with and without graphemes, and records the graphemes whose glyphs cross the
 cursor advance boundary in the terminal data YAML.
 
 Usage::
@@ -109,7 +109,7 @@ def main():
     elapsed = time.time() - started
     print(f'{section["n_tested"]} graphemes in {elapsed:.1f}s, '
           f'{section["n_spillover"]} with spillover, '
-          f'{section["n_no_ink"]} with no ink, '
+          f'{section["n_no_ink"]} with no pixels, '
           f'{section["n_shifted"]} on displaced rows')
     if pool.errors:
         print(f'{len(pool.errors)} page analysis error(s)', file=sys.stderr)

@@ -30,7 +30,7 @@ SPLIT_PAD = 2
 #: Seconds a slow renderer is given to paint a page before it is captured.
 PAGE_SETTLE = 0.5
 
-#: Share of the ink that must be on one side for the reading to count.
+#: Share of the painted pixels that must be on one side for the reading to count.
 SIDE_SHARE = 0.8
 
 
@@ -48,8 +48,8 @@ def render_page(term_width, rtl):
     return ''.join(parts)
 
 
-def ink_sides(image, calibration):
-    """Return ``(left, right)`` ink pixels outside the padded split band."""
+def painted_sides(image, calibration):
+    """Return ``(left, right)`` painted pixels outside the padded split band."""
     pixels = image.load()
     background = collections.Counter(
         pixels[x, y][:3]
@@ -62,9 +62,9 @@ def ink_sides(image, calibration):
     for y in range(0, image.height, 2):
         for x in range(0, image.width, 2):
             red, green, blue = pixels[x, y][:3]
-            ink = (abs(red - background[0]) + abs(green - background[1])
+            difference = (abs(red - background[0]) + abs(green - background[1])
                    + abs(blue - background[2]))
-            if ink <= 90:
+            if difference <= 90:
                 continue
             if x < left_edge:
                 left += 1
@@ -127,7 +127,7 @@ def scan_terminal(term, window_id, temp_dir, window_title=None):
         with Image.open(path) as image:
             cropped, moved = spillover.crop_to_grid(
                 image.convert('RGB'), calibration)
-        counts[name] = ink_sides(cropped, moved)
+        counts[name] = painted_sides(cropped, moved)
     return build_results(counts, errors)
 
 
