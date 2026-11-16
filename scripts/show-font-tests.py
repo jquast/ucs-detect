@@ -43,7 +43,7 @@ def main():
               f"{grapheme.get('name', '')} "
               f"(Emoji {grapheme.get('emoji_version', '?')}, "
               f"Unifont {section.get('font_version', '?')})")
-        print(f"   ink {section.get('ink_fraction', 0):.3f}, "
+        print(f"   painted {section.get('ink_fraction', 0):.3f}, "
               f"color {section.get('ink_color')}, "
               f"monochrome {section.get('monochrome')}")
         for line in section.get('ascii', ()):
@@ -53,7 +53,7 @@ def main():
             control_grapheme = control.get('grapheme', {})
             print(f"   control {control_grapheme.get('codepoint', '?')} "
                   f"{control_grapheme.get('name', '')}: "
-                  f"ink {control.get('ink_fraction', 0):.3f}, "
+                  f"painted {control.get('ink_fraction', 0):.3f}, "
                   f"monochrome {control.get('monochrome')}")
             for line in control.get('ascii', ()):
                 print(f'   {line}')

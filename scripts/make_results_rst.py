@@ -1021,7 +1021,6 @@ def make_score_table():
                 bidi_section=bidi_section,
                 spill_n_tested=spill_n_tested,
                 spill_n_spillover=spill_n_spillover,
-                spill_n_no_ink=spill_section.get("n_no_ink") or 0,
                 spill_partial=spill_partial,
                 text_sizing_credited=text_sizing_credited,
                 data=data,

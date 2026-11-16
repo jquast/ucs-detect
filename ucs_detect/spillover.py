@@ -78,7 +78,7 @@ MAX_PAGE_COLUMNS = 10
 COLOR_TOLERANCE = 60
 
 #: Fraction of a cell that must differ before it is contaminated.
-INK_FRACTION = 0.02
+PAINTED_FRACTION = 0.02
 
 #: Fraction of a row's cells that must disagree with the page before the row is called displaced.
 SHIFT_FRACTION = 0.2
@@ -112,14 +112,14 @@ BAR_COLORS = (
     ((0, 160, 64), '42', '34'),
 )
 
-#: Glyph painted into every bar cell, so the cell is filled by a drawn glyph and not only by a
-#: background color.  A background alone leaves ink a previous page painted outside its advance
-#: visible on terminals that keep it.
+#: Glyph painted into every bar cell, so the cell is filled by a glyph and not only by a background
+#: color.  A background alone leaves a previous page's glyphs outside their advance visible on
+#: terminals that keep them.
 BAR_GLYPH = '\u2588'
 
-#: Rewrite every cell of a page from a reset terminal, so nothing from the previous page's
-#: out of advance ink survives.  The reset makes the cursor visible again, so it is hidden here.
-PAGE_CLEAR = '\x1bc\x1b[?25l\x1b[2J\x1b[H'
+#: Rewrite every cell of a page, so a previous page's glyphs outside their advance are cleared.
+#: The cursor is hidden here.
+PAGE_CLEAR = '\x1b[0m\x1b[?25l\x1b[2J\x1b[H'
 
 #: RGB and ANSI fallbacks for calibration row bands.
 CALIBRATION_COLORS = (
@@ -162,7 +162,7 @@ Calibration = collections.namedtuple(
 
 Spillover = collections.namedtuple(
     'Spillover', ('index', 'page', 'row', 'column', 'candidate',
-                  'left_cells', 'right_cells', 'no_ink', 'evidence'),
+                  'left_cells', 'right_cells', 'blank', 'evidence'),
     defaults=(None,))
 
 
@@ -871,12 +871,12 @@ def _last_usable_column(image, calibration, reference_row, reference):
         return last
     for column in range(last, -1, -1):
         if (cell_contamination(image, calibration, reference_row, column,
-                               reference[column]) <= INK_FRACTION):
+                               reference[column]) <= PAINTED_FRACTION):
             return column
     return 0
 
 
-def cell_has_ink(image, calibration, row, column):
+def cell_is_painted(image, calibration, row, column):
     """Return True when a cell contains pixels unlike its dominant color."""
     pixels = image.load()
     x0, y0, x1, y1 = _inner_box(
@@ -891,7 +891,7 @@ def cell_has_ink(image, calibration, row, column):
     dominant = counts.most_common(1)[0][0]
     different = sum(1 for sample in samples
                     if _color_distance(sample, dominant) > COLOR_TOLERANCE)
-    return different / len(samples) > INK_FRACTION
+    return different / len(samples) > PAINTED_FRACTION
 
 
 def _cell_colors(image, calibration, rows):
@@ -1011,8 +1011,8 @@ def analyze_page(image, calibration, items, reference=None,
     for row, column, candidate in items:
         advance = candidate.advance or candidate.width
         advance = max(1, min(advance, COLUMN_STRIDE))
-        no_ink = not any(
-            cell_has_ink(image, calibration, row, cell)
+        blank = not any(
+            cell_is_painted(image, calibration, row, cell)
             for cell in range(column, column + advance))
 
         left_start = max(0, column - LEFT_CELLS)
@@ -1026,7 +1026,7 @@ def analyze_page(image, calibration, items, reference=None,
         for cell in range(column - 1, left_start - 1, -1):
             expected = reference[cell]
             if (cell_contamination(image, calibration, row, cell,
-                                   expected) > INK_FRACTION):
+                                   expected) > PAINTED_FRACTION):
                 left_cells = column - cell
             else:
                 break
@@ -1043,7 +1043,7 @@ def analyze_page(image, calibration, items, reference=None,
         scan_end = max(contiguous_end, isolated_end)
         dirty = [
             cell_contamination(image, calibration, row, cell,
-                               reference[cell]) > INK_FRACTION
+                               reference[cell]) > PAINTED_FRACTION
             for cell in range(first_gap, scan_end + 1)
         ]
         right_cells = 0
@@ -1059,7 +1059,7 @@ def analyze_page(image, calibration, items, reference=None,
         results.append({
             'left_cells': left_cells,
             'right_cells': right_cells,
-            'no_ink': no_ink,
+            'blank': blank,
         })
     return results
 
@@ -1411,7 +1411,7 @@ def control_page_report(calibration, path, items, controls):
         lines.append(
             f'control {unicode_escape_string(candidate.text)} row={row} '
             f'column={column} left={result["left_cells"]} '
-            f'right={result["right_cells"]} no_ink={result["no_ink"]} '
+            f'right={result["right_cells"]} blank={result["blank"]} '
             f'shifted={result.get("shifted")}')
         lines.append(
             f'  row {row}:  ' + ' '.join(
@@ -1547,8 +1547,8 @@ def scan_terminal(term, window_id, candidates, temp_dir,
         except OSError:
             pass
     for candidate, result in controls:
-        if result['no_ink']:
-            message = 'produced no ink'
+        if result['blank']:
+            message = 'produced no visible pixels'
         elif result['left_cells'] or result['right_cells']:
             message = (f'spilled {result["left_cells"]} left and '
                        f'{result["right_cells"]} right')
@@ -1697,7 +1697,7 @@ def scan_terminal(term, window_id, candidates, temp_dir,
             spill = Spillover(
                 start + index, page_index, row, column, candidate,
                 row_result['left_cells'], row_result['right_cells'],
-                row_result['no_ink'],
+                row_result['blank'],
                 page_evidence if spilled else None)
             results.append(spill)
 
@@ -1732,7 +1732,7 @@ def build_results(calibration, results, errors, n_candidates, images=None,
                                    result.candidate.label)].append(
                 (result.left_cells, result.right_cells))
     n_spillover = counts['graphemes_any']
-    no_ink = sum(1 for result in results if result.no_ink)
+    n_blank = sum(1 for result in results if result.blank)
     shifted = shifted or []
     if not painted_rows:
         painted_rows = calibration.term_height
@@ -1756,7 +1756,7 @@ def build_results(calibration, results, errors, n_candidates, images=None,
         'n_candidates': n_candidates,
         'n_tested': len(results),
         'n_spillover': n_spillover,
-        'n_no_ink': no_ink,
+        'n_no_ink': n_blank,
         'n_shifted': len(shifted),
         'shifted_graphemes': [unicode_escape_string(text) for text in shifted],
         'spill_counts': counts,

@@ -63,7 +63,7 @@ def main():
 
     elapsed = time.time() - started
     print(f'{section["grapheme"]["codepoint"]} in {elapsed:.1f}s, '
-          f'{section["ink_fraction"]:.3f} ink, '
+          f'{section["ink_fraction"]:.3f} painted, '
           f'control {section["control"]["ink_fraction"]:.3f}')
     for line in section['ascii']:
         print(line)
