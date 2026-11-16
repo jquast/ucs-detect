@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 06:35:53 UTC
+  scanned_datetime: 2026-11-16 16:08:42 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 06:35:46 UTC
+  scanned_datetime: 2026-11-16 16:08:37 UTC
   painted_rows: 59
   calibration:
     origin_x: 13.796116504854353
@@ -120,7 +120,7 @@ color_results:
       - 244
       - 247
       - 255
-datetime: 2026-11-15 21:44:17 UTC
+datetime: 2026-11-16 16:07:56 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
@@ -224,22 +224,16 @@ font_test_results:
       emoji_version: '1.0'
 height: 59
 preferred_encoding: UTF-8
-python_version: 3.13.13
+python_version: 3.14.4
 resource_profile:
-  cpu_pct:
-  - 117.9
-  - 120.3
-  elapsed_s:
-  - 0.024530244001653045
-  - 1.0595333429810125
+  cpu_pct: []
+  elapsed_s: []
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481796
-  rss_mb:
-  - 357.66015625
-  - 453.640625
-seconds_elapsed: 1.646320546977222
+  rss_mb: []
+seconds_elapsed: 1.1647542860009708
 session_arguments:
   all: false
   limit_category_time: 0
@@ -252,7 +246,7 @@ session_arguments:
 software_name: termy
 software_version: 1.0.0-rc.11
 spillover_results:
-  scanned_datetime: 2026-11-16 06:36:27 UTC
+  scanned_datetime: 2026-11-16 16:09:12 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 5299
@@ -35031,7 +35025,8 @@ test_results:
       n_errors: 1206
       n_total: 1529
       pct_success: 21.124918247220407
-ucs_detect_version: 2.3.10+58005c1
+ucs_detect_version: 2.3.11+7c6783a
 unicode_version: 18.0.0
+wcwidth_path: /home/jq/Code/ucs-detect/.tox/system_run_series/lib/python3.14/site-packages/wcwidth
 wcwidth_version: 0.9.4
 width: 310
