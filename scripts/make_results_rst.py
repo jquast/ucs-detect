@@ -364,13 +364,14 @@ def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, sectio
     return f':sref:`{text} <{link_target}> {score_value_for_color}:{sort_value}`'
 
 
-def print_datatable(table_str, caption=None):
-    """Print a table with sphinx-datatable class for sortable/searchable functionality."""
+def print_datatable(table_str, caption=None, sortable=True):
+    """Print a table, with sphinx-datatable class when *sortable*."""
     if caption:
         print(f".. table:: {caption}")
     else:
         print(".. table::")
-    print("   :class: sphinx-datatable")
+    if sortable:
+        print("   :class: sphinx-datatable")
     print()
     # Indent the table content
     for line in table_str.split('\n'):
@@ -1317,7 +1318,7 @@ def display_terminal_colors(score_table):
         return
 
     table_str = tabulate.tabulate(rows, headers="keys", tablefmt="rst")
-    print_datatable(table_str)
+    print_datatable(table_str, sortable=False)
 
 
 def display_tabulated_scores(score_table):

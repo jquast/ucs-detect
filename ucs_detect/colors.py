@@ -40,7 +40,7 @@ ANSI_COLOR_NAMES = (
 PAGE_FILENAME = 'colors-16.png'
 
 #: Height in pixels of one color box in a summary palette strip.
-STRIP_SWATCH_HEIGHT_PX = 20
+STRIP_SWATCH_HEIGHT_PX = 32
 
 #: Width in pixels of one color box in a summary palette strip, a square.
 STRIP_SWATCH_WIDTH_PX = STRIP_SWATCH_HEIGHT_PX
