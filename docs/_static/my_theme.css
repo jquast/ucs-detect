@@ -22,3 +22,8 @@ table.sphinx-datatable.dataTable {
     color: #d32f2f;
     font-weight: bold;
 }
+
+/* Palette strips keep their 20px height when a table column is narrower than the strip */
+.rst-content img.palette-strip {
+    height: 20px;
+}

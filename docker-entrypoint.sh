@@ -10,7 +10,7 @@ if [ -f /.dockerenv ] && [ -n "${DISPLAY:-}" ]; then
     pgrep -f "Xvfb :${DISPLAY_NUM}" >/dev/null && kill "$(pgrep -f "Xvfb :${DISPLAY_NUM}")" 2>/dev/null || true
     rm -f "/tmp/.X${DISPLAY_NUM}-lock" "/tmp/.X11-unix/X${DISPLAY_NUM}" 2>/dev/null || true
 
-    Xvfb "${DISPLAY}" -screen 0 1920x1080x24 -ac +extension RANDR 2>/dev/null &
+    Xvfb "${DISPLAY}" -screen 0 1920x1080x24 -ac -nocursor +extension RANDR 2>/dev/null &
     XVFB_PID=$!
 
     # generate machine-id for D-Bus (many terminals need this)
@@ -38,9 +38,12 @@ if [ -f /.dockerenv ] && [ -n "${DISPLAY:-}" ]; then
     sleep 0.5
 
     # start Weston Wayland compositor as ucs (needed by foot)
+    # 1520x920 is the largest output the screenshot stage leaves alone: it resizes any window above
+    # 1.2x its 1280x800 target, and shrinking the compositor would reflow the client under the
+    # running scan.  It holds a 140x41 grid of 10x21 cells for foot at Unifont size 16.
     rm -f "${XDG_RUNTIME_DIR}/wayland-0" "${XDG_RUNTIME_DIR}/wayland-0.lock" 2>/dev/null
     sudo -u ucs XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR}" \
-        weston --backend=x11-backend.so --socket=wayland-0 --width=1024 --height=768 2>/dev/null &
+        weston --backend=x11-backend.so --socket=wayland-0 --width=1520 --height=920 2>/dev/null &
     WESTON_PID=$!
     # wait for weston socket
     for _ in $(seq 1 30); do

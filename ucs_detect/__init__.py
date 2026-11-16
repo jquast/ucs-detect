@@ -32,6 +32,13 @@ import contextlib
 import subprocess
 import importlib.metadata
 
+# pylint: disable=wrong-import-order,wrong-import-position
+# Apply an optional local wcwidth override before blessed imports wcwidth.
+from ._wcwidth_source import install as _install_wcwidth_source  # isort:skip
+from ._wcwidth_source import provenance as _wcwidth_provenance  # isort:skip
+
+_install_wcwidth_source()
+
 # 3rd party
 import yaml
 import blessed
@@ -60,9 +67,10 @@ from ucs_detect.table_vs16_contested import VS16_CONTESTED
 from ucs_detect.table_wide_contested import WIDE_CONTESTED
 from ucs_detect.table_narrow_contested import NARROW_CONTESTED
 
+# pylint: enable=wrong-import-order,wrong-import-position
+
 
 def _utcnow_str():
-    """Return current UTC time as a formatted string."""
     if (sys.version_info.major, sys.version_info.minor) > (3, 10):
         return datetime.datetime.now(
             datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
@@ -121,12 +129,6 @@ def init_term(stream):
 
 
 def _system_name():
-    """
-    Return the operating system name, normalized for MSYS2 and Cygwin.
-
-    Their Python builds answer :func:`platform.system` with a uname string such as
-    ``CYGWIN_NT-10.0-26200`` where every other Windows build answers ``Windows``.
-    """
     name = platform.system()
     if name.startswith(("CYGWIN", "MINGW", "MSYS")):
         return "Windows"
@@ -134,7 +136,6 @@ def _system_name():
 
 
 def _git_commit_id(root):
-    """Return the abbreviated HEAD commit of the git worktree at *root*, or an empty string."""
     if not os.path.exists(os.path.join(root, '.git')):
         return ''
     try:
@@ -151,15 +152,6 @@ def _git_commit_id(root):
 
 
 def _ucs_detect_version():
-    """
-    Return the version of ucs-detect that is running.
-
-    A source checkout answers from its own ``pyproject.toml`` rather than from
-    :mod:`importlib.metadata`, which reports the *installed* distribution: with a different version
-    installed system-wide, metadata would record a version that is not the code which produced these
-    results.  When that checkout is a git worktree, the abbreviated HEAD commit is appended as a
-    PEP 440 local version, for example ``2.3.9+a48d4a1``.
-    """
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     pyproject = os.path.join(root, 'pyproject.toml')
     try:
@@ -191,21 +183,11 @@ _VERSIONED_TABLES = (
 
 
 def _version_sort_key(version):
-    """Sort key for a dotted version, preferring the more precise spelling of a tie."""
     parts = tuple(int(part) for part in version.split('.'))
     return parts + (0,) * (3 - len(parts)), len(parts)
 
 
 def _unicode_version():
-    """
-    Return the newest Unicode version of the generated codepoint tables.
-
-    This is the revision of the Unicode data files the tables were *generated from*, which the per-
-    version keys of ``test_results`` do not answer: those record the version each codepoint was
-    introduced in, and only for the categories a given run actually exercised.  A run limited by
-    ``--test-only`` or cut short by ``--limit-category-time`` would otherwise leave no record of
-    which Unicode release the expectations came from.
-    """
     versions = [version for table in _VERSIONED_TABLES for version, _ in table]
     return max(versions, key=_version_sort_key) if versions else 'unknown'
 
@@ -215,7 +197,6 @@ _ENGINE_VERSION_LABELS = {'VTE': 'VTE', 'SWIFTTERM': 'SwiftTerm'}
 
 
 def _strip_engine_suffix(version, label):
-    """Strip a trailing ``(LABEL/...)`` label, so a --rerun does not nest a second one."""
     head, sep, tail = version.rpartition(f' ({label}/')
     if sep and tail.endswith(')'):
         return head
@@ -578,7 +559,6 @@ def display_args(arguments):
 
 
 def _pct_style(term, pct_val):
-    """Return terminal style callable for a percentage value."""
     return (
         term.firebrick1 if pct_val < 33
         else term.darkorange1 if pct_val < 50
@@ -594,7 +574,6 @@ def color_pct(term, pct_val):
 
 
 def _set_double_border(table, has_unicode=True):
-    """Apply CP437 double-line border characters, or ASCII fallback."""
     if not has_unicode:
         return
     table.horizontal_char = '═'
@@ -611,14 +590,12 @@ def _set_double_border(table, has_unicode=True):
 
 
 def _color_yes_no(term, value, suffix=""):
-    """Apply green/red coloring to boolean-like values."""
     if value:
         return term.green2("Yes") + suffix
     return term.firebrick1("No")
 
 
 def _build_terminal_kv_pairs(term, results):
-    """Build (key, value) tuples for terminal dimensions and graphics."""
     pairs = []
     if not results:
         return pairs
@@ -709,7 +686,6 @@ def _build_terminal_kv_pairs(term, results):
 
 
 def _build_features_kv_pairs(term, results):
-    """Build (key, value) tuples for terminal features."""
     pairs = []
     if not results:
         return pairs
@@ -833,7 +809,6 @@ def _build_features_kv_pairs(term, results):
 
 
 def _build_test_kv_pairs(term, ambig_label, **result_sets):
-    """Build (key, value) tuples from test results."""
     pairs = []
 
     wide = result_sets.get("wide_results", {})
@@ -888,7 +863,6 @@ def _build_test_kv_pairs(term, ambig_label, **result_sets):
 
 
 def _make_kv_table(term, title, pairs, has_unicode=True):
-    """Build a table from (key, value) tuples."""
     table = table_compat.new_table(
         title=term.magenta(title),
         field_names=["Attribute", "Value"],
@@ -906,7 +880,6 @@ def _make_kv_table(term, title, pairs, has_unicode=True):
 
 
 def _truncate_value(val_str, max_len=25):
-    """Truncate a string with ellipsis if it exceeds max_len."""
     if len(val_str) > max_len:
         return val_str[:max_len - 1] + '…'
     return val_str
@@ -1009,7 +982,6 @@ def make_xtgettcap_lines(term, capabilities, has_unicode=True):
 
 
 def _make_one_language_table(term, title, failed_langs, results, has_unicode):
-    """Build a single language table from a list of failed language names."""
     table = table_compat.new_table(
         title=term.magenta(title),
         field_names=[
@@ -1079,7 +1051,6 @@ def make_language_tables(term, results, has_unicode=True):
 
 
 def _collect_side_by_side_lines(term, table_strings):
-    """Collect side-by-side table output as a list of lines."""
     tables = [s for s in table_strings if s]
     if not tables:
         return []
@@ -1102,7 +1073,6 @@ def _collect_side_by_side_lines(term, table_strings):
 
 
 def _collect_table_row_lines(row):
-    """Collect one horizontal row of side-by-side tables as lines."""
     result = []
     max_height = max(len(lines) for lines, _ in row)
     for i in range(max_height):
@@ -1116,7 +1086,6 @@ def _collect_table_row_lines(row):
 
 
 def _write_line(term, writer, line):
-    """Write a line, truncating to terminal width and omitting trailing newline when needed."""
     if term.width and term.length(line) >= term.width:
         line = term.truncate(line, term.width - 1)
     writer(line)
@@ -1125,7 +1094,6 @@ def _write_line(term, writer, line):
 
 
 def _paginated_write(term, writer, all_lines, skip_initial_newline=False):
-    """Write lines to terminal."""
     if not skip_initial_newline:
         writer("\n")
     if not term.does_styling or not term.height:
@@ -1191,10 +1159,10 @@ def display_results(term, writer, ambig_label, terminal_results=None,
 
 
 def _save_results(save_yaml, save_json, **kwargs):
-    """Save results to yaml and/or json, adding a UTC timestamp."""
     kwargs['datetime'] = _utcnow_str()
     kwargs['ucs_detect_version'] = _ucs_detect_version()
     kwargs['unicode_version'] = _unicode_version()
+    kwargs.update(_wcwidth_provenance())
     if save_yaml:
         do_save_yaml(save_yaml, **kwargs)
     if save_json:
@@ -1225,7 +1193,6 @@ def do_save_json(save_json, **kwargs):
 
 
 def _build_parser():
-    """Construct the command-line argument parser."""
     args = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     args.add_argument(
         "--stream",
@@ -1393,12 +1360,6 @@ def _build_parser():
 
 
 def _explicit_cli_args():
-    """
-    Return the set of argument names explicitly given on the command line.
-
-    Values restored from a --rerun YAML file must not override arguments typed by the user, even
-    when the typed value happens to equal the default.
-    """
     parser = _build_parser()
     for action in parser._actions:
         action.default = argparse.SUPPRESS
@@ -1422,15 +1383,10 @@ def parse_args():
 
 
 def _apply_rerun_yaml(results, explicit_args=()):
-    """
-    Merge session arguments from a saved YAML file into *results*.
-
-    Arguments named in *explicit_args* were given on the command line and take precedence over the
-    values saved in the YAML file.
-    """
     yaml_path = os.path.expanduser(results["rerun"])
-    with open(yaml_path, encoding='utf-8') as fin:
-        data = yaml.safe_load(fin)
+    # local
+    from ucs_detect.accessories import load_document
+    data = load_document(yaml_path)
 
     session_args = data.get('session_arguments', {})
 

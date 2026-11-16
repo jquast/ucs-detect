@@ -13,6 +13,8 @@ def list_terminals():
     terminals = []
 
     for yaml_file in sorted(data_dir.glob('*.yaml')):
+        if yaml_file.name.startswith('_'):
+            continue
         try:
             with open(yaml_file) as f:
                 data = yaml.safe_load(f)

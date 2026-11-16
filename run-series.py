@@ -21,12 +21,14 @@ from pathlib import Path
 
 import yaml
 
+from ucs_detect import fonts, macos
 from ucs_detect.accessories import (
     DiscoveredYAML,
     _IS_DOCKER,
     _KEY_INJECT_LOCK,
     _KEY_INJECT_PRE_DELAY,
     _KEY_INJECT_POST_DELAY,
+    _RE_KEY,
     _RE_PAUSE,
     build_launch_args,
     build_subterminal_launch_args,
@@ -37,11 +39,13 @@ from ucs_detect.accessories import (
     find_window_for_command,
     get_launch_config,
     inject_keys,
+    load_document,
     load_mixins,
     parse_run_only,
     run_kill_command,
     safe_name,
     should_skip,
+    window_snapshot,
     get_project_dir,
     get_data_dir,
 )
@@ -92,12 +96,7 @@ def write_run_script(script_path, yaml_path, sentinel_path,
 
 
 def build_software_overrides(yaml_path, mixins):
-    """Return list of extra CLI args for --set-software-name/version.
-
-    Uses the stem-fallback lookup in *mixins* to find the terminal's
-    ``display_name`` and ``version_manual`` / ``version_template``.
-    Returns an empty list when no overrides are configured.
-    """
+    """Return list of extra CLI args for --set-software-name/version."""
     stem = yaml_path.stem.lower()
     entry = mixins.get(stem, {})
     args = []
@@ -140,10 +139,7 @@ def build_software_overrides(yaml_path, mixins):
 
 def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                        temp_dir, pause_exit=False, extra_args=None):
-    """Launch a terminal and inject keys. Does not wait for completion.
-
-    Returns (proc, sentinel_path, stderr_path, error_msg).
-    """
+    """Launch a terminal and inject keys."""
     safe = safe_name(sw_name)
     script_path = temp_dir / f"run-{safe}.sh"
     sentinel_path = temp_dir / f"exit-{safe}.rc"
@@ -166,36 +162,33 @@ def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                     "-p", "CPUQuota=200%", "--"] + argv
 
         snapshot_pre_windows = None
-        if post_keys:
-            try:
-                result = subprocess.run(
-                    ["xdotool", "search", "--onlyvisible", ""],
-                    capture_output=True, text=True, timeout=3,
-                    check=False,
-                )
-                if result.returncode == 0:
-                    snapshot_pre_windows = set(result.stdout.strip().split("\n"))
-            except (subprocess.TimeoutExpired, OSError):
-                pass
+        mac_config = launch_cfg.get("macos") or {}
+        if mac_config:
+            proc = macos.launch(
+                mac_config, script_path,
+                launch_cfg.get("window_search_timeout_ms"))
+        else:
+            if post_keys:
+                snapshot_pre_windows = window_snapshot()
 
-        with open(stderr_path, "w") as stderr_file:
-            env = os.environ.copy()
-            env.pop("TERM", None)
-            env.pop("TERM_PROGRAM", None)
-            env.pop("TERM_PROGRAM_VERSION", None)
-            for key, value in launch_cfg.get("env", {}).items():
-                if value == "":
-                    env.pop(key, None)
-                else:
-                    env[key] = value
-            # pylint: disable=consider-using-with
-            proc = subprocess.Popen(
-                argv,
-                env=env,
-                stdout=subprocess.DEVNULL,
-                stderr=stderr_file,
-                stdin=subprocess.DEVNULL,
-            )
+            with open(stderr_path, "w") as stderr_file:
+                env = os.environ.copy()
+                env.pop("TERM", None)
+                env.pop("TERM_PROGRAM", None)
+                env.pop("TERM_PROGRAM_VERSION", None)
+                for key, value in launch_cfg.get("env", {}).items():
+                    if value == "":
+                        env.pop(key, None)
+                    else:
+                        env[key] = value
+                # pylint: disable=consider-using-with
+                proc = subprocess.Popen(
+                    argv,
+                    env=env,
+                    stdout=subprocess.DEVNULL,
+                    stderr=stderr_file,
+                    stdin=subprocess.DEVNULL,
+                )
 
         if post_keys:
             with _KEY_INJECT_LOCK:
@@ -205,8 +198,10 @@ def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                 # In Docker, the host terminal is our xterm, not the host's TERM_PROGRAM
                 if _IS_DOCKER and launch_cfg["subterminal"]:
                     window_cfg = dict(window_cfg, wm_class="XTerm")
-                window_id = find_window_for_command(
-                    window_cfg, proc.pid, pre_windows=snapshot_pre_windows)
+                window_id = getattr(proc, "window_id", None)
+                if window_id is None:
+                    window_id = find_window_for_command(
+                        window_cfg, proc.pid, pre_windows=snapshot_pre_windows)
                 if window_id is not None:
                     script_str = str(script_path)
                     resolved_keys = [
@@ -218,7 +213,8 @@ def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
                             for k in resolved_keys
                         ]
                     text_keys = [k for k in resolved_keys
-                                 if k != "\n" and not _RE_PAUSE.match(k)]
+                                 if k != "\n" and not _RE_PAUSE.match(k)
+                                 and not _RE_KEY.match(k)]
                     print(f"[{sw_name}] injecting: {''.join(text_keys)}", flush=True)
                     key_delay = launch_cfg.get("key_delay_ms", 30)
                     inject_keys(window_id, resolved_keys, key_delay_ms=key_delay,
@@ -243,11 +239,7 @@ def launch_and_inject(yaml_path, sw_name, launch_cfg, host_launch_cfg,
 
 def poll_sentinel(sw_name, proc, sentinel_path, stderr_path, timeout,
                    post_keys=None):
-    """Wait for sentinel file.  Returns (sw_name, exit_code, error_msg).
-
-    When *post_keys* is truthy, the deadline is not collapsed on process
-    exit because key-inject terminals (Hyper, Extraterm, Warp) fork/detach
-    and the launcher process exits immediately."""
+    """Wait for sentinel file."""
     error_msg = None
     exit_code = -99
 
@@ -310,11 +302,10 @@ def docker_self_run(argv):
 def embed_profile_in_yaml(yaml_path, sw_name, session):
     """Append resource_profile data to the terminal's YAML file."""
     try:
-        with open(yaml_path) as f:
-            data = yaml.safe_load(f)
+        data = load_document(yaml_path)
     except (OSError, yaml.YAMLError):
         return
-    if data is None:
+    if not data:
         return
     data["resource_profile"] = session.to_dict()
     from ucs_detect.profiler import hardware_info
@@ -459,6 +450,14 @@ def main():
         help="Pass --all to ucs-detect, testing all codepoints (not just contested)")
     args = parser.parse_args()
 
+    if args.use_system and not _IS_DOCKER and platform.system().lower() == "linux":
+        try:
+            os.environ['FONTCONFIG_FILE'] = fonts.ensure_system_fonts(
+                str(PROJECT_DIR))
+        except OSError as error:
+            print(f'Warning: system font setup failed: {error}',
+                  file=sys.stderr)
+
     if args.use_docker and not _IS_DOCKER:
         if not docker_image_exists():
             docker_build(DOCKERFILE, PROJECT_DIR)
@@ -478,7 +477,11 @@ def main():
               file=sys.stderr)
         sys.exit(1)
 
-    if not shutil.which("xdotool"):
+    if system_name.lower() == "darwin":
+        if not macos.require_tools():
+            print("Warning: osascript and screencapture are required for macOS "
+                  "terminals", file=sys.stderr)
+    elif not shutil.which("xdotool"):
         print("Warning: xdotool not found; keyboard injection will not work",
               file=sys.stderr)
 

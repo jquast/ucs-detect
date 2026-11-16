@@ -13,8 +13,7 @@ import contextlib
 
 # 3rd party
 import blessed
-from blessed.keyboard import _read_until
-from blessed.keyboard import KittyKeyboardProtocol
+from blessed.keyboard import KittyKeyboardProtocol, _read_until
 
 #: Kitty keyboard protocol progressive enhancement modes, as blessed names them
 KITTY_KB_MODES = tuple(KittyKeyboardProtocol(0).make_arguments())
@@ -23,12 +22,7 @@ SCREEN_RATIOS = [(4, 3), (16, 9), (16, 10), (21, 9), (32, 9)]
 
 
 def make_terminal(fallback_kind="ansi", **kwargs):
-    """
-    Create a :class:`blessed.Terminal`, falling back to *fallback_kind*.
-
-    The ``syncterm`` termcap is also overridden to *fallback_kind* -- syncterm termcap has trouble
-    with blessed+curses even when installed, strange cyan colors everywhere.
-    """
+    """Create a :class:`blessed.Terminal`, falling back to *fallback_kind*."""
     # syncterm termcap has trouble with blessed+curses even when installed,
     # strange cyan colors everywhere
     if os.environ.get('TERM') == 'syncterm' and 'kind' not in kwargs:
@@ -46,7 +40,6 @@ def make_terminal(fallback_kind="ansi", **kwargs):
 
 @contextlib.contextmanager
 def _status(writer, term, label, bg_rgb=None, silent=False):
-    """Display a status line, hiding test output when bg_rgb is set."""
     if not silent:
         writer(f'\rucs-detect: {label} ..{term.clear_eol}')
     if bg_rgb is not None:
@@ -66,7 +59,6 @@ def maybe_grapheme_clustering_mode(term, timeout=1.0):
 
 
 def _get_all_dec_private_mode_numbers(term):
-    """Extract all uppercase DEC Private Mode constants from blessed.DecPrivateMode."""
     return sorted([
         getattr(term.DecPrivateMode, attr)
         for attr in dir(term.DecPrivateMode)
@@ -75,7 +67,6 @@ def _get_all_dec_private_mode_numbers(term):
 
 
 def _nearest_fraction(numerator: int, denominator: int, fractions: list[tuple[int, int]]):
-    """Return nearest fraction from *fractions* to numerator/denominator."""
     target = numerator / denominator
     return min(fractions, key=lambda f: abs(target - f[0] / f[1]))
 
@@ -162,7 +153,6 @@ _RE_OSC = re.compile(r'\x1b\][^\x07\x1b]*(?:\x07|\x1b\\)')
 
 
 def _read_dcs_or_plain_response(term, timeout=0.5):
-    """Read a response, stripping any DCS wrapper or stale OSC sequences."""
     response = term.flushinp(timeout=timeout)
     if not response:
         return ''
@@ -186,16 +176,6 @@ def _read_dcs_or_plain_response(term, timeout=0.5):
 
 
 def _try_decode_da3_name(name):
-    """
-    Decode DA3-style semicolon-separated ASCII values to a string.
-
-    SyncTERM's CTerm engine is the only known terminal to identify itself
-    this way, encoding its name and version as decimal ASCII codepoints
-    in a DA3-format response (e.g. ``CSI = 67;84;101;114;109;1;323 c``
-    decodes to "CTerm" version "1.323").
-
-    :rtype: tuple of (name, version) or None
-    """
     if not name or ';' not in name:
         return None
     # strip CSI prefix (ESC[= or ESC[) and trailing 'c'
@@ -227,12 +207,6 @@ def _try_decode_da3_name(name):
 
 
 def _split_swiftterm_version(name, version):
-    """Split SwiftTerm's ``SwiftTerm[ tag][-branch]+version:`` identity.
-
-    SwiftTerm joins its build version to the name with ``+`` and terminates
-    the identity with ``:``, which the generic space/parenthesis parser
-    leaves in *name*.
-    """
     if not name.startswith('SwiftTerm'):
         return name, version
     if '+' in name:
@@ -525,15 +499,7 @@ def maybe_determine_styled_underlines(term, timeout=1.0, **_kw):
 
 
 def maybe_determine_osc52_clipboard(term, timeout=1.0, **_kw):
-    """
-    Detect OSC 52 clipboard support via two non-intrusive methods.
-
-    Checks both DA1 extension 52 and XTGETTCAP ``Ms`` capability, recording which methods detected
-    support.  Neither method triggers a clipboard permission prompt.
-
-    Returns ``osc52_clipboard`` as a boolean and ``osc52_detection`` as a dict of per-method
-    results.
-    """
+    """Detect OSC 52 clipboard support via two non-intrusive methods."""
     da1_has_52 = False
     ms_found = False
 
@@ -602,17 +568,7 @@ _TC_PROBE_RE = re.compile(r'48[:;]2[:;]*1[:;]2[:;]3')
 
 
 def maybe_determine_decrqss_truecolor(term, timeout=1.0, force=False, **_kw):
-    """
-    Detect truecolor support via DECRQSS SGR set/query/restore.
-
-    Queries the current SGR to capture the original rendering state, sets the background to a known
-    truecolor value using colon-delimited RGB, then queries SGR again to verify the color was
-    accepted.  Restores the original SGR afterward.
-
-    Returns ``decrqss_truecolor_probe: True`` when the probed background color appears in the
-    DECRQSS response, indicating 24-bit color support.  Returns ``decrqss_truecolor_probe: False``
-    when DECRQSS is not supported or the color was not accepted.
-    """
+    """Detect truecolor support via DECRQSS SGR set/query/restore."""
     SGR = term.Decrqss.SGR
     original = term.get_decrqss(SGR, timeout=timeout)
     if original is None:
@@ -638,20 +594,7 @@ _CPR_RE = re.compile(r"\x1b\[(\d+);(\d+)R")
 
 
 def maybe_determine_decrqcra(term, timeout=1.0, **_kw):
-    """
-    Probe DECRQCRA (checksum rectangular area) support.
-
-    First discovers the current cursor row via CPR, then writes 'A' at column 1 of that row and
-    sprays two DECRQCRA queries, one for the populated cell (col 1), and one for an adjacent blank
-    cell (col 2) with a second CPR boundary fence.  If both checksums arrive and differ, the
-    terminal supports screen-scraping via DECRQCRA.
-
-    Uses ``move_x(0)`` on the current row to avoid addressing the bottom-right corner, which would
-    cause auto-margin scrolling. See ``blessed/bin/screen-scrape.py`` for the full screen-scrape
-    tool.
-
-    :returns: dict with ``decrqcra`` key: True or False
-    """
+    """Probe DECRQCRA (checksum rectangular area) support."""
     if not term.is_a_tty or not term._does_styling:
         return {'decrqcra': False}
 
@@ -719,7 +662,7 @@ _INJECTED_RE = re.compile(r"\x1bP[^\x1b]*" + re.escape(_DECRQSS_MARKER) + r"[^\x
 
 
 def maybe_determine_decrqss_injection(term, timeout=1.0, **_kw):
-    """Probe for DECRQSS response injection (CVE-2008-2383, CVE-2022-45872). """
+    """Probe for DECRQSS response injection (CVE-2008-2383, CVE-2022-45872)."""
     # Saves the cursor, sends a DECRQSS query carrying a marker payload, restores the cursor, and
     # fences the exchange with a CPR request.  A terminal that repeats an unrecognized request payload
     # in its response places the marker in the input stream, where the application reads it as typed

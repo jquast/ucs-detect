@@ -28,7 +28,6 @@ def _atomic_write(target_path, content):
 
 
 def _run_script(script_name, output_filename=None):
-    """Run *script_name* via subprocess, optionally capturing stdout to file."""
     script_path = os.path.join(_HERE, script_name)
     print(f"==> {script_name}")
     if output_filename is not None:

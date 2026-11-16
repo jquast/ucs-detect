@@ -29,7 +29,6 @@ def iter_probes():
 
 
 def _write_bytes(term, data):
-    """Write *data* to the terminal without the text stream encoding it again."""
     stream = term.stream
     stream.flush()
     try:
@@ -45,17 +44,14 @@ def _write_bytes(term, data):
 
 
 def _park_row(term):
-    """Return a row away from both scroll margins."""
     return min(max(1, term.height // 2), max(1, term.height - 2))
 
 
 def _park_column(term):
-    """Return a column with room on both sides."""
     return min(10, max(1, term.width - 2))
 
 
 def _probe_one(term, park_y, park_x, probe, timeout):
-    """Return the horizontal cursor advance of one control character."""
     terminal_mod.echo(term, term.move_yx(park_y, park_x) + term.clear_eol)
     y0, x0 = get_location_with_retry(term, timeout)
     if (y0, x0) == (-1, -1):
@@ -72,15 +68,7 @@ def _probe_one(term, park_y, park_x, probe, timeout):
 
 
 def maybe_determine_control_advance(term, timeout=1.0, **_kwargs):
-    """
-    Measure the horizontal cursor advance of selected C0, DEL, and C1 controls.
-
-    Each probe parks the cursor mid-screen, records its column, writes one control character, resets
-    the parser with CAN, ST, and SI, and records the new column.  C1 characters are probed in their
-    UTF-8 encoding, which reaches the parser as U+0080 through U+009F.
-
-    :returns: dict with a ``control_advance`` mapping of ``U+XXXX/encoding`` to column delta.
-    """
+    """Measure the horizontal cursor advance of selected C0, DEL, and C1 controls."""
     if not term.is_a_tty or term.height < 3 or term.width < 3:
         return {}
     advance = {}

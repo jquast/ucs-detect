@@ -27,18 +27,11 @@ RUN --mount=type=cache,target=/var/cache/pacman/pkg \
     xorg-xwininfo \
     openbox \
     imagemagick \
+    gifsicle \
     weston \
     fontconfig \
     xorg-fonts-misc \
     && pacman -Scc --noconfirm
-
-# unifont for consistent terminal font rendering
-# (not in Arch official repos, only AUR; download OTF directly from GNU)
-RUN mkdir -p /usr/share/fonts/OTF && \
-    curl -L --retry 3 --retry-delay 5 --retry-max-time 60 \
-    -o /usr/share/fonts/OTF/unifont.otf \
-    "https://unifoundry.com/pub/unifont/unifont-16.0.02/font-builds/unifont-16.0.02.otf" && \
-    fc-cache -fv
 
 # create non-root user for AUR builds and running tests
 RUN useradd -m -s /bin/bash -u 1000 ucs && \
@@ -151,11 +144,19 @@ RUN --mount=type=cache,target=/home/ucs/.nuget/packages,uid=1000,gid=1000 \
         bbee5ed1f80cf00388749523d3389e5f30c41a1b && \
     sudo -u ucs sed -i 's/WindowState="Maximized"/Width="680" Height="520"/' \
         /home/ucs/iciclecreek/src/Example/MainWindow.axaml && \
+    sudo -u ucs sed -i 's|FontSize="14" BufferSize="1000"|FontFamily="Unifont,Unifont Upper" FontSize="16" BufferSize="1000"|' \
+        /home/ucs/iciclecreek/src/Example/MainWindow.axaml && \
     sudo -u ucs env HOME=/home/ucs DOTNET_CLI_HOME=/home/ucs \
         NUGET_PACKAGES=/home/ucs/.nuget/packages \
         dotnet publish /home/ucs/iciclecreek/src/Example/Example.csproj \
         -c Release -o /opt/xtermnet && \
     rm -rf /home/ucs/iciclecreek
+
+# GNU Unifont 18.0.01 (Unicode 18.0) for consistent terminal font rendering.
+# Both files are needed: unifont is the BMP, unifont_upper carries planes 1-3 and emoji.
+COPY ucs_detect/fonts.py /tmp/install-fonts.py
+RUN python /tmp/install-fonts.py --install --dest /usr/share/fonts/unifont \
+    --fontconfig /etc/fonts/conf.d/99-ucs-unifont.conf
 
 # python dependencies for ucs-detect
 RUN --mount=type=cache,target=/var/cache/pacman/pkg \
@@ -179,6 +180,11 @@ RUN pip install -e .  --break-system-package
 
 # entrypoint: start Xvfb if DISPLAY is set, then exec command
 ENV LIBGL_ALWAYS_SOFTWARE=1
+
+# Weston fades its output to black after five minutes without input.  A terminal staged under it
+# receives no pointer or keyboard events, so its later pages would be captured black.
+RUN mkdir -p /etc/xdg/weston && printf '[core]\nidle-time=0\n' > /etc/xdg/weston/weston.ini
+
 COPY docker-entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 

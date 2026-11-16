@@ -15,7 +15,6 @@ SKIP_CATEGORIES = frozenset(('Cc', 'Cf', 'Cs', 'Co', 'Cn'))
 
 
 def _retrieve(filename):
-    """Retrieve *filename* from the UCD into ``data/``, return its path."""
     fname = os.path.join(PATH_DATA, filename.replace('.txt', '-latest.txt'))
     do_retrieve(url=URL_UCD.format(filename=filename), fname=fname, force=True)
     return fname

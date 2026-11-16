@@ -7,7 +7,8 @@ import yaml
 def main():
     """Dump all XTGETTCAP terminfo capability names for each terminal."""
     data_dir = Path(__file__).resolve().parent.parent / "data"
-    yaml_files = sorted(data_dir.glob("*.yaml"))
+    yaml_files = [path for path in sorted(data_dir.glob("*.yaml"))
+                  if not path.name.startswith("_")]
 
     results = []
     for yf in yaml_files:

@@ -7,8 +7,11 @@ import os
 import re
 import sys
 import time
+import fcntl
 import shlex
+import tempfile
 import threading
+import contextlib
 import subprocess
 from pathlib import Path
 
@@ -17,9 +20,23 @@ from typing import NamedTuple
 # 3rd party
 import yaml
 
+# local
+from ucs_detect import macos
+
+try:
+    # The libyaml backed loader is several times faster on the multi-megabyte terminal data
+    # files, and PyYAML only exposes it when it was built with it.
+    # 3rd party
+    from yaml import CSafeLoader as SafeLoader
+except ImportError:  # pragma: no cover
+    # 3rd party
+    from yaml import SafeLoader
+
 _RE_SYSTEM = re.compile(r'^system:\s*(\S+)', re.MULTILINE)
-_RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)', re.MULTILINE)
+_RE_SOFTWARE_NAME = re.compile(r'^software_name:\s*(.+)$', re.MULTILINE)
+_RE_SECONDS_ELAPSED = re.compile(r'^seconds_elapsed:\s*([-\d.eE+]+)', re.MULTILINE)
 _RE_PAUSE = re.compile(r'^\\p(\d+)$')
+_RE_KEY = re.compile(r'^\\k(\S+)$')
 
 
 class DiscoveredYAML(NamedTuple):
@@ -49,17 +66,25 @@ def get_data_dir():
     return get_project_dir() / "data"
 
 
+def load_document(path):
+    """
+    Return the YAML document at *path* as a dict, or an empty dict.
+
+    Terminal data files reach 2.7 MB, where the pure Python loader costs four seconds per parse.
+    """
+    with open(path, encoding="utf-8") as stream:
+        return yaml.load(stream, Loader=SafeLoader) or {}
+
+
 FETCH_BLOCKSIZE = 3096
 
 
 def do_retrieve(url, fname, force=False):
     """
-    Retrieve given url to target filepath fname.
+    Retrieve *url* to *fname*, re-downloading a cached copy when *force* is set.
 
-    When *force* is True, any cached copy of *fname* is re-downloaded.  Callers that fetch a
-    "latest" URL must use it: those files are re-issued with each Unicode release, so a cached copy
-    silently pins table generation to the version that happened to be current when it was first
-    fetched.
+    Callers fetching a "latest" URL must set *force*: those files are re-issued with each Unicode
+    release and a cached copy pins the tables to whichever version was current.
     """
     # 3rd party
     import requests
@@ -80,50 +105,77 @@ def safe_name(name):
 
 
 def decode_wchars(escaped):
-    r"""Decode a unicode-escape-encoded string like ``\\u0915`` to the actual unicode text."""
+    r"""Decode a ``\u0915`` style escape sequence to text."""
     return bytes(escaped, "utf-8").decode("unicode-escape")
 
 
 def load_mixins(project_dir=None):
-    """Load terminals.yaml, returning a dict keyed by lowercased software_name."""
+    """Load terminals.yaml, keyed by software name, display name, and filename forms."""
     if project_dir is None:
         project_dir = Path(__file__).resolve().parent.parent
     mixins_path = project_dir / "terminals.yaml"
     if not mixins_path.exists():
         return {}
-    with open(mixins_path) as f:
-        data = yaml.safe_load(f) or {}
+    data = load_document(mixins_path)
     terminals = data.get("terminals", {})
+
+    def alias(name, value):
+        result.setdefault(name.lower(), value)
+        # Also index by filename-friendly form (no spaces/hyphens/underscores/dots)
+        nospace = (name.lower().replace(" ", "").replace("-", "")
+                   .replace("_", "").replace(".", ""))
+        if nospace != name.lower():
+            result.setdefault(nospace, value)
+
     result = {}
     for key, value in terminals.items():
         result[key.lower()] = value
-        # Also index by filename-friendly form (no spaces/hyphens/underscores/dots)
-        nospace = key.lower().replace(" ", "").replace("-", "").replace("_", "").replace(".", "")
-        if nospace != key.lower():
-            result.setdefault(nospace, value)
+        alias(key, value)
+        display_name = value.get("display_name")
+        if display_name:
+            alias(display_name, value)
     return result
 
 
+def _scalar(text):
+    value = text.strip()
+    if value[:1] in ("'", '"'):
+        try:
+            return yaml.load(f"value: {value}", Loader=SafeLoader)["value"]
+        except yaml.YAMLError:
+            return value.strip("'\"")
+    return value
+
+
 def discover_yamls(target_system, data_dir=None):
-    """Yield DiscoveredYAML for each data YAML matching *target_system*."""
+    """
+    Yield DiscoveredYAML for each data YAML matching *target_system*.
+
+    The corpus is 39 MB: reading the three top level keys costs a second where parsing
+    every document costs eleven.
+    """
     if data_dir is None:
         data_dir = Path(__file__).resolve().parent.parent / "data"
     target_lower = target_system.lower()
     for yaml_path in sorted(data_dir.glob("*.yaml")):
-        if yaml_path.name == "terminals.yaml":
+        if yaml_path.name.startswith("_"):
             continue
         try:
-            with open(yaml_path) as f:
-                data = yaml.safe_load(f) or {}
-        except (OSError, yaml.YAMLError):
+            text = yaml_path.read_text(encoding="utf-8")
+        except OSError:
             continue
 
-        system = data.get("system", "")
-        if system.lower() != target_lower:
+        system = _RE_SYSTEM.search(text)
+        if not system or _scalar(system.group(1)).lower() != target_lower:
             continue
 
-        sw_name = data.get("software_name", yaml_path.stem)
-        seconds_elapsed = data.get("seconds_elapsed", 0.0)
+        name = _RE_SOFTWARE_NAME.search(text)
+        sw_name = _scalar(name.group(1)) if name else yaml_path.stem
+        elapsed = _RE_SECONDS_ELAPSED.search(text)
+        try:
+            seconds_elapsed = float(elapsed.group(1)) if elapsed else 0.0
+        except ValueError:
+            seconds_elapsed = 0.0
         yield DiscoveredYAML(yaml_path, sw_name, seconds_elapsed, None)
 
 
@@ -146,7 +198,15 @@ def get_launch_config(sw_name, mixins, is_docker=None):
 
     skip_system = raw_entry.get("skip_system", False) or launch.get("skip_system", False)
     skip_docker = raw_entry.get("skip_docker", False) or launch.get("skip_docker", False)
-    skip_any = launch.get("skip", False)
+    skip_any = raw_entry.get("skip", False) or launch.get("skip", False)
+    skip_screenshots = (raw_entry.get("skip_screenshots", False)
+                        or launch.get("skip_screenshots", False))
+    skip_spillover = (raw_entry.get("skip_spillover", False)
+                      or launch.get("skip_spillover", False))
+    skip_colors = (raw_entry.get("skip_colors", skip_spillover)
+                   or launch.get("skip_colors", False))
+    skip_bidi = (raw_entry.get("skip_bidi", skip_spillover)
+                 or launch.get("skip_bidi", False))
 
     wrapper = list(launch.get("wrapper", []))
     if is_docker and skip_system and wrapper:
@@ -160,15 +220,30 @@ def get_launch_config(sw_name, mixins, is_docker=None):
         "skip": skip_any,
         "skip_system": skip_system,
         "skip_docker": skip_docker,
+        "skip_screenshots": skip_screenshots,
+        "skip_spillover": skip_spillover,
+        "skip_colors": skip_colors,
+        "skip_bidi": skip_bidi,
         "skip_reason": raw_entry.get("skip_reason", ""),
+        "skip_screenshots_reason": raw_entry.get("skip_screenshots_reason", ""),
+        "skip_spillover_reason": raw_entry.get("skip_spillover_reason", ""),
+        "skip_colors_reason": raw_entry.get("skip_colors_reason", ""),
+        "skip_bidi_reason": raw_entry.get("skip_bidi_reason",
+                                          raw_entry.get("skip_spillover_reason", "")),
         "post_launch_delay_ms": launch.get("post_launch_delay_ms", 0),
         "post_launch_keys": launch.get("post_launch_keys", []),
         "env": launch.get("env", {}),
         "profile_processes": raw_entry.get("profile_processes", []),
         "timeout": raw_entry.get("timeout", None),
         "wm_class": launch.get("wm_class", None),
+        "window_search_timeout_ms": launch.get("window_search_timeout_ms"),
         "click_before_keys": launch.get("click_before_keys", False),
         "kill_command": launch.get("kill_command"),
+        "screenshot_delay_ms": raw_entry.get(
+            "screenshot_delay_ms", launch.get("screenshot_delay_ms", 0)),
+        "macos": launch.get("macos") or raw_entry.get("macos") or {},
+        "cursor_center_rows": raw_entry.get(
+            "cursor_center_rows", launch.get("cursor_center_rows", 0)),
     }
     return cfg, is_explicit
 
@@ -180,6 +255,7 @@ def build_launch_args(launch_cfg, script_path):
     script_str = str(script_path)
     has_placeholder = False
     for arg in launch_cfg["args"]:
+        arg = str(arg)
         if "{script}" in arg:
             has_placeholder = True
             argv.append(arg.replace("{script}", script_str))
@@ -193,8 +269,9 @@ def build_launch_args(launch_cfg, script_path):
 def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
     """Build launch args for a subterminal, wrapping inside a host terminal."""
     script_str = str(script_path)
-    inner_parts = [launch_cfg["program"]] + launch_cfg["args"]
-    has_placeholder = any("{script}" in a for a in launch_cfg["args"])
+    inner_parts = [launch_cfg["program"]] + [
+        str(arg) for arg in launch_cfg["args"]]
+    has_placeholder = any("{script}" in a for a in inner_parts)
     if not has_placeholder and not launch_cfg.get("post_launch_keys"):
         inner_parts.extend(["/bin/sh", script_str])
     else:
@@ -209,157 +286,240 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
     return argv
 
 
-def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None):
-    """
-    Find X11 window ID for a launched process, by PID then by class name.
-
-    If *pre_windows* is a set of window IDs that existed before the process was launched, any new
-    window (not in the set) is returned as a last-resort fallback.
-    """
-    deadline = time.monotonic() + timeout
-
-    # Strategy 1: search by PID
-    pid_deadline = time.monotonic() + min(timeout / 2, 5)
-    while time.monotonic() < pid_deadline:
+def largest_window(window_ids):
+    """Return the largest window from *window_ids*."""
+    best = None
+    best_area = -1
+    for window_id in window_ids:
         try:
             result = subprocess.run(
-                ["xdotool", "search", "--onlyvisible", "--pid", str(pid)],
+                ["xdotool", "getwindowgeometry", "--shell", window_id],
                 capture_output=True, text=True, timeout=3, check=False,
             )
-            if result.returncode == 0 and result.stdout.strip():
-                return result.stdout.strip().split("\n")[-1]
         except (subprocess.TimeoutExpired, OSError):
-            pass
-        time.sleep(0.3)
+            continue
+        width = height = 0
+        for line in result.stdout.splitlines():
+            if line.startswith("WIDTH="):
+                width = int(line.split("=", 1)[1] or 0)
+            elif line.startswith("HEIGHT="):
+                height = int(line.split("=", 1)[1] or 0)
+        area = width * height
+        if area > best_area:
+            best_area = area
+            best = window_id
+    return best or list(window_ids)[-1]
 
-    # Strategy 2: search by class name
+
+def _matching_window_ids(argv):
+    try:
+        result = subprocess.run(
+            argv, capture_output=True, text=True, timeout=3, check=False)
+    except (subprocess.TimeoutExpired, OSError):
+        return []
+    if result.returncode != 0 or not result.stdout.strip():
+        return []
+    return result.stdout.split()
+
+
+def _prefer_new_window(window_ids, pre_windows):
+    if pre_windows:
+        new = [window_id for window_id in window_ids
+               if window_id not in pre_windows]
+        if new:
+            return largest_window(new)
+    return largest_window(window_ids)
+
+
+def _window_class_pattern(name):
+    return f'^{re.escape(name)}(-.*)?$'
+
+
+def window_snapshot():
+    """Return the set of visible window ids, or None."""
+    if macos.IS_MACOS:
+        return {item['id'] for item in macos.windows()}
+    try:
+        result = subprocess.run(
+            ['xdotool', 'search', '--onlyvisible', ''],
+            capture_output=True, text=True, timeout=3, check=False)
+    except (subprocess.TimeoutExpired, OSError):
+        return None
+    if result.returncode != 0:
+        return None
+    return set(result.stdout.strip().split('\n'))
+
+
+def find_window_for_command(launch_cfg, pid, timeout=8, pre_windows=None,
+                            title_pattern=None, stale_grace=0.0):
+    """Find the window of a launched process, by title, PID, class, or new window."""
+    if macos.IS_MACOS:
+        owner = macos.app_owner(launch_cfg["macos"]) if launch_cfg.get(
+            "macos") else os.path.basename(launch_cfg.get("program", ""))
+        if not owner:
+            owner = launch_cfg.get("wm_class") or ""
+        return macos.find_window(
+            owner, exclude=pre_windows or (), title_pattern=title_pattern,
+            timeout=timeout, stale_grace=stale_grace)
+    deadline = time.monotonic() + timeout
+    started = time.monotonic()
     wm_class = launch_cfg.get("wm_class") or os.path.basename(
         launch_cfg.get("program", "")
-    ).lower()
+    )
+    class_names = list(dict.fromkeys(
+        [_window_class_pattern(wm_class.lower()),
+         _window_class_pattern(wm_class),
+         _window_class_pattern(wm_class.capitalize())]))
+
     while time.monotonic() < deadline:
-        for flag in ("--class", "--classname"):
-            try:
-                result = subprocess.run(
-                    ["xdotool", "search", "--onlyvisible", flag, wm_class],
-                    capture_output=True, text=True, timeout=3, check=False,
-                )
-                if result.returncode == 0 and result.stdout.strip():
-                    return result.stdout.strip().split("\n")[-1]
-            except (subprocess.TimeoutExpired, OSError):
-                pass
+        if title_pattern:
+            windows = _matching_window_ids(
+                ["xdotool", "search", "--onlyvisible",
+                 "--name", title_pattern])
+            if windows:
+                return _prefer_new_window(windows, pre_windows)
+
+        if time.monotonic() - started < stale_grace:
+            time.sleep(0.3)
+            continue
+
+        windows = _matching_window_ids(
+            ["xdotool", "search", "--onlyvisible", "--pid", str(pid)])
+        if windows:
+            return _prefer_new_window(windows, pre_windows)
+
+        for name in class_names:
+            for flag in ("--class", "--classname"):
+                windows = _matching_window_ids(
+                    ["xdotool", "search", "--onlyvisible", flag, name])
+                if windows:
+                    return _prefer_new_window(windows, pre_windows)
+
+        if pre_windows is not None:
+            current = set(_matching_window_ids(
+                ["xdotool", "search", "--onlyvisible", ""]))
+            new = current - pre_windows
+            if new:
+                return largest_window(new)
+
         time.sleep(0.3)
 
-    # Strategy 3: find any new window that appeared since pre_windows snapshot
-    if pre_windows is not None:
-        while time.monotonic() < deadline:
-            try:
-                result = subprocess.run(
-                    ["xdotool", "search", "--onlyvisible", ""],
-                    capture_output=True, text=True, timeout=3, check=False,
-                )
-                if result.returncode == 0:
-                    current = set(result.stdout.strip().split("\n"))
-                    new = current - pre_windows
-                    if new:
-                        return max(new, key=int)
-            except (subprocess.TimeoutExpired, OSError):
-                pass
-            time.sleep(0.3)
-
-    # Strategy 4: any visible window (Docker only)
     if os.path.exists("/.dockerenv"):
-        try:
-            result = subprocess.run(
-                ["xdotool", "search", "--onlyvisible", ""],
-                capture_output=True, text=True, timeout=3, check=False,
-            )
-            if result.returncode == 0 and result.stdout.strip():
-                windows = result.stdout.strip().split("\n")
-                return windows[-1]
-        except (subprocess.TimeoutExpired, OSError):
-            pass
+        windows = _matching_window_ids(
+            ["xdotool", "search", "--onlyvisible", ""])
+        if windows:
+            return largest_window(windows)
 
     return None
 
 
-def inject_keys(window_id, keys, key_delay_ms=30, click_before_keys=False):
-    r"""
-    Send keystrokes to a window via xdotool.
+def _xdotool(argv, timeout, text=False):
+    try:
+        return subprocess.run(
+            argv, capture_output=True, text=text, timeout=timeout,
+            check=False)
+    except (subprocess.TimeoutExpired, OSError):
+        return None
 
-    Special tokens:
-      ``\\n``       press Return
-      ``\\pNNN``    pause for NNN milliseconds
 
-    *click_before_keys*: click the center of the window first
-    """
-    activated = subprocess.run(
-        ["xdotool", "windowactivate", "--sync", str(window_id)],
-        capture_output=True, timeout=5, check=False,
-    )
-    if activated.returncode != 0:
-        subprocess.run(
-            ["xdotool", "windowfocus", "--sync", str(window_id)],
-            capture_output=True, timeout=2, check=False,
-        )
-    time.sleep(0.2)
+#: Nesting depth and file handle of :func:`display_lock`, and the thread lock behind it.
+_DISPLAY_LOCK_DEPTH = 0
+_DISPLAY_LOCK_HANDLE = None
+_DISPLAY_LOCK = threading.RLock()
 
-    if click_before_keys:
-        width, height = 0, 0
+
+def display_lock_path():
+    """Return the lock file every process driving this X display shares."""
+    display = os.environ.get("DISPLAY", "")
+    safe = re.sub(r"[^0-9A-Za-z_.-]", "_", display) or "local"
+    return os.path.join(tempfile.gettempdir(), f"ucs-display-{safe}.lock")
+
+
+@contextlib.contextmanager
+def display_lock():
+    """Hold this process's turn on the X display."""
+    global _DISPLAY_LOCK_DEPTH, _DISPLAY_LOCK_HANDLE
+    with _DISPLAY_LOCK:
+        if _DISPLAY_LOCK_DEPTH == 0:
+            _DISPLAY_LOCK_HANDLE = open(
+                display_lock_path(), "a", encoding="utf-8")
+            fcntl.flock(_DISPLAY_LOCK_HANDLE, fcntl.LOCK_EX)
+        _DISPLAY_LOCK_DEPTH += 1
         try:
-            geometry = subprocess.run(
-                ["xdotool", "getwindowgeometry", "--shell", str(window_id)],
-                capture_output=True, text=True, timeout=3, check=False,
-            )
-            values = dict(
-                line.split("=", 1) for line in geometry.stdout.splitlines() if "=" in line
-            )
-            width, height = int(values.get("WIDTH", 0)), int(values.get("HEIGHT", 0))
-        except (ValueError, subprocess.TimeoutExpired, OSError):
-            pass
-        subprocess.run(
-            ["xdotool", "mousemove", "--window", str(window_id),
-             str(width // 2 if width else 40), str(height // 2 if height else 40),
-             "click", "1"],
-            capture_output=True, timeout=5, check=False,
-        )
+            yield
+        finally:
+            _DISPLAY_LOCK_DEPTH -= 1
+            if _DISPLAY_LOCK_DEPTH == 0:
+                fcntl.flock(_DISPLAY_LOCK_HANDLE, fcntl.LOCK_UN)
+                _DISPLAY_LOCK_HANDLE.close()
+                _DISPLAY_LOCK_HANDLE = None
+
+
+def inject_keys(window_id, keys, key_delay_ms=30, click_before_keys=False):
+    """Send keystrokes to a window via xdotool."""
+    if macos.IS_MACOS:
+        return macos.inject_keys(
+            window_id, keys, key_delay_ms=key_delay_ms,
+            click_before_keys=click_before_keys)
+    with display_lock():
+        activated = _xdotool(
+            ["xdotool", "windowactivate", "--sync", str(window_id)], 5)
+        if activated is None or activated.returncode != 0:
+            _xdotool(
+                ["xdotool", "windowfocus", "--sync", str(window_id)], 2)
         time.sleep(0.2)
 
-    subprocess.run(
-        ["xdotool", "windowfocus", "--sync", str(window_id)],
-        capture_output=True, timeout=2, check=False,
-    )
-    time.sleep(0.3)
-    delay_str = str(key_delay_ms)
-    merged = []
-    for key in keys:
-        if key in ("\n", "\\n") or _RE_PAUSE.match(key):
-            if merged:
-                combined = "".join(merged)
-                subprocess.run(
-                    ["xdotool", "type", "--delay", delay_str, combined],
-                    capture_output=True, timeout=120, check=False,
-                )
-                merged = []
-            if key in ("\n", "\\n"):
-                subprocess.run(
-                    ["xdotool", "key", "Return"],
-                    capture_output=True, timeout=5, check=False,
-                )
+        if click_before_keys:
+            width, height = 0, 0
+            geometry = _xdotool(
+                ["xdotool", "getwindowgeometry", "--shell", str(window_id)],
+                3, text=True)
+            if geometry is not None:
+                try:
+                    values = dict(
+                        line.split("=", 1)
+                        for line in geometry.stdout.splitlines() if "=" in line
+                    )
+                    width = int(values.get("WIDTH", 0))
+                    height = int(values.get("HEIGHT", 0))
+                except ValueError:
+                    pass
+            _xdotool(
+                ["xdotool", "mousemove", "--window", str(window_id),
+                 str(width // 2 if width else 40),
+                 str(height // 2 if height else 40), "click", "1"], 5)
+            time.sleep(0.2)
+
+        _xdotool(
+            ["xdotool", "windowfocus", "--sync", str(window_id)], 2)
+        time.sleep(0.3)
+        delay_str = str(key_delay_ms)
+        merged = []
+        for key in keys:
+            if (key in ("\n", "\\n") or _RE_PAUSE.match(key)
+                    or _RE_KEY.match(key)):
+                if merged:
+                    combined = "".join(merged)
+                    _xdotool(
+                        ["xdotool", "type", "--delay", delay_str, combined],
+                        120)
+                    merged = []
+                if key in ("\n", "\\n"):
+                    _xdotool(["xdotool", "key", "Return"], 5)
+                elif _RE_PAUSE.match(key):
+                    ms = int(_RE_PAUSE.match(key).group(1))
+                    time.sleep(ms / 1000.0)
+                else:
+                    combo = _RE_KEY.match(key).group(1)
+                    _xdotool(["xdotool", "key", combo], 5)
             else:
-                ms = int(_RE_PAUSE.match(key).group(1))
-                time.sleep(ms / 1000.0)
-        else:
-            merged.append(key)
-    if merged:
-        combined = "".join(merged)
-        subprocess.run(
-            ["xdotool", "type", "--delay", delay_str, combined],
-            capture_output=True, timeout=120, check=False,
-        )
+                merged.append(key)
+        if merged:
+            combined = "".join(merged)
+            _xdotool(["xdotool", "type", "--delay", delay_str, combined], 120)
 
 
 def _atomic_yaml_dump(data, path, **dump_kwargs):
-    """Write *data* as YAML to *path* atomically."""
     tmp_path = str(path) + ".tmp"
     with open(tmp_path, "w", encoding="utf-8") as f:
         yaml.safe_dump(data, f, **dump_kwargs)
@@ -369,17 +529,7 @@ def _atomic_yaml_dump(data, path, **dump_kwargs):
 
 
 def fixup_yaml(yaml_path, sw_name, mixins, program):
-    """
-    Fix up software_name in YAML from raw XTVERSION values to display names.
-
-    When ucs-detect runs without operator override, the auto-detected ``software_name`` is the raw
-    XTVERSION response (e.g. ``VTE`` for VTE-based terminals).  This function reads the YAML and
-    corrects ``software_name`` to the display name from ``terminals.yaml``.  If a
-    ``version_template`` is present, the ``software_version`` is also composed.
-
-    When auto-detection yields no name at all, *program* (the launch binary basename from
-    ``terminals.yaml``) is used as the fallback.
-    """
+    """Fix up software_name in YAML from raw XTVERSION values to display names."""
     key = sw_name.lower()
     entry = mixins.get(key, {})
     if not entry:
@@ -389,9 +539,8 @@ def fixup_yaml(yaml_path, sw_name, mixins, program):
     display_name = entry.get("display_name")
     version_template = entry.get("version_template")
 
-    with open(yaml_path) as f:
-        data = yaml.safe_load(f)
-    if data is None:
+    data = load_document(yaml_path)
+    if not data:
         return
 
     current_name = data.get("software_name", "")
@@ -456,13 +605,7 @@ _KEY_INJECT_POST_DELAY = 1.5
 
 
 def should_skip(launch_cfg, is_docker=None):
-    """
-    Return True if the config should be skipped in the current environment.
-
-    If *is_docker* is None, uses the process environment (_IS_DOCKER).
-    Docker runs terminals with skip_docker: false; system runs the rest
-    (skip_docker: true).  Both respect skip and skip_system.
-    """
+    """Return True if the config should be skipped in the current environment."""
     if is_docker is None:
         is_docker = _IS_DOCKER
     if launch_cfg["skip"]:

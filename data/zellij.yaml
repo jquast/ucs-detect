@@ -1,35 +1,32 @@
 ambiguous_width: 1
-datetime: 2026-11-11 21:34:38 UTC
+datetime: 2026-11-15 21:43:51 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-ghostty
-height: 16
+height: 21
 preferred_encoding: UTF-8
 python_version: 3.13.13
 resource_profile:
   cpu_pct:
-  - 95.4
-  - 33.4
-  - 72.1
-  - 40.5
-  - 2.0
+  - 57.4
+  - 72.2
+  - 67.3
+  - 35.7
   elapsed_s:
-  - 0.008780802018009126
-  - 1.019536517036613
-  - 2.039751800009981
-  - 3.081743588030804
-  - 4.093580324028153
+  - 1.0197265179886017
+  - 2.0293613630055916
+  - 3.04030917500495
+  - 4.0512141099898145
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481804
+    ram_total_kb: 15481796
   rss_mb:
-  - 195.65234375
-  - 199.71875
-  - 199.546875
-  - 199.7890625
-  - 199.84765625
-seconds_elapsed: 3.2112385570071638
+  - 206.3671875
+  - 206.37109375
+  - 206.375
+  - 206.45703125
+seconds_elapsed: 4.1305849439813755
 session_arguments:
   all: false
   limit_category_time: 0
@@ -48,7 +45,7 @@ terminal_results:
   - 4369
   - 4369
   - 4369
-  cell_height: 26
+  cell_height: 21
   cell_width: 11
   color_scheme: light
   colored_underlines: false
@@ -101,7 +98,7 @@ terminal_results:
   - 65535
   - 65535
   - 65535
-  height: 16
+  height: 21
   iterm2_features:
     features: {}
     supported: false
@@ -124,7 +121,7 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: false
-  pixels_height: 416
+  pixels_height: 441
   pixels_width: 759
   screen_ratio: '16:9'
   screen_ratio_name: HD
@@ -14584,7 +14581,7 @@ test_results:
       n_errors: 1211
       n_total: 1529
       pct_success: 20.79790712884238
-ucs_detect_version: 2.3.10+3f68594
+ucs_detect_version: 2.3.10+58005c1
 unicode_version: 18.0.0
 wcwidth_version: 0.9.4
 width: 69

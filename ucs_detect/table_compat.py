@@ -1,4 +1,5 @@
 """Compatibility helpers for older prettytable releases."""
+
 # 3rd party
 import wcwidth
 import prettytable
