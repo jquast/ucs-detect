@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 03:20:23 UTC
+  scanned_datetime: 2026-11-16 05:54:06 UTC
   supported: true
   control_left: 1.0
   requested_right: 1.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 03:20:18 UTC
+  scanned_datetime: 2026-11-16 05:54:00 UTC
   painted_rows: 24
   calibration:
     origin_x: 1
@@ -120,7 +120,7 @@ color_results:
       - 255
       - 255
       - 255
-datetime: 2026-11-15 21:48:29 UTC
+datetime: 2026-11-16 05:48:25 UTC
 environment:
   TERM: xterm
 font_test_results:
@@ -224,25 +224,25 @@ preferred_encoding: UTF-8
 python_version: 3.14.10
 resource_profile:
   cpu_pct:
-  - 8.0
+  - 7.0
   - 0.0
   - 3.0
   - 79.9
   elapsed_s:
-  - 1.0031013039988466
-  - 2.004574078018777
-  - 3.0056060170172714
-  - 4.007239247002872
+  - 1.0014864480181132
+  - 2.0032438620110042
+  - 3.0052305450080894
+  - 4.006660348997684
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481796
   rss_mb:
-  - 56.8203125
-  - 56.8203125
-  - 57.1484375
-  - 66.59375
-seconds_elapsed: 1.5214098420110531
+  - 55.97265625
+  - 55.97265625
+  - 56.375
+  - 65.48828125
+seconds_elapsed: 1.511286424996797
 session_arguments:
   all: false
   limit_category_time: 0
@@ -255,7 +255,7 @@ session_arguments:
 software_name: pterm
 software_version: 0.85-1
 spillover_results:
-  scanned_datetime: 2026-11-16 05:22:55 UTC
+  scanned_datetime: 2026-11-16 05:54:38 UTC
   n_candidates: 8347
   n_tested: 8347
   n_spillover: 0
@@ -14284,7 +14284,8 @@ test_results:
       n_errors: 1009
       n_total: 1529
       pct_success: 34.009156311314584
-ucs_detect_version: 2.3.10+58005c1
+ucs_detect_version: 2.3.11+45169f9
 unicode_version: 18.0.0
+wcwidth_path: /usr/lib/python3.14/site-packages/wcwidth
 wcwidth_version: 0.9.4
 width: 80

@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 03:20:05 UTC
+  scanned_datetime: 2026-11-16 05:54:41 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 03:20:00 UTC
+  scanned_datetime: 2026-11-16 05:54:35 UTC
   painted_rows: 40
   calibration:
     origin_x: 273.0
@@ -120,7 +120,7 @@ color_results:
       - 255
       - 255
       - 255
-datetime: 2026-11-15 21:49:26 UTC
+datetime: 2026-11-16 05:48:52 UTC
 environment:
   COLORTERM: truecolor
   TERM: foot
@@ -225,19 +225,19 @@ preferred_encoding: UTF-8
 python_version: 3.14.10
 resource_profile:
   cpu_pct:
-  - 5.0
-  - 49.9
+  - 6.0
+  - 53.9
   elapsed_s:
-  - 1.0127803289797157
-  - 2.014411124982871
+  - 1.0015596819866914
+  - 2.0030160110036377
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481796
   rss_mb:
-  - 23.76171875
-  - 41.22265625
-seconds_elapsed: 1.4343354360025842
+  - 23.015625
+  - 42.25
+seconds_elapsed: 1.233182633004617
 session_arguments:
   all: false
   limit_category_time: 0
@@ -250,25 +250,37 @@ session_arguments:
 software_name: foot
 software_version: 1.28.0
 spillover_results:
-  scanned_datetime: 2026-11-16 05:16:15 UTC
+  scanned_datetime: 2026-11-16 05:55:45 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 6344
+  n_spillover: 6357
   n_no_ink: 165
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 6344
+    graphemes_any: 6357
     graphemes_left: 18
-    graphemes_right: 6328
+    graphemes_right: 6341
     graphemes_both: 2
     left_cells:
       '1': 18
     right_cells:
-      '1': 6328
+      '1': 6293
+      '10': 24
+      '11': 24
     max_left_cells: 1
-    max_right_cells: 1
+    max_right_cells: 11
   spill_counts_by_kind:
+    Assyrian Neo-Aramaic:
+      graphemes_any: 1
+      graphemes_left: 0
+      graphemes_right: 1
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '11': 1
+      max_left_cells: 0
+      max_right_cells: 11
     Bengali:
       graphemes_any: 333
       graphemes_left: 0
@@ -276,9 +288,11 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 333
+        '1': 331
+        '10': 1
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Bhojpuri:
       graphemes_any: 251
       graphemes_left: 0
@@ -286,9 +300,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 251
+        '1': 250
+        '10': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
     Burmese:
       graphemes_any: 215
       graphemes_left: 0
@@ -296,9 +311,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 215
+        '1': 214
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Chakma:
       graphemes_any: 225
       graphemes_left: 0
@@ -306,9 +322,20 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 225
+        '1': 223
+        '11': 2
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
+    Dzongkha:
+      graphemes_any: 1
+      graphemes_left: 0
+      graphemes_right: 1
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '11': 1
+      max_left_cells: 0
+      max_right_cells: 11
     Gujarati:
       graphemes_any: 289
       graphemes_left: 0
@@ -316,9 +343,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 289
+        '1': 288
+        '10': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
     Hindi:
       graphemes_any: 163
       graphemes_left: 0
@@ -326,9 +354,11 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 163
+        '1': 161
+        '10': 1
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Javanese (Javanese):
       graphemes_any: 488
       graphemes_left: 0
@@ -336,9 +366,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 488
+        '1': 486
+        '10': 2
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
     Kannada:
       graphemes_any: 236
       graphemes_left: 0
@@ -346,9 +377,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 236
+        '1': 235
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Khmer, Central:
       graphemes_any: 366
       graphemes_left: 0
@@ -356,9 +388,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 366
+        '1': 364
+        '10': 2
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
     Khün:
       graphemes_any: 360
       graphemes_left: 17
@@ -367,9 +400,21 @@ spillover_results:
       left_cells:
         '1': 17
       right_cells:
-        '1': 344
+        '1': 341
+        '10': 1
+        '11': 2
       max_left_cells: 1
-      max_right_cells: 1
+      max_right_cells: 11
+    Lao:
+      graphemes_any: 1
+      graphemes_left: 0
+      graphemes_right: 1
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '11': 1
+      max_left_cells: 0
+      max_right_cells: 11
     Magahi:
       graphemes_any: 22
       graphemes_left: 0
@@ -397,9 +442,21 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 350
+        '1': 348
+        '10': 1
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
+    Maldivian:
+      graphemes_any: 2
+      graphemes_left: 0
+      graphemes_right: 2
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '11': 2
+      max_left_cells: 0
+      max_right_cells: 11
     Marathi:
       graphemes_any: 102
       graphemes_left: 0
@@ -407,9 +464,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 102
+        '1': 101
+        '10': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
     Mon:
       graphemes_any: 197
       graphemes_left: 0
@@ -417,9 +475,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 197
+        '1': 196
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Nepali:
       graphemes_any: 70
       graphemes_left: 0
@@ -437,9 +496,20 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 236
+        '1': 235
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
+    Pular (Adlam):
+      graphemes_any: 1
+      graphemes_left: 0
+      graphemes_right: 1
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '11': 1
+      max_left_cells: 0
+      max_right_cells: 11
     RI:
       graphemes_any: 259
       graphemes_left: 0
@@ -447,9 +517,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 259
+        '1': 257
+        '10': 2
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
     Sanskrit:
       graphemes_any: 155
       graphemes_left: 0
@@ -457,9 +528,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 155
+        '1': 154
+        '10': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
     Sanskrit (Grantha):
       graphemes_any: 237
       graphemes_left: 0
@@ -467,9 +539,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 237
+        '1': 236
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Shan:
       graphemes_any: 106
       graphemes_left: 0
@@ -487,9 +560,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 198
+        '1': 197
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Tagalog (Tagalog):
       graphemes_any: 16
       graphemes_left: 0
@@ -507,9 +581,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 118
+        '1': 117
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Tamang, Eastern:
       graphemes_any: 11
       graphemes_left: 0
@@ -527,9 +602,10 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 132
+        '1': 131
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 11
     Telugu:
       graphemes_any: 333
       graphemes_left: 0
@@ -537,9 +613,20 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 333
+        '1': 332
+        '10': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
+    Thai:
+      graphemes_any: 2
+      graphemes_left: 0
+      graphemes_right: 2
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '11': 2
+      max_left_cells: 0
+      max_right_cells: 11
     Urdu:
       graphemes_any: 1
       graphemes_left: 1
@@ -558,69 +645,120 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 158
+        '1': 157
+        '11': 1
       max_left_cells: 0
-      max_right_cells: 1
-    ZWJ:
-      graphemes_any: 651
+      max_right_cells: 11
+    VS16:
+      graphemes_any: 1
       graphemes_left: 0
-      graphemes_right: 651
+      graphemes_right: 1
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 651
+        '10': 1
       max_left_cells: 0
-      max_right_cells: 1
+      max_right_cells: 10
+    ZWJ:
+      graphemes_any: 655
+      graphemes_left: 0
+      graphemes_right: 655
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '1': 647
+        '10': 8
+      max_left_cells: 0
+      max_right_cells: 10
   spill_examples:
     Bengali:
       Right:
         '1':
           example: '''\u0985\u0982'''
           width: 1
+        '10':
+          example: '''\u09a4\u09cd\u09af\u09be'''
+          width: 2
+        '11':
+          example: '''\u09b8\u09be'''
+          width: 1
     Bhojpuri:
       Right:
         '1':
           example: '''\u0915\u093e'''
           width: 1
+        '10':
+          example: '''\u0936\u094d\u0935'''
+          width: 2
     Burmese:
       Right:
         '1':
           example: '''\u1000\u1031'''
+          width: 1
+        '11':
+          example: '''\u1011\u102e'''
           width: 1
     Chakma:
       Right:
         '1':
           example: '''\U00011103\U0001112c'''
           width: 1
+        '11':
+          example: '''\U0001111d\U0001112c'''
+          width: 1
     Gujarati:
       Right:
         '1':
           example: '''\u0a95\u0a83'''
           width: 1
+        '10':
+          example: '''\u0ab0\u0acd\u0aaf\u0acb'''
+          width: 2
     Hindi:
       Right:
         '1':
           example: '''\u0915\u093e\u0902'''
+          width: 1
+        '10':
+          example: '''\u0938\u094d\u0924\u094d\u0930\u0940'''
+          width: 2
+        '11':
+          example: '''\u092e\u0902'''
           width: 1
     Javanese (Javanese):
       Right:
         '1':
           example: '''\ua98f\ua983'''
           width: 1
+        '10':
+          example: '''\ua9a4\ua9c0\ua9a2\ua9bc'''
+          width: 2
     Kannada:
       Right:
         '1':
           example: '''\u0c85\u0c82'''
+          width: 1
+        '11':
+          example: '''\u0ca6\u0ccc'''
           width: 1
     Khmer, Central:
       Right:
         '1':
           example: '''\u1780\u17b6'''
           width: 1
+        '10':
+          example: '''\u1780\u17d2\u178a\u17b7'''
+          width: 2
     Khün:
       Right:
         '1':
           example: '''\u1a20\u1a60\u1a20'''
+          width: 2
+        '11':
+          example: '''\u1a29\u1a75\u1a6d'''
+          width: 1
+        '10':
+          example: '''\u1a48\u1a60\u1a20\u1a67'''
           width: 2
       Left:
         '1':
@@ -641,15 +779,27 @@ spillover_results:
         '1':
           example: '''\u0d05\u0d02'''
           width: 1
+        '11':
+          example: '''\u0d1a\u0d47'''
+          width: 1
+        '10':
+          example: '''\u0d30\u0d4d\u0d2f'''
+          width: 2
     Marathi:
       Right:
         '1':
           example: '''\u0915\u094d\u0915\u093e\u0902'''
           width: 2
+        '10':
+          example: '''\u0930\u094d\u0927'''
+          width: 2
     Mon:
       Right:
         '1':
           example: '''\u1000\u1031\u102f'''
+          width: 1
+        '11':
+          example: '''\u105a\u102f'''
           width: 1
     Nepali:
       Right:
@@ -661,15 +811,24 @@ spillover_results:
         '1':
           example: '''\u0a15\u0a3e'''
           width: 1
+        '11':
+          example: '''\u0a1f\u0a3f'''
+          width: 1
     Sanskrit:
       Right:
         '1':
           example: '''\u0915\u094d\u0915\u093e'''
           width: 2
+        '10':
+          example: '''\u0930\u094d\u0939'''
+          width: 2
     Sanskrit (Grantha):
       Right:
         '1':
           example: '''\U00011305\U00011302'''
+          width: 1
+        '11':
+          example: '''\U00011330\U0001133f'''
           width: 1
     Shan:
       Right:
@@ -681,6 +840,9 @@ spillover_results:
         '1':
           example: '''\u0d9a\u0dcf'''
           width: 1
+        '11':
+          example: '''\u0dab\u0dd4'''
+          width: 1
     Tamang, Eastern:
       Right:
         '1':
@@ -688,14 +850,20 @@ spillover_results:
           width: 2
     Tamil:
       Right:
-        '1':
+        '11':
           example: '''\u0b95\u0bbe'''
+          width: 1
+        '1':
+          example: '''\u0b95\u0bbf'''
           width: 1
     Telugu:
       Right:
         '1':
           example: '''\u0c05\u0c02'''
           width: 1
+        '10':
+          example: '''\u0c24\u0c4d\u0c30'''
+          width: 2
     Urdu:
       Left:
         '1':
@@ -704,6 +872,31 @@ spillover_results:
       Right:
         '1':
           example: '''\u0601\u06f1'''
+          width: 1
+    Assyrian Neo-Aramaic:
+      Right:
+        '11':
+          example: '''\u071d\u073c'''
+          width: 1
+    Dzongkha:
+      Right:
+        '11':
+          example: '''\u0f62\u0fa9\u0f7c'''
+          width: 1
+    Lao:
+      Right:
+        '11':
+          example: '''\u0e9b\u0ec9'''
+          width: 1
+    Maldivian:
+      Right:
+        '11':
+          example: '''\u0781\u07ac'''
+          width: 1
+    Pular (Adlam):
+      Right:
+        '11':
+          example: '''\U0001e932\U0001e946'''
           width: 1
     Tagalog (Tagalog):
       Right:
@@ -715,8 +908,19 @@ spillover_results:
         '1':
           example: '''\uaa80\uaab0'''
           width: 1
+        '11':
+          example: '''\uaaa3\uaab2'''
+          width: 1
+    Thai:
+      Right:
+        '11':
+          example: '''\u0e02\u0e31'''
+          width: 1
     ZWJ:
       Right:
+        '10':
+          example: '''\u26f9\U0001f3fc\u200d\u2642\ufe0f'''
+          width: 2
         '1':
           example: '''\U0001f344\u200d\U0001f7eb'''
           width: 2
@@ -725,11 +929,22 @@ spillover_results:
         '1':
           example: '''\U0001f1e6\U0001f1e8'''
           width: 2
+        '10':
+          example: '''\U0001f1e6\U0001f1e9'''
+          width: 2
     VS15:
       Right:
         '1':
           example: '''\u231a\ufe0e'''
           width: 1
+        '11':
+          example: '''\U0001f47d\ufe0e'''
+          width: 1
+    VS16:
+      Right:
+        '10':
+          example: '''\U0001f17f\ufe0f'''
+          width: 2
   n_tested_by_kind:
     Aja: 3
     Amarakaeri: 6
@@ -1947,7 +2162,7 @@ spillover_results:
         column: 51
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 10
       - wchar: \u09a4\u09cd\u09af\u09bf
         codepoints:
         - 2468
@@ -4149,7 +4364,7 @@ spillover_results:
         column: 51
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 10
       - wchar: \ua9a4\ua9c0\ua9a4
         codepoints:
         - 43428
@@ -6319,7 +6534,7 @@ spillover_results:
         column: 51
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 10
       - wchar: \u1795\u17d2\u179f\u17c1
         codepoints:
         - 6037
@@ -8420,7 +8635,7 @@ spillover_results:
         column: 51
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 10
       - wchar: \u0c24\u0c4d\u0c30\u0c41
         codepoints:
         - 3108
@@ -9482,7 +9697,7 @@ spillover_results:
         advance: 2
         spill_left_cells: 0
         spill_right_cells: 1
-    foot-spillover_037_U+1F468.gif:
+    foot-spillover_039_U+1F468.gif:
       page: 38
       spillovers:
       - wchar: \U0001f468\U0001f3fd\u200d\U0001faef\u200d\U0001f468\U0001f3fb
@@ -10472,7 +10687,7 @@ spillover_results:
         column: 51
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 10
       - wchar: \U0001f469\u200d\u2708\ufe0f
         codepoints:
         - 128105
@@ -11454,7 +11669,7 @@ spillover_results:
         advance: 2
         spill_left_cells: 0
         spill_right_cells: 1
-    foot-spillover_044_U+1F1EC.gif:
+    foot-spillover_046_U+1F1EC.gif:
       page: 45
       spillovers:
       - wchar: \U0001f1ec\U0001f1f1
@@ -12479,7 +12694,7 @@ spillover_results:
         column: 51
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 10
       - wchar: \U0001f1f5\U0001f1ec
         codepoints:
         - 127477
@@ -13404,7 +13619,7 @@ spillover_results:
         advance: 1
         spill_left_cells: 0
         spill_right_cells: 1
-    foot-spillover_045_U+23F3.gif:
+    foot-spillover_047_U+23F3.gif:
       page: 46
       spillovers:
       - wchar: \u23f3\ufe0e
@@ -14429,7 +14644,7 @@ spillover_results:
         column: 51
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 11
       - wchar: \U0001f4a3\ufe0e
         codepoints:
         - 128163
@@ -15068,6 +15283,20 @@ spillover_results:
         advance: 1
         spill_left_cells: 0
         spill_right_cells: 1
+    foot-spillover_048_U+1F17F.gif:
+      page: 47
+      spillovers:
+      - wchar: \U0001f17f\ufe0f
+        codepoints:
+        - 127359
+        - 65039
+        category: vs16
+        label: ''
+        row: 18
+        column: 51
+        advance: 2
+        spill_left_cells: 0
+        spill_right_cells: 10
   errors: []
 system: Linux
 terminal_results:
@@ -23513,7 +23742,8 @@ test_results:
       n_errors: 71
       n_total: 1529
       pct_success: 95.35644211903205
-ucs_detect_version: 2.3.10+58005c1
+ucs_detect_version: 2.3.11+45169f9
 unicode_version: 18.0.0
+wcwidth_path: /usr/lib/python3.14/site-packages/wcwidth
 wcwidth_version: 0.9.4
 width: 130
