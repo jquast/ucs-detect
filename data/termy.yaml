@@ -124,8 +124,6 @@ datetime: 2026-11-16 16:07:56 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
-  TERM_PROGRAM: ghostty
-  TERM_PROGRAM_VERSION: 1.2.0
 font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
