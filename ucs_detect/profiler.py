@@ -234,10 +234,15 @@ class ProfileSession:  # pylint: disable=too-many-instance-attributes
                     pass
             self._discover_extra_processes()
 
+        # A non-positive pid is not a process to profile: psutil reads pid 0 as the kernel task,
+        # whose children(recursive=True) is every process on the machine.
         root = None
-        try:
-            root = psutil.Process(self._pid)
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
+        if self._pid > 0:
+            try:
+                root = psutil.Process(self._pid)
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                root = None
+        if root is None:
             root, _found_name = self._find_process_by_candidates()
             if root is not None:
                 self._recovered = True

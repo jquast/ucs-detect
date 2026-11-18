@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 05:54:04 UTC
+  scanned_datetime: 2026-11-17 15:20:30 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 05:53:58 UTC
+  scanned_datetime: 2026-11-17 15:20:24 UTC
   painted_rows: 24
   calibration:
     origin_x: 2.0
@@ -120,7 +120,7 @@ color_results:
       - 255
       - 255
       - 255
-datetime: 2026-11-16 05:47:25 UTC
+datetime: 2026-11-17 14:44:59 UTC
 environment:
   COLORTERM: rxvt-xpm
   TERM: rxvt-unicode-256color
@@ -225,28 +225,49 @@ preferred_encoding: UTF-8
 python_version: 3.14.10
 resource_profile:
   cpu_pct:
-  - 4.0
+  - 0.0
+  - 0.0
+  - 1.0
+  - 1.0
   - 0.0
   - 2.0
-  - 27.0
-  - 25.0
+  - 1.0
+  - 0.0
+  - 0.0
+  - 2.0
+  - 5.0
+  - 32.0
   elapsed_s:
-  - 1.0017779930203687
-  - 2.003627651021816
-  - 3.004979651013855
-  - 4.006276277999859
-  - 5.007795651006745
+  - 1.002100816986058
+  - 2.002980100980494
+  - 3.0038960879901424
+  - 4.0047365089994855
+  - 5.005706207011826
+  - 6.006590559962206
+  - 7.00736990000587
+  - 8.008571509970352
+  - 9.010180250974372
+  - 10.011496426013764
+  - 11.013082442979794
+  - 12.014431989984587
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
     ram_total_kb: 15481796
   rss_mb:
-  - 23.24609375
-  - 23.24609375
-  - 33.71875
-  - 37.24609375
-  - 38.10546875
-seconds_elapsed: 1.6475561630213633
+  - 2.65234375
+  - 8.34765625
+  - 9.33984375
+  - 10.6328125
+  - 11.5
+  - 12.11328125
+  - 23.32421875
+  - 23.43359375
+  - 23.43359375
+  - 30.109375
+  - 35.54296875
+  - 38.05859375
+seconds_elapsed: 1.3707173420116305
 session_arguments:
   all: false
   limit_category_time: 0
@@ -259,45 +280,25 @@ session_arguments:
 software_name: urxvt
 software_version: 9.31-11
 spillover_results:
-  scanned_datetime: 2026-11-16 05:54:31 UTC
+  scanned_datetime: 2026-11-17 15:20:57 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 643
+  n_spillover: 648
   n_no_ink: 4
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 643
+    graphemes_any: 648
     graphemes_left: 635
-    graphemes_right: 8
+    graphemes_right: 13
     graphemes_both: 0
     left_cells:
       '1': 635
     right_cells:
-      '1': 8
+      '1': 13
     max_left_cells: 1
     max_right_cells: 1
   spill_counts_by_kind:
-    Arabic, Standard:
-      graphemes_any: 4
-      graphemes_left: 0
-      graphemes_right: 4
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '1': 4
-      max_left_cells: 0
-      max_right_cells: 1
-    Assyrian Neo-Aramaic:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '1': 1
-      max_left_cells: 0
-      max_right_cells: 1
     Burmese:
       graphemes_any: 50
       graphemes_left: 50
@@ -358,26 +359,6 @@ spillover_results:
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
-    Malayalam:
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '1': 1
-      max_left_cells: 0
-      max_right_cells: 1
-    Marathi:
-      graphemes_any: 2
-      graphemes_left: 0
-      graphemes_right: 2
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '1': 2
-      max_left_cells: 0
-      max_right_cells: 1
     Mon:
       graphemes_any: 56
       graphemes_left: 56
@@ -438,6 +419,26 @@ spillover_results:
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
+    Urdu:
+      graphemes_any: 12
+      graphemes_left: 0
+      graphemes_right: 12
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '1': 12
+      max_left_cells: 0
+      max_right_cells: 1
+    Urdu (2):
+      graphemes_any: 1
+      graphemes_left: 0
+      graphemes_right: 1
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '1': 1
+      max_left_cells: 0
+      max_right_cells: 1
   spill_examples:
     Javanese (Javanese):
       Left:
@@ -449,31 +450,11 @@ spillover_results:
         '1':
           example: '''\u0c95\u0cc6\u0c82'''
           width: 2
-    Malayalam:
-      Right:
-        '1':
-          example: '''\u0d38\u0d4d\u0d31\u0d4d\u0d31\u0d4d\u200c'''
-          width: 3
-    Marathi:
-      Right:
-        '1':
-          example: '''\u091c\u094d\u092f\u093e\u200c'''
-          width: 3
     Telugu:
       Left:
         '1':
           example: '''\u0c15\u0c4d\u0c15'''
           width: 2
-    Arabic, Standard:
-      Right:
-        '1':
-          example: '''\u0636\u064b'''
-          width: 1
-    Assyrian Neo-Aramaic:
-      Right:
-        '1':
-          example: '''\u072c\u0735'''
-          width: 1
     Burmese:
       Left:
         '1':
@@ -518,6 +499,16 @@ spillover_results:
       Left:
         '1':
           example: '''\u0f42\u0fb2\u0f72'''
+          width: 1
+    Urdu:
+      Right:
+        '1':
+          example: '''\u0628\u064e'''
+          width: 1
+    Urdu (2):
+      Right:
+        '1':
+          example: '''\u06a9\u064f'''
           width: 1
   n_tested_by_kind:
     Aja: 3
@@ -625,7 +616,7 @@ spillover_results:
     term_width: 239
     term_height: 67
   images:
-    urxvt-spillover_004_U+0C24.gif:
+    urxvt-spillover_003_U+0C24.gif:
       page: 6
       spillovers:
       - wchar: \u0c24\u0c4d\u0c2f\u0c02
@@ -2135,61 +2126,6 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
-      - wchar: \u0636\u064b
-        codepoints:
-        - 1590
-        - 1611
-        category: language
-        label: Arabic, Standard
-        row: 19
-        column: 99
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 1
-      - wchar: \u0645\u064b
-        codepoints:
-        - 1605
-        - 1611
-        category: language
-        label: Arabic, Standard
-        row: 19
-        column: 123
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 1
-      - wchar: \u0645\u0651
-        codepoints:
-        - 1605
-        - 1617
-        category: language
-        label: Arabic, Standard
-        row: 19
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 1
-      - wchar: \u064a\u064f
-        codepoints:
-        - 1610
-        - 1615
-        category: language
-        label: Arabic, Standard
-        row: 19
-        column: 171
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 1
-      - wchar: \u072c\u0735
-        codepoints:
-        - 1836
-        - 1845
-        category: language
-        label: Assyrian Neo-Aramaic
-        row: 20
-        column: 147
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 1
       - wchar: \u1000\u102d\u102f
         codepoints:
         - 4096
@@ -2773,7 +2709,7 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
-    urxvt-spillover_005_U+062A.gif:
+    urxvt-spillover_004_U+062A.gif:
       page: 7
       spillovers:
       - wchar: \u062a\u200c
@@ -4780,7 +4716,7 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
-    urxvt-spillover_007_U+1000.gif:
+    urxvt-spillover_006_U+1000.gif:
       page: 9
       spillovers:
       - wchar: \u1000\u102e\u102f
@@ -5826,7 +5762,7 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
-    urxvt-spillover_008_U+AA80.gif:
+    urxvt-spillover_007_U+AA80.gif:
       page: 10
       spillovers:
       - wchar: \uaa80\uaab0
@@ -21186,7 +21122,7 @@ test_results:
       n_errors: 1042
       n_total: 1529
       pct_success: 31.85088293001962
-ucs_detect_version: 2.3.11+45169f9
+ucs_detect_version: 2.3.11+50636ce
 unicode_version: 18.0.0
 wcwidth_path: /usr/lib/python3.14/site-packages/wcwidth
 wcwidth_version: 0.9.4

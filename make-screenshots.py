@@ -417,11 +417,28 @@ def page_error_summary(section):
             f"{errors[0].get('page')}: {errors[0].get('message')}")
 
 
-def verify_spillover_output(job, args):
+def stage_log_tail(log_path, limit=4):
+    """Return the last few non-empty lines of a stage log, or an empty string."""
+    if log_path is None:
+        return ""
+    try:
+        lines = [line.strip()
+                 for line in log_path.read_text(
+                     encoding="utf-8", errors="replace").splitlines()
+                 if line.strip()]
+    except OSError:
+        return ""
+    if not lines:
+        return ""
+    return "; last output: " + " | ".join(lines[-limit:])
+
+
+def verify_spillover_output(job, args, log_path=None):
     """Return an error string when the YAML spillover section is incomplete."""
     section = terminal_document(job.yaml_path).get("spillover_results")
     if not section:
-        return "YAML has no spillover_results section"
+        return ("YAML has no spillover_results section"
+                + stage_log_tail(log_path))
     candidates = contested_graphemes()
     if not job.launch_cfg.get("spillover_rtl", True):
         candidates = spillover.without_rtl(candidates)
@@ -446,7 +463,7 @@ def run_spillover_stage(job, host_cfg, args, temp_dir):
     terminal_document.cache_clear()
     if exit_code != 0:
         return message, []
-    return verify_spillover_output(job, args), []
+    return verify_spillover_output(job, args, stderr_path), []
 
 
 def run_color_stage(job, host_cfg, args, temp_dir):
@@ -520,7 +537,7 @@ def run_combined_stage(job, host_cfg, args, temp_dir):
         if not bidi_section:
             return "YAML has no bidi_results section", errors
     if run_spillover:
-        return verify_spillover_output(job, args), errors
+        return verify_spillover_output(job, args, stderr_path), errors
     return None, errors
 
 
@@ -748,6 +765,10 @@ def main():
         "--run-only", type=str, default="",
         help="Comma separated terminal names to run")
     parser.add_argument(
+        "--force", action="store_true",
+        help="Run terminals whose launch config is reserved for the other "
+             "environment (for example a Docker-preferred terminal on the host)")
+    parser.add_argument(
         "--keep-temp", action="store_true",
         help="Keep temporary files on exit (for debugging)")
     parser.add_argument(
@@ -821,6 +842,8 @@ def main():
         extra_args = ["--stage", args.stage,
                       "--timeout", str(args.timeout),
                       "--spillover-timeout", str(args.spillover_timeout)]
+        if args.force:
+            extra_args.append("--force")
         if args.limit:
             extra_args.extend(["--limit", str(args.limit)])
         if args.stage in ("spillover", "bidi", "all"):

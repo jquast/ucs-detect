@@ -7,6 +7,7 @@ Welcome to ucs-detect's documentation!
    :glob:
 
    intro
+   fonts
    results
 
 * :ref:`search`

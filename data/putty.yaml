@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 05:54:06 UTC
+  scanned_datetime: 2026-11-18 13:38:28 UTC
   supported: true
   control_left: 1.0
   requested_right: 1.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 05:54:00 UTC
+  scanned_datetime: 2026-11-18 13:38:22 UTC
   painted_rows: 24
   calibration:
-    origin_x: 1
-    origin_y: 1
+    origin_x: 1.0
+    origin_y: 1.0
     cell_width_px: 11.0
     cell_height_px: 22.0
     term_width: 80
@@ -120,15 +120,15 @@ color_results:
       - 255
       - 255
       - 255
-datetime: 2026-11-16 05:48:25 UTC
+datetime: 2026-11-18 13:36:17 UTC
 environment:
   TERM: xterm
 font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 1
-  origin_y: 1
+  origin_x: 1.0
+  origin_y: 1.0
   cell_width: 11.0
   cell_height: 22.0
   term_width: 80
@@ -224,25 +224,25 @@ preferred_encoding: UTF-8
 python_version: 3.14.10
 resource_profile:
   cpu_pct:
-  - 7.0
+  - 5.0
   - 0.0
-  - 3.0
-  - 79.9
+  - 7.0
+  - 90.9
   elapsed_s:
-  - 1.0014864480181132
-  - 2.0032438620110042
-  - 3.0052305450080894
-  - 4.006660348997684
+  - 1.0014747800000805
+  - 2.0029241960000945
+  - 3.004336120000062
+  - 4.0057258540000475
   hardware:
     cpu_count: 12
     cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
-    ram_total_kb: 15481796
+    ram_total_kb: 15481792
   rss_mb:
-  - 55.97265625
-  - 55.97265625
-  - 56.375
-  - 65.48828125
-seconds_elapsed: 1.511286424996797
+  - 56.16015625
+  - 56.16015625
+  - 56.96484375
+  - 67.64453125
+seconds_elapsed: 1.1971289640000577
 session_arguments:
   all: false
   limit_category_time: 0
@@ -252,10 +252,10 @@ session_arguments:
   limit_graphemes_pct: 0
   stream: stderr
   timeout_cps: 1.0
-software_name: pterm
+software_name: PuTTY
 software_version: 0.85-1
 spillover_results:
-  scanned_datetime: 2026-11-16 05:54:38 UTC
+  scanned_datetime: 2026-11-18 13:39:00 UTC
   n_candidates: 8347
   n_tested: 8347
   n_spillover: 0
@@ -360,8 +360,8 @@ spillover_results:
     columns_per_page: 7
     items_per_page: 329
   calibration:
-    origin_x: 1
-    origin_y: 1
+    origin_x: 1.0
+    origin_y: 1.0
     cell_width_px: 11.0
     cell_height_px: 22.0
     term_width: 173
@@ -14284,7 +14284,7 @@ test_results:
       n_errors: 1009
       n_total: 1529
       pct_success: 34.009156311314584
-ucs_detect_version: 2.3.11+45169f9
+ucs_detect_version: 2.3.11+50636ce
 unicode_version: 18.0.0
 wcwidth_path: /usr/lib/python3.14/site-packages/wcwidth
 wcwidth_version: 0.9.4

@@ -104,11 +104,11 @@ class MacOSError(RuntimeError):
 class MacLaunch:
     """Stand-in for ``subprocess.Popen`` when the application runs the script itself."""
 
-    def __init__(self, owner, window_id, timeout=8.0):
+    def __init__(self, owner, window_id, timeout=8.0, pid=0):
         self.owner = owner
         self.window_id = window_id
         self.timeout = timeout
-        self.pid = 0
+        self.pid = pid
         self._dead = window_id is None
         self._next_check = None
 
@@ -226,6 +226,12 @@ def window_geometry(window_id):
     if item is None or item['width'] <= 0 or item['height'] <= 0:
         return None
     return item['width'], item['height']
+
+
+def window_owner_pid(window_id):
+    """Return the pid of the application owning *window_id*, or 0."""
+    item = window(window_id)
+    return item['pid'] if item else 0
 
 
 def active_window():
@@ -443,12 +449,13 @@ def fit_window(window_id, max_size=None):
           and geometry[1] >= target[1] * 0.9):
         return True
 
-    program = (_LAUNCHED_APPS.get(str(window_id))
-               or app_paths().get(item['owner'], ''))
-    if program and not _app_set_bounds(program, geometry, target):
-        _ax_set_size(window_id, target)
-    elif not program:
-        _ax_set_size(window_id, target)
+    # The Accessibility API names the window to resize; the application's ``bounds`` loop picks
+    # by width, which hits a sibling window when the terminal restores sessions at launch.
+    if not _ax_set_size(window_id, target):
+        program = (_LAUNCHED_APPS.get(str(window_id))
+                   or app_paths().get(item['owner'], ''))
+        if program:
+            _app_set_bounds(program, geometry, target)
     time.sleep(0.5)
     geometry = window_geometry(window_id)
     if geometry is None:
@@ -530,10 +537,37 @@ def inject_keys(window_id, keys, key_delay_ms=30, click_before_keys=False):
     return True
 
 
+def _app_close_window(window_id):
+    """
+    Close *window_id* through the owning application's own ``close`` command.
+
+    Return True when the window is gone, False when the application kept it, and None when the
+    application has no ``close`` command for it.
+    """
+    item = window(window_id)
+    if item is None:
+        return True
+    try:
+        osascript([
+            f'tell application {applescript_string(item["owner"])}',
+            f'close (first window whose id is {window_id})',
+            'end tell',
+        ], timeout=20)
+    except MacOSError:
+        return None
+    time.sleep(0.5)
+    return window(window_id) is None
+
+
 def close_window(window_id):
     """Close *window_id* with its own close command, returning True on success."""
     if window_id is None or window(window_id) is None:
         return False
+    closed = _app_close_window(window_id)
+    if closed is not None:
+        # A refusal to close a window whose command still runs is not retried as a keystroke,
+        # which asks the same question again through a dialog.
+        return closed
     if not focus(window_id):
         return False
     try:
@@ -613,13 +647,26 @@ def launch(config, script_path, window_search_timeout_ms=None):
     title_pattern = None
     if adapter == 'iterm2':
         command = f'sh {shlex.quote(str(script_path))}'
-        osascript([
-            f'tell application {applescript_string(program)}',
-            'activate',
-            f'create window with default profile command '
-            f'{applescript_string(command)}',
-            'end tell',
-        ], timeout=60)
+        # An iTerm2 window id is the CoreGraphics window number, so the window just created is
+        # named here instead of guessed from a list that also holds the sessions iTerm2 restored
+        # at launch.
+        try:
+            text = osascript([
+                f'tell application {applescript_string(program)}',
+                'activate',
+                f'set created to (create window with default profile command '
+                f'{applescript_string(command)})',
+                'return id of created',
+                'end tell',
+            ], timeout=60)
+        except MacOSError:
+            text = ''
+        match = re.search(r'\d+', text)
+        if match:
+            window_id = match.group(0)
+            register_window(window_id, program)
+            return MacLaunch(owner, window_id, timeout=timeout,
+                             pid=window_owner_pid(window_id))
     elif adapter == 'tecolot':
         # Tecolot takes no command line argument, and it restores the windows of its last
         # session, so the window is opened in the stage's own directory and found by that name.
@@ -635,4 +682,5 @@ def launch(config, script_path, window_search_timeout_ms=None):
     window_id = find_window(owner, exclude=before, title_pattern=title_pattern,
                             timeout=timeout)
     register_window(window_id, program)
-    return MacLaunch(owner, window_id, timeout=timeout)
+    return MacLaunch(owner, window_id, timeout=timeout,
+                     pid=window_owner_pid(window_id))

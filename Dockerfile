@@ -30,6 +30,7 @@ RUN --mount=type=cache,target=/var/cache/pacman/pkg \
     gifsicle \
     weston \
     fontconfig \
+    noto-fonts-emoji \
     xorg-fonts-misc \
     && pacman -Scc --noconfirm
 
@@ -82,7 +83,7 @@ RUN --mount=type=cache,target=/home/ucs/.ccache,uid=1000,gid=1000 \
     --mount=type=cache,target=/var/cache/pacman/pkg \
     sudo -u ucs yay -S --noconfirm --needed --answerclean All --answerdiff None --removemake \
     extraterm-bin \
-    bobcat-terminal \
+    bobcat-terminal-git \
     terminator-git \
     hyper-bin \
     && pacman -Scc --noconfirm
@@ -154,6 +155,9 @@ RUN --mount=type=cache,target=/home/ucs/.nuget/packages,uid=1000,gid=1000 \
 
 # GNU Unifont 18.0.01 (Unicode 18.0) for consistent terminal font rendering.
 # Both files are needed: unifont is the BMP, unifont_upper carries planes 1-3 and emoji.
+# Noto Color Emoji, installed above, is what kitty, Ghostty, foot, WezTerm, Konsole, Contour and
+# the VTE terminals select for emoji presentation cells; install-fonts.py aliases the "emoji"
+# family to it in the fontconfig file the tests use.
 COPY ucs_detect/fonts.py /tmp/install-fonts.py
 RUN python /tmp/install-fonts.py --install --dest /usr/share/fonts/unifont \
     --fontconfig /etc/fonts/conf.d/99-ucs-unifont.conf

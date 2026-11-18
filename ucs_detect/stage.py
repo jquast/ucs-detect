@@ -35,6 +35,7 @@ from ucs_detect.accessories import (_KEY_INJECT_LOCK,
                                     build_launch_args,
                                     get_launch_config,
                                     docker_image_exists,
+                                    expand_placeholders,
                                     find_window_for_command,
                                     check_unmatched_run_only,
                                     build_subterminal_launch_args)
@@ -86,7 +87,7 @@ def display_name(discovered, entry):
     return entry.get('display_name', discovered.software_name)
 
 
-def terminal_jobs(system_name, run_only, is_docker):
+def terminal_jobs(system_name, run_only, is_docker, force=False):
     """Return ``(jobs, skipped)`` for terminals that should be staged."""
     mixins = load_mixins()
     jobs = []
@@ -100,14 +101,16 @@ def terminal_jobs(system_name, run_only, is_docker):
         if run_only:
             name = discovered.software_name.lower()
             program = launch_cfg.get('program', '').lower()
-            if name not in run_only and program not in run_only:
+            compact = name.replace(' ', '').replace('-', '')
+            if (name not in run_only and program not in run_only
+                    and compact not in run_only):
                 continue
-            matched.update(value for value in (name, program)
+            matched.update(value for value in (name, program, compact)
                            if value in run_only)
         reason = None
-        if launch_cfg['skip']:
+        if not force and launch_cfg['skip']:
             reason = launch_cfg.get('skip_reason') or 'marked skip'
-        elif should_skip(launch_cfg, is_docker=is_docker):
+        elif not force and should_skip(launch_cfg, is_docker=is_docker):
             reason = launch_cfg.get('skip_reason') or 'excluded'
         elif launch_cfg['subterminal'] and not entry:
             reason = 'subterminal without launch config'
@@ -222,7 +225,7 @@ def terminal_environment(launch_cfg):
         if value == '':
             environment.pop(key, None)
         else:
-            environment[key] = value
+            environment[key] = expand_placeholders(value)
     return environment
 
 
@@ -232,14 +235,16 @@ def terminal_session(process, launch_cfg):
     try:
         yield
     finally:
-        run_kill_command(launch_cfg)
+        # A window closed after its application is killed stays in the saved session layout, and
+        # an application that restores sessions then reopens it on every later launch.
         closer = getattr(process, 'close', None)
         if closer is not None:
             try:
                 closer()
             except (OSError, macos.MacOSError):
                 pass
-        elif process.poll() is None:
+        run_kill_command(launch_cfg)
+        if process.poll() is None:
             try:
                 process.kill()
             except OSError:
@@ -457,4 +462,5 @@ def default_parallel(requested=0):
 def selected_terminals(args, is_docker):
     """Return ``(jobs, skipped)`` for *args* using the parsed ``--run-only``."""
     return terminal_jobs(
-        platform.system(), parse_run_only(args.run_only), is_docker)
+        platform.system(), parse_run_only(args.run_only), is_docker,
+        force=args.force)

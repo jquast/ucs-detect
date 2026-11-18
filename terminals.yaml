@@ -14,26 +14,17 @@ terminals:
         WAYLAND_DISPLAY: ''
   bobcat:
     homepage: https://github.com/ismail-yilmaz/Bobcat
+    # bobcat reorders injected keystrokes, so the script is the command after `--`
     launch:
       program: bobcat
-      args: [--font-family, Unifont, --font-size, '16', --geometry, 140x50]
+      args: [--font-family, Unifont, --font-size, '16', --geometry, 140x50, '--']
       env:
         TERM: xterm-256color
-      post_launch_delay_ms: 3000
-      post_launch_keys:
-      - 'sh '
-      - ${SCRIPT} && exit
-      - "\n"
     launch_docker:
       program: bobcat
-      args: [--font-family, Unifont, --font-size, '16', --geometry, 240x65]
+      args: [--font-family, Unifont, --font-size, '16', --geometry, 240x65, '--']
       env:
         TERM: xterm-256color
-      post_launch_delay_ms: 8000
-      post_launch_keys:
-      - 'sh '
-      - ${SCRIPT} && exit
-      - "\n"
   contour:
     homepage: https://contour-terminal.org/
     skip_docker: true
@@ -172,9 +163,12 @@ terminals:
     timeout: 14400
   kitty:
     homepage: https://sw.kovidgoyal.net/kitty/
+    # kitty takes the widest advance in U+0020..U+007F as its cell width, and Unifont's U+007F
+    # glyph is a full em wide, which doubles every cell to 16x16 at font_size=12.  Halve it.
     launch:
       program: kitty
       args: [-o, font_family=Unifont, -o, font_size=12,
+             -o, 'modify_font cell_width 50%',
              -o, initial_window_width=80c, -o, initial_window_height=24c,
              sh, '{script}']
     # Run as an X11 client: inside the Weston compositor the window is clipped to the compositor
@@ -182,6 +176,7 @@ terminals:
     launch_docker:
       program: kitty
       args: [-o, font_family=Unifont, -o, font_size=12,
+             -o, 'modify_font cell_width 50%',
              -o, initial_window_width=80c, -o, initial_window_height=24c,
              sh, '{script}']
       env:
@@ -275,6 +270,7 @@ terminals:
       - otty
   putty:
     homepage: https://www.chiark.greenend.org.uk/~sgtatham/putty/
+    display_name: PuTTY
     version_template: '{aur_version}'
     aur_package: putty
     # pterm lays right to left text out itself, so its spillover scan would report the reordered
@@ -304,9 +300,14 @@ terminals:
     homepage: https://rioterm.com/
     skip_docker: true
     skip_reason: exits 1 with software Vulkan (lavapipe); works on host with GPU
+    # Rio has one font family and no emoji presentation rules, so Unifont's own mono emoji glyphs
+    # win over Noto Color Emoji.  terminal-config/rio/config.toml maps the astral emoji planes to
+    # the emoji font; RIO_CONFIG_HOME is used verbatim, without a "rio" suffix.
     launch:
       program: rio
       args: [-e]
+      env:
+        RIO_CONFIG_HOME: '{project_dir}/terminal-config/rio'
   rxvt-unicode:
     homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
     version_template: '{aur_version}'
@@ -389,7 +390,7 @@ terminals:
     launch:
       program: /Applications/Tecolot.app/Contents/MacOS/Tecolot
       args: []
-      post_launch_delay_ms: 3000
+      post_launch_delay_ms: 9000
       post_launch_keys:
       - 'sh '
       - ${SCRIPT} && exit
@@ -545,16 +546,18 @@ terminals:
       - "\n"
   wezterm:
     homepage: https://wezfurlong.org/wezterm/
+    # Unifont's advance is half an em, WezTerm's default cell is one em, so halve the cell to keep
+    # the text grid tight.  WezTerm paints only the viewport it was launched with, so growing the
+    # window afterwards leaves the lower half of each page blank: 46 rows covers 1920x1080.
     launch:
       program: wezterm
       args: [--config, 'font=wezterm.font("Unifont")', --config, font_size=16,
-             --config, bidi_enabled=true, start, --]
-    # 89x46 fills the 1920x1080 Xvfb screen at Unifont 16.  WezTerm paints only the viewport it
-    # was launched with, so growing the window afterwards leaves the lower half of each page blank.
+             --config, cell_width=0.5, --config, bidi_enabled=true, start, --]
     launch_docker:
       program: wezterm
       args: [--config, 'font=wezterm.font("Unifont")', --config, font_size=16,
-             --config, bidi_enabled=true, --config, enable_wayland=false,
+             --config, cell_width=0.5, --config, bidi_enabled=true,
+             --config, enable_wayland=false,
              --config, initial_cols=89, --config, initial_rows=46, start, --]
       env:
         WAYLAND_DISPLAY: ''

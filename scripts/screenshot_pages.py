@@ -55,7 +55,8 @@ GROUP_INTROS = {
     "SRI": _spec_line("Standalone Regional Indicator symbols"),
     "SFZ": _spec_line("Standalone Fitzpatrick skin tone modifiers"),
     "RI": _spec_line("Regional Indicator flag sequences"),
-    "SPILL": _spec_line("Spillover, pixels painted outside the cursor advance"),
+    "SPILL": "Spillover, inverted glow of pixels outside of the cursor extent,"
+    "of the width reported by cursor position report",
 }
 
 #: Maximum rendered width of a screenshot on a Screenshots page.
