@@ -55,9 +55,10 @@ querying cursor position.
 Use Cases
 ---------
 
-- ttyscan
-- ghostty test suite?
-- contour test suite?
+- `Correction Tables`_ in python wcwidth and C11 libwcwidth
+- Reverse `Terminal Identificiation`_ in `ttyscan`_
+- Automatic `ghostty test`_
+- Contour `terminal evaluation`_
 
 ucs-detect
 ----------
@@ -344,6 +345,8 @@ marks across diverse scripts.
 History
 -------
 
+- 2.3.12 (2026-11-20): bugfix some spill region calculations 
+
 - 2.3.11 (2026-11-15): Screenshot stages measure contested grapheme spillover with animated
   evidence pages, record the default 16 colors and one LANG page per UDHR language, and the
   results gain a Screenshots section with one page per screenshot type.
@@ -447,3 +450,7 @@ History
 .. _libvte: https://wiki.gnome.org/Projects/VTE
 .. _prettytable: https://github.com/jazzband/prettytable
 .. _Arch Linux: https://archlinux.org/
+.. _`Terminal Identification`: https://github.com/jquast/ttyscan#terminal-identification
+.. _`Correction Tables`: https://github.com/jquast/wcwidth#corrections
+.. _`ghostty test`: https://github.com/ghostty-org/ghostty/blob/main/test/ucs-detect.sh
+.. _`terminal evaluation`_   https://github.com/contour-terminal/terminal-comparison#why-this-exists

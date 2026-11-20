@@ -301,13 +301,13 @@ terminals:
     skip_docker: true
     skip_reason: exits 1 with software Vulkan (lavapipe); works on host with GPU
     # Rio has one font family and no emoji presentation rules, so Unifont's own mono emoji glyphs
-    # win over Noto Color Emoji.  terminal-config/rio/config.toml maps the astral emoji planes to
+    # win over Noto Color Emoji. .terminal-config/rio/config.toml maps the astral emoji planes to
     # the emoji font; RIO_CONFIG_HOME is used verbatim, without a "rio" suffix.
     launch:
       program: rio
       args: [-e]
       env:
-        RIO_CONFIG_HOME: '{project_dir}/terminal-config/rio'
+        RIO_CONFIG_HOME: '{project_dir}/.terminal-config/rio'
   rxvt-unicode:
     homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
     version_template: '{aur_version}'
