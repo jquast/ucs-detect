@@ -250,14 +250,19 @@ def get_launch_config(sw_name, mixins, is_docker=None):
     return cfg, is_explicit
 
 
+def expand_placeholders(value):
+    """Return *value* with the ``{project_dir}`` placeholder resolved."""
+    return str(value).replace("{project_dir}", str(get_project_dir()))
+
+
 def build_launch_args(launch_cfg, script_path):
     """Build the full argv list for launching a terminal that executes *script_path*."""
-    argv = list(launch_cfg["wrapper"])
+    argv = [expand_placeholders(item) for item in launch_cfg["wrapper"]]
     argv.append(launch_cfg["program"])
     script_str = str(script_path)
     has_placeholder = False
     for arg in launch_cfg["args"]:
-        arg = str(arg)
+        arg = expand_placeholders(arg)
         if "{script}" in arg:
             has_placeholder = True
             argv.append(arg.replace("{script}", script_str))
@@ -272,7 +277,7 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
     """Build launch args for a subterminal, wrapping inside a host terminal."""
     script_str = str(script_path)
     inner_parts = [launch_cfg["program"]] + [
-        str(arg) for arg in launch_cfg["args"]]
+        expand_placeholders(arg) for arg in launch_cfg["args"]]
     has_placeholder = any("{script}" in a for a in inner_parts)
     if not has_placeholder and not launch_cfg.get("post_launch_keys"):
         inner_parts.extend(["/bin/sh", script_str])
@@ -281,9 +286,11 @@ def build_subterminal_launch_args(launch_cfg, host_launch_cfg, script_path):
 
     inner_cmd = " ".join(shlex.quote(a) for a in inner_parts)
     inner_cmd = f"unset TERM_PROGRAM TERM_PROGRAM_VERSION; {inner_cmd}"
-    argv = list(host_launch_cfg.get("wrapper", []))
+    argv = [expand_placeholders(item)
+            for item in host_launch_cfg.get("wrapper", [])]
     argv.append(host_launch_cfg["program"])
-    argv.extend(host_launch_cfg.get("args", ["-e"]))
+    argv.extend(expand_placeholders(arg)
+                for arg in host_launch_cfg.get("args", ["-e"]))
     argv.extend(["sh", "-c", inner_cmd])
     return argv
 
@@ -606,8 +613,10 @@ _KEY_INJECT_PRE_DELAY = 0.5
 _KEY_INJECT_POST_DELAY = 1.5
 
 
-def should_skip(launch_cfg, is_docker=None):
+def should_skip(launch_cfg, is_docker=None, force=False):
     """Return True if the config should be skipped in the current environment."""
+    if force:
+        return False
     if is_docker is None:
         is_docker = _IS_DOCKER
     if launch_cfg["skip"]:

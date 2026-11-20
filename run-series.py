@@ -355,7 +355,7 @@ def docker_per_terminal_run(args):
             if not {name_lower, prog_lower, file_lower} & run_only:
                 continue
             matched_run_only.update({name_lower, prog_lower, file_lower} & run_only)
-        if should_skip(launch_cfg, is_docker=True):
+        if should_skip(launch_cfg, is_docker=True, force=args.force):
             if run_only:
                 skipped.append(
                     (d.software_name,
@@ -391,6 +391,8 @@ def docker_per_terminal_run(args):
                 "--timeout", str(term_timeout or args.timeout),
                 "--run-only", sw_name,
             ]
+            if args.force:
+                cmd.append("--force")
             if args.all:
                 cmd.append("--all")
             future = executor.submit(run_container, cmd, container_name,
@@ -436,6 +438,10 @@ def main():
         "--run-only", type=str, default="",
         help="Comma-separated list of terminal names (software_name or program) "
              "to run; all others are skipped")
+    parser.add_argument(
+        "--force", action="store_true",
+        help="Run terminals whose launch config is reserved for the other "
+             "environment (for example a Docker-preferred terminal on the host)")
     parser.add_argument(
         "--pause-exit", action="store_true",
         help="Append 'read' to run scripts so the terminal stays open on error")
@@ -537,7 +543,7 @@ def main():
                 if candidate in run_only:
                     matched_run_only.add(candidate)
 
-        if not run_only and should_skip(launch_cfg):
+        if not run_only and should_skip(launch_cfg, force=args.force):
             reason = launch_cfg.get("skip_reason") or "marked skip in mixins"
             skipped.append((d.software_name, reason))
             continue

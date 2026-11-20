@@ -8,11 +8,16 @@ terminal: its identity, its detected capabilities, and its test results.
 Resource profiling, window geometry, and run timestamps are excluded because
 they change on every run and say nothing about the terminal.
 
+Unless ``--keep`` is given, data files whose only changes are such measurements
+are restored with ``git checkout --`` before the comparison, leaving the
+working tree holding terminal changes only.
+
 Usage::
 
     python scripts/review.py
     python scripts/review.py --rev HEAD~1
     python scripts/review.py kitty foot
+    python scripts/review.py --keep
 """
 # std imports
 import os
@@ -76,6 +81,38 @@ WINDOW_RESULT_KEYS = frozenset((
     'width',
 ))
 
+#: Keys that record when a scan ran rather than what it found.
+TIME_KEYS = frozenset(('datetime', 'scanned_datetime'))
+
+#: Keys that describe the window or font cell a scan was measured in.
+GEOMETRY_KEYS = frozenset((
+    'bands',
+    'cell_height',
+    'cell_height_px',
+    'cell_width',
+    'cell_width_px',
+    'columns',
+    'height',
+    'origin_x',
+    'origin_y',
+    'painted_rows',
+    'pixels_height',
+    'pixels_width',
+    'ruler_row',
+    'screen_ratio',
+    'screen_ratio_name',
+    'term_height',
+    'term_width',
+    'width',
+))
+
+#: ``font_test_results`` keys that follow from the measured cell geometry.
+FONT_RENDER_KEYS = frozenset((
+    'ascii', 'ink_color', 'ink_fraction', 'monochrome', 'sampled_cells'))
+
+#: ``font_test_results`` keys whose change makes a rendering difference follow.
+FONT_CELL_KEYS = frozenset(('cell_height', 'cell_width', 'origin_x', 'origin_y'))
+
 #: ``terminal_results`` keys that identify the program rather than a capability.
 IDENTITY_RESULT_KEYS = frozenset((
     'software_method',
@@ -97,8 +134,8 @@ SPILL_COUNT_KEYS = (
     'graphemes_any', 'graphemes_left', 'graphemes_right',
     'graphemes_both', 'max_left_cells', 'max_right_cells')
 
-#: Spillover geometry that makes two scans comparable.
-SPILLOVER_GEOMETRY_KEYS = (
+#: ``spillover_results`` calibration keys that make two scans comparable.
+SPILL_WINDOW_KEYS = (
     'term_width', 'term_height', 'cell_width_px', 'cell_height_px')
 
 #: Codepoints shown per failure group.
@@ -131,17 +168,54 @@ def _load_worktree(path):
         return yaml.load(fin, Loader=_LOADER)
 
 
-def _load_revision(rev, path):
-    relpath = os.path.relpath(path, _PROJECT)
+def _load_git(project, spec):
     try:
         proc = subprocess.run(
-            ['git', 'show', '{}:{}'.format(rev, relpath)],
-            cwd=_PROJECT, capture_output=True, check=False)
+            ['git', 'show', spec], cwd=project, capture_output=True, check=False)
     except OSError:
         return None
     if proc.returncode:
         return None
     return yaml.load(proc.stdout.decode('utf-8'), Loader=_LOADER)
+
+
+def _load_revision(rev, path, project=_PROJECT):
+    return _load_git(project, '{}:{}'.format(
+        rev, os.path.relpath(path, project)))
+
+
+def _load_index(path, project=_PROJECT):
+    return _load_git(project, ':' + os.path.relpath(path, project))
+
+
+def _modified_data_paths(project, data_dir):
+    """Return tracked ``data/*.yaml`` paths with unstaged changes."""
+    proc = subprocess.run(
+        ['git', 'diff', '--name-only', '--diff-filter=d', '--',
+         os.path.relpath(data_dir, project)],
+        cwd=project, capture_output=True, check=False)
+    if proc.returncode:
+        return []
+    return sorted(
+        os.path.join(project, name)
+        for name in proc.stdout.decode('utf-8').splitlines()
+        if name.endswith('.yaml'))
+
+
+def _discard_noise(project, data_dir):
+    """Restore data files whose working-tree changes describe only the run."""
+    restored = []
+    for path in _modified_data_paths(project, data_dir):
+        old = _load_index(path, project)
+        if old is None or _compare_document(old, _load_worktree(path))[0]:
+            continue
+        relpath = os.path.relpath(path, project)
+        proc = subprocess.run(
+            ['git', 'checkout', '--', relpath], cwd=project,
+            capture_output=True, check=False)
+        if not proc.returncode:
+            restored.append(os.path.basename(path))
+    return restored
 
 
 def _format_value(value):
@@ -378,16 +452,6 @@ def _write_spillover(out, old, new, counters):
     if added:
         counters['spillover'] += 1
         out.write('newly shifted: {:,}'.format(len(added)))
-    old_calibration = old.get('calibration') or {}
-    new_calibration = new.get('calibration') or {}
-    for key in SPILLOVER_GEOMETRY_KEYS:
-        old_value = old_calibration.get(key, _MISSING)
-        new_value = new_calibration.get(key, _MISSING)
-        if old_value == new_value:
-            continue
-        counters['spillover'] += 1
-        out.write('calibration.{}: {} -> {}'.format(
-            key, _format_value(old_value), _format_value(new_value)))
 
 
 def _write_test_results(out, old_results, new_results, counters):
@@ -419,6 +483,29 @@ def _write_identity_changes(out, identity):
             _format_value(new_value)), 2)
 
 
+def _cell_geometry_changed(old, new):
+    old_dict = old if isinstance(old, dict) else {}
+    new_dict = new if isinstance(new, dict) else {}
+    return any(
+        old_dict.get(key, _MISSING) != new_dict.get(key, _MISSING)
+        for key in FONT_CELL_KEYS)
+
+
+def _spill_window_changed(old, new):
+    """Return True when the two spillover scans used different windows."""
+    old_calibration = (old.get('spillover_results') or {}).get('calibration') or {}
+    new_calibration = (new.get('spillover_results') or {}).get('calibration') or {}
+    return any(
+        old_calibration.get(key) != new_calibration.get(key)
+        for key in SPILL_WINDOW_KEYS)
+
+
+def _is_measurement_leaf(key, font_geometry):
+    if key in TIME_KEYS or key in GEOMETRY_KEYS:
+        return True
+    return font_geometry and key in FONT_RENDER_KEYS
+
+
 def _compare_document(old, new):
     identity = []
     capabilities = []
@@ -431,8 +518,12 @@ def _compare_document(old, new):
         new_value = new.get(key, _MISSING)
         if old_value == new_value:
             continue
+        font_geometry = (key == 'font_test_results'
+                         and _cell_geometry_changed(old_value, new_value))
         for path, old_leaf, new_leaf in _leaf_changes(
                 old_value, new_value, (key,)):
+            if _is_measurement_leaf(path[-1], font_geometry):
+                continue
             identity.append((path, old_leaf, new_leaf))
 
     for path, old_value, new_value in _leaf_changes(
@@ -458,13 +549,14 @@ def _compare_document(old, new):
                 '.'.join(map(str, path)),
                 _format_value(old_value),
                 _format_value(new_value)), 2)
-    if old.get('spillover_results') != new.get('spillover_results'):
+    if (old.get('spillover_results') != new.get('spillover_results')
+            and not _spill_window_changed(old, new)):
         spill_out = _Writer()
         _write_spillover(spill_out, old.get('spillover_results') or {},
                          new.get('spillover_results') or {}, counters)
         if spill_out.lines:
             out.write('spillover', 1)
-            out.lines.extend(spill_out.lines)
+            out.extend(spill_out.lines, 1)
     if old.get('test_results') != new.get('test_results'):
         test_out = _Writer()
         _write_test_results(test_out, old.get('test_results') or {},
@@ -502,7 +594,14 @@ def main():
                         help='YAML file to compare against instead of --rev')
     parser.add_argument('--data-dir', default=_DATA_DIR,
                         help='directory holding the data YAML files')
+    parser.add_argument('--keep', action='store_true',
+                        help='keep data files that changed only in run metadata '
+                             'or window geometry')
     args = parser.parse_args()
+
+    restored = []
+    if not args.keep and not args.old:
+        restored = _discard_noise(_PROJECT, args.data_dir)
 
     names = os.listdir(args.data_dir)
     paths = sorted(
@@ -521,6 +620,12 @@ def main():
         parser.error('--old requires exactly one terminal')
 
     out = _Writer()
+    if restored:
+        out.write('restored {} file{} with no terminal changes '
+                  '(use --keep to inspect them)'.format(
+                      len(restored), '' if len(restored) == 1 else 's'))
+        out.extend(textwrap.wrap(', '.join(restored), width=96), 1)
+        out.write()
     run_changes = collections.defaultdict(collections.Counter)
     totals = collections.Counter()
     changed_files = 0
@@ -531,7 +636,8 @@ def main():
 
     for path in paths:
         new = _load_worktree(path)
-        old = _load_worktree(args.old) if args.old else _load_revision(args.rev, path)
+        old = _load_worktree(args.old) if args.old else _load_revision(
+            args.rev, path, _PROJECT)
         name = os.path.splitext(os.path.basename(path))[0]
         if old is None:
             new_files += 1

@@ -545,7 +545,9 @@ def measured_advances(document):
     test_results = document.get('test_results') or {}
     for key, value in test_results.items():
         if key == 'language_results':
-            for language in value.values():
+            for language in (value or {}).values():
+                if not isinstance(language, dict):
+                    continue
                 for record in language.get('failed') or []:
                     text = decode_wchars(
                         record.get('wchars') or record.get('wchar') or '')
@@ -556,6 +558,8 @@ def measured_advances(document):
         if not isinstance(value, dict):
             continue
         for version in value.values():
+            if not isinstance(version, dict):
+                continue
             for record in version.get('failed_codepoints') or []:
                 text = decode_wchars(
                     record.get('wchars') or record.get('wchar') or '')
@@ -691,28 +695,30 @@ def calibration_from_image(image, term_width, term_height):
     """Return calibration metrics measured from a calibration capture."""
     blocks = [block for block in _checkerboard_blocks(image)
               if _marker_shaped(block, image.size)]
-    if len(blocks) >= 2:
-        top = min(blocks, key=lambda block: block[1])
-        bottom = max(blocks, key=lambda block: block[1])
-        origin_x, origin_y = top[0], top[1]
+    if blocks:
+        # Markers sit at the page corners, two cells wide and two cells high.  A title bar or a
+        # menu bar can hide one of them, so take the pair farthest apart by row and column sum:
+        # opposite corners measure both dimensions, and an adjacent or single marker measures
+        # its own size.  Each axis of the origin is then walked back from the marker when that
+        # marker is not on that edge.  Both markers end on a cell boundary, while their near
+        # edges carry the window padding, which a terminal paints in the colour of the row's
+        # first cell.
+        first = min(blocks, key=lambda block: block[0] + block[1])
+        second = max(blocks, key=lambda block: block[0] + block[1])
         column_span = max(1, term_width - 3)
         row_span = max(1, term_height - 3)
-        cell_width = (bottom[0] - top[0]) / column_span
-        cell_height = (bottom[1] - top[1]) / row_span
-    elif len(blocks) == 1:
-        # Wayland clients nested in a smaller compositor window can clip one marker, and a title
-        # bar drawn inside the window can eat the top one.  The remaining marker is two cells wide
-        # and two cells high and sits at a corner of the grid, so where it is says which one it is:
-        # the far corner has to be walked back over the page to reach the origin.
-        block = blocks[0]
-        cell_width = (block[2] - block[0] + 1) / 2.0
-        cell_height = (block[3] - block[1] + 1) / 2.0
-        far = (block[1] + block[3]) / 2 > image.size[1] / 2
-        origin_x = block[0]
-        origin_y = block[1]
-        if far:
-            origin_x -= max(1, term_width - 3) * cell_width
-            origin_y -= max(1, term_height - 3) * cell_height
+        if second[0] != first[0] and second[1] != first[1]:
+            cell_width = abs(second[2] - first[2]) / column_span
+            cell_height = abs(second[3] - first[3]) / row_span
+        else:
+            cell_width = (first[2] - first[0] + 1) / 2.0
+            cell_height = (first[3] - first[1] + 1) / 2.0
+        origin_x = first[2] + 1 - 2 * cell_width
+        origin_y = first[3] + 1 - 2 * cell_height
+        if (first[0] + first[2]) / 2 > image.size[0] / 2:
+            origin_x -= column_span * cell_width
+        if (first[1] + first[3]) / 2 > image.size[1] / 2:
+            origin_y -= row_span * cell_height
     else:
         bounds = _color_bounds(image)
         if bounds is None:
@@ -1721,6 +1727,10 @@ def scan_terminal(term, window_id, candidates, temp_dir,
 def build_results(calibration, results, errors, n_candidates, images=None,
                   shifted=None, painted_rows=None, cursor_rows=0):
     """Return the YAML section describing a completed scan."""
+    if errors or len(results) != n_candidates:
+        raise SpilloverError(
+            f'incomplete scan: {len(results)} of {n_candidates} contested '
+            f'graphemes tested, {len(errors)} page error(s)')
     counts = spillover_statistics(results)
     by_kind = collections.defaultdict(list)
     tested_by_kind = collections.Counter(

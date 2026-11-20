@@ -82,7 +82,6 @@ LINK_REGEX = re.compile(r'[^a-zA-Z0-9_]')
 FOOTNOTE_TEXT_SIZING = "†"
 FOOTNOTE_SIXEL = "‡"
 FOOTNOTE_CONPTY = "§"
-FOOTNOTE_SPILL_PARTIAL = "¶"
 
 #: Display names of spillover test categories without their own label.
 SPILLOVER_CATEGORY_NAMES = {
@@ -349,10 +348,6 @@ def _text_sizing_mark(result, key):
 def _text_sizing_credit_note(result, key):
     mark = _text_sizing_mark(result, key)
     return f"{mark} (Text Sizing protocol)" if mark else ""
-
-
-def _spill_partial_mark(result):
-    return f" {FOOTNOTE_SPILL_PARTIAL}" if result.get("spill_partial") else ""
 
 
 def wrap_time_with_hyperlink(text, score, elapsed_seconds, terminal_name, section_suffix):
@@ -626,6 +621,20 @@ def process_resource_data():
     generate_graphs(sessions, Path(profiles_dir))
 
 
+def incomplete_spillovers(score_table):
+    """Return ``(name, tested, candidates, errors)`` for scans that stopped early."""
+    incomplete = []
+    for entry in score_table:
+        section = entry["data"].get("spillover_results") or {}
+        tested = section.get("n_tested") or 0
+        candidates = section.get("n_candidates") or 0
+        errors = len(section.get("errors") or ())
+        if errors or (tested and candidates and tested < candidates):
+            incomplete.append(
+                (entry["terminal_software_name"], tested, candidates, errors))
+    return incomplete
+
+
 def main():
     """Generate all RST documentation pages, CSS, and plots from YAML data files."""
     print('Processing resource data... ', file=sys.stderr, end='', flush=True)
@@ -635,6 +644,16 @@ def main():
     print('Generating score table... ', file=sys.stderr, end='', flush=True)
     score_table, all_successful_languages = make_score_table()
     print('ok', file=sys.stderr)
+
+    incomplete = incomplete_spillovers(score_table)
+    if incomplete:
+        for name, tested, candidates, errors in incomplete:
+            print(f'error: {name}: spillover scan tested {tested:,} of '
+                  f'{candidates:,} contested graphemes, {errors} page '
+                  'error(s)', file=sys.stderr)
+        print('error: incomplete spillover data, re-run the spillover stage '
+              'for these terminals', file=sys.stderr)
+        return 1
 
     screenshots_dir = os.path.join(_ROOT, "docs", "_static", "screenshots")
     screenshot_groups = collect_screenshot_groups(
@@ -945,17 +964,15 @@ def make_score_table():
         # Graphics protocol score, 1.0 modern, 0.5 legacy, 0.0 none
         _score_graphics = score_graphics(data)
 
-        # Spillover score, share of tested emoji sequences that spilled: only ZWJ,
-        # VS16, VS15, and RI have a standardized cell width, so only their spills
-        # are an error.  Language graphemes are reported, not scored.
+        # Spillover score, share of tested emoji sequences that spilled.  Only
+        # ZWJ, VS16, VS15, and RI have a standardized cell width, so only their
+        # spills are penalized.  A language grapheme that spills is shaping the
+        # way its font engine and the terminal agree to; it is reported in the
+        # Spillover section and is not scored.
         spill_section = data.get("spillover_results") or {}
         spill_n_tested = spill_section.get("n_tested") or 0
         spill_n_spillover = spill_section.get("n_spillover") or 0
         _score_spill = emoji_spillover_rate(spill_section)
-        spill_partial = bool(
-            spill_n_tested
-            and spill_section.get("n_candidates")
-            and spill_n_tested < spill_section["n_candidates"])
 
         bidi_section = data.get("bidi_results") or {}
         bidi_supported = bidi_section.get("supported")
@@ -1022,7 +1039,6 @@ def make_score_table():
                 bidi_section=bidi_section,
                 spill_n_tested=spill_n_tested,
                 spill_n_spillover=spill_n_spillover,
-                spill_partial=spill_partial,
                 text_sizing_credited=text_sizing_credited,
                 data=data,
                 fname=os.path.basename(yaml_path),
@@ -1434,8 +1450,7 @@ def display_tabulated_scores(score_table):
                 ) if not math.isnan(result["score_ri_scaled"])
                     else _wrap_untested(result["terminal_software_name"], "_ri")),
                 "SPILL": (wrap_score_with_hyperlink(
-                    format_score_int(result["score_spill_scaled"])
-                    + _spill_partial_mark(result),
+                    format_score_int(result["score_spill_scaled"]),
                     result["score_spill_scaled"],
                     result["terminal_software_name"],
                     "_spillover"
@@ -1466,18 +1481,6 @@ def display_tabulated_scores(score_table):
     # Generate and print table with inline role-colored scores
     table_str = tabulate.tabulate(tabulated_scores, headers="keys", tablefmt="rst")
     print_datatable(table_str)
-
-    partial_spill = [e["terminal_software_name"] for e in score_table
-                     if e.get("spill_partial")]
-    if partial_spill:
-        names = ", ".join(
-            make_outbound_hyperlink(name, name + "_spillover")
-            for name in partial_spill)
-        print()
-        print(f"{FOOTNOTE_SPILL_PARTIAL} Spillover scan stopped before testing "
-              "every contested grapheme for:")
-        print(f"{names}.")
-        print()
 
     has_any_text_sizing = any(e.get("text_sizing_credited") for e in score_table)
     if has_any_text_sizing:
@@ -1575,11 +1578,9 @@ def display_table_definitions():
     )
     print(
         "- *SPILL score*: Share of tested ZWJ, VS16, VS15, and RI sequences with\n"
-        "  changed pixels outside the cursor advance, either direction and any cell\n"
-        "  count: only their width is standardized, so only their spills are an\n"
-        "  error.  Language graphemes are gathered and reported, not scored.  Scaled\n"
-        "  score is inverted so 100 is the lowest observed rate.  Informational and\n"
-        "  excluded from the final score.  ¶ marks a scan that stopped early."
+        "  pixels painted outside the cursor advance, inverted so 100 is the\n"
+        "  lowest observed rate.  Language grapheme spills are reported per\n"
+        "  terminal and are not scored."
     )
     print(
         "- *BiDi score*: 100 when a block of ``X`` written in the left half is\n"
@@ -2812,25 +2813,6 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print_datatable(table_str)
 
     print()
-    display_score_details_heading(sw_name, "spillover", "SPILL Score Details")
-    print()
-    section = entry["data"].get("spillover_results") or {}
-    if not math.isnan(entry["score_spill"]):
-        n_emoji_spill, n_emoji_tested = emoji_spill_counts(section) or (0, 0)
-        print("Emoji spillover calculation:")
-        print()
-        print(f"- Total contested emoji sequences with spillover: {n_emoji_spill}")
-        print(f"- Total contested emoji sequences tested: {n_emoji_tested}")
-        print(f"- Formula: {n_emoji_spill} / {n_emoji_tested}")
-        print(f"- Result: {entry['score_spill'] * 100:.2f}%")
-        print(f"- Scaled score: {entry['score_spill_scaled'] * 100:.1f} / 100")
-        print("- Only ZWJ, VS16, VS15, and RI spills are scored.")
-    else:
-        print("No spillover scan is available for this terminal.  Its final")
-        print("score uses the mean scaled SPILL score, so the missing scan")
-        print("neither raises nor lowers the final score.")
-    print()
-
     # Add score comparison plot
     print("**Score Comparison Plot:**")
     print()
@@ -3018,6 +3000,31 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
               + _text_sizing_credit_note(entry, "ri"))
     else:
         print(f".. note:: {_UNTESTED_NOTE}")
+    print()
+
+    display_score_details_heading(sw_name, "spillover", "SPILL Score Details")
+    print()
+    section = entry["data"].get("spillover_results") or {}
+    if not math.isnan(entry["score_spill"]):
+        n_spillover = section.get("n_spillover") or 0
+        n_tested = section.get("n_tested") or 0
+        n_emoji_spill, n_emoji_tested = emoji_spill_counts(section) or (0, 0)
+        print("Emoji spillover calculation:")
+        print()
+        print(f"- Total contested emoji sequences with spillover: {n_emoji_spill}")
+        print(f"- Total contested emoji sequences tested: {n_emoji_tested}")
+        print(f"- Formula: {n_emoji_spill} / {n_emoji_tested}")
+        print(f"- Result: {entry['score_spill'] * 100:.2f}%")
+        print(f"- Scaled score: {entry['score_spill_scaled'] * 100:.1f} / 100")
+        print("- Only ZWJ, VS16, VS15, and RI spills are penalized.")
+        print()
+        print(f"For context, the same scan found {n_spillover} of {n_tested}")
+        print("contested graphemes spilling in total.  Language grapheme spills")
+        print("are reported in the Spillover section and are not scored.")
+    else:
+        print("No spillover scan is available for this terminal.  Its final")
+        print("score uses the mean scaled SPILL score, so the missing scan")
+        print("neither raises nor lowers the final score.")
     print()
 
     display_inbound_hyperlink(sw_name + "_features_details")
@@ -4339,7 +4346,7 @@ def show_spillover_results(sw_name, entry):
     print("A *spill* is the detection of a pixel change outside the cells")
     print("of the width calculated by the terminal, they can sometimes 'spill'")
     print("in either direction to adjacent cells. Only 'Contested' graphemes known")
-    print("Cto vary in width between terminal emulators are tested.")
+    print("to vary in width between terminal emulators are tested.")
     print()
     print(".. note::")
     print()
