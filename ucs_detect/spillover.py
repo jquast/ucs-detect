@@ -80,6 +80,9 @@ COLOR_TOLERANCE = 60
 #: Fraction of a cell that must differ before it is contaminated.
 PAINTED_FRACTION = 0.02
 
+#: Pixels trimmed from each edge of a grapheme's cells when looking for ink (calibration rounding).
+INK_MARGIN = 1
+
 #: Fraction of a row's cells that must disagree with the page before the row is called displaced.
 SHIFT_FRACTION = 0.2
 
@@ -826,6 +829,15 @@ def _inner_box(box, fraction=0.2):
             max(inner_y0 + 1, y1 - margin_y))
 
 
+def _margin_box(box, margin):
+    x0, y0, x1, y1 = box
+    inner_x0 = min(x0 + margin, x1 - 1)
+    inner_y0 = min(y0 + margin, y1 - 1)
+    return (inner_x0, inner_y0,
+            max(inner_x0 + 1, x1 - margin),
+            max(inner_y0 + 1, y1 - margin))
+
+
 def _color_distance(first, second):
     return (abs(first[0] - second[0])
             + abs(first[1] - second[1])
@@ -882,11 +894,23 @@ def _last_usable_column(image, calibration, reference_row, reference):
     return 0
 
 
-def cell_is_painted(image, calibration, row, column):
-    """Return True when a cell contains pixels unlike its dominant color."""
+def cell_is_painted(image, calibration, row, column, advance=1):
+    """
+    Return True when the *advance* cells from *column* hold pixels unlike their dominant color.
+
+    The cells are measured as one box, edge to edge less :data:`INK_MARGIN` pixels, so a thin
+    stroke centred in a wide grapheme, or a mark at the top or bottom of its cell, counts as ink.
+    The ink needed is :data:`PAINTED_FRACTION` of one cell's inner box, so a small mark is not
+    diluted by the larger area: whatever the inner box alone would call ink still counts.
+    """
     pixels = image.load()
-    x0, y0, x1, y1 = _inner_box(
-        _cell_box(calibration, row, column, image.size))
+    first = _cell_box(calibration, row, column, image.size)
+    x0, y0, _x1, y1 = first
+    _x0, _y0, x1, _y1 = _cell_box(
+        calibration, row, column + advance - 1, image.size)
+    x0, y0, x1, y1 = _margin_box((x0, y0, x1, y1), INK_MARGIN)
+    in_x0, in_y0, in_x1, in_y1 = _inner_box(first)
+    needed = PAINTED_FRACTION * (in_x1 - in_x0) * (in_y1 - in_y0)
     samples = []
     for y in range(y0, y1):
         for x in range(x0, x1):
@@ -897,7 +921,7 @@ def cell_is_painted(image, calibration, row, column):
     dominant = counts.most_common(1)[0][0]
     different = sum(1 for sample in samples
                     if _color_distance(sample, dominant) > COLOR_TOLERANCE)
-    return different / len(samples) > PAINTED_FRACTION
+    return different > needed
 
 
 def _cell_colors(image, calibration, rows):
@@ -1017,9 +1041,7 @@ def analyze_page(image, calibration, items, reference=None,
     for row, column, candidate in items:
         advance = candidate.advance or candidate.width
         advance = max(1, min(advance, COLUMN_STRIDE))
-        blank = not any(
-            cell_is_painted(image, calibration, row, cell)
-            for cell in range(column, column + advance))
+        blank = not cell_is_painted(image, calibration, row, column, advance)
 
         left_start = max(0, column - LEFT_CELLS)
         previous = previous_by_row.get(row)
