@@ -290,11 +290,13 @@ def run_stage(launch_cfg, host_cfg, script_path, sentinel_path,
     """
     Run one terminal stage and return ``(exit_code, message)``.
 
-    The terminal is killed and its configured kill command runs on timeout and on exception alike.
+    The configured kill command runs before launch, clearing windows restored from an earlier
+    session, and again on timeout and on exception alike.
     """
     post_keys = launch_cfg.get('post_launch_keys', [])
     post_delay = launch_cfg.get('post_launch_delay_ms', 0)
     mac_config = launch_cfg.get('macos') or {}
+    run_kill_command(launch_cfg)
     argv = launch_argv(launch_cfg, host_cfg, script_path)
     snapshot = window_snapshot()
     process: subprocess.Popen | macos.MacLaunch
