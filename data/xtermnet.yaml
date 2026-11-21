@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 05:55:33 UTC
+  scanned_datetime: 2026-11-21 00:18:48 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 05:55:27 UTC
+  scanned_datetime: 2026-11-21 00:18:42 UTC
   painted_rows: 23
   calibration:
     origin_x: 10.0
-    origin_y: 42
+    origin_y: 42.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 80
@@ -128,8 +128,8 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 10
-  origin_y: 42
+  origin_x: 10.0
+  origin_y: 42.0
   cell_width: 8.0
   cell_height: 16.0
   term_width: 80
@@ -250,11 +250,11 @@ session_arguments:
 software_name: XTerm.NET
 software_version: 3.0.2
 spillover_results:
-  scanned_datetime: 2026-11-16 05:56:04 UTC
+  scanned_datetime: 2026-11-21 00:19:20 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 813
-  n_no_ink: 31
+  n_no_ink: 28
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
@@ -760,7 +760,7 @@ spillover_results:
     items_per_page: 513
   calibration:
     origin_x: 10.0
-    origin_y: 42
+    origin_y: 42.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 235

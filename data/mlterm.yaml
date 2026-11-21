@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-17 15:29:41 UTC
+  scanned_datetime: 2026-11-21 00:12:56 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-17 15:29:35 UTC
+  scanned_datetime: 2026-11-21 00:12:49 UTC
   painted_rows: 24
   calibration:
     origin_x: 2.0
-    origin_y: 2
+    origin_y: 2.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 80
@@ -128,8 +128,8 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 2
-  origin_y: 2
+  origin_x: 2.0
+  origin_y: 2.0
   cell_width: 8.0
   cell_height: 16.0
   term_width: 80
@@ -262,12 +262,12 @@ session_arguments:
 software_name: mlterm
 software_version: 3.9.6
 spillover_results:
-  scanned_datetime: 2026-11-17 15:30:05 UTC
+  scanned_datetime: 2026-11-21 00:13:21 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 4170
-  n_no_ink: 3113
-  n_shifted: 1690
+  n_spillover: 4171
+  n_no_ink: 386
+  n_shifted: 1710
   shifted_graphemes:
   - \u0985\u0982
   - \u0995\u09be
@@ -829,6 +829,16 @@ spillover_results:
   - \U0001f468\U0001f3fe\u200d\U0001f3eb
   - \U0001f468\U0001f3fe\u200d\U0001f3ed
   - \U0001f468\U0001f3fe\u200d\U0001f430\u200d\U0001f468\U0001f3fb
+  - \U0001f468\U0001f3fe\u200d\U0001f430\u200d\U0001f468\U0001f3fd
+  - \U0001f468\U0001f3fe\u200d\U0001f430\u200d\U0001f468\U0001f3ff
+  - \U0001f468\U0001f3fe\u200d\U0001f4bb
+  - \U0001f468\U0001f3fe\u200d\U0001f4bc
+  - \U0001f468\U0001f3fe\u200d\U0001f527
+  - \U0001f468\U0001f3fe\u200d\U0001f52c
+  - \U0001f468\U0001f3fe\u200d\U0001f680
+  - \U0001f468\U0001f3fe\u200d\U0001f692
+  - \U0001f468\U0001f3fe\u200d\U0001f91d\u200d\U0001f468\U0001f3fb
+  - \U0001f468\U0001f3fe\u200d\U0001f91d\u200d\U0001f468\U0001f3fd
   - \U0001f468\U0001f3fe\u200d\U0001f91d\u200d\U0001f468\U0001f3ff
   - \U0001f468\U0001f3fe\u200d\U0001f9af
   - \U0001f468\U0001f3fe\u200d\U0001f9af\u200d\u27a1\ufe0f
@@ -909,6 +919,16 @@ spillover_results:
   - \U0001f469\u200d\U0001f466\u200d\U0001f466
   - \U0001f469\u200d\U0001f467
   - \U0001f469\u200d\U0001f467\u200d\U0001f466
+  - \U0001f469\u200d\U0001f467\u200d\U0001f467
+  - \U0001f469\u200d\U0001f469\u200d\U0001f466
+  - \U0001f469\u200d\U0001f469\u200d\U0001f466\u200d\U0001f466
+  - \U0001f469\u200d\U0001f469\u200d\U0001f467
+  - \U0001f469\u200d\U0001f469\u200d\U0001f467\u200d\U0001f466
+  - \U0001f469\u200d\U0001f469\u200d\U0001f467\u200d\U0001f467
+  - \U0001f469\u200d\U0001f4bb
+  - \U0001f469\u200d\U0001f4bc
+  - \U0001f469\u200d\U0001f527
+  - \U0001f469\u200d\U0001f52c
   - \U0001f469\u200d\U0001f680
   - \U0001f469\u200d\U0001f692
   - \U0001f469\u200d\U0001f9af
@@ -1960,37 +1980,37 @@ spillover_results:
   - \U0001f1e6\U0001f1f2
   - \U0001f1e6\U0001f1f4
   spill_counts:
-    graphemes_any: 4170
-    graphemes_left: 2854
-    graphemes_right: 2663
-    graphemes_both: 1347
+    graphemes_any: 4171
+    graphemes_left: 2856
+    graphemes_right: 2661
+    graphemes_both: 1346
     left_cells:
-      '1': 2002
+      '1': 2001
       '2': 431
-      '3': 421
+      '3': 424
     right_cells:
-      '1': 1260
-      '2': 6
+      '1': 1257
+      '2': 7
       '3': 3
       '4': 2
       '5': 7
       '6': 3
       '7': 15
-      '8': 11
+      '8': 10
       '9': 64
-      '10': 80
+      '10': 81
       '11': 19
-      '12': 66
-      '13': 59
-      '14': 172
-      '15': 184
-      '16': 117
+      '12': 65
+      '13': 60
+      '14': 171
+      '15': 183
+      '16': 119
       '17': 144
-      '18': 173
-      '19': 34
-      '20': 43
-      '21': 20
-      '22': 75
+      '18': 172
+      '19': 36
+      '20': 42
+      '21': 19
+      '22': 76
       '23': 103
       '77': 1
       '84': 1
@@ -2056,10 +2076,10 @@ spillover_results:
       max_left_cells: 2
       max_right_cells: 1
     Chakma:
-      graphemes_any: 145
+      graphemes_any: 146
       graphemes_left: 139
       graphemes_right: 19
-      graphemes_both: 13
+      graphemes_both: 12
       left_cells:
         '1': 139
       right_cells:
@@ -2101,13 +2121,13 @@ spillover_results:
     Javanese (Javanese):
       graphemes_any: 488
       graphemes_left: 488
-      graphemes_right: 328
-      graphemes_both: 328
+      graphemes_right: 327
+      graphemes_both: 327
       left_cells:
         '1': 426
         '2': 62
       right_cells:
-        '1': 328
+        '1': 327
       max_left_cells: 2
       max_right_cells: 1
     Kannada:
@@ -2134,15 +2154,15 @@ spillover_results:
       max_left_cells: 2
       max_right_cells: 1
     Khün:
-      graphemes_any: 168
+      graphemes_any: 167
       graphemes_left: 44
-      graphemes_right: 146
+      graphemes_right: 145
       graphemes_both: 22
       left_cells:
         '1': 37
         '2': 7
       right_cells:
-        '1': 146
+        '1': 145
       max_left_cells: 2
       max_right_cells: 1
     Lao:
@@ -2156,12 +2176,12 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Malayalam:
-      graphemes_any: 76
-      graphemes_left: 14
-      graphemes_right: 75
-      graphemes_both: 13
+      graphemes_any: 77
+      graphemes_left: 13
+      graphemes_right: 76
+      graphemes_both: 12
       left_cells:
-        '1': 2
+        '1': 1
         '2': 6
         '3': 6
       right_cells:
@@ -2173,7 +2193,7 @@ spillover_results:
         '19': 4
         '20': 9
         '21': 9
-        '22': 20
+        '22': 21
         '23': 18
       max_left_cells: 3
       max_right_cells: 23
@@ -2211,15 +2231,15 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Mon:
-      graphemes_any: 203
+      graphemes_any: 202
       graphemes_left: 93
-      graphemes_right: 197
-      graphemes_both: 87
+      graphemes_right: 195
+      graphemes_both: 86
       left_cells:
         '1': 79
         '2': 14
       right_cells:
-        '1': 197
+        '1': 195
       max_left_cells: 2
       max_right_cells: 1
     Nepali:
@@ -2278,26 +2298,26 @@ spillover_results:
     RI:
       graphemes_any: 258
       graphemes_left: 250
-      graphemes_right: 34
-      graphemes_both: 26
+      graphemes_right: 36
+      graphemes_both: 28
       left_cells:
         '1': 250
       right_cells:
-        '1': 26
+        '1': 28
         '22': 8
       max_left_cells: 1
       max_right_cells: 22
     Sanskrit (Grantha):
       graphemes_any: 220
       graphemes_left: 217
-      graphemes_right: 26
-      graphemes_both: 23
+      graphemes_right: 25
+      graphemes_both: 22
       left_cells:
         '1': 196
         '2': 21
       right_cells:
-        '1': 23
-        '2': 3
+        '1': 21
+        '2': 4
       max_left_cells: 2
       max_right_cells: 2
     Shan:
@@ -2402,35 +2422,35 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 1
     VS15:
-      graphemes_any: 9
+      graphemes_any: 8
       graphemes_left: 0
-      graphemes_right: 9
+      graphemes_right: 8
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 9
+        '1': 8
       max_left_cells: 0
       max_right_cells: 1
     VS16:
-      graphemes_any: 127
+      graphemes_any: 128
       graphemes_left: 126
-      graphemes_right: 48
-      graphemes_both: 47
+      graphemes_right: 50
+      graphemes_both: 48
       left_cells:
         '1': 126
       right_cells:
-        '1': 48
+        '1': 50
       max_left_cells: 1
       max_right_cells: 1
     ZWJ:
-      graphemes_any: 1180
-      graphemes_left: 533
-      graphemes_right: 1176
-      graphemes_both: 529
+      graphemes_any: 1181
+      graphemes_left: 536
+      graphemes_right: 1175
+      graphemes_both: 530
       left_cells:
         '1': 4
         '2': 117
-        '3': 412
+        '3': 415
       right_cells:
         '1': 2
         '2': 3
@@ -2439,20 +2459,20 @@ spillover_results:
         '5': 7
         '6': 3
         '7': 15
-        '8': 11
+        '8': 10
         '9': 64
-        '10': 80
+        '10': 81
         '11': 19
-        '12': 65
-        '13': 59
-        '14': 172
-        '15': 182
-        '16': 115
+        '12': 64
+        '13': 60
+        '14': 171
+        '15': 181
+        '16': 117
         '17': 139
-        '18': 168
-        '19': 30
-        '20': 33
-        '21': 2
+        '18': 167
+        '19': 32
+        '20': 32
+        '21': 1
         '77': 1
         '84': 1
       max_left_cells: 3
@@ -2571,15 +2591,15 @@ spillover_results:
           example: '''\u0d33\u0d4d\u200d\u0d15\u0d4d\u0d15\u0d4d\u200c'''
           width: 5
       Left:
-        '1':
-          example: '''\u0d24\u0d4d\u0d28\u0d02'''
-          width: 2
         '2':
           example: '''\u0d30\u0d4d\u200d\u0d15\u0d4d\u0d15\u0d4d\u200c'''
           width: 5
         '3':
           example: '''\u0d30\u0d4d\u200d\u0d17\u0d4d\u0d17\u0d02'''
           width: 4
+        '1':
+          example: '''\u0d7b\u0d4d\u0d31\u0d46'''
+          width: 2
     Marathi:
       Right:
         '21':
@@ -2807,15 +2827,12 @@ spillover_results:
           example: '''\u26f9\ufe0f\u200d\u2642\ufe0f'''
           width: 3
         '3':
-          example: '''\u26f9\U0001f3fd\u200d\u2642\ufe0f'''
+          example: '''\u26f9\U0001f3fb\u200d\u2640\ufe0f'''
           width: 5
       Right:
         '20':
           example: '''\u26d3\ufe0f\u200d\U0001f4a5'''
           width: 4
-        '21':
-          example: '''\u26f9\ufe0f\u200d\u2642\ufe0f'''
-          width: 3
         '19':
           example: '''\u26f9\U0001f3fb\u200d\u2642\ufe0f'''
           width: 5
@@ -2840,6 +2857,9 @@ spillover_results:
         '12':
           example: '''\U0001f3c3\U0001f3fc\u200d\u27a1\ufe0f'''
           width: 6
+        '21':
+          example: '''\U0001f3cc\ufe0f\u200d\u2642\ufe0f'''
+          width: 3
         '11':
           example: '''\U0001f468\u200d\u2764\ufe0f\u200d\U0001f48b\u200d\U0001f468'''
           width: 10
@@ -3005,7 +3025,7 @@ spillover_results:
     items_per_page: 880
   calibration:
     origin_x: 2.0
-    origin_y: 2
+    origin_y: 2.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 319
@@ -6757,7 +6777,7 @@ spillover_results:
         column: 99
         advance: 2
         spill_left_cells: 1
-        spill_right_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9ad\ua9c0\ua99a\ua9bc\ua981
         codepoints:
         - 43437
@@ -9707,7 +9727,7 @@ spillover_results:
         column: 219
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 1
+        spill_right_cells: 0
       - wchar: \U00011321\U00011302
         codepoints:
         - 70433
@@ -9887,7 +9907,7 @@ spillover_results:
         column: 123
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 1
+        spill_right_cells: 0
       - wchar: \U00011324\U0001133f\U00011303
         codepoints:
         - 70436
@@ -10226,7 +10246,7 @@ spillover_results:
         column: 75
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 0
+        spill_right_cells: 1
       - wchar: \U00011328\U00011347
         codepoints:
         - 70440
@@ -10392,7 +10412,7 @@ spillover_results:
         column: 3
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 1
+        spill_right_cells: 0
       - wchar: \U0001132d\U0001133f\U00011303
         codepoints:
         - 70445
@@ -10775,7 +10795,7 @@ spillover_results:
         column: 171
         advance: 1
         spill_left_cells: 2
-        spill_right_cells: 0
+        spill_right_cells: 2
       - wchar: \U00011330\U0001134c
         codepoints:
         - 70448
@@ -10966,7 +10986,7 @@ spillover_results:
         column: 99
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 1
+        spill_right_cells: 0
       - wchar: \U00011335\U00011348
         codepoints:
         - 70453
@@ -14497,6 +14517,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \U0001110c\U0001112e
+        codepoints:
+        - 69900
+        - 69934
+        category: language
+        label: Chakma
+        row: 47
+        column: 51
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
       - wchar: \U0001110d\U00011128
         codepoints:
         - 69901
@@ -14746,7 +14777,7 @@ spillover_results:
         column: 99
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 1
+        spill_right_cells: 0
       - wchar: \U00011118\U00011128
         codepoints:
         - 69912
@@ -16595,18 +16626,6 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 1
-      - wchar: \u1000\u105f\u1032
-        codepoints:
-        - 4096
-        - 4191
-        - 4146
-        category: language
-        label: Mon
-        row: 8
-        column: 27
-        advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 1
       - wchar: \u1000\u1060
         codepoints:
         - 4096
@@ -17869,7 +17888,7 @@ spillover_results:
         column: 51
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 1
+        spill_right_cells: 0
       - wchar: \u101d\u103a
         codepoints:
         - 4125
@@ -18332,7 +18351,7 @@ spillover_results:
         column: 195
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 0
+        spill_right_cells: 1
       - wchar: \U00011323\U00011340
         codepoints:
         - 70435
@@ -22313,7 +22332,7 @@ spillover_results:
         row: 4
         column: 147
         advance: 7
-        spill_left_cells: 3
+        spill_left_cells: 0
         spill_right_cells: 14
       - wchar: \U0001f469\U0001f3fd\u200d\U0001f692
         codepoints:
@@ -25252,7 +25271,7 @@ spillover_results:
         row: 29
         column: 195
         advance: 6
-        spill_left_cells: 0
+        spill_left_cells: 3
         spill_right_cells: 14
       - wchar: \U0001f645\U0001f3fc\u200d\u2642\ufe0f
         codepoints:
@@ -25778,8 +25797,8 @@ spillover_results:
         row: 34
         column: 147
         advance: 6
-        spill_left_cells: 0
-        spill_right_cells: 15
+        spill_left_cells: 3
+        spill_right_cells: 16
       - wchar: \U0001f64d\U0001f3fc\u200d\u2640\ufe0f
         codepoints:
         - 128589
@@ -26305,7 +26324,7 @@ spillover_results:
         column: 99
         advance: 6
         spill_left_cells: 3
-        spill_right_cells: 15
+        spill_right_cells: 18
       - wchar: \U0001f6b5\U0001f3fc\u200d\u2640\ufe0f
         codepoints:
         - 128693
@@ -26318,7 +26337,7 @@ spillover_results:
         row: 39
         column: 123
         advance: 6
-        spill_left_cells: 3
+        spill_left_cells: 0
         spill_right_cells: 15
       - wchar: \U0001f6b5\U0001f3fc\u200d\u2642\ufe0f
         codepoints:
@@ -26685,7 +26704,7 @@ spillover_results:
         column: 99
         advance: 8
         spill_left_cells: 0
-        spill_right_cells: 14
+        spill_right_cells: 13
       - wchar: \U0001f6b6\U0001f3fe\u200d\u2642\ufe0f
         codepoints:
         - 128694
@@ -26872,20 +26891,20 @@ spillover_results:
         advance: 6
         spill_left_cells: 0
         spill_right_cells: 13
-      - wchar: \U0001f926\U0001f3fe\u200d\u2640\ufe0f
+      - wchar: \U0001f926\U0001f3fd\u200d\u2642\ufe0f
         codepoints:
         - 129318
-        - 127998
+        - 127997
         - 8205
-        - 9792
+        - 9794
         - 65039
         category: zwj
         label: ''
         row: 44
-        column: 27
+        column: 3
         advance: 6
-        spill_left_cells: 1
-        spill_right_cells: 0
+        spill_left_cells: 0
+        spill_right_cells: 18
       - wchar: \U0001f926\U0001f3fe\u200d\u2642\ufe0f
         codepoints:
         - 129318
@@ -27230,7 +27249,7 @@ spillover_results:
         column: 51
         advance: 6
         spill_left_cells: 2
-        spill_right_cells: 18
+        spill_right_cells: 0
       - wchar: \U0001f938\U0001f3fc\u200d\u2640\ufe0f
         codepoints:
         - 129336
@@ -27243,7 +27262,7 @@ spillover_results:
         row: 47
         column: 75
         advance: 6
-        spill_left_cells: 0
+        spill_left_cells: 3
         spill_right_cells: 15
       - wchar: \U0001f938\U0001f3fc\u200d\u2642\ufe0f
         codepoints:
@@ -27424,7 +27443,7 @@ spillover_results:
         row: 48
         column: 195
         advance: 6
-        spill_left_cells: 0
+        spill_left_cells: 3
         spill_right_cells: 14
       - wchar: \U0001f939\U0001f3fe\u200d\u2642\ufe0f
         codepoints:
@@ -27756,20 +27775,20 @@ spillover_results:
         advance: 4
         spill_left_cells: 3
         spill_right_cells: 16
-      - wchar: \U0001f93e\U0001f3fb\u200d\u2642\ufe0f
+      - wchar: \U0001f93e\U0001f3fc\u200d\u2640\ufe0f
         codepoints:
         - 129342
-        - 127995
+        - 127996
         - 8205
-        - 9794
+        - 9792
         - 65039
         category: zwj
         label: ''
         row: 52
-        column: 3
+        column: 27
         advance: 6
-        spill_left_cells: 0
-        spill_right_cells: 18
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \U0001f93e\U0001f3fc\u200d\u2642\ufe0f
         codepoints:
         - 129342
@@ -28297,7 +28316,7 @@ spillover_results:
         column: 171
         advance: 4
         spill_left_cells: 3
-        spill_right_cells: 20
+        spill_right_cells: 16
       - wchar: \U0001f9ce\u200d\u2642\ufe0f\u200d\u27a1\ufe0f
         codepoints:
         - 129486
@@ -28877,7 +28896,7 @@ spillover_results:
         column: 99
         advance: 5
         spill_left_cells: 3
-        spill_right_cells: 18
+        spill_right_cells: 19
       - wchar: \U0001f9d1\u200d\U0001f3a4
         codepoints:
         - 129489
@@ -31027,7 +31046,7 @@ spillover_results:
         column: 51
         advance: 7
         spill_left_cells: 2
-        spill_right_cells: 17
+        spill_right_cells: 0
       - wchar: \U0001f9d1\U0001f3ff\u200d\U0001f384
         codepoints:
         - 129489
@@ -31039,7 +31058,7 @@ spillover_results:
         row: 80
         column: 75
         advance: 7
-        spill_left_cells: 0
+        spill_left_cells: 3
         spill_right_cells: 14
       - wchar: \U0001f9d1\U0001f3ff\u200d\U0001f393
         codepoints:
@@ -31576,7 +31595,7 @@ spillover_results:
         row: 84
         column: 195
         advance: 6
-        spill_left_cells: 3
+        spill_left_cells: 0
         spill_right_cells: 14
       - wchar: \U0001f9d4\U0001f3ff\u200d\u2642\ufe0f
         codepoints:
@@ -32063,7 +32082,7 @@ spillover_results:
         column: 51
         advance: 6
         spill_left_cells: 2
-        spill_right_cells: 0
+        spill_right_cells: 18
       - wchar: \U0001f9d9\U0001f3fd\u200d\u2640\ufe0f
         codepoints:
         - 129497
@@ -32076,7 +32095,7 @@ spillover_results:
         row: 1
         column: 75
         advance: 6
-        spill_left_cells: 3
+        spill_left_cells: 0
         spill_right_cells: 15
       - wchar: \U0001f9d9\U0001f3fd\u200d\u2642\ufe0f
         codepoints:
@@ -32450,8 +32469,8 @@ spillover_results:
         row: 4
         column: 147
         advance: 6
-        spill_left_cells: 3
-        spill_right_cells: 16
+        spill_left_cells: 0
+        spill_right_cells: 15
       - wchar: \U0001f9dc\U0001f3fc\u200d\u2640\ufe0f
         codepoints:
         - 129500
@@ -33585,7 +33604,7 @@ spillover_results:
         column: 3
         advance: 2
         spill_left_cells: 1
-        spill_right_cells: 0
+        spill_right_cells: 1
       - wchar: \U0001f1e9\U0001f1ec
         codepoints:
         - 127465
@@ -34190,7 +34209,7 @@ spillover_results:
         column: 123
         advance: 2
         spill_left_cells: 1
-        spill_right_cells: 0
+        spill_right_cells: 1
       - wchar: \U0001f1ee\U0001f1f8
         codepoints:
         - 127470
@@ -34399,7 +34418,7 @@ spillover_results:
         column: 99
         advance: 2
         spill_left_cells: 1
-        spill_right_cells: 1
+        spill_right_cells: 0
       - wchar: \U0001f1f1\U0001f1e8
         codepoints:
         - 127473
@@ -34795,7 +34814,7 @@ spillover_results:
         column: 3
         advance: 2
         spill_left_cells: 1
-        spill_right_cells: 0
+        spill_right_cells: 1
       - wchar: \U0001f1f3\U0001f1ec
         codepoints:
         - 127475
@@ -35786,17 +35805,6 @@ spillover_results:
         advance: 2
         spill_left_cells: 0
         spill_right_cells: 1
-      - wchar: \U0001f449\ufe0e
-        codepoints:
-        - 128073
-        - 65038
-        category: vs15
-        label: ''
-        row: 44
-        column: 171
-        advance: 2
-        spill_left_cells: 0
-        spill_right_cells: 1
       - wchar: \U0001f4da\ufe0e
         codepoints:
         - 128218
@@ -35830,6 +35838,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 0
         spill_right_cells: 1
+      - wchar: \U0001f558\ufe0e
+        codepoints:
+        - 128344
+        - 65038
+        category: vs15
+        label: ''
+        row: 48
+        column: 99
+        advance: 2
+        spill_left_cells: 0
+        spill_right_cells: 1
       - wchar: \U0001f55d\ufe0e
         codepoints:
         - 128349
@@ -35849,17 +35868,6 @@ spillover_results:
         label: ''
         row: 49
         column: 219
-        advance: 2
-        spill_left_cells: 0
-        spill_right_cells: 1
-      - wchar: \U0001f691\ufe0e
-        codepoints:
-        - 128657
-        - 65038
-        category: vs15
-        label: ''
-        row: 50
-        column: 75
         advance: 2
         spill_left_cells: 0
         spill_right_cells: 1
@@ -36633,6 +36641,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \U0001f3ce\ufe0f
+        codepoints:
+        - 127950
+        - 65039
+        category: vs16
+        label: ''
+        row: 65
+        column: 123
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
       - wchar: \U0001f3d4\ufe0f
         codepoints:
         - 127956
@@ -37149,7 +37168,7 @@ spillover_results:
         column: 27
         advance: 1
         spill_left_cells: 1
-        spill_right_cells: 0
+        spill_right_cells: 1
       - wchar: \U0001f6cd\ufe0f
         codepoints:
         - 128717

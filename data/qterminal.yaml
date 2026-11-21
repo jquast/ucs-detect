@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 03:24:48 UTC
+  scanned_datetime: 2026-11-21 00:06:56 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 03:24:41 UTC
+  scanned_datetime: 2026-11-21 00:06:46 UTC
   painted_rows: 30
   calibration:
-    origin_x: 2
-    origin_y: 51
+    origin_x: 2.0
+    origin_y: 51.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 117
@@ -128,8 +128,8 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 2
-  origin_y: 51
+  origin_x: 2.0
+  origin_y: 51.0
   cell_width: 8.0
   cell_height: 16.0
   term_width: 117
@@ -283,11 +283,11 @@ session_arguments:
 software_name: QTerminal
 software_version: 2.2.1
 spillover_results:
-  scanned_datetime: 2026-11-16 03:25:04 UTC
+  scanned_datetime: 2026-11-21 00:07:20 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 605
-  n_no_ink: 6
+  n_no_ink: 2
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
@@ -521,8 +521,8 @@ spillover_results:
     columns_per_page: 10
     items_per_page: 850
   calibration:
-    origin_x: 2
-    origin_y: 51
+    origin_x: 2.0
+    origin_y: 51.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 317

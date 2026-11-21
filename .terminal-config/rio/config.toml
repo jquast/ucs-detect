@@ -1,0 +1,5 @@
+# workaround for Rio which resolves one font family and has no emoji presentation rules
+[[fonts.symbol-map]]
+start = "1F000"
+end = "1FAFF"
+font-family = "Noto Color Emoji"

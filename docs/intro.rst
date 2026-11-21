@@ -55,9 +55,10 @@ querying cursor position.
 Use Cases
 ---------
 
-- ttyscan
-- ghostty test suite?
-- contour test suite?
+- `Correction Tables`_ in python wcwidth and C11 libwcwidth
+- Reverse `Terminal Identification`_ in `ttyscan`_
+- Automatic `ghostty test`_
+- Contour `terminal evaluation`_
 
 ucs-detect
 ----------
@@ -341,8 +342,18 @@ The UDHR provides practical coverage of common complex grapheme clusters across 
 world's languages, serving as an indicator of a terminal's support for combining
 marks across diverse scripts.
 
+Releasing
+---------
+
+Releases are published by ``.github/workflows/release.yml`` using `PyPI trusted publishing
+<https://docs.pypi.org/trusted-publishers/>`_. Set new ``version`` in ``pyproject.toml``,
+commit, then publish a release on github by matching version tag of that commit; the workflow
+builds the sdist and wheel, runs ``twine check --strict``, and uploads them.
+
 History
 -------
+
+- 2.3.12 (2026-11-20): bugfix some spill region calculations 
 
 - 2.3.11 (2026-11-15): Screenshot stages measure contested grapheme spillover with animated
   evidence pages, record the default 16 colors and one LANG page per UDHR language, and the
@@ -425,6 +436,7 @@ History
 
 .. _wcwidth: https://github.com/jquast/wcwidth
 .. _blessed: https://github.com/jquast/blessed
+.. _ttyscan: https://github.com/jquast/ttyscan
 .. _`wcstwidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html#wcstwidth
 .. _`Query Cursor Position`: https://blessed.readthedocs.io/en/latest/location.html#finding-the-cursor
 .. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
@@ -447,3 +459,7 @@ History
 .. _libvte: https://wiki.gnome.org/Projects/VTE
 .. _prettytable: https://github.com/jazzband/prettytable
 .. _Arch Linux: https://archlinux.org/
+.. _`Terminal Identification`: https://github.com/jquast/ttyscan#terminal-identification
+.. _`Correction Tables`: https://github.com/jquast/wcwidth#corrections
+.. _`ghostty test`: https://github.com/ghostty-org/ghostty/blob/main/test/ucs-detect.sh
+.. _`terminal evaluation`: https://github.com/contour-terminal/terminal-comparison#why-this-exists

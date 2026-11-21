@@ -197,6 +197,7 @@ terminals:
   libvterm:
     homepage: https://www.leonerd.org.uk/code/libvterm/
     description: libvterm tested is the one shipped with vIM when using command, ``:terminal``.
+    multiplexer: true
     launch:
       subterminal: true
       program: vim
@@ -301,13 +302,13 @@ terminals:
     skip_docker: true
     skip_reason: exits 1 with software Vulkan (lavapipe); works on host with GPU
     # Rio has one font family and no emoji presentation rules, so Unifont's own mono emoji glyphs
-    # win over Noto Color Emoji.  terminal-config/rio/config.toml maps the astral emoji planes to
+    # win over Noto Color Emoji. .terminal-config/rio/config.toml maps the astral emoji planes to
     # the emoji font; RIO_CONFIG_HOME is used verbatim, without a "rio" suffix.
     launch:
       program: rio
       args: [-e]
       env:
-        RIO_CONFIG_HOME: '{project_dir}/terminal-config/rio'
+        RIO_CONFIG_HOME: '{project_dir}/.terminal-config/rio'
   rxvt-unicode:
     homepage: http://software.schmorp.de/pkg/rxvt-unicode.html
     version_template: '{aur_version}'
@@ -322,6 +323,7 @@ terminals:
   screen:
     homepage: https://www.gnu.org/software/screen/
     display_name: GNU Screen
+    multiplexer: true
     version_template: '{aur_version}'
     aur_package: screen
     skip_docker: true
@@ -382,7 +384,7 @@ terminals:
   tecolot:
     homepage: https://tecolot.com/
     display_name: Tecolot
-    version_manual: 0.99.9
+    version_manual: 0.99.12
     skip_docker: true
     skip_reason: macOS only
     profile_processes:
@@ -468,6 +470,7 @@ terminals:
       - "\n"
   tmux:
     homepage: https://github.com/tmux/tmux
+    multiplexer: true
     skip_docker: true
     skip_screenshots: true
     skip_spillover: true
@@ -597,6 +600,7 @@ terminals:
       args: [-fontsize, '16', -e]
   zellij:
     homepage: https://github.com/zellij-org/zellij
+    multiplexer: true
     skip_docker: true
     skip_screenshots: true
     skip_spillover: true
@@ -621,4 +625,4 @@ terminals:
       - 'sh '
       - ${SCRIPT} && pkill zellij
       - "\n"
-    description: Tested inside host terminal kitty.
+    description: Zellij is a terminal workspace and multiplexer.

@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 05:54:41 UTC
+  scanned_datetime: 2026-11-21 00:18:01 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 05:54:35 UTC
+  scanned_datetime: 2026-11-21 00:17:54 UTC
   painted_rows: 40
   calibration:
     origin_x: 273.0
-    origin_y: 125
+    origin_y: 125.0
     cell_width_px: 11.0
     cell_height_px: 22.0
     term_width: 130
@@ -128,8 +128,8 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 273
-  origin_y: 125
+  origin_x: 273.0
+  origin_y: 125.0
   cell_width: 11.0
   cell_height: 22.0
   term_width: 130
@@ -250,11 +250,11 @@ session_arguments:
 software_name: foot
 software_version: 1.28.0
 spillover_results:
-  scanned_datetime: 2026-11-16 05:55:45 UTC
+  scanned_datetime: 2026-11-21 00:19:10 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 6357
-  n_no_ink: 165
+  n_no_ink: 7
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
@@ -1046,7 +1046,7 @@ spillover_results:
     cursor_center_rows: 3
   calibration:
     origin_x: 273.0
-    origin_y: 125
+    origin_y: 125.0
     cell_width_px: 11.0
     cell_height_px: 22.0
     term_width: 130
