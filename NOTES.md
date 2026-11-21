@@ -32,9 +32,19 @@
 - The spillover pages are painted twice now, the second pass overwriting any echoed fragment, and a
   terminal that reports truecolor receives one SGR form per cell instead of the ANSI, 256 color and
   truecolor chain
-- iTerm2 counts 1676, 1786, and 1944 spilled of 8644 on three runs of the same page, even when the
-  capture waits for two identical frames, so its renderer lands asynchronously and a single frame
-  is never the same frame twice
+- iTerm2 counts 11, 324, 1892 and 2263 spilled of 8644 on four runs of the same page layout,
+  and 2144, 158 and 369 on three more with a one pixel neighbour edge margin, so one run is
+  not a measurement: the swing is three orders of magnitude.  Whole scripts flip at once,
+  Kannada 0 of 236 in one run and 129 of 129 in the next, Grantha 0 of 237 and then 230, so
+  the decision is per script, a font or an advance, and not per glyph noise.  The capture
+  waits for two identical frames, so the page has settled and what differs is what the
+  renderer put there.  The ink is not a threshold artifact: replaying one run's 15 page dump,
+  the 423 flagged neighbours range from 0.02 to 0.73 of the sampled inner box with most of
+  them near half, and an edge margin of 0, 1, 2 and 3 pixels gives 399, 369, 333 and 294, a
+  few percent per pixel instead of the order of magnitude.  terminals.yaml sets
+  `spillover_edge_margin: 1` to shave the outermost column, which does not make iTerm2
+  reproducible, and its spillover figures should not be compared to another terminal's until
+  the swing is explained
 - kitty takes the widest advance in U+0020..U+007F as its cell width, and GNU Unifont gives U+007F,
   a control character no page draws, a full-em glyph: every cell doubles, and ASCII carries 8px of
   trailing blank (16x16 instead of 8x16 at font_size=12).  Arguably a kitty bug, the maximum
