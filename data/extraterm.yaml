@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 03:20:40 UTC
+  scanned_datetime: 2026-11-21 00:02:59 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 03:20:34 UTC
+  scanned_datetime: 2026-11-21 00:02:53 UTC
   painted_rows: 76
   calibration:
     origin_x: 19.0
-    origin_y: 55
+    origin_y: 55.0
     cell_width_px: 10.0
     cell_height_px: 17.0
     term_width: 237
@@ -128,8 +128,8 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 19
-  origin_y: 55
+  origin_x: 19.0
+  origin_y: 55.0
   cell_width: 10.0
   cell_height: 17.0
   term_width: 237
@@ -1084,11 +1084,11 @@ session_arguments:
 software_name: Extraterm
 software_version: 0.81.4
 spillover_results:
-  scanned_datetime: 2026-11-16 03:20:58 UTC
+  scanned_datetime: 2026-11-21 00:03:22 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 0
-  n_no_ink: 3
+  n_no_ink: 2
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
@@ -1202,7 +1202,7 @@ spillover_results:
     items_per_page: 675
   calibration:
     origin_x: 19.0
-    origin_y: 55
+    origin_y: 55.0
     cell_width_px: 10.0
     cell_height_px: 17.0
     term_width: 237

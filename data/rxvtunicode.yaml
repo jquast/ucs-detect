@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-17 15:20:30 UTC
+  scanned_datetime: 2026-11-21 00:17:23 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-17 15:20:24 UTC
+  scanned_datetime: 2026-11-21 00:17:17 UTC
   painted_rows: 24
   calibration:
     origin_x: 2.0
-    origin_y: 2
+    origin_y: 2.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 80
@@ -128,8 +128,8 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 2
-  origin_y: 2
+  origin_x: 2.0
+  origin_y: 2.0
   cell_width: 8.0
   cell_height: 16.0
   term_width: 80
@@ -280,22 +280,22 @@ session_arguments:
 software_name: urxvt
 software_version: 9.31-11
 spillover_results:
-  scanned_datetime: 2026-11-17 15:20:57 UTC
+  scanned_datetime: 2026-11-21 00:17:52 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 648
-  n_no_ink: 4
+  n_spillover: 674
+  n_no_ink: 2
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 648
+    graphemes_any: 674
     graphemes_left: 635
-    graphemes_right: 13
+    graphemes_right: 39
     graphemes_both: 0
     left_cells:
       '1': 635
     right_cells:
-      '1': 13
+      '1': 39
     max_left_cells: 1
     max_right_cells: 1
   spill_counts_by_kind:
@@ -359,6 +359,16 @@ spillover_results:
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
+    Maldivian:
+      graphemes_any: 39
+      graphemes_left: 0
+      graphemes_right: 39
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '1': 39
+      max_left_cells: 0
+      max_right_cells: 1
     Mon:
       graphemes_any: 56
       graphemes_left: 56
@@ -419,26 +429,6 @@ spillover_results:
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
-    Urdu:
-      graphemes_any: 12
-      graphemes_left: 0
-      graphemes_right: 12
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '1': 12
-      max_left_cells: 0
-      max_right_cells: 1
-    Urdu (2):
-      graphemes_any: 1
-      graphemes_left: 0
-      graphemes_right: 1
-      graphemes_both: 0
-      left_cells: {}
-      right_cells:
-        '1': 1
-      max_left_cells: 0
-      max_right_cells: 1
   spill_examples:
     Javanese (Javanese):
       Left:
@@ -475,6 +465,11 @@ spillover_results:
         '1':
           example: '''\u1a20\u1a73\u1a75'''
           width: 1
+    Maldivian:
+      Right:
+        '1':
+          example: '''\u0792\u07aa'''
+          width: 1
     Mon:
       Left:
         '1':
@@ -499,16 +494,6 @@ spillover_results:
       Left:
         '1':
           example: '''\u0f42\u0fb2\u0f72'''
-          width: 1
-    Urdu:
-      Right:
-        '1':
-          example: '''\u0628\u064e'''
-          width: 1
-    Urdu (2):
-      Right:
-        '1':
-          example: '''\u06a9\u064f'''
           width: 1
   n_tested_by_kind:
     Aja: 3
@@ -610,7 +595,7 @@ spillover_results:
     items_per_page: 585
   calibration:
     origin_x: 2.0
-    origin_y: 2
+    origin_y: 2.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 239
@@ -4716,9 +4701,438 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
-    urxvt-spillover_006_U+1000.gif:
+    urxvt-spillover_006_U+0792.gif:
       page: 9
       spillovers:
+      - wchar: \u0792\u07aa
+        codepoints:
+        - 1938
+        - 1962
+        category: language
+        label: Maldivian
+        row: 0
+        column: 3
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0792\u07ac
+        codepoints:
+        - 1938
+        - 1964
+        category: language
+        label: Maldivian
+        row: 0
+        column: 27
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0793\u07aa
+        codepoints:
+        - 1939
+        - 1962
+        category: language
+        label: Maldivian
+        row: 0
+        column: 123
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0793\u07ac
+        codepoints:
+        - 1939
+        - 1964
+        category: language
+        label: Maldivian
+        row: 0
+        column: 147
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0794\u07a7
+        codepoints:
+        - 1940
+        - 1959
+        category: language
+        label: Maldivian
+        row: 0
+        column: 195
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0794\u07aa
+        codepoints:
+        - 1940
+        - 1962
+        category: language
+        label: Maldivian
+        row: 1
+        column: 27
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0794\u07ac
+        codepoints:
+        - 1940
+        - 1964
+        category: language
+        label: Maldivian
+        row: 1
+        column: 51
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0794\u07ad
+        codepoints:
+        - 1940
+        - 1965
+        category: language
+        label: Maldivian
+        row: 1
+        column: 75
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0794\u07ae
+        codepoints:
+        - 1940
+        - 1966
+        category: language
+        label: Maldivian
+        row: 1
+        column: 99
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0795\u07b0
+        codepoints:
+        - 1941
+        - 1968
+        category: language
+        label: Maldivian
+        row: 1
+        column: 123
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0796\u07a7
+        codepoints:
+        - 1942
+        - 1959
+        category: language
+        label: Maldivian
+        row: 1
+        column: 171
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0796\u07aa
+        codepoints:
+        - 1942
+        - 1962
+        category: language
+        label: Maldivian
+        row: 2
+        column: 3
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0796\u07ab
+        codepoints:
+        - 1942
+        - 1963
+        category: language
+        label: Maldivian
+        row: 2
+        column: 27
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0796\u07ac
+        codepoints:
+        - 1942
+        - 1964
+        category: language
+        label: Maldivian
+        row: 2
+        column: 51
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0796\u07ad
+        codepoints:
+        - 1942
+        - 1965
+        category: language
+        label: Maldivian
+        row: 2
+        column: 75
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0796\u07b0
+        codepoints:
+        - 1942
+        - 1968
+        category: language
+        label: Maldivian
+        row: 2
+        column: 99
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0797\u07aa
+        codepoints:
+        - 1943
+        - 1962
+        category: language
+        label: Maldivian
+        row: 2
+        column: 147
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0797\u07ac
+        codepoints:
+        - 1943
+        - 1964
+        category: language
+        label: Maldivian
+        row: 2
+        column: 171
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0799\u07a7
+        codepoints:
+        - 1945
+        - 1959
+        category: language
+        label: Maldivian
+        row: 3
+        column: 27
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0799\u07aa
+        codepoints:
+        - 1945
+        - 1962
+        category: language
+        label: Maldivian
+        row: 3
+        column: 99
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0799\u07ac
+        codepoints:
+        - 1945
+        - 1964
+        category: language
+        label: Maldivian
+        row: 3
+        column: 123
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u0799\u07b0
+        codepoints:
+        - 1945
+        - 1968
+        category: language
+        label: Maldivian
+        row: 3
+        column: 147
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u079a\u07a7
+        codepoints:
+        - 1946
+        - 1959
+        category: language
+        label: Maldivian
+        row: 3
+        column: 171
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u079a\u07aa
+        codepoints:
+        - 1946
+        - 1962
+        category: language
+        label: Maldivian
+        row: 4
+        column: 3
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u079a\u07b0
+        codepoints:
+        - 1946
+        - 1968
+        category: language
+        label: Maldivian
+        row: 4
+        column: 27
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u079e\u07a7
+        codepoints:
+        - 1950
+        - 1959
+        category: language
+        label: Maldivian
+        row: 4
+        column: 123
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u079e\u07aa
+        codepoints:
+        - 1950
+        - 1962
+        category: language
+        label: Maldivian
+        row: 4
+        column: 171
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u079e\u07ab
+        codepoints:
+        - 1950
+        - 1963
+        category: language
+        label: Maldivian
+        row: 4
+        column: 195
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u079e\u07b0
+        codepoints:
+        - 1950
+        - 1968
+        category: language
+        label: Maldivian
+        row: 5
+        column: 3
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u079f\u07aa
+        codepoints:
+        - 1951
+        - 1962
+        category: language
+        label: Maldivian
+        row: 5
+        column: 27
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a2\u07a7
+        codepoints:
+        - 1954
+        - 1959
+        category: language
+        label: Maldivian
+        row: 5
+        column: 123
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a2\u07aa
+        codepoints:
+        - 1954
+        - 1962
+        category: language
+        label: Maldivian
+        row: 5
+        column: 171
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a2\u07ac
+        codepoints:
+        - 1954
+        - 1964
+        category: language
+        label: Maldivian
+        row: 5
+        column: 195
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a2\u07b0
+        codepoints:
+        - 1954
+        - 1968
+        category: language
+        label: Maldivian
+        row: 6
+        column: 3
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a3\u07a7
+        codepoints:
+        - 1955
+        - 1959
+        category: language
+        label: Maldivian
+        row: 6
+        column: 27
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a4\u07a7
+        codepoints:
+        - 1956
+        - 1959
+        category: language
+        label: Maldivian
+        row: 6
+        column: 75
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a4\u07aa
+        codepoints:
+        - 1956
+        - 1962
+        category: language
+        label: Maldivian
+        row: 6
+        column: 147
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a4\u07ac
+        codepoints:
+        - 1956
+        - 1964
+        category: language
+        label: Maldivian
+        row: 6
+        column: 171
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u07a4\u07b0
+        codepoints:
+        - 1956
+        - 1968
+        category: language
+        label: Maldivian
+        row: 6
+        column: 195
+        advance: 1
+        spill_left_cells: 0
+        spill_right_cells: 1
       - wchar: \u1000\u102e\u102f
         codepoints:
         - 4096

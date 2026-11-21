@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-17 15:28:09 UTC
+  scanned_datetime: 2026-11-21 00:11:21 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-17 15:28:04 UTC
+  scanned_datetime: 2026-11-21 00:11:15 UTC
   painted_rows: 24
   calibration:
     origin_x: 28.0
-    origin_y: 46
+    origin_y: 46.0
     cell_width_px: 10.0
     cell_height_px: 22.0
     term_width: 80
@@ -130,8 +130,8 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 28
-  origin_y: 46
+  origin_x: 28.0
+  origin_y: 46.0
   cell_width: 10.0
   cell_height: 22.0
   term_width: 80
@@ -255,11 +255,11 @@ session_arguments:
 software_name: contour
 software_version: 0.9.0-master-c61db30bb
 spillover_results:
-  scanned_datetime: 2026-11-17 15:28:35 UTC
+  scanned_datetime: 2026-11-21 00:11:48 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 1557
-  n_no_ink: 36
+  n_no_ink: 24
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
@@ -866,7 +866,7 @@ spillover_results:
     items_per_page: 630
   calibration:
     origin_x: 28.0
-    origin_y: 0
+    origin_y: 0.0
     cell_width_px: 10.0
     cell_height_px: 22.0
     term_width: 253

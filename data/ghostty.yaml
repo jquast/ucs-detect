@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 03:28:46 UTC
+  scanned_datetime: 2026-11-21 00:12:04 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 03:28:42 UTC
+  scanned_datetime: 2026-11-21 00:11:58 UTC
   painted_rows: 25
   calibration:
     origin_x: 9.0
-    origin_y: 58
+    origin_y: 58.0
     cell_width_px: 11.0
     cell_height_px: 21.0
     term_width: 71
@@ -130,9 +130,9 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 5
-  origin_y: 58
-  cell_width: 11.06
+  origin_x: 9.0
+  origin_y: 58.0
+  cell_width: 11.0
   cell_height: 21.0
   term_width: 71
   term_height: 25
@@ -151,17 +151,17 @@ font_test_results:
   - '................'
   - '................'
   - '................'
-  - '.......XXXX.....'
-  - '.......XXXX.....'
-  - '......XX..X..X..'
-  - '.....XXXX.XXXXX.'
-  - '.....X.XX.XXXXX.'
-  - '.....XXXX.XXXXX.'
-  - '.....XXXX.XXXXX.'
-  - '......XX..XXXXX.'
-  - '.....X.XXXXX....'
-  - '.....XXXXXXXXX..'
-  - '.......XXXXXXX..'
+  - '....XXXX........'
+  - '....XXXX........'
+  - '...XX..X..X.....'
+  - ..XXXX.XXXXX....
+  - ..X.XX.XXXXX....
+  - ..XXXX.XXXXX....
+  - ..XXXX.XXXXX....
+  - '...XXX.XXXXX....'
+  - ..X..XXXX.......
+  - ..XXXXXXXXX.....
+  - '....XXXXXXX.....'
   - '................'
   - '................'
   reference:
@@ -184,28 +184,28 @@ font_test_results:
     codepoint: U+1F600
     name: grinning face
     emoji_version: '1.0'
-    ink_fraction: 0.565
+    ink_fraction: 0.619
     ink_color:
-    - 206
-    - 165
-    - 46
+    - 205
+    - 162
+    - 44
     monochrome: false
     ascii:
     - '................'
-    - '........XXXXXX..'
-    - '.......XXXXXXXXX'
-    - '......XXXXXXXXXX'
-    - '.....XXXXXXXXXXX'
-    - '.....XXXXXXXXXXX'
-    - '....XXXXXXXXXXXX'
-    - '....XXXXXXXXXXXX'
-    - '....XXXXXXXXXXXX'
-    - '....XXXXXXXXXXXX'
-    - '.....XXXXXXXXXXX'
-    - '.....XXXXXXXXXXX'
-    - '......XXXXXXXXXX'
-    - '.......XXXXXXXX.'
-    - '.........XXXXX..'
+    - '.....XXXXXX.....'
+    - '....XXXXXXXXX...'
+    - '...XXXXXXXXXXX..'
+    - ..XXXXXXXXXXXXX.
+    - ..XXXXXXXXXXXXX.
+    - .XXXXXXXXXXXXXX.
+    - .XXXXXXXXXXXXXXX
+    - .XXXXXXXXXXXXXXX
+    - .XXXXXXXXXXXXXX.
+    - ..XXXXXXXXXXXXX.
+    - ..XXXXXXXXXXXX..
+    - '...XXXXXXXXXXX..'
+    - '....XXXXXXXX....'
+    - '......XXXXX.....'
     - '................'
     reference:
     - - 0
@@ -258,11 +258,11 @@ session_arguments:
 software_name: ghostty
 software_version: 1.4.1-main+2fc8d02c2
 spillover_results:
-  scanned_datetime: 2026-11-16 03:29:01 UTC
+  scanned_datetime: 2026-11-21 00:12:25 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 425
-  n_no_ink: 121
+  n_no_ink: 2
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
@@ -453,7 +453,7 @@ spillover_results:
     items_per_page: 594
   calibration:
     origin_x: 9.0
-    origin_y: 12
+    origin_y: 12.0
     cell_width_px: 11.0
     cell_height_px: 21.0
     term_width: 231

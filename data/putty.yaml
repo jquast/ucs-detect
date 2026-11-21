@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-18 13:38:28 UTC
+  scanned_datetime: 2026-11-21 00:17:08 UTC
   supported: true
   control_left: 1.0
   requested_right: 1.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-18 13:38:22 UTC
+  scanned_datetime: 2026-11-21 00:17:02 UTC
   painted_rows: 24
   calibration:
     origin_x: 1.0
@@ -255,11 +255,11 @@ session_arguments:
 software_name: PuTTY
 software_version: 0.85-1
 spillover_results:
-  scanned_datetime: 2026-11-18 13:39:00 UTC
+  scanned_datetime: 2026-11-21 00:17:42 UTC
   n_candidates: 8347
   n_tested: 8347
   n_spillover: 0
-  n_no_ink: 4
+  n_no_ink: 1
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:

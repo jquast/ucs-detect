@@ -606,7 +606,7 @@ def process_resource_data():
         if mean_cpu < 0.1 and mean_rss < 5.0:
             continue  # profiling failed, process tree was never captured
         sw_name = data.get("software_name", fname.replace(".yaml", ""))
-        session = ProfileSession(sw_name, 0)
+        session = ProfileSession(sw_name, 0, duration_s=run_duration(data))
         samples = list(zip(elapsed, cpu, rss))
         while samples and samples[-1][2] <= 0.0:
             samples.pop()
@@ -868,6 +868,15 @@ def display_score_details_heading(sw_name, key, text):
     print()
 
 
+def run_duration(data):
+    """Return the recorded run time in seconds, falling back to the last sample."""
+    seconds_elapsed = data.get("seconds_elapsed")
+    if seconds_elapsed:
+        return seconds_elapsed
+    elapsed = (data.get("resource_profile") or {}).get("elapsed_s") or []
+    return elapsed[-1] if elapsed else 0.0
+
+
 def resource_cost(data):
     """Compute a raw resource cost from profile data (higher = worse)."""
     rp = (data.get("resource_profile") or {})
@@ -885,7 +894,7 @@ def resource_cost(data):
         return float('NaN')
     mean_cpu = sum(cpu) / len(cpu)
     mean_rss = sum(rss) / len(rss)
-    duration = elapsed[-1]
+    duration = run_duration(data)
     if mean_cpu < 0.1 and mean_rss < 5.0:
         return float('NaN')
     return math.log(mean_cpu + 1) + math.log(mean_rss + 1) + math.log(duration + 1)
@@ -2670,7 +2679,7 @@ def display_performance_section(score_table):
         rss = rp.get("rss_mb", [])
         if not elapsed:
             continue
-        duration = elapsed[-1]
+        duration = run_duration(e["data"])
         mean_cpu = sum(cpu) / len(cpu) if cpu else 0
         mean_rss = sum(rss) / len(rss) if rss else 0
         score = int(e["score_resource_scaled"] * 100)
@@ -2681,7 +2690,7 @@ def display_performance_section(score_table):
                 sw_name, "_resources"),
             f"{mean_cpu:.1f}",
             f"{mean_rss:.1f}",
-            f"{duration:.1f}",
+            f"{duration:.2f}",
         ])
 
     print_datatable(tabulate.tabulate(rows, headers=headers, tablefmt="rst"))
@@ -2691,12 +2700,16 @@ def display_performance_section(score_table):
     print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   CPU usage during test execution, all terminals overlaid.")
+    print("   Error bars show one standard deviation of the per-second CPU")
+    print("   samples.")
     print()
     print(".. figure:: _static/profiles/all_rss.png")
     print("   :alt: RSS memory usage across all terminals")
     print(f"   :width: {GRAPH_WIDTH_ALL_PX}px")
     print()
     print("   RSS memory usage during test execution, all terminals overlaid.")
+    print("   Markers show the peak and bars span the observed range, from the")
+    print("   run minimum up to that peak.")
     print()
     print(".. figure:: _static/profiles/all_cpu_vs_time.png")
     print("   :alt: CPU % vs Duration trade-off across all terminals")
@@ -3171,15 +3184,14 @@ def show_score_breakdown(sw_name, entry, plot_filename_scaled):
     print()
     if not math.isnan(entry["score_resource"]):
         rp = entry["data"].get("resource_profile") or {}
-        elapsed_data = rp.get("elapsed_s", [])
         cpu_data = rp.get("cpu_pct", [])
         rss_data = rp.get("rss_mb", [])
         mean_cpu = sum(cpu_data) / len(cpu_data) if cpu_data else 0
         mean_rss = sum(rss_data) / len(rss_data) if rss_data else 0
-        duration = elapsed_data[-1] if elapsed_data else 0
+        duration = run_duration(entry["data"])
 
         print()
-        print(f"- Duration: {duration:.1f}s")
+        print(f"- Duration: {duration:.2f}s")
         print(f"- Mean CPU: {mean_cpu:.1f}%")
         print(f"- Mean RSS: {mean_rss:.1f} MB")
         print(f"- Resources Score: {entry['score_resource_scaled']*100:.0f}/100")
@@ -3234,18 +3246,17 @@ def show_software_header(entry, sw_name, terminal_mixins):
             print(env_notes)
             print()
 
-    # If this is a subterminal (terminal multiplexer), note the host terminal
+    # A multiplexer renders through the host terminal it was launched in, which
+    # answers the queries on its behalf: name the host and link to its results
     if sw_name_lower in terminal_mixins:
         tcfg = terminal_mixins[sw_name_lower]
-        if (tcfg.get("launch") or {}).get("subterminal"):
+        if tcfg.get("multiplexer"):
             host_name = "ghostty"
-            host_link = make_link(host_name)
             host_cfg = terminal_mixins.get(host_name.lower(), {})
             host_desc = host_cfg.get("description", "")
             host_homepage = host_cfg.get("homepage", "")
-            print(f"*{sw_name}* is a terminal multiplexer. "
-                  f"These tests were executed in host terminal "
-                  f"`:ref:`{host_name} <{host_link}xtgettcap>`_.")
+            print(f"*{sw_name}* is a terminal multiplexer. These tests were "
+                  f"executed in host terminal {make_outbound_hyperlink(host_name)}.")
             if host_desc:
                 print(f"{host_desc}")
             if host_homepage:
@@ -4524,7 +4535,7 @@ def show_time_elapsed_results(sw_name, entry):
         print()
         return
 
-    duration = elapsed_data[-1]
+    duration = run_duration(entry["data"])
     mean_cpu = sum(cpu_data) / len(cpu_data)
     mean_rss = sum(rss_data) / len(rss_data)
     resource_score = entry["data"].get("resource_score", None)
@@ -4536,7 +4547,7 @@ def show_time_elapsed_results(sw_name, entry):
         print(f"- **Resources Score**: {resource_score:.1f}/100")
     print(f"- **Mean CPU**: {mean_cpu:.1f}%")
     print(f"- **Mean RSS**: {mean_rss:.1f} MB")
-    print(f"- **Total time**: {duration:.1f}s")
+    print(f"- **Total time**: {duration:.2f}s")
 
     safe = safe_name(sw_name)
 
@@ -4548,13 +4559,16 @@ def show_time_elapsed_results(sw_name, entry):
     print("   :alt: CPU usage over time")
     print(f"   :width: {GRAPH_WIDTH_PX}px")
     print()
-    print(f"   CPU usage during test execution for *{sw_name}*.")
+    print(f"   CPU usage during test execution for *{sw_name}*. Error bars show")
+    print("   one standard deviation of the per-second CPU samples.")
     print()
     print(f".. figure:: {rss_graph}")
     print("   :alt: RSS memory over time")
     print(f"   :width: {GRAPH_WIDTH_PX}px")
     print()
-    print(f"   RSS memory usage during test execution for *{sw_name}*.")
+    print(f"   RSS memory usage during test execution for *{sw_name}*. Markers show")
+    print("   the peak and bars span the observed range, from the run minimum up")
+    print("   to that peak.")
     print()
 
     time_graph = f"../_static/profiles/{safe}_time.png"

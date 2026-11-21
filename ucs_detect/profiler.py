@@ -10,6 +10,7 @@ from __future__ import annotations
 # std imports
 import os
 import csv
+import math
 import time
 import colorsys
 import threading
@@ -41,10 +42,12 @@ class ProfileSession:  # pylint: disable=too-many-instance-attributes
     def __init__(self, sw_name: str, pid: int, interval: float = 1.0,
                  program: str | None = None,
                  extra_programs: list[str] | None = None,
-                 exclude_names: set[str] | None = None):
+                 exclude_names: set[str] | None = None,
+                 duration_s: float | None = None):
         self._sw_name = sw_name
         self._pid = pid
         self._interval = interval
+        self._duration_s = duration_s  # recorded run time, which outlasts sampling
         self._program = program  # if set, only profile processes matching this name
         self._extra = extra_programs or []  # additional process names to capture
         self._exclude_names = exclude_names or {"ucs-detect", "re-run.py"}
@@ -276,6 +279,13 @@ class ProfileSession:  # pylint: disable=too-many-instance-attributes
             result.pop()
         return result
 
+    def duration(self) -> float:
+        """Return the run duration in seconds, the recorded total when known."""
+        if self._duration_s:
+            return self._duration_s
+        samples = self.samples()
+        return samples[-1][0] if samples else 0.0
+
     def write_csv(self, path: Path) -> None:
         """Write samples to CSV file."""
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -322,6 +332,14 @@ def hardware_info() -> dict:
     return info
 
 
+def population_std(values: list[float]) -> float:
+    """Return the population standard deviation of *values*."""
+    if not values:
+        return 0.0
+    mean = sum(values) / len(values)
+    return math.sqrt(sum((value - mean) ** 2 for value in values) / len(values))
+
+
 def generate_graphs(
     profiles: dict[str, ProfileSession],
     output_dir: Path,
@@ -340,22 +358,25 @@ def generate_graphs(
         return
 
     safe_map = {}
+    cpu_std: dict[str, float] = {}
+    rss_floor: dict[str, float] = {}
     all_cpu_vals: list[float] = []
     all_rss_vals: list[float] = []
-    terminal_data: list[tuple[str, list[float], list[float], list[float]]] = []
+    terminal_data: list[tuple[str, float, list[float], list[float]]] = []
 
     for sw_name, session in profiles.items():
         samples = session.samples()
         if not samples:
             continue
-        elapsed = [s[0] for s in samples]
         cpu = [s[1] for s in samples]
         rss = [s[2] for s in samples]
         safe = "".join(c if c.isalnum() or c in "-_" else "_" for c in sw_name)
         safe_map[sw_name] = safe
+        cpu_std[sw_name] = population_std(cpu)
+        rss_floor[sw_name] = min(rss)
         all_cpu_vals.extend(cpu)
         all_rss_vals.extend(rss)
-        terminal_data.append((sw_name, elapsed, cpu, rss))
+        terminal_data.append((sw_name, session.duration(), cpu, rss))
 
     if not terminal_data:
         return
@@ -375,7 +396,7 @@ def generate_graphs(
     output_dir.mkdir(parents=True, exist_ok=True)
 
     scatter_data = []
-    for sw_name, elapsed, cpu_vals, rss_vals in terminal_data:
+    for sw_name, _duration, cpu_vals, rss_vals in terminal_data:
         mean_cpu = sum(cpu_vals) / len(cpu_vals)
         peak_rss = max(rss_vals)
         scatter_data.append((sw_name, mean_cpu, peak_rss))
@@ -386,12 +407,22 @@ def generate_graphs(
     n_terminals = len(terminal_data)
     positions = list(range(n_terminals))
 
+    def _error_bar(chart, xpos, ypos, name, ecolor, capsize, metric):
+        if metric == "cpu":
+            yerr = cpu_std[name]
+        else:
+            # the marker is the peak, so the bar runs down to the observed low
+            yerr = [[ypos - rss_floor[name]], [0.0]]
+        chart.errorbar(xpos, ypos, yerr=yerr, fmt="none", ecolor=ecolor,
+                       elinewidth=1, capsize=capsize, zorder=1)
+
     for label, data_sorted, ymin, ymax, ymean in [
         ("cpu", cpu_sorted, cpu_ymin, cpu_ymax, cpu_mean),
         ("rss", rss_sorted, rss_ymin, rss_ymax, rss_mean),
     ]:
         # Per-terminal: all others grey, this terminal red
         unit = "%" if label == "cpu" else "MB"
+
         for idx, (sw_name, mean_cpu_val, peak_rss_val) in enumerate(data_sorted):
             safe = safe_map[sw_name]
             yval = mean_cpu_val if label == "cpu" else peak_rss_val
@@ -405,10 +436,12 @@ def generate_graphs(
             for j, (other_name, other_cpu, other_rss) in enumerate(data_sorted):
                 other_y = other_cpu if label == "cpu" else other_rss
                 color = "#cccccc"
+                _error_bar(ax, j, other_y, other_name, "#999999", 2, label)
                 ax.scatter(j, other_y, color=color, s=20, zorder=1)
                 names.append(other_name)
 
             # Current terminal in red
+            _error_bar(ax, idx, yval, sw_name, "#dc2626", 3, label)
             ax.scatter(idx, yval, color="#dc2626", s=60, zorder=2)
             ax.text(idx + 0.3, yval + 2, f"{yval:.0f}",
                     color="black", fontsize=8, va="bottom", ha="left")
@@ -443,6 +476,7 @@ def generate_graphs(
             hue = (i / max(n_terminals - 1, 1) * 0.833) % 1.0
             r, g, b = colorsys.hsv_to_rgb(hue, 0.7, 0.9)
             rgb = (r, g, b)
+            _error_bar(ax, i, yval, sw_name, rgb, 2, label)
             ax.scatter(i, yval, color=rgb, s=40, zorder=2,
                        label=f"{sw_name} ({yval:.0f}{unit})")
             dy = 2 if i % 2 == 0 else -2
@@ -477,9 +511,8 @@ def generate_graphs(
 
     # CPU vs Time scatter: trade-off between CPU% and duration
     cpu_time_data = []
-    for sw_name, elapsed, cpu_vals, _rss_vals in terminal_data:
+    for sw_name, duration, cpu_vals, _rss_vals in terminal_data:
         mean_cpu = sum(cpu_vals) / len(cpu_vals)
-        duration = elapsed[-1]
         cpu_time_data.append((sw_name, mean_cpu, duration))
 
     cpu_time_data.sort(key=lambda t: t[2])
@@ -500,7 +533,7 @@ def generate_graphs(
         ax.scatter(duration_val, min(mean_cpu_val, 200), color="#dc2626", s=60,
                    zorder=2)
         ax.text(duration_val, min(mean_cpu_val, 200) + 3,
-                f"{sw_name} ({min(mean_cpu_val, 200):.0f}%, {duration_val:.0f}s)",
+                f"{sw_name} ({min(mean_cpu_val, 200):.0f}%, {duration_val:.2f}s)",
                 color="black", fontsize=8, va="bottom", ha="left")
 
         ax.set_xlabel("Duration (seconds)")
@@ -525,7 +558,7 @@ def generate_graphs(
         rgb = (r, g, b)
         cpu_clamped = min(mean_cpu_val, 200)
         ax.scatter(duration_val, cpu_clamped, color=rgb, s=60, zorder=2,
-                   label=f"{sw_name} ({cpu_clamped:.0f}%, {duration_val:.0f}s)")
+                   label=f"{sw_name} ({cpu_clamped:.0f}%, {duration_val:.2f}s)")
         dy = 3 if i % 2 == 0 else -3
         va = "bottom" if i % 2 == 0 else "top"
         ax.text(duration_val, cpu_clamped + dy,
@@ -563,7 +596,7 @@ def generate_graphs(
             z = 2 if other_name == sw_name else 1
             ax.barh(j, other_dur, color=color, zorder=z, height=0.6)
             if other_name == sw_name:
-                ax.text(other_dur * 1.05, j, f"{sw_name} ({other_dur:.0f}s)",
+                ax.text(other_dur * 1.05, j, f"{sw_name} ({other_dur:.2f}s)",
                         color="black", fontsize=8, va="center", ha="left")
             names.append(other_name)
 
@@ -590,8 +623,8 @@ def generate_graphs(
         r, g, b = colorsys.hsv_to_rgb(hue, 0.7, 0.9)
         rgb = (r, g, b)
         ax.barh(i, duration_val, color=rgb, zorder=2, height=0.6,
-                label=f"{sw_name} ({duration_val:.0f}s)")
-        ax.text(duration_val * 1.02, i, f"{duration_val:.0f}s",
+                label=f"{sw_name} ({duration_val:.2f}s)")
+        ax.text(duration_val * 1.02, i, f"{duration_val:.2f}s",
                 color="black", fontsize=6, va="center", ha="left")
         names.append(sw_name)
 
