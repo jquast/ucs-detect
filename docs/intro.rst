@@ -56,7 +56,7 @@ Use Cases
 ---------
 
 - `Correction Tables`_ in python wcwidth and C11 libwcwidth
-- Reverse `Terminal Identificiation`_ in `ttyscan`_
+- Reverse `Terminal Identification`_ in `ttyscan`_
 - Automatic `ghostty test`_
 - Contour `terminal evaluation`_
 
@@ -342,6 +342,14 @@ The UDHR provides practical coverage of common complex grapheme clusters across 
 world's languages, serving as an indicator of a terminal's support for combining
 marks across diverse scripts.
 
+Releasing
+---------
+
+Releases are published by ``.github/workflows/release.yml`` using `PyPI trusted publishing
+<https://docs.pypi.org/trusted-publishers/>`_. Set new ``version`` in ``pyproject.toml``,
+commit, then publish a release on github by matching version tag of that commit; the workflow
+builds the sdist and wheel, runs ``twine check --strict``, and uploads them.
+
 History
 -------
 
@@ -428,6 +436,7 @@ History
 
 .. _wcwidth: https://github.com/jquast/wcwidth
 .. _blessed: https://github.com/jquast/blessed
+.. _ttyscan: https://github.com/jquast/ttyscan
 .. _`wcstwidth()`: https://wcwidth.readthedocs.io/en/latest/intro.html#wcstwidth
 .. _`Query Cursor Position`: https://blessed.readthedocs.io/en/latest/location.html#finding-the-cursor
 .. _`resize(1)`: https://github.com/joejulian/xterm/blob/master/resize.c
@@ -453,4 +462,4 @@ History
 .. _`Terminal Identification`: https://github.com/jquast/ttyscan#terminal-identification
 .. _`Correction Tables`: https://github.com/jquast/wcwidth#corrections
 .. _`ghostty test`: https://github.com/ghostty-org/ghostty/blob/main/test/ucs-detect.sh
-.. _`terminal evaluation`_   https://github.com/contour-terminal/terminal-comparison#why-this-exists
+.. _`terminal evaluation`: https://github.com/contour-terminal/terminal-comparison#why-this-exists
