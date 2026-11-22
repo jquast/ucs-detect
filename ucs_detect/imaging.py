@@ -14,7 +14,7 @@ except ImportError:  # pragma: no cover
     numpy = None
 
 # local
-from ucs_detect import macos
+from ucs_detect import macos, windows
 from ucs_detect.accessories import display_lock, largest_window
 
 #: Fraction of the display a window must cover to count as fullscreen.
@@ -63,6 +63,8 @@ def display_geometry():
     """Return the X11 display ``(width, height)`` in pixels, or None."""
     if macos.IS_MACOS:
         return macos.display_geometry()
+    if windows.IS_WSL:
+        return windows.display_geometry()
     try:
         result = subprocess.run(
             ["xdotool", "getdisplaygeometry"],
@@ -82,6 +84,8 @@ def window_geometry(window_id):
     """Return the ``(width, height)`` of *window_id* in pixels, or None."""
     if macos.IS_MACOS:
         return macos.window_geometry(window_id)
+    if windows.IS_WSL:
+        return windows.window_geometry(window_id)
     try:
         result = subprocess.run(
             ["xdotool", "getwindowgeometry", "--shell", str(window_id)],
@@ -133,6 +137,8 @@ def try_fullscreen(window_id, screen_size=None, max_size=None):
     """Best-effort fill of *window_id* to the X11 display."""
     if macos.IS_MACOS:
         return macos.fit_window(window_id, max_size=max_size)
+    if windows.IS_WSL:
+        return windows.fit_window(window_id, max_size=max_size)
     window_id = str(window_id)
     screen_size = screen_size or display_geometry()
     if not screen_size:
@@ -205,6 +211,8 @@ def find_own_window(title, timeout=5):
     """Find the terminal window that contains this process."""
     if macos.IS_MACOS:
         return macos.find_own_window(title, timeout=timeout)
+    if windows.IS_WSL:
+        return windows.find_own_window(title, timeout=timeout)
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         try:
@@ -268,7 +276,7 @@ def park_pointer(window_id):
     Xvfb paints the pointer into the framebuffer, so a pointer resting over the terminal shows up in
     the capture.
     """
-    if macos.IS_MACOS:
+    if macos.IS_MACOS or windows.IS_WSL:
         return True
     geometry = window_geometry(window_id)
     if geometry is not None:
@@ -286,6 +294,8 @@ def capture_window_raw(window_id, output_path, park=True):
     """Capture *window_id* to *output_path* without cropping."""
     if macos.IS_MACOS:
         return macos.capture_window_raw(window_id, output_path, park=park)
+    if windows.IS_WSL:
+        return windows.capture_window_raw(window_id, output_path, park=park)
     with display_lock():
         if park:
             park_pointer(window_id)
@@ -541,6 +551,8 @@ def require_capture_tools():
     """Return True when the platform capture tools are available."""
     if macos.IS_MACOS:
         return macos.require_tools()
+    if windows.IS_WSL:
+        return windows.require_tools()
     return bool(shutil.which("xdotool") and shutil.which("xwd"))
 
 
@@ -548,6 +560,8 @@ def focus_window(window_id):
     """Raise and focus *window_id*, returning True on success."""
     if macos.IS_MACOS:
         return macos.focus(window_id)
+    if windows.IS_WSL:
+        return windows.focus(window_id)
     with display_lock():
         for argv in (
                 ["xdotool", "windowraise", str(window_id)],
@@ -561,6 +575,8 @@ def window_title(window_id):
     """Return the title of *window_id*, or an empty string."""
     if macos.IS_MACOS:
         return macos.window_title(window_id)
+    if windows.IS_WSL:
+        return windows.window_title(window_id)
     try:
         result = subprocess.run(
             ["xdotool", "getwindowname", str(window_id)],
@@ -574,6 +590,8 @@ def window_class(window_id):
     """Return the X11 class name of *window_id*, or an empty string."""
     if macos.IS_MACOS:
         return macos.window_owner(window_id)
+    if windows.IS_WSL:
+        return windows.window_class(window_id)
     try:
         result = subprocess.run(
             ["xdotool", "getwindowclassname", str(window_id)],
@@ -587,6 +605,8 @@ def active_window():
     """Return the frontmost window id, or an empty string."""
     if macos.IS_MACOS:
         return macos.active_window()
+    if windows.IS_WSL:
+        return windows.active_window()
     try:
         result = subprocess.run(
             ["xdotool", "getactivewindow"],

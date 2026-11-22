@@ -1270,7 +1270,7 @@ def _active_window():
 
 
 def _compositor_window(window_id):
-    if macos.IS_MACOS:
+    if macos.IS_MACOS or imaging.windows.IS_WSL:
         return None
     for candidate in (window_id, _active_window()):
         if candidate and ('Weston' in _window_title(candidate)
