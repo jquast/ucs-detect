@@ -1,23 +1,632 @@
 ambiguous_width: 1
-datetime: 2026-09-18 12:07:27 UTC
+bidi_results:
+  scanned_datetime: 2026-11-22 13:46:53 UTC
+  supported: true
+  control_left: 1.0
+  requested_right: 1.0
+  errors: []
+color_results:
+  scanned_datetime: 2026-11-22 13:46:47 UTC
+  painted_rows: 29
+  calibration:
+    origin_x: 3.0
+    origin_y: 53.0
+    cell_width_px: 12.0
+    cell_height_px: 24.0
+    term_width: 130
+    term_height: 29
+  sixteen:
+    layout:
+      columns: 4
+      bands: 4
+      block_width: 2
+      block_height: 2
+      group_width: 20
+      ruler_row: 28
+    colors:
+    - index: 0
+      name: black
+      rgb:
+      - 12
+      - 12
+      - 12
+    - index: 1
+      name: red
+      rgb:
+      - 187
+      - 0
+      - 0
+    - index: 2
+      name: green
+      rgb:
+      - 0
+      - 187
+      - 0
+    - index: 3
+      name: yellow
+      rgb:
+      - 187
+      - 187
+      - 0
+    - index: 4
+      name: blue
+      rgb:
+      - 0
+      - 0
+      - 187
+    - index: 5
+      name: magenta
+      rgb:
+      - 187
+      - 0
+      - 187
+    - index: 6
+      name: cyan
+      rgb:
+      - 0
+      - 187
+      - 187
+    - index: 7
+      name: white
+      rgb:
+      - 204
+      - 204
+      - 204
+    - index: 8
+      name: bright_black
+      rgb:
+      - 128
+      - 128
+      - 128
+    - index: 9
+      name: bright_red
+      rgb:
+      - 255
+      - 85
+      - 85
+    - index: 10
+      name: bright_green
+      rgb:
+      - 85
+      - 255
+      - 85
+    - index: 11
+      name: bright_yellow
+      rgb:
+      - 255
+      - 255
+      - 85
+    - index: 12
+      name: bright_blue
+      rgb:
+      - 85
+      - 85
+      - 255
+    - index: 13
+      name: bright_magenta
+      rgb:
+      - 255
+      - 85
+      - 255
+    - index: 14
+      name: bright_cyan
+      rgb:
+      - 85
+      - 255
+      - 255
+    - index: 15
+      name: bright_white
+      rgb:
+      - 255
+      - 255
+      - 255
+datetime: 2026-11-22 13:46:42 UTC
 environment:
   COLORTERM: truecolor
   TERM: xterm-256color
-  TERM_PROGRAM: AbsoluteTelnet/SSH
-height: 44
+  TERM_PROGRAM: AbsoluteTelnet
+height: 29
 preferred_encoding: UTF-8
 python_version: 3.14.4
-seconds_elapsed: 37.61711145300069
+seconds_elapsed: 164.46159470599378
 session_arguments:
   all: false
   limit_category_time: 0
+  limit_codepoints: 0
   limit_errors: 0
   limit_graphemes: 0
   limit_graphemes_pct: 0
   stream: stderr
   timeout_cps: 3.0
 software_name: AbsoluteTelnet/SSH
-software_version: '14.21'
+software_version: '14.24'
+spillover_results:
+  scanned_datetime: 2026-11-22 13:48:15 UTC
+  n_candidates: 8644
+  n_tested: 8644
+  n_spillover: 25
+  n_no_ink: 0
+  n_shifted: 0
+  shifted_graphemes: []
+  spill_counts:
+    graphemes_any: 25
+    graphemes_left: 24
+    graphemes_right: 1
+    graphemes_both: 0
+    left_cells:
+      '1': 24
+    right_cells:
+      '1': 1
+    max_left_cells: 1
+    max_right_cells: 1
+  spill_counts_by_kind:
+    Chinantec, Chiltepec:
+      graphemes_any: 1
+      graphemes_left: 1
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 1
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Fur:
+      graphemes_any: 1
+      graphemes_left: 1
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 1
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Maldivian:
+      graphemes_any: 19
+      graphemes_left: 19
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 19
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Sanskrit (Grantha):
+      graphemes_any: 1
+      graphemes_left: 0
+      graphemes_right: 1
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '1': 1
+      max_left_cells: 0
+      max_right_cells: 1
+    Tai Dam:
+      graphemes_any: 1
+      graphemes_left: 1
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 1
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Telugu:
+      graphemes_any: 1
+      graphemes_left: 1
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 1
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Tibetan, Central:
+      graphemes_any: 1
+      graphemes_left: 1
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 1
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+  spill_examples:
+    Chinantec, Chiltepec:
+      Left:
+        '1':
+          example: '''\u0268\u0331\u0308'''
+          width: 1
+    Fur:
+      Left:
+        '1':
+          example: '''\u0268\u0331\u0301'''
+          width: 1
+    Maldivian:
+      Left:
+        '1':
+          example: '''\u078a\u07a6'''
+          width: 1
+    Sanskrit (Grantha):
+      Right:
+        '1':
+          example: '''\U0001132e\U0001134d'''
+          width: 1
+    Tai Dam:
+      Left:
+        '1':
+          example: '''\uaa85\uaab0'''
+          width: 1
+    Telugu:
+      Left:
+        '1':
+          example: '''\u0c36\u0c48'''
+          width: 1
+    Tibetan, Central:
+      Left:
+        '1':
+          example: '''\u0020\u0f7c'''
+          width: 1
+  n_tested_by_kind:
+    Aja: 3
+    Amarakaeri: 6
+    Arabic, Standard: 8
+    Assyrian Neo-Aramaic: 8
+    Baatonum: 1
+    Bamun: 17
+    Belanda Viri: 3
+    Bengali: 335
+    Bhojpuri: 252
+    Bora: 2
+    Burmese: 223
+    Catalan (2): 6
+    Chakma: 225
+    Chickasaw: 4
+    Chinantec, Chiltepec: 6
+    Dagaare, Southern: 3
+    Dari: 6
+    Dendi: 1
+    Dinka, Northeastern: 2
+    Dzongkha: 160
+    Evenki: 13
+    Farsi, Western: 3
+    Fon: 1
+    French (Welche): 2
+    Fur: 9
+    Ga: 1
+    Gen: 1
+    Gilyak: 2
+    Gujarati: 290
+    Gumuz: 2
+    Hindi: 164
+    Javanese (Javanese): 488
+    Kabyle: 8
+    Kannada: 236
+    Khmer, Central: 390
+    Khün: 421
+    Lamnso': 3
+    Lao: 217
+    Lingala (tones): 8
+    Magahi: 22
+    Maithili: 66
+    Malayalam: 382
+    Maldivian: 209
+    Maori (2): 6
+    Marathi: 103
+    Mazahua Central: 3
+    Mon: 208
+    Mòoré: 1
+    Nanai: 2
+    Navajo: 4
+    Nepali: 71
+    Orok: 1
+    Otomi, Mezquital: 1
+    Panjabi, Eastern: 236
+    Panjabi, Western: 3
+    Pashto, Northern: 1
+    Picard: 1
+    Pular (Adlam): 24
+    RI: 262
+    Sanskrit: 155
+    Sanskrit (Grantha): 237
+    Secoya: 1
+    Seraiki: 1
+    Shan: 106
+    Shipibo-Conibo: 2
+    Sinhala: 198
+    Siona: 1
+    South Azerbaijani: 6
+    Tagalog (Tagalog): 16
+    Tai Dam: 120
+    Tamang, Eastern: 11
+    Tamazight, Central Atlas: 5
+    Tamil: 132
+    Telugu: 335
+    Tem: 2
+    Thai: 193
+    Thai (2): 14
+    Tibetan, Central: 48
+    Ticuna: 13
+    Uduk: 2
+    Urdu: 23
+    Urdu (2): 1
+    VS15: 158
+    VS16: 213
+    Vietnamese: 42
+    Yaneshaʼ: 10
+    Yiddish, Eastern: 10
+    Yoruba: 8
+    ZWJ: 1445
+  layout:
+    left_cells: 3
+    column_stride: 24
+    start_column: 3
+    painted_rows: 29
+    rows_per_page: 28
+    columns_per_page: 5
+    items_per_page: 140
+  calibration:
+    origin_x: 3.0
+    origin_y: 53.0
+    cell_width_px: 12.0
+    cell_height_px: 24.0
+    term_width: 130
+    term_height: 29
+  images:
+    AbsoluteTelnet_SSH-spillover_003_U+078A.gif:
+      page: 37
+      spillovers:
+      - wchar: \u078a\u07a6
+        codepoints:
+        - 1930
+        - 1958
+        category: language
+        label: Maldivian
+        row: 5
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078a\u07a7
+        codepoints:
+        - 1930
+        - 1959
+        category: language
+        label: Maldivian
+        row: 5
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078a\u07a8
+        codepoints:
+        - 1930
+        - 1960
+        category: language
+        label: Maldivian
+        row: 5
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078a\u07a9
+        codepoints:
+        - 1930
+        - 1961
+        category: language
+        label: Maldivian
+        row: 5
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078a\u07aa
+        codepoints:
+        - 1930
+        - 1962
+        category: language
+        label: Maldivian
+        row: 6
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078a\u07ab
+        codepoints:
+        - 1930
+        - 1963
+        category: language
+        label: Maldivian
+        row: 6
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078a\u07ac
+        codepoints:
+        - 1930
+        - 1964
+        category: language
+        label: Maldivian
+        row: 6
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078a\u07af
+        codepoints:
+        - 1930
+        - 1967
+        category: language
+        label: Maldivian
+        row: 6
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078a\u07b0
+        codepoints:
+        - 1930
+        - 1968
+        category: language
+        label: Maldivian
+        row: 6
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07a6
+        codepoints:
+        - 1933
+        - 1958
+        category: language
+        label: Maldivian
+        row: 10
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07a7
+        codepoints:
+        - 1933
+        - 1959
+        category: language
+        label: Maldivian
+        row: 10
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07a8
+        codepoints:
+        - 1933
+        - 1960
+        category: language
+        label: Maldivian
+        row: 10
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07a9
+        codepoints:
+        - 1933
+        - 1961
+        category: language
+        label: Maldivian
+        row: 10
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07aa
+        codepoints:
+        - 1933
+        - 1962
+        category: language
+        label: Maldivian
+        row: 11
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07ab
+        codepoints:
+        - 1933
+        - 1963
+        category: language
+        label: Maldivian
+        row: 11
+        column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07ac
+        codepoints:
+        - 1933
+        - 1964
+        category: language
+        label: Maldivian
+        row: 11
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07ad
+        codepoints:
+        - 1933
+        - 1965
+        category: language
+        label: Maldivian
+        row: 11
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u078d\u07b0
+        codepoints:
+        - 1933
+        - 1968
+        category: language
+        label: Maldivian
+        row: 11
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0795\u07b0
+        codepoints:
+        - 1941
+        - 1968
+        category: language
+        label: Maldivian
+        row: 19
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+    AbsoluteTelnet_SSH-spillover_005_U+AA85.gif:
+      page: 42
+      spillovers:
+      - wchar: \uaa85\uaab0
+        codepoints:
+        - 43653
+        - 43696
+        category: language
+        label: Tai Dam
+        row: 16
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+    AbsoluteTelnet_SSH-spillover_006_U+0C36.gif:
+      page: 44
+      spillovers:
+      - wchar: \u0c36\u0c48
+        codepoints:
+        - 3126
+        - 3144
+        category: language
+        label: Telugu
+        row: 6
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+    AbsoluteTelnet_SSH-spillover_007_U+0020.gif:
+      page: 45
+      spillovers:
+      - wchar: ' \u0f7c'
+        codepoints:
+        - 32
+        - 3964
+        category: language
+        label: Tibetan, Central
+        row: 22
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+  errors: []
 system: Linux
 terminal_results:
   background_color_hex: '#0c0c0c0c0c0c'
@@ -29,19 +638,55 @@ terminal_results:
   cell_width: 12
   color_scheme: dark
   colored_underlines: true
-  decrqcra: true
+  control_advance:
+    U+0000/raw: 0
+    U+0001/raw: 0
+    U+0002/raw: 0
+    U+0003/raw: 0
+    U+0004/raw: 0
+    U+0006/raw: 0
+    U+0010/raw: 0
+    U+0012/raw: 0
+    U+0014/raw: 0
+    U+0015/raw: 0
+    U+0016/raw: 0
+    U+0017/raw: 0
+    U+0019/raw: 0
+    U+001C/raw: 0
+    U+001D/raw: 0
+    U+001E/raw: 0
+    U+001F/raw: 0
+    U+007F/raw: 0
+    U+0080/utf-8: 1
+    U+0081/utf-8: 1
+    U+0082/utf-8: 1
+    U+0083/utf-8: 1
+    U+0086/utf-8: 1
+    U+0087/utf-8: 1
+    U+0091/utf-8: 1
+    U+0092/utf-8: 1
+    U+0093/utf-8: 1
+    U+0094/utf-8: 1
+    U+0095/utf-8: 1
+    U+0096/utf-8: 1
+    U+0097/utf-8: 1
+    U+0099/utf-8: 1
+  decrqcra: false
   decrqss: true
+  decrqss_injection: false
   decrqss_settings:
     decsace: '0'
+    decsasd: '0'
     decsca: '0'
-    decscl: 64;1
-    decscpp: '80'
+    decscl: 65;1
+    decscpp: '130'
     decscusr: '5'
-    decslpp: '44'
-    decslrm: 1;80
-    decsnls: '44'
-    decstbm: 1;44
-    sgr: 0;38;2;12;12;12
+    decslpp: '29'
+    decslrm: 1;130
+    decsnls: '29'
+    decssdt: '0'
+    decstbm: 1;29
+    sgr: 0;38:2::12:12:12
   decrqss_truecolor_probe: true
   device_attributes:
     extensions:
@@ -53,18 +698,22 @@ terminal_results:
     - 8
     - 9
     - 15
+    - 16
+    - 17
+    - 18
     - 21
     - 22
     - 28
+    - 29
     - 52
-    raw: "\e[?62;1;2;4;6;7;8;9;15;21;22;28;52c"
-    service_class: 62
+    raw: "\e[?65;1;2;4;6;7;8;9;15;16;17;18;21;22;28;29;52c"
+    service_class: 65
   foreground_color_hex: '#cccccccccccc'
   foreground_color_rgb:
   - 52428
   - 52428
   - 52428
-  height: 44
+  height: 29
   iterm2_features:
     features:
       bracketed_paste: true
@@ -82,7 +731,7 @@ terminal_results:
       titles: 3
       truecolor: 3
       unicode_basic: true
-      unicode_widths: 17
+      unicode_widths: 18
     supported: true
   iterm2_graphics: true
   kitty_clipboard_protocol: true
@@ -170,14 +819,14 @@ terminal_results:
   osc52_detection:
     da1_extension_52: true
     xtgettcap_ms: true
-  pixels_height: 1056
-  pixels_width: 960
-  screen_ratio: '4:3'
-  screen_ratio_name: VGA
+  pixels_height: 696
+  pixels_width: 1560
+  screen_ratio: '21:9'
+  screen_ratio_name: UWHD
   sixel: true
   software_method: XTVERSION
   software_name: AbsoluteTelnet/SSH
-  software_version: '14.21'
+  software_version: '14.24'
   styled_underlines: true
   tab_stop_width: 8
   text_sizing:
@@ -187,7 +836,7 @@ terminal_results:
     protocol: mintty
     supported: true
   ttype: xterm-256color
-  width: 80
+  width: 130
   xtgettcap:
     capabilities:
       Ms: "\e]52;%p1%s;%p2%s\a"
@@ -241,8 +890,7 @@ terminal_results:
 
         '
       indn: "\e[%p1%dS"
-      initc: "\e]4;%p1%d;rgb:%p2%{255}%*%{1000}%/%2.2X/%p3%{255}%*%{1000}%/%2.2X/%p4%{255}%*%{1000}%/%2.2X\e\
-        \\"
+      initc: "\e]4;%p1%d;rgb:%p2%{255}%*%{1000}%/%2.2X/%p3%{255}%*%{1000}%/%2.2X/%p4%{255}%*%{1000}%/%2.2X\e\\"
       nel: "\eE"
       oc: "\e]104\a"
       op: "\e[39;49m"
@@ -276,13 +924,13 @@ terminal_results:
       tbc: "\e[3g"
       u6: "\e[%i%d;%dR"
       u7: "\e[6n"
-      u8: "\e[?62;1;2;4;6;7;8;9;15;21;22;28;52c"
+      u8: "\e[?65;1;2;4;6;7;8;9;15;16;17;18;21;22;28;29;52c"
       u9: "\e[c"
       vpa: "\e[%i%p1%dd"
     supported: true
   xtgettcap-bad-screenleak: false
   xtversion-bad-screenleak: false
-  xtversion_raw: AbsoluteTelnet/SSH 14.21
+  xtversion_raw: AbsoluteTelnet/SSH 14.24
 test_results:
   emoji_vs15_results:
     9.0.0:
@@ -456,7 +1104,7 @@ test_results:
     Hindi:
       failed: []
       n_errors: 0
-      n_total: 164
+      n_total: 166
       pct_success: 100.0
     Javanese (Javanese):
       failed: []
@@ -491,7 +1139,7 @@ test_results:
     Lao:
       failed: []
       n_errors: 0
-      n_total: 227
+      n_total: 217
       pct_success: 100.0
     Lingala (tones):
       failed: []
@@ -571,7 +1219,7 @@ test_results:
     Panjabi, Eastern:
       failed: []
       n_errors: 0
-      n_total: 236
+      n_total: 239
       pct_success: 100.0
     Panjabi, Western:
       failed: []
@@ -596,7 +1244,7 @@ test_results:
     Sanskrit:
       failed: []
       n_errors: 0
-      n_total: 155
+      n_total: 156
       pct_success: 100.0
     Sanskrit (Grantha):
       failed: []
@@ -676,7 +1324,7 @@ test_results:
     Thai:
       failed: []
       n_errors: 0
-      n_total: 206
+      n_total: 193
       pct_success: 100.0
     Thai (2):
       failed: []
@@ -732,7 +1380,7 @@ test_results:
     18.0.0:
       failed_codepoints: []
       n_errors: 0
-      n_total: 5595
+      n_total: 6589
       pct_success: 100.0
   ri_results:
     18.0.0:
@@ -1131,9 +1779,10 @@ test_results:
     18.0.0:
       failed_codepoints: []
       n_errors: 0
-      n_total: 506
+      n_total: 1529
       pct_success: 100.0
-ucs_detect_version: 2.3.8
+ucs_detect_version: 2.3.11
 unicode_version: 18.0.0
-wcwidth_version: 0.8.3
-width: 80
+wcwidth_path: /home/bpenc/.local/share/pipx/venvs/ucs-detect/lib/python3.14/site-packages/wcwidth
+wcwidth_version: 0.9.4
+width: 130
