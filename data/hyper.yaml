@@ -1989,25 +1989,28 @@ session_arguments:
 software_name: Hyper
 software_version: 3.4.1
 spillover_results:
-  scanned_datetime: 2026-11-17 16:15:59 UTC
+  scanned_datetime: 2026-11-22 13:16:10 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 6010
-  n_no_ink: 247
+  n_spillover: 6027
+  n_no_ink: 243
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 6010
-    graphemes_left: 139
-    graphemes_right: 6009
-    graphemes_both: 138
+    graphemes_any: 6027
+    graphemes_left: 168
+    graphemes_right: 6025
+    graphemes_both: 166
     left_cells:
-      '1': 139
+      '1': 168
     right_cells:
-      '1': 4323
-      '2': 1686
+      '1': 4240
+      '2': 1762
+      '3': 14
+      '4': 8
+      '146': 1
     max_left_cells: 1
-    max_right_cells: 2
+    max_right_cells: 146
   spill_counts_by_kind:
     Arabic, Standard:
       graphemes_any: 1
@@ -2021,14 +2024,15 @@ spillover_results:
       max_right_cells: 1
     Assyrian Neo-Aramaic:
       graphemes_any: 7
-      graphemes_left: 0
+      graphemes_left: 2
       graphemes_right: 7
-      graphemes_both: 0
-      left_cells: {}
+      graphemes_both: 2
+      left_cells:
+        '1': 2
       right_cells:
-        '1': 5
-        '2': 2
-      max_left_cells: 0
+        '1': 3
+        '2': 4
+      max_left_cells: 1
       max_right_cells: 2
     Bengali:
       graphemes_any: 330
@@ -2053,14 +2057,14 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 2
     Burmese:
-      graphemes_any: 204
+      graphemes_any: 210
       graphemes_left: 0
-      graphemes_right: 204
+      graphemes_right: 210
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 66
-        '2': 138
+        '1': 68
+        '2': 142
       max_left_cells: 0
       max_right_cells: 2
     Chakma:
@@ -2076,11 +2080,11 @@ spillover_results:
       max_right_cells: 2
     Dzongkha:
       graphemes_any: 160
-      graphemes_left: 89
+      graphemes_left: 111
       graphemes_right: 160
-      graphemes_both: 89
+      graphemes_both: 111
       left_cells:
-        '1': 89
+        '1': 111
       right_cells:
         '1': 160
       max_left_cells: 1
@@ -2146,8 +2150,8 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 379
-        '2': 11
+        '1': 354
+        '2': 36
       max_left_cells: 0
       max_right_cells: 2
     Khün:
@@ -2158,8 +2162,8 @@ spillover_results:
       left_cells:
         '1': 17
       right_cells:
-        '1': 308
-        '2': 23
+        '1': 305
+        '2': 26
       max_left_cells: 1
       max_right_cells: 2
     Lao:
@@ -2227,16 +2231,26 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 2
     Mon:
-      graphemes_any: 202
+      graphemes_any: 203
       graphemes_left: 0
-      graphemes_right: 202
+      graphemes_right: 203
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 62
-        '2': 140
+        '1': 56
+        '2': 147
       max_left_cells: 0
       max_right_cells: 2
+    Navajo:
+      graphemes_any: 1
+      graphemes_left: 0
+      graphemes_right: 1
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '1': 1
+      max_left_cells: 0
+      max_right_cells: 1
     Nepali:
       graphemes_any: 71
       graphemes_left: 0
@@ -2259,6 +2273,16 @@ spillover_results:
         '2': 133
       max_left_cells: 0
       max_right_cells: 2
+    Panjabi, Western:
+      graphemes_any: 1
+      graphemes_left: 0
+      graphemes_right: 1
+      graphemes_both: 0
+      left_cells: {}
+      right_cells:
+        '1': 1
+      max_left_cells: 0
+      max_right_cells: 1
     Pular (Adlam):
       graphemes_any: 3
       graphemes_left: 0
@@ -2341,8 +2365,8 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 81
-        '2': 39
+        '1': 74
+        '2': 46
       max_left_cells: 0
       max_right_cells: 2
     Tamang, Eastern:
@@ -2399,12 +2423,12 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 1
     Tibetan, Central:
-      graphemes_any: 47
-      graphemes_left: 33
+      graphemes_any: 48
+      graphemes_left: 38
       graphemes_right: 47
-      graphemes_both: 33
+      graphemes_both: 37
       left_cells:
-        '1': 33
+        '1': 38
       right_cells:
         '1': 47
       max_left_cells: 1
@@ -2436,18 +2460,19 @@ spillover_results:
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 58
-        '2': 121
+        '1': 54
+        '2': 124
+        '146': 1
       max_left_cells: 0
-      max_right_cells: 2
+      max_right_cells: 146
     Vietnamese:
-      graphemes_any: 12
+      graphemes_any: 13
       graphemes_left: 0
-      graphemes_right: 12
+      graphemes_right: 13
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 12
+        '1': 13
       max_left_cells: 0
       max_right_cells: 1
     Yaneshaʼ:
@@ -2461,26 +2486,28 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 1
     Yiddish, Eastern:
-      graphemes_any: 1
+      graphemes_any: 3
       graphemes_left: 0
-      graphemes_right: 1
+      graphemes_right: 3
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 1
+        '1': 3
       max_left_cells: 0
       max_right_cells: 1
     ZWJ:
-      graphemes_any: 1151
+      graphemes_any: 1155
       graphemes_left: 0
-      graphemes_right: 1151
+      graphemes_right: 1155
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 1012
-        '2': 139
+        '1': 969
+        '2': 164
+        '3': 14
+        '4': 8
       max_left_cells: 0
-      max_right_cells: 2
+      max_right_cells: 4
   spill_examples:
     Bengali:
       Right:
@@ -2544,7 +2571,7 @@ spillover_results:
           example: '''\u1780\u17b6'''
           width: 2
         '2':
-          example: '''\u178c\u17d2\u178d'''
+          example: '''\u1780\u17d2\u1793\u17bb'''
           width: 2
     Khün:
       Right:
@@ -2683,6 +2710,10 @@ spillover_results:
         '2':
           example: '''\u0713\u0330'''
           width: 1
+      Left:
+        '1':
+          example: '''\u0713\u0330'''
+          width: 1
     Dzongkha:
       Right:
         '1':
@@ -2690,7 +2721,7 @@ spillover_results:
           width: 1
       Left:
         '1':
-          example: '''\u0f40\u0fb1'''
+          example: '''\u0f40\u0f7c'''
           width: 1
     Fur:
       Right:
@@ -2714,6 +2745,16 @@ spillover_results:
       Right:
         '1':
           example: '''\u0782\u07ab'''
+          width: 1
+    Navajo:
+      Right:
+        '1':
+          example: '''\u0105\u0301'''
+          width: 1
+    Panjabi, Western:
+      Right:
+        '1':
+          example: '''\u06d2\u200c'''
           width: 1
     Pular (Adlam):
       Right:
@@ -2749,7 +2790,7 @@ spillover_results:
     Tibetan, Central:
       Left:
         '1':
-          example: '''\u0f42\u0fb2\u0f72'''
+          example: '''\u0020\u0f7c'''
           width: 1
       Right:
         '1':
@@ -2773,7 +2814,7 @@ spillover_results:
     Yiddish, Eastern:
       Right:
         '1':
-          example: '''\u05f2\u05b7'''
+          example: '''\u05d0\u05b8'''
           width: 1
     ZWJ:
       Right:
@@ -2783,6 +2824,12 @@ spillover_results:
         '2':
           example: '''\U0001f3c3\u200d\u2640\ufe0f\u200d\u27a1\ufe0f'''
           width: 4
+        '4':
+          example: '''\U0001f469\u200d\u2695\ufe0f'''
+          width: 3
+        '3':
+          example: '''\U0001f469\U0001f3fb\u200d\U0001f9bc'''
+          width: 6
     RI:
       Right:
         '1':
@@ -2800,6 +2847,9 @@ spillover_results:
           width: 1
         '2':
           example: '''\u24c2\ufe0f'''
+          width: 1
+        '146':
+          example: '''\U0001f6f3\ufe0f'''
           width: 1
   n_tested_by_kind:
     Aja: 3
@@ -2901,7 +2951,7 @@ spillover_results:
     items_per_page: 840
   calibration:
     origin_x: 18.0
-    origin_y: 56
+    origin_y: 56.0
     cell_width_px: 6.0
     cell_height_px: 16.0
     term_width: 419
@@ -8930,6 +8980,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 0
         spill_right_cells: 2
+      - wchar: \u1004\u103d\u1031
+        codepoints:
+        - 4100
+        - 4157
+        - 4145
+        category: language
+        label: Burmese
+        row: 51
+        column: 147
+        advance: 2
+        spill_left_cells: 0
+        spill_right_cells: 1
       - wchar: \u1005\u1031
         codepoints:
         - 4101
@@ -9383,6 +9445,68 @@ spillover_results:
         label: Burmese
         row: 55
         column: 219
+        advance: 2
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u101b\u1031
+        codepoints:
+        - 4123
+        - 4145
+        category: language
+        label: Burmese
+        row: 56
+        column: 3
+        advance: 2
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u101b\u103d\u1031
+        codepoints:
+        - 4123
+        - 4157
+        - 4145
+        category: language
+        label: Burmese
+        row: 56
+        column: 27
+        advance: 2
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u101b\u103d\u103e\u1031\u1037
+        codepoints:
+        - 4123
+        - 4157
+        - 4158
+        - 4145
+        - 4151
+        category: language
+        label: Burmese
+        row: 56
+        column: 51
+        advance: 2
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u101b\u103e\u1031
+        codepoints:
+        - 4123
+        - 4158
+        - 4145
+        category: language
+        label: Burmese
+        row: 56
+        column: 75
+        advance: 2
+        spill_left_cells: 0
+        spill_right_cells: 1
+      - wchar: \u101b\u103e\u1031\u1037
+        codepoints:
+        - 4123
+        - 4158
+        - 4145
+        - 4151
+        category: language
+        label: Burmese
+        row: 56
+        column: 99
         advance: 2
         spill_left_cells: 0
         spill_right_cells: 1
@@ -15549,7 +15673,7 @@ spillover_results:
         column: 123
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u1780\u17d2\u179a
         codepoints:
         - 6016
@@ -15574,7 +15698,7 @@ spillover_results:
         column: 171
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u1780\u17d2\u179a\u17c4
         codepoints:
         - 6016
@@ -17542,7 +17666,7 @@ spillover_results:
         column: 219
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u1794\u17d2\u179a\u17be
         codepoints:
         - 6036
@@ -17632,7 +17756,7 @@ spillover_results:
         column: 147
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u1795\u17d2\u1791\u17c1
         codepoints:
         - 6037
@@ -18087,7 +18211,7 @@ spillover_results:
         column: 75
         advance: 2
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u1798\u17d2\u1797\u17b6
         codepoints:
         - 6040
@@ -25903,7 +26027,7 @@ spillover_results:
         row: 33
         column: 3
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 2
       - wchar: \u0713\u0742
         codepoints:
@@ -25925,8 +26049,8 @@ spillover_results:
         row: 33
         column: 75
         advance: 1
-        spill_left_cells: 0
-        spill_right_cells: 1
+        spill_left_cells: 1
+        spill_right_cells: 2
       - wchar: \u071f\u0742
         codepoints:
         - 1823
@@ -25937,7 +26061,7 @@ spillover_results:
         column: 99
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u0721\u0739
         codepoints:
         - 1825
@@ -28235,7 +28359,7 @@ spillover_results:
         column: 51
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u101b\u102f\u1036
         codepoints:
         - 4123
@@ -28258,7 +28382,7 @@ spillover_results:
         column: 99
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u101b\u103d\u1036\u1037
         codepoints:
         - 4123
@@ -28282,7 +28406,7 @@ spillover_results:
         column: 147
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u101b\u103e\u102d
         codepoints:
         - 4123
@@ -28294,7 +28418,7 @@ spillover_results:
         column: 171
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u101c\u102d\u102f
         codepoints:
         - 4124
@@ -30210,7 +30334,7 @@ spillover_results:
         row: 76
         column: 147
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f40\u0fb1
         codepoints:
@@ -30289,7 +30413,7 @@ spillover_results:
         row: 77
         column: 75
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f41\u0fb1
         codepoints:
@@ -30380,7 +30504,7 @@ spillover_results:
         row: 78
         column: 27
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f42\u0fb1
         codepoints:
@@ -30531,7 +30655,7 @@ spillover_results:
         row: 79
         column: 99
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f45\u0f72
         codepoints:
@@ -30575,7 +30699,7 @@ spillover_results:
         row: 79
         column: 195
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f47\u0f72
         codepoints:
@@ -30641,7 +30765,7 @@ spillover_results:
         row: 80
         column: 99
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f50\u0f74
         codepoints:
@@ -30663,7 +30787,7 @@ spillover_results:
         row: 80
         column: 147
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f51\u0f72
         codepoints:
@@ -30707,7 +30831,7 @@ spillover_results:
         row: 81
         column: 3
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f51\u0fb2
         codepoints:
@@ -30763,7 +30887,7 @@ spillover_results:
         row: 81
         column: 123
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f54\u0f7c
         codepoints:
@@ -30774,7 +30898,7 @@ spillover_results:
         row: 81
         column: 147
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f54\u0fb1
         codepoints:
@@ -30819,7 +30943,7 @@ spillover_results:
         row: 82
         column: 3
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f55\u0fb1\u0f7a
         codepoints:
@@ -30878,7 +31002,7 @@ spillover_results:
         row: 82
         column: 123
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f56\u0fb1
         codepoints:
@@ -31016,7 +31140,7 @@ spillover_results:
         row: 83
         column: 171
         advance: 1
-        spill_left_cells: 0
+        spill_left_cells: 1
         spill_right_cells: 1
       - wchar: \u0f58\u0fb1\u0f7c
         codepoints:
@@ -31646,7 +31770,7 @@ spillover_results:
         column: 3
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f468\U0001f3fc\u200d\u2696\ufe0f
         codepoints:
         - 128104
@@ -32208,7 +32332,7 @@ spillover_results:
         column: 219
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f468\U0001f3fd\u200d\u2696\ufe0f
         codepoints:
         - 128104
@@ -32871,7 +32995,7 @@ spillover_results:
         column: 99
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f468\U0001f3fe\u200d\u2696\ufe0f
         codepoints:
         - 128104
@@ -33452,7 +33576,7 @@ spillover_results:
         column: 99
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f468\U0001f3ff\u200d\u2696\ufe0f
         codepoints:
         - 128104
@@ -34152,7 +34276,7 @@ spillover_results:
         column: 27
         advance: 3
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 4
       - wchar: \U0001f469\u200d\u2696\ufe0f
         codepoints:
         - 128105
@@ -34165,7 +34289,7 @@ spillover_results:
         column: 51
         advance: 3
         spill_left_cells: 0
-        spill_right_cells: 2
+        spill_right_cells: 4
       - wchar: \U0001f469\u200d\u2708\ufe0f
         codepoints:
         - 128105
@@ -34338,7 +34462,7 @@ spillover_results:
         column: 123
         advance: 4
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\u200d\U0001f466
         codepoints:
         - 128105
@@ -34364,7 +34488,7 @@ spillover_results:
         column: 171
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\u200d\U0001f467
         codepoints:
         - 128105
@@ -34940,7 +35064,7 @@ spillover_results:
         column: 171
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fb\u200d\U0001f3a4
         codepoints:
         - 128105
@@ -34992,7 +35116,7 @@ spillover_results:
         column: 27
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 4
       - wchar: \U0001f469\U0001f3fb\u200d\U0001f430\u200d\U0001f469\U0001f3fc
         codepoints:
         - 128105
@@ -35324,7 +35448,7 @@ spillover_results:
         column: 99
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3fb\u200d\U0001f9bc\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -35353,7 +35477,7 @@ spillover_results:
         column: 147
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3fb\u200d\U0001f9bd\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -35447,7 +35571,7 @@ spillover_results:
         column: 51
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fc\u200d\u2696\ufe0f
         codepoints:
         - 128105
@@ -35560,7 +35684,7 @@ spillover_results:
         column: 219
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fc\u200d\U0001f373
         codepoints:
         - 128105
@@ -35573,7 +35697,7 @@ spillover_results:
         column: 3
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fc\u200d\U0001f37c
         codepoints:
         - 128105
@@ -35586,7 +35710,7 @@ spillover_results:
         column: 27
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fc\u200d\U0001f393
         codepoints:
         - 128105
@@ -35651,7 +35775,7 @@ spillover_results:
         column: 147
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fc\u200d\U0001f430\u200d\U0001f469\U0001f3fb
         codepoints:
         - 128105
@@ -35822,7 +35946,7 @@ spillover_results:
         column: 195
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3fc\u200d\U0001f9af\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -35916,7 +36040,7 @@ spillover_results:
         column: 123
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3fc\u200d\U0001faef\u200d\U0001f469\U0001f3fb
         codepoints:
         - 128105
@@ -35994,7 +36118,7 @@ spillover_results:
         column: 3
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fd\u200d\u2696\ufe0f
         codepoints:
         - 128105
@@ -36222,7 +36346,7 @@ spillover_results:
         column: 99
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fd\u200d\U0001f3a4
         codepoints:
         - 128105
@@ -36274,7 +36398,7 @@ spillover_results:
         column: 195
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 4
       - wchar: \U0001f469\U0001f3fd\u200d\U0001f430\u200d\U0001f469\U0001f3fb
         codepoints:
         - 128105
@@ -36590,7 +36714,7 @@ spillover_results:
         column: 3
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3fd\u200d\U0001f9bc\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -36619,7 +36743,7 @@ spillover_results:
         column: 51
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3fd\u200d\U0001f9bd\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -36713,7 +36837,7 @@ spillover_results:
         column: 195
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fe\u200d\u2696\ufe0f
         codepoints:
         - 128105
@@ -36826,7 +36950,7 @@ spillover_results:
         column: 123
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fe\u200d\U0001f373
         codepoints:
         - 128105
@@ -36839,7 +36963,7 @@ spillover_results:
         column: 147
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fe\u200d\U0001f37c
         codepoints:
         - 128105
@@ -36852,7 +36976,7 @@ spillover_results:
         column: 171
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fe\u200d\U0001f393
         codepoints:
         - 128105
@@ -36917,7 +37041,7 @@ spillover_results:
         column: 51
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3fe\u200d\U0001f430\u200d\U0001f469\U0001f3fb
         codepoints:
         - 128105
@@ -37104,7 +37228,7 @@ spillover_results:
         column: 123
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3fe\u200d\U0001f9af\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -37198,7 +37322,7 @@ spillover_results:
         column: 51
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3fe\u200d\U0001f9bd\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -37292,7 +37416,7 @@ spillover_results:
         column: 195
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3ff\u200d\u2696\ufe0f
         codepoints:
         - 128105
@@ -37537,7 +37661,7 @@ spillover_results:
         column: 75
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f469\U0001f3ff\u200d\U0001f3a4
         codepoints:
         - 128105
@@ -37589,7 +37713,7 @@ spillover_results:
         column: 171
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 4
       - wchar: \U0001f469\U0001f3ff\u200d\U0001f430\u200d\U0001f469\U0001f3fb
         codepoints:
         - 128105
@@ -37921,7 +38045,7 @@ spillover_results:
         column: 3
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3ff\u200d\U0001f9bc\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -37950,7 +38074,7 @@ spillover_results:
         column: 51
         advance: 6
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f469\U0001f3ff\u200d\U0001f9bd\u200d\u27a1\ufe0f
         codepoints:
         - 128105
@@ -38031,6 +38155,19 @@ spillover_results:
         advance: 9
         spill_left_cells: 0
         spill_right_cells: 1
+      - wchar: \U0001f46e\u200d\u2640\ufe0f
+        codepoints:
+        - 128110
+        - 8205
+        - 9792
+        - 65039
+        category: zwj
+        label: ''
+        row: 47
+        column: 195
+        advance: 3
+        spill_left_cells: 0
+        spill_right_cells: 4
       - wchar: \U0001f46e\u200d\u2642\ufe0f
         codepoints:
         - 128110
@@ -38043,7 +38180,7 @@ spillover_results:
         column: 219
         advance: 3
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 4
       - wchar: \U0001f46e\U0001f3fb\u200d\u2642\ufe0f
         codepoints:
         - 128110
@@ -38072,6 +38209,20 @@ spillover_results:
         advance: 5
         spill_left_cells: 0
         spill_right_cells: 1
+      - wchar: \U0001f46e\U0001f3fd\u200d\u2640\ufe0f
+        codepoints:
+        - 128110
+        - 127997
+        - 8205
+        - 9792
+        - 65039
+        category: zwj
+        label: ''
+        row: 48
+        column: 99
+        advance: 5
+        spill_left_cells: 0
+        spill_right_cells: 3
       - wchar: \U0001f46e\U0001f3fd\u200d\u2642\ufe0f
         codepoints:
         - 128110
@@ -38085,7 +38236,21 @@ spillover_results:
         column: 123
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
+      - wchar: \U0001f46e\U0001f3fe\u200d\u2640\ufe0f
+        codepoints:
+        - 128110
+        - 127998
+        - 8205
+        - 9792
+        - 65039
+        category: zwj
+        label: ''
+        row: 48
+        column: 147
+        advance: 5
+        spill_left_cells: 0
+        spill_right_cells: 3
       - wchar: \U0001f46e\U0001f3fe\u200d\u2642\ufe0f
         codepoints:
         - 128110
@@ -38099,7 +38264,7 @@ spillover_results:
         column: 171
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 3
       - wchar: \U0001f46e\U0001f3ff\u200d\u2642\ufe0f
         codepoints:
         - 128110
@@ -42534,7 +42699,7 @@ spillover_results:
         column: 75
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f9d1\U0001f3fc\u200d\u2696\ufe0f
         codepoints:
         - 129489
@@ -43019,7 +43184,7 @@ spillover_results:
         column: 195
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f9d1\U0001f3fd\u200d\u2696\ufe0f
         codepoints:
         - 129489
@@ -43603,7 +43768,7 @@ spillover_results:
         column: 219
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f9d1\U0001f3fe\u200d\u2696\ufe0f
         codepoints:
         - 129489
@@ -44104,7 +44269,7 @@ spillover_results:
         column: 123
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f9d1\U0001f3ff\u200d\u2696\ufe0f
         codepoints:
         - 129489
@@ -44726,6 +44891,19 @@ spillover_results:
         advance: 9
         spill_left_cells: 0
         spill_right_cells: 1
+      - wchar: \U0001f9d4\u200d\u2640\ufe0f
+        codepoints:
+        - 129492
+        - 8205
+        - 9792
+        - 65039
+        category: zwj
+        label: ''
+        row: 31
+        column: 219
+        advance: 3
+        spill_left_cells: 0
+        spill_right_cells: 4
       - wchar: \U0001f9d4\u200d\u2642\ufe0f
         codepoints:
         - 129492
@@ -44766,7 +44944,7 @@ spillover_results:
         column: 99
         advance: 5
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f9d4\U0001f3fd\u200d\u2642\ufe0f
         codepoints:
         - 129492
@@ -49767,7 +49945,7 @@ spillover_results:
         column: 147
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \u26d1\ufe0f
         codepoints:
         - 9937
@@ -50295,7 +50473,7 @@ spillover_results:
         column: 147
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f399\ufe0f
         codepoints:
         - 127897
@@ -50625,7 +50803,7 @@ spillover_results:
         column: 147
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f570\ufe0f
         codepoints:
         - 128368
@@ -50911,7 +51089,7 @@ spillover_results:
         column: 51
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 1
+        spill_right_cells: 2
       - wchar: \U0001f5dd\ufe0f
         codepoints:
         - 128477
@@ -51142,7 +51320,7 @@ spillover_results:
         column: 75
         advance: 1
         spill_left_cells: 0
-        spill_right_cells: 2
+        spill_right_cells: 146
   errors: []
 system: Linux
 terminal_results:

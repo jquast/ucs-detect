@@ -16,6 +16,7 @@ import glob
 import math
 import time
 import shutil
+import calendar
 import tempfile
 import functools
 import subprocess
@@ -26,7 +27,7 @@ import unicodedata
 import yaml
 
 # local
-from ucs_detect import imaging, macos
+from ucs_detect import macos, imaging
 from ucs_detect.tasks import TaskPool
 from ucs_detect.measure import unicode_escape_string
 from ucs_detect.accessories import display_lock, decode_wchars, load_document
@@ -85,6 +86,12 @@ INK_MARGIN = 1
 
 #: Fraction of a row's cells that must disagree with the page before the row is called displaced.
 SHIFT_FRACTION = 0.2
+
+#: Format of the completion stamp written to a spillover section.
+SCANNED_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S UTC'
+
+#: Seconds a completion stamp may precede the stage start and still count as fresh.
+SCAN_CLOCK_TOLERANCE = 60
 
 #: Frames per second of the spillover evidence animation.
 ANIMATION_FPS = 6
@@ -1766,6 +1773,18 @@ def scan_terminal(term, window_id, candidates, temp_dir,
     return calibration, results, errors, image_records, shifted, painted_rows
 
 
+def is_stale(section, started_at):
+    """Return True when *section* was not written by a scan started at *started_at*."""
+    scanned = section.get('scanned_datetime')
+    if not scanned:
+        return True
+    try:
+        stamped = calendar.timegm(time.strptime(scanned, SCANNED_DATETIME_FORMAT))
+    except (TypeError, ValueError):
+        return True
+    return stamped < started_at - SCAN_CLOCK_TOLERANCE
+
+
 def build_results(calibration, results, errors, n_candidates, images=None,
                   shifted=None, painted_rows=None, cursor_rows=0):
     """Return the YAML section describing a completed scan."""
@@ -1804,7 +1823,7 @@ def build_results(calibration, results, errors, n_candidates, images=None,
     if guard:
         layout['cursor_center_rows'] = guard[1]
     return {
-        'scanned_datetime': time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime()),
+        'scanned_datetime': time.strftime(SCANNED_DATETIME_FORMAT, time.gmtime()),
         'n_candidates': n_candidates,
         'n_tested': len(results),
         'n_spillover': n_spillover,

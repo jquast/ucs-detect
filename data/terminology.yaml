@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-21 00:14:00 UTC
+  scanned_datetime: 2026-11-22 12:58:48 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-21 00:13:53 UTC
+  scanned_datetime: 2026-11-22 12:58:11 UTC
   painted_rows: 24
   calibration:
     origin_x: 1.0
@@ -260,41 +260,41 @@ session_arguments:
 software_name: terminology
 software_version: 1.13.0
 spillover_results:
-  scanned_datetime: 2026-11-21 00:14:21 UTC
+  scanned_datetime: 2026-11-22 12:59:40 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 2020
+  n_spillover: 2633
   n_no_ink: 4
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 2020
-    graphemes_left: 2020
+    graphemes_any: 2633
+    graphemes_left: 2633
     graphemes_right: 0
     graphemes_both: 0
     left_cells:
-      '1': 2020
+      '1': 2633
     right_cells: {}
     max_left_cells: 1
     max_right_cells: 0
   spill_counts_by_kind:
     Bengali:
-      graphemes_any: 91
-      graphemes_left: 91
+      graphemes_any: 99
+      graphemes_left: 99
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 91
+        '1': 99
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Bhojpuri:
-      graphemes_any: 26
-      graphemes_left: 26
+      graphemes_any: 100
+      graphemes_left: 100
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 26
+        '1': 100
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -319,42 +319,42 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Dzongkha:
-      graphemes_any: 141
-      graphemes_left: 141
+      graphemes_any: 160
+      graphemes_left: 160
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 141
+        '1': 160
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Gujarati:
-      graphemes_any: 19
-      graphemes_left: 19
+      graphemes_any: 67
+      graphemes_left: 67
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 19
+        '1': 67
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Hindi:
-      graphemes_any: 3
-      graphemes_left: 3
+      graphemes_any: 31
+      graphemes_left: 31
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 3
+        '1': 31
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Javanese (Javanese):
-      graphemes_any: 421
-      graphemes_left: 421
+      graphemes_any: 436
+      graphemes_left: 436
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 421
+        '1': 436
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -369,42 +369,42 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Khmer, Central:
-      graphemes_any: 89
-      graphemes_left: 89
+      graphemes_any: 289
+      graphemes_left: 289
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 89
+        '1': 289
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Khün:
-      graphemes_any: 221
-      graphemes_left: 221
+      graphemes_any: 225
+      graphemes_left: 225
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 221
+        '1': 225
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Magahi:
-      graphemes_any: 1
-      graphemes_left: 1
+      graphemes_any: 4
+      graphemes_left: 4
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 1
+        '1': 4
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Maithili:
-      graphemes_any: 2
-      graphemes_left: 2
+      graphemes_any: 21
+      graphemes_left: 21
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 2
+        '1': 21
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -415,6 +415,16 @@ spillover_results:
       graphemes_both: 0
       left_cells:
         '1': 50
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Marathi:
+      graphemes_any: 19
+      graphemes_left: 19
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 19
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -429,42 +439,42 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Nepali:
-      graphemes_any: 2
-      graphemes_left: 2
+      graphemes_any: 14
+      graphemes_left: 14
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 2
+        '1': 14
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Panjabi, Eastern:
-      graphemes_any: 78
-      graphemes_left: 78
+      graphemes_any: 131
+      graphemes_left: 131
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 78
+        '1': 131
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Sanskrit:
-      graphemes_any: 4
-      graphemes_left: 4
+      graphemes_any: 13
+      graphemes_left: 13
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 4
+        '1': 13
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Sanskrit (Grantha):
-      graphemes_any: 74
-      graphemes_left: 74
+      graphemes_any: 101
+      graphemes_left: 101
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 74
+        '1': 101
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -479,12 +489,22 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Sinhala:
-      graphemes_any: 95
-      graphemes_left: 95
+      graphemes_any: 121
+      graphemes_left: 121
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 95
+        '1': 121
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Tagalog (Tagalog):
+      graphemes_any: 6
+      graphemes_left: 6
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 6
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -498,33 +518,43 @@ spillover_results:
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
-    Tamil:
-      graphemes_any: 61
-      graphemes_left: 61
+    Tamang, Eastern:
+      graphemes_any: 1
+      graphemes_left: 1
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 61
+        '1': 1
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Tamil:
+      graphemes_any: 80
+      graphemes_left: 80
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 80
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Telugu:
-      graphemes_any: 235
-      graphemes_left: 235
+      graphemes_any: 253
+      graphemes_left: 253
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 235
+        '1': 253
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Tibetan, Central:
-      graphemes_any: 43
-      graphemes_left: 43
+      graphemes_any: 48
+      graphemes_left: 48
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 43
+        '1': 48
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -557,8 +587,8 @@ spillover_results:
     Hindi:
       Left:
         '1':
-          example: '''\u0928\u093f\u0903'''
-          width: 3
+          example: '''\u0917\u094c'''
+          width: 2
     Javanese (Javanese):
       Left:
         '1':
@@ -594,6 +624,11 @@ spillover_results:
         '1':
           example: '''\u0d15\u0d46'''
           width: 2
+    Marathi:
+      Left:
+        '1':
+          example: '''\u091a\u094c'''
+          width: 2
     Mon:
       Left:
         '1':
@@ -612,12 +647,12 @@ spillover_results:
     Sanskrit:
       Left:
         '1':
-          example: '''\u0921\u093f'''
-          width: 2
+          example: '''\u0920\u0948\u0903'''
+          width: 3
     Sanskrit (Grantha):
       Left:
         '1':
-          example: '''\U00011315\U00011347'''
+          example: '''\U00011315\U00011342'''
           width: 2
     Shan:
       Left:
@@ -637,17 +672,27 @@ spillover_results:
     Telugu:
       Left:
         '1':
-          example: '''\u0c15\u0c4d\u0c15'''
+          example: '''\u0c15\u0c46\u0c02'''
           width: 3
     Dzongkha:
       Left:
         '1':
-          example: '''\u0f40\u0f7c'''
+          example: '''\u0f40\u0f74'''
+          width: 2
+    Tagalog (Tagalog):
+      Left:
+        '1':
+          example: '''\u1704\u1714'''
           width: 2
     Tai Dam:
       Left:
         '1':
           example: '''\uaa80\uaab0'''
+          width: 2
+    Tamang, Eastern:
+      Left:
+        '1':
+          example: '''\u0925\u0941'''
           width: 2
     Tibetan, Central:
       Left:
@@ -796,6 +841,50 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0917\u094c
+        codepoints:
+        - 2327
+        - 2380
+        category: language
+        label: Hindi
+        row: 5
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091a\u0940
+        codepoints:
+        - 2330
+        - 2368
+        category: language
+        label: Hindi
+        row: 5
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0924\u0940
+        codepoints:
+        - 2340
+        - 2368
+        category: language
+        label: Hindi
+        row: 6
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0927\u0940
+        codepoints:
+        - 2343
+        - 2368
+        category: language
+        label: Hindi
+        row: 9
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0928\u093f\u0903
         codepoints:
         - 2344
@@ -808,6 +897,17 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0928\u094c
+        codepoints:
+        - 2344
+        - 2380
+        category: language
+        label: Hindi
+        row: 9
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u092a\u093f
         codepoints:
         - 2346
@@ -817,6 +917,51 @@ spillover_results:
         row: 11
         column: 123
         advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092a\u0940
+        codepoints:
+        - 2346
+        - 2368
+        category: language
+        label: Hindi
+        row: 11
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092b\u094c
+        codepoints:
+        - 2347
+        - 2380
+        category: language
+        label: Hindi
+        row: 12
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092d\u094c
+        codepoints:
+        - 2349
+        - 2380
+        category: language
+        label: Hindi
+        row: 12
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0939\u0948\u0903
+        codepoints:
+        - 2361
+        - 2376
+        - 2307
+        category: language
+        label: Hindi
+        row: 16
+        column: 219
+        advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u0958\u093f
@@ -5771,6 +5916,184 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1780\u17d2\u1781
+        codepoints:
+        - 6016
+        - 6098
+        - 6017
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u178a\u17b7
+        codepoints:
+        - 6016
+        - 6098
+        - 6026
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u178a\u17b8
+        codepoints:
+        - 6016
+        - 6098
+        - 6026
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u178a\u17c5
+        codepoints:
+        - 6016
+        - 6098
+        - 6026
+        - 6085
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u1793\u17bb
+        codepoints:
+        - 6016
+        - 6098
+        - 6035
+        - 6075
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u179a
+        codepoints:
+        - 6016
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u179a\u17bb
+        codepoints:
+        - 6016
+        - 6098
+        - 6042
+        - 6075
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u179a\u17c4
+        codepoints:
+        - 6016
+        - 6098
+        - 6042
+        - 6084
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u179f
+        codepoints:
+        - 6016
+        - 6098
+        - 6047
+        category: language
+        label: Khmer, Central
+        row: 70
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1780\u17d2\u179f\u17b6
+        codepoints:
+        - 6016
+        - 6098
+        - 6047
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 71
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1781\u17d2\u1787\u17b6
+        codepoints:
+        - 6017
+        - 6098
+        - 6023
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 71
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1781\u17d2\u1796
+        codepoints:
+        - 6017
+        - 6098
+        - 6038
+        category: language
+        label: Khmer, Central
+        row: 71
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1781\u17d2\u179b\u17b6
+        codepoints:
+        - 6017
+        - 6098
+        - 6043
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 71
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1781\u17d2\u179b\u17bd
+        codepoints:
+        - 6017
+        - 6098
+        - 6043
+        - 6077
+        category: language
+        label: Khmer, Central
+        row: 71
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1782\u17c4
         codepoints:
         - 6018
@@ -5780,6 +6103,96 @@ spillover_results:
         row: 72
         column: 3
         advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1782\u17d2\u1782
+        codepoints:
+        - 6018
+        - 6098
+        - 6018
+        category: language
+        label: Khmer, Central
+        row: 72
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1782\u17d2\u1793\u17b6
+        codepoints:
+        - 6018
+        - 6098
+        - 6035
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 72
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1782\u17d2\u1798\u17b6
+        codepoints:
+        - 6018
+        - 6098
+        - 6040
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 72
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1782\u17d2\u179a
+        codepoints:
+        - 6018
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 72
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1782\u17d2\u179a\u17b6
+        codepoints:
+        - 6018
+        - 6098
+        - 6042
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 72
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1782\u17d2\u179a\u17b9\u17c7
+        codepoints:
+        - 6018
+        - 6098
+        - 6042
+        - 6073
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 72
+        column: 147
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1782\u17d2\u179a\u17bd
+        codepoints:
+        - 6018
+        - 6098
+        - 6042
+        - 6077
+        category: language
+        label: Khmer, Central
+        row: 72
+        column: 171
+        advance: 4
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u1783\u17be
@@ -5815,6 +6228,145 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1783\u17d2\u1793
+        codepoints:
+        - 6019
+        - 6098
+        - 6035
+        category: language
+        label: Khmer, Central
+        row: 73
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u1780
+        codepoints:
+        - 6020
+        - 6098
+        - 6016
+        category: language
+        label: Khmer, Central
+        row: 73
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u1780\u17be
+        codepoints:
+        - 6020
+        - 6098
+        - 6016
+        - 6078
+        category: language
+        label: Khmer, Central
+        row: 73
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u1781\u17b7
+        codepoints:
+        - 6020
+        - 6098
+        - 6017
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 73
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u1781\u17c6
+        codepoints:
+        - 6020
+        - 6098
+        - 6017
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 73
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u1782
+        codepoints:
+        - 6020
+        - 6098
+        - 6018
+        category: language
+        label: Khmer, Central
+        row: 73
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u179a\u17b8
+        codepoints:
+        - 6020
+        - 6098
+        - 6042
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 73
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u179a\u17b9
+        codepoints:
+        - 6020
+        - 6098
+        - 6042
+        - 6073
+        category: language
+        label: Khmer, Central
+        row: 74
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u179a\u17c0
+        codepoints:
+        - 6020
+        - 6098
+        - 6042
+        - 6080
+        category: language
+        label: Khmer, Central
+        row: 74
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u17a0\u17b6
+        codepoints:
+        - 6020
+        - 6098
+        - 6048
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 74
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1784\u17d2\u17a2
+        codepoints:
+        - 6020
+        - 6098
+        - 6050
+        category: language
+        label: Khmer, Central
+        row: 74
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1785\u17c4
         codepoints:
         - 6021
@@ -5826,6 +6378,96 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1785\u17d2\u1785
+        codepoints:
+        - 6021
+        - 6098
+        - 6021
+        category: language
+        label: Khmer, Central
+        row: 74
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1785\u17d2\u1785\u17c1
+        codepoints:
+        - 6021
+        - 6098
+        - 6021
+        - 6081
+        category: language
+        label: Khmer, Central
+        row: 75
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1785\u17d2\u1794\u17b6
+        codepoints:
+        - 6021
+        - 6098
+        - 6036
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 75
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1786\u17d2\u1793\u17b6\u17c6
+        codepoints:
+        - 6022
+        - 6098
+        - 6035
+        - 6070
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 75
+        column: 75
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1786\u17d2\u1793\u17c4
+        codepoints:
+        - 6022
+        - 6098
+        - 6035
+        - 6084
+        category: language
+        label: Khmer, Central
+        row: 75
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1786\u17d2\u179b
+        codepoints:
+        - 6022
+        - 6098
+        - 6043
+        category: language
+        label: Khmer, Central
+        row: 75
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1786\u17d2\u179b\u17be
+        codepoints:
+        - 6022
+        - 6098
+        - 6043
+        - 6078
+        category: language
+        label: Khmer, Central
+        row: 75
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1787\u17c0
         codepoints:
         - 6023
@@ -5835,6 +6477,185 @@ spillover_results:
         row: 75
         column: 195
         advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1787\u17d2\u1787
+        codepoints:
+        - 6023
+        - 6098
+        - 6023
+        category: language
+        label: Khmer, Central
+        row: 75
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1787\u17d2\u1787\u17b6
+        codepoints:
+        - 6023
+        - 6098
+        - 6023
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 76
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1787\u17d2\u1789\u17b6
+        codepoints:
+        - 6023
+        - 6098
+        - 6025
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 76
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1787\u17d2\u1799
+        codepoints:
+        - 6023
+        - 6098
+        - 6041
+        category: language
+        label: Khmer, Central
+        row: 76
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1787\u17d2\u179a
+        codepoints:
+        - 6023
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 76
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1787\u17d2\u179a\u17be
+        codepoints:
+        - 6023
+        - 6098
+        - 6042
+        - 6078
+        category: language
+        label: Khmer, Central
+        row: 76
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1787\u17d2\u179a\u17c0
+        codepoints:
+        - 6023
+        - 6098
+        - 6042
+        - 6080
+        category: language
+        label: Khmer, Central
+        row: 76
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1787\u17d2\u179a\u17c2
+        codepoints:
+        - 6023
+        - 6098
+        - 6042
+        - 6082
+        category: language
+        label: Khmer, Central
+        row: 76
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1788\u17d2\u1798\u17c4\u17c7
+        codepoints:
+        - 6024
+        - 6098
+        - 6040
+        - 6084
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 76
+        column: 195
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1789\u17d2\u1785\u17bc
+        codepoints:
+        - 6025
+        - 6098
+        - 6021
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 77
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1789\u17d2\u1787\u17b6
+        codepoints:
+        - 6025
+        - 6098
+        - 6023
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 77
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1789\u17d2\u1789
+        codepoints:
+        - 6025
+        - 6098
+        - 6025
+        category: language
+        label: Khmer, Central
+        row: 77
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1789\u17d2\u1789\u17b6
+        codepoints:
+        - 6025
+        - 6098
+        - 6025
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 77
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1789\u17d2\u1789\u17c8
+        codepoints:
+        - 6025
+        - 6098
+        - 6025
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 77
+        column: 99
+        advance: 4
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u178a\u17be
@@ -5870,6 +6691,43 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u178a\u17d2\u178b
+        codepoints:
+        - 6026
+        - 6098
+        - 6027
+        category: language
+        label: Khmer, Central
+        row: 78
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178a\u17d2\u178b\u17b6
+        codepoints:
+        - 6026
+        - 6098
+        - 6027
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 78
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178c\u17d2\u178d
+        codepoints:
+        - 6028
+        - 6098
+        - 6029
+        category: language
+        label: Khmer, Central
+        row: 78
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u178e\u17be
         codepoints:
         - 6030
@@ -5902,6 +6760,249 @@ spillover_results:
         row: 78
         column: 219
         advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178e\u17d2\u178a\u17b6
+        codepoints:
+        - 6030
+        - 6098
+        - 6026
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 79
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178e\u17d2\u178a\u17bb\u17c7
+        codepoints:
+        - 6030
+        - 6098
+        - 6026
+        - 6075
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 79
+        column: 51
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178e\u17d2\u178c
+        codepoints:
+        - 6030
+        - 6098
+        - 6028
+        category: language
+        label: Khmer, Central
+        row: 79
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178e\u17d2\u178e\u17c4\u17c7
+        codepoints:
+        - 6030
+        - 6098
+        - 6030
+        - 6084
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 79
+        column: 99
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u178a
+        codepoints:
+        - 6031
+        - 6098
+        - 6026
+        category: language
+        label: Khmer, Central
+        row: 79
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u178a\u17b7
+        codepoints:
+        - 6031
+        - 6098
+        - 6026
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 79
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u1790
+        codepoints:
+        - 6031
+        - 6098
+        - 6032
+        category: language
+        label: Khmer, Central
+        row: 80
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u1790\u17b7
+        codepoints:
+        - 6031
+        - 6098
+        - 6032
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 80
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u1799
+        codepoints:
+        - 6031
+        - 6098
+        - 6041
+        category: language
+        label: Khmer, Central
+        row: 80
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u179a
+        codepoints:
+        - 6031
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 80
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u179a\u17b6
+        codepoints:
+        - 6031
+        - 6098
+        - 6042
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 80
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u179a\u17b9
+        codepoints:
+        - 6031
+        - 6098
+        - 6042
+        - 6073
+        category: language
+        label: Khmer, Central
+        row: 80
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u179a\u17bc
+        codepoints:
+        - 6031
+        - 6098
+        - 6042
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 80
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178f\u17d2\u179f
+        codepoints:
+        - 6031
+        - 6098
+        - 6047
+        category: language
+        label: Khmer, Central
+        row: 80
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1790\u17d2\u1784\u17c3
+        codepoints:
+        - 6032
+        - 6098
+        - 6020
+        - 6083
+        category: language
+        label: Khmer, Central
+        row: 81
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1790\u17d2\u1793\u17b6
+        codepoints:
+        - 6032
+        - 6098
+        - 6035
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 81
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1790\u17d2\u1793\u17bc
+        codepoints:
+        - 6032
+        - 6098
+        - 6035
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 81
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1790\u17d2\u1798\u17b8
+        codepoints:
+        - 6032
+        - 6098
+        - 6040
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 81
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1790\u17d2\u179b\u17c3
+        codepoints:
+        - 6032
+        - 6098
+        - 6043
+        - 6083
+        category: language
+        label: Khmer, Central
+        row: 81
+        column: 99
+        advance: 4
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u1791\u17c0
@@ -5949,9 +7050,136 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
-    terminology-spillover_003_U+1793.gif:
+      - wchar: \u1791\u17d2\u1792
+        codepoints:
+        - 6033
+        - 6098
+        - 6034
+        category: language
+        label: Khmer, Central
+        row: 82
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1791\u17d2\u1792\u17b7
+        codepoints:
+        - 6033
+        - 6098
+        - 6034
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 82
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1791\u17d2\u1799\u17b6
+        codepoints:
+        - 6033
+        - 6098
+        - 6041
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 82
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1791\u17d2\u179a
+        codepoints:
+        - 6033
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 82
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1792\u17d2\u1784
+        codepoints:
+        - 6034
+        - 6098
+        - 6020
+        category: language
+        label: Khmer, Central
+        row: 82
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1792\u17d2\u1793\u17b6
+        codepoints:
+        - 6034
+        - 6098
+        - 6035
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 82
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+    terminology-spillover_003_U+1792.gif:
       page: 2
       spillovers:
+      - wchar: \u1792\u17d2\u1793\u17bc
+        codepoints:
+        - 6034
+        - 6098
+        - 6035
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 0
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1792\u17d2\u1799\u17b6
+        codepoints:
+        - 6034
+        - 6098
+        - 6041
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 0
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1792\u17d2\u1799\u17c4
+        codepoints:
+        - 6034
+        - 6098
+        - 6041
+        - 6084
+        category: language
+        label: Khmer, Central
+        row: 0
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1792\u17d2\u179c\u17be
+        codepoints:
+        - 6034
+        - 6098
+        - 6044
+        - 6078
+        category: language
+        label: Khmer, Central
+        row: 0
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1793\u17bf
         codepoints:
         - 6035
@@ -5984,6 +7212,146 @@ spillover_results:
         row: 1
         column: 3
         advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u178a
+        codepoints:
+        - 6035
+        - 6098
+        - 6026
+        category: language
+        label: Khmer, Central
+        row: 1
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u178a\u17b7
+        codepoints:
+        - 6035
+        - 6098
+        - 6026
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 1
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u1790\u17c2
+        codepoints:
+        - 6035
+        - 6098
+        - 6032
+        - 6082
+        category: language
+        label: Khmer, Central
+        row: 1
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u1790\u17c4
+        codepoints:
+        - 6035
+        - 6098
+        - 6032
+        - 6084
+        category: language
+        label: Khmer, Central
+        row: 1
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u1791\u17b6
+        codepoints:
+        - 6035
+        - 6098
+        - 6033
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 1
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u1791\u17c8
+        codepoints:
+        - 6035
+        - 6098
+        - 6033
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 1
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u1792
+        codepoints:
+        - 6035
+        - 6098
+        - 6034
+        category: language
+        label: Khmer, Central
+        row: 1
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u1793\u17b7
+        codepoints:
+        - 6035
+        - 6098
+        - 6035
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 1
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u1798
+        codepoints:
+        - 6035
+        - 6098
+        - 6040
+        category: language
+        label: Khmer, Central
+        row: 2
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u1799\u17b6
+        codepoints:
+        - 6035
+        - 6098
+        - 6041
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 2
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17d2\u179b\u17c2
+        codepoints:
+        - 6035
+        - 6098
+        - 6043
+        - 6082
+        category: language
+        label: Khmer, Central
+        row: 2
+        column: 51
+        advance: 4
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u1794\u17be
@@ -6043,6 +7411,314 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1794\u17d2\u178a\u17b8
+        codepoints:
+        - 6036
+        - 6098
+        - 6026
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u178a\u17bc
+        codepoints:
+        - 6036
+        - 6098
+        - 6026
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u178a\u17c1
+        codepoints:
+        - 6036
+        - 6098
+        - 6026
+        - 6081
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u1794
+        codepoints:
+        - 6036
+        - 6098
+        - 6036
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 99
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u1794\u17b8
+        codepoints:
+        - 6036
+        - 6098
+        - 6036
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u179a
+        codepoints:
+        - 6036
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u179a\u17b6
+        codepoints:
+        - 6036
+        - 6098
+        - 6042
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u179a\u17b9
+        codepoints:
+        - 6036
+        - 6098
+        - 6042
+        - 6073
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u179a\u17bb
+        codepoints:
+        - 6036
+        - 6098
+        - 6042
+        - 6075
+        category: language
+        label: Khmer, Central
+        row: 3
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u179a\u17be
+        codepoints:
+        - 6036
+        - 6098
+        - 6042
+        - 6078
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u179a\u17c2
+        codepoints:
+        - 6036
+        - 6098
+        - 6042
+        - 6082
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17d2\u17a2\u17bc
+        codepoints:
+        - 6036
+        - 6098
+        - 6050
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u178a
+        codepoints:
+        - 6037
+        - 6098
+        - 6026
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u178a\u17b6
+        codepoints:
+        - 6037
+        - 6098
+        - 6026
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u1791\u17b6
+        codepoints:
+        - 6037
+        - 6098
+        - 6033
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u1791\u17bb
+        codepoints:
+        - 6037
+        - 6098
+        - 6033
+        - 6075
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u1791\u17c1
+        codepoints:
+        - 6037
+        - 6098
+        - 6033
+        - 6081
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u1793\u17c2
+        codepoints:
+        - 6037
+        - 6098
+        - 6035
+        - 6082
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u179b\u17b6
+        codepoints:
+        - 6037
+        - 6098
+        - 6043
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 4
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u179b\u17b7
+        codepoints:
+        - 6037
+        - 6098
+        - 6043
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 5
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u179f
+        codepoints:
+        - 6037
+        - 6098
+        - 6047
+        category: language
+        label: Khmer, Central
+        row: 5
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u179f\u17b6
+        codepoints:
+        - 6037
+        - 6098
+        - 6047
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 5
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u179f\u17c1
+        codepoints:
+        - 6037
+        - 6098
+        - 6047
+        - 6081
+        category: language
+        label: Khmer, Central
+        row: 5
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1795\u17d2\u179f\u17c3
+        codepoints:
+        - 6037
+        - 6098
+        - 6047
+        - 6083
+        category: language
+        label: Khmer, Central
+        row: 5
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1796\u17be
         codepoints:
         - 6038
@@ -6063,6 +7739,107 @@ spillover_results:
         label: Khmer, Central
         row: 5
         column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1796\u17d2\u1799
+        codepoints:
+        - 6038
+        - 6098
+        - 6041
+        category: language
+        label: Khmer, Central
+        row: 5
+        column: 219
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1796\u17d2\u1799\u17b6
+        codepoints:
+        - 6038
+        - 6098
+        - 6041
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 6
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1796\u17d2\u179a
+        codepoints:
+        - 6038
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 6
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1796\u17d2\u179a\u17b9
+        codepoints:
+        - 6038
+        - 6098
+        - 6042
+        - 6073
+        category: language
+        label: Khmer, Central
+        row: 6
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1796\u17d2\u179a\u17c0
+        codepoints:
+        - 6038
+        - 6098
+        - 6042
+        - 6080
+        category: language
+        label: Khmer, Central
+        row: 6
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1796\u17d2\u179a\u17c3
+        codepoints:
+        - 6038
+        - 6098
+        - 6042
+        - 6083
+        category: language
+        label: Khmer, Central
+        row: 6
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1796\u17d2\u179a\u17c6
+        codepoints:
+        - 6038
+        - 6098
+        - 6042
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 6
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1796\u17d2\u179c
+        codepoints:
+        - 6038
+        - 6098
+        - 6044
+        category: language
+        label: Khmer, Central
+        row: 6
+        column: 147
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
@@ -6101,6 +7878,250 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1784\u17b6
+        codepoints:
+        - 6040
+        - 6098
+        - 6020
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 7
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1785\u17b6
+        codepoints:
+        - 6040
+        - 6098
+        - 6021
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 7
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u178a\u17b6
+        codepoints:
+        - 6040
+        - 6098
+        - 6026
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 7
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u178a\u17c2
+        codepoints:
+        - 6040
+        - 6098
+        - 6026
+        - 6082
+        category: language
+        label: Khmer, Central
+        row: 7
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1793\u17b6
+        codepoints:
+        - 6040
+        - 6098
+        - 6035
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 7
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1793\u17c1
+        codepoints:
+        - 6040
+        - 6098
+        - 6035
+        - 6081
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1794
+        codepoints:
+        - 6040
+        - 6098
+        - 6036
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1794\u17b8
+        codepoints:
+        - 6040
+        - 6098
+        - 6036
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1794\u17bb
+        codepoints:
+        - 6040
+        - 6098
+        - 6036
+        - 6075
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1797\u17b6
+        codepoints:
+        - 6040
+        - 6098
+        - 6039
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u1798
+        codepoints:
+        - 6040
+        - 6098
+        - 6040
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u179a
+        codepoints:
+        - 6040
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u179a\u17b6
+        codepoints:
+        - 6040
+        - 6098
+        - 6042
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u179a\u17b7
+        codepoints:
+        - 6040
+        - 6098
+        - 6042
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u179a\u17bc
+        codepoints:
+        - 6040
+        - 6098
+        - 6042
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 8
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u179a\u17be
+        codepoints:
+        - 6040
+        - 6098
+        - 6042
+        - 6078
+        category: language
+        label: Khmer, Central
+        row: 9
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u179a\u17c1
+        codepoints:
+        - 6040
+        - 6098
+        - 6042
+        - 6081
+        category: language
+        label: Khmer, Central
+        row: 9
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u179b\u17c0
+        codepoints:
+        - 6040
+        - 6098
+        - 6043
+        - 6080
+        category: language
+        label: Khmer, Central
+        row: 9
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17d2\u179b\u17c3
+        codepoints:
+        - 6040
+        - 6098
+        - 6043
+        - 6083
+        category: language
+        label: Khmer, Central
+        row: 9
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1799\u17c4
         codepoints:
         - 6041
@@ -6121,6 +8142,18 @@ spillover_results:
         label: Khmer, Central
         row: 9
         column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1799\u17d2\u1799
+        codepoints:
+        - 6041
+        - 6098
+        - 6041
+        category: language
+        label: Khmer, Central
+        row: 9
+        column: 195
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
@@ -6157,6 +8190,20 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u179a\u17d2\u178a\u17b7\u17cd
+        codepoints:
+        - 6042
+        - 6098
+        - 6026
+        - 6071
+        - 6093
+        category: language
+        label: Khmer, Central
+        row: 10
+        column: 147
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u179b\u17be
         codepoints:
         - 6043
@@ -6179,6 +8226,32 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u179b\u17d2\u1794\u17c8
+        codepoints:
+        - 6043
+        - 6098
+        - 6036
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 11
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179b\u17d2\u1798\u17be
+        codepoints:
+        - 6043
+        - 6098
+        - 6040
+        - 6078
+        category: language
+        label: Khmer, Central
+        row: 11
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u179f\u17be
         codepoints:
         - 6047
@@ -6188,6 +8261,241 @@ spillover_results:
         row: 11
         column: 219
         advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u1782\u17b6
+        codepoints:
+        - 6047
+        - 6098
+        - 6018
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 12
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u178a\u17b8
+        codepoints:
+        - 6047
+        - 6098
+        - 6026
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 12
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u178a\u17d2\u179a\u17b8
+        codepoints:
+        - 6047
+        - 6098
+        - 6026
+        - 6098
+        - 6042
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 12
+        column: 99
+        advance: 6
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u178f\u17d2\u179a
+        codepoints:
+        - 6047
+        - 6098
+        - 6031
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 12
+        column: 123
+        advance: 5
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u1790\u17b6
+        codepoints:
+        - 6047
+        - 6098
+        - 6032
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 12
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u1790\u17b7
+        codepoints:
+        - 6047
+        - 6098
+        - 6032
+        - 6071
+        category: language
+        label: Khmer, Central
+        row: 12
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u1791\u17bd
+        codepoints:
+        - 6047
+        - 6098
+        - 6033
+        - 6077
+        category: language
+        label: Khmer, Central
+        row: 12
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u1793\u17b6
+        codepoints:
+        - 6047
+        - 6098
+        - 6035
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 12
+        column: 219
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u1798\u17b6
+        codepoints:
+        - 6047
+        - 6098
+        - 6040
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 3
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u1798\u17be
+        codepoints:
+        - 6047
+        - 6098
+        - 6040
+        - 6078
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 27
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u179a
+        codepoints:
+        - 6047
+        - 6098
+        - 6042
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u179a\u17b6
+        codepoints:
+        - 6047
+        - 6098
+        - 6042
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 75
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u179a\u17b8
+        codepoints:
+        - 6047
+        - 6098
+        - 6042
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 99
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u179a\u17d0
+        codepoints:
+        - 6047
+        - 6098
+        - 6042
+        - 6096
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 123
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u179b\u17b6
+        codepoints:
+        - 6047
+        - 6098
+        - 6043
+        - 6070
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 147
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u179c\u17c2
+        codepoints:
+        - 6047
+        - 6098
+        - 6044
+        - 6082
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 171
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u179c\u17d0
+        codepoints:
+        - 6047
+        - 6098
+        - 6044
+        - 6096
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 195
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17d2\u179f
+        codepoints:
+        - 6047
+        - 6098
+        - 6047
+        category: language
+        label: Khmer, Central
+        row: 13
+        column: 219
+        advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u17a0\u17be
@@ -6210,6 +8518,18 @@ spillover_results:
         row: 14
         column: 99
         advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u17a0\u17d2\u1798
+        codepoints:
+        - 6048
+        - 6098
+        - 6040
+        category: language
+        label: Khmer, Central
+        row: 14
+        column: 123
+        advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u17a1\u17be
@@ -6243,6 +8563,43 @@ spillover_results:
         row: 15
         column: 3
         advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u17a2\u17d2\u1793
+        codepoints:
+        - 6050
+        - 6098
+        - 6035
+        category: language
+        label: Khmer, Central
+        row: 15
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u17a2\u17d2\u179c\u17b8
+        codepoints:
+        - 6050
+        - 6098
+        - 6044
+        - 6072
+        category: language
+        label: Khmer, Central
+        row: 15
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u17b1\u17d2\u1799
+        codepoints:
+        - 6065
+        - 6098
+        - 6041
+        category: language
+        label: Khmer, Central
+        row: 15
+        column: 75
+        advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u1a20\u1a6e\u1a60
@@ -8476,6 +10833,28 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0926\u094c
+        codepoints:
+        - 2342
+        - 2380
+        category: language
+        label: Magahi
+        row: 49
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0932\u094c
+        codepoints:
+        - 2354
+        - 2380
+        category: language
+        label: Magahi
+        row: 49
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0915\u093f\u0902
         codepoints:
         - 2325
@@ -8488,6 +10867,18 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0915\u0947\u093e
+        codepoints:
+        - 2325
+        - 2375
+        - 2366
+        category: language
+        label: Maithili
+        row: 50
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u091b\u093f
         codepoints:
         - 2331
@@ -8496,6 +10887,29 @@ spillover_results:
         label: Maithili
         row: 50
         column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091b\u0941\u0940
+        codepoints:
+        - 2331
+        - 2369
+        - 2368
+        category: language
+        label: Maithili
+        row: 51
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0938\u094c
+        codepoints:
+        - 2360
+        - 2380
+        category: language
+        label: Maithili
+        row: 54
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -9591,6 +12005,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0c15\u0c46\u0c02
+        codepoints:
+        - 3093
+        - 3142
+        - 3074
+        category: language
+        label: Telugu
+        row: 12
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0c15\u0c4d\u0c15
         codepoints:
         - 3093
@@ -9921,6 +12347,18 @@ spillover_results:
         row: 15
         column: 147
         advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0c1a\u0c46\u0c02
+        codepoints:
+        - 3098
+        - 3142
+        - 3074
+        category: language
+        label: Telugu
+        row: 15
+        column: 195
+        advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u0c1a\u0c4d\u0c1a\u0c41
@@ -10652,6 +13090,18 @@ spillover_results:
         label: Telugu
         row: 23
         column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0c2a\u0c46\u0c02
+        codepoints:
+        - 3114
+        - 3142
+        - 3074
+        category: language
+        label: Telugu
+        row: 23
+        column: 195
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
@@ -11743,6 +14193,569 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09a1\u09bc
+        codepoints:
+        - 2465
+        - 2492
+        category: language
+        label: Bengali
+        row: 40
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09a2\u09bc
+        codepoints:
+        - 2466
+        - 2492
+        category: language
+        label: Bengali
+        row: 41
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09af\u09bc
+        codepoints:
+        - 2479
+        - 2492
+        category: language
+        label: Bengali
+        row: 42
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0915\u0941
+        codepoints:
+        - 2325
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 43
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0915\u0947
+        codepoints:
+        - 2325
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 43
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0915\u0948
+        codepoints:
+        - 2325
+        - 2376
+        category: language
+        label: Bhojpuri
+        row: 43
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0916\u0947
+        codepoints:
+        - 2326
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 44
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0917\u0941
+        codepoints:
+        - 2327
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 44
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0917\u0947
+        codepoints:
+        - 2327
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 44
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0917\u0948
+        codepoints:
+        - 2327
+        - 2376
+        category: language
+        label: Bhojpuri
+        row: 44
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0918\u0947
+        codepoints:
+        - 2328
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 44
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091a\u0941
+        codepoints:
+        - 2330
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 44
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091a\u0947
+        codepoints:
+        - 2330
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 45
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091b\u0941
+        codepoints:
+        - 2331
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 45
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091c\u0947
+        codepoints:
+        - 2332
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 45
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091d\u0947
+        codepoints:
+        - 2333
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 45
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091f\u0942
+        codepoints:
+        - 2335
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 45
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0921\u0947\u093c
+        codepoints:
+        - 2337
+        - 2375
+        - 2364
+        category: language
+        label: Bhojpuri
+        row: 45
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0924\u0947
+        codepoints:
+        - 2340
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 45
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0926\u0941
+        codepoints:
+        - 2342
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 46
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0926\u0942
+        codepoints:
+        - 2342
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 46
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0926\u0947
+        codepoints:
+        - 2342
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 46
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0928\u0941
+        codepoints:
+        - 2344
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 46
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0928\u0942
+        codepoints:
+        - 2344
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 46
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0928\u0947
+        codepoints:
+        - 2344
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 46
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0928\u0948
+        codepoints:
+        - 2344
+        - 2376
+        category: language
+        label: Bhojpuri
+        row: 46
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092a\u0942
+        codepoints:
+        - 2346
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092a\u0948
+        codepoints:
+        - 2346
+        - 2376
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092b\u0947
+        codepoints:
+        - 2347
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092c\u0941
+        codepoints:
+        - 2348
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092c\u0942
+        codepoints:
+        - 2348
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092c\u0947
+        codepoints:
+        - 2348
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092d\u0947
+        codepoints:
+        - 2349
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092d\u0948
+        codepoints:
+        - 2349
+        - 2376
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092e\u0941
+        codepoints:
+        - 2350
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 47
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092e\u0942
+        codepoints:
+        - 2350
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092e\u0947\u0902
+        codepoints:
+        - 2350
+        - 2375
+        - 2306
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092f\u0941
+        codepoints:
+        - 2351
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0930\u0941
+        codepoints:
+        - 2352
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0930\u0942
+        codepoints:
+        - 2352
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0930\u0947
+        codepoints:
+        - 2352
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0932\u0941
+        codepoints:
+        - 2354
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0932\u0947
+        codepoints:
+        - 2354
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0935\u0947
+        codepoints:
+        - 2357
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 49
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0935\u0948
+        codepoints:
+        - 2357
+        - 2376
+        category: language
+        label: Bhojpuri
+        row: 49
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0938\u0941
+        codepoints:
+        - 2360
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 49
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0938\u0942
+        codepoints:
+        - 2360
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 49
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0938\u0947
+        codepoints:
+        - 2360
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 49
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0939\u0941
+        codepoints:
+        - 2361
+        - 2369
+        category: language
+        label: Bhojpuri
+        row: 49
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0939\u0942
+        codepoints:
+        - 2361
+        - 2370
+        category: language
+        label: Bhojpuri
+        row: 49
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0939\u0947
+        codepoints:
+        - 2361
+        - 2375
+        category: language
+        label: Bhojpuri
+        row: 49
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1000\u102f
         codepoints:
         - 4096
@@ -12138,6 +15151,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f40\u0f74
+        codepoints:
+        - 3904
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 80
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f40\u0f7c
         codepoints:
         - 3904
@@ -12193,6 +15217,17 @@ spillover_results:
         row: 81
         column: 3
         advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f41\u0f74
+        codepoints:
+        - 3905
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 81
+        column: 27
+        advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u0f41\u0f7a
@@ -12272,6 +15307,17 @@ spillover_results:
         label: Dzongkha
         row: 81
         column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0f74
+        codepoints:
+        - 3906
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 81
+        column: 219
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -12418,6 +15464,17 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f44\u0f74
+        codepoints:
+        - 3908
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 0
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f44\u0f7a
         codepoints:
         - 3908
@@ -12451,6 +15508,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f45\u0f74
+        codepoints:
+        - 3909
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 0
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f46\u0f7a
         codepoints:
         - 3910
@@ -12481,6 +15549,17 @@ spillover_results:
         label: Dzongkha
         row: 0
         column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f47\u0f74
+        codepoints:
+        - 3911
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 1
+        column: 3
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -12528,6 +15607,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f50\u0f74
+        codepoints:
+        - 3920
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 1
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f50\u0f7c
         codepoints:
         - 3920
@@ -12547,6 +15637,17 @@ spillover_results:
         label: Dzongkha
         row: 1
         column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f51\u0f74
+        codepoints:
+        - 3921
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 1
+        column: 195
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -12603,6 +15704,17 @@ spillover_results:
         label: Dzongkha
         row: 2
         column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f53\u0f74
+        codepoints:
+        - 3923
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 2
+        column: 99
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -12882,6 +15994,17 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f59\u0f74
+        codepoints:
+        - 3929
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 4
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f59\u0f7c
         codepoints:
         - 3929
@@ -12890,6 +16013,17 @@ spillover_results:
         label: Dzongkha
         row: 5
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f5a\u0f74
+        codepoints:
+        - 3930
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 5
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -12926,6 +16060,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f5b\u0f74
+        codepoints:
+        - 3931
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 5
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f5b\u0f7c
         codepoints:
         - 3931
@@ -12945,6 +16090,28 @@ spillover_results:
         label: Dzongkha
         row: 5
         column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f5e\u0f74
+        codepoints:
+        - 3934
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 5
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f5f\u0f74
+        codepoints:
+        - 3935
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 5
+        column: 219
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -13015,6 +16182,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f61\u0f74
+        codepoints:
+        - 3937
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 6
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f61\u0f7c
         codepoints:
         - 3937
@@ -13034,6 +16212,17 @@ spillover_results:
         label: Dzongkha
         row: 6
         column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0f74
+        codepoints:
+        - 3938
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 6
+        column: 219
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -13199,6 +16388,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f63\u0f74
+        codepoints:
+        - 3939
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 8
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f63\u0f7a
         codepoints:
         - 3939
@@ -13277,6 +16477,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f64\u0f74
+        codepoints:
+        - 3940
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 9
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f64\u0f7a
         codepoints:
         - 3940
@@ -13296,6 +16507,17 @@ spillover_results:
         label: Dzongkha
         row: 9
         column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f66\u0f74
+        codepoints:
+        - 3942
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 9
+        column: 123
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -13767,6 +16989,776 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a85\u0a82
+        codepoints:
+        - 2693
+        - 2690
+        category: language
+        label: Gujarati
+        row: 16
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a86\u0a82
+        codepoints:
+        - 2694
+        - 2690
+        category: language
+        label: Gujarati
+        row: 16
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a8a\u0a82
+        codepoints:
+        - 2698
+        - 2690
+        category: language
+        label: Gujarati
+        row: 16
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a95\u0ac1
+        codepoints:
+        - 2709
+        - 2753
+        category: language
+        label: Gujarati
+        row: 17
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a95\u0ac3
+        codepoints:
+        - 2709
+        - 2755
+        category: language
+        label: Gujarati
+        row: 17
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a96\u0ac1
+        codepoints:
+        - 2710
+        - 2753
+        category: language
+        label: Gujarati
+        row: 17
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a96\u0ac2
+        codepoints:
+        - 2710
+        - 2754
+        category: language
+        label: Gujarati
+        row: 17
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a97\u0ac1
+        codepoints:
+        - 2711
+        - 2753
+        category: language
+        label: Gujarati
+        row: 17
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9a\u0ac2\u0a82
+        codepoints:
+        - 2714
+        - 2754
+        - 2690
+        category: language
+        label: Gujarati
+        row: 17
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9b\u0ac1\u0a82
+        codepoints:
+        - 2715
+        - 2753
+        - 2690
+        category: language
+        label: Gujarati
+        row: 17
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9b\u0ac2
+        codepoints:
+        - 2715
+        - 2754
+        category: language
+        label: Gujarati
+        row: 17
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9c\u0a82
+        codepoints:
+        - 2716
+        - 2690
+        category: language
+        label: Gujarati
+        row: 18
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9c\u0ac1
+        codepoints:
+        - 2716
+        - 2753
+        category: language
+        label: Gujarati
+        row: 18
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9c\u0ac2
+        codepoints:
+        - 2716
+        - 2754
+        category: language
+        label: Gujarati
+        row: 18
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9d\u0ac2\u0a82
+        codepoints:
+        - 2717
+        - 2754
+        - 2690
+        category: language
+        label: Gujarati
+        row: 18
+        column: 123
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9f\u0ac1\u0a82
+        codepoints:
+        - 2719
+        - 2753
+        - 2690
+        category: language
+        label: Gujarati
+        row: 18
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa3\u0ac1
+        codepoints:
+        - 2723
+        - 2753
+        category: language
+        label: Gujarati
+        row: 18
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa4\u0a82
+        codepoints:
+        - 2724
+        - 2690
+        category: language
+        label: Gujarati
+        row: 19
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa4\u0ac1
+        codepoints:
+        - 2724
+        - 2753
+        category: language
+        label: Gujarati
+        row: 19
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa4\u0ac3
+        codepoints:
+        - 2724
+        - 2755
+        category: language
+        label: Gujarati
+        row: 19
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa6\u0ac1
+        codepoints:
+        - 2726
+        - 2753
+        category: language
+        label: Gujarati
+        row: 19
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa6\u0ac3
+        codepoints:
+        - 2726
+        - 2755
+        category: language
+        label: Gujarati
+        row: 19
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa7\u0ac1
+        codepoints:
+        - 2727
+        - 2753
+        category: language
+        label: Gujarati
+        row: 19
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa8\u0a82
+        codepoints:
+        - 2728
+        - 2690
+        category: language
+        label: Gujarati
+        row: 20
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa8\u0ac1
+        codepoints:
+        - 2728
+        - 2753
+        category: language
+        label: Gujarati
+        row: 20
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa8\u0ac1\u0a82
+        codepoints:
+        - 2728
+        - 2753
+        - 2690
+        category: language
+        label: Gujarati
+        row: 20
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aaa\u0ac1
+        codepoints:
+        - 2730
+        - 2753
+        category: language
+        label: Gujarati
+        row: 20
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aaa\u0ac2
+        codepoints:
+        - 2730
+        - 2754
+        category: language
+        label: Gujarati
+        row: 20
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aac\u0a82
+        codepoints:
+        - 2732
+        - 2690
+        category: language
+        label: Gujarati
+        row: 20
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aad\u0a82
+        codepoints:
+        - 2733
+        - 2690
+        category: language
+        label: Gujarati
+        row: 21
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aad\u0ac2
+        codepoints:
+        - 2733
+        - 2754
+        category: language
+        label: Gujarati
+        row: 21
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aae\u0a82
+        codepoints:
+        - 2734
+        - 2690
+        category: language
+        label: Gujarati
+        row: 21
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aae\u0ac1
+        codepoints:
+        - 2734
+        - 2753
+        category: language
+        label: Gujarati
+        row: 21
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aae\u0ac2
+        codepoints:
+        - 2734
+        - 2754
+        category: language
+        label: Gujarati
+        row: 21
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aae\u0ac3
+        codepoints:
+        - 2734
+        - 2755
+        category: language
+        label: Gujarati
+        row: 21
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aaf\u0ac1
+        codepoints:
+        - 2735
+        - 2753
+        category: language
+        label: Gujarati
+        row: 22
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab0\u0a82
+        codepoints:
+        - 2736
+        - 2690
+        category: language
+        label: Gujarati
+        row: 22
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab0\u0ac1
+        codepoints:
+        - 2736
+        - 2753
+        category: language
+        label: Gujarati
+        row: 22
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab0\u0ac2
+        codepoints:
+        - 2736
+        - 2754
+        category: language
+        label: Gujarati
+        row: 22
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab5\u0a82
+        codepoints:
+        - 2741
+        - 2690
+        category: language
+        label: Gujarati
+        row: 22
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab5\u0ac1\u0a82
+        codepoints:
+        - 2741
+        - 2753
+        - 2690
+        category: language
+        label: Gujarati
+        row: 22
+        column: 195
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab5\u0ac3
+        codepoints:
+        - 2741
+        - 2755
+        category: language
+        label: Gujarati
+        row: 22
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab6\u0ac1
+        codepoints:
+        - 2742
+        - 2753
+        category: language
+        label: Gujarati
+        row: 23
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab8\u0a82
+        codepoints:
+        - 2744
+        - 2690
+        category: language
+        label: Gujarati
+        row: 23
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab8\u0ac1
+        codepoints:
+        - 2744
+        - 2753
+        category: language
+        label: Gujarati
+        row: 23
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab8\u0ac1\u0a82
+        codepoints:
+        - 2744
+        - 2753
+        - 2690
+        category: language
+        label: Gujarati
+        row: 23
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab8\u0ac2
+        codepoints:
+        - 2744
+        - 2754
+        category: language
+        label: Gujarati
+        row: 23
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab9\u0ac1
+        codepoints:
+        - 2745
+        - 2753
+        category: language
+        label: Gujarati
+        row: 23
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0915\u0942
+        codepoints:
+        - 2325
+        - 2370
+        category: language
+        label: Hindi
+        row: 24
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0915\u0947\u0902
+        codepoints:
+        - 2325
+        - 2375
+        - 2306
+        category: language
+        label: Hindi
+        row: 24
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0916\u0941
+        codepoints:
+        - 2326
+        - 2369
+        category: language
+        label: Hindi
+        row: 24
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091a\u0942\u0902
+        codepoints:
+        - 2330
+        - 2370
+        - 2306
+        category: language
+        label: Hindi
+        row: 25
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091c\u0941
+        codepoints:
+        - 2332
+        - 2369
+        category: language
+        label: Hindi
+        row: 25
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091f\u0947
+        codepoints:
+        - 2335
+        - 2375
+        category: language
+        label: Hindi
+        row: 25
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0927\u0947
+        codepoints:
+        - 2343
+        - 2375
+        category: language
+        label: Hindi
+        row: 25
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092a\u0941
+        codepoints:
+        - 2346
+        - 2369
+        category: language
+        label: Hindi
+        row: 25
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092a\u0947
+        codepoints:
+        - 2346
+        - 2375
+        category: language
+        label: Hindi
+        row: 25
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092d\u0941
+        codepoints:
+        - 2349
+        - 2369
+        category: language
+        label: Hindi
+        row: 26
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092e\u0947
+        codepoints:
+        - 2350
+        - 2375
+        category: language
+        label: Hindi
+        row: 26
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092e\u0948
+        codepoints:
+        - 2350
+        - 2376
+        category: language
+        label: Hindi
+        row: 26
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092f\u0942
+        codepoints:
+        - 2351
+        - 2370
+        category: language
+        label: Hindi
+        row: 26
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u092f\u0947
+        codepoints:
+        - 2351
+        - 2375
+        category: language
+        label: Hindi
+        row: 26
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0930\u0947\u0902
+        codepoints:
+        - 2352
+        - 2375
+        - 2306
+        category: language
+        label: Hindi
+        row: 26
+        column: 171
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0936\u0941
+        codepoints:
+        - 2358
+        - 2369
+        category: language
+        label: Hindi
+        row: 26
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0936\u0947
+        codepoints:
+        - 2358
+        - 2375
+        category: language
+        label: Hindi
+        row: 27
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0939\u0948
+        codepoints:
+        - 2361
+        - 2376
+        category: language
+        label: Hindi
+        row: 27
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0939\u0948\u0902
+        codepoints:
+        - 2361
+        - 2376
+        - 2306
+        category: language
+        label: Hindi
+        row: 27
+        column: 51
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua989\ua981
+        codepoints:
+        - 43401
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua98f\ua981
+        codepoints:
+        - 43407
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 27
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua98f\ua982
         codepoints:
         - 43407
@@ -13823,6 +17815,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua992\ua981
+        codepoints:
+        - 43410
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua992\ua982
         codepoints:
         - 43410
@@ -13855,6 +17858,17 @@ spillover_results:
         row: 28
         column: 195
         advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua994\ua981
+        codepoints:
+        - 43412
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 28
+        column: 219
+        advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \ua994\ua9b6
@@ -13948,6 +17962,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua99a\ua981
+        codepoints:
+        - 43418
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua99a\ua9b6\ua981
         codepoints:
         - 43418
@@ -13958,6 +17983,17 @@ spillover_results:
         row: 30
         column: 75
         advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua99d\ua981
+        codepoints:
+        - 43421
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 99
+        advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \ua99d\ua982
@@ -14003,6 +18039,17 @@ spillover_results:
         row: 30
         column: 195
         advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a0\ua981
+        codepoints:
+        - 43424
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 30
+        column: 219
+        advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \ua9a0\ua9b6
@@ -14094,6 +18141,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua9a4\ua981
+        codepoints:
+        - 43428
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 32
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9a4\ua982
         codepoints:
         - 43428
@@ -14174,6 +18232,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua9a5\ua981
+        codepoints:
+        - 43429
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 33
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9a5\ua9b3\ua9bc
         codepoints:
         - 43429
@@ -14243,6 +18312,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua9a7\ua981
+        codepoints:
+        - 43431
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9a7\ua9b6
         codepoints:
         - 43431
@@ -14273,6 +18353,17 @@ spillover_results:
         label: Javanese (Javanese)
         row: 34
         column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua981
+        codepoints:
+        - 43433
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 34
+        column: 219
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -14332,6 +18423,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua9aa\ua981
+        codepoints:
+        - 43434
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 35
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9aa\ua9b6
         codepoints:
         - 43434
@@ -14340,6 +18442,17 @@ spillover_results:
         label: Javanese (Javanese)
         row: 35
         column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ab\ua981
+        codepoints:
+        - 43435
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 51
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -14364,6 +18477,17 @@ spillover_results:
         row: 36
         column: 99
         advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9ad\ua981
+        codepoints:
+        - 43437
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 36
+        column: 171
+        advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \ua9ad\ua982
@@ -14558,6 +18682,17 @@ spillover_results:
         label: Javanese (Javanese)
         row: 39
         column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b2\ua981
+        codepoints:
+        - 43442
+        - 43393
+        category: language
+        label: Javanese (Javanese)
+        row: 39
+        column: 51
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -14871,6 +19006,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1780\u17c6
+        codepoints:
+        - 6016
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 48
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1780\u17cf
         codepoints:
         - 6016
@@ -14893,6 +19039,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1781\u17c6
+        codepoints:
+        - 6017
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 49
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1782\u17b7
         codepoints:
         - 6018
@@ -14912,6 +19069,17 @@ spillover_results:
         label: Khmer, Central
         row: 49
         column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1782\u17c6
+        codepoints:
+        - 6018
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 49
+        column: 171
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -14948,6 +19116,28 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1785\u17bc
+        codepoints:
+        - 6021
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 50
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1785\u17c6
+        codepoints:
+        - 6021
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 50
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1787\u17b7
         codepoints:
         - 6023
@@ -14970,6 +19160,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1787\u17c6
+        codepoints:
+        - 6023
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 51
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u178a\u17b8
         codepoints:
         - 6026
@@ -14989,6 +19190,28 @@ spillover_results:
         label: Khmer, Central
         row: 51
         column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178a\u17bc
+        codepoints:
+        - 6026
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 51
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u178a\u17c6
+        codepoints:
+        - 6026
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 51
+        column: 99
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15069,6 +19292,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u178f\u17c6
+        codepoints:
+        - 6031
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 52
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u178f\u17cc
         codepoints:
         - 6031
@@ -15122,6 +19356,39 @@ spillover_results:
         label: Khmer, Central
         row: 53
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1791\u17bc
+        codepoints:
+        - 6033
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 53
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1791\u17bd
+        codepoints:
+        - 6033
+        - 6077
+        category: language
+        label: Khmer, Central
+        row: 53
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1791\u17c6
+        codepoints:
+        - 6033
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 53
+        column: 99
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15180,6 +19447,28 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1793\u17bc
+        codepoints:
+        - 6035
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 54
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1793\u17bd
+        codepoints:
+        - 6035
+        - 6077
+        category: language
+        label: Khmer, Central
+        row: 54
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1793\u17cd
         codepoints:
         - 6035
@@ -15210,6 +19499,28 @@ spillover_results:
         label: Khmer, Central
         row: 54
         column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17bc
+        codepoints:
+        - 6036
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 54
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17c6
+        codepoints:
+        - 6036
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 54
+        column: 219
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15247,6 +19558,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1796\u17bc
+        codepoints:
+        - 6038
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 55
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1797\u17b7
         codepoints:
         - 6039
@@ -15266,6 +19588,28 @@ spillover_results:
         label: Khmer, Central
         row: 56
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17bc
+        codepoints:
+        - 6040
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 56
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1798\u17bd
+        codepoints:
+        - 6040
+        - 6077
+        category: language
+        label: Khmer, Central
+        row: 56
+        column: 75
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15302,6 +19646,39 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u179a\u17bc
+        codepoints:
+        - 6042
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 57
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179a\u17bd
+        codepoints:
+        - 6042
+        - 6077
+        category: language
+        label: Khmer, Central
+        row: 57
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179a\u17c6
+        codepoints:
+        - 6042
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 57
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u179b\u17b7
         codepoints:
         - 6043
@@ -15310,6 +19687,28 @@ spillover_results:
         label: Khmer, Central
         row: 57
         column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179b\u17bc
+        codepoints:
+        - 6043
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 57
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179b\u17c6
+        codepoints:
+        - 6043
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 57
+        column: 123
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15346,6 +19745,28 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u179f\u17c6
+        codepoints:
+        - 6047
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 58
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u17a0\u17bc
+        codepoints:
+        - 6048
+        - 6076
+        category: language
+        label: Khmer, Central
+        row: 58
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u17a0\u17cd
         codepoints:
         - 6048
@@ -15354,6 +19775,17 @@ spillover_results:
         label: Khmer, Central
         row: 58
         column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u17a2\u17c6
+        codepoints:
+        - 6050
+        - 6086
+        category: language
+        label: Khmer, Central
+        row: 58
+        column: 195
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15505,6 +19937,17 @@ spillover_results:
         row: 61
         column: 51
         advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a2d\u1a5b
+        codepoints:
+        - 6701
+        - 6747
+        category: language
+        label: Khün
+        row: 61
+        column: 99
+        advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u1a2d\u1a65
@@ -15834,6 +20277,29 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1a49\u1a56
+        codepoints:
+        - 6729
+        - 6742
+        category: language
+        label: Khün
+        row: 66
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a49\u1a56\u1a62
+        codepoints:
+        - 6729
+        - 6742
+        - 6754
+        category: language
+        label: Khün
+        row: 67
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1a49\u1a68\u1a62
         codepoints:
         - 6729
@@ -15877,6 +20343,17 @@ spillover_results:
         label: Khün
         row: 67
         column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1a54\u1a7c
+        codepoints:
+        - 6740
+        - 6780
+        category: language
+        label: Khün
+        row: 68
+        column: 3
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0

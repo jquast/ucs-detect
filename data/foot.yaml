@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-21 00:18:01 UTC
+  scanned_datetime: 2026-11-22 12:39:53 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-21 00:17:54 UTC
+  scanned_datetime: 2026-11-22 12:39:47 UTC
   painted_rows: 40
   calibration:
     origin_x: 273.0
@@ -250,22 +250,22 @@ session_arguments:
 software_name: foot
 software_version: 1.28.0
 spillover_results:
-  scanned_datetime: 2026-11-21 00:19:10 UTC
+  scanned_datetime: 2026-11-22 12:41:06 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 6357
+  n_spillover: 6383
   n_no_ink: 7
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 6357
+    graphemes_any: 6383
     graphemes_left: 18
-    graphemes_right: 6341
+    graphemes_right: 6367
     graphemes_both: 2
     left_cells:
       '1': 18
     right_cells:
-      '1': 6293
+      '1': 6319
       '10': 24
       '11': 24
     max_left_cells: 1
@@ -305,13 +305,13 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 10
     Burmese:
-      graphemes_any: 215
+      graphemes_any: 222
       graphemes_left: 0
-      graphemes_right: 215
+      graphemes_right: 222
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 214
+        '1': 221
         '11': 1
       max_left_cells: 0
       max_right_cells: 11
@@ -337,13 +337,13 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 11
     Gujarati:
-      graphemes_any: 289
+      graphemes_any: 290
       graphemes_left: 0
-      graphemes_right: 289
+      graphemes_right: 290
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 288
+        '1': 289
         '10': 1
       max_left_cells: 0
       max_right_cells: 10
@@ -393,14 +393,14 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 10
     Khün:
-      graphemes_any: 360
+      graphemes_any: 363
       graphemes_left: 17
-      graphemes_right: 344
+      graphemes_right: 347
       graphemes_both: 1
       left_cells:
         '1': 17
       right_cells:
-        '1': 341
+        '1': 344
         '10': 1
         '11': 2
       max_left_cells: 1
@@ -469,24 +469,24 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 10
     Mon:
-      graphemes_any: 197
+      graphemes_any: 207
       graphemes_left: 0
-      graphemes_right: 197
+      graphemes_right: 207
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 196
+        '1': 206
         '11': 1
       max_left_cells: 0
       max_right_cells: 11
     Nepali:
-      graphemes_any: 70
+      graphemes_any: 71
       graphemes_left: 0
-      graphemes_right: 70
+      graphemes_right: 71
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 70
+        '1': 71
       max_left_cells: 0
       max_right_cells: 1
     Panjabi, Eastern:
@@ -575,13 +575,13 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 1
     Tai Dam:
-      graphemes_any: 118
+      graphemes_any: 120
       graphemes_left: 0
-      graphemes_right: 118
+      graphemes_right: 120
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 117
+        '1': 119
         '11': 1
       max_left_cells: 0
       max_right_cells: 11
@@ -607,13 +607,13 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 11
     Telugu:
-      graphemes_any: 333
+      graphemes_any: 335
       graphemes_left: 0
-      graphemes_right: 333
+      graphemes_right: 335
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 332
+        '1': 334
         '10': 1
       max_left_cells: 0
       max_right_cells: 10

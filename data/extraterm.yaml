@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-21 00:02:59 UTC
+  scanned_datetime: 2026-11-22 12:39:18 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-21 00:02:53 UTC
+  scanned_datetime: 2026-11-22 12:39:10 UTC
   painted_rows: 76
   calibration:
     origin_x: 19.0
@@ -1084,11 +1084,11 @@ session_arguments:
 software_name: Extraterm
 software_version: 0.81.4
 spillover_results:
-  scanned_datetime: 2026-11-21 00:03:22 UTC
+  scanned_datetime: 2026-11-22 12:39:46 UTC
   n_candidates: 8644
   n_tested: 8644
   n_spillover: 0
-  n_no_ink: 2
+  n_no_ink: 3
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:

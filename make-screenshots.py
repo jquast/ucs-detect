@@ -433,7 +433,7 @@ def stage_log_tail(log_path, limit=4):
     return "; last output: " + " | ".join(lines[-limit:])
 
 
-def verify_spillover_output(job, args, log_path=None):
+def verify_spillover_output(job, args, started_at, log_path=None):
     """Return an error string when the YAML spillover section is incomplete."""
     section = terminal_document(job.yaml_path).get("spillover_results")
     if not section:
@@ -448,6 +448,10 @@ def verify_spillover_output(job, args, log_path=None):
     if section.get("n_tested") != expected:
         return (f"YAML reports {section.get('n_tested')} tested, "
                 f"expected {expected}{page_error_summary(section)}")
+    if spillover.is_stale(section, started_at):
+        return ("YAML spillover_results is stale: "
+                f"{section.get('scanned_datetime')}"
+                f"{page_error_summary(section)}")
     return None
 
 
@@ -457,13 +461,15 @@ def run_spillover_stage(job, host_cfg, args, temp_dir):
     script_path, sentinel_path, window_id_path = build_spillover_script(
         temp_dir, job, args, log_path=stderr_path, workers=args.workers)
     budget = job.launch_cfg.get("timeout") or args.spillover_timeout
+    started_at = time.time()
     exit_code, message = stage.run_stage(
         job.launch_cfg, host_cfg, script_path, sentinel_path, stderr_path,
         window_id_path, budget)
     terminal_document.cache_clear()
     if exit_code != 0:
         return message, []
-    return verify_spillover_output(job, args, stderr_path), []
+    return verify_spillover_output(
+        job, args, started_at, stderr_path), []
 
 
 def run_color_stage(job, host_cfg, args, temp_dir):
@@ -516,6 +522,7 @@ def run_combined_stage(job, host_cfg, args, temp_dir):
         budget += BIDI_TIMEOUT
     if run_spillover:
         budget += job.launch_cfg.get("timeout") or args.spillover_timeout
+    started_at = time.time()
     exit_code, message = stage.run_stage(
         job.launch_cfg, host_cfg, script_path, sentinel_path, stderr_path,
         window_id_path, budget,
@@ -537,7 +544,8 @@ def run_combined_stage(job, host_cfg, args, temp_dir):
         if not bidi_section:
             return "YAML has no bidi_results section", errors
     if run_spillover:
-        return verify_spillover_output(job, args, stderr_path), errors
+        return verify_spillover_output(
+            job, args, started_at, stderr_path), errors
     return None, errors
 
 

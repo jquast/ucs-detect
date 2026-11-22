@@ -116,7 +116,7 @@ terminals:
     skip_reason: GPU-accelerated, Docker software rendering presents uniform frames
     launch:
       program: ghostty
-      args: [--font-family=Unifont, --font-size=16, -e]
+      args: [--gtk-single-instance=false, --font-family=Unifont, --font-size=16, -e]
   gnome terminal:
     homepage: https://help.gnome.org/users/gnome-terminal/stable/
     display_name: GNOME Terminal
