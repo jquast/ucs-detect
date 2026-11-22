@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-21 00:05:03 UTC
+  scanned_datetime: 2026-11-22 12:41:30 UTC
   supported: true
   control_left: 1.0
   requested_right: 1.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-21 00:04:57 UTC
+  scanned_datetime: 2026-11-22 12:41:23 UTC
   painted_rows: 33
   calibration:
     origin_x: 6.0
@@ -262,31 +262,41 @@ session_arguments:
 software_name: Konsole
 software_version: 23.08.5
 spillover_results:
-  scanned_datetime: 2026-11-21 00:05:27 UTC
+  scanned_datetime: 2026-11-22 12:41:55 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 250
+  n_spillover: 276
   n_no_ink: 2
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 250
-    graphemes_left: 250
+    graphemes_any: 276
+    graphemes_left: 276
     graphemes_right: 0
     graphemes_both: 0
     left_cells:
-      '1': 250
+      '1': 276
     right_cells: {}
     max_left_cells: 1
     max_right_cells: 0
   spill_counts_by_kind:
-    Dzongkha:
-      graphemes_any: 141
-      graphemes_left: 141
+    Assyrian Neo-Aramaic:
+      graphemes_any: 2
+      graphemes_left: 2
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 141
+        '1': 2
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Dzongkha:
+      graphemes_any: 160
+      graphemes_left: 160
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 160
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -301,12 +311,12 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Tibetan, Central:
-      graphemes_any: 43
-      graphemes_left: 43
+      graphemes_any: 48
+      graphemes_left: 48
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 43
+        '1': 48
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
@@ -316,10 +326,15 @@ spillover_results:
         '1':
           example: '''\u1780\u17be'''
           width: 2
+    Assyrian Neo-Aramaic:
+      Left:
+        '1':
+          example: '''\u0713\u0330'''
+          width: 1
     Dzongkha:
       Left:
         '1':
-          example: '''\u0f40\u0f7c'''
+          example: '''\u0f40\u0f74'''
           width: 1
     Tibetan, Central:
       Left:
@@ -892,9 +907,45 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
-    Konsole-spillover_003_U+0F40.gif:
+    Konsole-spillover_003_U+0713.gif:
+      page: 6
+      spillovers:
+      - wchar: \u0713\u0330
+        codepoints:
+        - 1811
+        - 816
+        category: language
+        label: Assyrian Neo-Aramaic
+        row: 44
+        column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u071f\u0330
+        codepoints:
+        - 1823
+        - 816
+        category: language
+        label: Assyrian Neo-Aramaic
+        row: 44
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+    Konsole-spillover_004_U+0F40.gif:
       page: 7
       spillovers:
+      - wchar: \u0f40\u0f74
+        codepoints:
+        - 3904
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 31
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f40\u0f7c
         codepoints:
         - 3904
@@ -949,6 +1000,17 @@ spillover_results:
         label: Dzongkha
         row: 31
         column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f41\u0f74
+        codepoints:
+        - 3905
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 32
+        column: 3
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1029,6 +1091,17 @@ spillover_results:
         label: Dzongkha
         row: 32
         column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f42\u0f74
+        codepoints:
+        - 3906
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 32
+        column: 195
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1172,6 +1245,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f44\u0f74
+        codepoints:
+        - 3908
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 34
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f44\u0f7a
         codepoints:
         - 3908
@@ -1205,6 +1289,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f45\u0f74
+        codepoints:
+        - 3909
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 34
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f46\u0f7a
         codepoints:
         - 3910
@@ -1235,6 +1330,17 @@ spillover_results:
         label: Dzongkha
         row: 35
         column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f47\u0f74
+        codepoints:
+        - 3911
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 35
+        column: 51
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1282,6 +1388,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f50\u0f74
+        codepoints:
+        - 3920
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 35
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f50\u0f7c
         codepoints:
         - 3920
@@ -1301,6 +1418,17 @@ spillover_results:
         label: Dzongkha
         row: 36
         column: 3
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f51\u0f74
+        codepoints:
+        - 3921
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 36
+        column: 27
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1357,6 +1485,17 @@ spillover_results:
         label: Dzongkha
         row: 36
         column: 147
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f53\u0f74
+        codepoints:
+        - 3923
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 36
+        column: 171
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1636,6 +1775,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f59\u0f74
+        codepoints:
+        - 3929
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 39
+        column: 123
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f59\u0f7c
         codepoints:
         - 3929
@@ -1644,6 +1794,17 @@ spillover_results:
         label: Dzongkha
         row: 39
         column: 147
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f5a\u0f74
+        codepoints:
+        - 3930
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 39
+        column: 171
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1680,6 +1841,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f5b\u0f74
+        codepoints:
+        - 3931
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 40
+        column: 51
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f5b\u0f7c
         codepoints:
         - 3931
@@ -1699,6 +1871,28 @@ spillover_results:
         label: Dzongkha
         row: 40
         column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f5e\u0f74
+        codepoints:
+        - 3934
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 40
+        column: 123
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f5f\u0f74
+        codepoints:
+        - 3935
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 40
+        column: 147
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1769,6 +1963,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f61\u0f74
+        codepoints:
+        - 3937
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 41
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f61\u0f7c
         codepoints:
         - 3937
@@ -1788,6 +1993,17 @@ spillover_results:
         label: Dzongkha
         row: 41
         column: 147
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f62\u0f74
+        codepoints:
+        - 3938
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 41
+        column: 171
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1953,6 +2169,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f63\u0f74
+        codepoints:
+        - 3939
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 43
+        column: 99
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f63\u0f7a
         codepoints:
         - 3939
@@ -2031,6 +2258,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f64\u0f74
+        codepoints:
+        - 3940
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 44
+        column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f64\u0f7a
         codepoints:
         - 3940
@@ -2050,6 +2288,17 @@ spillover_results:
         label: Dzongkha
         row: 44
         column: 123
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f66\u0f74
+        codepoints:
+        - 3942
+        - 3956
+        category: language
+        label: Dzongkha
+        row: 44
+        column: 147
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -2521,7 +2770,7 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
-    Konsole-spillover_004_U+0020.gif:
+    Konsole-spillover_005_U+0020.gif:
       page: 11
       spillovers:
       - wchar: ' \u0f7c'
@@ -2569,6 +2818,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f46\u0f74
+        codepoints:
+        - 3910
+        - 3956
+        category: language
+        label: Tibetan, Central
+        row: 41
+        column: 147
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f47\u0f7c
         codepoints:
         - 3911
@@ -2588,6 +2848,17 @@ spillover_results:
         label: Tibetan, Central
         row: 41
         column: 195
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f4f\u0f74
+        codepoints:
+        - 3919
+        - 3956
+        category: language
+        label: Tibetan, Central
+        row: 42
+        column: 3
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -2660,6 +2931,17 @@ spillover_results:
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0f56\u0f74
+        codepoints:
+        - 3926
+        - 3956
+        category: language
+        label: Tibetan, Central
+        row: 42
+        column: 171
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0f56\u0f7a
         codepoints:
         - 3926
@@ -2690,6 +2972,17 @@ spillover_results:
         label: Tibetan, Central
         row: 43
         column: 27
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f60\u0f74
+        codepoints:
+        - 3936
+        - 3956
+        category: language
+        label: Tibetan, Central
+        row: 43
+        column: 51
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0
@@ -3026,6 +3319,17 @@ spillover_results:
         label: Tibetan, Central
         row: 46
         column: 75
+        advance: 1
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0f68\u0f74
+        codepoints:
+        - 3944
+        - 3956
+        category: language
+        label: Tibetan, Central
+        row: 46
+        column: 99
         advance: 1
         spill_left_cells: 1
         spill_right_cells: 0

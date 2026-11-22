@@ -1,12 +1,12 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-21 00:07:44 UTC
+  scanned_datetime: 2026-11-22 12:44:29 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-21 00:07:36 UTC
+  scanned_datetime: 2026-11-22 12:44:20 UTC
   painted_rows: 27
   calibration:
     origin_x: 4.0
@@ -282,21 +282,21 @@ session_arguments:
 software_name: Rio
 software_version: 0.5.29
 spillover_results:
-  scanned_datetime: 2026-11-21 00:08:19 UTC
+  scanned_datetime: 2026-11-22 12:45:05 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 4394
+  n_spillover: 5668
   n_no_ink: 0
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 4394
-    graphemes_left: 4253
+    graphemes_any: 5668
+    graphemes_left: 5527
     graphemes_right: 141
     graphemes_both: 0
     left_cells:
-      '1': 3651
-      '2': 602
+      '1': 4357
+      '2': 1170
     right_cells:
       '1': 141
     max_left_cells: 2
@@ -313,50 +313,28 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Bengali:
-      graphemes_any: 252
-      graphemes_left: 252
+      graphemes_any: 269
+      graphemes_left: 269
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 186
-        '2': 66
+        '1': 183
+        '2': 86
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Bhojpuri:
-      graphemes_any: 189
-      graphemes_left: 189
+      graphemes_any: 229
+      graphemes_left: 229
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 177
-        '2': 12
+        '1': 213
+        '2': 16
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
-    Burmese:
-      graphemes_any: 186
-      graphemes_left: 186
-      graphemes_right: 0
-      graphemes_both: 0
-      left_cells:
-        '1': 156
-        '2': 30
-      right_cells: {}
-      max_left_cells: 2
-      max_right_cells: 0
-    Chakma:
-      graphemes_any: 91
-      graphemes_left: 91
-      graphemes_right: 0
-      graphemes_both: 0
-      left_cells:
-        '1': 69
-        '2': 22
-      right_cells: {}
-      max_left_cells: 2
-      max_right_cells: 0
-    Chinantec, Chiltepec:
+    Bora:
       graphemes_any: 2
       graphemes_left: 2
       graphemes_right: 0
@@ -366,7 +344,29 @@ spillover_results:
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
-    Fur:
+    Burmese:
+      graphemes_any: 194
+      graphemes_left: 194
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 147
+        '2': 47
+      right_cells: {}
+      max_left_cells: 2
+      max_right_cells: 0
+    Chakma:
+      graphemes_any: 200
+      graphemes_left: 200
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 178
+        '2': 22
+      right_cells: {}
+      max_left_cells: 2
+      max_right_cells: 0
+    Chinantec, Chiltepec:
       graphemes_any: 3
       graphemes_left: 3
       graphemes_right: 0
@@ -376,219 +376,239 @@ spillover_results:
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
-    Gujarati:
-      graphemes_any: 140
-      graphemes_left: 140
+    Dzongkha:
+      graphemes_any: 83
+      graphemes_left: 83
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 131
-        '2': 9
+        '2': 83
+      right_cells: {}
+      max_left_cells: 2
+      max_right_cells: 0
+    Fur:
+      graphemes_any: 6
+      graphemes_left: 6
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 6
+      right_cells: {}
+      max_left_cells: 1
+      max_right_cells: 0
+    Gujarati:
+      graphemes_any: 272
+      graphemes_left: 272
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '1': 262
+        '2': 10
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Hindi:
-      graphemes_any: 143
-      graphemes_left: 143
+      graphemes_any: 163
+      graphemes_left: 163
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 126
-        '2': 17
+        '1': 145
+        '2': 18
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Javanese (Javanese):
-      graphemes_any: 424
-      graphemes_left: 424
+      graphemes_any: 473
+      graphemes_left: 473
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 334
-        '2': 90
+        '1': 335
+        '2': 138
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Kannada:
-      graphemes_any: 214
-      graphemes_left: 214
+      graphemes_any: 236
+      graphemes_left: 236
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 214
+        '1': 236
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Khmer, Central:
-      graphemes_any: 329
-      graphemes_left: 329
+      graphemes_any: 367
+      graphemes_left: 367
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 269
+        '1': 307
         '2': 60
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Khün:
-      graphemes_any: 328
-      graphemes_left: 328
+      graphemes_any: 386
+      graphemes_left: 386
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 218
-        '2': 110
+        '1': 210
+        '2': 176
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Lao:
-      graphemes_any: 164
-      graphemes_left: 164
+      graphemes_any: 217
+      graphemes_left: 217
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 164
+        '1': 217
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Magahi:
-      graphemes_any: 19
-      graphemes_left: 19
+      graphemes_any: 21
+      graphemes_left: 21
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 18
+        '1': 20
         '2': 1
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Maithili:
-      graphemes_any: 48
-      graphemes_left: 48
+      graphemes_any: 65
+      graphemes_left: 65
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 43
-        '2': 5
+        '1': 59
+        '2': 6
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Malayalam:
-      graphemes_any: 340
-      graphemes_left: 340
+      graphemes_any: 351
+      graphemes_left: 351
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 291
-        '2': 49
+        '1': 298
+        '2': 53
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Marathi:
-      graphemes_any: 97
-      graphemes_left: 97
+      graphemes_any: 103
+      graphemes_left: 103
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 93
+        '1': 99
         '2': 4
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Mon:
-      graphemes_any: 186
-      graphemes_left: 186
+      graphemes_any: 205
+      graphemes_left: 205
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 155
-        '2': 31
+        '1': 159
+        '2': 46
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Nepali:
-      graphemes_any: 60
-      graphemes_left: 60
+      graphemes_any: 70
+      graphemes_left: 70
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 56
-        '2': 4
+        '1': 65
+        '2': 5
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Panjabi, Eastern:
-      graphemes_any: 137
-      graphemes_left: 137
+      graphemes_any: 215
+      graphemes_left: 215
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 130
-        '2': 7
+        '1': 189
+        '2': 26
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Sanskrit:
-      graphemes_any: 138
-      graphemes_left: 138
+      graphemes_any: 154
+      graphemes_left: 154
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 124
-        '2': 14
+        '1': 137
+        '2': 17
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Sanskrit (Grantha):
-      graphemes_any: 104
-      graphemes_left: 104
+      graphemes_any: 214
+      graphemes_left: 214
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 77
-        '2': 27
+        '1': 179
+        '2': 35
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Shan:
-      graphemes_any: 96
-      graphemes_left: 96
+      graphemes_any: 102
+      graphemes_left: 102
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 96
+        '1': 102
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Sinhala:
-      graphemes_any: 141
-      graphemes_left: 141
+      graphemes_any: 184
+      graphemes_left: 184
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 108
-        '2': 33
+        '1': 77
+        '2': 107
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Tagalog (Tagalog):
-      graphemes_any: 3
-      graphemes_left: 3
+      graphemes_any: 16
+      graphemes_left: 16
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 3
+        '1': 16
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Tai Dam:
-      graphemes_any: 108
-      graphemes_left: 108
+      graphemes_any: 120
+      graphemes_left: 120
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 100
-        '2': 8
+        '1': 81
+        '2': 39
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
@@ -603,45 +623,56 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 0
     Tamil:
-      graphemes_any: 5
-      graphemes_left: 5
+      graphemes_any: 91
+      graphemes_left: 91
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 5
+        '1': 59
+        '2': 32
       right_cells: {}
-      max_left_cells: 1
+      max_left_cells: 2
       max_right_cells: 0
     Telugu:
-      graphemes_any: 158
-      graphemes_left: 158
+      graphemes_any: 268
+      graphemes_left: 268
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 155
-        '2': 3
+        '1': 153
+        '2': 115
       right_cells: {}
       max_left_cells: 2
       max_right_cells: 0
     Thai:
-      graphemes_any: 124
-      graphemes_left: 124
+      graphemes_any: 193
+      graphemes_left: 193
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 124
+        '1': 193
       right_cells: {}
       max_left_cells: 1
       max_right_cells: 0
     Thai (2):
-      graphemes_any: 11
-      graphemes_left: 11
+      graphemes_any: 14
+      graphemes_left: 14
       graphemes_right: 0
       graphemes_both: 0
       left_cells:
-        '1': 11
+        '1': 14
       right_cells: {}
       max_left_cells: 1
+      max_right_cells: 0
+    Tibetan, Central:
+      graphemes_any: 28
+      graphemes_left: 28
+      graphemes_right: 0
+      graphemes_both: 0
+      left_cells:
+        '2': 28
+      right_cells: {}
+      max_left_cells: 2
       max_right_cells: 0
     VS15:
       graphemes_any: 141
@@ -657,10 +688,10 @@ spillover_results:
     Bengali:
       Left:
         '1':
-          example: '''\u0995\u09be'''
+          example: '''\u0985\u0982'''
           width: 2
         '2':
-          example: '''\u0995\u09cb'''
+          example: '''\u0995\u09bf\u0982'''
           width: 2
     Bhojpuri:
       Left:
@@ -689,7 +720,7 @@ spillover_results:
     Gujarati:
       Left:
         '1':
-          example: '''\u0a95\u0acd\u0a95'''
+          example: '''\u0a95\u0a83'''
           width: 2
         '2':
           example: '''\u0a95\u0acd\u0aa4\u0abf'''
@@ -729,7 +760,7 @@ spillover_results:
           example: '''\u1a20\u1a60\u1a20'''
           width: 2
         '2':
-          example: '''\u1a20\u1a6e\u1a60'''
+          example: '''\u1a20\u1a60\u1a26\u1a68\u1a75'''
           width: 2
     Magahi:
       Left:
@@ -741,11 +772,11 @@ spillover_results:
           width: 2
     Maithili:
       Left:
+        '2':
+          example: '''\u0915\u093f\u0902'''
+          width: 2
         '1':
           example: '''\u0915\u0947\u093e'''
-          width: 2
-        '2':
-          example: '''\u0928\u094d\u0924\u094d\u0930\u093f'''
           width: 2
     Malayalam:
       Left:
@@ -777,15 +808,15 @@ spillover_results:
           example: '''\u0915\u094d\u091b'''
           width: 2
         '2':
-          example: '''\u0928\u094d\u091a\u093f'''
+          example: '''\u0928\u093f\u0901'''
           width: 2
     Panjabi, Eastern:
       Left:
+        '1':
+          example: '''\u0a15\u0a3e'''
+          width: 2
         '2':
           example: '''\u0a15\u0a3f\u0a4d'''
-          width: 2
-        '1':
-          example: '''\u0a15\u0a40'''
           width: 2
     Sanskrit:
       Left:
@@ -824,7 +855,10 @@ spillover_results:
     Tamil:
       Left:
         '1':
-          example: '''\u0b95\u0bc2'''
+          example: '''\u0b95\u0bbe'''
+          width: 2
+        '2':
+          example: '''\u0b95\u0bc8'''
           width: 2
     Telugu:
       Left:
@@ -832,22 +866,42 @@ spillover_results:
           example: '''\u0c05\u0c02'''
           width: 2
         '2':
-          example: '''\u0c17\u0c4c'''
-          width: 1
+          example: '''\u0c15\u0c4d\u0c15\u0c41'''
+          width: 2
+    Thai:
+      Left:
+        '1':
+          example: '''\u0e15\u0e48\u0e33'''
+          width: 2
+    Thai (2):
+      Left:
+        '1':
+          example: '''\u0e22\u0e48\u0e33'''
+          width: 2
     Assyrian Neo-Aramaic:
       Left:
         '1':
           example: '''\u0713\u0330'''
           width: 1
+    Bora:
+      Left:
+        '1':
+          example: '''\u0197\u0301'''
+          width: 1
     Chinantec, Chiltepec:
       Left:
         '1':
-          example: '''\u0268\u0331'''
+          example: '''\u0268\u0308'''
+          width: 1
+    Dzongkha:
+      Left:
+        '2':
+          example: '''\u0f40\u0fb1'''
           width: 1
     Fur:
       Left:
         '1':
-          example: '''\u0268\u030c'''
+          example: '''\u0268\u0302'''
           width: 1
     Lao:
       Left:
@@ -857,25 +911,20 @@ spillover_results:
     Tagalog (Tagalog):
       Left:
         '1':
-          example: '''\u1707\u1713'''
+          example: '''\u1704\u1714'''
           width: 1
     Tai Dam:
       Left:
-        '1':
+        '2':
           example: '''\uaa80\uaab0'''
           width: 1
+        '1':
+          example: '''\uaa80\uaab2'''
+          width: 1
+    Tibetan, Central:
+      Left:
         '2':
-          example: '''\uaa80\uaabe'''
-          width: 1
-    Thai:
-      Left:
-        '1':
-          example: '''\u0e01\u0e31'''
-          width: 1
-    Thai (2):
-      Left:
-        '1':
-          example: '''\u0e02\u0e31\u0e49'''
+          example: '''\u0f42\u0fb2\u0f72'''
           width: 1
     VS15:
       Right:
@@ -988,9 +1037,20 @@ spillover_results:
     term_width: 255
     term_height: 73
   images:
-    Rio-spillover_001_U+0995.gif:
+    Rio-spillover_001_U+0985.gif:
       page: 0
       spillovers:
+      - wchar: \u0985\u0982
+        codepoints:
+        - 2437
+        - 2434
+        category: language
+        label: Bengali
+        row: 0
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0995\u09be
         codepoints:
         - 2453
@@ -1013,6 +1073,18 @@ spillover_results:
         column: 51
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0995\u09bf\u0982
+        codepoints:
+        - 2453
+        - 2495
+        - 2434
+        category: language
+        label: Bengali
+        row: 0
+        column: 99
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u0995\u09cb
         codepoints:
@@ -1085,7 +1157,7 @@ spillover_results:
         row: 1
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u0995\u09cd\u09b7
         codepoints:
@@ -1322,7 +1394,7 @@ spillover_results:
         row: 3
         column: 147
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u0999\u09cd\u0997\u09c7
         codepoints:
@@ -1480,6 +1552,17 @@ spillover_results:
         column: 75
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u099c\u09c0
+        codepoints:
+        - 2460
+        - 2496
+        category: language
+        label: Bengali
+        row: 5
+        column: 123
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u099c\u09cd\u099e
         codepoints:
@@ -1639,6 +1722,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09a4\u0983
+        codepoints:
+        - 2468
+        - 2435
+        category: language
+        label: Bengali
+        row: 7
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u09a4\u09be
         codepoints:
         - 2468
@@ -1673,6 +1767,17 @@ spillover_results:
         column: 195
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09a4\u09c0
+        codepoints:
+        - 2468
+        - 2496
+        category: language
+        label: Bengali
+        row: 8
+        column: 27
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09a4\u09cd\u09a4
         codepoints:
@@ -1875,7 +1980,7 @@ spillover_results:
         row: 9
         column: 219
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09a4\u09cd\u200d\u09b8\u09be
         codepoints:
@@ -2087,6 +2192,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09a7\u09c0
+        codepoints:
+        - 2471
+        - 2496
+        category: language
+        label: Bengali
+        row: 12
+        column: 99
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u09a7\u09cd\u09af
         codepoints:
         - 2471
@@ -2134,6 +2250,17 @@ spillover_results:
         column: 219
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09a8\u09c0
+        codepoints:
+        - 2472
+        - 2496
+        category: language
+        label: Bengali
+        row: 13
+        column: 27
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09a8\u09cb
         codepoints:
@@ -2250,7 +2377,7 @@ spillover_results:
         row: 14
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09a8\u09cd\u09a7
         codepoints:
@@ -2401,6 +2528,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09aa\u09c0
+        codepoints:
+        - 2474
+        - 2496
+        category: language
+        label: Bengali
+        row: 15
+        column: 147
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u09aa\u09cb
         codepoints:
         - 2474
@@ -2473,6 +2611,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u09ac\u0982
+        codepoints:
+        - 2476
+        - 2434
+        category: language
+        label: Bengali
+        row: 16
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u09ac\u09be
         codepoints:
         - 2476
@@ -2495,6 +2644,17 @@ spillover_results:
         column: 171
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09ac\u09c0
+        codepoints:
+        - 2476
+        - 2496
+        category: language
+        label: Bengali
+        row: 16
+        column: 219
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09ac\u09cb
         codepoints:
@@ -2840,6 +3000,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09b0\u09c0
+        codepoints:
+        - 2480
+        - 2496
+        category: language
+        label: Bengali
+        row: 20
+        column: 171
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u09b0\u09cb
         codepoints:
         - 2480
@@ -2986,7 +3157,7 @@ spillover_results:
         row: 22
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09b0\u09cd\u09ac
         codepoints:
@@ -3127,6 +3298,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09b2\u09c0
+        codepoints:
+        - 2482
+        - 2496
+        category: language
+        label: Bengali
+        row: 23
+        column: 75
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u09b2\u09cd\u09aa
         codepoints:
         - 2482
@@ -3190,6 +3372,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u09b6\u0982
+        codepoints:
+        - 2486
+        - 2434
+        category: language
+        label: Bengali
+        row: 24
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u09b6\u09be
         codepoints:
         - 2486
@@ -3200,6 +3393,17 @@ spillover_results:
         column: 51
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09b6\u09c0
+        codepoints:
+        - 2486
+        - 2496
+        category: language
+        label: Bengali
+        row: 24
+        column: 99
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09b6\u09c3\u0982
         codepoints:
@@ -3325,6 +3529,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09b7\u09c0
+        codepoints:
+        - 2487
+        - 2496
+        category: language
+        label: Bengali
+        row: 25
+        column: 195
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u09b7\u09cd\u099f
         codepoints:
         - 2487
@@ -3390,7 +3605,7 @@ spillover_results:
         row: 26
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09b7\u09cd\u099f\u09cd\u09b0\u09c7
         codepoints:
@@ -3444,7 +3659,7 @@ spillover_results:
         row: 26
         column: 195
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09b7\u09cd\u09a0\u09c1
         codepoints:
@@ -3472,6 +3687,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09b8\u0982
+        codepoints:
+        - 2488
+        - 2434
+        category: language
+        label: Bengali
+        row: 27
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u09b8\u09be
         codepoints:
         - 2488
@@ -3494,6 +3720,17 @@ spillover_results:
         column: 75
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09b8\u09c0
+        codepoints:
+        - 2488
+        - 2496
+        category: language
+        label: Bengali
+        row: 27
+        column: 123
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09b8\u09cd\u0995
         codepoints:
@@ -3648,7 +3885,7 @@ spillover_results:
         row: 28
         column: 219
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u09b8\u09cd\u09af
         codepoints:
@@ -3970,6 +4207,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0918\u0947\u093f
+        codepoints:
+        - 2328
+        - 2375
+        - 2367
+        category: language
+        label: Bhojpuri
+        row: 32
+        column: 75
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0918\u094b
         codepoints:
         - 2328
@@ -4171,6 +4420,18 @@ spillover_results:
         column: 3
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u091c\u093f\u0902
+        codepoints:
+        - 2332
+        - 2367
+        - 2306
+        category: language
+        label: Bhojpuri
+        row: 34
+        column: 51
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u091c\u0940
         codepoints:
@@ -5096,6 +5357,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0932\u093f\u0902
+        codepoints:
+        - 2354
+        - 2367
+        - 2306
+        category: language
+        label: Bhojpuri
+        row: 43
+        column: 75
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0932\u0940
         codepoints:
         - 2354
@@ -5594,6 +5867,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0939\u093f\u0902
+        codepoints:
+        - 2361
+        - 2367
+        - 2306
+        category: language
+        label: Bhojpuri
+        row: 48
+        column: 3
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0939\u0940
         codepoints:
         - 2361
@@ -5709,7 +5994,7 @@ spillover_results:
         row: 49
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1000\u103c\u102d\u102f
         codepoints:
@@ -5722,7 +6007,7 @@ spillover_results:
         row: 49
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1000\u103c\u102e
         codepoints:
@@ -5734,7 +6019,7 @@ spillover_results:
         row: 49
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1000\u103c\u102f
         codepoints:
@@ -5746,7 +6031,7 @@ spillover_results:
         row: 49
         column: 147
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1000\u103c\u1031
         codepoints:
@@ -5770,7 +6055,7 @@ spillover_results:
         row: 49
         column: 195
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1000\u103c\u103d\u1031
         codepoints:
@@ -5857,7 +6142,7 @@ spillover_results:
         row: 50
         column: 195
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1001\u103c\u102f\u1036
         codepoints:
@@ -5870,7 +6155,7 @@ spillover_results:
         row: 50
         column: 219
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1001\u103c\u1031
         codepoints:
@@ -5932,7 +6217,7 @@ spillover_results:
         row: 51
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1004\u103c\u102d
         codepoints:
@@ -5944,7 +6229,7 @@ spillover_results:
         row: 51
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1004\u103d\u1031
         codepoints:
@@ -6015,6 +6300,18 @@ spillover_results:
         label: Burmese
         row: 52
         column: 123
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1014\u1031\u1037
+        codepoints:
+        - 4116
+        - 4145
+        - 4151
+        category: language
+        label: Burmese
+        row: 52
+        column: 195
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
@@ -6089,7 +6386,7 @@ spillover_results:
         row: 53
         column: 171
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1015\u103c\u102e
         codepoints:
@@ -6101,7 +6398,7 @@ spillover_results:
         row: 53
         column: 195
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1015\u103c\u102f
         codepoints:
@@ -6113,7 +6410,7 @@ spillover_results:
         row: 53
         column: 219
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1015\u103c\u1031
         codepoints:
@@ -6136,7 +6433,7 @@ spillover_results:
         row: 54
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1016\u103c\u102d\u102f
         codepoints:
@@ -6149,7 +6446,7 @@ spillover_results:
         row: 54
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1019\u1039\u1018
         codepoints:
@@ -6209,7 +6506,7 @@ spillover_results:
         row: 55
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1019\u103c\u1031
         codepoints:
@@ -6233,7 +6530,7 @@ spillover_results:
         row: 55
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1019\u103d\u1031
         codepoints:
@@ -7116,6 +7413,62 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a95\u0a83
+        codepoints:
+        - 2709
+        - 2691
+        category: language
+        label: Gujarati
+        row: 65
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a95\u0abe
+        codepoints:
+        - 2709
+        - 2750
+        category: language
+        label: Gujarati
+        row: 65
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a95\u0abe\u0a82
+        codepoints:
+        - 2709
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 66
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a95\u0ac0
+        codepoints:
+        - 2709
+        - 2752
+        category: language
+        label: Gujarati
+        row: 66
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a95\u0acb
+        codepoints:
+        - 2709
+        - 2763
+        category: language
+        label: Gujarati
+        row: 66
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a95\u0acd\u0a95
         codepoints:
         - 2709
@@ -7204,6 +7557,39 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a96\u0abe
+        codepoints:
+        - 2710
+        - 2750
+        category: language
+        label: Gujarati
+        row: 67
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a96\u0ac0
+        codepoints:
+        - 2710
+        - 2752
+        category: language
+        label: Gujarati
+        row: 67
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a96\u0acb
+        codepoints:
+        - 2710
+        - 2763
+        category: language
+        label: Gujarati
+        row: 67
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a96\u0acd\u0aa4
         codepoints:
         - 2710
@@ -7213,6 +7599,39 @@ spillover_results:
         label: Gujarati
         row: 67
         column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a97\u0abe
+        codepoints:
+        - 2711
+        - 2750
+        category: language
+        label: Gujarati
+        row: 67
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a97\u0ac0
+        codepoints:
+        - 2711
+        - 2752
+        category: language
+        label: Gujarati
+        row: 67
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a97\u0acb
+        codepoints:
+        - 2711
+        - 2763
+        category: language
+        label: Gujarati
+        row: 67
+        column: 195
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -7237,6 +7656,50 @@ spillover_results:
         label: Gujarati
         row: 68
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a98\u0abe
+        codepoints:
+        - 2712
+        - 2750
+        category: language
+        label: Gujarati
+        row: 68
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a98\u0acb
+        codepoints:
+        - 2712
+        - 2763
+        category: language
+        label: Gujarati
+        row: 68
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9a\u0abe
+        codepoints:
+        - 2714
+        - 2750
+        category: language
+        label: Gujarati
+        row: 68
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9a\u0ac0
+        codepoints:
+        - 2714
+        - 2752
+        category: language
+        label: Gujarati
+        row: 68
+        column: 123
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -7304,6 +7767,73 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a9b\u0abe
+        codepoints:
+        - 2715
+        - 2750
+        category: language
+        label: Gujarati
+        row: 69
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9b\u0acb
+        codepoints:
+        - 2715
+        - 2763
+        category: language
+        label: Gujarati
+        row: 69
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9c\u0abe
+        codepoints:
+        - 2716
+        - 2750
+        category: language
+        label: Gujarati
+        row: 69
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9c\u0abe\u0a82
+        codepoints:
+        - 2716
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 69
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9c\u0ac0
+        codepoints:
+        - 2716
+        - 2752
+        category: language
+        label: Gujarati
+        row: 69
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a9c\u0acb
+        codepoints:
+        - 2716
+        - 2763
+        category: language
+        label: Gujarati
+        row: 69
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a9c\u0acd\u0a9e\u0abe
         codepoints:
         - 2716
@@ -7342,6 +7872,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a9f\u0a83
+        codepoints:
+        - 2719
+        - 2691
+        category: language
+        label: Gujarati
+        row: 70
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a9f\u0acd\u0ab0
         codepoints:
         - 2719
@@ -7364,6 +7905,129 @@ spillover_results:
         label: Gujarati
         row: 70
         column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa1\u0abe
+        codepoints:
+        - 2721
+        - 2750
+        category: language
+        label: Gujarati
+        row: 70
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa1\u0abe\u0a82
+        codepoints:
+        - 2721
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 70
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa1\u0ac0
+        codepoints:
+        - 2721
+        - 2752
+        category: language
+        label: Gujarati
+        row: 70
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa2\u0abe
+        codepoints:
+        - 2722
+        - 2750
+        category: language
+        label: Gujarati
+        row: 70
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa3\u0abe
+        codepoints:
+        - 2723
+        - 2750
+        category: language
+        label: Gujarati
+        row: 70
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa3\u0ac0
+        codepoints:
+        - 2723
+        - 2752
+        category: language
+        label: Gujarati
+        row: 71
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa4\u0a83
+        codepoints:
+        - 2724
+        - 2691
+        category: language
+        label: Gujarati
+        row: 71
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa4\u0abe
+        codepoints:
+        - 2724
+        - 2750
+        category: language
+        label: Gujarati
+        row: 71
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa4\u0abe\u0a82
+        codepoints:
+        - 2724
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 71
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa4\u0ac0
+        codepoints:
+        - 2724
+        - 2752
+        category: language
+        label: Gujarati
+        row: 71
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa4\u0acb
+        codepoints:
+        - 2724
+        - 2763
+        category: language
+        label: Gujarati
+        row: 71
+        column: 147
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -7578,6 +8242,61 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0aa5\u0abe
+        codepoints:
+        - 2725
+        - 2750
+        category: language
+        label: Gujarati
+        row: 1
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa5\u0ac0
+        codepoints:
+        - 2725
+        - 2752
+        category: language
+        label: Gujarati
+        row: 1
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa6\u0abe
+        codepoints:
+        - 2726
+        - 2750
+        category: language
+        label: Gujarati
+        row: 1
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa6\u0ac0
+        codepoints:
+        - 2726
+        - 2752
+        category: language
+        label: Gujarati
+        row: 1
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa6\u0acb
+        codepoints:
+        - 2726
+        - 2763
+        category: language
+        label: Gujarati
+        row: 1
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0aa6\u0acd\u0aa7
         codepoints:
         - 2726
@@ -7655,6 +8374,51 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0aa7\u0abe
+        codepoints:
+        - 2727
+        - 2750
+        category: language
+        label: Gujarati
+        row: 2
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa7\u0abe\u0a82
+        codepoints:
+        - 2727
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 2
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa7\u0ac0
+        codepoints:
+        - 2727
+        - 2752
+        category: language
+        label: Gujarati
+        row: 2
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa7\u0acb
+        codepoints:
+        - 2727
+        - 2763
+        category: language
+        label: Gujarati
+        row: 2
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0aa7\u0acd\u0aaf
         codepoints:
         - 2727
@@ -7677,6 +8441,62 @@ spillover_results:
         label: Gujarati
         row: 3
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa8\u0a83
+        codepoints:
+        - 2728
+        - 2691
+        category: language
+        label: Gujarati
+        row: 3
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa8\u0abe
+        codepoints:
+        - 2728
+        - 2750
+        category: language
+        label: Gujarati
+        row: 3
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa8\u0abe\u0a82
+        codepoints:
+        - 2728
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 3
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa8\u0ac0
+        codepoints:
+        - 2728
+        - 2752
+        category: language
+        label: Gujarati
+        row: 3
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aa8\u0acb
+        codepoints:
+        - 2728
+        - 2763
+        category: language
+        label: Gujarati
+        row: 3
+        column: 147
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -7782,6 +8602,39 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0aaa\u0abe
+        codepoints:
+        - 2730
+        - 2750
+        category: language
+        label: Gujarati
+        row: 4
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aaa\u0ac0
+        codepoints:
+        - 2730
+        - 2752
+        category: language
+        label: Gujarati
+        row: 4
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aaa\u0acb
+        codepoints:
+        - 2730
+        - 2763
+        category: language
+        label: Gujarati
+        row: 4
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0aaa\u0acd\u0aa4
         codepoints:
         - 2730
@@ -7819,6 +8672,62 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0aab\u0abe
+        codepoints:
+        - 2731
+        - 2750
+        category: language
+        label: Gujarati
+        row: 5
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aab\u0acb
+        codepoints:
+        - 2731
+        - 2763
+        category: language
+        label: Gujarati
+        row: 5
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aac\u0abe
+        codepoints:
+        - 2732
+        - 2750
+        category: language
+        label: Gujarati
+        row: 5
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aac\u0abe\u0a82
+        codepoints:
+        - 2732
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 5
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aac\u0ac0
+        codepoints:
+        - 2732
+        - 2752
+        category: language
+        label: Gujarati
+        row: 5
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0aac\u0acd\u0aa7
         codepoints:
         - 2732
@@ -7828,6 +8737,40 @@ spillover_results:
         label: Gujarati
         row: 5
         column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aad\u0abe
+        codepoints:
+        - 2733
+        - 2750
+        category: language
+        label: Gujarati
+        row: 5
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aad\u0abe\u0a82
+        codepoints:
+        - 2733
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 5
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aad\u0acb
+        codepoints:
+        - 2733
+        - 2763
+        category: language
+        label: Gujarati
+        row: 6
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -7854,6 +8797,62 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0aae\u0a83
+        codepoints:
+        - 2734
+        - 2691
+        category: language
+        label: Gujarati
+        row: 6
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aae\u0abe
+        codepoints:
+        - 2734
+        - 2750
+        category: language
+        label: Gujarati
+        row: 6
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aae\u0abe\u0a82
+        codepoints:
+        - 2734
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 6
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aae\u0ac0
+        codepoints:
+        - 2734
+        - 2752
+        category: language
+        label: Gujarati
+        row: 6
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aae\u0acb
+        codepoints:
+        - 2734
+        - 2763
+        category: language
+        label: Gujarati
+        row: 6
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0aae\u0acd\u0aaf
         codepoints:
         - 2734
@@ -7877,6 +8876,72 @@ spillover_results:
         label: Gujarati
         row: 7
         column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aaf\u0abe
+        codepoints:
+        - 2735
+        - 2750
+        category: language
+        label: Gujarati
+        row: 7
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aaf\u0ac0
+        codepoints:
+        - 2735
+        - 2752
+        category: language
+        label: Gujarati
+        row: 7
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0aaf\u0acb
+        codepoints:
+        - 2735
+        - 2763
+        category: language
+        label: Gujarati
+        row: 7
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab0\u0abe
+        codepoints:
+        - 2736
+        - 2750
+        category: language
+        label: Gujarati
+        row: 7
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab0\u0ac0
+        codepoints:
+        - 2736
+        - 2752
+        category: language
+        label: Gujarati
+        row: 7
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab0\u0acb
+        codepoints:
+        - 2736
+        - 2763
+        category: language
+        label: Gujarati
+        row: 7
+        column: 219
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -8055,6 +9120,63 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0ab2\u0abe
+        codepoints:
+        - 2738
+        - 2750
+        category: language
+        label: Gujarati
+        row: 9
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab2\u0abe\u0a82
+        codepoints:
+        - 2738
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 9
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab2\u0abf\u0a82
+        codepoints:
+        - 2738
+        - 2751
+        - 2690
+        category: language
+        label: Gujarati
+        row: 9
+        column: 171
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u0ab2\u0ac0
+        codepoints:
+        - 2738
+        - 2752
+        category: language
+        label: Gujarati
+        row: 9
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab2\u0acb
+        codepoints:
+        - 2738
+        - 2763
+        category: language
+        label: Gujarati
+        row: 9
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0ab2\u0acd\u0aae
         codepoints:
         - 2738
@@ -8076,6 +9198,73 @@ spillover_results:
         label: Gujarati
         row: 10
         column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab3\u0abe
+        codepoints:
+        - 2739
+        - 2750
+        category: language
+        label: Gujarati
+        row: 10
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab3\u0ac0
+        codepoints:
+        - 2739
+        - 2752
+        category: language
+        label: Gujarati
+        row: 10
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab5\u0abe
+        codepoints:
+        - 2741
+        - 2750
+        category: language
+        label: Gujarati
+        row: 10
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab5\u0abe\u0a82
+        codepoints:
+        - 2741
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 10
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab5\u0ac0
+        codepoints:
+        - 2741
+        - 2752
+        category: language
+        label: Gujarati
+        row: 10
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab5\u0acb
+        codepoints:
+        - 2741
+        - 2763
+        category: language
+        label: Gujarati
+        row: 10
+        column: 195
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -8114,6 +9303,51 @@ spillover_results:
         label: Gujarati
         row: 11
         column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab6\u0abe
+        codepoints:
+        - 2742
+        - 2750
+        category: language
+        label: Gujarati
+        row: 11
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab6\u0abe\u0a82
+        codepoints:
+        - 2742
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 11
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab6\u0ac0
+        codepoints:
+        - 2742
+        - 2752
+        category: language
+        label: Gujarati
+        row: 11
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab6\u0acb
+        codepoints:
+        - 2742
+        - 2763
+        category: language
+        label: Gujarati
+        row: 11
+        column: 147
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -8175,6 +9409,39 @@ spillover_results:
         label: Gujarati
         row: 12
         column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab7\u0abe
+        codepoints:
+        - 2743
+        - 2750
+        category: language
+        label: Gujarati
+        row: 12
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab7\u0ac0
+        codepoints:
+        - 2743
+        - 2752
+        category: language
+        label: Gujarati
+        row: 12
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab7\u0acb
+        codepoints:
+        - 2743
+        - 2763
+        category: language
+        label: Gujarati
+        row: 12
+        column: 99
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -8270,6 +9537,51 @@ spillover_results:
         label: Gujarati
         row: 13
         column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab8\u0abe
+        codepoints:
+        - 2744
+        - 2750
+        category: language
+        label: Gujarati
+        row: 13
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab8\u0abe\u0a82
+        codepoints:
+        - 2744
+        - 2750
+        - 2690
+        category: language
+        label: Gujarati
+        row: 13
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab8\u0ac0
+        codepoints:
+        - 2744
+        - 2752
+        category: language
+        label: Gujarati
+        row: 13
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab8\u0acb
+        codepoints:
+        - 2744
+        - 2763
+        category: language
+        label: Gujarati
+        row: 13
+        column: 147
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -8438,6 +9750,39 @@ spillover_results:
         label: Gujarati
         row: 14
         column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab9\u0abe
+        codepoints:
+        - 2745
+        - 2750
+        category: language
+        label: Gujarati
+        row: 15
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab9\u0ac0
+        codepoints:
+        - 2745
+        - 2752
+        category: language
+        label: Gujarati
+        row: 15
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ab9\u0acb
+        codepoints:
+        - 2745
+        - 2763
+        category: language
+        label: Gujarati
+        row: 15
+        column: 75
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -8719,6 +10064,17 @@ spillover_results:
         label: Hindi
         row: 17
         column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0924\u0903
+        codepoints:
+        - 2340
+        - 2307
+        category: language
+        label: Hindi
+        row: 17
+        column: 171
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -9072,6 +10428,18 @@ spillover_results:
         column: 123
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0928\u093f\u0903
+        codepoints:
+        - 2344
+        - 2367
+        - 2307
+        category: language
+        label: Hindi
+        row: 20
+        column: 147
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u0928\u094c
         codepoints:
@@ -9977,6 +11345,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0939\u0948\u0903
+        codepoints:
+        - 2361
+        - 2376
+        - 2307
+        category: language
+        label: Hindi
+        row: 27
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0939\u094b\u0902
         codepoints:
         - 2361
@@ -10175,7 +11555,7 @@ spillover_results:
         row: 29
         column: 171
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua98f\ua9c0\ua994
         codepoints:
@@ -10727,7 +12107,7 @@ spillover_results:
         row: 34
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua994\ua9c0\ua992\ua9bf\ua9bc\ua981
         codepoints:
@@ -10793,7 +12173,7 @@ spillover_results:
         row: 34
         column: 171
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua995\ua983
         codepoints:
@@ -11202,7 +12582,7 @@ spillover_results:
         row: 38
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a0\ua9c0\ua9ad
         codepoints:
@@ -11542,7 +12922,7 @@ spillover_results:
         row: 41
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua992
         codepoints:
@@ -11645,7 +13025,7 @@ spillover_results:
         row: 42
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua994\ua9bf\ua9b8
         codepoints:
@@ -11697,7 +13077,7 @@ spillover_results:
         row: 42
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua99a\ua9b6
         codepoints:
@@ -11843,7 +13223,7 @@ spillover_results:
         row: 43
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9a0
         codepoints:
@@ -11947,7 +13327,7 @@ spillover_results:
         row: 44
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9a0\ua9bc\ua982
         codepoints:
@@ -11961,7 +13341,7 @@ spillover_results:
         row: 44
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9a0\ua9bd
         codepoints:
@@ -12064,7 +13444,7 @@ spillover_results:
         row: 45
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9a4
         codepoints:
@@ -12129,7 +13509,7 @@ spillover_results:
         row: 45
         column: 171
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9a5
         codepoints:
@@ -12209,7 +13589,7 @@ spillover_results:
         row: 46
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9a5\ua9bf
         codepoints:
@@ -12327,7 +13707,7 @@ spillover_results:
         row: 47
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9a9
         codepoints:
@@ -12392,7 +13772,7 @@ spillover_results:
         row: 47
         column: 171
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9ad
         codepoints:
@@ -12494,7 +13874,7 @@ spillover_results:
         row: 48
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9b1
         codepoints:
@@ -12599,7 +13979,7 @@ spillover_results:
         row: 49
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a4\ua9c0\ua9b2
         codepoints:
@@ -12990,7 +14370,7 @@ spillover_results:
         row: 52
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a5\ua9c0\ua9b2
         codepoints:
@@ -13221,7 +14601,7 @@ spillover_results:
         row: 54
         column: 147
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a9\ua9c0\ua9a0\ua9b8
         codepoints:
@@ -13313,7 +14693,7 @@ spillover_results:
         row: 55
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a9\ua9c0\ua9a7
         codepoints:
@@ -13445,7 +14825,7 @@ spillover_results:
         row: 56
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9a9\ua9c0\ua9a7\ua9be\ua9b8\ua982
         codepoints:
@@ -13692,7 +15072,7 @@ spillover_results:
         row: 58
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9ad\ua9c0\ua9a0\ua9b8
         codepoints:
@@ -14272,7 +15652,7 @@ spillover_results:
         row: 63
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \ua9b1\ua9c0\ua9a9\ua9bf
         codepoints:
@@ -14567,6 +15947,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0c95\u0cc1
+        codepoints:
+        - 3221
+        - 3265
+        category: language
+        label: Kannada
+        row: 65
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0c95\u0cc1\u0c82
         codepoints:
         - 3221
@@ -14704,6 +16095,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0c97\u0cc1
+        codepoints:
+        - 3223
+        - 3265
+        category: language
+        label: Kannada
+        row: 67
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0c97\u0cc2
         codepoints:
         - 3223
@@ -14782,6 +16184,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0c9a\u0cc1
+        codepoints:
+        - 3226
+        - 3265
+        category: language
+        label: Kannada
+        row: 68
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0c9b\u0cbe
         codepoints:
         - 3227
@@ -14812,6 +16225,17 @@ spillover_results:
         label: Kannada
         row: 68
         column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0c9f\u0cc1
+        codepoints:
+        - 3231
+        - 3265
+        category: language
+        label: Kannada
+        row: 68
+        column: 99
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -14860,6 +16284,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0ca1\u0cc1
+        codepoints:
+        - 3233
+        - 3265
+        category: language
+        label: Kannada
+        row: 68
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0ca1\u0cc2
         codepoints:
         - 3233
@@ -14904,6 +16339,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0ca3\u0cc1
+        codepoints:
+        - 3235
+        - 3265
+        category: language
+        label: Kannada
+        row: 69
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0ca3\u0cc8
         codepoints:
         - 3235
@@ -14926,6 +16372,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0ca4\u0c83
+        codepoints:
+        - 3236
+        - 3203
+        category: language
+        label: Kannada
+        row: 69
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0ca4\u0cbe
         codepoints:
         - 3236
@@ -14945,6 +16402,17 @@ spillover_results:
         label: Kannada
         row: 69
         column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ca4\u0cc1
+        codepoints:
+        - 3236
+        - 3265
+        category: language
+        label: Kannada
+        row: 70
+        column: 3
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15023,6 +16491,17 @@ spillover_results:
         label: Kannada
         row: 70
         column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ca6\u0cc1
+        codepoints:
+        - 3238
+        - 3265
+        category: language
+        label: Kannada
+        row: 70
+        column: 195
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15114,6 +16593,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0ca8\u0c83
+        codepoints:
+        - 3240
+        - 3203
+        category: language
+        label: Kannada
+        row: 71
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0ca8\u0cbe
         codepoints:
         - 3240
@@ -15149,6 +16639,17 @@ spillover_results:
         label: Kannada
         row: 0
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0ca8\u0cc1
+        codepoints:
+        - 3240
+        - 3265
+        category: language
+        label: Kannada
+        row: 0
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15218,6 +16719,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0caa\u0cc1
+        codepoints:
+        - 3242
+        - 3265
+        category: language
+        label: Kannada
+        row: 0
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0caa\u0cc2
         codepoints:
         - 3242
@@ -15259,6 +16771,17 @@ spillover_results:
         label: Kannada
         row: 1
         column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0cac\u0cc1
+        codepoints:
+        - 3244
+        - 3265
+        category: language
+        label: Kannada
+        row: 1
+        column: 75
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15306,6 +16829,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0cad\u0cc1
+        codepoints:
+        - 3245
+        - 3265
+        category: language
+        label: Kannada
+        row: 1
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0cad\u0cc7
         codepoints:
         - 3245
@@ -15347,6 +16881,17 @@ spillover_results:
         label: Kannada
         row: 2
         column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0cae\u0cc1
+        codepoints:
+        - 3246
+        - 3265
+        category: language
+        label: Kannada
+        row: 2
+        column: 75
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15414,6 +16959,17 @@ spillover_results:
         label: Kannada
         row: 2
         column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0caf\u0cc1
+        codepoints:
+        - 3247
+        - 3265
+        category: language
+        label: Kannada
+        row: 3
+        column: 3
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15542,6 +17098,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0cb0\u0cc1
+        codepoints:
+        - 3248
+        - 3265
+        category: language
+        label: Kannada
+        row: 4
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0cb0\u0cc2
         codepoints:
         - 3248
@@ -15620,6 +17187,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0cb2\u0cc1
+        codepoints:
+        - 3250
+        - 3265
+        category: language
+        label: Kannada
+        row: 5
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0cb2\u0cc2
         codepoints:
         - 3250
@@ -15688,6 +17266,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0cb3\u0cc1
+        codepoints:
+        - 3251
+        - 3265
+        category: language
+        label: Kannada
+        row: 5
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0cb3\u0cc2
         codepoints:
         - 3251
@@ -15718,6 +17307,17 @@ spillover_results:
         label: Kannada
         row: 6
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0cb5\u0cc1
+        codepoints:
+        - 3253
+        - 3265
+        category: language
+        label: Kannada
+        row: 6
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -15901,6 +17501,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0cb8\u0cc1
+        codepoints:
+        - 3256
+        - 3265
+        category: language
+        label: Kannada
+        row: 7
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0cb8\u0cc2
         codepoints:
         - 3256
@@ -15931,6 +17542,17 @@ spillover_results:
         label: Kannada
         row: 8
         column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0cb9\u0cc1
+        codepoints:
+        - 3257
+        - 3265
+        category: language
+        label: Kannada
+        row: 8
+        column: 51
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -16858,6 +18480,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1789\u17bb\u17c7
+        codepoints:
+        - 6025
+        - 6075
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 15
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1789\u17d2\u1785\u17bc
         codepoints:
         - 6025
@@ -17091,6 +18725,17 @@ spillover_results:
         column: 219
         advance: 2
         spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u178e\u17c8
+        codepoints:
+        - 6030
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 18
+        column: 3
+        advance: 2
+        spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u178e\u17d2\u178a\u17b6
         codepoints:
@@ -17698,6 +19343,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1793\u17c8
+        codepoints:
+        - 6035
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 23
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1793\u17d2\u178a
         codepoints:
         - 6035
@@ -17904,6 +19560,29 @@ spillover_results:
         column: 195
         advance: 2
         spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1794\u17c7
+        codepoints:
+        - 6036
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 24
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u1794\u17c9\u17c7
+        codepoints:
+        - 6036
+        - 6089
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 25
+        column: 3
+        advance: 2
+        spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u1794\u17d2\u178a\u17b8
         codepoints:
@@ -18715,6 +20394,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1799\u17c8
+        codepoints:
+        - 6041
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 31
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u1799\u17c9\u17b6
         codepoints:
         - 6041
@@ -18795,6 +20485,28 @@ spillover_results:
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u179a\u17c7
+        codepoints:
+        - 6042
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 32
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179a\u17c8
+        codepoints:
+        - 6042
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 32
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u179a\u17d2\u178a\u17b7\u17cd
         codepoints:
         - 6042
@@ -18817,6 +20529,18 @@ spillover_results:
         label: Khmer, Central
         row: 32
         column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179b\u17bb\u17c7
+        codepoints:
+        - 6043
+        - 6075
+        - 6087
+        category: language
+        label: Khmer, Central
+        row: 32
+        column: 195
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -18852,6 +20576,17 @@ spillover_results:
         column: 27
         advance: 2
         spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u179b\u17c8
+        codepoints:
+        - 6043
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 33
+        column: 51
+        advance: 2
+        spill_left_cells: 1
         spill_right_cells: 0
       - wchar: \u179b\u17d2\u1794\u17c8
         codepoints:
@@ -18901,6 +20636,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u179c\u17c8
+        codepoints:
+        - 6044
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 33
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u179f\u17b6
         codepoints:
         - 6047
@@ -18931,6 +20677,17 @@ spillover_results:
         label: Khmer, Central
         row: 34
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u179f\u17c8
+        codepoints:
+        - 6047
+        - 6088
+        category: language
+        label: Khmer, Central
+        row: 34
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -19366,7 +21123,7 @@ spillover_results:
         row: 37
         column: 147
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a20\u1a60\u1a2d\u1a6b
         codepoints:
@@ -19469,7 +21226,7 @@ spillover_results:
         row: 38
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a20\u1a62\u1a60\u1a37
         codepoints:
@@ -19508,6 +21265,19 @@ spillover_results:
         row: 38
         column: 171
         advance: 3
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1a20\u1a6e\u1a62\u1a75
+        codepoints:
+        - 6688
+        - 6766
+        - 6754
+        - 6773
+        category: language
+        label: Khün
+        row: 38
+        column: 195
+        advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a20\u1a6f\u1a60
@@ -19612,7 +21382,7 @@ spillover_results:
         row: 39
         column: 195
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a21\u1a60\u1a45
         codepoints:
@@ -19663,6 +21433,31 @@ spillover_results:
         advance: 3
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1a21\u1a6e\u1a62
+        codepoints:
+        - 6689
+        - 6766
+        - 6754
+        category: language
+        label: Khün
+        row: 40
+        column: 75
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1a21\u1a6e\u1a62\u1a62
+        codepoints:
+        - 6689
+        - 6766
+        - 6754
+        - 6754
+        category: language
+        label: Khün
+        row: 40
+        column: 99
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a21\u1a6f\u1a60
         codepoints:
         - 6689
@@ -19701,6 +21496,18 @@ spillover_results:
         advance: 3
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1a21\u1a71\u1a62
+        codepoints:
+        - 6689
+        - 6769
+        - 6754
+        category: language
+        label: Khün
+        row: 40
+        column: 195
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a23\u1a55\u1a60
         codepoints:
         - 6691
@@ -19711,7 +21518,7 @@ spillover_results:
         row: 41
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a23\u1a55\u1a60\u1a4b
         codepoints:
@@ -19724,7 +21531,7 @@ spillover_results:
         row: 41
         column: 27
         advance: 3
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a23\u1a55\u1a6e\u1a60
         codepoints:
@@ -19855,6 +21662,19 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1a23\u1a6e\u1a62\u1a62
+        codepoints:
+        - 6691
+        - 6766
+        - 6754
+        - 6754
+        category: language
+        label: Khün
+        row: 42
+        column: 51
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a23\u1a6f\u1a60
         codepoints:
         - 6691
@@ -19971,6 +21791,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1a24\u1a6e\u1a62
+        codepoints:
+        - 6692
+        - 6766
+        - 6754
+        category: language
+        label: Khün
+        row: 43
+        column: 51
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a27\u1a60\u1a26\u1a65\u1a75
         codepoints:
         - 6695
@@ -19983,7 +21815,7 @@ spillover_results:
         row: 43
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a27\u1a60\u1a2f\u1a62
         codepoints:
@@ -20021,6 +21853,19 @@ spillover_results:
         row: 43
         column: 195
         advance: 3
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1a27\u1a6e\u1a62\u1a62
+        codepoints:
+        - 6695
+        - 6766
+        - 6754
+        - 6754
+        category: language
+        label: Khün
+        row: 43
+        column: 219
+        advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a27\u1a71\u1a60
@@ -20098,7 +21943,7 @@ spillover_results:
         row: 44
         column: 147
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a29\u1a6e\u1a60
         codepoints:
@@ -20156,6 +22001,18 @@ spillover_results:
         advance: 3
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1a29\u1a71\u1a62
+        codepoints:
+        - 6697
+        - 6769
+        - 6754
+        category: language
+        label: Khün
+        row: 45
+        column: 27
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a29\u1a75\u1a6d
         codepoints:
         - 6697
@@ -20166,7 +22023,7 @@ spillover_results:
         row: 45
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a2a\u1a60\u1a26\u1a68\u1a75
         codepoints:
@@ -20180,7 +22037,19 @@ spillover_results:
         row: 45
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1a2a\u1a6e\u1a62
+        codepoints:
+        - 6698
+        - 6766
+        - 6754
+        category: language
+        label: Khün
+        row: 45
+        column: 99
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a2c\u1a60\u1a2c
         codepoints:
@@ -20206,7 +22075,7 @@ spillover_results:
         row: 45
         column: 147
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a2f\u1a60\u1a30
         codepoints:
@@ -20338,6 +22207,18 @@ spillover_results:
         advance: 3
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1a2f\u1a71\u1a62
+        codepoints:
+        - 6703
+        - 6769
+        - 6754
+        category: language
+        label: Khün
+        row: 46
+        column: 195
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a2f\u1a74\u1a60\u1a3f
         codepoints:
         - 6703
@@ -20363,6 +22244,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1a32\u1a55\u1a66
+        codepoints:
+        - 6706
+        - 6741
+        - 6758
+        category: language
+        label: Khün
+        row: 47
+        column: 51
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a32\u1a55\u1a7c
         codepoints:
         - 6706
@@ -20373,7 +22266,7 @@ spillover_results:
         row: 47
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a32\u1a60\u1a20\u1a6b
         codepoints:
@@ -20638,6 +22531,18 @@ spillover_results:
         advance: 3
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1a32\u1a71\u1a62
+        codepoints:
+        - 6706
+        - 6769
+        - 6754
+        category: language
+        label: Khün
+        row: 49
+        column: 147
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a33\u1a60\u1a26\u1a68
         codepoints:
         - 6707
@@ -20702,6 +22607,19 @@ spillover_results:
         row: 50
         column: 27
         advance: 3
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1a33\u1a6e\u1a62\u1a62
+        codepoints:
+        - 6707
+        - 6766
+        - 6754
+        - 6754
+        category: language
+        label: Khün
+        row: 50
+        column: 51
+        advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a33\u1a6f\u1a60
@@ -20805,7 +22723,7 @@ spillover_results:
         row: 51
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a34\u1a60\u1a45\u1a62
         codepoints:
@@ -20832,7 +22750,7 @@ spillover_results:
         row: 51
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a34\u1a6e\u1a60
         codepoints:
@@ -20873,6 +22791,32 @@ spillover_results:
         advance: 4
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1a34\u1a6e\u1a62\u1a62
+        codepoints:
+        - 6708
+        - 6766
+        - 6754
+        - 6754
+        category: language
+        label: Khün
+        row: 51
+        column: 147
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1a34\u1a6e\u1a62\u1a75
+        codepoints:
+        - 6708
+        - 6766
+        - 6754
+        - 6773
+        category: language
+        label: Khün
+        row: 51
+        column: 171
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a34\u1a6f\u1a60
         codepoints:
         - 6708
@@ -20896,6 +22840,18 @@ spillover_results:
         row: 51
         column: 219
         advance: 3
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1a34\u1a6f\u1a62
+        codepoints:
+        - 6708
+        - 6767
+        - 6754
+        category: language
+        label: Khün
+        row: 52
+        column: 3
+        advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a34\u1a70\u1a60
@@ -21245,6 +23201,19 @@ spillover_results:
         advance: 3
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u1a38\u1a6e\u1a62\u1a75
+        codepoints:
+        - 6712
+        - 6766
+        - 6754
+        - 6773
+        category: language
+        label: Khün
+        row: 55
+        column: 27
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1a38\u1a75\u1a60\u1a3f
         codepoints:
         - 6712
@@ -21256,7 +23225,7 @@ spillover_results:
         row: 55
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a39\u1a60\u1a2f\u1a65
         codepoints:
@@ -21282,7 +23251,7 @@ spillover_results:
         row: 55
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a39\u1a60\u1a45\u1a65
         codepoints:
@@ -21360,7 +23329,7 @@ spillover_results:
         row: 56
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a3b\u1a55\u1a60\u1a4b\u1a62
         codepoints:
@@ -21374,7 +23343,7 @@ spillover_results:
         row: 56
         column: 27
         advance: 3
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a3b\u1a60\u1a26
         codepoints:
@@ -21400,7 +23369,7 @@ spillover_results:
         row: 56
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a3b\u1a60\u1a36\u1a6b\u1a76
         codepoints:
@@ -21414,7 +23383,7 @@ spillover_results:
         row: 56
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a3b\u1a60\u1a3f
         codepoints:
@@ -21553,7 +23522,7 @@ spillover_results:
         row: 57
         column: 147
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a3e\u1a6e\u1a60
         codepoints:
@@ -21662,7 +23631,7 @@ spillover_results:
         row: 58
         column: 147
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a3f\u1a60\u1a4b
         codepoints:
@@ -21815,7 +23784,7 @@ spillover_results:
         row: 59
         column: 219
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a41\u1a60\u1a4b
         codepoints:
@@ -21997,7 +23966,7 @@ spillover_results:
         row: 61
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a43\u1a62\u1a60\u1a3f
         codepoints:
@@ -22139,7 +24108,7 @@ spillover_results:
         row: 62
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a45\u1a6e\u1a60
         codepoints:
@@ -22178,6 +24147,18 @@ spillover_results:
         row: 62
         column: 219
         advance: 3
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1a45\u1a71\u1a62
+        codepoints:
+        - 6725
+        - 6769
+        - 6754
+        category: language
+        label: Khün
+        row: 63
+        column: 3
+        advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a48\u1a60\u1a20\u1a62
@@ -22231,7 +24212,7 @@ spillover_results:
         row: 63
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a48\u1a60\u1a26\u1a6b
         codepoints:
@@ -22295,7 +24276,7 @@ spillover_results:
         row: 63
         column: 219
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a48\u1a60\u1a4b
         codepoints:
@@ -22420,7 +24401,7 @@ spillover_results:
         row: 65
         column: 27
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a49\u1a60\u1a36\u1a62
         codepoints:
@@ -22473,7 +24454,7 @@ spillover_results:
         row: 65
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a49\u1a60\u1a36\u1a6b
         codepoints:
@@ -22539,7 +24520,7 @@ spillover_results:
         row: 66
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a49\u1a60\u1a3e\u1a73
         codepoints:
@@ -22606,7 +24587,7 @@ spillover_results:
         row: 66
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a49\u1a6e\u1a56\u1a68
         codepoints:
@@ -22836,7 +24817,7 @@ spillover_results:
         row: 68
         column: 75
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1a4b\u1a60\u1a4b
         codepoints:
@@ -23287,6 +25268,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0915\u093f\u0902
+        codepoints:
+        - 2325
+        - 2367
+        - 2306
+        category: language
+        label: Maithili
+        row: 0
+        column: 27
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0915\u0947\u093e
         codepoints:
         - 2325
@@ -23486,6 +25479,17 @@ spillover_results:
         label: Maithili
         row: 1
         column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0928\u0903
+        codepoints:
+        - 2344
+        - 2307
+        category: language
+        label: Maithili
+        row: 1
+        column: 219
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -24163,6 +26167,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0d17\u0d40
+        codepoints:
+        - 3351
+        - 3392
+        category: language
+        label: Malayalam
+        row: 7
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0d17\u0d4d\u0d17\u0d02
         codepoints:
         - 3351
@@ -24431,6 +26446,17 @@ spillover_results:
         label: Malayalam
         row: 10
         column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0d1c\u0d40
+        codepoints:
+        - 3356
+        - 3392
+        category: language
+        label: Malayalam
+        row: 10
+        column: 51
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -24797,6 +26823,17 @@ spillover_results:
         label: Malayalam
         row: 13
         column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0d24\u0d40
+        codepoints:
+        - 3364
+        - 3392
+        category: language
+        label: Malayalam
+        row: 13
+        column: 147
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -25236,6 +27273,17 @@ spillover_results:
         label: Malayalam
         row: 17
         column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0d28\u0d40
+        codepoints:
+        - 3368
+        - 3392
+        category: language
+        label: Malayalam
+        row: 17
+        column: 147
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -25693,6 +27741,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0d2a\u0d40
+        codepoints:
+        - 3370
+        - 3392
+        category: language
+        label: Malayalam
+        row: 21
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0d2a\u0d4a
         codepoints:
         - 3370
@@ -25712,6 +27771,17 @@ spillover_results:
         label: Malayalam
         row: 21
         column: 195
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u0d2a\u0d4c
+        codepoints:
+        - 3370
+        - 3404
+        category: language
+        label: Malayalam
+        row: 21
+        column: 219
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
@@ -25886,6 +27956,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0d2d\u0d4c
+        codepoints:
+        - 3373
+        - 3404
+        category: language
+        label: Malayalam
+        row: 23
+        column: 123
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0d2d\u0d4d\u0d2f\u0d3e
         codepoints:
         - 3373
@@ -25964,6 +28045,17 @@ spillover_results:
         label: Malayalam
         row: 24
         column: 99
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u0d2e\u0d4c
+        codepoints:
+        - 3374
+        - 3404
+        category: language
+        label: Malayalam
+        row: 24
+        column: 123
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
@@ -26196,6 +28288,17 @@ spillover_results:
         label: Malayalam
         row: 26
         column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0d30\u0d40
+        codepoints:
+        - 3376
+        - 3392
+        category: language
+        label: Malayalam
+        row: 26
+        column: 171
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -27185,6 +29288,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0d36\u0d40
+        codepoints:
+        - 3382
+        - 3392
+        category: language
+        label: Malayalam
+        row: 35
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0d36\u0d4d\u0d2f
         codepoints:
         - 3382
@@ -27382,6 +29496,17 @@ spillover_results:
         column: 219
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0d38\u0d4c
+        codepoints:
+        - 3384
+        - 3404
+        category: language
+        label: Malayalam
+        row: 37
+        column: 3
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u0d38\u0d4d\u0d15\u0d3e
         codepoints:
@@ -28927,7 +31052,7 @@ spillover_results:
         row: 49
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1007\u103c\u1031
         codepoints:
@@ -28951,7 +31076,7 @@ spillover_results:
         row: 49
         column: 51
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1007\u105e\u1031
         codepoints:
@@ -28962,6 +31087,18 @@ spillover_results:
         label: Mon
         row: 49
         column: 75
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1010\u1031\u1036
+        codepoints:
+        - 4112
+        - 4145
+        - 4150
+        category: language
+        label: Mon
+        row: 49
+        column: 123
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
@@ -28987,7 +31124,7 @@ spillover_results:
         row: 49
         column: 171
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1010\u103c\u102f\u1036
         codepoints:
@@ -29000,7 +31137,7 @@ spillover_results:
         row: 49
         column: 195
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1010\u103e\u103a\u1031
         codepoints:
@@ -29039,6 +31176,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u1012\u1031\u1036
+        codepoints:
+        - 4114
+        - 4145
+        - 4150
+        category: language
+        label: Mon
+        row: 50
+        column: 51
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u1012\u1039\u1002\u1031
         codepoints:
         - 4114
@@ -29061,7 +31210,7 @@ spillover_results:
         row: 50
         column: 99
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1015\u1031\u1032
         codepoints:
@@ -29123,7 +31272,7 @@ spillover_results:
         row: 50
         column: 219
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1015\u103c\u1036
         codepoints:
@@ -29135,7 +31284,7 @@ spillover_results:
         row: 51
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1016\u103b\u102f
         codepoints:
@@ -29146,6 +31295,19 @@ spillover_results:
         label: Mon
         row: 51
         column: 27
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u1016\u103b\u1031\u1036
+        codepoints:
+        - 4118
+        - 4155
+        - 4145
+        - 4150
+        category: language
+        label: Mon
+        row: 51
+        column: 51
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
@@ -29210,7 +31372,7 @@ spillover_results:
         row: 51
         column: 171
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u1017\u1060\u1031
         codepoints:
@@ -29311,7 +31473,19 @@ spillover_results:
         row: 52
         column: 123
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u101b\u1031\u1036
+        codepoints:
+        - 4123
+        - 4145
+        - 4150
+        category: language
+        label: Mon
+        row: 52
+        column: 147
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u101b\u103e\u103a\u1031
         codepoints:
@@ -29486,7 +31660,7 @@ spillover_results:
         row: 54
         column: 3
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u101e\u103c\u102d\u102f
         codepoints:
@@ -29499,7 +31673,7 @@ spillover_results:
         row: 54
         column: 27
         advance: 2
-        spill_left_cells: 1
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u101e\u103e\u103a\u1031
         codepoints:
@@ -29761,6 +31935,18 @@ spillover_results:
         column: 123
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0928\u093f\u0901
+        codepoints:
+        - 2344
+        - 2367
+        - 2305
+        category: language
+        label: Nepali
+        row: 56
+        column: 147
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u0928\u094d\u0915\u093e
         codepoints:
@@ -30239,6 +32425,29 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a15\u0a3e
+        codepoints:
+        - 2581
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 60
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a15\u0a3e\u0a02
+        codepoints:
+        - 2581
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 60
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a15\u0a3f\u0a4d
         codepoints:
         - 2581
@@ -30251,6 +32460,18 @@ spillover_results:
         advance: 2
         spill_left_cells: 2
         spill_right_cells: 0
+      - wchar: \u0a15\u0a3f\u0a71
+        codepoints:
+        - 2581
+        - 2623
+        - 2673
+        category: language
+        label: Panjabi, Eastern
+        row: 60
+        column: 195
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0a15\u0a40
         codepoints:
         - 2581
@@ -30259,6 +32480,29 @@ spillover_results:
         label: Panjabi, Eastern
         row: 60
         column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a16\u0a3e
+        codepoints:
+        - 2582
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 61
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a16\u0a3e\u0a02
+        codepoints:
+        - 2582
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 61
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -30285,6 +32529,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a17\u0a3e
+        codepoints:
+        - 2583
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 61
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a17\u0a3f\u0a4d
         codepoints:
         - 2583
@@ -30308,6 +32563,29 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a1a\u0a3e
+        codepoints:
+        - 2586
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 61
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a1a\u0a3f\u0a71
+        codepoints:
+        - 2586
+        - 2623
+        - 2673
+        category: language
+        label: Panjabi, Eastern
+        row: 62
+        column: 27
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0a1a\u0a40
         codepoints:
         - 2586
@@ -30316,6 +32594,29 @@ spillover_results:
         label: Panjabi, Eastern
         row: 62
         column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a1c\u0a3e
+        codepoints:
+        - 2588
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 62
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a1c\u0a3e\u0a02
+        codepoints:
+        - 2588
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 62
+        column: 99
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -30366,6 +32667,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a1f\u0a3e
+        codepoints:
+        - 2591
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 63
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a1f\u0a3f\u0a4d
         codepoints:
         - 2591
@@ -30400,6 +32712,40 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a21\u0a3e
+        codepoints:
+        - 2593
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 63
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a23\u0a3e
+        codepoints:
+        - 2595
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 63
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a23\u0a3e\u0a02
+        codepoints:
+        - 2595
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 63
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a23\u0a40
         codepoints:
         - 2595
@@ -30408,6 +32754,29 @@ spillover_results:
         label: Panjabi, Eastern
         row: 63
         column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a24\u0a3e
+        codepoints:
+        - 2596
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 64
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a24\u0a3e\u0a02
+        codepoints:
+        - 2596
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 64
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -30422,6 +32791,41 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a26\u0a3e
+        codepoints:
+        - 2598
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 64
+        column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a26\u0a3e\u0a02
+        codepoints:
+        - 2598
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 64
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a26\u0a3f\u0a71
+        codepoints:
+        - 2598
+        - 2623
+        - 2673
+        category: language
+        label: Panjabi, Eastern
+        row: 64
+        column: 171
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0a26\u0a40
         codepoints:
         - 2598
@@ -30433,6 +32837,29 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a27\u0a3e
+        codepoints:
+        - 2599
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 64
+        column: 219
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a27\u0a3e\u0a02
+        codepoints:
+        - 2599
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 65
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a27\u0a40
         codepoints:
         - 2599
@@ -30441,6 +32868,29 @@ spillover_results:
         label: Panjabi, Eastern
         row: 65
         column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a28\u0a3e
+        codepoints:
+        - 2600
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 65
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a28\u0a3e\u0a02
+        codepoints:
+        - 2600
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 65
+        column: 99
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -30467,6 +32917,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a2a\u0a3e
+        codepoints:
+        - 2602
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 65
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a2a\u0a40
         codepoints:
         - 2602
@@ -30475,6 +32936,17 @@ spillover_results:
         label: Panjabi, Eastern
         row: 66
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a2c\u0a3e
+        codepoints:
+        - 2604
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 66
+        column: 51
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -30489,6 +32961,40 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a2d\u0a3e
+        codepoints:
+        - 2605
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 66
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a2e\u0a3e
+        codepoints:
+        - 2606
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 66
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a2e\u0a3e\u0a02
+        codepoints:
+        - 2606
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 66
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u0a2e\u0a40
         codepoints:
         - 2606
@@ -30497,6 +33003,40 @@ spillover_results:
         label: Panjabi, Eastern
         row: 67
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a2f\u0a3e
+        codepoints:
+        - 2607
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 67
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a30\u0a3e
+        codepoints:
+        - 2608
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 67
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a30\u0a3e\u0a02
+        codepoints:
+        - 2608
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 67
+        column: 75
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -30511,6 +33051,41 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a32\u0a3e
+        codepoints:
+        - 2610
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 67
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a32\u0a3e\u0a02
+        codepoints:
+        - 2610
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 67
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a32\u0a3f\u0a70
+        codepoints:
+        - 2610
+        - 2623
+        - 2672
+        category: language
+        label: Panjabi, Eastern
+        row: 67
+        column: 219
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0a32\u0a40
         codepoints:
         - 2610
@@ -30521,6 +33096,41 @@ spillover_results:
         column: 3
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a35\u0a3e
+        codepoints:
+        - 2613
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 68
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a35\u0a3e\u0a02
+        codepoints:
+        - 2613
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 68
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a35\u0a3f\u0a71
+        codepoints:
+        - 2613
+        - 2623
+        - 2673
+        category: language
+        label: Panjabi, Eastern
+        row: 68
+        column: 99
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u0a35\u0a40
         codepoints:
@@ -30578,6 +33188,41 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u0a38\u0a3e
+        codepoints:
+        - 2616
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 69
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a38\u0a3e\u0a02
+        codepoints:
+        - 2616
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 69
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a38\u0a3f\u0a71
+        codepoints:
+        - 2616
+        - 2623
+        - 2673
+        category: language
+        label: Panjabi, Eastern
+        row: 69
+        column: 75
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
       - wchar: \u0a38\u0a40
         codepoints:
         - 2616
@@ -30588,6 +33233,53 @@ spillover_results:
         column: 99
         advance: 2
         spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a39\u0a3e
+        codepoints:
+        - 2617
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 69
+        column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a39\u0a3e\u0a02
+        codepoints:
+        - 2617
+        - 2622
+        - 2562
+        category: language
+        label: Panjabi, Eastern
+        row: 69
+        column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a39\u0a3f\u0a70
+        codepoints:
+        - 2617
+        - 2623
+        - 2672
+        category: language
+        label: Panjabi, Eastern
+        row: 69
+        column: 195
+        advance: 2
+        spill_left_cells: 2
+        spill_right_cells: 0
+      - wchar: \u0a39\u0a3f\u0a71
+        codepoints:
+        - 2617
+        - 2623
+        - 2673
+        category: language
+        label: Panjabi, Eastern
+        row: 69
+        column: 219
+        advance: 2
+        spill_left_cells: 2
         spill_right_cells: 0
       - wchar: \u0a39\u0a40
         codepoints:
@@ -30631,6 +33323,17 @@ spillover_results:
         label: Panjabi, Eastern
         row: 70
         column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u0a5c\u0a3e
+        codepoints:
+        - 2652
+        - 2622
+        category: language
+        label: Panjabi, Eastern
+        row: 70
+        column: 99
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0

@@ -1,16 +1,16 @@
 ambiguous_width: 1
 bidi_results:
-  scanned_datetime: 2026-11-16 15:51:06 UTC
+  scanned_datetime: 2026-11-22 12:38:14 UTC
   supported: false
   control_left: 1.0
   requested_right: 0.0
   errors: []
 color_results:
-  scanned_datetime: 2026-11-16 15:51:00 UTC
+  scanned_datetime: 2026-11-22 12:38:06 UTC
   painted_rows: 48
   calibration:
     origin_x: 0.0
-    origin_y: 26
+    origin_y: 26.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 160
@@ -128,8 +128,8 @@ font_test_results:
   font_version: 18.0.01
   unicode_version: '18.0'
   font_family: Unifont
-  origin_x: 0
-  origin_y: 26
+  origin_x: 0.0
+  origin_y: 26.0
   cell_width: 8.0
   cell_height: 16.0
   term_width: 160
@@ -247,22 +247,22 @@ session_arguments:
 software_name: Bobcat
 software_version: 0.9.9 (r5)
 spillover_results:
-  scanned_datetime: 2026-11-16 15:51:35 UTC
+  scanned_datetime: 2026-11-22 12:38:49 UTC
   n_candidates: 8644
   n_tested: 8644
-  n_spillover: 4829
+  n_spillover: 4869
   n_no_ink: 213
   n_shifted: 0
   shifted_graphemes: []
   spill_counts:
-    graphemes_any: 4829
-    graphemes_left: 1075
-    graphemes_right: 4068
+    graphemes_any: 4869
+    graphemes_left: 1111
+    graphemes_right: 4072
     graphemes_both: 314
     left_cells:
-      '1': 1075
+      '1': 1111
     right_cells:
-      '1': 4068
+      '1': 4072
     max_left_cells: 1
     max_right_cells: 1
   spill_counts_by_kind:
@@ -277,12 +277,12 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 1
     Bengali:
-      graphemes_any: 196
-      graphemes_left: 83
+      graphemes_any: 207
+      graphemes_left: 94
       graphemes_right: 113
       graphemes_both: 0
       left_cells:
-        '1': 83
+        '1': 94
       right_cells:
         '1': 113
       max_left_cells: 1
@@ -343,12 +343,12 @@ spillover_results:
       max_left_cells: 1
       max_right_cells: 1
     Javanese (Javanese):
-      graphemes_any: 444
-      graphemes_left: 328
+      graphemes_any: 469
+      graphemes_left: 353
       graphemes_right: 345
       graphemes_both: 229
       left_cells:
-        '1': 328
+        '1': 353
       right_cells:
         '1': 345
       max_left_cells: 1
@@ -527,13 +527,13 @@ spillover_results:
       max_left_cells: 0
       max_right_cells: 1
     Tai Dam:
-      graphemes_any: 116
+      graphemes_any: 120
       graphemes_left: 0
-      graphemes_right: 116
+      graphemes_right: 120
       graphemes_both: 0
       left_cells: {}
       right_cells:
-        '1': 116
+        '1': 120
       max_left_cells: 0
       max_right_cells: 1
     Tamang, Eastern:
@@ -937,7 +937,7 @@ spillover_results:
     items_per_page: 567
   calibration:
     origin_x: 0.0
-    origin_y: 26
+    origin_y: 26.0
     cell_width_px: 8.0
     cell_height_px: 16.0
     term_width: 240
@@ -1316,6 +1316,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u099c\u09c0
+        codepoints:
+        - 2460
+        - 2496
+        category: language
+        label: Bengali
+        row: 6
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u099c\u09c7
         codepoints:
         - 2460
@@ -1462,6 +1473,17 @@ spillover_results:
         label: Bengali
         row: 8
         column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09a4\u09c0
+        codepoints:
+        - 2468
+        - 2496
+        category: language
+        label: Bengali
+        row: 9
+        column: 3
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1723,6 +1745,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09a7\u09c0
+        codepoints:
+        - 2471
+        - 2496
+        category: language
+        label: Bengali
+        row: 13
+        column: 171
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u09a7\u09c7
         codepoints:
         - 2471
@@ -1754,6 +1787,17 @@ spillover_results:
         label: Bengali
         row: 14
         column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09a8\u09c0
+        codepoints:
+        - 2472
+        - 2496
+        category: language
+        label: Bengali
+        row: 14
+        column: 123
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -1899,6 +1943,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09aa\u09c0
+        codepoints:
+        - 2474
+        - 2496
+        category: language
+        label: Bengali
+        row: 17
+        column: 75
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u09aa\u09c7
         codepoints:
         - 2474
@@ -1975,6 +2030,17 @@ spillover_results:
         label: Bengali
         row: 18
         column: 147
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09ac\u09c0
+        codepoints:
+        - 2476
+        - 2496
+        category: language
+        label: Bengali
+        row: 18
+        column: 171
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -2265,6 +2331,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09b0\u09c0
+        codepoints:
+        - 2480
+        - 2496
+        category: language
+        label: Bengali
+        row: 23
+        column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u09b0\u09c7
         codepoints:
         - 2480
@@ -2433,6 +2510,17 @@ spillover_results:
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \u09b2\u09c0
+        codepoints:
+        - 2482
+        - 2496
+        category: language
+        label: Bengali
+        row: 25
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \u09b2\u09c7
         codepoints:
         - 2482
@@ -2488,6 +2576,17 @@ spillover_results:
         label: Bengali
         row: 27
         column: 3
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09b6\u09c0
+        codepoints:
+        - 2486
+        - 2496
+        category: language
+        label: Bengali
+        row: 27
+        column: 27
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -2557,6 +2656,17 @@ spillover_results:
         label: Bengali
         row: 28
         column: 123
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09b7\u09c0
+        codepoints:
+        - 2487
+        - 2496
+        category: language
+        label: Bengali
+        row: 28
+        column: 147
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -2631,6 +2741,17 @@ spillover_results:
         label: Bengali
         row: 30
         column: 99
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \u09b8\u09c0
+        codepoints:
+        - 2488
+        - 2496
+        category: language
+        label: Bengali
+        row: 30
+        column: 123
         advance: 2
         spill_left_cells: 1
         spill_right_cells: 0
@@ -5857,6 +5978,54 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua9a5\ua9bf
+        codepoints:
+        - 43429
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 9
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9bf\ua983
+        codepoints:
+        - 43429
+        - 43455
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 10
+        column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9bf\ua9b6
+        codepoints:
+        - 43429
+        - 43455
+        - 43446
+        category: language
+        label: Javanese (Javanese)
+        row: 10
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a5\ua9bf\ua9ba\ua9b4
+        codepoints:
+        - 43429
+        - 43455
+        - 43450
+        - 43444
+        category: language
+        label: Javanese (Javanese)
+        row: 10
+        column: 51
+        advance: 4
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9a5\ua9c0\ua98f
         codepoints:
         - 43429
@@ -6145,6 +6314,17 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua9a7\ua9bf
+        codepoints:
+        - 43431
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 12
+        column: 195
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9a7\ua9c0\ua98f
         codepoints:
         - 43431
@@ -6264,6 +6444,42 @@ spillover_results:
         label: Javanese (Javanese)
         row: 14
         column: 27
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9bf
+        codepoints:
+        - 43433
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 14
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9bf\ua983
+        codepoints:
+        - 43433
+        - 43455
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 14
+        column: 75
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9a9\ua9bf\ua9b6\ua983
+        codepoints:
+        - 43433
+        - 43455
+        - 43446
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 14
+        column: 99
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
@@ -6642,6 +6858,17 @@ spillover_results:
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua9ab\ua9be
+        codepoints:
+        - 43435
+        - 43454
+        category: language
+        label: Javanese (Javanese)
+        row: 18
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9ad\ua9ba
         codepoints:
         - 43437
@@ -6973,6 +7200,19 @@ spillover_results:
         advance: 4
         spill_left_cells: 1
         spill_right_cells: 0
+      - wchar: \ua9ae\ua9bf\ua9b8\ua983
+        codepoints:
+        - 43438
+        - 43455
+        - 43448
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 21
+        column: 147
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
       - wchar: \ua9b1\ua9ba
         codepoints:
         - 43441
@@ -6993,6 +7233,40 @@ spillover_results:
         label: Javanese (Javanese)
         row: 22
         column: 3
+        advance: 3
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9be
+        codepoints:
+        - 43441
+        - 43454
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 27
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9bf
+        codepoints:
+        - 43441
+        - 43455
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 51
+        advance: 2
+        spill_left_cells: 1
+        spill_right_cells: 0
+      - wchar: \ua9b1\ua9bf\ua983
+        codepoints:
+        - 43441
+        - 43455
+        - 43395
+        category: language
+        label: Javanese (Javanese)
+        row: 22
+        column: 75
         advance: 3
         spill_left_cells: 1
         spill_right_cells: 0

@@ -29,8 +29,9 @@ from ucs_detect import imaging, wcwidth
 from ucs_detect.accessories import display_lock, decode_wchars
 from ucs_detect.tasks import TaskPool
 
-#: Capture attempts made before the crop markers are reported missing.
-CAPTURE_ATTEMPTS = 5
+#: Seconds to wait before each retry when the crop markers are missing.  A GPU terminal renders
+#: asynchronously, so the first pages of a cold window need longer than a warm one.
+CAPTURE_RETRY_DELAYS = (0.15, 0.25, 0.4, 0.55, 0.75, 1.0, 1.25, 1.65)
 
 
 def _marker_cells(term):
@@ -49,9 +50,14 @@ def marker_column(term_width, desired):
 
 
 def capture_marked_page(window_id, output_path, pool):
-    """Capture *window_id* and hand the marker crop to *pool*."""
+    """Capture *window_id* and hand the marker crop to *pool*.
+
+    The page is not written when the markers never appear: a frame captured before the terminal
+    rendered would crop to the shell prompt and silently replace the real screenshot.
+    """
     raw_path = tempfile.mktemp(suffix=".png")
-    for attempt in range(CAPTURE_ATTEMPTS):
+    attempts = len(CAPTURE_RETRY_DELAYS) + 1
+    for attempt in range(attempts):
         try:
             imaging.capture_window_raw(window_id, raw_path)
         except (RuntimeError, OSError, subprocess.CalledProcessError) as error:
@@ -62,11 +68,12 @@ def capture_marked_page(window_id, output_path, pool):
             pool.submit(imaging.finish_capture, raw_path, output_path,
                         label=output_path)
             return None
-        if attempt < CAPTURE_ATTEMPTS - 1:
-            time.sleep(0.5)
-    pool.submit(imaging.finish_capture, raw_path, output_path,
-                label=output_path)
-    return f"markers missing from {CAPTURE_ATTEMPTS} captures"
+        if attempt < attempts - 1:
+            imaging.focus_window(window_id)
+            time.sleep(CAPTURE_RETRY_DELAYS[attempt])
+    if os.path.exists(raw_path):
+        os.unlink(raw_path)
+    return f"markers missing from {attempts} captures"
 
 
 def _clear_screen(term):

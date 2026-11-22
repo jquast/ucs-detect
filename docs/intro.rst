@@ -272,8 +272,11 @@ emulators pre-installed.  All Docker operations are managed through ``tox`` targ
     # this accepts extra 'run-series.py' arguments,
     tox -e docker_run_series -- --timeout 600 --run-only "foot,kitty"
 
-    # generate screenshots
+    # generate screenshots / spillover reports
     tox -e docker_screenshots
+
+    # re-collect and screenshot a single terminal
+    tox -e docker_run_series,docker_screenshots -- --run-only=xterm
 
 Unfortunately, many terminals have to be excluded from docker:
 
@@ -284,8 +287,8 @@ Unfortunately, many terminals have to be excluded from docker:
 - Cannot reliably set geometry
 - Tests with ucs-detect fine, but cannot screenshot for any reason
 
-This requires installing those terminals on the developer's host system.  Use the 'system' targets
-to run these:
+This requires installing those terminals on the developer's host system. Currently only
+mac and linux are supported.  Use the 'system' targets to run these:
 
 .. code-block:: bash
 
@@ -295,13 +298,15 @@ to run these:
     # run ucs-detect on all terminals
     tox -e system_run_series
 
-    # generate screenshots
+    # generate screenshots / spillover reports
     tox -e system_screenshots
 
-The script ``run-series.py`` is an X11 automation for testing all linux terminals. When ``-e program
+    # re-collect and screenshot a single terminal
+    tox -e docker_run_series,docker_screenshots -- --run-only=ghostty
+
+The script ``run-series.py`` is an automation for testing all terminals. When ``-e program
 [arguments]`` or similar is not supported, keystrokes are injected into the target application to
-launch ``ucs-detect`` by configuration. When the application gives keyboard focus to its terminal
-widget only on a pointer press, set ``click_before_keys: true`` in the terminal's ``launch`` block.
+launch ``ucs-detect``.
 
 Reviewing data
 --------------
@@ -322,7 +327,7 @@ anytime:
 
 - new release or revisions of unicode.org data files
 - new languages or revisions of UDHR data files
-- python wcwidth that affects wcswidth measurement
+- python wcwidth width specification changes
 
 To update these tables and then perform automatic reformatting, run::
 
@@ -353,7 +358,10 @@ builds the sdist and wheel, runs ``twine check --strict``, and uploads them.
 History
 -------
 
-- 2.3.12 (2026-11-20): bugfix some spill region calculations 
+- 2.3.13 (2026-11-22): More spill calculation changes, to better understand when spills occur
+  outside of measured cell, and some changes to error more clearly when marker detection fails.
+
+- 2.3.12 (2026-11-20): bugfix some spill region calculations
 
 - 2.3.11 (2026-11-15): Screenshot stages measure contested grapheme spillover with animated
   evidence pages, record the default 16 colors and one LANG page per UDHR language, and the
