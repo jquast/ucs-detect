@@ -883,6 +883,29 @@ def cell_contamination(image, calibration, row, column, expected):
     return different / total if total else 0.0
 
 
+def cell_is_spilled(image, calibration, row, column, expected):
+    """
+    Return True when a neighbouring cell holds pixels unlike its bar color *expected*.
+
+    The cell is measured edge to edge less :data:`INK_MARGIN` pixels, every pixel, so ink at the
+    cell's edge or in its top or bottom fifth counts (a mark drawn low in the next cell, a glyph
+    reaching a few pixels into the cell before it).  The ink needed is the same as
+    :func:`cell_is_painted`'s, :data:`PAINTED_FRACTION` of the cell's inner box, so a lone
+    antialiasing pixel is not spill wherever it falls.
+    """
+    pixels = image.load()
+    box = _cell_box(calibration, row, column, image.size)
+    x0, y0, x1, y1 = _margin_box(box, INK_MARGIN)
+    in_x0, in_y0, in_x1, in_y1 = _inner_box(box)
+    needed = PAINTED_FRACTION * (in_x1 - in_x0) * (in_y1 - in_y0)
+    different = 0
+    for y in range(y0, y1):
+        for x in range(x0, x1):
+            if _color_distance(pixels[x, y][:3], expected) > COLOR_TOLERANCE:
+                different += 1
+    return different > needed
+
+
 def _last_usable_column(image, calibration, reference_row, reference):
     last = max(0, calibration.term_width - 2)
     if reference_row is None:
@@ -1052,9 +1075,7 @@ def analyze_page(image, calibration, items, reference=None,
             left_start = max(left_start, previous_end)
         left_cells = 0
         for cell in range(column - 1, left_start - 1, -1):
-            expected = reference[cell]
-            if (cell_contamination(image, calibration, row, cell,
-                                   expected) > PAINTED_FRACTION):
+            if cell_is_spilled(image, calibration, row, cell, reference[cell]):
                 left_cells = column - cell
             else:
                 break
@@ -1070,8 +1091,7 @@ def analyze_page(image, calibration, items, reference=None,
             contiguous_end = isolated_end = last_usable
         scan_end = max(contiguous_end, isolated_end)
         dirty = [
-            cell_contamination(image, calibration, row, cell,
-                               reference[cell]) > PAINTED_FRACTION
+            cell_is_spilled(image, calibration, row, cell, reference[cell])
             for cell in range(first_gap, scan_end + 1)
         ]
         right_cells = 0
