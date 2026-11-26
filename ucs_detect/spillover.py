@@ -105,6 +105,9 @@ SETTLE_DELAY = 0.2
 #: Captures compared before a page is measured as it finally landed.
 SETTLE_ATTEMPTS = 4
 
+#: Seconds between painting a page's bars and drawing its glyphs, so the bars land first.
+DRAW_DELAY = 0.0
+
 #: Bidirectional classes laid out right to left, including Arabic numbers, which a terminal that
 #: applies the bidi algorithm places with the surrounding right to left text.
 RTL_DIRECTIONS = ('R', 'AL', 'AN')
@@ -634,14 +637,29 @@ def render_grapheme_at(row, column, text, truecolor=False):
     ))
 
 
+def set_draw_delay(seconds):
+    """Set the pause between painting page bars and drawing glyphs, in seconds."""
+    global DRAW_DELAY
+    DRAW_DELAY = max(0.0, float(seconds))
+
+
 def render_page(origin_row, rows, term_width, items, truecolor=False):
     """Return a page with blocks painted and *items* drawn over them."""
-    page = ''.join(
-        [render_blank_page(rows, term_width, origin_row, truecolor)]
+    return ''.join(
+        [PAGE_CLEAR, render_blank_page(rows, term_width, origin_row, truecolor)]
         + [render_grapheme_at(origin_row + row, column, text, truecolor)
            for row, column, text in items])
-    # paint twice (workaround tecolot bug)
-    return PAGE_CLEAR + page + page
+
+
+def write_page(origin_row, rows, term_width, items, truecolor=False,
+               delay=None):
+    """Paint page bars, pause, then draw *items* over them."""
+    _write(PAGE_CLEAR + render_blank_page(
+        rows, term_width, origin_row, truecolor))
+    time.sleep(DRAW_DELAY if delay is None else max(0.0, delay))
+    _write(''.join(
+        render_grapheme_at(origin_row + row, column, text, truecolor)
+        for row, column, text in items))
 
 
 def render_calibration(term_width, term_height, truecolor=False):
@@ -1398,11 +1416,11 @@ def run_controls(term, window_id, temp_dir, calibration, refresh_window=None):
         column = START_COLUMN + index * COLUMN_STRIDE
         if column < term.width:
             items.append((0, column, candidate))
-    _write(render_page(
+    write_page(
         0, term.height, term.width,
         [(row, column, candidate.text)
          for row, column, candidate in items],
-        supports_truecolor(term)))
+        supports_truecolor(term))
     _park_cursor(term, 0, term.width - 1)
     path = os.path.join(temp_dir, 'controls.png')
     capture_page(window_id, path, refresh_window, term)
@@ -1636,11 +1654,11 @@ def scan_terminal(term, window_id, candidates, temp_dir,
             column = START_COLUMN + (index % columns) * COLUMN_STRIDE
             items.append((row, column, candidate))
 
-        _write(render_page(
+        write_page(
             0, term.height, term.width,
             [(guard_row(row, guard), column, candidate.text)
              for row, column, candidate in items],
-            supports_truecolor(term)))
+            supports_truecolor(term))
         _park_cursor(term, 0, term.width - 1)
         image_path = os.path.join(temp_dir, f'page-{page_index:04d}.png')
         try:

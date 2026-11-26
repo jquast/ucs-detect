@@ -36,6 +36,7 @@ Interactive Keys:
   Display Adjustment:
     -, _              Decrease character name display length by 2
     +, =              Increase character name display length by 2
+    L                 Toggle delimiter between a line and a full block
 
   Help:
     ?, F1             Show this interactive key listing
@@ -486,7 +487,9 @@ class Style:
         """Non-stylized callable for "minor" text, for non-ttys."""
         return text
 
-    delimiter = '│'
+    #: Delimiters cycled by the L key: a thin line, then a full block.
+    DELIMITERS = ('│', '█')
+    delimiter = DELIMITERS[0]
     continuation = ' …'
     header_hint = '─'
     header_fill = '═'
@@ -896,6 +899,18 @@ class Pager:
             if nlen != self.screen.style.name_len:
                 self.screen.style.name_len = nlen
                 self.on_resize(None, None)
+        elif inp == 'L':
+            self.toggle_delimiter()
+
+    def toggle_delimiter(self):
+        """Cycle the column delimiter between a thin line and a full block."""
+        style = self.screen.style
+        try:
+            index = Style.DELIMITERS.index(style.delimiter)
+        except ValueError:
+            index = -1
+        style.delimiter = Style.DELIMITERS[(index + 1) % len(Style.DELIMITERS)]
+        self.dirty = self.STATE_REFRESH
 
     def _process_keystroke_movement(self, inp, idx, offset):
         term = self.term
@@ -994,7 +1009,7 @@ class Pager:
                    .format(idx=style.attr_minor(f'{idx}'),
                            last_end=style.attr_major(last_end),
                            mode=style.attr_major(mode),
-                           keyset=style.attr_major('kjfbvc012567gzwUt[]-='),
+                           keyset=style.attr_major('kjfbvc012567gzwUtL[]-='),
                            q=style.attr_minor('q')))
             writer(self.term.center(txt).rstrip())
 
@@ -1276,6 +1291,7 @@ Interactive Keys:
   Display Adjustment:
     -, _              Decrease character name display length by 2
     +, =              Increase character name display length by 2
+    L                 Toggle delimiter between a line and a full block
 
   Help:
     ?, F1             Show this interactive key listing
