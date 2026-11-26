@@ -191,6 +191,13 @@ def capture_delay_arguments(job):
     return ["--capture-delay-ms", str(delay)]
 
 
+def draw_delay_arguments(args):
+    """Return the page draw pause flag for *args*, empty when not overridden."""
+    if args.draw_delay is None:
+        return []
+    return ["--draw-delay", str(args.draw_delay)]
+
+
 def color_test_arguments(job, window_id_path):
     """Return the color measurement argv for *job*."""
     capture = SCREENSHOTS_DIR / safe_name(job.display_name)
@@ -324,7 +331,8 @@ def spillover_script_arguments(job, args, window_id_path, workers=1):
         arguments.extend(["--evidence-dir", str(directory)])
     if not job.launch_cfg.get("spillover_rtl", True):
         arguments.append("--exclude-rtl")
-    return arguments + cursor_arguments(job) + capture_delay_arguments(job)
+    return (arguments + cursor_arguments(job) + capture_delay_arguments(job)
+            + draw_delay_arguments(args))
 
 
 def build_spillover_script(temp_dir, job, args, log_path=None, workers=1):
@@ -764,6 +772,10 @@ def main():
         "--limit", type=int, default=0,
         help="Test only the first N spillover candidates")
     parser.add_argument(
+        "--draw-delay", type=float, default=None,
+        help="Seconds between painting spillover page bars and drawing "
+             "glyphs (default: 0.15)")
+    parser.add_argument(
         "--evidence-dir", default=str(SCREENSHOTS_DIR),
         help="Base directory for full page spillover images")
     parser.add_argument(
@@ -854,6 +866,8 @@ def main():
             extra_args.append("--force")
         if args.limit:
             extra_args.extend(["--limit", str(args.limit)])
+        if args.draw_delay is not None:
+            extra_args.extend(["--draw-delay", str(args.draw_delay)])
         if args.stage in ("spillover", "bidi", "all"):
             relative = stage.evidence_relative(args.evidence_dir)
             if relative:

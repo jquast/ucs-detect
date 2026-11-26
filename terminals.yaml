@@ -129,6 +129,30 @@ terminals:
     profile_processes:
     - gnome-terminal-server
     timeout: 14400
+  guacamole:
+    homepage: https://guacamole.apache.org/
+    display_name: Guacamole
+    version_manual: 1.6.0
+    timeout: 14400
+    screenshot_delay_ms: 1000
+    profile_processes:
+    - chromium
+    - guacd
+    - java
+    launch:
+      program: guacamole-launch
+      args: []
+      wm_class: Chromium
+      window_search_timeout_ms: 30000
+      post_launch_delay_ms: 15000
+      click_before_keys: true
+      key_delay_ms: 60
+      post_launch_keys:
+      - "\n"
+      - \p1000
+      - 'sh /tmp/ucs-stage.sh && exit'
+      - "\n"
+      kill_command: [pkill, -x, chromium]
   hyper:
     homepage: https://hyper.is/
     skip_docker: true

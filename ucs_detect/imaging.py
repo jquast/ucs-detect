@@ -336,24 +336,6 @@ def capture_window(window_id, output_path):
             os.unlink(tmp_png)
 
 
-def is_blank(path):
-    """Return True if *path* is mostly blank."""
-    # 3rd party
-    from PIL import Image
-    with Image.open(path) as opened:
-        img = opened.convert("RGB") if opened.mode != "RGB" else opened
-        flattened = getattr(img, "get_flattened_data", None)
-        pixels = list(flattened() if flattened else img.getdata())
-    white = sum(1 for p in pixels if p[0] > 240 and p[1] > 240 and p[2] > 240)
-    if white / len(pixels) > 0.95:
-        return True
-    if os.path.exists("/.dockerenv"):
-        black = sum(1 for p in pixels if p[0] < 15 and p[1] < 15 and p[2] < 15)
-        if black / len(pixels) > 0.95:
-            return True
-    return False
-
-
 def imagemagick_trim(src_path, dst_path):
     """Crop *src_path* using ImageMagick trim as a fallback."""
     if shutil.which("convert"):
