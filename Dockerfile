@@ -127,6 +127,67 @@ RUN --mount=type=cache,target=/var/cache/pacman/pkg \
 # but without a real GPU its libEGL_nvidia.so crashes Xvfb at startup
 RUN rm -f /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
+# Apache Guacamole... version, install all configured manually
+ARG GUACAMOLE_VERSION=1.6.0
+ARG TOMCAT_VERSION=9.0.124
+
+RUN --mount=type=cache,target=/var/cache/pacman/pkg \
+    pacman -S --noconfirm --needed \
+    chromium \
+    openssh \
+    jre17-openjdk \
+    libssh \
+    libwebp \
+    libjpeg-turbo \
+    libpng \
+    cairo \
+    pango \
+    openssl \
+    libtool \
+    && pacman -Scc --noconfirm
+
+RUN curl -fsSL -o /tmp/guacamole-server.tar.gz \
+        "https://archive.apache.org/dist/guacamole/${GUACAMOLE_VERSION}/source/guacamole-server-${GUACAMOLE_VERSION}.tar.gz" \
+    && tar xzf /tmp/guacamole-server.tar.gz -C /tmp \
+    && cd "/tmp/guacamole-server-${GUACAMOLE_VERSION}" \
+    && ./configure --prefix=/usr --sbindir=/usr/bin \
+        --with-ssh --with-terminal --with-webp \
+        --without-vnc --without-telnet --without-rdp \
+        --without-pulse --without-websockets --disable-kubernetes \
+        CFLAGS="-Wno-error" CPPFLAGS="-Wno-error" \
+    && make -j"$(nproc)" \
+    && make install \
+    && rm -rf "/tmp/guacamole-server-${GUACAMOLE_VERSION}" /tmp/guacamole-server.tar.gz
+
+RUN curl -fsSL -o /tmp/tomcat.tar.gz \
+        "https://archive.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz" \
+    && mkdir -p /opt/tomcat \
+    && tar xzf /tmp/tomcat.tar.gz -C /opt/tomcat --strip-components=1 \
+    && rm -f /tmp/tomcat.tar.gz \
+    && rm -rf /opt/tomcat/webapps/*
+
+RUN curl -fsSL -o /opt/tomcat/webapps/guacamole.war \
+        "https://archive.apache.org/dist/guacamole/${GUACAMOLE_VERSION}/binary/guacamole-${GUACAMOLE_VERSION}.war" \
+    && mkdir -p /etc/guacamole/extensions \
+    && curl -fsSL -o /tmp/auth-json.tar.gz \
+        "https://archive.apache.org/dist/guacamole/${GUACAMOLE_VERSION}/binary/guacamole-auth-json-${GUACAMOLE_VERSION}.tar.gz" \
+    && tar xzf /tmp/auth-json.tar.gz -C /tmp \
+    && cp "/tmp/guacamole-auth-json-${GUACAMOLE_VERSION}/guacamole-auth-json-${GUACAMOLE_VERSION}.jar" /etc/guacamole/extensions/ \
+    && rm -rf /tmp/auth-json.tar.gz "/tmp/guacamole-auth-json-${GUACAMOLE_VERSION}"
+
+COPY scripts/guacamole.properties /etc/guacamole/guacamole.properties
+COPY scripts/guacamole-sshd.conf /etc/ssh/sshd_config.d/guac.conf
+COPY scripts/guacamole-launch.sh /usr/local/bin/guacamole-launch
+RUN chmod +x /usr/local/bin/guacamole-launch \
+    && mkdir -p /run/sshd \
+    && ssh-keygen -A \
+    && usermod --password "$(openssl passwd -6 ucs)" ucs \
+    && chown -R ucs:ucs /opt/tomcat /etc/guacamole
+
+ENV GUACAMOLE_HOME=/etc/guacamole
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+ENV CATALINA_HOME=/opt/tomcat
+
 # .NET SDK builds the XTerm.NET Avalonia host below
 RUN --mount=type=cache,target=/var/cache/pacman/pkg \
     pacman -S --noconfirm --needed \
