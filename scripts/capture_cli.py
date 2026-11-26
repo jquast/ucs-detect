@@ -15,7 +15,7 @@ if _PROJECT_DIR not in sys.path:
     sys.path.insert(0, _PROJECT_DIR)
 
 # local
-from ucs_detect import imaging
+from ucs_detect import spillover, imaging
 from ucs_detect.accessories import load_document
 
 #: Seconds a driver waits for the launcher to write the window id file.
@@ -43,6 +43,10 @@ def build_parser(description):
     parser.add_argument('--capture-delay-ms', type=int, default=0,
                         help='Extra milliseconds to wait after rendering '
                              'before the window is captured')
+    parser.add_argument('--draw-delay', type=float,
+                        default=spillover.DRAW_DELAY,
+                        help='Seconds between painting page bars and drawing '
+                             f'glyphs (default: {spillover.DRAW_DELAY})')
     return parser
 
 
@@ -83,6 +87,7 @@ def prepare(args, title_prefix, noun):
               f'for the {noun}', file=sys.stderr)
         return None
     imaging.set_capture_delay(args.capture_delay_ms)
+    spillover.set_draw_delay(args.draw_delay)
     data = load_document(args.yaml)
     software_name = data.get('software_name', os.path.basename(args.yaml))
     title = args.title or f'{title_prefix}-{software_name}'
